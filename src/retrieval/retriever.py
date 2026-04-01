@@ -738,3 +738,7 @@ def api_search(query, strategy="c3", use_llm=False):
 
 if __name__ == "__main__":
     main()
+
+# changes needed 
+# write the code to stop retreiving the same video lectures if theya re already reterived. 
+# write the code to clear the LLM queue once the outptu is given so that the other requests for LLM doesn't gets blocked by Ollama
