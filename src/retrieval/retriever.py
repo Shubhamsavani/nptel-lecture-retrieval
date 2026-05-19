@@ -3,7 +3,7 @@ retriever.py  —  NPTEL Lecture Retrieval System (Production)
 =============================================================
 Production retrieval pipeline — always uses the full stack:
 
-  1. BGE-large query embedding  (dense / FAISS)
+  1. BGE-small query embedding  (dense / FAISS)
   2. BM25 keyword scoring       (sparse)
   3. Reciprocal Rank Fusion     (merge dense + sparse)
   4. Content-type score boost   (intent-driven)
@@ -39,7 +39,7 @@ PROJECT_ROOT = Path(os.getenv("PROJECT_ROOT", Path(__file__).resolve().parent))
 INDEXES      = PROJECT_ROOT / "data" / "indexes"
 
 # ── model config ──────────────────────────────────────────────────────────────
-EMBEDDING_MODEL  = os.getenv("EMBEDDING_MODEL",  "BAAI/bge-large-en-v1.5")
+EMBEDDING_MODEL  = os.getenv("EMBEDDING_MODEL",  "BAAI/bge-small-en-v1.5")
 RERANKER_MODEL   = os.getenv("RERANKER_MODEL",   "cross-encoder/ms-marco-MiniLM-L-6-v2")
 EMBEDDING_DEVICE = os.getenv("EMBEDDING_DEVICE", "cuda")
 
@@ -346,17 +346,22 @@ def search(
     # Step 4: Content-type boost driven by user-selected intent
     fused = _apply_content_boost(fused, metadata, intent)
 
-    # Step 5: Cross-encoder reranking (top-50 candidates, OCR always on)
-    rerank_in = fused[:RERANK_K]
-    reranked  = _rerank(
-        query      = query,
-        candidates = rerank_in,
-        metadata   = metadata,
-        top_k      = top_k * 4,
-    )
+    # # Step 5: Cross-encoder reranking (top-50 candidates, OCR always on)
+    # rerank_in = fused[:RERANK_K]
+    # reranked  = _rerank(
+    #     query      = query,
+    #     candidates = rerank_in,
+    #     metadata   = metadata,
+    #     top_k      = top_k * 4,
+    # )
 
     # Step 6: Lecture-level deduplication
-    final = _deduplicate_by_lecture(reranked, metadata, top_k)
+    # final = _deduplicate_by_lecture(reranked, metadata, top_k)
+    final = _deduplicate_by_lecture(
+        fused,
+        metadata,
+        top_k
+    )
 
     # Build output
     results = []
@@ -386,3 +391,61 @@ def search(
         })
 
     return results
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CLI entry point
+# ─────────────────────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="NPTEL Lecture Retrieval"
+    )
+
+    parser.add_argument(
+        "--query",
+        type=str,
+        required=True,
+        help="Search query"
+    )
+
+    parser.add_argument(
+        "--intent",
+        type=str,
+        default="conceptual",
+        choices=["conceptual", "theoretical", "code"],
+        help="Query intent"
+    )
+
+    parser.add_argument(
+        "--top_k",
+        type=int,
+        default=5,
+        help="Number of results"
+    )
+
+    args = parser.parse_args()
+
+    results = search(
+        query=args.query,
+        intent=args.intent,
+        top_k=args.top_k
+    )
+
+    print("\n" + "=" * 70)
+    print(f"Query   : {args.query}")
+    print(f"Intent  : {args.intent}")
+    print(f"Results : {len(results)}")
+    print("=" * 70)
+
+    for r in results:
+        print(f"\nRank {r['rank']}")
+        print(f"Course   : {r['course_name']}")
+        print(f"Lecture  : {r['lecture_title']}")
+        print(f"Time     : {r['start_sec']}s")
+        print(f"Score    : {r['retrieval_score']}")
+        print(f"Link     : {r['youtube_deep_link']}")
+        print(f"Snippet  : {r['transcript'][:150]}")
+        print("-" * 60)
