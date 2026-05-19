@@ -41,7 +41,7 @@ INDEXES      = PROJECT_ROOT / "data" / "indexes"
 # ── model config ──────────────────────────────────────────────────────────────
 EMBEDDING_MODEL  = os.getenv("EMBEDDING_MODEL",  "BAAI/bge-small-en-v1.5")
 RERANKER_MODEL   = os.getenv("RERANKER_MODEL",   "cross-encoder/ms-marco-MiniLM-L-6-v2")
-EMBEDDING_DEVICE = os.getenv("EMBEDDING_DEVICE", "cuda")
+EMBEDDING_DEVICE = os.getenv("EMBEDDING_DEVICE", "cpu")
 
 # ── retrieval config ──────────────────────────────────────────────────────────
 STRATEGY      = "c3"
