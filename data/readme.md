@@ -1,75 +1,25 @@
 # Dataset Details
 
-This folder contains the processed multimodal dataset used for the **NPTEL Lecture Retrieval** system.
+This folder contains the multimodal dataset used for the NPTEL Lecture Retrieval system.
 
-The dataset was constructed using:
-- Whisper-based speech transcription
-- Tesseract OCR slide text extraction
-- Multiple chunking strategies for retrieval experiments
-- OCR-aware semantic segmentation
-- BM25-enhanced hybrid retrieval experiments
-
----
-
-# Dataset Creation Pipeline
-
-## 1. Speech Transcription using Whisper
-
-Lecture videos were transcribed using OpenAI Whisper ASR.
-
-### Purpose
-- Extract spoken lecture narration
-- Generate timestamp-aligned transcripts
-- Preserve temporal context
-
-### Output
-- Timestamped transcript segments
-- Speaker-independent lecture text
-- Time-aligned retrieval metadata
+The dataset was built using:
+- Whisper ASR for lecture transcription
+- Tesseract OCR for slide text extraction
+- Multiple chunking strategies (C1, C2, C3)
+- OCR + BM25 enhanced retrieval experiments
 
 ---
 
-## 2. OCR Extraction using Tesseract OCR
-
-Slides/video frames were processed using Tesseract OCR.
-
-### Purpose
-- Extract textual slide content
-- Capture formulas, code snippets, titles, and keywords
-- Improve retrieval quality beyond speech transcripts
-
-### OCR Information Captured
-- Slide headings
-- Technical keywords
-- Equations and symbols
-- Code fragments
-- Important annotations
-
----
-
-## 3. Transcript + OCR Fusion
-
-The final retrieval corpus combines:
-- Whisper transcript text
-- OCR slide text
-- Temporal metadata
-- Chunk identifiers
-- Retrieval metadata
-
-This multimodal fusion significantly improves retrieval performance.
-
----
-
-# Directory Structure
+# Dataset Structure
 
 ```bash
 data/
 │
-├── raw_transcripts/        # Whisper generated transcripts
-├── ocr_text/               # Tesseract OCR outputs
+├── raw_transcripts/        # Whisper transcripts
+├── ocr_text/               # OCR extracted slide text
 ├── processed_chunks/       # Final retrieval chunks
-├── metadata/               # Lecture/course metadata
-├── experiments/            # Retrieval experiment outputs
+├── metadata/               # Course metadata
+├── eval/                   # Evaluation queries and metrics
 └── README.md
 ```
 
@@ -77,79 +27,53 @@ data/
 
 # Chunking Strategies
 
-The project evaluates three retrieval chunking strategies.
+| Strategy | Description |
+|---|---|
+| C1 | Fixed 30-second chunks |
+| C2 | Utterance / fixed-word chunking |
+| C3 | OCR Jaccard similarity slide-boundary chunking |
 
 ---
 
-# C1 — Fixed Time-Based Chunking
+# Best Performing Configuration
 
-Lecture transcripts are split into fixed-duration windows.
-
-### Configuration
-- Window Size: 30 seconds
-
-### Characteristics
-- Uniform temporal segmentation
-- Simple baseline strategy
-- Fast preprocessing
-
-### Advantages
-- Consistent chunk boundaries
-- Easy timestamp retrieval
-
-### Limitations
-- May split semantic topics abruptly
+| Setting | Value |
+|---|---|
+| Chunking | C3 |
+| OCR | Enabled |
+| BM25 | Enabled |
+| MRR | 0.8259 |
+| Recall@10 | 0.9643 |
 
 ---
 
-# C2 — Utterance / Fixed Word Chunking
+# Evaluation
 
-Transcript text is segmented based on utterance or fixed word limits.
+The `eval/` folder contains:
+- Retrieval experiment outputs
+- Quantitative evaluation metrics
+- `annotation.jsonl` containing 100 human-annotated evaluation queries with:
+  - Expected course
+  - Lecture number
+  - Timestamp annotations
+  - Query relevance labels
 
-### Variants Evaluated
-- 150-word chunks
-- 200-word chunks
-- 250-word chunks
+Example queries include:
+- “what is backpropagation and how does it compute gradients”
+- “explain pipelining in processor execution”
+- “how does TCP three way handshake work” :contentReference[oaicite:0]{index=0}
 
-### Characteristics
-- Linguistically aligned segmentation
-- Better semantic continuity
+For extending annotations and evaluating new retrieval systems, the repository includes `eval_app.py` — a custom UI where human evaluators can:
+- Search queries
+- Inspect retrieved results
+- Select the most relevant lecture segment
+- Generate updated evaluation annotations
 
-### Advantages
-- Preserves sentence-level meaning
-- Better contextual grouping
-
-### Limitations
-- Variable temporal duration
-
----
-
-# C3 — OCR Jaccard Similarity Slide-Boundary Chunking
-
-Chunks are generated dynamically using OCR similarity between adjacent slides/frames.
-
-### Method
-
-1. OCR text extracted from frames
-2. Jaccard similarity computed between consecutive OCR outputs
-3. New chunk created when similarity falls below threshold
-
-### Thresholds Evaluated
-- t = 0.25
-- t = 0.30
-- t = 0.40
-
-### Goal
-Automatically detect topic/slide transitions.
-
-### Advantages
-- Semantically adaptive segmentation
-- Better topic boundary preservation
-- Avoids redundant OCR overlap
-
-### Limitations
-- Dependent on OCR quality
-- Requires threshold tuning
+Metrics used:
+- MRR
+- Recall@5
+- Recall@10
+- LLM relevance scoring
 
 ---
 
