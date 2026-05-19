@@ -7,7 +7,7 @@ An AI-powered lecture retrieval system for NPTEL courses that enables efficient 
 ## System Architecture
 
 <p align="center">
-  <img src="img/architecture.png" alt="System Architecture" width="850">
+  <img src="img/Architecture.png" alt="System Architecture" width="850">
 </p>
 
 ---
