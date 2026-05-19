@@ -35,7 +35,8 @@ except ImportError:
     pass
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-PROJECT_ROOT = Path(os.getenv("PROJECT_ROOT", Path(__file__).resolve().parent))
+# PROJECT_ROOT = Path(os.getenv("PROJECT_ROOT", Path(__file__).resolve().parent))
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 INDEXES      = PROJECT_ROOT / "data" / "indexes"
 
 # ── model config ──────────────────────────────────────────────────────────────
