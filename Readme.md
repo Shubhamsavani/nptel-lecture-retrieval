@@ -1,37 +1,57 @@
 # NPTEL Lecture Retrieval
 
-An AI-powered lecture retrieval system for NPTEL courses that helps users efficiently search, retrieve, and interact with lecture content using semantic search and information retrieval techniques.
+An AI-powered lecture retrieval system for NPTEL courses that enables efficient semantic search and retrieval over lecture transcripts and OCR-enhanced slide content.
+
+---
+
+## System Architecture
+
+<p align="center">
+  <img src="img/architecture.png" alt="System Architecture" width="850">
+</p>
+
+---
 
 ## Features
 
-* Lecture retrieval based on user queries
-* Semantic search over lecture content
-* Fast and efficient indexing
-* Course-wise lecture organization
-* Easy-to-use interface
-* Scalable retrieval pipeline
+- Semantic lecture retrieval
+- OCR-enhanced multimodal search
+- Fast vector-based indexing using FAISS
+- Hybrid retrieval with BM25 support
+- Multiple chunking strategies (C1, C2, C3)
+- Course-wise lecture organization
+- Retrieval evaluation and benchmarking
+
+---
 
 ## Tech Stack
 
-* Python
-* Machine Learning / NLP
-* Vector Search / Embeddings
-* Streamlit / Flask (if applicable)
-* FAISS / ChromaDB (if applicable)
+- Python
+- NLP / Machine Learning
+- FAISS Vector Search
+- Whisper ASR
+- Tesseract OCR
+- BM25 Retrieval
+- Streamlit / Flask
+
+---
 
 ## Project Structure
 
 ```bash
 nptel-lecture-retrieval/
 │
-├── data/                # Dataset and processed lecture files
-├── notebooks/           # Experiment and development notebooks
-├── src/                 # Core source code
-├── models/              # Saved models or embeddings
-├── requirements.txt     # Python dependencies
-├── app.py               # Main application entry point
+├── data/                  # Dataset and processed retrieval chunks
+├── notebooks/             # Experiment notebooks
+├── src/                   # Core retrieval pipeline
+├── models/                # Embedding/index files
+├── img/                   # Images and architecture diagrams
+├── requirements.txt
+├── app.py
 └── README.md
 ```
+
+---
 
 ## Installation
 
@@ -56,7 +76,7 @@ Activate the environment:
 venv\Scripts\activate
 ```
 
-### Linux / MacOS
+### Linux / macOS
 
 ```bash
 source venv/bin/activate
@@ -68,6 +88,8 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+---
+
 ## Usage
 
 Run the application:
@@ -76,37 +98,62 @@ Run the application:
 python app.py
 ```
 
-Or launch the notebook workflow:
+Or launch notebooks:
 
 ```bash
 jupyter notebook
 ```
 
-## How It Works
+---
 
-1. Lecture content is collected and preprocessed.
-2. Text embeddings are generated using NLP models.
-3. Embeddings are indexed for efficient retrieval.
-4. User queries are converted into embeddings.
-5. Similar lectures/content are retrieved and displayed.
+## Retrieval Pipeline
+
+1. Lecture videos are transcribed using Whisper ASR
+2. Slides are processed using Tesseract OCR
+3. Transcript and OCR text are fused
+4. Content is chunked using multiple strategies
+5. Embeddings are generated and indexed with FAISS
+6. Queries are matched using semantic + BM25 retrieval
+
+---
+
+## Chunking Strategies
+
+| Strategy | Description |
+|---|---|
+| C1 | Fixed time-based chunking |
+| C2 | Utterance / fixed-word chunking |
+| C3 | OCR Jaccard similarity slide-boundary chunking |
+
+---
+
+## Best Performing Configuration
+
+| Setting | Value |
+|---|---|
+| Chunking | C3 Slide-Boundary |
+| OCR | Enabled |
+| BM25 | Enabled |
+| MRR | 0.8259 |
+| Recall@10 | 0.9643 |
+
+---
 
 ## Future Improvements
 
-* Add multilingual support
-* Improve retrieval accuracy using RAG pipelines
-* Add lecture summarization
-* Integrate voice-based search
-* Deploy as a web application
+- Cross-encoder reranking
+- Multilingual retrieval
+- Slide image embeddings
+- Voice-based query support
+- Advanced RAG pipelines
+
+---
 
 ## Contributing
 
-Contributions are welcome.
+Contributions are welcome through pull requests and issue discussions.
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push the branch
-5. Open a Pull Request
+---
 
 ## License
 
