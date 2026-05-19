@@ -234,5 +234,3 @@ This dataset supports research in:
 
 Repository:
 https://github.com/Shubhamsavani/nptel-lecture-retrieval
-
-```
