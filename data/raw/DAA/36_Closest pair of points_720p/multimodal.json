@@ -1,0 +1,782 @@
+[
+  {
+    "text": "We now look at another divide and conquer algorithm. This is a geometric problem.",
+    "start": 0.0,
+    "end": 5.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cnii.ac.in/~madhavan"
+  },
+  {
+    "text": "Given a set of points, we would like to compute the closest pair of points among them.",
+    "start": 5.0,
+    "end": 11.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cnii.ac.in/~madhavan"
+  },
+  {
+    "text": "So recall that at the beginning of this set of lectures, to motivate the need for more efficient algorithms,",
+    "start": 11.0,
+    "end": 17.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "we consider the example of a video game, where there are several objects on the screen,",
+    "start": 17.0,
+    "end": 22.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "and you might want to find at any given point the closest pair of objects among them.",
+    "start": 22.0,
+    "end": 27.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So for this again, a naive algorithm would be to explicitly compute the distance between every pair of these n objects,",
+    "start": 28.0,
+    "end": 34.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "which would be an order n squared algorithm.",
+    "start": 34.0,
+    "end": 37.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So what we are going to see is that we can actually use divide and conquer and produce an order n log n algorithm for this problem.",
+    "start": 37.0,
+    "end": 47.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So formally, we are looking at points in two dimensions.",
+    "start": 47.0,
+    "end": 50.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So each point is given by an xy coordinate xp yt.",
+    "start": 50.0,
+    "end": 54.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "And we are using the usual Euclidean notion of distance, that is the distance given by Pythagoras to formula,",
+    "start": 54.0,
+    "end": 60.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "which is that the distance between p1 and p2 is the square root of x2 minus x1 whole squared plus y2 minus y1 whole squared.",
+    "start": 60.0,
+    "end": 67.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So we just assume that there is this distance formula, which we can use whenever we want to compute the distance between a pair of points.",
+    "start": 67.0,
+    "end": 74.0,
+    "ocr_text": "NPTEL MOOC, JAN-FEB 2015\nWeek 5, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDivide and conquer: Closest pair of points\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So our target is given a set of n points p1 to pn to find the closest pair among them.",
+    "start": 75.0,
+    "end": 82.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "And it will be convenient for the analysis of the algorithm that we are going to suggest that no two points in this set have the same x or y coordinate.",
+    "start": 82.0,
+    "end": 90.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "So every x coordinate among these n x coordinates is different.",
+    "start": 90.0,
+    "end": 93.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "Every y coordinate among these n coordinates is different.",
+    "start": 93.0,
+    "end": 96.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "Now it can be extended, the algorithm we are going to show can be extended to deal with the case where this assumption is not true,",
+    "start": 96.0,
+    "end": 103.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "but it will then unnecessarily complicate the understanding of the algorithm.",
+    "start": 103.0,
+    "end": 106.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "So let us just assume that we are solving the special case of the problem where every point is that a different x coordinate and a different y coordinate from every other point.",
+    "start": 106.0,
+    "end": 115.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "So as we have seen a brute force solution would be to try every pair to compute d of PyPj and then report the minimum among these distances.",
+    "start": 115.0,
+    "end": 125.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "So this would be an order n squared algorithm.",
+    "start": 125.0,
+    "end": 129.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "So let us see first the same problem if we had only one dimensional points.",
+    "start": 130.0,
+    "end": 135.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "If we have one dimensional points then all these points lie along the line which we can assume is the x axis.",
+    "start": 135.0,
+    "end": 140.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "So we have a bunch of points and we want to find the closest one.",
+    "start": 140.0,
+    "end": 144.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "So what we can do is we can first sort them so that we have the points in increasing order of x coordinate.",
+    "start": 144.0,
+    "end": 152.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "And then it is easy to see that the distances that we need are the distances between two adjacent points.",
+    "start": 153.0,
+    "end": 159.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "Because if I look at a point the nearest point is either the one on its left or the one on its right.",
+    "start": 159.0,
+    "end": 163.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "So I just need to scan this x2 minus x1 distance then x3 minus x2.",
+    "start": 163.0,
+    "end": 167.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "So I just need to scan these n minus 1 distances and then keep track of the smallest gap between these two points and that would give me the smallest distance among the overall pair of overall n points.",
+    "start": 167.0,
+    "end": 178.0,
+    "ocr_text": "*\n«"
+  },
+  {
+    "text": "So here the algorithm is n log n because it takes n log n times to sort the points in x coordinate.",
+    "start": 178.0,
+    "end": 183.0,
+    "ocr_text": "\\IN"
+  },
+  {
+    "text": "After that finding the minimum is actually very easy.",
+    "start": 183.0,
+    "end": 186.0,
+    "ocr_text": "\\IN"
+  },
+  {
+    "text": "So in one dimension this problem is very easy to solve.",
+    "start": 186.0,
+    "end": 189.0,
+    "ocr_text": "\\IN"
+  },
+  {
+    "text": "The challenge is to solve it in two dimensions.",
+    "start": 189.0,
+    "end": 193.0,
+    "ocr_text": "\\IN"
+  },
+  {
+    "text": "So in two dimensions if we are going to use divide and conquer we need a way of separating the points into two groups of roughly equal size or a hopefully exactly equal size.",
+    "start": 193.0,
+    "end": 205.0,
+    "ocr_text": "\\IN"
+  },
+  {
+    "text": "So a natural base is the geometry problem is to separate them based on their position.",
+    "start": 206.0,
+    "end": 211.0,
+    "ocr_text": "\\IN"
+  },
+  {
+    "text": "So if this is my overall set of points then it is natural to try and draw some kind of a line and say that half the points are here and half the points are there.",
+    "start": 211.0,
+    "end": 219.0,
+    "ocr_text": "\\IN"
+  },
+  {
+    "text": "So we will do it using a vertical line.",
+    "start": 219.0,
+    "end": 222.0,
+    "ocr_text": "\\IN"
+  },
+  {
+    "text": "So we will split the set not by some arbitrary line like this but rather we will try and split it by a vertical line.",
+    "start": 222.0,
+    "end": 235.0,
+    "ocr_text": "\\IN"
+  },
+  {
+    "text": "So somewhere which may not be halfway across because the points may be scattered in an uneven way.",
+    "start": 235.0,
+    "end": 241.0,
+    "ocr_text": "Ed"
+  },
+  {
+    "text": "We will split it so that there are exactly the same number of points left to the line and to the right of the line.",
+    "start": 241.0,
+    "end": 246.0,
+    "ocr_text": "Ed"
+  },
+  {
+    "text": "So now because it is divide and conquer thing what we will do is we will compute the smallest distance among the points to the left separately we will compute the smallest distance in the points of the right.",
+    "start": 246.0,
+    "end": 256.0,
+    "ocr_text": "Ed"
+  },
+  {
+    "text": "But this does not tell us anything about distances between points on the left and points on the right and they could very well be points very close to each other across the boundary.",
+    "start": 256.0,
+    "end": 264.0,
+    "ocr_text": "Ed"
+  },
+  {
+    "text": "So I could have had four points here four points there and I could have had a pair of points which spans this black line which are actually closer together than any two points to the left or two points in the left.",
+    "start": 264.0,
+    "end": 275.0,
+    "ocr_text": "Ed"
+  },
+  {
+    "text": "So we need to compute the closest pairs across the separating line and this is the challenge.",
+    "start": 275.0,
+    "end": 285.0,
+    "ocr_text": "Ed"
+  },
+  {
+    "text": "So let's look a little closer at how we do this.",
+    "start": 285.0,
+    "end": 289.0,
+    "ocr_text": "Ed"
+  },
+  {
+    "text": "So we will make a further step before we do this thing recursively given our points P we will compute points the set of points we will compute two sorted orders.",
+    "start": 289.0,
+    "end": 302.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "So we will first scan these points by X coordinate from left to right and we will list it in this order and call it PX.",
+    "start": 302.0,
+    "end": 311.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "Then we will scan the list P from so we will sort it on the Y coordinate and call this PY.",
+    "start": 311.0,
+    "end": 317.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "So from P we will produce two lists one sorted by X and one sorted by Y.",
+    "start": 317.0,
+    "end": 323.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "So we will assume that we have done this of course we can do this we know in order log in N log in time right in the beginning.",
+    "start": 323.0,
+    "end": 329.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "Now the next step is to do this recursive call.",
+    "start": 329.0,
+    "end": 334.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "And so when we do the recursive call because we have PX sorted by X coordinate we know that the line that we need to draw is the one that separates PX into two equal parts.",
+    "start": 334.0,
+    "end": 344.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "So we need to go to the midpoint of PX and draw a line at the X coordinate separate separating the midpoint from the next point.",
+    "start": 344.0,
+    "end": 351.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "So the position of this line is fixed once we know PX fixed meaning we know between which two points remember we assume that no two points are the same X coordinate no two points are the same Y coordinate.",
+    "start": 351.0,
+    "end": 362.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "So I just have to look for the medium value or the value of the middle of X right and draw a line there.",
+    "start": 362.0,
+    "end": 368.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "Now I have separated out into two equal parts by assumption because I've done this at the midpoint of PX.",
+    "start": 368.0,
+    "end": 374.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "So I have two sets Q and R but in order to continue this recursion I need to assume that Q is sorted in both X and Y and so is R right.",
+    "start": 374.0,
+    "end": 384.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "So I need to assume that I have some efficient way of extracting for each of these sub problems a similar ordering of the points sorted by X sorted by Y.",
+    "start": 384.0,
+    "end": 394.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "So I need to efficiently compute QX and QY RX and R.",
+    "start": 394.0,
+    "end": 400.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "QX and QY is easy because this whole thing earlier was PX right and then we split this thing midpoint so everything to the left of the midpoint is QX and everything to the right of the midpoint is RX.",
+    "start": 400.0,
+    "end": 413.0,
+    "ocr_text": "—"
+  },
+  {
+    "text": "So in one scan of PX I go up to halfway and I put everything in QX and then from the halfway point I put everything in RX and MTA.",
+    "start": 413.0,
+    "end": 421.0,
+    "ocr_text": "R"
+  },
+  {
+    "text": "Now what about Y? Now why the problem is as I'm going up at these two points are in QY then this point goes into RY because in the overall scheme of things in PY these are all listed globally by Y coordinate right.",
+    "start": 421.0,
+    "end": 433.0,
+    "ocr_text": "R"
+  },
+  {
+    "text": "So I would have to move this to R then I would have put this back into the next one again possibly is R depending on how you do this then the next one is in Q and so on right.",
+    "start": 433.0,
+    "end": 444.0,
+    "ocr_text": "R"
+  },
+  {
+    "text": "So as I'm going up some points go in P and some points going QY and some going RY.",
+    "start": 444.0,
+    "end": 449.0,
+    "ocr_text": "R"
+  },
+  {
+    "text": "Now how do I determine that without going over this too many times?",
+    "start": 449.0,
+    "end": 454.0,
+    "ocr_text": "R"
+  },
+  {
+    "text": "So the key is that having done this split of X we know this dividing line right so we know which X coordinate separates Q from P from R.",
+    "start": 454.0,
+    "end": 466.0,
+    "ocr_text": "R"
+  },
+  {
+    "text": "So as we go through PY right we look at each point and if the X coordinate is less than this midpoint so let us call this XQ if it is less than XQ then we push it into QY if it is X is greater than XQ then we push it into RY and because it was originally sorted we are building up XY and RY also in sorted order.",
+    "start": 467.0,
+    "end": 493.0,
+    "ocr_text": "R"
+  },
+  {
+    "text": "So in one scan of PY we get QY and RY. So in linear time we can take the given sorted list PKPX and PY and separated out into sorted list QXQY for the left half and RXRY for the right half.",
+    "start": 493.0,
+    "end": 509.0,
+    "ocr_text": "2neky —%, Qy\naie % PE a —+ bay"
+  },
+  {
+    "text": "So now when we so we call our algorithm with closest pair PXPY it will split recursively into closest pair QXQY and RXRY for the left and right half.",
+    "start": 510.0,
+    "end": 522.0,
+    "ocr_text": "2neky —?%, Qy\n* PEA + by"
+  },
+  {
+    "text": "So we will can assume as usual that we will solve these recursively we will get the closest distance there.",
+    "start": 522.0,
+    "end": 527.0,
+    "ocr_text": "2neky —?%, Qy\n* PEA + by"
+  },
+  {
+    "text": "Now we have to worry about how to combine them how to take care of these points whose distance spans the interval the lines separating the two halves.",
+    "start": 527.0,
+    "end": 538.0,
+    "ocr_text": "2neky —?%, Qy\n* PEA + by"
+  },
+  {
+    "text": "So if we solve this problem on the left right among all the points in Q I will identify some pair of points as being the nearest pair with a distance dQ.",
+    "start": 540.0,
+    "end": 551.0,
+    "ocr_text": "2neky —?%, Qy\n* PEA + by"
+  },
+  {
+    "text": "And now similarly if I do solve the problem on the right I will identify some pair of points as being the minimum on the right with distance dR.",
+    "start": 552.0,
+    "end": 560.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "So now we are interested in the smaller of these two because the smaller of these two is a candidate for the overall minimum distance.",
+    "start": 560.0,
+    "end": 568.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "So now we are looking at points which could be within a DQ or smaller than DQ across this boundary.",
+    "start": 568.0,
+    "end": 577.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "So let d be the minimum of DQ and DR so it is a smaller of these two so in this particular example d is DQ.",
+    "start": 577.0,
+    "end": 585.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "Now the claim is that if you look at this zone here which is plus minus D distance away from the separating line.",
+    "start": 585.0,
+    "end": 597.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "Then if I have some point outside this and if I want to look at any point across on the other side this distance from here to there is D plus some distance on either side therefore it is more than D.",
+    "start": 597.0,
+    "end": 607.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "So it is more than the smaller of DQ and DR so it cannot be a candidate for our overall smallest distance.",
+    "start": 607.0,
+    "end": 613.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "So these kind of things are useless there is no point in looking for any line which is any pair whose one endpoint is outside this zone because if it is outside this zone.",
+    "start": 613.0,
+    "end": 624.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "Then it can only be at least D plus something away from something on the other side of the line.",
+    "start": 624.0,
+    "end": 629.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "So it is enough to look at points inside the zone on both sides.",
+    "start": 629.0,
+    "end": 633.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "So we only need to consider points across the separator which lie within this plus minus D zone.",
+    "start": 633.0,
+    "end": 639.0,
+    "ocr_text": "ep:"
+  },
+  {
+    "text": "Any pair outside this cannot be the closest pair overall.",
+    "start": 639.0,
+    "end": 643.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "So let us take a closer look so this is my plus minus D zone.",
+    "start": 643.0,
+    "end": 648.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "So this is minus D this is plus D.",
+    "start": 648.0,
+    "end": 651.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "Now what we are going to do is we are going to further break it up into these squares of size D by 2.",
+    "start": 651.0,
+    "end": 658.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "So I have D by 2 plus D by 2 so this whole thing is bit D and I am going to construct all these squares.",
+    "start": 658.0,
+    "end": 665.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "So now the claim is that inside such a box I can have at most one point I cannot have two points.",
+    "start": 665.0,
+    "end": 671.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "Why? Because the furthest separation within a box is across the diagonal.",
+    "start": 671.0,
+    "end": 676.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "The furthest that two points can be in the box is at two end points of the diagonal.",
+    "start": 676.0,
+    "end": 681.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "But the diagonal of the square of size D by 2 is square root of D by 2.",
+    "start": 681.0,
+    "end": 687.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "So this is some point 0.047T. So this is less than D strictly less than D.",
+    "start": 687.0,
+    "end": 693.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "But notice that this square is completely on one side of the right.",
+    "start": 693.0,
+    "end": 696.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "It is either on the left or the right. And both on the left and the right we know that the minimum separation is D.",
+    "start": 696.0,
+    "end": 701.0,
+    "ocr_text": "0-Wta al"
+  },
+  {
+    "text": "There is no point on one side of the line. There are no two points closer than D because the D is the minimum of DQ and DR.",
+    "start": 702.0,
+    "end": 709.0,
+    "ocr_text": "0.wId il fg"
+  },
+  {
+    "text": "So therefore in each of these boxes we can have at most one point.",
+    "start": 709.0,
+    "end": 715.0,
+    "ocr_text": "0.wId il fg"
+  },
+  {
+    "text": "And now we start looking at any point. So look at a point here in this box.",
+    "start": 715.0,
+    "end": 721.0,
+    "ocr_text": "0.wId il fg"
+  },
+  {
+    "text": "Now the claim is that if I have to be within distance D, then how far away can I be?",
+    "start": 721.0,
+    "end": 727.0,
+    "ocr_text": "eee Ve"
+  },
+  {
+    "text": "If you think about it the furthest you can be or the furthest box you can go to hope to go to is that box.",
+    "start": 727.0,
+    "end": 736.0,
+    "ocr_text": "ieee VG"
+  },
+  {
+    "text": "So you can be a little more careful about this but it certainly cannot be any further than that box.",
+    "start": 736.0,
+    "end": 741.0,
+    "ocr_text": "ieee VG"
+  },
+  {
+    "text": "So if you have to go from this box, if we have to go, basically if we have to go more than this distance away, then it will be more than D away.",
+    "start": 741.0,
+    "end": 751.0,
+    "ocr_text": "0.WId\na"
+  },
+  {
+    "text": "So the claim is that any point within this distance D must lie within the next 4 by 4 segment.",
+    "start": 751.0,
+    "end": 762.0,
+    "ocr_text": "0.WId\na"
+  },
+  {
+    "text": "So we have to compare each point only against 15. Now of course we will compare it in one scan from bottom to top.",
+    "start": 762.0,
+    "end": 769.0,
+    "ocr_text": "ee clek"
+  },
+  {
+    "text": "So this would have the points below this they would have been compared when we considered those before.",
+    "start": 769.0,
+    "end": 774.0,
+    "ocr_text": "0-20td"
+  },
+  {
+    "text": "So we will do this scan in this order as we will see in a minute.",
+    "start": 774.0,
+    "end": 778.0,
+    "ocr_text": "0-20td"
+  },
+  {
+    "text": "So therefore we only need to consider this point against points in this 16 squares around it.",
+    "start": 778.0,
+    "end": 784.0,
+    "ocr_text": "0-20td"
+  },
+  {
+    "text": "So that's a fixed number independent of how many points they actually are.",
+    "start": 784.0,
+    "end": 788.0,
+    "ocr_text": "0-20td"
+  },
+  {
+    "text": "So formally what we will do is we have this on this side we have q y which is sorted on this side we have R y which is sorted but remember they are both sorted.",
+    "start": 788.0,
+    "end": 798.0,
+    "ocr_text": "0-20td"
+  },
+  {
+    "text": "So we will do a kind of merge right so we will go through q y and R y we will pick the next one in sorted by order between q y and R y.",
+    "start": 798.0,
+    "end": 805.0,
+    "ocr_text": "0-20td"
+  },
+  {
+    "text": "If the X coordinate is remember this is some X q are original separating point plus D or minus D if the X coordinate of the point that we find is between X q plus D and X q minus D, then we will add it to a list S y.",
+    "start": 805.0,
+    "end": 820.0,
+    "ocr_text": "0-20td"
+  },
+  {
+    "text": "So S y will now be a sorted list of points within this band from bottom to top extracted from q y and R y in linear time.",
+    "start": 820.0,
+    "end": 831.0,
+    "ocr_text": "0-20td"
+  },
+  {
+    "text": "Now within this list these next 15 boxes next these boxes will now be all ordered right.",
+    "start": 831.0,
+    "end": 838.0,
+    "ocr_text": "O(n)\n\n—"
+  },
+  {
+    "text": "So if I just scan them then I will find that I all these so there will be possibly four points which come from these four boxes from these four boxes and so on.",
+    "start": 838.0,
+    "end": 846.0,
+    "ocr_text": "O(n)\n\n—"
+  },
+  {
+    "text": "So I can definitely find the next 15 points in this list and I compare only with those so this is a linear scan.",
+    "start": 846.0,
+    "end": 855.0,
+    "ocr_text": "O(n)\n\n—"
+  },
+  {
+    "text": "So in other words we have this following algorithm so we start with by assuming that we have set up our problem so that P has been split into two copies P x and P y sorted by sorted by that.",
+    "start": 855.0,
+    "end": 867.0,
+    "ocr_text": "O(n)\n\n—"
+  },
+  {
+    "text": "Now if we have less than three points three points or less then we just do it by brute force compute them closest pair and return the answer.",
+    "start": 867.0,
+    "end": 874.0,
+    "ocr_text": "O(n)\n\n—"
+  },
+  {
+    "text": "So the answer consists of the distance and a pair the points which are at that distance.",
+    "start": 874.0,
+    "end": 879.0,
+    "ocr_text": "O(n)\n\n—"
+  },
+  {
+    "text": "If it is more than three then we do this recursive thing so we from P x P y as we said we construct q x q y and R x R y and this we saw we can do a linear time.",
+    "start": 879.0,
+    "end": 888.0,
+    "ocr_text": "O(n)\n\n—"
+  },
+  {
+    "text": "Then we will recursively solve the solution solve the problem q and R and we will get these two distances dx and dr.",
+    "start": 888.0,
+    "end": 896.0,
+    "ocr_text": "O(n)\n\n—"
+  },
+  {
+    "text": "From this we will take our D to be the minimum of D q and dr.",
+    "start": 896.0,
+    "end": 903.0,
+    "ocr_text": "mur ~\n\nO(n)\n\n—"
+  },
+  {
+    "text": "So using this we will set up this s y the list of all points inside that zone and then we will scan that list to find within that zone which are the points which are at the closest distance ds.",
+    "start": 903.0,
+    "end": 915.0,
+    "ocr_text": "mur ~\n\nO(n)\n\n—"
+  },
+  {
+    "text": "Now if ds is more than dq the minimum dq and dr then s doesn't contribute anything but if it is less it gives us the correct answer.",
+    "start": 915.0,
+    "end": 922.0,
+    "ocr_text": "i d= mw. (AQ?)"
+  },
+  {
+    "text": "So we will return either the dq the answer produced from the left or the answer produced from the right or the answer produced from our between zone depending on which of these distances is the smallest.",
+    "start": 922.0,
+    "end": 935.0,
+    "ocr_text": "2 Ae ns (AQ dX)"
+  },
+  {
+    "text": "So this is the basic algorithm you have to do a little bit more work to actually code it correctly but this gives the overall structure of the algorithm.",
+    "start": 935.0,
+    "end": 944.0,
+    "ocr_text": "2 A= wns (AQ de)"
+  },
+  {
+    "text": "So we have a non recursive part which is to first compute the initial sorted list px and p y this takes order on n log n time of course because sorting takes n log n time.",
+    "start": 944.0,
+    "end": 955.0,
+    "ocr_text": "4 d= mw. (ARE?)"
+  },
+  {
+    "text": "Then having set up this recursive thing the overall recursive problem divides n points into two sets of n by 2.",
+    "start": 955.0,
+    "end": 965.0,
+    "ocr_text": "4 d= mw. (ARE?)"
+  },
+  {
+    "text": "So we have our familiar thing which is t of n is two times t of n by 2 and then because all the setting up time and all this combining time is linear we have exactly the recurrence for merge sort.",
+    "start": 965.0,
+    "end": 978.0,
+    "ocr_text": "Tn) = aT\" -"
+  },
+  {
+    "text": "So therefore the recursive part also gives us order n log n. So we have a initial sorting phase which is n log n we have a recursive part which is n log n and therefore overall this algorithm is n log n.",
+    "start": 978.0,
+    "end": 991.0,
+    "ocr_text": "Tn)< aT) mn\n\n\\)"
+  }
+]

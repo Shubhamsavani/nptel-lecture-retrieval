@@ -1,0 +1,380 @@
+[
+  {
+    "text": "The next thing that we will see is how do you create images from embedding.",
+    "start": 0.0,
+    "end": 16.6,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n)"
+  },
+  {
+    "text": "So let me see what that means.",
+    "start": 16.6,
+    "end": 19.48,
+    "ocr_text": "e We could think of the fc7 layer as\nsome kind of an embedding for the\nimage\n\nMitesh M. Khapra ©S7015 (Deep Learning)"
+  },
+  {
+    "text": "So remember that each of these things can be thought of as an embedding of the image,",
+    "start": 19.48,
+    "end": 25.8,
+    "ocr_text": "e We could think of the fc7 layer as\nsome kind of an embedding for the\nimage\n\nMitesh M. Khapra ©S7015 (Deep Learning)"
+  },
+  {
+    "text": "because you had this original image with just 227 cross, 227 dimensional and now you have a 4096 representation for that or a 256 cross, 7 cross, 7 cross, 7 representation for that.",
+    "start": 25.8,
+    "end": 35.6,
+    "ocr_text": "i | e We could think of the fc7 layer as\n| some kind of an embedding for the\n\nimage\n\n015 (Deep I"
+  },
+  {
+    "text": "So you could just flatten it out as a vector and you could treat that as a embedding for the original image.",
+    "start": 35.6,
+    "end": 42.4,
+    "ocr_text": "i, [ e We could think of the fc7 layer as\nsome kind of an embedding for the\nimage\n\nVe\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "Now for any kind of embedding or hidden representation, what do we always want from that representation?",
+    "start": 42.4,
+    "end": 49.4,
+    "ocr_text": "i, [ e We could think of the fc7 layer as\nsome kind of an embedding for the\nimage\n\nVe\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "Think auto encoders, it should capture all the important characteristics of the original image and in particular I should be able to dash the original image from it.",
+    "start": 50.4,
+    "end": 62.4,
+    "ocr_text": "e We could think of the fc7 layer as\nsome kind of an embedding for the\nimage\n\nMitesh M. Kl 01S (Deep Learni"
+  },
+  {
+    "text": "Reconstruct the original image from it.",
+    "start": 62.4,
+    "end": 64.4,
+    "ocr_text": "|, | e We could think of the fc7 layer as\nsome kind of an embedding for the\n| image\n%y"
+  },
+  {
+    "text": "So that is what I would want from a good embedding.",
+    "start": 64.4,
+    "end": 67.4,
+    "ocr_text": "|, | e We could think of the fc7 layer as\nsome kind of an embedding for the\n| image\n%y"
+  },
+  {
+    "text": "So let us see if we can do this.",
+    "start": 67.4,
+    "end": 71.4,
+    "ocr_text": "e We could think of the fc7 layer as\nsome kind of an embedding for the\nimage\n\ne Question: Given this embedding\ncan we reconstruct the image?\n\ne We can pose this as an optimization\n\na problem\n\nMitesh M. Kha ©S7015 (Deep"
+  },
+  {
+    "text": "So find an image, this is the optimization problem that I am interested in.",
+    "start": 71.4,
+    "end": 76.4,
+    "ocr_text": "e We could think of the fc7 layer as\nsome kind of an embedding for the\nimage\n\ne Question: Given this embedding\ncan we reconstruct the image?\n\ne We can pose this as an optimization\n\na problem\n\nMitesh M. Kha ©S7015 (Deep"
+  },
+  {
+    "text": "Find an image such that it is embedding is similar to a given embedding.",
+    "start": 76.4,
+    "end": 81.4,
+    "ocr_text": "e Find an image such that\n\ne Its embedding is similar to a given\nembedding\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "What do I mean by that is suppose I take a monkey image and pass it through all these layers and compute all these embeddings.",
+    "start": 81.4,
+    "end": 91.4,
+    "ocr_text": "e Find an image such that\n\ne Its embedding is similar to a given\nembedding\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "Now again I start with a blank image and my optimization problem is such that for this blank image I want to modify it.",
+    "start": 91.4,
+    "end": 100.4,
+    "ocr_text": "e Find an image such that\n\ne Its embedding is similar to a given\nembedding\n\nh M. Khapra"
+  },
+  {
+    "text": "So this blank image is my parameter matrix and I want to modify it such that the embedding that it produces should be similar to the embedding is that the monkey image produced.",
+    "start": 100.4,
+    "end": 110.4,
+    "ocr_text": "e Find an image such that\n\ne Its embedding is similar to a given\nembedding\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So how can you set this as a optimization problem, what would your loss function be?",
+    "start": 110.4,
+    "end": 114.4,
+    "ocr_text": "e Find an image such that\n\ne Its embedding is similar to a given\nembedding\n\nApiitinwe\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So let us call the original monkey images I1 and let us call this as embedding of I1.",
+    "start": 114.4,
+    "end": 124.4,
+    "ocr_text": "e Find an image such that\n\ne Its embedding is similar to a given\nembedding\n\nApiitinwe\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "Now can you tell me what the object function would be?",
+    "start": 124.4,
+    "end": 127.4,
+    "ocr_text": "e Find an image such that\ne Its embedding is similar to a given\nembedding\n\ne It looks natural (some prior regular-\nization)\n\nAMM\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "For the new image that you are trying to create this entry, the first entry in its output, let me call that EI2.",
+    "start": 127.4,
+    "end": 137.4,
+    "ocr_text": "@ e Find an image such that\ne Its embedding is similar to a given\nembedding\n\ne It looks natural (some prior regular-\nization)\n\nlf\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So EI21 and EI11 that means the first dimension of the embedding.",
+    "start": 137.4,
+    "end": 142.4,
+    "ocr_text": "e Find an image such that\n\ne Its embedding is similar to a given\nembedding\n\ne It looks natural (some prior regular-\nization)\n\noS)\n2 Ws\n\nMitesh M. Khapra 015 (Deep Lea"
+  },
+  {
+    "text": "They should both be very close.",
+    "start": 142.4,
+    "end": 146.4,
+    "ocr_text": "e Find an image such that\n\ne Its embedding is similar to a given\nembedding\n\ne It looks natural (some prior regular-\nization)\n\noS)\n2 Ws\n\nMitesh M. Khapra 015 (Deep Lea"
+  },
+  {
+    "text": "So in such cases what is the error function that you will choose?",
+    "start": 146.4,
+    "end": 149.4,
+    "ocr_text": "e Find an image such that\ne Its embedding is similar to a given\nembedding\n\ne It looks natural (some prior regular-\nization)\n\nJANA\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So you have to get comfortable with designing these loss functions.",
+    "start": 149.4,
+    "end": 153.4,
+    "ocr_text": "e Find an image such that\ne Its embedding is similar to a given\nembedding\n\ne It looks natural (some prior regular-\nization)\n\nJANA\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So you have seen this loss function before.",
+    "start": 153.4,
+    "end": 156.4,
+    "ocr_text": "e Find an image such that\ne Its embedding is similar to a given\nembedding\n\ne It looks natural (some prior regular-\nization)\n\nJANA\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "We just have to be able to relate it to the problem that you are trying to work on.",
+    "start": 156.4,
+    "end": 160.4,
+    "ocr_text": "e@ $y :Embedding of an image of interest\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So let phi 0 be the embedding of the image of interest, let x be a random image and we will repeat this.",
+    "start": 160.4,
+    "end": 166.4,
+    "ocr_text": "e@ $y :Embedding of an image of interest\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "Forward pass using x and compute phi of x.",
+    "start": 166.4,
+    "end": 170.4,
+    "ocr_text": "e ¢y :Embedding of an image of interest\ne X :Random image (say zero image)\ne Repeat\n\ne Forward pass using X and compute\n\n(2).\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "That means we are computing the embedding of this random image that we have started with.",
+    "start": 170.4,
+    "end": 175.4,
+    "ocr_text": "e ¢y :Embedding of an image of interest\ne X :Random image (say zero image)\ne Repeat\n\ne Forward pass using X and compute\n\n(2).\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "When we compute this loss function and add appropriate regularization for that and back propagate and update what?",
+    "start": 175.4,
+    "end": 183.4,
+    "ocr_text": "e@ ¢ :Embedding of an image of interest:\ne X :Random image (say zero image)\ne Repeat\ne Forward pass using X and compute\nd(x).\ne Compute\nL(i) = ||O(x) = bol? + MoCo)\nSea\n\nfl\nPIN sill\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "What will you update?",
+    "start": 183.4,
+    "end": 187.4,
+    "ocr_text": "e@ ¢ :Embedding of an image of interest:\ne X :Random image (say zero image)\ne Repeat\ne Forward pass using X and compute\nd(x).\ne Compute\nL(i) = ||O(x) = bol? + MoCo)\nSea\n\nfl\nPIN sill\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "Image, right? You will update your x matrix.",
+    "start": 187.4,
+    "end": 191.4,
+    "ocr_text": "e ¢y :Embedding of an image of interest\n\ne X :Random image (say zero image)\n\ne Repeat\ne Forward pass using a compute\nO(a).\n\ne Compute\nL(i) = \\|o(x) — doll? + All o(@)|I8\n\n(iN mi\n\nho M. Khapra 87015 (Deep Learn"
+  },
+  {
+    "text": "And you will keep doing this till convergence and let us see what happens.",
+    "start": 191.4,
+    "end": 196.4,
+    "ocr_text": "e ¢y :Embedding of an image of interest\n\ne X :Random image (say zero image)\n\ne Repeat\ne Forward pass using a compute\nO(a).\n\ne Compute\nL(i) = \\|o(x) — doll? + All o(@)|I8\n\n(iN mi\n\nho M. Khapra 87015 (Deep Learn"
+  },
+  {
+    "text": "So now what I am trying to do is this is my original image and I have the convolution one embedding of it.",
+    "start": 196.4,
+    "end": 204.4,
+    "ocr_text": "Conv-1\n\nh M. Khapra ©S7015 (Deep"
+  },
+  {
+    "text": "So in this I am using convolution one as the embedding and then I am trying to solve this optimization problem to recreate x such that it is very close to the original image.",
+    "start": 204.4,
+    "end": 214.4,
+    "ocr_text": "Conv-1\n\nh M. Khapra ©S7015 (Deep"
+  },
+  {
+    "text": "So let us see what are the different outputs that I get.",
+    "start": 214.4,
+    "end": 216.4,
+    "ocr_text": "e ¢y :Embedding of an image of interest\n\ne X :Random image (say zero image)\n\ne Repeat\ne Forward pass using X and compute\n9(z).\ne Compute é J\nL(i) = \\|o(x) — doll? + All o(@)|I8\n\nLi\n\neH 1 Dix\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So this is the original image and on the right hand side you have the reconstructed image such that the con one embedding of both the images is the same.",
+    "start": 216.4,
+    "end": 225.4,
+    "ocr_text": "Original Image>\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So you can see that when I am trying to do a reconstruction from the con one layer I get almost the same image back.",
+    "start": 225.4,
+    "end": 231.4,
+    "ocr_text": "Mitesh M. Khapra"
+  },
+  {
+    "text": "Now if I keep doing it from different layers what do you expect it to be?",
+    "start": 231.4,
+    "end": 234.4,
+    "ocr_text": "Mitesh M. Khapra"
+  },
+  {
+    "text": "If I do it from con 2, con 3, con 4 and so on.",
+    "start": 234.4,
+    "end": 238.4,
+    "ocr_text": "Mitesh M. Khapra"
+  },
+  {
+    "text": "It would not be so accurate, right?",
+    "start": 238.4,
+    "end": 241.4,
+    "ocr_text": "Mitesh M. Kha ©S7015 (Deep"
+  },
+  {
+    "text": "So let us see what happens if I try to reconstruct it from con 2 or relu 1, max pooling, norm 1, con 2, relu 2.",
+    "start": 241.4,
+    "end": 251.4,
+    "ocr_text": "Mitesh M. Kha ©S7015 (Deep"
+  },
+  {
+    "text": "I am going deeper and deeper into the network.",
+    "start": 251.4,
+    "end": 254.4,
+    "ocr_text": "Original Image Cony-2\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "So what I am trying to do here is remember that I have different choices for these embeddings.",
+    "start": 255.4,
+    "end": 262.4,
+    "ocr_text": "e@ $y :Embedding of an image of interest\n\noe X :Random image (say zero image)\n\ne Repeat\ne Forward pass using X and compute\ng(x).\ne Compute f\nLi) = \\|O(x) — doll? + All O(@)|I8\nAZ\".\n\new #(i)\n© tk = th — NGS\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So the first thing which I showed you was when I was trying to set my objective functions such that I am trying to map this embedding.",
+    "start": 262.4,
+    "end": 270.4,
+    "ocr_text": "e@ $y :Embedding of an image of interest\n\noe X :Random image (say zero image)\n\ne Repeat\ne Forward pass using X and compute\ng(x).\ne Compute f\nLi) = \\|O(x) — doll? + All O(@)|I8\nAZ\".\n\new #(i)\n© tk = th — NGS\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "The second image that I showed you was when I was trying to map this embedding and the last image that I will show is when I was trying to map these two embedding.",
+    "start": 270.4,
+    "end": 277.4,
+    "ocr_text": "e@ ¢y :Embedding of an image of interest\n\ne X :Random image (say zero image)\n\ne Repeat\ne Forward pass using X and compute\n9(z).\ne Compute f\nL(t) = |lo(z) — a)? + AIS@)II6\n\neH 1\n\nLi\nOi\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "So my objective function was to create an image such that this embedding of the created image is the same as this embedding of the original monkey image.",
+    "start": 277.4,
+    "end": 285.4,
+    "ocr_text": "e $y :Embedding of an image of interest\n\ne X :Random image (say zero image)\n\ne Repeat\ne Forward pass using X and compute\n(2).\ne Compute 5\nL(t) = |lO(z) — a)? + MoI\n\ney =i 1\n\nLi\nOi\n\nMitesh M. Khapra 87015 (Deep Learn"
+  },
+  {
+    "text": "So that is what I am progressively trying to do.",
+    "start": 285.4,
+    "end": 288.4,
+    "ocr_text": "Original Image Cony-3\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "And as you can see as I keep going ahead I get more and more abstractor reconstructions or I do not really get the monkey back.",
+    "start": 288.4,
+    "end": 296.4,
+    "ocr_text": "Original Image Cony-3\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "And once I go to the last FC 6 or FC 7 layers I get very weird looking reconstructions and that is expected.",
+    "start": 296.4,
+    "end": 303.4,
+    "ocr_text": "Original Image Relu-6\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "Because by that layer they have completely abstracted it out.",
+    "start": 303.4,
+    "end": 306.4,
+    "ocr_text": "Original Image Relu-6\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "You have just probably captured there is something like a nose, something like eyes or some fur here and there.",
+    "start": 306.4,
+    "end": 312.4,
+    "ocr_text": "Original Image\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "But you have lost the entire shape and other characteristics of the original image.",
+    "start": 312.4,
+    "end": 316.4,
+    "ocr_text": "Original Image\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "From the deeper layer the construction would not be that good and that is kind of expected.",
+    "start": 316.4,
+    "end": 321.4,
+    "ocr_text": "Original Image Relu-6\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "In spite of having the max, you could right.",
+    "start": 321.4,
+    "end": 324.4,
+    "ocr_text": "Original Image Relu-6\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "The maximum operation is just another embedding.",
+    "start": 324.4,
+    "end": 326.4,
+    "ocr_text": "Original Image Relu-6\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "It is just that the compression there is much more because you have ignored the four entries and just taken the max value.",
+    "start": 326.4,
+    "end": 331.4,
+    "ocr_text": "Original Image Relu-7\n\nMitesh M. Kha 15 (Deep"
+  },
+  {
+    "text": "So it becomes harder and harder to do that.",
+    "start": 331.4,
+    "end": 334.4,
+    "ocr_text": "Original Image Relu-7\n\nMitesh M. Kha 15 (Deep"
+  },
+  {
+    "text": "But I mean I would not call this as reconstruction.",
+    "start": 334.4,
+    "end": 337.4,
+    "ocr_text": "Original Image Relu-7\n\nMitesh M. Kha 15 (Deep"
+  },
+  {
+    "text": "What you see here is not except for the con one and con two layers.",
+    "start": 337.4,
+    "end": 340.4,
+    "ocr_text": "Original Image Relu-7\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "The rest of the things are not really such accurate reconstruction.",
+    "start": 340.4,
+    "end": 343.4,
+    "ocr_text": "Original Image Relu-7\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So it just says that you are losing a lot of information in that abstraction.",
+    "start": 343.4,
+    "end": 347.4,
+    "ocr_text": "Original Image Relu-7\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "Or maybe not. I will do it next time.",
+    "start": 347.4,
+    "end": 349.4,
+    "ocr_text": "Original Image Relu-7\n\nMitesh M. Khapra"
+  },
+  {
+    "text": ".",
+    "start": 361.4,
+    "end": 363.4,
+    "ocr_text": "Deepthi\n__Dhivya .-\n“Divya\nis\n\neee ERE | BRE REDE\nKamala\n\noi |e ee oe"
+  }
+]

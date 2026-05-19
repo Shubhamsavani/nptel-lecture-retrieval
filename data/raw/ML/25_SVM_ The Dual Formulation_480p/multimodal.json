@@ -1,0 +1,740 @@
+[
+  {
+    "text": "Good morning, we will now talk about part C of this lecture, where we will look at",
+    "start": 0.0,
+    "end": 25.0,
+    "ocr_text": "j \\Wi€fSduction te Machine Learning"
+  },
+  {
+    "text": "the dual formulation of support vector machine. In the last class, we take the looked at",
+    "start": 25.0,
+    "end": 32.0,
+    "ocr_text": "Solving the Optimization Problem\nBouse iL 2\nminimize —=||w||\n2,\nst. y,(w?x,+5)21\n\nOptimization problem with convex quadratic objectives and\nlinear constraints\n\nCan be solved using QP.\n\nLagrange duality to get the optimization problem’s dual form,\n\n— Allow us to use kernels to get optimal margin classifiers to work\nefficiently in very high dimensional spaces.\n\n— Allow us to derive an efficient algorithm for solving the above\noptimization problem that will typically do much better than generic\nQP software."
+  },
+  {
+    "text": "the formulation of the optimization problem corresponding to support vector machine, where",
+    "start": 32.0,
+    "end": 38.36,
+    "ocr_text": "Solving the Optimization Problem\nBouse iL 2\nminimize —=||w||\n2,\nst. y,(w?x,+5)21\n\nOptimization problem with convex quadratic objectives and\nlinear constraints\n\nCan be solved using QP.\n\nLagrange duality to get the optimization problem’s dual form,\n\n— Allow us to use kernels to get optimal margin classifiers to work\nefficiently in very high dimensional spaces.\n\n— Allow us to derive an efficient algorithm for solving the above\noptimization problem that will typically do much better than generic\nQP software."
+  },
+  {
+    "text": "we have to minimize half w square. This is the convex quadratic optimization function",
+    "start": 38.36,
+    "end": 45.68,
+    "ocr_text": "Solving the Optimization Problem\nAe 1 2\nminimize —||w||\n2\nst. y,Qw'x,+5b)21\n\n&\nOptimization problem with convex quadratic objectives and\nlinear constraints\n\nCan be solved using QP.\n\nLagrange duality to get the optimization problem’s dual form,\n\n— Allow us to use kernels to get optimal margin classifiers to work\nefficiently in very high dimensional spaces.\n\n— Allow us to derive an efficient algorithm for solving the above\noptimization problem that will typically do much better than generic\nQP software."
+  },
+  {
+    "text": "subject to this linear constraints y i w t x i plus b greater than equal to 1 for all",
+    "start": 45.68,
+    "end": 54.36,
+    "ocr_text": "Solving the Optimization Problem\noe 1 2\nminimize —||w||\n2\ns.t. Vix; +b)21\n\nOptimization problem with convex quadratic objectives and\nlinear constraints\n\nCan be solved using QP.\n\nLagrange duality to get the optimization problem’s dual form,\n\n— Allow us to use kernels to get optimal margin classifiers to work\nefficiently in very high dimensional spaces.\n\n— Allow us to derive an efficient algorithm for solving the above\noptimization problem that will typically do much better than generic\nQP software."
+  },
+  {
+    "text": "examples. So, before we look at how to get the dual of this particular formulation,",
+    "start": 54.36,
+    "end": 64.28,
+    "ocr_text": "Solving the Optimization Problem\noe 1 2\nminimize —||w||\n2\ns.t. Vix; +b)21\n\nOptimization problem with convex quadratic objectives and\nlinear constraints\n\nCan be solved using QP.\n\nLagrange duality to get the optimization problem’s dual form,\n\n— Allow us to use kernels to get optimal margin classifiers to work\nefficiently in very high dimensional spaces.\n\n— Allow us to derive an efficient algorithm for solving the above\noptimization problem that will typically do much better than generic\nQP software."
+  },
+  {
+    "text": "let us very briefly talk about Lagrangian duality. Suppose, we take a general primal general",
+    "start": 64.28,
+    "end": 71.68,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. 2,0) <0, i=1,...,k\nh,Qw)=0, i=1,.-.,1\n\nThe generalized Lagrangian:\nk 1\nL@, a, A) = SW) + >) 2, 2,0) + >) BA, Cr)\n\nthe a's (@,20) and f/'s are called the Lagrange multipliers"
+  },
+  {
+    "text": "problem and its primal formulation is given by this is an optimization problem, where",
+    "start": 71.68,
+    "end": 77.64,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. 2,0) <0, i=1,...,k\nh,Qw)=0, i=1,.-.,1\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = Sw) + >) 2, 2,0~) + >) B,C)\n= i=\n\nthe a's (@,20) and f's are called the Lagrange multipliers"
+  },
+  {
+    "text": "you want to optimize, what you want to minimize f w, w are the parameters, you want to find",
+    "start": 77.64,
+    "end": 86.76,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, S(~)\ns.t. 2,0) <0, i=1,...,k\nh,Qw)=0, i=1,.-.,1\n\nThe generalized Lagrangian:\nk 1\nLv, a, B) = fw) + >) %2,00°) + >) BAC)\n\nthe a's (@,20) and f's are called the Lagrange multipliers"
+  },
+  {
+    "text": "values of w. So, that is to minimize f w and you have a set of linear constraints.",
+    "start": 86.76,
+    "end": 94.64,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. 2,0) <0, i=1,...,k\nh,Qw) =0, i=1,.-.,1\n\nThe generalized Lagrangian:\nk 1\nL(w, @, B) = fw) + >) %2,00°) + >) BAC)\n\nthe a's (@,20) and f/'s are called the Lagrange multipliers"
+  },
+  {
+    "text": "There are two type of linear constraints, equality constraints, we have L equality constraints",
+    "start": 94.64,
+    "end": 102.0,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. 2,0) <0, i=1,...,k\nh,Qw) =0, i=1,.-.,1\n\nThe generalized Lagrangian:\nk 1\nL(w, @, B) = fw) + >) %2,00°) + >) BAC)\n\nthe a's (@,20) and f/'s are called the Lagrange multipliers"
+  },
+  {
+    "text": "h i w equal to 0 and k inequality constraints g i w less than equal to 0, all these constraints",
+    "start": 102.0,
+    "end": 109.88,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. 2,0) <0, i=1,...,k\nh,Qw)=0, i=1,.-.,4\n\nThe generalized Lagrangian:\nk 1\nL(w, @, B) = fw) + 2) %2,00°) + >) BAC)\n\nthe a's (@,20) and f/'s are called the Lagrange multipliers"
+  },
+  {
+    "text": "are linear.",
+    "start": 109.88,
+    "end": 110.88,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, S(v)\ns.t. 2,0) <0, i=1,...,k\nh,Qw) 0, i=1,.-.,1\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = SW) + >) a, 2,0~) + >) BA.)\nra 1\n\nthe a's (@,20) and f's are called the Lagrange multipliers"
+  },
+  {
+    "text": "Corresponding to this problem, the generalized Lagrangian is given by a function of w alpha",
+    "start": 110.88,
+    "end": 120.28,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, S(v)\ns.t. 2,0) <0, i=1,...,k\nh,Qw) 0, i=1,.-.,1\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = SW) + >) a, 2,0~) + >) BA.)\nra 1\n\nthe a's (@,20) and f's are called the Lagrange multipliers"
+  },
+  {
+    "text": "beta f w plus summation over 1 to k for all the number of non-linear constraints i equal",
+    "start": 120.28,
+    "end": 133.6,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. gw) <0, i=1,...,k\nh,Qv)=0, 7=1,...,1\n\nThe generalized Lagrangian:\nk 1\nLi, @, B) = £0) + > 2,07) + > BAO)\niN ra =\n\nthe a's (@,20) and f's are called the Lagrange multipliers"
+  },
+  {
+    "text": "to 1 to k alpha i g i w plus summation i equal to 1 to L beta i h i w, where h i w are the",
+    "start": 133.6,
+    "end": 143.0,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, S(wv)\ns.t. 2,0) <0, i=1,...,k\nh,Qv)=0, 7=1,.--51\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = Sw) + >) a, 2,0~) + >) B,C)\n= r=\n\nthe a's (@,20) and f/'s are called the Lagrange multipliers"
+  },
+  {
+    "text": "equality constraints g i w are the inequality constraints, the alphas and bitters are called",
+    "start": 143.0,
+    "end": 149.84,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. 2,0) <0, i=1,...,k\nh,Qw)=0, i=1,...,1\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = $0) + >) a,.2,0~) + >) BA)\n\nthe a's (@,20) and f/'s are called the Lagrange multipliers"
+  },
+  {
+    "text": "Lagrange multipliers and the value of alpha is greater than equal to 0. So, this is the",
+    "start": 149.84,
+    "end": 157.16,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. 2,0v~) <0, i=1,.-.,k\nh,Qw)=0, i=1,.-.,1\n\nThe generalized Lagrangian:\nk 1\nL(w, @, B) = fw) + >) %2,00°) + >) BAC)\n\nthe a's (@,20) and f/'s are called the Lagrange multipliers"
+  },
+  {
+    "text": "Lagrangian of this optimization function. Now, what we want to do is that we want to,",
+    "start": 157.16,
+    "end": 167.44,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. 2,0) <0, i=1,...,k\nh,Qw) =0, i=1,.-.,1\n\nThe generalized Lagrangian:\nk 1\nLw, @, B) = fw) + >) %2,00°) + >) BAC)\n\nthe a's (@,20) and f/'s are called the Lagrange multipliers"
+  },
+  {
+    "text": "for this particular Lagrangian, if you take the values of w alpha and beta such that,",
+    "start": 167.44,
+    "end": 178.0,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, f(v)\nst. 2,0v) <0,\nh,Qw) =0, i=\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = SW) + >) 2, 2,0~) + >) BA)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\n\nLemma:\n‘{(») if w satisfies primal constraints\n\nMAX 2 p0;20 Loe.c 2) =f = ss"
+  },
+  {
+    "text": "where the if the primal constraints are not satisfied, then the value of this Lagrangian",
+    "start": 178.0,
+    "end": 185.2,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, fv)\nst. 2,0v) <0, 1,...,k\nh,Qw)=0, £=1,...51\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = Sw) + >) 22,0) + >) BA, Cr)\nthe a's (@,20) and f's are called the Lagrange multipliers\n\nLemma:\n\n‘S() if wsatisfies primal constraints\n\nMAX 2 p0;20 Lee 2) =f a ae"
+  },
+  {
+    "text": "will be infinity. If the constraints are not satisfied, the value of the Lagrangian",
+    "start": 185.2,
+    "end": 191.08,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, S(v)\ns.t. g,0v) <0,\nh,@w)=0, i=\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = $0) + >) a, 2,0~) + >) BA, r)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\n‘{(») if wsatisfies primal constraints\n\nMAX 2 p.0;20 Loe.c 2) =f a sete"
+  },
+  {
+    "text": "is infinity and it will be equal to f w if the constraints are satisfied. So, we want",
+    "start": 191.08,
+    "end": 199.2,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, S(v)\ns.t. g,0v) <0,\nh,@w)=0, i=\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = $0) + >) a, 2,0~) + >) BA, r)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\n‘{(») if wsatisfies primal constraints\n\nMAX 2 p.0;20 Loe.c 2) =f a sete"
+  },
+  {
+    "text": "to find out the values of alpha beta for which L. So, if you look at the maximum of the",
+    "start": 199.2,
+    "end": 210.12,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, S(v)\nst. 2,0v) <0, 1,...,k\nh,Qw)=0, 2=1,...,1\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = SW) + >) 2,.2,0~) + >) B,C)\n7 7\nthe a's (@,20) and f's are called the Lagrange multipliers\n\nLemma:\n\n‘S() if w satisfies primal constraints\n\nMAX 2 p.0:20 Loe.c 1) =f = —,!"
+  },
+  {
+    "text": "value of L w alpha beta, then if w satisfies the primal constraints, it will be equal to",
+    "start": 210.12,
+    "end": 216.52,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, f(v)\ns.t. gv) <0,\nh,Qw)=0, i=\n\nThe generalized Lagrangian:\nk 1\nLw, @, B) = fw) + 1% 2,00) + >) BAC)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\n‘{(») if w satisfies primal constraints\n\nMAX 2 p0;20 Loe.e =f x. Pe"
+  },
+  {
+    "text": "f w and it will be infinity otherwise. And we can rewrite the primal as finding the",
+    "start": 216.52,
+    "end": 226.24,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, f(v)\ns.t. gv) <0,\nh,(w)=0, i=\n\nThe generalized Lagrangian:\nk 1\nLW, a, A) = $0) + >) a, 2,0~) + >) BA)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\n7 _ [£G+) if w satisfies primal constraints\nMAK a.5,0,20 L(w.a, f=) | pe\nA re-written Primal:\n\nmin,, MAX 4 g~,>0 LQv,a, 8)"
+  },
+  {
+    "text": "value of this expression max of L w alpha beta. We want to find out those, so we first",
+    "start": 226.24,
+    "end": 234.76,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, f(v)\ns.t. gv) <0,\nh,Qw)=0, t=\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = SW) + >) a.2,0~) + >) BA)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\n‘{(») if wsatisfies primal constraints\nMAK a par0 LQw.a,Q=)\" > = ai\nA re-written Primal:\n\nmin,, MAX ¢ 4.420 L0w,@, 8)"
+  },
+  {
+    "text": "to maximize keeping w fixed for a particular w, we can maximize over alpha beta and find",
+    "start": 234.76,
+    "end": 242.48,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, f(v)\ns.t. gv) <0,\nh,Qw)=0, t=\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = SW) + >) a.2,0~) + >) BA)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\n‘{(») if wsatisfies primal constraints\nMAK a par0 LQw.a,Q=)\" > = ai\nA re-written Primal:\n\nmin,, MAX ¢ 4.420 L0w,@, 8)"
+  },
+  {
+    "text": "the expression max L w alpha beta and max L w alpha beta is either f w or infinity. And",
+    "start": 242.56,
+    "end": 250.56,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, f(v)\nst. Z,0v) <0,\nh,@w)=0, i=\n\nThe generalized Lagrangian:\nk 1\nLi, a, B) = J) +>) 2, 2,0~) + >) BA, r)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\n7 _ J£Gv) if w satisfies primal constraints\nMAK o.p,.a,20 L(w,a, f=)\" Gtieewinn\nA re-written Primal:\n\nmin, MAK 4g p,9;20 L(w, a, f)"
+  },
+  {
+    "text": "if you find the minimum of this, it will be giving us the solution of this, because",
+    "start": 250.56,
+    "end": 257.12,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, f(v)\ns.t. gv) 50,\nh,Qw) =0, i=\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = J) + >) a,.2,0~) + >) BA, Cr)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\n‘{(») if w satisfies primal constraints\nMAX 4 p.0,20 L(w.a, B) =\n~ otherwise\nA re-written Primal:\n\nmin ,, Max 4 42,20 L(w,a, f)"
+  },
+  {
+    "text": "otherwise it has a value of infinity. So, the primal can be rewritten as you take the",
+    "start": 257.12,
+    "end": 264.26,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, fS(v)\ns.t. giv) <0,\nh,Q@w)=0, i=\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = Sw) +>) 22,0) + >) BA, Cr)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\nL _ [£G) if w satisfies primal constraints\nMAX op,0,20 L(w.a, B=)\" |, aie\nA re-written Primal:\n\nmin,, Max «42,20 L(w,a, 8)"
+  },
+  {
+    "text": "Lagrangian and you find out alpha beta for a fixed w, you can take maximization over alpha",
+    "start": 264.34,
+    "end": 271.26,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, fS(v)\ns.t. giv) <0,\nh,Q@w)=0, i=\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = Sw) +>) 22,0) + >) BA, Cr)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\nL _ [£G) if w satisfies primal constraints\nMAX op,0,20 L(w.a, B=)\" |, aie\nA re-written Primal:\n\nmin,, Max «42,20 L(w,a, 8)"
+  },
+  {
+    "text": "beta and then you can do minimum over w. So, minimum over w, maximum over alpha beta, L",
+    "start": 272.02,
+    "end": 279.02,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, S(v)\ns.t. gr) <0,\nh,Qw)=0, t=\n\nThe generalized Lagrangian:\nk 1\nLow, 2, B) = S0w) + 2) a 2:0%) + >) BAC)\nra a\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\n5 _ [£G») if w satisfies primal constraints\nMAX a pa20 L(w.a. f=)\" aineeies\nA re-written Primal:\n\nmin ,, Max 4 42,20 L(w,a, 8)"
+  },
+  {
+    "text": "w alpha beta is a rewriting of the primal formulation. So, this is the primal problem and",
+    "start": 279.02,
+    "end": 286.02,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, f(v)\ns.t. gv) $0,\nh,Qwy=0, t=\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = S0) + >) 2, 2,0~) + >) BA, r)\n\nthe a's (@,20) and f's are called the Lagrange multipliers\nLemma:\n‘{(») if w satisfies primal constraints\nMAX a pa20 LQw.a, A=)\" 2 ~ —\nA re-written Primal:\n\nmin,, MAX 4g .4,20 L(w,a, 8)"
+  },
+  {
+    "text": "it has a solution, let us say the solution is P star. P star is the solution of the primal",
+    "start": 287.54,
+    "end": 292.7,
+    "ocr_text": "Lagrangian Duality, cont.\nThe Primal Problem:P =min,, Max, g.¢,20 L(w,@, B)\nThe Dual Problem:\nTheorem (weak duality):\n\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a@,f), we have"
+  },
+  {
+    "text": "problem, minimum over w, maximum over alpha beta of the Lagrangian. And the dual problem",
+    "start": 292.78,
+    "end": 298.78,
+    "ocr_text": "Lagrangian Duality, cont.\nThe Primal Problem:P =min,, Max, g.¢,20 L(w,@, B)\nThe Dual Problem:\nTheorem (weak duality):\n\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a@,f), we have"
+  },
+  {
+    "text": "is we are just putting the minimum here and maximum here. So, we take first, we take",
+    "start": 301.02,
+    "end": 308.02,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem|P\" =min,, MAaX g f,2,>0 Li, a, B)\n\nThe Dual Problem: g* =max, ¢2,>0 min, L(w,a@, )\n\nTheorem (weak duality):\n\ndD = max. p,20min, L(w,a¢,8) < min, max, 9.20 LOv,a,8)= Pp\n\nTheorem (strong duality):\nIff there exist a saddle point of L(w,@,f), we have d® = p*"
+  },
+  {
+    "text": "max of alpha alpha beta, minimum over w, L w alpha beta, this is the dual formulation",
+    "start": 312.5,
+    "end": 319.5,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem|P” =min,, MAaX 4 f,0,>0 L(w, a, B)\n\nThe Dual Problem: g* — MAX 4 2,20 min,, Li, a, B)\n\nTheorem (weak duality):\n\nd =max, 4.20 min, L(w,@,f) < min, max,,.>. L(w,a@,f)=p\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a@,f), we have d* = p*"
+  },
+  {
+    "text": "and it has the solution D star. Now, if now, so this is the primal problem solution,",
+    "start": 319.9,
+    "end": 326.9,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem! P” =min,, MAaX g f,c,>0 Li, a, B)\n\nThe Dual Problem: Zz =max, g 2,20 min, L(w,a@, B)\n\nTheorem (weak duality):\n\nd =max.g20min, L(w,a,8) < min, max, g..0 Lw.a,8)= Pp\n\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a@,f), we have d* = p*"
+  },
+  {
+    "text": "this is the dual problem solution and we have two theorems. This theorem says that",
+    "start": 329.82,
+    "end": 336.34,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem|P\" =min,, MAaX g f,,>0 Li, a, B)\n\nThe Dual Problem: g* — max, 5 ¢,-0 min, L(w,a, 3)\n&\nTheorem (weak duality):\nd =max,4.>0min, L(w,@,8) < min, max,,.25 L(w,a,f)=p°\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a,f), we have d* = p*"
+  },
+  {
+    "text": "first of all, if you change the order of max, mean and mean max, it is a general expression",
+    "start": 336.34,
+    "end": 343.34,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem! P” =min,, MAaX g f,2,>0 Li, a, B)\n\nThe Dual Problem: q* =max, ¢.¢,>0min,, L(w,a@, )\n\nTheorem (weak duality):\n\nd= max. g420min, L(w,a,8) < min, max, 4J%o L(w,.2,8)= Pp\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a@,f), we have d* = p*"
+  },
+  {
+    "text": "that max over mean of this expression, any expression is less than equal to mean of",
+    "start": 343.6,
+    "end": 349.6,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem! P” =min,, MAaX g f,2,>0 Li, a, B)\n\nThe Dual Problem: q* =max, ¢.¢,>0min,, L(w,a@, )\n\nTheorem (weak duality):\n\nd= max. g420min, L(w,a,8) < min, max, 4J%o L(w,.2,8)= Pp\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a@,f), we have d* = p*"
+  },
+  {
+    "text": "max of this expression. And D star is the max of mean of this expression and therefore,",
+    "start": 354.7,
+    "end": 361.7,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem:? =min,, Max, g.¢,20 L(w,a, B)\n\nThe Dual Problem: q* =max, ¢¢,>0 min, L(w,a@, B)\n\nTheorem (weak duality):\n\ndT max, 4,00 min, L(w,a,f) < min, max gp.,20 L0v,a,8) =p\nTheorem (strong duality):\nIff there exist a saddle point of L(w,@,f), we have d® = p*"
+  },
+  {
+    "text": "D star is less than equal to P star. So, D star is always less than equal to P star.",
+    "start": 362.7,
+    "end": 369.7,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem|P” =min,, MAaX 4 f,0,>0 L(w, a, B)\n\nThe Dual Problem: q* =max, g2,>0 min, L(w,a@, 8)\n\nTheorem (weak duality):\n\nd° =max, 4.20 min,, Low,@, A) < min,, max. g2,20 L(w,@,8)= Pp\"\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a@,f), we have d* = p*"
+  },
+  {
+    "text": "Now, if there exists a saddle point of this Lagrangian, where they are equal, that is",
+    "start": 370.7,
+    "end": 377.7,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem:P” =min,, Max, g.¢,20 L(w,@, B)\n\nThe Dual Problem: g* =max, g2,>0 min, L(w,a@, B)\n\nTheorem (weak duality):\n\nd =max, 4.20 min, L(w,@,8) < min, max,4.25 L(w,a@,f)= Pp\"\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a@,f), we have d* = p*"
+  },
+  {
+    "text": "called the saddle point and that is the optimum value of both. So, the optimum value of the",
+    "start": 377.82,
+    "end": 384.82,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem!\" =min,, MAaX 4 g,2,>0 L(w, a, B)\n\nThe Dual Problem: g* =max, ¢¢,>0 min, L(w,a@, B)\n\nTheorem (weak duality):\nd =max . p20 min, L(w,a,8) < min, max, 4.0 L(w.a,8)= Pp\nTheorem (strong duality):\nhere exist a saddle point of L(w,a,f), we have d* = p*"
+  },
+  {
+    "text": "primal formulation and the optimum value of the dual formulation will be identical when",
+    "start": 384.82,
+    "end": 389.98,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem!\" =min,, MAaX 4 g,2,>0 L(w, a, B)\n\nThe Dual Problem: g* =max, ¢¢,>0 min, L(w,a@, B)\n\nTheorem (weak duality):\nd =max . p20 min, L(w,a,8) < min, max, 4.0 L(w.a,8)= Pp\nTheorem (strong duality):\nhere exist a saddle point of L(w,a,f), we have d* = p*"
+  },
+  {
+    "text": "there is a saddle point. And if the saddle point exists, then the saddle point",
+    "start": 389.98,
+    "end": 396.98,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem! P\" =min,, MAaX 4g f,,>0 Li, a, £)\n\nThe Dual Problem: q* =max, g¢,>0 min, L(w,a@, 8)\n\nTheorem (weak duality):\n\ndD = max .9o,>0 min, L(w,a,8) < min, Max. p..0 L(w,a,8)= Pp\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a@,f), we have d® = p*"
+  },
+  {
+    "text": "satisfies the following condition called K K T condition or Karush Kuntukar condition.",
+    "start": 396.98,
+    "end": 403.98,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n=—LW,a@,f)=0, i=1,...,k\now (w, a, f) i\n\n3g LOB) =0. i=1,...,/\na@2,(w)=0, i=1,...,m\nZ,(w) <0, i=1,....m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "Now, the condition says that the partial derivative of this Lagrangian with respect to",
+    "start": 407.06,
+    "end": 413.26,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\n\n5 Lov,a.f)=0, i=1,...,k\now,\n\n3g LOB) =0. i=1,...,\n\na,2,(w)=0, i=1,...,m\n2,(w) <0, i=1,...,.m\n\n7\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "W i and with respect to beta i will be equal to 0 according to the K K T condition. And",
+    "start": 413.26,
+    "end": 420.26,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\n\n5 Lov,a.f)=0, i=1,...,k\now,\n\n3g LOB) =0. i=1,...,\n\na,2,(w)=0, i=1,...,m\n2,(w) <0, i=1,...,.m\n\n7\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "from these two, you will find out that what you get is that alpha i g i w will be equal",
+    "start": 420.26,
+    "end": 427.26,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n— Lew, ax =O, FSthccasle\naa ( £)\n\n3g LOB) =0. i=1....,/\na@2,(w)=0, i=1,...,m\nZ,(w) <0, i=1,....m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "to 0 for i equal to 1 to m. G i w is less than equal to 0 and alpha i greater than equal",
+    "start": 430.02,
+    "end": 437.02,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n—Li,a, =O, PStheosslt\now ( f)\n\n3p Or eB) =0. i=1...,/\n8,04) = 0, i=1,...,m\n2,(w) <0, i=1,...,.m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "to 0. So, these are the conditions that you get when the saddle point exists and the",
+    "start": 439.3,
+    "end": 445.22,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n=—La,a@,B)=0, i=1,...,k\nEn (w, a, f) i\n\n3g Ore B= 0. i=1,...,1\na,2,(w)=0, i=1,...,m\n&,(w) <0, i=1...,.m\n\na@,=0, i=L...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "theorem says, if w star alpha star and beta star satisfy the K K T condition, then it",
+    "start": 445.22,
+    "end": 452.22,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n—Lw,a,8)=0, i=1,...,k\now (w, a, f) i\n\n3g LOB) =0. i=1...,/\na,2,(w)=0, i=1,...,m\n2,(w) <0, i=1,....m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "is also a solution to the primal and dual problems. With this brief, you know description",
+    "start": 453.66,
+    "end": 460.66,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n—Lw,a,8)=0, i=1,...,k\now (w, a, f) i\n\n3g LOB) =0. i=1...,/\na,2,(w)=0, i=1,...,m\n2,(w) <0, i=1,....m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "brief outline of Lagrangian duality, let us go back to SVM and see how it can be applied",
+    "start": 462.26,
+    "end": 469.26,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n——Lw,a@,B)=0, i=1,...,k\now (w, a, f) i\n\n3g LOB) =0. i=1....,/\na@2,(w)=0, i=1,...,m\nZ,(w) <0, i=1,...,m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "there. The details of this theory is beyond the scope of this class, you can read some",
+    "start": 470.26,
+    "end": 475.42,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\nZora f)=0 7 Mevk\n\n3g Ore B= 0. i=1....,/\na@,2,(w)=0, i=1,...,m\n2,(w) <0, i=1,...,.m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "material on convex optimization if you want to learn more about this.",
+    "start": 475.42,
+    "end": 481.42,
+    "ocr_text": "Support Vectors\n\n* Only a few @;’s can be nonzero\n\n¢ Call the training data points whose @;’s are\nnonzero the support vectors\n\n[4,2,0%) =0, 7=1,...,m]\n\nIf aj > Othen g(w) = 0"
+  },
+  {
+    "text": "Now, if we look at our SVM formulation, what we have is we have f w as half w square and",
+    "start": 481.42,
+    "end": 488.42,
+    "ocr_text": "Support Vectors\n\n* Only a few @;’s can be nonzero\n\n¢ Call the training data points whose @;’s are\nnonzero the support vectors\n\n[4,2,0%) =0, 7=1,...,m]\n\nIf aj > Othen g(w) = 0"
+  },
+  {
+    "text": "we have the g w as y i w x plus b greater than equal to 1. We do not have the h, we do not",
+    "start": 488.9,
+    "end": 495.9,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. 2,Q~) <0, i=1,...,k\nh,Qw)=0, i=1,.-.,1\n\nThe generalized Lagrangian:\nk 1\nLi, a, A) = $0) + >) a, 2,0~) + >) BA, r)\n\nthe a's (@,20) and f's are called the Lagrange multipliers"
+  },
+  {
+    "text": "have the quality constraints, we have only the objective function and the g i constraints.",
+    "start": 502.68,
+    "end": 508.68,
+    "ocr_text": "Solving the Optimization Problem\nAe 1 2\nminimize —||w||\n2\nst. y,Qw’x,+5b)21\n\nOptimization problem with convex quadratic objectives and\nlinear constraints\n\nCan be solved using QP.\n\nLagrange duality to get the optimization problem’s dual form,\n\n— Allow us to use kernels to get optimal margin classifiers to work\nefficiently in very high dimensional spaces.\n\n— Allow us to derive an efficient algorithm for solving the above\noptimization problem that will typically do much better than generic\nQP software."
+  },
+  {
+    "text": "So, we are only dealing with alpha i not the beta i. So, we are dealing with f w plus",
+    "start": 508.68,
+    "end": 515.18,
+    "ocr_text": "Lagrangian Duality in brief\n\nThe Primal Problem min, /(w)\ns.t. 2,0) <0, i=1,...,k\nh,@w)=0, i=1,...,0\n\nThe generalized Lagrangian:\nk 1\nLow, 2, B) = Sw) + 2) a.8,0~) + 2) BAO)\n= 1\n\nthe a's (@,20) and f/'s are called the Lagrange multipliers"
+  },
+  {
+    "text": "alpha i g i w. Now, so this K K T condition also says that this alpha i g i w equal to 0 and",
+    "start": 515.18,
+    "end": 522.18,
+    "ocr_text": "Lagrangian Duality, cont.\n\nThe Primal Problem|?\" =min,, MAaX 4 g,,>0 Li, a, B)\n\nThe Dual Problem: q* =max, g.¢,>0 min, L(w,a@, )\n\nTheorem (weak duality):\n\nd= max . p00 min, L(w,a,8) < min, Max. p.s0 L(w.a,8)= Pp\nTheorem (strong duality):\nIff there exist a saddle point of L(w,a@,f), we have d* = p*"
+  },
+  {
+    "text": "g i w is less than 0. So, if alpha if g, because alpha i g i w is 0 only when alpha",
+    "start": 535.02,
+    "end": 542.02,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n—Li,a, =O, FSthccasle\now ( f)\n\n3g LOB) =0. i=1....,/\na@g,(w)=0, i=1,...,m\n2,(w)<0, i=1,....m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "is 0, then g i w can be non 0 and otherwise g i w is 0 and which says that only the few",
+    "start": 545.68,
+    "end": 552.18,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n=—L@,a@,B)=0, i=1,...,k\now (w, a, f) i\n\n3g Or eB) =0. i=1,...,/\na@2,(w)=0, i=1,...,m\n2,(w) <0, i=1,....m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "of the alpha i can be non 0 and the training data points whose alpha i is a non 0 are called",
+    "start": 557.44,
+    "end": 564.44,
+    "ocr_text": "Support Vectors\n* Only a few @;’s can be nonzero\n\n* Call the training data points whose @;’s are\nnonzero the support vectors\n\nlf aj > Othen g(w) = 0"
+  },
+  {
+    "text": "the support vectors. So, some of the alpha i's are non 0 and the",
+    "start": 566.48,
+    "end": 575.06,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n— Lu, a, SQ, PSthoocshe\now ( f)\n\n3p Ore B= 0. PET ncal\na,2,(w)=0, i=1,...,.m\n&,(w) <0, i=1...,m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "training data corresponding to this are support alpha is greater than equal to 0, if alpha",
+    "start": 575.66,
+    "end": 581.26,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n——Lw,a@,B)=0, i=1,...,k\now (w, a, f) i\n\n3g LOB) =0. i=1...,/\na@2,(w)=0, i=1,...,m\nZ,(w) <0, i=1,...,m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "i greater than 0 g i w will be equal to 0. Now, let us see the implication. So, this",
+    "start": 581.26,
+    "end": 588.26,
+    "ocr_text": "The KKT conditions\n\nIf there exists some saddle point of L, then it satisfies the\nfollowing \"Karush-Kuhn-Tucker\" (KKT) conditions:\né\n——Lw,a@,B)=0, i=1,...,k\now (w, a, f) i\n\n3g LOB) =0. i=1...,/\na@2,(w)=0, i=1,...,m\nZ,(w) <0, i=1,...,m\n\n@,20, i=1,...,m\n\nTheorem: If w*, a* and b* satisfy the KKT condition, then it\nis also a solution to the primal and the dual problems."
+  },
+  {
+    "text": "is the original optimization problem and when we take this is the SVM optimization problem,",
+    "start": 588.26,
+    "end": 595.26,
+    "ocr_text": "Solving the Optimization Problem\n\na i 2\nQuadratic minimize alba\nprogramming\nwith linear st. y,(w’x,+5)=1\n\nconstraints\n\nLagrangian Function i |\n\nwll? — a, (v.0w\" x, +5)—1)\n\nminimize L_(w,b,a,.)="
+  },
+  {
+    "text": "we take the Lagrangian which gives us minimization of L w b alpha, we have written L p p denotes",
+    "start": 595.26,
+    "end": 602.26,
+    "ocr_text": "Solving the Optimization Problem\n\nSs 1 2\nQuadratic SRE as alba\nprogramming\nwith linear st. y,(w?x,+b)21\n\nconstraints\n\nLagrangian Function J\n\nminimize L,(w,b,a,)= al - de, (1,.0~\"x, +b)— 1)\noe =\n\nSuits a,=90"
+  },
+  {
+    "text": "primal. So, minimise L p w b alpha half w square minus sigma alpha i y i w i x i plus",
+    "start": 602.26,
+    "end": 609.26,
+    "ocr_text": "Solving the Optimization Problem\n\nSs 1 2\nQuadratic SRE as alba\nprogramming\nwith linear st. y,(w?x,+b)21\n\nconstraints\n\nLagrangian Function J\n\nminimize L,(w,b,a,)= al - de, (1,.0~\"x, +b)— 1)\noe =\n\nSuits a,=90"
+  },
+  {
+    "text": "b minus 1 subject to the constraints alpha i greater than equal to 0. This is by getting",
+    "start": 614.82,
+    "end": 621.82,
+    "ocr_text": "Solving the Optimization Problem\n\ntee 1 2\nQuadratic EES 3imll\nprogramming\nwith linear st. y,(w7x,+b)21\n\nconstraints\n\nLagrangian Function |\n\newes, 1 Z\nminimize L,(w,b,a,)= alle = Dae (1,.0w\"x, +b)— 1)\n\ns.t. a,=0"
+  },
+  {
+    "text": "the Lagrangian of the optimization problem. Now, if we take the partial derivative",
+    "start": 622.74,
+    "end": 629.74,
+    "ocr_text": "Solving the Optimization Problem\n\nbes 1 2\nQuadratic EERE eg alba\nprogramming\nwith linear st. y,(w7x,+b)21\n\nconstraints\n\nLagrangian Function |\n\nminimize L,(w,b,a,)= al - de, (1,.0w\"x, +5)—1)\n=\n\ns.t. a,=0"
+  },
+  {
+    "text": "of this L p with respect to w and b, what we get here is w equal to sigma alpha i y i x",
+    "start": 632.42,
+    "end": 639.42,
+    "ocr_text": "Solving the Optimization Problem\n\nPoe 1 uw\nminimize L,(w,b,a,) = Slr DE (3,.0W\"x, +b)—1)\n\ns.t a,20\nOL,\nMinimize —Z=0\nwrt wand b ow\nfor fixed a aL\n\nP—@\nOb"
+  },
+  {
+    "text": "i and from the second one by taking partial derivative of L p with respect to b and setting",
+    "start": 642.5,
+    "end": 649.5,
+    "ocr_text": "Solving the Optimization Problem\n\nGee eo il a\nminimize L,,(w,b,a,) = Slr =e, (3, 0w?x, +5)—1)\n\nOL,\nMinimize =) => w=\nOw\n\nwrt w and b\n\nfor fixed a OL, =09 ==> > ay,=0\nab i ”\n\nDie iV, CTX)— bY ay,\n\nijal i=l\n\nL,(w, 6, a) =a, -\ni=l\n\nm 1\nL,@,6,a)= ~e =F Daa yi, &TX,)\nma\n\n“ja"
+  },
+  {
+    "text": "it to 0, we get sigma alpha i y i equal to 0. So, what it means is that if I substitute",
+    "start": 650.82,
+    "end": 657.82,
+    "ocr_text": "Solving the Optimization Problem\n\nSee Seen) il ee\nminimize L,,(w,b,a,) = Slr ES, (3, 0v?x, +5)—1)\n\nOL,\nMinimize = => w=\now\n\nwrt w and b\n\n=I\nfor fixed a aL, -o Say, =0\nOb a ma\n\nDAE iV, CIX)— bay,\n\nL,(, 6, a) =a, -\ni=l\n\nijal\n\nm 1a\nL,@,6,a)= “a =5 Di Ga Vi) FT X;)\nrT\n\nEj"
+  },
+  {
+    "text": "this value of w in this expression here, if I substitute this value of w sigma alpha",
+    "start": 657.82,
+    "end": 664.82,
+    "ocr_text": "Solving the Optimization Problem\n\nGe eed 1 w\nminimize L,(w,b,a,) = aivlr =e, (3,.0w\"x, +b)—1)\n\nOL,\nMinimize = => w=\nOw\n\nwrt w and b\n\n=\nfor fixed a oL, -o Say, =0\nOb a ma\n\nD2 Vi CTX) — b> ay,\n\ni, Jad =\n\nL,(, 6, a) =a, -\n\nm 1\nL,@,6,a)= “a =5 Di Ga iV, &TX;)\nrT\n\nuj"
+  },
+  {
+    "text": "i y i x i in this expression here, what I get is L p w b alpha equal to sigma alpha",
+    "start": 669.02,
+    "end": 676.02,
+    "ocr_text": "Solving the Optimization Problem\n\nPa 1 us\nminimize L,(w,b,a,) = aiwlr ~ze (3,Qw?x, +5)—1)\n\nOL,\nMinimize ——=-7 => w=\nOw\n\nwrt wand b\n\nrT\nfor fixed a oL, -o Say, =0\nOb A ma\n\nD2 iV CIX)— BD ay,\n\nij-l =\n\nL,(, 6, a) =a, -\n\nm 1\nL,@.b6,a)= ~e =5 Daa yy, &TX;)\nrT\n\nij"
+  },
+  {
+    "text": "i minus sigma alpha j y i x t x j. I am sorry. So, we put w is here, this is the value of",
+    "start": 678.26,
+    "end": 685.26,
+    "ocr_text": "Solving the Optimization Problem\n\nGeen 1 a\nminimize L,,(w,b,a,) = aivlr JEG (3,.0W\"x, +b)-1)\n\nOL\nMinimize =) => w=\nOw\n\nwrt w and b\n\n=\nfor fixed @ aL, -o Say, =0\nOb a ma\n\nDie iV, CIX)— bY ay,\n\n1\n\nL,(w, 6, a) =Sa, -\ni=l\n\nijal\n\nm 1a\nL,@,6,a)= “a =5 Di Gai) TX)\nrT\n\nEj"
+  },
+  {
+    "text": "so, this w becomes half of alpha i alpha j y i y j x t x j minus b sigma alpha i y i.",
+    "start": 687.94,
+    "end": 694.94,
+    "ocr_text": "Solving the Optimization Problem\n\nfe ed 1 2\nminimize L,,(w,6,a,) = Sler EG (3, 0v?x, +5)—1)\n\nMinimize\nwrt wand b i\nfor fixed a 2.\n=9 => > ay, =0\n=\n\n1,2, YY, X,)— bay\n\nGip a\nL,(w, 6, a) = Es 2 pa\n\nL,@,6,a)= La 5 Seavey CP x,)\n\n2 iF"
+  },
+  {
+    "text": "So, this is my L p when I substitute this value of w, but we know that sigma alpha i y",
+    "start": 697.42,
+    "end": 705.42,
+    "ocr_text": "Solving the Optimization Problem\n\nPa i Ze\nminimize L,,(w,b,a,) = 5lmr = 22 (3, 0w?x, +5)—1)\n\nOL,\nMinimize ——=-7 => w=\now\n\nwrt wand b\n\n=\nfor fixed a aL, -o Say, =0\nOb A ma\n\nDie iV, CIX)— bay,\n\n=\n\nL,(, 6, a) =a, -\n\nijal\n\nm 1\nL,@,6,a)= “a =3 Di Ga iV) &TX;)\na\n\nij"
+  },
+  {
+    "text": "i equal to 0 from this constraint. So, this expression on the right side can be ignored",
+    "start": 705.42,
+    "end": 711.42,
+    "ocr_text": "Solving the Optimization Problem\n\nCte 8 1 2\nminimize L,,(w,b,a,) = Slr =e, (3, Qv?x, +5)—1)\n\nOL,\nMinimize =) => w=\nOw\n\nwrt w and b\n\n7\nfor fixed a OL, =6 Say, =o\nob 1 =\n\nD2 ViV CX) — BD ay,\n\nij =\n\nL,0v,b,a) = doa, -\ni=l\n\n< 1< >\nL,@,6,a)= “ae =F Di Ga Viv, TX)\nrT\n\nLj"
+  },
+  {
+    "text": "and finally, we get L w b alpha as this expression. So, L w b alpha is equal to 0, so",
+    "start": 711.42,
+    "end": 717.42,
+    "ocr_text": "Solving the Optimization Problem\n\nCte 8 1 2\nminimize L,,(w,b,a,) = Slr =e, (3, Qv?x, +5)—1)\n\nOL,\nMinimize =) => w=\nOw\n\nwrt w and b\n\n7\nfor fixed a OL, =6 Say, =o\nob 1 =\n\nD2 ViV CX) — BD ay,\n\nij =\n\nL,0v,b,a) = doa, -\ni=l\n\n< 1< >\nL,@,6,a)= “ae =F Di Ga Viv, TX)\nrT\n\nLj"
+  },
+  {
+    "text": "alpha is sigma alpha i minus half of i j equal to 1 to m alpha i alpha j y i y j x i transpose",
+    "start": 717.82,
+    "end": 724.82,
+    "ocr_text": "Solving the Optimization Problem\n\nPa 1 us\nminimize L,,(w,b,a,) = hall Ei (3, 0w?x, +5)—1)\n\nOL,\nMinimize = => w=\nOw\n\nwrt w and b\n\n=\nfor fixed a aL, -o Say, =0\nOb A ma\n\nD2 iV CTX) — BD ay,\n\nij-l i=\n\nL,(, 6, a) =a, -\ni=l\n\nm 1\nL,@.6,a)= ~e =3 Daa yy, &TX;)\nrT\n\nij"
+  },
+  {
+    "text": "x j. Now, this is a very important formulation and we will look at the properties of this",
+    "start": 729.1,
+    "end": 736.1,
+    "ocr_text": "Solving the Optimization Problem\n\nGe eed 1 w\nminimize L,(w,b,a,) = esha =e, (3,.0w\"x, +b)—1)\n\nOL,\nMinimize = => w=\nOw\n\nwrt w and b\n\n=\nfor fixed a oL, -o Say, =0\nOb a mt\n\nD2 iV CTX) — bay,\n\nij-l =\n\nL,(, 6, a) =a, -\n\nm 1\nL,@,6,a)= “a =3 Di Ga iV, &TX;)\nma\n\nuj"
+  },
+  {
+    "text": "formulation to get certain properties of this support vector machine I will do.",
+    "start": 736.38,
+    "end": 741.38,
+    "ocr_text": "The Dual problem\n\nNow we have the following dual opt problem:\n\n_\n@, 5 EAI, CX)\nDes"
+  },
+  {
+    "text": "So, the dual problem, let us before we go to that, let us look at the dual problem,",
+    "start": 741.38,
+    "end": 747.26,
+    "ocr_text": "The Dual problem\n\nNow we have the following dual opt problem:\n\n_\n@, 5 EAI, CX)\nDes"
+  },
+  {
+    "text": "the dual problem is maximizing of j alpha, where j alpha is the expression we saw earlier",
+    "start": 747.26,
+    "end": 754.26,
+    "ocr_text": "The Dual problem\n\nNow we have the following dual opt problem:\n\nl=\n@-5 > 42, YY, C7 X,;)\nms"
+  },
+  {
+    "text": "and these are the constraints alpha i greater than equal to 0 and sigma alpha i y i equal",
+    "start": 754.26,
+    "end": 759.98,
+    "ocr_text": "The Dual problem\n\nNow we have the following dual opt problem:\n\nl=\n@-5 > 42, YY, C7 X,;)\nms"
+  },
+  {
+    "text": "to 0. This is the dual problem, which is a quadratic programming problem and from this",
+    "start": 759.98,
+    "end": 766.98,
+    "ocr_text": "The Dual problem\n\nNow we have the following dual opt problem:\n\n=\n@, 5 BAY I, CLX,)\nDi"
+  },
+  {
+    "text": "quadratic programming problem, we can solve and find the global maximum value of alpha i.",
+    "start": 768.02,
+    "end": 775.02,
+    "ocr_text": "The Dual problem\nNow we have the following dual opt problem:\nmax, Ka) = Fa, 3 ¥ a,4,¥.7,07x,)\n= ayo\nst. @,>0, i=1,...,k\nawe\n\nThis is a quadratic programming problem.\n— Aglobal maximum of @, can always be found."
+  },
+  {
+    "text": "We can find out the values of alpha i by solving this quadratic programming problem and",
+    "start": 775.18,
+    "end": 781.18,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\niesv\n\nFor testing with a new data z\n— Compute\nw'z+b= > a,y,(x7z)+b\n\nicsv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "this quadratic programming problem is much easier to solve than the primal formulation.",
+    "start": 781.18,
+    "end": 788.18,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\niesv\n\nFor testing with a new data z\n— Compute\nw'z+b= > a,y,(x7z)+b\n\nicsv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "This is much simpler because the constraints are simpler and we will see it has certain",
+    "start": 788.18,
+    "end": 793.68,
+    "ocr_text": "The Dual problem\n\nNow we have the following dual opt problem:\na la\nmax, Ma) = 51a, 3 F490 1X,)\nst. @,>0, i=1,...,k\n\nSay, =0.\ntot\n\nThis is a quadratic programming problem.\n— Aglobal maximum of @, can always be found."
+  },
+  {
+    "text": "nice properties. So, once we solve and get the Lagrange multiplies alpha, we can reconstruct",
+    "start": 793.68,
+    "end": 800.68,
+    "ocr_text": "The Dual problem\n\nNow we have the following dual opt problem:\na la\nmax, Ma) = 51a, 3 F490 1X,)\nst. @,>0, i=1,...,k\n\nSay, =0.\ntot\n\nThis is a quadratic programming problem.\n— Aglobal maximum of @, can always be found."
+  },
+  {
+    "text": "the parameter vectors. We can find w as sigma alpha i y i x i. In fact, we noted that alpha",
+    "start": 800.78,
+    "end": 808.78,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\n\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\niesv\n\nFor testing with a new data z\n— Compute\nw'z+b= > a,y,(x7z)+b\n\nicsv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "i is non-zero only for few of the examples. Those examples are the one which are one",
+    "start": 811.74,
+    "end": 818.74,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\n\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\nw= Sayx,| w= Dax\nr iss\nFor testing with a new data z\n— Compute\nw'z+b= > a,y,(x7z)+b\n\nicsv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "which are the support vectors. So, w is obtained from sigma alpha i y i x i, where I ranges",
+    "start": 819.1,
+    "end": 826.1,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\nw= Saye) [r= Dox\n= ics\nFor testing with a new dataz\n— Compute\nw'z+b= > a,y,(x7z)+b\n\nicsv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "among the support vectors and usually the support vectors are few in number and w can be",
+    "start": 832.44,
+    "end": 838.44,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\n\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\niesy\n\nFor testing with a new data z\n\n— Compute\nwz+b=> ay, (x7z)+ b\n\nicsv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "computed from the coordinates of those support vectors. Also, when we get a new data point",
+    "start": 838.44,
+    "end": 845.44,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\n\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\niesv\n\nFor testing with a new data z\n— Compute\nw'z+b= > a,y,(x7z)+b\n\nicsv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "z in order to find out the output corresponding to this, we can compute w t z plus p, which",
+    "start": 845.44,
+    "end": 852.44,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\n\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\nw= Sayen| r= Do\nr= icsv\nFor testing with a new data z\n— Compute e\nw'z+b= > a,y,(x7z)+b\n\niesv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "is alpha sigma alpha i y i x i t z plus p and we classify z as class 1 if the sum is",
+    "start": 858.2,
+    "end": 865.2,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\n\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\niesv\n\nFor testing with a new data z\n— Compute\n\nwz+b=>>) ay, (x7z)+ b\n\nicsv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "positive and class 2 if otherwise. Now, you note that w need not be computed by the",
+    "start": 867.92,
+    "end": 874.92,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\n\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\nw= Saye.) [P= Dae\nr issv\nFor testing with a new data z\n\n— Compute\nwz+b=> ay, (x7z)+ b\n\nicsv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "form found explicitly, we can just use this expression and this expression has a very",
+    "start": 875.44,
+    "end": 881.94,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\n\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\niesv\n\nFor testing with a new data z\n\n— Compute\nw'zt+b= > a,y,(x7z)+b\nicsv\nQ\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "nice property when you put z what you are doing is this is alpha i this is y i this is",
+    "start": 881.94,
+    "end": 889.94,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\n\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\niesv\n\nFor testing with a new data z\n\n— Compute\nw'zt+b= > a,y,(x7z)+b\nicsv\nQ\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "x i t z. So, you are taking the dot product of the support vector with your test point.",
+    "start": 889.94,
+    "end": 896.94,
+    "ocr_text": "Support vector machines\n\nOnce we have the Lagrange multipliers {a@;} we can\n\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\niesv\n\nFor testing with a new data z\n— Compute\nw'z+b= > a,y,(x7z)+b\n&\n\nicsv\n\nand classify z as class 1 if the sum is positive, and class 2\notherwise\n\nNote: w need not be formed explicitly"
+  },
+  {
+    "text": "So, the discriminant function is given by this dot product of x i t and x. So, you need",
+    "start": 897.94,
+    "end": 904.94,
+    "ocr_text": "Solving the Optimization Problem\n\n= The discriminant function is:\n\n2(X) =w’xt+hb= >) ax) x+b\n\nreSV"
+  },
+  {
+    "text": "dot so, the computation reduces to mainly finding this dot products. So, you have the dot product",
+    "start": 908.1,
+    "end": 915.1,
+    "ocr_text": "Solving the Optimization Problem\n\n= The discriminant function is:\n\nB(X) = Ww’ xt+b= > a,x) x+b\n\nreSV"
+  },
+  {
+    "text": "between the test point x and the support vector x i, why is this such an exciting thought?",
+    "start": 916.46,
+    "end": 923.46,
+    "ocr_text": "Solving the Optimization Problem\nThe discriminant function is:\n\nB(x) = Ww’ xthb= > ax) x+b\nieSv\nIt relies on a dot product between the test point x and the\nsupport vectors x\nSolving the optimization problem involved computing the\ndot products 2G OG between all pairs of training points\n\nThe optimal »# is a linear combination of a small number\nof data points."
+  },
+  {
+    "text": "Now, x i is a vector and this can be a high dimensional vector, but if you take the dot",
+    "start": 923.46,
+    "end": 930.46,
+    "ocr_text": "Solving the Optimization Problem\nThe discriminant function is:\n\nB(x) = Ww’ xthb= > ax) x+b\nieSv\nIt relies on a dot product between the test point x and the\nsupport vectors x\nSolving the optimization problem involved computing the\ndot products 2G OG between all pairs of training points\n\nThe optimal »# is a linear combination of a small number\nof data points."
+  },
+  {
+    "text": "product of these two linear vectors what you get is a scalar right. So, the dot product",
+    "start": 930.94,
+    "end": 937.14,
+    "ocr_text": "Solving the Optimization Problem\nThe discriminant function is:\nB(X) = Ww’ xt+b= > a,x) x+b\n\nIt relies on a dot product between the test point x and the\nsupport vectors x;\n\nSolving the optimization problem involved computing the\ndot products XG OG between all pairs of training points\n\nThe optimal »# is a linear combination of a small number\nof data points."
+  },
+  {
+    "text": "is a scalar value and we will look at what are the implications later when we solve the",
+    "start": 937.14,
+    "end": 944.14,
+    "ocr_text": "Solving the Optimization Problem\n\nThe discriminant function is:\nB(X) =w’xt+b= > a,x) x+b\nieSv\nIt relies on a dot product between the test point x and the\nsupport vectors x;\nSolving the optimization problem involved computing the\ndot products GG between all pairs of training points\n\nThe optimal »# is a linear combination of a small number\nof data points."
+  },
+  {
+    "text": "optimization problem also if you look at this formulation where we solve the optimization",
+    "start": 945.5,
+    "end": 950.82,
+    "ocr_text": "Solving the Optimization Problem\n\n= The discriminant function is:\n\nB(X) = Ww’ xt+b= >) a,x) x+b\n\nreSV"
+  },
+  {
+    "text": "problem. In here we see what we have is the dot product of the training points right.",
+    "start": 950.82,
+    "end": 957.82,
+    "ocr_text": "Solving the Optimization Problem\n\n= The discriminant function is:\n\nB(X) = Ww’ xt+b= >) a,x) x+b\n\nreSV"
+  },
+  {
+    "text": "So, alpha i, y i, y j is either plus 1 minus 1. So, these are very simple to compute",
+    "start": 960.06,
+    "end": 966.06,
+    "ocr_text": "The Dual problem\nNow we have the following dual opt problem:\nmax, Wa) = Fa, —3 F497, 07x,)\n= Bol =\nst. @,>0, i=1,...,k\nSay, =0.\n\nThis is a quadratic programming problem.\n— Aglobal maximum of ~@, can always be found."
+  },
+  {
+    "text": "multiply and x i t x j the dot product of x i x j. So, when we solve the optimization",
+    "start": 966.06,
+    "end": 973.06,
+    "ocr_text": "Support vector machines\n\n* Once we have the Lagrange multipliers {a@;} we can\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\nw= day x, w= > ay,x\nfat\n\nicsr\n* For testing with a new data z\n\n— Compute\nw'z+b= > a,y,(x7z)+b\nicsv\nclassify z as class 1 if the sum is positive, and class 2\nrwise\nneed not be formed explicitly"
+  },
+  {
+    "text": "problems it involved computing the dot products between all the pairs of training points",
+    "start": 973.06,
+    "end": 979.42,
+    "ocr_text": "Support vector machines\n\n* Once we have the Lagrange multipliers {a@;} we can\nreconstruct the parameter vector w as a weighted\ncombination of the training examples:\n\nw= day x, w= > ay,x\nfat\n\nicsr\n* For testing with a new data z\n\n— Compute\nw'z+b= > a,y,(x7z)+b\nicsv\nclassify z as class 1 if the sum is positive, and class 2\nrwise\nneed not be formed explicitly"
+  },
+  {
+    "text": "and the optimal w is linear combination of a small number of data points. So, these are",
+    "start": 979.46,
+    "end": 986.46,
+    "ocr_text": "Solving the Optimization Problem\nThe discriminant function is:\n\n(9) = Ww’ xt+b= > a,x) x+b\niesv\nIt relies on a dot product between the test point x and the\nsupport vectors x;\nSolving the optimization problem involved computing the\ndot products XG; between all pairs of training points\n\nThe optimal ## is a linear combination of a small number\nof data points."
+  },
+  {
+    "text": "some of the features about this SVM formulation. We stop here today in the next class we will",
+    "start": 986.46,
+    "end": 993.46,
+    "ocr_text": "Solving the Optimization Problem\n\nThe discriminant function is:\n(9) = Ww’ xt+b= > a@,x7x+b\niesv\nIt relies on a dot product between the test point x and the\nsupport vectors x;\nSolving the optimization problem involved computing the\ndot products XGOG between all pairs of training points\n\nThe optimal »# is a linear combination of a small number\nof data points."
+  },
+  {
+    "text": "look at certain properties of SVM and how these properties can be used for those",
+    "start": 993.74,
+    "end": 1001.22,
+    "ocr_text": "Solving the Optimization Problem\n\nThe discriminant function is:\n(9) = Ww’ xt+b= > a@,x7x+b\niesv\nIt relies on a dot product between the test point x and the\nsupport vectors x;\nSolving the optimization problem involved computing the\ndot products XGOG between all pairs of training points\n\nThe optimal »# is a linear combination of a small number\nof data points."
+  },
+  {
+    "text": "formulations of SVM. With this I end today's lecture. Thank you.",
+    "start": 1001.22,
+    "end": 1008.22,
+    "ocr_text": "Solving the Optimization Problem\n\nThe discriminant function is:\n(9) = Ww’ xt+b= > a@,x7x+b\niesv\nIt relies on a dot product between the test point x and the\nsupport vectors x;\nSolving the optimization problem involved computing the\ndot products XGOG between all pairs of training points\n\nThe optimal »# is a linear combination of a small number\nof data points."
+  }
+]

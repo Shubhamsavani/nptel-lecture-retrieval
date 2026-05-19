@@ -1,0 +1,1394 @@
+[
+  {
+    "text": "So, last time we solve this problem which is of finding, finding your root in a maze,",
+    "start": 0.0,
+    "end": 7.0,
+    "ocr_text": "Lecture - 18\nRed Black Tree DS"
+  },
+  {
+    "text": "so you are given a grid with obstacles and you have to find a path from S to T shortest",
+    "start": 30.0,
+    "end": 36.12,
+    "ocr_text": "<\n\nRo lhe T wsa LST\nCD\n\naa"
+  },
+  {
+    "text": "path and this is a very clever implementation using a Q. Any questions about that? And",
+    "start": 36.12,
+    "end": 45.04,
+    "ocr_text": "<\n\nCt.\nT 2,\nT aa GST\n\nhee\n\nRL\n\nCD"
+  },
+  {
+    "text": "then we went back to balanced binary search tree and in these last two classes we will",
+    "start": 45.04,
+    "end": 54.48,
+    "ocr_text": "<\n\nS.C.\nBST\n\ndba\n\nT AB\n\nhee\n\nRE\n\nCy)"
+  },
+  {
+    "text": "finish the implementation of red black tree. So, for AVL tree I have given you only one",
+    "start": 54.48,
+    "end": 64.16,
+    "ocr_text": "<\n\nS.C.\nBST\n\ndba\n\nT AB\n\nhee\n\nRE\n\nCy)"
+  },
+  {
+    "text": "idea which is that of rotation, when you insert or delete then to balance you have to rotate.",
+    "start": 64.16,
+    "end": 73.28,
+    "ocr_text": "<\n\nS.C.\nBST\n\nba\n\nT Ab\n\nhee\n\nRE\n\nCv)"
+  },
+  {
+    "text": "That we will now explore in detail in the case of red black tree.",
+    "start": 73.28,
+    "end": 77.72,
+    "ocr_text": "<\n\nS.C.\nBST\n\ndba\n\nT A”\n\nhee\n\nRE\n\nCD"
+  },
+  {
+    "text": "So, first we define what this is. So, the definition will be strange at first because",
+    "start": 78.44,
+    "end": 95.12,
+    "ocr_text": "<\n\nCt.\nT >.\nT aa GST\n\nhee\n\nRL\n\nCD"
+  },
+  {
+    "text": "historically these were not discovered first. First you had more intuitive kind of trees.",
+    "start": 95.12,
+    "end": 101.44,
+    "ocr_text": "K I és]\n\ni\n\nT wa eT Sst."
+  },
+  {
+    "text": "So, red black tree is a is a binary search tree such that each node is colored either red,",
+    "start": 101.44,
+    "end": 117.92,
+    "ocr_text": "K I és]\n\ni\n\nT wa eT Sst."
+  },
+  {
+    "text": "which for this course I will denote red by a circle or black which for drawing the tree",
+    "start": 117.92,
+    "end": 139.24,
+    "ocr_text": "Ro I és] <> s\n\nRefn: R&T T wa BST st.\nCi) each pede wu Kec"
+  },
+  {
+    "text": "I will use square box. So, every node is either a circle or a square. So, it is either red or black.",
+    "start": 139.24,
+    "end": 149.56,
+    "ocr_text": "g I os cali: 5\n\nRe\n\nVeSn: RE Thee T wa BST st.\n- Ci) each pwede we ReA-O or Bback-"
+  },
+  {
+    "text": "Each leaf is mandated to be black. So, let us just continue with this color. So, each leaf will",
+    "start": 149.56,
+    "end": 169.12,
+    "ocr_text": "Pl Rg r os cay by)\n\nHeSn: RE Tee T awa BST st.\nCi) each pode 1 RedA-C) or Bback- [|"
+  },
+  {
+    "text": "be a square and in fact leaves will be forced to have the null pointer. So, each leaf will be empty.",
+    "start": 169.12,
+    "end": 197.04,
+    "ocr_text": "g ah os] =i: 5\n\nHeSn: RE Tee T wa BT st.\n- Ci) each pode 1 Red-OC or Bback-[]\n\nRe"
+  },
+  {
+    "text": "It will not store any node. It will not store any record or key. So, leaves are special. So, that is",
+    "start": 197.04,
+    "end": 211.6,
+    "ocr_text": "al ®& r os] cS 5\n\nHeSn: RE Thee Thee T wa GT st.\nCi) each ) each pode As ReA-C) or Bback-[]\n(i) each Ceaf As Bback-L) dented Ee).\n\n4) 4) &"
+  },
+  {
+    "text": "about the colors of the nodes. Then there are two conditions on how these colors will behave with",
+    "start": 211.6,
+    "end": 226.2,
+    "ocr_text": "cae Ro I és] <> 5\n\nRefn: RE hee Tee T ba GsT st.\nCi) each ) cach pode. ts Red-QC_ or Bback-[ |\n(i\\) each Leaf Ab Black— L) densted | ."
+  },
+  {
+    "text": "each other. So, each red node has only black children. So, which means that red node",
+    "start": 226.2,
+    "end": 254.2,
+    "ocr_text": "cae Kd Jt és] <> 5\n\nReSn: RS Thee The T wa BST st.\nCi) each ) each pode ts Red-C_ or Bback-[ |\n(it) each Ceaf ts Black-L) dented EK."
+  },
+  {
+    "text": "can have two null pointers which will be leaves. So, they are definition they are black or they",
+    "start": 254.2,
+    "end": 262.68,
+    "ocr_text": "f Cd E os] ri i)\n\nHefn: RS Thee Thee T wa GT st.\nCi) each ) each pode ts Red-C_ or Bback-[ |\n(i\\) each Leaf Ab Black- L) dented | ."
+  },
+  {
+    "text": "may have one of these or both of these children to be records, but then those records have to be nodes have to be black.",
+    "start": 262.68,
+    "end": 270.12,
+    "ocr_text": "z eo a os) rie: sy\n\nRef: RE hee Thee T wa BT st.\nCi) each ) cach pode As RedA-C) or Bback-[]\n(i) each Ceaf ts Black-L) dented Ee)."
+  },
+  {
+    "text": "Red cannot have red child and the final condition is that number of black nodes",
+    "start": 270.84,
+    "end": 280.76,
+    "ocr_text": "Z & LI os) <> yy\n\nReSn: TE Ea wa GT st.\nCi) each ) each pode 1s Red-C) or Bback-[_|\n(ii) each Ceaf As Black-L) dented Ee)."
+  },
+  {
+    "text": "on each path from the root to any leaf. So, on any path from root to leaf you want the number of",
+    "start": 280.76,
+    "end": 309.48,
+    "ocr_text": "ca eo ae os) > 5\n\nHeLa: See awa BT st.\nCi) each ) cach pede. ts Red-C_ or Bback-[ |\n(ii) each Ceaf As Black-L) dented Ee)."
+  },
+  {
+    "text": "black nodes to be the same. So, this number is called black height.",
+    "start": 309.48,
+    "end": 330.28,
+    "ocr_text": "f eo tI os) ii: %\n\nHeSn: RE Thee Thee T wa BST st.\nCi) each ) each pode ts Red-C_ or Bback-[ |\n(i\\) each Leaf Ab Bback- L) densted _\\ ."
+  },
+  {
+    "text": "So, BH of t. So, this is a unique condition originally a height of a tree could be different on",
+    "start": 339.72,
+    "end": 356.28,
+    "ocr_text": "Refn: RE Nee Tee T a GST st.\nCi) each ) each pode ts Red-C)_ or Bback-[]\n(i\\)_ each leaf te Bback- TL) dented Ee].\n\n&) (te)"
+  },
+  {
+    "text": "different paths or the length of the path can be different. We only define the longest path as the height,",
+    "start": 356.28,
+    "end": 362.6,
+    "ocr_text": "Z g au és) ae b)\n\nLeSn: RE hee Tite T ba GsT st.\nCi) each ) each pode Ab ReA-C) or Bback-[]\n(i) each Ceaf is Black-L) dented Ee)."
+  },
+  {
+    "text": "but black height is very strict. Every path from root to leaf has to be of the same black height,",
+    "start": 362.6,
+    "end": 371.08,
+    "ocr_text": "Z g au és) ae b)\n\nLeSn: RE hee Tite T ba GsT st.\nCi) each ) each pode Ab ReA-C) or Bback-[]\n(i) each Ceaf is Black-L) dented Ee)."
+  },
+  {
+    "text": "same length. Is this clear? So, this is the data structure which is called red black tree.",
+    "start": 371.08,
+    "end": 378.84,
+    "ocr_text": "cA Cd I os] Flee 5\n\nHeSn: RE he T aw a BT st.\nCi) each ) each pode As ReA-C) or Bback-[]\n(i\\) each Ceaf st Black-L) dented Ee).\n\n4 +e i"
+  },
+  {
+    "text": "It has tons of properties and we will try to pack those properties into date haze. So,",
+    "start": 379.56,
+    "end": 385.72,
+    "ocr_text": "¢ e aN os] rie 5\n\nHeSn: RE Nee Thee T wa BT st.\nCi) each ) each pode as ReA-C) or Bback-[]\n(i) each Ceaf is Black-T) dented Ee)."
+  },
+  {
+    "text": "we have to go a bit fast on this. It seems very exotic, but this is the most useful tree which is",
+    "start": 385.72,
+    "end": 395.0,
+    "ocr_text": "fz e a es] -y: 5\n\nRefn: R&ESee T wa GT st.\nCi) each ) each pode 1s Red-C)_ or Bback-[ |\n(i) cach Ceaf As Black-L) dented Ee).\n\n4) (te)"
+  },
+  {
+    "text": "which is applied in all these applications. In unix also in operating systems also many of the",
+    "start": 395.0,
+    "end": 400.36,
+    "ocr_text": "fz e a es] -y: 5\n\nRefn: R&ESee T wa GT st.\nCi) each ) each pode 1s Red-C)_ or Bback-[ |\n(i) cach Ceaf As Black-L) dented Ee).\n\n4) (te)"
+  },
+  {
+    "text": "data structures are actually based on this implementation. This is a very practical",
+    "start": 401.16,
+    "end": 407.88,
+    "ocr_text": "f eo ae os) ey by)\n\nHeSn: aoe wa CST st.\nCi) each ) cach pode as ReA-C) or Bback-[]\n(i\\) cach Ceaf is Black- TL) dented Ee)."
+  },
+  {
+    "text": "data structure. So, the first lemma, major lemma that one proves here shows the utility of these",
+    "start": 408.36,
+    "end": 419.08,
+    "ocr_text": "7 g au é3) oh b)\n\nVHeSn: RE hee Tee T 4 a BST rT «6S.\nCi) each ) each pode As ReA-C) or Bback-[]\n(i\\) each Leaf Ab Black- L) densted _\\ ."
+  },
+  {
+    "text": "axioms or maybe I should give an example first. Any questions about this? These axioms what do they mean?",
+    "start": 419.08,
+    "end": 430.2,
+    "ocr_text": "PA ® A os] cass by)\n\nVeSn: RS hee Thee T wa BT st.\nCi) each ) each pode as Red-C)_ or Bback-[ |\n(i\\) each Ceaf is Black-L) dented Ee).\n\n4) (te)"
+  },
+  {
+    "text": "So, let us draw a red black tree. So, this 28 is a red node. 46 is a black 46 and 67",
+    "start": 430.36,
+    "end": 460.04,
+    "ocr_text": "Z g au és) cS b)\n\nHefn: RE hee Thee T wa GT st.\nCi) each ) each ode as ReA-C) or Bback-[]\n(i) each Ceaf is Black-L) dented Ee).\n\nf) (te)"
+  },
+  {
+    "text": "are black. So, 28 can have only black children. So, 28 for example can have 5 and 35,",
+    "start": 460.04,
+    "end": 467.64,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "but then you have to color them black. And 67 is black. It can have any kind of children. So,",
+    "start": 468.28,
+    "end": 483.08,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "49 and then 49 ends with leaves. So, there should be a leaf here also.",
+    "start": 483.08,
+    "end": 504.68,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "So, till now on the right side of 46 what is the black height? Black height is 3 right. There are",
+    "start": 504.68,
+    "end": 518.52,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "two there are three leaves and you can see that every leaf path from root to that leaf has three",
+    "start": 518.52,
+    "end": 528.52,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "square nodes. Now, we have not I mean in the axiom we did not say anything.",
+    "start": 529.32,
+    "end": 537.08,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "Yeah from root to leaf. Sorry. No, it is above it look at a path from root to leaf count the number",
+    "start": 545.0,
+    "end": 556.12,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "of black nodes. So, here 46 67 and the leaf. So, 3,",
+    "start": 556.12,
+    "end": 562.6,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "but this is not true on the left side. So, which means that it is not complete. So, let us give it more",
+    "start": 568.52,
+    "end": 574.68,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "nodes. So, let us say 2 and 25 and then we can end with leaves.",
+    "start": 575.24,
+    "end": 584.04,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "And 35 is still not complete. So, we can do a similar thing.",
+    "start": 592.52,
+    "end": 598.2,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "31 and 41 maybe. So, these are now four leaves. So, now you can see that in every path from the root.",
+    "start": 598.2,
+    "end": 615.24,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "So, this is a red black tree. Is this clear now? So, all the axioms here are axioms that we stated",
+    "start": 615.56,
+    "end": 631.8,
+    "ocr_text": "A om &"
+  },
+  {
+    "text": "are implemented are being followed here. Red node has black children only. Leaves are all black",
+    "start": 631.8,
+    "end": 641.16,
+    "ocr_text": "A & I\n\n&) (te) (i"
+  },
+  {
+    "text": "and stored the null pointer and any path you go from root to leaf you will see three squares.",
+    "start": 641.24,
+    "end": 650.04,
+    "ocr_text": "f Rd as\n\n4) (te)"
+  },
+  {
+    "text": "So, that covers all the all the axioms. Any questions?",
+    "start": 655.88,
+    "end": 663.32,
+    "ocr_text": "Ro r és] rae’ 5\n\nLVeSn: RD “hee Tee T 2 a GST rT st.\n- Ci) each Veeck pale as Red-C) or Bback- |\n(i\\) each Ceaf is Black-L) dented Ee).\n\nBe\n\n4) (te)"
+  },
+  {
+    "text": "So, yes, it only has null pointers.",
+    "start": 663.32,
+    "end": 675.0,
+    "ocr_text": "Ro r és] rae’ 5\n\nLVeSn: RD “hee Tee T 2 a GST rT st.\n- Ci) each Veeck pale as Red-C) or Bback- |\n(i\\) each Ceaf is Black-L) dented Ee).\n\nBe\n\n4) (te)"
+  },
+  {
+    "text": "Sorry, number 2 has two children in both our leaves. No, no, it has just some books will show it",
+    "start": 675.0,
+    "end": 692.2,
+    "ocr_text": "Ro r és] rae’ 5\n\nLVeSn: RD “hee Tee T 2 a GST rT st.\n- Ci) each Veeck pale as Red-C) or Bback- |\n(i\\) each Ceaf is Black-L) dented Ee).\n\nBe\n\n4) (te)"
+  },
+  {
+    "text": "in nil and we will only show it by a cross. So, it does not store anything it is just a black node empty.",
+    "start": 692.2,
+    "end": 703.88,
+    "ocr_text": "Ro r és] rae’ 5\n\nLVeSn: RD “hee Tee T 2 a GST rT st.\n- Ci) each Veeck pale as Red-C) or Bback- |\n(i\\) each Ceaf is Black-L) dented Ee).\n\nBe\n\n4) (te)"
+  },
+  {
+    "text": "So, the property that we want to show is that any red black tree",
+    "start": 703.88,
+    "end": 720.52,
+    "ocr_text": "Ro r és] rae’ 5\n\nLVeSn: RD “hee Tee T 2 a GST rT st.\n- Ci) each Veeck pale as Red-C) or Bback- |\n(i\\) each Ceaf is Black-L) dented Ee).\n\nBe\n\n4) (te)"
+  },
+  {
+    "text": "has overall height at most log of the size of the tree. So, then this was the original promise that",
+    "start": 720.52,
+    "end": 744.44,
+    "ocr_text": "A) So)"
+  },
+  {
+    "text": "this is one of the promises that the tree has to have small height in terms of the number of records n.",
+    "start": 744.44,
+    "end": 751.96,
+    "ocr_text": "A) So)"
+  },
+  {
+    "text": "Height should only be log n and then the other promises are which we will see that you how to do",
+    "start": 752.52,
+    "end": 758.68,
+    "ocr_text": "A) So)"
+  },
+  {
+    "text": "insertion deletion in this much time. But as you have seen before in a tree in a BST it takes height",
+    "start": 758.68,
+    "end": 767.08,
+    "ocr_text": "A) So)"
+  },
+  {
+    "text": "of the tree much time. So, if the height can already be much bigger than log n then it won't be",
+    "start": 767.08,
+    "end": 776.44,
+    "ocr_text": "A) So)"
+  },
+  {
+    "text": "of any utility. So, the first important lemma is that actually that is not the case it is a good case.",
+    "start": 776.44,
+    "end": 782.76,
+    "ocr_text": "A) So)"
+  },
+  {
+    "text": "Height just those axioms that we have put they enforce that the height cannot be more than",
+    "start": 784.04,
+    "end": 791.88,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "order log n. So, why do they imply this right this requires a proof.",
+    "start": 792.2,
+    "end": 798.12,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "Yes. So, maybe one small property you should observe what is the connection between black height and",
+    "start": 801.72,
+    "end": 810.2,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "height. So, that is the correct call. So, black height is well let me have both the bounds I think.",
+    "start": 810.2,
+    "end": 835.0,
+    "ocr_text": "A tog &"
+  },
+  {
+    "text": "So, black height is at most the height and what can you say about lower bound.",
+    "start": 835.48,
+    "end": 843.32,
+    "ocr_text": "A tog &"
+  },
+  {
+    "text": "So, for the lower bound you think of think of black nodes can so, there can be a sequence of",
+    "start": 846.92,
+    "end": 851.88,
+    "ocr_text": "A tog &"
+  },
+  {
+    "text": "black node to nodes successive. But can there be two successive red nodes that the axiom violates",
+    "start": 851.88,
+    "end": 859.16,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "so, for every red there has to be a black in the neighborhood. So, which means that black height",
+    "start": 859.64,
+    "end": 868.36,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "will be at least height by 2 is that clear. So, the so, your question whether this bound is for",
+    "start": 868.36,
+    "end": 887.88,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "black height or height it does not matter because when height is small black height is small and when",
+    "start": 887.88,
+    "end": 895.64,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "black height is small then you see that the height is less than equal to twice black height.",
+    "start": 895.64,
+    "end": 901.88,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "So, height is also small. So, both are similar at least asymptotically they are the same.",
+    "start": 901.88,
+    "end": 907.96,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "Is that clear? So, two reds cannot",
+    "start": 908.52,
+    "end": 918.92,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "can cannot appear successfully in a path. So, that is basically it. So, blacks in a path will",
+    "start": 918.92,
+    "end": 944.84,
+    "ocr_text": "FA Rd I\n\n(Ph Te"
+  },
+  {
+    "text": "always determinate they will be one more usually I mean at least more than red.",
+    "start": 944.84,
+    "end": 953.4,
+    "ocr_text": "By\n°\nH\n\nos] <> 5\n\n(PF. Teo red hodes Cannct\nmbpear uccedsively in a bath. D"
+  },
+  {
+    "text": "Yes, but we have to prove the lemma that is trick here it is not clear why the lemma should hold.",
+    "start": 959.16,
+    "end": 964.44,
+    "ocr_text": "Ry\n°\nH\n\nos] <> by)\n\n(P5. Teo red hodes Cannct\nmbpearn muccedsivel, in a bath. D }"
+  },
+  {
+    "text": "So, let us see a proof of this. Let",
+    "start": 964.76,
+    "end": 978.76,
+    "ocr_text": "Ry\n°\nH\n\nos] <> by)\n\n(P5. Teo red hodes Cannct\nmbpearn muccedsivel, in a bath. D }"
+  },
+  {
+    "text": "let m h be the smallest red black tree. Let us call the red black tree R b h R b sub h of height h",
+    "start": 979.08,
+    "end": 1008.68,
+    "ocr_text": "z Cd x és] cS »)"
+  },
+  {
+    "text": "exactly equal to h. So, this is a similar starting point as we did before for balanced binary tree.",
+    "start": 1008.68,
+    "end": 1022.28,
+    "ocr_text": "z o a és]\n\n: lemma: = eb ig\nBi sf lenma - wh fo th shathst\n\n5"
+  },
+  {
+    "text": "There also we were we calculated in the proof the smallest size tree that you balance tree you",
+    "start": 1022.28,
+    "end": 1029.24,
+    "ocr_text": "fz & al és]\n\n5 Leyane as el ce\nBeg a RB, “a sae analfal-\n\n5"
+  },
+  {
+    "text": "can have for a given height. So, similarly here also let r b h be the smallest in terms of size of",
+    "start": 1029.24,
+    "end": 1038.36,
+    "ocr_text": "fz & = és]\n\n5 Leyane 2s el ‘Ss\nBeg a RB, a Se analfal-\n\n5"
+  },
+  {
+    "text": "number of nodes red black tree that you can have for height h and let us again find out the",
+    "start": 1039.16,
+    "end": 1049.08,
+    "ocr_text": "z & : és]\n\nZ Leyane 45 el &\nBeg a RB, oa Sone analfal-\n\n5"
+  },
+  {
+    "text": "recurrence like we did before. So, we can assume without loss of generality that this r b h",
+    "start": 1049.08,
+    "end": 1064.92,
+    "ocr_text": "Zz & al os)\n\nz Levane 4 el c\nBoggs a RB, a see analfal-\n\n5"
+  },
+  {
+    "text": "has its left path the longest which means that",
+    "start": 1064.92,
+    "end": 1088.36,
+    "ocr_text": "Pt & I és]\n\n5 Levane 2 Be c\nBeg a RB, a sae analfal-\n\n° W.f.6.4\n\n5\n\n&) (te) i"
+  },
+  {
+    "text": "so, so pictorially you have you have the root and then you have let us say red is the root and",
+    "start": 1094.92,
+    "end": 1114.04,
+    "ocr_text": "z ® a8 os] aie 5\n\nLAA ° eb Cc\nBeg ze io, 2 4 oy fhe snathat\n\neW bg ZVBS a e\nbg, Roy han 2 ve the tongest-\n\n&) (te) i"
+  },
+  {
+    "text": "you have a black child and then again you may have a red and so on and then it ends in a leaf",
+    "start": 1114.04,
+    "end": 1121.88,
+    "ocr_text": "cal eo I és] <> S)\n\nPo lemma: - dtm 38 the srathsl-\nRE hee RB, of ki\n\n7 W.f.0.g hy its Pett path the st\nbors tle me siung We ah : ass\n\n4) (%@ i"
+  },
+  {
+    "text": "which is null. So, we can assume that I mean the tree R b h will have a longest path of length h",
+    "start": 1122.76,
+    "end": 1133.16,
+    "ocr_text": "& Rd I és] <> 5\n\nEo lemma: - dtm 28 the srathsl-\nRE hee RB, of hk\n\n-W.f.0.g hr its Pett path the st\nfate Nak een Ve ae ee\n\n4) (te)"
+  },
+  {
+    "text": "because we have assumed that it is it has height h. So, let us just orient ourselves and say that",
+    "start": 1134.84,
+    "end": 1141.0,
+    "ocr_text": "a ®& Jt os] cS 5\n\nPo lemma: - dbo 8 the srathsl-\nRE hee RB, oy hk\n\n-W.f.o.g hy ats Pett path the st\nore Mam tak Ve ote oye\n\n4) (% rAd"
+  },
+  {
+    "text": "the left most path is that is the longest. Now, the other paths to the other leaves could be",
+    "start": 1141.0,
+    "end": 1150.28,
+    "ocr_text": "& eo I és] <> 5\n\nPo lemma: - dtm ae the srathsl-\nRE hee RB, oy hi\n\n-W.f.0.g h, ats Pett path the st\nfate Nak een ee ose\n\n4) (% Ad"
+  },
+  {
+    "text": "length h or they could be could be a overall length h or they could be smaller and since we want to",
+    "start": 1151.0,
+    "end": 1159.0,
+    "ocr_text": "Pl ®& Ez os) oo 5\n\nPe Leymma: ° det ™ ae the srathsl-\nRE hee RB, of hk\n\n-W.f.o.g h, its Pett path the st\nbors tle its sing Wah ; vases\n\n4) (%@ i"
+  },
+  {
+    "text": "minimize the size most of them should be smaller right if you make all of them length h you will get",
+    "start": 1159.0,
+    "end": 1166.28,
+    "ocr_text": "PA > At os] oh by)\n\nPE ° eb Cc\nBeg ze iB, ral ie ae the snathat\n\n-W.f.o.g 4, at: a @\npons tle me sing it att Pat The Sogete"
+  },
+  {
+    "text": "a complete tree which will be very big, but r b h has to be the smallest tree. So, others you will",
+    "start": 1166.28,
+    "end": 1173.8,
+    "ocr_text": "Pl o& I os) co 5\n\nPo Lemma: ° Jet ™ a8 the srathsl-\nRE hee RB, oy hk\n\n-W.f.o.g 5 ats Pett path the st\nor, am tae Ve ote oye\n\n4) (% Ad"
+  },
+  {
+    "text": "see on this path you cannot see. So, yes so, this path this distinguished this longest path has",
+    "start": 1173.8,
+    "end": 1189.72,
+    "ocr_text": "Pl o& I os) co 5\n\nPo Lemma: ° Jet ™ a8 the srathsl-\nRE hee RB, oy hk\n\n-W.f.o.g 5 ats Pett path the st\nor, am tae Ve ote oye\n\n4) (% Ad"
+  },
+  {
+    "text": "how many h red and black let us make a statement about that.",
+    "start": 1189.72,
+    "end": 1207.0,
+    "ocr_text": "FA ® Jt os] a by)\n\nlemma: a eb ie\nBeg zn ee, ral ie ae the snathst\n\n-W.f.o.g 4, ror a @\nbors tte it sing it att ae Ti"
+  },
+  {
+    "text": "So, how many red nodes will there be on this path? Yes, why is that that is a that is a tricky",
+    "start": 1207.4,
+    "end": 1228.2,
+    "ocr_text": "Zz Rg It os ay by)\n\nleyama_: ° Be c\nBeg eee a Ae he anatltat\n\noW f. bg 4, ree a @\na toe \" ore path the tongest-"
+  },
+  {
+    "text": "claim right it is not obvious because so, we only know that this is the longest path in r b h,",
+    "start": 1229.0,
+    "end": 1235.64,
+    "ocr_text": "z ® I o:] cS 5\n\nlemma: ° el c\nBeg == RB, 2 ve a th srathsl-\n\noW. p. bg 4, xt: a e\nporsible i sin it at ie Pah The Spel"
+  },
+  {
+    "text": "but we do not know its colors why cannot it all be black. So, the logic here is that if this every",
+    "start": 1235.64,
+    "end": 1245.24,
+    "ocr_text": "Zz ®& Jt os] <3: 5\n\nleymma: a el ct\nBeg == RB, - ve ae th srathsl-\n\noW. f. bg 4, rer a e\nporsible i sin it at ie pa Te Lege"
+  },
+  {
+    "text": "node in this path was black then this blows up the black height to max and then in to every leaf",
+    "start": 1245.24,
+    "end": 1253.64,
+    "ocr_text": "Pt Rg I os cS by)\n\nlemma: wm el ct\nBeg == RB, 2 ve ae th srathsl-\n\noW. f. bg 4, at: a @\nporsible i sin it at = ab Te Lege\n\n&) (te) i"
+  },
+  {
+    "text": "you will have to maintain that max height that is not not a good idea that will blow up your size",
+    "start": 1253.64,
+    "end": 1259.24,
+    "ocr_text": "Pt Rg I os cS by)\n\nlemma: wm el ct\nBeg == RB, 2 ve ae th srathsl-\n\noW. f. bg 4, at: a @\nporsible i sin it at = ab Te Lege\n\n&) (te) i"
+  },
+  {
+    "text": "right. So, so, you have to argue here that this path has maximum possible red nodes",
+    "start": 1260.2,
+    "end": 1268.44,
+    "ocr_text": "z ® I o:] cS 5\n\nlemma: ° Be c\nBeg a RB, = ve ae th srathsl-\n\noW. f. bg 4, at: a @\nporsible i sin it at = Pah Te Cope"
+  },
+  {
+    "text": "because if you miss even one else the black height increases",
+    "start": 1268.92,
+    "end": 1289.64,
+    "ocr_text": "Zz ®& Jt es] co 5\n\nLeyama_: ° el c\nBeg eee ia Ae he anatleat\n\nWf. bg 4, its b a\njosie ies am o ae path the tongeat-\nShas path has man"
+  },
+  {
+    "text": "and that has to be maintained for all other leaves. So, which will mean last one is the",
+    "start": 1289.64,
+    "end": 1319.04,
+    "ocr_text": "af ®& I os] ri »\n\naf berm 2 = Let ™ ane the srathsl-\n\noW. j bg RB, has ats a path the tongeat-\nthe Cc. 9j ht =\nere pat i ts (eee bo ble\nR-O yeded.\n\n4) (te)"
+  },
+  {
+    "text": "larger size. So, the more so, in on this one path already if you have many blacks then it forces",
+    "start": 1319.64,
+    "end": 1334.52,
+    "ocr_text": "f e a 2] cae 5 C\n\nBeg hee RB, oy * ae ; —\n\n-W.f.e.g das ats Qeft path the es\nbors tle e ae ht =a on\nMas path has max. bow ble\nR-O yoded."
+  },
+  {
+    "text": "other leaves also to have the paths also to have that many number of blacks and so, you actually",
+    "start": 1334.52,
+    "end": 1340.84,
+    "ocr_text": "a Kd Jt és] as 5\n\nBeg hee RB, oy ve a ——\n\n-W.f.o.g eee ats oe ht the es\nbors tle is gimng ht Ve 2\nShas pat has max. bomsible\nR-O yodes.\n\n4) (te)"
+  },
+  {
+    "text": "it will you have to you have to work out this green hint and deduce that this path actually has",
+    "start": 1340.84,
+    "end": 1348.84,
+    "ocr_text": "a Kd Jt és] <> 5\n\nlemma: ° Jel the srathat\nBeg hee RB, oy ve a a\n\n-W.f.0.g drab ats ot the es\npons tle it gimng ht eve 2s\nShas pat has max. bomsitle\nR-O yodes.\n\n4) (te)"
+  },
+  {
+    "text": "maximum possible red nodes which has to be around half right. So, this means that",
+    "start": 1348.84,
+    "end": 1356.52,
+    "ocr_text": "af Ro Jt és] ES 5\n\nPe & lemma: - dtm aoe the srathsl-\nRE hee RB, of ki\n\n-W.log has its Oett path th i\npons ile he sing ht ht ae j . tees\nMas path has max. bow ble\nR-O yoded.\n\n4) (te)"
+  },
+  {
+    "text": "this path has h plus 1 over 2 black nodes and then h minus 1 over 2 red nodes.",
+    "start": 1360.76,
+    "end": 1376.76,
+    "ocr_text": "Pl & as os) is 5\n\nPo lemma: - dtm 28 the srathsl-\nRE hee RB, of hk\n\n“W.log has its Oett path th i\npons tle ne sing ht ht Te : . tees\nMs path has Max. bow ble\nR-O yoded.\n\n4) (te)"
+  },
+  {
+    "text": "Is this clear or maybe opposite actually you want less black.",
+    "start": 1379.08,
+    "end": 1398.6,
+    "ocr_text": "Pad 4 I os] co 5\n\nBeg hee RB, oy ve Zz =\n\n-W.f.e.g hab ats eit the eat\nposite it Sing ht ia =\nMas pat has Max. bo ble\nR-O yodes.\n\n4) (te)"
+  },
+  {
+    "text": "So, you want as many red as possible so, you can have just above h by 2 not much more right",
+    "start": 1398.6,
+    "end": 1412.68,
+    "ocr_text": "Pil @ r os] as by)\n\nPo lemma: - dbo 28 the srathsl-\nRE hee RB, of ki\n\n-W.l.o.g has its Oett path th i\npons tle he sing ht ht ae . . tees\nMas path has Max. bos ble\nR-O yoded.\n\n4) \\% i"
+  },
+  {
+    "text": "or it can be equal if h is odd then it will be equal.",
+    "start": 1414.68,
+    "end": 1417.88,
+    "ocr_text": "Pl ®& Jt os] co 5\n\nlemma: ° Jet the srathat\nBeg hee RB, oy ve iz a\n\n-W.f.o.g drab ats et the eat\nbors tle he, ee ht TE on\nSas pai has max. bo ble\nR-O yodes."
+  },
+  {
+    "text": "This might there might be an issue here I think height by height I mean here number of nodes",
+    "start": 1418.84,
+    "end": 1430.84,
+    "ocr_text": "PA > I os] any 45\n\neo lemma: - dtm 2, the srathsl-\n\n-W.beg has its bett path th i\npons he, Ex ht 55 P . tors\nShas path has max. bo ble\nR-O yoded.\n\n4) (% Ad"
+  },
+  {
+    "text": "which is slightly different from what we have defined before. So, let me redefine it here.",
+    "start": 1432.04,
+    "end": 1443.96,
+    "ocr_text": "Pl ® r os] i: 5\n\nho lemma: - dtm 28, the srathsl-\n\n-W.log has its Oett path th i\nbors be Ex ht =e : . tees\nMas path has max. bow ble\nR-O yoded.\n\n4) (%@ fA"
+  },
+  {
+    "text": "So, simply for this diagram let me just redefine h to be the number of nodes. So, h plus 1 h minus 1",
+    "start": 1478.52,
+    "end": 1491.16,
+    "ocr_text": "ao o& aN os] is 5\n\nho lemma: - dtm a the srathsl-\n\n“W.l.og has its Oett path th st\nbotsitle ies Ex it in b e Longes\nMas a has Max. bow ble\nR-O yeded.\n\n4) (% i"
+  },
+  {
+    "text": "but let me not go into that. So, number of nodes overall is h and",
+    "start": 1493.08,
+    "end": 1497.8,
+    "ocr_text": "cal Rd r és] ral’ 5\n\nlemma: ° Jet the srathal\nBeg hee RB, oy ve = ie\n\n-W.f.e.g has ats eis the eat\npons it Sing ht eve 2s\nMas had has max. bow ble\nR-O yoded."
+  },
+  {
+    "text": "reds cannot be more than black and also we want to minimize the size of the tree. So,",
+    "start": 1497.96,
+    "end": 1507.48,
+    "ocr_text": "cae Ko Jt és] <> 5\n\nlemma: ° Jet the srathal\nBeg hee RB, oy ve oy =\n\n-W.f.o.g drab ats eis the eat\nbors tte he, ae ht TE ion\nMas as has max. bo ble\nR-O yodes.\n\n4) (te)"
+  },
+  {
+    "text": "overall red you can afford h plus 1 by 2 floor and black the remaining which is h minus 1 by 2's",
+    "start": 1507.48,
+    "end": 1514.28,
+    "ocr_text": "af Ko r és] <> Ss\n\nlemma: ° Jet the srathal\nBeg hee RB, oy ve , i\n\n-W.f.o.g das ats eis the eat\nbors he, ress ht =a on\nMas a has Max. bo ble\nR-O yodes."
+  },
+  {
+    "text": "floor. So, this will give us something now this will give this will take us towards the",
+    "start": 1515.16,
+    "end": 1524.68,
+    "ocr_text": "af ®& r os] rai iS\n\naf bern 2 = Jel ™) a the srathsl-\n\noW. j bg RB, has ata a path the longest\nthe C. Fj 0B es\nata as : hon pane. bow ble\nR-O jeder."
+  },
+  {
+    "text": "recurrence. So, the question you have to ask here is what is what is the remaining part what can",
+    "start": 1524.68,
+    "end": 1532.6,
+    "ocr_text": "af ®& r os] rai iS\n\naf bern 2 = Jel ™) a the srathsl-\n\noW. j bg RB, has ata a path the longest\nthe C. Fj 0B es\nata as : hon pane. bow ble\nR-O jeder."
+  },
+  {
+    "text": "you say about this. So, what is this part. So, we have identified one the longest path on the left",
+    "start": 1532.6,
+    "end": 1551.56,
+    "ocr_text": "a Ro Jt és <> 5\n\nlemma: ° Jet the srathat\nBeg hee RB, oy ve nl 7\n\n-W.f.0.g das ats eis the es\nbors ile ie, | Siing ht tae on\n8) a has max. bo ble\nR-O yodes.\n\n4) (te)"
+  },
+  {
+    "text": "and we also have identified how many red and black it should have. Now, what is remaining for",
+    "start": 1551.56,
+    "end": 1559.16,
+    "ocr_text": "z Rd I os] cS 5\n\nleyama_: a eb c :\nBeg eee is Ae he snatltat\n\noW. f. og ae ae a e\n\nsn oth, has max. Tee \\\nO Yedes. ‘ “What's , i\n\nf) 4) Be"
+  },
+  {
+    "text": "the recurrences all these right children of all the nodes on this unique path on this important path.",
+    "start": 1559.16,
+    "end": 1570.2,
+    "ocr_text": "Pl Rg I os “oS by)\n\nleynma_: ° Be c\nBeg eee es Ae he analleat\n\noW. f. og a oe a @\n\nae Ft Kath, has max. ie \\\nhedes . F “What's } 7\nHES"
+  },
+  {
+    "text": "So, what can you say about that again keeping in mind that you want this to be minimized in size.",
+    "start": 1571.64,
+    "end": 1577.0,
+    "ocr_text": "Pl RK It os ay 4\n\nleynma_: ° Be c\nBeg eee a Ae he. analleal\n\noW. f. og oe oe a e\n\nae Ft oth, has Max. Peer x"
+  },
+  {
+    "text": "Yeah perfect. So, they are all black which means that and also you have to preserve this property",
+    "start": 1577.24,
+    "end": 1589.08,
+    "ocr_text": "m, y oq\nee! (ly -"
+  },
+  {
+    "text": "of h minus 1 by 2 black on every path. So, you will have kind of a complete tree right. So,",
+    "start": 1589.08,
+    "end": 1600.6,
+    "ocr_text": "m, y oq\nee! (ly -"
+  },
+  {
+    "text": "you put a complete tree of this much height. Yes. Yeah, I do not worry about this minus n plus",
+    "start": 1600.6,
+    "end": 1616.28,
+    "ocr_text": "m, y oq\nee! (ly -"
+  },
+  {
+    "text": "you just pick something. So, my notation here is I am just thinking of h nodes on this longest path.",
+    "start": 1617.24,
+    "end": 1624.6,
+    "ocr_text": "fz Rd = os] cS 5\nlemma: - det ‘\nFog, gona jg id 1 Ae he. analleat\n\noW. f. og = oe a e\n\nae Ft oth, has max. ie ¥\nhedes . ; “What's } nF\nnk."
+  },
+  {
+    "text": "What is more important is structurally this right part is complete it is completely black.",
+    "start": 1624.84,
+    "end": 1636.76,
+    "ocr_text": "fz Rd = os] cS 5\nlemma: - det ‘\nFog, gona jg id 1 Ae he. analleat\n\noW. f. og = oe a e\n\nae Ft oth, has max. ie ¥\nhedes . ; “What's } nF\nnk."
+  },
+  {
+    "text": "Now, maybe one line can be said about that of this path the all the right sub trees of this path",
+    "start": 1636.76,
+    "end": 1663.96,
+    "ocr_text": "&\n®\nH\n\nos] <> 5"
+  },
+  {
+    "text": "should have only black nodes as you want to minimize the size.",
+    "start": 1666.76,
+    "end": 1691.48,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "So, basically just this one reason. So, since we want to minimize the number of nodes",
+    "start": 1697.0,
+    "end": 1712.84,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "actually I think there is one more reason let me write that also. We want to minimize the number",
+    "start": 1714.84,
+    "end": 1721.48,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "of nodes and second point is that all paths to leaves have length have a black height",
+    "start": 1721.88,
+    "end": 1744.84,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "equal to h minus 1 by 2. So, since every path from root to leaf has to be of this length",
+    "start": 1745.24,
+    "end": 1759.96,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "and since you want to minimize the number of nodes the only solution is that you only pick blacks",
+    "start": 1761.72,
+    "end": 1766.44,
+    "ocr_text": "af Rd Jt os] a by)\n\nPE = eL Cc\nBeg ae - te fi shathel-\n\n“WL... ae a e\n\nShas oth, has max. een \\\nR-O yedes. hte"
+  },
+  {
+    "text": "and these many. Yes sorry it should be what it should be at least h by 2 yeah. So, this is",
+    "start": 1766.44,
+    "end": 1787.16,
+    "ocr_text": "af Rd Jt os] a by)\n\nPE = eL Cc\nBeg ae - te fi shathel-\n\n“WL... ae a e\n\nShas oth, has max. een \\\nR-O yedes. hte"
+  },
+  {
+    "text": "again the minus well ok. So, then this question will keep appearing you guys will keep asking it.",
+    "start": 1787.16,
+    "end": 1795.16,
+    "ocr_text": "cae ®& It os] rie »)\n\nLeynma_: ° BG c\nBeg eee a Ae the analleal\n\noW. f. og = oe a @\n\nsi oth, has max. een .?\n=D nade en dhatls"
+  },
+  {
+    "text": "So, let us correct everything. So, this height is actually",
+    "start": 1796.36,
+    "end": 1804.92,
+    "ocr_text": "Pik lemma: -\nai oe ep, a aon fhe snathst\n\n-W.f.o.g aa\neg, be Me\n\nree path am has Max. boms:ble V\n‘ re Whatls ‘\nnk"
+  },
+  {
+    "text": "what did I say h minus 1 and so, we are looking at r b h minus 1.",
+    "start": 1804.92,
+    "end": 1823.0,
+    "ocr_text": "Pik lemma: -\nai oe ep, a aon fhe snathst\n\n-W.f.o.g aa\neg, be Me\n\nree path am has Max. boms:ble V\n‘ re Whatls ‘\nnk"
+  },
+  {
+    "text": "Let us keep that r b h to be height h, but where I am using here let us recalculate this h minus",
+    "start": 1835.32,
+    "end": 1845.72,
+    "ocr_text": "Zz & a os) oie: 5\n\nleyama_: ° ek c\nBeg eee a Ae he analleal\n\n-W.f.o.g a a e\nLoe Re, Es a ee path the tongest-\n\nreel path has max. bo ble \\\nhodes . = “What's } aan"
+  },
+  {
+    "text": "1 by 2. So, height as defined by length of path. So, height h means that the path has h plus 1 nodes.",
+    "start": 1845.72,
+    "end": 1858.76,
+    "ocr_text": "Pl Rg I os “OS by)\n\nLeyama_: ° eb c\nBeg ee _ Ae te analleal\n\neW. f. og ae “28 a e\n\nse oth, has max. mae \\\n=D _nedeh dhabls"
+  },
+  {
+    "text": "So, what should be the number of black h by 2.",
+    "start": 1858.84,
+    "end": 1866.84,
+    "ocr_text": "Pl ® I os Le by)\n\nLeyama_: ° eb c\nBeg eee a Ae he anatltat\n\noW. f. og ae See a @\n\nse Ft oth, has max. eer \\\nnodes . - “What's } a7\nHES"
+  },
+  {
+    "text": "So, suppose you had height 1 then it means that we have 2 nodes. So, one can be black one can be",
+    "start": 1866.84,
+    "end": 1891.88,
+    "ocr_text": "Pi Sd r és] rai’ 5\n. ad Levan - del\nee crn. 2B, = t te me srathsl-\n\nWf. og “\n\nae Ft oth, oe has Max. ca \\\n, fs “What's } iF\nmonk"
+  },
+  {
+    "text": "red right. So, for height 1 you have h plus 1 by 2 seems right yeah seems right floor of this",
+    "start": 1891.88,
+    "end": 1904.2,
+    "ocr_text": "Zz Rg r os a5 by)\n\nLeynma_: ° Be c\nBeg spe i Ae te anatltat\n\noW. f. og oes oe a e\n\nsn Kath, has max. ie \\V\n=D _nedes hats"
+  },
+  {
+    "text": "yeah and red how many red h by 2 is it I do not see that.",
+    "start": 1904.2,
+    "end": 1922.28,
+    "ocr_text": "Zz Rg I os 5 by)\n\nLeynma_: ° Be c\nBeg see ae Ae he anatltat\n\noW. f. og es ce a @\n\nss oth, has max. ie \\\n=P _nedeh hats"
+  },
+  {
+    "text": "Yeah, this is what happens if I change it in the middle.",
+    "start": 1934.2,
+    "end": 1952.68,
+    "ocr_text": "f Rd alte és] ch 5\n\nlemma: ° det the srathat\nBeg hee RB, oy i Bey . a\n\noW. p. bg Ro, das ats ia path the Congest\nbors tle re, ee ht =\nMs path has max. bow ble \\V\nKIO ee ee Whatls\nFR"
+  },
+  {
+    "text": "Yeah, so, right now what I have done is just change this. So, this path has length",
+    "start": 1952.68,
+    "end": 1966.44,
+    "ocr_text": "Pal ®& r os] cS 5\n\nleyama_: ° Be c\nByes eee a Ae he anatltat\n\noW. f. og ae oe a e\n\nse oth has max. ie \\\n=D _nedeh Whatis >»"
+  },
+  {
+    "text": "h plus 1 for height h and we are wondering how many blacks and red rates to give.",
+    "start": 1966.6,
+    "end": 1982.68,
+    "ocr_text": "Zz Rd r os] cal 5\n\nlemma: ° el ce\nBeg spun Zo! a Ae the analleat\n\n-W.f.o.g a a e\nboise ie sn eee at It ase\n\nace path has max. bo ble rae\nnodes . Thats\n\nths 7"
+  },
+  {
+    "text": "So, path has h plus 1 nodes. So, equal would have been h plus 1 by 2 each.",
+    "start": 1982.68,
+    "end": 1999.96,
+    "ocr_text": "fz e ale és] 5\n\nai cr RB, oe F te mee srathsl-\n\n. te he RB, har its ore path the ee\n\nLs: woe ht EF > bath= ht]\nrer path =n has Max. bo ble x :\n2 “Whats :\n\nee"
+  },
+  {
+    "text": "Yes. So, how do we correct that here. So, for red we want to give more red right.",
+    "start": 2013.56,
+    "end": 2029.4,
+    "ocr_text": "Zz Rd r os] cS 5\n\nPhot lemma: -\nah Kee RB, = ‘; a ne analhal”\n\n. W.£.0.g RB, has “aha oe path the longest\n\nwile Y-, re ht\nba\nrae path has Max. bos ble =A ees\nna What!s:\n< hs?"
+  },
+  {
+    "text": "So, let us make it h plus 2 and then we subtract this from h. So, what do you get?",
+    "start": 2030.12,
+    "end": 2039.88,
+    "ocr_text": "f ® = 2] cS 5\n\nlemma: - del €\nBeg hee KB, a a anal\n\n. W.£.0.g Ro, has «aha ore path the tongeat-\n\nbors tle LC. he ht EC> batn=t\nreese path has Pee boas ble Yy Tikes\nned € . “What's :\n< —ths 2"
+  },
+  {
+    "text": "h minus 2 is this fine. So, maybe this is also h plus 1 yeah.",
+    "start": 2039.88,
+    "end": 2062.84,
+    "ocr_text": "4 g ue os) a> S\n\nPho Lemmas -\nmn ee RB, ar te ee anathsl”\n\n. W.£.0.g Roy, has “ahs ore path the longest\n\nwitb 1-¢, eee ht\nbath\nae path has max. bos ble =A ae\nnode “hetils:\n< UK?"
+  },
+  {
+    "text": "So, red we give h plus 1 plus 1 how it and black we give just h plus 1 by 2 floor.",
+    "start": 2062.84,
+    "end": 2077.8,
+    "ocr_text": "Pl @ r os] as 5\n\nlemma: - del t\nBeg hee RB, oa aa abel\n\n. W.£.0.g RB, has «ahs ore path the longest\n\nwile re. we ht E> bath= AH]\nRy path has The. be bo ble \\V ides\n= O yedes. “ What!s °\ntks Z"
+  },
+  {
+    "text": "So, in some cases black will be less than red h ok. Sorry black on be h h minus 2 by 2.",
+    "start": 2077.8,
+    "end": 2102.76,
+    "ocr_text": "Pal ®& Jt os] cS 5\n\nlemma: r, ° let the srathal\nBeg Kee RB, oy iF aor . -\n\n. W.f.0.g RB, has “aha ore path the longest\n\nwile 1-€, suns ht S> bath= hey]\nShas pat has Max. bo ble Ae nag\nR-O bodes. -Whatls\n\n4) (te)"
+  },
+  {
+    "text": "So, what is the counter example for this? It is equal to 4 you are getting 2 and 3.",
+    "start": 2107.8,
+    "end": 2130.2,
+    "ocr_text": "Pl ®& Jt os] cS 5\n\nlemma: - del €\nBeg hee RB, a ah anal\n\n. W.£.0.g RB, hax aa ore path the longest\n\nwile He. sins ht Sr > bath= AH\nRy path has Max. bow ble \\ ides\n=D _neded. eo Whatls >"
+  },
+  {
+    "text": "h minus 1. So, then maybe yeah that was mistake probably ok.",
+    "start": 2138.76,
+    "end": 2157.88,
+    "ocr_text": "Pl ®& Jt os] cS 5\n\nlemma: r, ° Let the srathal\nBeg Kee RB, oy iF 2s . “\n\n. W.£.0.g. ne, how a oe path the Congest\n\nShas spa has Max. * ao ile \\V hodes\n\n&) (te) (i"
+  },
+  {
+    "text": "I see. So, you are saying that red has to be since red has to be less than black there is no",
+    "start": 2158.36,
+    "end": 2167.8,
+    "ocr_text": "a @ I os] =>: by)\n\nlemma: - del e\nBeg hee RB, a an. nal\n\n. W.£.0.g Ro, has aha oe path the longest\n\nwile re. oe ht SF bath= th\nShas pal has (eae le bow ble \\V ies"
+  },
+  {
+    "text": "other option. Number of nodes in this case will height h there are h plus 1 nodes.",
+    "start": 2167.8,
+    "end": 2177.4,
+    "ocr_text": "cae ®& r es] dip: y\n\nPE Lemma : ° det ™ nl the srathsl-\nRE hee RB, oy kt =h.\n\n. W.f.0.g RB, has «aa ore path the longest\n\nwile ‘-¢. suns ht 6 > bath= 4H\nShas path has max. bow ble a —\nKelle ese wWhatls ~~\n\n4) (te)"
+  },
+  {
+    "text": "I am now doing the correct way. Yeah I think h let me let me save time and also notation.",
+    "start": 2178.28,
+    "end": 2197.24,
+    "ocr_text": "ca\n\n® Tt os] ri: by)\n\nlemma: r, Jet the srathal\nEye terme Kee RB, oy i ae . =\n\n. W.£.0.g RB, has «as Rett path the longest\n\nwile re. giMng ht = 4 Cy bath= Ae\n© Dns path han Max. bo ble V a"
+  },
+  {
+    "text": "Let me just say both are equal. Let us just remove floor and ceiling because it will not matter",
+    "start": 2198.12,
+    "end": 2206.04,
+    "ocr_text": "af »> t os) Cis by)\n\nlemma: r, Jet the srathat\nBeg hee RB, oy iF ae . =\n\n. W.f.0.g RB, has «aha ore path the Congest\n\nposite 1c. ns ht 6C> bath= Atl\nShas spa has Max. bow ble \\V shy\n\n&) (te) (i"
+  },
+  {
+    "text": "anyways for the idea. Let me just say that whatever nodes you have you have it you should give",
+    "start": 2206.04,
+    "end": 2213.64,
+    "ocr_text": "af ®& I os] cS 5\n\nPhot lemma: -\nan Kee RB, = ‘; aS ae analhal”\n\n. W..0.g RB, hax «ahs oe path the tongeat-\n\nwile Ye, ae ht\nbath\nrae path has max. bo ble =A Tisael\n~ Noded .\n“What's .\n& ths?"
+  },
+  {
+    "text": "equal to black and red and so this height is what has to be now preserved. I will correct it later",
+    "start": 2213.64,
+    "end": 2222.36,
+    "ocr_text": "af ®& I os] cS 5\n\nPhot lemma: -\nan Kee RB, = ‘; aS ae analhal”\n\n. W..0.g RB, hax «ahs oe path the tongeat-\n\nwile Ye, ae ht\nbath\nrae path has max. bo ble =A Tisael\n~ Noded .\n“What's .\n& ths?"
+  },
+  {
+    "text": "in the nodes in terms of exact floor and ceiling. So, all paths to leaves should have black height",
+    "start": 2222.36,
+    "end": 2230.36,
+    "ocr_text": "2 UU"
+  },
+  {
+    "text": "h plus 1 by 2. Let me not put floor ceiling. So, basically in other words think of h as odd",
+    "start": 2232.6,
+    "end": 2243.24,
+    "ocr_text": "2 UU"
+  },
+  {
+    "text": "then you will have exactly this case. So, because of these two properties that you want to",
+    "start": 2244.28,
+    "end": 2249.72,
+    "ocr_text": "2 UU"
+  },
+  {
+    "text": "minimize the number of nodes and that you have to preserve simultaneously every path from root to",
+    "start": 2249.72,
+    "end": 2255.56,
+    "ocr_text": "[[\n\n__—\n———————"
+  },
+  {
+    "text": "leave to be of the same h black height h it will make sense to use only black nodes everywhere else",
+    "start": 2255.56,
+    "end": 2265.0,
+    "ocr_text": "[[\n\n__—\n———————"
+  },
+  {
+    "text": "on the right part of the of this path. So, so this means",
+    "start": 2265.8,
+    "end": 2277.32,
+    "ocr_text": "[[\n\n__—\n———————"
+  },
+  {
+    "text": "ok let me number this root as maybe x. So, the the right subtree",
+    "start": 2277.88,
+    "end": 2302.12,
+    "ocr_text": "in\n°\nH"
+  },
+  {
+    "text": "of x is a complete binary tree of height equal to this that you want h plus 1 by 2.",
+    "start": 2302.12,
+    "end": 2327.16,
+    "ocr_text": "FA Rd wh\n\n4) (te)"
+  },
+  {
+    "text": "So, which now will give you the recurrence. So, m what for using m sub h? Yeah m sub h is then",
+    "start": 2332.2,
+    "end": 2347.96,
+    "ocr_text": "Ry\n\n=> rtsubhee (x) » a cnphl thary hee of\nht= ht"
+  },
+  {
+    "text": "equal to so what. So, basically we will write here the left size plus 1 for the root",
+    "start": 2347.96,
+    "end": 2359.4,
+    "ocr_text": "&\n@\nH\n\nos] cS 5\n\n=> rtsubee (x) » a @n tin rN\ntt= Gt) . EAE: $\n=>)\n\nm ="
+  },
+  {
+    "text": "and the right size. So, this is the only idea for the recurrence.",
+    "start": 2363.64,
+    "end": 2371.08,
+    "ocr_text": "N\n@\nH\n\nos “as ry C\n\n=> rtsubiee (x) » a @ tin rN\nht= ht /2. a,\n\nim, = (C4eft size) + 1\n\n4) (te)"
+  },
+  {
+    "text": "So, what is the left size? So, in the left what is the height? If you remove x then the height",
+    "start": 2371.8,
+    "end": 2382.68,
+    "ocr_text": "RB\n@\nH\n\nos <> by)\n\n= nv subb_ee (5) db A © ti Kk\nht= Cht+t)/2 . mph thang thee—of\n\nmM, = CeeLt aizge) + Crest) + Cright aze)\n\n&) (te)"
+  },
+  {
+    "text": "falls by 1. So, now the height becomes h and is that a set black tree or not? The left",
+    "start": 2382.68,
+    "end": 2395.96,
+    "ocr_text": "Zz ®& Jt es] cas Sy\n\nBo Lerma 2 = Jet ™ ar the srathst\n\n. W.t.0.g RB, has «a ore path the longest\n\nwile Ye, ae ht EG bath= he\n\n°  Dhis path has max. Fas ble vy Tieden\nama “wWhatés\n< ths\n\n¢\n\n4) (te)"
+  },
+  {
+    "text": "subtree of x is it a arbitrary how is that possible? It is a recursive structure every",
+    "start": 2396.04,
+    "end": 2407.08,
+    "ocr_text": "Zz Re I es] cS 5\n\nLemma: - del €\nBeg hee RB, a 4% nal\n\n. W.£.0.g RB, has «aha oe path the longest\n\nwile pe ae ht SG bath= ht]\nShas spa has The. be bow ble \\ Vinten"
+  },
+  {
+    "text": "subtree has to be arbitrary. So, the left every sub every subtree is an arbitrary I mean the",
+    "start": 2407.08,
+    "end": 2415.8,
+    "ocr_text": "Zz Rd r os] cS sy\n\nlemma: - del €\nBeg hee RB, a an anal\n\n° W.£.0.g Ro, has «ahs Ea path the longest\n\nwitb re. ie ht SG bath= he]\nreal path has (ele bow ble A. Tiedes\nNoded . ; meen :"
+  },
+  {
+    "text": "the axiom where actually recursive. So, so clearly left subtree is also an arbitrary but of",
+    "start": 2416.28,
+    "end": 2427.72,
+    "ocr_text": "Zz Rd r os] cS sy\n\nlemma: - del €\nBeg hee RB, a an anal\n\n° W.£.0.g Ro, has «ahs Ea path the longest\n\nwitb re. ie ht SG bath= he]\nreal path has (ele bow ble A. Tiedes\nNoded . ; meen :"
+  },
+  {
+    "text": "height 1 less now height h minus 1. So, for that you should recursively pick r b h minus 1.",
+    "start": 2427.72,
+    "end": 2435.88,
+    "ocr_text": "t+) Ba"
+  },
+  {
+    "text": "So, this will be the size of r b so which is m h minus 1. So, m h minus 1 plus 1 what is the size",
+    "start": 2436.68,
+    "end": 2452.52,
+    "ocr_text": "és]\n\n=> rtsubhee (x) » a @n tin Te\ntt= Gt. pete cane\na m\n\nof\nCet d73e) +- (rest) + (right size)\n\n—\n—\n\n—\n—\n\n4) (te) (2"
+  },
+  {
+    "text": "of the right subtree which is the complete tree?",
+    "start": 2452.52,
+    "end": 2454.84,
+    "ocr_text": "és]\n\n: 1 - Cit 1)/2.. cnphte tory Keo ay\nmM, = CeeLt aizge) + Crest) + Cright aze)\n= my + it\n\n&) (te) i"
+  },
+  {
+    "text": "Right. But I do not like this recurrence something is wrong in this.",
+    "start": 2454.84,
+    "end": 2479.4,
+    "ocr_text": "és]\n\n: 1 - Cit 1)/2.. cnphte tory Keo ay\nmM, = CeeLt aizge) + Crest) + Cright aze)\n= my + it\n\n&) (te) i"
+  },
+  {
+    "text": "See that again the part what? So, we should take the root node to be black also you are",
+    "start": 2484.84,
+    "end": 2512.2,
+    "ocr_text": "i\n\nés]\n\n=> nv sublree (5) Ab A con phte tinary Kh\ntt= tf. ~\n=)\n\nm4,\n\nof\n\n(LeCt nize) + Oat) Bae size)\nmy +14 (2h\n\n—=\n—\n\n_\n—"
+  },
+  {
+    "text": "seeing. No, but will it be problem be solved if you say that the root is black? No. So, I think",
+    "start": 2512.2,
+    "end": 2537.88,
+    "ocr_text": "Zz ®& I os] co 5\n\nlemma: - del €\nBeg hee RB, a aya nal\n\n. W.£.0.g RB, has «aha oe path the longest\n\nwile re, ee ht SG bath= ht]\n\nShas path has ae bo ble \\V ies\n\nR-O O Yedes. “ What!s °\n& ths?"
+  },
+  {
+    "text": "it will be ok if we since we want to fit the previous tree in this tree yeah understand your",
+    "start": 2537.88,
+    "end": 2548.12,
+    "ocr_text": "Pt Rg JC os ae by)\n\nLemma: - del €\nBeg hee RB, a is * enabled\n\n. W.f.0.g RB, has aha ore path the longest\n\nwile ‘[-¢. sins ht Se bath= t+]\nrae path max. bow ble \\ Vhoaes"
+  },
+  {
+    "text": "point. So, this also then we should try with the black let us try with black root which means",
+    "start": 2548.12,
+    "end": 2560.92,
+    "ocr_text": "Zz ®& r os] co 5\n\nlemma: - del t\nBeg hee RB, a aa analhal”\n\n° W.f.0.g RB, has “aha Ea path the longest\n\nwitb re. ee ht SG bath= he]\nRy path has Pale bow ble x Vinten\nSO wWhatls"
+  },
+  {
+    "text": "that the subtree that you are now looking on the right is also one less height I mean the",
+    "start": 2561.4,
+    "end": 2568.36,
+    "ocr_text": "4 eo r és] 5\n\nlemma: - del t\nBye hee RB, a aes analhal”\n\n. W.£.0.g RB, has «aha a path the tongeat-\n\nbors tle re. ging ht = Tact bath= th\nrae path has Max. vos ble \\, hedes\nhedes . “What's 3\nthis 2"
+  },
+  {
+    "text": "black height is one less. So, this is h plus h minus 1 by 2 now and that is what I wanted here.",
+    "start": 2568.36,
+    "end": 2583.72,
+    "ocr_text": "és]\n\nm4\n\n=> rtsubhee (x) » a @n - tin A\ntt= Ghtnf . pee Bron,\n=)\n\n_—_\n—\n_\n\n—\n\n(Left size) + Crest) +O\nmy +1+(Q%"
+  },
+  {
+    "text": "Yeah that should work. So, this is a constructive proof it will actually not only give you an",
+    "start": 2584.12,
+    "end": 2597.88,
+    "ocr_text": "és]\n\n=> nv subree (5) Ab A con phate tinary Kh\ntt= Gt). ~\n>\n\nmy\n\nof\n\n(Lelt ize) - oa) Boe size)\nmy + 1+4 (2%#\n\n_\n—\n\n_\n—"
+  },
+  {
+    "text": "estimate, but it will actually give you the tree as well ok. So, I am giving you a recursive",
+    "start": 2597.88,
+    "end": 2602.6,
+    "ocr_text": "Re\n\nés]\n\n=> nt subee (5) db A GN tech Kh\nht= Ght)/2 eee\n=> m\n\nof\n\n(Left rize) + Cost) + (right size)\nmy +14 (2*#_1)\n\n—=\n—\n\n=\n—"
+  },
+  {
+    "text": "construction for the minimum sized r b tree. So, it is root is black and this is how we will",
+    "start": 2602.6,
+    "end": 2612.76,
+    "ocr_text": "Re\n\nés]\n\n=> nt subee (5) db A GN tech Kh\nht= Ght)/2 eee\n=> m\n\nof\n\n(Left rize) + Cost) + (right size)\nmy +14 (2*#_1)\n\n—=\n—\n\n=\n—"
+  },
+  {
+    "text": "recursively build it. So, the recurrence for the size is this and you can solve it",
+    "start": 2612.76,
+    "end": 2618.52,
+    "ocr_text": "a a — és] cs )\n9, 1h ty te Be anal\nhas ‘da left path the Congest\ngiving ht = 4, Ere batn= Mt]\nhas max. posite \\ “Lhedesd\n‘ “what (s\n\n=> rt subhee G\nt=\n\n>"
+  },
+  {
+    "text": "black height would increase. Well, height the height is h there is h plus 1 nodes.",
+    "start": 2624.52,
+    "end": 2630.36,
+    "ocr_text": "és]\n\n=> risubhee (x) » a @n tin rN\ntt= Gt. pao Cnars Dee\n=. m\n\nof\n\n(Left size) + est) + Cright size)\nmy +14 (2*#-1)\n\n—=\n—_—\n\n—\n—"
+  },
+  {
+    "text": "How do you know? No, no, no, no. When we when I wrote this green hint we did not use anything",
+    "start": 2630.36,
+    "end": 2647.0,
+    "ocr_text": "PA ® i: os] aay by)\n\nlemma: ° Be c\nBeg eee as Ate & snathat\n\n° W.£.0.g RB, has ata ore path the Congest\n\nwile re. we ht Tact bath=h\nShas path has “Theck. pe bow ble iF Tien\nR-O O Medes : ae lo :"
+  },
+  {
+    "text": "about the root or anything there was no this assumption was not being used. It was just an example.",
+    "start": 2647.0,
+    "end": 2653.4,
+    "ocr_text": "f ® L os] ay by)\n\nVyc5 terme 2 - Jet m ag te srathsl-\n\n. W.f.0.g RB, has «aha oe path the Congest\n\nbors tle ye, Sins ht STocy bath= AH]\nra path has max. Foss ble i a\nhedes . . “What's | or"
+  },
+  {
+    "text": "So, this this the statement that you need is the longest path which is of which has h plus 1",
+    "start": 2653.4,
+    "end": 2667.88,
+    "ocr_text": "f ® L os] ay by)\n\nVyc5 terme 2 - Jet m ag te srathsl-\n\n. W.f.0.g RB, has «aha oe path the Congest\n\nbors tle ye, Sins ht STocy bath= AH]\nra path has max. Foss ble i a\nhedes . . “What's | or"
+  },
+  {
+    "text": "nodes. How is the distribution in that path? It is not a statement about the root.",
+    "start": 2667.88,
+    "end": 2673.56,
+    "ocr_text": "& ®& I os] cS 5\n\nPE Lemma : ° det ™ a the srathsl-\nRE hee RB, oy kt =h.\n\n. W.£.0.g RB, has «aha ore path the Congest\n\nwile igo a ht Tact bath= AH]\nShas path has heck. be bow ble V Vedas\nR-O Medes. meee"
+  },
+  {
+    "text": "It is only a statement about the distribution of red versus black in a path.",
+    "start": 2674.28,
+    "end": 2681.32,
+    "ocr_text": "& ®& I os] cS 5\n\nPE Lemma : ° det ™ a the srathsl-\nRE hee RB, oy kt =h.\n\n. W.£.0.g RB, has «aha ore path the Congest\n\nwile igo a ht Tact bath= AH]\nShas path has heck. be bow ble V Vedas\nR-O Medes. meee"
+  },
+  {
+    "text": "But now this this is an algorithm to actually build that tree you can build it. It will satisfy",
+    "start": 2684.2,
+    "end": 2691.08,
+    "ocr_text": "és]\n\n=> rtsubhee (x) » a en tin rN\ntt= tn. pete nie\n=a ry\n\nof\n\n(Left size) + rest) + (right size)\nmy +414 (Q*t-1)\n\n_—_\n—\n_\n\n—\n\n4) (te)"
+  },
+  {
+    "text": "this recurrence in particular and this recurrence has solution. What is your guess?",
+    "start": 2691.08,
+    "end": 2695.88,
+    "ocr_text": "és]\n\n=> risubhee (x) » a @n tin Kh\ntt= tn. phe Cnars Dee\n=)\n\nms\n\nof\n\n(Left size) + ost) + Cright size)\nmy + 1+ (2*#-1)\n\n—\n—\n\n_\n—"
+  },
+  {
+    "text": "So, you can check that it its solution is the following.",
+    "start": 2695.96,
+    "end": 2705.32,
+    "ocr_text": "és]\n\n=> nt subhee (5) db A © bhte tinary we\ntt= Gt. \" ~\n=>\n\nm4,\n\nof\n\n(Let wize) oa Catt -s Cacght size)\nmy + 1+ (Q*#_1)\n\n—=\n—\n_\n\n—\n\n4) (te)"
+  },
+  {
+    "text": "I mean m h comes out to be at least this much.",
+    "start": 2711.48,
+    "end": 2714.84,
+    "ocr_text": "és]\n\n= nv subbree (5) db A th ee\nbt= CGhH)/2 - eee\n—>)\nm4, (Lelt di3e) + Cat iL Cright Size)\ni + 4+ Q*t-1)\n\n—>\n—\n\n_\n—"
+  },
+  {
+    "text": "It will basically come out to be 2 raise to h by 2. You can check that. So, m h the minimum",
+    "start": 2715.4,
+    "end": 2728.44,
+    "ocr_text": "és]\n\n=> nt subee (5) Ab A con plete tinary Kh\ntt= Gt). ~\n=)\n\nm4\n\nof\n\n(Left size) + Catt 4 aoe size)\n, + 1+ Q%\n\n—=\n—\n\n=\n—"
+  },
+  {
+    "text": "sized arbitrary will have size of height h will have size at least 2 raise to h by 2.",
+    "start": 2729.24,
+    "end": 2736.6,
+    "ocr_text": "és]\n\n=> rtsubhee (x) » a anphé thay kh\ntt= Gt, . ~\n>\n\nm4,\n\nof\n\n(Lelt age) + a) + Cacght size)\nmy + 1+ (Q*4_1)\n\n_\n—\n\n——\n—\n\n4) (te)"
+  },
+  {
+    "text": "Which will mean that the height is log. So, this is the relation which we wanted.",
+    "start": 2737.56,
+    "end": 2750.76,
+    "ocr_text": "és]\n\n=> rtsubiee (x) » a @n tin we\nt= Cht/2 . phe binary Dee\n=» m\n\nof\n(Let rize) = (rest) + Cright size)\nUs “z-—1)\n\n_\n—\n\n——\n—\n\n+ 1+4 (Q'"
+  },
+  {
+    "text": "In the end it is similar to the argument we gave for balanced BST or balanced tree even.",
+    "start": 2752.52,
+    "end": 2759.8,
+    "ocr_text": "és]\n\n=> nt subbee (x) » A cm din \"a\nht= Cht)/2 . phe tnary ee\n=)\n\nm4\n\nof\n(Lelt xize) + est) + (right size)\nmy +14 (Qt) ‘\n\n_\n—\n_\n\n—\n\n4) (te)"
+  },
+  {
+    "text": "But because of the red black assumptions or axioms we have to work much harder here.",
+    "start": 2760.28,
+    "end": 2766.2,
+    "ocr_text": "és]\n\n=> nt subee (5) Ab A con phte tinary Kh\ntt= Gt. ~\n=>\n\nm4\n\nof\n(Lelt age) + Ceti fb Cright size)\nmy -1)\n\n—=\n—\n\n—;\n—\n\n+14 (gtzt"
+  },
+  {
+    "text": "And there are these issues of floor and ceiling which which I have to correct in the lecture",
+    "start": 2767.8,
+    "end": 2771.4,
+    "ocr_text": "és]\n\n=> rtsubhee (x) » a @n tin rN\ntt= ht . pao Cnars Dee\n=>)\n\nm4,\n\nof\n\n(Left rize) + Crest) + Cacght se)\nmy +14 Q%?-1)\n\n_\n—\n\n——\n—"
+  },
+  {
+    "text": "notes later. But this is the this is the proof. So, now time is almost up.",
+    "start": 2771.4,
+    "end": 2779.32,
+    "ocr_text": "és]\n\n=> rtsubhee (x) » a @n tin rN\ntt= ht . pao Cnars Dee\n=>)\n\nm4,\n\nof\n\n(Left rize) + Crest) + Cacght se)\nmy +14 Q%?-1)\n\n_\n—\n\n——\n—"
+  },
+  {
+    "text": "So, this means that we have a good tree.",
+    "start": 2780.68,
+    "end": 2783.24,
+    "ocr_text": "és]\n\n=> risubhee (x) » a @n tin rN\ntt= tn. pete aon\n=> m\n\nof\n\n(Left rize) + Cost) + Cright size)\nmy +14 (Q*#_1)\n\n—=\n—\n\n—\n—\n\n4) (te)\n\ni)"
+  },
+  {
+    "text": "Does it mean that it is balanced? Have you proved in this lemma that",
+    "start": 2783.24,
+    "end": 2792.76,
+    "ocr_text": "és]\n\n=> risubhee (x) » a @n tin rN\ntt= tn. pete aon\n=> m\n\nof\n\n(Left rize) + Cost) + Cright size)\nmy +14 (Q*#_1)\n\n—=\n—\n\n—\n—\n\n4) (te)\n\ni)"
+  },
+  {
+    "text": "arbitrary is a balanced tree? So, this we have not proved right and we also do not want that",
+    "start": 2794.84,
+    "end": 2801.32,
+    "ocr_text": "és]\n\n=> nt subhee (5) db A On dri Kh\nht= Cht)/2 . phe thors es\n=) m\n\nof\n\n(Left rize) + ost) + (right size)\nmy +14 (Q*#_1)\n\n=\n—\n\n_\n—\n\n4) (te)\n\n0"
+  },
+  {
+    "text": "for the algorithm we do not care about balance. So, this example for is already",
+    "start": 2802.28,
+    "end": 2806.44,
+    "ocr_text": "és]\n\n= nv subee (5) db A On tech \"ee\nht= Cht)/2 pate thors hes\na m,\n\nof\n\n(Left rize) + Cost) + (right size)\nmy +14 (Q*#_1)\n\n_—_\n——\n\n—\n—\n\n8) (rey\n\nD"
+  },
+  {
+    "text": "this already should be unbalanced. You can see that first places may be the root.",
+    "start": 2806.52,
+    "end": 2818.68,
+    "ocr_text": "AR\n©\nH\n\nos] a by)\n\n(PF. Teo red hodes Cannct\nmbpean muccedsivel, xn a path. D }\n\n4) (te)"
+  },
+  {
+    "text": "No actually this is balanced 4 and 3. But you can you can build the arbitrary which will be",
+    "start": 2821.88,
+    "end": 2829.0,
+    "ocr_text": "BR\n@\nH\n\nos] <> 5\n\n(PF. Teo red hodes Cannct\nmbpearn muccedsivel, in a path. D }"
+  },
+  {
+    "text": "unbalanced because in in balance condition we had this difference of 1 in the left and",
+    "start": 2829.0,
+    "end": 2835.48,
+    "ocr_text": "i\n°\nH\n\nos] < 5\n\n(PF. Teo red hodes Cannct\nmbpearn muccedsivel, in a path. D }"
+  },
+  {
+    "text": "right height that is very easy to violate in a arbitrary. But as you can see even being unbalanced",
+    "start": 2835.48,
+    "end": 2842.36,
+    "ocr_text": "BR\n}\nH\n\nos] <> 5\n\n(PF. Teo red hodes Cannct\nmbpearn mucceddivel, in a path. D }"
+  },
+  {
+    "text": "we can still show that the height is logarithmic. So, this is what will be important in the time",
+    "start": 2842.36,
+    "end": 2852.44,
+    "ocr_text": "BR\n}\nH\n\nos] <> 5\n\n(PF. Teo red hodes Cannct\nmbpearn mucceddivel, in a path. D }"
+  },
+  {
+    "text": "complexity. So, yet arbitrary could be unbalanced.",
+    "start": 2852.44,
+    "end": 2865.64,
+    "ocr_text": "BR\n@\nH\n\nos] <> 5\n\n(PF. Teo red hodes Cannct\nmbpearn muccedsivel, in a bath. D }"
+  },
+  {
+    "text": "So, balance means that depth is log n. But if depth is log n it does not really mean that",
+    "start": 2873.64,
+    "end": 2879.72,
+    "ocr_text": "z\n\nExarcye : Yet RB hee could te unbalanced"
+  },
+  {
+    "text": "the tree is balanced. It goes only in one direction.",
+    "start": 2880.6,
+    "end": 2884.6,
+    "ocr_text": "cA eo = és] co 5\n\nExarcge | Yet RB biee could te unbalanced ,"
+  },
+  {
+    "text": "So, we have to now do insertion. So, insertion you have seen how to do it in BST",
+    "start": 2889.48,
+    "end": 2905.16,
+    "ocr_text": "PA\n\nExearcse ' Yet RB hice could te unbalanced ,"
+  },
+  {
+    "text": "but the big challenge now will be that in this red black tree when you insert it will you it will",
+    "start": 2906.04,
+    "end": 2912.36,
+    "ocr_text": "Zz\n\nExarcge | Yet RB biee could te unbalanced ;"
+  },
+  {
+    "text": "easily violate one of the axioms because you will force to color that node also either red or black.",
+    "start": 2912.36,
+    "end": 2920.68,
+    "ocr_text": "Zz\n\nExarcge | Yet RB biee could te unbalanced ;"
+  },
+  {
+    "text": "And if you color it inappropriately then one of the axioms will be violated and you have to now",
+    "start": 2921.32,
+    "end": 2927.48,
+    "ocr_text": "Zz\n\no Tt os] rai: by)\nExacse:> Yet RB hice could He unbalanced ,"
+  },
+  {
+    "text": "do some transformations. So, BST insert would violate one of the arbitrary axioms",
+    "start": 2927.48,
+    "end": 2948.68,
+    "ocr_text": "Zz\n\n® r os] “oS by)\nExanrcge : Yet RB hee could te unbalanced ;"
+  },
+  {
+    "text": "so the correction will be either you recolor or you rotate.",
+    "start": 2958.36,
+    "end": 2974.92,
+    "ocr_text": "Zz ® r os) rai: by) E\nExacge : Yet Re bee. could te unbalanced ;\n\none of the KB Tree aKjomsh."
+  },
+  {
+    "text": "So, recolor would mean that some nodes you may have to color red to black to red to preserve",
+    "start": 2974.92,
+    "end": 2990.68,
+    "ocr_text": "z Ke I es] ae: »)\nExarcge | Yet RB hee could He unbalanced .\n\none of the KB Tree aAKjomsh.\nCorket Gy: (i) rec\n\n&) (te)"
+  },
+  {
+    "text": "the axiom and rotating a subtree I have shown you one example. So, you have a subtree you can",
+    "start": 2990.68,
+    "end": 2999.48,
+    "ocr_text": "z ® At os] a »)\nExarcge ' Yet RB hee could te unbalanced ;\n\n— Shsertimn Adeas : Bsterneit wuld rrobte\none of the KB Tree aKjomsh.\nCorkect ty: (i) recolr, or\nGi) rotate a aubhee .\n\n&) (te)"
+  },
+  {
+    "text": "rotate it left or right once. So, we will show that insertion will be possible by just two",
+    "start": 2999.48,
+    "end": 3007.32,
+    "ocr_text": "fz ® a os] <> 5\nExacye ' Yet RB hee could te unbalanced ,\n\n— Tnsertion “Adear : Bsternseit wuld robe\nOne of the RK& Tree akjomh.\nCorkect ty: (i) recolr, or\nGi) rotate a aubhec ."
+  },
+  {
+    "text": "rotation very locally you insert by like the BST insert idea and when there is a problem with",
+    "start": 3007.32,
+    "end": 3016.52,
+    "ocr_text": "Zz e I és] oh b) E\nExacse;> Yet RB bee could te unbalanced ,\n\n— Snsertum Adeats : BST Anset L would Violate\noe ef the RB Tee axjoms.\nCorkect ty: (i) recolr, or\nGi) rotate a aubhec .\n\n&) (te)"
+  },
+  {
+    "text": "one of the arbitrary assumption axiom you can rotate once or twice and then it will be solved.",
+    "start": 3016.52,
+    "end": 3022.76,
+    "ocr_text": "Zz e I és] oh b) E\nExacse;> Yet RB bee could te unbalanced ,\n\n— Snaertum Adleats 2 BST Ansei LD weld Violate\none ef the RB Tee axjoms.\nCorkect ty: (i) recolr, or\nGi) rotate a aubhec .\n\n&) (te)"
+  },
+  {
+    "text": "So, we will do this tomorrow and deletion will be more complicated but deletion also will have",
+    "start": 3022.76,
+    "end": 3027.96,
+    "ocr_text": "Zz e I és] oh b) E\nExacse;> Yet RB bee could te unbalanced ,\n\n— Snaertum Adleats 2 BST Ansei LD weld Violate\none ef the RB Tee axjoms.\nCorkect ty: (i) recolr, or\nGi) rotate a aubhec .\n\n&) (te)"
+  },
+  {
+    "text": "only these two ideas.",
+    "start": 3027.96,
+    "end": 3030.04,
+    "ocr_text": "z Cd ail os] ‘dio 5 E\nExearcse : Yet RB hee could te unbalanced ;\n\n— Snsertum Adleat ‘ BST -Anseil wiuld Vobxte.\nOne of the RB Tree aAkjomh.\nCorteect toy 2 (DD Necofer, or\nGi) rotate a aubhee.\n\n&) (te) (i"
+  }
+]

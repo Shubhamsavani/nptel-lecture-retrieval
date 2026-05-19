@@ -1,0 +1,1226 @@
+[
+  {
+    "text": "In this video, we look at an important type of interrupts known as software interrupts",
+    "start": 0.0,
+    "end": 23.08,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n!"
+  },
+  {
+    "text": "and their applications for in system calls.",
+    "start": 23.08,
+    "end": 27.84,
+    "ocr_text": "Hardware vs Software\nInterrupt\n\nHardware Interrupt\n\nDevice\n\n* A device (like the PIC)\nasserts a pin in the CPU"
+  },
+  {
+    "text": "In the previous video, we had looked at hardware interrupts.",
+    "start": 27.84,
+    "end": 31.68,
+    "ocr_text": "Hardware vs Software\nInterrupt\n\nHardware Interrupt\n\nDevice\n\n* A device (like the PIC)\nasserts a pin in the CPU"
+  },
+  {
+    "text": "We had seen how a device such as a keyboard or a network card could assert a particular",
+    "start": 31.68,
+    "end": 38.52,
+    "ocr_text": "Hardware vs Software\nInterrupt\n\nHardware Interrupt\n\nDevice\n\n* A device (like the PIC)\nasserts a pin in the CPU"
+  },
+  {
+    "text": "signal in the CPU and this would cause the CPU to asynchronously execute an interrupt",
+    "start": 38.52,
+    "end": 46.32,
+    "ocr_text": "Hardware vs Software\nInterrupt\n\nHardware Interrupt\n\nDevice\n\n* Adevice (like the PIC)\nasserts a pin in the CPU"
+  },
+  {
+    "text": "handler corresponding to the device.",
+    "start": 46.32,
+    "end": 49.4,
+    "ocr_text": "Hardware vs Software\nInterrupt\n\nHardware Interrupt\n\nDevice\n\n+ Adevice (like the PIC)\nasserts a pin in the CPU"
+  },
+  {
+    "text": "So as we have seen in the previous videos, this device would typically send a signal to",
+    "start": 49.4,
+    "end": 55.72,
+    "ocr_text": "Hardware vs Software\nInterrupt\n\nHardware Interrupt\n\nDevice\n\n+ Adevice (like the PIC)\nasserts a pin in the CPU"
+  },
+  {
+    "text": "the CPU through an intermediate device such as a PIC or a programmable interrupt controller.",
+    "start": 55.72,
+    "end": 63.36,
+    "ocr_text": "Hardware vs Software\nInterrupt\n\nHardware Interrupt\n\nDevice\n\n« Adevice (like the PIC)\nasserts a pin in the CPU"
+  },
+  {
+    "text": "In much the similar way, we have what is known as a software interrupt.",
+    "start": 63.36,
+    "end": 69.4,
+    "ocr_text": "Hardware vs Software\nInterrupt\n\nHardware Interrupt\n\nDevice\n\n« Adevice (like the PIC)\nasserts a pin in the CPU"
+  },
+  {
+    "text": "However, unlike having an external device which causes the interrupt, here an instruction",
+    "start": 69.4,
+    "end": 77.76,
+    "ocr_text": "Hardware vs Software\n\nInterrupt\nHardware Interrupt Software Interrupt\nDevice INT i\nINT x\n* Adevice (like the PIC) + An instruction which\nasserts a pin in the CPU when executed causes\n\nan interrupt"
+  },
+  {
+    "text": "in the program would trigger the interrupt.",
+    "start": 77.76,
+    "end": 82.68,
+    "ocr_text": "Hardware vs Software\n\nInterrupt\nHardware Interrupt Software Interrupt\nDevice INT 4\nLINT x\n* Adevice (like the PIC) + An instruction which\nasserts a pin in the CPU when executed causes\n\nan interrupt"
+  },
+  {
+    "text": "In this particular case, for example, an instruction such as I and T would cause the interrupt",
+    "start": 82.68,
+    "end": 88.76,
+    "ocr_text": "Hardware vs Software\n\nInterrupt\nHardware Interrupt Software Interrupt\nDevice INT 4\nLINT x\n* Adevice (like the PIC) + An instruction which\nasserts a pin in the CPU when executed causes\n\nan interrupt"
+  },
+  {
+    "text": "to occur and the operating system to execute.",
+    "start": 88.76,
+    "end": 93.92,
+    "ocr_text": "Hardware vs Software\n\nInterrupt\nHardware Interrupt Software Interrupt\nDevice INT :\nINT x\n* Adevice (like the PIC) + An instruction which\nasserts a pin in the CPU when executed causes\n\nan interrupt"
+  },
+  {
+    "text": "So here, the instruction is I and T x.",
+    "start": 93.92,
+    "end": 99.24,
+    "ocr_text": "Hardware vs Software\n\nInterrupt\nHardware Interrupt Software Interrupt\nDevice INT :\nINT x\n* Adevice (like the PIC) + An instruction which\nasserts a pin in the CPU when executed causes\n\nan interrupt"
+  },
+  {
+    "text": "So x here is the interrupt number.",
+    "start": 99.24,
+    "end": 102.16,
+    "ocr_text": "Hardware vs Software\n\nInterrupt\nHardware Interrupt Software Interrupt\nDevice INT :\na x\n* Adevice (like the PIC) + An instruction which\nasserts a pin in the CPU when executed causes\n\nan interrupt"
+  },
+  {
+    "text": "It typically has a value less than 256 and it is used to specify or distinguish between",
+    "start": 102.16,
+    "end": 110.32,
+    "ocr_text": "Hardware vs Software\n\nInterrupt\nHardware Interrupt Software Interrupt\nDevice INT :\na x\n* Adevice (like the PIC) + An instruction which\nasserts a pin in the CPU when executed causes\n\nan interrupt"
+  },
+  {
+    "text": "software interrupts.",
+    "start": 110.32,
+    "end": 113.72,
+    "ocr_text": "Hardware vs Software\n\nInterrupt\nHardware Interrupt Software Interrupt\nDevice INT :\nINT x\n* Adevice (like the PIC) + An instruction which\nasserts a pin in the CPU when executed causes\n\nan interrupt"
+  },
+  {
+    "text": "So where is the software interrupt used?",
+    "start": 113.72,
+    "end": 117.16,
+    "ocr_text": "Hardware vs Software\n\nInterrupt\nHardware Interrupt Software Interrupt\nDevice INT :\nINT x\n* Adevice (like the PIC) + An instruction which\nasserts a pin in the CPU when executed causes\n\nan interrupt"
+  },
+  {
+    "text": "So software interrupts are used to implement system calls.",
+    "start": 117.16,
+    "end": 121.84,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\n%)\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "So as we know, a user process could invoke a system call to perform some kernel operation.",
+    "start": 121.84,
+    "end": 129.16,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\n%)\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "For example, it could be to read a file or to write a file to print something to a monitor",
+    "start": 129.16,
+    "end": 134.12,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel\n\n#"
+  },
+  {
+    "text": "or to send a packet through the network and so on.",
+    "start": 134.12,
+    "end": 138.44,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel\n\n#"
+  },
+  {
+    "text": "More specifically, all operating systems implement system calls through one particular software",
+    "start": 138.44,
+    "end": 146.64,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "interrupt.",
+    "start": 146.64,
+    "end": 147.64,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n— In Linux INT 128, is\nuséd for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "For example, in the Linux operating systems, the software interrupt 128 is used to specify",
+    "start": 147.64,
+    "end": 156.32,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n— In Linux INT 128, is\nuséd for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "system calls.",
+    "start": 156.32,
+    "end": 157.92,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "Therefore, in Linux OS, if I have a 128 which is executed in the user process, it would",
+    "start": 157.92,
+    "end": 167.24,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "lead to an interrupt that occurs and cause the kernel or the operating system to execute.",
+    "start": 167.24,
+    "end": 174.8,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "And thereafter, the OS would execute code depending on the interrupt.",
+    "start": 174.8,
+    "end": 183.76,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor system calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "In XP6, the software interrupt used to implement system calls is 64 or instruction like I and",
+    "start": 183.76,
+    "end": 191.56,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\nProcess\n— In Linux INT 128, is\nused for system calls\n— In xv6, INT 64 is used\nfor system calls\n\nSystem Calls"
+  },
+  {
+    "text": "T 64.",
+    "start": 191.56,
+    "end": 193.48,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor systém calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "In the user process, it would be meant to implement a system call.",
+    "start": 193.48,
+    "end": 200.48,
+    "ocr_text": "Software Interrupt\n\nSoftware interrupt used\nfor implementing\nsystem calls\n\n— In Linux INT 128, is\nused for system calls\n\n— In xv6, INT 64 is used\nfor systém calls\n\nProcess\n\nSystem Calls\nINT 64\n\nKernel"
+  },
+  {
+    "text": "So to take an example, let us consider that our application has a print F statement present",
+    "start": 200.48,
+    "end": 206.04,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "in it.",
+    "start": 206.04,
+    "end": 207.04,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\nImplementation\nof\n\nwrite syscall"
+  },
+  {
+    "text": "So print F would print this string to the standard output which typically is the monitor.",
+    "start": 207.04,
+    "end": 215.08,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\nImplementation\nof\n\nwrite syscall"
+  },
+  {
+    "text": "Now print F is a function present in the library lips C and it would cause the lips C function",
+    "start": 215.08,
+    "end": 223.36,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser =\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\n\nimplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "to be invoked.",
+    "start": 223.36,
+    "end": 225.36,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser =\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\n\nimplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "Now in the lips C function, there is a call to the right system call with the specifier",
+    "start": 225.36,
+    "end": 232.92,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nint\nInt Handler\nKernel\nspace\n\nimplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "STD out.",
+    "start": 232.92,
+    "end": 234.32,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nint\nInt Handler\nKernel\nspace\n\nimplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "So the STD out here is the file descriptor and it is a special file descriptor which is",
+    "start": 234.32,
+    "end": 239.8,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nint\nInt Handler\nKernel\nspace\n\nimplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "meant for the standard output or the monitor.",
+    "start": 239.8,
+    "end": 244.16,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(ST}OUT)\nint\nInt Handler\nKernel\nspace\nimplementation\n\nof\nwrite syscall"
+  },
+  {
+    "text": "So in the right function, it would invoke I and T 64 in XP6 or I and T 128 in Linux",
+    "start": 244.16,
+    "end": 255.24,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(ST}OUT)\nint\nInt Handler\nKernel\nspace\nimplementation\n\nof\nwrite syscall"
+  },
+  {
+    "text": "and cause a software interrupt to occur.",
+    "start": 255.24,
+    "end": 258.08,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\nimplementation\nof\n\nwrite syscall"
+  },
+  {
+    "text": "So the software interrupt as we know would cause the transformation from the user space to",
+    "start": 258.08,
+    "end": 264.84,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\nimplementation\nof\n\nwrite syscall"
+  },
+  {
+    "text": "the kernel space and would it would result in the operating system executing.",
+    "start": 264.84,
+    "end": 271.68,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\nimplementation\nof\n\nwrite syscall"
+  },
+  {
+    "text": "The OS would then determine that the interrupt was in fact due to a system call and then",
+    "start": 271.68,
+    "end": 278.88,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel ¢\nspace\nimplementation\nof\n\nwrite syscall"
+  },
+  {
+    "text": "it would determine what system call it was from in this case.",
+    "start": 278.88,
+    "end": 283.84,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt H&ndler\nKernel\nspace\nImplementation\nof\n\nwrite syscall"
+  },
+  {
+    "text": "It was from a right system call and it was a right to the STD out the standard output.",
+    "start": 283.84,
+    "end": 292.84,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt H&ndler\nKernel\nspace\nImplementation\nof\n\nwrite syscall"
+  },
+  {
+    "text": "So the operating system would then invoke the handler for the right system call and this",
+    "start": 292.84,
+    "end": 299.84,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser = =a\nwrite(STDOUT)\nspace (STDOUT)\nint\nInt Handler\nKernel\nspace\nimplementation\n\nof\nwrite syscall"
+  },
+  {
+    "text": "handler would take care of communicating with the various devices such as the video card",
+    "start": 299.84,
+    "end": 307.44,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\n\nimplementation\nof\n~ write syscall"
+  },
+  {
+    "text": "to display the string onto the monitor.",
+    "start": 307.44,
+    "end": 311.36,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\nimplementation\nof\n\nwrit) syscall"
+  },
+  {
+    "text": "So after this handler completes execution, the irate instruction is executed which would",
+    "start": 311.36,
+    "end": 319.76,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\nimplementation\nof\n\nwrit) syscall"
+  },
+  {
+    "text": "result in a transformation back from kernel space to the user space and the program will",
+    "start": 319.76,
+    "end": 326.44,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\nlibc invocation\nUser\nspace write(STDOUT)\nint\nInt Handler\nKernel\nspace\nimplementation\nof\n\nwrite syscall"
+  },
+  {
+    "text": "continue to execute.",
+    "start": 326.52,
+    "end": 330.12,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\n\nfork() Create process\n\nexit() Terminate current process\nwait() Wait for a child process to exit\nKill(pid) Terminate process pid\n\nReturn current process’ id\nfor n seconds\n\nexec(filename, *argy) Load a file and execute it\n\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(td, buf, n) Read n byes from an open file into buf\nwrite(fd, buf, n) Write n bytes to an open file\n\nclose (fd) Release open file fd\n\ndup(fd) Duplicate fd\n\npipe(p) Create a pipe and return fd’s in p\nchdir(dirname) Change the current directory\nmkdir(dirname) Create a new directory\n\nmknod(name, major, minor) Create a device file\n\nfstat(fd) Return info about an open file\n\nlink(fl, £2) Create another name (12) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "Now typically operating systems support several different types of system calls.",
+    "start": 330.12,
+    "end": 337.2,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\n\nfork() Create process\n\nexit() Terminate current process\nwait() Wait for a child process to exit\nKill(pid) Terminate process pid\n\nReturn current process’ id\nfor n seconds\n\nexec(filename, *argy) Load a file and execute it\n\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(td, buf, n) Read n byes from an open file into buf\nwrite(fd, buf, n) Write n bytes to an open file\n\nclose (fd) Release open file fd\n\ndup(fd) Duplicate fd\n\npipe(p) Create a pipe and return fd’s in p\nchdir(dirname) Change the current directory\nmkdir(dirname) Create a new directory\n\nmknod(name, major, minor) Create a device file\n\nfstat(fd) Return info about an open file\n\nlink(fl, £2) Create another name (12) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "So this particular table over here shows the various system calls supported by XP6.",
+    "start": 337.2,
+    "end": 344.96,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\nfork() Create process\nexit() Terminate current process\nwait() Wait for a child process to exit\nKill(pid) Terminate process pid\n(0) Return current process's id\n\n) for n seconds\nexec(filename, *argy) Load a file and execute it\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(fd, buf, n) Read n byes from an open file into buf\nwrite(td, buf, n) Write n bytes to an open file\nclose(td) Release open file fd\ndup(fd) Duplicate fd\npipe(p) Create a pipe and return fd’s in p\nchdir(dirname) Change the current directory\nmkdir(dirname) Create a new directory\nmknod(name, major, minor) Create a device file\nfstat(fd) {) — Return info about an open file\nlink(fl, £2) Create another name (12) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "So in a previous video, we have seen some of them for example, we have seen the fork,",
+    "start": 344.96,
+    "end": 350.32,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\nfork() Create process\nexit() Terminate current process\nwait() Wait for a child process to exit\nKill(pid) Terminate process pid\n(0) Return current process's id\n\n) for n seconds\nexec(filename, *argy) Load a file and execute it\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(fd, buf, n) Read n byes from an open file into buf\nwrite(td, buf, n) Write n bytes to an open file\nclose(td) Release open file fd\ndup(fd) Duplicate fd\npipe(p) Create a pipe and return fd’s in p\nchdir(dirname) Change the current directory\nmkdir(dirname) Create a new directory\nmknod(name, major, minor) Create a device file\nfstat(fd) {) — Return info about an open file\nlink(fl, £2) Create another name (12) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "exit, weight, so on.",
+    "start": 350.32,
+    "end": 353.32,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\nfork() Create process\n\nhyexit() Terminate current process\nwait() Wait for a child process to exit\nkill(pid) Terminate process pid\n\nReturn current process’ id\nfor n seconds\n\nexec(filename, *argv) Load a file and execute it\n\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(td, buf, n) Read n byes from an open file into buf\nwrite(fd, buf, n) Write n bytes to an open file\n\nclose(td) Release open file fd\n\ndup(fd) Duplicate fd\n\npipe(p) Create a pipe and return fds in p\nchdir(dirname) Change the current directory\nmkdir(dirname) Create a new directory\n\nmknod(name, major, minor) Create a device file\n\nfstat(fd) Return info about an open file\n\nlink(fl, £2) Create another name (f2) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "And you are also familiar with several types of system calls such as open read, write,",
+    "start": 353.32,
+    "end": 359.0,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\nfork() Create process\n\nhyexit() Terminate current process\nwait() Wait for a child process to exit\nkill(pid) Terminate process pid\n\nReturn current process’ id\nfor n seconds\n\nexec(filename, *argv) Load a file and execute it\n\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(td, buf, n) Read n byes from an open file into buf\nwrite(fd, buf, n) Write n bytes to an open file\n\nclose(td) Release open file fd\n\ndup(fd) Duplicate fd\n\npipe(p) Create a pipe and return fds in p\nchdir(dirname) Change the current directory\nmkdir(dirname) Create a new directory\n\nmknod(name, major, minor) Create a device file\n\nfstat(fd) Return info about an open file\n\nlink(fl, £2) Create another name (f2) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "close, change directory, make directory and so on.",
+    "start": 359.0,
+    "end": 363.84,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\nfork() Create process\nexit() Terminate current process\nwait() Wait for a child process to exit\nkill(pid) Terminate process pid\n\\() Return current process's id\n\n) for n seconds\nexec(filename, *argy) Load a file and execute it\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(fd, buf, n) Read n byes from an open file into buf\nwrite(fd, buf, n) Write n bytes to an open file\nclose(fd) Release open file fd\ndup(fd) Duplicate fd\npipe(p) Create a pipe and return fds in p\n\nhoghdir(dirname) Change the current directory\n\nmkdir(dirname) Create a new directory\nmknod(name, major, minor) Create a device file\nfstat(fd) Return info about an open file\nlink(fl, £2) Create another name (2) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "So each of these system calls would be executed by having a software interrupt such as",
+    "start": 363.84,
+    "end": 372.08,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\nfork() Create process\nexit() Terminate current process\nwait() Wait for a child process to exit\nkill(pid) Terminate process pid\n\\() Return current process's id\n\n) for n seconds\nexec(filename, *argy) Load a file and execute it\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(fd, buf, n) Read n byes from an open file into buf\nwrite(fd, buf, n) Write n bytes to an open file\nclose(fd) Release open file fd\ndup(fd) Duplicate fd\npipe(p) Create a pipe and return fds in p\n\nhoghdir(dirname) Change the current directory\n\nmkdir(dirname) Create a new directory\nmknod(name, major, minor) Create a device file\nfstat(fd) Return info about an open file\nlink(fl, £2) Create another name (2) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "INT64 because it is the XP6, so it is 64.",
+    "start": 372.08,
+    "end": 377.32,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\n\nfork() Create process\n\nexit() Terminate current process\nwait() Wait for a child process to exit\nkill(pid) Terminate process pid\n\nReturn current process’ id\n\nfor n seconds\n\nexec(ilgname, *argy) Load a file and execute it\n\nsbrk(n)~ Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(fd, buf, n) Read n byes from an open file into buf\nwrite(fd, buf, n) Write n bytes to an open file\n\nclose(fd) Release open file fd\n\ndup(fd) Duplicate fd\n\npipe(p) Create a pipe and return fd’s in p\nchdir(dirname) Change the current directory\nmkdir(dirname) Create a new directory\n\nmknod(name, major, minor) Create a device file\n\nfstat(fd) Return info about an open file\n\nlink(fl, £2) Create another name (2) for the file f1\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "So each time any of these system calls are invoked by a user process, it would trigger",
+    "start": 377.32,
+    "end": 384.32,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\n\nfork() Create process\n\n0) Terminate current process\nwait() Wait for a child process to exit\nKill(pid) Terminate process pid\n\nReturn current process's id\nfor n seconds\n\nexec(filename, *argv) Load a file and execute it\n\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(fd, buf, n) Read n byes from an open file into buf\nwrite(fd, buf, n) Write n bytes to an open file\n\nclose(fd) Release open file fd\n\ndup(fd) Duplicate fd\n\npipe(p) Create a pipe and return fd’s in p\nchdir(dirname) Change the current directory\nmkdir(dirname) Create a new directory\n\nmknod(name, major, minor) Create a device file\n\nfstat(fd) Return info about an open file\n\nlink(f, £2) Create another name (2) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "the operating system to execute.",
+    "start": 386.72,
+    "end": 389.68,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\n\nfork() Create process\n\nexit() Terminate current process\nwait() Wait for a child process to exit\nkill(pid) Terminate process pid\n\nReturn current process's id\nfor n seconds\n\nexec(filename, *argv) Load a file and execute it\n\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(td, buf, n) Read n byes from an open file into buf\nwrite(fd, buf, n) Write n bytes to an open file\n\nclose(td) Release open file fd\n\ndup(fd) Duplicate fd\n\npipe(p) Create a pipe and return fd’s in p\nchdir(dirname) Change the current directory\nmkdir(dirname) Create a new directory\n\nmknod(name, major, minor) Create a device file\n\nfstat(fd) Return info about an open file\n\nlink(f, £2) Create another name (12) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "Now the next obvious question that one would ask is from the OS perspective, how does the",
+    "start": 389.68,
+    "end": 396.68,
+    "ocr_text": "System Calls in xv6\n\nSystem call Description\n\nfork() Create process\n\nexit() Terminate current process\nwait() Wait for a child process to exit\nkill(pid) Terminate process pid\n\nReturn current process's id\nfor n seconds\n\nexec(filename, *argv) Load a file and execute it\n\nsbrk(n) Grow process's memory by n bytes\nopen(filename, flags) Open a file; flags indicate read/write\nread(td, buf, n) Read n byes from an open file into buf\nwrite(fd, buf, n) Write n bytes to an open file\n\nclose(td) Release open file fd\n\ndup(fd) Duplicate fd\n\npipe(p) Create a pipe and return fd’s in p\nchdir(dirname) Change the current directory\nmkdir(dirname) Create a new directory\n\nmknod(name, major, minor) Create a device file\n\nfstat(fd) Return info about an open file\n\nlink(f, £2) Create another name (12) for the file fl\n\nunlink(filename) Remove a file"
+  },
+  {
+    "text": "OS distinguish between the various system calls?",
+    "start": 396.68,
+    "end": 401.36,
+    "ocr_text": "System Calls in xv6\n\nSystem call\nfork()\nexit()\n\nwait()\nkill(pid)\nUhpid()\n\nexec(filename, *argv)\nsbrk(n)\n\nopen( filename, flags)\nread(fd, buf, n)\nwrite(fd, buf, n)\nclose(td)\n\ndup(fd)\n\npipe(p)\nchdir(dirname)\nmkdir(dirname)\nmknod(name, major, minor)\nfstat(fd)\n\nlink(f1, £2)\nunlink(filename)\n\nDescription\n\nCreate process\n\nTerminate current process\n\nWait for a child process to exit\nTerminate process pid\n\nReturn current process's id\n\nfor n seconds\n\nLoad a file and execute it\n\nGrow process's memory by n bytes\nOpen a file; flags indicate read/write\nRead n byes from an open file into buf\nWrite n bytes to an open file\nRelease open file fd\n\nDuplicate fd\n\nCreate a pipe and return fd’s in p\nChange the current directory\n\nCreate a new directory\n\nCreate a device file\n\nReturn info about an open file\nCreate another name (f2) for the file fl\nRemove a file\n\nHow does the\nOS distinguish\nbetween the system\ncalls?"
+  },
+  {
+    "text": "So we mentioned that all the system calls will use either INT64 for XP6 and INT 128 for",
+    "start": 401.36,
+    "end": 408.36,
+    "ocr_text": "System Calls in xv6\n\nSystem call\nfork()\nexit()\n\nwait()\nkill(pid)\nUhpid()\n\nexec(filename, *argv)\nsbrk(n)\n\nopen( filename, flags)\nread(fd, buf, n)\nwrite(fd, buf, n)\nclose(td)\n\ndup(fd)\n\npipe(p)\nchdir(dirname)\nmkdir(dirname)\nmknod(name, major, minor)\nfstat(fd)\n\nlink(f1, £2)\nunlink(filename)\n\nDescription\n\nCreate process\n\nTerminate current process\n\nWait for a child process to exit\nTerminate process pid\n\nReturn current process's id\n\nfor n seconds\n\nLoad a file and execute it\n\nGrow process's memory by n bytes\nOpen a file; flags indicate read/write\nRead n byes from an open file into buf\nWrite n bytes to an open file\nRelease open file fd\n\nDuplicate fd\n\nCreate a pipe and return fd’s in p\nChange the current directory\n\nCreate a new directory\n\nCreate a device file\n\nReturn info about an open file\nCreate another name (f2) for the file fl\nRemove a file\n\nHow does the\nOS distinguish\nbetween the system\ncalls?"
+  },
+  {
+    "text": "Linux.",
+    "start": 411.6,
+    "end": 412.84,
+    "ocr_text": "System Calls in xv6\n\nSystem call\nfork()\nexit()\nwait()\nkill(pid)\n()\n)\n\nexec(filename, *argv)\nsbrk(n)\nopen({filename, flags)\nread(fd, buf, n)\nwrite(fd, buf, n)\nclose(td)\n\ndup(fd)\n\npipe(p)\nchdir(dirname)\nmkdir(dirname)\nmknod(name, major, minor)\nfstat(fd)\n\nlink(fl, £2)\nunlink(filename)\n\nDescription\n\nCreate process\n\nTerminate current process\n\nWait for a child process to exit\nTerminate process pid\n\nReturn current process's id\n\nfor n seconds\n\nLoad a file and execute it\n\nGrow process's memory by n bytes\nOpen a file; flags indicate read/write\nRead n byes from an open file into buf\nWrite n bytes to an open file\nRelease open file fd\n\nDuplicate fd\n\nCreate a pipe and return fd’s in p\nChange the current directory\n\nCreate a new directory\n\nCreate a device file\n\nReturn info about an open file\nCreate another name (f2) for the file fl\nRemove a file\n\nHow does the\nOS distinguish\nbetween the system\ncalls?"
+  },
+  {
+    "text": "So how does the OS determine whether the system call was with respect to fork, weight,",
+    "start": 412.84,
+    "end": 419.84,
+    "ocr_text": "System Calls in xv6\n\nSystem call\nfork()\nexit()\nwait()\nkill(pid)\n()\n)\n\nexec(filename, *argv)\nsbrk(n)\nopen({filename, flags)\nread(fd, buf, n)\nwrite(fd, buf, n)\nclose(td)\n\ndup(fd)\n\npipe(p)\nchdir(dirname)\nmkdir(dirname)\nmknod(name, major, minor)\nfstat(fd)\n\nlink(fl, £2)\nunlink(filename)\n\nDescription\n\nCreate process\n\nTerminate current process\n\nWait for a child process to exit\nTerminate process pid\n\nReturn current process's id\n\nfor n seconds\n\nLoad a file and execute it\n\nGrow process's memory by n bytes\nOpen a file; flags indicate read/write\nRead n byes from an open file into buf\nWrite n bytes to an open file\nRelease open file fd\n\nDuplicate fd\n\nCreate a pipe and return fd’s in p\nChange the current directory\n\nCreate a new directory\n\nCreate a device file\n\nReturn info about an open file\nCreate another name (f2) for the file fl\nRemove a file\n\nHow does the\nOS distinguish\nbetween the system\ncalls?"
+  },
+  {
+    "text": "sleep, exit and so on.",
+    "start": 419.84,
+    "end": 424.12,
+    "ocr_text": "System Calls in xv6\n\nSystem call\nfork()\nexit()\nwait()\nkill(pid)\neetpid()\n\nexec(filename, *argv)\nsbrk(n)\n\nopen( filename, flags)\nread(fd, buf, n)\nwrite(fd, buf, n)\nclose(td)\n\ndup(td)\n\npipe(p)\nchdir(dirname)\nmkdir(dirname)\nmknod(name, major, minor)\nfstat(fd)\n\nlink(f1, £2)\nunlink(filename)\n\nDescription\n\nCreate process\n\nTerminate current process\n\nWait for a child process to exit\nTerminate process pid\n\nReturn current process's id\n\nfor n seconds\n\nLoad a file and execute it\n\nGrow process's memory by n bytes\nOpen a file; flags indicate read/write\nRead n byes from an open file into buf\nWrite n bytes to an open file\nRelease open file fd\n\nDuplicate fd\n\nCreate a pipe and return fd’s in p\nChange the current directory\n\nCreate a new directory\n\nCreate a device file\n\nReturn info about an open file\nCreate another name (f2) for the file fl\nRemove a file\n\nHow does the\nOS distinguish\nbetween the system\ncalls?"
+  },
+  {
+    "text": "Essentially this distinguisher comes from the user process itself.",
+    "start": 424.12,
+    "end": 430.32,
+    "ocr_text": "System Calls in xv6\n\nSystem call\nfork()\nexit()\nwait()\nkill(pid)\neetpid()\n\nexec(filename, *argv)\nsbrk(n)\n\nopen( filename, flags)\nread(fd, buf, n)\nwrite(fd, buf, n)\nclose(td)\n\ndup(td)\n\npipe(p)\nchdir(dirname)\nmkdir(dirname)\nmknod(name, major, minor)\nfstat(fd)\n\nlink(f1, £2)\nunlink(filename)\n\nDescription\n\nCreate process\n\nTerminate current process\n\nWait for a child process to exit\nTerminate process pid\n\nReturn current process's id\n\nfor n seconds\n\nLoad a file and execute it\n\nGrow process's memory by n bytes\nOpen a file; flags indicate read/write\nRead n byes from an open file into buf\nWrite n bytes to an open file\nRelease open file fd\n\nDuplicate fd\n\nCreate a pipe and return fd’s in p\nChange the current directory\n\nCreate a new directory\n\nCreate a device file\n\nReturn info about an open file\nCreate another name (f2) for the file fl\nRemove a file\n\nHow does the\nOS distinguish\nbetween the system\ncalls?"
+  },
+  {
+    "text": "What happens is that before the INT64 instruction the user process will move a system call number",
+    "start": 430.32,
+    "end": 437.32,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\ncall number #define SYS exit 2 Pe oat ae ee\nbol #define SYS wait 3 [sys wait] sys wait,\nmov x, %eax #define SYS pipe 4 [sys pipe] sys_pipe,\nINT 64 #define SYS read 5 ['sYS_read] sys_read,\nWw #define SYS kill 6 eve baa sys_kill,\n#define SYS exec 7 Sree Sy eT SRCC\n#define SYS fstat 8 SVSAtS Cae] Ie sysitstacy\n\n#define SYS chdir 9\n#define SYS dup 10\n#define SYS getpid 11\n\nSYS dup] sys_dup,\nSYS getpid] sys getpid,\n\nfs\n(\n(\n[sys chdir]  sys_chdir,\nfs\nI\n[sys 'sbrk] sys_sbrk,\n\n#define SYS sleep 13 lsvs al ae peg\nBased on the system call number ere SySaupciacess [sys write] sys write,\n+ #define SYS open 15 sys mknod] — sys_mknod,\nui cOmespondingy | #ietine sys write 16 [Sys unlink} sys-untink,\nsyscall handler is invoke PARtineiaveTahind mA [SYS link] sys_link,\n\n[SYS mkdir]  sys_mkdir,\n\n#define SYS unlink 18 feveretaseliecsre loess\n\n#define SYS link 19\n#define SYS mkdir 20\n#define SYS close 29\n\nref : syscall.h, syscall() in syscall.c 46"
+  },
+  {
+    "text": "to the EAX register.",
+    "start": 438.88,
+    "end": 441.88,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n('sYs_fork] fork,\nor Sys_fork,\ncall number #define Sys exit 2 [sysvexit]  sysvexit,\nx #define SYS wait 3 sys wait] sys wait,\nmov x, eax #define SYS pipe 4 [SYS pipe] sys pipe,\nINT 64 #define SYS read 5 ['SYS_read] sys_read,\n#define SYS kill 6 tere ae sys_kill,\n#define SYS exec 7 SYS_exec: SyS_exec,\n#define SYS fstat 8 fSvs_fstatl| sys_fstat.\n[sys chdir] sys _chdir,\n#define SYS chdir 9 [sys dup] sys dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n#define SYS getpid 11 ['SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 Bee Baieie\nSYS uptime] sys uptime,\n#define SYS sleep 13 I'svs-open] syszopen;\nBased on the system call number aabae Syetuptiacsss [sys write] sys write,\nA #define SYS open 15 sys mknod] — sys_mknod,\nthe corresponding #define SYS write 16 [S¥S_unLink] sys_untink,\nsyscall handler is invoked | ugerine sys mknod 17 fsyS tink] sys link,\na SYS mkdir] sys _mkdir,\npone ae pe a [s¥s close] _ sys close,\njefine ini\n#define SYS mkdir 20\n#define SYS close 29]\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "So for example this instruction move X comma EAX will move the system call number to the",
+    "start": 441.88,
+    "end": 448.88,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n('sYs_fork] fork,\nor Sys_fork,\ncall number #define Sys exit 2 [sysvexit]  sysvexit,\nx #define SYS wait 3 sys wait] sys wait,\nmov x, eax #define SYS pipe 4 [SYS pipe] sys pipe,\nINT 64 #define SYS read 5 ['SYS_read] sys_read,\n#define SYS kill 6 tere ae sys_kill,\n#define SYS exec 7 SYS_exec: SyS_exec,\n#define SYS fstat 8 fSvs_fstatl| sys_fstat.\n[sys chdir] sys _chdir,\n#define SYS chdir 9 [sys dup] sys dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n#define SYS getpid 11 ['SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 Bee Baieie\nSYS uptime] sys uptime,\n#define SYS sleep 13 I'svs-open] syszopen;\nBased on the system call number aabae Syetuptiacsss [sys write] sys write,\nA #define SYS open 15 sys mknod] — sys_mknod,\nthe corresponding #define SYS write 16 [S¥S_unLink] sys_untink,\nsyscall handler is invoked | ugerine sys mknod 17 fsyS tink] sys link,\na SYS mkdir] sys _mkdir,\npone ae pe a [s¥s close] _ sys close,\njefine ini\n#define SYS mkdir 20\n#define SYS close 29]\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "EAX register.",
+    "start": 448.88,
+    "end": 450.4,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 Saunt —\nor Sys_fork,\ncall number ene SyS_exit 2 [isvsexit] sys exit,\nus En ORC 2 [sys wait] sys wait,\nmov x, heax #define SYS pipe 4 [sys pipe] sys pipe,\nINT 64 » #define SYS read 5 [SYS read] sys_read,\n#define SYS kill 6 feve be sys_kill,\nSYS exec sys exec,\nere ag ae xu [sys fstat] sys fstat,\nlefine SYS fstat 8 [sys chdir] sys chdir,\n#define SYS chdir 9 [sys'dup] sys dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n#define SYS getpid 11 ('SYS_sbrk] sys_sbrk,\n\nsere ee [svs-uptine] sys-uptine\n#define SYS sleep 13 sve eal ie ets ,\n\nBased on the system call number| #4efine Sys uptime 14 [svs write] sys write,\nthe corresponding arta SYS open 15 [[SYS_mknod] sys_mknod,\nje i lefine SYS write 16 (SYS unlink] sys_unlink,\n\nsyscall handler is invoked | ygesine sys mknod 17 [sys link] sys Link,\n#define SYS_unlink 18 fsveputey i cecelase:\n\n#define SYS link 19\n#define SYS mkdir 20\n#define SYS close 29]\n\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "Now each system call in the operating system will have a unique number system call number.",
+    "start": 450.4,
+    "end": 458.4,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 Saunt —\nor Sys_fork,\ncall number ene SyS_exit 2 [isvsexit] sys exit,\nus En ORC 2 [sys wait] sys wait,\nmov x, heax #define SYS pipe 4 [sys pipe] sys pipe,\nINT 64 » #define SYS read 5 [SYS read] sys_read,\n#define SYS kill 6 feve be sys_kill,\nSYS exec sys exec,\nere ag ae xu [sys fstat] sys fstat,\nlefine SYS fstat 8 [sys chdir] sys chdir,\n#define SYS chdir 9 [sys'dup] sys dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n#define SYS getpid 11 ('SYS_sbrk] sys_sbrk,\n\nsere ee [svs-uptine] sys-uptine\n#define SYS sleep 13 sve eal ie ets ,\n\nBased on the system call number| #4efine Sys uptime 14 [svs write] sys write,\nthe corresponding arta SYS open 15 [[SYS_mknod] sys_mknod,\nje i lefine SYS write 16 (SYS unlink] sys_unlink,\n\nsyscall handler is invoked | ygesine sys mknod 17 [sys link] sys Link,\n#define SYS_unlink 18 fsveputey i cecelase:\n\n#define SYS link 19\n#define SYS mkdir 20\n#define SYS close 29]\n\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "Now the operating system when triggered by the INT instruction would look up the EAX",
+    "start": 458.4,
+    "end": 465.4,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 a =\n¥ #define SYS wait 3 [sys wait] sys wait,\nmov x, %eax #define SYS pipe 4 [sys pipe] sys pipe,\nINT.64 #define SYS read 5 ['SYS_read] sys_read,\no #define SYS kill 6 [sys kill] sys kill,\npoe Tine Svs texeciamy [svs-fstat) sys fotat\nee es [SYS chdir] sys chdir,\n#define SyS chdir 9 [sys'dup] sys dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n#define SYS getpid 11 ('SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 fsYs_sleep]  sys_sleep,\n#define SyS sleep 13 lee esi iene\nBased on the system call number| #4efine Sys uptime 14 [SYS write] sys write,\nthe corresponding foeting SYS open 15 [Sys mknod] sys _mknod,\nrite lefine SYS write 16 SYS unlink] sys _unlink,\nsyscall handler is invoked | ygesine sys mknod 17 [sys link] sys_link,\n#define SYS_unlink 18 [everest sonae:\n#define SYS link 19 :\n#define SYS mkdir 20\n#define SYS close 29]\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "register and then determine what system call was invoked.",
+    "start": 465.96,
+    "end": 472.96,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n#define SYS wait 3 bere weitl eye aalt\n#define SYS pipe 4 [sys pipe] sys pipe,\n#define SYS read 5 ('sYS_read] sys_read,\n#define SYS kill 6 fave eo sys kill,\n7 SYS exec sys exec,\n#define Sys exec 7 [sys fstat] sys fstat,\n#define SYS fstat 8 [svscchdir] syscchdir,\n#define SyS chdir 9 [svs-dup] sys -dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n#define SYS getpid 11 'SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 foverslecp] Ma cis_sleeme\n‘SYS uptime] sys uptime,\n#define SYS sleep 13 I'svs-open] syszopen\nBased on the system call number| #4efine sys uptime 14 [sys write] sys write,\nA #define SYS open 15 sys mknod] — sys_mknod,\nhe Comespondingy | #ietine sys write 16 [Sys unlink} sys unlink,\nsyscall handler is invoke: #define SYS-mknod 17 [Sys tink] sys Link,\n#define SYS unlink 18 fersrerelegeoroees\n#define SYS link 19 +\n#define SYS mkdir 20\n#define SYS close 2]\ntef : syscall.h, syscall() in syscall.c 46"
+  },
+  {
+    "text": "For example in XP6 if you look up these particular header files we would see the various",
+    "start": 472.96,
+    "end": 480.96,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n#define SYS wait 3 bere weitl eye aalt\n#define SYS pipe 4 [sys pipe] sys pipe,\n#define SYS read 5 ('sYS_read] sys_read,\n#define SYS kill 6 fave eo sys kill,\n7 SYS exec sys exec,\n#define Sys exec 7 [sys fstat] sys fstat,\n#define SYS fstat 8 [svscchdir] syscchdir,\n#define SyS chdir 9 [svs-dup] sys -dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n#define SYS getpid 11 'SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 foverslecp] Ma cis_sleeme\n‘SYS uptime] sys uptime,\n#define SYS sleep 13 I'svs-open] syszopen\nBased on the system call number| #4efine sys uptime 14 [sys write] sys write,\nA #define SYS open 15 sys mknod] — sys_mknod,\nhe Comespondingy | #ietine sys write 16 [Sys unlink} sys unlink,\nsyscall handler is invoke: #define SYS-mknod 17 [Sys tink] sys Link,\n#define SYS unlink 18 fersrerelegeoroees\n#define SYS link 19 +\n#define SYS mkdir 20\n#define SYS close 2]\ntef : syscall.h, syscall() in syscall.c 46"
+  },
+  {
+    "text": "system call numbers defined.",
+    "start": 481.44,
+    "end": 484.24,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n\n('sYS_fork] fork,\n\nor Sys_fork,\n\ncall number #define SyS exit 2 sysvexit] sys exit,\n\n= #define SYS wait 3 Isvs-wait] sys \"wait,\n\nmov x, %eax #define SYS pipe 4 [sys pipe]  sys_pipe,\nINT 64 #define SYS_read 5 ['SYS_read] sys_read,\n#define SYS kill 6 Be beta sys_kill,\n\n#define SYS exec 7 erecenee pysnexecs\n#define SYS fstat 8 Pecheal Seeiee\n\n[sys chdir]  sys_chdir,\n\n#define SYS chdir 9 [sys'dup] sys dup,\n#define SYS dup 10 [[sys_getpid] sys_getpid,\n#define SYS getpid 11 ('sYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 Rete Baten\nf\nf\n\nSYS uptime] sys uptime,\n#define SYS sleep 13 evStopen |iimnsyszopen’\n\nBased on the system call number petine aye ee is [svsiwrite]  sys.write,\nF mknod] sys mknod,\ni comespondings d #define SYS write 16 [SYS unlink] sys_unlink,\nsyscall handler ts invoke #define SYS mknod 17 Bee Baap\n#define SYS unlink 18 [evestlone Mcicclases\n#define SYS link 19\n\n#define SYS mkdir 20\n#define SYS close 29]\n\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "For example over here we have each system call given a specific number for example sis",
+    "start": 484.24,
+    "end": 491.24,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n\n('sYS_fork] fork,\n\nor Sys_fork,\n\ncall number #define SyS exit 2 sysvexit] sys exit,\n\n= #define SYS wait 3 Isvs-wait] sys \"wait,\n\nmov x, %eax #define SYS pipe 4 [sys pipe]  sys_pipe,\nINT 64 #define SYS_read 5 ['SYS_read] sys_read,\n#define SYS kill 6 Be beta sys_kill,\n\n#define SYS exec 7 erecenee pysnexecs\n#define SYS fstat 8 Pecheal Seeiee\n\n[sys chdir]  sys_chdir,\n\n#define SYS chdir 9 [sys'dup] sys dup,\n#define SYS dup 10 [[sys_getpid] sys_getpid,\n#define SYS getpid 11 ('sYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 Rete Baten\nf\nf\n\nSYS uptime] sys uptime,\n#define SYS sleep 13 evStopen |iimnsyszopen’\n\nBased on the system call number petine aye ee is [svsiwrite]  sys.write,\nF mknod] sys mknod,\ni comespondings d #define SYS write 16 [SYS unlink] sys_unlink,\nsyscall handler ts invoke #define SYS mknod 17 Bee Baap\n#define SYS unlink 18 [evestlone Mcicclases\n#define SYS link 19\n\n#define SYS mkdir 20\n#define SYS close 29]\n\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "underscore fork given one, sis underscore exit given two and so on.",
+    "start": 491.6,
+    "end": 498.36,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 Esrs forkl Tari\n- #define SYS wait 3 [svswait]  sys_wait,\nmov x, %eax #define SYS pipe 4 [sys pipe] sys pipe,\nINT 64 #define SYS read 5 [s¥s_read] sys_read,\n#define SYS kill 6 fee el is yale\n\nede fa ne§s Yorexec u [sYs_fstat] as fstat,\n\nne ee [sys chdir] sys chdir,\n#define SYS chdir 9 [sys dup] sys dup,\n\n#define SYS dup 10 [SYS getpid] sys getpid,\n\n#define SYS getpid 11 SYS sbrk] —sys_sbrk,\nSYS sleep] sys_sleep,\n\nf\n#define SYS sbrk 12 is\n\n(‘SYS uptime] sys uptime,\n\n#define SYS sleep 13 Isvs-open] syszopen!\nBased on the system call number fering Svanupt ines [sys write] sys write,\nA #define SYS open 15 sys mknod] — sys_mknod,\nthe corresponding #define SYS write 16 [SYS _unLink] sys_untink,\n\nsyscall handler is invoked | sgerine sys mknod 17 fsys tink] \"sys link,\ni mkdir] sys mkdir,\n#define SYS mkdir 20\n#define SYS close 29]\n\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "Now when the OS gets triggered due to the INT64 instruction getting executed the OS will",
+    "start": 498.36,
+    "end": 505.36,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 Esrs forkl aa\non sys_fork,\ncall number #define SYS exit 2 [sysvexit] _sysvexit,\n¥ #define SYS wait 3 sys wait] sys wait,\nmov x, %eax #define SYS pipe 4 [sys pipe] — sys_pipe,\nINT 64 #define SYS read 5 ['sYS_read] sys_read,\n#define Sys kill 6 PovSTitLU i evseketts\nexec] sys exec,\neisrine pus sae y [sys fstat] sys fstat,\n#define SYS fstat 8 [sys chdir] sys chdir,\n#define SYS chdir 9 [sys dup] sys_dup,\n#define SYS dup 10 [[sYS_getpid] sys _getpid,\n#define SYS getpid 11 [s¥S_sbrk]  sys_sbrk,\n#define SYS sbrk 12 evs sles)” sysisleep,\n#define SYS sleep 13 pete Eee\nBased on the system call number| #4efine sys uptime 14 [svs write] sys write,\né # 5\nthe corresponding adetinterercritenie [syscuntink) syscuntink\nIl handler is invoked Stine eerak aaa 3\nsyscal #define SYS mknod 17 svs_link] — sys_Link,\n\n[SYS mkdir]  sys_mkdir,\n\n#define SYS unlink 18 feverclagel Mipevelose\n\n#define SYS link 19\n#define SySfykdir 20\n#define SYS close 2]\n\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "determine the system call using this system call numbers and then invoke the corresponding",
+    "start": 507.12,
+    "end": 512.96,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n- #define SYS wait 3 sys wait] sys wait,\nmov x, %eax define SYS pipe 4 [sys pipe] sys pipe,\nINT 64 #define SYS read 5 ['SYS_read] sys_read,\n#define SYS kill 6 [sys kilt] sys kill,\n[sys exec] sys_exec,\n3 [sys chdir] sys _chdir,\n#define SYS chdir 9 [sys dup] sys dup,\n#define SYS dup 10 [SYS getpid] sys getpid,\n#define SYS getpid 11 [SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 Bey eater\nSYS uptime] sys uptime,\n#define SYS sleep | 13 I'svs-open] systopen;\nBased on the system call number eeerins SYS_uptimey14 [sys write] sys write,\nfi #define SYS open 15 sys mknod] — sys_mknod,\nihe come spondingy | #ietine sys write 16 [SyS-untink} sys unlink,\nsyscall handler ts invoke #define SYS mknod 17 Boe Sate\n#define SYS unlink 18 beverclase|Mmmsyer closes\n#define SYS link 19\n#define SYS mkdir 20\n#define SYS close 2]\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "system call handler.",
+    "start": 512.96,
+    "end": 515.08,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n- #define SYS wait 3 sys wait] sys wait,\nmov x, %eax define SYS pipe 4 [sys pipe] sys pipe,\nINT 64 #define SYS read 5 ['SYS_read] sys_read,\n#define SYS kill 6 [sys kilt] sys kill,\n[sys exec] sys_exec,\n3 [sys chdir] sys _chdir,\n#define SYS chdir 9 [sys dup] sys dup,\n#define SYS dup 10 [SYS getpid] sys getpid,\n#define SYS getpid 11 [SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 Bey eater\nSYS uptime] sys uptime,\n#define SYS sleep | 13 I'svs-open] systopen;\nBased on the system call number eeerins SYS_uptimey14 [sys write] sys write,\nfi #define SYS open 15 sys mknod] — sys_mknod,\nihe come spondingy | #ietine sys write 16 [SyS-untink} sys unlink,\nsyscall handler ts invoke #define SYS mknod 17 Boe Sate\n#define SYS unlink 18 beverclase|Mmmsyer closes\n#define SYS link 19\n#define SYS mkdir 20\n#define SYS close 2]\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "So each of the system calls also have a corresponding system call handler.",
+    "start": 515.08,
+    "end": 522.08,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 SsunT ae\n\nor Sys_fork,\n\ncall number pea Be a - [sysvexit] sys exit,\n\n¥ eTine wal [SYS wait] sys_wait,\n\nmov x, %eax #define SYS pipe 4 [sys pipe] sys pipe,\nINT 64 #define SYS_read | SYS read] sys_read,\n#define SYS _ki}l 6 SYS kill] sys_kill,\n\n#define SYS ext 7 SYS exec] syskexect\n\n#define SYS fstat 8\n\n(\nI\nfs\n[sys fstat]  sys_fstat,\n[sys chdir]  sys_chdir,\n(\n\n#define SYS chdir 9 SYS-dup] sys dup,\n#define SYS dup 10 [SYS getpid] sys getpid,\n#define SYS getpid 11 [SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 fevsisleep]> sys_sleep,\n#define SYS sleep 13 [SYS uptime] sys_uptime,\np 4s [sys open] sys open,\nBased on the system call number| #4efine sys uptime 14 [sys write] sys write,\nA #define SYS open 15 sys mknod]  sys_mknod,\nthe corresponding #define SYS_write 16 [svs_untink) sys_untink,\nsyscall handler is invoked | sgerine sys mknod 17 [[systink] sys link,\n8 SYS_mkdir] sys_mkdir,\n#define SYS unlink 18 fete eins ayecclae\n\n#define SYS link 19\n#define SYS mkdir 20\n#define SYS close 29]\n\ntef : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "This is shown over here corresponding to each of the system call numbers sis underscore",
+    "start": 522.08,
+    "end": 527.08,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 SsunT ae\n\nor Sys_fork,\n\ncall number pea Be a - [sysvexit] sys exit,\n\n¥ eTine wal [SYS wait] sys_wait,\n\nmov x, %eax #define SYS pipe 4 [sys pipe] sys pipe,\nINT 64 #define SYS_read | SYS read] sys_read,\n#define SYS _ki}l 6 SYS kill] sys_kill,\n\n#define SYS ext 7 SYS exec] syskexect\n\n#define SYS fstat 8\n\n(\nI\nfs\n[sys fstat]  sys_fstat,\n[sys chdir]  sys_chdir,\n(\n\n#define SYS chdir 9 SYS-dup] sys dup,\n#define SYS dup 10 [SYS getpid] sys getpid,\n#define SYS getpid 11 [SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 fevsisleep]> sys_sleep,\n#define SYS sleep 13 [SYS uptime] sys_uptime,\np 4s [sys open] sys open,\nBased on the system call number| #4efine sys uptime 14 [sys write] sys write,\nA #define SYS open 15 sys mknod]  sys_mknod,\nthe corresponding #define SYS_write 16 [svs_untink) sys_untink,\nsyscall handler is invoked | sgerine sys mknod 17 [[systink] sys link,\n8 SYS_mkdir] sys_mkdir,\n#define SYS unlink 18 fete eins ayecclae\n\n#define SYS link 19\n#define SYS mkdir 20\n#define SYS close 29]\n\ntef : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "fork that is one, sis underscore exit it is two and so on.",
+    "start": 527.08,
+    "end": 531.36,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n[sys fork] sys_fork\ncall number rian ers Isvsvexit] _sysvexit,\n¥ #define SYS wait 3 [sys wait, sys wait,\nmov x, %eax #define SYS pipe 4 [sys piper — sys_pipe,\nINT 64 #define SYS read 5 [SYS read] sys_read,\n#define SYS kill 6 lee ao sys_kill,\nSYS exec sys exec,\n[sys chdir] sys _chdir,\n#define SYS chdir 9 [sys'dup] sys dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n#define SYS getpid 11 ['SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 eveisleeplh) s¥szsleep.\n#define SYS sleep 13 pSvsuptive)| sys_untine,\np 1s sys open] sys open,\nBased on the system call number eens SvSiuptiacss’ [sys write] sys write,\nA #define SYS open 15 sys mknod] — sys_mknod,\nto One Sponding d #define SYS write 16 [S¥S_unlink] sys_unlink,\nsyscall handler ts invoke #define SYS mknod 17 Be ae\n#define SYS unlink 18 leverelase] ssercloses\n#define SYS link 19\n#define SYS mkdir 20\n#define SYS close 29]\nref : syscall.h, syscall() in syscall.c 4"
+  },
+  {
+    "text": "So these are system call functions present in the operating system which gets triggered",
+    "start": 531.36,
+    "end": 538.36,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n[sys fork] sys_fork\ncall number rian ers Isvsvexit] _sysvexit,\n¥ #define SYS wait 3 [sys wait, sys wait,\nmov x, %eax #define SYS pipe 4 [sys piper — sys_pipe,\nINT 64 #define SYS read 5 [SYS read] sys_read,\n#define SYS kill 6 lee ao sys_kill,\nSYS exec sys exec,\n[sys chdir] sys _chdir,\n#define SYS chdir 9 [sys'dup] sys dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n#define SYS getpid 11 ['SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 eveisleeplh) s¥szsleep.\n#define SYS sleep 13 pSvsuptive)| sys_untine,\np 1s sys open] sys open,\nBased on the system call number eens SvSiuptiacss’ [sys write] sys write,\nA #define SYS open 15 sys mknod] — sys_mknod,\nto One Sponding d #define SYS write 16 [S¥S_unlink] sys_unlink,\nsyscall handler ts invoke #define SYS mknod 17 Be ae\n#define SYS unlink 18 leverelase] ssercloses\n#define SYS link 19\n#define SYS mkdir 20\n#define SYS close 29]\nref : syscall.h, syscall() in syscall.c 4"
+  },
+  {
+    "text": "based on the type of the system call.",
+    "start": 538.64,
+    "end": 541.4,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n[sys fork] sys_fork\n_call number eenaeeren & Isrs-enit) <p exit\nwai sys_wait,\nmov x, %eax #define SYS pipe 4 [sys pipe] sys_pipe,\nINT 64 #define SYS read 5 ['sYS_read] sys_read,\n#define SYS kill 6 fev kilt) sys idl,\nexec] sys exec,\npiers ne eee Z [sys fstat] sys fstat,\neTine sta 8 [sys chdir] sys _chdir,\n#define SYS chdir 9 [svs-dup] sys -dup,\n#define SYS dup 10 [sYs getpid] sys getpid,\n#define SYS getpid 11 ('SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 foySzsleep ING s¥sislecr\n#define SYS sleep 13 few ase sys_uptine,\nopen] sys open,\nBased on the system call number mictine S¥S_uptimcyi4 [sys write] sys write,\nA #define SYS open 15 [SYS _mknod]  sys_mknod,\nthe corresponding #define SYS_write 16 [sys -untink} sys unlink,\nsyscall handler is invoked | yge¢ine sys mknod 17 [sys Linky sys_Unk,\nmkdir] sys mkdir,\n#define SYS mkdir 20\n#define SYS close 2]\nref : syscall.h, syscall() in syscall.c 4"
+  },
+  {
+    "text": "For example if EAX had a value of 11 the operating system will look into the EAX register",
+    "start": 542.08,
+    "end": 549.08,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1\n[sys fork] sys_fork\n_call number eenaeeren & Isrs-enit) <p exit\nwai sys_wait,\nmov x, %eax #define SYS pipe 4 [sys pipe] sys_pipe,\nINT 64 #define SYS read 5 ['sYS_read] sys_read,\n#define SYS kill 6 fev kilt) sys idl,\nexec] sys exec,\npiers ne eee Z [sys fstat] sys fstat,\neTine sta 8 [sys chdir] sys _chdir,\n#define SYS chdir 9 [svs-dup] sys -dup,\n#define SYS dup 10 [sYs getpid] sys getpid,\n#define SYS getpid 11 ('SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 foySzsleep ING s¥sislecr\n#define SYS sleep 13 few ase sys_uptine,\nopen] sys open,\nBased on the system call number mictine S¥S_uptimcyi4 [sys write] sys write,\nA #define SYS open 15 [SYS _mknod]  sys_mknod,\nthe corresponding #define SYS_write 16 [sys -untink} sys unlink,\nsyscall handler is invoked | yge¢ine sys mknod 17 [sys Linky sys_Unk,\nmkdir] sys mkdir,\n#define SYS mkdir 20\n#define SYS close 2]\nref : syscall.h, syscall() in syscall.c 4"
+  },
+  {
+    "text": "and determine that this corresponded to the get PID system call being invoked and then",
+    "start": 551.44,
+    "end": 558.44,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 SaunT Tork\non sys_fork,\ncall number eine Be x - [srs exit] sys exit\n¥ SYS wait sys wait,\nmov x, %eax #define SYS pipe 4 [svs pipe] sys pipe,\nINT 64 #define SYS read 5 ['SYS_read] sys_read,\n#define SYS kill 6 fev al sys_kill,\n#define SYS exec 7 pystexec SySBEXec,\n#define SYS fstat 8 fsvssfstati| sysifstat,\n[sys chdir] sys chdir,\n\n#define SYS chdir 9 [sys dup] sys_dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n\n#define SYS getpid 11 [SYS_sbrk] sys_sbrk,\n#define SW sbrk 12 Re pee\nuptine] sys uptime,\n\n#define SYS sleep 13 I'svs-open] sysiopen,\nBased on the system call number eens evoiuptiacgss [sys write] sys write,\nA #define SYS open 15 sys mknod] — sys_mknod,\nthe corresponding #define SYS write 16 [SYS unlink] sys_untink,\n\nsyscall handler is invoked | ygeine sys mknod 17 [sys link] sys Link,\n\n#define SYS unlink 18 pl eee\n\n#define SYS link 19\n#define SYS mkdir 20\n#define SYS close 29]\n\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "it would look into this particular table and see that the get PID system call is handled",
+    "start": 558.96,
+    "end": 565.96,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 Fors forkl =\non sys_fork,\ncall number #define SyS exit 2 [svsvexit] sys exit,\n= #define SYS wait 3 sys wait] sys wait,\nmov x, %eax #define SYS pipe 4 [sys pipe] sys pipe,\nINT 64 #define SYS read 5 [SYS read] sys_read,\n#define SYS kill 6 fsveeiLl] sys idl,\n5 exec] sys exec,\n#define Sys exec 7 [sys fstat] sys fstat,\n#define Sys fstat 8 [svscchdir] syevchdir,\n#define SYS chdir 9 lsvs-dup] sys -dup,\n#define SYS dup 10 [sys getpid] sys_getpid,\n#define SYS getpid 11 ('SYS_sbrk] sys_sbrk,\n#define SYS sbrk 12 [s¥s_sleep]  sys_sleep,\n#define SYS sleep 13 pevscuptine]|sys_witine,\n- [SYS open] sys_ open,\nBased on the system call number| #4efine Sys uptime 14 [svswiite] sys write,\nthe corresponding | Sierine svswrite 16 [eve antink)sye-untank\nhandler is invoked | $9erine Serene 3° 7 i\nsysca #define SYS mknod 17 pea eae\n#define SYS unlink 18 sys clase] ne Ate\n#define SYS link 19 -\n#define SYS mkdir 20\n#define SYS close 2]\nref : syscall.h, syscall() in syscall.c 46"
+  },
+  {
+    "text": "by this function sis underscore get PID and therefore it will then invoke this sis underscore",
+    "start": 566.4,
+    "end": 573.08,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 Esrs forkl ari\non sys_fork,\ncall number pe ers oe 2 [svsvexit] sys exit,\n¥ 3 [sys wait] sys wait,\nmov x, %eax #define SYS pipe 4 [sys pipe]  sys_pipe,\nINT 64 #define SYS read 5 ['SYS_read] sys_read,\n#define SYS kill 6 Be aol sys_kill,\nSYS exec sys exec,\nacti Sy) ae Z [sys fstat] sys fstat,\n#define SYS fstat 8 [sys chdir] sys chdir,\n#define SYS chdir 9 [sys'dup] sys dup,\n#define SYS dup 10 [SYS_getpid] sys_getpid,\n#define SYS getpid 11 [SYS_sbrk] sys_sbrk\\)\n#define SYS sbrk 12 fsvs_sleep]  sys_slesp,\n#define SYS sleep 13 fave Rae eyscuntime,\nopen] sys open,\nBased on the system call number| #4efine Sys uptime 14 [svs write] sys_write,\n+ #define SYS open 15 sys mknod]  sys_mknod,\na cOmespondingy | #detine Svs write 16 [svs_untink) sys_unlink,\nsyscall handler ts invoke #define SYS mknod 17 Beh) Beare\npre ae ae ya 4 sys close] __ sys close,\nefine in\n#define SYS mkdir 20\n#define SYS close 2]\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "get PID function.",
+    "start": 573.08,
+    "end": 576.8,
+    "ocr_text": "System Call Number\n\nSystem call number used to distinguish between system calls\n\nSystem call handlers\n\nSystem #define SYS fork 1 Esrs forkl ari\non sys_fork,\ncall number pe ers oe 2 [svsvexit] sys exit,\n¥ 3 [sys wait] sys wait,\nmov x, %eax #define SYS pipe 4 [sys pipe]  sys_pipe,\nINT 64 #define SYS read 5 ['SYS_read] sys_read,\n#define SYS kill 6 Be aol sys_kill,\nSYS exec sys exec,\nacti Sy) ae Z [sys fstat] sys fstat,\n#define SYS fstat 8 [sys chdir] sys chdir,\n#define SYS chdir 9 [sys'dup] sys dup,\n#define SYS dup 10 [SYS_getpid] sys_getpid,\n#define SYS getpid 11 [SYS_sbrk] sys_sbrk\\)\n#define SYS sbrk 12 fsvs_sleep]  sys_slesp,\n#define SYS sleep 13 fave Rae eyscuntime,\nopen] sys open,\nBased on the system call number| #4efine Sys uptime 14 [svs write] sys_write,\n+ #define SYS open 15 sys mknod]  sys_mknod,\na cOmespondingy | #detine Svs write 16 [svs_untink) sys_unlink,\nsyscall handler ts invoke #define SYS mknod 17 Beh) Beare\npre ae ae ya 4 sys close] __ sys close,\nefine in\n#define SYS mkdir 20\n#define SYS close 2]\nref : syscall.h, syscall() in syscall.c"
+  },
+  {
+    "text": "Now let us look at the typical prototype of a system call.",
+    "start": 576.8,
+    "end": 580.88,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So a typical system call is as shown over here so of course it has a system call name",
+    "start": 580.88,
+    "end": 587.88,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "that is a function name and then it is passed some resource descriptor and parameters",
+    "start": 587.88,
+    "end": 594.0,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "and typically would return an integer.",
+    "start": 594.0,
+    "end": 597.84,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So the resource descriptor specifies what operating system resource is the target here",
+    "start": 597.84,
+    "end": 604.32,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\ni)\n\nWhat OS resource is the target\nhere?\n\nFor example a file, device, etc.\n\nIf not specified, generally means\nthe current process\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "for example it could be a file or a device and as we have seen in the previous slides",
+    "start": 604.32,
+    "end": 610.6,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\ni)\n\nWhat OS resource is the target\nhere?\n\nFor example a file, device, etc.\n\nIf not specified, generally means\nthe current process\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "it could also specify a particular monitor for example if the resource descriptor is",
+    "start": 610.6,
+    "end": 615.12,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\nthe current process\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "STD out then the resource in use here is the monitor.",
+    "start": 615.12,
+    "end": 622.56,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\n\nFor example a file, device, etc.\n\nIf not specified, generally means\nthe current process\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So some system calls also do not specify this resource descriptor.",
+    "start": 622.56,
+    "end": 628.0,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\n\nFor example a file, device, etc.\n\nIf not specified, generally means\nthe current process\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "In such a case the system call is meant for that resource itself.",
+    "start": 628.0,
+    "end": 634.92,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( reyource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\n\nFor example a file, device, etc.\n\nIf not specified, generally means\nthe current process\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "For example if we use the sleep system call we only specify the time and no specific descriptor",
+    "start": 634.92,
+    "end": 642.4,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( reyource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\n\nFor example a file, device, etc.\n\nIf not specified, generally means\nthe current process\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "such as the file device and so on.",
+    "start": 642.4,
+    "end": 645.96,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\n\nFor example a file, device, etc.\n\nIf not specified, generally means\nthe current process\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "This means that the current process wants to sleep for that given interval of time.",
+    "start": 645.96,
+    "end": 652.44,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\n\nFor example a file, device, etc.\n\nIf not specified, generally means\nthe current process\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "The next part is the parameters.",
+    "start": 652.44,
+    "end": 655.76,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\n\nFor example a file, device, etc.\n\nIf not specified, generally means\nthe current process\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So these parameters are specific for the system call.",
+    "start": 655.76,
+    "end": 660.76,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "For example if we invoke read write open or close or any other system call the parameters",
+    "start": 660.76,
+    "end": 669.56,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "specified here is going to be very specific for each of these system calls.",
+    "start": 669.56,
+    "end": 675.76,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, paravheters)\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "For example the write system call has the parameters buff that is a void pointer and",
+    "start": 675.76,
+    "end": 682.96,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "the count.",
+    "start": 682.96,
+    "end": 684.56,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So the open or the close or any other system call would have different set of parameters.",
+    "start": 684.56,
+    "end": 692.48,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So essentially these parameters are very specific to the type of the system call.",
+    "start": 692.48,
+    "end": 698.16,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "The return type is typically in or integer and sometimes it is a void.",
+    "start": 698.16,
+    "end": 707.2,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is gen¢yally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So in is typically used because in this way the operating system will be able to send",
+    "start": 707.2,
+    "end": 717.52,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus o\"/system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "the completion status of the system call whether it had executed successfully or it had",
+    "start": 717.52,
+    "end": 725.68,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "failed and so on.",
+    "start": 725.68,
+    "end": 727.96,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to fenote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So sometimes the return is also used to specify certain specific information about the system",
+    "start": 727.96,
+    "end": 734.32,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to fenote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "call.",
+    "start": 734.32,
+    "end": 735.32,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to fenote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "For example in write the return is size underscore t which in fact is typed to integer",
+    "start": 735.32,
+    "end": 745.52,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void *buf, size_t count);"
+  },
+  {
+    "text": "and it specifies the number of bytes that have been written to the file specified in Ft.",
+    "start": 745.52,
+    "end": 751.64,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So the return type could also vary depending on the type of system call.",
+    "start": 751.64,
+    "end": 759.8,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "The next thing what we will look at is how these parameters that is the resource descriptor",
+    "start": 759.8,
+    "end": 765.16,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "and the parameters pass to the system call are sent to the kernel.",
+    "start": 765.16,
+    "end": 770.56,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So note that system calls are invoked very differently from a standard function call.",
+    "start": 770.56,
+    "end": 777.08,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So in a function call we as we know the instruction call would be used and the call would specify",
+    "start": 777.08,
+    "end": 784.56,
+    "ocr_text": "Prototype of a typical System Call\n\ni it system_ call( resource_descriptor, parameters)\n\naw]\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "a address which is where the function would reside and the various parameters for the",
+    "start": 784.56,
+    "end": 791.0,
+    "ocr_text": "Prototype of a typical System Call\n\ni it system_ call( resource_descriptor, parameters)\n\naw]\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "call are passed through the local stack.",
+    "start": 791.0,
+    "end": 795.68,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "Similarly the int return which is returned from the function call would be returned through",
+    "start": 795.68,
+    "end": 801.8,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "the EAX register.",
+    "start": 801.8,
+    "end": 804.36,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So system calls on the other hand work very differently from function calls.",
+    "start": 804.36,
+    "end": 810.96,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So as we have seen system calls invokes the kernel by the int 64 instruction as in the",
+    "start": 810.96,
+    "end": 819.28,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\niw]\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "case of XV6.",
+    "start": 819.28,
+    "end": 821.24,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "So how are the parameters such as the resource descriptor and the other parameters passed",
+    "start": 821.24,
+    "end": 827.2,
+    "ocr_text": "Prototype of a typical System Call\n\nint system_call( resource_descriptor, parameters)\n\nreturn is generally\n‘int’ (or equivalent)\nsometimes ‘void’\n\nint used to denote completion\nstatus of system call sometimes\nalso has additional information\nlike number of bytes written to\nfile\n\nWhat OS resource is the target\nhere?\nFor example a file, device, etc.\n\nIf not specified, generally means\n\nthe current process\n\nSystem call specific parameters\npassed.\n\nssize_t write(int fd, const void “buf, size_t count);"
+  },
+  {
+    "text": "to the kernel.",
+    "start": 827.2,
+    "end": 829.16,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void *buf, size_t count); Ww)\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n+ Typical Methods\n— Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n+ Complex\n— Pass via a designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "So essentially there are three ways of doing so.",
+    "start": 829.16,
+    "end": 834.6,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void *buf, size_t count); Ww)\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n+ Typical Methods\n— Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n+ Complex\n— Pass via a designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "The first is by pass by registers which is typically done in Linux.",
+    "start": 834.6,
+    "end": 840.28,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void *buf, size_t count); Ww)\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n+ Typical Methods\n— Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n+ Complex\n— Pass via a designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "The second way is by passing through the user mode stack which is done in XV6 and the",
+    "start": 840.28,
+    "end": 846.4,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void *buf, size_t count);\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n* Typical Methods\n— Pass by Registers (eg. Linux)\n— Pass via user mod@stack (eg. xv6)\n* Complex\n— Pass via a designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "third way is by passing through a designated memory region.",
+    "start": 846.4,
+    "end": 851.44,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void *buf, size_t count);\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n* Typical Methods\n— Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n+ Complex\n— Pass viaa designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "So in this particular case what is done is that in the user process itself a designated",
+    "start": 851.44,
+    "end": 857.68,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void *buf, size_t count);\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n* Typical Methods\n— Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n+ Complex\n— Pass viaa designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "region most likely in the heap would be used to save the various parameters that is needed",
+    "start": 857.68,
+    "end": 865.36,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void *buf, size_t count);\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n+ Typical Methods\n— Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n+ Complex\n— Pass via a designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "to be passed to the system call and the address to this region in the heap is passed through",
+    "start": 865.36,
+    "end": 873.0,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void *buf, size_t count);\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n+ Typical Methods\n—- Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n* Complex\n— Pass via a designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "the registers.",
+    "start": 873.0,
+    "end": 875.12,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void *buf, size_t count);\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n+ Typical Methods\n—- Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n* Complex\n— Pass via a designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "So we will look at the other two cases that is passed by registers and pass via user mode",
+    "start": 875.12,
+    "end": 880.2,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void “buf, size_t count);\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n+ Typical Methods\n— Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n. Complex\n— Pass via a designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "stack in more detail.",
+    "start": 880.2,
+    "end": 883.16,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void “buf, size_t count);\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n+ Typical Methods\n— Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n. Complex\n— Pass via a designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "Now pass by registers which is used by Linux system calls would use the registers present",
+    "start": 883.16,
+    "end": 891.48,
+    "ocr_text": "Passing Parameters\nin System Calls\n\nssize_t write(int fd, const void “buf, size_t count);\n\n+ Passing parameters to system calls not similar to passing\nparameters in function calls\n— Recall stack changes from user mode stack to kernel stack.\n+ Typical Methods\n— Pass by Registers (eg. Linux)\n— Pass via user mode stack (eg. xv6)\n. Complex\n— Pass via a designated memory region\n+ Address passed through registers"
+  },
+  {
+    "text": "in the processor to pass parameters to the kernel.",
+    "start": 891.48,
+    "end": 896.88,
+    "ocr_text": "Pass By Registers (Linux)\n\n* System calls with fewer than 6 parameters passed in\nregisters\n— %eax (sys call number), Y%ebx, %ecx,, %esi, Yedi, Yebp\n\n¢ If6ormore arguments\n— Pass pointer to block structure containing argument list"
+  },
+  {
+    "text": "So we know we have already seen an example of this of how the EAX register is used to",
+    "start": 896.88,
+    "end": 903.48,
+    "ocr_text": "Pass By Registers (Linux)\n\n* System calls with fewer than 6 parameters passed in\nregisters\n- hoeax (sys call number), %ebx, %ecx,, %esi, Yedi, Yebp\n\n* If 6ormore arguments\n— Pass pointer to block structure containing argument list"
+  },
+  {
+    "text": "pass the system call number from the user process to the operating system.",
+    "start": 903.48,
+    "end": 911.4,
+    "ocr_text": "Pass By Registers (Linux)\n\n* System calls with fewer than 6 parameters passed in\nregisters\n- hoeax (sys call number), %ebx, %ecx,, %esi, Yedi, Yebp\n\n* If 6ormore arguments\n— Pass pointer to block structure containing argument list"
+  },
+  {
+    "text": "In a similar way other registers such as the EBX ECX ESI, EDI and EBP are used to pass",
+    "start": 911.4,
+    "end": 920.68,
+    "ocr_text": "Pass By Registers (Linux)\n\n* System calls with fewer than 6 parameters passed in\nregisters\n— %eax (sys call number), %ebx, %ecx,, %esi, Yedi, Yebp\n\n* If 6 ormore arguments\n— Pass pointer to block structure containing argument list"
+  },
+  {
+    "text": "the various parameters of the system call from the user process to the kernel.",
+    "start": 920.68,
+    "end": 928.4,
+    "ocr_text": "Pass By Registers (Linux)\n\n* System calls with fewer than 6 parameters passed in\nregisters\n— %eax (sys call number), %ebx, %ecx,, %esi, %edi, *ebp\n\n* If 6ormore arguments\n— Pass pointer to block structure containing argument list"
+  },
+  {
+    "text": "If the system call has more than six arguments then a pointer to a block structure containing",
+    "start": 928.4,
+    "end": 935.32,
+    "ocr_text": "Pass By Registers (Linux)\n\n* System calls with fewer than 6 parameters passed in\nregisters\n— %eax (sys call number), %ebx, %ecx,, %esi, %edi, Yebp\n\n+ If 6ormore arguments '\n— Pass pointer to block structure containing argument list"
+  },
+  {
+    "text": "the argument list is passed to the kernel.",
+    "start": 935.32,
+    "end": 940.44,
+    "ocr_text": "Pass By Registers (Linux)\n\n* System calls with fewer than 6 parameters passed in\nregisters\n— %eax (sys call number), %ebx, %ecx,, %esi, Yedi, Yebp\n\n* If 6ormore arguments\n— Pass pointer to block structure containing argument list"
+  },
+  {
+    "text": "Now let us look at the second case that is pass via the user mode stack and this is",
+    "start": 940.44,
+    "end": 948.08,
+    "ocr_text": "Pass By Registers (Linux)\n\n* System calls with fewer than 6 parameters passed in\nregisters\n— %eax (sys call number), %ebx, %ecx,, %esi, Yedi, Yebp\n\n* If 6ormore arguments\n— Pass pointer to block structure containing argument list"
+  },
+  {
+    "text": "what is done in XB6.",
+    "start": 948.08,
+    "end": 951.48,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\nCS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "So in this particular way before the INT64 instruction is present various parameters",
+    "start": 951.48,
+    "end": 960.8,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\nCS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "in the system call are pushed onto the stack.",
+    "start": 960.8,
+    "end": 964.48,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nwat 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nEl\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "For example if the system call had three parameters, param 1, param 2 and param 3.",
+    "start": 964.48,
+    "end": 971.28,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nwat 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nEl\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "So these three parameters are pushed into the user space stack and then the system call",
+    "start": 971.28,
+    "end": 977.28,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "number as we have seen is moved into the EAX register.",
+    "start": 977.28,
+    "end": 982.08,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSs\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\")\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "So this here is the user space stack of the user process containing the three parameters.",
+    "start": 982.08,
+    "end": 989.8,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSs\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\")\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "Now when the INT instruction is executed as we know it triggers an interrupt causing",
+    "start": 989.8,
+    "end": 998.36,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "the switch from the user space into the kernel space.",
+    "start": 998.36,
+    "end": 1003.04,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\nref : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "Also as a result of this interrupt execution as we have seen there is a switch in the",
+    "start": 1003.04,
+    "end": 1010.44,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\nref : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "stack from the user space stack to the kernel space stack and what we have seen in the",
+    "start": 1010.44,
+    "end": 1016.44,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "previous video that this kernel stack is used to create what is known as the trap frame.",
+    "start": 1016.48,
+    "end": 1024.08,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\nCS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\nref : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "So this trap frame is shown over here.",
+    "start": 1024.08,
+    "end": 1027.32,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\nCS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\nref : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "So what we have seen in the previous video that some of these entries in the trap frame",
+    "start": 1027.32,
+    "end": 1033.8,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\nCS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\nref : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "are pushed into the stack automatically by the CPU.",
+    "start": 1033.8,
+    "end": 1038.76,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\nCS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\nref : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "So in particular these registers specified in capitals are all pushed onto the kernel",
+    "start": 1038.76,
+    "end": 1047.56,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEELAGS\n\n| |\n\nCS)\n\nEP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "stack that is onto the trap frame by the CPU.",
+    "start": 1047.56,
+    "end": 1053.16,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nOEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "Now the SS and ESP here is important for us.",
+    "start": 1053.16,
+    "end": 1058.64,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nOEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "So these are the stack segment and the stack pointer and these registers correspond to",
+    "start": 1058.64,
+    "end": 1067.68,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\n&S\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\nCS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "the user space stack.",
+    "start": 1067.76,
+    "end": 1071.4,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nEFLAGS\n\nparam2\nparam3 |},\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "So as we know before the INT 64 has been executed the last known stack pointer was pointing",
+    "start": 1071.4,
+    "end": 1077.96,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nEFLAGS\n\nparam2\nparam3 |},\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "to this particular location and therefore the contents of ESP will also point to this",
+    "start": 1077.96,
+    "end": 1086.32,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\nCS\n\nEl\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "location in the user space stack.",
+    "start": 1086.32,
+    "end": 1089.72,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\nl= |\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "So in this way the kernel will then use the SS and the ESP from the trap frame to determine",
+    "start": 1089.72,
+    "end": 1096.72,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSS\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\nl= |\n\ncS\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\ntef : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "the various parameters for the system call.",
+    "start": 1096.8,
+    "end": 1101.28,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSs\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nU\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\nref : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "The next thing we will look at is how the return value is passed from the system call",
+    "start": 1101.28,
+    "end": 1107.8,
+    "ocr_text": "Pass via User Mode Stack (xv6)\n\nUser process\n\nUser stack\n\ntrapframe\n\nparam1\n\nSs\n\nparam2\n\nESP\n\npush param1\n\npush param2\n\npush param3\n\nmov sysnum, %eax\nint 64\n\nparam3\n\nEFLAGS\n\n| |\n\ncS\n\nU\n\nEIP\n\nError Code\n\nTrap Number\n\nds\n\nes\n\neax\n\necx\n\nesi\n\nedi\n\nESP\n\n(empty)\n\nESP pushed by hardware\ncontains user mode stack\npointer\n\nref : sys_open (sysfile.c), argint, fetchint (syscall.c)"
+  },
+  {
+    "text": "back to the user process.",
+    "start": 1107.8,
+    "end": 1112.2,
+    "ocr_text": "Returns from System Calls\n\nhp trapframe\niS Ss\nUser process ESP in system call\npeel ios EFLAGS move result to eax in\npush param: CS trap frame\npush param3 EIP\nmov sysnum, %eax Etron@ode\nint 64 Trap Number\nds\nsane R es\n\\ eax\necx\nReturn value 13) ee =a\nregister EAX wy Na prove =:\nie] yo vse ESP\n\n(empty)"
+  },
+  {
+    "text": "Again we will recollect that the entire reason for creating this trap frame in the kernel",
+    "start": 1112.2,
+    "end": 1117.44,
+    "ocr_text": "Returns from System Calls\n\nhp trapframe\niS Ss\nUser process ESP in system call\npeel ios EFLAGS move result to eax in\npush param: CS trap frame\npush param3 EIP\nmov sysnum, %eax Etron@ode\nint 64 Trap Number\nds\nsane R es\n\\ eax\necx\nReturn value 13) ee =a\nregister EAX wy Na prove =:\nie] yo vse ESP\n\n(empty)"
+  },
+  {
+    "text": "stack for the process is due to the reason that when the interrupt or the system call",
+    "start": 1117.44,
+    "end": 1125.44,
+    "ocr_text": "Returns from System Calls\n\ntrapframe»,\nSs A\nUser process ESP in system call\natl bald EFLAGS move result to eax in\npush param: cS trap frame\npush param3 EIP\nmov sysnum, %eax EnronGode\nint 64 Trap Number\nds\nneeee R es\n\\ eax\necx\nReturn value e esl\nXo) ss edi\nregister EAX wy se pro? ESP\n\n(empty)"
+  },
+  {
+    "text": "completes its execution the entire state in the trap frame is restored back into the CPU",
+    "start": 1126.0,
+    "end": 1132.44,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nUser process = in system call\nae en EFLAGS move result to eax in\npush param: cS trap frame\npush param3 EIP\nmov sysnum, %eax EtronGode\nint 64 Trap Number\nds\nseeee R es\n\\ eax\necx\nReturn value 3) ae =\nregister EAX wy nae proce ==\n9! yo ver\" ESP\n\n(empty)"
+  },
+  {
+    "text": "corresponding CPU registers and it would result in the user process continuing to execute",
+    "start": 1136.0,
+    "end": 1143.0,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nUser process os in system call\nBl param EFLAGS move result to eax in\npush param: CS trap frame\npush param3 EIP\nmov sysnum, %eax Enrongode\nint 64 Trap Number\nds\nseeee R es\n\\ eax\necx\nReturn value 13) oe aa\nregister EAX wy a prove si\n9! yo vse ESP.\n\n(empty)"
+  },
+  {
+    "text": "from where it had stopped and also the context of the user process is restored with the",
+    "start": 1143.72,
+    "end": 1150.72,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nUser process os in system call\nBl param EFLAGS move result to eax in\npush param: CS trap frame\npush param3 EIP\nmov sysnum, %eax Enrongode\nint 64 Trap Number\nds\nseeee R es\n\\ eax\necx\nReturn value 13) oe aa\nregister EAX wy a prove si\n9! yo vse ESP.\n\n(empty)"
+  },
+  {
+    "text": "help of the trap frame.",
+    "start": 1150.72,
+    "end": 1153.0,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nSs A\nUser process ESP in system call\npus scala EFLAGS move result to eax in\npush param: cS trap frame\npush param3 EIP\nmey sysnum, %eax seer Canals\nint 64 Trap Number\nds\neeeee R es\n\\ eax\necx\nReturn value e esl\nx) ss edi\nregister EAX hes pro? ESP\n\n(empty)"
+  },
+  {
+    "text": "Now in order to return a value from the system call which is executing in the kernel space",
+    "start": 1153.0,
+    "end": 1160.0,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nSs A\nUser process ESP in system call\npus scala EFLAGS move result to eax in\npush param: cS trap frame\npush param3 EIP\nmey sysnum, %eax seer Canals\nint 64 Trap Number\nds\neeeee R es\n\\ eax\necx\nReturn value e esl\nx) ss edi\nregister EAX hes pro? ESP\n\n(empty)"
+  },
+  {
+    "text": "back to the user space.",
+    "start": 1160.0,
+    "end": 1161.88,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nSs 4\nUser process ESP in system call\npul pease EFLAGS move result to eax in\npush param: cs trap frame\npush param3 EIP\nmov sysnum, %eax ErronGode\nint 64 Trap Number\nds\nsees . es\n\\ eax\necx,\nReturn value Si est\nregister EAX DTS core a\nyo vse ESP\n(empty)"
+  },
+  {
+    "text": "So what is done is that the EX register in the trap frame is modified.",
+    "start": 1161.88,
+    "end": 1168.88,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nSs 4\nUser process ESP in system call\npul pease EFLAGS move result to eax in\npush param: cs trap frame\npush param3 EIP\nmov sysnum, %eax ErronGode\nint 64 Trap Number\nds\nsees . es\n\\ eax\necx,\nReturn value Si est\nregister EAX DTS core a\nyo vse ESP\n(empty)"
+  },
+  {
+    "text": "Essentially we have seen that the EX register because of this particular instruction would",
+    "start": 1168.88,
+    "end": 1175.12,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nSs 4\nUser process ESP in system call\nie pea EFLAGS move result to eax in\npush param: cS trap frame\npush param3 EIP\nmov sysnum, %eax ErronGode\nint \"4 Trap Number\nds\nsane R es\n\\ eax\necx,\nReturn value e 2\nxc) ss edi\nregister EAX weet pro? ESP\n\n(empty)"
+  },
+  {
+    "text": "contain the system call number.",
+    "start": 1175.12,
+    "end": 1177.84,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nUser process = in system call\npush param1 EFLAGS move result to eax in\npush param2 cs trap frame\npush param3 EIP 5\nmov sysnum, %eax ErronGode\nint 64 Trap Number\nds\nseeee R es\n\\ eax\necx\nReturn value e esi\nxc) ss edi\nregister EAX wy set ror? ESP\n\n(empty)"
+  },
+  {
+    "text": "Now this system call number is overwritten by the return value of the system call.",
+    "start": 1177.84,
+    "end": 1183.4,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nUser process = in system call\npush param1 EFLAGS move result to eax in\npush param2 cs trap frame\npush param3 EIP 5\nmov sysnum, %eax ErronGode\nint 64 Trap Number\nds\nseeee R es\n\\ eax\necx\nReturn value e esi\nxc) ss edi\nregister EAX wy set ror? ESP\n\n(empty)"
+  },
+  {
+    "text": "So this could be a negative number like minus 1 or a positive number as we have seen in",
+    "start": 1183.4,
+    "end": 1190.16,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nUser process = in system call\npush param1 EFLAGS move result to eax in\npush param2 cs trap frame\npush param3 EIP 5\nmov sysnum, %eax ErronGode\nint 64 Trap Number\nds\nseeee R es\n\\ eax\necx\nReturn value e esi\nxc) ss edi\nregister EAX wy set ror? ESP\n\n(empty)"
+  },
+  {
+    "text": "the earlier slide.",
+    "start": 1190.16,
+    "end": 1193.04,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nSs\nUser process ESP in system call\nape ata EFLAGS move result to eax in\npush param: cS trap frame\npush param3 EIP\nmov sysnum, %eax ErronGode\nint 64 Trap Number\nds\nseeee R es\ny eax |\necx\nReturn value 13) bea ari\nregister EAX oy RE. prore= =\nyo vse ESP\n\n(empty)"
+  },
+  {
+    "text": "So now when the system call executes and completes its execution and the context is transferred",
+    "start": 1193.04,
+    "end": 1200.04,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nSs\nUser process ESP in system call\nape ata EFLAGS move result to eax in\npush param: cS trap frame\npush param3 EIP\nmov sysnum, %eax ErronGode\nint 64 Trap Number\nds\nseeee R es\ny eax |\necx\nReturn value 13) bea ari\nregister EAX oy RE. prore= =\nyo vse ESP\n\n(empty)"
+  },
+  {
+    "text": "back to the user process the entire trap frame including the new value of EX in the trap",
+    "start": 1200.12,
+    "end": 1207.12,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nUser process = in system call\ninal Pee EFLAGS move result to eax in\npush param. CS trap frame\npush param3 EIP\nmov sysnum, %eax Error Code\nint 64 Trap Number\nds\nfossa! a» es\ni eax\necx\nReturn value caware Ne =\nregister EAX wy a prove =\ng 10 vee ESP\n\n(empty)"
+  },
+  {
+    "text": "frame is restored back into the registers of the CPU.",
+    "start": 1209.36,
+    "end": 1214.08,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nUser process oss in system call\naa rane EFLAGS move result to eax in\npush param: CS trap frame\npush param3 EIP\nmov sysnum, %eax EtronGode\nint 64 Trap Number\nds\nseen R es\n\\ Teax\necx,\nReturn value 13) Ma aa\nregister EAX wy nA prove =si\n9! yo vse ESP.\n\n(empty)"
+  },
+  {
+    "text": "The process continues to execute from this particular instruction with the new value of",
+    "start": 1214.08,
+    "end": 1219.6,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nUser process oss in system call\naa rane EFLAGS move result to eax in\npush param: CS trap frame\npush param3 EIP\nmov sysnum, %eax EtronGode\nint 64 Trap Number\nds\nseen R es\n\\ Teax\necx,\nReturn value 13) Ma aa\nregister EAX wy nA prove =si\n9! yo vse ESP.\n\n(empty)"
+  },
+  {
+    "text": "EX which contains the return from the system call.",
+    "start": 1219.6,
+    "end": 1225.4,
+    "ocr_text": "Returns from System Calls\n\ntrapframe\nSs\nUser ESP in system call\npush param EFLAGS move result to eax in\npush param2 cs trap frame\npush param3 EIP\nError Code.\n\nmov sysnum, %eax\nTrap Number\n\nint 64 ds\n| £s\n. eax\necx,\nwh esi\nReturn value are 6S edi\nister EAX Yor 910\nregister fo user? ESP\n\n(empty)"
+  },
+  {
+    "text": "Thank you.",
+    "start": 1225.4,
+    "end": 1225.64,
+    "ocr_text": "* Rineee\n\nIIT Madras Production\n\nFunded by\nDepartment of Higher Education\nMinistry of Human Resource Development\nGovernment of India\n\nwww.nptel.ac.in\n\nCopyrights Reserved"
+  }
+]

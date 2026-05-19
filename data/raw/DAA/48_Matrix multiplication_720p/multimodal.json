@@ -1,0 +1,902 @@
+[
+  {
+    "text": "So, for our last example of dynamic programming for this week, we look at the problem of",
+    "start": 0.0,
+    "end": 6.62,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMatrix Multiplication\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "efficiently multiplying a sequence of matrices. So, as you probably know to multiply two matrices",
+    "start": 6.62,
+    "end": 14.66,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMatrix Multiplication\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "A and B, you need compatible dimensions right. So, if we have A and B, then we need",
+    "start": 14.66,
+    "end": 21.82,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMatrix Multiplication\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "that the number of columns in A must match number of rows in B. So, we have m times n matrix",
+    "start": 21.82,
+    "end": 31.78,
+    "ocr_text": "LI]"
+  },
+  {
+    "text": "A and n times P matrix B and the final matrix is going to be of times m times P. Let the",
+    "start": 31.78,
+    "end": 37.54,
+    "ocr_text": "LI]"
+  },
+  {
+    "text": "same number of rows as A, let's say a number of columns as B. And the way you compute",
+    "start": 37.54,
+    "end": 43.1,
+    "ocr_text": "LI]"
+  },
+  {
+    "text": "the product AB, so if I want the ijth entry in AB, then I will take the ith row in A.",
+    "start": 43.1,
+    "end": 50.38,
+    "ocr_text": "LI]"
+  },
+  {
+    "text": "And I will somehow multiply it with a jth column in B. So, I will take the first entry",
+    "start": 50.38,
+    "end": 56.82,
+    "ocr_text": "LI]"
+  },
+  {
+    "text": "of the first entry day. So, I will take A i1 and B1j multiplied by A i2, B2j multiplied",
+    "start": 56.82,
+    "end": 62.66,
+    "ocr_text": "LI]"
+  },
+  {
+    "text": "by then finally, A i m, B and j multiplied at the model. So, this takes order n steps",
+    "start": 62.66,
+    "end": 68.5,
+    "ocr_text": "LI]"
+  },
+  {
+    "text": "right, because I am computing order n, pairwise products and then adding them up. So, therefore,",
+    "start": 68.5,
+    "end": 74.5,
+    "ocr_text": "LI]"
+  },
+  {
+    "text": "I have to compute finally m times P entries, each entry requires a linear order n amount",
+    "start": 74.5,
+    "end": 80.74,
+    "ocr_text": "LI]"
+  },
+  {
+    "text": "of work. So, the total cost of multiplying two matrices in terms of basic arithmetic",
+    "start": 80.74,
+    "end": 85.62,
+    "ocr_text": "DER ~BA mm Bee"
+  },
+  {
+    "text": "operations is of the order of m times n times P. So, this is the basic fact that we need",
+    "start": 85.62,
+    "end": 92.34,
+    "ocr_text": "DER ~BA mm Bee"
+  },
+  {
+    "text": "for the product. So, now the concern is not computing the product of two matrices by",
+    "start": 92.34,
+    "end": 98.94,
+    "ocr_text": "DER ~BA mm Bee"
+  },
+  {
+    "text": "computing the product of three or not. So, supposing I want to multiply three matrices",
+    "start": 98.94,
+    "end": 104.0,
+    "ocr_text": "DER ~BA mm Bee"
+  },
+  {
+    "text": "A, B and C. At a time I can multiply any two. So, either I have to multiply it as A times",
+    "start": 104.0,
+    "end": 109.86,
+    "ocr_text": "DER ~BA mm Bee"
+  },
+  {
+    "text": "B, get a intermediate matrix AB and then multiplied by C. Or I can do B times C and then multiplied",
+    "start": 109.86,
+    "end": 118.42,
+    "ocr_text": "DER ~BA mm Bee"
+  },
+  {
+    "text": "by A from B. So, matrix multiplication is not commuted. We do not have this in general.",
+    "start": 118.42,
+    "end": 127.86,
+    "ocr_text": "DER ~BA mm Bee"
+  },
+  {
+    "text": "So, it is important that the order is the same, but within that in which sequence I do",
+    "start": 127.86,
+    "end": 136.42,
+    "ocr_text": "DER ~BA mm Bee"
+  },
+  {
+    "text": "this simplification does not matter. So, it is associative. I can bracket it by as A times",
+    "start": 136.42,
+    "end": 141.06,
+    "ocr_text": "REF-BA m aprerah."
+  },
+  {
+    "text": "B followed by C or A times B followed by C. Either way I could do two matrix multiplications",
+    "start": 141.06,
+    "end": 146.78,
+    "ocr_text": "REF-BA m aprerah."
+  },
+  {
+    "text": "and what associativity means is that the answer will not change. The final product will remain",
+    "start": 146.78,
+    "end": 152.18,
+    "ocr_text": "RREA-BA m aprerah."
+  },
+  {
+    "text": "the same. But what is interesting for us now is that the complexity of computing the answer",
+    "start": 152.18,
+    "end": 158.22,
+    "ocr_text": "RREA-BA m aprerah."
+  },
+  {
+    "text": "can change depending on which order I do it. Whether I do it as A times B followed by",
+    "start": 158.22,
+    "end": 162.62,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "C or first I do B times C and then I pre-multiply by C. So, let us look at a very trivial example.",
+    "start": 162.62,
+    "end": 168.94,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "So, I have three matrices of this kind. So, A is what has these are matrix which looks",
+    "start": 168.94,
+    "end": 175.06,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "like this. It has one row and a hundred columns. B is a matrix which looks like this. It",
+    "start": 175.06,
+    "end": 180.98,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "has a hundred rows and one column and C is again a matrix which looks like this. So,",
+    "start": 180.98,
+    "end": 185.3,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "this is my A, this is my B, this is my C. So, now supposing I do B times C first. If",
+    "start": 185.3,
+    "end": 194.54,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "I do B times C what happens is this hundred, we will now blow up and I will get a big",
+    "start": 194.54,
+    "end": 202.78,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "matrix which is hundred band because I will have 100 rows here and 100 columns there.",
+    "start": 202.78,
+    "end": 208.06,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "And so, the final thing is going to be number of rows and B and number of columns in C. So,",
+    "start": 208.62,
+    "end": 212.94,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "the B times C matrix is actually 100 by 100 and how many steps will it take? It takes M into",
+    "start": 212.94,
+    "end": 218.14,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "N into P which is 100 into 100 which is 10,000 steps. Now, I have A which is 100 and B which",
+    "start": 218.14,
+    "end": 226.46,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "is 100 by 100. So, I am going to produce something which is again 100, 100 by 100 but I am going",
+    "start": 226.46,
+    "end": 232.3,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "to take 1 into 100 into 100 because M into N into P is another 10. So, together",
+    "start": 232.3,
+    "end": 237.5,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "this particular sequence requires 20,000 steps. If I did the other way on the other hand,",
+    "start": 238.06,
+    "end": 245.26,
+    "ocr_text": "RBRF~BA m aprerah."
+  },
+  {
+    "text": "if I computed this product first then I will collapse it for a simple 1 by 1 matrix because",
+    "start": 245.26,
+    "end": 249.82,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "number of rows here is 1 number of columns is there. So, A B is a 1 by 1 matrix and it takes",
+    "start": 249.82,
+    "end": 254.14,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "only 100 steps to compute. And now again I have a 1 by 1 times 100 by 1 matrix. So, again it",
+    "start": 254.14,
+    "end": 259.58,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "takes only 100. So, this takes only 200 steps. So, you can see that there can be a dramatic difference",
+    "start": 259.58,
+    "end": 265.42,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "in the complexity depending on whether you have bracket it as A B followed by C or A followed by",
+    "start": 265.42,
+    "end": 271.18,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "T C. So, in general we will have a sequence of N such matrix right M 1 M 2 after M N and the",
+    "start": 271.18,
+    "end": 282.22,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "dimensions will be R 1 C 1 R 2 C 2 up to R N C 1 number of rows number of columns. The dimensions",
+    "start": 282.22,
+    "end": 288.14,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "will be given to us so that they can be multiplied. Remember that all we need assuming the entries",
+    "start": 288.14,
+    "end": 293.02,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "of course can be combined by sensible multiplication addition operations. What we need to be able to",
+    "start": 293.02,
+    "end": 298.54,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "multiply two matrices is the dimensions would match. So, we guarantee that the column of each matrix",
+    "start": 298.54,
+    "end": 303.18,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "psi number of columns is equal to the number of rows of the next matrix. So, that product is well",
+    "start": 303.18,
+    "end": 307.58,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "defined right. And our goal is to find an optimum way to compute this product. What is the sequence",
+    "start": 307.58,
+    "end": 313.9,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "of basic operations of multiplying two matrices together that is need to perform to get the",
+    "start": 313.9,
+    "end": 318.54,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "minimum overall cost. And this is equivalent to finding an optimum way of bracket. So,",
+    "start": 318.54,
+    "end": 323.58,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "remember when I did A times B times C the choice was whether to put the bracket like this",
+    "start": 323.58,
+    "end": 327.74,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "or to put the bracket like this. Now, in general if I give you now A times B times C times D",
+    "start": 328.62,
+    "end": 335.58,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "then you can do many things right you can do A B C D and then multiply or you can do C D",
+    "start": 335.58,
+    "end": 341.42,
+    "ocr_text": "_ NBC)"
+  },
+  {
+    "text": "then B C D then A B C D or you can do A B then A B C D. So, there are many different ways in which",
+    "start": 341.42,
+    "end": 347.9,
+    "ocr_text": "(ge) AG\nGals"
+  },
+  {
+    "text": "you can partially compute pairs of product products of pairs and build up the whole thing.",
+    "start": 347.9,
+    "end": 354.46,
+    "ocr_text": "(ge) AG\nGals"
+  },
+  {
+    "text": "So, we want to find the optimum way to do this.",
+    "start": 354.46,
+    "end": 356.62,
+    "ocr_text": "(ge) AG\nGals"
+  },
+  {
+    "text": "So, let us try and identify the inductive structural this product. So, our goal is to compute this",
+    "start": 361.1,
+    "end": 368.3,
+    "ocr_text": "(ge) AG\nGals"
+  },
+  {
+    "text": "long product M 1 to M n. But remember that at every stage we can only multiply two matrices at",
+    "start": 368.3,
+    "end": 375.58,
+    "ocr_text": "(ge) AG\nGals"
+  },
+  {
+    "text": "a time. So, at the final stage we would have multiplied two some mid some two such matrices.",
+    "start": 375.58,
+    "end": 380.86,
+    "ocr_text": "(ge) AG\nGals"
+  },
+  {
+    "text": "Now, we can regroup by bracketing, but we cannot reorder. So, when we did the final stage",
+    "start": 381.5,
+    "end": 388.22,
+    "ocr_text": "fwcnel tie)"
+  },
+  {
+    "text": "we would have had two groups right. So, we would have done some product from the left to the midpoint",
+    "start": 388.22,
+    "end": 394.38,
+    "ocr_text": "fwcnel tie)"
+  },
+  {
+    "text": "and some product from the midpoint to the end right. So, for some k we would have computed M 1 to",
+    "start": 394.38,
+    "end": 399.42,
+    "ocr_text": "fwcnel tie)"
+  },
+  {
+    "text": "M k and M k plus 1 to M n. The first part after doing all this we will have as many rows as M 1",
+    "start": 400.22,
+    "end": 408.46,
+    "ocr_text": "fwcnel tie)"
+  },
+  {
+    "text": "and as many columns as M k. So, it will be R 1 times C k. Second one will be R k plus 1",
+    "start": 408.46,
+    "end": 415.02,
+    "ocr_text": "fwcnel tie)"
+  },
+  {
+    "text": "to C n right. And we know that C k is going to be equal to R k plus 1. So, that these two can be",
+    "start": 417.58,
+    "end": 424.62,
+    "ocr_text": "kn"
+  },
+  {
+    "text": "multiplied together right. So, the final cost is going to be M n to M n to P which is R 1 and to",
+    "start": 424.62,
+    "end": 430.38,
+    "ocr_text": "kn"
+  },
+  {
+    "text": "C k into C n. So, we know how much the last step takes assuming that it was broken at M k.",
+    "start": 430.38,
+    "end": 437.42,
+    "ocr_text": "C ae Neel\n\nkn"
+  },
+  {
+    "text": "The last multiplication causes this much. Now, to get the total cost of doing it with this particular",
+    "start": 437.42,
+    "end": 443.9,
+    "ocr_text": "<{nst}()\n\né ke Neel\n\nkn"
+  },
+  {
+    "text": "choice of k we have to get the cost of computing M 1 to M k and M k plus 1 to M n right. So, we have",
+    "start": 443.9,
+    "end": 452.38,
+    "ocr_text": "<{nst}()\n\né ke Neel\n\nkn"
+  },
+  {
+    "text": "this final situation and now we have these two sub problems right. We have these two sub problems",
+    "start": 452.38,
+    "end": 459.34,
+    "ocr_text": "=\n\né on Neel\n\nkn"
+  },
+  {
+    "text": "so, the total cost is going to be the cost of the first sub problem however much it takes to compute M 1 to M k.",
+    "start": 459.34,
+    "end": 464.46,
+    "ocr_text": "=\n\né on Neel\n\nkn"
+  },
+  {
+    "text": "However, much it takes to compute M k plus 1 to M n plus the cost of the last step which is to",
+    "start": 464.46,
+    "end": 470.06,
+    "ocr_text": "=\n\né on Neel\n\nkn"
+  },
+  {
+    "text": "multiply these two sub problems after they produce one matrix each to multiply those two matrices",
+    "start": 470.06,
+    "end": 474.86,
+    "ocr_text": "=\n\né on Neel\n\nkn"
+  },
+  {
+    "text": "together. But we have said that this k could be anywhere between 1 and M. So, which case should we choose?",
+    "start": 474.86,
+    "end": 481.58,
+    "ocr_text": "=\n\né on Neel\n\nkn"
+  },
+  {
+    "text": "So, the spirit of these kind of problems that we have been seeing these inductive",
+    "start": 483.34,
+    "end": 486.86,
+    "ocr_text": "=\n\né on Neel\n\nkn"
+  },
+  {
+    "text": "things is that we do not try to make a choice right. We say we have no idea in advance which case",
+    "start": 486.86,
+    "end": 493.26,
+    "ocr_text": "=\n\né on Neel\n\nkn"
+  },
+  {
+    "text": "would. So, we just try out all possible case and take the best one in this case the minimum one.",
+    "start": 493.26,
+    "end": 498.62,
+    "ocr_text": "=\n\né on Neel\n\nkn"
+  },
+  {
+    "text": "In other words, the cost for multiplying M 1 to M n in terms of total number of operations",
+    "start": 501.1,
+    "end": 507.1,
+    "ocr_text": "=\n\né on Neel\n\nkn"
+  },
+  {
+    "text": "should be the minimum value of k between 1 and M. It has to be strictly less than M because",
+    "start": 507.1,
+    "end": 513.58,
+    "ocr_text": "=\n\né on Neel\n\nkn"
+  },
+  {
+    "text": "the second part will be M k plus 1 ok. So, between 1 and M of multiplying the matrices 1 to k,",
+    "start": 513.58,
+    "end": 521.9,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "multiplying the matrices k plus 1 to M and adding the cost of the last multiplication.",
+    "start": 522.54,
+    "end": 526.46,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "So, now in turn if I look at this for example, in a break it up it will break up",
+    "start": 528.62,
+    "end": 532.94,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "at some intermediate point M j right. So, I will add some M j plus 1 to M k right. So, I would get",
+    "start": 533.26,
+    "end": 542.46,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "arbitrary segments from 1 to M as my sub-properties. So, a natural thing is to define the",
+    "start": 542.46,
+    "end": 550.3,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "the inductive structure on an arbitrary segment from M i to M j where of course, i is less than j",
+    "start": 551.34,
+    "end": 557.26,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "then. So, we want the minimum value for any k in the middle, k between i and j or going from",
+    "start": 558.14,
+    "end": 565.66,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "M i to M k and then from M k plus 1 to M j and the cost of the last multiplication which is R 1",
+    "start": 565.66,
+    "end": 572.14,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "into C k into C j ok. So, as before we will just use the index. So, instead of writing cost of",
+    "start": 572.14,
+    "end": 578.78,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "M 1 cross M 2 or whatever we will write i j cost of i j is the cost of multiplying M i to M j",
+    "start": 578.78,
+    "end": 585.02,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "that whole sequence. So, let us look at the final inductive form of the equation that we need to",
+    "start": 585.1,
+    "end": 591.66,
+    "ocr_text": "a v<4"
+  },
+  {
+    "text": "compute. So, the base case is when we are looking at a sequence of length 1. So, if you are computing",
+    "start": 591.66,
+    "end": 596.78,
+    "ocr_text": "=\n\nA\nPa =\n=="
+  },
+  {
+    "text": "for example, M 1 into M 3 and 4 then one possibilities that I break it up as M 1 tends M 2 M 3 and 4.",
+    "start": 596.78,
+    "end": 605.58,
+    "ocr_text": "=\n\nA\nPa =\n=="
+  },
+  {
+    "text": "Now, if I am doing this break up then the cost of doing M 1 is nothing because if I am computing",
+    "start": 605.58,
+    "end": 609.9,
+    "ocr_text": "Imm, 4,"
+  },
+  {
+    "text": "from 1 to 1 I am doing no multiplication. So, the cost of i i is 0 and then otherwise I use the",
+    "start": 610.06,
+    "end": 617.18,
+    "ocr_text": "Imm, 4,"
+  },
+  {
+    "text": "recursive formulation we had before we take the minimum value for k ranging from i but not",
+    "start": 617.18,
+    "end": 622.54,
+    "ocr_text": "(u, MM, M,)\nis"
+  },
+  {
+    "text": "strictly less than j of the cost to i to k cost k plus 1 to j and R i times C k times C k.",
+    "start": 623.5,
+    "end": 632.46,
+    "ocr_text": "(u, MM, M,)\nis"
+  },
+  {
+    "text": "And of course, we will only compute this when i is less than equal to j. We will never be able",
+    "start": 633.34,
+    "end": 637.98,
+    "ocr_text": "()\n\nGl"
+  },
+  {
+    "text": "we will never want to compute it when the index j is smaller than i. Now, it is instructed to check",
+    "start": 637.98,
+    "end": 643.58,
+    "ocr_text": "()\n\nGl"
+  },
+  {
+    "text": "what happens when I do something like cost i i plus 1 ok. So, what this will say is that I want to",
+    "start": 643.58,
+    "end": 650.54,
+    "ocr_text": "oste(L, a1 )\n\na M,)\n\nGl"
+  },
+  {
+    "text": "take M i M i plus 1. Now, my only possible value for k. So, k should be between i is strictly",
+    "start": 650.54,
+    "end": 659.74,
+    "ocr_text": "oste(L, a1 )\n\na M,)\n\nGl"
+  },
+  {
+    "text": "less than i plus 1. So, that means, the only possible value for k is i. So, this will break up this",
+    "start": 659.74,
+    "end": 664.54,
+    "ocr_text": "oste(Ls, a1 )\n\nOe M) My Muy\n\nM,\n\n- Gl"
+  },
+  {
+    "text": "thing as M i to M i and M i plus 1 to M i plus 1 right. And then inductively those will give me",
+    "start": 664.54,
+    "end": 670.94,
+    "ocr_text": "oste(Ls, a1 )\n\nOe M) My Muy\n\nM,\n\n- Gl"
+  },
+  {
+    "text": "cost 0 and then I will only get the cost of multiplying this pair which will exactly come out of",
+    "start": 671.58,
+    "end": 676.06,
+    "ocr_text": "oste(Ls, a1 )\n\nMe Muy"
+  },
+  {
+    "text": "this step right. So, there is no problem with this base case we only need the base case",
+    "start": 676.46,
+    "end": 681.9,
+    "ocr_text": "Coste(Ls, a1 )\n\nis Muy\n\n(u fps, M,)\nL us : ;\n\nGl"
+  },
+  {
+    "text": "when the two indices are exactly equal.",
+    "start": 681.9,
+    "end": 683.98,
+    "ocr_text": "Coste(Ls, a1 )\n\nis Muy\n\n(u fps, M,)\nL us : ;\n\nGl"
+  },
+  {
+    "text": "So, now as before we will have this matrix to fill up because we have this is not used because we",
+    "start": 684.94,
+    "end": 701.26,
+    "ocr_text": "Coste(Ls, a1 )\n\nis Muy\n\n(u fps, M,)\nL us : ;\n\nGl"
+  },
+  {
+    "text": "require. So, i is going this way. So, we have the first index going this way and the second index",
+    "start": 701.26,
+    "end": 707.98,
+    "ocr_text": "Cost) Cost) or\nae\nHi 1 :\nae deus ey\n: : | |\n[ ant"
+  },
+  {
+    "text": "going that way. So, we basically never need to look at values where the ending point is before",
+    "start": 708.78,
+    "end": 713.82,
+    "ocr_text": "x 3\n\n———)\n\nls |\nel\n=\npal\n[=]\ni"
+  },
+  {
+    "text": "the starting point. So, we only need to look up of the time right. And now if we are trying to compute",
+    "start": 713.82,
+    "end": 718.46,
+    "ocr_text": "x 3\n\n———)\n\nls |\nel\n=\npal\n[=]\ni"
+  },
+  {
+    "text": "the position i j then we will need cost i k that is in this row we will need values between",
+    "start": 719.42,
+    "end": 726.38,
+    "ocr_text": "x 3\n\n———)\n\nls |\nel\n=\npal\n[=]\ni"
+  },
+  {
+    "text": "for smaller values in j and we will need values of the form j k, k j rather right in this call.",
+    "start": 727.82,
+    "end": 734.94,
+    "ocr_text": "xs\n\npa"
+  },
+  {
+    "text": "So, we will need the values below and to the left which is expected to be diagonal right. So,",
+    "start": 734.94,
+    "end": 739.74,
+    "ocr_text": "xs\n\npa"
+  },
+  {
+    "text": "one way of doing this is to fill up this way so that wherever we fill up we have the values below",
+    "start": 740.86,
+    "end": 748.78,
+    "ocr_text": "| = |\n\nie\n\n| a\n\n=\n\naa es\n7 =\n\nfae elesfeeatl cle feos le\n\n——"
+  },
+  {
+    "text": "already and we also have the values to the left ok. So, we will fill up this matrix from bottom",
+    "start": 748.78,
+    "end": 753.58,
+    "ocr_text": "um\n\noo\n\n|\nea\n(|\nbal\nae\nBe"
+  },
+  {
+    "text": "part we can also fill it up by diagonal but it is very painful to program it. So, this better",
+    "start": 753.58,
+    "end": 757.74,
+    "ocr_text": "um\n\noo\n\n|\nea\n(|\nbal\nae\nBe"
+  },
+  {
+    "text": "be do it in either row by row call you. So, you could also start like this right you could also do",
+    "start": 757.74,
+    "end": 762.14,
+    "ocr_text": "fs |\nel\nme < t\n <——\noe\n1."
+  },
+  {
+    "text": "this way. So, that wherever you start you have the values below and to the right ok. So, you start",
+    "start": 762.14,
+    "end": 767.9,
+    "ocr_text": "fs |\nel\nme < t\n <——\noe\n1."
+  },
+  {
+    "text": "from the diagonal and work right or up either you start at the top left and work down the diagonal",
+    "start": 767.9,
+    "end": 772.46,
+    "ocr_text": "eH =\n\ntg -\nSESEEES"
+  },
+  {
+    "text": "and each column you do bottom to top. Now, you start in the bottom right and work up the",
+    "start": 772.46,
+    "end": 776.62,
+    "ocr_text": "eH =\n\ntg -\nSESEEES"
+  },
+  {
+    "text": "diagonal and each row you do left to right ok. So, either of these will go. So, here is",
+    "start": 776.62,
+    "end": 782.14,
+    "ocr_text": "ae\n\n=>\n\n1k"
+  },
+  {
+    "text": "pseudo code for that. So, we first initialize a diagonal to be 0",
+    "start": 783.82,
+    "end": 788.22,
+    "ocr_text": "ae\n\n=>\n\n1k"
+  },
+  {
+    "text": "ok. And now we do what we said before we said we start all the columns.",
+    "start": 788.94,
+    "end": 794.86,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes"
+  },
+  {
+    "text": "Yes, so this should actually be from column. So, so column one we do not have to do because that",
+    "start": 795.58,
+    "end": 801.1,
+    "ocr_text": "+\neH Ss\n\nig -\nSe Tae"
+  },
+  {
+    "text": "is the diagonal which we started column 2 onwards right. So, 2 to n then for every row starting from",
+    "start": 801.1,
+    "end": 809.42,
+    "ocr_text": "+\neH Ss\n\nig -\nSe Tae"
+  },
+  {
+    "text": "the diagonal up to the top row we now need to compute this minimum. So, we initially assume that",
+    "start": 809.42,
+    "end": 815.82,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes"
+  },
+  {
+    "text": "the value to be fit there is infinity. Now, infinity could just be the product of all the dimensions",
+    "start": 815.82,
+    "end": 820.22,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes"
+  },
+  {
+    "text": "plus 1 because you know that that is not going to the cost is not going to exceed that. So,",
+    "start": 820.22,
+    "end": 824.22,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes"
+  },
+  {
+    "text": "you can choose a large value and what you do is now you check for each value of k you find that",
+    "start": 824.22,
+    "end": 830.3,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes"
+  },
+  {
+    "text": "inductive thing you look at r to k k plus 1 to c and then r times c k times cc ok. So, you look",
+    "start": 830.3,
+    "end": 839.18,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes"
+  },
+  {
+    "text": "this particular value which is the inductive thing and then if it is smaller than the value you",
+    "start": 840.14,
+    "end": 845.9,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nk+l"
+  },
+  {
+    "text": "have seen for so far. So, this is basically computing that min over k by setting it to infinity",
+    "start": 845.9,
+    "end": 855.42,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nKel\n\nmin"
+  },
+  {
+    "text": "and then looking at updating every time. So, this is just a direct implementation of the recursive",
+    "start": 855.42,
+    "end": 860.54,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "the inductive thing and it is just enumerating the subproblems in a way which respects the",
+    "start": 860.54,
+    "end": 866.46,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "dependency of you have seen before. So, one interesting thing to note is that we are filling up",
+    "start": 866.54,
+    "end": 873.58,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "an order n square table. Now, when we looked at longest commons subsequence or edit distance we",
+    "start": 873.58,
+    "end": 878.62,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "said at the complexity of the problem time wise was exactly the complexity of the size of the table.",
+    "start": 878.62,
+    "end": 883.34,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "We had an m times at table it takes n times and time to fill it up because in those two problems",
+    "start": 883.34,
+    "end": 889.5,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "we were filling up each entry looking at exactly three neighbors. So, we had a constant lookup.",
+    "start": 889.5,
+    "end": 895.34,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "Now, here what happens is that when I am above the diagonal at some distance in order to fill this",
+    "start": 895.98,
+    "end": 901.26,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "entry I need to scan this row in this column right. So, the amount of time it takes to fill one",
+    "start": 901.26,
+    "end": 906.78,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "entry in my matrix could be linear in the extreme case when I am very far in the diagonal I could",
+    "start": 906.78,
+    "end": 911.98,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "be spending order n time to fill that right. So, each intermediate value of the matrix could",
+    "start": 911.98,
+    "end": 919.02,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "require looking at n intermediate each value each position could require looking at n intermediate",
+    "start": 919.02,
+    "end": 924.78,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "so though the table is of size n square the actual complexity of filling the table is of size",
+    "start": 925.34,
+    "end": 931.42,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "n cube. So, that is why this is an interesting problem because it says that you cannot directly",
+    "start": 931.42,
+    "end": 936.38,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "conclude the complexity of a dynamic programming algorithm from the size of the table that you are",
+    "start": 937.26,
+    "end": 943.5,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "trying to update because it also depends on the amount of effort you have to take to update each",
+    "start": 943.5,
+    "end": 948.46,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  },
+  {
+    "text": "entry in the table.",
+    "start": 948.46,
+    "end": 958.46,
+    "ocr_text": "# R[1..n],C[1..n] have row/column sizes\n\nel\n\nmin ,\n\n14k)"
+  }
+]

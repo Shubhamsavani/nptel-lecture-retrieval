@@ -1,0 +1,1106 @@
+[
+  {
+    "text": "Hello, a lot of how the operating system works depends on the underlying hardware. Essentially,",
+    "start": 0.0,
+    "end": 23.96,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "as we have seen in the previous video, the operating system is in charge of managing the",
+    "start": 23.96,
+    "end": 28.94,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "hardware. So, before we go any further with how an operating system works and how the",
+    "start": 28.94,
+    "end": 35.92,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "OS functions, let us take a brief background about the PC hardware. Essentially, we will",
+    "start": 35.92,
+    "end": 44.46,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "look at how a computer hardware is designed. So, we know that the heart of any system",
+    "start": 44.46,
+    "end": 51.92,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "is the CPU and the CPU is interfaced to several devices such as the VGA card, a hard disk,",
+    "start": 51.92,
+    "end": 61.44,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f,\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f\n\n—@\n\n0x1f0:0x1f7"
+  },
+  {
+    "text": "a keyboard, RAM, mouse and so on. Now, in order that all these devices work with a single",
+    "start": 61.44,
+    "end": 71.28,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f,\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f\n\n—@\n\n0x1f0:0x1f7"
+  },
+  {
+    "text": "processor, what is required is addresses. Essentially, each device in the system would have a unique",
+    "start": 71.28,
+    "end": 83.52,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f,\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f\n\n—@\n\n0x1f0:0x1f7"
+  },
+  {
+    "text": "address and it is ensured that two devices in the system would have the same address. For",
+    "start": 83.52,
+    "end": 95.84,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f,\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f\n\n—@\n\n0x1f0:0x1f7"
+  },
+  {
+    "text": "instance, we would have the hard disk which is present from the address range 0x1 f0 to 0x1 f7.",
+    "start": 95.84,
+    "end": 104.8,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f,\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f\n\ni\n\nOxi f0:0x17"
+  },
+  {
+    "text": "So, what this means is that when the processor sends out an address on its address bus, the hard disk",
+    "start": 104.8,
+    "end": 115.76,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f,\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f\n\ni\n\nOxi f0:0x17"
+  },
+  {
+    "text": "would identify that the address is within this particular range and therefore, it will respond.",
+    "start": 115.76,
+    "end": 122.12,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f,\n\n——@\n\nOx10:0x1f7"
+  },
+  {
+    "text": "All other devices will then ignore that particular transfer on the processor bus because it does not",
+    "start": 123.08,
+    "end": 132.52,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f,\n\n——@\n\nOx10:0x1f7"
+  },
+  {
+    "text": "fall in its particular address range. For example, if the processor puts out the address 1 f2,",
+    "start": 132.52,
+    "end": 141.0,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f,\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f\n\n—@\n\n0x1f0:0x1f7"
+  },
+  {
+    "text": "then only the hard disk will respond because 0x1 f2 falls within this particular range of the hard disk.",
+    "start": 141.88,
+    "end": 150.36,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f,\n\nOx0 : 0x200000\n\nProcessor\ni336\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f,\n\n—@\n\n0x10:0x1f7"
+  },
+  {
+    "text": "So, if you look at something else like the mouse which has an address range of 0x6 0 to 0x6 f,",
+    "start": 150.6,
+    "end": 160.04,
+    "ocr_text": "Everything has an address\n\nOx60:0x6f\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f\n\ni\n\n0x10:0x1f7"
+  },
+  {
+    "text": "it is not going to respond to the processor's request. Now, in systems, there are three types of",
+    "start": 160.68,
+    "end": 170.28,
+    "ocr_text": "Everything has an address\n\n0x60:0x6;'\n\nOx0 : 0x200000\n\nProcessor\ni386\n\n\\\n\n0x3c0:0x3cf\n\nOx60:0x6f,\n\n—@\n\nOx10:0x1f7"
+  },
+  {
+    "text": "addressing which are generally used. One is called the memory addressing. Next is the IO addresses",
+    "start": 170.28,
+    "end": 178.44,
+    "ocr_text": "Address Types\n\n« Memory Addresses\n* 1O Addresses\n* Memory Mapped IO Addresses"
+  },
+  {
+    "text": "and the third is the memory mapped IO addresses. So, we will look at each of these types of addresses",
+    "start": 179.0,
+    "end": 186.36,
+    "ocr_text": "Address Types\n\n« Memory Addresses\n¢ 1O Addresses\n* Memory Mapped IO Addresses"
+  },
+  {
+    "text": "more in detail. So, let us start with the memory addresses. So, the memory addresses and",
+    "start": 186.36,
+    "end": 193.96,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n\n« Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nDAIAININININININININ\n\nUnused\n\nfonaaa-------------+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n<= 0x000F0000 (960xB) RAM\n\n<- 0x000C0000 (768KB)\n\n|\n| agpeasion’nons’ |\n|\n\n— 0x000A0000 (640KB)\n\n- 0x00000000"
+  },
+  {
+    "text": "most systems would have a large amount of such memory addresses correspond to addressing the RAM.",
+    "start": 195.88,
+    "end": 202.84,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n= 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n|\n| agpensuon’nons’ |\n|\n\n- 0x000A0000 (640KB)\n\n- 0x00000000"
+  },
+  {
+    "text": "Each memory unit in the RAM is given a unique address. For instance, a RAM in a typical Intel system",
+    "start": 203.24,
+    "end": 217.32,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n= 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n|\n| agpensuon’nons’ |\n|\n\n- 0x000A0000 (640KB)\n\n- 0x00000000"
+  },
+  {
+    "text": "with 32 bits could be of size at most 2 par 32 that is a Intel system with 32 bit processor could",
+    "start": 217.32,
+    "end": 232.28,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "have at most 2 par 32 or 4 gigabytes of RAM. So, each and every memory unit in this RAM has a",
+    "start": 232.28,
+    "end": 242.2,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 252-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "unique address. So, this memory unit could be as small as a single byte or in some systems,",
+    "start": 242.2,
+    "end": 253.24,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n\n*« Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nANINININININININININ\n\nUnused\n\n+ ~----+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n= 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n|\n| afpensuon’aons’ |\n|\n\n— 0x000A0000 (640KB)\n\n- 0x00000000"
+  },
+  {
+    "text": "it could be a word that is it could be of 16 bits or 32 bits.",
+    "start": 253.24,
+    "end": 257.08,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n\n*« Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ ~----+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1\"B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n|\n| agpensuon’nons’ |\n|\n\n- 0x000A0000 (640KB)\n\n- 0x00000000"
+  },
+  {
+    "text": "Now, how is this RAM used? So, essentially the RAM is configured in this particular way as shown",
+    "start": 257.96,
+    "end": 269.56,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n\n*« Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nIQAININININININININ\n\nunused\n\n+—-—--- ~----+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n= 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n|\n| afpensuon’ none’ |\n|\n\n- 0x000A0000 (640KB)\n\n- 0x00000000"
+  },
+  {
+    "text": "over here and this configuration is especially for IBM PC compatible Intel machines.",
+    "start": 269.56,
+    "end": 277.8,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nAINININININININININ\n\nunused\n\n+ -+ <= depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "So, this RAM as I mentioned has addresses to access each part of the RAM and the RAM could be as",
+    "start": 278.36,
+    "end": 288.12,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n*« Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n-0x00000000"
+  },
+  {
+    "text": "large as 4 gigabytes. The addresses from 0 x 0 to 640 kb represented in hexadecimal as a followed",
+    "start": 288.12,
+    "end": 298.92,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "by 4 0s is known as the low memory. So, in this particular memory was used in legacy computers like",
+    "start": 298.92,
+    "end": 307.56,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory |\n\n000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n- 0x00000000"
+  },
+  {
+    "text": "8086, 8286 and so on. So, the old operating systems like MS-TOS would use this particular low memory.",
+    "start": 308.28,
+    "end": 317.8,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "So, above this low memory from 640 kb to 768 kb all addresses would pertain to the VGA display.",
+    "start": 318.84,
+    "end": 328.84,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "So, in again this is a legacy issue where this particular area in the memory would correspond to",
+    "start": 329.0,
+    "end": 342.68,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ = -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n<- 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "the VGA display. This means to say that any ASCII characters placed in this particular area would",
+    "start": 342.68,
+    "end": 351.24,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nANINININININININININ\n\nunused\n\n+ = -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1\"B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "then be taken by the video card and displayed onto the screen. The region from 768 kb to 960 kb",
+    "start": 351.24,
+    "end": 364.84,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ = -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "was known as the 16 bit expansion ROMs. So, these also were legacy",
+    "start": 366.04,
+    "end": 373.24,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "aspects of present in legacy computers and it is pertaining to every device that is used",
+    "start": 373.96,
+    "end": 383.64,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "essentially in the previous generation of computers in the early 80s to early 90s. The devices that",
+    "start": 384.36,
+    "end": 395.72,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "were attached to the computer could have what was known as expansion ROMs or the read-on-down",
+    "start": 395.72,
+    "end": 403.16,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ = -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "D memories and these ROMs could be accessed or rather these ROMs could be addressed within this",
+    "start": 403.16,
+    "end": 411.08,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ = -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "particular memory region. Now, what is important for us and what we still use in the present",
+    "start": 411.08,
+    "end": 421.32,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ = -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n<- 0x000F0000 (960KB) RAM\n\n- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "Intel systems that we use for our desktops and laptops is this particular region from 960 kb to 1 mb.",
+    "start": 421.32,
+    "end": 429.16,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "So, this was where the BIOS resides. So, as many of you would know so BIOS is the basic input",
+    "start": 429.96,
+    "end": 440.04,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "output system and it is a read-on-d memory which is present on your system and it ensures that your",
+    "start": 440.04,
+    "end": 449.4,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n\n* Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n|\n| Sfpension’nons’ |\n|\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "system boots correctly and it also ensures that the operating system gets loaded.",
+    "start": 451.4,
+    "end": 456.92,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ = -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "So, the area of the RAM essentially all memory addresses below 960 kb is typically not used in modern",
+    "start": 459.48,
+    "end": 469.96,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n\n* Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nANINININININININININ\n\nunused\n\n+ = -+ <- depends on amount of RAM\n\nExtended Memory\n\n<= 000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "day systems while the area from 960 to 1 mb that is 960 kb to 1 mb is used by the BIOS and only",
+    "start": 469.96,
+    "end": 481.24,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ = -+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "used during the booting of the system. What is actually used in modern day systems is the RAM",
+    "start": 481.24,
+    "end": 491.0,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n= 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-0x00000000"
+  },
+  {
+    "text": "above this one mb region that is starting from what was known as the extended memory and this",
+    "start": 491.0,
+    "end": 497.56,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "extended memory could go as far as the amount of RAM is present in the system. For instance,",
+    "start": 497.56,
+    "end": 506.36,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "if you have 4 gigabytes of RAM or 8 or 16 gigabytes of RAM then this extended memory will extend",
+    "start": 506.44,
+    "end": 515.8,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1\"B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "up till that particular region. The paths or the addresses above this RAM area will be generally",
+    "start": 515.8,
+    "end": 527.8,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n\n* Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ = +),< depends on amount of RAM\n\nExtended Memory\n\n0x00100000 (1MB)\n\n 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n- 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "unused. So, as we will see in the later classes in this particular course, we would see how the",
+    "start": 527.8,
+    "end": 535.96,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n\n* Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ po-------+ <- depends on amount of RAM\n\nExtended Memory\n\n0x00100000 (1MB)\n\n 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n— 0x000A0000 (640KB)\n\n— 9x00000000"
+  },
+  {
+    "text": "operating system loads itself starting from this one mb region. We would also see how the BIOS",
+    "start": 535.96,
+    "end": 544.68,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n\n* Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\ndepends on amount of RAM\n\nExtended Memory\n\n<= 000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "is going to be used to boot the operating system. Now, as we know this particular RAM is also",
+    "start": 544.68,
+    "end": 554.36,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n\n* Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\ndepends on amount of RAM\n\nExtended Memory\n\n<= 000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "used to contain various aspects of the applications that we execute. For instance, the code segment or",
+    "start": 554.36,
+    "end": 563.08,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "instructions present in the programs that you execute, the heap, the stack as well as the",
+    "start": 563.56,
+    "end": 570.12,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n* Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nNINININININININININ\n\nUnused\n\n+ = + <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n-_0x00000000"
+  },
+  {
+    "text": "operating system reside in this particular memory. Essentially, all of them will reside",
+    "start": 570.12,
+    "end": 577.8,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n\n« Where main memory is mapped\n— Used to store data for code, heap, !stack, OS, etc.\n\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ ~----+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n- 0x000A0000 (640KB)\n\n- 0x00000000"
+  },
+  {
+    "text": "above this extended memory part. The next type of addressing is the IO addresses.",
+    "start": 577.8,
+    "end": 585.72,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n*« Where main memory is mapped\n\n— Used to store data for code, heap, stack, OS, etc.\n* Accessed by load/store instructions\n\nANINININININININININ\n\nUnused\n\n+ z---+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n|\n| agpeasuon’aoes’ |\n|\n\n— 0x000A0000 (640KB)\n\n-0x00000000"
+  },
+  {
+    "text": "Essentially, in legacy computers like the 8086 and the 8088 and 8286, there was a separate",
+    "start": 586.68,
+    "end": 598.84,
+    "ocr_text": "Address Types : ae) Ports) _\n\nVO addre!\n\n* Range: 0 to 21-1 “ *\n* Used to access devices \" c eee\n« Uses a different bus compared °\n\nto RAM memory access =\n\n— Completely isolated from memory\n\nAccessed by in/out instructions = »-»\n\ninb $0x64, Y%al se\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS. [St"
+  },
+  {
+    "text": "memory region for devices. IO devices like keyboards, mice, hard disks and other programmable devices",
+    "start": 598.84,
+    "end": 610.28,
+    "ocr_text": "Address Types : (IO Ports) _\n\nVO address range\n\n00-1F\n\n+ Range: 0 to 216-1 oot\n\n60 6F\n\n« Used to access devices 0-0\n\n+ Uses a different bus compared °\n\na\n\nto RAM memory access =\n— Completely isolated from memory\n\n* Accessed by in/out instructions = »-»\n\ninb $0x64, Yal oa\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "like an programmable interrupt controller could be mapped. So, unlike the previous addressing that",
+    "start": 610.36,
+    "end": 616.92,
+    "ocr_text": "Address Types : ae) Ports) _\n\nVO addre!\n\n* Range: 0 to 21-1\n* Used to access devices \" c eee\n« Uses a different bus compared °\n\nto RAM memory access =\n\n— Completely isolated from memory 2.\n\n* Accessed by in/out instructions =»\n\ninb $0x64, Yal se\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS. [ST"
+  },
+  {
+    "text": "we see that is the memory addressing. So, the IO addressing could be from 0 to just 2 power",
+    "start": 616.92,
+    "end": 624.92,
+    "ocr_text": "Address Types : (IO Ports) _\n\nVO address range\n\n00-1F\n\n+ Range: 0 to 216-1 ont\n\n60 6F\n\n* Used to access devices me\n\n+ Uses a different bus compared °\n\na\n\nto RAM memory access =\n— Completely isolated from memory\n\n* Accessed by in/out instructions = »-»\n\ninb $0x64, Yal oa\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "16 minus 1. So, this is roughly around 64 kilobytes and the IBM PC standard would define what",
+    "start": 624.92,
+    "end": 633.8,
+    "ocr_text": "Address Types : (IO Ports) _\n\nVO address range\n\n00-1F\n\n+ Range: 0 to 216-1 ont\n\n60 6F\n\n* Used to access devices me\n\n+ Uses a different bus compared °\n\na\n\nto RAM memory access =\n— Completely isolated from memory\n\n* Accessed by in/out instructions = »-»\n\ninb $0x64, Yal oa\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "use of certain addresses are. So, the IBM PC standard is a standard which was followed",
+    "start": 634.28,
+    "end": 641.8,
+    "ocr_text": "Address Types : ae) Ports) _\n\n* Range: 0 to 216-1 *\n* Used to access devices \" c eee\n« Uses a different bus compared °\n\nto RAM memory access =\n\n— Completely isolated from memory\n\nAccessed by in/out instructions = »-»\n\ninb $0x64, Y%al se\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS. [ST"
+  },
+  {
+    "text": "to develop systems like especially the desktop systems and certain servers. And these standard",
+    "start": 643.48,
+    "end": 651.64,
+    "ocr_text": "Address Types : (lO Ports) _\n\nVO address range\n\n00-1F 8237 A\n\n+ Range: 0 to 216-1 —\n\n60 6F\n\n« Used to access devices oo.\n\n* Uses a different bus compared °* A\n\ner, 7418612\n\nto RAM memory access 2\n\n— Completely isolated from memory x\n\n* Accessed by in/out instructions» : oA Save\n\ninb $0x64, Y%al a\noutb %al, $0x64 [100 - aor\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "mentioned what devices should be present in what IO addresses. For instance, it mentioned that",
+    "start": 653.64,
+    "end": 660.52,
+    "ocr_text": "Address Types : (lO Ports) _\n\nVO address range\n\n00-1F 8237 A\n\n+ Range: 0 to 216-1 —\n\n60 6F\n\n« Used to access devices oo.\n\n* Uses a different bus compared °* A\n\ner, 7418612\n\nto RAM memory access 2\n\n— Completely isolated from memory x\n\n* Accessed by in/out instructions» : oA Save\n\ninb $0x64, Y%al ae\noutb Yal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "the keyboard should be present between 60 to 6 F. So, the IO address 6 0 to 6 F.",
+    "start": 661.24,
+    "end": 669.64,
+    "ocr_text": "Address Types : (lO Ports) _\n\nVO address range\n\n00-1F\n\n* Range: 0 to 216-1 fo-8\n\n+ Used to access devices wa\n\n« Uses a different bus compared °\nto RAM memory access a\n\n— Completely isolated from memory\n* Accessed by in/out instructions = »-«\n\ninb $0x64, %al _\n\noutb Yal, $0x64 bona\n170-177\n200 - 20\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "In a similar way, the DMA controller would be present from C 0 to D F.",
+    "start": 670.44,
+    "end": 679.4,
+    "ocr_text": "Address Types : (lO Ports) _\n\nVO address range\n00 1F c\n\n« Range: 0 to 21-1 oe\n\n+ Used to access devices \" :\n\n+ Uses a different bus compared °®\nto RAM memory access a\n\n— Completely isolated from memory\n\n* Accessed by in/out instructions = »-»\n\ninb $0x64, Yal aE\noutb Yoal, $0x64 100 - 10F\n\n170-177\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "So, the other things like a scousie or a hard disk or primary hard disk present in your system",
+    "start": 681.96,
+    "end": 688.52,
+    "ocr_text": "Address Types : (lO Ports) _\n\nVO address range\n\n00-1F\n\n* Range: 0 to 216-1 fo-8\n\n+ Used to access devices wa\n\n« Uses a different bus compared °\nto RAM memory access a\n\n— Completely isolated from memory\n* Accessed by in/out instructions = »-«\n\ninb $0x64, %al _\n\noutb Yoal, $0x64 boas\n170-17\n200 - 20\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "would be present from 1 F 0 to 1 F 7. So, in this way several devices had very specific addresses",
+    "start": 688.52,
+    "end": 698.28,
+    "ocr_text": "Address Types : (lO Ports) _\n\nVO address range\n\n00-1F 8237 A\n\n* Range: 0 to 216-1 foot\n+ Used to access devices om on 88\n« Uses a different bus compared °®\nto RAM memory access a\n— Completely isolated from memory\n* Accessed by in/out instructions oer\ninb $0x64, %oal ai\noutb “al, $0x64 ie a\n2q > 20F\n\ntef : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "in the system. So, what is the use of such having such a specification is that we obtain",
+    "start": 698.28,
+    "end": 707.16,
+    "ocr_text": "Address Types : (lO Ports) _\n\nVO address range\n\n00-1F 8237 A\n\n+ Range: 0 to 216-1 —\n\n60 6F\n\n« Used to access devices oo.\n\n* Uses a different bus compared °* A\n\ner, 7418612\n\nto RAM memory access 2\n\n— Completely isolated from memory x\n\n* Accessed by in/out instructions» : oA Save\n\ninb $0x64, Y%al aR\noutb Yoal, $0x64 100 - 10F\n\n[Meso - a5\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "compatibility. So, even now when you boot your laptop or your desktop PC which is an Intel system",
+    "start": 707.64,
+    "end": 721.16,
+    "ocr_text": "Address Types : ae) Ports) _\n\nVO addr!\n\n* Range: 0 to 21-1 *\n\n+ Used to access devices om\n\n« Uses a different bus compared ®\nto RAM memory access a\n\n— Completely isolated from memory 2.\n\n* Accessed by in/out instructions =»\n\ninb $0x64, Y%al ae\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS. [Sst"
+  },
+  {
+    "text": "or an AMD system, the BIOS will expect several things like it will expect that there is a keyboard",
+    "start": 721.16,
+    "end": 728.04,
+    "ocr_text": "Address Types : (IO Ports) _\n\nVO address range\n\n00-1F 2237 A\n\n+ Range: 0 to 216-1 sot\n\n60 6F\n\n« Used to access devices 0-9\n\n« Uses a different bus compared °\n\na\n\nto RAM memory access a\n— Completely isolated from memory\n\ner, 74.8612\n\n* Accessed by in/out instructions =~»\n\ninb $0x64, Yal se\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "which is connected to your system and the keyboard is present or rather the keyboard is accessible",
+    "start": 729.24,
+    "end": 735.8,
+    "ocr_text": "Address Types : (lO Ports) _\n\nVO address range\n\n00-1F 2237 A\n\n+ Range: 0 to 216-1 oH\n\n60 6F\n\n+ Used to access devices wo\n« Uses a different bus compared ° :\nto RAM memory access =\n— Completely isolated from memory\n* Accessed by in/out instructions =~»\n\ner, 74.8612\n\ninb $0x64, Yal se\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "from the address range 60 to 6 F. Similarly, it would expect other things like the programmable",
+    "start": 735.8,
+    "end": 744.84,
+    "ocr_text": "Address Types : (lO Ports) _\n\nVO address range\n\n00-1F 2237 A\n\n+ Range: 0 to 216-1 2-H\n\n60 6F\n\n« Used to access devices 0-9\n\n« Uses a different bus compared °\n\na\n\nto RAM memory access 5\n\ner, 74.8612\n\n— Completely isolated from memory 2.\n\n* Accessed by in/out instructions =~»\n\ninb $0x64, Y%al se\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "A programmable inter-op controller to be present from the IO addresses to 0 to 3 F.",
+    "start": 745.64,
+    "end": 751.32,
+    "ocr_text": "Address Types : (IO Ports) _\n\nVO address range\n\n* Range: 0 to 216-1 4\n+ Used to access devices =m on 72\n« Uses a different bus compared 0 es\n\nto RAM memory access a E\n\n— Completely isolated from memory\n* Accessed by in/out instructions = »-»\n\ninb $0x64, Yal a\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "Essentially, what is maintained even in the modern systems is the backward compatibility to",
+    "start": 753.4,
+    "end": 759.88,
+    "ocr_text": "Address Types : (IO Ports) _\n\nVO address range\n\n* Range: 0 to 216-1 4\n+ Used to access devices =m on 72\n« Uses a different bus compared 0 es\n\nto RAM memory access a E\n\n— Completely isolated from memory\n* Accessed by in/out instructions = »-»\n\ninb $0x64, Yal a\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "the old computers that we used. So, the memory addressing as we have specified over here,",
+    "start": 759.96,
+    "end": 767.64,
+    "ocr_text": "Address Types : ae) Ports) _\n\nVO addr!\n\n* Range: 0 to 21-1 “ *\n\n+ Used to access devices om\n\n« Uses a different bus compared 0\nto RAM memory access 2\n\n— Completely isolated from memory 2.\n\n* Accessed by in/out instructions =»\n\ninb $0x64, Y%al ae\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS. [Sst"
+  },
+  {
+    "text": "even though a lot of it is legacy and was used quite a bit in the early 80s and 90s.",
+    "start": 769.16,
+    "end": 777.16,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n\n*« Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\n+ ~----+ <- depends on amount of RAM\n\nExtended Memory\n\n000100000 (1B)\n~ [9x00070000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n<- 0x000A0000 (640KB)\n\n- 0x00000000"
+  },
+  {
+    "text": "Even now since Intel and IBM followed the backward compatibility, a lot of the systems that we use",
+    "start": 778.2,
+    "end": 789.0,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n+ Range : 0 to (RAM size or 232-1)\n\n*« Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nNINININININININININ\n\nunused\n\ndepends on amount of RAM\n\nExtended Memory\n\n<= 000100000 (1B)\n~ 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\n— 0x000A0000 (640KB)\n\n—_0x00000000"
+  },
+  {
+    "text": "for a laptops and desktops still follow this particular hierarchy.",
+    "start": 789.72,
+    "end": 793.88,
+    "ocr_text": "Address Types :\n(Memory Addresses)\n\n* Range : 0 to (RAM size or 232-1)\n\n« Where main memory is mapped\n— Used to store data for code, heap, stack, OS, etc.\n\n* Accessed by load/store instructions\n\nAINININININININININ\n\nUnused\n\n+ ~----+ <- depends on amount of RAM\n\nExtended Memory\n\n0x00100000 (1MB)\n\n 0x000F0000 (960KB) RAM\n\n<- 0x000C0000 (768KB)\n\nexpansion ROMs’\n\n- 0x000A0000 (640KB)\n\n- 0x00000000"
+  },
+  {
+    "text": "Now, one problem which was noticed with this type of IO addressing was the limited amount of",
+    "start": 795.56,
+    "end": 802.6,
+    "ocr_text": "Address Types : ae) Ports) -\n\nVO addre!\n\n* Range: 0 to 276-1 : : =\n* Used to access devices \" c aie\n« Uses a different bus compared °\n\nto RAM memory access =\n\n— Completely isolated from memory\n\nAccessed by in/out instructions = »-»\n\ninb $0x64, Yal se\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS. [ST"
+  },
+  {
+    "text": "the address range that was permitted. So, for instance over here we had at most 64 KB of addresses",
+    "start": 804.44,
+    "end": 812.04,
+    "ocr_text": "Address Types : ae) Ports) -\n\nVO addre!\n\n* Range: 0 to 276-1 : : =\n* Used to access devices \" c aie\n« Uses a different bus compared °\n\nto RAM memory access =\n\n— Completely isolated from memory\n\nAccessed by in/out instructions = »-»\n\ninb $0x64, Yal se\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS. [ST"
+  },
+  {
+    "text": "that could be present. So, this means that the number of devices that could be connected",
+    "start": 812.6,
+    "end": 818.6,
+    "ocr_text": "Address Types : (IO Ports) _\n\nVO address range\n\n00-1F\n\n+ Range: 0 to 21-1, ot\n\n60- 6F\n\n« Used to access devices 0-9\n\n+ Uses a different bus compared °®\n\na\n\nto RAM memory access =\n— Completely isolated from memory\n\n* Accessed by in/out instructions = »-»\n\ninb $0x64, Yal oa\noutb Yoal, $0x64 100 - 10F\n\n200 - 20F\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "to the system through the IO addressing was limited. In order to extend this,",
+    "start": 820.52,
+    "end": 827.08,
+    "ocr_text": "Address Types : (lO\n\nVO address range\n00-1F r\n\nRange : 0 to 2'6-1 soot\n\nLe /70- 7\n\nUsed to access devices wo\nUses a different bus compared °\nto RAM memory access =\n— Completely isolated from memory\n\nAccessed by in/out instructions = »-»\n\ninb $0x64, %oal ae\n\noutb “al, $0x64 ie a\n\nPorts) _\n\nref : http://bochs.sourceforge.net/techspec/PORTS.LST"
+  },
+  {
+    "text": "what was used was known as the memory mapped IO. In this particular memory mapped IO,",
+    "start": 827.88,
+    "end": 835.88,
+    "ocr_text": "Memory Mapped I/O\n\n* Why?\n\nOxFFFFFFFF (4GB)\n\nmemory mapped\n\n— More space devices\n* Devices and RAM share\nININININININININININ\nthe same address space uaneed\nee ee + <= depends on amount of RAM\n\n* Instructions used to\naccess RAM can also be Extended Memory\nused to access devices. | +----------------- 1 <. exvoio0000 (1x0)\n\n— Eg load/store Freie aaslaeay 7 <7 Oxs00FO000 (96oxB)\n\nexpansion ROMS\n\n<- 0x000C0000 (768KB)\n\n<- 0x000A0000 (640KB)\n\npenncennnen nena anes + <- 0x00000000\n\nMemory Map"
+  },
+  {
+    "text": "hardware devices would then connect or would then map into regions in the memory addressing itself.",
+    "start": 836.36,
+    "end": 844.36,
+    "ocr_text": "Memory Mapped I/O\n\nWhy?\n\n— More space\n\nDevices and RAM share\nthe same address space\nInstructions used to\naccess RAM can also be\nused to access devices.\n— Eg load/store\n\nOxFFFFFFFF\n\nemory mapped\ndevices\n\nININININININININININ\n\nUnused\n\n{presets + <- depends on\n\nfeewarecnaaesseeees + <- 0x00100000\n\n$eno--------------- + <- 0x000F0000\n16-bit devices,\nexpansion ROMS\n\n<- 0x000c0000\n<- 0x000A0000\n\npee ncennnen nena nes + <- 0x00000000\n\n(4GB)\n\namount of RAM\n\n(MB)\n\n(960KB)\n\n(768KB)\n(640KB)\n\nMemory Map"
+  },
+  {
+    "text": "So, as we have seen before, the RAM or the random access memory of the system would be addressed",
+    "start": 845.08,
+    "end": 853.88,
+    "ocr_text": "Memory Mapped I/O\n\n* Why?\n\nOxFFFFFFFF (4GB)\n\n— More space cat ices ta\n* Devices and RAM share\nININININININININININ\nthe same address space onused\ne Instructions used to 4------------------, + <= depends on amount of RAM\naccess RAM can also be Extended Memory\nused to access devices. ene ee eee + <= 0x00100000 (1mB)\n| BIOS ROM |\n— Eg load/store | Tebie davices, | ~~ OxO0F900 (960K)\n<- 0x000C0000 (768KB)\n<- 0x000A0000 (640KB)\n\nte + <- 0x00000000\n\nMemory Map"
+  },
+  {
+    "text": "from the location 0 and extent upwards until the end of the RAM. So, typically in the systems of",
+    "start": 853.88,
+    "end": 863.4,
+    "ocr_text": "Memory Mapped I/O\n\n* Why?\n\nOxFFFFFFFF (4GB)\n\n— More space cat ices ta\n* Devices and RAM share\nININININININININININ\nthe same address space onused\ne Instructions used to 4------------------, + <= depends on amount of RAM\naccess RAM can also be Extended Memory\nused to access devices. ene ee eee + <= 0x00100000 (1mB)\n| BIOS ROM |\n— Eg load/store | Tebie davices, | ~~ OxO0F900 (960K)\n<- 0x000C0000 (768KB)\n<- 0x000A0000 (640KB)\n\nte + <- 0x00000000\n\nMemory Map"
+  },
+  {
+    "text": "the early and late 90s, we would have something like 256 MB, 512 MB or at most 1 GB of RAM.",
+    "start": 863.48,
+    "end": 872.84,
+    "ocr_text": "Memory Mapped I/O\n\nWhy?\n\n— More space\n\nDevices and RAM share\nthe same address space\nInstructions used to\naccess RAM can also be\nused to access devices.\n— Eg load/store\n\nOxFFFFFFFF\n\nemory mapped\ndevices\n\nININININININININININ\n\nUnused\n\njp anes + <- depends on\n\nfeewarecnaaesseeees + <- 0x00100000\n\n$eno--------------- + <- 0x000F0000\n16-bit devices,\nexpansion ROMS\n\n<- 0x000c0000\n<- 0x000A0000\n\nheme nn + <- 0x00000000\n\n(4GB)\n\namount of RAM\n\n(1MB)\n\n(960KB)\n\n(768KB)\n(640KB)\n\nMemory Map"
+  },
+  {
+    "text": "So, the space above this was unused. So, what devices would do is they would map a certain region",
+    "start": 874.44,
+    "end": 884.04,
+    "ocr_text": "Memory Mapped I/O\n\n* Why?\n\nOxFFFFFFFF (4GB)\n\n— More space merdatizes ia\n* Devices and RAM share\nININININININININININ\nthe same address space vnused\n¢ Instructions used to fomncnnennnnnn nage lice caancetca emoant hot mt\naccess RAM can also be Extended Memory |\nused to access devices. feeeeecnnennnnnnnne + < 0x00100000 (1mB)\n| BIOS ROM |\n— Eg load/store | \"Tecbie dovices, | ~~ °™000F0000 (260K)\n<= 0x000C0000 (768KB)\n<- 0x000A0000 (640KB)\n\npen nnen nena enna nnn + <- 0x00000000\n\nMemory Map"
+  },
+  {
+    "text": "in this particular part of memory into their devices. What this means is that when the processor",
+    "start": 884.04,
+    "end": 893.08,
+    "ocr_text": "Memory Mapped I/O\n\n* Why?\n\nOxFFFFFFFF (4GB)\n\n— More space merdatiter ae\n* Devices and RAM share\nININININININININININ\nthe same address space ee\n¢ Instructions used to tecen enna nn-------- + <- depends on amount of RAM\naccess RAM can also be Extended Memory\nused to access devices. i prag ago To xd0280000 cam)\n|\n— Eg load/store | Tetbie davices, | ~ °xO0F9000 (960K—)\n<= 0x000C0000 (768KB)\n<- 0x000A0000 (640KB)\n\npen nnen nena enna nnn + <= 0x00000000\n\nMemory Map"
+  },
+  {
+    "text": "generates an address in this upper region of memory that is a high address in this upper region",
+    "start": 893.88,
+    "end": 903.56,
+    "ocr_text": "Memory Mapped I/O\n\n* Why?\n\nOxFFFFFFFF (4GB)\n\n— More space merdatizes ia\n* Devices and RAM share\nININININININININININ\nthe same address space onused\n¢ Instructions used to tecen enna nn-------- + <- depends on amount of RAM\naccess RAM can also be Extended Memory\nused to access devices. feneeecnneennnnnnns 4 < 0x00100000 (mB)\n| BIOS ROM |\n— Eg load/store | Tebie davices, | ~ °*O0F9000 (260K)\n<= 0x000C0000 (768KB)\n<- 0x000A0000 (640KB)\n\nfenncnn nena enna nes + <= 0x00000000\n\nMemory Map"
+  },
+  {
+    "text": "of memory, then that particular address would be directed to the specific device and not to the RAM.",
+    "start": 903.56,
+    "end": 911.0,
+    "ocr_text": "Memory Mapped I/O\n\nWhy?\n\n— More space\n\nDevices and RAM share\nthe same address space\nInstructions used to\naccess RAM can also be\nused to access devices.\n— Eg load/store\n\nOxFFFFFFFF\n\nemory mapped\ndevices\n\nININININININININININ\n\nUnused\n\njpreseesees + <- depends on\n\neewaweesesenserees + <- 0x00100000\n\n$eno--------------- + <- 0x000F0000\n16-bit devices,\nexpansion ROMS\n\n<- 0x000c0000\n<- 0x000A0000\n\nhme + <- 0x00000000\n\n(4GB)\n\namount of RAM\n\n(MB)\n\n(960KB)\n\n(768KB)\n(640KB)\n\nMemory Map"
+  },
+  {
+    "text": "So, we have seen various address ranges that have been allocated to RAM such as the",
+    "start": 912.12,
+    "end": 917.64,
+    "ocr_text": "Memory Mapped I/O\n\n* Why?\n\nOxFFFFFFFF (4GB)\n\nmemory mapped\n\n— More space devices\n* Devices and RAM share\nININININININININININ\nthe same address space uaneed\neee eee + <= depends on amount of RAM\n\n¢ Instructions used to\naccess RAM can also be Extended Memory\nused to access devices. | +----------------- | Seaieesetasesetenm\n\n— Eg load/store FSET geriaeeT 7 <7 Oxo00Fe000 (960K)\n\nexpansion ROMS\n\n<- 0x000C0000 (768KB)\n\n<- 0x000A0000 (640KB)\n\nfen ncennnen nn nn anes + <- 0x00000000\n\nMemory Map"
+  },
+  {
+    "text": "low memory region. The location where the BIOS should be present, the location where various",
+    "start": 917.64,
+    "end": 925.16,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs. P\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "devices like the keyboard, hard disk and so on should be present. Now, who decides these particular",
+    "start": 925.16,
+    "end": 931.16,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "address ranges? Essentially, these address ranges have been decided by standards and a lot is",
+    "start": 931.16,
+    "end": 939.56,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "impacted by legacy computers of the 80s and 90s. So, one very famous standard was the IBM PC",
+    "start": 939.56,
+    "end": 947.32,
+    "ocr_text": "Who decides the address\nranges?\nStandards /*Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "standard. Essentially, this particular standard was fixed for all PCs that is all personal computers",
+    "start": 947.32,
+    "end": 955.64,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "right up from the 80s would be compatible with IBM PCs standard. Again, even many of the systems",
+    "start": 955.64,
+    "end": 965.88,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "that we use today that is our Intel and AMD laptops as well as test tops are backward compatible",
+    "start": 965.88,
+    "end": 973.48,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "to this IBM PC standard. So, the reason for this IBM PC standard or for that matter why a standard",
+    "start": 973.64,
+    "end": 982.2,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "was required was to ensure that the BIOS and operating system is portable across platforms.",
+    "start": 982.2,
+    "end": 988.28,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "So, for instance, if I would write up an operating system today,",
+    "start": 989.4,
+    "end": 993.8,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms :\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "my operating system would know exactly where the keyboard should be present irrespective of what",
+    "start": 994.36,
+    "end": 1004.04,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms :\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "IBM PC compatible system it is going to be loaded on. So, I could make a lot of assumptions about",
+    "start": 1005.0,
+    "end": 1013.16,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "where various devices are present in the system. So, having such a standard would essentially",
+    "start": 1013.16,
+    "end": 1020.84,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "ensure that the software that we write especially the software that interacts with the hardware",
+    "start": 1020.84,
+    "end": 1027.08,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "such as the BIOS and the operating system will be portable across several different platforms.",
+    "start": 1027.72,
+    "end": 1034.12,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and os to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "The other way in which addresses are decided upon is by something known as plug and play.",
+    "start": 1035.64,
+    "end": 1043.24,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS arid OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "So, plug and play devices do not have any fixed address location as we have seen for things like",
+    "start": 1043.48,
+    "end": 1051.64,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS arid OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "the keyboard or VGA memory and so on. But rather when the system boots and when the BIOS begins to",
+    "start": 1051.64,
+    "end": 1061.08,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "execute the BIOS would then detect the presence of some particular hardware in the system.",
+    "start": 1061.08,
+    "end": 1070.36,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "For instance, the BIOS would detect that the system has a network card present.",
+    "start": 1071.0,
+    "end": 1077.32,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "It would then ask the network card as to how much memory it requires and what type of memory it",
+    "start": 1078.04,
+    "end": 1086.2,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "requires whether it is a IO memory or a memory address. So, based on this the BIOS would then",
+    "start": 1086.2,
+    "end": 1095.08,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "allocate a portion of memory for that particular network card. So, the allocation would be fixed",
+    "start": 1095.08,
+    "end": 1102.68,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "for each boot of the PC. But on the other hand the location in the address map would vary across",
+    "start": 1104.12,
+    "end": 1115.32,
+    "ocr_text": "Who decides the address\nranges?\nStandards / Legacy\n— Such as the IBM PC standard\n\n— Fixed for all PCs.\n\n— Ensures BIOS and OS to be portable across\nplatforms\n\nPlug and Play devices\n— Address range set by BIOS or OS\n\n— Adevice address range may vary every time the\nsystem is restarted"
+  },
+  {
+    "text": "each boot. So, this particular slide here shows how a typical PC is organized.",
+    "start": 1115.32,
+    "end": 1123.64,
+    "ocr_text": "PC Organization\n\nyeaa yaaa al peal\n\njj jf f\n\n> front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ E £ Er\nPCI-PCI Ethernet USB\nBridge Wes Controller Controller\n\nI\nPC! Bus 4 > = —\n\nUSB USB\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nede speaker)"
+  },
+  {
+    "text": "So, we may have multiple processors present in the system. So, this could be either one processor,",
+    "start": 1124.44,
+    "end": 1132.28,
+    "ocr_text": "PC Organization\n\nyeaa yaaa al peal\n\njj jf f\n\n> front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ E £ Er\nPCI-PCI Ethernet USB\nBridge Wes Controller Controller\n\nI\nPC! Bus 4 > = —\n\nUSB USB\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nede speaker)"
+  },
+  {
+    "text": "two processor, three or four and so on. So, it could also be possible that each of these",
+    "start": 1132.28,
+    "end": 1138.12,
+    "ocr_text": "PC Organization\n\nProcessor\n|\n\n1\n\nProcessor\n\n2\n\n3\n\nProcessor\n\nProcessor\n\n4\n\n1\n\nJ\n\nJ\n\nJ\n\nDRAM\n\nSouth Bridge}\n\nMemory bus\n\nDwi US Ss\n\n!\n\n_ front side bus\n\nPC! Bus 1\n\n€\n\nLegacy\nDevices PS2\n(keyboard, mouse.\n\neid speaker)\n\nNorth Bridge}\nr PCI Bus 0 >\n£ £ £ Er\nPCI-PCI Ethernet USB\nBridge WEA Controller Controller\n» USB\nfi ue USB USB || device\nMore device | | pridge | |_device\nPCI 0000\ndevices"
+  },
+  {
+    "text": "processors have multiple cores inside them and each core has two or four threads.",
+    "start": 1138.12,
+    "end": 1145.24,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1, 2 3 4\n\njj jf f\n\n_ front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ £ Et E\nPCI-PCI Ethernet USB\nBridge Wen Controller Controller\n\n{\nPC! Bus 4 », = —\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nside speaker)"
+  },
+  {
+    "text": "Now, all these processors are connected to each other through what is known as the front-side",
+    "start": 1145.96,
+    "end": 1150.92,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njf jf fj f\n\n— front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ £ £ Er\nPCI-PCI Ethernet USB\nBridge Wen Controller Controller\n\nI\nPC! Bus 4 », = —\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nside speaker)"
+  },
+  {
+    "text": "bus. So, there is always a sharing between all processors with respect to the front-side bus.",
+    "start": 1150.92,
+    "end": 1157.72,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njf jf fj f\n\n— front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ £ £ Er\nPCI-PCI Ethernet USB\nBridge Wen Controller Controller\n\nI\nPC! Bus 4 », = —\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nside speaker)"
+  },
+  {
+    "text": "Now, an important device which connects to the front-side bus is known as the north bridge",
+    "start": 1159.16,
+    "end": 1165.4,
+    "ocr_text": "PC Organization\n\nProcessor\n\n1\n\nProcessor\n>|\n\n2\n\n3\n\nProcessor\n\nProcessor\n\n4\n\nJ\n\nJ\n\nJ\n\nJ\n\nDRAM\n\nSouth Bridge}\n\nMemory bus\n\nDwi US <\n\n!\n\n— front side bus\n\nPCI Bus 1\n\n€\n\nLegacy\nDevices PS2\n{kgyboard, mouse,\nPC, speaker)\n\nNorth Bridge;\nrT PCI Bus 0 >\n£ £ E Er\nPCI-PCI Ethernet USB\nBridge Wen Controller Controller\n> USB\nfi Se USB USB || device\nMore device | | pridge | |_device\nPcl 0000\ndevices"
+  },
+  {
+    "text": "or the chip set. So, the north bridge would interface with the memory through what is known as",
+    "start": 1165.4,
+    "end": 1173.88,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\nfj jf jf f\n\n— front side bus\n\nBRAM North Bridge|\nPCI Bus 0 >\n£ £ £ rE\nPCI-PCI Ethernet USB\nBridge Wen Controller Controller\n\nI\nPC! Bus 4 » = —\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\neid speaker)"
+  },
+  {
+    "text": "the memory bus and it also interfaces with the PCI bus. So, on the PCI bus you could have",
+    "start": 1173.96,
+    "end": 1182.92,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\nfj jf jf f\n\n— front side bus\n\nBRAM North Bridge|\nPCI Bus 0 >\n£ £ £ rE\nPCI-PCI Ethernet USB\nBridge Wen Controller Controller\n\nI\nPC! Bus 4 » = —\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\neid speaker)"
+  },
+  {
+    "text": "several devices like the Ethernet controller, USB controller and the USB controller could have many",
+    "start": 1182.92,
+    "end": 1189.48,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njj fj df\n\n_ front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\nBi £ E Er\nPCI-PCI Ethernet USB\nBridge Wen Controller Controller\n\n{\nPCI Bus 1 » = =\n\nUSB USB\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\node speaker)"
+  },
+  {
+    "text": "USB devices which you see at the front or the back of your desktop. Now, as you would notice",
+    "start": 1189.48,
+    "end": 1198.76,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njj fj df\n\n_ front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\nE £ £ Er\nPCI-PCI Ethernet USB\nBridge WER Controller Controller\n\n{\nPC! Bus 1 » = =\n\nUSB USB\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nede speaker)"
+  },
+  {
+    "text": "over here the USB devices are connected in a tree-like structure. Now, the PCI bus also has",
+    "start": 1198.92,
+    "end": 1207.88,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njj jf 4f\n\n> front side bus\n\nNorth Bridge}\n\nPCI Bus 0 >\n£ £ £ Er\nPCI-PCI Ethernet USB\nBridge Wen Controller Controller\n\nCLBus Li\nit . > USB\nUSB device\n\nMore bridge device\nPCI 0000\ndevices\n\nUSB\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\noie speaker)"
+  },
+  {
+    "text": "a hierarchy type of structure and each bus for instance in this case PCI bus 0 which is a",
+    "start": 1207.88,
+    "end": 1215.24,
+    "ocr_text": "PC Organization\n\npi psa pd Rad\n\nfj jf fj if\n\n_ front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ £ Er Er\nPCI-PCI Ethernet USB\nBridge WEA Controller Controller\n\nI\nPC! Bus 1 » = —\n\nUSB USB\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nede speaker)"
+  },
+  {
+    "text": "closest to the north bridge and you have in this way PCI bus 1 which is connected to the north",
+    "start": 1215.24,
+    "end": 1223.88,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njf jf jf 4f\n\n— front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ £ E Er\nPCI-PCI Ethernet USB\nBridge WEA Controller Controller\n\nI\nPC! Bus 4 » = —\n\nfi davice USB USB device\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nsie speaker)"
+  },
+  {
+    "text": "bridge through the PCI bus 0. So, the interface between bus 0 and bus 1 is through a PCI to PCI",
+    "start": 1224.44,
+    "end": 1232.84,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njf jf jf 4f\n\n— front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ £ E Er\nPCI-PCI Ethernet USB\nBridge WEA Controller Controller\n\nI\nPC! Bus 4 » = —\n\nfi davice USB USB device\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nsie speaker)"
+  },
+  {
+    "text": "bridge. In addition to this there is what is known as the south bridge and this is south bridge",
+    "start": 1232.84,
+    "end": 1240.28,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njj fj f\n\n_ front side bus\n\nDRAM North Bridge\nPCI Bus 0\nI it I r\nPCI-PCI Ethernet USB\nBridge MER Controller Controller\n\nI\nPCI Bus 4 » = =\n\nMore bridge. device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nede speaker)"
+  },
+  {
+    "text": "interfaces with the PCI bus or you could have a special protocol or a special connection with",
+    "start": 1240.92,
+    "end": 1247.4,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njj fj f\n\n_ front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ £ tr E\nPCI-PCI Ethernet USB\nBridge WEA Controller Controller\n\n{\nPCI Bus 4 » = =\n\nMore bridge. device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nsie speaker)"
+  },
+  {
+    "text": "the north bridge which is known as the DMI bus. So, in the south bridge various legacy devices",
+    "start": 1247.48,
+    "end": 1254.68,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njj fj f\n\n_ front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ £ £ Er\nPCI-PCI Ethernet USB\nBridge MEA Controller Controller\n\nI\nPCIBus 4 > = ~\n\nMore bridge. device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nsie speaker)"
+  },
+  {
+    "text": "like the PS2 devices keyboard mouse PC speaker and so on are connected. So, let us start with how",
+    "start": 1254.68,
+    "end": 1263.88,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n1 2 3 4\n\njj fj f\n\n_ front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\n£ £ £ Er\nPCI-PCI Ethernet USB\nBridge MEA Controller Controller\n\nI\nPCIBus 4 > = ~\n\nMore bridge. device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\nsie speaker)"
+  },
+  {
+    "text": "X86 or the Intel X86 processors evolved. So, it all started with the 8088 processor or the",
+    "start": 1263.88,
+    "end": 1273.08,
+    "ocr_text": "PC Organization\n\nProcessor Processor Processor Processor\n‘| 2 3 4\n\njf jf jf f\n\n> front side bus\n\nDRAM North Bridge\nPCI Bus 0 >\nE £ £ Er\nPCI-PCI Ethernet USB\nBridge WEA Controller Controller\n\nt\nPCI Bus 14 > = =\n\nUSB USB\n\nMore bridge device\nPCI 0000\ndevices\n\nLegacy\nDevices PS2\n(keyboard, mouse,\n\node speaker)"
+  },
+  {
+    "text": "8088 processor as it was generally known as. So, this was a 16 bit microprocessor which had a 20",
+    "start": 1273.08,
+    "end": 1281.56,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n+ Can address 1MB of memory “ a | ox\n— Registers are 16 bit 7 a\nGeneral Purpose Registers BP\nAX, BX, CD, DX, si\nPointer Registers DI\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "bit external address bus and therefore, could address up to 1 MB of memory. So, how did we get",
+    "start": 1281.56,
+    "end": 1289.48,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_}| AX\n* Can address 1MB of memory “ a | a\n— Registers are 16 bit oo)\nGeneral Purpose Registers BP\nAX, BX, CD, Dx, si\nPointer Registers DI\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "this 1 MB is essentially 2 part 20. So, that 2 part 20 is 1 MB. So, the registers within the 8088",
+    "start": 1289.48,
+    "end": 1299.4,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n* Can address 1MB of memory = | 2 | or\n— Registers are 16 bit moo)\nGeneral Purpose Registers BP\nAX, BX, CD, Dx, si\nPointer Registers Dl\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "were 16 bit and it could be divided into various types such as the general purpose registers",
+    "start": 1299.4,
+    "end": 1305.8,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n* Can address 1MB of memory = | 2 | or\n— Registers are 16 bit moon)\nGeneral Purpose Registers BP\nAX, BX, CD, DX, si\nPointer Registers Dl\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "that is the AX, BX, CX and DX. We had pointer registers which were used to point to strings which",
+    "start": 1305.8,
+    "end": 1315.72,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n* Can address 1MB of memory = | 2 | or\n— Registers are 16 bit moo)\nGeneral Purpose Registers BP\nAX, BX, CD, DX, si\nPojnter Registers Dl\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "are stored in memory. So, these were the base pointer stack index destination index and the",
+    "start": 1315.72,
+    "end": 1322.44,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n+ Can address 1MB of memory “ a | a\n— Registers are 16 bit oo)\nGeneral Purpose Registers BP\nAX, BX, CD, DX, si\nPointer Registers DI\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "stack pointer. So, as we know that the base pointer is used to point to a frame present in the",
+    "start": 1322.44,
+    "end": 1330.2,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n+ Can address 1MB of memory “ a | a\n— Registers are 16 bit oo)\nGeneral Purpose Registers BP\nAX, BX, CD, DX, si\nPointer Registers DI\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "stack while the stack pointer is used to point to the bottom of the stack. Then we have the",
+    "start": 1330.2,
+    "end": 1335.4,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n+ Can address 1MB of memory “ a | a\n— Registers are 16 bit oo)\nGeneral Purpose Registers BP\nAX, BX, CD, DX, si\nPointer Registers DI\nBP, SI, DI, SP SP\nIfistruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "instruction pointer which points to the instruction that is being executed and you have several",
+    "start": 1335.4,
+    "end": 1339.8,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n* Can address 1MB of memory = | 2 | or\n— Registers are 16 bit moo)\nGeneral Purpose Registers BP\nAX, BX, CD, Dx, si\nPointer Registers Dl\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS,ISS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "segment registers such as the code segment, stack segment, DS and ES segment registers. Now,",
+    "start": 1339.8,
+    "end": 1346.28,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n* Can address 1MB of memory = | 2 | or\n— Registers are 16 bit moo)\nGeneral Purpose Registers BP\nAX, BX, CD, Dx, si\nPointer Registers Dl\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS,ISS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "in order to load or store an instruction or data in memory what we would what the 8088 processor",
+    "start": 1346.36,
+    "end": 1357.64,
+    "ocr_text": "The x86 Evolution (8088)\n\n* 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n+ Can address 1MB of memory = & | on\n— Registers are 16 bit 7 ae\nGeneral Purpose Registers BP\nAX, BX, CD, DX, sl\nPointer Registers DI\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "would do was it would take the segment base that is one of the segment registers which forms the",
+    "start": 1357.64,
+    "end": 1362.6,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n* Can address 1MB of memory = | 2 | or\n— Registers are 16 bit moo)\nGeneral Purpose Registers BP\nAX, BX, CD, Dx, si\nPointer Registers Dl\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_bare << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "base. It would left shifted by 4 and add an offset. For instance, in order to fetch one instruction",
+    "start": 1362.6,
+    "end": 1370.52,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n* Can address 1MB of memory = | 2 | or\n— Registers are 16 bit moo)\nGeneral Purpose Registers BP\nAX, BX, CD, Dx, si\nPointer Registers Dl\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_bare << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "from the memory into the processor the CS register would be used. So, CS register would be the",
+    "start": 1371.16,
+    "end": 1381.72,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n* Can address 1MB of memory = | 2 | or\n— Registers are 16 bit moo)\nGeneral Purpose Registers BP\nAX, BX, CD, Dx, si\nPointer Registers Dl\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4}\"+ offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "base for the code segment. It would be left shifted by 4 and the IP or the instruction pointer",
+    "start": 1381.72,
+    "end": 1391.8,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n+ Can address 1MB of memory “ a | a\n— Registers are 16 bit oo)\nGeneral Purpose Registers BP\nAX, BX, CD, DX, si\nPointer Registers DI\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "would be added to that. In this way even though there are the registers use a 16 bit. So, each of",
+    "start": 1391.8,
+    "end": 1399.8,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n+ Can address 1MB of memory “ a | a\n— Registers are 16 bit oo)\nGeneral Purpose Registers BP\nAX, BX, CD, DX, si\nPointer Registers DI\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IR mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "this registers CS and IP are 16 bit still by shifting it by 4 bits and adding the IP. It was",
+    "start": 1399.8,
+    "end": 1409.48,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n+ Can address 1MB of memory “ a | a\n— Registers are 16 bit oo)\nGeneral Purpose Registers BP\nAX, BX, CD, DX, si\nPointer Registers Dl\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "possible to address 2 part 20 memory locations. One big step in the Intel systems came when the",
+    "start": 1409.48,
+    "end": 1422.28,
+    "ocr_text": "The x86 Evolution (8088)\n\n« 8088 General Purpose Registers\n— 16 bit microprocessor 1587 0 16-bit\n— 20 bit external address bus AH AL_} AX\n* Can address 1MB of memory = | 2 | or\n— Registers are 16 bit moo)\nGeneral Purpose Registers BP\nAX, BX, CD, Dx, si\nPointer Registers Dl\nBP, SI, DI, SP SP\nInstruction Pointer : \\P\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8 bit or 16 bit registers\n— Accessing memory Eg.\n(segment_base << 4) + offset mov $0x1, %ah ; 8 bit move\n\neg: (CS << 4) + IP mov $0x1, %ax ; 16 bit move"
+  },
+  {
+    "text": "386 was invented in 1995. So, these are 32 bit microprocessors. So, this particular processor had a 32 bit",
+    "start": 1423.0,
+    "end": 1433.4,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bit external address bus AH | AL | AX €EAX\n+ Can address 4GB of memory BH | BL | BX EBX\n— Registers are 32 bit CH | G@ | CX  €Cx\nGeneral Purpose Registers i DH OL Ox €0X\nEAX, EBX, ECD, EDX, 6p Lal\nPointer Registers S =\nEBP, ESI, EDI, ESP SP | Esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features eg.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "external address plus. So, therefore, it could address 2 part 32 memory addresses. So, this was",
+    "start": 1433.4,
+    "end": 1440.6,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bif.external address bus AH | AL | AX €AX\n+ Can address 4GB of memory BH | BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL Ox = €0X\nEAX, EBX, ECD, EDX, Ls | a\nPointer Registers S om\nEBP, ESI, EDI, ESP SP | Esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features e.g.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "2 part 32 is 4 gigabytes of memory. So, what this means is that a system could have up to",
+    "start": 1441.4,
+    "end": 1449.8,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bit external address bus AH | AL | AX €AX\n+ Can address 4GB of memory BH | BL | 8X EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL OX EDX\nEAX, EBX, ECD, EDX, = | pl\nPointer Registers 4 1 om\nEBP, ESI, EDI, ESP SP esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features e.g.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "4 gigabytes of RAM present in it. Now, the same amount of registers which were present in 8088",
+    "start": 1450.12,
+    "end": 1460.12,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bit external address bus AH | AL | AX €AX\n+ Can address 4GB of memory BH | BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL OX EDX\nEAX, EBX, ECD, EDX, = =\nPointer Registers 4S om\nEBP, ESI, EDI, ESP SP | Esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features e.g.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "are also present here except that now it has it is extended from 16 bit to 32 bit and because",
+    "start": 1460.52,
+    "end": 1469.24,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\noon General-Purpose Registers\n~ 32 bit microprocessor 31 1615 87 O 16-bit 32-bit\n— 32 bit external address bus AH | AL | AX €AX\n+ Can address 4GB of memory BH | BL | BX EBX\n— Registers are 32 bit cH | x eX\nGerleral Purpose Registers DH OL OX EDX\nEAX, EBX, ECD, EDX, = -\nPointer Registers 4 om\nEBP, ESI, EDI, ESP SP | esp\nInstruction Pointer : \\P °\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features e.g.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "of this extension the registers are called EaxEbX ECX edX EbP ESI edi and so on.",
+    "start": 1469.32,
+    "end": 1479.32,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bit external address bus AH | AL | AX €EAX\n+ Can address 4GB of memory BH | BL | BX EBX\n— Registers are 32 bit CH | G@& | CX ECK\nGeneral Purpose Registers DH OL OX EDX\nEAX, EBX, ECD, EDX, Les | =\nPointer Registers = a\nEBP, ESI, EDI, ESP SP Esp\nInstruction Pointer : \\P :\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features eg.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "There were also a lot more features like the protected operating mode as well as virtual and segmentation",
+    "start": 1480.12,
+    "end": 1486.36,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bit external address bus AH | AL | AX €AX\n+ Can address 4GB of memory BH | BL | BX EBX\n— Registers are 32 bit on x eX\nGeneral Purpose Registers DH OL Ox EDX\nEAX, EBX, ECD, EDX, Le | ‘asl\nPointer Registers = om\nEBP, ESI, EDI, ESP SP Esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features e.g.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "schemes which were present. So, one thing you would notice is that while all the registers were",
+    "start": 1486.36,
+    "end": 1494.2,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bit external address bus AH] AL | OAK OEAX\n+ Can address 4GB of memory BH BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL Ox EDX\nEAX, EBX, ECD, EDX, Ls | el\nPointer Registers 4 a\nEBP, ESI, EDI, ESP SP | esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features e.g.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\nse utUelaCcrosses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "extended to 32 the segment registers continued to be 16 bit. Now, Intel ensured that even though",
+    "start": 1494.2,
+    "end": 1501.32,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bit external address bus AH] AL | OAK OEAX\n+ Can address 4GB of memory BH BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL Ox EDX\nEAX, EBX, ECD, EDX, Ls | el\nPointer Registers 4 a\nEBP, ESI, EDI, ESP SP | esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features e.g.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\nse utUelaCcrosses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "we switched from a 16 bit processor to a 32 bit processor still backward compatibility with",
+    "start": 1501.32,
+    "end": 1508.44,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bit external address bus AH | AL | AX €AX\n+ Can address 4GB of memory BH | BL | BX EBX\n— Reyisters are 32 bit cH | ok x eX\nGeneral Purpose Registers DH OL OX EDX\nEAX, EBX, ECD, EDX, = =\nPointer Registers 4 om\nEBP, ESI, EDI, ESP SP | esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features e.g.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "the old 8088 systems was maintained. This meant that any software which was written in an 8088",
+    "start": 1509.0,
+    "end": 1518.6,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\nS5 hit mi; General-Purpose Registers\n~ $2 bit microprocessor 31 1615 87 O 16-bit 32-bit\n— 32 bit external address bus AH | AL | OAK OEAX\n+ Can address 4GB of memory BH BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL Ox EDX\nEAX, EBX, ECD, EDX, Ls | el\nPointer Registers 4 a\nEBP, ESI, EDI, ESP SP | esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features eg.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\nee uitell aCcrosses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "or 8086 processor would straight away run in an 80386 without much of a problem to ensure this",
+    "start": 1518.6,
+    "end": 1527.8,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 O 16-bit 32-bit\n— 32 bit external address bus AH] AL | OAK OEAX\n+ Can address 4GB of memory BH BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL Ox = -€0X\nEAX, EBX, ECD, EDX, Ls | =\nPointer Registers S a\nEBP, ESI, EDI, ESP SP | Esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features eg.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\nee uitell aCcrosses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "even though the registers were extended from 16 bit to 32 bit still programs could access",
+    "start": 1529.48,
+    "end": 1536.84,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 O 16-bit 32-bit\n— 32 bit external address bus AH] AL | OAK OEAX\n+ Can address 4GB of memory BH BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL OX EDX\nEAX, EBX, ECD, EDX, be | el\nPointés Registers si a\nEBP, ESI, EDI, ESP SP | Esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features eg.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\nse uitUell accrosses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "the registers as if there were 16 bits only available. For example, the AX BX CX dX would",
+    "start": 1537.16,
+    "end": 1549.32,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615| 87 O 16-bit 32-bit\n— 32 bit external address bus AH | AL | AX EAX\n+ Can address 4GB of memory BH | BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL OX —-€0X\nEAX, EBX, ECD, EDX, Ls | al\nPointer Registers S om\nEBP, ESI, EDI, ESP SP | Esp\nInstruction Pointer : \\P °\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features e.g.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "access the lower half of the extended registers that is registers from 0 or register with 0 to the",
+    "start": 1549.32,
+    "end": 1557.64,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bit external address bus AH | AL | AX OEAX\n+ Can address 4GB of memory BH) BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL OX EDX\nEAX, EBX, ECD, EDX, = | -\nPointer Registers S i\nEBP, ESI, EDI, ESP SP Esp\nInstruction Pointer : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features eg.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "bit 15. So, these particular features in the 80386 processor was taken forward to the 486",
+    "start": 1557.64,
+    "end": 1568.04,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\n— 32 bit microprocessor General-Purpose Registers\n31 1615 87 0 16-bit 32-bit\n— 32 bit external address bus [hAH | AL | AX EAX\n+ Can address 4GB of memory BH | BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers i DH OL | OX  €0x\nEAX, EBX, ECD, EDX, ep | el\nPointer Registers = om\nEBP, ESI, EDI, ESP SP esp\nInstruction Pointer : \\P °\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features eg.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\n\n+ Virtual addresses mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "Pentium and so on. Now, more recently in 2003 there was the next big step in the X86",
+    "start": 1568.04,
+    "end": 1578.28,
+    "ocr_text": "The x86 Evolution (80386)\n\n* 80386 (1995) General Purpose Registers\necw General-Purpose Registers\n~ 32 bit microprocessor 31 1615 87 O 16-bit 32-bit\n— 32 bit external address bus AH | AL | AX EAX\n+ Can address 4GB of memory BH | BL | BX EBX\n— Registers are 32 bit cH | x eX\nGeneral Purpose Registers DH OL Ox EDX\nEAX, EBX, ECD, EDX, La | basil\nPointer Registers 4 oy\nEBP, ESI, ED, ESP SP Esp\nInstruction Pointér : \\P *\nSegment Registers GPRs can be accessed as\nCS, SS, DS, ES 8, 16, 32 bit registers\n— Lot more features e.g.\n+ Protected operating mode mov $0x1, %ah ; 8 bit move\nONL enter mov $0x1, %ax ; 16 bit move\n\nmov $0x1, %eax ; 32 bit move"
+  },
+  {
+    "text": "so this was when the AMD K8 was introduced. So, this K8 moved from a 32 bit processor to a 64 bit",
+    "start": 1579.24,
+    "end": 1590.6,
+    "ocr_text": "The x86 Evolution (k8)\n\n- AMD k8 (2003)\n\n— RAX instead of EAX\n\n— X86-64, x64, amdé64, intel64:: all same thing\nBackward compatibility\n\n— All systems backward compatible with 8088"
+  },
+  {
+    "text": "processor. As a result the registers which were known as the extended registers and were of 32 bit",
+    "start": 1590.6,
+    "end": 1598.92,
+    "ocr_text": "The x86 Evolution (k8)\n\n- AMD k8 (2003)\n\n— RAX instead of EAX\n\n— X86-64, x64, amdé64, intel64: all same thing\nBackward compatibility\n\n— All systems backward compatible with 8088"
+  },
+  {
+    "text": "were now extended further to 64 bits. So, the AX register which was previously",
+    "start": 1598.92,
+    "end": 1607.08,
+    "ocr_text": "The x86 Evolution (k8)\n\n- AMD k8 (2003)\n\n— RAX instead of EAX\n\n— X86-64, x64, amdé64, intel64: all same thing\nBackward compatibility\n\n— All systems backward compatible with 8088"
+  },
+  {
+    "text": "no called in the 32 bit platforms like the 80386 was now called the R AX register which essentially",
+    "start": 1607.08,
+    "end": 1618.68,
+    "ocr_text": "The x86 Evolution (k8)\n\n- AMD k8 (2003)\n\n— RAX instead of EAX\n\n— X86-64, x64, amdé64, intel64: all same thing\nBackward compatibility\n\n— All systems backward compatible with 8088"
+  },
+  {
+    "text": "was for 64 bit. So, in this way other registers were also extended to 64 bits.",
+    "start": 1618.68,
+    "end": 1626.84,
+    "ocr_text": "The x86 Evolution (k8)\n\n- AMD k8 (2003)\n\n— RAX instead of EAX\n\n— X86-64, x64, amdé64, intel64: all same thing\nBackward compatibility\n\n— All systems backward compatible with 8088"
+  },
+  {
+    "text": "So, in spite of extending from 60 from 32 to 64 the companies Intel as well as AMD and short",
+    "start": 1627.0,
+    "end": 1639.64,
+    "ocr_text": "The x86 Evolution (k8)\n\n- AMD k8 (2003)\n\n— RAX instead of EAX\n\n— X86-64, x64, amdé64, intel64: all same thing\nBackward compatibility\n\n— All systems backward compatible with 8088"
+  },
+  {
+    "text": "backward compatibility that is a program written in 8088 would still under certain circumstances",
+    "start": 1639.64,
+    "end": 1648.84,
+    "ocr_text": "The x86 Evolution (k8)\n\n- AMD k8 (2003)\n\n— RAX instead of EAX\n\n— X86-64, x64, amdé64, intel64: all same thing\n\nBackward compatibility\n\n— All systems backward compatible with 8088"
+  },
+  {
+    "text": "will be able to run in the 64 bit platforms as well. Thank you.",
+    "start": 1648.84,
+    "end": 1664.04,
+    "ocr_text": "The x86 Evolution (k8)\n\n- AMD k8 (2003)\n\n— RAX instead of EAX\n\n— X86-64, x64, amdé64, intel64: all same thing\nBackward compatibility\n\n— All systems backward compatible with 8988"
+  }
+]

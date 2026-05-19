@@ -1,0 +1,1136 @@
+[
+  {
+    "text": "Hello, in this particular video we will look at hardware solutions to solve the critical",
+    "start": 0.0,
+    "end": 21.04,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n\\"
+  },
+  {
+    "text": "section problem. So, in the previous video we had looked at software solutions to solve",
+    "start": 21.04,
+    "end": 26.44,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n\\"
+  },
+  {
+    "text": "the critical section problem. However, in practice these solutions are not very efficient.",
+    "start": 26.44,
+    "end": 34.36,
+    "ocr_text": "i) we"
+  },
+  {
+    "text": "So, in practice both in the operating system as well as in applications hardware techniques",
+    "start": 34.36,
+    "end": 42.6,
+    "ocr_text": "i) we"
+  },
+  {
+    "text": "are used to efficiently solve the critical section problem. So, we will start this video",
+    "start": 42.6,
+    "end": 49.04,
+    "ocr_text": "i) we"
+  },
+  {
+    "text": "with a small motivating example. So, let us start with this particular example. Let us",
+    "start": 49.04,
+    "end": 55.12,
+    "ocr_text": "i) we"
+  },
+  {
+    "text": "say we have the two processes process 1 and process 2 and both are having a similar",
+    "start": 55.12,
+    "end": 60.76,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock"
+  },
+  {
+    "text": "critical section that accesses the same shared data. And also we let us say that we have",
+    "start": 60.76,
+    "end": 66.4,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock"
+  },
+  {
+    "text": "this shared variable called log. So, this variable is shared between process 1 and process",
+    "start": 66.4,
+    "end": 74.28,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock"
+  },
+  {
+    "text": "2. Now, what each of these processes 2 is two things. First in order to log the critical",
+    "start": 74.28,
+    "end": 83.88,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock"
+  },
+  {
+    "text": "section the process would first execute this while loop until log becomes 0. When log",
+    "start": 83.88,
+    "end": 93.48,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock"
+  },
+  {
+    "text": "becomes 0 then the process would enter here and set log to 1 and then execute the critical",
+    "start": 93.48,
+    "end": 102.48,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock"
+  },
+  {
+    "text": "section. At the end of the critical section the process would set log to 0 in order to",
+    "start": 102.48,
+    "end": 108.08,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical Section critical section\nlock = 0; //unlock lock = 0; // unlock"
+  },
+  {
+    "text": "unlock the section. The question that I would post over here is does this particular scheme",
+    "start": 108.08,
+    "end": 115.88,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock =0; / unlock lock = 0; // unlock"
+  },
+  {
+    "text": "achieve mutual exclusion the answer is no. Essentially and then and we have seen such things",
+    "start": 115.88,
+    "end": 125.0,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\n\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n}\nain lock = 0\n“ P1: while(lock != 0);\nP1: lock = 1;\n.... Both processes in critical section"
+  },
+  {
+    "text": "in the previous video as well due to context switching between the two processes we would",
+    "start": 125.0,
+    "end": 131.36,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\n\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n}\nain lock = 0\n“ P1: while(lock != 0);\nP1: lock = 1;\n.... Both processes in critical section"
+  },
+  {
+    "text": "reach a state sometimes when both processes execute in the critical section thus we will",
+    "start": 131.4,
+    "end": 138.16,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n.... Both processes in critical section"
+  },
+  {
+    "text": "not be able to achieve mutual exclusion. So, for instance if we actually look at this",
+    "start": 138.16,
+    "end": 143.72,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n.... Both processes in critical section"
+  },
+  {
+    "text": "we see that log has an initial value of 0 then suppose process p 1 executes in the CPU",
+    "start": 143.72,
+    "end": 151.56,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n.... Both processes in critical section"
+  },
+  {
+    "text": "and it executes while log not equal to 0. And since we have log as 0 over here. So, this",
+    "start": 151.56,
+    "end": 159.44,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n.... Both processes in critical section"
+  },
+  {
+    "text": "particular while loop will break however we have a context switch that occurs before the",
+    "start": 159.52,
+    "end": 167.36,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0) __ Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\nT P41: locl\n.... Both processes in critical section"
+  },
+  {
+    "text": "process could set log equal to 1. Now, this context which results in process p 2 executing",
+    "start": 167.36,
+    "end": 175.0,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n.... Both processes in critical section"
+  },
+  {
+    "text": "now pre 2 will also see the value of log equal to 0 and therefore break from this while loop",
+    "start": 175.0,
+    "end": 182.2,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n.... Both processes in critical section"
+  },
+  {
+    "text": "and then set log to 1. Now, again if there is a context which occurring and process p 1",
+    "start": 182.2,
+    "end": 188.0,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n.... Both processes in critical section"
+  },
+  {
+    "text": "will continue to execute from where it stopped it will see the old value of log which is",
+    "start": 188.08,
+    "end": 193.28,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n| P41: lock = 1;\n... Both processes in critical section"
+  },
+  {
+    "text": "0 because the context is returned back to the old value of the process before the context",
+    "start": 193.28,
+    "end": 200.28,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n| P41: lock = 1;\n... Both processes in critical section"
+  },
+  {
+    "text": "which occurred and therefore process p 1 would see the value of log as 0. And therefore,",
+    "start": 202.6,
+    "end": 209.6,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n.... Both processes in critical section"
+  },
+  {
+    "text": "it would set log equal to 1 and enter into the critical section such thus we have reached",
+    "start": 209.6,
+    "end": 216.1,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ while(1){\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n| P41: lock = 4;\n.... Both processes in critical section"
+  },
+  {
+    "text": "state where both processes are in the critical section.",
+    "start": 216.18,
+    "end": 221.66,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ | while(1)¢\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n.... Both processes in critical section"
+  },
+  {
+    "text": "Now, the main reason that this particular scheme failed was that as we have written this",
+    "start": 221.66,
+    "end": 228.66,
+    "ocr_text": "Analyze this\n\n* Does this scheme provide mutual exclusion?\nProcess 1 lock=0 Process 2\nwhile(1){ | while(1)¢\nwhile(lock != 0); while(lock != 0);\nlock= 1; // lock lock = 1; // lock\ncritical section critical section\nlock = 0; //unlock lock = 0; // unlock\n\nNo context switch\n\n.... Both processes in critical section"
+  },
+  {
+    "text": "in software we were unable to make these two statements atomic that is we are unable",
+    "start": 228.66,
+    "end": 235.66,
+    "ocr_text": "If only...\n\n¢ We could make this operation atomic\n\nProcess 1\n\nwhile(lock != 0); np aMlake atomic:\nlock= 1; // lock I\n\nlock = 0; // unlock"
+  },
+  {
+    "text": "to ensure that a context which is do not occur in between these two statements said another",
+    "start": 235.66,
+    "end": 242.14,
+    "ocr_text": "If only...\n\n¢ We could make this operation atomic\n\nProcess 1\n\nwhile(lock != 0); NP aMeke atomic\nlock= 1; // lock 1\n\nlock = 0; //unlock"
+  },
+  {
+    "text": "way we are unable to make these two statements execute as a single unit and thus due to this",
+    "start": 242.14,
+    "end": 249.14,
+    "ocr_text": "If only...\n\n¢ We could make this operation atomic\n\nProcess 1\n\nwhile(lock != 0); NP aMeke atomic\nlock= 1; // lock 1\n\nlock = 0; //unlock"
+  },
+  {
+    "text": "reason we were unable to achieve mutual exclusion. Now, most processes such as the x 86",
+    "start": 250.94,
+    "end": 258.94,
+    "ocr_text": "If only...\n\n* We could make this operation atomic\n\nProcess 1\n\nwhile(lock != 0); Nez Make atomic\nlock= 1; // lock I\n\nlock = 0; //unlock"
+  },
+  {
+    "text": "Intel processors have dedicated instructions that will ensure that these statements are",
+    "start": 259.44,
+    "end": 267.44,
+    "ocr_text": "If only...\n\n¢ Wecould make this operation atomic\n\nProcess 1\n\nwhile(lock != 0); BL 7Make atomic\nlock= 1; // lock 1\n\nlock = 0; //unlock\n\nHardware to the rescue...."
+  },
+  {
+    "text": "executed atomic. So, let us take an example of such an atomic instructions through which",
+    "start": 267.56,
+    "end": 274.56,
+    "ocr_text": "If only...\n\n¢ We could make this operation atomic\n\nProcess 1\n\nwhile(lock != 0); ny adake atomic\nlock= 1; // lock I\n\nlock = 0; //unlock\n\nHardware to the rescue...."
+  },
+  {
+    "text": "we could implement this set of statements in an atomic manner. So, we will take a very",
+    "start": 274.56,
+    "end": 281.56,
+    "ocr_text": "If only...\n\n¢ We could make this operation atomic\n\nProcess 1\n\nwhile(lock != 0); ny adake atomic\nlock= 1; // lock I\n\nlock = 0; //unlock\n\nHardware to the rescue...."
+  },
+  {
+    "text": "general instruction first and then analyze specifically for the Intel x 86 type of",
+    "start": 281.72,
+    "end": 288.72,
+    "ocr_text": "If only...\n\n* We could make this operation atomic\n\nProcess 1\n\nwhile(lock != 0); NP amakeiatomic\nlock= 1; // lock 1\n\nlock = 0; //unlock\n\nHardware to the rescue..."
+  },
+  {
+    "text": "processors. The first instruction that we would see today is the test and set instruction.",
+    "start": 289.28,
+    "end": 296.28,
+    "ocr_text": "If only...\n\n* We could make this operation atomic\n\nProcess 1\n\nwhile(lock != 0); a7aMake atomic\nlock= 1; // lock 1\n\nlock = 0; //unlock\n\nHardware to the rescue..."
+  },
+  {
+    "text": "Essentially, if we were to write this instruction in C it would do something like this it is",
+    "start": 297.44,
+    "end": 303.56,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){ Memory\nint prev = *L; =\n*L=1; Processor =\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "a function which takes a pointer to a memory location. So, in this function first the",
+    "start": 303.56,
+    "end": 310.06,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){ Memory\nint prev = *L; =\n*L=1; Processor =\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "contents of that memory location is stored into this variable called previous then that",
+    "start": 310.06,
+    "end": 317.06,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\nint test_and_set(int *L){ Memory\nint prev = *L; a\n*L=4; Processor <——_\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "memory is set to 1 and the value returned is the previous value. In other words this",
+    "start": 317.52,
+    "end": 324.52,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){ Memory\nint prev = *L; a\n*L=1: Processor ce\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "function would return the previous contents of the memory and set that memory to a value",
+    "start": 324.52,
+    "end": 331.52,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){ Memory\nint prev = *L; a\n*L=1: Processor ce\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "of 1. Now, when we look at this from a hardware perspective and essentially from the processor",
+    "start": 335.0,
+    "end": 342.0,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = SL; — Memory\noie=ide Processor <——_\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "perspective this entire function is an atomic function. Essentially, we would have one instruction",
+    "start": 344.04,
+    "end": 351.04,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\naor\nint test_and_set(int *L){\nint prev = *L; ———v Memory\n*[he 4 Processor <——_\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "that would do all of this thing in one shot that is we would have one instruction that",
+    "start": 351.72,
+    "end": 358.16,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nsor\n/int test_and_set(int *L){ Memory\nint prev = *L; —\nehcoald Processor <——___\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "would perform all of these operations atomically. So, let us look at this particular diagram",
+    "start": 358.16,
+    "end": 365.16,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){ Memory\nint prev = *L; a\n*L=1 Processor\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "to demonstrate how this thing actually works. So, let us say that we have the processor",
+    "start": 365.16,
+    "end": 370.76,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L; Memory\n*L=1; Processor\n\nreturn prev; Wy\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "and the memory location pointed to by L is over here. So, what would happen when this",
+    "start": 370.76,
+    "end": 377.36,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L; Memory\n*L=1; Processor\n\nreturn prev; Wy\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "test and set gets executed is the following. First, the previous contents of the memory",
+    "start": 377.36,
+    "end": 383.72,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L; a Memory\n(hot Processor <——_\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "get loaded into a register present in the processor and then the memory contents is set",
+    "start": 383.72,
+    "end": 390.72,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L; a Memory\n(hot Processor <——_\n\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "to 1. So, let us look at it another time. First, the memory contents pointed to by L is",
+    "start": 391.56,
+    "end": 398.56,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L; ——— Memory\nGiioae Processor <——_ \"|\nreturn prev;\n} 0\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "loaded into a register present in the processor and then the contents of that memory location",
+    "start": 398.56,
+    "end": 404.16,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L; —— Memory\neae Processor <——_ N\n\nreturn prev;\n} )\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "is set to 1. Now, the atomicity of the test and set instruction can be defined or explained",
+    "start": 404.24,
+    "end": 411.24,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L; —— Memory\neae Processor <——_ N\n\nreturn prev;\n} )\n\nequivalent software representation\n(the entire function is executed atomically)"
+  },
+  {
+    "text": "as this statement here which states that if two CPUs execute test and set at exactly the",
+    "start": 412.0,
+    "end": 419.0,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L; Processor\nsos qe Le Memory\nreturn prev; —~\n\n}\n\nequivalent software representation Processor j}\n(the entire function is executed f\natomically)\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "same time the hardware or that is a processor ensures that one test and set from one of these",
+    "start": 419.8,
+    "end": 426.28,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L; Processor\naaa 7 Memory\nreturn prev; ee\n\n}\n\nequivalent software representation Processor\n(the entire function is executed\natomically)\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "processes does both its operations that is reading contents of the memory to a register",
+    "start": 426.28,
+    "end": 433.28,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\n(9 int test_and_set(int *L){\nint prev = *L; Processor\na hor . Memory\nreturn prev; -—\n\n} '\n\nequivalent software representation Processor\n(the entire function is executed -\natomically)\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "and setting that particular memory location. So, both these steps are done before the other",
+    "start": 434.0,
+    "end": 441.0,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\n(9 int test_and_set(int *L){\nint prev = *L; Processor\na hor . Memory\nreturn prev; -—\n\n} '\n\nequivalent software representation Processor\n(the entire function is executed -\natomically)\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "process starts executing. In other words, it is not possible for two processes to execute",
+    "start": 441.68,
+    "end": 448.68,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\naor\nint test_and_set(int *L){\nint prev = *L; Processor\n*L=1; LS Memory\nreturn prev; —\n\n}\n\nequivalent software representation Processor )\n(the entire function is executed f\natomically)\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "the test and set instruction and both processes read the previous value of the memory location.",
+    "start": 448.68,
+    "end": 454.68,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L; Processor\n*L=1; a Memory\nreturn prev; u — 4\n} z\nequivalent software representation Processor }\n(the entire function is executed f\natomically) 0\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "So, essentially this thing is wrong is not correct that is it is not possible for both",
+    "start": 455.12,
+    "end": 462.12,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L; Processor\n*L=1; = Memory\nreturn prev; — o\n\n} /\n\nequivalent software representation Processor y,\n(the entire function is executed /\natomically)\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\n\none starts."
+  },
+  {
+    "text": "processes to simultaneously read the contents of the memory location and set the value of",
+    "start": 463.12,
+    "end": 468.6,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L; Processor\n*L=1; = Memory\nreturn prev; — o\n\n} /\n\nequivalent software representation Processor y,\n(the entire function is executed /\natomically)\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\n\none starts."
+  },
+  {
+    "text": "memory. However, what actually is guaranteed by the processor hardware is that when processes",
+    "start": 468.6,
+    "end": 475.6,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L; Processor\nPOEs ; Memory\nreturn prev; oni — 41\n} y\nequivalent software representation Processor }\n(the entire function is executed\natomically) 0\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "run on each processor and both processes execute the test and set instruction at exactly",
+    "start": 477.28,
+    "end": 483.76,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L; Processor\n*L=1: tS I Memory\nreturn prev; —\n\n}\n\nequivalent software representation Processor\n(the entire function is executed\natomically)\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "the same time the hardware will ensure that one process completes its entire instruction",
+    "start": 483.76,
+    "end": 490.76,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L; Processor\n*L=1: tS I Memory\nreturn prev; —\n\n}\n\nequivalent software representation Processor\n(the entire function is executed\natomically)\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "before the next process could execute its instruction. Therefore, in such a case one",
+    "start": 491.56,
+    "end": 497.76,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L; Processor\nican 7 Memory\nreturn prev; = 4\n} ;\nequivalent software representation Processor }\n(the entire function is executed\natomically)\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "process would read the value of 0 while the other process would read the value of 1.",
+    "start": 497.76,
+    "end": 503.76,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\nint test_and_set(int *L){\nint prev = *L; Processor\n*L=1; i Memory\nreturn prev; 0 “— 4\n} ZA\ni\nequivalent software representation Processor }\n(the entire function is executed A\natomically) 1\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\n\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "Now, we will see how this particular instruction is used to solve the critical section problem.",
+    "start": 503.76,
+    "end": 510.76,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\nint test_and_set(int *L){\nint prev = *L; Processor\n*L=1; i Memory\nreturn prev; 0 “— 4\n} ZA\ni\nequivalent software representation Processor }\n(the entire function is executed A\natomically) 1\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\n\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "So, this particular snippet over here shows how a process could use the test and set atomic",
+    "start": 510.76,
+    "end": 516.76,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\naor\n\nint test_and_set(int *L){\n\nint prev = *L; Processor\n\n*L=1; 7 Memory\n\nreturn prev; a — 1\n\n/\n\nequivalent software representation Processor }\n(the entire function is executed f\natomically) 1\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\n\nhardware ensures that one test_and_set does both its steps before the other\none starts."
+  },
+  {
+    "text": "instruction which hardware supports in order to solve the critical section problem. Essentially,",
+    "start": 517.08,
+    "end": 522.08,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nPo\ngor ; while(1){\nint test_and_set(int *L){ while(test_and_set(&lock) == 1);\nint prev = °L; critical section\nL=1; lock = 0; //unlock\nreturn prev;\n}\n\nequivalent software representation ;\n(the entire function is executed atomically) Usage for locking\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts.\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will\nloop continuously until lock becomes 0"
+  },
+  {
+    "text": "in order to lock the critical section we would have a while loop present over here which",
+    "start": 522.08,
+    "end": 529.08,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nPo\ngor ; while(1){\nint test_and_set(int *L){ while(test_and_set(&lock) == 1);\nint prev = °L; critical section\nL=1; lock = 0; //unlock\nreturn prev;\n}\n\nequivalent software representation ;\n(the entire function is executed atomically) Usage for locking\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts.\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will\nloop continuously until lock becomes 0"
+  },
+  {
+    "text": "would invoke the test and set with a lock that is with the memory location.",
+    "start": 530.44,
+    "end": 537.44,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L;\n*L=1;\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)\n\nwhile(1){\nwhile(test_and_set(&lock) == 1);\ncritical section\n\nlock = 0; //unlock\n\nUsage for locking\n\none starts.\n\nloop continuously until lock becomes 0\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will"
+  },
+  {
+    "text": "Now, this while loop will execute continuously until the value returned by the test and set",
+    "start": 537.44,
+    "end": 544.44,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nvost?\nBer a. g while(1){\nint test_and_set(int *L){ while(test_and_set(&lock) == ‘n);\nint prev Els critical section\nL=1; lock = 0; //unlock\nreturn prev;\n}\n\nequivalent software representation ,\n(the entire function is executed atomically) Usage for locking\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts.\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will\nloop continuously until lock becomes 0"
+  },
+  {
+    "text": "is 0. So, when the value returned by test and set instruction is 0 then critical section",
+    "start": 545.08,
+    "end": 551.76,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nso?\nOe kg while(1){\nint test_and_set(int Ly while(test_and_set(&lock) == 1);\nint prev =*L; critical section\nL=1; lock = 0; /unlock\nreturn prev;\n}\n\nequivalent software representation :\n(the entire function is executed atomically) Usage for locking\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts.\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will\nloop continuously until lock becomes 0"
+  },
+  {
+    "text": "is entered and at the end of this the value of lock is set to 0. When there are multiple",
+    "start": 551.76,
+    "end": 558.76,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nso?\nOe kg while(1){\nint test_and_set(int Ly while(test_and_set(&lock) == 1);\nint prev =*L; critical section\nL=1; lock = 0; /unlock\nreturn prev;\n}\n\nequivalent software representation :\n(the entire function is executed atomically) Usage for locking\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts.\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will\nloop continuously until lock becomes 0"
+  },
+  {
+    "text": "processes having such a code snippet the hardware guarantees that the test and set for exactly",
+    "start": 559.56,
+    "end": 566.56,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L;\n*L=1;\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)\n\nwhile(1){\nwhile(test_and_set(&lock) == 1);\ncritical section\n\nlock = 0; //unlock\n\nUsage for locking\n\none starts.\n\nloop continuously until lock becomes 0\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will"
+  },
+  {
+    "text": "one process would return a value of 0. All other processes will loop continuously in this",
+    "start": 566.56,
+    "end": 573.56,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L;\n*L=1;\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)\n\nwhile(1){\nwhile(test_and_set(&lock) == 1);\ncritical section\n\nlock = 0; //unlock\n\nUsage for locking\n\none starts.\n\nloop continuously until lock becomes 0\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will"
+  },
+  {
+    "text": "particular while loop. So, when this process has completed executing the critical section",
+    "start": 574.12,
+    "end": 579.12,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L;\n*L=1;\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)\n\nwhile(1){\nwhile(test_and_set(&lock) == 1);\ncritical section\n\nlock = 0; //unlock\n\nUsage for locking\n\none starts.\n\nloop continuously until lock becomes 0\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will"
+  },
+  {
+    "text": "the value of lock would be set to 0. So, setting the value of lock would to 0 would result",
+    "start": 579.12,
+    "end": 585.32,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nvos?\nBor a while(1){\nint test_and_set(int *L){ while(test_and_set(&lock) == 1);\nint prev =*L; critical section\nL=1; lock = 0; //unlock\nreturn prev;\n}\n\nequivalent software representation ,\n(the entire function is executed atomically) Usage for locking\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts.\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will\nloop continuously until lock becomes 0"
+  },
+  {
+    "text": "in exactly one other process to obtain a value of 0 from the return of the test and set.",
+    "start": 585.32,
+    "end": 592.32,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nos?\nOo x while(1){\nint test_and_settint Ly while(test_and_set(&lock) == 1);\nint prev =*L; critical Section\nL=1; lock = 0; //unlock\nreturn prev;\n}\n\nequivalent software representation ;\n(the entire function is executed atomically) Usage for locking\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts.\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will\nloop continuously until lock becomes 0"
+  },
+  {
+    "text": "Therefore, exactly one other process would then enter into the critical section. So,",
+    "start": 595.36,
+    "end": 602.36,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nvot?\noe kg while(1){\nint test_and_set(int Ly while(test_and_set(&lock) == 1);\nint prev =*L; critical section\nL=1; lock = 0; //unlock\nreturn prev; b\n}\n\nequivalent software representation :\n(the entire function is executed atomically) Usage for locking\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts.\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will\nloop continuously until lock becomes 0"
+  },
+  {
+    "text": "the first invocation of the test and set will read a 0 and set the lock to 1 and return.",
+    "start": 602.52,
+    "end": 609.52,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nvot?\noe kg while(1){\nint test_and_set(int Ly while(test_and_set(&lock) == 1);\nint prev =*L; critical section\nL=1; lock = 0; //unlock\nreturn prev; b\n}\n\nequivalent software representation :\n(the entire function is executed atomically) Usage for locking\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts.\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will\nloop continuously until lock becomes 0"
+  },
+  {
+    "text": "The second test and set invocation will then see the lock value as 1 and will loop continuously",
+    "start": 609.52,
+    "end": 616.52,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nao\nint test_and_set(int *L){\nint prev = *L;\n*L=1;\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)\n\nwhile(1){\nwhile(test_and_set(&lock) == 1);\ncritical section\n\nlock = 0; //unlock\n\nUsage for locking\n\none starts.\n\nloop continuously until iock becomes 0\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will"
+  },
+  {
+    "text": "until the lock becomes 0. The value of the lock becomes 0 only when the first process",
+    "start": 616.52,
+    "end": 623.52,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L;\n*L=1;\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)\n\nwhile(1){\nwhile(test_and_set(&lock) == 1);\ncritical section\n\nlock = 0; //unlock\n\nUsage for locking\n\none starts.\n\nloop continuously until lock becomes 0\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will"
+  },
+  {
+    "text": "unlocks it that is exclusively sets the value of lock to 0. So, in this way we see that",
+    "start": 624.2,
+    "end": 631.2,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngor\"\nint test_and_set(int *L){\nint prev = *L;\n*L=1;\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)\n\nwhile(1){\nwhile(test_and_set(&lock) == 1);\ncritical section\n\nlock = 0; //unlock\n\nUsage for locking\n\none starts.\n\nloop continuously until lock becomes 0\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will"
+  },
+  {
+    "text": "by a little help from the hardware it is feasible to solve critical section problem very",
+    "start": 631.72,
+    "end": 638.72,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\ngo\nint test_and_set(int *L){\nint prev = *L;\n*L=1;\nreturn prev;\n\n}\n\nequivalent software representation\n(the entire function is executed atomically)\n\nwhile(1){\nwhile(test_and_set(&lock) == 1);\ncritical section\n\nlock = 0; //unlock\n\nUsage for locking\n\none starts.\n\nloop continuously until lock becomes 0\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will"
+  },
+  {
+    "text": "efficiently. So, Intel systems do not support the test and set instruction. On the other",
+    "start": 639.76,
+    "end": 646.76,
+    "ocr_text": "Hardware Support\n(Test & Set Instruction)\n\n¢ Write to a memory location, return its old value\n\nvos?\nBor a while(1){\nint test_and_set(int *L){ while(test_and_set(&lock) == 1);\nint (oe L critical Section\nL=1; lock = 0; //unlock\nreturn prev;\n}\n\nequivalent software representation ,\n(the entire function is executed atomically) Usage for locking\n\nWhy does this work? If two CPUs execute test_and_set at the same time, the\nhardware ensures that one test_and_set does both its steps before the other\none starts.\n\nSo the first invocation of test_and_set will read a 0 and set lock to 1 and\nreturn. The second test_and_set invocation will then see lock as 1, and will\nloop continuously until lock becomes 0"
+  },
+  {
+    "text": "hand it supports an instruction known as X change X c h g. So, an X change instruction",
+    "start": 646.76,
+    "end": 653.04,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\nRo\ngo\nint xchg(int *L, int v){\nint prev = *L; Processor\nEX 20)— Memory\nreturn prev; ¢ z\n} A 10\nequivalent software representation Processor J\n(the entire function is executed ‘ 4\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "is represent over it over here and this is also an atomic instruction and the exchange",
+    "start": 653.04,
+    "end": 659.56,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\nRo\ngo\nint xchg(int *L, int v){\nint prev = *L; Processor\nEX 20)— Memory\nreturn prev; ¢ z\n} A 10\nequivalent software representation Processor J\n(the entire function is executed ‘ 4\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "takes two parameters. So, it takes a memory address and an integer value. Now, what is",
+    "start": 660.48,
+    "end": 667.0,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\nRo\ngo\nint xcha(int *L, int v){\nint prev = *L; Processor\n*L=v, Memory\nreturn prev; —\n} = 10\nequivalent software representation Processor }\n(the entire function is executed J :\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "done is that the contents of that memory location is stored in previous then the value of v that",
+    "start": 667.0,
+    "end": 674.0,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\n0\ngo\nint xchg(int *L, int v){\nint prev = *L; Processor\n*L= Vv, Memory\nreturn prev; —_»\n} - 10\nequivalent software representation Processor J\n(the entire function is executed A\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "is the value which is passed to X change is then stored into that memory location and",
+    "start": 674.64,
+    "end": 680.4,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\n0\ngo\nint xchg(int *L, int v){\nint prev = *L; Processor\n*L= Vv, Memory\nreturn prev; —_»\n} - 10\nequivalent software representation Processor J\n(the entire function is executed A\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "the previous value is returned. So, essentially what this achieves is that we are able to",
+    "start": 680.4,
+    "end": 686.6,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\nRo\ngor\nint xchg(int *L, int v){\nint prev = *L; Processor\nTLR 20 - Memory\nreturn prev; —> R\n} ; 10\nequivalent software representation Processor |\n(the entire function is executed 4\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "exchange a register variable with a memory location to take an example. So, if you look",
+    "start": 686.6,
+    "end": 693.6,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\n0\naoe\nint xchg(int *L, int y){\nint prev = *L; Processor\nsae 20 Memory\nreturn prev; —\n} — 10\nequivalent software representation Processor )\n(the entire function is executed A\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "at this when once an exchange instruction is executed by a process running in this processor",
+    "start": 694.6,
+    "end": 701.6,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\n0\naoe\nint xchg(int *L, int y){\nint prev = *L; Processor\nsae 20 Memory\nreturn prev; —\n} — 10\nequivalent software representation Processor )\n(the entire function is executed A\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "it will exchange a register value with that of a memory location and this entire thing",
+    "start": 701.92,
+    "end": 708.92,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\n0\ngor\nint xchg(int *L, int v){\nint prev =*L; Processor\n*L=v; > x Memory\nreturn prev; —..,\n} eo 10\nequivalent software representation Processor y\n(the entire function is executed <7\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "is done atomically. So, even if another process executes the exchange at exactly the same",
+    "start": 708.92,
+    "end": 715.92,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\nRo\naor\nint xchg(int *L, int v){\nint prev = *L; Processor\nTES 10 Memory\nreturn prev; a =r\n} — 20\nequivalent software representation Processor )\n(the entire function is executed\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "time the Intel hardware ensures that these two operations are done distinctively. So, first",
+    "start": 716.08,
+    "end": 723.08,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\nRo\naor\nint xchg(int *L, int v){\nint prev = *L; Processor\nx 10 Memory\nreturn prev; >.\n} == 20\nequivalent software representation Processor }\n(the entire function is executed wy\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "one process would execute and complete the exchange instruction and only then the second",
+    "start": 724.6,
+    "end": 730.12,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\nRo\naor\nint xchg(int *L, int v){\nint prev = *L; Processor\nx 10 Memory\nreturn prev; >.\n} == 20\nequivalent software representation Processor }\n(the entire function is executed wy\natomically) 30\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "process would execute an X change the data. So, this particular slide shows how an exchange",
+    "start": 730.12,
+    "end": 737.12,
+    "ocr_text": "Intel Hardware Support\n(xchg Instruction)\n\n¢ Write to a memory location, return its old value\n\n0\ngor\nint xchg(int *L, int v){\nint prev = *L; Processor\nia 10 Memory\nreturn prev; —_—ae\n} = 20\nequivalent software representation Processor }\n(the entire function is executed wm\natomically)\n\nWhy does this work? If two CPUs execute xchg at the same time, the\nhardware ensures that one xchg completes, only then the second xchg\nstarts."
+  },
+  {
+    "text": "instruction in an Intel hardware is used to solve the critical section problem. We could",
+    "start": 738.92,
+    "end": 745.44,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "have two primitive functions called acquire and release. So, the acquire is used to lock",
+    "start": 745.52,
+    "end": 751.52,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor J\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "a critical section while a release is used to unlock a critical section. So, this acquire",
+    "start": 754.24,
+    "end": 761.24,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor J\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "and release functions are passed a pointer to a memory location known as locked. So,",
+    "start": 762.48,
+    "end": 769.48,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor J}\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\\\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "in acquire in an infinite rather in acquire in a loop this function exchange locked is",
+    "start": 769.6,
+    "end": 776.6,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "invoked. So, exchanges present over here and it is passed two parameters the address of",
+    "start": 778.52,
+    "end": 785.52,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor )}\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "the memory location in this case the address of locked and the value which you want to set.",
+    "start": 785.52,
+    "end": 792.52,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nMemory\n\nProcessor J)\n\nint xchg(addr, value){\n%eax = value |\nxchg %eax, (addr)\n\n}\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "So, first the value in this case one is moved into the EAX register in the in the case",
+    "start": 792.52,
+    "end": 798.52,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nMemory\n\nProcessor J)\n\nint xchg(addr, value){\n%eax = value |\nxchg %eax, (addr)\n\n}\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "of the excel processor and then the exchange instruction is invoked. As a result the memory",
+    "start": 799.48,
+    "end": 806.48,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor y |\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\nI\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "or the data which was stored in memory gets loaded into the EAX register and the value",
+    "start": 808.28,
+    "end": 815.28,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "in this case one which was loaded into the EAX register gets stored into memory.",
+    "start": 817.44,
+    "end": 824.44,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxch§ %eax, (addr)\n}\nI\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "Now, this particular EAX register is what is returned back to acquire. So, this loop",
+    "start": 825.44,
+    "end": 832.44,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor y\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "would break if the value returned by exchange that is the contents of the EAX register is",
+    "start": 835.88,
+    "end": 842.88,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor y\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "zero. In order to release the lock we simply set the locked value to zero. So, let us see",
+    "start": 843.48,
+    "end": 850.48,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor y\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "how it works. So, first the memory location over here would be zero and when the process",
+    "start": 851.48,
+    "end": 858.32,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nMemory\n\nProcessor J\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\nI\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked =0;\n}"
+  },
+  {
+    "text": "invokes exchange instruction that zero value is pushed into the EAX register and the",
+    "start": 858.32,
+    "end": 865.0,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor )}\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\nI\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "value of one which was present in the EAX register comes into the memory. So, as a result",
+    "start": 865.0,
+    "end": 872.0,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n\nProcessor )}\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\nI\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "the memory has a value of one while the EAX register present in the processor has a value",
+    "start": 872.0,
+    "end": 877.52,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nProcessor\n\nNote. %eax is returned\ntypical usage :\nxchg reg, mem\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "of zero and this is what is used to break from this while loop and enter into the critical",
+    "start": 877.56,
+    "end": 884.56,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax i\ntypical usage :\nxchg reg, mem\n\nax\n=\nProcessor We\n\nil\n\nis returned\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xehg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "section. Now, in order to release the lock we have simply setting the value of locked",
+    "start": 885.2,
+    "end": 892.2,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax i\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n1\n\na\n\nis returned\n\na\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "to zero. Now, when a second process invokes acquire it will continue to loop in this",
+    "start": 892.2,
+    "end": 899.2,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax i\n\ntypical usage :\nxchg reg, mem\n\nProcessor\n1\n\na\n\nis returned\n\na\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "while loop until the value of this memory location is set to zero by the first processor.",
+    "start": 899.64,
+    "end": 906.64,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nProcessor\n\nNote. %eax is returned\ntypical usage :\nxchg reg, mem\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "So, in order to release lock we simply set the value in memory to zero and then in another",
+    "start": 907.52,
+    "end": 914.52,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nNote. %eax is returned\n\ntypical usage :\nxchg reg, mem\n\n—\nlf“\nProcessor }\nyy,\n41 a\n\nv\n\nv\n\nMemory\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\n\nif(xchg(locked, 1) == 0)\nbreak;\n\n}\n\nvoid release(int *locked){\nlocked = 0;\n}"
+  },
+  {
+    "text": "processor perhaps would be able to obtain the value of zero and then acquire the critical",
+    "start": 915.44,
+    "end": 921.72,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nint xchg(addr, value){\n. eax = value\ntypical usage : xchg %eax, (addr)\n\\\n}\n\nNote. %eax is returned\n\nxchg reg, mem\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nProcessor yy) locked = 0;\na }"
+  },
+  {
+    "text": "section. So, this instruction like the exchange is used to build higher level constructs which",
+    "start": 921.72,
+    "end": 928.24,
+    "ocr_text": "Intel Hardware Support\n(using xchg instruction)\n\nint xchg(addr, value){\n. eax = value\ntypical usage : xchg %eax, (addr)\n\\\n}\n\nNote. %eax is returned\n\nxchg reg, mem\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nProcessor yy) locked = 0;\na }"
+  },
+  {
+    "text": "are used in various critical section problems. So, we will look at spin lock and mutex in",
+    "start": 928.24,
+    "end": 934.44,
+    "ocr_text": "High Level Constructs\n\n* Spinlock\n¢ Mutex\n\n* Semaphore"
+  },
+  {
+    "text": "this video and semaphore in a later video. So, spin lock is what we have seen before it",
+    "start": 934.52,
+    "end": 941.52,
+    "ocr_text": "High Level Constructs\n\n* Spinlock\n¢ Mutex\n\n* Semaphore"
+  },
+  {
+    "text": "has two functions acquire and release while the acquire would is used to gain access to",
+    "start": 942.2,
+    "end": 949.2,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked)\ncritical section\n\nOne process will acquire the lock\n\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "the critical section essentially it is used to lock the critical section while the release",
+    "start": 952.4,
+    "end": 957.72,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked\ncritical section\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "function is used to unlock the critical section. So, in order to use this we could have two",
+    "start": 957.72,
+    "end": 963.72,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\n\\cquire(&locked)\ncritical section\n\nrelease(&locked\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "processes process one and process two in order to enter into the critical section the",
+    "start": 963.8,
+    "end": 969.28,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\n\\cquire(&locked)\ncritical section\n\nrelease(&locked\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "process has to acquire the lock and this function acquire will continuously loop until the",
+    "start": 969.28,
+    "end": 976.28,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked)\n\ncritical section\n\nrelease(&locked\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "value returned by exchange is zero. So, when the value of exchange is zero then this",
+    "start": 977.48,
+    "end": 982.32,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked)\ncritical section\nrelease(&locked\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchq(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "loop breaks and the process one would enter into the critical section releasing the lock",
+    "start": 982.32,
+    "end": 989.32,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked)\ncritical section\nrelease(&locked\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchq(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "is just done by setting the value of lock to zero. So, one process will acquire the",
+    "start": 990.32,
+    "end": 996.32,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked)\n\ncritical section\n\nrelease(&locked\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "lock at a given time while the other process will wait in this particular loop and continuously",
+    "start": 996.32,
+    "end": 1003.32,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "invoke the exchange function until it obtains zero. So, the first process in order to release",
+    "start": 1004.6,
+    "end": 1011.6,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "the lock would have set the value to zero this would cause the second process to break",
+    "start": 1012.52,
+    "end": 1016.92,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nicquire(&locked)\ncritical section\n\nOne process will acquire the lock\n\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "from this loop and enter into the critical section. So, we could you could see more details",
+    "start": 1016.92,
+    "end": 1023.92,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is.\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "about the way spin locks are implemented in x v 6 by looking into these two files that",
+    "start": 1023.92,
+    "end": 1030.0,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is.\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "is spin lock dot c and spin lock dot h. Now, we will now look at some of the issues",
+    "start": 1030.0,
+    "end": 1035.0,
+    "ocr_text": "Spinlocks Usage\n\nProcess 1\nacquire(&locked)\ncritical section\nrelease(&locked)\n\nProcess 2\nacquire(&locked)\ncritical section\n\nrelease(&locked)\n\nOne process will acquire the lock\nThe other will wait in a loop\nrepeatedly checking if the lock is\navailable\n\nThe lock becomes available when\nthe former process releases it\n\nint xchg(addr, value){\n%eax = value\nxchg %eax, (addr)\n\n}\n\nvoid acquire(int *locked){\nwhile(1){\nif(xchg(locked, 1) == 0)\nbreak;\n}\n}\n\nvoid release(int *locked){\nlocked = 0;\n}\n\nSee spinlock.c and spinlock.h in xv6 [15]"
+  },
+  {
+    "text": "that go about with the use of the exchange instruction. So, as we seen the exchange instruction",
+    "start": 1035.12,
+    "end": 1042.12,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* Nocompiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n+ Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "the most crucial part of any of the constructs such as the spin locks that we have seen in",
+    "start": 1042.2,
+    "end": 1047.8,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* Nocompiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n+ Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "the previous slide. So, therefore, it is important to understand what are the issues related",
+    "start": 1047.8,
+    "end": 1054.0,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* Nocompiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n* Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "to the exchange instruction. Essentially, this particular format of the exchange instruction",
+    "start": 1054.0,
+    "end": 1059.0,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* Nocompiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n* Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "exchanges data between a register a x and a memory location x. Now, it should be ensure",
+    "start": 1059.0,
+    "end": 1066.0,
+    "ocr_text": "Issues with Spinlocks\n\nxchg heax, X\n\n* No compiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n+ Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "that there are no compiler optimizations that are done on this variable x. So, some of",
+    "start": 1066.76,
+    "end": 1072.96,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* No compiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n+ Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "the common optimizations that are possible is to make the value of x stored in a register.",
+    "start": 1072.96,
+    "end": 1079.96,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* No compiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n+ Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "In such a case, we are simply exchanging data between register a x and another register",
+    "start": 1079.96,
+    "end": 1086.96,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* No compiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n* Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "which will not solve the purpose. Therefore, we should write this particular loop in SMD",
+    "start": 1086.96,
+    "end": 1093.96,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\nU\n\n* Nocompiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n* Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "or use the keyword volatile. Another requirement while implementing the exchange instruction",
+    "start": 1094.96,
+    "end": 1100.96,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\nU\n\n* Nocompiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n* Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "is to ensure that memory operations are not reordered. The CPU should not reorder memory",
+    "start": 1102.64,
+    "end": 1108.64,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* No compiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ se serialized instructions (which forces instructions not to be reordered)\n* Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "loads and stores. So, in order to achieve this, we use serialized instructions which",
+    "start": 1108.64,
+    "end": 1114.48,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* No compiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n+ Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "pose instructions not to be reordered. So, luckily for us the exchange instruction by default",
+    "start": 1114.48,
+    "end": 1120.8,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* No compiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n+ Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "already implement serialization. So, there is nothing much we need to take care about",
+    "start": 1120.8,
+    "end": 1125.4,
+    "ocr_text": "Issues with Spinlocks\n\nxchg %eax, X\n\n* No compiler optimizations should be allowed\n— Should not make X a register variable\n+ Write the loop in assembly or use volatile\n\n* Should not reorder memory loads and stores\n+ Use serialized instructions (which forces instructions not to be reordered)\n+ Luckly xchg is already implements serialization"
+  },
+  {
+    "text": "this. However, what we need to look at more closely is the fact of cache memories.",
+    "start": 1125.4,
+    "end": 1132.4,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\n\nprotocol\nLt cache“ “~ CLA cache\n\nLOCK\n\nMemory\nXx\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess ,\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "Now, recollect that exchange instruction exchanges data between a register and a memory",
+    "start": 1133.88,
+    "end": 1139.88,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\n\nprotocol\nLt cache“ “~ CLA cache\n\nLOCK\n\nMemory\nXx\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess ,\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "location. Now, each CPU present in the system could have their own private cache. For",
+    "start": 1139.88,
+    "end": 1146.88,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\n\nprotocol\n\n|_--\n\nLi cache “CLA cache\n\nLOCK\n\nMemory\nXx\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spiniock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "instance, CPU 0 has its own private L1 cache. Similarly, CPU 1 has its own L1 cache.",
+    "start": 1147.2,
+    "end": 1153.2,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\nprotocol\n\nUi cache * ~ “SLA cache\n\nLOCK\n\nMemory\nXx\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "So, it should be ensured that this value of x is not cached in each of these CPUs.",
+    "start": 1153.2,
+    "end": 1160.2,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\nprotocol\n\nUi cache * ~ “SLA cache\n\nLOCK\n\nMemory\nXx\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "Essentially, caching of CPUs is not possible, but rather each and every execution of",
+    "start": 1162.48,
+    "end": 1169.48,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\n\nprotocol\nUi cache \"™ CLA cache\n\nLOCK\n\nMemory\nXx\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "this exchange instruction should actually go to memory and load or store the value of",
+    "start": 1169.48,
+    "end": 1176.0,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\n\nprotocol\n\n| --\n\nLi cache \"LA cache\n\nLOCK\n\nMemory\nXx\n* Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "x. Secondly, it should also ensure that when one CPU is reading and writing to this x,",
+    "start": 1176.0,
+    "end": 1183.0,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\n\nprotocol\n\nee\n\nLi cache “A cache\n\nLOCK\n\nMemory\nXx\n* Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "that is in other words, when one CPU is invoking the exchange instruction during this time,",
+    "start": 1185.32,
+    "end": 1192.32,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\nprotocol\nii cache LA cache\n\nLOCK\n\nMemory\nx\n)\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "no other CPU can modify the value of x as this will break the atomic nature that is present.",
+    "start": 1193.12,
+    "end": 1200.12,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\nprotocol\nii cache LA cache\n\nLOCK\n\nMemory\nx\n)\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "In order to do this, the CPU asserts what is known as a lock line to inform all of the",
+    "start": 1200.68,
+    "end": 1206.4,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\n\nprotocol\n\n|--\n\nLi cache “LA cache\n\nLOCK\n\nMemory\n\nx\n\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "CPUs in the system that there is a locked memory access that is going to take place.",
+    "start": 1206.4,
+    "end": 1212.4,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\nprotocol\n\ni cache * \"YL cache\n\nLOCK\n—<$— p>\n\nMemory\nXx\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "So, as a result of this lock instruction, all exchange instruction which read and write",
+    "start": 1212.4,
+    "end": 1218.4,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\nprotocol\n\ni cache * \"YL cache\n\nLOCK\n—<$— p>\n\nMemory\nXx\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "data would result in the reading and writing data from a memory. So, this may be tremendous",
+    "start": 1218.4,
+    "end": 1225.4,
+    "ocr_text": "More issues with Spinlocks\n\nxchg %eax, X\nCPUO cache coherence CPU1\nprotocol\n\nUi cache * ~~ LA cache\n\nLOCK\n\nMemory\n+ Nocaching of (X) possible. All xchg operations are bus transactions.\n— CPU asserts the LOCK, to inform that there is a ‘locked ‘ memory\naccess\n* acquire function in spinlock invokes xchg in a loop...each operation\nis a bus transaction .... huge performance hits"
+  },
+  {
+    "text": "amounts of performance hits. Therefore, in order to make a better acquire and acquire",
+    "start": 1226.4,
+    "end": 1233.4,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire ele %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "which is more efficient, we will look at a small tweak to this particular acquire function.",
+    "start": 1233.4,
+    "end": 1239.4,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire ele %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "So, originally we used to have a loop over here and in this loop, we would continuously",
+    "start": 1239.4,
+    "end": 1246.4,
+    "ocr_text": "int xchg(addr, value){\neax = value\n\nA better acquire rin %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg = 1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "keep invoking the exchange function and checking whether it returns a value of 0. So, note",
+    "start": 1247.8,
+    "end": 1253.2,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire ve %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, ri3g) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "that each of these exchange instructions has a huge performance overhead because it",
+    "start": 1253.36,
+    "end": 1260.36,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire ve %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, ri3g) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "requires that the locked keyword that is the x value would go all the way to the memory",
+    "start": 1260.36,
+    "end": 1267.36,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire Nae %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "and read and write data from the memory. Essentially, the caching is not possible and therefore,",
+    "start": 1267.36,
+    "end": 1273.36,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire ii %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\ni\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "huge overheads. On the other hand, if you make a minor change to this acquire function",
+    "start": 1273.36,
+    "end": 1277.56,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire ii %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\ni\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "as shown over here, it would improve performance quite significantly. So, here we have two loops.",
+    "start": 1277.64,
+    "end": 1284.64,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire vets %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg = 1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (“locked == 1);\nbreak; } h\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "One is the regular exchange loop which as you know would result in a bus transaction",
+    "start": 1286.32,
+    "end": 1292.32,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire pee %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (“locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "and has huge overheads while there is an inner loop which simply loops checking the value",
+    "start": 1292.32,
+    "end": 1299.0,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire pee %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (“locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "of the memory location locked. So, this particular internal thing is catchable and therefore,",
+    "start": 1299.0,
+    "end": 1306.0,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire a %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked, == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "not incur much performance overhead. While the external while loop will have significant",
+    "start": 1306.0,
+    "end": 1313.0,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire ke %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "overheads, but it is not invoked to of them. Most of the time, this particular cached memory",
+    "start": 1314.24,
+    "end": 1321.24,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire ke %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "would be read. Now, the cache coherency protocol will ensure that when another process changes",
+    "start": 1321.24,
+    "end": 1327.04,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire ris %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "the value of locked, this process would see the value of locked changing from 1 to 0 and",
+    "start": 1327.04,
+    "end": 1334.04,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire ii %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "it will exit the while loop and go back to this particular outside while loop. The exchange",
+    "start": 1335.04,
+    "end": 1342.04,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire iii %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (“locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "function would then exchange the locked value with the register value and set the value",
+    "start": 1342.52,
+    "end": 1348.72,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire iii %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (“locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  },
+  {
+    "text": "to 1 and therefore, break from the while loop. Thank you.",
+    "start": 1348.72,
+    "end": 1353.72,
+    "ocr_text": "int xchg(addr, value){\n%eax = value\n\nA better acquire a %eax, (addr)\n\nvoid acquire(int *locked){ void acquire(int *locked) {\n\nreg =1 reg = 1;\n\nwhile(1) while (xchg(locked, reg) == 1)\n\nif(xchg(locked, reg) == 0) while (*locked == 1);\nbreak; }\n\n}\nOriginal. Better way\nLoop with xchg. inner loop allows caching of\nBus transactions. locked. Access cache instead of memory.\n\nHuge overheads"
+  }
+]

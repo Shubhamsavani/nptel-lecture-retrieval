@@ -1,0 +1,1238 @@
+[
+  {
+    "text": "So, let us now turn our attention to the all pairs shortest path problems where we try",
+    "start": 0.0,
+    "end": 5.08,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nAll-pairs shortest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "to find the paths shortest paths between every pair of vertices in a graph. So, recall",
+    "start": 5.08,
+    "end": 11.68,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nAll-pairs shortest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "that we are working with weighted graphs, we allow negative edge weights but not negative",
+    "start": 11.68,
+    "end": 17.04,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nAll-pairs shortest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "cycles because with negative cycles the shortest path is not well defined. With negative weights",
+    "start": 17.04,
+    "end": 22.48,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nAll-pairs shortest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "it is well defined. We saw that the Bellman Ford algorithm allows us to generalize",
+    "start": 22.48,
+    "end": 27.24,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nAll-pairs shortest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "digest algorithm and compute single source shortest paths in weighted graphs with negative",
+    "start": 27.24,
+    "end": 32.16,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nAll-pairs shortest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "weight but without negative cycles. So, now we want to further generalize this and compute",
+    "start": 32.16,
+    "end": 37.0,
+    "ocr_text": "* Y >"
+  },
+  {
+    "text": "not just the shortest paths from a single source but the shortest paths between every pair",
+    "start": 37.0,
+    "end": 40.96,
+    "ocr_text": "* Y >"
+  },
+  {
+    "text": "of vertices. So, as we explained at the beginning an example would be if you are trying to",
+    "start": 40.96,
+    "end": 44.78,
+    "ocr_text": "* Y >"
+  },
+  {
+    "text": "run a travel website or an airline website and somebody wants to find the minimum cost",
+    "start": 44.78,
+    "end": 50.0,
+    "ocr_text": "* Y >"
+  },
+  {
+    "text": "or the minimum time flight or train between any pair of cities. So, we made the following",
+    "start": 50.0,
+    "end": 57.76,
+    "ocr_text": "* Y >"
+  },
+  {
+    "text": "observation about shortest paths that a shortest path even in the presence of negative weights",
+    "start": 57.76,
+    "end": 63.36,
+    "ocr_text": "* Y >"
+  },
+  {
+    "text": "will never loop because we can always remove the loop without increasing the length of the",
+    "start": 63.36,
+    "end": 67.68,
+    "ocr_text": "* Y >"
+  },
+  {
+    "text": "path. So, therefore, a shortest path never visits the same vertex twice and has length",
+    "start": 67.68,
+    "end": 73.2,
+    "ocr_text": "* Y >"
+  },
+  {
+    "text": "at most n minus 1. So, we exploited this algorithm in one way for Bellman Ford and we will",
+    "start": 73.2,
+    "end": 79.8,
+    "ocr_text": "*"
+  },
+  {
+    "text": "find that we can use it now for an inductive algorithm for all pair shortest paths. So,",
+    "start": 79.8,
+    "end": 85.52,
+    "ocr_text": "*"
+  },
+  {
+    "text": "it will come up with an inductive solution of how to build up the shortest paths. So,",
+    "start": 85.52,
+    "end": 92.24,
+    "ocr_text": "*"
+  },
+  {
+    "text": "we are basically going to build up shortest paths in terms of vaguely their length but",
+    "start": 92.24,
+    "end": 98.24,
+    "ocr_text": "*"
+  },
+  {
+    "text": "more specifically what vertices we allow in between. So, the simplest shortest path you",
+    "start": 98.24,
+    "end": 103.92,
+    "ocr_text": "*"
+  },
+  {
+    "text": "can imagine between a pair of vertices is just a single edge. So, we have a single edge",
+    "start": 103.92,
+    "end": 109.6,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "and this happens to be the shortest path then your input shape. But in general this may",
+    "start": 109.6,
+    "end": 114.08,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "not be the shortest path because even if there is such an edge there may be a way because",
+    "start": 114.08,
+    "end": 117.84,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "of negative because of edge weights or even because of negative edge weights of reaching",
+    "start": 117.84,
+    "end": 121.46,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "from i to j by a longer path of edges but with the shorter overall cost. But what we do",
+    "start": 121.46,
+    "end": 128.36,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "know because of this characterization shortest path is that this path from i to j goes through",
+    "start": 128.36,
+    "end": 133.32,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "some intermediate vertices all of which are different from each other no vertex is visited",
+    "start": 133.32,
+    "end": 137.04,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "twice and secondly now none of these vertices either i object there is no point in coming",
+    "start": 137.04,
+    "end": 142.12,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "back to i and then going to j. So, there is no loop anywhere in this path. So, what we",
+    "start": 142.12,
+    "end": 146.64,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "will do for this inductive thing is to restrict what can happen in between i and j. What are",
+    "start": 146.64,
+    "end": 153.44,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "the vertices that are allowed and we will gradually increase the set if we allow any vertex",
+    "start": 153.44,
+    "end": 158.56,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "then of course, we will get arbitrary shortest paths. So, recall that vertices are number",
+    "start": 158.56,
+    "end": 165.56,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "1 to n. So, we will compute a quantity w k of i j to be the weight of the shortest path",
+    "start": 165.56,
+    "end": 173.2,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "from i to j where we restrict the vertices that can be used to go from i to j to be between",
+    "start": 173.2,
+    "end": 178.2,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "1 and k. In other words we have the set of vertices v right. So, we cut it off saying we",
+    "start": 178.2,
+    "end": 183.36,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "have 1 to k and we have k plus 1 to n we say that only these vertices can be used in the",
+    "start": 183.36,
+    "end": 190.76,
+    "ocr_text": "V2.3\n>\n\n> V4"
+  },
+  {
+    "text": "path. Now, the end points themselves may not be need not be but if the point is that",
+    "start": 190.76,
+    "end": 195.24,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "if the end point is outside then it can still so, I could have a one vertex here and then",
+    "start": 195.24,
+    "end": 201.6,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "it could have a path which goes like this and then come back here. So, so, it only says",
+    "start": 201.6,
+    "end": 205.92,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "that the intermediate vertices. So, when I start with i and go to j what happens in between",
+    "start": 205.92,
+    "end": 210.48,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "lies in the set 1 to k right. So, in particular if k is 0 because",
+    "start": 210.48,
+    "end": 216.44,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "our numbering is 1 to n it says that the vertices that can appear cannot be include include",
+    "start": 216.44,
+    "end": 226.44,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "1. So, in other words if I have w 0 then it says all of the vertices 1 to n cannot appear",
+    "start": 226.44,
+    "end": 231.44,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "on the path. So, the only way that we can have such a shortest path is the direct edge",
+    "start": 231.44,
+    "end": 235.6,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "right. So, w 0 the base case of this inductive definition says that the shortest",
+    "start": 235.6,
+    "end": 240.4,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "paths between i and j which exclude all vertices from 1 to n are of the form edges between",
+    "start": 240.4,
+    "end": 246.0,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "i and j. So, now, since this is an inductive definition what we have to say is supposing",
+    "start": 246.0,
+    "end": 252.04,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "we know the shortest paths which use 1 to k minus 1 then how do I compute the shortest",
+    "start": 252.04,
+    "end": 257.0,
+    "ocr_text": "* Case 1: ¢\n\n* Case 2:S\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "paths that use 1 to k right. So, we know all among all the paths which use at most 1 to",
+    "start": 257.0,
+    "end": 262.8,
+    "ocr_text": "* Case 1:S\n\n* Case 2:\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "k minus 1 what is the shortest path from i to j how do we now compute if we allow vertex",
+    "start": 262.8,
+    "end": 268.2,
+    "ocr_text": "* Case 1:S\n\n* Case 2:\n\nW'(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "k also to be use how do you compute what would be the shortest path from i to j. So,",
+    "start": 268.2,
+    "end": 273.32,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nWw‘(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "there are two cases the first cases this is extra vertex k is not useful the shortest",
+    "start": 273.32,
+    "end": 278.6,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nWw‘(i,j) = min(w\"(i,j) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "path even if I include k does not use vertex k it is enough to use 1 to k minus 1. In",
+    "start": 278.6,
+    "end": 284.6,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nW<‘(i,j) = min(w\"(i,j) , W\"(ik) + Wk, j))"
+  },
+  {
+    "text": "this case the shortest distance from w i to j using 1 to k is the same as the shortest",
+    "start": 284.6,
+    "end": 290.52,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nW<‘(i,j) = min(w\"(i,j) , W\"(ik) + Wk, j))"
+  },
+  {
+    "text": "distance from i to j using k minus 1. So, I can say w k of i j is the same as w k minus",
+    "start": 290.52,
+    "end": 295.56,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nW<(i,j) = min(w\"(i,j) , W\"(ik) + Wk, j))"
+  },
+  {
+    "text": "1 i j. On the other hand it could be that using k does give us a non trivial improvement",
+    "start": 295.72,
+    "end": 301.72,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nW‘(i,j) = minWw\"(i,j) , W\"(ik) + Wk, j))"
+  },
+  {
+    "text": "right. So, we have now some path which goes from i to j and on the way it visits k. So,",
+    "start": 301.72,
+    "end": 307.96,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nW‘(i,j) = minWw\"(i,j) , W\"(ik) + Wk, j))"
+  },
+  {
+    "text": "if it visits k on the way then we can break it up as a path from i to k and a path from",
+    "start": 307.96,
+    "end": 313.84,
+    "ocr_text": "* Case 1:\n\nL\n\n* Case 2:\n\nW'(i,j) = min(w\"(i,) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "k to j. But notice that we have already said that this vertex k or any vertex for that",
+    "start": 313.84,
+    "end": 319.84,
+    "ocr_text": "* Case 1:\n\nL\n\n* Case 2:\n\nW'(i,j) = min(w\"(i,) , W\"(,k) + W\"(k,j))"
+  },
+  {
+    "text": "matter which appears in this path if it is the shortest path appears only once right.",
+    "start": 319.84,
+    "end": 324.48,
+    "ocr_text": "* Case 1:\n\nL\n\n* Case 2:\nae\n\nW(i,j) = miniw\"(i,j) , W\"(ik) + Wk)"
+  },
+  {
+    "text": "So, if k appears here there is no k between i and k and there is no k between k and j.",
+    "start": 324.56,
+    "end": 330.96,
+    "ocr_text": "* Case 1:\n\nL\n\n* Case 2:\nae\n\nW(i,j) = miniw\"(i,j) , W\"(ik) + Wk)"
+  },
+  {
+    "text": "This means that I have a path from i to k already which goes through 1 to k minus 1 and I have",
+    "start": 331.68,
+    "end": 337.36,
+    "ocr_text": "Case 1:S\n\nJ\n* Case 2:\n\nWii,j) = min(w*\"(i,j) , WS\", k) + WS\"(k,j))"
+  },
+  {
+    "text": "a path from k to j already with goes through 1 to k minus 1 and I am combining this. So,",
+    "start": 337.36,
+    "end": 341.68,
+    "ocr_text": "* Case 1:\n\nL\n\n* Case 2:\nee oA K\n\nW‘(i,j) = minWw\"(i,j) , W\"(ik) + Wk, j))"
+  },
+  {
+    "text": "I can break up the path as a path from i to k and a path to k to j each of which uses only",
+    "start": 341.68,
+    "end": 347.28,
+    "ocr_text": "* Case 1:\n\nL\n\n* Case 2:\nee oA K\n\nW‘(i,j) = minWw\"(i,j) , W\"(ik) + Wk, j))"
+  },
+  {
+    "text": "1 to k minus 1 and what is the cost of that path? Well, we inductively know that we have the",
+    "start": 347.28,
+    "end": 352.32,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nW',j) = min(w\"(i,j), WS\". k) + W\"(k,j))"
+  },
+  {
+    "text": "cost of the best path from i to k using only 1 to k minus 1 in w k minus 1. We also have",
+    "start": 352.32,
+    "end": 358.16,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nW',j) = min(w\"(i,j), WS\". k) + W\"(k,j))"
+  },
+  {
+    "text": "the best path from k to j in a matrix w k minus 1. So, if I add these two this must be the best",
+    "start": 358.16,
+    "end": 365.36,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nW<(i,j) = min(w**(i,) , Wik) + WS\"(k,j))"
+  },
+  {
+    "text": "way of going back in. So, combining the cases we say that either we do not use k in which case",
+    "start": 365.36,
+    "end": 371.68,
+    "ocr_text": "* Case 1:\n\nk\nL al\n* Case 2:\nqo k Nok\n\nW<(i,i) = min\") ,W\"(i,k) + WS\"(k,j))"
+  },
+  {
+    "text": "we take the value of the old matrix or we do use k in which case we combine two entries",
+    "start": 371.68,
+    "end": 377.12,
+    "ocr_text": "* Case 1:\n\nk\nL al\n* Case 2:\nqo k Nok\n\nW<(i,i) = min\") ,W\"(i,k) + WS\"(k,j))"
+  },
+  {
+    "text": "going by i k and the old matrix and we take the smaller of these two. So, which are one of",
+    "start": 377.12,
+    "end": 380.72,
+    "ocr_text": "* Case 1:\n\nL\n\n* Case 2:\ngmake, a k\n\nW<(i,j) = min(W(i) Wik) + W(k,j))"
+  },
+  {
+    "text": "these is smaller will be the correct value of the shortest distance from i to j going through 1 to k.",
+    "start": 380.88,
+    "end": 386.4,
+    "ocr_text": "* Case 1:\n\nL\n\n* Case 2:\ngmake, a k\n\nW<(i,j) = min(W(i) Wik) + W(k,j))"
+  },
+  {
+    "text": "So, this gives us an immediate algorithm which is called the Floyd-Varsal algorithm.",
+    "start": 390.8,
+    "end": 395.92,
+    "ocr_text": "W'i,j)\n= min(W*\n1 j\ni,j), We\"\nsk) +\nWk1\n{k,j\nil)"
+  },
+  {
+    "text": "So, we start off with a matrix representing the function w 0. So, w 0 has entries which are",
+    "start": 395.92,
+    "end": 401.68,
+    "ocr_text": "Wiii,j) |\n= min(W*\n1j\ni,j), We\"\nik) + W\nWk\n(k,j\nij)"
+  },
+  {
+    "text": "exactly the edge weights. So, there is an h from i to j of w 0 i to j says there is a direct path",
+    "start": 401.68,
+    "end": 406.4,
+    "ocr_text": "Wiii,j) |\n= min(W*\n1j\ni,j), We\"\nik) + W\nWk\n(k,j\nij)"
+  },
+  {
+    "text": "of that weight because remember w 0 cannot go through any intermediate paths. And if there is no",
+    "start": 406.48,
+    "end": 411.6,
+    "ocr_text": "Wii,j) |\n= min(W*\ni,j), We\"\nsk) + )\nWk\n(k,j\n)))"
+  },
+  {
+    "text": "edge since I cannot go through any intermediate vertex w 0 i j must be infinity.",
+    "start": 411.6,
+    "end": 415.6,
+    "ocr_text": "Wii,j) |\n= min(W*\ni,j), We\"\nsk) + )\nWk\n(k,j\n)))"
+  },
+  {
+    "text": "Now, for k in 1 to n I basically repeat this n times I first allow 1 to be used. So,",
+    "start": 416.8,
+    "end": 424.0,
+    "ocr_text": "Wii,j)\n= min(W*\nGj\ni,j), WE\"\nsk) +\nW1\n{k,j\nB)))"
+  },
+  {
+    "text": "I compute w 1 from w 0 and how do I do that? I use the update rule we said earlier that will",
+    "start": 424.0,
+    "end": 428.24,
+    "ocr_text": "Wii,j)\n= min(W*\nGj\ni,j), WE\"\nsk) +\nW1\n{k,j\nB)))"
+  },
+  {
+    "text": "take the minimum of what you already have plus the possibility of going through the newly",
+    "start": 428.24,
+    "end": 432.0,
+    "ocr_text": "W'ii,i)\n= min(W‘\ni,j), WG\nsk) +\nW1\n{k,j\n:)))"
+  },
+  {
+    "text": "introduced vertex then I will have 1 and 2 then I will have 1, 2 and 3 and obviously,",
+    "start": 432.96,
+    "end": 436.64,
+    "ocr_text": "W'ii,i)\n= min(W‘\ni,j), WG\nsk) +\nW1\n{k,j\n:)))"
+  },
+  {
+    "text": "if I have allowed 1, 2, 3 up to n I will have allowed all the vertices to appear in between",
+    "start": 436.64,
+    "end": 440.48,
+    "ocr_text": "Wii,j)\n= min(W*\nGj\ni,j), We\"\nsk) +\nWwW\n{kj\n)))"
+  },
+  {
+    "text": "w n will now have the shortest paths with no constraints. So, I need to do this update exactly",
+    "start": 440.48,
+    "end": 446.16,
+    "ocr_text": "Wii,j)\n= min(W*\nGj\ni,j), We\"\nsk) +\nWwW\n{kj\n)))"
+  },
+  {
+    "text": "n times. So, that after n times I have captured the shortest weight paths which include any arbitrary",
+    "start": 446.16,
+    "end": 452.4,
+    "ocr_text": "WAi,j) = 1\n= min(W*\nany\nij), WG)\nsk) +\nWk\n(k,j\n5)"
+  },
+  {
+    "text": "combination of vertices on the path. So, the actual code is again like Bellman fold extremely",
+    "start": 452.4,
+    "end": 461.52,
+    "ocr_text": "WAi,j) = 1\n= min(W*\nany\nij), WG)\nsk) +\nWk\n(k,j\n5)"
+  },
+  {
+    "text": "straightforward. And you just have first an initialization which sets every weight to infinity and then",
+    "start": 461.6,
+    "end": 466.88,
+    "ocr_text": "WAi,j) = 1\n= min(W*\nany\nij), WG)\nsk) +\nWk\n(k,j\n5)"
+  },
+  {
+    "text": "updates the non trivial weights for those edges which are in the graph. So, we are keeping track of",
+    "start": 466.88,
+    "end": 473.2,
+    "ocr_text": "W (cj)"
+  },
+  {
+    "text": "this function w 0 of i j by a 3 dimensional matrix. So, i n j represents the 2 vertices and the",
+    "start": 473.2,
+    "end": 482.88,
+    "ocr_text": "W (cj)"
+  },
+  {
+    "text": "0 represents the iteration number. So, initially w 0 i j is either the weight of",
+    "start": 482.88,
+    "end": 490.24,
+    "ocr_text": "W (cj)"
+  },
+  {
+    "text": "i j if there is an edge or its infinity and that is what these first two steps are doing.",
+    "start": 491.6,
+    "end": 496.64,
+    "ocr_text": "0 a Lergek (1) }\nW CES a"
+  },
+  {
+    "text": "And now we do this n times we do this iteration that is we update all the w i j's at",
+    "start": 496.64,
+    "end": 502.64,
+    "ocr_text": "0 a Lergek (1) }\nW CES a"
+  },
+  {
+    "text": "level k to be the minimum of the w i j's at level k minus 1 or the sum of the",
+    "start": 503.68,
+    "end": 508.96,
+    "ocr_text": "0 a Lergek (1) }\nW CES a"
+  },
+  {
+    "text": "right. So, implicitly here should have been written. So, this is for i n",
+    "start": 509.92,
+    "end": 514.16,
+    "ocr_text": "0 ergot (9) }\nW ES e"
+  },
+  {
+    "text": "where i equal to 1 to n for j equal to 1 to n. So, we have this update rule and we do this blindly",
+    "start": 517.68,
+    "end": 526.24,
+    "ocr_text": "ee ty te ton, Foy ‘y= | 4m."
+  },
+  {
+    "text": "n times and at the n be claimed with the matrix w in the entry k has got the correct shortest paths",
+    "start": 526.24,
+    "end": 532.4,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "for all pairs of vertices. So, let us look at the same example that we saw for Bellman fold",
+    "start": 532.4,
+    "end": 538.8,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "okay. So, initially we are assigned to each so w 0 has the edge weight. So, we have an adjacency",
+    "start": 539.12,
+    "end": 546.72,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "matrix like representation in which for instance we say 1 to 2 there is an edge of weight 10 7 to",
+    "start": 546.72,
+    "end": 551.92,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "6 there is an edge of weight weight minus 1 and so on right. So, we just duplicate all of these",
+    "start": 551.92,
+    "end": 557.6,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "edges in the matrix and everything else is left at infinity. Now, from w 0 we call it w 1 by",
+    "start": 557.6,
+    "end": 565.52,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "considering all new paths that we can find by going from 1. But now notice that there is nothing",
+    "start": 565.52,
+    "end": 570.48,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "that is coming into 1. So, this is signify to the fact that the column 1 has infinity no edge",
+    "start": 570.48,
+    "end": 574.88,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "goes into 1. So, no other vertex can use the fact that 1 is connected to an 8 right. So,",
+    "start": 574.88,
+    "end": 580.4,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "if you update using update rule you will find that w 1 is actually equal to w 0 nothing changes",
+    "start": 580.4,
+    "end": 585.44,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "because allowing 1 to be used in between two vertices does not help us it is not in between",
+    "start": 585.44,
+    "end": 589.92,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "any two vertices. I cannot go from anywhere to 1 and then from 1 to that vertex. On the other",
+    "start": 589.92,
+    "end": 594.64,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "hand if I can now include two then I can do interesting things I can go for example, from 1 to 2 to",
+    "start": 594.64,
+    "end": 599.92,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "6 and I can go from 7 to 1 to 6 right. So, like 2 and 1 as an intermediate vertex so, 1 doesn't",
+    "start": 599.92,
+    "end": 607.52,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "help right now. But allowing 2 gives me something. So, if I if I now look at w 1 I do not need w 0",
+    "start": 607.52,
+    "end": 614.08,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "anymore. If I will have a w 1 then I will as I said be able to explore paths through 2. So,",
+    "start": 614.08,
+    "end": 619.36,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "in particular 2 goes to 6 so, anything pointing into 2 so, 7 to 2 to 6 3 to 2 to 6 and 1 to 2 to 6",
+    "start": 619.44,
+    "end": 626.72,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "these 3 entries will get updated right. So, 1 to 2 to 6 so, I get a new entry 12 3 to 2 to 6 so,",
+    "start": 626.72,
+    "end": 633.04,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "I get a new entry 3 and 7 to 2 to 6 so, I get minus 4 plus 2 is minus. Now, from w 2 likewise,",
+    "start": 633.04,
+    "end": 640.16,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "I will do compute w 3 again compute w 3 will come back to this later I do not need w 1 I only need",
+    "start": 640.16,
+    "end": 645.6,
+    "ocr_text": "ee ty te ttn, Fry y+ | ten n"
+  },
+  {
+    "text": "so, I can throw away w 1 from now and just look at w 2 right. So, now having got now I am",
+    "start": 646.4,
+    "end": 652.88,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "allowing myself to use 1 2 3. So, I will look for things that can go through 3 right. So, for",
+    "start": 652.88,
+    "end": 657.52,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "instance now through 3 I can go from 6 to 4 for example, so, I will get entries of that form.",
+    "start": 657.52,
+    "end": 664.88,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "So, I can go from 3 6 to 4 with a new thing I can also go from 6 to 2 right. So, now I have a new",
+    "start": 664.88,
+    "end": 671.92,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "way of going from 6 to 2 ok. So, that also gets upgraded and interestingly I also discovered that",
+    "start": 671.92,
+    "end": 679.44,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "there is now a path from 6 to 6 right. Because earlier I did not know that but now that I am allowed",
+    "start": 679.44,
+    "end": 685.6,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "to go through both 2 and 3 I can go from 6 to 6 I have discovered this loop which has a positive",
+    "start": 685.6,
+    "end": 690.4,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "weight if we did not have a positive weight we were in trouble because this is not having a",
+    "start": 690.4,
+    "end": 693.52,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "well defined solution and so on ok. So, you can just keep on doing this we will not update",
+    "start": 693.52,
+    "end": 697.84,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "to dub but if you would now go all the way and you go up to w 8 ok. Then after you allow",
+    "start": 698.4,
+    "end": 703.52,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "everything from 1 to 8 to be an intermediate thing this matrix will actually compute all pair",
+    "start": 703.52,
+    "end": 708.16,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "shortest path between any I j. So, this algorithm it is very easy to see that the complexity is",
+    "start": 708.16,
+    "end": 717.04,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "order and future because you have any iteration and in each iteration we are updating the entire",
+    "start": 717.04,
+    "end": 720.88,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "matrix which has n square entries ok. So, not much you can do to improve this because it is",
+    "start": 720.88,
+    "end": 725.04,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "an adjacency matrix base algorithm we cannot move to this we do not have to compute any minimum",
+    "start": 725.04,
+    "end": 729.92,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "maximum. So, nothing much we can do it is an n cube algorithm ok. Notice that it sort of solves",
+    "start": 729.92,
+    "end": 735.92,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "as a trivial case the Bellman-4 algorithm because once you have computed all pairs ok.",
+    "start": 736.48,
+    "end": 741.52,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "So, this generalizes as a solution Bellman-4 because in particular if you now want all",
+    "start": 741.52,
+    "end": 749.84,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "all the shortest path from a given s to everything you just have to look up that particular row",
+    "start": 750.24,
+    "end": 755.44,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "in the Floyd-Warshel matrix right. You look at the row s and all the entries will say the shortest",
+    "start": 755.44,
+    "end": 760.32,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "path from s. But remember that in that particular case if I only wanted from s Bellman-4 with",
+    "start": 760.32,
+    "end": 766.96,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "a clever adjacency list representation would take order n n whereas here this will require order",
+    "start": 766.96,
+    "end": 772.88,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "n right. So, this does generalize Bellman-4 in sense you get the same answers that you would have",
+    "start": 772.88,
+    "end": 777.44,
+    "ocr_text": "Pp\nY oral Us"
+  },
+  {
+    "text": "got from Bellman-4 and more. But you are always spending n cube time whereas if you have very few",
+    "start": 777.44,
+    "end": 781.84,
+    "ocr_text": "Ons) ) (mm)"
+  },
+  {
+    "text": "edges in your graph which is typically the case Bellman-4 will be more efficient. So, if you are using",
+    "start": 781.84,
+    "end": 785.6,
+    "ocr_text": "Ons) ) (mm)"
+  },
+  {
+    "text": "you only wanted to single source shortest path you should not typically jump directly to Floyd-Warshel",
+    "start": 786.24,
+    "end": 791.92,
+    "ocr_text": "Ons) ) (mm)"
+  },
+  {
+    "text": "you should probably do Bellman-4 instead. About space complexity so we said that we have got",
+    "start": 791.92,
+    "end": 798.24,
+    "ocr_text": "Ons) ) (mm)"
+  },
+  {
+    "text": "to represent each w 0 w 1 etc as one coordinate. So, we have basically have n times n times n because",
+    "start": 798.24,
+    "end": 806.8,
+    "ocr_text": "Ons) ) (mm)"
+  },
+  {
+    "text": "n times n is the actual matrix we have n of these matrices because we have level 0, level 1 and",
+    "start": 807.44,
+    "end": 811.52,
+    "ocr_text": "—__\n\n4 es\nvie\n\n—_wr\n\n4 omaha wae)\n\nBellman Ford\n\nnnn"
+  },
+  {
+    "text": "up to level k or level n right. But we saw that in our worked out example that when you need to compute",
+    "start": 811.52,
+    "end": 818.56,
+    "ocr_text": "—__\n\n4 es\nvie\n\n—_wr\n\n4 omaha wae)\n\nBellman Ford\n\nnnn"
+  },
+  {
+    "text": "the level 1 we only need level 0 then we can throw away level 0 and when you need to compute level 2",
+    "start": 818.56,
+    "end": 823.68,
+    "ocr_text": "—__\n\n4 es\nvie\n\n—_wr\n\n4 omaha wae)\n\nBellman Ford\n\nnnn"
+  },
+  {
+    "text": "you need only level 1. So, in some sense you can keep only two copies and keep switching back and forth",
+    "start": 823.68,
+    "end": 827.44,
+    "ocr_text": "—__\n\n4 es\nvie\n\n—_wr\n\n4 omaha wae)\n\nBellman Ford\n\nnnn"
+  },
+  {
+    "text": "right. You overwrite the 0th level as a second level you overwrite the first level as a third",
+    "start": 828.4,
+    "end": 833.04,
+    "ocr_text": "——\nol\nBy kd\n\nG obra U4\n\nBellman Ford)\n\nnnn"
+  },
+  {
+    "text": "level and so on. So, you need only two slices of I will call it of this three dimensional matrix",
+    "start": 833.04,
+    "end": 837.84,
+    "ocr_text": "——\nol\nBy kd\n\nG obra U4\n\nBellman Ford)\n\nnnn"
+  },
+  {
+    "text": "at a time. So, you can just keep oscillating between these two slices overall you have two n squared",
+    "start": 837.84,
+    "end": 842.48,
+    "ocr_text": "ey\n1\n>\n\nG mlralirtea"
+  },
+  {
+    "text": "space right. So, we know normally worry about space but just an observation that in this particular",
+    "start": 842.48,
+    "end": 847.52,
+    "ocr_text": "ey\n1\n>\n\nG mlralirtea"
+  },
+  {
+    "text": "thing you do not really need to have this n cube array you can have two n squared array or an n squared",
+    "start": 847.52,
+    "end": 852.8,
+    "ocr_text": "==.\n“+7\nie\nwr\n\nG omaha wd 2)\n\nnnn"
+  },
+  {
+    "text": "array with two indices and keep oscillating between the two and get the same effect because you",
+    "start": 852.8,
+    "end": 857.44,
+    "ocr_text": "==.\n“+7\nie\nwr\n\nG omaha wd 2)\n\nnnn"
+  },
+  {
+    "text": "only need one copy to compute the other one. So, let us conclude this discussion with some",
+    "start": 857.44,
+    "end": 865.76,
+    "ocr_text": "==.\n“+7\nie\nwr\n\nG omaha wd 2)\n\nnnn"
+  },
+  {
+    "text": "historical remarks. So, Floyd Warshall as you can see from the hyphenation is a hybrid name",
+    "start": 865.76,
+    "end": 869.76,
+    "ocr_text": "transitive closure"
+  },
+  {
+    "text": "for this algorithm and actually there are two distinct algorithms which comprise it",
+    "start": 869.76,
+    "end": 874.48,
+    "ocr_text": "transitive closure"
+  },
+  {
+    "text": "which have a very similar structure. So, the original algorithm which was proposed by Warshall",
+    "start": 875.2,
+    "end": 879.92,
+    "ocr_text": "transitive closure"
+  },
+  {
+    "text": "is for what is called transitive closure. So, transitive closure is exactly the same as",
+    "start": 879.92,
+    "end": 884.32,
+    "ocr_text": "transitive closure"
+  },
+  {
+    "text": "computing a path from edge relation. So, supposing you have a relationship like friend right. So,",
+    "start": 884.32,
+    "end": 890.16,
+    "ocr_text": "transitive closure"
+  },
+  {
+    "text": "you know among a group of people who is a direct friend of whom then you might want to ask who knows",
+    "start": 890.16,
+    "end": 896.0,
+    "ocr_text": "tre\n\ntransitive closure"
+  },
+  {
+    "text": "indirectly right. So, I know somebody indirectly if I have a friend who knows that person or if I have",
+    "start": 898.08,
+    "end": 904.16,
+    "ocr_text": "transitive closure"
+  },
+  {
+    "text": "a friend who has a friend who knows that person and so on. So, knowing somebody indirectly is the",
+    "start": 904.16,
+    "end": 908.4,
+    "ocr_text": "transitive closure"
+  },
+  {
+    "text": "transitive closure of the friend relation. In the same way in a general I mean so in every graph",
+    "start": 908.4,
+    "end": 913.52,
+    "ocr_text": ": : Warrpetlt indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "if you put the friend or whatever relation you wanted the edge relation the transitive closure",
+    "start": 913.52,
+    "end": 917.84,
+    "ocr_text": ": : Warrpetlt indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "is a path relation right. So, you want to you have an adjacency matrix which represents the edges.",
+    "start": 917.84,
+    "end": 923.68,
+    "ocr_text": "Voaeoite indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "You want to compute a path matrix which represents the paths which are the pairs of vertices",
+    "start": 923.68,
+    "end": 928.0,
+    "ocr_text": "Voaeoite indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "computed by which are connected by paths. And so, Warshall described the similar algorithm what we",
+    "start": 928.0,
+    "end": 933.92,
+    "ocr_text": "A ani a WVoaenie indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "wrote now and we will just do it in a little detail in the next couple of slides to do this compute",
+    "start": 933.92,
+    "end": 939.36,
+    "ocr_text": "A ani a WVoaenie indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "P from A and what Floyd observed was that you can adapt the same algorithm. So, Warshall",
+    "start": 939.44,
+    "end": 944.96,
+    "ocr_text": "Woarpils indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "algorithm you only checking is there a path and Floyd's algorithm says that you can actually",
+    "start": 944.96,
+    "end": 949.28,
+    "ocr_text": "Woarpils indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "adapt it to compute shortest paths. So, the idea is very similar to what we have seen before let's",
+    "start": 949.28,
+    "end": 955.44,
+    "ocr_text": "s SWeaentle indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "go through it quickly. So, we have an adjacency matrix A which tells us the edges. So, Aj is A ij is",
+    "start": 955.44,
+    "end": 960.56,
+    "ocr_text": "s SWeaentle indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "1 if there is an edge and we want a path matrix P ij is 1 if there is a path from ij. So, we will",
+    "start": 960.56,
+    "end": 967.28,
+    "ocr_text": "s SWeaentle indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "again compute iteratively this quantity P k ij which says that there is a path and this path",
+    "start": 967.28,
+    "end": 973.2,
+    "ocr_text": "s SWeaentle indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "uses only the vertices in 1 to k. So, k plus 1 to n cannot appear in the path right. And again",
+    "start": 973.2,
+    "end": 980.88,
+    "ocr_text": "s SWeaentle indiveatty\n\ntransitive closure"
+  },
+  {
+    "text": "the endpoints are not included. So, i and j are arbitrary it is what is in between i and j which",
+    "start": 980.88,
+    "end": 985.68,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,}))"
+  },
+  {
+    "text": "is restricted by this super script k right. So, between i and j you can only see things from 1 to k.",
+    "start": 985.68,
+    "end": 991.92,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,}))"
+  },
+  {
+    "text": "So, as before if you do P 0 it says nothing can appear because you rule out everything from 1 to n",
+    "start": 992.88,
+    "end": 997.84,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,}))"
+  },
+  {
+    "text": "therefore, P 0 is just the adjacency matrix. So, now we have a very similar update rule. So,",
+    "start": 998.72,
+    "end": 1005.44,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,}))"
+  },
+  {
+    "text": "if I know the paths which can be discovered using 1 to k minus 1 what are the paths I can",
+    "start": 1005.44,
+    "end": 1011.04,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,}))"
+  },
+  {
+    "text": "discover using 1 to k right. So, if there is a path already without using k then I can just",
+    "start": 1011.04,
+    "end": 1016.96,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,}))"
+  },
+  {
+    "text": "keep that path. So, we could either have that p k i. So, remember now this is is there a path",
+    "start": 1017.04,
+    "end": 1021.52,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,)))"
+  },
+  {
+    "text": "is it not a path. So, this is like an adjacency matrix there is no weight is it is so it is a 0 on",
+    "start": 1021.52,
+    "end": 1026.0,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,)))"
+  },
+  {
+    "text": "matrix or a true false matrix. So, initially the adjacency matrix has 1 or true whenever there is",
+    "start": 1026.0,
+    "end": 1030.88,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,)))"
+  },
+  {
+    "text": "an edge false whenever there is no edge. So, if I have already got an entry true with k minus 1",
+    "start": 1030.88,
+    "end": 1035.6,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,)))"
+  },
+  {
+    "text": "then I can keep it. The other hand maybe I do not have an entry true I have to go back k.",
+    "start": 1035.6,
+    "end": 1040.48,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,}))"
+  },
+  {
+    "text": "But once again that means that there is a path from i to k and there is a path from k to j and",
+    "start": 1040.48,
+    "end": 1045.28,
+    "ocr_text": "* Case 1:\n\n* Case 2:\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,}))"
+  },
+  {
+    "text": "and here I use only k minus 1 and here I use only k minus 1 because k needs to appear only",
+    "start": 1045.6,
+    "end": 1051.6,
+    "ocr_text": "* Case 1:\n\nbaa t , - f , ed ny\n\n1: PX(i,j) = P*\"(i,j) or (P<\"(,k) and P*‘(k,j))"
+  },
+  {
+    "text": "once just like in a shortest path if I am just looking for some connectivity I do not get anything",
+    "start": 1051.6,
+    "end": 1055.92,
+    "ocr_text": "* Case 1:\n\nbaa t , - f , ed ny\n\n1: PX(i,j) = P*\"(i,j) or (P<\"(,k) and P*‘(k,j))"
+  },
+  {
+    "text": "by going back from k to k because I can just remove that an i and j will remain connected right.",
+    "start": 1055.92,
+    "end": 1060.8,
+    "ocr_text": "* Case 1:\n\nLe\n* Case 2: One\n\nPX(i,j) = P<'(i,j) or (P“'(,k) and P*'(k,)))"
+  },
+  {
+    "text": "So, I need to only look for paths which have one copy of every vertex along then. So,",
+    "start": 1060.8,
+    "end": 1065.6,
+    "ocr_text": "* Case 1:\n\nLe\n* Case 2: One\n\nPX(i,j) = P<'(i,j) or (P“'(,k) and P*'(k,)))"
+  },
+  {
+    "text": "therefore, I can assume there is a path from an i to k which does not use anything outside",
+    "start": 1065.6,
+    "end": 1069.92,
+    "ocr_text": "* Case 1:\n\n1.4\n* Case 2: ) ( . -bel\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,)))"
+  },
+  {
+    "text": "1 to k minus 1 likewise from k to j right. So, here now it is sort of min and plus my operations",
+    "start": 1070.08,
+    "end": 1075.6,
+    "ocr_text": "* Case 1:\n\n1.4\n* Case 2: ) ( . -bel\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,)))"
+  },
+  {
+    "text": "now become or an add. So, either I want a path from i to k and a path from k to j or I want an",
+    "start": 1075.6,
+    "end": 1082.0,
+    "ocr_text": "* Case 1:\n\n1. Al\n* Case 2: ‘ in bel\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,))"
+  },
+  {
+    "text": "existing path from i to j which never use k at all right. So, I have this and operation for combining",
+    "start": 1082.0,
+    "end": 1087.04,
+    "ocr_text": "* Case 1:\n\n1. Al\n* Case 2: ‘ in bel\n\nPX(i,j) = P'(i,j) or (P“'(,k) and P*'(k,))"
+  },
+  {
+    "text": "these two existing paths which should be p sorry and then I have an or operation which combines",
+    "start": 1087.04,
+    "end": 1092.64,
+    "ocr_text": "* Case 1:\n\n* Case 2: F\nJ\n\nP¥(,j) = PX1(,)) or (PX (ib) and P™(k,))"
+  },
+  {
+    "text": "k as 1 right. So, earlier we had w k minus 1 i j and then we add this w k minus 1 i k plus",
+    "start": 1092.88,
+    "end": 1106.32,
+    "ocr_text": "* Case 1:\n\n* Case 2: F\nJ\n\nP¥(,j) = PX1(,)) or (PX (ib) and P™(k,))"
+  },
+  {
+    "text": "w k minus 1 k j and we took the min of this right. So, here instead of this plus we are using",
+    "start": 1106.96,
+    "end": 1116.08,
+    "ocr_text": "kA \\ \\W ]\nW (ey ss (a \"| ky)\n\n* Case 1:\n\n1.\n* Case 2: ° Velel\n\nPX(i,j) = PX 1G i,j) or (P“\"(i,k) and P*‘(k,j))\n\nee"
+  },
+  {
+    "text": "add and instead of this min we are using all right. So, you can see that the algorithm is not exactly",
+    "start": 1116.08,
+    "end": 1121.44,
+    "ocr_text": "eo (5), WC) as)\n\n* Case 1: TI\n\nLeal\n* Case 2: ( . t-lel\n\nate\nPX(i,j) = PG OIP UK and P*\"(k,j))"
+  },
+  {
+    "text": "the same but it is very similar. So, this was the algorithm proposed by Warshall right.",
+    "start": 1121.44,
+    "end": 1125.92,
+    "ocr_text": "eo (5), WC) as)\n\n* Case 1: TI\n\nLeal\n* Case 2: ( . t-lel\n\nate\nPX(i,j) = PG OIP UK and P*\"(k,j))"
+  },
+  {
+    "text": "So, you initialize everything to pulse and then again this should be for i is equal to 1 to n",
+    "start": 1126.8,
+    "end": 1132.56,
+    "ocr_text": "eo (5), WC) as)\n\n* Case 1: TI\n\nLeal\n* Case 2: ( . t-lel\n\nate\nPX(i,j) = PG OIP UK and P*\"(k,j))"
+  },
+  {
+    "text": "or j is equal to n. So, you initialize all the paths to pulse then you set explicitly that the",
+    "start": 1133.76,
+    "end": 1138.96,
+    "ocr_text": "__ fv Elton fr jelton"
+  },
+  {
+    "text": "0th level paths are 2 if there is an edge and then you keep updating the kth level path by",
+    "start": 1138.96,
+    "end": 1143.6,
+    "ocr_text": "__ fv Elton fr jelton"
+  },
+  {
+    "text": "either saying that there was already a k minus 1 level path or I can find 2 k minus 1 level paths",
+    "start": 1143.6,
+    "end": 1148.48,
+    "ocr_text": "__ fv Elton fr jelton"
+  },
+  {
+    "text": "via an intermediate level k, intermediate vertex k right. So, it is a very similar thing we just",
+    "start": 1148.48,
+    "end": 1153.76,
+    "ocr_text": "__ fr Eldon fr jelton"
+  },
+  {
+    "text": "have these operations of r and n instead of min and plus and then Warshall's algorithm was used",
+    "start": 1153.76,
+    "end": 1159.6,
+    "ocr_text": "__ fr Eldon fr jelton"
+  },
+  {
+    "text": "for transitive closure and Floyd generalized it for shortest paths and these work in the presence",
+    "start": 1159.6,
+    "end": 1165.6,
+    "ocr_text": "__ fy Elton fr jelton"
+  },
+  {
+    "text": "of negative edges it does not matter Floyd's algorithm does not care whether the edges are negative",
+    "start": 1165.6,
+    "end": 1169.36,
+    "ocr_text": "2 te telton fr jelton"
+  },
+  {
+    "text": "or positive. So, longness there are no negative cycles.",
+    "start": 1169.36,
+    "end": 1179.36,
+    "ocr_text": "2 te telton fr jelton"
+  }
+]

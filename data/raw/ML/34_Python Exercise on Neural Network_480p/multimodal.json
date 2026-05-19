@@ -1,0 +1,1682 @@
+[
+  {
+    "text": "Hello friends, welcome to the tutorial session of the 6 week of this course. I am Anirban,",
+    "start": 0.0,
+    "end": 24.08,
+    "ocr_text": "—_S\nNia A Ra ae A\n\na= a"
+  },
+  {
+    "text": "today's topic is Artificial Neural Network. As you people may already be knowing that Artificial",
+    "start": 24.08,
+    "end": 29.52,
+    "ocr_text": "—_S\nNia A Ra ae A\n\na= a"
+  },
+  {
+    "text": "Neural Networks form the foundation of a class of machine learning algorithms which are called",
+    "start": 29.52,
+    "end": 33.2,
+    "ocr_text": "SE a a fi\n\n& Neng\n_"
+  },
+  {
+    "text": "deep learning and currently these are doing wonders in the field of artificial intelligence.",
+    "start": 33.2,
+    "end": 38.0,
+    "ocr_text": "SE a a fi\n\n& Neng\n_"
+  },
+  {
+    "text": "So, today's I am going to teach you how to make a simple neural network on a simple task",
+    "start": 38.0,
+    "end": 45.6,
+    "ocr_text": "_—\nma Ra a a"
+  },
+  {
+    "text": "and show you how the performance changes when different changes are made to the architecture",
+    "start": 46.56,
+    "end": 52.16,
+    "ocr_text": "_—\nma Ra a a"
+  },
+  {
+    "text": "and the learning algorithm. And the library that we are going to use for machine learning for deep",
+    "start": 52.16,
+    "end": 58.8,
+    "ocr_text": "TensorFlow is an Open Source Software\nLibrary for Machine Intelligence\n\nSecpauertanyninene opener TensorFlow"
+  },
+  {
+    "text": "is called tensor flow. So, tensor flow is a deep learning library which is open source and it",
+    "start": 59.52,
+    "end": 65.92,
+    "ocr_text": "TensorFlow is an Open Source Software\nLibrary for Machine Intelligence\n\nSecpauertanyninene opener TensorFlow"
+  },
+  {
+    "text": "was open source by Google and it is pretty state of the art and it is pretty popular as well both",
+    "start": 65.92,
+    "end": 74.24,
+    "ocr_text": "TensorFlow\n\nTensorFlow is an Open Source Software\nLibrary for Machine Intelligence\n\n‘nomen npn ne open be TensorFlow"
+  },
+  {
+    "text": "in the academia and the industry and it has a large number of resources. And a certain",
+    "start": 74.24,
+    "end": 78.56,
+    "ocr_text": "TensorFlow\n\nTensorFlow is an Open Source Software\nLibrary for Machine Intelligence\n\n‘nomen npn ne open be TensorFlow"
+  },
+  {
+    "text": "you know set of rappers have been developed around tensor flow which come by the name of TF",
+    "start": 80.32,
+    "end": 84.96,
+    "ocr_text": "‘TFLeam: Deep learning library featuring a higher-level API\nfor TensorFlow.\n\nQuick overview"
+  },
+  {
+    "text": "so it gives the same S-K-Learn or S-K-Learn interface. The API interface that you have been like",
+    "start": 85.68,
+    "end": 93.68,
+    "ocr_text": "‘TFLearn: Deep learning library featuring a higher-level API\nfor TensorFlow.\n\nQuick overview"
+  },
+  {
+    "text": "that I have been using in my previous lectures and that nice interface that model dot just you",
+    "start": 94.4,
+    "end": 100.0,
+    "ocr_text": "‘TFLearn: Deep learning library featuring a higher-level API\nfor TensorFlow.\n\nQuick overview"
+  },
+  {
+    "text": "declare the model you do a model dot fit. It trains the architecture and then you do model dot",
+    "start": 100.0,
+    "end": 106.4,
+    "ocr_text": "‘TFLeam: Deep learning library featuring a higher-level API\nfor TensorFlow.\n\nQuick overview"
+  },
+  {
+    "text": "predicted makes the predictions and the same beautiful TF-Learn this S-K-Learn API is present",
+    "start": 106.48,
+    "end": 114.24,
+    "ocr_text": "‘TFLeam: Deep learning library featuring a higher-level API\nfor TensorFlow.\n\nQuick overview"
+  },
+  {
+    "text": "in this TF-Learn library. So, TF-Learn is a set of rappers, Python rappers on top of the",
+    "start": 115.28,
+    "end": 121.28,
+    "ocr_text": "‘TFLeam: Deep learning library featuring a higher-level API\nfor TensorFlow.\n\nQuick overview"
+  },
+  {
+    "text": "generic tensor flow library and we will be using that in this lecture in this session.",
+    "start": 121.28,
+    "end": 128.08,
+    "ocr_text": "‘TFLeam: Deep learning library featuring a higher-level API\nfor TensorFlow.\n\nQuick overview"
+  },
+  {
+    "text": "It will be pretty interesting and the kind the work that the task that we people are going to we",
+    "start": 128.08,
+    "end": 134.16,
+    "ocr_text": "pr Newer sno on Iiacelaad\n\n‘TFLeam: Deep learning library featuring a higher-level API\nfor TensorFlow.\n\nQuick overview"
+  },
+  {
+    "text": "are going to solve in this session is the recognition of handwritten digits. So, the MNISD",
+    "start": 134.32,
+    "end": 141.44,
+    "ocr_text": "pr Newer sno on Iiacelaad\n\n‘TFLeam: Deep learning library featuring a higher-level API\nfor TensorFlow.\n\nQuick overview"
+  },
+  {
+    "text": "database is it stands for this so it is the mixed NISD database is a database of handwritten",
+    "start": 142.24,
+    "end": 150.96,
+    "ocr_text": "ea 3i4 5/2)"
+  },
+  {
+    "text": "digits and these digits where actually they were extracted from post postal codes the pin codes",
+    "start": 150.96,
+    "end": 159.12,
+    "ocr_text": "THE MNIST DATABASE »\nof handwritten digits\n\nan Cats Gag ats New Yr\nsinger Bares Moo ees, Reload\n\nee nt ute acm th ht tin Yo fu aera ay Mee snp y ye ee Sine He mn gen Some play ca\nSpot To ron y sat gta eke woe) open ted tee nascar |\n\n‘ecg tc te ama ST we ed in 2009 lowe ie pc aT ng mg ce eye eg ce lye emanate igen e208\n‘Becton cr oot an eg ate ea\n\non tine md pcp hd eh ch SY Ka i) crt np en he ig cee y ng hot ie a yon ea pp hl pu in\n\n‘Te Mo sarc IT pc ea pc a | ying of nee et Igy eit Do i ig SD thet et Hwee 5 dh te a ee nmi aS.\nTe rc ae ta cr Seng Cs Be caps sae SD Sty Ope De cs ages pe a a npn aaa\nTepes arte oceay Sone ay eg ST\n\n‘eos icmp ef 00 pues Sa 0 pers em Ot et wap 0 utes fe St 59 ues ST et ied ep fm iy 20 re, We ae a\nTiatweteingetennsneeaae\n\n51 gels 27 mages ten by 0 le wnt sc Se ne a fo a we ee em Sc, eae $0 nw i oma cr i ren, ee 5\nSS Se yee erat esteem we tangs Te mae Bo ease nomen Tues rons ay Sobran Treo tey em apd vase in tens aap des\nSSesseonemen ies Sy rev spend we Sc pee! Homies hasa ws A es Oo) ae Ha sews sae aan eee HT OAD a\n\nMoy etd we a eg nt en ge: Dh tw in een gp Some ae eh ere ea Whew ep ge he eee ng i te ee\n‘SeSomnrusScvescancitnngSeintsawmr anes) soe skeen, een apa eat een sng wana ap be suas woes a\n\n= es [rasr imac  ficmme\n[ieee i= i alice aa\n[ere ce 00 ase t lie\n= eaesee L slit nr"
+  },
+  {
+    "text": "the zip codes that people write on letters. So, they were scanned and the individual handwritten",
+    "start": 159.28,
+    "end": 166.24,
+    "ocr_text": "THE MNIST DATABASE »\nof handwritten digits\n\nan Cats Gag ats New Yr\nCipro Mr ees, Reload\n\nee nt pu tye may cg hot ein Ye fh urna a ey Mee sey ye ewe Signe He mn ge Sm pla yp ct\nSmart a Toor heros ty noe magma ele ree oe) apap et Ten wan acne SP\n\n‘ecg ct a mag uw a md 2009 pl ewe ei ep eT ng mg ce yen eg ce ly een ape gene ed 28\n‘Bente tr oc tae eg ate era Se\n\non inte mpc ps ed eh ch SYM Kau i) crt np en he ip cee yng i a a yon a ppg, he py i\n\n‘eH sarc IT Sp eta pc a ya of nee et Igy eat Do i ig SD tel ett Hwee 5 dh te a ei nmi aS.\nBet rc et cr Seng Cay Be caps eae SD dg Ode De cs aang esata pe a at nana ae\nTei cpne atc ante oceay nse aes y seg ST\n\n‘Te MT ing ut cmd 250 ue S208 pee Ore sep 0 ate mS 0 ue ST er int nd ug ria 20, We a a\nTiaensweteingetensncnee ae\n\n$1 gs 4:27 mages ten by 0 sleet wenn sc Se ie a en a ee ee ee Sc, eae Sen we ie nomi mcr i een, ee 5\nSS Sey oe eet Secs weeps tenn Bn sone pred noes Tans rons ay Sobran Tver tay em apn vase ia tena aegis\nSSisseonegen ses ey trv ssn cped oe SO epee! iors kano AD es Oya Has Sa ensD a sae a aaaN eee TOAD ar\nMoy etree we a eg nt Heer gic: Dh tow i een a gp Some ae eh re ea Whew ep ie he eee ng i te ee\n‘SeSomrusSevesaroitangcrint amar aves) soe skeen, ere pea Meaty een sheng van ap bess women a\n\n= Fanos [Fasano fice\n[ere ane) [= I aliate aa\n[Serene ce 00 [ose T eliace\n=r 7 L eli PQ"
+  },
+  {
+    "text": "these letters these digits were extracted and the task is to automatically identify which handwritten",
+    "start": 166.8,
+    "end": 174.8,
+    "ocr_text": "THE MNIST DATABASE »\n\nof handwritten digits\n\nan Cats Gaga New Yr\nCmeper Bape Mer ees, Reload\n\nee nt yu tv my acer ht ein Ye fh under a ey Mee sm ye ee Semen mn ge Sm pla yep ca\nmya a Toc heroes gets Feta rer ey appar han nan\n\n219 pave eri ei pt eT ig nage ce eye eg i ty ein spe. ig we ted 2\npace Spo ore ea\n\n‘ecg tc ne ae nag a ST we ead\nTiel enpangas crf sate pc\noo tint mtd pct pd eh ch SY Ka i) crt ape ee ip cee ying hot a a ee yon a ppg, J ep\n‘Re Hon srt IT pc ean pc a | ya of nee eh Igy eat Do ig SD shel et Hwee 5 i te ee ami aS.\nTee rc ae eta tr Seng Cay Bee caps ae SD Sg op ate Dl ce seg ests i a a nee aa\nTei capers aes sonny bate anes seg Ta\n\n‘Te a eine icmp ef 00 pues fe S50 pees Ott ap utes fe S50 ues ST pi et ced up fm pity 20 re, We ae a\ncecRigemetatrneneuras ad one\n\n$1 gs 27 ages ten by 0 let wens Se ie ee a we eed ec Sc, Wee S05\n‘ip Stem ney ore S0 sem ens pw nag Teg rm ple res Tm nanos in may Sempre ay een no ine DS nang spn es\nSSesseonegen nes cy rw esp Se pee! ioe skas os A as Oo eee HAs Saws Tae Ve ane eee HT OLN\nMoy meth een wo eg nt eer ge, Dh tw nee gp Some a re rnc ee ew ep ie he eee ng i te ee\n‘SeSonausSevesanci tonne ceints arenes) soe skeen, even nea say ae enn sheng vane ap he carn women a\n\n= es [srw fice\n[erie dane 05 i= L aliata aa\n[ere 00 [ose T lies\n= 7 L elit e"
+  },
+  {
+    "text": "digit was written in that particular you know that particular instance. So, here are some examples",
+    "start": 174.8,
+    "end": 181.68,
+    "ocr_text": "THE MNIST DATABASE »\n\nof handwritten digits\n\nan Cats Gaga New Yr\nCmeper Bape Mer ees, Reload\n\nee nt yu tv my acer ht ein Ye fh under a ey Mee sm ye ee Semen mn ge Sm pla yep ca\nmya a Toc heroes gets Feta rer ey appar han nan\n\n219 pave eri ei pt eT ig nage ce eye eg i ty ein spe. ig we ted 2\npace Spo ore ea\n\n‘ecg tc ne ae nag a ST we ead\nTiel enpangas crf sate pc\noo tint mtd pct pd eh ch SY Ka i) crt ape ee ip cee ying hot a a ee yon a ppg, J ep\n‘Re Hon srt IT pc ean pc a | ya of nee eh Igy eat Do ig SD shel et Hwee 5 i te ee ami aS.\nTee rc ae eta tr Seng Cay Bee caps ae SD Sg op ate Dl ce seg ests i a a nee aa\nTei capers aes sonny bate anes seg Ta\n\n‘Te a eine icmp ef 00 pues fe S50 pees Ott ap utes fe S50 ues ST pi et ced up fm pity 20 re, We ae a\ncecRigemetatrneneuras ad one\n\n$1 gs 27 ages ten by 0 let wens Se ie ee a we eed ec Sc, Wee S05\n‘ip Stem ney ore S0 sem ens pw nag Teg rm ple res Tm nanos in may Sempre ay een no ine DS nang spn es\nSSesseonegen nes cy rw esp Se pee! ioe skas os A as Oo eee HAs Saws Tae Ve ane eee HT OLN\nMoy meth een wo eg nt eer ge, Dh tw nee gp Some a re rnc ee ew ep ie he eee ng i te ee\n‘SeSonausSevesanci tonne ceints arenes) soe skeen, even nea say ae enn sheng vane ap he carn women a\n\n= es [srw fice\n[erie dane 05 i= L aliata aa\n[ere 00 [ose T lies\n= 7 L elit e"
+  },
+  {
+    "text": "from the data set and so there are some pretty nasty looking characters right like this 8 which",
+    "start": 181.84,
+    "end": 189.68,
+    "ocr_text": "[eia si 5/2)"
+  },
+  {
+    "text": "looks really bad this may be a 7 or something. So, it is not a trivial task of identifying the",
+    "start": 189.68,
+    "end": 195.2,
+    "ocr_text": "Machine leaning using Resticted Botzmann machines\n\n[ea 3i4 5/2)"
+  },
+  {
+    "text": "handwritten digits and this MNISD database is one of the you know the first choices of data set",
+    "start": 195.2,
+    "end": 202.0,
+    "ocr_text": "g\n[iaisiy 5/2]\n\nMachine leaming using Resticted Botamann machines"
+  },
+  {
+    "text": "which people would like to use just to just check out the performance of a new learning algorithm",
+    "start": 202.0,
+    "end": 207.52,
+    "ocr_text": "g\n[iaisiy 5/2]\n\nMachine leaming using Resticted Botamann machines"
+  },
+  {
+    "text": "that they have come to their mind. So, this is pretty basic stuff and I think that this particular",
+    "start": 207.6,
+    "end": 211.84,
+    "ocr_text": "Machine leaming using Resticted Botzmann machines\n\nBoorre\n[easly 5/2]"
+  },
+  {
+    "text": "exercise will give you a good head start in these deep learning algorithms. So, without further",
+    "start": 211.84,
+    "end": 217.04,
+    "ocr_text": "Machine leaming using Resticted Botzmann machines\n\nBoorre\n[easly 5/2]"
+  },
+  {
+    "text": "ado let us go ahead and start writing our code. So, the first step is to load the dependencies",
+    "start": 217.04,
+    "end": 223.6,
+    "ocr_text": "SJUPYtEr Aacigement 5 deme ini tee Pt me\n\n1. Load dependencies\nstv r\n\n2. Load data\n\n3, Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "and yes I am we are be writing the code from scratch and in ipython notebook or Jupyter notebook",
+    "start": 223.6,
+    "end": 231.36,
+    "ocr_text": "SJUPYtEr Aacigement 5 deme ini tee Pt me\n\n1. Load dependencies\nstv r\n\n2. Load data\n\n3, Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "and I will share this notebook on GitHub and the link in the description to the link in the",
+    "start": 231.36,
+    "end": 236.16,
+    "ocr_text": "SJUPYtEr Aacigement 5 deme int tne Ph men\n\n1. Load dependencies\n\n2. Load data\n3, Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "description so that you can also use and refer to it later on right. So, let me first load the",
+    "start": 236.16,
+    "end": 240.64,
+    "ocr_text": "SJUPYtEN Aecigement 5 deme int tne Ph me\n\n1. Load dependencies\nvl r\n\n2. Load data\n\n3, Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "dependency. So, I will do import numpy as n p import t f learn and from t f learn dot data sets",
+    "start": 240.64,
+    "end": 248.64,
+    "ocr_text": "SJUPYtEN Aecigement 5 deme int tne Ph me\n\n1. Load dependencies\nvl r\n\n2. Load data\n\n3, Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "import m n i s t. So, we just go ahead and execute this. So, once this has been done maybe I can zoom in a little bit so that I can see.",
+    "start": 248.64,
+    "end": 272.16,
+    "ocr_text": "SJUPYtEr Acizement 5 dame intone ha ap iment res\n\n1. Load dependencies\n0 eee say\n\n2. Load data\n\n3, Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "So, these three things are the necessary dependencies the execution is complete. Let us go ahead and",
+    "start": 272.56,
+    "end": 278.72,
+    "ocr_text": "11 Lnsstictespendiencies\n\n(+ sepa inlay ys@enpe\n\nsegemedtiaerns\nF=temt-tibtenssdabsseees itepoxt mmiet 1\n\n22leweticetie\nsSiakeiie mse!\n\nafr eae Rael"
+  },
+  {
+    "text": "load the data. So, let us declare this as m n i s t data equal to m n i s t dot read data sets.",
+    "start": 279.76,
+    "end": 294.4,
+    "ocr_text": "Bote OB ee mC cm\n\n1, Load dependencies\n\nrn (2)4 Amport sunpy a 9p\nSapore efieare’\nfron tElearn-datasete Anport mast\n\n2. Load data\nmond ot\n3. Make the model\n\nmon\n\n4. Train the model\n\nmo\n\n2) (©) Comoe | @ [eo"
+  },
+  {
+    "text": "So, the read data sets is a function. So, just make sure yes. So, the read data sets is a function which is",
+    "start": 294.48,
+    "end": 305.36,
+    "ocr_text": "Coes CSC\n\n1, Load dependencies\n\nAnport sonpy as mp\nspore eftears\nfron tElearn.datasets Anport maist\n\n2. Load data\n\nrst data = anise\n\n3. Make the model\n\n4. Train the model\n\n2) @) Coons @ [@/@"
+  },
+  {
+    "text": "there in within the m n i s t this this script that we are invoking. So, you can actually look up the",
+    "start": 306.24,
+    "end": 311.52,
+    "ocr_text": "Bote @ Bae mC com\n\nmon\n\nmon\n\n1, Load dependencies\n\nimport nunpy as =p\nspore efteara\nfron tElearn-datasete deport mast\n\n2. Load data\n\nHIST data = mnist rend date_sete()\n\n3. Make the model\n\n4. Train the model\n\n2 @) Comoe | @ | o"
+  },
+  {
+    "text": "structure of t f learn dot data sets and it has a number of really good utility.",
+    "start": 311.52,
+    "end": 315.6,
+    "ocr_text": "Bote @ Bae mC com\n\nmon\n\nmon\n\n1, Load dependencies\n\nimport nunpy as =p\nspore efteara\nfron tElearn-datasete deport mast\n\n2. Load data\n\nHIST data = mnist rend date_sete()\n\n3. Make the model\n\n4. Train the model\n\n2 @) Comoe | @ | o"
+  },
+  {
+    "text": "And this read data sets function will read the data sets. So, if the data set is not there in your",
+    "start": 316.48,
+    "end": 322.08,
+    "ocr_text": "Coes CSC\n\n1, Load dependencies\n\nimport nonpy as mp\nspore efteara\nfron tElearn-datasete Anport aaist\n\n2. Load data\n\nrst data = mnist read date. sets\n\n3. Make the model\n\n4. Train the model\n\n2) @) Comoe | @ [@/@"
+  },
+  {
+    "text": "computer it is going to download it first and then it is going to like do some pre processing on top",
+    "start": 322.08,
+    "end": 327.52,
+    "ocr_text": "Coes CSC\n\n1, Load dependencies\n\nimport nonpy as mp\nspore efteara\nfron tElearn-datasete Anport aaist\n\n2. Load data\n\nrst data = mnist read date. sets\n\n3. Make the model\n\n4. Train the model\n\n2) @) Comoe | @ [@/@"
+  },
+  {
+    "text": "of that bring everything into the format that is easy for machine learning and then return the",
+    "start": 327.52,
+    "end": 334.64,
+    "ocr_text": "Bot eB ee mC cm\n\nmon\n\nmon\n\n1, Load dependencies\n\nimport nunpy as =p\nspore efteara\nfron tElearn-datasete Anport saist\n\n2. Load data\n\nerrst_data = mnist road date. sets\n\n3. Make the model\n\n4. Train the model\n\n2 @) Conon | @ [eo"
+  },
+  {
+    "text": "data set in a nice format. So, we will see the format of the data in a minute. So, I will just write",
+    "start": 334.64,
+    "end": 340.8,
+    "ocr_text": "Bot eB ee mC cm\n\nmon\n\nmon\n\n1, Load dependencies\n\nimport nunpy as =p\nspore efteara\nfron tElearn-datasete Anport saist\n\n2. Load data\n\nerrst_data = mnist road date. sets\n\n3. Make the model\n\n4. Train the model\n\n2 @) Conon | @ [eo"
+  },
+  {
+    "text": "one hot equal to true. So, what does this two let us execute and then speak. So, it is already done.",
+    "start": 340.8,
+    "end": 349.28,
+    "ocr_text": "Bote OB ee mC cum\n\nmon\n\nmo\n\n1, Load dependencies\n\nimport nunpy as =p\nspore tfteara\nfron tElearn-datasete Anport saist\n\n2. Load data\n\nrise data = mnist road datasets\n\n3. Make the model\n\n4. Train the model\n\n2) @) Conmoee|/@ [eo"
+  },
+  {
+    "text": "So, as you can see that the data sets were already downloaded in my system. So, it they just",
+    "start": 349.28,
+    "end": 353.36,
+    "ocr_text": "men\n\n1, Load dependencies\n\nimport nunpy as =p\nInport efteara\nfron tElearn-datasets Anport aaist\n\n2. Load data\n\n‘erIST_data = mist road data. sate one hot=rrve,\n\nBxtracting mniat/train-inages-idx)-obyte.g\n‘Posers/aizan/anaconda/tib/python2.7/gzip.py 12751\n‘index will reruit in an error in the future\n‘hunk = self.extrabuf(oftoet: offset + size)\n‘onera/Anseben/anaconda/isb/python?.7/aita-packagea/t#learn/datauete/anist.py:52+ VisibleDeprecationkarning® convert\n‘ng an array with nin > 0 to an index vill result in an error in the future\n(data = data.reshape(aum_inages, rom, cole, 1)\nxtracting mist/train-labels-idxi-ubyte.ge\neeracting aniat/t10k-inages-idel-abyee. ge\nExtracting mnist/ti0e-labela-idel-sbyee.ge\n\nHiatbleDeprecetionvarning: converting an array with ndis > 0 to an\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "read the files and you have the data here. So, just add a new cell and start speaking",
+    "start": 354.32,
+    "end": 360.56,
+    "ocr_text": "men\n\n1, Load dependencies\n\nimport nunpy as =p\nInport efteara\nfron tElearn-datasets Anport aaist\n\n2. Load data\n\n‘erIST_data = mist road data. sate one hot=rrve,\n\nBxtracting mniat/train-inages-idx)-obyte.g\n‘Posers/aizan/anaconda/tib/python2.7/gzip.py 12751\n‘index will reruit in an error in the future\n‘hunk = self.extrabuf(oftoet: offset + size)\n‘onera/Anseben/anaconda/isb/python?.7/aita-packagea/t#learn/datauete/anist.py:52+ VisibleDeprecationkarning® convert\n‘ng an array with nin > 0 to an index vill result in an error in the future\n(data = data.reshape(aum_inages, rom, cole, 1)\nxtracting mist/train-labels-idxi-ubyte.ge\neeracting aniat/t10k-inages-idel-abyee. ge\nExtracting mnist/ti0e-labela-idel-sbyee.ge\n\nHiatbleDeprecetionvarning: converting an array with ndis > 0 to an\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "and cell below. So, one hot targets are targets represented as a vector in which just one of",
+    "start": 363.52,
+    "end": 374.56,
+    "ocr_text": "1. Load dependencies\n\nin (1)+ kmport sunpy a 9p\nSepore gfteara\ntron ttlearn.datanete Anport mnist\n\n2. Load data\n\n1p (2)4 MUST data = mniat road date sete) one_hot=zrse)\nrtracting mniat/train-inages-idxd-abyte.g\n\n‘asra/neoun/ anaconda in/eyton2/guipp7 275 ViaibLeepeecetiontarings converting a8 array ith ndin > © to an\n\nhunk = self.extrabut(oftest: offset + size)\n‘osers/antzban/anaconda/iib/python2.7/site-packages/¢flearn/datasete/anist.py:52+ VisibleDeprecationkarnings convert\nfag an array with adin > 0 to an index will result in an error in the future\n\n(data = datasreshape us images, ors, cole, 1)\n\nreracting mnist/train-Lebela-idxl byte.\n\n3. Make the model\n\nTrain the model"
+  },
+  {
+    "text": "the terms is a one and rest all of them are zero. So, it is like if you have 10 different",
+    "start": 374.64,
+    "end": 380.0,
+    "ocr_text": "mon\n\n1, Load dependencies\n\nInport sompy as =p\nspore fteara\nfron telearn.datanete Anport mniat\n\n2. Load data\n\nerist_data = mnist.read_date_sate one hot=2rve)\nxtracting mist/train-inages-idx3-ubyte.ge\n‘Povers/Aaban/anaconda/ib/python2.7/aaip.pyi275%\n‘index will result. in an error in the future\nChunk = self.extrabut(offests offset + size)\n‘osera/Anteban/asaconda/ib/python2.7/aita-packages/¢#leare/datauete/naist.py:521 VisibleDeprecatonkarning® converts\n‘og an array with nim > 0 to an index vill result in an error in the future\n(deta = data, reahape ous images, ove, col8y 1)\nst\n\netracting maist/train-Labels-idxi-abyt\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "digits to identify then the each digit each handwritten digit may be represented by a 10 long",
+    "start": 380.0,
+    "end": 388.48,
+    "ocr_text": "mon\n\n1, Load dependencies\n\nInport sompy as =p\nspore fteara\nfron telearn.datanete Anport mniat\n\n2. Load data\n\nerist_data = mnist.read_date_sate one hot=2rve)\nxtracting mist/train-inages-idx3-ubyte.ge\n‘Povers/Aaban/anaconda/ib/python2.7/aaip.pyi275%\n‘index will result. in an error in the future\nChunk = self.extrabut(offests offset + size)\n‘osera/Anteban/asaconda/ib/python2.7/aita-packages/¢#leare/datauete/naist.py:521 VisibleDeprecatonkarning® converts\n‘og an array with nim > 0 to an index vill result in an error in the future\n(deta = data, reahape ous images, ove, col8y 1)\nst\n\netracting maist/train-Labels-idxi-abyt\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "vector right vector of 10 elements and say it is an image of a 4 4. So, the one hot vector",
+    "start": 388.48,
+    "end": 398.08,
+    "ocr_text": "mon\n\n1, Load dependencies\n\nInport sompy as =p\nspore fteara\nfron telearn.datanete Anport mniat\n\n2. Load data\n\nerist_data = mnist.read_date_sate one hot=2rve)\nxtracting mist/train-inages-idx3-ubyte.ge\n‘Povers/Aaban/anaconda/ib/python2.7/aaip.pyi275%\n‘index will result. in an error in the future\nChunk = self.extrabut(offests offset + size)\n‘osera/Anteban/asaconda/ib/python2.7/aita-packages/¢#leare/datauete/naist.py:521 VisibleDeprecatonkarning® converts\n‘og an array with nim > 0 to an index vill result in an error in the future\n(deta = data, reahape ous images, ove, col8y 1)\nst\n\netracting maist/train-Labels-idxi-abyt\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "corresponding to this 4 will be 0 0 0 1 and the rest 0. So, all 0s except the fourth position",
+    "start": 398.08,
+    "end": 407.12,
+    "ocr_text": "mon\n\n1, Load dependencies\n\nInport sompy as =p\nspore fteara\nfron telearn.datanete Anport mniat\n\n2. Load data\n\nerist_data = mnist.read_date_sate one hot=2rve)\nxtracting mist/train-inages-idx3-ubyte.ge\n‘Povers/Aaban/anaconda/ib/python2.7/aaip.pyi275%\n‘index will result. in an error in the future\nChunk = self.extrabut(offests offset + size)\n‘osera/Anteban/asaconda/ib/python2.7/aita-packages/¢#leare/datauete/naist.py:521 VisibleDeprecatonkarning® converts\n‘og an array with nim > 0 to an index vill result in an error in the future\n(deta = data, reahape ous images, ove, col8y 1)\nst\n\netracting maist/train-Labels-idxi-abyt\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "which is a 1. So, this one hot representation of vectors like of of targets is useful for",
+    "start": 407.12,
+    "end": 416.0,
+    "ocr_text": "mon\n\n1, Load dependencies\n\nInport sompy as =p\nspore fteara\nfron telearn.datanete Anport mniat\n\n2. Load data\n\nerist_data = mnist.read_date_sate one hot=2rve)\nxtracting mist/train-inages-idx3-ubyte.ge\n‘Povers/Aaban/anaconda/ib/python2.7/aaip.pyi275%\n‘index will result. in an error in the future\nChunk = self.extrabut(offests offset + size)\n‘osera/Anteban/asaconda/ib/python2.7/aita-packages/¢#leare/datauete/naist.py:521 VisibleDeprecatonkarning® converts\n‘og an array with nim > 0 to an index vill result in an error in the future\n(deta = data, reahape ous images, ove, col8y 1)\nst\n\netracting maist/train-Labels-idxi-abyt\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "using along with different kinds of loss functions like cross entropy loss or even like it is",
+    "start": 417.52,
+    "end": 425.04,
+    "ocr_text": "men\n\nmoe\n\n1, Load dependencies\n\nimport sonpy as =p\nspore fteara\nfron telearn.datanste Anport mniat\n\n2. Load data\n\nerrsr_data = mnist.read_date_ eats one pot~2rve |\n‘xtracting mnist/train-inages-idx3-ubyte.ge\n‘osers/Anivban/anaconda/tib/python2.7/grip.py12751 Vieiblebeprecationkarning: converting an array with ndim > 0 to an\n‘indox will result. in an error in the future\n\nhusk = self.extrabut(oftosts offset + size)\n‘/osera/Anseben/anaconda/ib/python?.7/aita-packages/¢#learn/datauete/nnist.py:52+ VisibleDeprecatonkarning® convert\n‘ag an array with adin > 0 to an index vill result in an error in the future\n\n(deta = data-reahape num _inages, ove, col8, 1)\n\nst\n\nxtracting mist /train-Labels-idxi-abyte\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "you know describing it is a good way of describing it is a very usual popular way of describing",
+    "start": 425.52,
+    "end": 430.72,
+    "ocr_text": "men\n\nmoe\n\n1, Load dependencies\n\nimport sonpy as =p\nspore fteara\nfron telearn.datanste Anport mniat\n\n2. Load data\n\nerrsr_data = mnist.read_date_ eats one pot~2rve |\n‘xtracting mnist/train-inages-idx3-ubyte.ge\n‘osers/Anivban/anaconda/tib/python2.7/grip.py12751 Vieiblebeprecationkarning: converting an array with ndim > 0 to an\n‘indox will result. in an error in the future\n\nhusk = self.extrabut(oftosts offset + size)\n‘/osera/Anseben/anaconda/ib/python?.7/aita-packages/¢#learn/datauete/nnist.py:52+ VisibleDeprecatonkarning® convert\n‘ag an array with adin > 0 to an index vill result in an error in the future\n\n(deta = data-reahape num _inages, ove, col8, 1)\n\nst\n\nxtracting mist /train-Labels-idxi-abyte\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "categorical targets right. So, in a in the form of a binary vector it is called one hot vector",
+    "start": 432.56,
+    "end": 437.68,
+    "ocr_text": "men\n\nmoe\n\n1, Load dependencies\n\nimport sonpy as =p\nspore fteara\nfron telearn.datanste Anport mniat\n\n2. Load data\n\nerrsr_data = mnist.read_date_ eats one pot~2rve |\n‘xtracting mnist/train-inages-idx3-ubyte.ge\n‘osers/Anivban/anaconda/tib/python2.7/grip.py12751 Vieiblebeprecationkarning: converting an array with ndim > 0 to an\n‘indox will result. in an error in the future\n\nhusk = self.extrabut(oftosts offset + size)\n‘/osera/Anseben/anaconda/ib/python?.7/aita-packages/¢#learn/datauete/nnist.py:52+ VisibleDeprecatonkarning® convert\n‘ag an array with adin > 0 to an index vill result in an error in the future\n\n(deta = data-reahape num _inages, ove, col8, 1)\n\nst\n\nxtracting mist /train-Labels-idxi-abyte\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "because of just one of those elements in that vector is one right the element corresponding to",
+    "start": 437.68,
+    "end": 443.68,
+    "ocr_text": "men\n\nmoe\n\n1, Load dependencies\n\nimport sonpy as =p\nspore fteara\nfron telearn.datanste Anport mniat\n\n2. Load data\n\nerrsr_data = mnist.read_date_ eats one pot~2rve |\n‘xtracting mnist/train-inages-idx3-ubyte.ge\n‘osers/Anivban/anaconda/tib/python2.7/grip.py12751 Vieiblebeprecationkarning: converting an array with ndim > 0 to an\n‘indox will result. in an error in the future\n\nhusk = self.extrabut(oftosts offset + size)\n‘/osera/Anseben/anaconda/ib/python?.7/aita-packages/¢#learn/datauete/nnist.py:52+ VisibleDeprecatonkarning® convert\n‘ag an array with adin > 0 to an index vill result in an error in the future\n\n(deta = data-reahape num _inages, ove, col8, 1)\n\nst\n\nxtracting mist /train-Labels-idxi-abyte\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "the entry of that particular class. So, I just said one hot equal to true over here. So, it is going",
+    "start": 443.68,
+    "end": 450.64,
+    "ocr_text": "men\n\nmoe\n\n1, Load dependencies\n\nimport sonpy as =p\nspore fteara\nfron telearn.datanste Anport mniat\n\n2. Load data\n\nerrsr_data = mnist.read_date_ eats one pot~2rve |\n‘xtracting mnist/train-inages-idx3-ubyte.ge\n‘osers/Anivban/anaconda/tib/python2.7/grip.py12751 Vieiblebeprecationkarning: converting an array with ndim > 0 to an\n‘indox will result. in an error in the future\n\nhusk = self.extrabut(oftosts offset + size)\n‘/osera/Anseben/anaconda/ib/python?.7/aita-packages/¢#learn/datauete/nnist.py:52+ VisibleDeprecatonkarning® convert\n‘ag an array with adin > 0 to an index vill result in an error in the future\n\n(deta = data-reahape num _inages, ove, col8, 1)\n\nst\n\nxtracting mist /train-Labels-idxi-abyte\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "to now let us have a look at the data. So, it is going to make the targets in a give the return",
+    "start": 451.6,
+    "end": 457.44,
+    "ocr_text": "men\n\nmoe\n\n1, Load dependencies\n\nimport sonpy as =p\nspore fteara\nfron telearn.datanste Anport mniat\n\n2. Load data\n\nerrsr_data = mnist.read_date_ eats one pot~2rve |\n‘xtracting mnist/train-inages-idx3-ubyte.ge\n‘osers/Anivban/anaconda/tib/python2.7/grip.py12751 Vieiblebeprecationkarning: converting an array with ndim > 0 to an\n‘indox will result. in an error in the future\n\nhusk = self.extrabut(oftosts offset + size)\n‘/osera/Anseben/anaconda/ib/python?.7/aita-packages/¢#learn/datauete/nnist.py:52+ VisibleDeprecatonkarning® convert\n‘ag an array with adin > 0 to an index vill result in an error in the future\n\n(deta = data-reahape num _inages, ove, col8, 1)\n\nst\n\nxtracting mist /train-Labels-idxi-abyte\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "the targets in a one hot format. So, let us first divide the data set into training validation",
+    "start": 457.44,
+    "end": 462.56,
+    "ocr_text": "mon\n\n1, Load dependencies\n\nimport sompy as =p\nspore tfteara\nfron telearn.datanete Amport maiat\n\n2. Load data\n\neirs7_data = mnist read date, sets one hot=orve)\nxtracting mnist/erain-inages-idxs-ubyte.ge\n‘Ponars/ Asian /anaconda/ib/python2.7/aaip.pyi275%\n‘index will result. in an error in the future\n‘hunk = self.extrabuf(offestt offset + size)\n‘osera/Anseben/asaconda/ib/python2.7/aita-packages/¢#learn/datauete/naist.py52+ VisibleDeprecatonkarning® converts\n‘og an array with nim > 0 to an index wilt result in an error in the future\n(deta = data, reshape num _inagea, ove, col8y 1)\nst\n\nwetracting maist/train-labels-idxi-abyt\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "and test plates. So, maybe I can say data underscore train equal to m and i st data dot train.",
+    "start": 462.56,
+    "end": 477.04,
+    "ocr_text": "mon\n\n1, Load dependencies\n\nimport sompy as =p\nspore tfteara\nfron telearn.datanete Amport maiat\n\n2. Load data\n\neirs7_data = mnist read date, sets one hot=orve)\nxtracting mnist/erain-inages-idxs-ubyte.ge\n‘Ponars/ Asian /anaconda/ib/python2.7/aaip.pyi275%\n‘index will result. in an error in the future\n‘hunk = self.extrabuf(offestt offset + size)\n‘osera/Anseben/asaconda/ib/python2.7/aita-packages/¢#learn/datauete/naist.py52+ VisibleDeprecatonkarning® converts\n‘og an array with nim > 0 to an index wilt result in an error in the future\n(deta = data, reshape num _inagea, ove, col8y 1)\nst\n\nwetracting maist/train-labels-idxi-abyt\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "So, it is organized this way data underscore validation equal to m and i st data dot validation",
+    "start": 477.28,
+    "end": 490.08,
+    "ocr_text": "mie wl\n\n1, Load dependencies\n\nInport sonpy as =p\nspore efteara\nfron telearn.datanete Anport mniat\n\n2. Load data\n\nrise data = mnist.cead date. sete (one hot~tve)\nxtracting mnist/train-ina\n‘Posers/Aixban/anaconda/ib/python2.7/gzip.py 12754\n‘index will result. in an error in the future\nhusk = self.extrabut(oftests offset + size)\n‘osera/Anseben/anaconda/ib/python?.7/aita-packages/¢#learn/datauete/nniat.py:521 VisibleDeprecatonkarnings converts\n‘ag an array with ndim > 0 to an index wilt result in an error in the future\n(deta = data,reshape num inages, ove, col8y 1)\nst\n\nLdxa-ubyte.ge\n\nxtracting maist/train-labels-idxi-abyt\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "and data underscore test equal to m and i st underscore data dot test right. So, we just did",
+    "start": 490.8,
+    "end": 503.2,
+    "ocr_text": "men\n\nmone\n\n1, Load dependencies\n\nInport sonpy as =p\nspore efteaza\nfron telearn.datanete Aaport mniat\n\n2. Load data\n\nexist data = mnist.cead date. sete (one hot~tve)\nxtracting mnist/terain-inages-idx3-ubyte.ge\n‘Posers/Asixban/anaconda/tib/python2.7/gzip.py1275i ViniblebeprecationWarningi converting an array with ndin > 0 to an\n‘index will result. in an error in the future\n\nhusk = self.extrabut(offest: offset + size)\n‘osora/Anseban/asaconda/sb/python?.7/alta-packages/¢#learn/datauete/naiat.py:52+ VisibleDeprecatonkarnings converts\n‘ag an array with ndim > 0 to an index wilt result in an error in the future\n\n(deta = data, reahape eum inages, ove, col6, 1)\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "the training validation and test plates I will add another cell and let us have a look at the",
+    "start": 503.2,
+    "end": 509.68,
+    "ocr_text": "men\n\n1, Load dependencies\n\nInport sony as =p\nspore fteara\nfron teleern.datanete Anport mniat\n\n2. Load data\n\ner1st_data = mnist.read date. sete one hot=tve)\nxtracting mnist/train-inages-idx3-ubyte.ge\n‘Poners/ Asan /anaconda/ib/python2.7/azip.py1275%\n‘index will result. in an error in the future\n\n‘hunk = self.extrabut(offeet: offset + size)\n‘osera/Anseben/anaconda/ib/python?.7/aita-packages/¢#leern/datauete/naist.py:52+ VisibleDeprecatonkarnings converts\nfg an array with ndim> 0 to an index wilt result in an error in the future\n\n(deta = data.reshape um images, ove, eo18, 1)\n\nxtracting maist/train-labels-idxi-ubyte.ge\nidxi-abyte ge\nlvabyee.\n\n‘Siesctewe s mwton oetecigh\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "training data. So, let us say that we load them into the variables x and y. So, this is going to",
+    "start": 509.68,
+    "end": 516.24,
+    "ocr_text": "Bote GB) ee mC cue 3) o Comoe oe\n\n1. Load dependencies\n\nman\n\nmor\n[=o\n\nmon\n\nimport nunpy as mp\nsport efleare\nfree telecrn.datanete tnport mist\n\n2. Load data\n\norrs7 data = maiet-reed date sete one hot~trve)\n\n‘Poser4/AeLeban/anaconda/tb/python2.7/grtp.py12751 Viaiblebeprecationkarsing: converting an array with nia > 0 to an\n‘index will result. in an error in the future\n\nchunk = self.extrabut(offeet: offset + size)\n‘osora/Anseben/anaconda/ib/python?.7/alta-packages/¢#leare/datauete/anist.py:521 VisibleDeprecationkarning! converts\nfag an array with ndin > 0 to an index will Fesule in an error in the future\n\n‘data = data.roahapo aus images, rove, cole, 1)\n\netcactiog ania/raie-labela-dnicabyte\nExtracting mniat/ti0e label\n\n3. Make the model"
+  },
+  {
+    "text": "be equal to data train. So, the training data and underscore images gives is the field within the",
+    "start": 516.24,
+    "end": 526.96,
+    "ocr_text": "Bt x @ Belen mC cme 3) a core oe\n\n1. Load dependencies\n\nman\n\nmon\nLeo\n\nmon\n\nimport nunpy as mp\nsport efleare\nfren telearn.datanete tnport iat\n\n2. Load data\n\norr87 data = aniet.read date sete one hot~trse)\n\n(osers/teLeban/anaconda/tb/python2.7/grip.py12751 Viaiblebeprecationkaraing: converting an array with nin > 0 to an\n‘index will result. in an error in the future\n\nchunk = telf.extrabut{offeet: offset + size)\n‘osora/Anseban/anaconda/ib/python?.7/aite-packages/¢fleern/datasets/anist.py:521 VisibleDeprecatioskarnings converts\nfag an array with nin > 0 to an index will Fesule in an error in the future\n\n(deta = data.reahapo num images, rove, col8, 1)\n\nAded-ubyte.gt\n\nExtracting aniat/ti0e-label\n\nHy y= data erate\n\n3. Make the model"
+  },
+  {
+    "text": "class this like there is a class called data set and you can look up the structure I will give",
+    "start": 527.92,
+    "end": 534.56,
+    "ocr_text": "In [2]:\n\nIn [3]:\n\n[ =o\n\nMNIST_data = mnist.read_data_sets(one_hot=True)\nExtracting mnist/train-images-idx3-ubyte.gz\n\n/users/Anirban/anaconda/1ib/python2.7/gzip.py:275: VisibleDeprecationWarning: converting an ar\nindex will result in an error in the future\n\nchunk = self.extrabuf[offset: offset + size]\nUsers /Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDepre\nng an array with ndim > 0 to an index will result in an error in the future\n\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idx1-ubyte.gz\n\ndata_train = MNIST_data.train\ndata_validation = MNIST_data.validation\ndata_test = MNIST_data.test\n\nX) y = deta train, imageo|\n\n3. Make the model"
+  },
+  {
+    "text": "the links in the description of the video. So, this underscore images this particular attribute",
+    "start": 534.56,
+    "end": 540.88,
+    "ocr_text": "In [2]:\n\nIn [3]:\n\n[ =o\n\nMNIST_data = mnist.read_data_sets(one_hot=True)\nExtracting mnist/train-images-idx3-ubyte.gz\n\n/users/Anirban/anaconda/1ib/python2.7/gzip.py:275: VisibleDeprecationWarning: converting an ar\nindex will result in an error in the future\n\nchunk = self.extrabuf[offset: offset + size]\nUsers /Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDepre\nng an array with ndim > 0 to an index will result in an error in the future\n\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idx1-ubyte.gz\n\ndata_train = MNIST_data.train\ndata_validation = MNIST_data.validation\ndata_test = MNIST_data.test\n\nX) y = deta train, imageo|\n\n3. Make the model"
+  },
+  {
+    "text": "gives the inputs right and data underscore train dot underscore. So, it is target labels.",
+    "start": 540.88,
+    "end": 551.76,
+    "ocr_text": "2. Load data\n\nIn [2]: MNIST_data = mnist.read_data_sets(one_hot=True)\nExtracting mnist/train-images-idx3-ubyte.gz\n\n/Users/Anirban/anaconda/1ib/python2.7/gzip.py:275: VisibleDeprecationWarning: converting an\nindex will result in an error in the future\n\nchunk = self.extrabuf[offset: offset + size]\n/Users/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDepre\nng an array with ndim > 0 to an index will result in an error in the future\n\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labels-idx1-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idx1-ubyte.gz\n\nIn [3]: data_train = MNIST_data.train\nvalidation = MNIST_data.validation\n\ntest = MNIST_data.test\n\n[sce sy = data erate, toages"
+  },
+  {
+    "text": "So, this will so, now you have the inputs and the target values in x and y respectively.",
+    "start": 551.76,
+    "end": 566.96,
+    "ocr_text": "dejta_sets(one_hot=True)\nidx3-ubyte.gz\n\niss fpry Shion bheriqeqat 21a sriiihsl\n\nerror in the future\njffset: offset + size]\n\ncitayaetitotieihtw tatqneten ses Ae mec)\n(bud: ain ‘omdeernodd Lnresheltfuimnai error in the futi\nm images, rows, cols, 1)\n\nconverting an ar\n\n52: Visiblepepre|\n\nabels-idxl-ubyte.gz\nages-idx3-ubyte.gz\npels-idxl-ubyte.gz\n\ntrain\ndata.validation\nest\n\ns, data_train._"
+  },
+  {
+    "text": "Let us go ahead and see what the shapes of these entries are like this we can do x dot shape",
+    "start": 566.96,
+    "end": 573.28,
+    "ocr_text": "2. Load data\n\nnxerecting aniat/train-inages-idx3-ubyte.ge\n\n‘vera /asisa/anaconéa/tib/python2.7/gnip.pyi275: Viaiblebeprecationkarnings converting an array with ndin > 0 to an\n‘ndex will result dn an error in the fetare\n\n‘honk = selfvextrabuf{otteets offest + size)\n‘ower /anizbaa/anaconde/iib/python2.7/siterpackages/tEearn/datasete/anist.py152i Visiblebeprecationtarningt convert\nfg'an array with nain > 0 to'an indox will fosuit in an exror in the fatare\n\n\"asta = Gata teshape um images ove) cole, 1)\n\nxerect ing antet/train-Label4-dx!-abyee.g\nExerecting niet /ti0x-inages-ided-abyve.ge\nEaerecting anise /el0klabela-idel-abyee. ge\n\nOH\n‘dntatowt = JOT67 deta.\nmull 1\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "and see. So, there are the entire data set has 60,000 images out of them 55,000 are going to be",
+    "start": 574.0,
+    "end": 582.88,
+    "ocr_text": "2. Load data\n\nnxerecting aniat/train-inages-idx3-ubyte.ge\n\n‘vera /asisa/anaconéa/tib/python2.7/gnip.pyi275: Viaiblebeprecationkarnings converting an array with ndin > 0 to an\n‘ndex will result dn an error in the fetare\n\n‘honk = selfvextrabuf{otteets offest + size)\n‘ower /anizbaa/anaconde/iib/python2.7/siterpackages/tEearn/datasete/anist.py152i Visiblebeprecationtarningt convert\nfg'an array with nain > 0 to'an indox will fosuit in an exror in the fatare\n\n\"asta = Gata teshape um images ove) cole, 1)\n\nxerect ing antet/train-Label4-dx!-abyee.g\nExerecting niet /ti0x-inages-ided-abyve.ge\nEaerecting anise /el0klabela-idel-abyee. ge\n\nOH\n‘dntatowt = JOT67 deta.\nmull 1\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "used for training and the rest will be have been distributed among the validation and test sets.",
+    "start": 582.88,
+    "end": 588.4,
+    "ocr_text": "OH\n\nma (sit\nowisie\n\nmoe\n\nmon\n\n2. Load data\n\naxtrecting antet/train-inages-idx3-abyte.s\n\n‘osera/asisa/anaconéa/tib/python2.7/gtip.pyi27S: Viaiblebeprecetioniarnings converting an array with ndin > 0 to an\n‘ndex will eaule in an error in the fetare\n\n‘hunk = selfvextrabuf{otfeets offest + size)\n‘owers/anizban/anaconde/itb/python2,7/siterpackages/tfearn/datasete/anist pyi52i Visiblebeprecationtarningt convert\nfg'an array with nain > 0 to4n index will Fesuit in an error ia the fatere\n\n\"dctal= Gata.teshape oom Anageo, rove, cole, 1)\n\nxerecting mntet/train-LabelA-dxl-ubyee.g\nxerect ing niet /ti0k-images-ided-abyve,ge\nExerecting anise /elokclebela-ieel-abyee. ge\n\nKy y= data train, Seager, date train.\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "So, x dot shape and each of these numbers that you saw over here. So, each of these images is a",
+    "start": 589.52,
+    "end": 596.8,
+    "ocr_text": "mor\n\nma (sie\nowisit\n\nmo\n\nmon\n\n2. Load data\n\nAnages-Lex3-abyte.s\n‘osera/Anisban/anaconde/1Sb/pytnon2.1/grip-py:275: Viaiblabeprecetiontarnings converting an array with adi > 0 to an\n‘ndex will result in an error in the fetare\n\n‘Shunk = selfvextrabuf{otfeets offset + size)\n‘overs /anizbaa/ anaconda’ iib/python2,7/siterpackages/tEearn/datasets/anist py152i Visiblebeprecationtarningt convert\nfg'an array with nain > 0 toan index will Fesuit in an exror ia the fatere\nNdstal= Gita. teshape onm inages, rove, cole, 1)\n\nnacrecting mntet/tea\n\n‘xtracting aniat/train-Labels-idxi-ubyte.g2\nxtrect ing niet /ti0k- images ided-abyve.ge\nEatrect ing anise /eloklabela-ieel-abyee. ge\n\ncesle, 700\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "28 cross 28 image black and white image. So, 28 times 28 makes the number 784. So, that is why",
+    "start": 596.8,
+    "end": 606.0,
+    "ocr_text": "mor\n\nma (sie\nowisit\n\nmo\n\nmon\n\n2. Load data\n\nAnages-Lex3-abyte.s\n‘osera/Anisban/anaconde/1Sb/pytnon2.1/grip-py:275: Viaiblabeprecetiontarnings converting an array with adi > 0 to an\n‘ndex will result in an error in the fetare\n\n‘Shunk = selfvextrabuf{otfeets offset + size)\n‘overs /anizbaa/ anaconda’ iib/python2,7/siterpackages/tEearn/datasets/anist py152i Visiblebeprecationtarningt convert\nfg'an array with nain > 0 toan index will Fesuit in an exror ia the fatere\nNdstal= Gita. teshape onm inages, rove, cole, 1)\n\nnacrecting mntet/tea\n\n‘xtracting aniat/train-Labels-idxi-ubyte.g2\nxtrect ing niet /ti0k- images ided-abyve.ge\nEatrect ing anise /eloklabela-ieel-abyee. ge\n\ncesle, 700\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "you can see that the length of each training input vector is 784 and there are 55,000 of them.",
+    "start": 606.0,
+    "end": 616.16,
+    "ocr_text": "mor\n\nmsi\noutst\n\nmon\n\n2. Load data\n\nextracting antet/train-inages-idx3-abyee.s\n\n‘vera /asizas/anaconéa/tib/python2.7/gnip.pyi275: Viaiblebeprecationitarnings converting an array vith adin > 0 to an\n‘dex will result in an error in the fetare\n\n‘Shunk = selfvextrabuf{otteets offest + size}\n‘owers/aaizbaa/anaconde/iib/python2.7/siterpackages/tfenrn/datasets/anist py152i Visiblebeprecationtarningt convert\n‘gan array with nain > 0 to an index will Fosuit in an error in the fatere\n\n\"dsta'= Gita.teshape oom images, rove) cole, 1)\n\nxerecting mniat/train-labels-idxi-abyte.g2\nExerecting niet /ti0k- images ided-abyve.ge\nExtrect ing anise /elokclabela-ieel-abyee. ge\n\n(55000, 18\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "So, they have been organized in the form of this matrix. Let us see how y looks like.",
+    "start": 617.76,
+    "end": 622.72,
+    "ocr_text": "rn (2]+ | WEST date = matet read dat\n\njots(one_hot~tzee)\nExtracting mniat/train-images-idx2-ubyte.g\n\n‘Posera/aniban/anaconda/1ib/python?.7/g2ip-py!275t Vieibledeprecetionfaraings converting an array vith adis > 0 to an\nindex will xeault in an error in the favre\n\n‘chunk = self.extrabuf{offeets offset + 6:\n‘osera/xnizban/onaconda/1ib/pytnon2.7/sive-packages/tflearn/detasets/anist.py1521 Viaibledeprecetionkaraing converté\nfg an array vith néin > 0 to an index vill result in an error in the future\n\n‘data = data,reshape(aum_isages, rove, cols, 1)\n\nExtracting aniat/train-labela-idel-sbyt\nxerecting aniat/e10e-inages\nExtracting mist/£10%-label\n\nre (It\n\nin (4): |X, y = data train, images, data train, labels\n\nrn (51+ | Xaahape\nfoueis}+ (55000, J)\n\n3. Make the model\n\nmen\n\n4. Train the model\n\nmon"
+  },
+  {
+    "text": "Why there are also like for every single of the 55,000 training images we have their",
+    "start": 622.72,
+    "end": 629.28,
+    "ocr_text": "rn (2]+ | WEST date = matet read dat\n\njots(one_hot~tzee)\nExtracting mniat/train-images-idx2-ubyte.g\n\n‘Posera/aniban/anaconda/1ib/python?.7/g2ip-py!275t Vieibledeprecetionfaraings converting an array vith adis > 0 to an\nindex will xeault in an error in the favre\n\n‘chunk = self.extrabuf{offeets offset + 6:\n‘osera/xnizban/onaconda/1ib/pytnon2.7/sive-packages/tflearn/detasets/anist.py1521 Viaibledeprecetionkaraing converté\nfg an array vith néin > 0 to an index vill result in an error in the future\n\n‘data = data,reshape(aum_isages, rove, cols, 1)\n\nExtracting aniat/train-labela-idel-sbyt\nxerecting aniat/e10e-inages\nExtracting mist/£10%-label\n\nre (It\n\nin (4): |X, y = data train, images, data train, labels\n\nrn (51+ | Xaahape\nfoueis}+ (55000, J)\n\n3. Make the model\n\nmen\n\n4. Train the model\n\nmon"
+  },
+  {
+    "text": "corresponding label encoded as a one-hot vector and let us have a look at what this one-hot vector",
+    "start": 629.28,
+    "end": 634.96,
+    "ocr_text": "rn (2}+ [WEST date = malet rend dat\nRtracting miat/train-images-idxd-uby¥e.g\n\n‘Tosera/Aniban/anaconda/1ib/python2.7/g2ip-py!275t Vieibledeprecetionfaraing: converting an array with adie > 0 to an\nindex will result in an error in the future\n\n‘chunk = self.extrabuf{offaet: offset + si\n‘rosera/anizoan/onaconda/1ib/python2.7/sive-packages/tflearn/detasets/anist.py:521 Viaibledeprecetionsaraing convert\ntg an array vith néin > 0 to an index vill result in an error in the future\n\n‘data = data.reshape(num_inages, rove, cols, 1)\n\nExtracting aniat/train-labela~idel-sbye\n\njots(one_hot~t=ve)\n\nm0\n\nan (4) |X, y= date train. images, date train. tabole\n\nin (612 |ysohape\nfoveis}+ (55000, 10)\n\n3. Make the model\n\nmon\n\n4. Train the model\n\nmo"
+  },
+  {
+    "text": "looks like. Let us see what y 0 looks like. See, so it is a 10 long vector there are 10 entries",
+    "start": 634.96,
+    "end": 644.96,
+    "ocr_text": "rn (2}+ [WEST date = malet rend dat\nRtracting miat/train-images-idxd-uby¥e.g\n\n‘Tosera/Aniban/anaconda/1ib/python2.7/g2ip-py!275t Vieibledeprecetionfaraing: converting an array with adie > 0 to an\nindex will result in an error in the future\n\n‘chunk = self.extrabuf{offaet: offset + si\n‘rosera/anizoan/onaconda/1ib/python2.7/sive-packages/tflearn/detasets/anist.py:521 Viaibledeprecetionsaraing convert\ntg an array vith néin > 0 to an index vill result in an error in the future\n\n‘data = data.reshape(num_inages, rove, cols, 1)\n\nExtracting aniat/train-labela~idel-sbye\n\njots(one_hot~t=ve)\n\nm0\n\nan (4) |X, y= date train. images, date train. tabole\n\nin (612 |ysohape\nfoveis}+ (55000, 10)\n\n3. Make the model\n\nmon\n\n4. Train the model\n\nmo"
+  },
+  {
+    "text": "and the corresponding like this happen to be the image of a 8 right sorry 7. So, it is like 0, 1,",
+    "start": 645.6,
+    "end": 656.72,
+    "ocr_text": "rn (2]+ | WEST date = malet read dat\n\njets (one_hot~tzue)\nExtracting miat/train-images-idx2-ubyte.g\nTosera/aniba0/anaconda/1ib/python2.7/g2ip-py275t Vieibledeprecetionfaraing: converting an array with adis > 0 to an\nindex will xeault in an error in the future\n\n‘chunk = solf.extrabuf{offaets offset + si\n‘osera/aaizoan/snaconda/1ib/pytnon2.7/sive-packages/tflearn/detasets/anist.py1521 Viaibledeprecetionkaraing: convert\ntg an array with néin > 0 to an index vill result in an error in the future\n\n‘data = data,reshape(num_isages, rove, cols, 1)\n\nExtracting aniat/train-labole-idel-sbye\n\nre (31+ aa\nae\n\nmae\n\nrm (7 |yi0\n\nue 7}+ areay(t +, 0\n\n3. Make the model\n\nmea\n\n4. Train the model\n\nmon"
+  },
+  {
+    "text": "2, 3, 4, 5, 6, 7, 8, 9. So, this is this was the image of a 7 that example and hence just the",
+    "start": 656.72,
+    "end": 666.24,
+    "ocr_text": "m2\n\nre (3\n\nmae\n\nmime\n\nouei7ie\n\nmoa\n\nmon\n\nMursT_date = mnist.read dats\n\nExtracting mniat/train-images-idx2-ubyte.g\n\n‘Tosera/Aniban/anaconda/1ib/python2.7/g2ip-py275 Vieibledeprecetionfaraing: converting an array vith adie > 0 to an\n\neta (one_hot~azve)\n\nSndex will xeault in an error in the future\n\n‘chunk = self.extrabuf{offaets offset + si\n\n‘rosera/xaisoan/onaconda/1ib/python2.7/sive-packages/tflearn/datasets/anist.py:521 Viaibledeprecetionkaraings convert\ntg an array with néin > 0 to an index vill result in an error in the future\n\n‘data = data,reshape(num_inages, rove, cols, 1)\n\nExtracting aniat/teain-labele-idel-sbye\n\narray({ 0, 0\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "supposition for 7 is 1 the rest is 0. So, this was just to show you how things look like.",
+    "start": 666.24,
+    "end": 674.24,
+    "ocr_text": "rn (2]+ | WEST date = matet read dat\n\nsete (one_hotwazve)\nExtracting mniat/train-images-idx2-ubyte.g\n\nTosera/Aniban/anaconda/1ib/python2.7/g2ip-py!275t Vieibledeprecetionfaraings converting an array vith adis > 0 to an\nindex will reqult in an error in the future\n\n‘chunk = solf.extrabuf{offaets offset + si\n‘osera/aaizoan/anaconda/1ib/pytnon2.7/sive-packages/tflearn/detasets/anist.py1521 Viaibledeprecetionfaraing: convert\ntg an array with néin > 0 to an index vill Zesuie in an error in the future\n\n‘data = data,reshape(num_isages, rove, cols, 1)\n\nExtracting aniat/teain-labola-idel-sbye\n\nme (nt\n\neee\n\nmar\n\nmime{yio)\n\nue 7}+ arcay(t +, 0\n\n3. Make the model\n\nmon\n\n4. Train the model\n\nmon"
+  },
+  {
+    "text": "So, after this has been done let us go ahead let me delete the cell. Let us use this.",
+    "start": 675.84,
+    "end": 680.8,
+    "ocr_text": "mean\n\nm2}:\n\nre (aie\n\npa ES\n\n1. Load dependencies\n\n.\nAmport surpy as np\nsport tfleace\n\n2 Lnport nist\n\n2. Load data\n\niors data = maiet read dave seta (one hot~r2ue)\n\nExtracting anise/trais\n\n‘Finars/Anizban/anaconda/iib/python2.7/gzip.py:275: Visibledeprecationarning: converting an array with ndim > 0 to an\n\nndex will result in an error in the futare\nhunk = self-extrabus[otteet: offset + size)\n\n‘/ser8/anirban/anaconda/ ib/python2.7/site-packages/tflearn/datasets/anist.py1521 VisibleDeprecationfarningt converti\nng an array with sain > 0 to en index vill result in an error in the future\n\n‘deta = data.reshape(nun_tnages, rovs, cols, 1)\n\nuxtracting snist/train-labele-idxl-abyte.gz\nmrtracting nnist/tl0k-inagee-idn)-obyce-at\nxeracting anist/€10k-labele-tdxl-ubyee.g¢\n\ndation = MHIST data, validation\n‘Seta_tost = MIST daca. coat\n\nX, y= data train. images, data train. labels"
+  },
+  {
+    "text": "So, just go ahead and delete the cell. So, once we have the training data ready,",
+    "start": 681.84,
+    "end": 689.36,
+    "ocr_text": "mean\n\nm2}:\n\nre (aie\n\npa ES\n\n1. Load dependencies\n\n.\nAmport surpy as np\nsport tfleace\n\n2 Lnport nist\n\n2. Load data\n\niors data = maiet read dave seta (one hot~r2ue)\n\nExtracting anise/trais\n\n‘Finars/Anizban/anaconda/iib/python2.7/gzip.py:275: Visibledeprecationarning: converting an array with ndim > 0 to an\n\nndex will result in an error in the futare\nhunk = self-extrabus[otteet: offset + size)\n\n‘/ser8/anirban/anaconda/ ib/python2.7/site-packages/tflearn/datasets/anist.py1521 VisibleDeprecationfarningt converti\nng an array with sain > 0 to en index vill result in an error in the future\n\n‘deta = data.reshape(nun_tnages, rovs, cols, 1)\n\nuxtracting snist/train-labele-idxl-abyte.gz\nmrtracting nnist/tl0k-inagee-idn)-obyce-at\nxeracting anist/€10k-labele-tdxl-ubyee.g¢\n\ndation = MHIST data, validation\n‘Seta_tost = MIST daca. coat\n\nX, y= data train. images, data train. labels"
+  },
+  {
+    "text": "let us go ahead and make the model. So, in making the tensor flow it organizes the entire",
+    "start": 689.84,
+    "end": 698.08,
+    "ocr_text": "SJUPY LCT sesso cao momen erin\n\nRe eS esnmc on 1 ome ooo\n\n1. Load dependencies\n\n2.Load data\n\n3. Make the model\n\n4, Train the model"
+  },
+  {
+    "text": "architecture of the neural network in the form of a graph. So, it is called the tensor flow graph.",
+    "start": 707.76,
+    "end": 713.04,
+    "ocr_text": "SJUDYAGE reeset Score orcees reenarnro\n\n1. Load dependencies\n\n2. Load data\n\n\"SSL ie eer"
+  },
+  {
+    "text": "So, the first thing that you have to do while making your neural network is to first define the",
+    "start": 714.0,
+    "end": 720.64,
+    "ocr_text": "SJUDYAGE reeset Score orcees reenarnro\n\n1. Load dependencies\n\n2. Load data\n\n\"SSL ie eer"
+  },
+  {
+    "text": "graph structure. So, initialize a graph by invoking this function. So, you just call tf learn",
+    "start": 720.64,
+    "end": 726.64,
+    "ocr_text": "SJUPYEEL ML-Anrban Tor etcminwe harap nnn"
+  },
+  {
+    "text": "just a second yes. So, tf learn dot in it underscore graph and you specify what all system",
+    "start": 726.64,
+    "end": 743.36,
+    "ocr_text": "SJUPYEEL ML-Anrban Tor etcminwe harap nnn"
+  },
+  {
+    "text": "resources that will be necessary for this particular exercise and just as a matter of fact that",
+    "start": 744.0,
+    "end": 752.48,
+    "ocr_text": "S JUPYCET Assignment 5 dono tm omens Therap tern! or\n\n1. Load dependencies\n\n2.Load data\n\n\"STL er =\n\n3. Make the model\n\n4, Train the model"
+  },
+  {
+    "text": "tf learning requires a kind special kind of you know computing infrastructure which is known as",
+    "start": 753.2,
+    "end": 761.44,
+    "ocr_text": "im (2): | MIST_data = mnist.read_data +\n\nin\n\nIn\n\nm\n\nar\n\nae\n\ncae\n\nse9(one_hot~true)\nExtracting mnist/train-inages-idx3-ubyte.gz\n7asers/anizban/anaconda/iib/python2.7/gzip.pyi275: VisibleDeprecationWarning: converting an array with ndim > 0 to\nindex will result in an error in the future\n\nchunk = self.extrabuf{oftset: offset + size)\n/0sers/anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/anist.py:52: VisibleDeprecationWarning: conver\nng an array with ndim > 0 to an index will result in an error in the future\n\ndata = data.reshape(num_images, ros, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idx1-ubyte.g2\n\ndate_train = MuIsT_data.train\nLidation = MNIST_data.validation\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph\n\n4. Train the model"
+  },
+  {
+    "text": "graphics processing unit. So, the same graphics cards that again we that are used for playing games",
+    "start": 761.44,
+    "end": 766.08,
+    "ocr_text": "in (2}1 | MIST_data = mnist.read_data +\n\nm\n\nIn\n\nm\n\nare\n\nae\n\ntae\n\nses (one_hot~true)\nExtracting mnist/train-images-idx3-ubyte.gz\n7asers/Anizban/anaconda/iib/python2.7/gzip.pyi275: VisibleDeprecationWarning: converting an array with ndim > 0 to\nindex will result in an error in the future\n\nchunk = self.extrabuf{oftset: offset + size]\n‘J0sers/anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning: conver\nfag an array with ndim > 0 to an index will result in an error in the future\n\ndata = data.reshape(num images, ros, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxi-ubyte.g2\n\ntrain = mirst_data.train\nLidation = MNIST_data.validation\n\n3. Make the model\n\ntflearn.init_graph\n\n4. Train the model"
+  },
+  {
+    "text": "that you can find that can be used that is used for like heavy duty visual renderings the same",
+    "start": 766.08,
+    "end": 773.2,
+    "ocr_text": "in (2): | MIST_data = mnist.read data +\n\nm\n\nIn\n\nm\n\nar\n\nae\n\ncae\n\nse8(one_hot~true)\nExtracting mnist/train-inages-idx3-ubyte.gz\n7asers/anizban/anaconda/iib/python2.7/gzip.pyi275: VisibleDeprecationWarning: converting an array with ndim > 0 to.\nindex will result in an error in the future\n\nchunk = self.extrabuf{oftset: offset + size]\n‘/0sers/Anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning: conver\nfag an array with ndim > 0 to an index will result in an error in the future\n\ndata = data.reshape(nun_images, rovs, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/tl0k-labels-idxi-ubyte.g2\n\ntrain = murst_data.train\nLidation = MNIST_data.validation\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_ graph\n\n4. Train the model"
+  },
+  {
+    "text": "graphics cards. So, they are capable of doing matrix multiplications very efficiently and that is",
+    "start": 773.2,
+    "end": 780.96,
+    "ocr_text": "in (2): | MIST_data = mnist.read data +\n\nm\n\nIn\n\nm\n\nar\n\nae\n\ncae\n\nse8(one_hot~true)\nExtracting mnist/train-inages-idx3-ubyte.gz\n7asers/anizban/anaconda/iib/python2.7/gzip.pyi275: VisibleDeprecationWarning: converting an array with ndim > 0 to.\nindex will result in an error in the future\n\nchunk = self.extrabuf{oftset: offset + size]\n‘/0sers/Anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning: conver\nfag an array with ndim > 0 to an index will result in an error in the future\n\ndata = data.reshape(nun_images, rovs, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/tl0k-labels-idxi-ubyte.g2\n\ntrain = murst_data.train\nLidation = MNIST_data.validation\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_ graph\n\n4. Train the model"
+  },
+  {
+    "text": "what comes to a great help in doing this like deep learning applications. So, tensor flow is",
+    "start": 780.96,
+    "end": 789.76,
+    "ocr_text": "in (2): | MIST_data = mnist.read data +\n\nim\n\nIn\n\nm\n\nar\n\nae\n\ntae\n\nses (one_hot~true)\nExtracting mnist/train-images-idx3-ubyte.gz\n7asers/anizban/anaconda/iib/python2.7/gzip.pyi275: VisibieDeprecationWarning: converting an array with ndim > 0 to\nindex will result in an error in the future\n\nchunk = self.extrabuf{oftset: offset + size]\n‘/0sers/Anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist .py:52: VisibleDeprecationWarning: conver\nfag an array with ndim > 0 to an index will result in an error in the future\n\ndata = data.reshape(num_images, rovs, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxi-ubyte.g2\n\ntrain = mirst_data.train\nLidation = MIST data.validation\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph |\n\n4. Train the model"
+  },
+  {
+    "text": "it is compatible to it is completely optimized for GPU for this graphics processing units.",
+    "start": 790.4,
+    "end": 798.08,
+    "ocr_text": "ra"
+  },
+  {
+    "text": "So, how much memory from a GPU you would like to use in a particular experiment you can specify",
+    "start": 798.08,
+    "end": 804.32,
+    "ocr_text": "ra"
+  },
+  {
+    "text": "over here, but my PC does not have a GPU now. So, we will just say specify that we are going to use",
+    "start": 804.32,
+    "end": 812.56,
+    "ocr_text": "ra"
+  },
+  {
+    "text": "just all of the four course of my PC. So, I just say that this is the compute requirement of the",
+    "start": 814.72,
+    "end": 824.64,
+    "ocr_text": "In\n\nin\n\nMuIsT_data = mnist-read data sets(one_hot=True)\n\nExtracting mnist/train-inage\n\n7asers/anizban/anaconda/1ib/python2.7/gzip.py:275: VisibleDeprecationWarning: converting an array with ndim > 0 to\nindex will result in an error in the future\n\nchunk = self.extrabuf (offset: offset + size)\n/osers/anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/anist.py:52: VisibleDeprecationWarning: conver\nng an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(nu_inages, rovs, cols, 1)\n\nidx3-ubyte.gz\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist /t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.g2\n\n(3): |data_train = mirsr_data.train\n\n(4): x, y = data train. images, da\n\n4 train. labels\n\n3. Make the model\n\n( ]:  tfleara,init_graph/num_cores=4)\n\n4. Train the model"
+  },
+  {
+    "text": "algorithm number of course, equal to 4. Next we go ahead and start making our network we just we",
+    "start": 824.64,
+    "end": 832.96,
+    "ocr_text": "In\n\nin\n\nMuIsT_data = mnist-read data sets(one_hot=True)\n\nExtracting mnist/train-inage\n\n7asers/anizban/anaconda/1ib/python2.7/gzip.py:275: VisibleDeprecationWarning: converting an array with ndim > 0 to\nindex will result in an error in the future\n\nchunk = self.extrabuf (offset: offset + size)\n/osers/anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/anist.py:52: VisibleDeprecationWarning: conver\nng an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(nu_inages, rovs, cols, 1)\n\nidx3-ubyte.gz\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist /t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.g2\n\n(3): |data_train = mirsr_data.train\n\n(4): x, y = data train. images, da\n\n4 train. labels\n\n3. Make the model\n\n( ]:  tfleara,init_graph/num_cores=4)\n\n4. Train the model"
+  },
+  {
+    "text": "store our network within the variable called net. So, first we add an input data layer.",
+    "start": 832.96,
+    "end": 839.68,
+    "ocr_text": "TS JUPYTEN Assignment 5 demo at omse em eens\n\n2. Load data\n\n‘8. Make the model\n\n4, Train the model"
+  },
+  {
+    "text": "So, it is just called tflun.input underscore data and you say what the shape of the input data",
+    "start": 841.12,
+    "end": 851.6,
+    "ocr_text": "TS JUPYEEr Lana Tor acme harap net"
+  },
+  {
+    "text": "should be. So, you just so the shape is in this case equal to a list first element is none I will",
+    "start": 851.6,
+    "end": 858.96,
+    "ocr_text": "TS JUPYtEL Assignments damon one ha ap bons\n\n4. Train the model"
+  },
+  {
+    "text": "tell you why it what it means followed by 784. So, have a look at this. So, the first element in",
+    "start": 858.96,
+    "end": 871.6,
+    "ocr_text": "TS JUPYTEN Assignment demo at onsen inst\n\n2. Load data\n\n4. Train the model"
+  },
+  {
+    "text": "the shape this is this corresponds to the number of this element none the first entry in this",
+    "start": 871.6,
+    "end": 882.0,
+    "ocr_text": "in\n\nBr\n\nae\n\n/0sers/anizban/anaconda/1ib/python2.7/gzip-py:275: VisibleDeprecationWarning: converting an array with ndim > 0\n\nIndex will result in an error in the future\nchunk = self.extrabuf[offset: offset + size]\n\n/0sers/anirban/anaconda/1ib/python2.7/aite-packages/tflearn/datasets/nnist.py:52: Vieiblebeprecationvarning: co\nfg an array with ndim > 0 to an index will result in an error in the future\n\ndata = data.reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ntrain\n\nvalidation = WNIST data. validation\n\ntest = MNIST_data.test\n\nX, y = date train. images, data train. labels\n\n3. Make the model\n\n‘tflearn. init_graph(num_cores=4)\n\nnet = tflearn. input_data\n\njape=[None,! 784)\n\n4. Train the model"
+  },
+  {
+    "text": "shape vector it corresponds to the number of samples that needs to be presented in a particular",
+    "start": 882.0,
+    "end": 888.24,
+    "ocr_text": "/sers/anizban/anaconda/1ib/python2.7/gzip-py:275: VisibleDeprecationWarning: converting an array with ndim > 0\n\nindex will result in an error in the future\nchunk = self.extrabuf[offset: offset + size]\n/0sers/anizban/anaconda/1ib/python?.7/aite-packages/tflearn/datasets/nnist.py:52: Vieiblebeprecationvarning: co\nfg an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mniet/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-Labels-idxl-ubyte.gz\n\nim [3]: data train = MNIST_data.train\ndata validation = MNIST data-validation\n\nin [4]: data_train, labels\n\n3. Make the model\n\nim [ 11 tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data\n\niape=[Nope, 784})\n\n4. Train the model"
+  },
+  {
+    "text": "batch. So, in the tutorial session I have already I will talk about what is batch learning which it is",
+    "start": 888.24,
+    "end": 893.36,
+    "ocr_text": "mn\n\nen\n\nae\n\n/sers/anizban/anaconda/1ib/python2.7/gzip-py:275: VisibleDeprecationWarning: converting an array with ndim > 0\n\nindex will result in an error in the future\nchunk = self.extrabuf[offset: offset + size]\n/0sers/anirban/anaconda/1ib/python2.7/aite-packages/tflearn/datasete/mnist.py:52: Vieiblebeprecationvarning: co\n‘ng an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\nvalidation\n\ndata train. labels\n\n3. Make the model\n\n‘tflearn. init_graph(num_cores=4)\n\nnet = tflearn.input_data\n\napertond, 7841)\n\n4. Train the model"
+  },
+  {
+    "text": "mini batch learning and what is stochastic learning three different kinds of gradient design that",
+    "start": 895.68,
+    "end": 899.84,
+    "ocr_text": "mn\n\nen\n\nae\n\n/sers/anizban/anaconda/1ib/python2.7/gzip-py:275: VisibleDeprecationWarning: converting an array with ndim > 0\n\nindex will result in an error in the future\nchunk = self.extrabuf[offset: offset + size]\n/0sers/anirban/anaconda/1ib/python2.7/aite-packages/tflearn/datasete/mnist.py:52: Vieiblebeprecationvarning: co\n‘ng an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\nvalidation\n\ndata train. labels\n\n3. Make the model\n\n‘tflearn. init_graph(num_cores=4)\n\nnet = tflearn.input_data\n\napertond, 7841)\n\n4. Train the model"
+  },
+  {
+    "text": "you can use. So, the first term gives the number of elements that you want to take in each batch",
+    "start": 899.84,
+    "end": 907.2,
+    "ocr_text": "mn\n\nen\n\nae\n\n/sers/anizban/anaconda/1ib/python2.7/gzip-py:275: VisibleDeprecationWarning: converting an array with ndim > 0\n\nindex will result in an error in the future\nchunk = self.extrabuf[offset: offset + size]\n/0sers/anirban/anaconda/1ib/python2.7/aite-packages/tflearn/datasete/mnist.py:52: Vieiblebeprecationvarning: co\n‘ng an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\nvalidation\n\ndata train. labels\n\n3. Make the model\n\n‘tflearn. init_graph(num_cores=4)\n\nnet = tflearn.input_data\n\napertond, 7841)\n\n4. Train the model"
+  },
+  {
+    "text": "and that is variable in this case. So, that is why you do not specify any entry over here you keep",
+    "start": 907.2,
+    "end": 911.52,
+    "ocr_text": "/sers/anizban/anaconda/1ib/python2.7/gzip-py:275: VisibleDeprecationWarning: converting an array with ndim > 0\n\nindex will reault in an error in the future\n‘chunk = self.extrabuf[offset: offset + size]\n/0sers/anizban/anaconda/1ib/python?2.7/aite-packages/tflearn/datasets/nnist.py:52: Vieiblebeprecationvarning: co\nfg an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num images, rows, cols, 1)\n\nExtracting mniet/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\nIm [3]: data train = MNIST_data.train\ndata_validation = MNIST data-validation\n\nmn [4]: data_train, labels\n\n3. Make the model\n\nim [ 11 tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data\n\nape=[Nénd, 784)\n\n4. Train the model"
+  },
+  {
+    "text": "it none. So, that the graph can be modified accordingly. So, and 784 is the dimensionality of the",
+    "start": 911.68,
+    "end": 921.84,
+    "ocr_text": "/sers/anizban/anaconda/1ib/python2.7/gzip-py:275: VisibleDeprecationWarning: converting an array with ndim > 0\n\nindex will reault in an error in the future\n‘chunk = self.extrabuf[offset: offset + size]\n/0sers/anizban/anaconda/1ib/python?2.7/aite-packages/tflearn/datasets/nnist.py:52: Vieiblebeprecationvarning: co\nfg an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num images, rows, cols, 1)\n\nExtracting mniet/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\nIm [3]: data train = MNIST_data.train\ndata_validation = MNIST data-validation\n\nmn [4]: data_train, labels\n\n3. Make the model\n\nim [ 11 tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data\n\nape=[Nénd, 784)\n\n4. Train the model"
+  },
+  {
+    "text": "image that you are going to feed. So, in this case we have like vectorize the 28 28 image into",
+    "start": 921.84,
+    "end": 928.0,
+    "ocr_text": "/sers/anirban/anaconda/1ib/python2.7/gzip.py:275: VisibleDeprecationWarning: converting an array with ndim > 0\n\nindex will result in an error in the future\nchunk = self.extrabuf[offset: offset + size]\n/0sers/anirban/anaconda/1ib/python?2.7/aite-packages/tflearn/datasete/nnist.py:52: Vieiblebeprecationvarning: co\nfg an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\n\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\nim [3]: data train = MNIST_data.train\nvalidation = MNIST dat\n\ntest = MNIST_data.\n\nvalidation\n\nIm [4]: x, y = data train. images, data train. labels\n\n3. Make the model\n\nim [ ]1 | tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data\n\nape=tond, 7841)\n\n4. Train the model"
+  },
+  {
+    "text": "a single vector of length 784. So, that is why you have this entry. So, this is your input size",
+    "start": 928.0,
+    "end": 934.56,
+    "ocr_text": "/sers/anizban/anaconda/1ib/python2.7/gzip-py:275: VisibleDeprecationWarning: converting an array with ndim > 0\n\nindex will result in an error in the future\nchunk = self.extrabuf[offset: offset + size)\n/0sers/anizban/anaconda/1ib/python2.7/aite-packages/tflearn/datasets/nnist.py:52: Vieiblebeprecationvarning: co\nfg an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_ images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\nim [3]: data train = MNIST_data.train\ndata validation = MNIST data-validation\n\nmn [4] data_train. labels\n\n3. Make the model\n\nim [ ]1 | tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data\n\njape=[None, 784})\n\n4. Train the model"
+  },
+  {
+    "text": "next we are going to add the next layer. So, this is the first hidden layer T f learn",
+    "start": 934.56,
+    "end": 943.44,
+    "ocr_text": "/sers/anizban/anaconda/1ib/python2.7/gzip-py:275: VisibleDeprecationWarning: converting an array with ndim > 0\n\nindex will result in an error in the future\nchunk = self.extrabuf[offset: offset + size)\n/0sers/anizban/anaconda/1ib/python2.7/aite-packages/tflearn/datasets/nnist.py:52: Vieiblebeprecationvarning: co\nfg an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_ images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\nim [3]: data train = MNIST_data.train\ndata validation = MNIST data-validation\n\nmn [4] data_train. labels\n\n3. Make the model\n\nim [ ]1 | tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data\n\njape=[None, 784})\n\n4. Train the model"
+  },
+  {
+    "text": "dot fully connected and check the syntax perfect. So, the input will be the net. So, which layer",
+    "start": 945.12,
+    "end": 958.88,
+    "ocr_text": "Sirs Ca)\n\n‘fe tchearesdaaneta Snport nist\n\n2. Load data\n\n‘nga ekhan/aacnt!nensqigpy301 vilbheoncececarnigs cere wry with ain > 0 6 o8\nAcpem = elfrertrabafottees otfete + tse)\n‘steals hyde eeepenapenaan/ aaah Vaieepacsntarnog convert\n“stay Geserenbapn(oo impr, Fo, ote 1)\n\n3. Make the model"
+  },
+  {
+    "text": "so when you start with the manner in which you build a network in T f learn is by like you know",
+    "start": 958.88,
+    "end": 966.16,
+    "ocr_text": "Gis Dt NEC om tm Cao\n\n{fe tcheara dataset Sport mist\n\n2. Load data\n\n‘gaan acne. iahocecacarnigs seven ty with n> 0 6 a8\nAcoem = elf-ovtrabafottecs otfete + tse)\n\n‘pienso enc hppa nanan\n“sts Geeerentape(oo ign Foy ater 3) ™\n\nlatneoepecatiootrning: conor\n\n3. Make the model\n\nSo: Sheen inn asa abgeione, 700)\n\n4. Train the model"
+  },
+  {
+    "text": "you add the layers one by one. So, there is one network object it is called net you first put",
+    "start": 966.16,
+    "end": 972.16,
+    "ocr_text": "Sirs Dt NEC om tm Caer\n\ni sehen dataset dnport mast\n\n2. Load data\n\n‘hunt = self enteaedfotfants etart = nize)\nvera crag wishipdn >to’ tn atc cill Pratt tn an error dn texte\n“ca'sanencrnbape(nanaugeey owe, oo20r 1)\n\n3. Make the model"
+  },
+  {
+    "text": "a input layer in then you add the next hidden layer then you add the next hidden layer then",
+    "start": 972.16,
+    "end": 977.76,
+    "ocr_text": "Sirs Dt NEC om tm Caer\n\ni sehen dataset dnport mast\n\n2. Load data\n\n‘hunt = self enteaedfotfants etart = nize)\nvera crag wishipdn >to’ tn atc cill Pratt tn an error dn texte\n“ca'sanencrnbape(nanaugeey owe, oo20r 1)\n\n3. Make the model"
+  },
+  {
+    "text": "another as deep as you want to go and then finally, you have an output layer. And then you go",
+    "start": 977.76,
+    "end": 983.92,
+    "ocr_text": "Sirs Dt NEC om tm Caer\n\ni sehen dataset dnport mast\n\n2. Load data\n\n‘hunt = self enteaedfotfants etart = nize)\nvera crag wishipdn >to’ tn atc cill Pratt tn an error dn texte\n“ca'sanencrnbape(nanaugeey owe, oo20r 1)\n\n3. Make the model"
+  },
+  {
+    "text": "ahead and declare your loss functions and the optimization algorithm and set it to train.",
+    "start": 983.92,
+    "end": 987.68,
+    "ocr_text": "fa tchearasdaanete Sport iat\n\n2. Load data\n\n‘gaan! qigpy 30 vibhomrececarnigs soevesio a ty with n> 0 6 o8\n‘Chant = teltcesteaefottnets oan nae)\n\nsehen acne eect tan nanny Vnbebgrecs intr: covrt\n“it's Geterntape(ou igs For, ater 1) =\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "So, we pass this net object as an input to the function. So, it is going to add a particular layer",
+    "start": 987.76,
+    "end": 997.36,
+    "ocr_text": "fa tchearasdaanete Sport iat\n\n2. Load data\n\n‘gaan! qigpy 30 vibhomrececarnigs soevesio a ty with n> 0 6 o8\n‘Chant = teltcesteaefottnets oan nae)\n\nsehen acne eect tan nanny Vnbebgrecs intr: covrt\n“it's Geterntape(ou igs For, ater 1) =\n\n3. Make the model\n\n4. Train the model"
+  },
+  {
+    "text": "and the shape of the layer the number of units in the layer is going to be say 100 we keep it 100",
+    "start": 997.36,
+    "end": 1004.24,
+    "ocr_text": "Sirs CY\n\ni telearnsaaaneta Spore niet\n\n2. Load data\n\n‘gaan! neni. ilaeoreceemarnigs seven a cy with ain > 0 6 o\n‘hunt = self entrtedfotfants etart = sla)\n\n‘sien sone nyt anepenapn nanan gps Waiaepacsntarnog convert\n“tts Senrenapecom.ispnr vom, ote). =\n\n3. Make the model\n\nset = eftnrn put atataapenttne, 18) T"
+  },
+  {
+    "text": "and the activation function of the nodes of the layer is going to be sigmoid.",
+    "start": 1004.8,
+    "end": 1012.56,
+    "ocr_text": "Sirs CY\n\ni telearnsaaaneta Spore niet\n\n2. Load data\n\n‘gaan! neni. ilaeoreceemarnigs seven a cy with ain > 0 6 o\n‘hunt = self entrtedfotfants etart = sla)\n\n‘sien sone nyt anepenapn nanan gps Waiaepacsntarnog convert\n“tts Senrenapecom.ispnr vom, ote). =\n\n3. Make the model\n\nset = eftnrn put atataapenttne, 18) T"
+  },
+  {
+    "text": "I sorry let us give it a reloo first rectified linear unit. So, it has already been covered in",
+    "start": 1013.52,
+    "end": 1018.72,
+    "ocr_text": "Sirs CS I I\n\nie teheen danse dapat maloe\n\n2. Load data\n\n‘nga ekhan/acnt! hen. ilbeoncececarnigs seven a ty with ain > 0 6 a8\nAcoem = eltrortrabafottees atte tse)\n\n‘steals san nyt neeqenagn nanan gph: Vaieepacsnarnog convert\n“tts Gcserenbpe(oo impr Foy oter 1)\n\n3. Make the model\n\nsoc [ Eniareafiyceonaceed nee bey astivationd\n\n4. Train the model"
+  },
+  {
+    "text": "class right that what rectified linear units are. So, it is one of the best suited for deep learning",
+    "start": 1018.72,
+    "end": 1025.76,
+    "ocr_text": "fe teheara daaneta Sopot amine\n\n2. Load data\n\n‘gaan acne 87 vibhomeeceoanigs severing ws ety with n> © 6 a8\n‘Aghom = elf-entrabafottecc atta tse)\n\n‘iatnineprecetiouarnings comer\n\n3. Make the model\n\nset = eftars-nputatataapenttone, 70) 1"
+  },
+  {
+    "text": "for deep neural networks and it works pretty well and there is a lot of theory about why rectified",
+    "start": 1025.76,
+    "end": 1031.6,
+    "ocr_text": "/0sers/Anirban/anaconda/1ib/python2.7/gzip.py:275: VisibleDeprecationWarning: converting an array with ndim > 0 to\nindex will result in an error in the future\n\nchunk = self.oxtrabuf (offset: offset + size)\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nist.py:52: VisibleDeprecationlarning: conve\nng an array with ndim > 0 to an index will reault in an error in the future\n\ndata = data-reshape(num images, rows, cols, 1)\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting maist/t10k-inages-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = wisT_data.train\ndata_validation = miIST data.validation\ndata test = MNIST data.tost\n\nIn (4): X, y = data train. images, data train. labels\n\n3. Make the model\n\nim [ J: t£learn.init_graph(nun_core:\n\n4)\n\nnet = tflearn.input_data(shape={None, 784))\nnet = tflearn.fully connected(net, 100, activation='relu')\n\n4. Train the model\n\nmit"
+  },
+  {
+    "text": "linear units are so awesome. So, let us go ahead and add the output layer. So, a single hidden",
+    "start": 1031.6,
+    "end": 1042.16,
+    "ocr_text": "/0sers/Anirban/anaconda/1ib/python2.7/gzip.py:275: VisibleDeprecationWarning: converting an array with ndim > 0 to\nindex will result in an error in the future\n\nchunk = self.oxtrabuf (offset: offset + size)\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nist.py:52: VisibleDeprecationlarning: conve\nng an array with ndim > 0 to an index will reault in an error in the future\n\ndata = data-reshape(num images, rows, cols, 1)\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting maist/t10k-inages-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = wisT_data.train\ndata_validation = miIST data.validation\ndata test = MNIST data.tost\n\nIn (4): X, y = data train. images, data train. labels\n\n3. Make the model\n\nim [ J: t£learn.init_graph(nun_core:\n\n4)\n\nnet = tflearn.input_data(shape={None, 784))\nnet = tflearn.fully connected(net, 100, activation='relu')\n\n4. Train the model\n\nmit"
+  },
+  {
+    "text": "layer neural network and we will do we will play using it play with it let us see.",
+    "start": 1042.16,
+    "end": 1049.76,
+    "ocr_text": "m (218\n\nIn (3)\n\nmn (4)\n\nmei\n\nMNIST_data = mnist.read_data_sets(one_hot=True)\nExtracting mnist/train-images-idx3-ubyte.gz\n\n/0sers/Anizban/anaconda/1ib/python2.17/gzip.py:275: VisibleDeprecationWarning: converting an array with ndim\nindex will result in an error in the future\n\nchunk = self.extrabuf{offset: offset + size]\n/sers/Anirban/anaconda/1ib/python?2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning:\nfag an array with ndim > 0 to an index will result in an error in the future\n\ndata = data-reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist/t10k-inages-idx3-ubyte.g2\nExtracting mnist/ti0k-labels-idxl-ubyte.gz\n\ndata train = murst_data.train\ndata_validation = MIST data. validation\ndata_test = MNIST_data.test\n\nx, y = data_trais\n\nimages, data_train. labels\n\n3. Make the model\n\n‘tElearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=('one, 784))\nnet = tflearn.fully_connected(net, 100, activation='relu')\nnet = tf"
+  },
+  {
+    "text": "So, as the number of units in the output layer is 10 and it is just because it is just because",
+    "start": 1052.8,
+    "end": 1061.52,
+    "ocr_text": "mm (218\n\nmm 03]\n\nin (4):\n\nmei\n\nMNIST data = mnist.read_data_sets(one_hot=True)\nExtracting mnist/train-images-idx3-ubyte.gz\n\n/0sers/Anixban/anaconda/1ib/python2.7/gzip.py:275: VisibleDeprecationWarning: converting an array with ndim\nindex will result in an error in the future\n\nchunk = self.extrabuf{offset: offset + size)\n‘/sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning:\nfag an array with ndim > 0 to an index will result in an error in the future\n\ndata = data-reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-labels~idxl-ubyte.gz\nExtracting mnist/t10k-inages-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = murst_data.train\ndata_validation = MIST data.validation\ndata_test = mNIs7_¢\n\nx, y = data trai\n\nimages, data train. labels\n\n3. Make the model\n\n‘tElearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=(Wone, 784))\nnet = tflearn.fully_connected(net, 100, activation='relu')\nnet = tflearn.fully connected |"
+  },
+  {
+    "text": "we have 10 output units right represented as a the 10 output classes and the output labels are",
+    "start": 1061.52,
+    "end": 1067.6,
+    "ocr_text": "mm (218\n\nmn 03]\n\nin (4)\n\nmei\n\nMNIST data = mnist.read_data_sets(one_hot=True)\nExtracting mnist/train-images-idx3-ubyte.gz\n\n/users/Anizban/anaconda/1ib/python2.17/g2ip.py:275: VisibleDeprecationWarning: converting an array with ndim\nindex will result in an error in the future\n\nchunk = self.extrabuf{offset: offset + size]\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning:\n‘ng an array with ndim > 0 to an index will result in an error in the future\n\ndata = data.reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-Labele-idel-ubyte.gz\nExtracting mnist/t10k-inages-idx3-ubyte.g2\nExtracting mnist/ti0k-labels-idxl-ubyte.gz\n\ndata train = murst_data.train\ndata_validation = MIST data.validation\ndata test = MNIST_data.test\n\nx, y = data_traii\n\nimages, data train. labels\n\n3. Make the model\n\n‘tElearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape-[iione, 7841)\nnet = tflearn.fullyconnected(net, 100, activation='zels')\net = téleamn.fuliyiconnected net, 10, |"
+  },
+  {
+    "text": "coming in the form of one hot vector. So, the activation here is going to be soft max.",
+    "start": 1067.6,
+    "end": 1074.72,
+    "ocr_text": "mm (218\n\nmn (3)\n\nin (4)\n\nm\n\nMNIST data = mnist.read_data_sets(one_hot=True)\nExtracting mnist/train-images-idx3-ubyte.gz\n\n‘/0sers/Anixban/anaconda/1ib/python2.17/gzip.py:275: VisibleDeprecationWarning: converting an array with ndim\nindex will result in an error in the future\n\nchunk = self.extrabuf{offset: offset + size]\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning:\n‘ng an array with ndim > 0 to an index will result in an error in the future\n\ndata = data-reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-labels~idxl-ubyte.gz\n\nExtracting mnist/t10k-inages-idx3-ubyte.g2\nExtracting mnist/ti0k-labels-idxl-ubyte.gz\n\ndata_train = murst_data.train\ndata_validation = MIST data.validation\ndata_test = MNIST_data.test\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\n‘tElearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=('one, 784))\nnet = tflearn.fully_connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10,"
+  },
+  {
+    "text": "So, perfect. So, the soft max layer it is going to it is a kind of logistic regression. So,",
+    "start": 1077.44,
+    "end": 1086.48,
+    "ocr_text": "mn (218\n\nmn 13]\n\nmm (4)\n\nmei\n\nMNIST_data = mnist.read_data_sets(one_hot=frue)\n\nExtracting mnist/train-images-idx3-ubyte.gz\n\n/users/Anixban/anaconda/1ib/python2.7/gzip.py:275: VisibleDeprecationWarning: converting an array with ndim\nindex will result in an error in the future\n\nchunk = self-extrabuf{offset: offset + size]\n/sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisiblebeprecationWarning:\n‘ng an array with ndim > 0 to an index will result in an error in the future\n\ndata = data-reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-labele-idel-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-Labels-idxl-ubyte.g2\n\ndata_train = mizsr_data.train\ndata_validation = MIST data.validation\ndata_test = MNIST_data.test\n\nx, y = data_trais\n\nimages, data train. labels\n\n3. Make the model\n\n‘tflearn. init_graph(nun_cores=4)\n\nnet = tflearn.input_data(shape=(¥one, 784])\nnet = tflearn.fully_connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activations’ softmax})"
+  },
+  {
+    "text": "multi class logistic regression is called soft max. So, you can actually look up the web and",
+    "start": 1086.48,
+    "end": 1093.28,
+    "ocr_text": "mm (2]8\n\nin (3]:\n\nmn (4)\n\nmm [\n\nMNIST_data = mnist.read_data_sets(one_hot=rrue)\n\nExtracting mnist/train-images-idx3-ubyte.gz\n\n/0sers/anixban/anaconda/1ib/python?.7/g2ip.py:275: VisibleDeprecationWarning: converting an array with ndim\n\nindex will result in an error in the future\nchunk = self.extrabuf{offset: offset + size]\n\n/users/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning:\nfag an array with ndin > 0 to an index will reault in an error in the future\n\ndata = data.reshape(num_images, rows, cols, 1)\nExtracting mnist/train-labele-idxl-ubyte.gz\n\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata train = murst_data.train\njalidation = MKIST data.validation\nfest = MNIST_data.test\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\n‘flearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=(wone, 7\n\n»\n\nnet = tflearn.fully_connected(net, 100, activation:\nnet = tflearn.fully_connected(net, 10, activation\" softmax’)\n\n*zelu')"
+  },
+  {
+    "text": "figure out what it looks like perfect. Next this this makes our network the network build is",
+    "start": 1093.28,
+    "end": 1100.72,
+    "ocr_text": "mm (2]8\n\nin (3]:\n\nmn (4)\n\nmm [\n\nMNIST_data = mnist.read_data_sets(one_hot=rrue)\n\nExtracting mnist/train-images-idx3-ubyte.gz\n\n/0sers/anixban/anaconda/1ib/python?.7/g2ip.py:275: VisibleDeprecationWarning: converting an array with ndim\n\nindex will result in an error in the future\nchunk = self.extrabuf{offset: offset + size]\n\n/users/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning:\nfag an array with ndin > 0 to an index will reault in an error in the future\n\ndata = data.reshape(num_images, rows, cols, 1)\nExtracting mnist/train-labele-idxl-ubyte.gz\n\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata train = murst_data.train\njalidation = MKIST data.validation\nfest = MNIST_data.test\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\n‘flearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=(wone, 7\n\n»\n\nnet = tflearn.fully_connected(net, 100, activation:\nnet = tflearn.fully_connected(net, 10, activation\" softmax’)\n\n*zelu')"
+  },
+  {
+    "text": "complete. Now, we have to define what kind of loss function we want to use to optimize the",
+    "start": 1100.72,
+    "end": 1107.6,
+    "ocr_text": "mn [3]:\n\nmn (4):\n\n‘chunk = self.extrabuf[offset: offset + size}\n/0sers/Anirban/anaconda/1ib/python?2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning|\n\nng an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mist /t10k-labels-idxl-ubyte.gz\n\ndata_train = MNIST data.train\njalidation = MNIST data.validation\n\ndata test = Mrs? data.\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn.input_data(shape=[None, 784})\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='\n\n4. Train the model 4]"
+  },
+  {
+    "text": "neural network parameters of the neural network and what kind of algorithm update algorithm that",
+    "start": 1107.6,
+    "end": 1114.56,
+    "ocr_text": "mn (3):\n\nmn (4):\n\nmt:\n\nmm [\n\n‘chunk = self.extrabuf[offset: offset + size]\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationvarning|\n\nng an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(nun_images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\nat\n\ntrain = MIST data.train\njalidation = NNIST data.validation\ndata test = MNIsT_data.\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\nt€learn.init_graph(num_cor\n\n4)\n\nnet = tflearn.input_data(shape=[None, 784})\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax')\n\n4. Train the model 4]"
+  },
+  {
+    "text": "we should use that we want to use. So, we add another layer. So, this is not an actual like you",
+    "start": 1114.56,
+    "end": 1122.08,
+    "ocr_text": "mn (3):\n\nmn (4):\n\nmt:\n\nmm [\n\n‘chunk = self.extrabuf[offset: offset + size]\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationvarning|\n\nng an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(nun_images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\nat\n\ntrain = MIST data.train\njalidation = NNIST data.validation\ndata test = MNIsT_data.\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\nt€learn.init_graph(num_cor\n\n4)\n\nnet = tflearn.input_data(shape=[None, 784})\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax')\n\n4. Train the model 4]"
+  },
+  {
+    "text": "hard well layer to the neural network rather it is a specification of the learning algorithm",
+    "start": 1122.56,
+    "end": 1130.0,
+    "ocr_text": "in (3]:\n\nin [4]:\n\nmt):\n\nExtracting mnist/train-images-idx}-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VieiblepeprecationNarning: converting an array with ndin\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n‘/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationvarning|\nng an array with ndim > 0 to an index will reault in an error in the future\n\n‘data = data.reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-labels-idx1-ubyte.\nExtracting mist /t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idel-ubyte.gz\n\ndata train = MNIst_data.train\ndata_validation = MIST data. validation\ndata_test = MNIST_data.test\n\nX, y= data train, images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn. input_data(shape=[None, 784))\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax' )\n\nnet ="
+  },
+  {
+    "text": "options right. So, it is called regression. So, the regression layer actually does either",
+    "start": 1130.64,
+    "end": 1138.88,
+    "ocr_text": "mm (3\n\nmm (4\n\nExtracting mnist/train-images-idx}-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VieibleDeprecationNarning: converting an array with ndin\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n‘/0sers/Anirban/anaconda/1ib/python?2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning|\nng an array with ndim > 0 to an index will reault in an error in the future\n\n‘data = data.reshape(nun images, rows, cols, 1)\n\nExtracting mnist/train-labele-idx1-ubyte.g2\nExtracting mnist/t10k-images-idx3-ubyte.gz\n\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = MNIST_data.train\ndata validation = MNIST data. validation\ndata_test = MNIST_data.test\n\nX, y= data train. images, data train. labels\n\n3. Make the model\n\ntélearn.init_graph(num_cor\n\n4)\n\nnet = tflearn. input _data(shape=[None, 784})\nnet = tflearn.fully connected(net, 100, activation=\"relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax')\n\nnet = t£learn|"
+  },
+  {
+    "text": "does either a linear regression or a logistic regression. So, the first input as always is net",
+    "start": 1138.88,
+    "end": 1147.36,
+    "ocr_text": "rm [3]\n\nin [4]:\n\nmt):\n\nExtracting mnist/train-images-idx3-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VieibleDeprecationNarning: converting an array with ndin\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n‘/0sers/Anirban/anaconda/1ib/python?2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning|\nng an array with ndim > 0 to an index will reault in an error in the future\n\n‘data = data.reshape(nun images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.g2\nExtracting mnist/t10k-images-idx3-ubyte.g2\n\nExtracting mnist/t10k-labels-idel-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MIST data. validation\ndata_test = MNIST_data.test\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntélearn.init_graph(num_cor\n\n4)\n\nnet = tflearn.input_data(shape=[Nione, 784})\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax' )\n\nnet = tflearn.regression|"
+  },
+  {
+    "text": "and then you have to specify the loss function right. So, the loss is equal to categorical",
+    "start": 1148.32,
+    "end": 1157.2,
+    "ocr_text": "in [3]:\n\nrm [4]:\n\nim\n\nExtracting mnist/train-images-idx3-ubyte.gz\n\n/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: ViaiblepeprecationWarning: converting an array with ndim\nindex will result in an error in the future\n\nchunk = self.extrabuf (offset: offset + size]\n‘/sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDeprecationWarning:\nng an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(num images, rows, cols, 1)\nExtracting mist /train-labele-idx1-ubyte.gz\n\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata _train = MuIsT_data.train\ndata validation = MNIST data. validation\ndata test = MNIST_data.test\n\nX, y= data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn. input_data(shape=[None, 784})\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation’ softmax’ )\n\nnet = tflearn.regression net,"
+  },
+  {
+    "text": "cross entropy right. So, you can look up the web what categorical cross entropy looks like what",
+    "start": 1160.08,
+    "end": 1169.76,
+    "ocr_text": "i (3]\n\nin [4]:\n\nm\n\nExtracting mnist/train-images-idx}-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VieibleDeprecationNarning: converting an array with ndin\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDeprecationWarning|\nng an array with ndim > 0 to an index will reault in an error in the future\n\n‘data = data.reshape(nun images, rows, cols, 1)\n\nExtracting mnist/train-labels-idx1—ubyte.\nExtracting mnist/t10k-images-idx3-ubyte.g2z\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MNIST data. validation\ndata_test = MNIST_data.test\n\nX, y = data train, images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn. input _data(shape=(None, 784))\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax')\n\nnet = tflearn.regression(net, loss='categorical_cross|')"
+  },
+  {
+    "text": "it actually is, but I will just tell in a few words that categorical cross entropy is a loss",
+    "start": 1169.76,
+    "end": 1175.68,
+    "ocr_text": "im (3\n\nin [4]:\n\nm\n\nExtracting mnist/train-images-idx-ubyte.\n\n/osers/anixban/anaconda/1ib/python2.7/g2ip.py:275: VisiblepeprecationNarning: converting an array with ndin\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n‘/0sers/Anirban/anaconda/1ib/python?2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDeprecationWarning|\nng an array with ndim > 0 to an index will reault in an error in the future\n\n‘data = data.reshape(nun images, rows, cols, 1)\n\nExtracting mnist/train-labele-idx1-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\n\nExtracting mist /t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata_validation = MNIST data. validation\ndata_test = MNIST_data.test\n\nX, y= data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn.input_data(shape=[None, 784})\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully_connected(net, 10, activation=' softmax' )\n\nnet = tflearn.regression(net, lot\n\n\"eategorical_crossentropy\","
+  },
+  {
+    "text": "function which tries to match the probability distribution of the actual observed data samples",
+    "start": 1175.68,
+    "end": 1184.0,
+    "ocr_text": "i [3]\n\nin [4]:\n\nm1:\n\nExtracting mnist/train-images-idx-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VisibleDeprecationNarning: converting an array with ndin\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationvarning|\nng an array with ndim > 0 to an index will reault in an error in the future\n\n‘data = data.reshape(nun images, rows, cols, 1)\n\nExtracting mnist/train-labele-idx1-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\n\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MNIST data. validation\ndata_test = MNIST_data.test\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn.input_data(shape=[None, 784})\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully_connected(net, 10, activation’ softmax' )\n\nnet = tflearn.regression(net, loss='categorical_crossentropy’, |)"
+  },
+  {
+    "text": "to the probability distribution that is getting modeled by the neural network. So, the cross",
+    "start": 1184.0,
+    "end": 1192.96,
+    "ocr_text": "i [3]\n\nin [4]:\n\nm1:\n\nExtracting mnist/train-images-idx-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VisibleDeprecationNarning: converting an array with ndin\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationvarning|\nng an array with ndim > 0 to an index will reault in an error in the future\n\n‘data = data.reshape(nun images, rows, cols, 1)\n\nExtracting mnist/train-labele-idx1-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\n\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MNIST data. validation\ndata_test = MNIST_data.test\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn.input_data(shape=[None, 784})\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully_connected(net, 10, activation’ softmax' )\n\nnet = tflearn.regression(net, loss='categorical_crossentropy’, |)"
+  },
+  {
+    "text": "entropy is actually cross entropy loss the categorical cross entropy loss is actually an adaptation",
+    "start": 1192.96,
+    "end": 1199.36,
+    "ocr_text": "in (3}:\n\nin [4]:\n\nm(\n\nExtracting mnist/train-images-idx-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VieibleDeprecationNarning: converting an array with ndin\n\nindex will result in an error in the future\n‘chunk = self.extrabuf[offset: offset + size}\n\n‘/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning|\nfg an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-labels-idx1-ubyte.\nExtracting mnist/t10k-images-idx3-ubyte.g2z\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = MNIST_data.train\ndata validation = MNIST data. validation\ndata_test = MNIST_data.test\n\nX, y= data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn. input_data(shape=[Non\n\n7841)\n\nnet = tflearn.fully connected(net, 100, activation\n\nnet = tflearn.fully connected(net, 10, activation:\n\nnet = tflearn.regression(net, lot\n\ncategorical cro:\n\nrelu')\n‘softmax')\n\nsntropy\""
+  },
+  {
+    "text": "of the KL divergence distance between the statistical distance term statistical distance metric.",
+    "start": 1199.36,
+    "end": 1207.28,
+    "ocr_text": "in (3}:\n\nin [4]:\n\nm(\n\nExtracting mnist/train-images-idx-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VieibleDeprecationNarning: converting an array with ndin\n\nindex will result in an error in the future\n‘chunk = self.extrabuf[offset: offset + size}\n\n‘/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning|\nfg an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-labels-idx1-ubyte.\nExtracting mnist/t10k-images-idx3-ubyte.g2z\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = MNIST_data.train\ndata validation = MNIST data. validation\ndata_test = MNIST_data.test\n\nX, y= data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn. input_data(shape=[Non\n\n7841)\n\nnet = tflearn.fully connected(net, 100, activation\n\nnet = tflearn.fully connected(net, 10, activation:\n\nnet = tflearn.regression(net, lot\n\ncategorical cro:\n\nrelu')\n‘softmax')\n\nsntropy\""
+  },
+  {
+    "text": "And it directly tries to match the in the actual the data distribution and the model distributions",
+    "start": 1207.28,
+    "end": 1214.64,
+    "ocr_text": "mn (3):\n\nin [4]:\n\nExtracting mnist/train-images-idx}-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: Vieiblepeprecation¥arning: converting an array with ndim\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning|\nng an array with ndim > 0 to an index will reault in an error in the future\n\n‘data = data.reshape(num images, rows, cols, 1)\n\nExtracting mist /train-labels-idx1-ubyte.\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = MNIST_data.train\ndata validation = MIST data. validation\ndata_test = MNIST_data.test\n\nX, y = data train, images, data train. labels\n\n3. Make the model\n\nt€learn.init_graph(num_cor\n\n4)\n\nnet = tflearn. input_data(shape=[Non\n\n7841)\n\nnet = tflearn.fully connected(net, 100, activation='relu')\n‘softnax')\n\nnet = tflearn.fully connected(net, 10, activation:\n\nnet = tflearn.regression net, lot\n\n‘categorical cro"
+  },
+  {
+    "text": "in course of the training all right. So, you can look up and read more about this, but this is",
+    "start": 1214.96,
+    "end": 1220.72,
+    "ocr_text": "mn (3):\n\nin [4]:\n\nExtracting mnist/train-images-idx}-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: Vieiblepeprecation¥arning: converting an array with ndim\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning|\nng an array with ndim > 0 to an index will reault in an error in the future\n\n‘data = data.reshape(num images, rows, cols, 1)\n\nExtracting mist /train-labels-idx1-ubyte.\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = MNIST_data.train\ndata validation = MIST data. validation\ndata_test = MNIST_data.test\n\nX, y = data train, images, data train. labels\n\n3. Make the model\n\nt€learn.init_graph(num_cor\n\n4)\n\nnet = tflearn. input_data(shape=[Non\n\n7841)\n\nnet = tflearn.fully connected(net, 100, activation='relu')\n‘softnax')\n\nnet = tflearn.fully connected(net, 10, activation:\n\nnet = tflearn.regression net, lot\n\n‘categorical cro"
+  },
+  {
+    "text": "outside the of view of this course. So, we will put an optimizer and let it be stochastic gradient",
+    "start": 1221.52,
+    "end": 1230.8,
+    "ocr_text": "mn (3):\n\nin [4]:\n\nExtracting mnist/train-images-idx}-ubyte.\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: Vieiblepeprecation¥arning: converting an array with ndim\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning|\nng an array with ndim > 0 to an index will reault in an error in the future\n\n‘data = data.reshape(num images, rows, cols, 1)\n\nExtracting mist /train-labels-idx1-ubyte.\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = MNIST_data.train\ndata validation = MIST data. validation\ndata_test = MNIST_data.test\n\nX, y = data train, images, data train. labels\n\n3. Make the model\n\nt€learn.init_graph(num_cor\n\n4)\n\nnet = tflearn. input_data(shape=[Non\n\n7841)\n\nnet = tflearn.fully connected(net, 100, activation='relu')\n‘softnax')\n\nnet = tflearn.fully connected(net, 10, activation:\n\nnet = tflearn.regression net, lot\n\n‘categorical cro"
+  },
+  {
+    "text": "descent. Now, we have defined what kind of learning algorithm and what kind of loss function will",
+    "start": 1230.8,
+    "end": 1237.52,
+    "ocr_text": "mn (3}:\n\nin [4]:\n\nmt\n\nExtracting mnist/train-images-idx-ubyte.\n\n/osers/anixban/anaconda/1ib/python2.7/g2ip.py:275: VieiblepeprecationNarning: converting an array with ndin\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size}\n‘/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/nnist.py:52: VisibleDeprecationWarning|\nng an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-labels-idx1-ubyte.\nExtracting mist /t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MNIST data. validation\ndata_test = MNIST_data.test\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn. input _data(shape=[None, 784))\nnet = tflearn.fully connected(net, 100, activation\nnet = tflearn,fully_connected(net, 10,’ activation:\n\nrelu')\nsoftnax')\n\nnet = tflearn.regression(net, los\n\n“categorical cro:\n\nentropy’, optimizes"
+  },
+  {
+    "text": "be used to train the neural network. Now, we define we write this. So, we define our model right.",
+    "start": 1237.52,
+    "end": 1248.32,
+    "ocr_text": "mn (3):\n\nmm (4\n\nmd:\n\n‘/osers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VisiblebeprecationNarning: converting an array with ndin\n\nIndex will result in an error in the future\n\n‘chunk = self.extrabuf{offset: offset + size)\n\n/0sers/anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDeprecationWarning|\nng an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(num_images, rows, col\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mist /t10k-labels-idxl-ubyte.gz\n\ndata train = MUST data.train\n\ndata validation = MIST data. validation\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(nun_cores=4)\n\nnet = tflearn. input <\n\nlata(shape={None, 784})\n\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax' )\n\nnet = tflearn.\n\n“categorical dro:\n\n1)\n\nsntropy', optimizer='sgd')"
+  },
+  {
+    "text": "So, again now the scikit-learn API comes in. So, see how beautiful it is. So, we are just going to",
+    "start": 1248.4,
+    "end": 1254.88,
+    "ocr_text": "in (3]:\n\nmn (4):\n\nm\n\n‘/0sers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VisibleDeprecationNarning: converting an array with ndin\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size]\n/0sers/anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDeprecationWarning:\nng an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(num_images, rows, cols, 1)\n\nExtracting mist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mist /t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MNIST data. validation\ndata test = MNIST_da\n\nX, y = data_train. images, data_train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn.input_data(shape=[tione, 784))\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax' )\n\nnet = tflearn.regression(net, lo:\n\n“categorical_crossentropy’, optimize:\n\nmodel = |"
+  },
+  {
+    "text": "put tflearn.dn n. So, yes. So, you are now that you have already defined what kind of a neural",
+    "start": 1254.88,
+    "end": 1264.0,
+    "ocr_text": "in (3]:\n\nmn (4):\n\nm\n\n‘/0sers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VisibleDeprecationNarning: converting an array with ndin\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size]\n/0sers/anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDeprecationWarning:\nng an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(num_images, rows, cols, 1)\n\nExtracting mist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mist /t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MNIST data. validation\ndata test = MNIST_da\n\nX, y = data_train. images, data_train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn.input_data(shape=[tione, 784))\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax' )\n\nnet = tflearn.regression(net, lo:\n\n“categorical_crossentropy’, optimize:\n\nmodel = |"
+  },
+  {
+    "text": "network you want and how it should be trained and everything. Now, you initialize this tflearn.dn n",
+    "start": 1264.0,
+    "end": 1270.72,
+    "ocr_text": "mn (3):\n\nin [4]:\n\nmd:\n\n‘/osers/anixban/anaconda/1ib/python2.7/g2ip.py:275: VisiblebeprecationNarning: converting an array with ndin\n\nindex will result in an error in the future\n‘chunk = self.extrabufoffset: offset + size)\n\n/sers/anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDeprecationWarning|\n\nng an array with ndim > 0 to an index will result in an error in the future\n‘data = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-label-idxl-ubyte.gz\n\nExtracting mnist/t10k-images-idx3-ubyte.g2\n\nExtracting mist /t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MNIST data. validation\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\nnet = tflearn.input_data(shape=[tione, 784))\n\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax' )\n\nnet = tflearn.regression(net, lo:\n\n“categorical_cro:\n\nsntropy', optimizer\n\nmodel = tflearn.DeN|net."
+  },
+  {
+    "text": "this is the this is like like sklearn.linear regression or something like that. So, a model a learning",
+    "start": 1270.72,
+    "end": 1277.52,
+    "ocr_text": "mn (3):\n\nin (4):\n\nmd:\n\n‘/0sers/Anixban/anaconda/1ib/python2.7/g2ip.py:275: VisibleDeprecationNarning: converting an array with ndim\nindex will result in an error in the future\n\n‘chunk = self.extrabuf[offset: offset + size)\n/sers/anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDeprecationWarning:\nng an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(nun_images, rows, cols, 1)\n\nExtracting mnist/train-labele-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mist /t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MNIST data. validation\ndata test = MNISt_da\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\nnet = tflearn.input_data(shape=[tione, 784))\n\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation\" softmax')\n\nnet = tflearn.regression(net, loss='categorical_cro\n\nsntropy', optimizer\n\nmodel = tflearn.Dkw net]"
+  },
+  {
+    "text": "model learning algorithm or a machine learning model just define this as a machine learning model.",
+    "start": 1277.52,
+    "end": 1282.96,
+    "ocr_text": "mn (3]:\n\nin (4):\n\nmd:\n\n‘/0sers/anixban/anaconda/1ib/python2.7/g2ip.py:275: VisibleDeprecationNarning: converting an array with ndin\n\nindex will result in an error in the future\n‘chunk = self.extrabuf{offset: offset + size}\n\n‘/0sers/anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDeprecationWarning|\n\nng an array with ndim > 0 to an index will result in an error in the future\n‘data = data.reshape(nun_images, rows, cols, 1)\nExtracting mnist/train-labele-idxl-ubyte.gz\n\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist /t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MIST data. validation\ndata test = MNIST_da\n\nX, y = data train. images, data_train. labels\n\n3. Make the model\n\ntflearn-init_graph(num_cores=4)\nnet = tflearn.input_data(shape=[tione, 784))\n\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax' )\n\nnet = tflearn.regression(net, loss=\"categorical_cro\n\nsntropy', optimizer\n\nmodel = tflearn.DkN|net."
+  },
+  {
+    "text": "And then you train this model. So, I will just leave this part in this particular cell and",
+    "start": 1284.16,
+    "end": 1292.16,
+    "ocr_text": "mn (3]:\n\nin (4):\n\nmd:\n\n‘/0sers/anixban/anaconda/1ib/python2.7/g2ip.py:275: VisibleDeprecationNarning: converting an array with ndin\n\nindex will result in an error in the future\n‘chunk = self.extrabuf{offset: offset + size}\n\n‘/0sers/anizban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: VisibleDeprecationWarning|\n\nng an array with ndim > 0 to an index will result in an error in the future\n‘data = data.reshape(nun_images, rows, cols, 1)\nExtracting mnist/train-labele-idxl-ubyte.gz\n\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist /t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MIST data. validation\ndata test = MNIST_da\n\nX, y = data train. images, data_train. labels\n\n3. Make the model\n\ntflearn-init_graph(num_cores=4)\nnet = tflearn.input_data(shape=[tione, 784))\n\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax' )\n\nnet = tflearn.regression(net, loss=\"categorical_cro\n\nsntropy', optimizer\n\nmodel = tflearn.DkN|net."
+  },
+  {
+    "text": "we can next new cell for define for training the model. So, it is all compiled. So, what did we do",
+    "start": 1292.16,
+    "end": 1298.4,
+    "ocr_text": "extracting anist/trein—labels~idyl-ubyre:g\nExtractitig aniet /ti0k-images-idu3-ubjee.gz\nextracting mmist/t10k-labels-idti-ubyte.gz\n\nm 13} kxai = (oTS2_date.train\n\\Liderion = MiTST-aata.validation\n\ndata_cost = bitter aata‘Teae\n\ntm (jr) y= daca train, images, data train. igbele\n\n}. Make the model\n\nin |} tflearn.init-graph(num_cores=t)\n\nnet = E#lgarn. input data{shapenttiona, 786)\n~ tfleary. fully -connecteainet, 160, sctivacinn=)reiu')\n= Efldsen.fittyceonnbeted (not; 10; abivaedén= nottmax! )\n\nnet = tflearn.regresiion(net, joss='cotegoricel croseentropy’, optimizers‘ayd!)\n\nmodet = tfieari-pww net |\n\n4, Train the model\n\nmat"
+  },
+  {
+    "text": "here? We first declared what kind of see compute resources we are going to use. Then we initialized",
+    "start": 1298.4,
+    "end": 1304.8,
+    "ocr_text": "in 3]: data train = murs7_data.train\ndata validation = MIST data. validation\ndata test = MNIST_data.test\n\nin [4]: x, y = data train, images, dat\n\n3. Make the model\n\nim (8): tElearn.init_graph(num_cor\n\nnet = tflearn.input_data(shape=[None, 784})\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DxN\\net.\n\n4. Train the model\n\nmC]:"
+  },
+  {
+    "text": "the structure of the neural network and said what the different layer sizes should be what",
+    "start": 1304.88,
+    "end": 1310.16,
+    "ocr_text": "in 3]: data train = murs7_data.train\ndata validation = MIST data. validation\ndata test = MNIST_data.test\n\nin [4]: x, y = data train, images, dat\n\n3. Make the model\n\nim (8): tElearn.init_graph(num_cor\n\nnet = tflearn.input_data(shape=[None, 784})\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DxN\\net.\n\n4. Train the model\n\nmC]:"
+  },
+  {
+    "text": "different kinds of activations should be. And then we said what kind of loss function and what",
+    "start": 1310.16,
+    "end": 1315.28,
+    "ocr_text": "in (3]:\n\nmn (4):\n\ndata train = MNIST_data.train\ndata validation = MNIST data. validation\ndata test = MNIST_data.test\n\nX, y= data train. images, dat\n\n3. Make the model\n\nin (8):\n\nmd:\n\ntflearn.init_graph(num_cor\n\nnet = tflearn.input_data(shape=[None, 784})\n\nnet = tflearn.fully connected(net, 100, activation='relu')\n\nnet = tflearn.fully connected(net, 10,’ activation:\n\nnet = tflearn.regression(net, lot\n\nmodel = tflearn.DxN/net.\n\n4. Train the model\n\nsoftmax')\n\ncategorical _crossentropy', optimizer='sgd')"
+  },
+  {
+    "text": "kind of update rule should be used to optimize the learning algorithm. The optimize to learn the",
+    "start": 1315.28,
+    "end": 1321.28,
+    "ocr_text": "in [3]: data train = mvrs7_data.train\n\nmn (4):\n\nat\n\nX, y = data train\n\n\\-validation = MNIST data. validation\ndata test = MNIST_da\n\nZest,\n\nimages, dat\n\n3. Make the model\n\nin (8):\n\nmd:\n\ntflearn.init_graph(num_cor\n\nnet = tflearn,\nnet = tflearn,\nnet = tflearn,\n\nnet = tflearn,\n\n4)\n\ninput_data(shape=[None, 784})\nfully connected(net, 100, activation=\"relu')\n‘fully_connected(net, 10, activation='softmax')\n\n-regression(net, 10%\n\nmodel = tflearn.DxN\\net.\n\n4. Train the model\n\ncategorical crossentropy’, optinizer='sgd\")"
+  },
+  {
+    "text": "weights rather and then we declared the model. And then it is time to train. So, I already made",
+    "start": 1321.28,
+    "end": 1334.16,
+    "ocr_text": "in [3]: data train = mvrs7_data.train\n\nmn (4):\n\nat\n\nX, y = data train\n\n\\-validation = MNIST data. validation\ndata test = MNIST_da\n\nZest,\n\nimages, dat\n\n3. Make the model\n\nin (8):\n\nmd:\n\ntflearn.init_graph(num_cor\n\nnet = tflearn,\nnet = tflearn,\nnet = tflearn,\n\nnet = tflearn,\n\n4)\n\ninput_data(shape=[None, 784})\nfully connected(net, 100, activation=\"relu')\n‘fully_connected(net, 10, activation='softmax')\n\n-regression(net, 10%\n\nmodel = tflearn.DxN\\net.\n\n4. Train the model\n\ncategorical crossentropy’, optinizer='sgd\")"
+  },
+  {
+    "text": "another slide another for this. So, we are now going to do model.fit as we always do.",
+    "start": 1334.16,
+    "end": 1340.8,
+    "ocr_text": "index will result in an error in the future\n\n‘chunk = self.extrabuf(offset: offset + size}\n/0sers/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/anist.py:52: VisibleDeprecationarning\nng an array with ndim > 0 to an index will result in an error in the future\n\n‘data = data.reshape(num images, rows, cols, 1)\n\nExtracting mnist/train-labels~idx1-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mist /t10k-Labels-idxl-ubyte.gz\n\nin [3]: data train = murs7_data.train\ndata_validation = MNIST data. validation\ndata test = MNIST_data.test\n\nin (4): X, y = data train. images, data train. labels\n\n3. Make the model\n\nIm [8]: tflearn.init_graph(nun_cor\n\n4)\n\nnet = tflearn.input_data(shape=[tione, 784))\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax’)\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DeN/net.\n\nEwen"
+  },
+  {
+    "text": "So, model.fit now the model is already declared. We train it on x and y. So, these are your inputs",
+    "start": 1342.32,
+    "end": 1351.76,
+    "ocr_text": "TS JUPYTEN ML-Antan ora in oer Wier\n\n\"sks ease ae, res ve\n\n‘ATES OTE RTA Figs ea RGN VEC TT\nben ag rag Ue igo en"
+  },
+  {
+    "text": "and targets of the training data. And now you specify a couple of more options. You specify",
+    "start": 1351.76,
+    "end": 1358.0,
+    "ocr_text": "mm (3]:\n\nIn (4)\n\nim [8]:\n\nmt\n\nm(]:\n\nExtracting mist /t10k-Labels-idxl-ubyte.gz\n\ndata train = MNIST data.train\n‘data validation = MIST dat\ndata_test = MNIST_data.\n\nLidation\n\nX, y = data_train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\nnet = tflearn.input_data(shape=[tione, 784))\n\nnet = tflearn.fully connected(net, 100, activation='relu')\n\nnet = tflearn.fully connected(net, 10, activation:\n\nnet = tflearn.regression(net, lot\n\nmodel = tflearn.DuN(net)\n\n4. Train the model\n\nnodel. £it x.)\n\nsoftmax')\n\n\"categorical_crossentropy', optimizer='sgd')"
+  },
+  {
+    "text": "that the number of epochs of training in epoch is going to be one. So, what is epoch? So,",
+    "start": 1358.0,
+    "end": 1365.04,
+    "ocr_text": "mn (3):\n\nmm (4)\n\nIn [8]:\n\nmtd:\n\nmd:\n\nExtracting mist /t10k-Labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\n‘data validation = MirsT dat\ndata test = MNIST_data.test\n\nLidation\n\nX, y = data_train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = te1e\n\nyen. input_data(shape=[None, 784})\n\nnet = tflearn.fully connected(net, 100, activation='relu')\n\nnet = tflearn.fully connected(net, 10, activation:\n\nnet = tflearn.regression(net, lo:\n\nmodel = tflearn.DuN(net)\n\n4. Train the model\ncoal\n\nmodel. fit (x, y, a\n\nsoftmax')\n\n\"categorical crossentropy', optimizer='sgd')"
+  },
+  {
+    "text": "it is a very common concept in machine learning. So, when you are actually trying to find out the",
+    "start": 1366.72,
+    "end": 1372.16,
+    "ocr_text": "mn (3]:\n\nmn (4)\n\nIn [8]:\n\nm (1:\n\nmC):\n\nExtracting mist /t10k-Labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MIST data. validation\ndata_test = MNIST_data.\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = t£1e\n\nyen. input_data(shape=[None, 784})\n\nnet = tflearn.fully connected(net, 100, activation='relu')\n\nnet = tflearn.fully connected(net, 10, activation:\n\nnet = tflearn.regression(net, lo:\n\nmodel = tflearn.DuN(net)\n\n4. Train the model\n\nnodel.f1e)X, y, mepoch-t, |\n\nsoftmax')\n\n\"categorical_crossentropy', optimizer='sgd')"
+  },
+  {
+    "text": "and like you want to do gradient descent you have a bunch of parameters which you want to",
+    "start": 1374.24,
+    "end": 1378.72,
+    "ocr_text": "mn (3]:\n\nmn (4)\n\nIn [8]:\n\nm (1:\n\nmC):\n\nExtracting mist /t10k-Labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MIST data. validation\ndata_test = MNIST_data.\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = t£1e\n\nyen. input_data(shape=[None, 784})\n\nnet = tflearn.fully connected(net, 100, activation='relu')\n\nnet = tflearn.fully connected(net, 10, activation:\n\nnet = tflearn.regression(net, lo:\n\nmodel = tflearn.DuN(net)\n\n4. Train the model\n\nnodel.f1e)X, y, mepoch-t, |\n\nsoftmax')\n\n\"categorical_crossentropy', optimizer='sgd')"
+  },
+  {
+    "text": "find optimum values of. And what you do is you show the learning algorithm the same",
+    "start": 1378.72,
+    "end": 1385.04,
+    "ocr_text": "=\n=<"
+  },
+  {
+    "text": "training examples time and over and over again. So, say you have 1 million training examples.",
+    "start": 1385.12,
+    "end": 1391.04,
+    "ocr_text": "=\n=<"
+  },
+  {
+    "text": "And in the first epoch you are going to show the neural network. Say it is a neural network",
+    "start": 1391.04,
+    "end": 1398.32,
+    "ocr_text": "~ . 2"
+  },
+  {
+    "text": "the learning model. So, you show all the in the first epoch you show all the training examples",
+    "start": 1398.32,
+    "end": 1403.92,
+    "ocr_text": "~ . 2"
+  },
+  {
+    "text": "to the neural network. So, it does some updates everything. Now, in the second epoch you randomize",
+    "start": 1403.92,
+    "end": 1409.04,
+    "ocr_text": "~ . 2"
+  },
+  {
+    "text": "you randomly permute all the you shuffle all the training examples you have. And you push it",
+    "start": 1409.04,
+    "end": 1414.0,
+    "ocr_text": "~ . 2"
+  },
+  {
+    "text": "again all right. And it has been shown that this helps to break the sequence. The like when",
+    "start": 1414.0,
+    "end": 1419.76,
+    "ocr_text": "~ . 2"
+  },
+  {
+    "text": "you when you when you are presenting the training examples in a particular sequence to your machine",
+    "start": 1419.76,
+    "end": 1426.64,
+    "ocr_text": "~ . 2"
+  },
+  {
+    "text": "learning model to your neural network then the neural network might actually memorize the sequence.",
+    "start": 1426.64,
+    "end": 1432.16,
+    "ocr_text": "~ . 2"
+  },
+  {
+    "text": "And so, the sequence in which different training examples appear to the neural network",
+    "start": 1432.16,
+    "end": 1438.0,
+    "ocr_text": "~ . 2"
+  },
+  {
+    "text": "may actually you know actually be reflected in the optimization in the values of which the",
+    "start": 1438.96,
+    "end": 1445.44,
+    "ocr_text": "~ . 2"
+  },
+  {
+    "text": "weights can take up right. Just to break that sequence what what we do is we randomize the samples",
+    "start": 1446.64,
+    "end": 1452.4,
+    "ocr_text": "Syupyter mason\nJUPYEET en nn"
+  },
+  {
+    "text": "and pass the same training set over and over again. And this like carries on the training and we",
+    "start": 1452.4,
+    "end": 1459.12,
+    "ocr_text": "Syupyter mason\nJUPYEET en nn"
+  },
+  {
+    "text": "need to like the more you train the better the model fits on to the training data. So,",
+    "start": 1459.12,
+    "end": 1464.48,
+    "ocr_text": "Syupyter mason\nJUPYEET en nn"
+  },
+  {
+    "text": "it is a concept and I just keep I am going to keep any epoch equal to 1 number of epochs equal to 1",
+    "start": 1464.72,
+    "end": 1470.88,
+    "ocr_text": "Syupyter mason\nJUPYEET en nn"
+  },
+  {
+    "text": "to like show you the other things and it is just going to speed up the learning process a little",
+    "start": 1470.88,
+    "end": 1478.8,
+    "ocr_text": "Syupyter mason\nJUPYEET en nn"
+  },
+  {
+    "text": "bit take a little bit less a time. Now, you show now it is bad size right. So, sorry that is bad size.",
+    "start": 1478.8,
+    "end": 1490.96,
+    "ocr_text": "Syupyter mason\nJUPYEET en nn"
+  },
+  {
+    "text": "So, when you as you are doing stochastic gradient descent the bad size is going to matter. So,",
+    "start": 1491.12,
+    "end": 1500.08,
+    "ocr_text": "mn (3):\n\nmn (4)\n\nin [8]:\n\nm1:\n\nmt\n\nExtracting mist /t10k-labels-idxl-ubyte.gz\n\ndata train = MNIST_data.train\ndata validation = MIST dat\ndata test = MNIST_data.test\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = te1e\n\nyen. input_data(shape=(None, 784})\n\nnet = tflearn.fully connected(net, 100, activation='relu')\n\nnet = tflearn.fully connected(net, 10, activation:\n\nnet = tflearn.regression(net, lo:\n\nmodel = tflearn.DuN(net)\n\n4. Train the model\n\nmodel. fit(x, y, mepoch=1, batd)\n\n\"categorical_cro:\n\nsoftmax')\n\nsntropy', optinizer='sgd')"
+  },
+  {
+    "text": "it is the number of examples that you want to show per you know per instance of learning or like",
+    "start": 1500.08,
+    "end": 1508.8,
+    "ocr_text": "mn (3]:\n\nmn (4)\n\nim [8]:\n\nmtd:\n\nmt\n\nExtracting mist /t10k-labels-idel-ubyte.gz\n\ndata_train = MNIST_data.train\ndata validation = MiIST data. validation\ndata_test = MNIST_data.\n\nX, y = data train. images, data train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\n4)\n\nnet = tflearn.input_data(shape=[None, 784})\nnet = tflearn.fully_connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=' softmax’ )\n\nnet = tflearn.regression(net, lo:\n\n\"categorical crossentropy', optimizer='sgd')\n\nmodel = tflearn.DuN(net)\n\n4. Train the model\n\nmodel. fit (x, y, n_epoch=1, batch size:"
+  },
+  {
+    "text": "after seeing how many examples you want to do one upgrade update. So, let us keep bad size equal",
+    "start": 1508.8,
+    "end": 1514.0,
+    "ocr_text": "mn (3]:\n\nin [4]:\n\nin [8]:\n\nmed\n\ndata train = MNIST_data.train\nvalidation = MIST data. validation\ntest = MNIST_data.test\n\nx, y = dat\n\ntrain. images, data_train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\nnet = tflearn. input_data(shape=[None, 784))\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\n\nnet = tflearn.regression(net, lo:\n\n\"categorical crossentropy', optimize:\n\nmodel = tflearn.DuN(net)\n\n4. Train the model\n\nga\")\n\nmei\n\nmodel. fit (x, y, n_epoch=1, batch size"
+  },
+  {
+    "text": "to 10 and another option is show metric. So, in the progress of training as training proceeds",
+    "start": 1514.0,
+    "end": 1526.08,
+    "ocr_text": "mn (3]:\n\nin [4]:\n\nin [8]:\n\nmed\n\ndata train = MNIST_data.train\nvalidation = MIST data. validation\ntest = MNIST_data.test\n\nx, y = dat\n\ntrain. images, data_train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cor\n\nnet = tflearn. input_data(shape=[None, 784))\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\n\nnet = tflearn.regression(net, lo:\n\n\"categorical crossentropy', optimize:\n\nmodel = tflearn.DuN(net)\n\n4. Train the model\n\nga\")\n\nmei\n\nmodel. fit (x, y, n_epoch=1, batch size"
+  },
+  {
+    "text": "it is going to show us the value of accuracy. Let us let us go ahead and see what happens. So,",
+    "start": 1526.08,
+    "end": 1534.08,
+    "ocr_text": "Im [4]: X, y = data train. images, data train. labels\n\n3. Make the model\n\nIm [8]: tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[None, 7841)\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DuN(net)\n\nmt):\n\n4. Train the model\n\n[ In [ ]: model.£it x, y, n_epoch=1, batch size=10, show_metric=rrud|"
+  },
+  {
+    "text": "notice here. So, as you can see that the accuracy is increasing the training accuracy is increasing",
+    "start": 1534.8,
+    "end": 1545.52,
+    "ocr_text": "Im [4]: X, y = data train. images, data train. labels\n\n3. Make the model\n\nIm [8]: tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[None, 7841)\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DuN(net)\n\nmt):\n\n4. Train the model\n\n[ In [ ]: model.£it x, y, n_epoch=1, batch size=10, show_metric=rrud|"
+  },
+  {
+    "text": "the losses decreasing and you know it is going to it is like make divide has divided the entire",
+    "start": 1545.52,
+    "end": 1553.68,
+    "ocr_text": "SERIE\n\nnet = tflearn.input_data(shape=[None, 784])\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=\"softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\nmodel = tflearn.DNN(net)\n\nmts\n4. Train the model\n\nIn [*]: model.fit(X, y, n_epoch=1, batch_size=10, show_metric=True\n\nTraining Step: 2262 | total loss: 2.19441\n\n| scp | epoch: 000 | loss: 2.19441 - acc: 0.4150 -~ iter: 22620/55000"
+  },
+  {
+    "text": "training set into batches of size 10 and it is like pushing every single batch and then updating.",
+    "start": 1553.68,
+    "end": 1562.4,
+    "ocr_text": "SERIE\n\nnet = tflearn.input_data(shape=[None, 784])\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=\"softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\nmodel = tflearn.DNN(net)\n\nmts\n4. Train the model\n\nIn [*]: model.fit(X, y, n_epoch=1, batch_size=10, show_metric=True\n\nTraining Step: 2262 | total loss: 2.19441\n\n| scp | epoch: 000 | loss: 2.19441 - acc: 0.4150 -~ iter: 22620/55000"
+  },
+  {
+    "text": "So, one update is happening after every batch has been processed and you can see that the number",
+    "start": 1562.48,
+    "end": 1568.8,
+    "ocr_text": "“In [8]? tflearn.init graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[None, 784])\n\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\nIn{]:\n\n4. Train the model\n\nIn [*]:  model.£it(X, y, n_epoch=1, batch_size=10, show metric=True\n\nTraining Step: 3618 | total loss: 2.00757\n| ScD | epoch: 000 | loss: 2.00757 - acc: 0.5766 -- iter: 36180/55000"
+  },
+  {
+    "text": "of examples that have been shown to the neural network is being counted over here. So,",
+    "start": 1568.8,
+    "end": 1574.24,
+    "ocr_text": "Tn (8)?\n\nSse aroeo\n\nnet = tflearn.input_data(shape=[None, 784])\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\nmodel = t£learn.DNN(net)\nmt:\n4. Train the model\nIn [*]: model.fit(X, y, n_epoch=1, batch_size=10, show_metric=True\n\nTraining Step: 4920 | total loss: 1.73036\n| ScD | epoch: 000 | loss: 1.73096 - acc: 0.7169 -- iter: 49200/55000"
+  },
+  {
+    "text": "when all the 55,000 examples have been shown the training is complete. So, one epoch is complete",
+    "start": 1575.52,
+    "end": 1580.16,
+    "ocr_text": "‘nit_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[None, 784])\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=\"softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\nmodel = t£learn.DNN(net)\n\nmt:\n4. Train the model\n\nIn [9]: model.fit(X, y, n_epoch=1, batch_size=10, show_metric=True\n\nTraining Step: 5500 | total loss: 1.53399\n| ScD | epoch: 001 | loss: 1.53399 - acc: 0.6949 -- iter: 55000/55000\nTraining Step: 5500 | total loss: 1.53399\n| ScD | epoch: 001 | loss: 1.53399 - acc: 0.6949 -- iter: 55000/55000"
+  },
+  {
+    "text": "and it reports the final accuracy over here. So, let us go ahead and see how things change when",
+    "start": 1580.16,
+    "end": 1587.44,
+    "ocr_text": "‘nit_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[None, 784])\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation=\"softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\nmodel = t£learn.DNN(net)\n\nmt:\n4. Train the model\n\nIn [9]: model.fit(X, y, n_epoch=1, batch_size=10, show_metric=True\n\nTraining Step: 5500 | total loss: 1.53399\n| ScD | epoch: 001 | loss: 1.53399 - acc: 0.6949 -- iter: 55000/55000\nTraining Step: 5500 | total loss: 1.53399\n| ScD | epoch: 001 | loss: 1.53399 - acc: 0.6949 -- iter: 55000/55000"
+  },
+  {
+    "text": "increase the number of increase or decrease the number of nodes of the hidden layer.",
+    "start": 1588.0,
+    "end": 1592.64,
+    "ocr_text": "In [3]:\nIn [4]:\nIn [8]:\n\nchunk = self.extrabuf[offset: offset + size]\n\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idx1-ubyte.g2\n\ndata_train = MNIST data.train\ndata_validation = MNIST_data.validation\ndata_test = MNIST_data.test\n\n+\n\nX, y = data train. images, data_train. labels\n\n3. Make the model\n\nt£learn. init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[None, 784])\nnet = tflearn.fully_connected(net, 100, activation\nnet = tflearn.fully connected(net, 10, activation:\n\n/Users/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist .py:52: Visibl\nng an array with ndim > 0 to an index will result in an error in the future"
+  },
+  {
+    "text": "So, let us go ahead and make the nodes. So, let us make a note that previously for 100 nodes",
+    "start": 1593.76,
+    "end": 1599.92,
+    "ocr_text": "In [3]:\nIn [4]:\nIn [8]:\n\nchunk = self.extrabuf[offset: offset + size]\n\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.g2\nExtracting mnist/t10k-labels-idx1-ubyte.g2\n\ndata_train = MNIST data.train\ndata_validation = MNIST_data.validation\ndata_test = MNIST_data.test\n\n+\n\nX, y = data train. images, data_train. labels\n\n3. Make the model\n\nt£learn. init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[None, 784])\nnet = tflearn.fully_connected(net, 100, activation\nnet = tflearn.fully connected(net, 10, activation:\n\n/Users/Anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist .py:52: Visibl\nng an array with ndim > 0 to an index will result in an error in the future"
+  },
+  {
+    "text": "in for neural network with one hidden layer and 100 nodes the accuracy was just 69.5 percent.",
+    "start": 1599.92,
+    "end": 1607.52,
+    "ocr_text": "tflearn.input_data(shape=[None, 784])\n\nnet =\nnet = tflearn.fully connected(net, 10|, activation='relu')\n\nnet = tflearn.fully connected(net, 10, activation='softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\nIn{ |:\n\nIn [9]:\n\n4. Train the model\n\nmodel.fit(X, y, n_epoch=1, batch_size=10, show metric=True)\n\nTraining Step: 5500 | total loss: 1.53399\n| ScD | epoch: 001 | loss: 1.53399 - acc: 0.6949 -- iter: 55000/55000\nTraining Step: 5500 | total loss: 1.53399\n| ScD | epoch: 001 | loss: 1.53399 - acc: 0.6949 -- iter: 55000/55000"
+  },
+  {
+    "text": "So, we are now decreasing the number of nodes and we will see how things change. So, I will restart",
+    "start": 1608.32,
+    "end": 1613.84,
+    "ocr_text": "LU\n\nfa ft\n\nta [B48\n\n3. Make the model\n\neflearH. init graph (num cores=4)\n\nfet\nREE\nnet\n\nEpleumn tapi data(shape=(None, 784])\nEflearn. fully eonested net, i, activation='x\nfisarn:Fully sennseted (nee, 10, abbivation='asttmax! )\n\nRet = tflearn-regression(net, ioss=‘categerical_crassentrepy’, optimiser=' sad’ j\n\nRedel = t£lgara-BNH (AGE)\n\n4. Train the model\n\nadel .fie(K, y) Repeeh=i, bach size=i0, show metrie=True)\n\nraining Ste\n| 888 | epee!\n\n3800 | estel ieee: 1.53399\nBhi | lows: 1.53398 - acc: 6.6949 -- iter: 55080/85008"
+  },
+  {
+    "text": "and run all this is see here what happens and we will restart the performance yeah. So, now you",
+    "start": 1613.92,
+    "end": 1626.16,
+    "ocr_text": "LU\n\nfa ft\n\nta [B48\n\n3. Make the model\n\neflearH. init graph (num cores=4)\n\nfet\nREE\nnet\n\nEpleumn tapi data(shape=(None, 784])\nEflearn. fully eonested net, i, activation='x\nfisarn:Fully sennseted (nee, 10, abbivation='asttmax! )\n\nRet = tflearn-regression(net, ioss=‘categerical_crassentrepy’, optimiser=' sad’ j\n\nRedel = t£lgara-BNH (AGE)\n\n4. Train the model\n\nadel .fie(K, y) Repeeh=i, bach size=i0, show metrie=True)\n\nraining Ste\n| 888 | epee!\n\n3800 | estel ieee: 1.53399\nBhi | lows: 1.53398 - acc: 6.6949 -- iter: 55080/85008"
+  },
+  {
+    "text": "can see that the accuracy change is increasing slowly because the models learning capacity has been",
+    "start": 1626.16,
+    "end": 1634.96,
+    "ocr_text": "In{ |:\n\nnet = tflearn.input_data(shape=[None, 784])\n\nnet = tflearn.fully connected(net, 10, activation=\"relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nIn [*]:\n\nmodel.£it(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step: 753 | total loss: 2.29569\n| ScD | epoch: 000 | loss: 2.29589 - acc: 0.2050 -- iter: 07530/55000\n."
+  },
+  {
+    "text": "reduced the number of parameters is reduced. So, the capacity to learn has also reduced and however,",
+    "start": 1634.96,
+    "end": 1642.24,
+    "ocr_text": "In{ |:\n\nnet = tflearn.input_data(shape=[None, 784])\n\nnet = tflearn.fully connected(net, 10, activation=\"relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nIn [*]:\n\nmodel.£it(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step: 753 | total loss: 2.29569\n| ScD | epoch: 000 | loss: 2.29589 - acc: 0.2050 -- iter: 07530/55000\n."
+  },
+  {
+    "text": "the training is increasing much faster. So, you can just see that you can flash 30,000 examples",
+    "start": 1642.24,
+    "end": 1648.16,
+    "ocr_text": "In{ |:\n\nnet = tflearn.input_data(shape=[None, 784])\n\nnet = tflearn.fully connected(net, 10, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nIn [*]:\n\nmodel.fit(x, y, n_epoch=1, batch :\n\nize=10, show_metric=True)\n\nTraining Step: 2172 | total loss: 2.27666\n| Sep | epoch: 000 | loss: 2.27886 - acc: 0.2975 -- iter: 21730/55000\n."
+  },
+  {
+    "text": "are processed right because as the amount of compute and number of parameters has reduced",
+    "start": 1648.16,
+    "end": 1654.0,
+    "ocr_text": "In{ |:\n\nnet = tflearn.input_data(shape=[None, 784])\n\nnet = tflearn.fully connected(net, 10, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nIn [*]:\n\nmodel.f£it(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step: 3545 | total loss: 2.21859\n| Sed | epoch: 000 | loss: 2.21859 - acc: 0.2090 -- iter: 35450/55000"
+  },
+  {
+    "text": "now computation happens faster what happened? I operation and closed file.",
+    "start": 1654.64,
+    "end": 1659.68,
+    "ocr_text": "In{ |:\n\nnet = tflearn.input_data(shape=[None, 784])\n\nnet = tflearn.fully connected(net, 10, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nIn [*]:\n\nmodel.f£it(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step: 3545 | total loss: 2.21859\n| Sed | epoch: 000 | loss: 2.21859 - acc: 0.2090 -- iter: 35450/55000"
+  },
+  {
+    "text": "Restart here output.",
+    "start": 1664.08,
+    "end": 1666.4,
+    "ocr_text": "Oia 33\n_tMBAPH]\nSRIGSEH HBESWSES HgPSEe ARlZEc\n\n3 Lad dala\n\n#8 131 : (mete\n\n+8 [Al"
+  },
+  {
+    "text": "So, we do not take much time. So, we can expect that the accuracy will be less at this time.",
+    "start": 1672.24,
+    "end": 1691.04,
+    "ocr_text": "is ju pyter Assignment 5 demo Last Checkpoint: 17 hours ago (unsaved changes)\n\nFile Edit View Insert Ggll_—«Kernel_— ‘Help\n\n+ x ® BH & %) RunCells & | Celffoolbar\nRun Cells and Select Below\nRun Cells and Insert Below\nRun All\n1. Load d runaiavove\nRun All Below }\na ee |\n\nimport tflear Cel Type >\nfrom tflearn.,\n\nCurrent Outputs »\n\n2. Load dq “ou »\n\nIn [ ]: MNIST_data = mnist.read_data_sets(one_hot=True)\n\nIn [ ]: data train = MNIST_data.train\ndata_validation = MNIST_data.validation\n\noa oo"
+  },
+  {
+    "text": "Let us see. So, you see the accuracy will not increase beyond some 20, 26 percent and this is",
+    "start": 1691.2,
+    "end": 1704.64,
+    "ocr_text": "In{ |:\n\nnet = tflearn.input_data(shape=[None, 784])\n\nnet = tflearn.fully connected(net, 10, activation=\"relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nIn [*]:\n\nmodel.fit(x, y, n_epoch=1, batch :\n\nize=10, show_metric=True)\n\nTraining Step: 1897 | total loss: 2.29578\n| ScD | epoch: 000 | loss: 2.29578 - acc: 0.1380 -- iter: 18970/55000"
+  },
+  {
+    "text": "just the training accuracy as the models learning capacity has reduced. So, this has gone to like 35",
+    "start": 1704.64,
+    "end": 1712.88,
+    "ocr_text": "In{ |:\n\nnet = tflearn.input_data(shape=[None, 784])\n\nnet = tflearn.fully connected(net, 10, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nIn [*]:\n\nmodel.fit(X, y, n_epoch=1, batch :\n\nize=10, show_metric=True)\n\nTraining Step: 3333 | total loss: 2.27825\n| ScD | epoch: 000 | loss: 2.27826 - acc: 0.2131 -- iter: 33330/55000"
+  },
+  {
+    "text": "percent or something see 44 percent previously it was 69 percent. So, as the",
+    "start": 1712.88,
+    "end": 1720.88,
+    "ocr_text": "In{ |:\n\nnet = tflearn.input_data(shape=[None, 784])\n\nnet = tflearn.fully connected(net, 10, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nIn [*]:\n\nmodel.fit(x, y, n_epoch=1, batch :\n\nize=10, show_metric=True)\n\nTraining Step: 4655 | total loss: 2.24050\n| Sed | epoch: 000 | loss: 2.24099 - acc: 0.2565 -- iter: 46550/55000"
+  },
+  {
+    "text": "learning capacity was reduced the neural network could not learn well and hence the accuracy is",
+    "start": 1720.88,
+    "end": 1725.44,
+    "ocr_text": "In{ |:\n\nnet = tflearn.input_data(shape=[None, 784])\n\nnet\nnet\n\nnet\n\ntflearn.regression(net, los:\n\ntflearn.fully connected(net, 10, activation='relu')\ntflearn. fully connected(net, 10, activation='softmax')\n\n‘categorical_crossentropy', optimizer='sgd')\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nIn [6]:\n\nmodel.fit(X, y, n_epoch=1, batch\n\nTraining Step:\n| sep | epoch:\nTraining Step:\n| sep | epoch:\n\nize=10, show_metric=True)\n\n5500 | total loss: 2.18801\n001 | loss: 2.18801 - acc: 0.4401 -- iter: 55000/55000\n5500 | total loss: 2.18801\n\n001 | loss: 2.18801 - acc: 0.4401 -- iter: 55000/55000"
+  },
+  {
+    "text": "lesser. So, let us go ahead and restore the number of hidden units to 100 our previous value",
+    "start": 1725.44,
+    "end": 1733.28,
+    "ocr_text": "In [3\n\n‘/sers/anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: Visibl\nng an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = MNIST_data.train\ndata_validation = MNIST_data.validation\ndata_test = MNIST_data.test\n\nIn [4]: X, y = data train. images, data_train. labels\n3. Make the model 1] .\nIn [5]: tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[(None, 784])\nnet = tflearn.fully connected(net, 10|, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')"
+  },
+  {
+    "text": "and let us add another hidden layer see what happens oops. So, let me shrink it a little bit",
+    "start": 1733.28,
+    "end": 1742.56,
+    "ocr_text": "In [3\n\n‘/sers/anirban/anaconda/1ib/python2.7/site-packages/tflearn/datasets/mnist.py:52: Visibl\nng an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idxl-ubyte.gz\n\ndata_train = MNIST_data.train\ndata_validation = MNIST_data.validation\ndata_test = MNIST_data.test\n\nIn [4]: X, y = data train. images, data_train. labels\n3. Make the model 1] .\nIn [5]: tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[(None, 784])\nnet = tflearn.fully connected(net, 10|, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')"
+  },
+  {
+    "text": "and go ahead and add another hidden layer right and see how things change. So, previously it was",
+    "start": 1742.56,
+    "end": 1753.92,
+    "ocr_text": "tm (3):\n\nIn [4]:\n\nIn [5]:\n\nExtracting mnist/train-labels-tdx1-ubyte.gz\nExtracting waist /¢10k-images-idk3-ubyte.gz\nExtracting mnist/tidk-tabéte—idxi-ubyte.gz\n\ndeta train = MNIST_date.train\ndata_validation = WNTST data.validatijon\ndata test - MviSt data.\n\nx, y = data train. images, data train. labels\n\n. Make the model\n\nnet = tft atly-conhected(net, 10; activation='softmax' )\n\n.\npet = tflearn.regression(net, io\n\n='categorical_cro:\n\ngodal = e€lensn.cucpes)\n\nntropy', optimizer=\"agd')"
+  },
+  {
+    "text": "69 percent. Let us go ahead and restart and clear output. Yes now I will run all cells",
+    "start": 1754.4,
+    "end": 1765.76,
+    "ocr_text": "Spore Setenes\nfrom teloarncaatanets Anport mit\n\n2. Load data\n\n‘atracting anlat/eraln-inages-Lde)-ehye.ot\n\n‘och ans n/yeont. gp y28s ialbabepeceontarsogssomertog an acay wth nin > @ 49\nSchon = aeitcortrabot[onfects otfeet + se)\n\n‘/oaera/naroun/anaconsa/tb/pyehon2/aice-pacagen/€fleara/datanets/ankatpy52\n“dita duea-reshape(oun_inapee, row, cole, 3)\n\nEstsSeecesetloameiog oerertt\n\nan (40s [ts y= date_ecains impos, data train, labels\n\n3. Make the model\n\nnat = telearnsregrension(net, lone’ catopocicsl_crontentcory's optintzer='eed\")"
+  },
+  {
+    "text": "let us see how the accuracy changes this time. So, now the training is a bit slower because",
+    "start": 1765.76,
+    "end": 1778.0,
+    "ocr_text": "Tore tfleare\nfron teen datasets laport maist\n\n2. Load data\n\nxtractiog mnlat/reln-inagen-idad-aby\n\n‘ovacs/Asisban/anaconda/it8/pytho2.7/ quip. 2784 Visibiebepeecatlootarnings converting an azray With edn > 0 to an\n‘Shan seifvexteabut[otteats ottect + site)\n\nerase sachin et pacage/Cann/ dean. p:82sVaiblonpnctiooarings cores\nvaca'sautecrshapean_inpesy rower olay 1)\n\nHy = data train. images, data train, lable\n\n3. Make the model\n\n‘Elearn.init_graph(mum_coree=é)\n\net = tElearn.reprensien(net, Lease‘catozricnl_crontentsopy', optiniters'end\")"
+  },
+  {
+    "text": "the size of the network has increased and but I can we can like hope that this time the accuracy",
+    "start": 1778.0,
+    "end": 1788.24,
+    "ocr_text": "net = tflearn.regression(net, loss='categorical_crossentropy', optimizer='\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.fit(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step: 1026 | total loss: 2.30159\n| scp | epoch: 000 | loss: 2.30159 - acc: 0.2065 -- iter: 10260/55000"
+  },
+  {
+    "text": "will be a bit higher. But it is not certain at all it should not necessarily be higher",
+    "start": 1788.24,
+    "end": 1809.04,
+    "ocr_text": "net = tflearn.regression(net, loss='categorical crossentropy', optimize\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\n[*]: | model.fit(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step: 2280 | total loss: 2.30258\n| SGD | epoch: 000 | loss: 2.30235 - acc: 0.0655 -~ iter: 22890/55000"
+  },
+  {
+    "text": "and that is where the entire trick comes in. So, it was like really you know unfortunate that",
+    "start": 1809.84,
+    "end": 1822.48,
+    "ocr_text": "net = tflearn.regression(net, loss='categorical_crossentropy', optimize\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.fit(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step: 4720 | total loss: 2.29653\n| scp | epoch: 000 | loss: 2.29653 - acc: 0.0852 -- iter: 47200/55000\n5"
+  },
+  {
+    "text": "on increasing the number of you know hidden layers like you see actually fell. So, this is the",
+    "start": 1822.48,
+    "end": 1828.56,
+    "ocr_text": "model = tflearn.DNN(net)\n\n4. Train the model\n\n61\n\nmodel.fit(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step:\n| scp | epoch:\nTraining Step:\n| scp | epoch:\n\n5500 | total loss: 2.29685\n001 | loss: 2.29685 - acc: 0.1200 -- iter: 55000/55000\n5500 | total loss: 2.29685\n001 | loss: 2.29685 - acc: 0.1200 -- iter: 55000/55000"
+  },
+  {
+    "text": "actually the trick of deep learning and it was it was seen that deep neural networks with",
+    "start": 1828.56,
+    "end": 1833.76,
+    "ocr_text": "model = tflearn.DNN(net)\n\n4. Train the model\n\n6]\n\nmodel.fit(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step:\n| scp | epoch:\nTraining Step:\n| scp | epoch:\n\n5500 | total loss: 2.29685\n001 | loss: 2.29685 - acc: 0.1200 -- iter: 55000/55000\n5500 | total loss: 2.29685\n001 | loss: 2.29685 - acc: 0.1200 -- iter: 55000/55000"
+  },
+  {
+    "text": "many hidden layers actually failed to arrive at a good solution and as you can see that the accuracy",
+    "start": 1833.84,
+    "end": 1840.48,
+    "ocr_text": "model = tflearn.DNN(net)\n\n4. Train the model\n\n6]\n\nmodel.fit(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step:\n| scp | epoch:\nTraining Step:\n| scp | epoch:\n\n5500 | total loss: 2.29685\n001 | loss: 2.29685 - acc: 0.1200 -- iter: 55000/55000\n5500 | total loss: 2.29685\n001 | loss: 2.29685 - acc: 0.1200 -- iter: 55000/55000"
+  },
+  {
+    "text": "is just 12 percent right. So, it just stuck in a bad local minimum and it had to come out right.",
+    "start": 1840.48,
+    "end": 1847.28,
+    "ocr_text": "model = tflearn.DNN(net)\n\n4. Train the model\n\n6]\n\nmodel.fit(X, y, n_epoch=1, batch_size=10, show_metric=True)\n\nTraining Step:\n| scp | epoch:\nTraining Step:\n| scp | epoch:\n\n5500 | total loss: 2.29685\n001 | loss: 2.29685 - acc: 0.1200 -- iter: 55000/55000\n5500 | total loss: 2.29685\n001 | loss: 2.29685 - acc: 0.1200 -- iter: 55000/55000"
+  },
+  {
+    "text": "And so, let us go ahead and make a small change to the optimizer over here. So, there is an",
+    "start": 1847.28,
+    "end": 1852.72,
+    "ocr_text": "In [3]:\n\nIn [4]:\n\nIn [5]:\n\nig an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idx1-ubyte.gz\n\ndata_train = MNIST_data.train\ndata_validation = MNIST_data.validation\ndata_test = MNIST_data.test\n\nX, y = data_train._images, data_train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[None, 784])\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer=‘agi\")"
+  },
+  {
+    "text": "optimizer which is called Adam and it is I will put the link in the description of the video",
+    "start": 1852.72,
+    "end": 1860.96,
+    "ocr_text": "In [3]:\n\nIn [4]:\n\nIn [5]:\n\nig an array with ndim > 0 to an index will result in an error in the future\ndata = data.reshape(num_images, rows, cols, 1)\n\nExtracting mnist/train-labels-idxl-ubyte.gz\nExtracting mnist/t10k-images-idx3-ubyte.gz\nExtracting mnist/t10k-labels-idx1-ubyte.gz\n\ndata_train = MNIST_data.train\ndata_validation = MNIST_data.validation\ndata_test = MNIST_data.test\n\nX, y = data_train._images, data_train. labels\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[None, 784])\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation='softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer=‘agi\")"
+  },
+  {
+    "text": "that what it actually does but it is a bit it is an optimizer it is a you know a sophisticated",
+    "start": 1861.04,
+    "end": 1870.56,
+    "ocr_text": "EAR Fe BEAR Peed IE aA g:\n\nExtracting mniat/tl0k-imeges-idxi-ubyte.¢\n\nacd HAST PATER GARE Papeete cy\nGata_validation = MIST data. validation\n5 | Epeedeenisresmirswient site rein\n\nata teat = WITT data, ts\nx, y= date train. images; data_train. labels\n\n3. Make the model\n3. Make the model\n\n(a res=4)\n\np (5) flea:\nn (513 tflearn.init graph(num coresnt)\n\net = tflaarn-sapur data(obape=[sone, 7841)\n\nnet set flammastullyzeonnectied (net ;ui00, mayyvatson= \"rel )\n\nnet not Slammmetully pennected (nétyt 1000 Aativastoam! vain)\not fleatmafully|bpmmected (nets: ) (yinceiravicnm!sositini3')\nnet = tflearn: conneceed( net ‘vation’ softmax\" )\n\nopy’, optinizers'adan’)\n\nObY', optimizer adam’)\n\n(net, ose:\nhet = tflearn-regression(net, 1os9=\n\narn usa) 2\n\n4. eatin emadelel\n\n2 [Ghs [ RPSPRAEAT OLE rv, epoch habalbch late sleueuombessencwe)"
+  },
+  {
+    "text": "optimization algorithm and we can hope that this does a better job and gives us a better accuracy.",
+    "start": 1870.56,
+    "end": 1877.6,
+    "ocr_text": "TJUPYter Assignment 5 demo as cmcore hrs up nes ge\n‘tee tote EEE ero\n8)(*|([8[6)+[*][*m[e)o= 9 (w|[ ore) 8)[0e\n\n1. Load dependencies\n\na (1 deport sa\n\n2. Load data\n\nan ( 18s 9 = data seains imagen, dataernin label\n\n3. Make the model"
+  },
+  {
+    "text": "Let us see this see this it started with an accuracy of 89 percent look at this.",
+    "start": 1880.56,
+    "end": 1888.4,
+    "ocr_text": "3. Make the model\n\nscene woken\")\n\n4. Train the model\n\nre (os (aoa, 7"
+  },
+  {
+    "text": "So, what the Adam optimizer does is it puts it uses a different learning rate for every single",
+    "start": 1888.4,
+    "end": 1894.72,
+    "ocr_text": ">del = tflearn.DNN(net)\n\n. Train the model\n\nsdel.fit(X, y, n_epoch=1, batch _size=10, show_metric=True)\n\n-aining Step: 1408 | total loss: 0.36728\nAdam | epoch: 000 | loss: 0.36728 - acc: 0.8566 -- iter: 14080/55000"
+  },
+  {
+    "text": "parameter. So, it is like every single parameter should be maybe needed to be treated differently",
+    "start": 1894.72,
+    "end": 1901.76,
+    "ocr_text": ">del = tflearn.DNN(net)\n\n. Train the model\n\nsdel.fit(X, y, n_epoch=1, batch _size=10, show_metric=True)\n\n-aining Step: 1408 | total loss: 0.36728\nAdam | epoch: 000 | loss: 0.36728 - acc: 0.8566 -- iter: 14080/55000"
+  },
+  {
+    "text": "in course of the algorithm the optimization algorithm and see you can see just the accuracy see",
+    "start": 1901.76,
+    "end": 1908.56,
+    "ocr_text": "—\n\n4 . ho\n5. tees ee’,"
+  },
+  {
+    "text": "it has it has touched 95 percent 97 percent. So, it has a different learning rate for a different",
+    "start": 1908.56,
+    "end": 1914.48,
+    "ocr_text": ">del = tflearn.DNN(net)\n\n. Train the model\n\n>del.£it(X, y, n_epoch=1, batch _size=10, show_metric=True)\n\n-aining Step: 3859 | total loss: 0.25763\nAdam | epoch: 000 | loss: 0.25763 - acc: 0.9320 -- iter: 38590/55000"
+  },
+  {
+    "text": "optimizer different parameter and also the learning rate changes with time and it is called",
+    "start": 1914.48,
+    "end": 1921.92,
+    "ocr_text": ">del = tflearn.DNN(net)\n\n. Train the model\n\n>del.£it(X, y, n_epoch=1, batch _size=10, show_metric=True)\n\n-aining Step: 3859 | total loss: 0.25763\nAdam | epoch: 000 | loss: 0.25763 - acc: 0.9320 -- iter: 38590/55000"
+  },
+  {
+    "text": "annealing and it has a separate annealing scheme for every single parameter. So, I will put a link",
+    "start": 1921.92,
+    "end": 1925.92,
+    "ocr_text": ">del = tflearn.DNN(net)\n\n. Train the model\n\nsdel.fit(X, y, n_epoch=1, batch _size=10, show_metric=True)\n\n-aining Step: 5099 | total loss: 0.14042\nAdam | epoch: 000 | loss: 0.14042 - acc: 0.9639 -- iter: 50990/55000"
+  },
+  {
+    "text": "in the description to this paper and it is actually you see the accuracy is 96.44 percent. So,",
+    "start": 1925.92,
+    "end": 1932.32,
+    "ocr_text": ">del = tflearn.DNN(net)\n\n. Train the model\n\nsdel.£it(X, y, n_epoch=1, batch _size=10, show_metric=True)\n\n-aining Step: 5500 | total loss: 0.13695\nAdam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n-aining Step: 5500 | total loss: 0.13695\nAdam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000"
+  },
+  {
+    "text": "these are the different things that so, what what what what what is your takeaway from this exercise?",
+    "start": 1934.32,
+    "end": 1940.16,
+    "ocr_text": ">del = tflearn.DNN(net)\n\n. Train the model\n\nsdel.£it(X, y, n_epoch=1, batch _size=10, show_metric=True)\n\n-aining Step: 5500 | total loss: 0.13695\nAdam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n-aining Step: 5500 | total loss: 0.13695\nAdam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000"
+  },
+  {
+    "text": "The takeaway is that when when we have a single hidden layer neural network the more is the number",
+    "start": 1940.16,
+    "end": 1946.96,
+    "ocr_text": "In (5):\n\nmnt\n\nIn (6):\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet\nnet\nnet\nnet\n\nnet\n\n= tflearn.input_data(shape=(None, 784)\n\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 10, activation='softmax')\n\n= tflearn.regression(net, 1oss='categorical_crossentropy', optimizer:\n\ndam\" )\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.fit(X, y, nepoch=1, batch size=10, show metric=?rue)\n\n‘Training Step: 5500 | total los\n\n0.13695\n\n| Adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training step: 5500\n| Adam | epoch: 001\n\n0.13695,\n\n0.9644 -- ites\n\n'55000/55000"
+  },
+  {
+    "text": "of units in the hidden layer the more complicated is the model model's function the hypothesis function",
+    "start": 1946.96,
+    "end": 1953.84,
+    "ocr_text": "—\n\n»"
+  },
+  {
+    "text": "and hence the more is its capacity to learn. So, given enough data it can learn better. So,",
+    "start": 1953.84,
+    "end": 1958.24,
+    "ocr_text": "—\n\n»"
+  },
+  {
+    "text": "that is why 100 unit hidden layer gave an accuracy of around 69 percent whereas, if the when the",
+    "start": 1958.24,
+    "end": 1964.64,
+    "ocr_text": "—\n\n»"
+  },
+  {
+    "text": "number of units was reduced to say 10 the accuracy dropped to some 29 or something because in the 20s",
+    "start": 1964.72,
+    "end": 1971.12,
+    "ocr_text": "—\n\n»"
+  },
+  {
+    "text": "right. But and the accuracy now the models complication the how the complexity of the model could be",
+    "start": 1971.12,
+    "end": 1979.12,
+    "ocr_text": "—\n\n»"
+  },
+  {
+    "text": "increased in two ways either you increase the number of nodes in the hidden layer in one hidden",
+    "start": 1979.12,
+    "end": 1984.48,
+    "ocr_text": "In (5)\n\nmt\n\nIn (6):\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet\nnet\nnet\nnet\n\nnet\n\n= tflearn.input_data(shape=[None, 784])\n\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 10, agtivation='softmax')\n\n= tflearn-regression(net, loss='categorical_crossentropy’, optimizer\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.fit(x, y, nepoch=1, batch size=10, show metric=True)\n\n‘Training Step: 5500 | total lo:\n\n0.13695\n\n| Adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training Step: 5500\n| Adam | epoch: 001\n\n2 0.13695,\n\n0.9644 -- ites\n\n'5000/55000"
+  },
+  {
+    "text": "layer. So, you have just one hidden layer and you put many nodes in that or you could stack many",
+    "start": 1984.48,
+    "end": 1990.0,
+    "ocr_text": "In (5)\n\nmt\n\nIn (6):\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet\nnet\nnet\nnet\n\nnet\n\n= tflearn.input_data(shape=[None, 784])\n\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 10, agtivation='softmax')\n\n= tflearn-regression(net, loss='categorical_crossentropy’, optimizer\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.fit(x, y, nepoch=1, batch size=10, show metric=True)\n\n‘Training Step: 5500 | total lo:\n\n0.13695\n\n| Adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training Step: 5500\n| Adam | epoch: 001\n\n2 0.13695,\n\n0.9644 -- ites\n\n'5000/55000"
+  },
+  {
+    "text": "hidden layers one after the other and it has been shown. So, what we saw here that when we increase",
+    "start": 1990.08,
+    "end": 1998.32,
+    "ocr_text": "In (5)\n\nmt\n\nIn (6):\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet\nnet\nnet\nnet\n\nnet\n\n= tflearn.input_data(shape=[None, 784])\n\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 10, agtivation='softmax')\n\n= tflearn-regression(net, loss='categorical_crossentropy’, optimizer\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.fit(x, y, nepoch=1, batch size=10, show metric=True)\n\n‘Training Step: 5500 | total lo:\n\n0.13695\n\n| Adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training Step: 5500\n| Adam | epoch: 001\n\n2 0.13695,\n\n0.9644 -- ites\n\n'5000/55000"
+  },
+  {
+    "text": "the number of hidden layers then simple stochastic gradient descent failed to converge to a good",
+    "start": 1998.32,
+    "end": 2005.84,
+    "ocr_text": "In (5)\n\nmt\n\nIn (6):\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet\nnet\nnet\nnet\n\nnet\n\n= tflearn.input_data(shape=[None, 784])\n\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 10, agtivation='softmax')\n\n= tflearn-regression(net, loss='categorical_crossentropy’, optimizer\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.fit(x, y, nepoch=1, batch size=10, show metric=True)\n\n‘Training Step: 5500 | total lo:\n\n0.13695\n\n| Adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training Step: 5500\n| Adam | epoch: 001\n\n2 0.13695,\n\n0.9644 -- ites\n\n'5000/55000"
+  },
+  {
+    "text": "local minimum. So, the accuracy was just the training accuracy was just 12 percent. So, it is close",
+    "start": 2005.84,
+    "end": 2012.16,
+    "ocr_text": "In (5):\n\nmn\n\nIn [6]:\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet\nnet\nnet\nnet\n\nnet\n\n= tflearn.input_data(shape=(None, 784})\ntflearn.fully_connected(net, 100, activation='relu')\n\ntflearn.fully_connected(net, 100, activation='relu')\n\ntflearn.fully_connected(net, 10, activation='softmax')\n\n= tflearn.regression(net, 1oss~'categorical_crossentropy’, optimizer=\"\n\ndam\" )\n\nmodel = tflearn.DNW(net)\n\n4. Train the model\n\nmodel.fit(X, y, n_epoch=1, batch size=10, show metric=True)\n\n‘Training Step: 5500 | total los\n\n0.13695\n\n| Adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training Step: 5500\n| Adam | epoch: 001\n\n0.13695,\n\n0.9644 -- ites\n\n5000/5500"
+  },
+  {
+    "text": "to the it is good to call that it did not learn at all it just got lost somewhere. Whereas,",
+    "start": 2012.16,
+    "end": 2019.6,
+    "ocr_text": "In (5):\n\nmn\n\nIn [6]:\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet\nnet\nnet\nnet\n\nnet\n\n= tflearn.input_data(shape=(None, 784})\ntflearn.fully_connected(net, 100, activation='relu')\n\ntflearn.fully_connected(net, 100, activation='relu')\n\ntflearn.fully_connected(net, 10, activation='softmax')\n\n= tflearn.regression(net, 1oss~'categorical_crossentropy’, optimizer=\"\n\ndam\" )\n\nmodel = tflearn.DNW(net)\n\n4. Train the model\n\nmodel.fit(X, y, n_epoch=1, batch size=10, show metric=True)\n\n‘Training Step: 5500 | total los\n\n0.13695\n\n| Adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training Step: 5500\n| Adam | epoch: 001\n\n0.13695,\n\n0.9644 -- ites\n\n5000/5500"
+  },
+  {
+    "text": "so when you like have so many hidden layers right two hidden layers of 100 units each you have a lot",
+    "start": 2020.16,
+    "end": 2026.16,
+    "ocr_text": "In (5):\n\nmt\n\nIn (6):\n\n3. Make the model\n\nt£learn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=(None, 784)\n\nnet = tflearn.fully connected(net, 100, activation='relu')\n\nnet = tflearn.fullyconnected(net, 100, activation='relt')\n\nnet = tflearn.fully_connected(net, 10, activation=\"softmax\"\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer\nmodel = tflearn.DuN(net)\n\n4. Train the model\n\nmodel.fit(X, y, nepoch=1, batch_size=10, show_metric=true]\n\n‘Training Step: 5500 | total lo:\n\n0.13695\n\n| adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training Step: 5500\n| Adam | epoch: 001 0.13695 - acc: 0.9644 -- iter\n\n0.13695,\n\n'55000/55000"
+  },
+  {
+    "text": "of parameters and that is why you need to choose a very good optimization algorithm.",
+    "start": 2026.16,
+    "end": 2032.24,
+    "ocr_text": "In (5):\n\nmn\n\nIn [6]:\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet\nnet\nnet\nnet\n\nnet\n\n= tflearn.input_data(shape=(None, 784)\n\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 10, activation=\"softmax')\n\n= tflearn.regression(net, 1oss='categorical_crossentropy’, optimizer=\"\n\ndam\" )\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.fit(x, y, nepoch=1, batch size=10, show metric=True)\n\n‘Training Step: 5500 | total los\n\n0.13695\n\n| Adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training step: 5500\n| adam | epoch: 001\n\n0.13695,\n\n0.9644 -- ites\n\n55000/55000"
+  },
+  {
+    "text": "All right and optimization algorithm which gives special care to every single parameter and make",
+    "start": 2032.24,
+    "end": 2036.96,
+    "ocr_text": "In (5):\n\nmn\n\nIn [6]:\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet\nnet\nnet\nnet\n\nnet\n\n= tflearn.input_data(shape=(None, 784)\n\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 10, activation=\"softmax')\n\n= tflearn.regression(net, 1oss='categorical_crossentropy’, optimizer=\"\n\ndam\" )\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.fit(x, y, nepoch=1, batch size=10, show metric=True)\n\n‘Training Step: 5500 | total los\n\n0.13695\n\n| Adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training step: 5500\n| adam | epoch: 001\n\n0.13695,\n\n0.9644 -- ites\n\n55000/55000"
+  },
+  {
+    "text": "sure that these parameters are tuned properly in course of training and finally, we can like",
+    "start": 2036.96,
+    "end": 2042.96,
+    "ocr_text": "In (5):\n\nmn\n\nIn [6]:\n\n3. Make the model\n\ntflearn.init_graph(num_cores=4)\n\nnet\nnet\nnet\nnet\n\nnet\n\n= tflearn.input_data(shape=(None, 784)\n\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 10, activation=\"softmax')\n\n= tflearn.regression(net, 1oss='categorical_crossentropy’, optimizer=\"\n\ndam\" )\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.fit(x, y, nepoch=1, batch size=10, show metric=True)\n\n‘Training Step: 5500 | total los\n\n0.13695\n\n| Adam | epoch: 001 | loss: 0.13695 - acc: 0.9644 -- iter: 55000/55000\n\n‘Training step: 5500\n| adam | epoch: 001\n\n0.13695,\n\n0.9644 -- ites\n\n55000/55000"
+  },
+  {
+    "text": "arrive at a good optimum which may not be the global optimum which is which may never be reached",
+    "start": 2042.96,
+    "end": 2053.04,
+    "ocr_text": ". ==\n\na,\n\na\n“= ="
+  },
+  {
+    "text": "at all. So, it may not be a global optimum, but it should be a good local optimum all right.",
+    "start": 2053.04,
+    "end": 2059.2,
+    "ocr_text": ". ==\n\na,\n\na\n“= ="
+  },
+  {
+    "text": "So, that is why when we used Adam optimizer and it is just I told you in few words what it does",
+    "start": 2059.2,
+    "end": 2065.68,
+    "ocr_text": "3. Make the model\n\nIn [5]: | tflearn.init_graph(num_cores=4)\n\nnet = tflearn.input_data(shape=[None, 784))\n\nnet = tflearn.fully connected(net, 100, activations’ relu’)\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 10, activation~' softmax')\n\nnet = tflearn.regression(net, loss='categorical_crossentropy', optimizer:\n\nmodel = tflearn.DNW(net)\n\nmn\n\n4. Train the model\n\nIn (6\n\nmodel.fit(x, y, nepoch=1, batch size=10, show metric=true)\n\nTraining Step: 5500 | total loss: 0.13695\n| Adam | epoch: 001 | oss: 0.13695 ~ aco: 0.9644 ~~ iter: 55000/55000\nTeaining Step: 5500 0.13695\n\n| Adam | epochs 001 0.13695 ~ acct 0.9644 ~~ ster\n\n55000/55000"
+  },
+  {
+    "text": "so I will link it to the paper so that you can read it and understand get the full detail about",
+    "start": 2065.68,
+    "end": 2070.4,
+    "ocr_text": "In\n\nIn (6):\n\nnet\nnet\nnet\nnet.\n\nnet\n\nnode!\n\n‘tflearn. input _data(shape=[None, 784])\nt£learn. fully connected(net, 100, activation='relu')\n‘£learn.fully_connected(net, 100, activation=\"relu')\ntflearn.fully_connected(net, 10, activation='softmax')\n\ntflearn.regression(net, 1oss~'categorical_crossentropy', optimizer~'adan' )\n\n= tflearn.DNN(net)\n\n4. Train the model 7]\n\nmodel.£it(x, y, n_epoch=1, batch size=10, show metric=?rue)\n\n‘Training Step: 5500 | total loss: 0.13695\n\n| adam | epoch: 001 | loss: 0.13695 - acc: 0.9644\nTraining Step: 5500 | total lo:\n| adam | epoch: 001 | 108s\n\niter: 55000/55000\n\n0.13695\n0.13695 - acc: 0.9644 -~ iter: 55000/55000"
+  },
+  {
+    "text": "it. So, when we used Adam the performance improved a lot and we got around 96 percent accuracy",
+    "start": 2070.96,
+    "end": 2076.88,
+    "ocr_text": "In\n\nIn (6):\n\nnet\nnet\nnet\nnet.\n\nnet\n\nnode!\n\n‘tflearn. input _data(shape=[None, 784])\nt£learn. fully connected(net, 100, activation='relu')\n‘£learn.fully_connected(net, 100, activation=\"relu')\ntflearn.fully_connected(net, 10, activation='softmax')\n\ntflearn.regression(net, 1oss~'categorical_crossentropy', optimizer~'adan' )\n\n= tflearn.DNN(net)\n\n4. Train the model 7]\n\nmodel.£it(x, y, n_epoch=1, batch size=10, show metric=?rue)\n\n‘Training Step: 5500 | total loss: 0.13695\n\n| adam | epoch: 001 | loss: 0.13695 - acc: 0.9644\nTraining Step: 5500 | total lo:\n| adam | epoch: 001 | 108s\n\niter: 55000/55000\n\n0.13695\n0.13695 - acc: 0.9644 -~ iter: 55000/55000"
+  },
+  {
+    "text": "and the current state of the accuracy on MNISD dataset is something like 0.27 percent error",
+    "start": 2076.88,
+    "end": 2083.52,
+    "ocr_text": "an\n\nIn (6):\n\nnet = tflearn.input_data(shape=[None, 784})\n\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 100, activation='relu')\n\nnet = tflearn.fully connected(net, 10, activation=\n\nnet = tflearn.regression(net, los:\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.£it(X, y, n_epoch=1, batch size=10, show metric=?rue)\n\n‘Training step: 5500\n| Adam | epoch: 001\n‘Training step: 5500\n| adam | epoch: 001\n\n| total loss: 0.13695\n\n| oss\n\n| totar 10%\n\n| 208s\n\n0.13695 ~ ace:\n0.13695\n0.13695 - ace:\n\n0.9644 —- iter:\n\n0.9684 —- iter:\n\nsoftmax’\n\n)\n\ncategorical_crossentropy’, optimizer='adan’ )\n\n55000/55000\n\n55000/55000"
+  },
+  {
+    "text": "and it is beyond human human ability. So, the machines today can recognize handwritten",
+    "start": 2084.32,
+    "end": 2090.24,
+    "ocr_text": "an\n\nIn (6):\n\nnet = tflearn.input_data(shape=[None, 784})\n\nnet = tflearn.fully connected(net, 100, activation='relu')\nnet = tflearn.fully connected(net, 100, activation='relu')\n\nnet = tflearn.fully connected(net, 10, activation=\n\nnet = tflearn.regression(net, los:\n\nmodel = tflearn.DNN(net)\n\n4. Train the model\n\nmodel.£it(X, y, n_epoch=1, batch size=10, show metric=?rue)\n\n‘Training step: 5500\n| Adam | epoch: 001\n‘Training step: 5500\n| adam | epoch: 001\n\n| total loss: 0.13695\n\n| oss\n\n| totar 10%\n\n| 208s\n\n0.13695 ~ ace:\n0.13695\n0.13695 - ace:\n\n0.9644 —- iter:\n\n0.9684 —- iter:\n\nsoftmax’\n\n)\n\ncategorical_crossentropy’, optimizer='adan’ )\n\n55000/55000\n\n55000/55000"
+  },
+  {
+    "text": "characters better than human beings and so you can like go to the MNISD Wikipedia page and there",
+    "start": 2090.24,
+    "end": 2097.36,
+    "ocr_text": "In\n\nIn (6):\n\nnet\nnet\n\nnet\n\nnet\n\n= tflearn.input_data(shape=[None, 784})\n\n= tflearn.fully_connected(net, 10, activation=\n\nnode!\n\n4. Train the model\n\nmodel.£it(x, y, n_epoch=1, batch size=10, show metric=True)\n\n‘Training step: 5500\n\nt£learn. fully connected(net, 100, activation='relu')\n= tflearn.fully_connected(net, 100, activation='relu')\n\ntflearn-regression(net, los:\n\n= tflearn.DNN(net)\n\n| adam | epoch: 001 | 108s\n\n‘Training step: 5500\n\n| adam | epoch: 001 | 108s\n\n| totar 10%\n\n| total loss: 0.13695\n\n0.13695 ~ ace:\n0.13695,\n0.13695 - ace:\n\n0.9644 -- iter:\n\n0.9684 —- iter:\n\nsoftmax\n\n)\n\ncategorical_crossentropy', optimizer='adan’ )\n\n55000/55000\n\n55000/55000"
+  },
+  {
+    "text": "it gives a list of algorithms which are doing really good which are the state of the art in this",
+    "start": 2097.36,
+    "end": 2102.16,
+    "ocr_text": "an\n\nIn (6):\n\nnet\nnet\n\nnet.\n\nnet\n\nnode!\n\n‘tflearn.input_data(shape=[None, 784])\nt£learn. fully connected(net, 100, activation='relu')\n‘t£learn.fully_connected(net, 100, activation=\"relu')\ntflearn.fully_connected(net, 10, activation='softmax')\n\ntflearn.regression(net, 1oss~'categorical_crossentropy’, optimizer~'adan' )\n\n= tflearn.DNN(net)\n\n4. Train the model\n\nmodel.£it(x, y, n_epoch=1, batch size=10, show metric=?rue)\n\n‘Training Step: 5500 | total loss: 0.13695\n\n| adam | epoch: 001 | loss: 0.13695 - acc: 0.9644\nTraining Step: 5500 | total lo:\n| adam | epoch: 001 | 108s\n\niter: 55000/55000\n\n0.13695\n0.13695 - acc: 0.9644 -- iter: 55000/55000"
+  },
+  {
+    "text": "task, but they use much advanced concepts like convolutional neural networks and others which",
+    "start": 2102.16,
+    "end": 2107.6,
+    "ocr_text": "an\n\nIn (6):\n\nnet\nnet\n\nnet.\n\nnet\n\nnode!\n\n‘tflearn.input_data(shape=[None, 784])\nt£learn. fully connected(net, 100, activation='relu')\n‘t£learn.fully_connected(net, 100, activation=\"relu')\ntflearn.fully_connected(net, 10, activation='softmax')\n\ntflearn.regression(net, 1oss~'categorical_crossentropy’, optimizer~'adan' )\n\n= tflearn.DNN(net)\n\n4. Train the model\n\nmodel.£it(x, y, n_epoch=1, batch size=10, show metric=?rue)\n\n‘Training Step: 5500 | total loss: 0.13695\n\n| adam | epoch: 001 | loss: 0.13695 - acc: 0.9644\nTraining Step: 5500 | total lo:\n| adam | epoch: 001 | 108s\n\niter: 55000/55000\n\n0.13695\n0.13695 - acc: 0.9644 -- iter: 55000/55000"
+  },
+  {
+    "text": "you can explore yourself. So, either entire motivation behind me introducing you to TF learn and the",
+    "start": 2107.6,
+    "end": 2114.64,
+    "ocr_text": "an\n\nIn (6):\n\nnet\nnet\n\nnet.\n\nnet\n\nnode!\n\n‘tflearn.input_data(shape=[None, 784])\nt£learn. fully connected(net, 100, activation='relu')\n‘t£learn.fully_connected(net, 100, activation=\"relu')\ntflearn.fully_connected(net, 10, activation='softmax')\n\ntflearn.regression(net, 1oss~'categorical_crossentropy’, optimizer~'adan' )\n\n= tflearn.DNN(net)\n\n4. Train the model\n\nmodel.£it(x, y, n_epoch=1, batch size=10, show metric=?rue)\n\n‘Training Step: 5500 | total loss: 0.13695\n\n| adam | epoch: 001 | loss: 0.13695 - acc: 0.9644\nTraining Step: 5500 | total lo:\n| adam | epoch: 001 | 108s\n\niter: 55000/55000\n\n0.13695\n0.13695 - acc: 0.9644 -- iter: 55000/55000"
+  },
+  {
+    "text": "larger and the like the parent of TF learn which is tensor flow is that just to give you",
+    "start": 2114.64,
+    "end": 2121.12,
+    "ocr_text": "7"
+  },
+  {
+    "text": "and heads of in that direction. So, if you people are enthusiastic about deep learning,",
+    "start": 2121.2,
+    "end": 2127.28,
+    "ocr_text": "7"
+  },
+  {
+    "text": "if you really want to check out what the magic is all about how are machines becoming really",
+    "start": 2127.28,
+    "end": 2133.6,
+    "ocr_text": "7"
+  },
+  {
+    "text": "really intelligent like as intelligent as human beings and beating human beings in their own tasks.",
+    "start": 2133.6,
+    "end": 2139.36,
+    "ocr_text": "7"
+  },
+  {
+    "text": "So, if you want to check out how deep learning actually works so this is a very good tool which",
+    "start": 2139.36,
+    "end": 2144.8,
+    "ocr_text": "7"
+  },
+  {
+    "text": "you can use for implementing your own algorithms and like there are a lot of like turn off",
+    "start": 2144.8,
+    "end": 2150.32,
+    "ocr_text": "7"
+  },
+  {
+    "text": "implementer algorithms already implementer algorithms. So, a lot of resources available for",
+    "start": 2150.32,
+    "end": 2155.44,
+    "ocr_text": "7"
+  },
+  {
+    "text": "this particular library and people are actively and Google is actually actively developing this",
+    "start": 2155.44,
+    "end": 2160.0,
+    "ocr_text": "7"
+  },
+  {
+    "text": "particular library. So, you can use this and you know explore the possibilities of deep learning",
+    "start": 2160.0,
+    "end": 2167.36,
+    "ocr_text": "7"
+  },
+  {
+    "text": "in your own field. So, I hope you enjoyed this video and I recommend you to take this ahead.",
+    "start": 2167.36,
+    "end": 2178.72,
+    "ocr_text": "7"
+  },
+  {
+    "text": "So, bye bye see you in the next video.",
+    "start": 2178.72,
+    "end": 2182.0,
+    "ocr_text": "7"
+  }
+]

@@ -1,0 +1,2156 @@
+[
+  {
+    "text": "So in the previous lecture, we looked at operations on search trees and we claimed that these",
+    "start": 0.0,
+    "end": 6.68,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 6, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nBalanced search trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "were efficient if we could maintain balance.",
+    "start": 6.68,
+    "end": 9.04,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 6, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nBalanced search trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan\n\n: id g"
+  },
+  {
+    "text": "So let's see how we can keep search trees balanced.",
+    "start": 9.04,
+    "end": 13.8,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 6, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nBalanced search trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan\n\n: id g"
+  },
+  {
+    "text": "So recall that we are looking at these seven operations.",
+    "start": 13.8,
+    "end": 16.04,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 6, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nBalanced search trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan\n\n: id g"
+  },
+  {
+    "text": "Okay, we want to be able to search for a value.",
+    "start": 16.04,
+    "end": 18.76,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 6, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nBalanced search trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan\n\n: id g"
+  },
+  {
+    "text": "We want to be able to insert and delete values.",
+    "start": 18.76,
+    "end": 21.52,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 6, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nBalanced search trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan\n\n: id g"
+  },
+  {
+    "text": "We also want to be able to compute the minimum and the maximum value in a tree and also find",
+    "start": 21.52,
+    "end": 26.24,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "the predecessor and successor of a given value.",
+    "start": 26.24,
+    "end": 29.28,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "And all of these we claimed would be order log in provided the tree is balanced.",
+    "start": 29.28,
+    "end": 34.72,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "Okay, so that's because all of the operations as we implemented them will walk up or down",
+    "start": 34.72,
+    "end": 39.32,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "a single path.",
+    "start": 39.32,
+    "end": 40.52,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "And so the worst case would be the height of the tree.",
+    "start": 40.52,
+    "end": 43.0,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "And in a balanced tree, the height will always be logarithmic in the size of the tree.",
+    "start": 43.0,
+    "end": 47.04,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "So today's this lecture, the goal is to explain how to maintain the balance as the tree",
+    "start": 47.04,
+    "end": 52.48,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "grows and shrinks.",
+    "start": 52.48,
+    "end": 56.28,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "So trees, there are many different notions of balance in a tree.",
+    "start": 56.28,
+    "end": 59.96,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "So essentially a balance, you should think of it as like a physical balance, right?",
+    "start": 59.96,
+    "end": 63.68,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "So if you go to an old style vegetable seller, then they will have this kind of a balance.",
+    "start": 63.68,
+    "end": 71.08,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "And then you want at any point, if you hold up a tree by its root, the two sides should",
+    "start": 71.08,
+    "end": 75.2,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "be balanced.",
+    "start": 75.2,
+    "end": 76.2,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "They should be equal.",
+    "start": 76.2,
+    "end": 78.48,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "So the most direct notion of balance is that the two are exactly equal.",
+    "start": 78.48,
+    "end": 82.8,
+    "ocr_text": "Insert\n\nDelete\n\nPred"
+  },
+  {
+    "text": "That is the number of nodes at the left is equal to the number of nodes in the right for",
+    "start": 82.8,
+    "end": 86.0,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "every node.",
+    "start": 86.0,
+    "end": 87.0,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "But then it's easy to see that you can get complete binary trees.",
+    "start": 87.0,
+    "end": 90.08,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "For example, you could have a tree which has this structure.",
+    "start": 90.08,
+    "end": 93.6,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "Or if you extend it one more level, then for every node on the left, you must extend",
+    "start": 93.6,
+    "end": 96.88,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "around the right.",
+    "start": 96.88,
+    "end": 97.88,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "But then these must also be balanced.",
+    "start": 97.88,
+    "end": 98.88,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "So you must definitely complete this.",
+    "start": 98.88,
+    "end": 100.48,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "So you can have a tree up to three levels, which is completely filled or up to four levels",
+    "start": 100.48,
+    "end": 105.12,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "and so on.",
+    "start": 105.12,
+    "end": 106.52,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "So if you want this exact size balance, then it's very restricted.",
+    "start": 106.52,
+    "end": 110.96,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "So you might have a little bit more flexibility.",
+    "start": 110.96,
+    "end": 113.52,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "You might say that, okay, we don't want it to be exactly equal.",
+    "start": 113.52,
+    "end": 116.0,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "Maybe we want it to be at most one off.",
+    "start": 116.0,
+    "end": 120.2,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "Then you could have structures, for instance, like this, where you have only a left or",
+    "start": 120.2,
+    "end": 124.4,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "you have at this point, a left and a right, but you have only a right.",
+    "start": 124.4,
+    "end": 128.52,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "These types of structures now which are not complete binary trees become balanced in this",
+    "start": 128.52,
+    "end": 132.88,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "notion.",
+    "start": 132.88,
+    "end": 134.04,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "So this allows us more flexibility and we can get more trees this way.",
+    "start": 134.04,
+    "end": 137.92,
+    "ocr_text": "Ah\n\nrh\nbb),"
+  },
+  {
+    "text": "But it is difficult to maintain this property incrementally as we do in certain elites.",
+    "start": 137.92,
+    "end": 142.84,
+    "ocr_text": "1\nJ ooh),"
+  },
+  {
+    "text": "So we will go for a different notion of balance.",
+    "start": 142.84,
+    "end": 147.08,
+    "ocr_text": "1\nJ ooh),"
+  },
+  {
+    "text": "Notion of balance that we will use is not with respect to size, but with respect to height.",
+    "start": 147.08,
+    "end": 152.96,
+    "ocr_text": "1\nJ ooh),"
+  },
+  {
+    "text": "So we will say that the height is the number of nodes from the root to a leaf.",
+    "start": 152.96,
+    "end": 159.04,
+    "ocr_text": "1\nJ ooh),"
+  },
+  {
+    "text": "For example, if I have a tree which looks like this, then here the height is one, two,",
+    "start": 159.04,
+    "end": 169.12,
+    "ocr_text": "1\nJ ooh),"
+  },
+  {
+    "text": "three, four.",
+    "start": 169.12,
+    "end": 170.52,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "Because on this path, we have four nodes, okay.",
+    "start": 170.52,
+    "end": 173.44,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "So the height becomes four.",
+    "start": 173.44,
+    "end": 174.6,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "It is the length of the longest path measured in terms of nodes.",
+    "start": 174.6,
+    "end": 177.72,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "The reason we measure in terms of nodes is then we can distinguish easily the empty tree",
+    "start": 177.72,
+    "end": 182.68,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "from the tree with only a root.",
+    "start": 182.68,
+    "end": 184.44,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "If you measure it in terms of edges, the tree with only a root will have height zero because",
+    "start": 184.44,
+    "end": 188.32,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "there are no edges.",
+    "start": 188.32,
+    "end": 189.4,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "And so it would be the empty tree.",
+    "start": 189.4,
+    "end": 190.4,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "Whereas if you measure in terms of nodes, then the empty tree has height zero and the",
+    "start": 190.4,
+    "end": 195.32,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "tree with only the root has height one.",
+    "start": 195.32,
+    "end": 197.24,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "So we can distinguish these two.",
+    "start": 197.24,
+    "end": 199.36,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "And now in keeping with our earlier relaxation of the size condition, a height balance tree",
+    "start": 199.36,
+    "end": 204.92,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "will be one where the height of the left and the height of the right differ by at most",
+    "start": 204.92,
+    "end": 208.48,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "gone.",
+    "start": 208.48,
+    "end": 209.48,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "Now this is more relaxed in the previous thing.",
+    "start": 209.48,
+    "end": 216.16,
+    "ocr_text": "ie\ns \\"
+  },
+  {
+    "text": "For example, now of course I could start with a height balance tree like this, okay.",
+    "start": 216.16,
+    "end": 223.84,
+    "ocr_text": "A)\nSee"
+  },
+  {
+    "text": "And then I could now connect this to form a height balance tree like this, right.",
+    "start": 223.84,
+    "end": 236.24,
+    "ocr_text": "A)\nSee"
+  },
+  {
+    "text": "And now this which is a height three tree, I can connect with a height two tree, okay.",
+    "start": 236.24,
+    "end": 244.32,
+    "ocr_text": "A)\nSee"
+  },
+  {
+    "text": "And form a height balance tree which looks like this.",
+    "start": 244.32,
+    "end": 248.24,
+    "ocr_text": "Fa\nb» oh\n. SS\n\nnates fog"
+  },
+  {
+    "text": "So the height of the left sub tree is three.",
+    "start": 248.24,
+    "end": 250.52,
+    "ocr_text": "Fa\nb» oh\n. SS\n\nnates fog"
+  },
+  {
+    "text": "The height of the right sub tree is true.",
+    "start": 250.52,
+    "end": 252.44,
+    "ocr_text": "Fa\nb» oh\n. SS\n\nnates fog"
+  },
+  {
+    "text": "In this recursively the height of the left sub tree is two, the height of the right sub",
+    "start": 252.44,
+    "end": 255.8,
+    "ocr_text": "Fa\nb» oh\n. SS\n\nnates fog"
+  },
+  {
+    "text": "tree is one and so on.",
+    "start": 255.8,
+    "end": 257.0,
+    "ocr_text": "Fa\nb» oh\n. SS\n\nnates fog"
+  },
+  {
+    "text": "Okay, so we could have things which look quite different size here, for instance, size",
+    "start": 257.0,
+    "end": 260.52,
+    "ocr_text": "Fa\nb» oh\n. SS\n\nnates fog"
+  },
+  {
+    "text": "is four and size is two, okay.",
+    "start": 260.52,
+    "end": 262.92,
+    "ocr_text": "Fa\nb» oh\n. SS\n\nnates fog"
+  },
+  {
+    "text": "But nevertheless you can kind of compute that the size even in this case will be exponential",
+    "start": 262.92,
+    "end": 270.4,
+    "ocr_text": "Fa\nb» oh\n. SS\n\nnates fog"
+  },
+  {
+    "text": "in the height.",
+    "start": 270.4,
+    "end": 271.4,
+    "ocr_text": "ey,\nes aN"
+  },
+  {
+    "text": "Or rather the height will be logarithmic in the size.",
+    "start": 271.4,
+    "end": 274.08,
+    "ocr_text": "ey,\nes aN"
+  },
+  {
+    "text": "So these trees are called AVL trees, they are named after the two people who independently",
+    "start": 274.08,
+    "end": 278.72,
+    "ocr_text": "ey,\nes aN"
+  },
+  {
+    "text": "invented them, one person called Adels and Belsky and independently land this, okay.",
+    "start": 278.72,
+    "end": 283.64,
+    "ocr_text": "ey,\nes aN"
+  },
+  {
+    "text": "So an AVL tree is a height balance tree which says that at every note the height of the",
+    "start": 283.64,
+    "end": 288.0,
+    "ocr_text": "ey,\nes aN"
+  },
+  {
+    "text": "left and the height of the right sub tree is deferred by at most one.",
+    "start": 288.0,
+    "end": 295.08,
+    "ocr_text": "ey,\nes aN"
+  },
+  {
+    "text": "So let us refer to the difference between the heights as the slope, okay.",
+    "start": 295.08,
+    "end": 299.04,
+    "ocr_text": "* Slope\n\n* rebalance f"
+  },
+  {
+    "text": "So we have intuitively in our picture.",
+    "start": 299.04,
+    "end": 301.32,
+    "ocr_text": "* Slope\n\n* rebalance f"
+  },
+  {
+    "text": "So if it's unbalanced then the thing is tilted.",
+    "start": 301.32,
+    "end": 304.28,
+    "ocr_text": "* Slope\n\n* rebalance f"
+  },
+  {
+    "text": "So we have could we could have a tilt this way or a tilt this way.",
+    "start": 304.28,
+    "end": 307.0,
+    "ocr_text": "* Slope\n\n* rebalance f"
+  },
+  {
+    "text": "So we call this the slope.",
+    "start": 307.0,
+    "end": 308.6,
+    "ocr_text": "* Slope\n\nrebalance f"
+  },
+  {
+    "text": "So we let us say the slope is the height of the left minus height.",
+    "start": 308.6,
+    "end": 311.36,
+    "ocr_text": "* Slope\n\nrebalance f"
+  },
+  {
+    "text": "So the height of the left is less than the height of the right then you have positive",
+    "start": 311.36,
+    "end": 314.8,
+    "ocr_text": "* Slope\n\nrebalance f"
+  },
+  {
+    "text": "slope.",
+    "start": 314.8,
+    "end": 315.8,
+    "ocr_text": "* Slope\n\nrebalance f"
+  },
+  {
+    "text": "The height of the left is bigger than the height of the right then you have, sorry, left",
+    "start": 315.8,
+    "end": 320.28,
+    "ocr_text": "* Slope\n\no rebalance from"
+  },
+  {
+    "text": "is smaller than right you have negative slope, left is bigger than right you have positive",
+    "start": 320.28,
+    "end": 323.92,
+    "ocr_text": "* Slope\n\no rebalance from"
+  },
+  {
+    "text": "slope.",
+    "start": 323.92,
+    "end": 325.24,
+    "ocr_text": "* Slope\n\no rebalance from"
+  },
+  {
+    "text": "So in a balanced tree since the height difference absolute value must be one, you can only",
+    "start": 325.24,
+    "end": 329.48,
+    "ocr_text": "* Slope of <\n\nrebalance"
+  },
+  {
+    "text": "have three possible slopes throughout the tree.",
+    "start": 329.48,
+    "end": 332.36,
+    "ocr_text": "* Slope of <\n\nrebalance"
+  },
+  {
+    "text": "Either there is no slope, they are exactly the same or it is minus one or plus one.",
+    "start": 332.36,
+    "end": 337.56,
+    "ocr_text": "* Slope of <\n\nrebalance"
+  },
+  {
+    "text": "Now if you can argue very easily that if the current values of the slopes are minus one",
+    "start": 337.56,
+    "end": 342.56,
+    "ocr_text": "* Slope\n\n* S t to rebalance"
+  },
+  {
+    "text": "plus one, when you delete a node, you can reduce one height by one of the heights by one.",
+    "start": 342.56,
+    "end": 347.84,
+    "ocr_text": "* Slope\n\n* S t to rebalance"
+  },
+  {
+    "text": "So the height difference can go from one to two.",
+    "start": 347.84,
+    "end": 350.92,
+    "ocr_text": "* Slope of\n\n) rebalance frc"
+  },
+  {
+    "text": "Or when you increase, you can make the height difference again go from one to two.",
+    "start": 350.92,
+    "end": 354.4,
+    "ocr_text": "* Slope of\n\n) rebalance frc"
+  },
+  {
+    "text": "So the new slope after a single insert or a single delete can be at most minus one or",
+    "start": 354.4,
+    "end": 358.96,
+    "ocr_text": "* Slope of\n\n) rebalance frc"
+  },
+  {
+    "text": "plus, minus two or plus two.",
+    "start": 358.96,
+    "end": 361.68,
+    "ocr_text": "* Slope of\n\nrebalance"
+  },
+  {
+    "text": "So what we will endeavor to do, what we will try to do is that whenever we do an insert",
+    "start": 361.68,
+    "end": 366.2,
+    "ocr_text": "* Slope of\n\nrebalance"
+  },
+  {
+    "text": "or a delete, we will immediately try to rebalance the tree.",
+    "start": 366.2,
+    "end": 369.48,
+    "ocr_text": "* Slope\n\n* t to rebalance"
+  },
+  {
+    "text": "So we will have a single disturbance from two minus two or plus two, it will never become",
+    "start": 369.48,
+    "end": 374.4,
+    "ocr_text": "* Slope\n\n* t to rebalance"
+  },
+  {
+    "text": "very badly unbalanced and we will immediately restore the balance to within minus one to",
+    "start": 374.4,
+    "end": 379.84,
+    "ocr_text": "* Slope\n\n* t to rebalance"
+  },
+  {
+    "text": "plus one.",
+    "start": 379.84,
+    "end": 380.84,
+    "ocr_text": "* Slope «\n\nrebalance fro"
+  },
+  {
+    "text": "Okay, so we will do this rebalancing.",
+    "start": 380.84,
+    "end": 382.48,
+    "ocr_text": "* Slope «\n\nrebalance fro"
+  },
+  {
+    "text": "We will also do this rebalancing bottom up.",
+    "start": 382.48,
+    "end": 384.96,
+    "ocr_text": "* Slope «\n\nrebalance fro"
+  },
+  {
+    "text": "So what happens will be do an insert if you remember is that we go down and we find",
+    "start": 384.96,
+    "end": 389.2,
+    "ocr_text": "* Slope «\n\nrebalance fro"
+  },
+  {
+    "text": "a place to insert.",
+    "start": 389.2,
+    "end": 390.4,
+    "ocr_text": "* Slope of <\n\nrebalance f"
+  },
+  {
+    "text": "Right, so at this point we add a new node.",
+    "start": 390.4,
+    "end": 393.16,
+    "ocr_text": "* Slope of <\n\nrebalance f"
+  },
+  {
+    "text": "So therefore now at this point, there could be some imbalance.",
+    "start": 393.16,
+    "end": 396.44,
+    "ocr_text": "* Slope of <\n\nrebalance f"
+  },
+  {
+    "text": "So we'll fix it.",
+    "start": 396.44,
+    "end": 397.6,
+    "ocr_text": "* Slope o\n\nrebalance"
+  },
+  {
+    "text": "Then we'll go back to the up this path and we'll go there and we will fix the path here.",
+    "start": 397.6,
+    "end": 401.52,
+    "ocr_text": "* Slope o\n\nrebalance"
+  },
+  {
+    "text": "But at this point, we will assume that the tree below has been balanced.",
+    "start": 401.52,
+    "end": 406.4,
+    "ocr_text": "* Slope o\n\nrebalance"
+  },
+  {
+    "text": "Right.",
+    "start": 406.4,
+    "end": 407.4,
+    "ocr_text": "4\n\nS >\n\n* Slope of a noc\n\nrag\n\n(\n|\n\nrebalance f"
+  },
+  {
+    "text": "So whenever we rebalance the slope, which is outside the range, we will assume that the",
+    "start": 407.4,
+    "end": 411.76,
+    "ocr_text": "4\n\nS >\n\n* Slope of a noc\n\nrag\n\n(\n|\n\nrebalance f"
+  },
+  {
+    "text": "subtrees below that are already balanced.",
+    "start": 411.76,
+    "end": 415.56,
+    "ocr_text": "4\n\nS >\n\n* Slope of a noc\n\nrag\n\n(\n|\n\nrebalance f"
+  },
+  {
+    "text": "Because this balancing as we will see is going to be done bottom up.",
+    "start": 415.56,
+    "end": 421.0,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So here is a typical situation that we would reach after a single operation, which removes",
+    "start": 421.0,
+    "end": 427.04,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "the balance.",
+    "start": 427.04,
+    "end": 428.04,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So we might have a node which has slope plus two or minus two.",
+    "start": 428.04,
+    "end": 431.8,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So let's look at plus two minus two will turn out to be symmetric.",
+    "start": 431.8,
+    "end": 434.92,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So we have a node which we call x which has slope plus two and what it means is it has",
+    "start": 434.92,
+    "end": 440.32,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "a left tree and a right tree.",
+    "start": 440.32,
+    "end": 442.08,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "Such that the height of the left tree is two more than the height of the right.",
+    "start": 442.08,
+    "end": 445.64,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "Remember the slope is height of left minus height of right.",
+    "start": 445.64,
+    "end": 448.44,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So h plus two minus h would be two.",
+    "start": 448.44,
+    "end": 451.28,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "Now recursively, we are going to assume that all the slopes here and here are at most plus",
+    "start": 451.28,
+    "end": 459.48,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "one or minus one.",
+    "start": 459.48,
+    "end": 461.32,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So we are assuming that everything below this has been fixed and the only imbalance in the",
+    "start": 461.32,
+    "end": 465.68,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "sub tree at x is at x itself.",
+    "start": 465.68,
+    "end": 471.64,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So now since the left has height h plus two, it has height at least two.",
+    "start": 471.64,
+    "end": 476.72,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "h can be at most at least at smallest h can be zero.",
+    "start": 476.72,
+    "end": 480.24,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So it has height at least two.",
+    "start": 480.24,
+    "end": 481.64,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So there is at least one node here.",
+    "start": 481.64,
+    "end": 482.64,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "I mean two means that there are at least two nodes here.",
+    "start": 482.64,
+    "end": 485.4,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So there is at least one node in particular.",
+    "start": 485.4,
+    "end": 487.2,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So we will expand this.",
+    "start": 487.2,
+    "end": 489.48,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So we will expand this by exposing its root and the root will have in general two sub",
+    "start": 489.48,
+    "end": 494.48,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "trees.",
+    "start": 494.48,
+    "end": 495.48,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So now this whole thing has height h plus two.",
+    "start": 495.48,
+    "end": 503.0,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So we will now look at this new node that we have extracted.",
+    "start": 503.0,
+    "end": 508.32,
+    "ocr_text": "bas 2)"
+  },
+  {
+    "text": "So its slope is minus one zero or plus one.",
+    "start": 508.32,
+    "end": 513.0,
+    "ocr_text": "bas 2)"
+  },
+  {
+    "text": "And we are going to do some bottom up rebalancing.",
+    "start": 513.0,
+    "end": 514.8,
+    "ocr_text": "bas 2)"
+  },
+  {
+    "text": "We are assuming everything below is okay.",
+    "start": 514.8,
+    "end": 516.4,
+    "ocr_text": "bas 2)"
+  },
+  {
+    "text": "So we are going to do some case analysis based on what is the slope of y.",
+    "start": 516.4,
+    "end": 523.28,
+    "ocr_text": "<2)\n\n+h"
+  },
+  {
+    "text": "So let's first look at the situation where the slope of y is either zero or plus one.",
+    "start": 523.28,
+    "end": 528.04,
+    "ocr_text": "<2)\n\n+h"
+  },
+  {
+    "text": "So if it is zero or plus one, it means that.",
+    "start": 528.04,
+    "end": 529.88,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So remember this whole thing was h plus two of which one node is here.",
+    "start": 529.88,
+    "end": 534.72,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "So its left child must be at least h plus one.",
+    "start": 534.72,
+    "end": 537.4,
+    "ocr_text": "OO"
+  },
+  {
+    "text": "And because the slope is zero or plus one, the right child is either h plus one in case",
+    "start": 537.4,
+    "end": 540.96,
+    "ocr_text": "OO\n\nfe oD)\nht"
+  },
+  {
+    "text": "the slope is zero or it is h in case the slope is plus one.",
+    "start": 540.96,
+    "end": 546.24,
+    "ocr_text": "OO\n\nfe oD)\nht"
+  },
+  {
+    "text": "So now this is the current situation as we have it with an unbalanced node x.",
+    "start": 546.24,
+    "end": 553.76,
+    "ocr_text": "OO\n\nfe oD)\nht"
+  },
+  {
+    "text": "Everything below is balanced, but we have just come to a situation where we are trying",
+    "start": 553.76,
+    "end": 556.52,
+    "ocr_text": "OO\n\nfe oD)\nht"
+  },
+  {
+    "text": "to analyze what is the situation below.",
+    "start": 556.52,
+    "end": 558.88,
+    "ocr_text": "OO\n\nfe oD)\nht"
+  },
+  {
+    "text": "So x has got a balance, unbalanced of plus two.",
+    "start": 558.88,
+    "end": 561.68,
+    "ocr_text": "OO\n\nfe oD)\nht"
+  },
+  {
+    "text": "And below it we have y which we are assuming is either zero or plus one.",
+    "start": 561.68,
+    "end": 565.4,
+    "ocr_text": "OO\n\nfe oD)\nht"
+  },
+  {
+    "text": "So now we do this rotation.",
+    "start": 565.4,
+    "end": 566.72,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "So we take this tree and we kind of hang it up by y and we reattach things.",
+    "start": 566.72,
+    "end": 571.68,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "So in this rotation we hang it up by y, x comes down.",
+    "start": 571.68,
+    "end": 575.92,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "And now we look at the subtree.",
+    "start": 575.92,
+    "end": 577.4,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "So we have these three subtree, right.",
+    "start": 577.4,
+    "end": 579.0,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "We had TLL, TLR and TR.",
+    "start": 579.0,
+    "end": 582.16,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "So TR is to the right of x and is also to the right of y.",
+    "start": 582.16,
+    "end": 588.48,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "Okay.",
+    "start": 588.48,
+    "end": 589.48,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "So it is the right of both.",
+    "start": 589.48,
+    "end": 590.88,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "TLR is to the left of x to the right of y.",
+    "start": 590.88,
+    "end": 593.56,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "TLL is to the left of y, left of x.",
+    "start": 593.56,
+    "end": 596.24,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "So if we go there we find that TR is to the right of both.",
+    "start": 596.24,
+    "end": 599.52,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "TLR is to the left of x, right of y and TLL is to the left of both.",
+    "start": 599.52,
+    "end": 604.52,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "So we hang up these trees.",
+    "start": 604.52,
+    "end": 605.84,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "So now all the values we can verify will be correctly organized as a search tree shoot.",
+    "start": 605.84,
+    "end": 611.4,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "Now if you look at the slopes, we have just inherited the slopes from what we knew that",
+    "start": 611.44,
+    "end": 615.12,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "the slope of TLL is H plus one.",
+    "start": 615.12,
+    "end": 617.36,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "TLR is H plus one or H and TR is H.",
+    "start": 617.36,
+    "end": 620.44,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "Okay.",
+    "start": 620.44,
+    "end": 621.44,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "So this means that if I look at this overall height at this point, it is either H plus",
+    "start": 621.44,
+    "end": 625.96,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "one or at most H plus two.",
+    "start": 625.96,
+    "end": 627.52,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "So this is H plus two or H plus one.",
+    "start": 627.52,
+    "end": 630.84,
+    "ocr_text": "IN\n(rR)\n\\"
+  },
+  {
+    "text": "If it is H plus two then the height slope at y is minus one.",
+    "start": 630.84,
+    "end": 634.04,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "If it is H plus one then both sides are H plus one.",
+    "start": 634.04,
+    "end": 636.04,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "Slope at y is zero.",
+    "start": 636.04,
+    "end": 637.36,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "And if we look at x, okay.",
+    "start": 637.36,
+    "end": 638.68,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "Here we have H or H plus one.",
+    "start": 638.68,
+    "end": 640.44,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "Here we have H. So the difference is either zero or plus one.",
+    "start": 640.48,
+    "end": 643.04,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "So x is now balanced.",
+    "start": 643.04,
+    "end": 644.76,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "y is balanced and by assumption inductively all the x, grays, obtrees are balanced.",
+    "start": 644.76,
+    "end": 649.8,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "So by one right rotation, okay.",
+    "start": 649.8,
+    "end": 652.48,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "We have rebalanced it.",
+    "start": 652.48,
+    "end": 653.84,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "So the third situation is that it is not zero or plus one, but the slope at y is minus one.",
+    "start": 657.2,
+    "end": 663.8,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "Okay.",
+    "start": 664.8,
+    "end": 665.8,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "So we have already dealt with the case where zero or plus one is the possibility.",
+    "start": 665.8,
+    "end": 670.6,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "So if it is minus one, this means that the right subtree must be strictly taller than",
+    "start": 670.6,
+    "end": 675.08,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "the lex left subtree.",
+    "start": 675.08,
+    "end": 676.08,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "So this whole thing remember again is H plus two by assumption because the whole thing",
+    "start": 676.08,
+    "end": 681.0,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "has plus two.",
+    "start": 681.0,
+    "end": 682.2,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "So this whole thing is H plus two and this thing is H. Now this H plus two is now being",
+    "start": 682.2,
+    "end": 687.04,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "split as y and the rest.",
+    "start": 687.04,
+    "end": 688.8,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "Therefore H plus one must be coming from the right and H from the left because the slope",
+    "start": 688.8,
+    "end": 692.2,
+    "ocr_text": "os\n\n{0,+! §"
+  },
+  {
+    "text": "by assumption we are assuming slope is minus one.",
+    "start": 692.2,
+    "end": 694.88,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So now we are going to expand out this node.",
+    "start": 694.88,
+    "end": 697.36,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "Now it's H plus one.",
+    "start": 697.36,
+    "end": 699.12,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So there is at least one node here.",
+    "start": 699.12,
+    "end": 702.32,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "Even if H is zero, it has at least a root node.",
+    "start": 702.32,
+    "end": 705.08,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So we will expose that root node as we exposed y earlier.",
+    "start": 705.08,
+    "end": 707.84,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "Okay.",
+    "start": 707.84,
+    "end": 708.84,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So now we are kind of expanded this TLR as z with two subtree TLR.",
+    "start": 708.84,
+    "end": 716.44,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So this is supposed to indicate that I started the original T go left go right and go",
+    "start": 716.44,
+    "end": 720.44,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "left.",
+    "start": 720.44,
+    "end": 721.44,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So TLR go left go right go right.",
+    "start": 721.44,
+    "end": 723.84,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So this TLR.",
+    "start": 723.84,
+    "end": 724.84,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So that's the notation for these subtree.",
+    "start": 724.84,
+    "end": 728.16,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So this whole thing was H plus one.",
+    "start": 728.16,
+    "end": 732.36,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So therefore this H plus one came from either side.",
+    "start": 732.36,
+    "end": 734.4,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So either this is H or H minus one or this is H or H minus one.",
+    "start": 734.4,
+    "end": 739.56,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "Okay.",
+    "start": 739.56,
+    "end": 740.56,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "At least one of them must be H because they both are H minus one then the whole thing",
+    "start": 740.56,
+    "end": 743.32,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "cannot be H plus one.",
+    "start": 743.32,
+    "end": 744.32,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "Okay.",
+    "start": 744.32,
+    "end": 745.32,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So at least one is H and it is balanced.",
+    "start": 745.32,
+    "end": 747.32,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "So I don't know which way it is, but at least one of these trees as I H the other one",
+    "start": 747.32,
+    "end": 751.12,
+    "ocr_text": "ys,"
+  },
+  {
+    "text": "could have H or H minus one and it turns out it will not matter which one has.",
+    "start": 751.12,
+    "end": 755.6,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "So now I have a two step procedure.",
+    "start": 755.6,
+    "end": 758.8,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "What I will do is now I will do a similar rotation but to the left involving these two nodes.",
+    "start": 758.8,
+    "end": 765.2,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "So I will hang up this these subtree here by z.",
+    "start": 765.2,
+    "end": 770.4,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "Okay.",
+    "start": 770.4,
+    "end": 771.4,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "So if I hang up these subtree then what happens is that these three trees below have to",
+    "start": 771.4,
+    "end": 776.92,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "be reattached.",
+    "start": 776.92,
+    "end": 779.0,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "And we reattach them in the correct way.",
+    "start": 779.0,
+    "end": 780.52,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "TLL is bit is sorry.",
+    "start": 780.52,
+    "end": 783.76,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "TLL is bit to the left of both y and z.",
+    "start": 783.76,
+    "end": 786.88,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "TLRR is to the right of both y and z and TLRL is to the left of z and to the right of",
+    "start": 786.88,
+    "end": 792.16,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "one.",
+    "start": 792.16,
+    "end": 793.16,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "And now if you go back and check all the heights then you find that at y I either have",
+    "start": 793.16,
+    "end": 798.6,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "height zero or I have height plus one.",
+    "start": 798.6,
+    "end": 804.84,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "Now if I look at z then the left hand side is now H plus one.",
+    "start": 804.84,
+    "end": 811.12,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "Okay.",
+    "start": 811.12,
+    "end": 813.2,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "And the right hand side is H or H minus one.",
+    "start": 813.2,
+    "end": 817.24,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "So if it is H plus one and this is H then I get plus one.",
+    "start": 817.24,
+    "end": 820.56,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "If it is H one H plus one and this is H minus one I get plus two.",
+    "start": 820.56,
+    "end": 824.0,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "So in the process now not only did I have X which was unbalanced I have temporarily created",
+    "start": 824.0,
+    "end": 829.24,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "a z which potentially is unbalanced.",
+    "start": 829.24,
+    "end": 831.4,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "So I cannot say for sure it is unbalanced but it could be unbalanced because I don't",
+    "start": 831.4,
+    "end": 835.2,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "know which is H and which is H minus one.",
+    "start": 835.2,
+    "end": 837.44,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "But this is only an intermediate step.",
+    "start": 837.44,
+    "end": 838.84,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "So now what I did so earlier what we did is we did it on left rotation here.",
+    "start": 838.84,
+    "end": 843.56,
+    "ocr_text": "Py)"
+  },
+  {
+    "text": "So I am going to follow this up by a right rotation at X.",
+    "start": 843.56,
+    "end": 848.48,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "So if you rotate right at X, z goes up, X goes down.",
+    "start": 848.48,
+    "end": 851.48,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "And now again we hang off the four trees and there is only one way to hang off you can",
+    "start": 851.48,
+    "end": 854.92,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "verify if you go back and check how they were hanging.",
+    "start": 854.92,
+    "end": 857.44,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "So TRR must be bigger than z and X, TLL must be smaller than Y and Z and so on.",
+    "start": 857.44,
+    "end": 863.12,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "And now we have a very happy situation which is that if you look at the slope of Y then",
+    "start": 863.12,
+    "end": 867.56,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "it is either zero or it could be plus one because this could be minus H minus one.",
+    "start": 867.56,
+    "end": 872.24,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "If I look at X it could be minus one because this could be H minus one.",
+    "start": 872.24,
+    "end": 875.88,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "This is definitely H or it could be zero.",
+    "start": 875.88,
+    "end": 879.04,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "But this whole thing is definitely H plus one because I do have at least one sub tree",
+    "start": 879.04,
+    "end": 883.24,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "of size H.",
+    "start": 883.24,
+    "end": 884.32,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "And therefore the slope at zero at Z is zero.",
+    "start": 884.32,
+    "end": 887.96,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "So both all three nodes X, Y and Z have slopes in the correct range and therefore I again",
+    "start": 887.96,
+    "end": 893.32,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "have restored the balance.",
+    "start": 893.32,
+    "end": 894.96,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "So to summarize this what we have said is that if we have plus two then we look at the",
+    "start": 894.96,
+    "end": 904.12,
+    "ocr_text": "hv"
+  },
+  {
+    "text": "left side of X call it Y.",
+    "start": 904.12,
+    "end": 906.04,
+    "ocr_text": "Cx)"
+  },
+  {
+    "text": "Now if the slope of Y is zero or one we rotate right at X.",
+    "start": 906.04,
+    "end": 910.6,
+    "ocr_text": "Cx)"
+  },
+  {
+    "text": "If the slope at Y is minus one we first rotate this and then we rotate right.",
+    "start": 910.6,
+    "end": 917.6,
+    "ocr_text": "Cx)"
+  },
+  {
+    "text": "Either case we rotate at X but first we rotate at Y in case the slope is minus one.",
+    "start": 917.6,
+    "end": 924.92,
+    "ocr_text": "2\n\nDie,"
+  },
+  {
+    "text": "Now we will turn out that if we have the other case the other extreme where the slope at",
+    "start": 924.92,
+    "end": 929.48,
+    "ocr_text": "2\n\nDie,"
+  },
+  {
+    "text": "X is minus two then we will have a symmetric picture so we will be able to expose the right",
+    "start": 929.48,
+    "end": 933.16,
+    "ocr_text": "2\n\nDie,"
+  },
+  {
+    "text": "child call it Y.",
+    "start": 933.16,
+    "end": 934.72,
+    "ocr_text": "2\n\nDie,"
+  },
+  {
+    "text": "So then the basic operation is that if Y has slope minus one or zero it is symmetric",
+    "start": 934.72,
+    "end": 939.52,
+    "ocr_text": "2\n\nDie,"
+  },
+  {
+    "text": "remember then we will do a single left rotation X.",
+    "start": 939.52,
+    "end": 943.96,
+    "ocr_text": "OO\n\noO"
+  },
+  {
+    "text": "Otherwise we will first do a right rotation at Y in case the slope at Y is plus one and",
+    "start": 943.96,
+    "end": 948.52,
+    "ocr_text": "OO\n\noO"
+  },
+  {
+    "text": "then we will do a left rotation X.",
+    "start": 948.52,
+    "end": 950.92,
+    "ocr_text": "OO\n\noO"
+  },
+  {
+    "text": "So we will not look at the minus two case in detail but it is easy to see that it is",
+    "start": 950.92,
+    "end": 955.16,
+    "ocr_text": "OO\n\noO"
+  },
+  {
+    "text": "symmetric to the plus two case.",
+    "start": 955.16,
+    "end": 959.52,
+    "ocr_text": "yd)\n\nNB"
+  },
+  {
+    "text": "So how do you do these rotations?",
+    "start": 959.52,
+    "end": 961.08,
+    "ocr_text": "yd)\n\nNB"
+  },
+  {
+    "text": "Well you can just draw these pictures and figure it out so you just give names to everything.",
+    "start": 961.08,
+    "end": 965.0,
+    "ocr_text": "yd)\n\nNB"
+  },
+  {
+    "text": "So we say that we want to rotate this X down and the Y up.",
+    "start": 965.0,
+    "end": 968.52,
+    "ocr_text": "yd)\n\nNB"
+  },
+  {
+    "text": "Now we have our original T pointing here remember right.",
+    "start": 968.52,
+    "end": 972.48,
+    "ocr_text": "yd)\n\nNB"
+  },
+  {
+    "text": "So it is we cannot change the node that T is pointing to.",
+    "start": 972.48,
+    "end": 975.92,
+    "ocr_text": "£~—@—"
+  },
+  {
+    "text": "So we remember the value at T we remember the value here.",
+    "start": 975.92,
+    "end": 979.2,
+    "ocr_text": "£~—@—"
+  },
+  {
+    "text": "So we give these names X and Y to the contents and then we have these pointers pointing",
+    "start": 979.2,
+    "end": 983.4,
+    "ocr_text": "£~—@—"
+  },
+  {
+    "text": "to these three trees TLL TLR and TR and then we reconnect them.",
+    "start": 983.4,
+    "end": 988.4,
+    "ocr_text": "£~—@—"
+  },
+  {
+    "text": "So what we do is we first replace this value by Y right.",
+    "start": 988.4,
+    "end": 996.6,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "Then what we do is we make this node come to the right and we reset its value to X.",
+    "start": 996.6,
+    "end": 1006.72,
+    "ocr_text": "CO&)"
+  },
+  {
+    "text": "Okay so we put an X here and we have moved it there and then we hang off below the top",
+    "start": 1006.72,
+    "end": 1014.0,
+    "ocr_text": "C&)"
+  },
+  {
+    "text": "node on the left we put TLL and below this right new right node on the left we put TLR",
+    "start": 1014.0,
+    "end": 1019.76,
+    "ocr_text": "C&)"
+  },
+  {
+    "text": "and the right we put TLR.",
+    "start": 1019.76,
+    "end": 1020.76,
+    "ocr_text": "CO&)"
+  },
+  {
+    "text": "So we just do this kind of reconnection it is like you know unhooking and re-hooking trees",
+    "start": 1020.76,
+    "end": 1025.2,
+    "ocr_text": "CO&)"
+  },
+  {
+    "text": "and just we just keep track of all the names so that everything gets unhooked and re-hooked",
+    "start": 1025.2,
+    "end": 1029.2,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "correctly.",
+    "start": 1029.2,
+    "end": 1030.2,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "So it is a very simple so notice that this is a kind of constant set of operations involving",
+    "start": 1030.2,
+    "end": 1034.92,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "a few of these left and right pointers so it will all regardless of the size of the",
+    "start": 1034.92,
+    "end": 1038.64,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "tree it is a very local operation.",
+    "start": 1038.64,
+    "end": 1040.48,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "So we can treat this as one constant unit of operations.",
+    "start": 1040.48,
+    "end": 1045.12,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "And a similar thing for the left we give names and we just do this updating exactly",
+    "start": 1045.12,
+    "end": 1049.52,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "as we had done before.",
+    "start": 1049.52,
+    "end": 1051.32,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "So again this is a constant set of operations which implement rotate left.",
+    "start": 1051.32,
+    "end": 1056.24,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "So now that we have the two rotations then what does re-balancing say re-balancing",
+    "start": 1056.24,
+    "end": 1061.56,
+    "ocr_text": "@CO&)"
+  },
+  {
+    "text": "says that if I have a node which has plus two then I will expose its left child and",
+    "start": 1061.56,
+    "end": 1068.8,
+    "ocr_text": "4r(x)"
+  },
+  {
+    "text": "I will check its slope if its slope is minus one then first I will do a right rotation",
+    "start": 1068.8,
+    "end": 1072.8,
+    "ocr_text": "4r(x)"
+  },
+  {
+    "text": "there sorry I left rotation there and then regardless I will do a right rotation at",
+    "start": 1072.8,
+    "end": 1077.0,
+    "ocr_text": "4r(x)"
+  },
+  {
+    "text": "the top.",
+    "start": 1077.0,
+    "end": 1079.0,
+    "ocr_text": "4r(x)"
+  },
+  {
+    "text": "And the symmetric cases if I have a slope which has minus two at the top then it will",
+    "start": 1079.28,
+    "end": 1083.56,
+    "ocr_text": "4r(x)"
+  },
+  {
+    "text": "have a right child and then if this has plus one then I will first do a right rotation",
+    "start": 1083.56,
+    "end": 1089.6,
+    "ocr_text": "4r(x)"
+  },
+  {
+    "text": "here and then regardless I will do a left rotation at the top.",
+    "start": 1089.6,
+    "end": 1093.76,
+    "ocr_text": "4r(x)"
+  },
+  {
+    "text": "So re-balancing is these two steps and rotation is a set of other steps so we are basically",
+    "start": 1093.76,
+    "end": 1099.44,
+    "ocr_text": "4e(x)\n\nG)"
+  },
+  {
+    "text": "re-balancing at a given node is a constant number of operations at that moment.",
+    "start": 1099.44,
+    "end": 1105.08,
+    "ocr_text": "4e(x)\n\nG)"
+  },
+  {
+    "text": "So now what we do is every time we make a change in our tree which could affect the balance",
+    "start": 1105.08,
+    "end": 1110.72,
+    "ocr_text": "4e(x)\n\nG)"
+  },
+  {
+    "text": "or the slope of a node we do a re-balance right.",
+    "start": 1110.72,
+    "end": 1113.72,
+    "ocr_text": "4e(x)\n\nG)"
+  },
+  {
+    "text": "So when we in our earlier code for insert when we did a recursive insert in the left of",
+    "start": 1113.72,
+    "end": 1118.72,
+    "ocr_text": "4e(x)\n\nG)"
+  },
+  {
+    "text": "a tree we re-balance it.",
+    "start": 1118.72,
+    "end": 1120.44,
+    "ocr_text": "4e(x)\n\nG)"
+  },
+  {
+    "text": "Similarly we insert in the right of a tree we re-balance it.",
+    "start": 1120.44,
+    "end": 1123.56,
+    "ocr_text": "4e(x)\n\nG)"
+  },
+  {
+    "text": "So we just introduce this re-balance code and notice that this is a constant operation",
+    "start": 1123.56,
+    "end": 1127.56,
+    "ocr_text": "4e(x)\n\nG)"
+  },
+  {
+    "text": "for this node right.",
+    "start": 1127.56,
+    "end": 1128.88,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child\n\nrebaLance(t. left"
+  },
+  {
+    "text": "So we will do this all the way along the path so this will do a log log in times a constant",
+    "start": 1128.88,
+    "end": 1132.68,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child\n\nrebaLance(t. left"
+  },
+  {
+    "text": "number of operations or this will not affect anything in terms of the asymptotic complexity",
+    "start": 1132.68,
+    "end": 1137.76,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child\n\nrebaLance(t. left"
+  },
+  {
+    "text": "of our operation.",
+    "start": 1137.76,
+    "end": 1138.76,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child\n\nrebaLance(t. left"
+  },
+  {
+    "text": "It will be a logarithmic number of constant time operations for each node.",
+    "start": 1138.76,
+    "end": 1146.04,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child\n\nrebaLance(t. left"
+  },
+  {
+    "text": "The same with the delete wherever we do a recursive delete we re-balance and then there",
+    "start": 1146.04,
+    "end": 1150.12,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child\n\nrebaLance(t. left"
+  },
+  {
+    "text": "was this case where we deleted the maximum value of the predecessor so again we do a re-balance",
+    "start": 1150.12,
+    "end": 1154.68,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child\n\nrebaLance(t. left"
+  },
+  {
+    "text": "right.",
+    "start": 1154.68,
+    "end": 1155.68,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child\n\nrebaLance(t. left"
+  },
+  {
+    "text": "So wherever we had our insert or delete affecting the structure of the tree we just make",
+    "start": 1155.68,
+    "end": 1159.8,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either Leaf or has single child\n\nrebaLance(t. Left)"
+  },
+  {
+    "text": "sure that we re-balance the tree at that point.",
+    "start": 1159.88,
+    "end": 1164.4,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either Leaf or has single child\n\nrebaLance(t. Left)"
+  },
+  {
+    "text": "So there is one point we have to be careful about in this thing.",
+    "start": 1164.4,
+    "end": 1168.96,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either Leaf or has single child\n\nrebaLance(t. Left)"
+  },
+  {
+    "text": "So we said that we have to do all these re-balancing so if you go back to re-balancing",
+    "start": 1168.96,
+    "end": 1173.8,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either Leaf or has single child\n\nrebaLance(t. Left)"
+  },
+  {
+    "text": "okay so re-balancing requires us to compute the slope okay and slope we said was defined",
+    "start": 1173.8,
+    "end": 1180.04,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either Leaf or has single child\n\nrebaLance(t. Left)"
+  },
+  {
+    "text": "to be the height of the left minus the height of the right.",
+    "start": 1180.04,
+    "end": 1182.88,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either Leaf or has single child\n\nrebaLance(t. Left)"
+  },
+  {
+    "text": "Now it is possible to compute the height on the fly.",
+    "start": 1182.88,
+    "end": 1185.92,
+    "ocr_text": "# Delete node with two children\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either Leaf or has single child\n\nrebaLance(t. Left)"
+  },
+  {
+    "text": "The height of a tree is recursively computed if it is nil it has height 0 otherwise you",
+    "start": 1185.92,
+    "end": 1191.04,
+    "ocr_text": "0 [se (#)),"
+  },
+  {
+    "text": "recursively compute the height of the left and the right and then accounting for this",
+    "start": 1191.04,
+    "end": 1194.64,
+    "ocr_text": "0 [se (#)),"
+  },
+  {
+    "text": "node you add 1 to that.",
+    "start": 1194.64,
+    "end": 1196.16,
+    "ocr_text": "0 [se (#)),"
+  },
+  {
+    "text": "So you take the maximum of the two sub trees and add 1 but this unfortunately involves",
+    "start": 1196.16,
+    "end": 1201.96,
+    "ocr_text": "0 [se (#)),"
+  },
+  {
+    "text": "examining every node in the tree.",
+    "start": 1201.96,
+    "end": 1204.12,
+    "ocr_text": "0 [se (#)),"
+  },
+  {
+    "text": "So this will be proportional to order of the size of the tree right.",
+    "start": 1204.12,
+    "end": 1209.0,
+    "ocr_text": "0 [se (#)),"
+  },
+  {
+    "text": "So this will be an exponential operation in some sense depending I mean compared to the",
+    "start": 1209.0,
+    "end": 1212.84,
+    "ocr_text": "0 [se (#)),"
+  },
+  {
+    "text": "path.",
+    "start": 1212.84,
+    "end": 1213.84,
+    "ocr_text": "0 [se (#)),"
+  },
+  {
+    "text": "So we are trying to do a login operation this will be an order n operation okay so this",
+    "start": 1213.84,
+    "end": 1217.84,
+    "ocr_text": "0 [se (#)),"
+  },
+  {
+    "text": "will be killing all our attempts to do something efficiently because in order to compute the",
+    "start": 1217.84,
+    "end": 1223.0,
+    "ocr_text": "0 [sve (#)),"
+  },
+  {
+    "text": "height we actually have to see the entire tree which is not what we want to do.",
+    "start": 1223.0,
+    "end": 1227.8,
+    "ocr_text": "0 [sve (#)),"
+  },
+  {
+    "text": "But we can get around this by just keeping the current value of the height and updating",
+    "start": 1227.8,
+    "end": 1232.16,
+    "ocr_text": "0 [sve (#)),"
+  },
+  {
+    "text": "it each time okay.",
+    "start": 1232.16,
+    "end": 1234.0,
+    "ocr_text": "0 [sve (#)),"
+  },
+  {
+    "text": "So we have an additional thing so we have in our tree node we currently had the value",
+    "start": 1234.0,
+    "end": 1242.6,
+    "ocr_text": "0 [sve (#)),"
+  },
+  {
+    "text": "parent left and right.",
+    "start": 1242.6,
+    "end": 1248.8,
+    "ocr_text": "ja rrr Va"
+  },
+  {
+    "text": "So now we just add one more field called height okay.",
+    "start": 1248.8,
+    "end": 1252.96,
+    "ocr_text": "ja rrr Va"
+  },
+  {
+    "text": "So now whenever we do any rebalancing then the height of this tree may change the current",
+    "start": 1252.96,
+    "end": 1258.6,
+    "ocr_text": "ja rrr Va"
+  },
+  {
+    "text": "node.",
+    "start": 1258.6,
+    "end": 1259.6,
+    "ocr_text": "jve-| paret\n\n8 Ish,"
+  },
+  {
+    "text": "So we just look inductively we assume that below us the height what set correctly so",
+    "start": 1259.6,
+    "end": 1263.36,
+    "ocr_text": "jve-| paret\n\n8 Ish,"
+  },
+  {
+    "text": "we look at the two heights which are locally there add 1 to the maximum of 2.",
+    "start": 1263.36,
+    "end": 1267.12,
+    "ocr_text": "jve-| paret\n\n8 Ish,"
+  },
+  {
+    "text": "Now this is just looking up one value in our two neighbors below to two children right.",
+    "start": 1267.12,
+    "end": 1271.56,
+    "ocr_text": "jve-| pacet\n\nBe Ish,"
+  },
+  {
+    "text": "So this now becomes a constant time operation it doesn't require us to traverse the entire",
+    "start": 1271.56,
+    "end": 1275.04,
+    "ocr_text": "jve-| pacet\n\nBe Ish,"
+  },
+  {
+    "text": "tree so as we are rebalancing we read just the heights and every time we want to check",
+    "start": 1275.04,
+    "end": 1279.24,
+    "ocr_text": "jve-| pacet\n\nBe Ish,"
+  },
+  {
+    "text": "the slope we just have to check the value of the two trees below us and check the difference",
+    "start": 1279.24,
+    "end": 1286.8,
+    "ocr_text": "jve-| pacet\n\nBe Ish,"
+  },
+  {
+    "text": "of their heights because that will be given locally by this height field in the node okay.",
+    "start": 1286.8,
+    "end": 1290.48,
+    "ocr_text": "[oT pact TE tag |"
+  },
+  {
+    "text": "So we have to be careful not to compute height recursively but to store the height as part",
+    "start": 1290.48,
+    "end": 1295.56,
+    "ocr_text": "[oT pact TE tag |"
+  },
+  {
+    "text": "of the tree and also update that with every update.",
+    "start": 1295.56,
+    "end": 1299.88,
+    "ocr_text": "[oT pact TE tag |"
+  },
+  {
+    "text": "So to summarize you can use rotations to maintain height balanced binary search trees.",
+    "start": 1300.88,
+    "end": 1307.32,
+    "ocr_text": "[oT pact TE tag |"
+  },
+  {
+    "text": "And in a height balanced binary search tree we have claimed that the height is going to",
+    "start": 1307.32,
+    "end": 1312.76,
+    "ocr_text": "[oT pact TE tag |"
+  },
+  {
+    "text": "be logarithmic in the size and since all our operations are proportional to the height",
+    "start": 1312.76,
+    "end": 1318.08,
+    "ocr_text": "[oT pact TE tag |"
+  },
+  {
+    "text": "because they all go along one path all these operations namely find insert delete minimum",
+    "start": 1318.08,
+    "end": 1325.08,
+    "ocr_text": "[oT pact TE tag |"
+  },
+  {
+    "text": "maximum predecessor and successor can all be done in logarithmic time.",
+    "start": 1325.08,
+    "end": 1329.56,
+    "ocr_text": "[oT pact TE tag |"
+  }
+]

@@ -1,0 +1,1484 @@
+[
+  {
+    "text": "So, today's lecture we are basically going to focus on query execution and optimization.",
+    "start": 0.0,
+    "end": 27.32,
+    "ocr_text": "NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "So, we will discuss a few issues and then few fundamental ideas in this in this",
+    "start": 27.88,
+    "end": 37.16,
+    "ocr_text": "giiny, 1\nW Wi\nVE\nr 4\n\nrd\n{ /\nfl\n\n%\n“mn"
+  },
+  {
+    "text": "grid. This is a vast grid and you know requires a lot of study. So, in this lecture I will",
+    "start": 37.16,
+    "end": 44.76,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n= Final RA expression tree is generated\n\nProf P Sreenivasa Kumar 23 |\nDepartment of CS&E, ITM = ,"
+  },
+  {
+    "text": "basically give you an exposure to the basic issues that are involved in this query execution.",
+    "start": 44.76,
+    "end": 50.28,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n= Final RA expression tree is generated\n\nProf P Sreenivasa Kumar 23 |\nDepartment of CS&E, ITM = ,"
+  },
+  {
+    "text": "So, we know that an SQL query when it is specified it needs to be converted into a relational",
+    "start": 50.52,
+    "end": 61.24,
+    "ocr_text": "Query Optimization\n\n= Initial RA expression is re-written\n\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n= Final RA expression tree is generated\n\nProf P Sreenivasa Kumar\n\n= An SQL query - converted to a RA expression tree\n\n= Using heuristic and algebraic transformation rules\n\nDepartment of CS&E, ITM\n\n‘\nY)\ny\nt\n\nys\n“un!”\n\n|\n\\"
+  },
+  {
+    "text": "algebraic expression 3 and then we have been discussing various algorithms for executing these",
+    "start": 61.24,
+    "end": 69.48,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n\" Called algebraic optimization\n\n= Final RA expression tree is generated\n\nProf P Sreenivasa Kumar 23:\nDepartment of CS&E, ITM\n\ney\n|"
+  },
+  {
+    "text": "relational algebra operators. So, we need to choose those operators and then execute the query.",
+    "start": 69.48,
+    "end": 78.12,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n# Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n# Called algebraic optimization\n\n= Final RA expression tree is generated\n\n|\nProf P Sreenivasa Kumar 23 \\ |\nDepartment of CS&E, IITTM —% J"
+  },
+  {
+    "text": "Actually. So, but before we actually you know go ahead with the actual execution,",
+    "start": 78.44,
+    "end": 87.32,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n= Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n= Final RA expression tree is generated\n\nProf P Sreenivasa Kumar 23 \\ |\nDepartment of CS&E, ITM —“ }"
+  },
+  {
+    "text": "what is normally done is to take this initial relational algebra expression and then rewrite it",
+    "start": 88.2,
+    "end": 96.84,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n\" Called algebraic optimization\n\n= Final RA expression tree is generated\n\nProf P Sreenivasa Kumar 23\n\nDepartment of CS&E, IITTM ¢ \\"
+  },
+  {
+    "text": "in a in a in a manner that it is meaning preserving, rewrite it and that rewriting basically takes",
+    "start": 96.84,
+    "end": 105.16,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n= Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n\" Called algebraic optimization\n\n= Final RA expression tree is generated\n\nProf P Sreenivasa Kumar 23 \\\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "space using certain heuristics and as well as algebraic transformation goes.",
+    "start": 105.16,
+    "end": 111.88,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n= Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n= Final RA expression tree is generated\n\nProf P Sreenivasa Kumar 23\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "So, I will not go deep into this algebraic transformation goes, but you can imagine we will",
+    "start": 112.84,
+    "end": 121.08,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n= Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n= Final RA expression tree is generated\n\nProf P Sreenivasa Kumar 23\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "mention some of them and in addition to the algebraic transformation goes we also use certain",
+    "start": 121.08,
+    "end": 127.4,
+    "ocr_text": "Query Optimization\n\nNX /|\n“in!\n\n\\/-\n\\\n\n= An SQL query - converted to a RA expression tree\n= Initial RA expression is re-written\n= Using heuristic and algebraic transformation rules\n\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n= Final RA expression tree is generated\n\ni >\nProf P Sreenivasa Kumar 3\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "heuristics and then and then rewrite this relational algebraic expression into an expression which is",
+    "start": 127.48,
+    "end": 135.72,
+    "ocr_text": "Query Optimization\n\n1X /'\n“ny!\n\n\\/-\n\\\n\n= An SQL query - converted to a RA expression tree\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\n\nthat preserve the meaning of the expression\n# Called algebraic optimization\n\n= Final RA expression tree is generated\n\n3 ~\nProf P Sreenivasa Kumar 23\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "amenable for execution. So, this can be called as heuristic algebraic optimization.",
+    "start": 137.4,
+    "end": 144.36,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\n\nthat preserve the meaning of the expression\n\" Called algebraic optimization\n\n= Final RA expression tree is generated\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITM\n\n‘\ny)\ny\nt\n\nys\n“inn!\n\n|\n\\"
+  },
+  {
+    "text": "Now, once we generate the tree the final relational algebra expression 3,",
+    "start": 145.56,
+    "end": 150.52,
+    "ocr_text": "Query Optimization\n\n= Initial RA expression is re-written\n\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n# Final RA expression tree is generated\n\nProf P Sreenivasa Kumar\n\n= An SQL query - converted to a RA expression tree\n\n\" Using heuristic and algebraic transformation rules\n\nDepartment of CS&E, ITTM\n\n‘\nV\ny\n'\n\nAWN of\n“nn!”\n\n|\n\\"
+  },
+  {
+    "text": "we will also do one more step which is called the cost based query optimization.",
+    "start": 151.24,
+    "end": 159.72,
+    "ocr_text": "Query Optimization\n\n= Initial RA expression is re-written\n\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n# Final RA expression tree is generated\n\nProf P Sreenivasa Kumar\n\n= An SQL query - converted to a RA expression tree\n\n\" Using heuristic and algebraic transformation rules\n\nDepartment of CS&E, ITTM\n\n‘\nV\ny\n'\n\nAWN of\n“nn!”\n\n|\n\\"
+  },
+  {
+    "text": "Now, for various operators that are wearing the relational algebra tree,",
+    "start": 160.68,
+    "end": 165.4,
+    "ocr_text": "Query Optimization\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n= Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of methods for RA ops are computed\n\n# Execution plan with least estimated cost is chosen\n\nProf P Sreenivasa Kumar 23)\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "we have choices of algorithms choices of what algorithm to use if there is a joint you know what",
+    "start": 166.36,
+    "end": 173.48,
+    "ocr_text": "Query Optimization\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n= Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n= Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of metfiods for RA ops are computed @\n\n= Execution plan with least estimated cost is chosen\n\nProf P Sreenivasa Kumar 23\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "is appropriate algorithm to use in that particular relational algebraic expression. So,",
+    "start": 173.48,
+    "end": 178.2,
+    "ocr_text": "Query Optimization\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n= Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n= Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of metfiods for RA ops are computed @\n\n= Execution plan with least estimated cost is chosen\n\nProf P Sreenivasa Kumar 23\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "and if there are multiple algorithms that are applicable for that particular operator,",
+    "start": 178.76,
+    "end": 184.92,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n= Initial RA expression is re-written\n\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n= Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of metheds for RA ops are computed\n\n# Execution plan with least estimated cost is chosen\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n|\n“an!”\n\ner."
+  },
+  {
+    "text": "then what is the estimates of the cost of those methods.",
+    "start": 184.92,
+    "end": 188.44,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n= Initial RA expression is re-written\n\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n= Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of metheds for RA ops are computed\n\n# Execution plan with least estimated cost is chosen\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n|\n“an!”\n\ner."
+  },
+  {
+    "text": "So, taking these estimates of the cost of the relational algebra operations and",
+    "start": 190.12,
+    "end": 198.28,
+    "ocr_text": "Query Optimization\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n= Final RA expression tree is generated\n\" Cost-based query optimization\n\" Cost estimates of methods for RA ops are computed ¢v\n\n= Execution plan with least estimated cost is chosen\n\nt\nProf P Sreenivasa Kumar 23 } @ .\n\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "and actually if you do one of these operations in one way, some other operation may",
+    "start": 199.4,
+    "end": 205.08,
+    "ocr_text": "Query Optimization\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n= Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n# Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of methods for RA ops are computed\n\n\" Execution plan with least estimated cost is chosen\n\nProf P Sreenivasa Kumar 23\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "have to be done in only in a certain way. Okay, there are interdependent right the operators are",
+    "start": 205.08,
+    "end": 210.44,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n= Initial RA expression is re-written\n\n= Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n# Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of methods for RA ops are computed\n\n= Execution plan with least estimated cost is chosen\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nV\n\\\n'\n\nYS f\n‘inn!\n\nfi<\nee."
+  },
+  {
+    "text": "interdependent in the tree. So, taking all these things into consideration, we have to actually",
+    "start": 210.44,
+    "end": 217.24,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n= Initial RA expression is re-written\n\n= Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n# Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of methods for RA ops are computed\n\n= Execution plan with least estimated cost is chosen\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nV\n\\\n'\n\nYS f\n‘inn!\n\nfi<\nee."
+  },
+  {
+    "text": "formulate that as a optimization problem and then try and get a minimal solution of a choices of",
+    "start": 219.0,
+    "end": 226.84,
+    "ocr_text": "Query Optimization\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n= Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of methods for RA ops are computed\n\n\" Execution plan with least estimated cost is chosen\n\nProf P Sreenivasa Kumar 23\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "methods for all of those operators in a combined manner. Okay, so and then you generate what is",
+    "start": 227.32,
+    "end": 235.72,
+    "ocr_text": "y)\ny\n'\n\nQuery Optimization\n\nUS f\n“nw!”\n\nfi<\nee.\n\n= An SQL query - converted to a RA expression tree\n= Initial RA expression is re-written\n\n= Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n= Called algebraic optimization\n\n= Final RA expression tree is generated\n\n= Cost-based query optimization\n\n\" Cost estimates of methods for RA ops are computed a\n\n= Execution plan with enw astinmtad cost is chosen 4\n\nL\nProf P Sreenivasa Kumar 23 \\ \\\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "called an execution plan where you fix as to what operate what method is being used for what operator",
+    "start": 235.72,
+    "end": 242.6,
+    "ocr_text": "Query Optimization\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n\" Called algebraic optimization\n= Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of methods for RA ops are computed q\n\n\" Execution plan with least estimated cost is chosen \\\n\nProf P Sreenivasa Kumar 23\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "and then go ahead it is a good thing query. Okay, so in I will illustrate this the algebraic",
+    "start": 242.6,
+    "end": 253.4,
+    "ocr_text": "Query Optimization\n= An SQL query - converted to a RA expression tree\n\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\nthat preserve the meaning of the expression\n\" Called algebraic optimization\n= Final RA expression tree is generated\n= Cost-based query optimization\n\" Cost estimates of methods for RA ops are computed q\n\n\" Execution plan with least estimated cost is chosen \\\n\nProf P Sreenivasa Kumar 23\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "optimization with a elaborate example. So, we will see that. So, let us focus a little bit on",
+    "start": 253.4,
+    "end": 260.12,
+    "ocr_text": "Query Optimization\n\n= An SQL query - converted to a RA expression tree\n= Initial RA expression is re-written\n\" Using heuristic and algebraic transformation rules\n\nthat preserve the meaning of the expression\n\" Called algebraic optimfzation\n\n= Final RA expression tree is generated\n\n= Cost-based query optimization\n\n\" Cost estimates of methods for RA ops are computed\n\n\" Execution plan with least estimated cost is chosen\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, IITTM\n\n‘\nY\ny\n'\n\nIN /\n“Vw!”\n\n\\"
+  },
+  {
+    "text": "this heuristic optimization. So, the main heuristic rule that we will use is apply the",
+    "start": 260.12,
+    "end": 269.8,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24 ) |\n\nDepartment of CS&E, IITTM ="
+  },
+  {
+    "text": "selector project operations before other operations for being applied. That means, in from a",
+    "start": 269.8,
+    "end": 277.4,
+    "ocr_text": "Heuristic Optimization\n\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n# Apply select and project before other operations\n= Reduces the size of intermediate results\n\n= An SQL query - converted to a RA expression tree\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITM\n\nV\ny\nt\n\nrT\n\nTTT\n\nU7)\n\ni\ni)"
+  },
+  {
+    "text": "relational algebra 3 point of view, if you find a select operator, try and push it to the leaves.",
+    "start": 277.4,
+    "end": 285.48,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other opérations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, IITTM )"
+  },
+  {
+    "text": "See, what is a relational algebra operator a tree at the base at the leaf levels, we will have the",
+    "start": 285.48,
+    "end": 291.88,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n® Apply se/ect and project before other opérations\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITM\n\ny\n\nly, AS /\n“ny!”"
+  },
+  {
+    "text": "actual base relations that are available on the relational in the database. Right, and then you",
+    "start": 291.88,
+    "end": 298.6,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n® Apply se/ect and project before other opérations\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITM\n\ny\n\nly, AS /\n“ny!”"
+  },
+  {
+    "text": "two of those of two of those relations will be combined using a a a a join and then the result will",
+    "start": 299.4,
+    "end": 307.08,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other opérations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "go you know with a projection to some other operator and that operator will get another",
+    "start": 307.08,
+    "end": 314.6,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n® Apply se/ect and project before other opérations\n\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\nfi\n\n“inst!\n\nf"
+  },
+  {
+    "text": "operand from somewhere else and then you know then someone some maybe union is applied and things",
+    "start": 314.6,
+    "end": 320.6,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n® Apply se/ect and project before other opérations\n\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\nfi\n\n“inst!\n\nf"
+  },
+  {
+    "text": "like that. So, it all goes like that right. So, at the leaves you have relations basically.",
+    "start": 320.6,
+    "end": 326.92,
+    "ocr_text": "Heuristic Optimization\n\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n# Apply select and project before other opérations\n= Reduces the size of intermediate results\n\n= An SQL query - converted to a RA expression tree\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\nv\ny\nU\n\ntess!”\n\n\"uy\n\n}"
+  },
+  {
+    "text": "Okay, now what are the heuristics that we will apply is that push these selections on project",
+    "start": 328.12,
+    "end": 335.96,
+    "ocr_text": "V\n]\n/\n\nHeuristic Optimization\n\nYS |\nin!\n\n\\\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n\n# Apply select and project before other opérations\n\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\n~~ ' a\nProf P Sreenivasa Kumar 2 LS\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "operators all the way towards the leaves. So, if you do that then write at the initial stage because",
+    "start": 335.96,
+    "end": 346.44,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other opérations\n\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "you are executing the expression in a bottom of manner right, you are executing the",
+    "start": 346.44,
+    "end": 351.88,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n# Apply select and project before other opérations\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITM\n\n]\n\nan!”\n\n(Me\nNS\ny"
+  },
+  {
+    "text": "relation expression in a bottom of manner. So, write at the beginning you would have",
+    "start": 353.0,
+    "end": 357.24,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n# Apply select and project before other opérations\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITM\n\n]\n\nan!”\n\n(Me\nNS\ny"
+  },
+  {
+    "text": "reduce the number of tuples that go into these operators right. So, with that idea",
+    "start": 358.12,
+    "end": 365.48,
+    "ocr_text": "Heuristic Optimization\n\n= This RA expression tree 1s to be re-written\n= Main heuristic rule\n\n# Apply select and project before other opérations\n\n= Reduces the size of intermediate results\n\n= An SQL query - converted to a RA expression tree\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nnt!\n\n/\n\"Ny\n\nv\ny\nt\n\n{7\n\n|\n\\"
+  },
+  {
+    "text": "so we try and push this select and project operators all the way to the leaves or in other words",
+    "start": 366.84,
+    "end": 376.76,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediaté results\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM V"
+  },
+  {
+    "text": "you can you need to apply them before you can apply other operators. So, if it is possible to do",
+    "start": 376.76,
+    "end": 382.44,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n# Apply select and project before other operations\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITM\n\n“int!\n\nf <\n4"
+  },
+  {
+    "text": "that right. So, that we will see in with throw an example. So, the the effect of this heuristic",
+    "start": 382.44,
+    "end": 392.12,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n# Apply select and project before other operations\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITM\n\n“int!\n\nf <\n4"
+  },
+  {
+    "text": "applying this heuristic is basically that we will be able to reduce the sizes of these intermediate",
+    "start": 392.92,
+    "end": 398.68,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar 24 |\nDepartment of CS&E, ITTM —~ ) }"
+  },
+  {
+    "text": "results. There are a lot of intermediate results the internal loads of the traditional algebra",
+    "start": 398.68,
+    "end": 403.4,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= This RA expression tree 1s to be re-written\n= Main heuristic rule\n\n# Apply select and project before other operations\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITTM\n\n‘\ny)\ny\nt\n\nAS |\n“Vn!”\n\nf <\nIz"
+  },
+  {
+    "text": "tree are essentially intermediate results right. And because projection also is being pushed",
+    "start": 403.4,
+    "end": 410.76,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= This RA expression tree 1s to be re-written\n= Main heuristic rule\n\n# Apply select and project before other operations\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITTM\n\n‘\ny)\ny\nt\n\nAS |\n“Vn!”\n\nf <\nIz"
+  },
+  {
+    "text": "as close to the leaves as possible it also reduces the number of fields that are there in",
+    "start": 412.2,
+    "end": 417.72,
+    "ocr_text": "Heuristic Optimization\n\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n# Apply select and project before other operations\n= Reduces the size of @termediate results\n\n= An SQL query - converted to a RA expression tree\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\nSy\n\nYards\nING)\n‘ny!\n\n1, Z"
+  },
+  {
+    "text": "intermediate results. So, this is one of the main tuple stick goods that we will apply.",
+    "start": 417.72,
+    "end": 423.56,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\n]\n\nus f\na!”\n\n/\n/)"
+  },
+  {
+    "text": "And then make use of these relational algebra operators all of them satisfy certain algebraic",
+    "start": 426.28,
+    "end": 433.88,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\n\n# Join, union, intersect - associative\n\n|__= There are many more___.(Read about them).\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "rules like for example, select project join union intersect all of them are commutative operations",
+    "start": 433.88,
+    "end": 440.28,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\n\n# Join, union, intersect - associative\n\n|__= There are many more___.(Read about them).\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "we can split them around. Okay, they will give the same result when you",
+    "start": 440.36,
+    "end": 445.16,
+    "ocr_text": "v\n'\n\nSf\n\n“ny!\n\nHeuristic Optimization\n\n4 <\nIz\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n® Apply se/ect and project before other operations\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n\n= Make use of relational algebraic laws\n\n® Select, project, join, union, intessect - commutative\n# Join, union, intersect - associative a\n¥\n2 about them) ‘i\nProf P Sreenivasa Kumar 24 \\ nf\nDepartment of CS&E, ITTM =~ -d"
+  },
+  {
+    "text": "so, two selects two selects have to be applied then you can apply them in any order",
+    "start": 448.84,
+    "end": 454.44,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n\n= Make use of relational algebraic laws\n= Select, project, join, union, intersect - commutative\n\n# Join, union, intersect - associative\n\n|__= There are many more___(Read about them).\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "right two projects have to be applied you can do the mini order. So, a join b is a minus b join a",
+    "start": 455.48,
+    "end": 463.4,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n= Make use of relational algebraic laws\n\" Select, project, jain, union, intersect - commutative\n# Join, union, intersect - associative sd\n|__= There are many more.._(Read about them). '\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM =~"
+  },
+  {
+    "text": "right. So, all those properties are there. So, you make use of them and then adjust these",
+    "start": 463.48,
+    "end": 469.8,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n= Make use of relational algebraic laws\n\" Select, project, jain, union, intersect - commutative\n# Join, union, intersect - associative sd\n|__= There are many more.._(Read about them). '\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM =~"
+  },
+  {
+    "text": "operators such way and then union join intersect they are also associative.",
+    "start": 470.28,
+    "end": 477.48,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\n\n# Join, union, intersect - associative\n\n|__= There are many more___.(Read about them).\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "So, a so, a join b join c can be written as a join b and then join c or a join b join c",
+    "start": 478.68,
+    "end": 488.68,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n= Main heuristic rule\n\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n\n= Reduces the number of fields in the intermediate results\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\n\n# Join, union, intersect - associative\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITM\n\nfi\n\n“nrg!\n\n(ee\n7"
+  },
+  {
+    "text": "you can write it a way. So, use make use of these associations I mean make use of these algebraic",
+    "start": 488.76,
+    "end": 495.72,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\nZ Join, union, intersect - associative sd\n|__= There are many more___(Read about them). '\n\nProf P Sreenivasa Kumar 24 =)\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "rules and do some rewriting if necessary. So, there are many more of these you know how do",
+    "start": 495.72,
+    "end": 503.88,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n= Main heuristic rule\n# Apply select and project before other operations\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\n\n# Join, union, intersect?- associative\n\n| = There are many more___(Read about them).\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM\n\nV\nY\n'\n\nry ff\n\n“inst!\n\n{\ny oo"
+  },
+  {
+    "text": "these operators interact with each other there are lot more algebraic laws that we can express.",
+    "start": 503.88,
+    "end": 510.2,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n= Main heuristic rule\n# Apply select and project before other operations\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\n\n# Join, union, intersect?- associative\n\n| = There are many more___(Read about them).\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM\n\nV\nY\n'\n\nry ff\n\n“inst!\n\n{\ny oo"
+  },
+  {
+    "text": "I am not going to cover them in the lecture please read about them they were interesting.",
+    "start": 511.16,
+    "end": 516.2,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\n\n# Join, union, intersect - associative\n\n|__= There are many more___(Read about them).\n~ Prof P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "So, you can make use of them they are not very difficult to understand also.",
+    "start": 516.2,
+    "end": 519.16,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\n# Join, union, intersect - associative ¥\n|__= There are many more_.__(Read about them) a |\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM ~ |"
+  },
+  {
+    "text": "Okay, so, basically we will make use of this relation algebraic laws and the heuristic",
+    "start": 521.16,
+    "end": 526.68,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\n# Join, union, intersect - associative ¥\n|__= There are many more_.__(Read about them) a |\n\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM ~ |"
+  },
+  {
+    "text": "rules and then do a rewriting of it expression. So, and then the cost based optimization will come",
+    "start": 527.72,
+    "end": 538.76,
+    "ocr_text": "Heuristic Optimization\n\n= An SQL query - converted to a RA expression tree\n= This RA expression tree is to be re-written\n\n= Main heuristic rule\n# Apply select and project before other operations\n\n= Reduces the size of intermediate results\n= Reduces the number of fields in the intermediate results\n\n= Make use of relational algebraic laws\n® Select, project, join, union, intersect - commutative\n# Join, union, intersect - associative J\n\n|__= There are many more___(Read about them). \\/ Pee\nProf P Sreenivasa Kumar 24\nDepartment of CS&E, ITTM —y ,"
+  },
+  {
+    "text": "in the lecture. Okay, so, it the issue here is that the relational algebra operator that is",
+    "start": 538.92,
+    "end": 552.68,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n= Each RA operator\n= Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar 25\nDepartment of CS&E, ITTM ~ 1"
+  },
+  {
+    "text": "there in the middle of the debris somewhere can be evaluated using many vectors. We have discussed",
+    "start": 552.68,
+    "end": 559.24,
+    "ocr_text": "‘\nV\nt\n\nCost-based Optimization\n\nIN /\n“iy!\n\n4\n\ni\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n\n= Each RA operator\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\n\\- AY\nProf P Sreenivasa Kumar 5\n\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "possibilities for doing joins and making use of indexes if they are available like that there are",
+    "start": 559.72,
+    "end": 570.04,
+    "ocr_text": "‘\ny\n\\\nU\n\nCost-based Optimization\n\nin!\n\n\\\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n\n= Each RA operator\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\n4\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "so many possibilities there. So, for each of these methods we need to have some kind of an",
+    "start": 570.04,
+    "end": 579.08,
+    "ocr_text": "‘\ny\n'\n\nCost-based Optimization\n\naS,\n“ony!\n\n) <\n\n= After initial RA expression tree 1s re-written using\nheuristics and algebraic laws....\n\n= Each RA operator\n\" Can be evaluated using yany methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\n“t : »\nProf P Sreenivasa Kumar 25\n\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "estimation of what is the cost it is we are voting for if we use that method. So, that is what is the",
+    "start": 579.08,
+    "end": 586.28,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree 1s re-written using\nheuristics and algebraic laws....\n= Each RA operator\n\" Can be evaluated using many methods\n\" For a method, its cost function gives estimated cost\n= By taking file sizes, access path costs etc into account\n\n\" Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar 25\nDepartment of CS&E, ITM “Vv"
+  },
+  {
+    "text": "cost function. So, for all these methods you can essentially use those formulas that we were",
+    "start": 586.28,
+    "end": 592.76,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n= Each RA operator\n\" Can be evaluated using many methods\n= For a method, its cost function gives estimated cost\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar 25\n\nDepartment of CS&E, ITM |"
+  },
+  {
+    "text": "discussing as how many number of block practices it will do and things like that and convert them into",
+    "start": 592.76,
+    "end": 597.4,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n= Each RA operator\n\" Can be evaluated using many methods\n= For a method, its cost function gives estimated cost\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar 25\n\nDepartment of CS&E, ITM |"
+  },
+  {
+    "text": "some kind of a cost function. Okay, so, that cost function will take the various parameters like the",
+    "start": 597.4,
+    "end": 605.0,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree 1s re-written using\nheuristics and algebraic laws....\n= Each RA operator\n=\" Can be evaluated using many methods\n\" For a method, its cost function gives estimated cost\n= By taking file sizes, sages path costs etc into account\n\n\" Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar 25\nDepartment of CS&E, ITM so 4"
+  },
+  {
+    "text": "sizes of the files and then the availability of indexes all these things into consideration.",
+    "start": 605.0,
+    "end": 610.36,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree 1s re-written using\nheuristics and algebraic laws....\n= Each RA operator\n=\" Can be evaluated using many methods\n\" For a method, its cost function gives estimated cost\n= By taking file sizes, sages path costs etc into account\n\n\" Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar 25\nDepartment of CS&E, ITM so 4"
+  },
+  {
+    "text": "Essentially, the sizes of the two operands and then it will give you an estimated cost.",
+    "start": 610.92,
+    "end": 620.68,
+    "ocr_text": "Cost-based Optimization AR\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n= Each RA operator\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n\" Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar 25 L\nDepartment of CS&E, IITM ~ a ."
+  },
+  {
+    "text": "And one important thing that we should note here is that these choices have to be made in",
+    "start": 626.04,
+    "end": 630.92,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\n\nheuristics and algebraic laws....\n= Each RA operator\n\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n\" Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "something simultaneously. Right, if we make one choice here that might affect the choice of",
+    "start": 630.92,
+    "end": 636.76,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\n\nheuristics and algebraic laws....\n= Each RA operator\n\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n\" Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "another method somewhere else. Right, so, there are interdependencies between these methods.",
+    "start": 636.84,
+    "end": 642.04,
+    "ocr_text": "‘\n/\n\nCost-based Optimization\n\nry yf\n\n“ant!\n\nM2\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n\n= Each RA operator\n\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\na\noa\nProf P Sreenivasa Kumar 5\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "So, one has to cast this as an optimization problem and then use some optimizers for doing that.",
+    "start": 644.2,
+    "end": 654.12,
+    "ocr_text": "‘\n/\n\nCost-based Optimization\n\nry yf\n\n“ant!\n\nM2\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n\n= Each RA operator\n\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\na\noa\nProf P Sreenivasa Kumar 5\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "So, it is actually an intractable problem it can probably it can be shown that it is an",
+    "start": 655.24,
+    "end": 661.16,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\n\nheuristics and algebraic laws....\n= Each RA operator\n\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "intractable problem. So, you basically have to use a lot of fewestestest.",
+    "start": 661.16,
+    "end": 665.56,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\n\nheuristics and algebraic laws....\n= Each RA operator\n\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "And then you have these different plans of execution. So, evaluate them, evaluate them based on these",
+    "start": 668.28,
+    "end": 678.2,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n= Each RA operator\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n= Choice made at a node may effect choices at others\n= Evaluate different plans based on estimated costs\n\n\" Choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar 25\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "individual cost estimates and then the overall plan cost can be what are the cost of the whole plan",
+    "start": 680.44,
+    "end": 686.12,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n\n= Each RA operator\n\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\n= Choice made at a node may effect choices at others\n\n= Evaluate different plans based on estimated costs\n\n\" Choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar 25\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "with all these choices made at each of these all the positive properties.",
+    "start": 686.44,
+    "end": 691.32,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n= Each RA operator\n\" Can be evaluated using many methods\n\n# For a method, its cost function gives estimated cost\n°\n\n= By taking file sizes, access path costs etc into account\n= Choice made at a node may effect choices at others\n= Evaluate different plans based on estimated costs\n\n\" Choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar 25\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "And then choose the plan with the least estimated cost that is the cost based optimizer.",
+    "start": 692.36,
+    "end": 697.64,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n= Each RA operator\n\" Can be evaluated using many methods\n\n# For a method, its cost function gives estimated cost\n°\n\n= By taking file sizes, access path costs etc into account\n= Choice made at a node may effect choices at others\n= Evaluate different plans based on estimated costs\n\n\" Choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar 25\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "And these these optimizers can actually sometimes go horribly wrong also because you are all",
+    "start": 702.2,
+    "end": 708.36,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree 1s re-written using\nheuristics and algebraic laws....\n= Each RA operator\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\" Choice made at a node may effect choices at others\n= Evaluate different plans based on estimated costs\n\n\" Choose the plan with least estimated Cost\n\nProf P Sreenivasa Kumar 25\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "basing decisions on estimates. We do not really know how to get data.",
+    "start": 708.92,
+    "end": 715.4,
+    "ocr_text": "Cost-based Optimization\n\n= After initial RA expression tree is re-written using\nheuristics and algebraic laws....\n= Each RA operator\n\" Can be evaluated using many methods\n\n\" For a method, its cost function gives estimated cost\n\n= By taking file sizes, access path costs etc into account\n\" Choice made at a node may effect choices at others\n= Evaluate different plans based on estimated costs\n\n\" Choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar 25\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "Okay, now let us take an example and illustrate these essentially the",
+    "start": 719.48,
+    "end": 725.48,
+    "ocr_text": "Query Optimization — Example\n\n\" Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0gB027” in the even semester of 2010\n\n\" select p.empld, p.name, p.phone\n\nfrom professor p, teaching t, enrollment e\n\nwhere e.rollNo = “CS08B027”\n\nand e.courseld = t.courseld\n\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\n/ 1\n“Ven!”\n\ner"
+  },
+  {
+    "text": "heuristic and algebraic optimization ideas with this example. So, read this query.",
+    "start": 725.48,
+    "end": 733.8,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0gB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\nyl\n\nTTT]\n\nie\nNye"
+  },
+  {
+    "text": "The query asks for names and whole details of professors who taught the course",
+    "start": 733.88,
+    "end": 741.16,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0gB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\nyl\n\nTTT]\n\nie\nNye"
+  },
+  {
+    "text": "are taken by some student with role number and in the events in history of from here.",
+    "start": 741.16,
+    "end": 748.28,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0gB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nyl\n\n>\nAN\n\n4, 7!\n“nny\n\n="
+  },
+  {
+    "text": "So, it is a simple query. So, here is the SQL query for that.",
+    "start": 750.44,
+    "end": 756.84,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0gB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nyl\n\n=> V\nAN |!\n\n4, Z|\n“ny\n\nNS"
+  },
+  {
+    "text": "So, remember that we have professor details in professor",
+    "start": 757.08,
+    "end": 763.56,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Cso0sB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar 26\nDepartment of CS&E, ITM\n\nIN _//\n“nw!”\n\nfi <\nte"
+  },
+  {
+    "text": "a relation and who is teaching what and teaching relation and then who is enrolled for what course in",
+    "start": 763.56,
+    "end": 769.08,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Cso0sB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar 26\nDepartment of CS&E, ITM\n\nIN _//\n“nw!”\n\nfi <\nte"
+  },
+  {
+    "text": "enrollment relation and so, we have a various conditions now. So, the role number is given.",
+    "start": 769.08,
+    "end": 783.0,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Cso0gB027” in the even semester of 2010\n= select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nNX _//\n“an!”\n\nf <\nIZ"
+  },
+  {
+    "text": "So, E dot role number is CS08B057 and the E dot course ID should be the one that is being",
+    "start": 783.0,
+    "end": 793.48,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0gB027” in the even semester of 2010\n= select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\natid e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\nyf\n\n“ (| me)\nTTT\n\nji 4\n{\n\"y,"
+  },
+  {
+    "text": "taught by the professor P dot course ID and the semester is even here is 2010 in both",
+    "start": 793.48,
+    "end": 801.72,
+    "ocr_text": "Query Optimization — Example\n\n\" Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Cso0gB027” in the even semester of 2010\n\n\" select p.empld, p.name, p.phone\n\nfrom professor p, teaching t, enrollment e\n\nwhere e.rollNo = “CS08B027”\n\nand e.courseld = t.courseld\n\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\nyl\n\nLT]\n\n)\n“un\n\n}<"
+  },
+  {
+    "text": "enrollment as well as teaching relation things. And then the person who is teaching",
+    "start": 801.72,
+    "end": 808.6,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0gB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n“nn!”\n\n) <\nIz"
+  },
+  {
+    "text": "is who we are interested in. So, we will project employee ID name and",
+    "start": 809.16,
+    "end": 816.44,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Cso0gB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.emplId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\n“am!”\n\nf <\nLs"
+  },
+  {
+    "text": "the home of that particular professor. Okay, so, this is how typically the",
+    "start": 816.44,
+    "end": 826.76,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “cso0gB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\n2 Prof P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n~\n>\na\n>S\n=\n7\n>\n>\n\n2\nY\n—_"
+  },
+  {
+    "text": "where connection is specified right. So, we do not distinguish between which of these things are",
+    "start": 826.76,
+    "end": 832.12,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0gB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem =“even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nyl\n\n= v\nAN _/!\n\n4, Z|\n“nny\n\n€"
+  },
+  {
+    "text": "you know drawing, pensions and things like that, but we one can actually figure them out.",
+    "start": 832.12,
+    "end": 836.12,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0gB027” in the even semester of 2010\n\" select p.empld, p.name, p.phone\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem =“even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nyl\n\n= v\nAN _/!\n\n4, Z|\n“nny\n\n€"
+  },
+  {
+    "text": "So, the initial relational algebra expression that we will write will be simply like this.",
+    "start": 836.2,
+    "end": 843.88,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “cso0sB027” in the even semester of 2010\n= Initial RA Expr: TT pempta, pname, pphone ( Sy (P X tx e))\nwhere\np: professor, t: teaching, e: enrollment\n\n0 = (e.rolINo = “CS08B027” and e.courseld =\nt.courseld\n\nand e.sem = “even” and e.Year = 2010\n\nand t.sem = “even” and t.year = 2010\n\nand p.empld = \"templar,\n\nIN _//\n“nw!\n\nf <\nIZ"
+  },
+  {
+    "text": "You know that this is equivalent to the SQL query.",
+    "start": 846.84,
+    "end": 849.24,
+    "ocr_text": "Query Optimization — Example\n\n\" Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “cs0sB027” 1n the even semester of 2010\n\n* Initial RA Expr: TI. .npt, panne, phone (Sp (P Xt €))\nwhere\n\np: professor, t: teaching, e: enrollment\n\n0 = (e.rolINo = “CS08B027” and e.courseld =\nt.courseld\n\nand e.sem = “even” and e.year = 2010\n\nand t.sem = “even” and t.year = 2010\n\n—Pref Bore Kumar\n\nyl\n\n> v\nAN |!\n[if\n\nA\n“un,\n\n\\"
+  },
+  {
+    "text": "Why P dot employee ID, P dot name, P dot form, sigma, beta, P cross P cross P.",
+    "start": 849.96,
+    "end": 857.64,
+    "ocr_text": "Query Optimization — Example\n\n\" Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “cs0sB027” 1n the even semester of 2010\n\n* Initial RA Expr: TI. .npt, panne, phone (Sp (P Xt €))\nwhere\n\np: professor, t: teaching, e: enrollment\n\n0 = (e.rolINo = “CS08B027” and e.courseld =\nt.courseld\n\nand e.sem = “even” and e.year = 2010\n\nand t.sem = “even” and t.year = 2010\n\n—Pref Bore Kumar\n\nyl\n\n> v\nAN |!\n[if\n\nA\n“un,\n\n\\"
+  },
+  {
+    "text": "Right, the three, the three relations involved in the from plus. So, P cross P cross E",
+    "start": 858.84,
+    "end": 864.92,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “cso0sB027” in the even semester of 2010\n= Initial RA Expr: TT jempta, pname, pphone ( 9p (P X te ))\nwhere\np: professor, t: teaching, e: enrollment\n\n8 = (e.rolINo = “CS08B027” and e.courseld =\nt.courseld\n\nand e.sem = “even” and e.year = 2010\n\nand t.sem = “even” and t.year = 2010\n\nDepartm , ITM\n\n“nw!”\n\nfi<\nee."
+  },
+  {
+    "text": "and do this P, what is theta? Theta is this entire stuff that we have seen there.",
+    "start": 865.64,
+    "end": 871.72,
+    "ocr_text": "Query Optimization — Example\n\n\" Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccs0sB027” 1n the even semester of 2010\n\n= Initial RA Expr: TT jempta, pname, pphone ( Sy (P X te ))\nwhere\n\np: professor, t: teaching, e: enrollment\n\n0 = (e.rolINg = “CS08B027” and e.courseld =\nt.courseld\n\nand e.sem = “even” and e.year = 2010\n\nand t.sem = “even” and t.year = 2010\n\n—Pr¢f RSaeen aad Kumar 27\n\n(} f\n\"uw!"
+  },
+  {
+    "text": "Okay, so, I have reproduced this entire where condition here.",
+    "start": 876.92,
+    "end": 882.84,
+    "ocr_text": "Query Optimization — Example\n\n\" Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0gB027” in the even semester of 2010\n\n\" select p.empld, p.name, p.phone\n\nfrom professor p, teaching t, enrollment e\nwhere e.rollNo = “CS08B027”\nand e.courseld = t.courseld\nand e.sem = “even” and e.year = 2010\nand t.sem = “even” and t.year = 2010\nand p.empld = t.empId\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\ni}\n4, AS 7!\n“iy!\n\n| -"
+  },
+  {
+    "text": "So, that is how the initial relational algebra expression will look like.",
+    "start": 887.64,
+    "end": 890.92,
+    "ocr_text": "Query Optimization — Example\n\n\" Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “cso0sB027” in the even semester of 2010\n\n= Initial RA Expr: TI , ompta, pname, pphone ( p (Pp x t x € ))\nwhere .\n\np: professor, t: teaching, e: enrollment\n\n0 = (e.rolINo = “CS08B027” and e.courseld =\nt.courseld\n\nand e.sem = “even” and e.year = 2010\n\nand t.sem = “even” and t.year = 2010\n\nand p.empld ='t.eirphdy\n\nDepartm , ITM\n\nyl\n\n> ¥\ni\n\n}\n“un,\n\n}<"
+  },
+  {
+    "text": "Now, we start a series of equivalences for this relational algebra expression,",
+    "start": 891.64,
+    "end": 897.48,
+    "ocr_text": "Query Optimization — Example\n\n\" Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “cso0sB027” in the even semester of 2010\n\n= Initial RA Expr: TI , ompta, pname, pphone ( p (Pp x t x € ))\nwhere .\n\np: professor, t: teaching, e: enrollment\n\n0 = (e.rolINo = “CS08B027” and e.courseld =\nt.courseld\n\nand e.sem = “even” and e.year = 2010\n\nand t.sem = “even” and t.year = 2010\n\nand p.empld ='t.eirphdy\n\nDepartm , ITM\n\nyl\n\n> ¥\ni\n\n}\n“un,\n\n}<"
+  },
+  {
+    "text": "where we will show how exactly this entire condition has to be placed appropriately inside",
+    "start": 897.48,
+    "end": 906.52,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “Ccso0sB027” in the even semester of 2010\n= Initial RA Expr: IT pcmpid, pnane, pphone ( 9 (P ¥ EX)\nwhere\np: professor, t: teaching, e: enrollment\n\n0 = (e.rolINo = “CS08B027” and e.courseld =\nt.courseld\n\nand e.sem = “even” and e.year = 2010\n\nand t.sem = “even” and t.year = 2010\n\n—Pre¢f PB soot isd Kumar\n\nyl\n\ni}\nhy, A\n“ny\n\n\\ :"
+  },
+  {
+    "text": "and how we convert this operation. So, let us see how it works. So, P dot, so this is the",
+    "start": 906.52,
+    "end": 915.88,
+    "ocr_text": "Query Optimization — Example\n\n= Obtain the name and phone details of professors\nwho taught the courses taken by student with roll\nnumber “cso0sB027” in the even semester of 2010\n= Initial RA Expr: TT jemptd, pname, pphone ( Sy (P x te ))\nwhere\np: professor, t: teaching, e: enrollment\n\n0 = (e.rolINo = “CS08B027” and e.courseld =\nt.courseld\n\nand e.sem = “even” and e.year = 2010\n\nand t.sem = “even” and t.year = 2010\n\n—Pr¢f RSseon aad Kumar\n\nyl\n\n= V\nLT\n\n\"\n“un,\n\nis"
+  },
+  {
+    "text": "projection list and then sigma, theta, P dot, P cross P cross E, where theta is this entire.",
+    "start": 915.88,
+    "end": 921.8,
+    "ocr_text": "Query Optimization — Example\n\naI Ut p.empld, p.name, pphone ( 09 (p xtxe ))\n\n= p.empld, p.name, prone O93 ( P X S92 (t) x 5p (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rollkNo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = (p.empld = t.empld and e.courseld = t.courseld ) v\n\nProf P Sreenivasa Kumar 28\nDepartment of CS&E, IITTM ="
+  },
+  {
+    "text": "Now, what I have done here is that this theta that was a in the previous slide, I have",
+    "start": 922.44,
+    "end": 929.24,
+    "ocr_text": "Query Optimization — Example\n\naI Ut p.empld, p.name, pphone ( 09 (p xtxe ))\n\n= p.empld, p.name, prone O93 ( P X S92 (t) x 5p (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rollkNo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = (p.empld = t.empld and e.courseld = t.courseld ) v\n\nProf P Sreenivasa Kumar 28\nDepartment of CS&E, IITTM ="
+  },
+  {
+    "text": "you know regroup the predicates, luckily for us it is all conventions. So, what I have done is to",
+    "start": 931.16,
+    "end": 939.24,
+    "ocr_text": "Query Optimization — Example\n\n=| IE! p.empld, p.name, pphone ( 09 (p xtxe ))\n\n=I p.empld, p.name, nohonen 093 ( P X S92 (t) x 5p (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rollINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n03 = (p.emplId = t.empld and e.courseld = t.courseld ) q\n\nProf P Sreenivasa Kumar 28\nDepartment of CS&E, ITTM ="
+  },
+  {
+    "text": "group together the things that involve enrollment, all the conditions that are on the",
+    "start": 939.32,
+    "end": 946.84,
+    "ocr_text": "Query Optimization — Example\n\nUl p.empld, p.name, pphone ( 09 (p xtxe ))\n\n— p.empld, p.name, peanoreil 093 ( P X Soo (t) x 5p (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\n\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = (p.empld = t.empld and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n“Vn!\n\nf<\ner."
+  },
+  {
+    "text": "enrollment here, the conditions on the teaching relation here, P dot, E same as equal to E 1,",
+    "start": 946.84,
+    "end": 955.88,
+    "ocr_text": "Query Optimization — Example\n\n«Il p.empld, p.name, Perone 09 (p xtxe ))\n\n= 11 p.empld, p.name, pphonens 993 ( P X S92 (t) x“ 5p) (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 20]0)\n\n03 = (p.empld = t.empld and e.courseld = t.courseld ) v\naww»\n*Y\nProf P Sreenivasa Kumar 28 t\nDepartment of CS&E, IITTM mt"
+  },
+  {
+    "text": "P dot, E equal to P and then the other conditions, the remaining conditions have put it",
+    "start": 955.88,
+    "end": 960.44,
+    "ocr_text": "Query Optimization — Example\n\nat 16 p.empld, p.name, p-phone ( 09 (p xtxe ))\n\n= p.empld, p.name, nohorie O93 ( P X S92 (t) x 5p) (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = (p.emplId = t.empld and e.courseld = t.courseld )\n\n°\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\n“un!”\n\n) <\nIZ"
+  },
+  {
+    "text": "at P theta 3. So, theta 1, theta 2, theta 3 have broken down the same thing into this one.",
+    "start": 960.44,
+    "end": 967.72,
+    "ocr_text": "Query Optimization — Example\n\nat 16 p.empld, p.name, p-phone ( 09 (p xtxe ))\n\n= p.empld, p.name, nohorie O93 ( P X S92 (t) x 5p) (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = (p.emplId = t.empld and e.courseld = t.courseld )\n\n°\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\n“un!”\n\n) <\nIZ"
+  },
+  {
+    "text": "Now, after having done that, we know that it is sigma, you know, sigma, so if this is a",
+    "start": 967.72,
+    "end": 975.0,
+    "ocr_text": "Query Optimization — Example\n\ni p-empld, p.name, ae Oo (p xtxe ))\n\n— p.empld, p.name, phone 093 ( P X S92 (t) x 5p) (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rollINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = (p.emplId = t.empld and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar 28\nDepartment of CS&E, ITTM\n\nut!\n\n“un,\n\ner."
+  },
+  {
+    "text": "conjunction, then I can apply them in any order. So, I can now write this as theta 1 and theta 2",
+    "start": 975.0,
+    "end": 982.36,
+    "ocr_text": "Query Optimization — Example\n\ni p-empld, p.name, ae Oo (p xtxe ))\n\n— p.empld, p.name, phone 093 ( P X S92 (t) x 5p) (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rollINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = (p.emplId = t.empld and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar 28\nDepartment of CS&E, ITTM\n\nut!\n\n“un,\n\ner."
+  },
+  {
+    "text": "and theta 3, then having realized that this, you know, this theta 1 is actually applicable to",
+    "start": 982.36,
+    "end": 988.52,
+    "ocr_text": "Query Optimization — Example\n\n16 p.empld, p.name, peroue 09 (p xtxe ))\n\n=I p.empld, p.name, moreren 093 ( P X S92 (t) x 5p (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = (p.empld = t.empld and e.courseld = t.courseld ) g\nww\nad rif\nProf P Sreenivasa Kumar 28\nDepartment of CS&E, ITTM _"
+  },
+  {
+    "text": "enrollment, I can now kind of push it all the way to a speed, because this is what it is.",
+    "start": 988.52,
+    "end": 994.6,
+    "ocr_text": "Query Optimization — Example\n\namla p.empld, p.name, ohone | 09 (p xtxe ))\n\nIli p.empld, p.name, prohoreit 093 ( P X S92 (t) x 5p (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n03 = (p.emplId = t.empld and e.courseld = t.courseld ) v\n\nProf P Sreenivasa Kumar 28\nDepartment of CS&E, IITTM >"
+  },
+  {
+    "text": "So, this theta 1 is completely working on the E enrollment relation. So, I can now,",
+    "start": 995.16,
+    "end": 1004.52,
+    "ocr_text": "Query Optimization — Example\n\n=| 10 p.empld, p.name, oreret ser (p xtxe ))\n\n=I p.empld, p.name, pennotie | 093 ( P X S92 (t) x 5p (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = (p.emplId = t.emplId and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\ny\n\nly, AS /\n“ony!”"
+  },
+  {
+    "text": "so this I can take this theta 1 that is part of this theta and then push it all the way here,",
+    "start": 1005.24,
+    "end": 1011.4,
+    "ocr_text": "Query Optimization — Example\n\not EI p.empld, p.name, areca 09 (p xt x,€ ))\n\n=U p.empld, p.name, apnoea 093 ( P X S92 (t) x 5p) (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = (p.empld = t.empld and e.courseld = t.courseld ) |\n= UN\n¥ HT\nProf P Sreenivasa Kumar 28\nDepartment of CS&E, ITTM _"
+  },
+  {
+    "text": "you will give it that. And so similarly, I can push theta 2 to T, because that is completely",
+    "start": 1012.28,
+    "end": 1019.0,
+    "ocr_text": "Query Optimization — Example\n\not EI p.empld, p.name, areca 09 (p xt x,€ ))\n\n=U p.empld, p.name, apnoea 093 ( P X S92 (t) x 5p) (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = (p.empld = t.empld and e.courseld = t.courseld ) |\n= UN\n¥ HT\nProf P Sreenivasa Kumar 28\nDepartment of CS&E, ITTM _"
+  },
+  {
+    "text": "applicable to the relation T only. Even if you keep it here, we will actually form the cross",
+    "start": 1019.0,
+    "end": 1028.2,
+    "ocr_text": "Query Optimization — Example\n\n18) p.empld, p.name, pphone ( er) (p xtxe ))\n\nSl p.empld, p.name, noronien: 093 ( P X S92 (t) x 5p) (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010) ,\n03 = (p.emplId = t.empld and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\n/ 1\n“ony!\n\n{"
+  },
+  {
+    "text": "product and then I mean, I will do this selection right. So, instead I can now do this selection and",
+    "start": 1028.2,
+    "end": 1033.88,
+    "ocr_text": "Query Optimization — Example\n\n= 1h p.empld, p.name, pphone ( 09 (p xtxe ))\n\n=I p.empld, p.name, noone 093 ( P X S92 (t) x Oo \\(€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = (p.empld = t.empld and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\ny\n\n“a!\n\nf <\ner."
+  },
+  {
+    "text": "then do the cross product. The cross product and selection can be used in that way.",
+    "start": 1033.88,
+    "end": 1041.64,
+    "ocr_text": "Query Optimization — Example\n\n= 1h p.empld, p.name, pphone ( 09 (p xtxe ))\n\n=I p.empld, p.name, noone 093 ( P X S92 (t) x Oo \\(€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = (p.empld = t.empld and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\ny\n\n“a!\n\nf <\ner."
+  },
+  {
+    "text": "So, this is what we do. So, theta 3 of course, involves P, T, E and all that. So, it involves all",
+    "start": 1042.12,
+    "end": 1051.4,
+    "ocr_text": "Query Optimization — Example\n\napt p.empld, p.name, Teper 09 (p xtxe ))\n\n= p.empld, p.name, mohore 093 ( px So (t) x 5p) (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = (p.empld = t.empld and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\nIN /\na!”\n\n|.\nNS\n\"y"
+  },
+  {
+    "text": "the 3. So, I cannot do anything about that, I will keep it here for the moment.",
+    "start": 1051.4,
+    "end": 1055.08,
+    "ocr_text": "Query Optimization — Example\n\na 8 p.empld, p.name, p.phone ( 09 (p xtxe ))\n\n=U p.empld, p.name, mphone 093 ( P X S92 (t) x 5p (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = (p.emplId = t.empld and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\ny\n\n“an!”\n\n\\"
+  },
+  {
+    "text": "Now, in the next slide, actually I will actually break this into",
+    "start": 1059.64,
+    "end": 1062.76,
+    "ocr_text": "Query Optimization — Example\n\na Jel p-empld, p.name, satel 09 (p xtxe ))\n\n1 p.empld, p.name, nphoner 993 ( P X S92 (t) “s 5p (e) ) )\n\n°\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = (p.empld = t.emplId and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\ny\n\n“une!”\n\nf <\ner."
+  },
+  {
+    "text": "once that involve P T and the once that involve E T. So, I can then the one that is involving E and T,",
+    "start": 1063.32,
+    "end": 1072.76,
+    "ocr_text": "Query Optimization — Example\n\na Jel p-empld, p.name, satel 09 (p xtxe ))\n\n1 p.empld, p.name, nphoner 993 ( P X S92 (t) “s 5p (e) ) )\n\n°\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = (p.empld = t.emplId and e.courseld = t.courseld )\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\ny\n\n“une!”\n\nf <\ner."
+  },
+  {
+    "text": "I can actually push up to this right. Let me see. Now, let us break this theta 3 of the previous",
+    "start": 1072.76,
+    "end": 1085.32,
+    "ocr_text": "Query Optimization — Example\n\nIE! p.empld, p.name, spiteaeh er) (p xtxe ))\n\n=I p.empld, p.name, Pnoren 093 ( P X S92 (t) x“ 5p) (€) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\nand e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = (p.emplId = t.empld and e.courseld = t.courseld )\n\n°\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "slide into 2, which is P dot employee ID equals T dot employee ID and then E dot course ID equals",
+    "start": 1085.32,
+    "end": 1092.68,
+    "ocr_text": "Query Optimization — Example\n\nama p.empld, p.name, PenoTe 09 (p xtxe ))\n\n=I p.empld, p.name, ponene nt 093 ( P X So2 (t) x 5p) (€) ) )\n\n= p-empld, p.name, penoret 993 ( P X So4 (Gp. (t) ~ Oo\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n62 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.enspId)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\n‘\nv\n\n“ny!\n\n|\n\\"
+  },
+  {
+    "text": "T dot course ID. I have broken down that into further two predicates.",
+    "start": 1092.68,
+    "end": 1098.52,
+    "ocr_text": "Query Optimization — Example\n\nama p.empld, p.name, PenoTe 09 (p xtxe ))\n\n=I p.empld, p.name, ponene nt 093 ( P X So2 (t) x 5p) (€) ) )\n\n= p-empld, p.name, penoret 993 ( P X So4 (Gp. (t) ~ Oo\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n62 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.enspId)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\n‘\nv\n\n“ny!\n\n|\n\\"
+  },
+  {
+    "text": "So, having done that, I now realize that this portion of the expression has",
+    "start": 1103.8,
+    "end": 1115.24,
+    "ocr_text": "Query Optimization — Example\n\n0! p.empld, p.name, Sonora er) (p xtxe ))\n\n= p.empld, p.name, | O93 ( P X S92 (t) x 5p (€) ) )\n\n=i p.empld, p.name, penorent 993 ( P X So4 (Gp (t) a O\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rollINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\nJ a, |!\nult!\n\n=\n=\n\nvs\n=\n—"
+  },
+  {
+    "text": "E and T and so, any condition that is involving E and T can be pushed all the way up to this sub",
+    "start": 1115.4,
+    "end": 1120.6,
+    "ocr_text": "Query Optimization — Example\n\n= Ul p.empld, p.name, p.phone ( 09 (p xtxe ))\n\n=I p.empld, p.name, piphereik O93 ( P X S92 (t) x Oi (€)s) )\n\n= p.empld, p.name, penaren 093 ( P X So4 (Gp. (t) a O\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rollINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\nIN /!\n“Van!”\n\n\\"
+  },
+  {
+    "text": "expression right. So, that is what I will do. Theta 4 is having to do with E and T. So,",
+    "start": 1120.6,
+    "end": 1130.04,
+    "ocr_text": "Query Optimization — Example\n\n= Ul p.empld, p.name, p.phone ( 09 (p xtxe ))\n\n=I p.empld, p.name, piphereik O93 ( P X S92 (t) x Oi (€)s) )\n\n= p.empld, p.name, penaren 093 ( P X So4 (Gp. (t) a O\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rollINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\nIN /!\n“Van!”\n\n\\"
+  },
+  {
+    "text": "I will take that theta 4 and then push it all the way up to here. So, I have a new bracket now,",
+    "start": 1130.76,
+    "end": 1135.48,
+    "ocr_text": "Query Optimization — Example\n\naed p.empld, p.name, pphone ( 09 (p xtxe ))\n\n=I p.empld, p.name, mohonelt 993 (p Xx Oo (t) x 5p) (€) ) )\n\n= p.empld, p.name, pephoneit 093 ( P X So4 Corn (t) a O\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\nry f'\n\nut!\n\n“un,\n\n) <\nIZ"
+  },
+  {
+    "text": "sigma theta 4 here and then I apply it to this one. So, now you can see that",
+    "start": 1136.36,
+    "end": 1144.6,
+    "ocr_text": "Query Optimization — Example\n\n=| 10 p.empld, p.name, penone 09 (p xtxe ))\nSlt p.empld, p.name, nohore O93 ( P X S92 (t) x 5p) (€) ) )\n\n= il p.empld, p.name, erent 093 ( P X S94 (Gp9 (t) a Oy i(e)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = ( p.empld = t.empld) ‘\n\n04 = (e.courseld = t.courseld) HY\nProf P Sreenivasa Kumar 29 ;\n\nDepartment of CS&E, ITM —-"
+  },
+  {
+    "text": "where this selection conditions are going, they are going down to 3.",
+    "start": 1146.2,
+    "end": 1150.84,
+    "ocr_text": "Query Optimization — Example\n\noli p.empld, p.name, poner ( 09 (p KEXE y)\n\n= ll p.empld, p.name, Pphoned 093 ( P X S92 (t) x 5p) (€) ) )\n\n= 1 p.empld, p.name, peonereit 093 ( P X So4 (Gp, (t) a O\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rollINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "Okay. Now, this theta 3, which has P and T, has to remain here because this is involving P and",
+    "start": 1154.28,
+    "end": 1162.44,
+    "ocr_text": "Query Optimization — Example\n\noli p.empld, p.name, poner ( 09 (p KEXE y)\n\n= ll p.empld, p.name, Pphoned 093 ( P X S92 (t) x 5p) (€) ) )\n\n= 1 p.empld, p.name, peonereit 093 ( P X So4 (Gp, (t) a O\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rollINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "then something else. So, P and T and so, it has to do with it. Okay. So, I hope it is clear",
+    "start": 1162.44,
+    "end": 1171.48,
+    "ocr_text": "Query Optimization — Example\n\n<oH p.empld, p.name, pphone ( 09 (p xtxe y)\n= p.empld, p.name, nohoren 993 ( P X So (t) x Oo, (e) ) )\n\n= 1 p-empld, p.name, mere 093 ( P X S94 (Gp (t) a O\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n\n03 = ( p.empld = t.empld) y\n\n04 = (e.courseld = t.courseld) +\n\nProf P Sreenivasa Kumar 29 , |\nDepartment of CS&E, ITM ~|"
+  },
+  {
+    "text": "up to this. Right. Now, actually we can use this transformation that the cross product followed by,",
+    "start": 1171.56,
+    "end": 1184.28,
+    "ocr_text": "Query Optimization — Example\n\na BI p.empld, p.name, p-phone ( er) (p xtxe ))\n\n=I p.empld, p.name, nohone 093 ( P X S92 (t) “ 5p) (€) ) )\n\n=) p.empld, p.name, Perera 093 ( P X S94 (Gp. (t) a Oo,(€)) ) )\n\n°\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\ns/!\n\nut!\n\n“un\n\n) <\n2"
+  },
+  {
+    "text": "you know cross product followed by selection has to be replaced by joins basically.",
+    "start": 1185.56,
+    "end": 1191.72,
+    "ocr_text": "Query Optimization — Example\n\n> Jnl p.empld, p.name, pphone ( 09 (p xtxe ))\n\nlll p.empld, p.name, prohone O93 ( P X S92 (t) x 5p (€) ) )\n\n= 1 p.empld, p.name, ppnore 093 ( P X So4 (Gp. (t) - O\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\n29\n\n\\ fi\n\n“ant!\n\n{\n, 2"
+  },
+  {
+    "text": "Right. So, now we will do that. So, the cross product of two relations followed by a join",
+    "start": 1192.68,
+    "end": 1202.52,
+    "ocr_text": "Query Optimization — Example\n\n> Jnl p.empld, p.name, pphone ( 09 (p xtxe ))\n\nlll p.empld, p.name, prohone O93 ( P X S92 (t) x 5p (€) ) )\n\n= 1 p.empld, p.name, ppnore 093 ( P X So4 (Gp. (t) - O\\(€)) ) )\n\np: professor, t: teaching, e: enrollment\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\n29\n\n\\ fi\n\n“ant!\n\n{\n, 2"
+  },
+  {
+    "text": "can be replaced by a a followed by a selection can be replaced by a join.",
+    "start": 1202.52,
+    "end": 1208.44,
+    "ocr_text": "Query Optimization — Example\n\nsali p.empld, p.name, p.phone ( 99 (p xtxe ))\n= p.empld, p.name, p.phone (93 ( P X So (t) x Gp) (€) ) )\n=I p-empld, p.name, enor 093 ( P X 94 (Corr (t) * O\\(€)) ) )\n\n= p-empld, p.name, ppnore p P1193 (p(t) D864 O9\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n\n02 =(t.sem =“even” and t.year = 2010) ’\n\n03 = ( p.empld = t.empld) 3\n\n04 = (e.courseld = t.courseld) ie\nProf P Sreenivasa Kumar 30\nDepartment of CS&E, ITM ~}"
+  },
+  {
+    "text": "So, we will take this as the join condition. So, put the join operator here. So, theta 2,",
+    "start": 1209.4,
+    "end": 1214.36,
+    "ocr_text": "Query Optimization — Example\n\nIRI p.empld, p.name, Poroce 09 (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) * 5p) (e) ) )\n\n= 1 p.empld, p.name, penonett 093 ( P X So4 (Gp. (t) a O\\(€)) ) )\n\n= 1 p-empld, p.name, penne p 193 (Gox(t) D864 O9\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\n>\nmn!”\n\n/\n\"ny ln\n\n|\n\\"
+  },
+  {
+    "text": "a sigma theta 2 T, sigma theta 1 E will come as it is. Now, we have it between them, we have a",
+    "start": 1214.36,
+    "end": 1220.36,
+    "ocr_text": "Query Optimization — Example\n\nIRI p.empld, p.name, Poroce 09 (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) * 5p) (e) ) )\n\n= 1 p.empld, p.name, penonett 093 ( P X So4 (Gp. (t) a O\\(€)) ) )\n\n= 1 p-empld, p.name, penne p 193 (Gox(t) D864 O9\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM\n\n>\nmn!”\n\n/\n\"ny ln\n\n|\n\\"
+  },
+  {
+    "text": "join kind of join with this theta 4. Similarly, here for the result of this and the P,",
+    "start": 1220.84,
+    "end": 1227.32,
+    "ocr_text": "Query Optimization — Example\n\naI bl p.empld, p.name, pphone ( 09 (p xtxe ))\n\n=I p.empld, p.name, p.phone (93 ( P X So (t) * 5p) (e) ) )\n\n= Ml p.empld, p.name, meen 093 ( P X So4 (Gp. (t) a O\\(€)) ) )\n\n= 1 p-empld, p.name, p.phone ( p D193 (Op2(t) M4 O9\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n30"
+  },
+  {
+    "text": "I now apply the join and then write this as join theta 3. So, theta 3 is P dot m by E i equals",
+    "start": 1228.12,
+    "end": 1238.76,
+    "ocr_text": "Query Optimization — Example\n\nI p.empld, p.name, peroneal 09 (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x Oo (€) ) )\n\n=i p.empld, p.name, pphone & 993 ( P X So4 Corn (t) ~ O\\(€)) ) )\n\n= 1 p-empld, p.name, Pena p P93 (p(t) D864 O9\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n§2 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nwt!\n\n“un,\n\nf <\ner."
+  },
+  {
+    "text": "T, P dot m by D, which is applicable here and then theta 4 is E dot cos i equals T dot cos i",
+    "start": 1238.76,
+    "end": 1247.64,
+    "ocr_text": "Query Optimization — Example\n\n~ Jil p-empld, p.name, penonen 09 (p xtxe ))\n21 p.empld, p.name, p.phone (93 ( P X So (t) x Op) (€) ) )\n= 1 p-empld, p.name, mena S93 ( P X So4 (Gp. (t) a O\\(€)) ) )\n\n=f p-empld, p.name, pene p Mos (p(t) D864 O\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n\n§2 =(t.sem =“even” and t.year = 2010)\n\n03 = ( p.empld = t.empld) v\n\n04 = (e.courseld = t.courseld) ea\nProf P Sreenivasa Kumar 30 } /\nDepartment of CS&E, IITTM aa"
+  },
+  {
+    "text": "so, it is appropriately positioned. So, we will get that.",
+    "start": 1247.72,
+    "end": 1254.6,
+    "ocr_text": "Query Optimization — Example\n\ni p.empld, p.name, poner 09 (p xtxe ))\n\ni p.empld, p.name, p.phone (93 ( P X So (t) x 5p (e) ) )\n\n= 1h p-empld, p.name, penera 093 ( P X So4 (Corn (t) a Oo\\(€)) ) )\n\n= p-empld, p.name, pphonen p D193 (p(t) D4 O9\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n30\n\n‘\n\nS v > ‘\nTTL\n\n/\n\"Ny\n\nff\n\n{/\n\n|\n\\"
+  },
+  {
+    "text": "So, this transformation is actually in a simple algebraic right. So, the cross product followed by",
+    "start": 1258.76,
+    "end": 1263.0,
+    "ocr_text": "Query Optimization — Example\n\non p.empld, p.name, oboe 09 (p xtxe ))\n\n=I p.empld, p.name, p.phone (93 ( P X So (t) x Gp) (€) ) )\n\n=f p.empld, p.name, Penerest 093 ( px O94 S92 (t) os Oo\\(€)) ) )\n\n=1 p-empld, p.name, Pephonel p D193 (Op(t) D864 O9\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "selection can be replaced by join basically that photo of that.",
+    "start": 1264.84,
+    "end": 1268.52,
+    "ocr_text": "Query Optimization — Example\n\non p.empld, p.name, oboe 09 (p xtxe ))\n\n=I p.empld, p.name, p.phone (93 ( P X So (t) x Gp) (€) ) )\n\n=f p.empld, p.name, Penerest 093 ( px O94 S92 (t) os Oo\\(€)) ) )\n\n=1 p-empld, p.name, Pephonel p D193 (Op(t) D864 O9\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "So, now that we have it, we will now focus on the projections, we will focus on the projections.",
+    "start": 1268.52,
+    "end": 1281.96,
+    "ocr_text": "Query Optimization — Example\n\ni p.empld, p.name, ponone 09 (p xtxe ))\n= p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (€) ) )\n=iE p.empld, p.name, epnnne ( 093 ( P X S94 (Gp. (t) ~ O\\(€)) ) )\n\n= p-empld, p.name, perare p 193 (Op(t) D864 O\\(€)) )\n\n01 = (e.rollINo = “CS08B027” and\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar 30\nDepartment of CS&E, ITTM\n\n“in!\n\n) <\nIz"
+  },
+  {
+    "text": "The projections, in fact, what is it that is required of",
+    "start": 1286.12,
+    "end": 1294.12,
+    "ocr_text": "Query Optimization — Example\n\nol p.empld, p.name, penone 09 (p xtxe y)\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (€) ) )\n\nall p.empld, p.name, pene 093 ( P X So4 (Gp. (t) x Oo\\(€)) ) )\n\n= p-empld, p.name, penne p D193 (Op (t) D864 5oi(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n30\n\nV\ny\n\n“in!\n\nfi <\nLz"
+  },
+  {
+    "text": "enrollment? In theta 4, what are the conditions that are there? Co-sidery and co-sidery here also.",
+    "start": 1294.36,
+    "end": 1305.0,
+    "ocr_text": "Query Optimization — Example\n\nol p.empld, p.name, penone 09 (p xtxe y)\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (€) ) )\n\nall p.empld, p.name, pene 093 ( P X So4 (Gp. (t) x Oo\\(€)) ) )\n\n= p-empld, p.name, penne p D193 (Op (t) D864 5oi(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n30\n\nV\ny\n\n“in!\n\nfi <\nLz"
+  },
+  {
+    "text": "So, you basically need co-sidery and from what is theta 1?",
+    "start": 1305.88,
+    "end": 1312.84,
+    "ocr_text": "Query Optimization — Example\n\nat p.empld, p.name, ayant 09 (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x Op (€) ) )\n\n=U p.empld, p.name, pepnoneit 093 ( P X So4 (Gp. (t) a O\\(€)) ) )\n\n=! p-empld, p.name, pephonen p 193 (p(t) D864 5oi(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n30\n\nff\n\nea!\n\n/\n\"Ny \"1\n\n|\n\\"
+  },
+  {
+    "text": "theta 1 has conditions on enrollment and semester year. So, after you do this condition,",
+    "start": 1312.84,
+    "end": 1323.64,
+    "ocr_text": "Query Optimization — Example\n\nat p.empld, p.name, ayant 09 (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x Op (€) ) )\n\n=U p.empld, p.name, pepnoneit 093 ( P X So4 (Gp. (t) a O\\(€)) ) )\n\n=! p-empld, p.name, pephonen p 193 (p(t) D864 5oi(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n30\n\nff\n\nea!\n\n/\n\"Ny \"1\n\n|\n\\"
+  },
+  {
+    "text": "after you do apply the selection condition, what should it be what should be project here?",
+    "start": 1324.84,
+    "end": 1329.56,
+    "ocr_text": "Query Optimization — Example\n\n= Bt p.empld, p.name, Phone « 09 (p xtxe ))\n\n=U p.empld, p.name, p.phone (93 ( P X So (t) x Op) (€) ) )\n\n=U p.empld, p.name, ponent 093 ( P X So4 (Gp (t) ~ O\\(€)) ) )\n\n= 0 p-empld, p.name, prphonent p D193 (p(t) D864 O\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n30"
+  },
+  {
+    "text": "Because the only thing that is being used here is co-sidery.",
+    "start": 1333.32,
+    "end": 1336.2,
+    "ocr_text": "Query Optimization — Example\n\napn p.empld, p.name, ponone 09 (p KEKE y)\n\n=I p.empld, p.name, p.phone (93 ( P X So (t) x 5p)(e) ) )\n\n=i p.empld, p.name, pphocel’ 093 ( P X So4 (Gp. (t) a O\\(€)) ) )\n\n= p-empld, p.name, menor p D193 (p(t) D864 59\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n30"
+  },
+  {
+    "text": "So, that is what needs to be projected after doing this selection. So, we will work that out.",
+    "start": 1337.16,
+    "end": 1343.64,
+    "ocr_text": "Query Optimization — Example\n\ni p.empld, p.name, popone\\ 09 (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x Op) (€) ) )\n\n= p.empld, p.name, eenaren 093 ( P X So4 (Gp (t) x O\\(€)) ) )\n\n= p-empld, p.name, Poneman p D193 (p(t) D864 Go\\(€)) )\n\n01 = (e.rolINo = “CS08B027” and\n\ne.sem = “even” and e.year = 2010 )\n02 =(t.sem =“even” and t.year = 2010)\n03 = ( p.empld = t.empld)\n\n04 = (e.courseld = t.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM\n\n30\n\n,\ny\n\nNi ‘\n‘in!\n\n|\n\\\n\n‘\n\ndy\n\ny\n/"
+  },
+  {
+    "text": "So, now you see I have introduced projections, basically with the idea of saying that",
+    "start": 1345.64,
+    "end": 1351.96,
+    "ocr_text": "Query Optimization — Example\n\n\" II, empld, p.name, p.phone ( S9 (Pp x t x € ))\n= IT, empld, pname, p.phone (S93 (P X gp (t) x G)(€) ) )\n= IT, emptd, p.name, p.phone ( 593 ( P X Go4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gp2(t) Mp4 Sgi(€)) )\n\n= (II empId,name,phone (p) D193 Meret (UU comes empld O92 (t)\n\nM64 NOS rte 961 (e)) )\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n02 = (t.sem=“even” and t.year= 2010) nid\n03 = ( p.empId = empld) 04 = (t.courseld = e.courseld) oy fs\n+i)\nProf P Sreenivasa Kumar 31 \\ |\nDepartment of CS&E, IITTM —y"
+  },
+  {
+    "text": "don't carry any attitude that is not going to be necessary upward in between the simple principle.",
+    "start": 1352.92,
+    "end": 1360.28,
+    "ocr_text": "Query Optimization — Example\n\n\" II, empld, p.name, p.phone ( S9 (Pp x t x € ))\n= IT, empld, pname, p.phone (S93 (P X gp (t) x G)(€) ) )\n= IT, emptd, p.name, p.phone ( 593 ( P X Go4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gp2(t) Mp4 Sgi(€)) )\n\n= (II empId,name,phone (p) D193 Meret (UU comes empld O92 (t)\n\nM64 NOS rte 961 (e)) )\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n02 = (t.sem=“even” and t.year= 2010) nid\n03 = ( p.empId = empld) 04 = (t.courseld = e.courseld) oy fs\n+i)\nProf P Sreenivasa Kumar 31 \\ |\nDepartment of CS&E, IITTM —y"
+  },
+  {
+    "text": "If you are at some lead and it is producing some intermediate results, don't carry any attributes",
+    "start": 1361.24,
+    "end": 1367.16,
+    "ocr_text": "Query Optimization — Example\n\n\" II, empld, p.name, p.phone ( S9 (Pp x t x € ))\n= IT, empld, pname, p.phone (S93 (P X Sg (t) x Gp)(€) ) )\n= IT, empld, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x Ogi (€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Go2(t) Mg4 Sgi(€)) )\n\n= (II empId,name,phone (p) D193 Bereta (Teourseta, empld O92 (t)\nD864 TTeoursetdga1 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n62 =(t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = emplId) 04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar 31\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "upwards in the tree unless it is going to be useful for the tree in upwards.",
+    "start": 1367.96,
+    "end": 1371.88,
+    "ocr_text": "Query Optimization — Example\n\niat p-empld, p.name, pphone ( 09 (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (€) ) )\n=H p-empld, p.name, prprorent p D193 (p(t) D864 O\\(€)) )\nMo, I\n\n62 =(t.sem=“even” and t.year= 2010)\n03 = ( p.empId = empld)\n\n04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar\n\n=i p.empld, p.name, ee 093 ( P X So4 (Gp. (t) as O\\(€)) ) )\n\n= (II empId,name,phone (p) D493 Ligeia (Teourseta, empld O92 (t)\n\ncourselde°61 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\nDepartment of CS&E, ITM\n\nfi’\n\nNears!\n\n‘y\n\ni"
+  },
+  {
+    "text": "So, theta 1 is all this. So, you apply it to enrollment. So, the joint connection here requires co-sidery.",
+    "start": 1374.28,
+    "end": 1383.08,
+    "ocr_text": "Query Optimization — Example\n\niat p-empld, p.name, pphone ( 09 (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (€) ) )\n=H p-empld, p.name, prprorent p D193 (p(t) D864 O\\(€)) )\nMo, I\n\n62 =(t.sem=“even” and t.year= 2010)\n03 = ( p.empId = empld)\n\n04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar\n\n=i p.empld, p.name, ee 093 ( P X So4 (Gp. (t) as O\\(€)) ) )\n\n= (II empId,name,phone (p) D493 Ligeia (Teourseta, empld O92 (t)\n\ncourselde°61 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\nDepartment of CS&E, ITM\n\nfi’\n\nNears!\n\n‘y\n\ni"
+  },
+  {
+    "text": "So, only project co-sidery that is all you need.",
+    "start": 1383.16,
+    "end": 1386.04,
+    "ocr_text": "Query Optimization — Example\n\ni p.empld, p.name, Popoten 09 (p xtxe ))\n\n= p-empld, p.name, Pepnoreit p D193 (p(t) D864 O9\\(€)) )\n\nPty HI\n\ncourseld 961\n\n02 =(t.sem=“even” and t.year= 2010)\n03 = ( p.empId = empld)\n\n04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar\n\n— p.empld, p.name, p.phone (93 ( P X So (t) * Op (€) ) )\n\n=i p.empld, p.name, Peneren 093 ( P X S94 (Gp. (t) ~ O\\(€)) ) )\n\n= (II empId,name,phone (p) D193 Uber (Teourseta, empld O92 (t)\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n(e)) )\n\nDepartment of CS&E, ITTM\n\n‘\nV\ny\nt\n\n“Vn!\n\n|\n\\"
+  },
+  {
+    "text": "And here from the teaching, you require not only co-sidery which is being used here in theta 4,",
+    "start": 1389.0,
+    "end": 1398.68,
+    "ocr_text": "y\n\nQuery Optimization — Example\n\nYS f\n“Van!\n\n|\n\\\n\nTI, empld, p.name, p.phone ( 89 (Pp x t x € ))\n\n=I], empld, pname, p.phone (S93 (P X Gg (t) x Gp)(€) ) )\n\n= IT, emptd, p.name, p.phone ( 593 ( P X Go4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Go2(t) Mp4 Ggi(€)) )\n\n= (II empId,name,phone (p) D193 1a ean (Teourseta, empld O92 (t)\n\nMog Bonet 691 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n02 =(t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = emplId) 04 = (t.courseld = e.courseld) 4\nProf P Sreenivasa Kumar 2\n\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "but you also need employee ID because that is what is being used. T.e.e.",
+    "start": 1398.68,
+    "end": 1402.04,
+    "ocr_text": "Query Optimization — Example\n\n\" II, empld, p.name, p.phone ( Sp (Pp x t x € ))\n= IT | empld, pname, p.phone (S93 (P X Gg (t) x Gp)(€) ) )\n= IT, empld, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gg2(t) Mg4 Ggi(€)) )\n\n= (II empId,name,phone (p) D193 Ween (Teourseta, empld O92 (t)\n64 eemeerd O91 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n62 =(t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = empld) 04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar 31\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "ID is coming somewhere. theta 3 is coming as. Yeah.",
+    "start": 1402.04,
+    "end": 1407.0,
+    "ocr_text": "Query Optimization — Example\n\n\" II, empld, p.name, p.phone ( Sp (Pp x t x € ))\n= IT | empld, pname, p.phone (S93 (P X Gg (t) x Gp)(€) ) )\n= IT, empld, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gg2(t) Mg4 Ggi(€)) )\n\n= (II empId,name,phone (p) D193 Ween (Teourseta, empld O92 (t)\n64 eemeerd O91 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n62 =(t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = empld) 04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar 31\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "Okay. Employee ID is coming up. So, you project co-sidery and employee ID from teaching.",
+    "start": 1407.96,
+    "end": 1415.0,
+    "ocr_text": "Query Optimization — Example\n\ni p-empld, p.name, ponore 09 (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p )(e) ) )\n=I p.empld, p.name, peneren 093 ( P X So4 (Gp. (t) 7S O\\(€)) ) )\n= p-empld, p.name, ere p D193 (p(t) D864 O\\(€)) )\n\n= (II empId,name,phone (p) D193 eepta (USursera, empld O92 (t)\n\nMog Teoursetd 991 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n§2 =(t.sem=“even” and t.year= 2010)\n\n63 = ( p.emplId = empld)\n\n04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n‘\nV\ny\nt\n\n“nny!\n\nie\n\\"
+  },
+  {
+    "text": "And then you have that appropriate intermediate result. And then from there actually,",
+    "start": 1417.0,
+    "end": 1421.64,
+    "ocr_text": "Query Optimization — Example\n\nSl emnidenamennenens (Ook Dew ac)))\n=I] | empld, pname, p.phone (S93 (P X gp (t) x G9)(€) ) )\n= II, emptd, p.name, p.phone ( 593 ( P X Go4 (Gp (t) x Ogi (€)) ) )\n=I] | emptd, pname, p.phone ( P 93 (Gp2(t) Mp4 Ggi(€)) )\n\n= (II empId,name,phone (p) D193 Me npid (Teourseta, empld O92 (t)\n64 liana O91 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n02 = (t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = emplId) 04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar aii\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "you after doing this joint, you only need for the employee ID because that is what is being used",
+    "start": 1422.52,
+    "end": 1430.6,
+    "ocr_text": "Query Optimization — Example\n\nSl emnidenamennenens (Ook Dew ac)))\n=I] | empld, pname, p.phone (S93 (P X gp (t) x G9)(€) ) )\n= II, emptd, p.name, p.phone ( 593 ( P X Go4 (Gp (t) x Ogi (€)) ) )\n=I] | emptd, pname, p.phone ( P 93 (Gp2(t) Mp4 Ggi(€)) )\n\n= (II empId,name,phone (p) D193 Me npid (Teourseta, empld O92 (t)\n64 liana O91 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n02 = (t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = emplId) 04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar aii\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "here at V. Okay. So, and then from for V, you can keep all the other things because the employee",
+    "start": 1430.84,
+    "end": 1439.56,
+    "ocr_text": "Query Optimization — Example\n\n\" II, empld, p.name, p.phone ( S9 (Pp x t x € ))\n=I | empld, pname, p.phone (S93 (P X gp (t) x Gp)(€) ) )\n= IT, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9)(€)) ) )\n= TI, empld, p.name, p.phone ( P 93 (Go2(t) Mg4 Ggi(€)) )\n\n= (II empId,name,phone (p) D193 ll emnpid (Teourseta, empld O92 (t)\n64 Werecers O91 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n62 =(t.sem=“even” and t.year= 2010)\n03 = ( p.empId = empld) 04 = (t.courseld = e.courseld) > &\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "ID, main phone, all of them are applicable to professor in relation to keep these here.",
+    "start": 1439.56,
+    "end": 1446.2,
+    "ocr_text": "Query Optimization — Example\n\n= II, empld, p.name, p.phone ( Sg (p x t x € ))\n=I, empld, pname, p.phone (S93 (P X gp (t) x G)(€) ) )\n= IT, empld, p.name, p.phone ( 593 ( P X Go4 (Gp (t) x O9i(€)) ) )\n= TI, emptd, p.name, p.phone ( P 93 (Go2(t) Mg4 Ggi(€)) )\n\n= (II empId,name,phone {p) D493 Mess (Teourseta, empld O92 (t)\nP64 Witereera O91 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = emplId) 04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar aii\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "So, this is how we will transform and push the projections also down as much as possible into",
+    "start": 1446.2,
+    "end": 1454.76,
+    "ocr_text": "Query Optimization — Example\n\n\" II, empld, p.name, p.phone ( S9 (Pp x t x € ))\n= IT, empld, pname, p.phone (S93 (P X Sp (t) x Gp)(€) ) )\n= IT, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Go2(t) M4 Sgi(€)) )\n\n= (II Sreniciame snore (p) D193 I erpra (Teourseta, empld O92 (t)\nD864 DO eereer O91 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n02 = (t.sem=“even” and t.year= 2010)\n03 = ( p.empId = empld) 04 = (t.courseld = e.courseld) a fs\n~~\nt\nProf P Sreenivasa Kumar 31 ’\nDepartment of CS&E, ITTM ‘ Y"
+  },
+  {
+    "text": "the into the towards the leaves.",
+    "start": 1454.76,
+    "end": 1457.4,
+    "ocr_text": "Query Optimization — Example\n\n\" II, empld, p.name, p.phone ( S9 (Pp x t x € ))\n= IT, empld, pname, p.phone (S93 (P X Sp (t) x Gp)(€) ) )\n= IT, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Go2(t) M4 Sgi(€)) )\n\n= (II Sreniciame snore (p) D193 I erpra (Teourseta, empld O92 (t)\nD864 DO eereer O91 (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n02 = (t.sem=“even” and t.year= 2010)\n03 = ( p.empId = empld) 04 = (t.courseld = e.courseld) a fs\n~~\nt\nProf P Sreenivasa Kumar 31 ’\nDepartment of CS&E, ITTM ‘ Y"
+  },
+  {
+    "text": "Okay. So, of course, I am illustrating the algorithm through the through an example only,",
+    "start": 1461.4,
+    "end": 1468.92,
+    "ocr_text": "Query Optimization — Example\n\nae ennidtnnaneny prone @ Ook De aice))\n= IT | empld, pname, p.phone (S93 ( P X Sg (t) x Gp)(€) ) )\n= II, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9i(€)) ) )\n=I] , empld, p.name, p.phone ( P 93 (Gp2(t) Mp4 Spi (€)) )\n\n= (II empId,name,phone (p) D193 We erpra (Teourseta, empld O92 (t)\n7 P64 |e O91 (e)) )\n\n01 = (e.rollINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = empld) 04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar 31\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "but I just want to get you get the spirit behind the process. So, basically we will avoid carrying",
+    "start": 1468.92,
+    "end": 1478.84,
+    "ocr_text": "Query Optimization — Example\n\ni p.empld, p.name, pphone er) (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (€) ) )\n\n=. p-empld, p.name, ee p D193 (p(t) D864 O9\\(€)) )\n\n02 =(t.sem=“even” and t.year= 2010)\n03 = ( p.empId = empld)\n\n04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar\n\n= p.empld, p.name, eenerel 093 ( P X So4 (Gp. (t) ~ O\\(€)) ) )\n\n= (II empId,name,phone (p) D493 Nena (Teourseta, empld O92 (t)\n\n° M4 eee er (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\nDepartment of CS&E, ITTM\n\nuf!\n\n“inst!\n\n{\nIz"
+  },
+  {
+    "text": "unnecessary attributes upwards in the in the tree and then use projections to reduce the",
+    "start": 1478.84,
+    "end": 1486.68,
+    "ocr_text": "Query Optimization — Example\n\nSl ennidty name phone (Oak Dra acr))\n=I], empld, pname, p.phone (S93 (P X Sg (t) x Gp)(€) ) )\n= IT |, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9i(€)) ) )\n=I], emptd, p.name, p.phone ( P 93 (Go2(t) Mg4 Ggi(€)) )\n\n= (II empId,name,phone (p) D493 Deepa (Teourseta, empld O92 (t)\nP64 Wrest O91 (e)) )\n\n°\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = emplId) 04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar 31\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "the sizes, the widths of the couples that we are going to carry.",
+    "start": 1487.64,
+    "end": 1492.04,
+    "ocr_text": "Query Optimization — Example\n\n= II, empld, p.name, p.phone ( S9 (Pp x t x € ))\n=I], empld, pname, p.phone (S93 (P X gp (t) x Gp)(€) ) )\n= II, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x G9) (€)) ) )\n= TI, emptd, p.name, p.phone ( P 93 (Go2(t) Mp4 Sgi(€)) )\n\n= (II empId,name,phone (p) D193 deat (Teourseta, empld O92 (t)\n64 ieee d Sor (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = emplId) 04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar 31\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "Okay. So, this is how the find this is now you cannot do anything more on this particular",
+    "start": 1494.68,
+    "end": 1501.64,
+    "ocr_text": "Query Optimization — Example\n\n= II, empld, p.name, p.phone ( S9 (Pp x t x € ))\n=I], empld, pname, p.phone (S93 (P X gp (t) x Gp)(€) ) )\n= II, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x G9) (€)) ) )\n= TI, emptd, p.name, p.phone ( P 93 (Go2(t) Mp4 Sgi(€)) )\n\n= (II empId,name,phone (p) D193 deat (Teourseta, empld O92 (t)\n64 ieee d Sor (e)) )\n\n01 = (e.rolINo = “CS08B027” and e.sem = “even” and e.year = 2010 )\n\n02 =(t.sem=“even” and t.year= 2010)\n\n03 = ( p.empld = emplId) 04 = (t.courseld = e.courseld)\n\nProf P Sreenivasa Kumar 31\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "algebraic expression. So, this is the final expression that we have. Now, we have",
+    "start": 1502.2,
+    "end": 1507.8,
+    "ocr_text": "Cost-based Optimization\n\ni p.empld, p.name, Ronee er) (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (€) ) )\n\n=I, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x Ooi (€)) ) )\n\n= II, emptd, p.name, p.phone ( P 93 (Gg (t) o4 G9; (€)) )\n\n= (ll ragihrmoen nd) Gig IW nae (Ul eoresthcennseneten Oh\nPq [eourseta Fa1 (€)) )\n\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITM\n\n'\n\nAS |\n“in!\n\n( -\n\\"
+  },
+  {
+    "text": "to find out how this joint has can be evaluated, how this joint can be evaluated,",
+    "start": 1509.16,
+    "end": 1516.28,
+    "ocr_text": "Cost-based Optimization\n\n\" IT, empld, p.name, pphone ( Sp (p x t x € ))\n= IT | empld, pname, p.phone (S93 (P X Gg (t) x Gp)(€) ) )\n= IT, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x Ogi (€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gp (t) o4 G9; (€)) )\n\na (II empld,name,phone(P) Mp3 Mest (Heourseta, emplId O92 (t)\nDog Wsmese S91 (e)) }\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins y\nand choose the plan with least estimated cost ae\n\nProf P Sreenivasa Kumar 32 \\ |\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "and how this is a joint can be evaluated, find out the methods for evaluating these things.",
+    "start": 1517.48,
+    "end": 1524.52,
+    "ocr_text": "Cost-based Optimization\n\ni p-empld, p.name, Potone | ser) (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x Op) (€) ) )\n\n= IT, empld, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9i(€)) ) )\n\n= II, emptd, p.name, p.phone ( P 93 (Gg (t) o4 59; (€)) )\n\n= (I emptdname,phone(P) ox Uempra (eoursetd, emptd P02 (t)\nPq [eourseta Fai (€)) )\n\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, IITM\n\n'\n\naX |\n‘a!\n\nie\n\\"
+  },
+  {
+    "text": "And then. So, what you basically also do is while you are trying to prepare the input for the",
+    "start": 1525.64,
+    "end": 1535.32,
+    "ocr_text": "Cost-based Optimization\n\n= 1h p.empld, p.name, apparel’ 09 (p xtxe ))\n\n=U p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (e) ) )\n\n=I p.empld, p.name, mererecl 093 ( P X S94 (Gp. (t) a O\\(€)) ) )\n\n= p-empld, p.name, prpronet p 193 (O99 (t) Dh 64 991 (e)) )\n\n= (II empld,name,phone(P) D193 ernest (Heoursetd, empld O92 (t)\n\nD194 jiiesn 961 (e)) }\n\n°\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITM"
+  },
+  {
+    "text": "join, input for the join, you will read in this relation, right. So, you have to read this",
+    "start": 1535.32,
+    "end": 1541.64,
+    "ocr_text": "Cost-based Optimization\n\ni p.empld, p.name, pphone ( er) (p xtxe »))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x Gp) (€) ) )\n=i p.empld, p.name, ere 093 ( P X So4 (Corn (t) ~ Oo \\(€)) ) )\n=f. p-empld, p.name, menoret p D193 Corr (t) D864 991 (e)) )\n\n= (II empld,name,phone(P) bd 93 Nerve (eourseta, emplId O92 (t)\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\n\nD154 hess 991 (e)) J\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nDepartment of CS&E, IITTM\n\n'\n\nIN /\n“an!\n\n\\\nIZ"
+  },
+  {
+    "text": "in order to prepare. So, actually what you do is you combine all these things into into an",
+    "start": 1542.6,
+    "end": 1547.88,
+    "ocr_text": "Cost-based Optimization\n\ni p.empld, p.name, pphone ( er) (p xtxe »))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x Gp) (€) ) )\n=i p.empld, p.name, ere 093 ( P X So4 (Corn (t) ~ Oo \\(€)) ) )\n=f. p-empld, p.name, menoret p D193 Corr (t) D864 991 (e)) )\n\n= (II empld,name,phone(P) bd 93 Nerve (eourseta, emplId O92 (t)\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\n\nD154 hess 991 (e)) J\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nDepartment of CS&E, IITTM\n\n'\n\nIN /\n“an!\n\n\\\nIZ"
+  },
+  {
+    "text": "operation, where as you are reading the records, you will apply this election function, pick up the",
+    "start": 1547.88,
+    "end": 1554.04,
+    "ocr_text": "Cost-based Optimization\n\n= II ,, empld, p.name, p.phone ( O9 (Pp x t x € ))\n=I] | empld, pname, p.phone (S93 (P X Gg (t) x Gp)(€) ) )\n= TT, empld, p.name, p.phone ( 593 ( P X Go4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gg (t) o4 59; (€)) )\n\n= (II empld,name,phone(P) P1193 Where (Heourseta, emplId O92 (t)\nP64 Geereera O91 (¢)) J\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins 7\n\nand choose the plan with least estimated cost %\n\nProf P Sreenivasa Kumar 32 \\ |\nDepartment of CS&E, ITTM ~"
+  },
+  {
+    "text": "attribute and then prepare the result. So, you combine and then pipeline the.",
+    "start": 1554.04,
+    "end": 1560.12,
+    "ocr_text": "Cost-based Optimization\n\n= II ,, empld, p.name, p.phone ( O9 (Pp x t x € ))\n=I] | empld, pname, p.phone (S93 (P X Gg (t) x Gp)(€) ) )\n= TT, empld, p.name, p.phone ( 593 ( P X Go4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gg (t) o4 59; (€)) )\n\n= (II empld,name,phone(P) P1193 Where (Heourseta, emplId O92 (t)\nP64 Geereera O91 (¢)) J\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins 7\n\nand choose the plan with least estimated cost %\n\nProf P Sreenivasa Kumar 32 \\ |\nDepartment of CS&E, ITTM ~"
+  },
+  {
+    "text": "So, obviously it does not make sense to first, you know, apply this election condition,",
+    "start": 1561.16,
+    "end": 1565.96,
+    "ocr_text": "Cost-based Optimization\n\n= Nel p.emplId, p.name, ape 09 (p xtxe ))\n\n=\" p.empld, p.name, p.phone (93 ( P X So (t) ~ Op) (e) ) )\n\n= p.empld, p.name, Pera 093 ( P X So4 (Gp (t) 78 O\\(€)) ) )\n\n= p-empld, p.name, Prenaren p D193 (O99 (t) D864 991 (e)) )\n\n= (II empld,name,phone(P) Mp3 Tempra (Heoursetad, emplId O92 (t)\n\nD164 Toursetd 961 (e)) }\n\n°\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "write it back to the list and then you know and then later on do. So, what you do here is you",
+    "start": 1566.2,
+    "end": 1572.28,
+    "ocr_text": "Cost-based Optimization\n\nNX /\n“nw!”\n\nYl p.empld, p.name, ponerse 09 (p xtxe y)\n\n\\\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (e) ) )\n\n= 1 p.empld, p.name, erent 093 ( P X So4 (Gp. (t) Z< Oo\\(€)) ) )\n= p-empld, p.name, erenore p D193 Corr (t) D864 991 (e)) )\n\n= (II empld,name,phone(P) bd 93 Merete (eoursetd, emplId O92 (t)\n\nD194 reer Pol (e)) }\n\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nVi\n~\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nv\ny\n'"
+  },
+  {
+    "text": "also use make use of pipeline idea. So, once you start reading records, you see what are all",
+    "start": 1572.28,
+    "end": 1578.92,
+    "ocr_text": "Cost-based Optimization\n\nNX /\n“nw!”\n\nYl p.empld, p.name, ponerse 09 (p xtxe y)\n\n\\\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (e) ) )\n\n= 1 p.empld, p.name, erent 093 ( P X So4 (Gp. (t) Z< Oo\\(€)) ) )\n= p-empld, p.name, erenore p D193 Corr (t) D864 991 (e)) )\n\n= (II empld,name,phone(P) bd 93 Merete (eoursetd, emplId O92 (t)\n\nD194 reer Pol (e)) }\n\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nVi\n~\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\nv\ny\n'"
+  },
+  {
+    "text": "things that can be done with the records and then do them all together. Do them all together",
+    "start": 1578.92,
+    "end": 1584.12,
+    "ocr_text": "Cost-based Optimization\n\niat p.empld, p.name, pobone 09 (p xtxe y)\n\n— p.empld, p.name, p.phone (93 ( P X So (t) * 5p) (e) ) )\n\n= IT, empld, p.name, p.phone ( 593 ( P X Sp4 (Gp (t) x Ogi (€)) ) )\n\n=I, emptd, p.name, p.phone ( P 93 (Gg (t) o4 G9; (€)) )\n\n= (TT emptaname,phone(P) 93 Tempra Ceourseta, empld P92 (t)\nPo4 [eourseta S91 62) )\n\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, IITM\n\nU\n\nAN |\n“inn!\n\n\\"
+  },
+  {
+    "text": "and then prepare the results. So, once you are prepared this results, probably",
+    "start": 1584.76,
+    "end": 1589.56,
+    "ocr_text": "Cost-based Optimization\n\niat p.empld, p.name, pobone 09 (p xtxe y)\n\n— p.empld, p.name, p.phone (93 ( P X So (t) * 5p) (e) ) )\n\n= IT, empld, p.name, p.phone ( 593 ( P X Sp4 (Gp (t) x Ogi (€)) ) )\n\n=I, emptd, p.name, p.phone ( P 93 (Gg (t) o4 G9; (€)) )\n\n= (TT emptaname,phone(P) 93 Tempra Ceourseta, empld P92 (t)\nPo4 [eourseta S91 62) )\n\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, IITM\n\nU\n\nAN |\n“inn!\n\n\\"
+  },
+  {
+    "text": "as an intermediate relation, then you also do this same thing. Then you have two essentially two",
+    "start": 1590.44,
+    "end": 1595.96,
+    "ocr_text": "Cost-based Optimization\n\n\" II, empld, p.name, p.phone ( S9 (p x t x € ))\n=I], empld, pname, p.phone (S93 (P X Gp (t) x Gp)(€) ) )\n= IT, empld, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gg (t) o4 59; (€)) )\n\nZz (II empld,name,phone(P) D493 Tempra (eoursetd, emplId O92 (t)\nD194 lik sowrseate S91 (e)) J\n\n°\n\nEvaluate costs of using different methods for\n\n. — oe\nthe two selections, two joins\nand choose the plan with least estimated cost Va\nt\nProf P Sreenivasa Kumar Be \\ |\nDepartment of CS&E, IITTM ="
+  },
+  {
+    "text": "joins to perform and then you figure out what are the cause or what are the applicable",
+    "start": 1595.96,
+    "end": 1603.88,
+    "ocr_text": "Cost-based Optimization\n\n\" II, empld, p.name, p.phone ( Sp (Pp x t x € ))\n=I, empld, pname, p.phone (S93 (P X Sg (t) x Gp)(€) ) )\n= IT, emptd, p.name, p.phone ( 593 ( P X Go4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gg (t) o4 59; (€)) )\n\n= (II empld,name,phone(P) D193 Tempra (Heourseta, empld 992 (t)\nP54 Whose S91 (e)) J\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins bf\nand choose the plan with least estimated cost DV ws\nt\nProf P Sreenivasa Kumar 32 |\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "methods and make use of this formulas or any estimates that are available in the catalog,",
+    "start": 1607.96,
+    "end": 1615.64,
+    "ocr_text": "Cost-based Optimization\n\ni p-empld, p.name, prroren err) (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p (€) ) )\n\n= IT, empld, p.name, p.phone ( 593 ( P X Gg4 (Gp (t) x G9i(€)) ) )\n\n= II, empld, p.name, p.phone ( P 93 (Gp (t) o4 59; (€)) )\n\n= (TT emptaname,phone(P) 93 Tempra Ceourseta, empld O92 (t)\nM4 Teourseta G91 (&)) J\n\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, IITTM\n\nIN /\n“ane!\n\nfi<\nIz"
+  },
+  {
+    "text": "figure out what are the cause for the different kind of plans. So, the plan here could be that",
+    "start": 1615.64,
+    "end": 1624.6,
+    "ocr_text": "Cost-based Optimization\n\ni p.empld, p.name, penonel 09 (p xtxe ))\na p.empld, p.name, p.phone (93 ( P X So (t) x Gp (€) ) )\n=U p.empld, p.name, ponene 093 ( P X So4 (Gp. (t) ~ O\\(€)) ) )\n\n=i p-empld, p.name, menor p D193 (Op. (t) D864 O91 (e)) )\n= (II empld,name,phone(P) 193 Tempra (I oursetd, empld S62 (t)\nM94 eel O91 (e)) J\n\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, IITTM\n\nIS /|\n“nw!”\n\n}\n2"
+  },
+  {
+    "text": "I will you know, I will apply this join first and then and then the other join.",
+    "start": 1625.96,
+    "end": 1636.12,
+    "ocr_text": "Cost-based Optimization\n\niat p.empld, p.name, onoven 09 (p xtxe y)\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x Gp (€) ) )\n\n= IT, empld, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x Goi(€)) ) )\n\n= II, emptd, p.name, p.phone ( P “93 (Gp (t) o4 Sg; (€)) )\n\n= (TT emptaname,phone(P) 93 Plempta Ceourseta, empld O92 (t)\nPq [eourseta S91 (€)) )\n\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, IITTM\n\n'\n\nING\n“in!\n\n|\n\\"
+  },
+  {
+    "text": "Actually in this case I do not think we have much choice because we have to apply this",
+    "start": 1639.0,
+    "end": 1643.32,
+    "ocr_text": "Cost-based Optimization\n\n\" II, empld, p.name, p.phone ( S9 (Pp x t x € ))\n=I], empld, pname, p.phone (S93 (P X Gg (t) x G)(€) ) )\n= II, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9)(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gp (t) o4 59; (€)) )\n\n= (II sanitinemteniters 12) Mp3 Tempra (Heourseta, empld 992 (t)\nMoe IShemmssetia S91 (e)) y\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins 7\nand choose the plan with least estimated cost “-\nt\nProf P Sreenivasa Kumar 32 |\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "join and then apply this. But in general in a in a query, you may have options of how to execute",
+    "start": 1643.8,
+    "end": 1654.84,
+    "ocr_text": "Cost-based Optimization\n\n\" II, empld, p.name, p.phone ( S9 (Pp x t x € ))\n=I], empld, pname, p.phone (S93 (P X Gg (t) x G)(€) ) )\n= II, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9)(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gp (t) o4 59; (€)) )\n\n= (II sanitinemteniters 12) Mp3 Tempra (Heourseta, empld 992 (t)\nMoe IShemmssetia S91 (e)) y\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins 7\nand choose the plan with least estimated cost “-\nt\nProf P Sreenivasa Kumar 32 |\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "your own joins. So, this is what we will do is this whole process kind of clear. So, essentially what",
+    "start": 1654.84,
+    "end": 1669.96,
+    "ocr_text": "Cost-based Optimization\n\n\" IT, empld, p.name, p.phone ( Sp (p x t x € ))\n=I, empld, p.name, p.phone (S93 (P X Gg (t) x G)(€) ) )\n= IT, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x G9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gg (t) o4 G9; (€)) )\n\n= (II empld,name,phone(P) bd 93 Wea (eoursetd, emplId O92 (t)\nD194 lWhesmerse S91 (e)) J\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins v\nand choose the plan with least estimated cost A)\nt\nProf P Sreenivasa Kumar 32 b\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "we are doing is to initially put this entire well clause as the theta condition here and then",
+    "start": 1670.04,
+    "end": 1678.12,
+    "ocr_text": "Cost-based Optimization xy)\n\nSil Prernitnnamepcneraoe ce ues e))\n= IT, empld, pname, p.phone (S93 (P X gp (t) x G)(€) ) )\n= II, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gp (t) o4 G9; (€)) )\n\n= (II empld,name,phone(P) 193 lesan (Heourseta, emplId O92 (t)\nM64 Whence S91 (e)) y\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins q\nand choose the plan with least estimated cost a\n\nProf P Sreenivasa Kumar 32\nDepartment of CS&E, ITTM }"
+  },
+  {
+    "text": "break it down into pieces of conditions that are to be satisfied by appropriate components of the",
+    "start": 1678.12,
+    "end": 1685.4,
+    "ocr_text": "Cost-based Optimization\n\n\" II, empld, p.name, p.phone ( Op (Pp x t x € ))\n=I, empld, pname, p.phone (S93 (P X Sg (t) x Gp)(€) ) )\n= IT, emptd, p.name, p.phone ( 593 ( P X Go4 (Gp (t) x O9i(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gp (t) 94 Sp; (€)) )\n\n= (II empld,name,phone(P) 193 Nese (eoursetd, empld O92 (t)\nP64 | Thea tivelt O91 (e)) J\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins 1\nand choose the plan with least estimated cost a\nt\nProf P Sreenivasa Kumar 52.\nDepartment of CS&E, ITTM ."
+  },
+  {
+    "text": "expression and then push them towards the operators, those the operands,",
+    "start": 1686.84,
+    "end": 1692.92,
+    "ocr_text": "Cost-based Optimization\n\n\" IT, empld, p.name, p.phone ( Sp (Pp x t x € ))\n= TI, empld, p.name, p.phone (S93 (P X Gp (t) x G)(€) ) )\n= IT, empld, pname, p phone ( 593 ( P X Gog (Goa (t) X Gp(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gp (t) o4 59; (€)) )\n\n= (II empld,name,phone(P) D193 lich pill (Heoursetad, emplId O92 (t)\nP64 IDhessarsesti O91 (e)) J\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins y\nand choose the plan with least estimated cost iy os\n\nProf P Sreenivasa Kumar 32\nDepartment of CS&E, IITTM —~"
+  },
+  {
+    "text": "towards the operands lower down the pre and then use all the bright transformation rules to replace",
+    "start": 1692.92,
+    "end": 1698.92,
+    "ocr_text": "Cost-based Optimization\n\n\" IT, empld, p.name, p.phone ( Sp (Pp x t x € ))\n= TI, empld, p.name, p.phone (S93 (P X Gp (t) x G)(€) ) )\n= IT, empld, pname, p phone ( 593 ( P X Gog (Goa (t) X Gp(€)) ) )\n= II, emptd, p.name, p.phone ( P 93 (Gp (t) o4 59; (€)) )\n\n= (II empld,name,phone(P) D193 lich pill (Heoursetad, emplId O92 (t)\nP64 IDhessarsesti O91 (e)) J\n\nEvaluate costs of using different methods for\n\nthe two selections, two joins y\nand choose the plan with least estimated cost iy os\n\nProf P Sreenivasa Kumar 32\nDepartment of CS&E, IITTM —~"
+  },
+  {
+    "text": "them by joins and then go ahead and then finally also push the projections, so finally the query",
+    "start": 1698.92,
+    "end": 1716.6,
+    "ocr_text": "Cost-based Optimization\n\ni p.empld, p.name, porone 09 (p xtxe ))\n\n— p.empld, p.name, p.phone (93 ( P X So (t) x 5p) (e) ) )\n\n= IT, emptd, p.name, p.phone ( 593 ( P X Gp4 (Gp (t) x O9i(€)) ) )\n\n= II, emptd, p.name, p.phone ( P “93 (Gp (t) o4 Sp; (€)) )\n\n= (TT emptaname,phone(P) 193 Tempra Ceoursetd, empld P92 (t)\nPq [eourseta S91 (€)) )\n\nEvaluate costs of using different methods for\nthe two selections, two joins\n\nand choose the plan with least estimated cost\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITM\n\nt\n\nNX /\n“ne!\n\n|\n\\"
+  },
+  {
+    "text": "plan execution is is like this. It also kind of depends on the what kind of query that you are",
+    "start": 1716.6,
+    "end": 1726.36,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nStore as files on disk ( materialization), if necessary\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM\n\n‘\nv\ny\nt\n\n“aw!\n\nf <\nI<"
+  },
+  {
+    "text": "handling. But before that, so you have to take a call on how do handle this intermediate tables.",
+    "start": 1726.6,
+    "end": 1737.56,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nProf P Sreenivasa Kumar\n\nStore as files on disk ( materialization), if necessary\n\nAd-hoc Queries — Optimization should finish fast\n\nDepartment of CS&E, IITTM\n\nt\n\nDN |\n“an!”\n\nKe\n\\"
+  },
+  {
+    "text": "You have to take it the intermediate tables will come up right. So, depending on the size of those",
+    "start": 1738.52,
+    "end": 1743.4,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\n\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter\nAd-hoc Queries — Optimization should finish fast ‘\noo PX\n4 ii\nProf P Sreenivasa Kumar 33 le, pe\nDepartment of CS&E, IITM « T"
+  },
+  {
+    "text": "intermediate tables, if you can handle them in memory you better handle them in memory.",
+    "start": 1743.4,
+    "end": 1750.2,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\n\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter\nAd-hoc Queries — Optimization should finish fast ‘\noo PX\n4 ii\nProf P Sreenivasa Kumar 33 le, pe\nDepartment of CS&E, IITM « T"
+  },
+  {
+    "text": "If necessary only you kind of materialize and then actually push them to this to the extent",
+    "start": 1751.16,
+    "end": 1756.68,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\n\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter\ned\nAd-hoc Queries — Optimization should finish fast 7\nA A\n¥\na.\nProf P Sreenivasa Kumar Be | WV %\nDepartment of CS&E, ITTM N Wd"
+  },
+  {
+    "text": "possible keep it inside and then and then do what is called pipeline. So, try and apply multiple",
+    "start": 1756.68,
+    "end": 1765.4,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\n\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter y>\nAd-hoc Queries — Optimization should finish fast 2\nDR"
+  },
+  {
+    "text": "operators on to the stream of records that are going to come in a pipeline fraction.",
+    "start": 1766.28,
+    "end": 1771.96,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter\nAd-hoc Queries — Optimization should finish fast\n\nGa,\n\n&\n\nProf P Sreenivasa Kumar 33) \"A\nDepartment of CS&E, ITTM NJ a {"
+  },
+  {
+    "text": "Now, so there are actually two kinds of queries right, the compiled queries and the ad hoc",
+    "start": 1772.92,
+    "end": 1786.28,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter\nAd-hoc Queries — Optimization should finish fast\n\nGa,\n\n&\n\nProf P Sreenivasa Kumar 33) \"A\nDepartment of CS&E, ITTM NJ a {"
+  },
+  {
+    "text": "queries. See the compiled queries are the ones that actually sit inside the transactions,",
+    "start": 1786.92,
+    "end": 1795.96,
+    "ocr_text": "Query Plan Execution OK\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\n\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter\nAd-hoc Queries — Optimization should finish fast qg\nPN\n¥ ri]\nProf P Sreenivasa Kumar 33 a\nDepartment of CS&E, IITTM ~“ ~* z"
+  },
+  {
+    "text": "the transactions are pieces of work that you want to do in order to carry out certain logical",
+    "start": 1796.92,
+    "end": 1805.64,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter\nAd-hoc Queries — Optimization should finish fast 4\n\nProf P Sreenivasa Kumar 2%) ‘\nDepartment of CS&E, IITTM -."
+  },
+  {
+    "text": "request of honestly database right. So, it is a it is a program that involve",
+    "start": 1806.44,
+    "end": 1810.36,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nStore as files on disk ( materialization), if necessary\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITTM\n\n‘\nv\ny\nU\n\n“ane!”\n\n{"
+  },
+  {
+    "text": "you know shooting several queries to be in the database getting results and then probably shooting",
+    "start": 1811.96,
+    "end": 1818.04,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nStore as files on disk ( materialization), if necessary\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITTM\n\n‘\nv\ny\nU\n\n“ane!”\n\n{"
+  },
+  {
+    "text": "one more query and things like that. So, you know the queries that you are going to shoot",
+    "start": 1818.04,
+    "end": 1823.64,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nStore as files on disk ( materialization), if necessary\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITTM\n\n'\n\nNS /\n“Van!”\n\nfi<\nIZ"
+  },
+  {
+    "text": "to the ahead of time. So, since you know them you can actually afford to take that query and then do",
+    "start": 1824.2,
+    "end": 1831.88,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nStore as files on disk ( materialization), if necessary\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITTM\n\n'\n\nNS /\n“Van!”\n\nfi<\nIZ"
+  },
+  {
+    "text": "a lot of whatever optimization that you can do and then actually fix a nice query plan and then",
+    "start": 1831.88,
+    "end": 1837.24,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nProf P Sreenivasa Kumar\n\nStore as files on disk ( materialization), if necessary\n\nAd-hoc Queries — Optimization should finish fast\n\nDepartment of CS&E, ITTM\n\nt\n\n“uw!”\n\n|’\n\\"
+  },
+  {
+    "text": "go ahead use that query plan. But as I can as this kind of queries if you get ad hoc queries",
+    "start": 1837.8,
+    "end": 1846.2,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "that means from the terminal you you analyst is sitting there and then you",
+    "start": 1846.2,
+    "end": 1850.12,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "if you actually type say brand new query which you have never seen before because he has some data",
+    "start": 1850.68,
+    "end": 1857.48,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, ITTM"
+  },
+  {
+    "text": "analysis need and then you know and he is expecting this as fast. So, you may not be able to",
+    "start": 1858.28,
+    "end": 1865.24,
+    "ocr_text": "Query Plan Execution cs\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\n\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter\na\nAd-hoc Queries — Optimization should finish fast\n° - a~\n7 tf\nProf P Sreenivasa Kumar 33 | Q\nDepartment of CS&E, ITM > 4 ."
+  },
+  {
+    "text": "do a elaborate optimization in such context you will have to do some a little bit quick",
+    "start": 1866.12,
+    "end": 1871.08,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nProf P Sreenivasa Kumar\n\nStore as files on disk ( materialization), if necessary\n\nAd-hoc Queries — Optimization should finish fast\n\nDepartment of CS&E, IITTM\n\n‘\nt\n\nff\n\nTTT\n\n\"ny\n\n}\n\n\\ tn\nwuz,"
+  },
+  {
+    "text": "optimization and figure out how fast you can execute that because there is some",
+    "start": 1871.08,
+    "end": 1875.72,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nProf P Sreenivasa Kumar\n\nStore as files on disk ( materialization), if necessary\n\nAd-hoc Queries — Optimization should finish fast\n\nDepartment of CS&E, IITTM\n\n‘\nt\n\nff\n\nTTT\n\n\"ny\n\n}\n\n\\ tn\nwuz,"
+  },
+  {
+    "text": "there is some performance penalty that you pay while you are doing optimization of a query also",
+    "start": 1876.68,
+    "end": 1883.08,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nProf P Sreenivasa Kumar\n\nStore as files on disk ( materialization), if necessary\n\nAd-hoc Queries — Optimization should finish fast\n\nDepartment of CS&E, ITM\n\n‘\ny\ny\n'\n\n[ Ny |\n“Van!\n\n|\n\\"
+  },
+  {
+    "text": "right. So, you have to work out you know done some algorithms and figure out and then choose the",
+    "start": 1883.08,
+    "end": 1891.32,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nProf P Sreenivasa Kumar\n\nStore as files on disk ( materialization), if necessary\n\nAd-hoc Queries — Optimization should finish fast\n\nDepartment of CS&E, ITM\n\n‘\ny\ny\n'\n\n[ Ny |\n“Van!\n\n|\n\\"
+  },
+  {
+    "text": "query plan and all that. So, text line. So, you also have to have some lighter versions of this",
+    "start": 1891.32,
+    "end": 1900.76,
+    "ocr_text": "Query Plan Execution eis\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\n\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter y,\nAd-hoc Queries — Optimization should finish fast e\ny/ o~\nt\nProf P Sreenivasa Kumar BS | ‘ U\n\nDepartment of CS&E, ITTM Y a"
+  },
+  {
+    "text": "optimization so that you do not where it matters you may have to you know apply some lighter",
+    "start": 1900.76,
+    "end": 1909.0,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nProf P Sreenivasa Kumar\n\nStore as files on disk ( materialization), if necessary\n\nAd-hoc Queries — Optimization should finish fast\n\nDepartment of CS&E, IITTM\n\n33\n\n‘\n,\ny\n'\n\nNS /\n“in!\n\n|\n\\"
+  },
+  {
+    "text": "versions of optimization. Whereas for compile queries since you are you know doing them kind of",
+    "start": 1909.0,
+    "end": 1914.84,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nProf P Sreenivasa Kumar\n\nStore as files on disk ( materialization), if necessary\n\nAd-hoc Queries — Optimization should finish fast\n\nDepartment of CS&E, ITM\n\n'\n\nSN /\n‘nyt!\n\n|\n\\"
+  },
+  {
+    "text": "offline the optimization can be done offline the cost of optimization actually itself may not",
+    "start": 1914.84,
+    "end": 1921.32,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nProf P Sreenivasa Kumar\n\nStore as files on disk ( materialization), if necessary\n\nAd-hoc Queries — Optimization should finish fast\n\nDepartment of CS&E, ITM\n\n'\n\nSN /\n‘nyt!\n\n|\n\\"
+  },
+  {
+    "text": "matter much. So, you will and since these compile queries are going to be executed some",
+    "start": 1921.32,
+    "end": 1926.52,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — dees not matter\n\nProf P Sreenivasa Kumar\n\nStore as files on disk ( materialization), if necessary\n\nAd-hoc Queries — Optimization should finish fast\n\nDepartment of CS&E, ITM\n\n‘\nV\ny\n'\n\n“un!”\n\nee\n\\"
+  },
+  {
+    "text": "hundred sub times. So, you you are better off in spending some time and figuring it out as",
+    "start": 1926.6,
+    "end": 1932.52,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\n\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter y\nAd-hoc Queries — Optimization should finish fast e\n4\n\n‘\nProf P Sreenivasa Kumar 33) | oo\nDepartment of CS&E, IITM —~| 2"
+  },
+  {
+    "text": "to how best to evaluate that query. So, that is how this whole so it is indeed a vast subject",
+    "start": 1932.52,
+    "end": 1945.24,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\n\nCompiled Queries\nOptimization can be done offline\ncost of optimization — does not matter y\nAd-hoc Queries — Optimization should finish fast e\n4\n\n‘\nProf P Sreenivasa Kumar 33) | oo\nDepartment of CS&E, IITM —~| 2"
+  },
+  {
+    "text": "and a lot of research is actually has gone on and is continuing to be done by relational",
+    "start": 1945.8,
+    "end": 1954.84,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nStore as files on disk ( materialization), if necessary\n\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\n°\n\nProf P Sreenivasa Kumar\nDepartment of CS&E, IITTM"
+  },
+  {
+    "text": "databases researchers on how to improve this query after this because they are in some",
+    "start": 1957.4,
+    "end": 1966.04,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nAR |\n“Vn!”\n\nStore as files on disk ( materialization), if necessary\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\nbd\nCJ\nProf P Sreenivasa Kumar si\nDepartment of CS&E, ITM\n\n|\n\\"
+  },
+  {
+    "text": "sense the heart of the whole system. Okay. So, I think with that we conclude this lecture.",
+    "start": 1966.04,
+    "end": 1979.16,
+    "ocr_text": "Query Plan Execution\n\nIntermediate Tables:\n\nStore as files on disk ( materialization), if necessary\nUse pipelining, as much as possible\n\nQuery Types and Optimization\nCompiled Queries\n\nOptimization can be done offline\n\ncost of optimization — does not matter\n\nAd-hoc Queries — Optimization should finish fast\n\n°\nProf P Sreenivasa Kumar\n\nDepartment of CS&E, ITM\n\n‘\nV\ny\n'\n\nIN /\n“Van!”\n\n(i\n\\"
+  }
+]

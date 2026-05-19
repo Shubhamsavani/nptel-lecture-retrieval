@@ -1,0 +1,596 @@
+[
+  {
+    "text": "Hello, in this video we will look at a mutexs which is a construct used to solve the critical",
+    "start": 0.0,
+    "end": 23.02,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "section problem. So, we will start with where we stopped off in the last video with spin",
+    "start": 23.02,
+    "end": 28.96,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (...mutex)"
+  },
+  {
+    "text": "locks. Essentially the main characteristic of spin locks is that it uses busy waiting. That",
+    "start": 28.96,
+    "end": 35.0,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (...mutex)"
+  },
+  {
+    "text": "is we had seen that in order to have a lock there was a while loop and in that while loop",
+    "start": 35.0,
+    "end": 43.76,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (...mutex)"
+  },
+  {
+    "text": "the exchange instruction was continuously invoked and the while loop would only exit when the",
+    "start": 43.76,
+    "end": 51.88,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n* Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (... mutex)"
+  },
+  {
+    "text": "exchange instruction returned a 0. So, this busy waiting is not ideally what is required.",
+    "start": 51.88,
+    "end": 60.5,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n* Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (... mutex)"
+  },
+  {
+    "text": "Essentially busy waiting causes the CPU cycle to be wasted leading to maybe things like",
+    "start": 60.5,
+    "end": 67.28,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n* Characteristic : busy waiting\n— Useful for short critical sections, wnere much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (...mutex)"
+  },
+  {
+    "text": "performance degradation as well as huge wastage of memory. So, where would we actually use",
+    "start": 67.28,
+    "end": 74.58,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (...mutex)"
+  },
+  {
+    "text": "spin locks? Spin locks are useful when we have short critical sections and we know that we do not",
+    "start": 74.58,
+    "end": 83.52,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (...mutex)"
+  },
+  {
+    "text": "have to waste too much time in waiting. So, for instance if we just want to increment a shared",
+    "start": 83.52,
+    "end": 91.44,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n* Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting |\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (...mutex)"
+  },
+  {
+    "text": "counter then we could possibly use a spin lock or another thing is to access an array element",
+    "start": 91.44,
+    "end": 98.22,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, wnere much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (...mutex)"
+  },
+  {
+    "text": "then a spin lock would be preferred. Essentially these things we assume would will not have too much",
+    "start": 99.22,
+    "end": 105.6,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n* Characteristic : busy waiting\n— Useful for short critical sections, wnere much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (... mutex)"
+  },
+  {
+    "text": "of overheads. Therefore, even if another process is accessing the counter we are certain",
+    "start": 105.6,
+    "end": 114.6,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a COUT T access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n« Use mutex instead (... mutex)"
+  },
+  {
+    "text": "that the process is not going to spend too much time incrementing the counter. Therefore,",
+    "start": 114.76,
+    "end": 121.36,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a COUT T access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n« Use mutex instead (... mutex)"
+  },
+  {
+    "text": "the waiting process will not have to waste too many cycles waiting to enter into the critical",
+    "start": 121.36,
+    "end": 127.72,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n* Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a countei} access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (... mutex)"
+  },
+  {
+    "text": "section. However, spin locks are not useful when the period of waiting is unpredictable or it will",
+    "start": 127.72,
+    "end": 135.72,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n* Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n+ Use mutex instead (...mutex)"
+  },
+  {
+    "text": "take a very long time. For instance if there is a page fault and resulting in a page of memory which is",
+    "start": 135.72,
+    "end": 144.72,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n« Use mutex instead (...mutex)"
+  },
+  {
+    "text": "loaded from the hardest into the main memory. So, this would take a considerable long time and you",
+    "start": 144.72,
+    "end": 152.72,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n« Use mutex instead (...mutex)"
+  },
+  {
+    "text": "do not want your process to be actually wasting CPU cycles during this entire operation. In",
+    "start": 152.72,
+    "end": 159.12,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n* Characteristic : busy waiting\n\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n\nL\n+ Use mutex instead (...mutex)"
+  },
+  {
+    "text": "such a case we use a different construct called a mutex. This over here shows how typically the",
+    "start": 159.12,
+    "end": 165.44,
+    "ocr_text": "Spinlocks\n(when should it be used?)\n\n¢ Characteristic : busy waiting\n— Useful for short critical sections, where much CPU\ntime is not wasted waiting\n* eg. To increment a counter, access an array element, etc.\n\n— Not useful, when the period of wait is unpredictable or\nwill take a long time\n* eg. Not good to read page from disk.\n« Use mutex instead (...mutey:)"
+  },
+  {
+    "text": "mutex is implemented. So, it again relies considerably on the exchange instruction which is used",
+    "start": 165.44,
+    "end": 171.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then :\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up AN nat Da\nsleeping process eisai\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "and just like the spin lock we have the lock and unlock and a memory location which is shared",
+    "start": 171.44,
+    "end": 183.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then :\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up AN nat Da\nsleeping process eisai\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "between all processes. Now, in order to obtain the critical section process would need to invoke",
+    "start": 183.44,
+    "end": 191.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then i\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up Ls ad 1) a”)\nsleeping process éise\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "a lock and in this lock function we have a while loop. So, as in the spin lock case the exchange",
+    "start": 191.44,
+    "end": 200.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n: }\n— If critical section is locked then\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){ 1\nA A if(xchg(| ==\n— While unlocking, wake up eae ) )\nsleeping process else\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "instruction is invoked in the while loop and this instruction would either return a value of 0 or",
+    "start": 200.44,
+    "end": 209.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n| }\n— If critical section is locked then\nyield CPU void lock(int *locked){\n* Go toa SLEEP state while(1){\n. . if(xch ==\n— While unlocking, wake up ee 1) )\nsleeping process else\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "something not equal to 0, typically 1. So, if the value is equal to 0 then we break from this loop and",
+    "start": 209.44,
+    "end": 218.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n; }\n— If critical section is locked then\nyield CPU void lock(int *locked){\n* Go toa SLEEP state while(1){\n. . i | ==\n— While unlocking, wake up ssl ==)\nsleeping process else\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "that process would then have acquired the lock and execute in the critical section. However, if the",
+    "start": 218.44,
+    "end": 228.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n: }\n— If critical section is locked then\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){ 1\nA A if(xchg(| ==\n— While unlocking, wake up ee ) )\nsleeping process else\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "exchange returns a value which is not 0 then we go into this else part and execute this function",
+    "start": 228.44,
+    "end": 235.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then i\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up Li ala ee?\nsleeping process ease\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "called sleep. Now, the sleep function would cause the process to go from the running state into",
+    "start": 235.44,
+    "end": 244.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then i\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up ees 1)==0)\nsleeping process elsoln\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "the block state essentially the process is waiting for a particular operation to arrive. So, until",
+    "start": 244.44,
+    "end": 254.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then i\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up ees 1)==0)\nsleeping process elsoln\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "this operation arrives the process will not get any CPU time. Now, this event which the sleep is",
+    "start": 255.44,
+    "end": 265.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n. }\n— If critical section is locked then\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){ 1\nn A if(xchg(| ==\n— While unlocking, wake up Mees ) )\nsleeping process else\nsleep();\n} is\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "waiting for is the wake up event. So, when another process invokes wake up it will result in the",
+    "start": 265.44,
+    "end": 274.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then ,\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up th ama Wi,\nsleeping process eicoum\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "sleeping process to be woken up from the block state and put on to the ready queue. Now, if it is",
+    "start": 274.44,
+    "end": 281.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then ,\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up th ama Wi,\nsleeping process eicoum\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "lucky when it executes the exchange instruction again it would get 0 and it would get into the",
+    "start": 281.44,
+    "end": 288.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then :\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up Homes| De)\nsleeping process aise\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "critical section. On the other hand if it is unlucky it would execute the exchange instruction",
+    "start": 288.44,
+    "end": 296.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then :\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up Homes| De)\nsleeping process aise\nsleep();\n}\n}\n)\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "and get something which is non-zero and it would go back to sleep and it would continue",
+    "start": 296.44,
+    "end": 304.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\ni }\n— If critical section is locked then\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){ 1\n— While unlocking, wake up foenateere: Jims 2)\nsleeping process else\nsleep();\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "to sleep until woken up by another process. So, essentially we see over here that instead",
+    "start": 304.44,
+    "end": 311.44,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\ni }\n— If critical section is locked then\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){ 1\n— While unlocking, wake up foenateere: Jims 2)\nsleeping process else\nsleep();\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "of doing a busy waiting as was done in spin locks in mutexes we put the entire process into",
+    "start": 312.96,
+    "end": 319.96,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy eax = value\nwaiting? xchg %eax, (addr)\n— If critical section is locked then i\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up eee ae ae’?\nsleeping process Fis ae\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "a sleep state. The process will continue to be in a sleep state until it is woken up and",
+    "start": 319.96,
+    "end": 326.2,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n; }\n— If critical section is locked then\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){ 1\n. . i | ==\n— While unlocking, wake up See } )\nsleeping process else\npsleep();\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "when it is woken up it is going to try the lock again and if it achieves the lock then",
+    "start": 326.2,
+    "end": 331.04,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n: }\n— If critical section is locked then\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up eee 1)==0)\nsleeping process alsene\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "it enters into the critical section. So, one issue with mutex is what is known as a",
+    "start": 331.08,
+    "end": 337.28,
+    "ocr_text": "Mutexes\n\nint xchg(addr, value){\n* Can we do better than busy %eax = value\nwaiting? xchg %eax, (addr)\n: }\n— If critical section is locked then\nyield CPU void lock(int *locked){\n* Go to a SLEEP state while(1){\n— While unlocking, wake up eee 1)==0)\nsleeping process alsene\nsleep();\n}\n}\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n}\n\nRef: wakeup(2864), sleep(2803)"
+  },
+  {
+    "text": "thundering herd problem. So, the thundering herd problem occurs when we have large number",
+    "start": 337.28,
+    "end": 342.76,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* Alarge number of processes eax = value\n\nwake up (almost xchg %eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nwm while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "of processes. So, each of these processes let us assume is using the same critical",
+    "start": 342.76,
+    "end": 347.76,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* Alarge number of processes eax = value\n\nwake up (almost xchg %eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nwm while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "section and invokes the lock in order to enter into the critical section and at the end",
+    "start": 347.76,
+    "end": 353.04,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* Alarge number of processes %eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nere while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "of the critical section would invoke unlock which would then wake up another process",
+    "start": 353.04,
+    "end": 359.56,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* Alarge number of processes %eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nere while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "waiting for the section critical section. So, it could happen if we have large number",
+    "start": 359.6,
+    "end": 363.72,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nea while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup\\);"
+  },
+  {
+    "text": "of processes that there are several processes present in the sleep mode while one process",
+    "start": 363.72,
+    "end": 370.4,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nea while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup\\);"
+  },
+  {
+    "text": "enters into the critical section. So, when that process executes unlock it invokes wake",
+    "start": 370.4,
+    "end": 376.9,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* Alarge number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event ;\n\noccurs. void lock(int *locked){\n\nwn while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\n\ncritical section\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n\n+ Large number of context switches\n* Could lead to starvation"
+  },
+  {
+    "text": "up this results in all the process which are sleeping to be woken up. So, all these processes",
+    "start": 376.9,
+    "end": 384.2,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes %eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nre while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\n(sleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n* Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "would then go from the block state into the ready queue and the scheduler would then",
+    "start": 384.28,
+    "end": 391.28,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes %eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nre while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\n(sleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n* Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "sequentially execute each of these processes. So, each process is then going to go continue",
+    "start": 391.28,
+    "end": 398.28,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nea while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "its while loop and execute the exchange function. So, out of all these processes because",
+    "start": 401.16,
+    "end": 407.84,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nea while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "of the atomic nature of the exchange instruction only one process would acquire the lock and",
+    "start": 407.84,
+    "end": 414.84,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nea while(1){\n— All waiting processes wake up if(wchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "all other processes would go back into sleep state. So, this continues every time. So,",
+    "start": 414.92,
+    "end": 421.92,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nea while(1){\n— All waiting processes wake up if(wchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "every time whenever an unlock is invoked by a process just completing its critical section",
+    "start": 422.72,
+    "end": 429.72,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n+ Alarge number of processes eax = value\n\nwake up (almost xchg %eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nrn while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\ni)"
+  },
+  {
+    "text": "it will invoke wake up and it will result in all processes waiting on that mutex to",
+    "start": 429.72,
+    "end": 436.72,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nwn while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "be woken up and all except one would go back to sleep there would be exactly one process",
+    "start": 437.84,
+    "end": 444.84,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n+ Alarge number of processes eax = value\n\nwake up (almost xchg %eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nrn while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "would would gain the lock and enter into the critical section.",
+    "start": 446.44,
+    "end": 450.16,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* Alarge number of processes %eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nere while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\n\ncritical section D\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n\n+ Large number of context switches\n* Could lead to starvation"
+  },
+  {
+    "text": "So, as a result of this what we see that whenever there is a wake up invoked there would result",
+    "start": 450.16,
+    "end": 457.16,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* Alarge number of processes %eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nere while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\n\ncritical section D\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();\n\n+ Large number of context switches\n* Could lead to starvation"
+  },
+  {
+    "text": "in several context which is occurring in order that all the processes execute and check",
+    "start": 460.56,
+    "end": 467.56,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* Alarge number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event ;\n\noccurs. void lock(int *locked){\n\nwn while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "the exchange instruction again. Now, by the way exchanges implemented in the hardware",
+    "start": 467.56,
+    "end": 474.56,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n+ Alarge number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event ;\n\noccurs. void lock(int *locked){\n\nwn while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches ly else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "all processes except one will enter into the critical section. So, the issue over here",
+    "start": 474.76,
+    "end": 481.04,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n+ Alarge number of processes eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event ;\n\noccurs. void lock(int *locked){\n\nwn while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches ly else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "and why it is called a thundering herd problem is every time there is a wake up there is",
+    "start": 481.04,
+    "end": 485.04,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes %eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\non while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "a huge avalanche of context which that occurs because a large process large number of processes",
+    "start": 485.04,
+    "end": 492.04,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes %eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nra while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "are entering into the ready queue and this could lead to starvation. So, one solution to",
+    "start": 492.36,
+    "end": 499.36,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n\n* A large number of processes %eax = value\n\nwake up (almost xchg ‘eax, (addr)\nsimultaneously) when the event }\n\noccurs. void lock(int *locked){\n\nra while(1){\n— All waiting processes wake up if(xchg(locked, 1) == 0)\n— Leading to several context break;\nswitches else\nsleep();\n\n— All processes go back to sleep }\nexcept for one, which gets the |}\ncritical section\n\n+ Large number of context switches\n* Could lead to starvation\n\nvoid unlock(int *locked){\nlocked = 0;\nwakeup();"
+  },
+  {
+    "text": "the thundering herd problem is to modify the way mutex is are implemented by incorporating",
+    "start": 500.52,
+    "end": 506.16,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n* The Solution Nae Year, (addr)\n\n— When entering critical void lock(int “locked){\n\nsection, push into a while(1){\n. if(xchg(locked, 1) == 0)\n\nqueue before blocking break:\n\n_ iti it] else{\nWhen exiting critical /l add thls process to Queue\nsection, wake up only sleep();\nthe first process in the e\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P)"
+  },
+  {
+    "text": "queues in this implementation of a mutex whenever the lock is invoked and the exchange",
+    "start": 506.16,
+    "end": 513.16,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n* The Solution a eax, (addr)\n\n- When entering critical vold lockt(int ocked){\n\nsection, push into a while(1){\n. if(xchg(locked, 1) == 0)\n\nqueue before blocking Break\n\n_ iti iti Ise\nWhen exiting critical “Hand this process to Queue\nsection, wake up only sleep();\nthe first process in the .\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P)"
+  },
+  {
+    "text": "in the lock is invoked and the exchange instruction return something which is non zero the process",
+    "start": 513.26,
+    "end": 520.26,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n* The Solution a eax, (addr)\n\n- When entering critical vold lockt(int ocked){\n\nsection, push into a while(1){\n. if(xchg(locked, 1) == 0)\n\nqueue before blocking Break\n\n_ iti iti Ise\nWhen exiting critical “Hand this process to Queue\nsection, wake up only sleep();\nthe first process in the .\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P)"
+  },
+  {
+    "text": "gets added into a queue and then goes to sleep. Now, when the when a process invokes unlock",
+    "start": 520.26,
+    "end": 527.26,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n¢ The Solution pee year adc)\n\n- When entering critical void locktint “locked)t\nsection, push into a while(1){\nqueue before blocking | “chsllocked. 1) == 0)\n\n_ iti iti Isef\nWhen exiting critical “iene this process to Queue\nsection, wake up only sleep();\nthe first process in the | ,°\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P)"
+  },
+  {
+    "text": "the sleeping process is removed from the queue and a wake up specifically for only that",
+    "start": 530.24,
+    "end": 537.24,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n¢ The Solution pee year adc)\n\n- When entering critical void locktint “locked)t\nsection, push into a while(1){\nqueue before blocking | “chsllocked. 1) = 0)\n\n_ iti iti Isef\nWhen exiting critical “Waa this process to Queue\nsection, wake up only sleep();\nthe first process in the | ,°\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/l remove process P from queue\nwakeup(P)"
+  },
+  {
+    "text": "process is invoked. So, unlike the previous cases where all processes are",
+    "start": 537.64,
+    "end": 542.76,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n¢ The Solution pa voces. acct)\n\n— When entering critical vold lock(int locked)\nsection, push into a while(1){\nqueue before blocking | “challocked. 1) = 0)\n\n_ iti iti Isef\nWhen exiting critical Tan this process to Queue\nsection, wake up only sleep();\nthe first process in the | ,°\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P}"
+  },
+  {
+    "text": "woken up in this case there is exactly one process which is woken up. So, this process",
+    "start": 542.76,
+    "end": 548.76,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n¢ The Solution pa voces. acct)\n\n— When entering critical vold lock(int locked)\nsection, push into a while(1){\nqueue before blocking | “challocked. 1) = 0)\n\n_ iti iti Isef\nWhen exiting critical Tan this process to Queue\nsection, wake up only sleep();\nthe first process in the | ,°\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P}"
+  },
+  {
+    "text": "this process p which is specified here would wake up from sleep and since it is the only",
+    "start": 548.76,
+    "end": 554.48,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n¢ The Solution pa voces. acct)\n\n— When entering critical vold lock(int locked)\nsection, push into a while(1){\nqueue before blocking | “challocked. 1) = 0)\n\n_ iti iti Isef\nWhen exiting critical Tan this process to Queue\nsection, wake up only sleep();\nthe first process in the | ,°\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P)"
+  },
+  {
+    "text": "process which has woken up. So, it would typically go into this while loop check the exchange",
+    "start": 554.48,
+    "end": 560.8,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n¢ The Solution pa voces. acct)\n\n— When entering critical vold lock(int locked)\nsection, push into a while(1){\nqueue before blocking | “challocked. 1) = 0)\n\n_ iti iti Isef\nWhen exiting critical Tan this process to Queue\nsection, wake up only sleep();\nthe first process in the | ,°\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P)"
+  },
+  {
+    "text": "and most likely it would get the lock and execute the critical section. Similarly, when it",
+    "start": 560.88,
+    "end": 567.88,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n¢ The Solution Nite vogax\\.addt)\n\n- When entering critical vold lock{int “ocked){\nsection, push into a while(1){\nqueue before blocking | \"challocked. 1) = 0)\n\n_ iti iti Isef\nWhen exiting critical esa this process to Queue\nsection, wake up only sleep();\nthe first process in the | ,’\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P)"
+  },
+  {
+    "text": "unlocks it would pick out the next process which is waiting in the queue and it will wake",
+    "start": 568.52,
+    "end": 574.52,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n¢ The Solution pee year adc)\n\n- When entering critical void locktint “locked)t\nsection, push into a while(1){\nqueue before blocking | “chsllocked. 1) = 0)\n\n_ iti iti Isef\nWhen exiting critical “Waa this process to Queue\nsection, wake up only sleep();\nthe first process in the | ,°\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P) l"
+  },
+  {
+    "text": "up only that process. Now, this second process would then enter into the critical section.",
+    "start": 574.52,
+    "end": 581.52,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n¢ The Solution pee year adc)\n\n- When entering critical void locktint “locked)t\nsection, push into a while(1){\nqueue before blocking | “chsllocked. 1) = 0)\n\n_ iti iti Isef\nWhen exiting critical “Waa this process to Queue\nsection, wake up only sleep();\nthe first process in the | ,°\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P) l"
+  },
+  {
+    "text": "So, when we are talking about synchronization primitive such as a spin locks and mutex",
+    "start": 581.52,
+    "end": 586.96,
+    "ocr_text": "Thundering Herd Problem\n\nint xchg(addr, value){\n%eax = value\n\n¢ The Solution Na yoeax ada)\n\n- When entering critical vold locktint ocked){\n\nsection, push into a while(1){\n. if(xchg(locked, 1) == 0)\n\nqueue before blocking break:\n\n_ iti iti Ise\nWhen exiting critical aa this process to Queue\nsection, wake up only sleep();\nthe first process in the .\nqueue }\n\nvoid unlock(int *locked){\nlocked = 0;\n/| remove process P from queue\nwakeup(P)"
+  },
+  {
+    "text": "it is important to also consider the case when a priority based scheduling algorithm is",
+    "start": 587.76,
+    "end": 593.48,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "used in the operating system. So, let us consider this particular scenario. So, let us say",
+    "start": 593.48,
+    "end": 599.48,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "we have a high priority task and a low priority task which share the same data and have a",
+    "start": 599.48,
+    "end": 606.48,
+    "ocr_text": "Locks and Priorities\n\n* What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "critical section. Now, let us say that the low priority task is executing in the critical",
+    "start": 606.48,
+    "end": 613.48,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "section and at this particular time the high priority task requests for the lock in order",
+    "start": 613.52,
+    "end": 620.52,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "to enter into the critical section. So, the scenario we are facing here is that the low",
+    "start": 622.36,
+    "end": 627.52,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "priority task is executing in the critical section while during this time the high priority",
+    "start": 627.52,
+    "end": 632.52,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "task invokes something like a lock and wants to enter into the critical section.",
+    "start": 632.52,
+    "end": 639.52,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "Now, the dilemma we are facing here is that we have a high priority task which is waiting",
+    "start": 639.52,
+    "end": 645.28,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "for a low priority task to complete. So, this is known as the priority inversion problem",
+    "start": 645.28,
+    "end": 651.88,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n* Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "essentially we have something important a task which is important and given a high priority",
+    "start": 651.88,
+    "end": 657.6,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n* Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "and it is waiting for a lower priority task to complete its execution. And if you look",
+    "start": 657.6,
+    "end": 663.56,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "at this particular link present here you will see quite an interesting case where such a",
+    "start": 663.64,
+    "end": 669.84,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "priority inversion problem had occurred essentially with the pathfinder. So, one possible solution",
+    "start": 669.84,
+    "end": 676.36,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "for the priority inversion problem is known as the priority inheritance. So, essentially",
+    "start": 676.36,
+    "end": 681.86,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n)\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "in this solution whenever a low priority task is executing in the critical section and a",
+    "start": 681.86,
+    "end": 688.86,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n)\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "high priority task requests for that critical section what happens is that the low priority",
+    "start": 688.86,
+    "end": 695.02,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priarity task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "task is escalated to a high priority essentially the priority of the low priority task becomes",
+    "start": 695.02,
+    "end": 702.78,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "equal to that of the high priority task. The low priority task then would execute with",
+    "start": 702.78,
+    "end": 707.94,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "this high priority until it releases the critical section. So, this would ensure that the high",
+    "start": 707.94,
+    "end": 714.94,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  },
+  {
+    "text": "priority task would execute relatively quickly.",
+    "start": 714.94,
+    "end": 721.94,
+    "ocr_text": "Locks and Priorities\n\n¢ What happens when a high priority task requests\na lock, while a low priority task is in the critical\nsection\n— Priority Inversion\n\n— Possible solution\n+ Priority Inheritance\n\nInteresting Read : Mass Pathfinder\nhttp://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/mars_pathfinder.html"
+  }
+]

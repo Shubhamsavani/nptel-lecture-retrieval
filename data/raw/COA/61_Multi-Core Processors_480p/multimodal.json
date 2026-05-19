@@ -1,0 +1,1370 @@
+[
+  {
+    "text": "So, we have seen so far how we can make our processors faster by using concepts of pipelining,",
+    "start": 0.0,
+    "end": 24.64,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "super scalar, VLAW, this kind of concepts.",
+    "start": 24.64,
+    "end": 27.6,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "Now, these have become very standard concepts nowadays. So, whenever you buy a computer system",
+    "start": 28.16,
+    "end": 34.56,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "with an embedded processor, you will see invariably these technologies are built into that as a",
+    "start": 34.56,
+    "end": 39.84,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "standard feature. Now, the question comes, I mean if you look at the modern processors which goes",
+    "start": 40.4,
+    "end": 50.4,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "inside our dextops and laptops and also our mobile phones today, you have heard about",
+    "start": 50.4,
+    "end": 56.8,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "multi-core processors, multi-core computation. So, what it is?",
+    "start": 57.44,
+    "end": 63.84,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "Multi-core essentially means I have the capability of fabricating larger systems on a VLA side chip.",
+    "start": 65.44,
+    "end": 73.28,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "I am fabricating more than one processor inside the chip that is very roughly speaking the concept",
+    "start": 74.16,
+    "end": 81.6,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "of a multi-core. So, the question arises why we are actually going for multi-core? Let us try",
+    "start": 81.6,
+    "end": 88.4,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "to address these issues in this lecture. So, our topic of discussion is multi-core processors.",
+    "start": 88.4,
+    "end": 97.84,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "Fine. So, as I said a multi-core processor is nothing but a processor system",
+    "start": 99.92,
+    "end": 107.44,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "which consists of two or more CPUs. CPUs are typically independent CPUs. They are not",
+    "start": 108.4,
+    "end": 116.08,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "strongly correct strongly connected or they are not dependent on each other. They can independently",
+    "start": 116.8,
+    "end": 124.0,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "execute or process different independent programs if required, right. They are independent in some sense.",
+    "start": 125.04,
+    "end": 131.44,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CRUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "So, for a multi-core processing system we have two or more independent cores or central",
+    "start": 131.76,
+    "end": 139.76,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CRUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "power. The CPUs are called cores. Now, these cores they come inside a single package. You can",
+    "start": 139.76,
+    "end": 149.44,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CRUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "buy for example, you can buy a core i3, i5, i7 processor from the market. So, inside the same",
+    "start": 149.44,
+    "end": 156.08,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CRUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "package there will be multiple cores 2 or 4 or 6 whatever. Now, these cores or processors",
+    "start": 156.08,
+    "end": 164.08,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern systems, typically the L1 and L2 cache are private to each\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities.\n\nITKHARAGPUR CiitrincaniOn courses\n\nTECHNOLOGY, MECHALAYA\n\nere. onuine ary NaonaLwermute or"
+  },
+  {
+    "text": "they are all fabricated inside the same die within the chip. So, there are two alternatives.",
+    "start": 164.08,
+    "end": 169.52,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern systems, typically the L1 and L2 cache are private to each\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities.\n\nITKHARAGPUR CiitrincaniOn courses\n\nTECHNOLOGY, MECHALAYA\n\nere. onuine ary NaonaLwermute or"
+  },
+  {
+    "text": "So, you can either have a single die. Die means a silicon where the chips are all fabricated,",
+    "start": 170.16,
+    "end": 176.96,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern systems, typically the L1 and L2 cache are private to each\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities.\n\nITKHARAGPUR CiitrincaniOn courses\n\nTECHNOLOGY, MECHALAYA\n\nere. onuine ary NaonaLwermute or"
+  },
+  {
+    "text": "the circuits are fabricated or in modern day processor packages,",
+    "start": 176.96,
+    "end": 183.44,
+    "ocr_text": "Introduction\nMulti-Core Processor\n\n= Aprocessing system composed of two or more in\n\nCore\n\ningle-chip packags\n\nshare memory\n\nns, typically the L1 and L2 cache are\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in\n\nsputer systems\nIn asymmetric mul\n\ncore systems, the cores may have different functionalitic\n\nITKHARAGPUR\n\nCtirrin@aniOn courses\n\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "VLSI packages. You can have multiple dies which are connected or bonded together inside the",
+    "start": 184.16,
+    "end": 190.56,
+    "ocr_text": "Introduction\nMulti-Core Processor\n\n= Aprocessing system composed of two or more in\n\nCore\n\ningle-chip packags\n\nshare memory\n\nns, typically the L1 and L2 cache are\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in\n\nsputer systems\nIn asymmetric mul\n\ncore systems, the cores may have different functionalitic\n\nITKHARAGPUR\n\nCtirrin@aniOn courses\n\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "same package. So, you can have either of these two but the thing is that this multiple cores are",
+    "start": 190.56,
+    "end": 196.96,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "inside your same package. You buy a VLSI package a chip inside the chip there are multiple",
+    "start": 196.96,
+    "end": 204.24,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n— Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "cores or processors. Now, typically speaking if you look at the modern processors,",
+    "start": 204.24,
+    "end": 210.88,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n\n= Aprocessing system composed of two or more in\n\npendent cores\n\n‘or CPUs\n\nCores share memory\nIn modern multi-e\n\nns, typically the Li and L2 cache are private to each\nIn symmetric multi-core systems\n\nall the cores are identical.\nrs used in\n\nExample: multi\n\nsputer systems\nIn asymmetric mul\n\ncore systems, the cores may have different functionalitic\n\nITKHARAGPUR"
+  },
+  {
+    "text": "the level 1 and level 2 caches are private to each of the cores. But however, the level 3",
+    "start": 211.84,
+    "end": 221.28,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n\n= Aprocessing system composed of two or more in\n\npendent cores\n\n‘or CPUs\n\nCores share memory\nIn modern multi-e\n\nns, typically the Li and L2 cache are private to each\nIn symmetric multi-core systems\n\nall the cores are identical.\nrs used in\n\nExample: multi\n\nsputer systems\nIn asymmetric mul\n\ncore systems, the cores may have different functionalitic\n\nITKHARAGPUR"
+  },
+  {
+    "text": "cache is common. This is shared by all the cores. There are symmetric systems where all the",
+    "start": 221.28,
+    "end": 230.8,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-core systems, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "cores are identical like the core i3, i5, i7, multi core processors which you use in our processor",
+    "start": 230.8,
+    "end": 238.88,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private to\n\nIn symmetric multicore systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities.\n\n2\n\nuv"
+  },
+  {
+    "text": "systems. These are called symmetric. They are all identical. But in asymmetric multi core systems,",
+    "start": 238.96,
+    "end": 247.6,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private\n\nIn symmetric multi-core systems, all the cores are identical.\n\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities."
+  },
+  {
+    "text": "the cores may have different functionalities. Well, you think of the multi core systems that",
+    "start": 247.6,
+    "end": 253.12,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private to\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities.\n\n~\n\nE89"
+  },
+  {
+    "text": "goes inside our mobile phones. Now, you have heard of quad core octa core processor. There are",
+    "start": 253.12,
+    "end": 260.4,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-c ns, typically the L1 and L2 cache are private to\n\nIn symmetric multi-core systems, all the cores are identical.\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities.\n\n~\n\nE89"
+  },
+  {
+    "text": "eight cores but there is no reason to believe that all those eight cores are identical.",
+    "start": 260.4,
+    "end": 265.36,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-core systems, typically the L1 and L2 cache are private to\n\nIn symmetric multi-core systems, all the cores are identical.\n\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities.\n\n2\n\nEy"
+  },
+  {
+    "text": "They have some specific purposes. Some of them may be specific DSP cores, digital signal processing",
+    "start": 266.32,
+    "end": 273.76,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-core systems, typically the L1 and L2 cache are private to\n\nIn symmetric multi-core systems, all the cores are identical.\n\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities.\n\n2\n\nEy"
+  },
+  {
+    "text": "cores. Some of them may be specific processor cores like ARM or some kind of architectures.",
+    "start": 273.76,
+    "end": 280.24,
+    "ocr_text": "Introduction\n\nMulti-Core Processor\n= Aprocessing system composed of two or more independent cores or CPUs\n\nCores share memory\n\nIn modern multi-core systems, typically the L1 and L2 cache are private to\n\nIn symmetric multi-core systems, all the cores are identical.\n\n— Example: multi-core processors used in computer systems\n\nIn asymmetric multi-core systems, the cores may have different functionalities.\n\n2\n\nEy"
+  },
+  {
+    "text": "Some of them may mean doing some specific functionalities. So, they may be running at different",
+    "start": 280.8,
+    "end": 286.16,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applications.\n\nDifficult to increase clock frequency, mainly due to power consumption issue\n\nPossible solution\n— Replicate hardware and run them at a lower clock rate to reduce power\nconsumption.\nwith lower power consumption"
+  },
+  {
+    "text": "clock frequencies, different instruction set and different capabilities that is called asymmetric.",
+    "start": 286.16,
+    "end": 292.72,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applications.\n\nDifficult to increase clock frequency, mainly due to power consumption issue\n\nPossible solution\n— Replicate hardware and run them at a lower clock rate to reduce power\nconsumption.\nwith lower power consumption"
+  },
+  {
+    "text": "So, why we go for multi core? Now, you see you have earlier heard about Moots law. Moots law",
+    "start": 293.28,
+    "end": 305.04,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applications.\n\nDifficult to increase clock frequency, mainly due to power consumption issue\n\nPossible solution\n— Replicate hardware and run them at a lower clock rate to reduce power\nconsumption.\nwith lower power consumption"
+  },
+  {
+    "text": "says this is an empirical you can say prediction. It says the number of transistors or gates that",
+    "start": 305.04,
+    "end": 312.48,
+    "ocr_text": "It is difficult to s\ndemands of varios\n\nDifficult to increas\n\nPossible solution\n= Replicate hardy\n\nWhy Multi-core?\n\nnin Moore’s law and at the same t\ns applications.\n\nlock frequency, mainly due to power\n\nare and run them at a lower clock rate to reduce power\n\nIT KHARAGPUR\n\nCtitrin@aniOn courses TeenNouor"
+  },
+  {
+    "text": "you can put inside a single chip will grow exponentially with time, will double approximately every",
+    "start": 312.48,
+    "end": 320.72,
+    "ocr_text": "It is difficult to s\ndemands of varios\n\nDifficult to increas\n\nPossible solution\n= Replicate hardy\n\nWhy Multi-core?\n\nnin Moore’s law and at the same t\ns applications.\n\nlock frequency, mainly due to power\n\nare and run them at a lower clock rate to reduce power\n\nIT KHARAGPUR\n\nCtitrin@aniOn courses TeenNouor"
+  },
+  {
+    "text": "18 months or so. This was Moots law. Now, Moots law somehow has been sustained till now.",
+    "start": 320.88,
+    "end": 329.44,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applications.\nDifficult to increase clock frequency, mainly due to power cons:\n\nPossible solution\neplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption\n\nAT KHARAGPUR CtitrineaTiOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "But regarding the performance demands, there have been some constraints.",
+    "start": 330.56,
+    "end": 334.88,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applications.\nDifficult to increase clock frequency, mainly due to power cons:\n\nPossible solution\neplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption\n\nAT KHARAGPUR CtitrineaTiOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "Like although you can potentially increase the frequency of the clock, but you are unable to do so.",
+    "start": 336.64,
+    "end": 343.68,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applications.\nDifficult to increase clock frequency, mainly due to power consumption issue\n\nPossible solution\n— Replicate hardware and run them at a lower clock rate to reduce power\nconsumption.\nwith lower power consumption"
+  },
+  {
+    "text": "Why? Because your chip power consumption directly depends on the clock frequency.",
+    "start": 344.32,
+    "end": 350.72,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applications.\nDifficult to increase clock frequency, mainly due to power consumption issue\n\nPossible solution\n— Replicate hardware and run them at a lower clock rate to reduce power\nconsumption.\nwith lower power consumption"
+  },
+  {
+    "text": "And if you increase it, your power consumption can become unmanageably high and your chip might",
+    "start": 351.36,
+    "end": 358.32,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applicatio\nDifficult to increase clock fequency, mainly due to power cons:\n\nPossible solution\neplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption\n\nIT KHARAGPUR CtitrineaniOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "be burnt out. So, you will have to limit your clock frequency within a manageable level.",
+    "start": 358.32,
+    "end": 365.84,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applicatio\nDifficult to increase clock fequency, mainly due to power cons:\n\nPossible solution\neplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption\n\nIT KHARAGPUR CtitrineaniOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "And simply to tackle the power consumption issue, not due to anything else.",
+    "start": 366.32,
+    "end": 371.84,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applicatio\nDifficult to increase clock frequency, mainly due to power cons:\n\nPossible solution\neplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption"
+  },
+  {
+    "text": "So, there are two possible solutions you can think of. The first solution can be",
+    "start": 374.08,
+    "end": 379.2,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applicatio\nDifficult to increase clock frequency, mainly due to power cons:\n\nPossible solution\neplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption"
+  },
+  {
+    "text": "replicate hardware. So, you use two computer systems that are running side by side and run them",
+    "start": 381.92,
+    "end": 388.48,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applicatio\nDifficult to increase clock frequency, mainly due to power cons:\n\nPossible solution\neplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption"
+  },
+  {
+    "text": "at a lower clock. Like for example, just compare a core that is running at three gigahertz clock",
+    "start": 388.56,
+    "end": 398.8,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applicatio:\nDifficult to increase clock frequency, mainly due to power cons\n\nPossible solution\neplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption\n\nMT KHARAGPUR CtitrintcaniOn courses Teennouor"
+  },
+  {
+    "text": "and two cores running at one for and five gigahertz clock. Both of these will be having the same",
+    "start": 399.84,
+    "end": 406.72,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applicatio:\nDifficult to increase clock frequency, mainly due to power cons:\n\nPossible solution\neplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption\n\nMT KHARAGPUR Ctitrin@aniOn courses Teennouor"
+  },
+  {
+    "text": "performance, but the second one will be having much lower power consumption because power increases",
+    "start": 406.72,
+    "end": 414.48,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applicatio\nDifficult to increase clock frequency, mainly due to power cons:\n\nPossible solution\nplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption\n\nUT KHARAGPUR Ctitrin@aniOn courses TeenNouor"
+  },
+  {
+    "text": "in a super linear fashion with increase in the clock frequency. That is why you will see that in",
+    "start": 414.56,
+    "end": 421.28,
+    "ocr_text": "Why Multi-core?\n\nIt is difficult to sustain Moore’s law and at the same time meet performance\ndemands of various applicatio\nDifficult to increase clock frequency, mainly due to power cons:\n\nPossible solution\nplicate hardware and run them at a lower clock rate to reduce power\nwith lower power consumption\n\nUT KHARAGPUR Ctitrin@aniOn courses TeenNouor"
+  },
+  {
+    "text": "the modern generation of processors, although the number of transistors is increasing, number of",
+    "start": 421.28,
+    "end": 426.16,
+    "ocr_text": "It is difficult to s\ndemands of varios\n\nDifficult to increas\n\nPossible solution\n— Replicate hardy\n\nWhy Multi-core?\n\nnin Moore’s law and at the same time meet performance\ns applications.\n\nlock frequency, mainly due to power\n\nare and run them at a lower clock rate to reduce power\n\nITKHARAGPUR\n\n2"
+  },
+  {
+    "text": "cores are increasing. I mean over the last 10 years or so, the clock frequency has not increased much.",
+    "start": 426.16,
+    "end": 432.32,
+    "ocr_text": "It is difficult to s\ndemands of varios\n\nDifficult to increas\n\nPossible solution\n— Replicate hardy\n\nWhy Multi-core?\n\nnin Moore’s law and at the same time meet performance\ns applications.\n\nlock frequency, mainly due to power\n\nare and run them at a lower clock rate to reduce power\n\nITKHARAGPUR\n\n2"
+  },
+  {
+    "text": "That 1.5 to 2.5 gigahertz, it still remains within that level. It does not increase that much.",
+    "start": 433.12,
+    "end": 440.32,
+    "ocr_text": "It is difficult to s\ndemands of varios\n\nDifficult to increas\n\nPossible solution\n— Replicate hardy\n\nWhy Multi-core?\n\nnin Moore’s law and at the same time meet performance\ns applications.\n\nlock frequency, mainly due to power\n\nare and run them at a lower clock rate to reduce power\n\nITKHARAGPUR\n\n2"
+  },
+  {
+    "text": "So, talking about the parallel architectures, a very rough classification, this is sometimes",
+    "start": 440.96,
+    "end": 448.56,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream riultiple data-stream (MIMD)\n\n— Multiprocessor systems (various architectures exist)."
+  },
+  {
+    "text": "called Flin's classification goes like this. So, we categorize depending on the instruction",
+    "start": 448.56,
+    "end": 456.4,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream riultiple data-stream (MIMD)\n\n— Multiprocessor systems (various architectures exist)."
+  },
+  {
+    "text": "streams and data streams. First is representative of the traditional single processor or",
+    "start": 456.4,
+    "end": 464.88,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architectures exist)."
+  },
+  {
+    "text": "uniprocessor systems. This is called single instruction stream, single data stream.",
+    "start": 464.88,
+    "end": 471.2,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architectures exist)."
+  },
+  {
+    "text": "This means pictorial speaking, I have a computing system where single instruction stream means",
+    "start": 472.24,
+    "end": 481.52,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implemen p exi\nPipelining can be argued as a type of MISD processing,\ningle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architecture 0).\n\nhs"
+  },
+  {
+    "text": "instructions are coming one by one, I1, I2, I3 like this. Data stream means these instructions",
+    "start": 481.52,
+    "end": 488.88,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implemen p exi\nPipelining can be argued as a type of MISD processing,\ningle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architecture 0).\n\nhs"
+  },
+  {
+    "text": "are operating on data. Data are also coming sequentially one by one, D1, D2, D3.",
+    "start": 488.88,
+    "end": 494.8,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implemen p exi\nPipelining can be argued as a type of MISD processing,\ningle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architecture 0).\n\nhs"
+  },
+  {
+    "text": "Suppose I1 is working on D1, I2 is operating on D2, I3 is operating on D3 like that. This is called",
+    "start": 496.24,
+    "end": 502.56,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-s ngle data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation ex\nPipelining can be argued as a type of MISD processing\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architectures exist)."
+  },
+  {
+    "text": "single instruction stream, single data stream, SISD. This second classification says multiple",
+    "start": 503.2,
+    "end": 512.56,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-s ngle data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation ex\nPipelining can be argued as a type of MISD processing\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architectures exist)."
+  },
+  {
+    "text": "instruction stream, single data stream. So, conceptually how does it look like?",
+    "start": 512.56,
+    "end": 518.24,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-s ngle data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation ex\nPipelining can be argued as a type of MISD processing\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architectures exist)."
+  },
+  {
+    "text": "Multiple instruction stream single it. So, it says that I have feeding several instructions",
+    "start": 523.36,
+    "end": 530.4,
+    "ocr_text": ")\nSISD le —— D, D, : Ds\n\nExes 5\n\n|"
+  },
+  {
+    "text": "to multiple instructions. Let us say I1,1, I1,2, I1, M. So, I feed M instructions together,",
+    "start": 531.36,
+    "end": 542.56,
+    "ocr_text": ")\nSISD le —— D, D, : Ds\n\nExes 5\n\n|"
+  },
+  {
+    "text": "then I feed I2,1, I2,2, I2, M and so on. But it says that they are working on single data streams.",
+    "start": 543.12,
+    "end": 554.96,
+    "ocr_text": "\\es anes Dy Ps\n\nty Tu\ntm Gp sy] Mies) Tah\n\n|"
+  },
+  {
+    "text": "Like this M instructions are working on this on single data. Well conceptually speaking,",
+    "start": 555.2,
+    "end": 564.4,
+    "ocr_text": "je — D, 0, Ds\n\n|\n\nTy Lu\n\na Ep Se S) Mes) ae Cee\n\nTim Tm"
+  },
+  {
+    "text": "it is a little difficult to visualize this kind of computation. So, where do we have a single",
+    "start": 564.4,
+    "end": 570.56,
+    "ocr_text": "je — D, 0, Ds\n\n|\n\nTy Lu\n\na Ep Se S) Mes) ae Cee\n\nTim Tm"
+  },
+  {
+    "text": "data, but multiple instructions are working on it? You very rarely have it. So, strictly speaking,",
+    "start": 570.56,
+    "end": 577.04,
+    "ocr_text": "je — D, 0, Ds\n\n|\n\nTy Lu\n\na Ep Se S) Mes) ae Cee\n\nTim Tm"
+  },
+  {
+    "text": "no real systems are there that can fall under this MISD category, very strictly speaking.",
+    "start": 578.0,
+    "end": 584.48,
+    "ocr_text": "je — D, 0, Ds\n\n|\n\nTy Lu\n\na Ep Se S) Mes) ae Cee\n\nTim Tm"
+  },
+  {
+    "text": "But some people argue that pipeline processing, see in pipeline processing you can",
+    "start": 585.2,
+    "end": 592.24,
+    "ocr_text": "je — D, 0, Ds\n\n|\n\nTy Lu\n\na Ep Se S) Mes) ae Cee\n\nTim Tm"
+  },
+  {
+    "text": "argue like this. That well let us say the MISD 32 pipeline, there are five stages.",
+    "start": 592.24,
+    "end": 597.44,
+    "ocr_text": "je — D, 0, Ds\n\n|\n\nTy Lu\n\na Ep Se S) Mes) ae Cee\n\nTim Tm"
+  },
+  {
+    "text": "So, you can say that there are five instructions that are executing in different stages at the same",
+    "start": 598.16,
+    "end": 605.28,
+    "ocr_text": "je — D, 0, Ds\n\n|\n\nTy Lu\n\na Ep Se S) Mes) ae Cee\n\nTim Tm"
+  },
+  {
+    "text": "time. So, as if there are multiple instructions, they are working on the same data set. It is not",
+    "start": 605.28,
+    "end": 613.04,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "individual data, they are calling a data set. For a program, it takes some input data,",
+    "start": 613.04,
+    "end": 619.12,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "it produces some output. That input data, you can argue that it is a data set.",
+    "start": 619.12,
+    "end": 624.64,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "So, like this you can argue that a pipeline processor can be considered as MISD, but strictly speaking,",
+    "start": 625.92,
+    "end": 632.48,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "no. So, this is what is mentioned here. And single instruction stream, multiple data stream is",
+    "start": 632.48,
+    "end": 641.68,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "something which you can correlate with vector processors which we discussed in our last lecture.",
+    "start": 642.64,
+    "end": 646.8,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "There a single vector instruction operates on all the elements of a vector,",
+    "start": 648.72,
+    "end": 653.36,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "single instruction, multiple data. This is so called SIMD. There is another kind of architecture",
+    "start": 654.16,
+    "end": 662.48,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation exist\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "we do not see that much today, vector processors are much more predominant. There was initially some",
+    "start": 662.48,
+    "end": 668.16,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\n\nNo commercial implemen p exi\n\nPipelining can be argued as a type of MISD processing,\ningle instruction-stream multiple data-stream (SIMD)\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architectures exist).\n\n>\n\ney"
+  },
+  {
+    "text": "computers called array processors. For instead of arrays, instead of vectors of numbers,",
+    "start": 668.16,
+    "end": 675.6,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\n\nNo commercial implemen p exi\n\nPipelining can be argued as a type of MISD processing,\ningle instruction-stream multiple data-stream (SIMD)\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architectures exist).\n\n>\n\ney"
+  },
+  {
+    "text": "you could have arranged the numbers in the form of an array, typically two-dimensional array.",
+    "start": 675.6,
+    "end": 680.32,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\n\nNo commercial implemen p exi\n\nPipelining can be argued as a type of MISD processing,\ningle instruction-stream multiple data-stream (SIMD)\nMultiple instruction-stream multiple data-stream (MIMD)\n\n— Multiprocessor systems (various architectures exist).\n\n>\n\ney"
+  },
+  {
+    "text": "But nowadays, you do not see that kind of a computer architecture anymore.",
+    "start": 680.32,
+    "end": 685.28,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation ex\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "And lastly, these are the true parallel computer systems or parallel processors. This is",
+    "start": 686.96,
+    "end": 693.68,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation ex\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "multiple instruction stream, multiple data stream. So, the multi-course can fall under this",
+    "start": 693.68,
+    "end": 700.4,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation ex\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "category. There are four course, four instructions can be executed at the same time and they might be",
+    "start": 700.4,
+    "end": 707.84,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation ex\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "working on four different data. So, broadly speaking, this is one way of classifying computer",
+    "start": 707.84,
+    "end": 717.36,
+    "ocr_text": "Taxonomy of Parallel Architectures\n\nSingle instruction-stream single data-stream (SISD)\nMultiple instruction-stream single data-stream (MISD)\nNo commercial implementation ex\nPipelining can be argued as a type of MISD processing.\nSingle instruction-stream multiple data-stream (SIMD)\n\nMultiple instruction-stream multiple data-stream (MIMD)"
+  },
+  {
+    "text": "systems depending on instruction or data stream parallelism.",
+    "start": 717.84,
+    "end": 723.28,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n\na) Ahigh-speed CPU\nconnects to 1/0 bridg\nA lower-speed 1/0 bu\n\nNTKHARAGPUR pmionaL ne"
+  },
+  {
+    "text": "So, let us look at single core computer, the one that falls on the SISD category.",
+    "start": 726.16,
+    "end": 731.52,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n\na) Ahigh-speed CPU\nconnects to 1/0 bridg\nA lower-speed 1/0 bu\n\nNTKHARAGPUR pmionaL ne"
+  },
+  {
+    "text": "Well, the example that I have taken is something similar to what we see inside our PCs or Dextops.",
+    "start": 732.56,
+    "end": 738.96,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n\na) Ahigh-speed CPU\nconnects to 1/0 bridg\nA lower-speed 1/0 bu\n\nNTKHARAGPUR pmionaL ne"
+  },
+  {
+    "text": "But not the Dextops of today. Dextops of earlier years where there were single-course",
+    "start": 739.6,
+    "end": 745.68,
+    "ocr_text": "Single-core\nComputer\n\nFalls under SISD category.\n+ Typically two buses:\n\na) Ahigh-speed CPU\nmemory bus, that also\nconnects to 1/0 brid\nA lower-speed 1/0 bus,\n\nITKHARAGPUR\n\nCtitrincaTiOn courses"
+  },
+  {
+    "text": "Dependiums. Now, this is a typical architecture that we used to see. This was the CPU chip,",
+    "start": 745.84,
+    "end": 754.64,
+    "ocr_text": "Single-core\nComputer\n\nFalls under SISD categ\n+ Typically two buses: bus interface\na) Ahigh-speed CPU\nmemory bus, that also\nconnects to 1/0 brid\nA lower-speed 1/0 bus, =e\n\nNT RHARAGPUR CtitrineaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "which consists of the arithmetic logic unit, registers, some other circuits, bus interfaces.",
+    "start": 756.24,
+    "end": 761.36,
+    "ocr_text": "Single-core\nComputer\n\nFalls under SISD categ\n+ Typically two buse\n3) A high-speed CPU.\nmemory bus, that also\nconnects to 1/0 brid\nA lower-speed 1/0 bus,\n\nNT KHARAGPUR Qtitrin@aTiOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "And there was something called IO bridge. This IO bridge had two purposes. It interface the CPU",
+    "start": 762.24,
+    "end": 769.6,
+    "ocr_text": "Single-core\nComputer\n\nFalls under SISD categ\n+ Typically two buse\n3) A high-speed CPU.\nmemory bus, that also\nconnects to 1/0 brid\nA lower-speed 1/0 bus,\n\nNT KHARAGPUR Qtitrin@aTiOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "with the memory system. This was a very high-speed bus. And there was a relatively lower-speed",
+    "start": 769.68,
+    "end": 777.76,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n+ Typically two buses: bone\na) Ahigh-speed CPU\nmemory bus, that als\nconnects to 1/0 bridg\nA lower-speed 1/0 bu\n\nNT RHARAGPUR CiitrincaniOn courses Teen"
+  },
+  {
+    "text": "IO bus. This IO bridge also interface this IO bus with this so that the IO devices could transfer",
+    "start": 777.76,
+    "end": 785.28,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n+ Typically two buses: bon\na) Ahigh-speed CPU\nmemory bus, that also\nconnects to 1/0 bridg\nA lower-speed 1/0 bu\n\nITKHARAGPUR TEEN"
+  },
+  {
+    "text": "data to main memory and maybe the CPU can also access some of them. So, the IO bus had connections to",
+    "start": 785.28,
+    "end": 792.08,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n+ Typically two buses: bon\na) Ahigh-speed CPU\nmemory bus, that also\nconnects to 1/0 bride\nA lower-speed 1/0 bu\n\nITKHARAGPUR hmionaL ne"
+  },
+  {
+    "text": "some USB controllers, which provided some USB ports through which you can connect a",
+    "start": 793.04,
+    "end": 799.28,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n+ Typically two buses: bon\na) Ahigh-speed CPU\nmemory bus, that also\nconnects to 1/0 bride\nA lower-speed 1/0 bu\n\nITKHARAGPUR hmionaL ne"
+  },
+  {
+    "text": "variety of devices, mouse keyboard many others. Graphic adapter you could connect your display monitor,",
+    "start": 799.28,
+    "end": 805.36,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n+ Typically two buses:\n\na) Ahigh-speed CPU\nmemory bus, that also\nconnects to 1/0 bridg\nA lower-speed 1/0 bu\n\nITRARAGPUR | & rae MN\n\ned"
+  },
+  {
+    "text": "various disk controllers, you can connect your disk subsystems. And there were expansion slots.",
+    "start": 806.8,
+    "end": 813.68,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n+ Typically two buses:\n\na) Ahigh-speed CPU\nmemory bus, that also\nconnects to 1/0 bridg\nA lower-speed 1/0 bu"
+  },
+  {
+    "text": "So, some is you could add some more devices like network adapters and others.",
+    "start": 813.68,
+    "end": 818.16,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n+ Typically two buses:\n\na) Ahigh-speed CPU\nmemory bus, that also\nconnects to 1/0 bridg\nA lower-speed 1/0 bu"
+  },
+  {
+    "text": "This was a very typical kind of an architecture. And this was your single core.",
+    "start": 819.6,
+    "end": 825.36,
+    "ocr_text": "Single-core\nComputer\n\n+ Falls under SISD cate\n+ Typically two buses\na) Ahigh-speed CPU\nmemory bus, that also\nconnects to 1/0 bridg\nA lower-speed 1/0 bu\n\nee"
+  },
+  {
+    "text": "So, single core this is a blown up picture of the same thing. This is technically the core and",
+    "start": 825.84,
+    "end": 834.24,
+    "ocr_text": "Single-core\nProcessor\n\nITKHARAGPUR mon aL N="
+  },
+  {
+    "text": "this is the interface to the external world. So, when you talk of a core. So, every core essentially",
+    "start": 834.24,
+    "end": 846.56,
+    "ocr_text": "Single-core\nProcessor\n\nITKHARAGPUR mon aL N="
+  },
+  {
+    "text": "consists of a register file, arithmetic logic and of course, some control unit.",
+    "start": 846.56,
+    "end": 850.8,
+    "ocr_text": "Single-core register file\nProcessor\n\nIT KHARAGPUR CtitrincatiOn courses TeenNouor"
+  },
+  {
+    "text": "The control unit is not shown here, the control circuits are also there.",
+    "start": 851.6,
+    "end": 855.12,
+    "ocr_text": "Single-core register file\nProcessor\n\nIT KHARAGPUR CtitrincatiOn courses TeenNouor"
+  },
+  {
+    "text": "Well, this is a typical motherboard architecture with the terminologies that are used",
+    "start": 857.92,
+    "end": 863.76,
+    "ocr_text": "board architecture\n\n+ Chipset\nconsisting of\nnorth bridge and\nsouth bridge\n\nGrophies Bus ; wwe\n\nEthernet\n\nLow Pin Count (LPC) Bus $ a ect\n\n~\n\ney\n\nCtitrin@aTiOn courses"
+  },
+  {
+    "text": "are shown here in a desktop PC. Well, the processor comes here. The processor is typically connected",
+    "start": 863.76,
+    "end": 873.2,
+    "ocr_text": "board architecture\n\n+ Chipset\nconsisting of\nnorth bridge and\nsouth bridge\n\nGrophies Bus ; wwe\n\nEthernet\n\nLow Pin Count (LPC) Bus $ a ect\n\n~\n\ney\n\nCtitrin@aTiOn courses"
+  },
+  {
+    "text": "to a chip that is called the north bridge. This is a very fast switch. What does it do?",
+    "start": 873.28,
+    "end": 881.44,
+    "ocr_text": "Typical mothe i\n\n+ Chipse North\n\nconsisting of Wigh-spood\nnorth bridge and Graphics Bus\nsouth bridge\n\nMT KHARAGPUR Ciitrin@aniOn courses Teennouor"
+  },
+  {
+    "text": "This north bridge interfaces the CPU with the memory bus. In the memory bus, there can be memory slots.",
+    "start": 882.24,
+    "end": 889.36,
+    "ocr_text": "+ Chipse\n\nconsisting of\nnorth bridge and\nsouth bridge\n\nNorth\n\nGraphics Bus\n\nLow Pin Count (LPC) Bas\n\nQtitrinicaniOn courses Teennouor"
+  },
+  {
+    "text": "So, in the slots you can plug in your memory modules. There are memory modules of various",
+    "start": 890.16,
+    "end": 896.64,
+    "ocr_text": "Typical mother\nboard architecture\n\n+ Chips\n\nconsisting of\nnorth bridge and\nuth bridge\n\nITKHARAGPUR\n\nGraphics Bus\n\nEtherne\n\nLow Pin Count (LPC) Bas\n\nCiitrineaniOn courses"
+  },
+  {
+    "text": "capacities. You can plug those memory modules depending on how much memory you need.",
+    "start": 896.64,
+    "end": 901.12,
+    "ocr_text": "Typical mother\nboard architecture\n\n+ Chips\n\nconsisting of\nnorth bridge and\nuth bridge\n\nITKHARAGPUR\n\nGraphics Bus\n\nEtherne\n\nLow Pin Count (LPC) Bas\n\nCiitrineaniOn courses"
+  },
+  {
+    "text": "And on the other side, you have a PCI express bus which is typically used to connect high speed",
+    "start": 902.88,
+    "end": 911.36,
+    "ocr_text": "Typical mother\nboard architecture\n\n+ Chips\n\nconsisting of\nnorth bridge and\nuth bridge\n\nITKHARAGPUR\n\nNorth\n\nGraphics Bus\n\nLow Pin Count (LPC) Bus\n\nCtitrineaniOn courses\n\nsupemy\nvo\n\n+ ports, Koy\n\nTeennouor"
+  },
+  {
+    "text": "graphics for your monitors and other things which need very high speed data transfer.",
+    "start": 911.36,
+    "end": 916.88,
+    "ocr_text": "Typical mother\nboard architecture\n\n+ Chips\n\nconsisting of\nnorth bridge and\nuth bridge\n\nITKHARAGPUR\n\nNorth\n\nGraphics Bus\n\nLow Pin Count (LPC) Bus\n\nCtitrineaniOn courses\n\nsupemy\nvo\n\n+ ports, Koy\n\nTeennouor"
+  },
+  {
+    "text": "You have this PCI express bus. And on the other side, it is connected to another switch. This is called",
+    "start": 917.52,
+    "end": 924.32,
+    "ocr_text": "Typical mother\nboard architecture\n\n+ Chips\n\nconsisting of\nnorth bridge and\nuth bridge\n\nITKHARAGPUR\n\nraphics Bus\n\nLow Pin Count (LPC) Bus\n\nCiitrincaniOn courses\n\nTecnu"
+  },
+  {
+    "text": "south bridge. This is of a relatively much slower speed. South bridge interfaces with so-called PCI bus",
+    "start": 924.4,
+    "end": 934.08,
+    "ocr_text": "Typical mother\nboard architecture\n\n+ Chips\n\nconsisting of\nnorth bridge and\nuth bridge\n\nITKHARAGPUR\n\nraphics Bus\n\nLow Pin Count (LPC) Bus\n\nCiitrincaniOn courses\n\nTecnu"
+  },
+  {
+    "text": "which consists of several slots, PCI slots through which you can connect network adapters and other",
+    "start": 935.28,
+    "end": 942.88,
+    "ocr_text": "Typical mothe\n\nboard architecture\n\n+ Chipse\nconsisting of\nnorth bridge and\nsouth bridge\n\nITKHARAGPUR\n\nNorth\nGraphics Bus 5 me\n\nCtitrinicaniOn courses TeenNouor"
+  },
+  {
+    "text": "things, different kind of circuit boards. And there are also direct connections available in",
+    "start": 942.88,
+    "end": 948.48,
+    "ocr_text": "Typical mothe\n\nboard architecture\n\n+ Chipse\nconsisting of\nnorth bridge and\nsouth bridge\n\nITKHARAGPUR\n\nNorth\nGraphics Bus 5 me\n\nCtitrinicaniOn courses TeenNouor"
+  },
+  {
+    "text": "modern motherboards which has connections to network interface like Ethernet, disk interfaces like",
+    "start": 948.88,
+    "end": 956.4,
+    "ocr_text": "Typical mothe\n\nboard architecture\n\n+ Chipse\nconsisting of\nnorth bridge and\nsouth bridge\n\nITKHARAGPUR\n\nGraphics Bus ; wwe\n\nCtitrin@aTiOn courses Teennouor"
+  },
+  {
+    "text": "SATA, USB, the audio interface. And there is another bus which is meant for low speed devices.",
+    "start": 956.4,
+    "end": 966.4,
+    "ocr_text": "Typical mothe\nboard architecture nt-side Bus Memory Slot:\n\n+ Chipse\n\nconsisting of Teiapeed Memory\n\nnorth bridge and Graphics Bus Bue:\n\nsouth bridge Interns! Bus)\n\nCtitrincaniOn courses Teennouor"
+  },
+  {
+    "text": "This is called LPC or low pin count bus. This is typically a serial bus working at a much",
+    "start": 966.4,
+    "end": 973.12,
+    "ocr_text": "Typical mothe\n\nboard architecture\n\n+ Chipse\nconsisting of\nnorth bridge and\nsouth bridge\n\nITKHARAGPUR\n\nGraphics Bus ; we\n\nCtitrincaTiOn courses TeenNouor"
+  },
+  {
+    "text": "lower speed like serial parallel ports, keyboard, mouse. This kind of devices are connected here.",
+    "start": 973.12,
+    "end": 979.12,
+    "ocr_text": "Typical mothe\n\nboard architecture\n\n+ Chipse\nconsisting of\nnorth bridge and\nsouth bridge\n\nITKHARAGPUR\n\nGraphics Bus ; we\n\nCtitrincaTiOn courses TeenNouor"
+  },
+  {
+    "text": "So, this is the rough picture of the motherboard of a desktop. Now, I am showing a pictorially one",
+    "start": 980.08,
+    "end": 987.84,
+    "ocr_text": "Typical mother\nboard architecture . side Bus Momory Slot\n+ Chipset\n\nconsisting of rs e | Memory\n\nnorth bridge and Graphics Bus es\n\nuth bridge Internal Bus\n\nMTKHARAGPUR CiitrinicatiOn courses Teennouor\n\nés"
+  },
+  {
+    "text": "of the motherboards here. You can see this is your processor out here.",
+    "start": 989.36,
+    "end": 994.32,
+    "ocr_text": "Locating North\n\nBridge and South\n\nBridge Chipset on\nMotherboard\n\n= Bus speeds and\nother capabilitie Gong\n\ndepend upon the Bridge\nchipset.\n\nCiitrineaTiOn courses\n\nTeennouor"
+  },
+  {
+    "text": "And this part you see this is your north bridge.",
+    "start": 994.8,
+    "end": 998.64,
+    "ocr_text": "Locating North\n\nBridge and South\n\nBridge Chipset on\nMotherboard\n\n= Bus speeds and\nother capabilitie Gong\n\ndepend upon the Bridge\nchipset.\n\nCiitrineaTiOn courses\n\nTeennouor"
+  },
+  {
+    "text": "And the fence that you can see this is actually heat sink. This is a very high speed chip.",
+    "start": 1002.24,
+    "end": 1006.72,
+    "ocr_text": "Locating North\n\nBridge and South\n\nBridge Chipset on\nMotherboard\n\neds and\n\ncapabilitie south\ndepend up. Bridge\nchipset.\n\nCtitrin@atiOn courses\n\nNATIONAL IN™\nTeennouor"
+  },
+  {
+    "text": "This dissipates lot of power. So, you need a heat sink to dissipate the heat.",
+    "start": 1007.28,
+    "end": 1013.12,
+    "ocr_text": "Locating North\n\nBridge and South\n\nBridge Chipset on\nMotherboard\n\n= Bus speeds and\nother capabilitie south\ndepend up. Bridge\nchipset"
+  },
+  {
+    "text": "And this small chip out here, this is your south bridge.",
+    "start": 1013.92,
+    "end": 1016.8,
+    "ocr_text": "Locating North\n\nBridge and South\n\nBridge Chipset on\nMotherboard\n\n= Bus speeds and\nother capabilitie south\ndepend up. Bridge\nchipset"
+  },
+  {
+    "text": "These are the PCI slots. These are the memory slots and the other components. You see this is a",
+    "start": 1017.36,
+    "end": 1028.64,
+    "ocr_text": "Locating North\n\nBridge and South\n\nBridge Chipset on\nMotherboard\n\npeeds and\nother capabilitie South\ndepend up. Bridge\nchipset.\n\nNPTEL ONLINE\nCtitrincaniOn courses\n\n78\n\néy"
+  },
+  {
+    "text": "motherboard which used to be several years back. But if you see the motherboard of one of the modern",
+    "start": 1028.64,
+    "end": 1034.8,
+    "ocr_text": "Locating North\n\nBridge and South\n\nBridge Chipset on\nMotherboard\n\nnd\n\nbilitie south\nBridge"
+  },
+  {
+    "text": "day PCs, you will see that many of the circuits have been collapsed into a single chip.",
+    "start": 1034.8,
+    "end": 1041.52,
+    "ocr_text": "Locating North\n\nBridge and South\n\nBridge Chipset on\nMotherboard\n\nnd\n\nbilitie south\nBridge"
+  },
+  {
+    "text": "There are very few chips and a very small motherboard you will see in the dextops that are available",
+    "start": 1041.6,
+    "end": 1050.32,
+    "ocr_text": "Locating North\n\nBridge and South\n\nBridge Chipset on\nMotherboard\n\nnd\n\nbilitie south\nBridge"
+  },
+  {
+    "text": "to that. So, it is possible to squeeze the size of the computer system that much today. So,",
+    "start": 1050.32,
+    "end": 1055.52,
+    "ocr_text": "‘ore 1\n\nregister file\n\nITKHARAGPUR\n\nMulti-core Architecture\n\nCore 2\n\nregister file\n\nCiitrineaniOn courses\n\nTeennouor"
+  },
+  {
+    "text": "you can have a dextop system where your entire processing cabinet can be so small as small",
+    "start": 1055.52,
+    "end": 1062.4,
+    "ocr_text": "‘ore 1\n\nregister file\n\nITKHARAGPUR\n\nMulti-core Architecture\n\nCore 2\n\nregister file\n\nCiitrineaniOn courses\n\nTeennouor"
+  },
+  {
+    "text": "rectangular box. It fits everything there. Okay. Such machines are also available.",
+    "start": 1062.4,
+    "end": 1067.12,
+    "ocr_text": "‘ore 1\n\nregister file\n\nITKHARAGPUR\n\nMulti-core Architecture\n\nCore 2\n\nregister file\n\nCiitrineaniOn courses\n\nTeennouor"
+  },
+  {
+    "text": "Now, coming to multi-code architecture conceptually speaking, we looked at one code,",
+    "start": 1067.6,
+    "end": 1076.24,
+    "ocr_text": "‘ore 1\n\nregister file\n\nITKHARAGPUR\n\nMulti-core Architecture\n\nCore 2\n\nregister file\n\nCiitrineaniOn courses\n\nTeennouor"
+  },
+  {
+    "text": "consistent register file ALU basically this plus control. Now, for multi-code you have several such",
+    "start": 1076.24,
+    "end": 1083.76,
+    "ocr_text": "Multi-core Architecture\n\n‘ore 1 Core 2\nrogister file register file\n\nbus interface\n\nIT RHARAGPUR CiitrincaTiOn courses TeENNOLOT"
+  },
+  {
+    "text": "and you have a some kind of a fast bus interface using which they can communicate among themselves.",
+    "start": 1085.76,
+    "end": 1092.48,
+    "ocr_text": "Multi-core Architecture\n\n‘ore 1 Core\n\nregister file register file\n\nbus interface\n\nMTKHARAGPUR CtitrincaniOn courses DP Heer"
+  },
+  {
+    "text": "And there will be an interface with Northbridge memory the outside world.",
+    "start": 1093.28,
+    "end": 1102.16,
+    "ocr_text": "Multi-core Architecture\n\n‘ore 1 Core\n\nregister file register file\n\nbus interface\n\nMTKHARAGPUR CtitrincaniOn courses DP Heer"
+  },
+  {
+    "text": "This is what you have. But this is a very generic picture. Let us look into some more specifics",
+    "start": 1103.28,
+    "end": 1109.84,
+    "ocr_text": "Multi-core Architecture\n\n‘ore 1 Core 2 3 Core 4\n\nregister file register file 0 register file\n\nbus interface\n\nMTPKHARAGPUR Ctitrint@aniOn courses TeeNNOLOT"
+  },
+  {
+    "text": "that exactly how it works, how it happens. Broadly speaking, this kind of multi-processors",
+    "start": 1110.64,
+    "end": 1117.76,
+    "ocr_text": "Multi-core Architecture\n\n‘ore 1 Core\n\nregister file register file\n\nIT RHARAGPUR CtitrincaniOn courses TEEN"
+  },
+  {
+    "text": "can be classified as either tightly coupled or loosely coupled.",
+    "start": 1117.76,
+    "end": 1122.72,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n+ The processors access common shared memory\n+ inter-processor communication takes place through\n+ Multi-core architectures fall under this ca\nb) Loosely coupled multiprocessc\n+ Memory is distributed among ssor\n\nocessors typically communicate through a high-speed interconnection\n\nIT KHARAGPUR Ctitrin@aniOn courses Tecnu"
+  },
+  {
+    "text": "Tightly coupled means the processors or the cores they have access to common shared memory.",
+    "start": 1124.0,
+    "end": 1131.52,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n+ The processors access common shared memory\n+ inter-processor communication takes place through\n+ Multi-core architectures fall under this ca\nb) Loosely coupled multiprocessc\n+ Memory is distributed among ssor\n\nocessors typically communicate through a high-speed interconnection\n\nIT KHARAGPUR Ctitrin@aniOn courses Tecnu"
+  },
+  {
+    "text": "In other words, these processors are all inside the same box. So, inside the same box there are the",
+    "start": 1132.4,
+    "end": 1140.64,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n+ The processors access common shared memory\n+ Multi\n\nb) Lo\n\nore architectures fall under this ca\ny coupled multiprocessc\n+ Memory is distributed among ssor\n‘ors typically communicate through a high-speed interconnection\n\nIT KHARAGPUR Ciitrin@aTiOn couRses Teennouor"
+  },
+  {
+    "text": "processors. There is also the common shared memory. So, when you buy a computer system,",
+    "start": 1140.64,
+    "end": 1146.8,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n+ The processors access common shared memory\n+ Multi\n\nb) Lo\n\nore architectures fall under this ca\ny coupled multiprocessc\n+ Memory is distributed among ssor\n‘ors typically communicate through a high-speed interconnection\n\nIT KHARAGPUR Ciitrin@aTiOn couRses Teennouor"
+  },
+  {
+    "text": "you buy the system along with all the processors and also memory.",
+    "start": 1146.8,
+    "end": 1150.4,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n\n+ The pr\n\n+ Multi\n\nb) Lo\n\nore architectures fall under this ca\ny coupled multiprocessc\n\n+ Memory is distributed amo cessor\nors typical hrough a high-speed interconnection\n\nIT KHARAGPUR Ctitrin@aniOn couRses Teennouor"
+  },
+  {
+    "text": "So, inter-processor communication can take place through shared memory. Like one of the processor",
+    "start": 1152.56,
+    "end": 1158.0,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n\n+ The pr\n\n+ Multi\n\nb) Lo\n\nore architectures fall under this ca\ny coupled multiprocessc\n\n+ Memory is distributed amo cessor\nors typical hrough a high-speed interconnection\n\nIT KHARAGPUR Ctitrin@aniOn couRses Teennouor"
+  },
+  {
+    "text": "can write some data into the memory. The other processor can read the data from that memory.",
+    "start": 1158.0,
+    "end": 1162.96,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n\n+ The pr\n\n+ Multi\n\nb) Lo\n\nore architectures fall under this ca\ny coupled multiprocessc\n\n+ Memory is distributed amo cessor\nors typical hrough a high-speed interconnection\n\nIT KHARAGPUR Ctitrin@aniOn couRses Teennouor"
+  },
+  {
+    "text": "So, the standard multi-core architectures usually fall under this category.",
+    "start": 1163.44,
+    "end": 1170.0,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n\n+ The pr\n\n+ Multi\n\nb) Lo\n\nore architectures fall under this ca\ny coupled multiprocessc\n\n+ Memory is distributed amo cessor\nors typical hrough a high-speed interconnection\n\nIT KHARAGPUR Ctitrin@aniOn couRses Teennouor"
+  },
+  {
+    "text": "But there is another kind of a multi-process architecture that is also available.",
+    "start": 1171.44,
+    "end": 1176.16,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n\n+ The pr\n\n+ inter-processor communication takes place through\n+ Multi-core\n\nb) Lo\n\narchitectures fall under this ca\ny coupled multiproce\n\n+ Memory is distribut\n\nMTP KHARAGPUR CtitrincatiOn couRses Tecnu"
+  },
+  {
+    "text": "This is called loosely coupled multi-processors. This is sometimes called clusters or cluster computing.",
+    "start": 1176.96,
+    "end": 1183.52,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n\n+ The pr\n\n+ inter-processor communication takes place through\n+ Multi-core\n\nb) Lo\n\narchitectures fall under this ca\ny coupled multiprocessc\n+ Memory is distributed among ssor\n‘ors typically communicate through a high-speed interconnection\n\nUT KHARAGPUR CtitrineaTiOn courses Teennouor"
+  },
+  {
+    "text": "This is this is an architecture that is somewhat loosely coupled. How? Here there is no shared",
+    "start": 1184.4,
+    "end": 1192.8,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n\n+ The pr\n\n+ inter-processor communication takes place through\n+ Multi-core\n\nb) Lo\n\narchitectures fall under this ca\ny coupled multiprocessc\n+ Memory is distributed among ssor\n‘ors typically communicate through a high-speed interconnection\n\nUT KHARAGPUR CtitrineaTiOn courses Teennouor"
+  },
+  {
+    "text": "memory. So, how is the memory organized? Memory is distributed among the processor. Each processor",
+    "start": 1192.8,
+    "end": 1201.04,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n\n+ The pr\n\n+ inter-processor communication takes place through\n+ Multi\n\nb) Lo\n\n+ Memory is distrib:\n\nNT KHARAGPUR Ctitrin@aniOn courses Teennouor"
+  },
+  {
+    "text": "has its own memory. And communication here is not via shared memory, but through some high-speed",
+    "start": 1201.04,
+    "end": 1209.84,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n\n+ The pr\n\n+ inter-processor communication takes place through\n+ Multi\n\nb) Lo\n\n+ Memory is distrib:\n\nNT KHARAGPUR Ctitrin@aniOn courses Teennouor"
+  },
+  {
+    "text": "interconnection network. There are processors. There will be a very high-speed interconnecting switch.",
+    "start": 1209.84,
+    "end": 1217.36,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n+ The processors access common shared memory\n+ Multi-core architectures fall under this ca\nb) Loosely coupled multiprocessc\n+ Memory is distributed among\n\nocessors typically communicate speed interconnection\n\nMTKHARAGPUR Ctitrin@atiOn courses TeenNouor"
+  },
+  {
+    "text": "The processors will be connecting via that switch. They will be sending and receiving messages",
+    "start": 1217.44,
+    "end": 1222.96,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n+ The processors access common shared memory\n+ Multi-core architectures fall under this ca\nb) Loosely coupled multiprocessc\n+ Memory is distributed among\n\nocessors typically communicate speed interconnection\n\nMTKHARAGPUR Ctitrin@atiOn courses TeenNouor"
+  },
+  {
+    "text": "from other processors. This is how loosely coupled processors work.",
+    "start": 1222.96,
+    "end": 1227.68,
+    "ocr_text": "Traditional Multiprocessor Architectures\n\n+ Can be broadly classified into two types:\n+ The processors access common shared memory\n+ Multi-core architectures fall under this ca\nb) Loosely coupled multiprocessc\n+ Memory is distributed among\n\nocessors typically communicate speed interconnection\n\nMTKHARAGPUR Ctitrin@atiOn courses TeenNouor"
+  },
+  {
+    "text": "5. Now, pictorially a tightly coupled multi-processor looks like this.",
+    "start": 1230.0,
+    "end": 1235.44,
+    "ocr_text": "(a) Tightly Coupled Multiprocessors\n\nCtitrincaniOn courses Tecnu"
+  },
+  {
+    "text": "This is a very typical diagram. So, you can see the different course.",
+    "start": 1236.48,
+    "end": 1241.28,
+    "ocr_text": "(a) Tightly Coupled Multiprocessors\n\nCtitrincaniOn courses Tecnu"
+  },
+  {
+    "text": "Now, each of the core is having its own instruction in data cache in level 1 and also level 2 cache.",
+    "start": 1242.24,
+    "end": 1252.24,
+    "ocr_text": "(a) Tightly Coupled Multiprocessors\n\nCtitrincaniOn courses Tecnu"
+  },
+  {
+    "text": "These are all private to the processors. But typically the L3 cache is common across all the processors.",
+    "start": 1252.24,
+    "end": 1262.16,
+    "ocr_text": "(a) Tightly Coupled Multiprocessors\n\nIT KHARAGPUR Ctitrin@aTiOn courses TeenNouor"
+  },
+  {
+    "text": "And of course, the main memory is also common. So, this L1 and L2 cache are private,",
+    "start": 1264.0,
+    "end": 1269.84,
+    "ocr_text": "(a) Tightly Coupled Multiprocessors\n\nMT KHARAGPUR CtitrincaTiOn courses Teennouor"
+  },
+  {
+    "text": "L3 and main memory are shared. Of course, IOS systems are also there.",
+    "start": 1270.56,
+    "end": 1274.96,
+    "ocr_text": "(a) Tightly Coupled Multiprocessors"
+  },
+  {
+    "text": "So, here because of the constraint here, you see the constraint of L3 and main memory,",
+    "start": 1278.8,
+    "end": 1284.8,
+    "ocr_text": "Some features:\n\n= Memorybandwidth requirements increase with the number of processor\n\nTECHNOLO” ie\n\n79\n\nuy"
+  },
+  {
+    "text": "so many processors are trying to access them. So, if you increase it to say 8, 16, 32,",
+    "start": 1284.8,
+    "end": 1290.88,
+    "ocr_text": "Some features:\n\n= Memorybandwidth requirements increase with the number of processor\n\nTECHNOLO” ie\n\n79\n\nuy"
+  },
+  {
+    "text": "there will lot of load on this L3 and main memory. So, there is a scalability issue. You cannot",
+    "start": 1290.88,
+    "end": 1297.04,
+    "ocr_text": "(a) Tightly Coupled Multiprocessors\n\na8\n\ney"
+  },
+  {
+    "text": "very easily extend it to larger number of course, our processors because the memory bandwidth",
+    "start": 1298.0,
+    "end": 1303.76,
+    "ocr_text": "Some features:\n\n= Difficult to extend it to larze number of processor\n\n— Memory bandwidth requirements increase With the number of processor:\n\n+ Called Unif Jemory Ace"
+  },
+  {
+    "text": "requirement will also increase, which is very difficult to do. Now, in this kind of an architecture,",
+    "start": 1303.76,
+    "end": 1313.76,
+    "ocr_text": "Some features:\n\n= Difficult to extend it to larze number of processor\n\n— Memory bandwidth requirements increase With the number of processor:\n\n+ Called Unif Jemory Ace"
+  },
+  {
+    "text": "there is one feature is the memory access time for all processors is uniform. This is sometimes",
+    "start": 1313.76,
+    "end": 1318.96,
+    "ocr_text": "some features:\n— Difficult to extend it to larze number of processors.\n\n— Memory bandwidth requirements increase with the number of processor:\n\nCtitrin@atiOn courses Teennouor\n\ney"
+  },
+  {
+    "text": "called uniform memory access or UME. Why it is uniform? Because irrespective of which processor you are,",
+    "start": 1318.96,
+    "end": 1326.4,
+    "ocr_text": "some features:\n— Difficult to extend it to larze number of processors.\n\n— Memory bandwidth requirements increase with the number of processor\n\n+ Called Unif Jemory Ace: A.\n\nCirineatiOn courses TeenNouor"
+  },
+  {
+    "text": "the path to access memory is the same. So, the delay is the same, right. That is why it is called",
+    "start": 1327.28,
+    "end": 1333.84,
+    "ocr_text": "(a) Tightly Coupled Multiprocessors\n\nUT KHARAGPUR CtitrineaniOn courses TeenNouor"
+  },
+  {
+    "text": "uniform memory access. But it contrasts loosely coupled multiprocessors look like this.",
+    "start": 1333.84,
+    "end": 1340.8,
+    "ocr_text": "(a) Tightly Coupled Multiprocessors\n\nUT KHARAGPUR CtitrineaniOn courses TeenNouor"
+  },
+  {
+    "text": "There will be multiple processors with their own private caches. So, all L1, L2, L3 can be inside",
+    "start": 1342.32,
+    "end": 1350.16,
+    "ocr_text": "(b) Loosely Coupled Multiprocessors\n\nIT KHARAGPUR CtitrineatiOn courses Teennouor"
+  },
+  {
+    "text": "this. They will be having their local memories also and local IOs also. They will be connected via",
+    "start": 1350.24,
+    "end": 1357.84,
+    "ocr_text": "(b) Loosely Coupled Multiprocessors"
+  },
+  {
+    "text": "an interconnection network. So, here so means a processor can access its local memory",
+    "start": 1357.84,
+    "end": 1364.8,
+    "ocr_text": "(b) Loosely Coupled Multiprocessors\n\n-\n\nGy"
+  },
+  {
+    "text": "and also via the interconnection network it can access the memory of the other processors.",
+    "start": 1365.6,
+    "end": 1370.24,
+    "ocr_text": "(b) Loosely Coupled Multiprocessors\n\nCtitrineaTiOn courses Teennouor"
+  },
+  {
+    "text": "So, you can see the access time will not be uniform, while accessing local memory will be faster,",
+    "start": 1371.36,
+    "end": 1377.68,
+    "ocr_text": "(b) Loosely Coupled Multiprocessors\n\nCtitrineaTiOn courses Teennouor"
+  },
+  {
+    "text": "but accessing the other memories will be slower, right. So, this is sometimes called",
+    "start": 1377.76,
+    "end": 1384.32,
+    "ocr_text": "(b) Loosely Coupled Multiprocessors\n\nMemory\n\nINTERCONNECTION NETWORK\n\nCtitrintcaniOn courses GD) Hooter"
+  },
+  {
+    "text": "non uniform memory access or NUMA. This is also a cost effective way to scale memory band because",
+    "start": 1384.32,
+    "end": 1391.68,
+    "ocr_text": "(b) Loosely Coupled Multiprocessors\n\nMemory\n\nINTERCONNECTION NETWORK\n\nCtitrintcaniOn courses GD) Hooter"
+  },
+  {
+    "text": "you see most of the time when you run a program on a core processor, it will be accessing its local",
+    "start": 1391.68,
+    "end": 1400.32,
+    "ocr_text": "Some features:\n\n— Communicating data between processors is complex and has higher lat\n\n2"
+  },
+  {
+    "text": "memory only. Very rarely it will be trying to access the memory of the other processors.",
+    "start": 1400.8,
+    "end": 1405.92,
+    "ocr_text": "s\n?\n\nSo,"
+  },
+  {
+    "text": "So, in this kind of architecture even if we increase the number of processors,",
+    "start": 1406.8,
+    "end": 1410.72,
+    "ocr_text": "s\n?\n\nSo,"
+  },
+  {
+    "text": "scalability will not be that much of a challenge, okay. The over it will not go up in a proportional way.",
+    "start": 1411.6,
+    "end": 1418.96,
+    "ocr_text": "Some features\n\n>mmunicating data between processors is complex and has higher lat\n\nCtrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "So, the only flip side is that the communication between the processes is complex using that",
+    "start": 1421.76,
+    "end": 1427.92,
+    "ocr_text": "Some features\n\n>mmunicating data between processors is complex and has higher lat\n\nCtrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "switching network and as higher latency. So, when you are mapping some applications to run on them,",
+    "start": 1427.92,
+    "end": 1433.52,
+    "ocr_text": "Some features:\n\n— Communicating data between processors is complex and has higher lat\nMemory access time depends on the location of data"
+  },
+  {
+    "text": "you try to map in such a way that most of the time they will be accessing the local memory",
+    "start": 1434.24,
+    "end": 1439.44,
+    "ocr_text": "Some features:\n\n— Communicating data between processors is complex and has higher lat\nMemory access time depends on the location of data"
+  },
+  {
+    "text": "and very rarely they will be accessing the other processors their memories, okay.",
+    "start": 1439.44,
+    "end": 1444.64,
+    "ocr_text": "Some features:\n\n— Communicating data between processors is complex and has higher lat\nMemory access time depends on the location of data"
+  },
+  {
+    "text": "So, in multi processors this is one important problem. Of course, we are not going into detail of",
+    "start": 1447.44,
+    "end": 1453.68,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor cache\nin multiprocessor system:\name memory block is lo: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "this problem in this lecture because it is a little beyond this scope. This cache coherence",
+    "start": 1453.68,
+    "end": 1459.92,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor cache\nin multiprocessor system:\name memory block is lo: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "is a very important problem. You see I am trying to illustrate this. Suppose I have two processors.",
+    "start": 1459.92,
+    "end": 1468.0,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor cache\n\nin multiprocessor system:\n\name memory block is loaded into two processor cach\n\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:\n\nITKHARAGPUR CtitrineaTiOn courses\n\n® NATIONAL IN™"
+  },
+  {
+    "text": "Let us say P1 and P2. Just assume they have their own cache memories. Let us say C1.",
+    "start": 1471.04,
+    "end": 1480.56,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor cache\n\nin multiprocessor system:\n\name memory block is loaded into two processor cach\n\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:\n\nITKHARAGPUR CtitrineaTiOn courses\n\n® NATIONAL IN™"
+  },
+  {
+    "text": "Let us say C2. So, just ignore for the time being whether they are L1, L2 or anything,",
+    "start": 1480.56,
+    "end": 1489.12,
+    "ocr_text": "acta |». |___fe>\\\n—_\nSe Ga ae"
+  },
+  {
+    "text": "their cache and let us assume they have access to a common memory M.",
+    "start": 1489.12,
+    "end": 1494.88,
+    "ocr_text": "acta |». |___fe>\\\n—_\nSe Ga ae"
+  },
+  {
+    "text": "So, what might happen now you see there can be one block in this memory. Let us call this,",
+    "start": 1499.44,
+    "end": 1507.44,
+    "ocr_text": "acta |». |___fe>\\\n—_\nSe Ga ae"
+  },
+  {
+    "text": "this is the block. The processor might be using this block. So, this block will be loaded in the cache.",
+    "start": 1507.44,
+    "end": 1514.16,
+    "ocr_text": "acta |». |___fe>\\\n—_\nSe Ga ae"
+  },
+  {
+    "text": "So, it is possible that the other processor is also trying to access this. So, this block will also",
+    "start": 1518.08,
+    "end": 1523.92,
+    "ocr_text": "acta |». |___fe>\\\n—_\nSe Ga ae"
+  },
+  {
+    "text": "be loaded in the cache. So, let us say B, this is the original block. So, a copy is here and a",
+    "start": 1523.92,
+    "end": 1533.68,
+    "ocr_text": "acta |». |___fe>\\\n—_\nSe Ga ae"
+  },
+  {
+    "text": "copy is here. Now, what might happen? The processor P1 might write something into this block B",
+    "start": 1533.68,
+    "end": 1543.12,
+    "ocr_text": "acta |». |___fe>\\\n—_\nSe Ga ae"
+  },
+  {
+    "text": "which will make this block dirty. But as soon as it writes into B, what will happen? You can imagine",
+    "start": 1544.0,
+    "end": 1551.36,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor systems.\name memory block is load: processor cacht\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "these two blocks will become invalid. So, whatever is loaded in P2's cache, this will be",
+    "start": 1552.64,
+    "end": 1559.52,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor systems.\name memory block is load: processor cacht\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "an old or stale version of the block because this block was recently modified and the copy in memory",
+    "start": 1559.76,
+    "end": 1567.6,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor systems.\name memory block is load: processor cacht\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "will also be stale. So, this is called the cache coherency problem where there are multiple copies",
+    "start": 1567.6,
+    "end": 1574.88,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor systems.\name memory block is load: processor cacht\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "of the block which may be located in several places. So, one of them may be the good version,",
+    "start": 1574.88,
+    "end": 1581.28,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor systems.\name memory block is load: processor cacht\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "others may be incoherent or the wrong versions. This is the basic idea.",
+    "start": 1581.36,
+    "end": 1586.96,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor systems.\name memory block is load: processor cacht\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "So, if you can see here, same memory block is loaded into two processor caches. One of the processor",
+    "start": 1588.8,
+    "end": 1595.12,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor systems.\name memory block is load: processor cacht\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "updates the data. So, data in the other processor cache and also memory becomes inconsistent.",
+    "start": 1595.12,
+    "end": 1601.2,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor cache\nin multiprocessor system:\name memory block is lo: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "So, there are many methods and techniques that have been proposed to solve this problem.",
+    "start": 1602.0,
+    "end": 1606.24,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor cache\nin multiprocessor system:\name memory block is lo: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "So, one is called the Snoopy protocol where in the memory bus itself, you continuously check whether",
+    "start": 1606.96,
+    "end": 1614.0,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor cache\nin multiprocessor system:\n4 into two processor cacht\n\name memory block is lo:\n\nOne of the processors upd.\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:\n\nNTKHARAGPUR"
+  },
+  {
+    "text": "someone is doing a right into its local cache. So, if it does, you immediately send the information",
+    "start": 1614.0,
+    "end": 1620.24,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor cache\nin multiprocessor system:\n4 into two processor cacht\n\name memory block is lo:\n\nOne of the processors upd.\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:\n\nNTKHARAGPUR"
+  },
+  {
+    "text": "to the other memory controls also so that they can check whether they are also having a copy of",
+    "start": 1620.24,
+    "end": 1627.04,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor cache\nin multiprocessor system:\n4 into two processor cacht\n\name memory block is lo:\n\nOne of the processors upd.\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:\n\nNTKHARAGPUR"
+  },
+  {
+    "text": "that same block in their cache. If so, they will immediately invalidate it, something like that.",
+    "start": 1627.04,
+    "end": 1632.48,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "And, directory based protocol is that where you store the information about the blocks in some",
+    "start": 1633.44,
+    "end": 1640.32,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "central place where the memories are stored. So, you store that for a memory, this block is",
+    "start": 1641.2,
+    "end": 1646.96,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "currently being held by these these these processors. So, in a processor update, you know that which",
+    "start": 1646.96,
+    "end": 1651.68,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "are the other processors, they will also get affected. But I am not going with the detail of these",
+    "start": 1651.68,
+    "end": 1656.96,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "protocols here. So, I just try to give you a very broad bird's eye view about what kind of",
+    "start": 1656.96,
+    "end": 1665.84,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "parallel computing platforms are being used today and what are the different variations there in.",
+    "start": 1665.84,
+    "end": 1673.36,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "So, with this I come to the end of this lecture. So, in this lecture if you recall, we try to",
+    "start": 1673.36,
+    "end": 1682.64,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "give you a broad classification of computer systems with some examples, what kind of",
+    "start": 1682.96,
+    "end": 1691.2,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "processing or computing systems fall under which category and some of the problems and issues.",
+    "start": 1692.0,
+    "end": 1698.48,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "So, if you are interested to know more detail on this, there are advanced level courses and",
+    "start": 1699.04,
+    "end": 1704.4,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "computer organization architecture available, you will get to know about these in those courses.",
+    "start": 1704.4,
+    "end": 1709.04,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  },
+  {
+    "text": "Thank you.",
+    "start": 1709.04,
+    "end": 1711.04,
+    "ocr_text": "Cache Coherency Problem in Multiprocessors\n\n+ Maintaining coherence between data loaded in processor caches\nin multiprocessor system:\name memory block is load: processor cach\n+ Broadly two classes of techniques are used to solve this problem:\n\nb) Directory-based protocol:"
+  }
+]

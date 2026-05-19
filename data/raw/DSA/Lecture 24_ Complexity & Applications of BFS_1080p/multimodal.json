@@ -1,0 +1,1706 @@
+[
+  {
+    "text": "So, we implement a graph through either link which is the adjacency list or 2D array",
+    "start": 0.0,
+    "end": 24.52,
+    "ocr_text": "Lecture - 24\nComplexity & Applications of BFS"
+  },
+  {
+    "text": "which is the adjacency matrix representation. So, usually we will use adjacency list only,",
+    "start": 24.52,
+    "end": 38.08,
+    "ocr_text": "Pal Re ale >a]\n| ; 4 nhr (sc) :\naA Ving: fut Wo <n V- aff\na\n\n~p Shy works oul to rN bs d\nROA ocode =e"
+  },
+  {
+    "text": "but sometimes the input may be in adjacency matrix and then we will specify that. So, be",
+    "start": 38.08,
+    "end": 46.44,
+    "ocr_text": "Ke alt os) <>\n- Gnpite V, <— nbr(x) ;\n}\nFor Vy: Pet Wo tn Vi, af\n\ni\n\n~o Shw works oul  « bseudocede eee\n\n4 %® AZ"
+  },
+  {
+    "text": "prepared with adjacency matrix also for your quiz, but generally we will only use adjacency",
+    "start": 46.44,
+    "end": 54.28,
+    "ocr_text": "Ke alt os) <>\n- Gnpite V, <— nbrlx) ;\n}\nFor Vy: Pet Wi cn Vi, af\n\ni\n\n—0 aly works oul Tn ON bseudocede a\n\n4 %® Ag"
+  },
+  {
+    "text": "list. So, the first problem we want to solve in the case of graph, I mean graph has thousands",
+    "start": 54.28,
+    "end": 63.24,
+    "ocr_text": "Ke alt os) <>\n- Gnpite V, <— nbrlx) ;\n}\nFor Vy: Pet Wi cn Vi, af\n\ni\n\n—0 aly works oul Tn ON bseudocede a\n\n4 %® Ag"
+  },
+  {
+    "text": "of problems, most of them are very practical problems, but the one common thing or the",
+    "start": 63.24,
+    "end": 70.28,
+    "ocr_text": "Ke alt os) <>\n- Gnpile. V, <— nbrc) ;\n}\n- Fa Va,: Pat W th Vi, af\n\ni\n\n~o Sha works oul to rN bseudocede aoc\n\n&) te) &"
+  },
+  {
+    "text": "most basic thing in graph that you want to start with is reachability. Is there a path",
+    "start": 70.28,
+    "end": 78.44,
+    "ocr_text": "Ke alt os) <>\n- Gnpile. V, <— nbrc) ;\n}\n- Fa Va, : Pat W th Vi, af\n\ni\n\n—0 aly works oul f cn bseudocede _\n\n& te)"
+  },
+  {
+    "text": "from one vertex x to another vertex y and so the algorithms for those were invented in",
+    "start": 78.44,
+    "end": 85.44,
+    "ocr_text": "Ke alt os) <>\n- Gnpite V, <— nbr(x) ;\n}\nFor Vy: Pet Wo tn Vi, af\n\ni\n\n~o Shi works oul  « bseudocede eee\n\n4 %® AZ"
+  },
+  {
+    "text": "the 50s in the 60s. So, these are the traversal algorithms. So, first when we have done",
+    "start": 85.44,
+    "end": 90.92,
+    "ocr_text": "2 Ps I Fy &\n- Gnpite V, <— nbr(x) ;\nZY\n\n0 Shy wnks ont te a pseudocode .\n\na %e | A"
+  },
+  {
+    "text": "breadth first, well we have not finished, but we will see this your code now. So, BFS",
+    "start": 90.92,
+    "end": 97.32,
+    "ocr_text": "2 Ps I Fy &\n- Gnpite V, <— nbr(x) ;\nZY\n\n0 Shy wnks ont te a pseudocode .\n\na %e | A"
+  },
+  {
+    "text": "is breadth basically represent means in this case that you first want to visit all the",
+    "start": 97.32,
+    "end": 106.92,
+    "ocr_text": "P & At os) cS\n- Gnpite V, <— nbr(x) ;\n; ZY\n\n—o Shy works ont & o bSeudocede ..\n\na +9 | A"
+  },
+  {
+    "text": "vertices which are near and only then will you go deeper. So, this is so you first want",
+    "start": 106.92,
+    "end": 115.16,
+    "ocr_text": "P Rd At os) cS\n- Gnpite V, <— nbr(x) ;\ny)\n\n—o Shy wnks ont tb oa bSeudocede ..\n\na ay | A"
+  },
+  {
+    "text": "to cover the breadth around x. So, this is basically formalized by the distance metric.",
+    "start": 115.16,
+    "end": 126.88,
+    "ocr_text": "i\n\niE"
+  },
+  {
+    "text": "So, the distance from x to y is the least number of edges or the shortest path between them.",
+    "start": 126.88,
+    "end": 138.88,
+    "ocr_text": "P Re Ble 3)\nBES (Breadth first Search/ Tra versad)\n\n-Betn: e Distance d, (x ig U4) ?= = Laat 5, Hedges ‘7\n—_—_—_- 7 —\n\n= | shortest path ill"
+  },
+  {
+    "text": "So, shortest path obviously will cannot have any repetition because if a vertex repeats or if",
+    "start": 138.88,
+    "end": 145.24,
+    "ocr_text": "Zz e Ez é3)\nBES (Breadth frst Search / Tia versaé)\n\n-Refu: - Distance dA (x ig OU 4) ?= = antl i Hedges y\n: Te 7 AY\n\n= |shortet path Tuk"
+  },
+  {
+    "text": "there is a cycle then you should just delete that, edit it out. So, shortest paths will be free",
+    "start": 145.24,
+    "end": 151.92,
+    "ocr_text": "Zz Rd py oJ)\nBES (Breadth frst Search / Tia versa)\n\n-Refku: - Vistance dA (x tg, 4 9) 22 = or i tecigee y\nae path 7 ~AY\n\n= | Shortest path oaTe"
+  },
+  {
+    "text": "of repetition and cycles. So, it can be only between 0 to n minus 1, 0 meaning that it is",
+    "start": 151.92,
+    "end": 162.16,
+    "ocr_text": "Zz Rd py oJ)\nBES (Breadth frst Search / Tia versa)\n\n-Refku: - Vistance dA (x tg, 4 9) 22 = or i tecigee y\nae path 7 ~AY\n\n= | Shortest path oaTe"
+  },
+  {
+    "text": "the x equal to y and n minus 1 meaning that you are visiting all the vertices it can also",
+    "start": 162.16,
+    "end": 169.88,
+    "ocr_text": "i ® I &\nBES (Breadth fast Search/ Tia versad)\n-Bety: - Distance da (x,y) 2= = sere (Hedges an.\n\npath AY |\n\n= |shotet pth ~0y |\n\n&) (te)"
+  },
+  {
+    "text": "be infinity if x and y are unconnected right which happens when x and y are not in the same",
+    "start": 169.88,
+    "end": 179.92,
+    "ocr_text": "i ® I &\nBES ( Breadth first Search /Tisversad)\n-Bety: - Distance de (x, y)2= = et (Hedges aA.\n\npath may |\n\n= | shertet path ea\n\n& (te) &"
+  },
+  {
+    "text": "connected component. So, there is it can take a special value infinity or num when it is",
+    "start": 179.92,
+    "end": 191.08,
+    "ocr_text": "fz ®& a és] ie\nBES ( Breadth — fase Search / Tra versa)\n—Refu: - Distance dg (x y)2= (Least dfedges an\n\n—>] ® path mney)\n\n= | Shortest path re ~0y"
+  },
+  {
+    "text": "finite it is 0 to n minus 1 and so when it is finite then there is a k. So, you have x1 to",
+    "start": 191.08,
+    "end": 198.56,
+    "ocr_text": "Pa Rd I os <> »)\nBES ( Breadth —Srst Search / Tra versad)\n-Refu: - Distance dg y):= east t aedges an\n\n® path way )\n\n= |shortetpath ~0y |"
+  },
+  {
+    "text": "x k minus 1 in the middle and we saw that actually every contiguous x size here they also give",
+    "start": 198.56,
+    "end": 209.48,
+    "ocr_text": "f e at os] gS »)\nBES ( Breadth — Sarat Search / Tra versa)\n-BRefu: - Distance de wy )- = (Least (Hedges mM\n\n® path siacieaes\n\n= | Shortest path a ~ey |\n\nf) te) i"
+  },
+  {
+    "text": "you shortest sub paths. So, shortest path contains shortest sub paths and BFS will use this",
+    "start": 209.48,
+    "end": 218.84,
+    "ocr_text": "af Rd\n\n&) (te)\n\n—Refu:\n\nuN\n\nés]\n\n5\n\nBES (Bradt fale Sel oe?\n\n—\n_\n\na path me may |\n\na. x ~oy |"
+  },
+  {
+    "text": "idea. So, BFS will hence develop shortest sub paths and from the shortest sub paths it will",
+    "start": 218.84,
+    "end": 228.68,
+    "ocr_text": "— ¥dea BES rn 2: ° Stut aoe ’\ncen ok ae 2X band at Pte - tle\n\n~ mittakje Dodeo;\nother y's: D&y)< oo;"
+  },
+  {
+    "text": "get bigger shorter paths right. So, that is the pseudo code idea. So, keep an area big D initialize",
+    "start": 228.68,
+    "end": 245.2,
+    "ocr_text": "— Ydea BES m2: ° Stat oul ple’\nae oh moa expand at Ou “t\n\n© mitakzje Dod<eo;\nother 4's: D&Yy)< 0;"
+  },
+  {
+    "text": "to infinity everywhere and then do this by induction or by iteration. So, you start with V0",
+    "start": 245.2,
+    "end": 256.24,
+    "ocr_text": "Pa « I a\n7 V, © nbr(x) ;\nA Vivy : Put W in V- atf\nat\n\n-+) Sus works oul to o bs docod\nenydocode\n\n2\n3 4@ AZ"
+  },
+  {
+    "text": "then V1 are the neighbors of x and in V i plus 1 you will put those w's which are neighbors",
+    "start": 256.24,
+    "end": 266.88,
+    "ocr_text": "Z s I & &\n- Gnpite V, <— nbr(x) ;\n3\nFer Viv > fet W wa Vix. af\n\n~» Sha works Pes i te cen bSeudocede Rens"
+  },
+  {
+    "text": "of V i but are yet undiscovered. So, I will be currently their distance is infinity. So,",
+    "start": 266.88,
+    "end": 275.36,
+    "ocr_text": "Zz eo Jt os) ai\n- Gnpite V, <— nbrl(x) ;\n3\n- Fa Viv > fit W tn Vix. att\n\n~» Sha works oul te rN pseudocode —\n\na 4e"
+  },
+  {
+    "text": "these deserve to be in V i plus 1 any questions at this point. So, based on this we can now",
+    "start": 275.36,
+    "end": 284.56,
+    "ocr_text": "Z Rd I os) C2\n- Gnpite V, <— nbr(x) ;\n}\n- Fa Vy > ft W tw Vix. att\n\n~» Sha works oul te cen pseudocode ie\n\na 4e"
+  },
+  {
+    "text": "give the pseudo code. So, this will be so we will be using our data structure which we studied",
+    "start": 284.56,
+    "end": 299.36,
+    "ocr_text": "Z Rd I os) C2\n- Gnpite V, <— nbr(x) ;\n}\n- Fa Vy > ft W tw Vix. att\n\n~» Sha works oul te cen pseudocode ie\n\na 4e"
+  },
+  {
+    "text": "before can you name it q right. Why do you need a q here? So, you need a q because the vertices to",
+    "start": 299.36,
+    "end": 319.92,
+    "ocr_text": "© au os) cS by)\nad Gonpite V, = nbr(o) ;\n}\n\nBh\n\n~o Shw works oul tes a pseudocode a\nBFS(G,2) ¢\nCc\n\n4 %® Ad"
+  },
+  {
+    "text": "find the neighbors of V1 and V 2 and V 3 whatever was pushed earlier that is what you want to",
+    "start": 319.92,
+    "end": 328.8,
+    "ocr_text": "z e at és] cS 5\na Conpite. V, = nb» (ox) ;\n3\n\n—f) ‘Shut k ey t> a LUdgor\nBFs(G,~) ? is\nCc"
+  },
+  {
+    "text": "access first right. So, if there is a neighbor of V1 then you want to access that first before",
+    "start": 328.8,
+    "end": 335.2,
+    "ocr_text": "Z ® I a & b)\nus Conpite V, Sai nb» (oc) ;\n3\n- Fa Vaz: Met Win Vy, of\n\nShy works ont & a pseudocode\nBFS(G,%) ¢\nC\n\n&) (te)"
+  },
+  {
+    "text": "accessing neighbor of V 2 and so on. So, you want the shortest distance you want to go to the",
+    "start": 335.2,
+    "end": 341.2,
+    "ocr_text": "z & I és] cS 5\n° Conpite. V, <é nb» (oc) ;\n3\n- Fa Viy : fut Wo tn Vig. asf\n\n—) ‘Shut k my to rN RUAOCS\nBFS(G,~) ¢ pSeudocede -—\nCc"
+  },
+  {
+    "text": "earliest. So, q will be the right place to put these neighbors. So, the first step itself",
+    "start": 341.2,
+    "end": 350.48,
+    "ocr_text": "z & I és] cS 5\n° Conpite. V, <é nb» (oc) ;\n3\n- Fa Viy : fut Wo tn Vig. asf\n\n—) ‘Shut k my to rN RUAOCS\nBFS(G,~) ¢ pSeudocede -—\nCc"
+  },
+  {
+    "text": "neighbors of x that is a set. So, find every neighbor and push it inside a q. So,",
+    "start": 350.48,
+    "end": 356.0,
+    "ocr_text": "® r os easy >\n° Conpite V, é nb» (oc) ;\n3\n- Fa Var: Met Win Vy, of\n\nBR\n\n—~o Sus works oul t rN pseudocode a\nBFS(G,2) ¢\nCc\n\n&) (te)"
+  },
+  {
+    "text": "nq it. So, for that we will get we will create an m t q first.",
+    "start": 356.0,
+    "end": 362.24,
+    "ocr_text": "-Gnhite V, <— nbr(x) ;\n}\n- Fa Vay: Pet Win Vx, off\n\ni\n\nShy works ont tb a pseudocode\nBFS(G,2) ¢\nC\n\n&) (te)"
+  },
+  {
+    "text": "Let us call it q and in that we nq x this d a big d array value in already we know for x and others.",
+    "start": 362.24,
+    "end": 388.24,
+    "ocr_text": "-Gnhite V, <— nbr(x) ;\n}\n- Fa Vay: Pet Win Vx, off\n\ni\n\nShy works ont tb a pseudocode\nBFS(G,2) ¢\nC\n\n&) (te)"
+  },
+  {
+    "text": "Set it to the special value infinity in a real C program how do you implement infinity?",
+    "start": 392.24,
+    "end": 402.16,
+    "ocr_text": "Z Rd Jk 63) <> b)\n° Conpile. V, <= nbr(o) ;\n- Fra V4, : fet W tr Vin, af\n—p) Shut works amy te a pseudocode oe\nBFS(G,x) ?\n\nCreate EmplyBy (A); enqyeue (x), P\nDixke-O 5 ~ Ole\n\na 4@ Ag"
+  },
+  {
+    "text": "Max and yeah sure is there a more more canonical way to do this. You know the size of the graph",
+    "start": 405.04,
+    "end": 415.2,
+    "ocr_text": "Zz Rd It és] & by)\n- Gnpite V, <— nbr(x) ;\n3\n- Fra V4, : fet W ta Vi, af\na Shy  umks ont tb a pseudocode\nOFS(G, 2) ¢\n\nCreate. EmptyBy (A). enqueue (x) s\nDIakO 5 ~ Olfer ys: Dly)J— 0;\n\n& 4% &"
+  },
+  {
+    "text": "n right you know n. So, you just set it to n because real distance cannot be more than n minus 1.",
+    "start": 415.2,
+    "end": 423.92,
+    "ocr_text": "Zz ® Jt os] <> b»)\n- Gnpite V, <— nbr(x) ;\n3\n- Fra V4, : fet W ta Vy, af\n~o Shy works au te rN pseudocode Reems\nBFS(G,2) ¢\n\nCreate EmptyBy (QA); enqueue (x) s\nDIxk-O 5 Olfer ys: Dly)— 0;\n\n& % Ag"
+  },
+  {
+    "text": "So, n is your infinity. So, whatever it is so infinity is basically that big number which",
+    "start": 423.92,
+    "end": 429.76,
+    "ocr_text": "Zz ® Jt os] <> b»)\n- Gnpite V, <— nbr(x) ;\n3\n- Fra V4, : fet W ta Vy, af\n~o Shy works au te rN pseudocode Reems\nBFS(G,2) ¢\n\nCreate EmptyBy (QA); enqueue (x) s\nDIxk-O 5 Olfer ys: Dly)— 0;\n\n& % Ag"
+  },
+  {
+    "text": "does not which cannot be shortest distance if it was real and then you do the comparisons accordingly.",
+    "start": 429.76,
+    "end": 436.24,
+    "ocr_text": "Pl Rd sy 63) > 5\n- Gnpite V, <— nbr(x) ;\n3\n- Fa V4, : fet W ta Vi, af\n~o Shy works diet te rN pseudocode on\nBFS(G,x) ?\n\nCreate EmplyRy (QA). enqueue (x) s\nDIekO 5 ~ Olfer ys: Dly)— 0;\n\n& %® &"
+  },
+  {
+    "text": "So, in the later part of the pseudo code. So, while this q is non-empty or not empty.",
+    "start": 437.04,
+    "end": 450.48,
+    "ocr_text": "Zz ® pe os) <> »)\n- Gnpite V, <— nbr(x) ;\n3\n- Fa V4, : Met W tr V5, af\n~o Shy works aint te rN pseudocode Sa\nBFS(G,2) ¢\n\nCreate EmptyBy (QA). enqueue (x) s\nDIxk-O 5 Olfer ys: Diy) 0;\n\n& % &"
+  },
+  {
+    "text": "So, what you want to do is",
+    "start": 450.48,
+    "end": 461.68,
+    "ocr_text": "a Conpite. V, <é— nbr(o) ;\n3\n- Fa Var: Met Win Vy, of\n~o Shy works remy 3 tes pseudocode ——\nBFS(G,2) ¢\n\ncreate EmptyQy (AQ); enqueue (x),\nDIak-O .~ Other ys: Dly=— 0;\n\n&) (te)"
+  },
+  {
+    "text": "so, you d q that is v and what do you do with v?",
+    "start": 461.76,
+    "end": 479.36,
+    "ocr_text": "y; > = al oO 5\n° Conpite. V, <= nbr(o) ;\nShy works ont & a pseudocode\nBFS(G, 2) ?\n\ncreate EmptyQy (AQ); enqueue (x),\nDIake-O .~ Other ys: Dly=— 0;\n\n&) (te)"
+  },
+  {
+    "text": "So, this vertex which you have got in the q this is one of the neighbors of vertices already",
+    "start": 484.16,
+    "end": 490.16,
+    "ocr_text": "Cd at os] cS 5\n° Conpite V, <é nbr(o) ;\n3\n- Fa Vig : fut We tn Vig. att\n\nRe\n\n—) Sus works ow ‘te cn pseudocode Seng\nBFFs (G, 2) M4\n\nCreate EnptyQy (Q), enqueue (x);\n\nDix}k-O a Otter ys: Dlyd— co;\n\nype dequeue(Q) ;"
+  },
+  {
+    "text": "seen right. So, already visited so, you what you want to now do is look at the neighbors of this.",
+    "start": 491.92,
+    "end": 502.32,
+    "ocr_text": "Cd il oe] cS 5\n° Conpite. V, <é nb» (oc) ;\n3\n- Fa Vey : fut Wo tn Vig. att\n\nBR\n\n—? Sus works oul te oa pseudocode a\nBFS(G, 2) M4\n\nCreate EnptyQy (QA), enqueue (x);\n\nDiao 5 Otter ys: Dlyd— co;\n\nype dequeue(Q) ;"
+  },
+  {
+    "text": "So, at this point do you know a d of v or not?",
+    "start": 505.04,
+    "end": 507.36,
+    "ocr_text": "Zz e tt os] <> 5\n° Conpite. V, <é nb» (ox) ;\n3\n- Fa Vey: Put Wo tn Vy. att\n—~» Shu works oul ae pseudocode a\nBFS(G,2) ¢\nCreate EmptyQy (AQ); enqueue (x),\nDIakA-0 5 Olfer ys: Dly— 0;\n\nype dequeue(Q) ;\n\n&) (te)"
+  },
+  {
+    "text": "Yeah so, the idea according to the idea d of v is already known it is present in the q.",
+    "start": 510.4,
+    "end": 516.16,
+    "ocr_text": "Zz e tt os] <> 5\n° Conpite. V, <é nb» (ox) ;\n3\n- Fa Vey: Put Wo tn Vy. att\n—~» Shu works oul ae pseudocode a\nBFS(G,2) ¢\nCreate EmptyQy (AQ); enqueue (x),\nDIakA-0 5 Olfer ys: Dly— 0;\n\nype dequeue(Q) ;\n\n&) (te)"
+  },
+  {
+    "text": "So, when you d q it now you want to explore its neighbors. So, let us do that.",
+    "start": 516.64,
+    "end": 522.32,
+    "ocr_text": "Z o> J os wo b)\n- Gnpite V, <— nbr(x) ;\n3\n~o Shy works aul te rN pseudocode Pome\nOFS(G,x) ¢\nCreate EmptyBy (QA). engyeue (x) s\nDek O 5 ~ Olfer ys: Dly)<— co;\nVe dequeue (Q) ;\n\n4 %®"
+  },
+  {
+    "text": "So, let us explore the neighbors of v.",
+    "start": 524.88,
+    "end": 528.4,
+    "ocr_text": "Z o> J os wo b)\n- Gnpite V, <— nbr(x) ;\n3\n~o Shy works aul te rN pseudocode Pome\nOFS(G,x) ¢\nCreate EmptyBy (QA). engyeue (x) s\nDek O 5 ~ Olfer ys: Dly)<— co;\nVe dequeue (Q) ;\n\n4 %®"
+  },
+  {
+    "text": "So, that is a for loop and the only interesting cases when this distance is unknown.",
+    "start": 534.0,
+    "end": 543.44,
+    "ocr_text": "pre WS\n\na) 4\neo"
+  },
+  {
+    "text": "So, it means that w is not yet visited in your ripple the ripple has not reached w yet.",
+    "start": 543.84,
+    "end": 552.24,
+    "ocr_text": "Zz & Jt os) aS b)\n\nFor wWenlr) ?\nA J"
+  },
+  {
+    "text": "So, this is the first place where the ripple will reach w. So, there you will know the distance.",
+    "start": 552.72,
+    "end": 557.36,
+    "ocr_text": "Fore W— nbrc\nFIC"
+  },
+  {
+    "text": "So, if this is infinity then you know that what you have to do? d w is equal to?",
+    "start": 558.16,
+    "end": 563.04,
+    "ocr_text": "For wW— nor\nFa"
+  },
+  {
+    "text": "Yeah, I think I started with array brackets.",
+    "start": 563.2,
+    "end": 569.92,
+    "ocr_text": "For wW— nor\nFa"
+  },
+  {
+    "text": "So, this d w is then d v plus 1.",
+    "start": 579.44,
+    "end": 582.88,
+    "ocr_text": "Pl ®& Jt os) > by)\n\nFor wWenrtr) ?\nS (i200) IME"
+  },
+  {
+    "text": "And what next? Yeah, so, the point of enqueuing it is what?",
+    "start": 593.28,
+    "end": 608.32,
+    "ocr_text": "se 4\n\ni é:] & )\n\nFor wentrlr) ?\na (Mi=00) 0 Dude Diy)+1;"
+  },
+  {
+    "text": "Why do you enqueue this? Yeah, so, ripple has reached this w's distance is known,",
+    "start": 609.2,
+    "end": 617.84,
+    "ocr_text": "PA eo\n\nIr os) <a by)\n\na (iJ =00) 2\nDiwiI— DOI+1;\n\nenqueue"
+  },
+  {
+    "text": "but yet the neighbors may be unexplored. So, neighbors the ripple might not have reached.",
+    "start": 617.84,
+    "end": 623.12,
+    "ocr_text": "Zz e\n\nat os) ay by)\n\naS (iJ =00) 2\nDiwiI— DOI+1;\n\nenqueue ( We) 5"
+  },
+  {
+    "text": "So, at least the ones which the ripple has not reached you want to explore that in the future.",
+    "start": 623.68,
+    "end": 628.32,
+    "ocr_text": "Zz e\n\nat os) ay by)\n\naS (iJ =00) 2\nDiwiI— DOI+1;\n\nenqueue ( We) 5"
+  },
+  {
+    "text": "So, for that you have to keep track of this in the q.",
+    "start": 629.2,
+    "end": 631.92,
+    "ocr_text": "Zz Cd\n\nIt os) ay »)\n\na (iJ =00) 2\nDiwiI— DOI+1;\n\nenqueue (We) 5"
+  },
+  {
+    "text": "So, you enqueue this w. So, that in the future ripple can go and explore its neighbors.",
+    "start": 633.12,
+    "end": 638.88,
+    "ocr_text": "Zz Cd\n\nIt os) ay »)\n\na (iJ =00) 2\nDiwiI— DOI+1;\n\nenqueue (We) 5"
+  },
+  {
+    "text": "So, that is it and I think that is all the four has to do. So, we can erase this bracket.",
+    "start": 639.2,
+    "end": 653.2,
+    "ocr_text": "Zz eo\n\nI os) ais} 5\n\na (ii}=00) 2\nDiwiI— DOI+1;\n\nenqueue ( We) 5"
+  },
+  {
+    "text": "So, for all the neighbors of v called w you just do this check. If w's distance is already there",
+    "start": 657.36,
+    "end": 665.6,
+    "ocr_text": "Z Cd iy o:) cS 5\n\nfor We nly) :\n4 PiJ=0o) ?\nDiwl— DO)I+47;\n\nonueue (Ua);\n\n6"
+  },
+  {
+    "text": "then it is already there then you do not have to do anything. Then the ripple actually",
+    "start": 665.6,
+    "end": 669.2,
+    "ocr_text": "Pal\nRK Jt os)\n\nfew oe\nnr) :\nas DiJ=00) ?\nDiIwI— DOI+7;\n\nenqueue (Wa) ;\n7\n\n$\n\nAa) 4\ne"
+  },
+  {
+    "text": "reached this in the past. So, then there is no change here to be done.",
+    "start": 669.2,
+    "end": 675.68,
+    "ocr_text": "Pal\nRK Jt os)\n\nfew oe\nnr) :\nas DiJ=00) ?\nDiIwI— DOI+7;\n\nenqueue (Wa) ;\n7\n\n$\n\nAa) 4\ne"
+  },
+  {
+    "text": "And, right. So, now I think we are done. So, the w's should end here.",
+    "start": 675.68,
+    "end": 695.36,
+    "ocr_text": "ZL ®& zr os) i: by)\n\nfor We nr) -\naS DJ =00) ?\nDfwl— DOI+47;\n\nenqucue Wa);\n\n$"
+  },
+  {
+    "text": "And, when the w's ends then the q is empty. So, since the q is empty this means that the ripple",
+    "start": 695.36,
+    "end": 710.0,
+    "ocr_text": "4 > It od <> )\n\nfor WH nil) :\naS (iJ =00) 2\nDiwi— DOI+41;\n\nenqueue 4 W,Q) ;\n\n12:10:28 auto saved"
+  },
+  {
+    "text": "has covered all the vertices. So, this point the d array is correct and complete. So, you just",
+    "start": 710.0,
+    "end": 717.52,
+    "ocr_text": "Z 6 I él > 5\nuf Conpite V, = nb» (ox) ;\n3\n- Fa Vin, : Pt W tn Vi, af\n~) Shy works an te rN pseudocode ae\nBFS(G,2) ¢\nCreate EmptyQy (A), enqueue (x);\nDinko ,; Olher y's: Dly)=— co;\nWare de queue (Q) ;\n\n& 40 Ag"
+  },
+  {
+    "text": "return that. So, return the d array for all the vertices.",
+    "start": 717.52,
+    "end": 724.4,
+    "ocr_text": "Pl\n® pu os)\n\nFare w=\n: nbr Xr) =\naS Dw) =00) ?\nDiIwi— DOI+7;\n\nenqueue (w,@) a\n?\n\ng\nreturn\n\na 4\ne"
+  },
+  {
+    "text": "So, the whole d array pointer can be the pointer can be returned to this array. So, that is all.",
+    "start": 736.88,
+    "end": 741.6,
+    "ocr_text": "Zz eo at os] CS »)\nfor WH nial) :\naS (iJ =00) 2\n\n4 enqueye ( VW , 2) ;\n\nnian DEV), (l ol verttes V of G\n\n4) 4) &"
+  },
+  {
+    "text": "That finishes BFS. Any questions? So, this is the implementation of the ripple or the breadth",
+    "start": 742.16,
+    "end": 760.0,
+    "ocr_text": "Zz eo at os] CS »)\nfor WH nial) :\naS (iJ =00) 2\n\n4 enqueye ( VW , 2) ;\n\nnian DEV), (l ol verttes V of G\n\n4) 4) &"
+  },
+  {
+    "text": "first search traversal in any graph. We are not assuming anything about the graph.",
+    "start": 760.0,
+    "end": 766.48,
+    "ocr_text": "BR\n@\n\nI os) <a\" »)\n\nFor We nr) :\n\nenqueue ( We) 5\n\nS\n\nnetwon DEVI, Ul all vorttes V of G\n© lleud BFS\n\n4) te)"
+  },
+  {
+    "text": "So, if the graph is disconnected what happens? Then wherever you can reach from x only that part",
+    "start": 766.8,
+    "end": 778.0,
+    "ocr_text": "RR\nca\n\nae os) oS: by)\n\nfor We nate) :\n\nenqueue ( We) 5\n\n$\n\nnetwon DEVI, Ul afl vores V of G\n© llend BFS"
+  },
+  {
+    "text": "will be covered. The rest of the d array will be infinity. But, if the graph is connected",
+    "start": 778.0,
+    "end": 783.92,
+    "ocr_text": "BR\n@\n\nI os) <a\" »)\n\nFor We nr) :\n\nenqueue ( We) 5\n\n$\n\nnetwon DEVI, Ml afl vorttes V of G\n© lleud BFS\n\n4) te)"
+  },
+  {
+    "text": "then this would cover all the vertices you will know all the shortest distance from x.",
+    "start": 785.28,
+    "end": 789.2,
+    "ocr_text": "BR\n@\n\nI os) <a\" »)\n\nFor We nil) :\n\nenqueue ( We) 5\n\n$\n\nnetwn DEVI, Ul afl vores V of G\n© llend BFS\n\n4) te)"
+  },
+  {
+    "text": "So, if no questions then a short proof sketch is needed for this. Why this is correct?",
+    "start": 797.04,
+    "end": 802.56,
+    "ocr_text": "Zz ®& z os) i: by)\n\nFore eae\n% 6 Dae: Dv) +1;\n\nenqueue ( V 2) ;\n\n$\n\nnetan DEV), (1 a8 verhtes V of S\n5 lleud BFS"
+  },
+  {
+    "text": "And, what is the time complexity? What do you think is the time complexity of this?",
+    "start": 802.56,
+    "end": 806.96,
+    "ocr_text": "Zz ®& z os) i: by)\n\nFore eae\n% 6 Dae: Dv) +1;\n\nenqueue ( V 2) ;\n\n$\n\nnetan DEV), (1 a8 verhtes V of S\n5 lleud BFS"
+  },
+  {
+    "text": "Size of vertices, size of V plus size of E, right, N plus M. Why is that?",
+    "start": 809.28,
+    "end": 815.68,
+    "ocr_text": "Z ®& le os) > be\n\nfor We nity) :\n\nenqueue W,Q) ;\n\n6\n\nnetrn DIV), ll all vert tes V f G\n§ lleud BFS"
+  },
+  {
+    "text": "Sorry. Well, that does not mean that it is N plus M.",
+    "start": 819.12,
+    "end": 825.28,
+    "ocr_text": "Z ®& le os) > be\n\nFor We nity) :\n\nenqueue W,Q) ;\n\n$\n\nnetrn DEV), {/ all vert tes V of G\n& lleud BFS"
+  },
+  {
+    "text": "It may be a visit of vertex or age multiple times. So, how do you show that it is a constant time?",
+    "start": 825.36,
+    "end": 832.88,
+    "ocr_text": "Zz & x os) i: by)\n\nfor WH nr) -\n\nenqueue W,Q) ;\n\n$\n\nnen DEV), fall verhtes V f G\n5 lend BFS"
+  },
+  {
+    "text": "So, first main observation is that no vertex once d cubed gets n cubed.",
+    "start": 837.2,
+    "end": 845.52,
+    "ocr_text": "Z ®& le os) > be\n\nfor We nity) :\n\nenqueue W,Q) ;\n\n6\n\nnetrn DIV), (1 ol verhtes V f G\n§ lleud BFS"
+  },
+  {
+    "text": "So, once out of the q you cannot go back. So, any vertex w is n cubed",
+    "start": 845.52,
+    "end": 860.16,
+    "ocr_text": "Z ®& le os) > be\n\nfor We nity) :\n\nenqueue W,Q) ;\n\n6\n\nnetrn DIV), {1 all vert ces V f G\n§ lleud BFS"
+  },
+  {
+    "text": "in q at most ones. So, either it is not n cubed at all which means that unfortunately,",
+    "start": 860.24,
+    "end": 880.96,
+    "ocr_text": "i e = 63) cS 5\n\nfor We nirlr) :\n\nenqueue Wa);\n\n6\n\nnetrn DEV), l! al veritas V of G\n& lend BFS"
+  },
+  {
+    "text": "BFS does not reach this vertex or if it is n cubed once then the distance gets updated.",
+    "start": 880.96,
+    "end": 888.24,
+    "ocr_text": "al Ke I és rds’ s\n\nFore Wwe nbrdr) :\n\nenqueue (We) 5\n\n$\n\nnetwon DEVI, Ml all vorttes V of G\n£ lleud BFS\n\n&) (te)"
+  },
+  {
+    "text": "And, once it is updated you can see in this ureco that will never get re-updated.",
+    "start": 888.4,
+    "end": 892.96,
+    "ocr_text": "al eo r és] Pdi 5\n\nFore We nbrtrr) :\n\nenqueue ( We) 5\n\nS\n\nnetwn DOVI, I all vihtes V of G\n£ llend BFS\n\n&) (te)"
+  },
+  {
+    "text": "So, it will never be it will never be n cubed. So, n cubed is tied with the",
+    "start": 894.16,
+    "end": 901.04,
+    "ocr_text": "al eo r és] Pdi 5\n\nFore We nbrtrr) :\n\nenqueue ( We) 5\n\nS\n\nnetwn DOVI, I all vihtes V of G\n£ llend BFS\n\n&) (te)"
+  },
+  {
+    "text": "updation of the d value. So, every vertex is n cubed at most ones.",
+    "start": 901.04,
+    "end": 909.12,
+    "ocr_text": "cal Ko I és] Pdi 5\n\nFore We nbrdrr) :\n\nenqueue (We) 5\n\nS\n\nnetwon DEVI, Il all voihtes V of G\n£ lleud BFS\n\n&) (te)"
+  },
+  {
+    "text": "So, if you want the line of proof then hint is just that for w not equal to x,",
+    "start": 909.12,
+    "end": 920.24,
+    "ocr_text": "af o& al os) cS 5\n\nFor w= nbalr) :\n\nenqueue ( We) 5\n\nS\n\npeli DEVI, ofl\n\n&) (te) i"
+  },
+  {
+    "text": "f gets n cubed then d w is updated from infinity to a finite value.",
+    "start": 920.24,
+    "end": 943.92,
+    "ocr_text": "BR\n@\n\nrt os) ay by)\n\nfor We nal) :\nas (iJ =00) 2\nDiIwi— POAT;\n\nenqueue ( We) 5\n\n$\n\nnetwon DEVI, Ul afl vores V of G\n€ lleud BFS\n\nPE to\n\n&) (te)"
+  },
+  {
+    "text": "And, then it is never changed back.",
+    "start": 950.56,
+    "end": 954.0,
+    "ocr_text": "Zz ® <r os) <> b)\n\n~ toa Shite value,"
+  },
+  {
+    "text": "Because this if that you have it only is activated for infinity otherwise this",
+    "start": 965.2,
+    "end": 971.68,
+    "ocr_text": "a Dl=co) 2\nDiwl— DV)+47;\ng enqueue (W,Q) ;\n\nnetur DIV). (| atl c\n5 lend BFS i aE SI\n\nPE. Un aa enqueved > Di) a updated from\n\n& 4g &"
+  },
+  {
+    "text": "for loop is empty that iteration is empty. So, only once a vertex is n cubed.",
+    "start": 972.08,
+    "end": 980.24,
+    "ocr_text": "a Dl=co) 2\nDiwl— DV)+47;\ng enqueue (W,Q) ;\n\nnetur DIV). (| atl c\n5 lend BFS i aE SI\n\nPE. Un aa enqueved > Di) a updated from\n\n& 4g &"
+  },
+  {
+    "text": "So, that should give you order n, why do you get n plus m?",
+    "start": 983.44,
+    "end": 989.68,
+    "ocr_text": "Zz RK pe os) <> »)\n\nFore wW— norte) =\n\nenqueue Wa) ;\n\n6\n\nnen DEV), fl oll verhtes V f G\n© lleud BFS\n\nPE Ut a enqueued => Dh an updated fram ~\n\n& ep &"
+  },
+  {
+    "text": "Where is the number of edges coming from?",
+    "start": 992.0,
+    "end": 993.52,
+    "ocr_text": "Zz Nd pe os) C2 by)\n\nFore wW— nor dr) :\n\nenqueue W,Q) ;\n\n$\n\nnen DEV), ff oll verhtes V of G\n© lleud BFS\n\nDE. WER ae enqueued <> Dh) a updated fron\n\n& 4e"
+  },
+  {
+    "text": "Yes. So, there is a for loop. So, that also we have to count.",
+    "start": 1002.16,
+    "end": 1007.28,
+    "ocr_text": "Zz Nd pu os) C2 5\n\nFore wW— nbr dr) :\n\nenqueue W,Q) ;\n\n6\n\nnen DEV), ff oll verhtes V f G\n© lleud BFS\n\n& 4e"
+  },
+  {
+    "text": "So, basically that is the degree of v many iterations. So, one iteration the one iteration can be",
+    "start": 1013.12,
+    "end": 1019.44,
+    "ocr_text": "Zz Rd Jt os ie: bs)\n\nFore WwW nor dr) :\n\nenqueue Wa);\n\n$\n\nnen DEV), ff all verhtes V of G\n& lleud BFS\n\nPS. | WHR a engueued BS Dh) is Updated freon,\n\n& 40 &"
+  },
+  {
+    "text": "empty but still the for loop will go on. So, you have to count those iterations even if the",
+    "start": 1019.44,
+    "end": 1026.64,
+    "ocr_text": "Zz Rg at os aS by)\n\nfor We nal) -\naS (iJ =00) 2\nDiwi— DOI+1;\n\nenqueue ( We) 5\n\nS\n\nnetwon DEVI, Ml afl vorhtes V of G\n£ llend BFS\n\nDS. WR ae enqueued > Dh a updated fron\n\n4) te)"
+  },
+  {
+    "text": "iterations are empty. So, that is degree of v many times. So, you have to do a sigma of degree v",
+    "start": 1026.64,
+    "end": 1033.36,
+    "ocr_text": "RR\n@\n\nat os) 5 by)\n\nFor We ntalr) :\na (iJ =00) 2\nDiwl<— DOI+4+1;\n\nengueue (WR >\n\n$\n\nnetrrn DIV), (/ all verhtes V of G\n$ llend BFS\n\nPE. UR a enqucued => Dh) a updated from\n\n&) (te)"
+  },
+  {
+    "text": "for overall v. So, that is the other observation that",
+    "start": 1033.36,
+    "end": 1041.76,
+    "ocr_text": "RR\n@\n\nat os) 5 by)\n\nFor We ntalr) :\na (iJ =00) 2\nDiwl<— DOI+4+1;\n\nengueue (WR >\n\n$\n\nnetrrn DIV), (/ all verhtes V of G\n$ llend BFS\n\nPE. UR a enqucued => Dh) a updated from\n\n&) (te)"
+  },
+  {
+    "text": "sigma of degree v over all the vertices is less than equal to order of the number of edges",
+    "start": 1041.76,
+    "end": 1061.04,
+    "ocr_text": "BR\ne\nH\n\nés]\n\n0 to a Sinite vatue, Then, it’s never\nchanged agath | D"
+  },
+  {
+    "text": "which we are calling m. So, this is just the simple proof is just the simple observation",
+    "start": 1061.12,
+    "end": 1072.32,
+    "ocr_text": "Pl ®& alk oz) i: 5\n\n« toa Site value. Then, it’s never\nchanged agath | D"
+  },
+  {
+    "text": "that whatever be the graph if you sit at a vertex v and look at it the neighbors count the",
+    "start": 1072.32,
+    "end": 1078.8,
+    "ocr_text": "2 Kd LT os] rae 5\n\n~ da Shite value. Then, its never\nchanged agath | D"
+  },
+  {
+    "text": "neighbors. And, if you do this over all v then you are just looking at an edge twice",
+    "start": 1078.8,
+    "end": 1083.76,
+    "ocr_text": "cae Rd I és ral’ 5\n\n~ da Shite value. Then, it’s never\nchanged agath | D"
+  },
+  {
+    "text": "right because an edge can be seen from one endpoint or the second endpoint.",
+    "start": 1085.44,
+    "end": 1088.96,
+    "ocr_text": "f. ® Jt os) as by)\n\n«0 to a Shite value, Then, it’s never"
+  },
+  {
+    "text": "So, this is just this is bounded by two times m.",
+    "start": 1089.92,
+    "end": 1093.44,
+    "ocr_text": "f. ® Jt os) as by)\n\n«0 to a Shite value, Then, it’s never"
+  },
+  {
+    "text": "So, an edge is at most double counted in the left hand side.",
+    "start": 1101.12,
+    "end": 1113.36,
+    "ocr_text": "0 to a Shite value. Then, it’s never\n\nes:\n\nal os ay b)"
+  },
+  {
+    "text": "So, because of that this is bounded by edge well and if m is very big then sigma degree v is",
+    "start": 1113.36,
+    "end": 1123.6,
+    "ocr_text": "« tt a Shite value. Then, it’s never\n\nLE. Ap edfe Dd at pohl doutle-—conn"
+  },
+  {
+    "text": "also very big that is also true it is not that it is very small. So, it really grows with m.",
+    "start": 1123.6,
+    "end": 1129.68,
+    "ocr_text": "Zz ® JE os) <> b»)\n\n0 to a Shite value. Then it he\nchanged areal “ aan oa\n\nVL; Ap e 4 al td -—con 7\nas ne, iueR pestle nted 74\n\n& 4a A"
+  },
+  {
+    "text": "So, that many iterations or operations your pseudo code is doing. So, you have to count m also.",
+    "start": 1130.88,
+    "end": 1138.72,
+    "ocr_text": "ZL ®& ai os) ie: by)\n\n0 to a Shite value. Then it4\nchanged Ara myers a\n\n& Yo &"
+  },
+  {
+    "text": "So, in cases where m is n square your algorithm is quadratic it is not linear time algorithm.",
+    "start": 1138.72,
+    "end": 1156.08,
+    "ocr_text": "Zz ®& pe os) ri: by)\n\n0 to a Shite value. Then it4 }\nChawed again)\n\n& %e Aa"
+  },
+  {
+    "text": "Example if m is n square by 2 then your algorithm is actually a quadratic algorithm.",
+    "start": 1157.04,
+    "end": 1168.8,
+    "ocr_text": "Z o 7 Fes oS 5\n0 toa Shite value. Then, it’s never\n\nchanged agarh | D\n\n(4 , An c iy at pot double —coun te d/ 7\ni ne Sige D ”\n\n> 3's slow when me Carte (C9. 1\n\n&) (te)"
+  },
+  {
+    "text": "So, then we have finished this theorem let us just mark the theorem of BFS which was proved by",
+    "start": 1169.36,
+    "end": 1187.6,
+    "ocr_text": "0 tt a Shite vane, Then, it’s never\n\nchanged agarh | D\n\nia he Sita D °\n\n> J's Slxr when me Carte (c.g, y= Ph, )\n\n&) (te)"
+  },
+  {
+    "text": "Moore in 1959. That BFS takes time order n plus m.",
+    "start": 1187.6,
+    "end": 1206.96,
+    "ocr_text": "&\n°\nH\n\nos] <S by)\n\nMerten, CManre’~\n\n4) te)"
+  },
+  {
+    "text": "It covers the connected component of x in the graph on which you did BFS.",
+    "start": 1206.96,
+    "end": 1226.64,
+    "ocr_text": "eo Tt os) rai: >\n\nMerten (Moone 59): BES takes Tian Orem) y\n\ni\n\n4) te"
+  },
+  {
+    "text": "So, ideally this I mean n and m are actually n is the number of vertices in a connected component",
+    "start": 1227.92,
+    "end": 1233.52,
+    "ocr_text": "P ® It os) > by)\n\nTheorem CMorone 59): RES takes fee OCrem) «\n— F- La Vans Te Cc)\n\n& 29 A"
+  },
+  {
+    "text": "and m is the number of edges in the connected component you may not have to go over all graph the",
+    "start": 1234.32,
+    "end": 1239.52,
+    "ocr_text": "P ® It os) > by)\n\nTheorem CMorone 59): RES takes fee OCrem) «\n— F- La Vans Te Cc)\n\n& 29 A"
+  },
+  {
+    "text": "whole graph n and m are actually just you can take them to be just the connected component because",
+    "start": 1239.52,
+    "end": 1244.72,
+    "ocr_text": "Meorem CMorne’s3): BES takes Kine Olnm).\n% caves Ge Cc)"
+  },
+  {
+    "text": "it does not even go outside. So, it covers the connected component of x and correctly computes.",
+    "start": 1244.72,
+    "end": 1254.24,
+    "ocr_text": "Meorem CMorne’s3): BES takes Kine Olnm).\n% caves Ge Cc)"
+  },
+  {
+    "text": "The distances x to v.",
+    "start": 1254.24,
+    "end": 1270.24,
+    "ocr_text": "Meorem CMorne’s3): BFS takes Kine. Olnm).\n% caves Ge Cc)"
+  },
+  {
+    "text": "Is this clear?",
+    "start": 1275.84,
+    "end": 1276.48,
+    "ocr_text": "Zz & als os) i: y\n\nMeorem CMorne’s3): BFS takes Kine. Olnm)-\n% cores Ye Cck a Corect Computed\nDIW= a4 lew."
+  },
+  {
+    "text": "So, much of this we have already shown time complexity connected component what is the proof that",
+    "start": 1276.8,
+    "end": 1286.24,
+    "ocr_text": "Zz & als os) i: y\n\nMeorem CMorne’s3): BFS takes Kine. Olnm)-\n% cores Ye Cck a Corect Computed\nDIW= a4 lew."
+  },
+  {
+    "text": "the distance is correct from x to v for all v. So, this proof is basically from the intuition of",
+    "start": 1286.24,
+    "end": 1300.08,
+    "ocr_text": "Meorem CMornre’s9): BFS takes kine Olnm)-\n% caves Ge Cc) & correct Computed\nDWI= 4lyw.-"
+  },
+  {
+    "text": "the ripple right whenever ripple reaches a vertex v that is the minimum distance and then when",
+    "start": 1300.08,
+    "end": 1308.16,
+    "ocr_text": "Zz RK ale os <> by)\n\nMeorem CMoone’s3): BFS takes Kine Olnm)-\nF Cvs Ge rane & drecty Cormputed"
+  },
+  {
+    "text": "it updates the neighbors that also is correct technically you have to prove this using induction.",
+    "start": 1308.16,
+    "end": 1315.2,
+    "ocr_text": "Zz ® I os ais} by)\n\nMerten CMearne’59): BES takes es e OCrem)\nVY coves Ge vane a Cdrecthy Cormputed\nDW= dglyw.-"
+  },
+  {
+    "text": "So, you have to do induction on what? Induction on the ripple size right. So, the distance from",
+    "start": 1316.8,
+    "end": 1329.36,
+    "ocr_text": "Zz ® I os eS by)\n\nShesen oe 59): Se takes he TE beat\nDO) = = ve ”\n- Dp"
+  },
+  {
+    "text": "x to v and prove the induction step.",
+    "start": 1329.36,
+    "end": 1349.04,
+    "ocr_text": "eo r és] <> 5\n\nMeorem on 59): noe takes che OC) -\nDvD = eG ”\nOf: -Do induchin on\n\nBR"
+  },
+  {
+    "text": "So, the induction step is everything is fine from x to w and then you take one more step.",
+    "start": 1349.04,
+    "end": 1362.56,
+    "ocr_text": "® ae os) ay by)\n\nRR\n\nMerten, CMone’s9): RES takes idee OCnem) -\nF cvs Ge Cc & Correctly Cormputed\nDOI= dgtyw.-\nff -Do wduchn om A(x,0) ahd Prove Uy"
+  },
+  {
+    "text": "So, what happens? So, the ripple was correct up to w",
+    "start": 1363.6,
+    "end": 1369.04,
+    "ocr_text": "Zz ®& I es] co 5\n\nMeorem es '59): ae takes she OCrum) -\nDv) = kwon -\n* Do Anduchin aan ACx w) , ahd am Ge.\n\n&) te) i"
+  },
+  {
+    "text": "and the ripple when it was at w it had not reached v the distance of v was set infinity as initialized",
+    "start": 1369.44,
+    "end": 1385.04,
+    "ocr_text": "® Tt os) rie: 5\n\nMeorem Enews “55: Be takes she TE OGun).\n\nRB\n\n— F cares Ge Crk by Computed\nDW= dgGuv\nDo induchin wal iG w) , ahd aa Ge.\n\n&) (te)"
+  },
+  {
+    "text": "but now you are seeing an edge. So, if you are seeing an edge then it means that the distance of v",
+    "start": 1385.84,
+    "end": 1392.08,
+    "ocr_text": "Zz RK Jt os) & »\n\nMeorem CMoone’s9): BES takes Kine Olnem)-\n% ces Ge Cck cy Correctly Computed\nDIW= dglxuv\n-Dp wnduchm om Ana) ; ahd prove Ge\n\nAnduchon Step: KrVW—> v- ml\n\n& %e &"
+  },
+  {
+    "text": "is it is less than equal to 1 plus d of w. So, the only other option is that it is d w or less",
+    "start": 1392.32,
+    "end": 1401.68,
+    "ocr_text": "Zz RK Jt os) & »\n\nMeorem CMoone’s9): BES takes Kine Olnem)-\n% ces Ge Cck cy Correctly Computed\nDIW= dglxuv\n-Dp wnduchm om Ana) ; ahd prove Ge\n\nAnduchon Step: KrVW—> v- ml\n\n& %e &"
+  },
+  {
+    "text": "but if it was that then the ripple would have seen earlier right. So, just by this one induction step",
+    "start": 1402.88,
+    "end": 1408.08,
+    "ocr_text": "ZL. ® <r os) > by)\n\nVheorer, CMoone’s9): RES takes tne OC) -\n% coves Ge Cele) & crrecthy Corpulds\nDIW= dglxuv\n“Do tnduchn mm Ana) ; and prove Ge\n\nAnduchon Step: KprVW—> V- ml\n\n& % A"
+  },
+  {
+    "text": "you get the proof. So, distance is less than equal to 1 plus d of x w and the distance from",
+    "start": 1408.08,
+    "end": 1426.0,
+    "ocr_text": "L ce Ais os) ay, by)\n\nMeorem CMoone’s9): BES takes kine Olnem)-\nS$ Ges Ge Cc a Corectty Computed\nDIW= dg luv\n-Do thduchn m Ana) ; ahd pve Ge\n\nAnduchon Step: KPI —a V- ma\n\n&) 4%"
+  },
+  {
+    "text": "x to v is at least x w will not at least sorry strictly. So, these two give you the result.",
+    "start": 1426.0,
+    "end": 1439.6,
+    "ocr_text": "L Rd ul os) ie: by)\n\nMeorem CMoone’s9): BES takes kine Olnem)-\n% ces Ge Cck& oo Correctly Computed\nDIW= dg luv\n35. anduchin 2A) AC a) ahd prwve Ge\n\n> div) < 1tdG.) “2 dcx)? dh.\n\nA %®"
+  },
+  {
+    "text": "It is less than equal to 1 plus and it is strictly bigger than that d. So, then it is exactly",
+    "start": 1442.64,
+    "end": 1448.8,
+    "ocr_text": "Z Rd iL os) a by)\n\nMeorem CMorne’s3): BFS takes Kine Olnm).\n%$ Ges Ge Cck a correctly Computed\nDO= Ag Guv\n05 snduchmy om Ana) ; ahd prove Ge\nAnduchon Step: x9 —9 V-\n\n4 % Ag"
+  },
+  {
+    "text": "equal to 1 plus. So, that this proof you have to complete but mean ideas have been given",
+    "start": 1448.8,
+    "end": 1458.24,
+    "ocr_text": "z ®& I os] <a 5\n\nMeorem CMore’59): RES takes terme. OGum)-\n— FY Ca V3 The CC Ge 2) correctly Cormputed\nDW = Ag luv\n* Do anducon am AC a) ahd _ Ge\n\n> div) € 1+tdGw) ~ 72 dean)? dou),"
+  },
+  {
+    "text": "any questions. So, then let us explore this BFS tree a bit more the BFS data structure a bit more.",
+    "start": 1460.16,
+    "end": 1471.28,
+    "ocr_text": "z Nd it és] cS 5\n\nTheorem CMoonre’59): ra takes she OCum)\n~ iva en ee\nD = WV.\n* Do snduction a4 AC a) ahd _ Ge\n\n=), A(av) € 1+dGiw) “2 dean) dou),\n\n&) (te)"
+  },
+  {
+    "text": "So, BFS is actually giving a data structure. So, the data structure that it is creating by",
+    "start": 1471.28,
+    "end": 1491.28,
+    "ocr_text": "Zz ®& I es] a 5\n\nTheorem (Morne 59): ED takes che TR OCrem)\nWe Me CB eects one\nD = eV.\n* Do snduction mm. ACs a) ahd _ Ge\n\n=, d(av) < 1+dGiw) “2 dean) du),\n\n&) (te)"
+  },
+  {
+    "text": "exploring the graph is many things. So, it is telling you the distances in the array.",
+    "start": 1491.28,
+    "end": 1498.32,
+    "ocr_text": "Zz ®& I os] cS 5\n\nMeorem pees 69): os takes lemme. Olnm)-\n— F coves Ge Ccl b  chrectly by Computed\nDOI= Ag6Guv\n-Do tnduehn m ACx w) ahd pve Ge\n\nAnduch Step: 9B\n> dav) € ltda@u) & daw> dass).\n\n—BES giles a new ob mr The graph 6."
+  },
+  {
+    "text": "So, with this one time investment you have computed the distances from x it is telling you",
+    "start": 1499.84,
+    "end": 1506.08,
+    "ocr_text": "z Nd ul és] cS 5\n\nTheorem mes 69): ae takes che OCrum) -\nDv) = sale -\n-Do wduchn om ACx w) and 78 Ge.\n\nAnduchn step: 9 V-\n> dav) € {tdau) & daew> dss).\n\n—BES gies a new As mM The graf 6,"
+  },
+  {
+    "text": "hence the connected components. So, there are actually several applications. So,",
+    "start": 1506.08,
+    "end": 1520.8,
+    "ocr_text": "Ps ® I o:] oS 5\n\nTheorem es 59): PF takes che TR OG) -\nDv) = kwon -\n-Do tnduehyn m ACx w) ahd 78 Ge.\n\nAnduchin step: 99 B-\n=> dA(av) < 1+dGiw) _ dowlz di),\n\n—BES giles a new ob on the grafh 6,\n\n4) te)"
+  },
+  {
+    "text": "let us see the first application. So, suppose you wanted to answer the query whether",
+    "start": 1520.8,
+    "end": 1537.44,
+    "ocr_text": "Z Rd Jt os) > 5\n\nMeorem CMoone’s9): BES takes kine Olnem)-\n% ces Ge Cck a correctly Computed\nDW= Ag(uv\n-Do wduchn m an, a), ahd Prove Ge\n\nAnduchon Step: KPa V-\n> d(x, v) c 1+dC4,.) “2 da v)> au),\n\n—BES giles a new ob om the graph 9.\n\n&) 4%"
+  },
+  {
+    "text": "from vertices u to v there is a path and let me just at least here I need an undirected graph.",
+    "start": 1537.76,
+    "end": 1556.16,
+    "ocr_text": "Zz ® ls os) > »\n\nMeorem CMorne’s3): BES takes kine Onn).\n%$ Ges Ge Cc sy Correctly Computed\nDIW= dg luv\n-Do wduetny om Ana) ; ahd prove Ge\n\nAnduchon Step: KPI —a V-\n=> A(a,v) cS 1+ dC.) 7£ da v)> aba).\n\n—BES gies a new Ads on (the graph 6,\nApphcatn 1 — Andweroy\n\ncxlamn 1\n\n& % Ag"
+  },
+  {
+    "text": "So, I want to do it in constant time. So, suppose you are interested in this problem on an",
+    "start": 1556.16,
+    "end": 1576.4,
+    "ocr_text": "Zz e Jt os) > b»)\n\nMeorem CMorne’s9): BFS takes Kine Olnm)-\n%$ Gres Ge Cclk re Correctly Computed\nDIW= dglxuv\n-Do wduety om Ana) ; ahd preve Ge\n\nAnducho, step: x9 —> V-\n> dav) § 1tdaw) 2 daw)> daw).\n\n—BES gilea a new A on “the nofh G\npple oti 1. ~ Bnd ndwerwg Woy te s ‘undukecte\n\n& %® &"
+  },
+  {
+    "text": "undirected graph g you are given two of vertices I mean the query the query will be a pair of vertices",
+    "start": 1576.4,
+    "end": 1586.88,
+    "ocr_text": "&) 4%\n\nRe Jt os) & b»)\n\nMheremn CMorne’s9): RES takes tine OCnm).\nI avs Ge Cele) & correctly Cormputed\nDIW= dgluv\n-Dp thduchn mm Ana) ; ahd prwve Ge\n\nAnduchon Step: KPI —a V-\n> dav) § 1tdan) 2 daw> daw).\n\n—BES gives a new As om Ge pofh §\n\nAppl <atn 1 ~ Ardwerag Uneve’ 4h ‘undiected\nGQ, rh O(1) hire @ ,"
+  },
+  {
+    "text": "u and v and the question is you have to answer is whether there is a path is v reachable from you.",
+    "start": 1586.88,
+    "end": 1593.68,
+    "ocr_text": "Pt RK at os] a> by)\n\nMeorem es 59): oF takes he OGum)-\n— O coves Ge Crk by Computed\nDW= dg lev\n* Do anduchon aA ACs a) ahd _ Ge.\n\n=>, d(av) € 1+dGiw) “2 dean)? do),\n\nThe grofh &\n\n—BES gies a new As an\nnd Unevl’ Fa ‘undkected\n\nication 1°\n\nA) (% rAd"
+  },
+  {
+    "text": "You want to do this in so of course, you can run the BFS and you will find a path in order n plus",
+    "start": 1597.92,
+    "end": 1604.08,
+    "ocr_text": "z Cd at és] ci 5\n\nTheorem ees (e512 ee takes she Ee OGun)-\nDv) = fe (x, -\n-Do wduehy m Hn w) ahd am Ge.\n\nAnduchon Step: 99 B-\n\n> d(av) € 1+dGijw) ya dewlz diva),\n\n—BES gies a new ds ma the grofh S\nnd\n\noN an fe A Unev’ Ah ‘undihected\n\n@) te)"
+  },
+  {
+    "text": "m time, but you do not want to repeat this every time after one time investment for every query",
+    "start": 1604.08,
+    "end": 1611.44,
+    "ocr_text": "z Cd at és] ci 5\n\nTheorem ees (e512 ee takes she Ee OGun)-\nDv) = fe (x, -\n-Do wduehy m Hn w) ahd am Ge.\n\nAnduchon Step: 99 B-\n\n> d(av) € 1+dGijw) ya dewlz diva),\n\n—BES gies a new ds ma the grofh S\nnd\n\noN an fe A Unev’ Ah ‘undihected\n\n@) te)"
+  },
+  {
+    "text": "it should be constant time answer. Have you solved this? Yes or no? So, BFS is giving you a data",
+    "start": 1611.44,
+    "end": 1626.16,
+    "ocr_text": "Pl ®& I os] cas 5\n\nTheorem mes 59): ae takes he OCrem) -\nDv) = eG i.\n“Do nduchin on. ACs a) ahd he Ge\n\n> div) € 1+dGw) ~ 72 dean) dou),\n\nthe grofh ©\n\n—BES gies a new As Mm\nnd Unev’ Pi ‘undidected\n\nccatum f.'\n\nG 7h O(1) ite 7 z\n\n4) (%@ Aa"
+  },
+  {
+    "text": "structure where you can while you are doing BFS you can update or you can label every vertex",
+    "start": 1626.16,
+    "end": 1634.4,
+    "ocr_text": "®& r os] ES by)\n\nTheorem (Marne 59): ra takes che OR OGum)-\nHee Me comet anpul\nD = WV.\n- Do duction ay ACx w) ahd pve Ge\n\nAnduchon Step: 9 B-\n=> dav) < 1+dGijw) g tev 2 diye),\n—BES gies a new ds ma Ce grofh 6.\nnd\n\nLean ante A Unev’ th undukected\n\nBR\n\n&) (te)"
+  },
+  {
+    "text": "according to the connected component number right all these vertices come from CC1",
+    "start": 1634.4,
+    "end": 1640.0,
+    "ocr_text": "®& r os] ES by)\n\nTheorem (Marne 59): ra takes che OR OGum)-\nHee Me comet anpul\nD = WV.\n- Do duction ay ACx w) ahd pve Ge\n\nAnduchon Step: 9 B-\n=> dav) < 1+dGijw) g tev 2 diye),\n—BES gies a new ds ma Ce grofh 6.\nnd\n\nLean ante A Unev’ th undukected\n\nBR\n\n&) (te)"
+  },
+  {
+    "text": "connected component 1 all these other vertices come from connected component 2 and so on.",
+    "start": 1640.64,
+    "end": 1645.2,
+    "ocr_text": "fz Cd au és] cS 5\n\nMeorem aie '69): ae takes he Et OCruem) -\nDv) = rales -\n-Do wduchn om ACx w) and a Ge\n\nAnduchon step: 9 B-\n\n> d(av) € 1+dGiw) g dawlz dis).\n\n—BES gies a new ds ma Che graph S\nn>d\n\nca ante og “ sUreve” Ah ‘undibected"
+  },
+  {
+    "text": "So, now when u and v are given you just have to check their label whether u and v have the same",
+    "start": 1645.92,
+    "end": 1651.92,
+    "ocr_text": "fz Cd ul és] cS 5\n\nMeorem es 59): ee takes he OCruem)\nDv) = eG -\n-Dp tnduchn om ACx a), ahd “8 Ge.\n\nAnduchon Step: 99 V-\n> d(av) € 1+dGiw) g dewlz die),\n\nthe grofh\n\n—BES gives a new As mn\nwr Une’ Pi ‘undihected\n\nication 1°\n\n4) %@ ra"
+  },
+  {
+    "text": "CC index. So, if and only if the indices CC indices are equal they are connected right. So,",
+    "start": 1651.92,
+    "end": 1660.88,
+    "ocr_text": "fz Cd ul és] cS 5\n\nMeorem es 59): ee takes he OCruem)\nDv) = eG -\n-Dp tnduchn om ACx a), ahd “8 Ge.\n\nAnduchon Step: 99 V-\n> d(av) € 1+dGiw) g dewlz die),\n\nthe grofh\n\n—BES gives a new As mn\nwr Une’ Pi ‘undihected\n\nication 1°\n\n4) %@ ra"
+  },
+  {
+    "text": "this is a constant time query answering using the BFS data structure.",
+    "start": 1660.88,
+    "end": 1667.68,
+    "ocr_text": "&) 4%\n\nRe pu os) > by)\n\nMeorem CMoone’s9): BES takes kine Olnem)-\n% cares Ge Cck a Correctly Computed\nDW= dAglxuv\nDo anduchion mn. AC) ahd prwve Ge\n\n> A(x, v) S 1+dG4,.) “2 dav) > dla).\n—BES gies a new As m Ce graph,\nnd\n\nG.\nao an fe Une’ Ah undirected\nG y ah O(1) his. 7"
+  },
+  {
+    "text": "So, the idea here is simply that while doing BFS",
+    "start": 1668.24,
+    "end": 1675.76,
+    "ocr_text": "&) 4%\n\nRe pu os) > by)\n\nMeorem CMoone’s9): BES takes kine Olnem)-\n% cares Ge Cck a Correctly Computed\nDW= dAglxuv\nDo anduchion mn. AC) ahd prwve Ge\n\n> A(x, v) S 1+dG4,.) “2 dav) > dla).\n—BES gies a new As m Ce graph,\nnd\n\nG.\nao an fe Une’ Ah undirected\nG y ah O(1) his. 7"
+  },
+  {
+    "text": "maintain a label that numbers the connected component",
+    "start": 1675.76,
+    "end": 1695.92,
+    "ocr_text": "& 49 A"
+  },
+  {
+    "text": "ok. So, you basically have when you are doing BFS here. So, all these vertices you can number them",
+    "start": 1706.64,
+    "end": 1720.32,
+    "ocr_text": "& %e AZ"
+  },
+  {
+    "text": "1 ok. So, they basically it is a separate array instead of d array you can have an L array and the L",
+    "start": 1720.32,
+    "end": 1728.48,
+    "ocr_text": "& “gs A"
+  },
+  {
+    "text": "value of all these vertices is set to 1 when you are doing BFS and then the BFS stops which means",
+    "start": 1728.48,
+    "end": 1735.2,
+    "ocr_text": "& “gs A"
+  },
+  {
+    "text": "that connected component of x has been covered. Now, what? So, now you can take a vertex which is",
+    "start": 1735.2,
+    "end": 1742.4,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "uncovered right this is x 1 you can take some x 2 which is outside and then you can do BFS on that",
+    "start": 1742.4,
+    "end": 1750.48,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "and you can call all of them L value is 2 and so on ok. So, this is your graph.",
+    "start": 1752.16,
+    "end": 1760.24,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "So, in one time BFS you would have labeled all the vertices by these connected component indices.",
+    "start": 1760.48,
+    "end": 1769.52,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "So, now when somebody asks you UV you just have to check what is L u what is L v whether they are equal.",
+    "start": 1770.24,
+    "end": 1776.72,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "So, now u and v are connected if and only if the label are identical.",
+    "start": 1777.44,
+    "end": 1795.52,
+    "ocr_text": "4%) B"
+  },
+  {
+    "text": "So, which is just a constant time check. So, BFS is a powerful data structure.",
+    "start": 1795.52,
+    "end": 1806.64,
+    "ocr_text": "rae\noe"
+  },
+  {
+    "text": "It not only tells you connectivity from single vertex x to others but also between any two pairs",
+    "start": 1808.4,
+    "end": 1814.56,
+    "ocr_text": "a) 4\ne"
+  },
+  {
+    "text": "between any two between pair of any two vertices in an undirected graph.",
+    "start": 1815.2,
+    "end": 1820.64,
+    "ocr_text": "Aa) 4\ne"
+  },
+  {
+    "text": "For connected for directed graph as we have seen the graph can have more complications.",
+    "start": 1820.8,
+    "end": 1828.32,
+    "ocr_text": "Aa) 4\ne"
+  },
+  {
+    "text": "So, that is application 1 this is almost directly from BFS",
+    "start": 1833.44,
+    "end": 1839.68,
+    "ocr_text": "Aa) 4\ne"
+  },
+  {
+    "text": "and building this takes just n plus m time. So, in this linear time you can",
+    "start": 1840.64,
+    "end": 1864.48,
+    "ocr_text": "a) 4\ne"
+  },
+  {
+    "text": "have enough information so that arbitrary queries are answered immediately.",
+    "start": 1865.2,
+    "end": 1871.04,
+    "ocr_text": "& 2 A"
+  },
+  {
+    "text": "Second application is more stunning",
+    "start": 1875.76,
+    "end": 1878.08,
+    "ocr_text": "cA Rd ul"
+  },
+  {
+    "text": "which is checking BIPartightness. So, what is this? When is the graph called BIPartight?",
+    "start": 1878.16,
+    "end": 1903.68,
+    "ocr_text": "cA Rd ul"
+  },
+  {
+    "text": "Have you heard this term? When you can partition the vertex set into two parts such that",
+    "start": 1904.16,
+    "end": 1916.88,
+    "ocr_text": "A tphicalion 2: Checking bipark tened ¢\n\n12:31:04 auto saved."
+  },
+  {
+    "text": "yeah. So, there is the standard picture is just this you have u and v sorry we should call",
+    "start": 1917.36,
+    "end": 1929.84,
+    "ocr_text": "i\n°\nH\n\nA tphicalon Ye Checking bipart teneds ¢\n\n&) (te)"
+  },
+  {
+    "text": "it a and b you have a and b and this is the whole graph you have a vertices and you have b vertices.",
+    "start": 1929.84,
+    "end": 1940.88,
+    "ocr_text": "A pphical ion a Checking bipark tened ‘"
+  },
+  {
+    "text": "So, these all the edges are cross edges. So, graph is called BIPartight if you can partition",
+    "start": 1941.36,
+    "end": 1950.0,
+    "ocr_text": "A tphicalion 2: Checking bipark teneds ¢"
+  },
+  {
+    "text": "the vertices into a and a complement. So, v is equal to a union a complement, b is a complement",
+    "start": 1950.0,
+    "end": 1957.76,
+    "ocr_text": "A pphrcab'on 2: Checking biparkteness ¢"
+  },
+  {
+    "text": "such that a is h free b is h free. So, this is also called a is an independent set and b is an",
+    "start": 1959.12,
+    "end": 1966.4,
+    "ocr_text": "Atpfrcation 2: Checking bipaxkteness ¢"
+  },
+  {
+    "text": "independent set because inside they do not have any relationship all the relationships are across.",
+    "start": 1966.4,
+    "end": 1974.08,
+    "ocr_text": "\\ ny ta 7\nAbb el Checking bipaxkteness ¢"
+  },
+  {
+    "text": "So, this is called BIPartight and from the definition this is a very hard problem",
+    "start": 1975.84,
+    "end": 1984.64,
+    "ocr_text": "Atphcat'on 2: Checking biparkteness ¢"
+  },
+  {
+    "text": "because the graph has n vertices right and you have to find a and then verify.",
+    "start": 1985.6,
+    "end": 1991.12,
+    "ocr_text": "i ar\nT\nbien"
+  },
+  {
+    "text": "But how will you find a has many many possibilities? How many possibilities?",
+    "start": 1991.92,
+    "end": 1995.44,
+    "ocr_text": "i ar\nT\nbien"
+  },
+  {
+    "text": "Number of subsets of 1 to n right that is 2 raise to n. So, there are for 100 vertices there are",
+    "start": 1997.76,
+    "end": 2004.08,
+    "ocr_text": "Apphication 2: Checking biparkteness ¢\n\nDefn:"
+  },
+  {
+    "text": "2 raise to 100 possibilities. So, you have to go all the possibilities and check which one works.",
+    "start": 2004.08,
+    "end": 2009.04,
+    "ocr_text": "Apphication 2: Checking biparkteness ¢\n\nDefn:"
+  },
+  {
+    "text": "So, this is a very difficult problem. So, g is vertices edges this is called BIPartight.",
+    "start": 2009.04,
+    "end": 2024.96,
+    "ocr_text": "eds\ni are\n\nCc Ch\n\nPy\n\nx g: aA\n\nL tp"
+  },
+  {
+    "text": "If this again I have drawn undirected edges. So, we will be only talking about undirected graph",
+    "start": 2025.68,
+    "end": 2040.64,
+    "ocr_text": "&\n)\nH\n\nda] oo )\n\n\\ baicabion 2: Checki bibark te eds C\n‘Bein Ge Tye) is ie ‘"
+  },
+  {
+    "text": "here. So, undirected graph g is called BIPartight if there is a partition",
+    "start": 2041.6,
+    "end": 2050.32,
+    "ocr_text": "RB\n@\nH\n\né:] co »)\n\n\\ pBicob'e, 2: Cheekinp bipartteneas 7\n‘Bein Go Tye) A Cpe"
+  },
+  {
+    "text": "which means a and b cover all the vertices and but they are disjoint is a partition and",
+    "start": 2059.52,
+    "end": 2065.76,
+    "ocr_text": "&\n@\nH\n\nos] <> 5\n\nA tphicalion 2: Checking bipart‘tenerdd ¢\nDen : G=(YE) A af\nV=ALB wa partition\n\n&) (te)"
+  },
+  {
+    "text": "the edges just come from Cartesian product. So, edges are not across say not b cross b it is only",
+    "start": 2066.0,
+    "end": 2079.12,
+    "ocr_text": "Atpbrcation 2: Checking bipark teneds ¢\nDefn: G=(YE) » thburhle «fF\nes Ab & part'ton 4a\n—— S J\n\n&) te)"
+  },
+  {
+    "text": "across b. So, that is a b are h free it is also called independent set. So, a b are independent",
+    "start": 2079.12,
+    "end": 2108.4,
+    "ocr_text": "&\n@\nH\n\nos] ae 4\n\nA ppbccabi'on 2: Cheeking bipark’tenerds ¢\nDefn: G=(YE) w Cee\nV=ALB wa part'ton a\nEc Axs.\n\n4) te)"
+  },
+  {
+    "text": "sets or they are h free sets of vertices is this clear? How do you solve this problem faster than",
+    "start": 2108.4,
+    "end": 2119.52,
+    "ocr_text": "-ALUB wa part'tion ro\nES AxB. Te, A,B ane edge-free\\"
+  },
+  {
+    "text": "the impossible algorithm?",
+    "start": 2119.52,
+    "end": 2124.64,
+    "ocr_text": "A pporcation 2\nDef Gs ae y oe a bse ¢\n<A ic : an “\nTe, *,B ane edfe-Tree\n\na 4\nle"
+  },
+  {
+    "text": "So, go over all subsets of v right which will take 2 raise to n time.",
+    "start": 2124.64,
+    "end": 2154.0,
+    "ocr_text": "A pporcation 2\nDef Gs ae y oe a bse ¢\n<A ic : an “\nTe, *,B ane edfe-Tree\n\na 4\nle"
+  },
+  {
+    "text": "So, that is an impossible practically impossible game right. So, is there a faster algorithm for this?",
+    "start": 2154.64,
+    "end": 2174.0,
+    "ocr_text": "& 49 AZ"
+  },
+  {
+    "text": "Now, since you have seen df bfs how can you use bfs? So, what happens if you do bfs in that picture?",
+    "start": 2174.64,
+    "end": 2188.0,
+    "ocr_text": "4%) DB"
+  },
+  {
+    "text": "In a BIPartight graph what will happen? If your x is here and you do bfs g, x what will happen?",
+    "start": 2189.28,
+    "end": 2199.2,
+    "ocr_text": "A Hz alice 2: 7 akipeed ¢\na G= (ue) Ab ieee cf\ner Ab a partitm &\n< AxB. Te, ft,B ane edfe-Pree"
+  },
+  {
+    "text": "Yes exactly. So, the ripple will all it can do is alternate between a and b because from a it will",
+    "start": 2199.2,
+    "end": 2208.8,
+    "ocr_text": "2: Checking bj Teak tener ¢\n\nDekn 7 aa Ax, thle Xx\nDela SPs cpuatite <f\n—_——\n\nVe)\na Ab a partition Ce\nAx® . Te, A,B ane edse-free\\"
+  },
+  {
+    "text": "go to b and either it will now just just holds there if it does not hold then it cannot go to",
+    "start": 2208.8,
+    "end": 2216.16,
+    "ocr_text": "A pphcat'on Z Checking bipark teneds 4\nDefn: G=(YVE) ww tibuhlee <F\nV=AUB ww «@ fartitm &\nE< Ax®B. Te, MB ane edte-Pree\n\na ¢\n\n&) (te)"
+  },
+  {
+    "text": "another vertex in b it has to go back right. So, then it will go back to a and then b. So,",
+    "start": 2216.16,
+    "end": 2221.28,
+    "ocr_text": "A pplication M Checking bipark tenerd ¢\nDefn: G=(YE) in tipartle <f\nV=AUB ww « fartitm &\n\nES Ax®B. Te, M,B ane edte-Tree\n\nmr ‘\n\n&) (te)"
+  },
+  {
+    "text": "in the in the ripple idea what you have to see is whether the ripple is alternating",
+    "start": 2222.4,
+    "end": 2227.12,
+    "ocr_text": "A pplication M Checking bipark tenerd ¢\nDefn: G=(YE) in tipartle <f\nV=AUB ww « fartitm &\n\nES Ax®B. Te, M,B ane edte-Tree\n\nmr ‘\n\n&) (te)"
+  },
+  {
+    "text": "or in other words whether there are 2 vertices which are I mean so, you number the ripple waves.",
+    "start": 2227.28,
+    "end": 2239.76,
+    "ocr_text": "Ailksts Chk os\nse ae ae a apne ON ¢\nSerer a forte a |\nEcase-Vree ;\n\n&\nt (Mt"
+  },
+  {
+    "text": "So, 0, 2, 4 so all the even once you can call them a and all the odd once you can call them b.",
+    "start": 2239.76,
+    "end": 2245.92,
+    "ocr_text": "DpBcedvinn 2. hee hh.\n\nca 2: |\n\nDefn van E) w ete ene ¢\n\nSa er a forte bon at |\nEAC -\"Vree\n\n&\nf &@"
+  },
+  {
+    "text": "So, now the ripples are odd or even use that as your partition called a and b is odd and b is",
+    "start": 2247.52,
+    "end": 2256.16,
+    "ocr_text": "A ppbrcation 2: Checking bipartteness 4\nDeka: G=(YE) w A\n\n-~ALUB wa part'tion an\nE< AxB. Te, A,B ane edse-free\\"
+  },
+  {
+    "text": "even or a is even and b is odd. So, for example, x is now in the even ripple because that was the",
+    "start": 2256.16,
+    "end": 2266.56,
+    "ocr_text": "Np oicalio, 2: Cheeking bipart‘teneass ¢\nBein G2 (VE) i Cpe ee h\nE\n\nAUB hn 0 partibon Oo\n< AxB. Te, A,B ane edse-Free\\\n\nA te) (BY"
+  },
+  {
+    "text": "0th ripple but you have to check whether this is actually a correct BIPartight evidence.",
+    "start": 2266.56,
+    "end": 2277.2,
+    "ocr_text": "Dekn:\nPen\n\nA %®\n\nA pphcat'on a2 Checking bipart teneds ¢\n\nG=(YVE) » tbat <f\n-ALUB wa part'tion ae\nE< AxXB. Te, A,B ane edse-free\\"
+  },
+  {
+    "text": "So, for that you have to check whether there is whether there are 2 vertices",
+    "start": 2277.68,
+    "end": 2283.36,
+    "ocr_text": "A ppb:cab'on Y Checking bipart teneds 4\nDefn: G=(YE) w tbat <f\nV=ALB wa part'tion ae\nCc AxB. Te, h,Bane edfe-Pree\\\n\nA %®"
+  },
+  {
+    "text": "which are both odd or both even right. So, you can check that and if if the test passes then you know",
+    "start": 2285.76,
+    "end": 2294.4,
+    "ocr_text": "=>AUB wa partition Go\nE< Ax. Te, h,B ane edse-free\\"
+  },
+  {
+    "text": "that the graph is BIPartight in fact, you have found a and b right. So, that is that would be the",
+    "start": 2294.4,
+    "end": 2302.0,
+    "ocr_text": "=>AUB wa partition Go\nE< Ax. Te, h,B ane edse-free\\"
+  },
+  {
+    "text": "easy case the hard case will be you did not find or you did find you this a b did not work",
+    "start": 2302.0,
+    "end": 2309.04,
+    "ocr_text": "A tphical on rae: Checking biparh teneds ¢\nDefn: G=(YVE) » ttburhe <F\nV=ALB wa partitm\nE< Ax®B. Te, M,B ane edse-Pree\\"
+  },
+  {
+    "text": "and now you have to show that there is no other a b possible that because ripple was a natural",
+    "start": 2309.84,
+    "end": 2318.48,
+    "ocr_text": "A tphical on ri Checking biparh teneds 4\n\nDefn: G-(YE) » tibertte <f\nV=ALB wa partition ae\n\nE< Ax. Te, WB ane edse-free\\"
+  },
+  {
+    "text": "phenomena it just took one path or one possibility. You have to show that no matter what ripple does",
+    "start": 2318.48,
+    "end": 2326.08,
+    "ocr_text": "A thical. bias 2: Checking bpextbeneas ¢\net (YE) a (ot parkite Af\n- AUB Ab w parte ton au\nE< AxB. Te, A,B ane edse-free"
+  },
+  {
+    "text": "in nature it will never find any how do you show that. So, that is the part which we have to work out.",
+    "start": 2326.08,
+    "end": 2334.56,
+    "ocr_text": "NM pp bcos\nDin\n\na Checking - bihexkbeness ¢\n(YE) w (ot parkite cf\n- AUB Ab w parte ton 4a\nae AxG. Te, Pt,B ane edse-Pree\\"
+  },
+  {
+    "text": "So, let us specify the input output.",
+    "start": 2334.56,
+    "end": 2351.28,
+    "ocr_text": "NM pp bcos\nDin\n\na Checking - bihexkbeness ¢\n(YE) w (ot parkite cf\n- AUB Ab w parte ton 4a\nae AxG. Te, Pt,B ane edse-Pree\\"
+  },
+  {
+    "text": "Input is G is a connected undirected graph given as a adjacency list",
+    "start": 2351.28,
+    "end": 2374.64,
+    "ocr_text": "fz Rd -\n\nSibu: Q wa"
+  },
+  {
+    "text": "not matrix and in the output what you want is a BIPartight representation",
+    "start": 2375.6,
+    "end": 2390.24,
+    "ocr_text": "Sabu: GQ aw a conected undiected graph ,\nJiven om adj, tol ,"
+  },
+  {
+    "text": "or C does not exist. So, if the graph is BIPartight output the BIPartight representation a b",
+    "start": 2390.64,
+    "end": 2415.12,
+    "ocr_text": "Sabu: G ah a cmnected undiec ted grahh ,\n\nGiven aw ad bat,\n\nOut)at- t\n\n& +@ AZ"
+  },
+  {
+    "text": "or if it does not exist then you have to declare that it does not exist to solve all the cases.",
+    "start": 2415.44,
+    "end": 2424.32,
+    "ocr_text": "Sabu: G - a See ih grafh ,\nOutpat- Bibant'te nap’ ou Sey it doesn't ex/3t,\n\n& %e A"
+  },
+  {
+    "text": "So, let us see some simple examples. So, is this BIPartight this graph with 1 2 3 as vertices",
+    "start": 2424.32,
+    "end": 2452.32,
+    "ocr_text": "Sabu: G - a See ih grafh ,\nOutpat- Bibant'te nap’ ou Sey it doesn't ex/3t,\n\n& %e A"
+  },
+  {
+    "text": "yeah what is the proof just go over all the cases. So, the proof is that you can try to develop",
+    "start": 2455.2,
+    "end": 2467.52,
+    "ocr_text": "Yap: @ - 4 as: the graph ,\nOut)at= Bibantite nap) Or Sey it doesn't ex/3t,"
+  },
+  {
+    "text": "a or it is iteratively build a. So, you can just call this vertex in a and then this vertex has to be",
+    "start": 2467.52,
+    "end": 2476.48,
+    "ocr_text": "Yap: @ - 4 eae: the graph ,\nOut}at= Bibant'te nap) OW Sey it doen't ex/3t,"
+  },
+  {
+    "text": "yeah both of them have to be B, but if both of them are B then BB is a contradiction",
+    "start": 2476.48,
+    "end": 2484.56,
+    "ocr_text": "Shputk: G * ‘ \\_cnns ced pet graph,\nOut}at: Bibant’te nap Or Sey it doesn't ex/3t,"
+  },
+  {
+    "text": "or this conflicts this basically proves that no A or B choice will work. So,",
+    "start": 2486.24,
+    "end": 2493.92,
+    "ocr_text": "Yap: @ - 4 aaa the grab ,\nOut}at: Bibantite nap) OW Sey jt doen't ex/3t,"
+  },
+  {
+    "text": "what you have learnt is that a 3 cycle is not BIPartight.",
+    "start": 2494.96,
+    "end": 2498.56,
+    "ocr_text": "Yap: @ - 4 aaa the grab ,\nOut}at: Bibantite nap) OW Sey jt doen't ex/3t,"
+  },
+  {
+    "text": "What about a 4 cycle? So, if you play this game again then you have this you can call A without",
+    "start": 2498.72,
+    "end": 2513.44,
+    "ocr_text": "Yap: @ - 4 eas we graph ,\nOut}at= Bibantite nap) OW Sey jt doen't ex/3t,"
+  },
+  {
+    "text": "loss of generality this is B this is A and this is B. So, this means that this means that this",
+    "start": 2513.44,
+    "end": 2522.4,
+    "ocr_text": "Yap: @ - 4 ee: we graph ,\nOut}at: Bibant’te nap) Or Sey it doesn't ex/3t,"
+  },
+  {
+    "text": "graph G 2 is BIPartight because you can just put these vertices you can cluster these",
+    "start": 2523.04,
+    "end": 2531.76,
+    "ocr_text": "Sabu: G - a ar tik grafh ,\nOutput Bibant'te nap Or Sey it doesnt exs3t ,\n\n& % A"
+  },
+  {
+    "text": "and the rest and you can see that in these two vertices there is no edge and similarly in the",
+    "start": 2535.28,
+    "end": 2542.08,
+    "ocr_text": "Sabu: G - a Sr i grafh ,\nOutput: Gipoak te aap Or Sey it doesn't exs3t ,\n\n& 49 Ag"
+  },
+  {
+    "text": "remaining the complement there is no edge all the edges are cross edges right. So, this is the",
+    "start": 2542.08,
+    "end": 2547.92,
+    "ocr_text": "Sabu: G - a Sr i grafh ,\nOutput: Gipoak te aap Or Sey it doesn't exs3t ,\n\n& 49 Ag"
+  },
+  {
+    "text": "BIPartight representation. Now, from these two examples can you generalize this property?",
+    "start": 2547.92,
+    "end": 2555.2,
+    "ocr_text": "Sabu: G - a er ih grafh ,\nOutput: Gipoak te aap. Or Sey it doesn't exs3t ,\n\n& %e AZ"
+  },
+  {
+    "text": "What about odd cycles? Yeah odd cycles are non BIPartight",
+    "start": 2556.72,
+    "end": 2562.72,
+    "ocr_text": "Sabu: G - a ven met pagected graph ,\nOutput: Bipaat de oP. Or Sey it doesn't exs/3t ,\n\n& %e A"
+  },
+  {
+    "text": "and even cycles even cycle is BIPartight right. So, immediately you have learnt something useful",
+    "start": 2562.8,
+    "end": 2582.0,
+    "ocr_text": "Sabu: G - a ven met pagected graph ,\nOutput: Bipaat de oP. Or Sey it doesn't exs/3t ,\n\n& %e A"
+  },
+  {
+    "text": "which together with BFS will give you the algorithm.",
+    "start": 2583.84,
+    "end": 2586.08,
+    "ocr_text": "LES G - a ait, i ap ma\n\n4 49 A"
+  },
+  {
+    "text": "Yeah, but sometimes the examples can look much more complicated like a hexagon.",
+    "start": 2592.96,
+    "end": 2601.6,
+    "ocr_text": "Yapuct: G - & Seige tiki graph ,\nOut}at= Biponk'te aap. OW Sey it doesn't exit,\n\n4) (te)"
+  },
+  {
+    "text": "So, there are six vertices and these are the edges.",
+    "start": 2607.44,
+    "end": 2614.32,
+    "ocr_text": "Yap: @ - a Ser thi graph,\nOut}at: Giponk'te oP Or Sey it doesnt ex/3t ,\n\n4) te)"
+  },
+  {
+    "text": "So, is this graph G 3 BIPartight or not? It is not a cycle. So, we through those observations will not apply.",
+    "start": 2614.4,
+    "end": 2626.08,
+    "ocr_text": "Yap: @ - a Ser thi graph,\nOut}at: Giponk'te oP Or Sey it doesnt ex/3t ,\n\n4) te)"
+  },
+  {
+    "text": "So, here again you will do the same game of course, that you will try to label",
+    "start": 2630.64,
+    "end": 2635.68,
+    "ocr_text": "Yap: @ - “ Sear tiki graph ,\nOut}at= Biponk'te asp Or Sey it doesn't ex/3t,\n\n4) te)"
+  },
+  {
+    "text": "based on the connections you see. So, this you can call A this you can call B.",
+    "start": 2635.84,
+    "end": 2642.72,
+    "ocr_text": "Yap: G - & nsceacisied tiki graph,\nOut}at: Giponk'te dap. Ou sy! it doesnt ext,\n\n4) te)"
+  },
+  {
+    "text": "Right and then you have to manually verify that the 3 A is R H free and the 3 Bs are also H free.",
+    "start": 2654.64,
+    "end": 2661.92,
+    "ocr_text": "RB\n+\nH\n\nos] Za »)\n\nYap: @ - a pea anccet tiki graph,\nOutpat= Giponk'te aap. oO Sey it doesn't ex,\n\n4) te)"
+  },
+  {
+    "text": "So, there is a complicated transformation which will give you a completely different picture.",
+    "start": 2662.88,
+    "end": 2669.84,
+    "ocr_text": "Sabu: G - a aT tik grafh ,\nOutput: Gipoak te aap ou Sey it doesn't ex/3t ."
+  },
+  {
+    "text": "Right and then the edges are I do not know how many edges there are 3 edges.",
+    "start": 2677.92,
+    "end": 2685.04,
+    "ocr_text": "Ynput: G - a Seon oe graph ,\nOutpat= Gipoak te aap ou Sey it doen't exs/3t,"
+  },
+  {
+    "text": "So, I think it is a complete should be complete.",
+    "start": 2686.32,
+    "end": 2688.56,
+    "ocr_text": "Sabu: G - a ven meet We grahh ,\nOutput Gigante =? Or Sey ik doesn't ex/S,"
+  },
+  {
+    "text": "So, you will not believe but these two graphs are the same.",
+    "start": 2692.0,
+    "end": 2701.44,
+    "ocr_text": "Sabu: G - a ven meet We grahh ,\nOutput Gigante =? Or Sey ik doesn't ex/S,"
+  },
+  {
+    "text": "They look really very different which is why you should not go on perceptions.",
+    "start": 2703.6,
+    "end": 2707.44,
+    "ocr_text": "Sabu: G - a ven meth nie grahh ,\nOutput Gigante aca Or Sey it doesn't exs3t ,"
+  },
+  {
+    "text": "You actually have to mathematically prove these things. So, they look totally different",
+    "start": 2708.24,
+    "end": 2711.92,
+    "ocr_text": "Sabu: G - a Sar tik grafh ,\nOutput: Gipoak te aap. oO Sey it doesnt ex/3t,"
+  },
+  {
+    "text": "but they are actually isomorphic graphs. It is just the way you draw it.",
+    "start": 2711.92,
+    "end": 2716.48,
+    "ocr_text": "Sabu: G - a Sar tik grafh ,\nOutput: Gipoak te aap. oO Sey it doesnt ex/3t,"
+  },
+  {
+    "text": "So, in the second picture you can see that it is this type of a type. But in the first picture it was",
+    "start": 2717.36,
+    "end": 2721.12,
+    "ocr_text": "Sabu: G - a ee tik graph ,\nOutput: Gipoak te dap. Or Sey it doesn't exs/3t ,\n\n& 4% &"
+  },
+  {
+    "text": "not clear even after telling you the labels. So, that is the game.",
+    "start": 2721.92,
+    "end": 2729.76,
+    "ocr_text": "Sabu: G - a ee tik graph ,\nOutput: Gipoak te dap. Or Sey it doesn't exs/3t ,\n\n& 4% &"
+  },
+  {
+    "text": "This is why this problem by definition is quite hard because you have to find the correct",
+    "start": 2731.52,
+    "end": 2736.0,
+    "ocr_text": "Yap: @ - a een tiki graph ,\nOut}at: Biponk'te 2p Or Sey it doesn't ex/3t,"
+  },
+  {
+    "text": "representation which is A could be any subset of size half.",
+    "start": 2736.0,
+    "end": 2741.36,
+    "ocr_text": "Yap: @ - a ae th graph,\nOut}at= Gipoak'te oP Or Sey it doesnt ex/3t ,"
+  },
+  {
+    "text": "So, let us look at the BFS now.",
+    "start": 2741.36,
+    "end": 2760.16,
+    "ocr_text": "Yap: @ - a ae th graph,\nOut}at= Gipoak'te oP Or Sey it doesnt ex/3t ,"
+  },
+  {
+    "text": "So, BFS gives a tree structure.",
+    "start": 2761.04,
+    "end": 2769.04,
+    "ocr_text": "2 OC"
+  },
+  {
+    "text": "BFS is a ripple which is accessing the vertices through these edges.",
+    "start": 2773.28,
+    "end": 2781.36,
+    "ocr_text": "2 OC"
+  },
+  {
+    "text": "If you only look at the edges which were important it is a tree there is no cycle.",
+    "start": 2781.92,
+    "end": 2785.28,
+    "ocr_text": "12:46:05 auto saved."
+  },
+  {
+    "text": "So, that is the BFS tree. So, let us draw that starting from x",
+    "start": 2785.52,
+    "end": 2799.12,
+    "ocr_text": "12:46:05 auto saved."
+  },
+  {
+    "text": "and distances 0, 1, 2.",
+    "start": 2799.28,
+    "end": 2806.72,
+    "ocr_text": "2) ih\neo"
+  },
+  {
+    "text": "So, these are the vertices divided into these layers.",
+    "start": 2813.12,
+    "end": 2829.04,
+    "ocr_text": "A 2\ne"
+  },
+  {
+    "text": "Others as the ripple passes and the BFS tree that I am talking about is basically these edges",
+    "start": 2829.12,
+    "end": 2838.64,
+    "ocr_text": "& 49 AZ"
+  },
+  {
+    "text": "which first discovered the correct distance. So, you looked at the neighbors of x and you found",
+    "start": 2839.76,
+    "end": 2846.8,
+    "ocr_text": "Ls\n\na) 4\ne"
+  },
+  {
+    "text": "three vertices and then you updated there in distances from infinity to the correct distance",
+    "start": 2846.8,
+    "end": 2851.76,
+    "ocr_text": "J,\n\n& %e A"
+  },
+  {
+    "text": "which is 1. So, these are your red edges which lead to the first update and so on.",
+    "start": 2851.76,
+    "end": 2870.4,
+    "ocr_text": "J,\n\n& %e A"
+  },
+  {
+    "text": "So, these are the red edges these we call the tree edges because these lead to the updating of",
+    "start": 2870.88,
+    "end": 2884.72,
+    "ocr_text": "J\n/\\ VW"
+  },
+  {
+    "text": "the distance of the second endpoint. But this is not the whole graph the graph is has more edges.",
+    "start": 2884.72,
+    "end": 2895.12,
+    "ocr_text": "J\n/\\ VW"
+  },
+  {
+    "text": "So, those ones are they might be of more complicated type and they can be between any",
+    "start": 2895.52,
+    "end": 2905.52,
+    "ocr_text": "J Yd"
+  },
+  {
+    "text": "like this is the vertex w. So, from here you can have edges of this type.",
+    "start": 2912.08,
+    "end": 2918.8,
+    "ocr_text": "Ls\nJV \\ IN\n7 ar"
+  },
+  {
+    "text": "So, I have drawn three edges from w these blue edges which were unimportant in the BFS search.",
+    "start": 2918.8,
+    "end": 2931.04,
+    "ocr_text": "Ls\nJV \\ IN\n7 ar"
+  },
+  {
+    "text": "They did not lead to any interesting update. Can there be more edges from the blue? So,",
+    "start": 2932.16,
+    "end": 2938.48,
+    "ocr_text": "Ls\nJV \\ IN\n7 ar"
+  },
+  {
+    "text": "for example, can there be an edge from w to x?",
+    "start": 2938.48,
+    "end": 2940.72,
+    "ocr_text": "Ls\nJV \\ IN\n7 ar"
+  },
+  {
+    "text": "W 2 v 1 you have seen an edge can there be an edge from w to v 0? Yes or no? No right exactly.",
+    "start": 2940.96,
+    "end": 2955.52,
+    "ocr_text": "=\nJ\\ VAX\neo"
+  },
+  {
+    "text": "So, when you see a vertex BFS has the tree as this property or the graph itself as this",
+    "start": 2956.88,
+    "end": 2964.48,
+    "ocr_text": "=\nJ\\ VAX\neo"
+  },
+  {
+    "text": "property that from w there can be edges only between if you are at v i then v i minus 1 v i plus",
+    "start": 2964.48,
+    "end": 2973.76,
+    "ocr_text": "=\nJ\\ VAX\neo"
+  },
+  {
+    "text": "1. There cannot be edges outside this small zone. So, that is one property.",
+    "start": 2973.76,
+    "end": 2984.08,
+    "ocr_text": "=\nJ\\ VAX\neo"
+  },
+  {
+    "text": "So, w in so, I am calling v i. So, w in v i can not have edges",
+    "start": 2984.08,
+    "end": 2999.68,
+    "ocr_text": "Js\nJ\\ VAX\nie"
+  },
+  {
+    "text": "is 2 v i minus 2 i minus 3 dot dot or 2 i plus 2 i plus 3.",
+    "start": 2999.68,
+    "end": 3018.88,
+    "ocr_text": "Js\nJ\\ \\AX\nae |"
+  },
+  {
+    "text": "So, the only place it can have edges is from v i to v i minus 1 and v i plus 1.",
+    "start": 3018.88,
+    "end": 3030.72,
+    "ocr_text": "Ls\nJ\\ VAX\n7 “XJ"
+  },
+  {
+    "text": "So, this property you should prove formally this comes from the guarantee that w is distance",
+    "start": 3034.8,
+    "end": 3042.72,
+    "ocr_text": "és]"
+  },
+  {
+    "text": "v i and all other other vertices also have correct distances. So, there cannot be a blue edge",
+    "start": 3042.88,
+    "end": 3049.76,
+    "ocr_text": "f) te) i\n\nés]"
+  },
+  {
+    "text": "which is jumping too much. There it can only be between these three levels. So, that is the",
+    "start": 3049.76,
+    "end": 3056.8,
+    "ocr_text": "f) te) i\n\nés]"
+  },
+  {
+    "text": "description of BFS tree edges and non tree edges based on this we can complete the pseudo code tomorrow.",
+    "start": 3056.8,
+    "end": 3064.64,
+    "ocr_text": "f) te) i\n\nés]"
+  }
+]

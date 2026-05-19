@@ -1,0 +1,1160 @@
+[
+  {
+    "text": "So, so far we had seen about some scheduling algorithms like bus comfort serve and the",
+    "start": 0.0,
+    "end": 22.72,
+    "ocr_text": "\\ NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "preemptive scheduling algorithms like the round robin. So, in this particular video",
+    "start": 22.72,
+    "end": 26.96,
+    "ocr_text": "\\ NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "we will look at a class of algorithms for scheduling which are known as the priority based",
+    "start": 26.96,
+    "end": 33.16,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\nen Process P2 is delayed considerably\n\nP3 3 2\n\nArrival | P41 P2\nchedule | P1 P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 |P1"
+  },
+  {
+    "text": "scheduling algorithms. So, we will start this lecture with the motivating example.",
+    "start": 33.16,
+    "end": 39.68,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\nen Process P2 is delayed considerably\n\nP3 3 2\n\nArrival | P41 P2\nchedule | P1 P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 |P1"
+  },
+  {
+    "text": "So, let us relook at this particular example which we taken in the last video. So, we had",
+    "start": 39.68,
+    "end": 46.24,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\nen Process P2 is delayed considerably\n\nP3 3 2\n\nArrival | P41 P2\nchedule | P1 P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 |P1"
+  },
+  {
+    "text": "seen this round robin scheduling algorithm where we took 4 processes p 1 to p 4 and these",
+    "start": 46.24,
+    "end": 52.12,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nPi 0 7\n\n[PZ 2 Process P2 is delayed considerably\n\nP3 3 2\n\nArrival |P4 P2 |P3 P4\nchedule| P14 p2 |p1 |P3 [p2 [pi |P3 |p2 [pi |p4 [p2 [Pi [Pt"
+  },
+  {
+    "text": "processes arrived at different times 0, 2, 3 and 9 and they had different bus times like",
+    "start": 52.12,
+    "end": 58.96,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nPi 0 7\n\n[PZ 2 Process P2 is delayed considerably\n\nP3 3 2\n\nArrival |P4 P2 |P3 P4\nchedule| P14 p2 |p1 |P3 [p2 [pi |P3 |p2 [pi |p4 [p2 [Pi [Pt"
+  },
+  {
+    "text": "7 cycles 4, 2 and 1 cycles respectively. Now, we will add a bit about the processes",
+    "start": 58.96,
+    "end": 65.0,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\nP41 0 7\n[P20 2 Process P2 is delayed considerably\nP3 3 2\nArrival | PA p2 |P3 P4\n\nchedule | P1 | P2 ;P1 |P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 P1 [Pt"
+  },
+  {
+    "text": "which are involved. Let us assume that p 2 is a critical process while p 1, p 3 and p",
+    "start": 65.0,
+    "end": 71.64,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\nP41 0 7\n[P20 2 Process P2 is delayed considerably\nP3 3 2\nArrival | PA p2 |P3 P4\n\nchedule | P1 | P2 ;P1 |P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 P1 [Pt"
+  },
+  {
+    "text": "4 are less critical. So, what is a critical process? So, let us take an example of an",
+    "start": 71.64,
+    "end": 78.64,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nPl 0 7\n\n[P21 2 A Process P2 is delayed considerably\n\nP3 3 2.\n\nArrival | P41 P2 | P3 P4\n\n|\n|\n\nP4 |p2 |P1 |P\n\nchedule | P1 P2 |P1 |P3 |P2 |P1 |P3 |P2 |P1"
+  },
+  {
+    "text": "operating system that runs in a microprocessor present in a car and whenever the breaks",
+    "start": 78.64,
+    "end": 85.96,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\n[P20 | Process P2 is delayed considerably\n\nP3 3 2\n\nArrival | P41 P2\nchedule | P1 [P3 P2 [P1 |P3 |P2 |P1 |P4 |P2 |P1"
+  },
+  {
+    "text": "are pressed process p 2 will execute and it will do several task related to breaking",
+    "start": 85.96,
+    "end": 91.4,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nPal 0 7\n\n| Process P2 is delayed considerably\n\nP3 3 2\n\nP2\np3 |p2 [P1 [Ps |P2 [pi |p4 |p2 |Pt\n\nArrival | P41\n\nchedule | P1"
+  },
+  {
+    "text": "of the car. While process p 1, p 3 and p 4 may be less critical task with respect to",
+    "start": 91.4,
+    "end": 98.0,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nPal 0 7\n\n| Process P2 is delayed considerably\n\nP3 3 2\n\nP2\np3 |p2 [P1 [Ps |P2 [pi |p4 |p2 |Pt\n\nArrival | P41\n\nchedule | P1"
+  },
+  {
+    "text": "the car again for instance process p 1, p 3 and p 4 may be the music player. So, one of",
+    "start": 98.0,
+    "end": 104.2,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\nPA 0 7 ‘\n[P22 | Process P2 is delayed considerably\nP3 3 2)\nArrival | PA p2 |P3 P4\n\nchedule | P1 P2 {Pt |P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 | P41 [P41"
+  },
+  {
+    "text": "the process may be the music player while another one could be for instance controlling",
+    "start": 104.28,
+    "end": 109.68,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\nPA 0 7 ‘\n[P22 | Process P2 is delayed considerably\nP3 3 2)\nArrival | PA p2 |P3 P4\n\nchedule | P1 P2 {Pt |P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 | P41 [P41"
+  },
+  {
+    "text": "the AC or the heater and so on. So, let us look at this grand chart again. We see that",
+    "start": 109.68,
+    "end": 116.4,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\nP41 0 7\n[P22 Process P2 is delayed considerably\nP3 3 2\nArrival | PA p2 |P3 P4\n\nchedule| P1 P2 |P1 |P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 |P1 [P14"
+  },
+  {
+    "text": "p 2 arrives in the second cycle and it takes considerable amount of cycles to complete",
+    "start": 116.4,
+    "end": 123.04,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nFal 0 7\n\nProcess P2 is delayed considerably\n\nP3 3 2\n\nArrival | P41 P2\nchedule | P1 Pe P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 | P41 |"
+  },
+  {
+    "text": "executing. The main reason for this is that this is a round robin scheduling scheme",
+    "start": 123.04,
+    "end": 129.88,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nFal 0 7\n\nProcess P2 is delayed considerably\n\nP3 3 2\n\nArrival | P41 P2\nchedule | P1 Pe P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 | P41 |"
+  },
+  {
+    "text": "and other processes have a fair share of the CPU. So, p 2 first executes here and then",
+    "start": 129.92,
+    "end": 136.92,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\n[P22 Process P2 is delayed considerably\n\nP3 3 2\n\nP2\n{ps |p2 [pi |p3 [p2 [pt |P4 |p2 |P1 [Pd\n\nArrival | P41\n\nchedule | P1"
+  },
+  {
+    "text": "there is p 1 and p 3 which executes then p 2 executes again and again and finally, complete",
+    "start": 136.92,
+    "end": 144.92,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\nP41 0 it\n[P2 Dn 2 [4 Process P2 is delayed considerably\nP3 3 2\nArrival P4\n\np1 |p4 |p2 |p1 |P1\n\nchedule"
+  },
+  {
+    "text": "executing its burst at this particular time. Now, you will see that there is an obvious",
+    "start": 145.64,
+    "end": 150.56,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nPl 0 7\n\n\\pP22)s—CsS Process P2 is delayed considerably\n\nP3 3 2\n\nArrival | P41 P2\nchedule|P1 | P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 ta"
+  },
+  {
+    "text": "problem with this particular scheme. Since, p 2 is a critical process such as controlling",
+    "start": 150.56,
+    "end": 157.56,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nPl 0 7\n\n\\pP22)s—CsS Process P2 is delayed considerably\n\nP3 3 2\n\nArrival | P41 P2\nchedule|P1 | P3 |P2 |P1 |P3 |P2 |P1 |P4 |P2 ta"
+  },
+  {
+    "text": "the breaking of the car, it has taken really long time for it to complete its execution",
+    "start": 157.64,
+    "end": 164.04,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\n[P22 A Process P2 is delayed considerably\n\nP3 3 2\n\nArrival | PA P2 |\nchedule P1 p2 | Pt p2 |p1 [pa |p2 |P1 [Pt"
+  },
+  {
+    "text": "and this could lead to catastrophic accidents. So, what one would have expected is something",
+    "start": 164.04,
+    "end": 168.72,
+    "ocr_text": "Relook at Round Robin Scheduling\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\n[P22 A Process P2 is delayed considerably\n\nP3 3 2\n\nArrival | PA P2 |\nchedule P1 p2 | Pt p2 |p1 [pa |p2 |P1 [Pt"
+  },
+  {
+    "text": "like this. Whenever a critical process such as p 2 arrives in the ready queue, it should",
+    "start": 168.72,
+    "end": 175.72,
+    "ocr_text": "Priorities\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\n[P22 | 4 We need a higher priority for P2,\ncompared with the other processes\n\nP3 3 2\n\n[pase dts—=isd?s This leads to priority based scheduling\nalgorithms\n\nArrival | P41 P3 |\n\nchedule | P1"
+  },
+  {
+    "text": "get a priority and it should be able to execute continuously irrespective of the fact that",
+    "start": 175.72,
+    "end": 182.72,
+    "ocr_text": "Priorities\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\n[P20 [2 4 We need a higher priority for P2,\ncompared with the other processes\n\nP3 3 2\n\n[Pa foCOdC:~“‘CS;C‘*dr This leads to priority based scheduling\nalgorithms\n\nArrival | P41 P3 |\n\n|\n|\nP41 | |\n\nchedule | P1_"
+  },
+  {
+    "text": "there are other processes with a lower priority present in the queue. So, this is what we",
+    "start": 183.04,
+    "end": 188.56,
+    "ocr_text": "Priorities\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\n[P20 [2 4 We need a higher priority for P2,\ncompared with the other processes\n\nP3 3 2\n\n[Pa foCOdC:~“‘CS;C‘*dr This leads to priority based scheduling\nalgorithms\n\nArrival | P41 P3 |\n\n|\n|\nP41 | |\n\nchedule | P1_"
+  },
+  {
+    "text": "would like to have in a more realistic situation. So, scheduling algorithms which take care",
+    "start": 188.56,
+    "end": 195.56,
+    "ocr_text": "Priorities\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\n\nP41 0 7\n\n[FZ [2 2 We need a higher priority for P2,\ncompared with the other processes\n\nP3 3 2\n\na | This leads to priority based scheduling\nalgorithms\n\nP3 P4 |\n\n|\n|\ni\n\nArrival | P41\n\nchedule | P1"
+  },
+  {
+    "text": "of such priorities among processes and own as priority based scheduling algorithms and",
+    "start": 196.8,
+    "end": 203.8,
+    "ocr_text": "Priorities\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\nP41 0 7\n[P22 We need a higher priority for P2,\ncompared with the other processes\nP3 3 2\njpPa [gd This leads to priority based scheduling\nalgorithms\nArrival | P4 P3 P4\n\nchedule | P1"
+  },
+  {
+    "text": "this is what we are going to study in this particular video lecture. In a priority based",
+    "start": 204.32,
+    "end": 210.52,
+    "ocr_text": "Priorities\n\nTime slice = 1\n\nProcess Arrival Burst Process P2 is a critical process while\nTime Time process P1, P3, and P4 are less critical\nP41 0 7\n[P22 We need a higher priority for P2,\ncompared with the other processes\nP3 3 2\njpPa [gd This leads to priority based scheduling\nalgorithms\nArrival | P4 P3 P4\n\nchedule | P1"
+  },
+  {
+    "text": "scheduling algorithm, each process is assigned a priority number. A priority number is nothing",
+    "start": 210.52,
+    "end": 217.52,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Apriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "but a number within a particular range. So, this range is predefined by the operating",
+    "start": 217.52,
+    "end": 222.0,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Appriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "system. For instance, the priority range is between 0 and 255. Therefore, every process",
+    "start": 222.0,
+    "end": 229.0,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Appriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "that is executed would be assigned a priority number between 0 and 255. A number which",
+    "start": 229.0,
+    "end": 235.24,
+    "ocr_text": "Priority based Scheduling\n\n* Priority based Scheduling\n\nEach process is assigned a priority\n+ Apriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "is small that is a priority number which is small that is close to 0 would mean that the",
+    "start": 235.24,
+    "end": 240.16,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Apriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "process is a high priority process or a high priority task. On the other hand, a large",
+    "start": 240.16,
+    "end": 246.32,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Apriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "priority number would mean that the process has a low priority. So, this is just a nomenclature",
+    "start": 246.32,
+    "end": 253.08,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Appriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "which Linux follows. Other operating systems may have a different approach. So, it would",
+    "start": 253.08,
+    "end": 258.8,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Appriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "keep for instance a higher number indicating a high priority process while a lower priority",
+    "start": 258.8,
+    "end": 265.08,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Apriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "number indicating a low priority process. But for this lecture, we will go with the Linux",
+    "start": 265.12,
+    "end": 270.12,
+    "ocr_text": "Priority based Scheduling\n\n* Priority based Scheduling\n\nEach process is assigned a priority\nkk * A priority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "nomenclature where a small priority number means a high priority process and vice versa.",
+    "start": 270.12,
+    "end": 277.12,
+    "ocr_text": "Priority based Scheduling\n\n* Priority based Scheduling\n\nEach process is assigned a priority\nkk * A priority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "Now, in a priority based scheduling algorithm even though there may be several tasks present",
+    "start": 279.12,
+    "end": 284.12,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Appriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "in the ready queue, the scheduling algorithm will pick the task with the highest priority.",
+    "start": 284.84,
+    "end": 290.64,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Appriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "The advantage of the priority based scheduling algorithms is quite easy to see. Essentially",
+    "start": 290.64,
+    "end": 296.76,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Apriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "in an operating system which supports a priority based scheduling algorithm, task can be given",
+    "start": 296.76,
+    "end": 303.26,
+    "ocr_text": "Priority based Scheduling\n\n* Priority based Scheduling\n\nEach process is assigned a priority\n+ Appriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "relative importance or processes could be given relative importance. High priority processes",
+    "start": 303.26,
+    "end": 309.34,
+    "ocr_text": "Priority based Scheduling\n\n* Priority based Scheduling\n\nEach process is assigned a priority\n+ Appriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "would get a higher priority to actually execute in the CPU compared to low priority processes.",
+    "start": 309.34,
+    "end": 316.02,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Apriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses,\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "On the other hand, the main drawback of having a priority based scheduling algorithm is that",
+    "start": 316.02,
+    "end": 320.56,
+    "ocr_text": "Priority based Scheduling\n\nPriority based Scheduling\n\n— Each process is assigned a priority\n+ Apriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\n— Scheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n,- Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "it could lead to what is known as starvation. So, essentially a starved process is one which",
+    "start": 320.64,
+    "end": 327.64,
+    "ocr_text": "Priority based Scheduling\n\nPriority based Scheduling\n\n— Each process is assigned a priority\n+ Apriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\n— Scheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n,- Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "is not able to execute at all in the CPU although it is in the ready queue for a long time.",
+    "start": 327.64,
+    "end": 334.14,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Appriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "It is quite easy to see that starvation mainly occurs for low priority processes. So, let",
+    "start": 334.14,
+    "end": 339.54,
+    "ocr_text": "Priority based Scheduling\n\n¢ Priority based Scheduling\n\nEach process is assigned a priority\n+ Appriority is a number in a range (for instance between 0 and 255)\n+ Asmall number would mean high priority while a large number would mean\nlow priority\nScheduling policy : pick the process in the ready queue having\nthe highest priority\n— Advantage : mechanism to provide relative importance to\nprocesses\n— Disadvantage : could lead to starvation of low priority processes"
+  },
+  {
+    "text": "us see how starvation occurs with an example. So, we will take the same 4 processes p 1 to",
+    "start": 339.54,
+    "end": 345.62,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nFea 0 8\nP22 oe P4 is a low priority process\nP3 3 2\n\nArrival | P41 P3 LI\n\nchedule | P1"
+  },
+  {
+    "text": "p 4 arriving at different times 0, 2, 3 and 9 and having different burst times 8, 4, 2",
+    "start": 345.7,
+    "end": 352.7,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\n\nP41 0 8\n\n[p22 P4 is a low priority process\n\nP3 3 2\n\nm= ee\nArrival | P14 P3 | [P4 |\n\n| {| |\n\nchedule | P1 | Fa | |. | | |"
+  },
+  {
+    "text": "and 1. Also, let us assume that the priority of p 1, p 2 and p 3 is higher than p 4 or",
+    "start": 352.7,
+    "end": 360.7,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\n\nP41 0 8\n\n[p22 P4 is a low priority process\n\nP3 3 2\n\nm= ee\nArrival | P14 P3 | [P4 |\n\n| {| |\n\nchedule | P1 | Fa | |. | | |"
+  },
+  {
+    "text": "another words p 4 is the lowest priority process. We will also make this assumption that every",
+    "start": 361.54,
+    "end": 368.54,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\n\nP41 0 8\n\nPin 2s P4 is a low priority process\n\nP3 3 2\n\nLe\nArrival | P41 p2 |P3 [P4 | [|\n\n| [| |\n\nchedule | P1 p2 | a| | | [| [| [| |"
+  },
+  {
+    "text": "15 cycles, this particular sequence repeats that is after the 15th cycle of the processor",
+    "start": 368.54,
+    "end": 375.54,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nP41 0 8\nP22 ea P4 is a low priority process\nP3 3 2\nArrival | PA P3 | P4 |\n\n|\n|\nchedule | P1 P41 | | :"
+  },
+  {
+    "text": "p 1 again arrives p 2 again arrives p 3 and similarly p 4 arrives. So, this sequence",
+    "start": 377.66,
+    "end": 384.66,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nP41 0 8\nP22 oe P4 is a low priority process\nP3 3 2\n\nArrival | P41 P3 |\n\n|\n|\n| | | |\n\nchedule | P1"
+  },
+  {
+    "text": "of processes arriving into the ready state continues infinitely. So, what we see if you look",
+    "start": 388.54,
+    "end": 394.54,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nP41 0 8\n[P22 a P4 is a low priority process\nP3 3 2\n\nArrival | P41 P3 |\n\n|\n|\npit | | | | |\n\nchedule | P1"
+  },
+  {
+    "text": "at the grand chart is that depending on the priority p 1, p 2 and p 3 are scheduled.",
+    "start": 394.54,
+    "end": 401.54,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nP41 0 8\n[P22 a P4 is a low priority process\nP3 3 2\n\nArrival | P41 P3 |\n\n|\n|\npit | | | | |\n\nchedule | P1"
+  },
+  {
+    "text": "However, the low priority task never gets scheduled within the 15 cycles. Additionally,",
+    "start": 404.1,
+    "end": 410.62,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nPl 0 8\nPo 2 Se P4 is a low priority process\nP3 3 Z\nArrival | P14 P3 | P4 |\n\n|\n|\nEe Eee |__|\n\nchedule | P1"
+  },
+  {
+    "text": "since p 1, p 2, p 3 and p 4 arrive again into the ready queue after 15 cycles. So, again",
+    "start": 410.62,
+    "end": 417.62,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nP41 0 8\n[p22 a P4 is a low priority process\nP3 3 2\n\nArrival | P41 P3 |\n\nchedule | P1\n\n|\n|\nP41 I |"
+  },
+  {
+    "text": "p 1, p 2 and p 3 get scheduled while p 4 never gets scheduled. So, as a result what we",
+    "start": 418.62,
+    "end": 424.62,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\ned 0 8\na | P4 is a low priority process\nP3 3 2\nArrival | P14 P3 | P4 |\n\n|\n|\nchedule | P1 P41 | |"
+  },
+  {
+    "text": "see is that this lowest priority process gets starved essentially even though it is in",
+    "start": 425.1,
+    "end": 432.1,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nFal 0 8\n[P22 a P4 is a low priority process\nP3 3 2\n\nArrival | P14\n\n|\n|\npt | {| | ft 4\n\nchedule | P1"
+  },
+  {
+    "text": "the ready queue and just waiting for the CPU to be allocated to it, it never gets a",
+    "start": 433.3,
+    "end": 440.3,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nFal 0 8\n[P22 a P4 is a low priority process\nP3 3 2\n\nArrival | P14\n\n|\n|\npt | {| | ft 4\n\nchedule | P1"
+  },
+  {
+    "text": "chance to execute in the CPU because there are always higher priority processes which are",
+    "start": 440.3,
+    "end": 445.78,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nP41 0 8\nP22 4 P4 is a low priority process\nP3 3 2\nArrival | P4 P2 | P3 | [Pa |\n\n|\n|\nchedule P14 P2 | P41 || | |"
+  },
+  {
+    "text": "arriving in the ready queue. So, let us see how priority base scheduling algorithms",
+    "start": 445.78,
+    "end": 451.06,
+    "ocr_text": "Dealing with Starvation\n\n¢ Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "deal with starvation. So, essentially in operating systems which have a priority base scheduling",
+    "start": 451.06,
+    "end": 456.22,
+    "ocr_text": "Dealing with Starvation\n\n¢ Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "algorithm, the scheduler would dynamically adjust the priority of a process to ensure that",
+    "start": 456.22,
+    "end": 462.42,
+    "ocr_text": "Dealing with Starvation\n\n¢ Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "all processes would eventually execute in the CPU. What this means is that in our example",
+    "start": 462.42,
+    "end": 469.42,
+    "ocr_text": "Dealing with Starvation\n\n¢ Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "the priority of process p 4 would gradually increase over a period of time until the",
+    "start": 470.38,
+    "end": 476.38,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nP41 0 8\nP22 Se P4 is a low priority process\nP3 3 2\nArrival | P14 P3 | P4 |\n\nchedule | P1 Fal | ;"
+  },
+  {
+    "text": "point that it has a priority which is greater than or equal to the priority of the processes",
+    "start": 476.86,
+    "end": 483.86,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nPil 0 8\n[pP2.j2.a P4 is a low priority process\nP3 3 2\nArrival | PA P3 | P4 [|\n\n|\n|\nchedule | P1 Fi | |"
+  },
+  {
+    "text": "p 1, p 2 and p 3. At that time process p 4 will get a chance to execute in the CPU.",
+    "start": 483.86,
+    "end": 489.86,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nPil 0 8\n[pP2.j2.a P4 is a low priority process\nP3 3 2\nArrival | PA P3 | P4 [|\n\n|\n|\nchedule | P1 Fi | |"
+  },
+  {
+    "text": "Thus, we see by elevating process p 4 over time the starvation that would otherwise have",
+    "start": 489.86,
+    "end": 496.86,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nPl 0 8\n| P4 is a low priority process\nP3 3 2\n\nArrival | P41\n\nP3 | P4 | [|\n\n|\n|\ni | [| | |\n\nchedule | P1"
+  },
+  {
+    "text": "occurred since p 4 was a low priority process is eliminated. So, there are several techniques",
+    "start": 497.02,
+    "end": 504.02,
+    "ocr_text": "Starvation\n\nTime slice = 1\n\nProcess Arrival Burst Low priority process may never get a\nTime Time chance to execute.\nP41 0 8\n[P2204 P4 is a low priority process\nP3 3 2\nArrival | P14 P3 P4 |\n\nchedule | P1 P41 |"
+  },
+  {
+    "text": "that priority base scheduling algorithm could deal with starvation. So, we give one particular",
+    "start": 505.54,
+    "end": 510.54,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "example here in which an operating system with a priority base scheduling algorithm could",
+    "start": 510.94,
+    "end": 517.26,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "ensure that every process even the low priority process will eventually execute in the CPU.",
+    "start": 517.26,
+    "end": 524.26,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "So, let us say in this particular operating system when a process starts it is given a",
+    "start": 525.26,
+    "end": 531.26,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "base priority. Now, this base priority will differ from process to process. A high priority",
+    "start": 531.26,
+    "end": 538.26,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "process will be given a high priority number while a low priority process will be given",
+    "start": 538.9,
+    "end": 543.9,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "a low priority number. Now, after every time slot or time slice the priority of the process",
+    "start": 543.9,
+    "end": 550.9,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "of the process is increased by a fixed value. So, essentially all processes in the ready",
+    "start": 551.3,
+    "end": 557.9,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "queue have their priority increased by a fixed value except for the process that is currently",
+    "start": 560.38,
+    "end": 566.38,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute ‘\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "being executed in the CPU. So, what you would see that over a period of time all processes",
+    "start": 566.38,
+    "end": 573.38,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n. This ensures that even a low priority process will eventually\n\nexecute ;\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "in the priority queue would gradually have their priority increased.",
+    "start": 573.38,
+    "end": 579.18,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n. This ensures that even a low priority process will eventually\n\nexecute ;\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "Now, even a low priority process would have its priority increased up to the point that",
+    "start": 579.66,
+    "end": 585.66,
+    "ocr_text": "Dealing with Starvation\n\n¢ Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "its priority is high enough so that it is scheduled the CPU. So, after it is scheduled",
+    "start": 586.18,
+    "end": 591.7,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "this into the CPU and executes in the CPU at the end of its time slice its priority is",
+    "start": 591.7,
+    "end": 598.38,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "reset back to its base priority. Thus the process which starts off with the base priority",
+    "start": 598.38,
+    "end": 604.58,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "of 250 will gradually have its priority increased. So, it is to a point that it begins to execute",
+    "start": 604.66,
+    "end": 611.66,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "and after it executes its priority is reset to 250 thus starvation would be avoided.",
+    "start": 612.22,
+    "end": 619.22,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "So, based on this there are two types of priorities present for a process. There is the",
+    "start": 620.22,
+    "end": 625.9,
+    "ocr_text": "Dealing with Starvation\n\n* Scheduler adjusts priority of processes to ensure that\nthey all eventually execute\n* Several techniques possible. For example,\n— Every process is given a base priority\n— After every time slot increase the priority of all other process\n\n. This ensures that even a low priority process will eventually\nexecute\n\n— After a process executes, its priority is reset"
+  },
+  {
+    "text": "static priority which is typically set at the start of execution. So, it can be set by",
+    "start": 625.9,
+    "end": 631.3,
+    "ocr_text": "Priorities are of two types\n\n* Static priority : typically set at start of execution\n— If not set by user, there is a default value (base priority)\n\n* Dynamic priority : scheduler can change the process priority\nduring execution in order to achieve scheduling goals\n\n— eg1. decrease priority of a process to give another process a\nchance to execute\n\n— eg.2. increase priority for |/O bound processes"
+  },
+  {
+    "text": "the user who is starting that application and by chance if the user does not set that",
+    "start": 631.38,
+    "end": 636.46,
+    "ocr_text": "Priorities are of two types\n\n* Static priority : typically set at start of execution\n— If not set by user, there is a default value (base priority)\n\n* Dynamic priority : scheduler can change the process priority\nduring execution in order to achieve scheduling goals\n\n— eg1. decrease priority of a process to give another process a\nchance to execute\n\n— eg.2. increase priority for |/O bound processes"
+  },
+  {
+    "text": "particular priority then a default value is taken. On the other hand the the second type",
+    "start": 636.46,
+    "end": 643.46,
+    "ocr_text": "Priorities are of two types\n\n* Static priority : typically set at start of execution\n— If not set by user, there is a default value (base priority)\n\n* Dynamic priority : scheduler can change the process priority\nduring execution in order to achieve scheduling goals\n\n— eg1. decrease priority of a process to give another process a\nchance to execute\n\n— eg.2. increase priority for |/O bound processes"
+  },
+  {
+    "text": "of priority is known as the dynamic priority where the scheduler can change the process",
+    "start": 644.1,
+    "end": 651.1,
+    "ocr_text": "Priorities are of two types\n\n* Static priority : typically set at start of execution\n— If not set by user, there is a default value (base priority)\n\n* Dynamic priority : scheduler can change the process priority\nduring execution in order to achieve scheduling goals\n\n— eg1. decrease priority of a process to give another process a\nchance to execute\n\n— eg.2. increase priority for |/O bound processes"
+  },
+  {
+    "text": "priority during the execution in order to achieve some scheduling goals. For example,",
+    "start": 651.1,
+    "end": 658.1,
+    "ocr_text": "Priorities are of two types\n\n* Static priority : typically set at start of execution\n— If not set by user, there is a default value (base priority)\n\n* Dynamic priority : scheduler can change the process priority\nduring execution in order to achieve scheduling goals\n\n— eg1. decrease priority of a process to give another process a\nchance to execute\n\n— eg.2. increase priority for I/O bound processes"
+  },
+  {
+    "text": "the scheduler could decide to decrease the priority of a process in order to give an",
+    "start": 658.18,
+    "end": 662.82,
+    "ocr_text": "Priorities are of two types\n\n* Static priority : typically set at start of execution\n— If not set by user, there is a default value (base priority)\n\n* Dynamic priority : scheduler can change the process priority\nduring execution in order to achieve scheduling goals\n\n— eg1. decrease priority of a process to give another process a\nchance to execute\n\n— eg.2. increase priority for I/O bound processes"
+  },
+  {
+    "text": "other process a chance to execute. Another example as we have seen before is to increase",
+    "start": 662.82,
+    "end": 669.02,
+    "ocr_text": "Priorities are of two types\n\n* Static priority : typically set at start of execution\n— If not set by user, there is a default value (base priority)\n\n* Dynamic priority : scheduler can change the process priority\nduring execution in order to achieve scheduling goals\n\n— eg1. decrease priority of a process to give another process a\nchance to execute\n\n— eg.2. increase priority for I/O bound processes"
+  },
+  {
+    "text": "the priority of IO bound processes since IO bound processes would typically require a",
+    "start": 669.02,
+    "end": 676.02,
+    "ocr_text": "Priorities are of two types\n\n* Static priority : typically set at start of execution\n— If not set by user, there is a default value (base priority)\n\n* Dynamic priority : scheduler can change the process priority\nduring execution in order to achieve scheduling goals\n\n— eg1. decrease priority of a process to give another process a\nchance to execute\n\n— eg.2. increase priority for I/O bound processes"
+  },
+  {
+    "text": "faster response time. One disadvantage of having a range of numbers from which a process",
+    "start": 676.98,
+    "end": 683.98,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n¢ Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "obtains its priority is the case when there are a large number of processes present in",
+    "start": 683.98,
+    "end": 689.9,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n¢ Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "the system. In such a case there may be several processes which are executing with exactly",
+    "start": 689.9,
+    "end": 696.1,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n* Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "the same priority. For instance let us say that a priority range is from 0 to 255 and there",
+    "start": 696.1,
+    "end": 703.1,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n* Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "are maybe over a 10,000 processes running in the system. In such a case for each priority",
+    "start": 704.94,
+    "end": 711.94,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n* Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "number there may be several processes executing with that priority number. So this is depicted",
+    "start": 712.34,
+    "end": 719.34,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n* Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "in this particular figure where we have four processes arriving at different time and having",
+    "start": 720.14,
+    "end": 725.14,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n* Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "different bus times but all of them have the same priority. So in such a case the scheduling",
+    "start": 725.14,
+    "end": 731.74,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n* Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "would begin to behave like non priority based scheduling algorithm. For instance it would",
+    "start": 731.74,
+    "end": 737.74,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n* Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "begin to behave like a round-robin scheduling algorithm. So in order to handle this what",
+    "start": 738.14,
+    "end": 744.74,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n¢ Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "modern operating systems have is multi-level cues that is instead of assigning a single",
+    "start": 744.74,
+    "end": 751.24,
+    "ocr_text": "Priority based Scheduling\nwith large number of processes\n\n¢ Several processes get assigned the same\nbase priority\n— Scheduling begins to behave more like round\n\nrobin\nProcess Arrival Burst Priority\nTime Time"
+  },
+  {
+    "text": "priority number to each process processes are assigned a priority class. Now there could",
+    "start": 751.24,
+    "end": 757.68,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses Fe\nEach class has its own ready\nqueue sat\nScheduler picks the highest\npriority queue (class) which has er\nat least one ready process\nSelection of a process within the\nclass could have its own policy\n\n— Typically round robin (but can be Bakes\nchanged)\n\n— High priority classes can implement\nfirst come first serve in order to\nensure quick response time for critical\ntasks"
+  },
+  {
+    "text": "be several priority classes within the operating system and each of these priority classes could",
+    "start": 757.68,
+    "end": 762.98,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\n~-1 $-@@O-@\n\nH+\n\ntc @-0-6-6\n\n4pO000H\n\n| +6666\n\nMuttiteve"
+  },
+  {
+    "text": "range from a high priority to a low priority. For instance there could be a real-time priority",
+    "start": 762.98,
+    "end": 768.98,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\n~-1 $-@@O-@\n\nH+\n\ntc @-0-6-6\n\n4pO000H\n\n| +6666\n\nMuttiteve"
+  },
+  {
+    "text": "class, a system priority class and interactive priority class, a batch priority class and",
+    "start": 768.98,
+    "end": 773.58,
+    "ocr_text": "Multilevel Queues\n\n+ Processes assigned to a priority\nclasses\n\n« Each class has its own ready\nqueue\n\n* Scheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\n* Selection of a process within the\nclass could have its own policy ;\n— Typically round robin (but can be Lemeeetate\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks"
+  },
+  {
+    "text": "so on. All real-time processes would be present in this priority class. So each of these",
+    "start": 773.58,
+    "end": 780.58,
+    "ocr_text": "Multilevel Queues\n\n+ Processes assigned to a priority\nclasses\n\n« Each class has its own ready\nqueue\n\n* Scheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\n* Selection of a process within the\nclass could have its own policy ;\n— Typically round robin (but can be Lemeeetate\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks"
+  },
+  {
+    "text": "priority classes has a ready queue and when a real-time process is ready to execute it",
+    "start": 782.1,
+    "end": 788.86,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\nMuttileve\n\n“-O©OO®\n\n7@-0-0-0;\n\n(-@-0600 |\n\n0000!"
+  },
+  {
+    "text": "gets added on to this particular ready queue that is it gets added on to the ready queue",
+    "start": 788.86,
+    "end": 795.86,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\nMuttiteve\n\n7 8-0-0-0;—\n\n(@-0-0-0;\n\n-0©000_\n\n-@000"
+  },
+  {
+    "text": "present in the real-time class, priority class. Similarly if an interactive process wants",
+    "start": 796.14,
+    "end": 803.46,
+    "ocr_text": "Multilevel Queues\n\n+ Processes assigned to a priority\nclasses Fe\n\n« Each class has its own ready\nqueue\n\n* Scheduler picks the highest\npriority queue (class) which has net\nat least one ready process\n\n* Selection of a process within the\nclass could have its own policy ,\n— Typically round robin (but can be en\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks"
+  },
+  {
+    "text": "to execute and it is ready to execute it gets added to this ready queue present in the",
+    "start": 803.46,
+    "end": 809.46,
+    "ocr_text": "Multilevel Queues\n\n+ Processes assigned to a priority\nclasses Fe\n\n« Each class has its own ready\nqueue\n\n* Scheduler picks the highest\npriority queue (class) which has net\nat least one ready process\n\n* Selection of a process within the\nclass could have its own policy ,\n— Typically round robin (but can be en\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks"
+  },
+  {
+    "text": "interactive priority class. Now at the end of a time slice when the scheduler executes",
+    "start": 809.46,
+    "end": 816.46,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\nMultileve\n\n4+pOO00H\n\n=e\n\ntc @-0-8-@,"
+  },
+  {
+    "text": "the scheduler picks the highest priority class which has at least one ready process. So",
+    "start": 817.46,
+    "end": 823.46,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\nMultileve\n\n“OOOO\n\n(-@-000\n\n-©0661{\n\n(@-0-0-0\\—"
+  },
+  {
+    "text": "for instance the scheduler will scan through these priority classes starting from the most",
+    "start": 824.98,
+    "end": 829.98,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\nMultileve\n\n“OOOO\n\n(-@-000\n\n-©0661{\n\n(@-0-0-0\\—"
+  },
+  {
+    "text": "highest priority to the least priority and it will select that particular priority class",
+    "start": 829.98,
+    "end": 836.98,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses Reahie\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has te\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks"
+  },
+  {
+    "text": "which has at least one process in the ready queue. Now if there is exactly one process in",
+    "start": 837.06,
+    "end": 844.06,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\n(@-0-0-0;\n\n-0000_|\n\n(@-0-0-0\\—"
+  },
+  {
+    "text": "the ready queue then we do not have a problem. Now that process is going to execute in the",
+    "start": 845.06,
+    "end": 850.06,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\nMuttiteve\n\n“OOOO\n\n(O00;\n\n(@-0-0-0\\—\n\n(@-0-0-0\\—"
+  },
+  {
+    "text": "CPU. However if we have multiple processes in the ready queue corresponding to the ready",
+    "start": 850.06,
+    "end": 857.06,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\nMuttiteve\n\n“OOOO\n\n(O00;\n\n(@-0-0-0\\—\n\n(@-0-0-0\\—"
+  },
+  {
+    "text": "queue chosen by the scheduler then a second scheduling algorithm would be used to pick or",
+    "start": 857.54,
+    "end": 864.54,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\nMuttileve\n\n°@-0-O0-@O\n\n7 @-0-0-0;\n\n06066 —\n\n(@-0-0-0\\—"
+  },
+  {
+    "text": "to choose from this set of processes. For instance let us say the scheduler has decided",
+    "start": 864.54,
+    "end": 870.74,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\nMuttileve\n\n°@-0-O0-@O\n\n7 @-0-0-0;\n\n06066 —\n\n(@-0-0-0\\—"
+  },
+  {
+    "text": "to choose the interactive priority class because there were no other processes ready in the",
+    "start": 870.82,
+    "end": 877.34,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\nMuttiteve\n\n{OOOO |\n\n7 @-0-0-0;\n\n-©0661 {\n\n(@-0-0-0;—"
+  },
+  {
+    "text": "real-time and the system priority classes. Further let us assume that there are four",
+    "start": 877.34,
+    "end": 884.34,
+    "ocr_text": "Multilevel Queues\n\n* Processes assigned to a priority\n\nclasses ws +-® @@@\n* Each class has its own ready roomed\nite +-@-0-0-0\n\n420066}\n\n| +6666\n\n+ Scheduler picks the highest\npriority queue (class) which has baer\nat least one ready process\n\n* Selection of a process within the\nclass could have its own policy ,\n— Typically round robin (but can be on\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks"
+  },
+  {
+    "text": "processes present in the interactive class. Now the second scheduling algorithm such as",
+    "start": 884.98,
+    "end": 890.98,
+    "ocr_text": "Multilevel Queues\n\n* Processes assigned to a priority\n\nclasses ws +-® @@@\n* Each class has its own ready roomed\nite +-@-0-0-0\n\n420066}\n\n| +6666\n\n+ Scheduler picks the highest\npriority queue (class) which has baer\nat least one ready process\n\n* Selection of a process within the\nclass could have its own policy ,\n— Typically round robin (but can be on\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks"
+  },
+  {
+    "text": "a round robin or a fee for scheduling algorithm will then execute to determine which of these",
+    "start": 890.98,
+    "end": 897.98,
+    "ocr_text": "Multilevel Queues\n\n* Processes assigned to a priority\nclasses fo\n\n* Each class has its own ready\nqueue\n\n* Scheduler picks the highest\npriority queue (class) which has or\nat least one ready process\n\n* Selection of a process within the\nclass could have its own policy ;\n— Typically round robin (but can be —\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks"
+  },
+  {
+    "text": "four processes will be assigned the CPU. Thus in multi-level queues there are two scheduling",
+    "start": 898.62,
+    "end": 905.62,
+    "ocr_text": "Multilevel Queues\n\n* Processes assigned to a priority\n\nclasses fea =O.0.0.0)\n* Each class has its own ready Z Poorer\nmete -O-0-0-0\n\n* Scheduler picks the highest\npriority queue (class) which has nen\nat least one ready process\n\n* Selection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\n-©0061{\n\n(-@000 |"
+  },
+  {
+    "text": "algorithms involved. The first is a priority based scheduling algorithm which chooses one",
+    "start": 906.58,
+    "end": 912.58,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\n+ f-©OO@\n\nHt:\n\n(-@-000\n\n+c@-0-0-0 i\n\ntc @-0-0-0;—\n\nMuttileve! Queue"
+  },
+  {
+    "text": "of the priority classes while the second is a non-priority based algorithm which chooses",
+    "start": 912.58,
+    "end": 919.58,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\n+ f-©OO@\n\nHt:\n\n(-@-000\n\n+c@-0-0-0 i\n\ntc @-0-0-0;—\n\nMuttileve! Queue"
+  },
+  {
+    "text": "among the processes in that priority class. The second scheduling algorithm would typically",
+    "start": 919.7,
+    "end": 926.06,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\nSelection of a process within the\nclass could have its own policy\n\n— Typically round robin (but can be\nchanged)\n\n— High priority classes can implement\nfirst come first serve in order to\nensure quick response time for critical\ntasks\n\nMuttiteve\n\n7@-0-0-O@\n\n(-@-000\n\n-©0661{\n\n(@-0-0-0\\—"
+  },
+  {
+    "text": "be round robin while for high priority processes the second scheduling algorithm is typically",
+    "start": 927.06,
+    "end": 933.06,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\n°@-0-O0-O@\n\n(@-0-0-0;\n\n-0©0661_|\n\n(@-0-0-0\\—"
+  },
+  {
+    "text": "something like first come first serve and so on. Further in schedulers that support multi-level",
+    "start": 933.06,
+    "end": 939.06,
+    "ocr_text": "Multilevel Queues\n\nProcesses assigned to a priority\nclasses\n\nEach class has its own ready\nqueue\n\nScheduler picks the highest\npriority queue (class) which has\nat least one ready process\n\nSelection of a process within the\nclass could have its own policy\n— Typically round robin (but can be\nchanged)\n— High priority classes can implement\nfirst come first serve in order to\n\nensure quick response time for critical\ntasks\n\n°@-0-O0-O@\n\n(@-0-0-0;\n\n-0©0661_|\n\n(@-0-0-0\\—"
+  },
+  {
+    "text": "queues the scheduler could adjust the time slice based on the priority class that is picked.",
+    "start": 939.66,
+    "end": 945.66,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "So IO bound processes are typically assigned a higher priority class and a longer time slice.",
+    "start": 945.66,
+    "end": 951.66,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "This ensures that the IO bound processes would be quickly serviced by the CPU as soon as",
+    "start": 952.14,
+    "end": 959.14,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "possible. Also the longer time slice will ensure that the burst of the IO bound process",
+    "start": 959.54,
+    "end": 966.54,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "completes before the time slice completes. CPU bound processes on the other hand are",
+    "start": 966.54,
+    "end": 973.54,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "assigned a lower priority class and given shorter time slices. The main drawback of having",
+    "start": 973.54,
+    "end": 979.54,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "a multi-level scheduling queue based scheduling algorithm is that the class of the process",
+    "start": 979.54,
+    "end": 985.3,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "must be assigned a priority that is we would require to know whether a process is a CPU",
+    "start": 985.3,
+    "end": 991.3,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "bound process or an IO bound process. Now this is not an easy thing to do. First it is",
+    "start": 991.46,
+    "end": 997.66,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "very difficult to identify whether a process is indeed an IO bound process or a CPU bound",
+    "start": 997.66,
+    "end": 1003.66,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "process. Second a single process may act like an IO bound process at one time but at another",
+    "start": 1003.74,
+    "end": 1009.74,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "time it can act like a CPU bound process that is at one time it may have short CPU burst",
+    "start": 1012.22,
+    "end": 1019.22,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "and long burst of idle time while at other times it may have long CPU burst and short IO",
+    "start": 1019.66,
+    "end": 1026.66,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "burst like a CPU bound process. Therefore deciding a priority whether a particular process",
+    "start": 1026.66,
+    "end": 1033.66,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "belongs to a IO bound process and it should be given a higher priority is difficult.",
+    "start": 1036.54,
+    "end": 1042.54,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "So one way to mitigate this particular limitation is to use schedulers which use multi-level",
+    "start": 1043.9,
+    "end": 1049.22,
+    "ocr_text": "More on Multilevel Queues\n\nScheduler can adjust time slice based on the\nclass picked\n\n— I/O bound process can be assigned to higher priority\nclasses with longer time slice\n\n— CPU bound processes can be assigned to lower\npriority classes with shorter time slices\n\nDisadvantage :\n\n— Class of a process must be assigned apriori\n(not the most efficient way to do things!)"
+  },
+  {
+    "text": "feedback queues. In such schedulers processes are dynamically moved between priority T classes",
+    "start": 1049.22,
+    "end": 1056.22,
+    "ocr_text": "Multilevel feedback Queues\n\n+ Process dynamically moves between priority classes\nbased on its CPU/ IO activity"
+  },
+  {
+    "text": "depending on its CPU IO activity. So these particular schedulers work on this basic observation",
+    "start": 1056.3,
+    "end": 1063.22,
+    "ocr_text": "Multilevel feedback Queues\n\n+ Process dynamically moves between priority classes\nbased on its CPU/ IO activity\n\n* Basic observation\n— CPU bound process’ likely to complete its entire timeslice\n— IO bound process’ may not complete the entire time slice"
+  },
+  {
+    "text": "that CPU bound processes are likely to compute its entire time slice. This is because a",
+    "start": 1064.18,
+    "end": 1070.94,
+    "ocr_text": "Multilevel feedback Queues\n\n+ Process dynamically moves between priority classes\nbased on its CPU/ IO activity\n\n* Basic observation\n— CPU bound process’ likely to complete its entire timeslice\n— IO bound process’ may not complete the entire time slice"
+  },
+  {
+    "text": "CPU bound process will have a long burst of CPU and therefore it is quite likely that",
+    "start": 1070.94,
+    "end": 1077.54,
+    "ocr_text": "Multilevel feedback Queues\n\n* Process dynamically moves between priority classes\nbased on its CPU/ IO activity\n\n* Basic observation\n— CPU bound process’ likely to complete its entire timeslice\n— IO bound process’ may not complete the entire time slice"
+  },
+  {
+    "text": "it would use up the entire time slice. On the other hand IO bound processes have a very",
+    "start": 1077.54,
+    "end": 1083.82,
+    "ocr_text": "Multilevel feedback Queues\n\n* Process dynamically moves between priority classes\nbased on its CPU/ IO activity\n\n* Basic observation\n— CPU bound process’ likely to complete its entire timeslice\n— IO bound process’ may not complete the entire time slice"
+  },
+  {
+    "text": "short CPU burst time and therefore it is not likely to complete its entire time slice.",
+    "start": 1083.82,
+    "end": 1090.82,
+    "ocr_text": "Multilevel feedback Queues\n\n* Process dynamically moves between priority classes\nbased on its CPU/ IO activity\n\n* Basic observation\n— CPU bound process’ likely to complete its entire timeslice\n— IO bound process’ may not complete the entire time slice"
+  },
+  {
+    "text": "So if you take this particular example we can say that process one and four have completed",
+    "start": 1092.82,
+    "end": 1099.82,
+    "ocr_text": "Multilevel feedback Queues\n\n* Process dynamically moves between priority classes\nbased on its CPU/ IO activity\n\n* Basic observation\n— CPU bound process’ likely to complete its entire timeslice\n— IO bound process’ may not complete the entire time slice"
+  },
+  {
+    "text": "their time slice. Therefore these processes are likely to be CPU bound. On the other",
+    "start": 1100.02,
+    "end": 1106.02,
+    "ocr_text": "Multilevel feedback Queues\n\n* Process dynamically moves between priority classes\nbased on its CPU/ IO activity\n\n* Basic observation\n— CPU bound process’ likely to complete its entire timeslice\n— IO bound process’ may not complete the entire time slice\n\ntime\nProcess 1 and 4 likely CPU bound\nProcess 2 likely |O bound"
+  },
+  {
+    "text": "hand process two has very short CPU burst over here as well as here. Therefore process two",
+    "start": 1106.1,
+    "end": 1113.1,
+    "ocr_text": "Multilevel feedback Queues\n\n+ Process dynamically moves between priority classes\nbased on its CPU/ IO activity\n\n* Basic observation\n— CPU bound process’ likely to complete its entire timeslice\n— IO bound process’ may not complete the entire time slice\n\ntime\nProcess 1 and 4 likely CPU bound\nProcess 2 likely |O bound"
+  },
+  {
+    "text": "is likely to be an IO bound process rather than a CPU bound process. The basic idea of",
+    "start": 1115.74,
+    "end": 1122.98,
+    "ocr_text": "Multilevel feedback Queues\n\n* Process dynamically moves between priority classes\nbased on its CPU/ IO activity\n\n* Basic observation\n— CPU bound process’ likely to complete its entire timeslice\n— IO bound process’ may not complete the entire time slice\n\ntime\nProcess 1 and 4 likely CPU bound\nProcess 2 likely |O bound"
+  },
+  {
+    "text": "a multi-level feedback queue based scheduling algorithm is the following. All processes start",
+    "start": 1122.98,
+    "end": 1129.98,
+    "ocr_text": "Multilevel feedback Queues\n\n* Process dynamically moves between priority classes\nbased on its CPU/ IO activity\n\n* Basic observation\n— CPU bound process’ likely to complete its entire timeslice\n— IO bound process’ may not complete the entire time slice\n\ntime\nProcess 1 and 4 likely CPU bound\nProcess 2 likely |O bound"
+  },
+  {
+    "text": "with the highest priority or a base priority. Now if the process finishes its time slice",
+    "start": 1130.22,
+    "end": 1137.22,
+    "ocr_text": "Multilevel feedback Queues\n(basic Idea)\n\n* All processes start in the highest\npriority class 0\n+ Ifit finishes its time slice (likely\nCPU bound)\n— Move to the next lower priority\nclass\n* If it does not finish its time slice\n(likely 10 bound)\n— Keep it on the same priority class\n+ Aswith any other priority based —_musieir\nscheduling scheme, starvation\nneeds to be dealt with\n\nHigher priority"
+  },
+  {
+    "text": "that is if the process executes until its time slice completes then the assumption is made",
+    "start": 1138.86,
+    "end": 1145.7,
+    "ocr_text": "Multilevel feedback Queues\n(basic Idea)\n\n* All processes start in the highest\npriority class 0\n+ If it finishes its time slice (likely\nCPU bound)\n— Move to the next lower priority\nclass\n+ If it does not finish its time slice\n(likely 10 bound)\n— Keep it on the same priority class\n+ As with any other priority based\nscheduling scheme, starvation\nneeds to be dealt with"
+  },
+  {
+    "text": "that process is a CPU bound process. So it is moved to the next lower priority in the",
+    "start": 1145.7,
+    "end": 1152.7,
+    "ocr_text": "Multilevel feedback Queues\n(basic Idea)\n\n* All processes start in the highest\npriority class 0\n* If it finishes its time slice (likely\nCPU bound)\n— Move to the next lower priority\nclass\n+ If it does not finish its time slice\n(likely 10 bound)\n— Keep it on the same priority class\n+ As with any other priority based _[mutieverr\nscheduling scheme, starvation\nneeds to be dealt with\n\nHigher priority"
+  },
+  {
+    "text": "class. On the other hand if the process does not complete its time slice it is assumed",
+    "start": 1152.7,
+    "end": 1159.2,
+    "ocr_text": "Multilevel feedback Queues\n(basic Idea)\n\n* All processes start in the highest\npriority class 0\n* If it finishes its time slice (likely\nCPU bound)\n— Move to the next lower priority\nclass\n+ If it does not finish its time slice\n(likely 10 bound)\n— Keep it on the same priority class\n+ As with any other priority based _[mutieverr\nscheduling scheme, starvation\nneeds to be dealt with\n\nHigher priority"
+  },
+  {
+    "text": "that that process is an IO bound process and therefore it would either increase the priority",
+    "start": 1159.28,
+    "end": 1165.28,
+    "ocr_text": "Multilevel feedback Queues\n(basic Idea)\n\n* All processes start in the highest\n\npriority class 0\n\n+ If it finishes its time slice (likely\nCPU bound)\n\n— Move to the next lower priority\n\nclass\n\n* If it does not finish its time slice\n\n(likely 10 bound) ;\n\n— Keep it on the same priority class\n\nAs with any other priority based _[ musiewts\n\nscheduling scheme, starvation\n\nneeds to be dealt with\n\nHigher priority"
+  },
+  {
+    "text": "class to a higher priority class or keep it on the same priority class. So this as you",
+    "start": 1165.28,
+    "end": 1171.8,
+    "ocr_text": "Multilevel feedback Queues\n(basic Idea)\n\n* All processes start in the highest\n\npriority class 0\n+ If it finishes its time slice (likely\nCPU bound) |\n— Move to the next lower priority | 1\nclass 3|\n* If it does not finish its time slice\n\n(likely 10 bound)\n— Keep it on the same priority class\n+ Aswith any other priority based muses\nscheduling scheme, starvation\nneeds to be dealt with"
+  },
+  {
+    "text": "can see is a dynamic way of changing priority classes of a process. However the drawback",
+    "start": 1171.8,
+    "end": 1177.8,
+    "ocr_text": "Multilevel feedback Queues\n(basic Idea)\n\n* All processes start in the highest\n\npriority class 0\n+ If it finishes its time slice (likely\nCPU bound) |\n— Move to the next lower priority | 1\nclass 3|\n* If it does not finish its time slice\n\n(likely 10 bound)\n— Keep it on the same priority class\n+ Aswith any other priority based muses\nscheduling scheme, starvation\nneeds to be dealt with"
+  },
+  {
+    "text": "is that we could still have starvation and then techniques are to be implemented where",
+    "start": 1177.8,
+    "end": 1184.4,
+    "ocr_text": "Multilevel feedback Queues\n(basic Idea)\n\n* All processes start in the highest\npriority class 0\n* If it finishes its time slice (likely\nCPU bound)\n— Move to the next lower priority\nclass\n* If it does not finish its time slice\n(likely 10 bound)\n— Keep it on the same priority class\n+ Aswith any other priority based [muses\nscheduling scheme, starvation\nneeds to be dealt with\n\nHigher priority"
+  },
+  {
+    "text": "starvation needs to be dealt with. Another drawback of this particular scheduling algorithm",
+    "start": 1184.4,
+    "end": 1191.4,
+    "ocr_text": "Multilevel feedback Queues\n(basic Idea)\n\n* All processes start in the highest\npriority class 0\n* If it finishes its time slice (likely\nCPU bound)\n— Move to the next lower priority\nclass\n* If it does not finish its time slice\n(likely 10 bound)\n— Keep it on the same priority class\n+ Aswith any other priority based [muses\nscheduling scheme, starvation\nneeds to be dealt with\n\nHigher priority"
+  },
+  {
+    "text": "is that a malicious process could game the system and always remain in the high priority",
+    "start": 1192.12,
+    "end": 1198.12,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\nwhile(1){\ndo some work for most of the time slice i ‘\nPi 4 jam\n, sleep(till the end of the time slice) ieee Caulk,\n3 3 1 4 34 4\n\n> time"
+  },
+  {
+    "text": "class. So let us see how this works with an example. So let us assume the malicious",
+    "start": 1198.12,
+    "end": 1204.12,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\nwhile(1){\ndo some work for most of the time slice i ‘\nPi 4 jam\n; sleep(till the end of the time slice) Hesperia gaming\n3 3 1 4 34 4\n\n> time"
+  },
+  {
+    "text": "process knows the time slice of the system that is it knows whenever the time slice completes",
+    "start": 1204.12,
+    "end": 1210.48,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\nwhile(1){\ndo some work for most of the time slice i ‘\nPi 4 jam\n; sleep(till the end of the time slice) Hesperia gaming\n3 3 1 4 34 4\n\n> time"
+  },
+  {
+    "text": "and it knows when a context switch occurs. So let us say it has a loop such as this",
+    "start": 1210.56,
+    "end": 1215.56,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\n\nwhile(1){\n\ndo some work for most of the time slice ‘ A\n\nPi 4 jam\n\nsleep(till the end of the time slice) fpaysen SEMIN)\n}\n3. 3 1 4 34 4\n\n> time"
+  },
+  {
+    "text": "over here. So essentially the malicious process will do some work for most of the time slice",
+    "start": 1215.56,
+    "end": 1222.04,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\n\nwhile(1){\n\ndo some work for most of the time slice ‘ ‘\n\nR Proc 4 im.\n\nsleep(till the end of the time slice) Hate een iN]\n}\n3 3 1 4 3.4 4\n\n> time"
+  },
+  {
+    "text": "and then it will sleep till the end of the time slice. Now as we know when a process goes",
+    "start": 1222.04,
+    "end": 1228.04,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\n\nwhile(1){\n\ndo some work for most of the time slice ‘ ‘\n\nR Proc 4 im.\n\nsleep(till the end of the time slice) Hate een iN]\n}\n3 3 1 4 3.4 4\n\n> time"
+  },
+  {
+    "text": "to sleep it goes from the running state to the block state therefore sleep will force",
+    "start": 1228.04,
+    "end": 1235.04,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\nwhile(1){\ndo some work for most of the time slice i ‘\nPi 4 jal\n' sleep(till the end of the time slice) Roncan gaming\nL1 3. 3 1 4 34 4\n\n> time"
+  },
+  {
+    "text": "a context switch to occur. Therefore what is going to happen is that a new process will",
+    "start": 1235.44,
+    "end": 1241.44,
+    "ocr_text": "Gaming the System\n\n¢« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\n\nwhile(1){\n\ndo some work for most of the time slice ‘ A\n\nPi 4 m\n\nsleep(till the end of the time slice) Mistery a)\n}\n| 3[L 3 1 4 314 4\n\n> time"
+  },
+  {
+    "text": "execute for the remaining of the time slice. Thus for the entire time slice for instance",
+    "start": 1241.44,
+    "end": 1248.04,
+    "ocr_text": "Gaming the System\n\n¢« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\n\nwhile(1){\n\ndo some work for most of the time slice ‘ A\n\nPi 4 m\n\nsleep(till the end of the time slice) Mistery a)\n}\n| 3[L 3 1 4 314 4\n\n> time"
+  },
+  {
+    "text": "over here process 4 which is a malicious process would run for most of the time slice and",
+    "start": 1248.04,
+    "end": 1254.32,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\nwhile(1){\ndo some work for most of the time slice ‘ ‘\nPi 4 jam\n; sleep(till the end of the time slice) iceeee” gaming\n| 3[L 3 1 4 314 4\n\n> time"
+  },
+  {
+    "text": "then just before the time slice completes it goes to sleep thus forcing and other process",
+    "start": 1254.32,
+    "end": 1261.32,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\nwhile(1){\ndo some work for most of the time slice ‘ ‘\nPi 4 jam\n; sleep(till the end of the time slice) iceeee” gaming\n| 3[L 3 1 4 314 4\n\n> time"
+  },
+  {
+    "text": "to execute. So the other process 1 will now execute and just execute for a small duration.",
+    "start": 1262.16,
+    "end": 1269.16,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\nwhile(1){\ndo some work for most of the time slice i ‘\nP. 4 ja\n‘ sleep(till the end of the time slice) Higeeniel gaming\ni 3 3 1 4 34 4\n\n> time"
+  },
+  {
+    "text": "At the end of the time slice the scheduler is going to see that process 1 has completed",
+    "start": 1270.16,
+    "end": 1274.12,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\nwhile(1){\ndo some work for most of the time slice ‘i A\nPi 4 jal\n; sleep(till the end of the time slice) toteten Seak\n3. 3 1 4 3.4 4\n\n+ time"
+  },
+  {
+    "text": "the time slice. So it is going to assume that process 1 is a CPU bound process and move",
+    "start": 1274.12,
+    "end": 1280.62,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\nwhile(1){\ndo some work for most of the time slice ‘i A\nPi 4 jal\n; sleep(till the end of the time slice) toteten Seak\n3. 3 1 4 3.4 4\n\n+ time"
+  },
+  {
+    "text": "the process 1 to a priority class which is lower. On the other hand process 4 which is",
+    "start": 1280.62,
+    "end": 1287.12,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\nwhile(1){\ndo some work for most of the time slice ‘ ‘\nPi 4 m\n; sleep(till the end of the time slice) i hea)\n3 3 1 4 34 4\n\n+ time"
+  },
+  {
+    "text": "locked on a sleep will remain in the high priority class. Thus process 4 will be able",
+    "start": 1287.12,
+    "end": 1294.12,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\n\nwhile(1){\n\ndo some work for most of the time slice ‘ Fi\n\nPi 4 jam\n\nsleep(till the end of the time slice) fee ata pulls)\n}\n3 3 1 4 34 4\n\n> time"
+  },
+  {
+    "text": "to game the system. It will continue to execute from the high priority class while another",
+    "start": 1294.2,
+    "end": 1300.2,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\nSleep will force a context switch\n\nwhile(1){\n\ndo some work for most of the time slice ‘ Fi\n\nPi 4 jam\n\nsleep(till the end of the time slice) fee ata pulls)\n}\n3 3 1 4 34 4\n\n> time"
+  },
+  {
+    "text": "process such as process 1 will be moved on to a lower priority class. Thank you.",
+    "start": 1300.2,
+    "end": 1307.2,
+    "ocr_text": "Gaming the System\n\n« Acompute intensive process can trick the\nscheduler and remain in the high priority queue\n\n(class)\n\nSleep will force a context switch\n\nwhile(1){\ndo some work for most of the time slice ‘ ‘\nPi 4 min\n\n' sleep(till the end of the time slice) the system. elas)\nL1 3 3 1 4 34 4\n\n,\n\n> time"
+  }
+]

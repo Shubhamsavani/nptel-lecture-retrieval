@@ -1,0 +1,1160 @@
+[
+  {
+    "text": "In this video, we will look at inter process communication. Essentially, when we write large",
+    "start": 0.0,
+    "end": 22.52,
+    "ocr_text": "\\| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "applications, it is often quite useful to write them as separate processes. So, in order",
+    "start": 22.52,
+    "end": 29.28,
+    "ocr_text": "\\| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "to have an efficient communication between these processes in order to make things happen",
+    "start": 29.28,
+    "end": 36.04,
+    "ocr_text": "\\| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "efficiently, we use inter process communication. In this particular video, we will look at",
+    "start": 36.04,
+    "end": 41.64,
+    "ocr_text": "Virtual Memory View\n\n« During execution, each process can only view its virtual addresses,\n\n* It cannot RAM\n— View another processes virtual address space 14\n2\n— Determine the physical address mapping 4 5\n1 4\n10) 3\nExecuting 3\nProcess 1\nG\n1\n\n9\n8\n7\n6\nVirtual Memory Map Virtual Memory Map 5\nt i 4\n3\n2\n1\n\nkernel\n\na|r)elalalo\nalr) elalalo"
+  },
+  {
+    "text": "a brief introduction to IPCs that is inter process communication and we will see a few examples",
+    "start": 41.64,
+    "end": 48.72,
+    "ocr_text": "Virtual Memory View\n\n« During execution, each process can only view its virtual addresses,\n\n* It cannot RAM\n— View another processes virtual address space 14\n2\n— Determine the physical address mapping 4 5\n1 4\n10) 3\nExecuting 3\nProcess 1\nG\n1\n\n9\n8\n7\n6\nVirtual Memory Map Virtual Memory Map 5\nt i 4\n3\n2\n1\n\nkernel\n\na|r)elalalo\nalr) elalalo"
+  },
+  {
+    "text": "of the same. So, we had seen this virtual memory view of a process. We said when a process",
+    "start": 48.72,
+    "end": 54.84,
+    "ocr_text": "Virtual Memory View\n\n« During execution, each process can only view its virtual addresses,\n\n* It cannot RAM\n— View another processes virtual address space 14\n2\n— Determine the physical address mapping 4 5\n1 4\n10) 3\nExecuting 3\nProcess 1\nG\n1\n\n9\n8\n7\n6\nVirtual Memory Map Virtual Memory Map 5\nt i 4\n3\n2\n1\n\nkernel\n\na|r)elalalo\nalr) elalalo"
+  },
+  {
+    "text": "is executing, it sends out virtual addresses which gets mapped into this virtual memory",
+    "start": 54.92,
+    "end": 60.72,
+    "ocr_text": "Virtual Memory View\n\n« During execution, each process can only view its virtual addresses,\n\n* It cannot RAM\n— View another processes virtual address space 14\n2\n— Determine the physical address mapping 4 5\n1 4\n10) 3\nExecuting 3\nProcess 1\nG\n1\n\n9\n8\n7\n6\nVirtual Memory Map Virtual Memory Map 5\nt i 4\n3\n2\n1\n\nkernel\n\na|r)elalalo\nalr) elalalo"
+  },
+  {
+    "text": "map and we had seen that the that is an MMU which uses page table stored in the memory",
+    "start": 60.72,
+    "end": 69.0,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n\n+ It cannot RAM\n— View another processes virtual address space 14) 5\n. . q 13) 2\n— Determine the physical address mapping Per\n4 4\n10) 3\nExecuting | 3\nProcess 8 4\n7 6\n6 iJ\nVirtual Memory Map Virtual Memory Map 5\n1 0 4\n3 2\n2 &\n1 a4\n\na|r)elslalo\nalm)elalalo"
+  },
+  {
+    "text": "and converts these virtual addresses into physical addresses. Now, we have also seen that each",
+    "start": 69.0,
+    "end": 78.24,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n\n* It cannot RAM\n— View another processes virtual address space 14\n. . rf 13] 2\n— Determine the physical address mapping er\n\"1 4\n10) 3\nExecuting | 3\nProcess 8 4\n7 6\n6 1\nVirtual Memory Map Virtual Memory Map 5\ni} 0 4]\n5 =\n3 2\n5 a 2 o\n—| 1 a4\n\ns\nalw)elalalo\n\nal|nlo"
+  },
+  {
+    "text": "process that executes in this CPU will have its own virtual memory map.",
+    "start": 78.24,
+    "end": 84.16,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n\n* It cannot RAM\n— View another processes virtual address space 14\n. . rf 13] 2\n— Determine the physical address mapping er\nut 4 |\n10) 3\nExecuting | 3\nProcess 8 4\n7 6\n6 1\nVirtual Memory Map Virtual Memory Map 5\ni} 0 4] _\n3 2\n2 o\n4 a4\n\na|r)olalalo\naly)elalalo"
+  },
+  {
+    "text": "The use of virtual memory map provides some level of abstraction. Essentially, the executing",
+    "start": 84.16,
+    "end": 90.56,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n\n* It cannot RAM\n— View another processes virtual address space 14\n. . rf 13] 2\n— Determine the physical address mapping er\nut 4 |\n10) 3\nExecuting | 3\nProcess 8 4\n7 6\n6 1\nVirtual Memory Map Virtual Memory Map 5\ni} 0 4] _\n3 2\n2 o\n4 a4\n\na|r)olalalo\naly)elalalo"
+  },
+  {
+    "text": "process would only know its virtual addresses and with that virtual addresses, it can only",
+    "start": 90.56,
+    "end": 96.12,
+    "ocr_text": "Virtual Memory View\n\n« During execution, each process can only view its virtual addresses,\n+ It cannot\n— View another processes RAM\nvirtual address space\n— Determine the physical address\nmapping\n\nExecuting\nProcess\n\nolalolols\n\nVirtual Memory Map\nt\n\nkernel\n\nUIE!\n\na woena"
+  },
+  {
+    "text": "access the user space of the virtual memory map. So, we had seen that the MMU then transfers",
+    "start": 96.12,
+    "end": 101.96,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n* It cannot\n— View another processes RAM\nvirtual address space\n\n— Determine the physical address\nmapping\n\nExecuting\nProcess\n\nols)elolala\n\nVirtual Memory Map\nd\n\no\n\na\n\nkernel\n\n=a woena\n\noe\n\nry"
+  },
+  {
+    "text": "this mapping into corresponding physical addresses. So, the executing process will have no",
+    "start": 102.04,
+    "end": 109.04,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n* It cannot\n— View another processes RAM\nvirtual address space\n\n— Determine the physical address\nmapping\n\nExecuting\nProcess\n\nols)elolala\n\nVirtual Memory Map\nd\n\no\n\na\n\nkernel\n\n=a woena\n\noe\n\nry"
+  },
+  {
+    "text": "way to determine what the corresponding physical address for its memory accesses are. So,",
+    "start": 110.36,
+    "end": 117.36,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n+ It cannot\n— View another processes RAM\nvirtual address space\n— Determine the physical address\nmapping\n\nols\n\nExecuting\nProcess\n\n°\n\nVirtual Memory Map\nd\n\no\n\na\n\nkernel\n\nUIT\n\na woena\n\noe\n\nny"
+  },
+  {
+    "text": "for instance, if you declare an integer i in your program, you can print out the virtual",
+    "start": 117.36,
+    "end": 123.86,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n+ It cannot\n— View another processes RAM\nvirtual address space\n\n— Determine the physical address\nmapping\n\nols\n\nExecuting\n4 Process\n\n°\n\nVirtual Memory Map\nd\n\nkernel\n\nUIT\n\na woena"
+  },
+  {
+    "text": "address corresponding to i for example, with printf ampersand i. However, it is not possible",
+    "start": 123.86,
+    "end": 130.36,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n+ It cannot\n— View another processes RAM\nvirtual address space\n\n— Determine the physical address\nmapping\n\nols\n\nExecuting\n4 Process\n\n°\n\nVirtual Memory Map\nd\n\nkernel\n\nUIT\n\na woena"
+  },
+  {
+    "text": "for you in the user space to determine what the corresponding physical address is for",
+    "start": 130.68,
+    "end": 137.68,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n* It cannot\n— View another processes RAM\nvirtual address space\n— Determine the physical address\nmapping\n\nola\n\nExecuting\nProcess\n\n°\n\nVirtual Memory Map\n\no\n\no\nkernel\n\ns\n\narena\n\noe\n\nry"
+  },
+  {
+    "text": "that particular variable i. The second thing what the virtual memory map provides is that",
+    "start": 137.68,
+    "end": 143.68,
+    "ocr_text": "Virtual Memory View\n\n« During execution, each process can only view its virtual addresses,\n+ It cannot\n— View another processes RAM\nvirtual address space\n— Determine the physical address\nmapping\n\nExecuting\nProcess\n\no|alolo|s\n\nVirtual Memory Map\n\nkernel\n\nHn\n\na rpoesa"
+  },
+  {
+    "text": "the executing process can only have access to its own virtual memory map. If there is another",
+    "start": 143.68,
+    "end": 150.68,
+    "ocr_text": "Virtual Memory View\n\n« During execution, each process can only view its virtual addresses,\n+ It cannot\n— View another processes RAM\nvirtual address space\n— Determine the physical address\nmapping\n\nExecuting\nProcess\n\no|alolo|s\n\nVirtual Memory Map\n\nkernel\n\nHn\n\na rpoesa"
+  },
+  {
+    "text": "process, it has with its own table. Now, in user space there is no way for the executing",
+    "start": 150.68,
+    "end": 157.44,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n\n+ It cannot\n\n— View another processes\nvirtual address space\n\nRAM\n\ni\n\n— Determine the physical address 5\nmapping k 4\n\n3\n\nExecuting 3\nProcess i\n6\n\nVirtual Memory Map\n\no\n\na\n\nPerrer\nkernel\n\noe\n\nny"
+  },
+  {
+    "text": "process to determine anything of the other process. So, when there is a context which",
+    "start": 157.5,
+    "end": 162.5,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n\n+ It cannot\n— View another processes\nvirtual address space\n— Determine the physical address\nmapping\n\nRAM\n\nola\n\nExecuting\nProcess\n\no\n\nVirtual Memory Map\nt\n\no\n\na\n\nPere\nkernel\n\noe\n\ny"
+  },
+  {
+    "text": "and a new process executes, it is the second processes virtual address map or virtual memory",
+    "start": 162.5,
+    "end": 169.0,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n\n+ It cannot\n— View another processes\nvirtual address space\n— Determine the physical address\nmapping\n\nRAM\n\nola\n\nExecuting\nProcess\n\no\n\nVirtual Memory Map\nt\n\no\n\na\n\nPere\nkernel\n\noe\n\ny"
+  },
+  {
+    "text": "map which is then used. So, this process has no way to determine any other processes virtual",
+    "start": 169.0,
+    "end": 176.0,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n\n+ It cannot RAM\n— View another processes virtual address space 14) 5\n2\n— Determine the physical address mapping 5\n4\n3\nExecuting 3\nProcess J\n6\n\nVirtual Memory Map\n4\n6\n\nkernel\n\nalrlolala"
+  },
+  {
+    "text": "address map. So, the thing to conclude from these two slides is that a process has no",
+    "start": 176.0,
+    "end": 182.68,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n\n* It cannot RAM\n— View another processes virtual address space 14) 5\na\n— Determine the physical address mapping i 5\n4\n\nExecuting\nProcess\n\no\n\nVirtual Memory Map\n6\n\nkernel\n\nalrlolala"
+  },
+  {
+    "text": "way to determine any information or any data about an other process. So, given this, how",
+    "start": 182.74,
+    "end": 189.74,
+    "ocr_text": "Virtual Memory View\n\n* During execution, each process can only view its virtual addresses,\n\n* It cannot RAM\n— View another processes virtual address space 14) 5\na\n— Determine the physical address mapping i 5\n4\n\nExecuting\nProcess\n\no\n\nVirtual Memory Map\n6\n\nkernel\n\nalrlolala"
+  },
+  {
+    "text": "does one process communicate with an other process. So, in order to do this, there is a",
+    "start": 189.74,
+    "end": 196.74,
+    "ocr_text": "Virtual Memory View\n\n« During execution, each process can only view its virtual addresses,\n\n+ It cannot RAM\n— View another processes virtual address space 14) 5\na\n— Determine the physical address mapping i 5\n4\n\nExecuting\nProcess\n\no\n\nVirtual Memory Map\n6\n\nkernel\n\nal|rlolala"
+  },
+  {
+    "text": "mechanism known as inter process communication. Essentially, with IPCs or inter process communication,",
+    "start": 196.74,
+    "end": 203.74,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "two processes will be able to send and receive data between themselves. The advantage of",
+    "start": 204.68,
+    "end": 210.68,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "IPC is that the processes could be written to be modular. So, essentially each process",
+    "start": 210.68,
+    "end": 217.28,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "is meant to do a single job and a processes could then communicate with each other through",
+    "start": 217.28,
+    "end": 224.28,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "IPCs. For an example, let us say we have a data acquisition system and a control system.",
+    "start": 224.76,
+    "end": 231.76,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "So, essentially we could write one process which acquires data from the external world",
+    "start": 233.28,
+    "end": 238.28,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "such as the temperature, pressure or the speed and then it could then send this information",
+    "start": 238.36,
+    "end": 245.36,
+    "ocr_text": "Inter Process Communication\n\n* Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "or the data collected to a second process which then analysis the data and determine some",
+    "start": 247.4,
+    "end": 253.88,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "particular parameters. So, these parameters could be sent to a third process which then",
+    "start": 253.88,
+    "end": 260.38,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "actuates some external data. For instance, it could open a valve or close a valve or",
+    "start": 260.38,
+    "end": 267.38,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "adjust the temperature of the room and so on. Thus, we see we are able to achieve a",
+    "start": 267.44,
+    "end": 272.44,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "modular structure in our application. Each process is job is to only focus on a single",
+    "start": 272.44,
+    "end": 279.44,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "aspect. The communication between the processes is achieved by inter process communication.",
+    "start": 279.82,
+    "end": 286.82,
+    "ocr_text": "Inter Process Communication\n\n* Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "In typical operating systems, there are three common ways in which IPCs are implemented.",
+    "start": 286.94,
+    "end": 292.94,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "These are through shared memory, message passing and signals. So, let us look at each",
+    "start": 292.94,
+    "end": 298.42,
+    "ocr_text": "Inter Process Communication\n\n« Advantages of Inter Process Communication (IPC)\n— Information sharing\n— Modularity/Convenience\n* 3 ways\n— Shared memory\n— Message Passing\n\n— Signals"
+  },
+  {
+    "text": "of these things. So, with a shared memory, we have one process which creates an area in",
+    "start": 298.42,
+    "end": 305.42,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "RAM which is then used by another process. So, essentially the communication between",
+    "start": 305.66,
+    "end": 312.66,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "process 1 and process 2 is happening through this particular shared memory. Both processes",
+    "start": 313.66,
+    "end": 319.14,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "can access the shared memory like a regular working memory. So, they could either read",
+    "start": 319.14,
+    "end": 326.14,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "or write to this particular shared memory independent of each other. The advantage with",
+    "start": 326.14,
+    "end": 333.14,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "this is that the communication is extremely fast. There are no system calls which are",
+    "start": 333.14,
+    "end": 339.14,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "called and the only requirement is that you could define an array over here and then fill",
+    "start": 340.14,
+    "end": 346.14,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "the array in the shared memory which can then be read by the other process. The limitation",
+    "start": 346.14,
+    "end": 351.7,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1 ,\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "of the shared memory approach is that it is highly prone to error. It requires the two",
+    "start": 351.7,
+    "end": 357.7,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1 ,\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "processes to be synchronized. So, we will take a small example of how shared memory is",
+    "start": 357.7,
+    "end": 362.7,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "implemented in Linux. So, essentially in a shared memory in the Linux operating system,",
+    "start": 362.78,
+    "end": 369.78,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "we have three system calls which are used. First is the S H M get or the shared memory",
+    "start": 370.74,
+    "end": 377.02,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "get which takes three parameters a key size and flags. So, this system call creates a",
+    "start": 377.02,
+    "end": 384.02,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "shared memory segment. It returns an ID of the segment that is S H M ID the shared memory",
+    "start": 384.02,
+    "end": 391.02,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "ID of the segment. So, the parameters key is a unique ID identifier for that shared memory",
+    "start": 391.26,
+    "end": 397.26,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "segment while size is the size of the shared memory. So, this is typically rounded up to",
+    "start": 397.26,
+    "end": 404.26,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "the page size that is 4 kilobytes. So, this is how a shared memory gets created in a",
+    "start": 405.3,
+    "end": 411.3,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the:shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "particular process. Now, another process could attach to this shared memory by this particular",
+    "start": 411.3,
+    "end": 418.3,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the:shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "system call that is shared memory attach S H M A T. So, this particular call requires",
+    "start": 418.3,
+    "end": 425.3,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "the shared memory ID and address and flags. So, essentially system call would attach a",
+    "start": 430.78,
+    "end": 436.58,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "shared memory to the address space of the calling process. The address is a pointer to the",
+    "start": 436.58,
+    "end": 441.5,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "shared memory address space. So, we will understand more of this through an example. The opposite",
+    "start": 441.5,
+    "end": 447.58,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n\n— Detach shared memory"
+  },
+  {
+    "text": "of the shared memory attach is the shared memory detach where a process could detach the",
+    "start": 447.58,
+    "end": 453.42,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n— Detach shared memory"
+  },
+  {
+    "text": "shared memory from its user space. So, the detach system call takes the shared memory",
+    "start": 453.42,
+    "end": 459.42,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmid)\n— Detach shared memory"
+  },
+  {
+    "text": "ID. Let us see the an example of shared memory with this example. So, let us say we have written",
+    "start": 459.42,
+    "end": 466.42,
+    "ocr_text": "Shared Memory in Linux\n\n¢ int shmget (key, size, flags)\n— Create a shared memory segment;\n— Returns ID of segment : shmid\n— key : unique identifier of the shared memory segment\n\n— size : size of the shared memory (rounded up to the\nPAGE_SIZE)\n\n¢ int shmat(shmid, addr, flags)\n\n— Attach shmid shared memory to address space of the\ncalling process\n\n— addr : pointer to the shared memory address space\n¢ int shmdt(shmhid)\n— Detach shared memory"
+  },
+  {
+    "text": "this particular program called server dot C and we create a shared memory in this. So,",
+    "start": 466.42,
+    "end": 473.42,
+    "ocr_text": "server.c\n\nExample\n\nde Hsys/types.h\n\nde <sys/shn\ntdt0.h\n\nedt. hs\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shaget”);\nextt(1);\n\nC{shn = shnat(shmtd, NULL\nperror(*shnat™);\n\next);\n)\n(el ta%s © ce 12\"; cH)\nCshm te)\n\nsteep(1);\nextt(o);\n\n1666)) < 0) {"
+  },
+  {
+    "text": "we define a key called 5678 this is some arbitrary value for key, but the requirement is that",
+    "start": 473.42,
+    "end": 480.42,
+    "ocr_text": "server.c\n\nExample\n\nde Hsys/types.h\n\nde <sys/shn\ntdt0.h\n\nedt. hs\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shaget”);\nextt(1);\n\nC{shn = shnat(shmtd, NULL\nperror(*shnat™);\n\next);\n)\n(el ta%s © ce 12\"; cH)\nCshm te)\n\nsteep(1);\nextt(o);\n\n1666)) < 0) {"
+  },
+  {
+    "text": "this key should uniquely identify the shared memory. So, we would use this key to invoke",
+    "start": 482.9,
+    "end": 489.9,
+    "ocr_text": "server.c\n\nExample\n\nde Bsys/types.h\nude <sys/shn.b\ntude <stdlo,hs\n\nude <stdltb.hs\n\nhey = 5978;\n\nC(shnid = shnget(key, SHNSIZE, IPC_CREAT |\n\nperror(\"shaget”);\nextt(1);\n)\n((shn = shnat(shntd, NULL, 0)) ay\nperror(*shnat\");\next);\n)\n(els tat; ce 12's cH)\n(sha tet)\nsteep(1);\nextt(o);\n\n1666)) < 0) {\n\n)¢"
+  },
+  {
+    "text": "this function S H M get we pass it the key we pass it S H M size that is S H M size is",
+    "start": 489.9,
+    "end": 497.9,
+    "ocr_text": "server.c\n\nExample\n\nwade Bays /types-h\nude <sys/shn\n\ntude <stdlo,hs\nude estdltb.hs\n\nshntd;\nkey_t key\n\n*shm, #55\nkey\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror (\"shade\");\nextt(1);\n)\n((shn = shnat(shntd, MULL, 0)) == (char #)\nperror(*shnat”);\next);\n)\n(els tat; ce \"2's cH)\nene\nsteep(1);\nextt(o);\n\n1666)) < 0) {\n\n1) ¢"
+  },
+  {
+    "text": "defined here as the size of the shared memory which we want to create note that this size",
+    "start": 497.9,
+    "end": 504.7,
+    "ocr_text": "server.c\n\nExample\n\nude <sys/shn\ntude <stdlo,hs\ntude <stdUtb.t\n\nshntd\nkey_t key\n\nwshm, #55\nkey\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shaget”);\nextt(1);\n\n)\n((shn = shnat(shntd, MULL, 0)) == (char *)\nperror(*shnat™)3\nexte(1);\n\n)\n(els tat; ce 12's 48)\n\nGatenientely\n\nsteep(1);\n\nextt(o);\n\n1666)) < 0) {\n\n¢"
+  },
+  {
+    "text": "although we specified as only 27 bytes will get extended to a page that is we will create",
+    "start": 504.7,
+    "end": 511.7,
+    "ocr_text": "server.c\n\nExample\n\nude <sys/shn\ntude <stdlo,hs\ntude <stdUtb.t\n\nshntd\nkey_t key\n\nwshm, #55\nkey\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shaget”);\nextt(1);\n\n)\n((shn = shnat(shntd, MULL, 0)) == (char *)\nperror(*shnat™)3\nexte(1);\n\n)\n(els tat; ce 12's 48)\n\nGatenientely\n\nsteep(1);\n\nextt(o);\n\n1666)) < 0) {\n\n¢"
+  },
+  {
+    "text": "a page of 4 kilobytes corresponding to this. The third parameter is the permissions that",
+    "start": 511.7,
+    "end": 518.5,
+    "ocr_text": "Example\n\nserver.c\nBeys/types h\n\nys /shn\n\ntdt0.h\n\ntal.\n\nshntds\nkey_t key\n\nsshn, 5\nkey = 5678; k n nt h\nC(shnid = shnget(key, SHMSIZE, IPC_CREAT | 0666)) < 0) (\nperror(shnget\");\nextt(1);\n\nCahn = shnat(shntd, MULL, 0)) == (char #) -1)\nperror(*shnat”)\nexte();\n\n(es 12's © <e 12\"; cr)\n\n(shn\nsteep(1);\nextt(o);"
+  },
+  {
+    "text": "is we are given it as IPC create that is we are creating this particular shared memory",
+    "start": 518.5,
+    "end": 525.06,
+    "ocr_text": "server.c\n\nExample\n\nde Bsys/types.h\nude <sys/shn.b\ntude <stdlo,hs\n\nude <stdltb.hs\n\nshntd\nkey_t key:\n\n*shm, #55\nkey\n\nCGshntd = shnget(key, SiMSIZE, TPC_CREAT |\n\nperror(\"shaget”); 5\nextt(1);\n)\n((shn = shnat(shntd, MULL, 0)) == (char #)\nperror(*shnat\");\next);\n)\n(els tat; ce 12's cH)\n(sha tet)\nsteep(1);\nextt(o);\n\n1666)) < 0) {\n\n)¢"
+  },
+  {
+    "text": "and these are the permissions read right execute permissions. And of course, if this function",
+    "start": 525.14,
+    "end": 532.14,
+    "ocr_text": "server.c\n\nExample\n\nTys/types.h\nys /shn\ntdto.h\neal. hs\n\nperror(\"sheuet”);\nextt(1);\n\n(sho = shnat(shntd,\nperror(*shnat\");\next);\n\n(= tase\n\n(shn\nsteep(1);\n\nextt(o);\n\nbevy\n\nC(shntd = shnget(key, SHNSIZE, TPC_CREAT |\n\n°))\n\n1666)) < 0) {\n\n1 ¢"
+  },
+  {
+    "text": "fails then it enters over here and exits otherwise if it executes successfully we get a valid",
+    "start": 532.5,
+    "end": 539.5,
+    "ocr_text": "server.c\n\nExample\n\nTys/types.h\nys /shn\ntdto.h\neal. hs\n\nperror(\"sheuet”);\nextt(1);\n\n(sho = shnat(shntd,\nperror(*shnat\");\next);\n\n(= tase\n\n(shn\nsteep(1);\n\nextt(o);\n\nbevy\n\nC(shntd = shnget(key, SHNSIZE, TPC_CREAT |\n\n°))\n\n1666)) < 0) {\n\n1 ¢"
+  },
+  {
+    "text": "shared memory ID. The next part is to invoke the shared memory attach S H M 80 providing",
+    "start": 540.1,
+    "end": 547.1,
+    "ocr_text": "server.c\n\nExample\n\nude Bsys/types.h\ntude <stdlo,hs\nude <stdltb.hs\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperdgr(*shaget”);\nexttta);\n\nC{shn = shnat(shmtd, NULL\nperror(*shnat\");\n\nexte();\n)\n(es ta's © <n 12\"; eH)\nGsm te)\n\nsteep(1);\nextt(o);\n\n1666)) < 0) {"
+  },
+  {
+    "text": "this particular ID and we will get a pointer to this particular shared memory. So, S H M",
+    "start": 547.98,
+    "end": 554.98,
+    "ocr_text": "server.c\n\nExample\n\nde Wsys/types.h\nde <sys/shn\ntude <stdto,hs\nude <stdltb.hs\n\nshntd\nkey_t key\n\n*shm, #55\nkey\n\n((shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shnget\");\nextt(a);\n\n)\n\n((shn = shnat(shntd, NULL, ©)) == (char *)\nperror(\"shnat\"); i\nextt(1);\n\n)\n(em tas cee '25 e44)\n(Cshn te\")\nsteep(1);\n\nextt (0);\n\n1666)) < 0)\n\nn¢"
+  },
+  {
+    "text": "so we have like car star S H M is a pointer to the shared memory. Now, the shared memory",
+    "start": 556.98,
+    "end": 561.98,
+    "ocr_text": "server.c\n\nExample\n\nTide Boys /types-h\nude <sys/shn. be\ntude <stdlo,hs\nude <stdltb.hs\n\nshntd\nkey_t keys\n\n*shm, #55\nkey\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shaget”);\nextt(1);\n\n)\nC{shn = shnat(shntd, MULL, 0)) == (char #)\nperror(*shnat\")3\nextt(1);\n\n)\n(els tat; ce 12's cH)\n\nastanenialy\n\nsteep(1);\n\nextt(o);\n\n1666)) < 0) {\n\n)¢"
+  },
+  {
+    "text": "attach would return a pointer to this particular shared memory. Now, in case it returns minus",
+    "start": 561.98,
+    "end": 568.98,
+    "ocr_text": "server.c\n\nExample\n\nTide Boys /types-h\nude <sys/shn. be\ntude <stdlo,hs\nude <stdltb.hs\n\nshntd\nkey_t keys\n\n*shm, #55\nkey\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shaget”);\nextt(1);\n\n)\nC{shn = shnat(shntd, MULL, 0)) == (char #)\nperror(*shnat\")3\nextt(1);\n\n)\n(els tat; ce 12's cH)\n\nastanenialy\n\nsteep(1);\n\nextt(o);\n\n1666)) < 0) {\n\n)¢"
+  },
+  {
+    "text": "1 then it is due to an error and we are exiting. Now, at this particular point we have obtained",
+    "start": 568.98,
+    "end": 575.98,
+    "ocr_text": "server.c\n\nExample\n\nude <sys/shn\ntude <stdlo,hs\ntude <stdUtb.t\n\nshntd\nkey_t key\n\nwshm, #55\nkey\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shaget”);\nexte(1);\n)\n((shm = shnat(shntd, MULL, 0)) == (char *)\nperror(*shnat™);\nex);\n)\n(es 'a's © <e 12\"; cH)\n(sh te)\nsteep(1);\nexte(o);\n\n1666)) < 0) {\n\n¢"
+  },
+  {
+    "text": "a pointer to the shared memory and we can use that particular pointer just as a standard",
+    "start": 576.46,
+    "end": 581.46,
+    "ocr_text": "server.c\n\nExample\n\nude <sys/shn\ntude <stdlo,hs\ntude <stdUtb.t\n\nshntd\nkey_t key\n\nwshm, #55\nkey\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shaget”);\nextt(1);\n\n)\n((shn = shnat(shntd, MULL, 0)) == (char *)\nperror(*shnat™)3\nexte(1);\n\n)\n(ely 128s ¢ <e '2\"5 40)\n\nGatenientely\n\nsteep(1);\n\nextt(o);\n\n1666)) < 0) {\n\n¢"
+  },
+  {
+    "text": "pointer as we use in a C program. So, for instance over here we have moved the pointer",
+    "start": 581.46,
+    "end": 587.46,
+    "ocr_text": "server.c\n\nExample\n\nude <sys/shn\ntude <stdlo,hs\ntude <stdUtb.t\n\nshntd\nkey_t key\n\nwshm, #55\nkey\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shaget”);\nextt(1);\n\n)\n((shn = shnat(shntd, MULL, 0)) == (char *)\nperror(*shnat™)3\nexte(1);\n\n)\n(ely 128s ¢ <e '2\"5 40)\n\nGatenientely\n\nsteep(1);\n\nextt(o);\n\n1666)) < 0) {\n\n¢"
+  },
+  {
+    "text": "to this variable S which is defined as car star S and we have put alpha bits from A to Z",
+    "start": 587.46,
+    "end": 594.46,
+    "ocr_text": "server.c\n\nExample\n\nsh\niter\ndttbeh\n\nC(shntd = shnget(key, SHNSIZE, TPC_CREAT |\nperror(\"shnget”);\nextt(1);\n\nshnat(shntd, MULL, 0)) == (char *)\nshnat\")3\n\n(shn\nperror(\nexte(1);\n\n(= ase <\n\nbevy\n\n(shn\nseep(1);\nextt(o);\n\n1666)) < 0) {\n\n1) ¢"
+  },
+  {
+    "text": "in this thing and finally, we have ended it with an null termination and then we are",
+    "start": 594.78,
+    "end": 600.58,
+    "ocr_text": "server.c\n\nExample\n\nsh\niter\ndttbeh\n\nC(shntd = shnget(key, SHNSIZE, TPC_CREAT |\nperror(\"shnget”);\nextt(1);\n\nshnat(shntd, MULL, 0)) == (char *)\nshnat\")3\n\n(shn\nperror(\nexte(1);\n\n(= ase <\n\nbevy\n\n(shn\nseep(1);\nextt(o);\n\n1666)) < 0) {\n\n1) ¢"
+  },
+  {
+    "text": "going in a loop continuously sleeping. So, we will come back to these two statements later",
+    "start": 600.66,
+    "end": 606.46,
+    "ocr_text": "server.c\n\nExample\n\nde Wsys/types.h\nude <sys/shn-h:\ntude <stdlo,hs\n\nude <stdltb.hs\n\nshntd\nkey_t key\n*shm, #55\n\nkey = 5670;\n\nC(shnid = shnget(key, SHNSIZE, TPC_CREAT |\n\nperror(\"shnget”);\nextt(1);\n)\n((shn = shnat(shntd, MULL, 0)) ay\nperror(*shnat™);\nexte(1);\n)\n(els tat; ¢ e '2\"5 44)\nGsm te)\nsteep(1);\nextt(o);\n\n1666)) < 0) {\n\n)¢"
+  },
+  {
+    "text": "on. Now, let us look at the client side of this code. So, we invoke this S H M get and",
+    "start": 606.46,
+    "end": 613.46,
+    "ocr_text": "Example\n\nserver.c\nude Bays/types-h 1\nde <stdto,h\nide <atdltb.h\nnatn() natn)\nc c\n<; shed;\nshntd; eye hey\n(shntd = shnget(key, SHASIZE, IPC CREAT | 0666)) < 0) ( (stats « shnget key, SHMSIZE, 0666)) < 0) (\nexit);\n) )\n(sh = shmat(shntd, HULL, 0)) == Char *) 1) ( (Cat's shestianmtds WILL, €)) ce Ceher/*) -2) ¢\nexit); ce\n)\n's = shn; \" (5 = shn; *s I= 0; e+)\nc= en '2\"5 44 putchar(*s);\ngs > putchar\"\\n' D3\nGann te\")\nsteep(2)3 uf\nextt(o)s\n) 1200"
+  },
+  {
+    "text": "give it the key that is key is the same 5 6 7 8 the shared memory size is as before",
+    "start": 615.06,
+    "end": 621.06,
+    "ocr_text": "Example\n\nserver.c client.c\nfe cstdltoch UA\nnatn) natn)\nc t\n< shntds\nshntds weyt hey!\n\nC(shnid = shnget(key, SHNSIZE, IPC_CREAT |\nerror(\"shnget™);\n\nextt(1);\n)\n((shn = shnat(shntd, MULL, 0)) == (char *)\nperror(*shnat\")3\next);\n)\n« cee 12s cre)\n(shite)\nsteep(1);\nextt(o);\n\n1666)) < 0) {\n\n)¢\n\nshnget (key, SHNSIZE,\n\nCshnta\nperror(shnget\");\nextt(a)s\n)\nCahn = shnat(ahntd, NULL, 8))\nperror(*shnat\");\nexte)\n)\nputehar(+s);\nputehar('\\n')s\n\nsco)\n\n166)) < 0) (\n\n»¢"
+  },
+  {
+    "text": "27 and we are providing the permissions. Note that we do not require to give create",
+    "start": 621.06,
+    "end": 628.06,
+    "ocr_text": "Example\n\nserver.c client.c\nfe cstdltoch UA\nnatn) natn)\nc t\n< shntds\nshntds weyt hey!\n\nC(shnid = shnget(key, SHNSIZE, IPC_CREAT |\nerror(\"shnget™);\n\nextt(1);\n)\n((shn = shnat(shntd, MULL, 0)) == (char *)\nperror(*shnat\")3\next);\n)\n« cee 12s cre)\n(shite)\nsteep(1);\nextt(o);\n\n1666)) < 0) {\n\n)¢\n\nshnget (key, SHNSIZE,\n\nCshnta\nperror(shnget\");\nextt(a)s\n)\nCahn = shnat(ahntd, NULL, 8))\nperror(*shnat\");\nexte)\n)\nputehar(+s);\nputehar('\\n')s\n\nsco)\n\n166)) < 0) (\n\n»¢"
+  },
+  {
+    "text": "over here because the shared memory region is already created. Then we attach to this",
+    "start": 629.06,
+    "end": 635.06,
+    "ocr_text": "Example\n\nserver.c client.c\nude Bsys/types.h hh ys/ types .h\nfe cstdltoch UA\nnatn) natn)\nc t\n< shntds\nshntds boy. boy)\nCCshntd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§shntd = shaget(key, SHNSIZE, 0666)) < 0) ¢\nexit); ext);\n) )\n(stn = shnat(shntd, HULL, 0)) ae (char #) 1) ¢ {stn = shnatCahntd, MULL, 8)) 20 (chor) -1) (\n) )\nGann te\")\nexte(0)5 ;"
+  },
+  {
+    "text": "particular shared memory segment as before we invoke the function shared memory attach",
+    "start": 636.18,
+    "end": 642.18,
+    "ocr_text": "Example\n\nserver.c client.c\nnatn) natn)\nc t\n< shntds\nshntd; wey. heyt\nCCshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§(shntd = shaget(key, SHYSIZE, 0666)) < 0) (\nextt); ext);\n) )\n(stn = shat(shntd, HULL, 0)) ae (char *) 1) ¢ (sh = shoatCabmtd, HULL, @)) == (char *) <1) ¢\n) )\nas\next(o)s :\n) 200)"
+  },
+  {
+    "text": "S H M A T and we pass it the shared memory ID. Then we get a pointer S H M which is a pointer",
+    "start": 642.18,
+    "end": 649.18,
+    "ocr_text": "Example\n\nserver.c client.c\nnatn) natn)\nc t\n< shntds\nshntd; wey. heyt\nCCshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§(shntd = shaget(key, SHYSIZE, 0666)) < 0) (\nextt); ext);\n) )\n(stn = shat(shntd, HULL, 0)) ae (char *) 1) ¢ (sh = shoatCabmtd, HULL, @)) == (char *) <1) ¢\n) )\nas\next(o)s :\n) 200)"
+  },
+  {
+    "text": "to this shared memory location. So, essentially both the server as well as the client are",
+    "start": 649.18,
+    "end": 656.18,
+    "ocr_text": "Example\n\nserver.c client.c\nude Bsys/types.h I] ys/types -h\nnatn) natn)\nc t\n< shntds\nshntds ay. boy)\nC§Shntd' = shngetCkey, SMNSIZE, IPC_CREAT | 0666)) < 0) ( CGstnid = shget (key, SHSIZE, 0666)) < 0) (\nextt); exe);\n) )\n{tiie a Sat Qahntde wits 833 2 aban) 1 ¢ Clip inate wt, 0) 2 fchor =) -1)¢\n) )\n» putchar(\"\\n');\npoerenats\nexte(0)s :\n) ito)"
+  },
+  {
+    "text": "pointing to the same physical memory page. Now, we could actually read data from this",
+    "start": 659.58,
+    "end": 666.58,
+    "ocr_text": "Example\n\nserver.c client.c\nTe Heys /types-h ti SEER\nnatn) natn)\nc t\n< shntds\nshntd; wey.t hey!\nC§Shmtd = shnget(key, SMNSIZE, IPC_CREAT | 0666)) « 0) ( (sind = shget(key, SHSTZE, 0666)) < 0) (\nextt); exit);\n) )\nC(shn = shnat(shntd, NULL, ©)) = (char #) -1) ( CGghn = shnat(shntd, NULL, ©)) == (chor *) -1) (\nexten); exit)\n) )\ns i (s = sha; *s 1\n» putchar( %\nety\nextt(0), :"
+  },
+  {
+    "text": "particular shared memory region. So, remember that the server has put values from A to Z",
+    "start": 667.46,
+    "end": 673.46,
+    "ocr_text": "Example\n\nserver.c client.c\nwade Weys/types.h rr ae feypea\naaa ¥=/shnh\nnatn) natn)\nc t\n< shots\nshntds wey.t heyt\nCshnid = shnget(key, SHASIZE, 1PC_CREAT | 0666)) < 0) ( ((shntd = shaget(key, SHNSIZE, 0666)) < 0) (\nextt(1); extt(1);\n) )\n((shm = shmat(shnid, NULL, 0)) == ( 9% {(shn s shnat(shatd, MULL, @)) e= (: oe\nperror(*shnat\"); eercer aaa\n) )\n's = shn; ' (s = sha; *s 1\nChm te \"5\nextt(0)5 B\n) 100)"
+  },
+  {
+    "text": "that is A B C D to Z while in this case we could read the values A to Z into this particular",
+    "start": 673.78,
+    "end": 680.78,
+    "ocr_text": "Example\n\nserver.c client.c\nwade Weys/types.h rr ae feypea\naaa ¥=/shnh\nnatn) natn)\nc t\n< shots\nshntds wey.t heyt\nCshnid = shnget(key, SHASIZE, 1PC_CREAT | 0666)) < 0) ( ((shntd = shaget(key, SHNSIZE, 0666)) < 0) (\nextt(1); extt(1);\n) )\n((shm = shmat(shnid, NULL, 0)) == ( 9% {(shn s shnat(shatd, MULL, @)) e= (: oe\nperror(*shnat\"); eercer aaa\n) )\n's = shn; ' (s = sha; *s 1\nChm te \"5\nextt(0)5 B\n) 100)"
+  },
+  {
+    "text": "pointer S and print it out in the scheme. So, once we have completed reading all data",
+    "start": 680.78,
+    "end": 686.78,
+    "ocr_text": "Example\n\nserver.c client.c\npeers ¥=/shnh\nnatn) natn)\nt t\n< shntds\nshntds wey.t hey\nCCshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§shntd = shaget(key, SHNSIZE, 0666)) < 0) (\nexit); exe);\n) )\n((shm = shmat(shnid, NULL, ©)) == ( yy Lele ms Rc a Mit aa yy ¢\n) )\nCahn te\")\nextt(0); .\n) 100)"
+  },
+  {
+    "text": "from the shared memory we put this star into the shared memory location. This is the first",
+    "start": 686.86,
+    "end": 691.86,
+    "ocr_text": "Example\n\nserver.c client.c\nude Bsys/types.h hh ys/ types .h\nJe cstdltoch BUA\nnatn) natn)\nt t\n< shots\nshntds boy. toy)\nCCshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§shntd = shaget(key, SHNSIZE, 0666)) < 0) ¢\nexit) exit);\n) )\nGsm = shrat(shmtd, MULL, 0)) on Cehor.#) -1) ( (Chm = shnatCahntd, MULL, 8)) ee (chor) -1) (\n) )\n5 = shn; Xam seule\nCahn te\")\nexte(0)5 :"
+  },
+  {
+    "text": "location in the shared memory. Now, recall that over here in the server we have put a",
+    "start": 691.86,
+    "end": 696.86,
+    "ocr_text": "Example\n\nserver.c client.c\nude Bsys/types.h hh ys/ types .h\nJe cstdltoch BUA\nnatn) natn)\nt t\n< shots\nshntds boy. toy)\nCCshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§shntd = shaget(key, SHNSIZE, 0666)) < 0) ¢\nexit) exit);\n) )\nGsm = shrat(shmtd, MULL, 0)) on Cehor.#) -1) ( (Chm = shnatCahntd, MULL, 8)) ee (chor) -1) (\n) )\n5 = shn; Xam seule\nCahn te\")\nexte(0)5 :"
+  },
+  {
+    "text": "file loop which continuously loops until the first parameter pointed to in the shared memory",
+    "start": 696.86,
+    "end": 703.86,
+    "ocr_text": "Example\n\nserver.c client.c\ntd. stdltb.h:\nnatn) natn)\nc t\n< shntds\nshntd; wey. heyt\nCCshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§(shntd = shaget(key, SHYSIZE, 0666)) < 0) (\nextt); exit);\n) )\n((shn = shnat(shntd, NULL, 0)) == (char *) -1) ( (¢shn = shnat(shntd, NULL, @)) == (char *) -4) (\n) )\nextt(0) :\n) 200"
+  },
+  {
+    "text": "is a star. So, when we obtain a star it means that the client has completed reading all",
+    "start": 704.74,
+    "end": 711.24,
+    "ocr_text": "Example\n\nserver.c client.c\ntd. stdltb.h:\nnatn) natn)\nc t\n< shntds\nshntd; wey. heyt\nCCshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§(shntd = shaget(key, SHYSIZE, 0666)) < 0) (\nextt); exit);\n) )\n((shn = shnat(shntd, NULL, 0)) == (char *) -1) ( (¢shn = shnat(shntd, NULL, @)) == (char *) -4) (\n) )\nextt(0) :\n) 200"
+  },
+  {
+    "text": "data and therefore, the server can exit in a similar way the client can exit as well.",
+    "start": 711.24,
+    "end": 716.24,
+    "ocr_text": "Example\n\nserver.c client.c\node Wys/types-h th as/Gnenil\nJe cstdltoch BUA\nnatn) natn)\nt t\n< shots\nshntds hey.t hey\n\nC(shnid = shnget(key, SHNSIZE, IPC_CREAT |\nerror(\"shnget”);\n\nextt(1);\n)\n\nCahn = shnat(shntd, MULL, 0)) == (char *)\nperror(*shnat”)3\n\nexte(1);\n\n)\n\ne's cre)\n\nCosh fe)\nsteep(1)\nextt(o);\n\n1666)) < 0) {\n\n)¢\n\nshnget(key, SHMSIZE,\n\n(sina\nperror(shnget”);\nextt()s\n)\n((shn'= shnat(shntd, NULL, 0))\nperror(*shnat\");\nexit)\n)\nputehar(+s);\nputchar(\"\\n');\n\nsco)\n\n166) < 0) (\n\n»¢"
+  },
+  {
+    "text": "So, you see that we have these two processes one a server one a client and these two processes",
+    "start": 716.24,
+    "end": 723.24,
+    "ocr_text": "Example\n\nserver.c client.c\nfe cstdltoch attr\nnatn) natn)\nc t\n< shntds\nshit wey.t heyt\n((shmid = shnget(key, SHMSIZE, IPC_CREAT | 0666)) < 0) { ((shmtd = shnget(key, SHMSIZE, 0666)) < 0) (\nexte); ents):\n) )\nCahn = shnat¢shntd, MULL, 0)) om (chor *) -1) (stn = shnatGahntd, MULL, 8)) 20 (chor) -1) (\nextt(); CHO\n) )\n* » putchar(\"\\n');,\nGann te\")\nexte(0)s"
+  },
+  {
+    "text": "are having their own virtual address space, but by the use of the shared memory which is",
+    "start": 723.88,
+    "end": 730.88,
+    "ocr_text": "Example\n\nserver.c client.c\nfe cstdltoch attr\nnatn) natn)\nc t\n< shntds\nshit wey.t heyt\n((shmid = shnget(key, SHMSIZE, IPC_CREAT | 0666)) < 0) { ((shmtd = shnget(key, SHMSIZE, 0666)) < 0) (\nexte); ents):\n) )\nCahn = shnat¢shntd, MULL, 0)) om (chor *) -1) (stn = shnatGahntd, MULL, 8)) 20 (chor) -1) (\nextt(); CHO\n) )\n* » putchar(\"\\n');,\nGann te\")\nexte(0)s"
+  },
+  {
+    "text": "created by the shared memory get and shared memory attach we have able to create a shared",
+    "start": 732.32,
+    "end": 739.32,
+    "ocr_text": "Example\n\nserver.c client.c\nnatn) natn)\nc t\n< shntds\nshntd; wey. heyt\nCCshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§(shntd = shaget(key, SHYSIZE, 0666)) < 0) (\nextt); exit);\n) )\n((shn = shnat(shntd, NULL, 0)) == (char *) -1) ( (¢shn = shnat(shntd, NULL, @)) == (char *) -4) (\n) )\nas\next(o)s :\n) 1200)"
+  },
+  {
+    "text": "memory region which is common between the server and the client. Then we have obtained",
+    "start": 739.32,
+    "end": 745.52,
+    "ocr_text": "Example\n\nserver.c client.c\nnatn) natn)\nc t\n< shntds\nshntd; wey.t hey\n(Cshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§(shntd = shaget(key, SHYSIZE, 0666)) < 0) (\nextt); exit);\n) )\n(stn = shmat(shntd, HULL, 0)) ae (char #) 1) ¢ (stm = shnatCahmtd, MULL, @)) == (ohare *) <1) ¢\n) )\nas\next(o)s :\n) 1200"
+  },
+  {
+    "text": "a pointer to that particular shared memory region that is S on S H M and the server could",
+    "start": 745.52,
+    "end": 752.2,
+    "ocr_text": "Example\n\nserver.c client.c\nBiys/types-h ti Sree\nnatn) natn)\nc t\n< shntds\nshntds bay.t boy)\nCCshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§(shntd = shaget(key, SHNSIZE, 0666)) < 0) (\nextt); ett);\n) )\n((shn = shnat(shntd, NULL, 0)) == (char *) -1) ¢ ({shn = shnat(shntd, MULL, 0)) == (char *) -1)\n) )\nChm te \"5\nextt(0)5 :\n) to)"
+  },
+  {
+    "text": "put data into that shared memory region while the client could read data the vice versa",
+    "start": 752.28,
+    "end": 757.04,
+    "ocr_text": "Example\n\nserver.c client.c\nBiys/types-h ti Sree\nnatn) natn)\nc t\n< shntds\nshntds bay.t boy)\nCCshmtd = shnget(key, SHNSIZE, IPC_CREAT | 0666)) < 0) ( C§(shntd = shaget(key, SHNSIZE, 0666)) < 0) (\nextt); ett);\n) )\n((shn = shnat(shntd, NULL, 0)) == (char *) -1) ¢ ({shn = shnat(shntd, MULL, 0)) == (char *) -1)\n) )\nChm te \"5\nextt(0)5 :\n) to)"
+  },
+  {
+    "text": "is also possible and at the end of it we required to note that there is a synchronization",
+    "start": 757.04,
+    "end": 763.04,
+    "ocr_text": "server.c\n\nExample\n\nclient.c\n\nfe sstatib\n\nrratn()\n\nkey_t key:\nssh, *\n\nkey = 5078;\n\n(Ghntd =\nperror(\nextt(1);\n\n(sho =\nperror(\next);\n\nCshn\nsteep(1)\nextt(o);\n\nshnget (key, SHMSIZE,\n\nmat (shntd, NULL, 0))\nshnat\")}\n\njeoe\n\n1666)) < 0) {\n\n)¢\n\nshah\nUb\natn()\n{\nshold;\nkey_t keys\n\nkey = 5678;\n\nCCshntd = shaget(key, SHNSIZE, 0666)) < 0) (\nperror(*shnget”);\nextt(1)s\n)\n((shm = shnat(shmtd, MULL, 0) == (char *)\nperror(*shnat\");\nextt(a)\n)\n(S = she; #5 I= 0; se)\nputehar(*s);\nputchar(\"\\n\")s\n\n»¢"
+  },
+  {
+    "text": "required between the server and client. So, this synchronization requirement should be",
+    "start": 763.32,
+    "end": 769.32,
+    "ocr_text": "server.c\n\nExample\n\nclient.c\n\nfe sstatib\n\nrratn()\n\nkey_t key:\nssh, *\n\nkey = 5078;\n\n(Ghntd =\nperror(\nextt(1);\n\n(sho =\nperror(\next);\n\nCshn\nsteep(1)\nextt(o);\n\nshnget (key, SHMSIZE,\n\nmat (shntd, NULL, 0))\nshnat\")}\n\njeoe\n\n1666)) < 0) {\n\n)¢\n\nshah\nUb\natn()\n{\nshold;\nkey_t keys\n\nkey = 5678;\n\nCCshntd = shaget(key, SHNSIZE, 0666)) < 0) (\nperror(*shnget”);\nextt(1)s\n)\n((shm = shnat(shmtd, MULL, 0) == (char *)\nperror(*shnat\");\nextt(a)\n)\n(S = she; #5 I= 0; se)\nputehar(*s);\nputchar(\"\\n\")s\n\n»¢"
+  },
+  {
+    "text": "explicitly programmed into this particular server client modules.",
+    "start": 769.32,
+    "end": 773.88,
+    "ocr_text": "Example\n\nserver.c client.c\node Wys/types-h th as/Gnenil\nJe cstdltoch BUA\nnatn) natn)\nt t\n< shots\nshntds hey.t hey\n\nC(shnid = shnget(key, SHNSIZE, IPC_CREAT |\nerror(\"shnget”);\n\nextt(1);\n)\n\nCahn = shnat(shntd, MULL, 0)) == (char *)\nperror(*shnat”)3\n\nexte(1);\n\n)\n\ne's cre)\n\nCosh ie)\nsteep(1);\nextt(o);\n\n1666)) < 0) {\n\n)¢\n\nshnget(key, SHMSIZE,\n\n(sina\nperror(shnget”);\nextt()s\n)\n((shn'= shnat(shntd, NULL, 0))\nperror(*shnat\");\nexit)\n)\nputehar(+s);\nputchar(\"\\n');\n\n166) < 0) (\n\n»¢"
+  },
+  {
+    "text": "Next, we will look at the message passing unlike the shared memory that we just seen",
+    "start": 773.88,
+    "end": 778.88,
+    "ocr_text": "Example\n\nserver.c client.c\node Wys/types-h th as/Gnenil\nJe cstdltoch BUA\nnatn) natn)\nt t\n< shots\nshntds hey.t hey\n\nC(shnid = shnget(key, SHNSIZE, IPC_CREAT |\nerror(\"shnget”);\n\nextt(1);\n)\n\nCahn = shnat(shntd, MULL, 0)) == (char *)\nperror(*shnat”)3\n\nexte(1);\n\n)\n\ne's cre)\n\nCosh ie)\nsteep(1);\nextt(o);\n\n1666)) < 0) {\n\n)¢\n\nshnget(key, SHMSIZE,\n\n(sina\nperror(shnget”);\nextt()s\n)\n((shn'= shnat(shntd, NULL, 0))\nperror(*shnat\");\nexit)\n)\nputehar(+s);\nputchar(\"\\n');\n\n166) < 0) (\n\n»¢"
+  },
+  {
+    "text": "where the shared memory is created as part of the user space in message passing the shared",
+    "start": 779.04,
+    "end": 785.04,
+    "ocr_text": "Shared Memory\n\nuserspace\n\n* One process will create an area in RAM which\nthe other process can access\n+ Both processes can access shared memory like\na regular working memory\n— Reading/writing is like regular reading/writing\n— Fast\n¢ Limitation : Error prone. Needs synchronization\nbetween processes\n\nProcess 1\n\nShared\nmemory\n\nProcess 2"
+  },
+  {
+    "text": "memory is created in the kernel. Essentially, we would then require system calls such as",
+    "start": 785.28,
+    "end": 791.28,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n\n* System calls such as send and receive [FISIeEEES 1\nused for communication\n— Cooperating : each send must have a\n\nreceive\n« Advantage : Explicit sharing, less error Ss\nprone\n* Limitation : Slow. Each call involves\nmarshalling / demarshalling of are)\n\ninformation\n\nShared\nmemory"
+  },
+  {
+    "text": "send and receive in order to communicate between the two processes. If a process 2 wants",
+    "start": 791.28,
+    "end": 797.48,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n\n* System calls such as send and receive [FISIeEEES 1\nused for communication\n— Cooperating : each send must have a\n\nreceive\n« Advantage : Explicit sharing, less error Ss\nprone\n* Limitation : Slow. Each call involves\nmarshalling / demarshalling of are)\n\ninformation\n\nShared\nmemory"
+  },
+  {
+    "text": "to send data to process 1 it will invoke the send system call. So, this would then cause",
+    "start": 797.48,
+    "end": 804.48,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n* System calls such as send and receive [FRSIEEEES 1\nused for communication\n\n— Cooperating : each send must have a\nreceive\n\n« Advantage : Explicit sharing, less error\nprone Process 2\n\n¢ Limitation : Slow. Each call involves\nmarshalling / demarshalling of\ninformation\n\nKernel\n\nShared\nmemory"
+  },
+  {
+    "text": "to execute and it would result in the data written into the shared memory while when process",
+    "start": 804.56,
+    "end": 810.56,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n* System calls such as send and receive [FRSIEEEES 1\nused for communication\n\n— Cooperating : each send must have a\nreceive\n\n« Advantage : Explicit sharing, less error\nprone Process 2\n\n¢ Limitation : Slow. Each call involves\nmarshalling / demarshalling of\ninformation\n\nKernel\n\nShared\nmemory"
+  },
+  {
+    "text": "1 invokes receive data from the shared memory would be read by process 1. The advantage of",
+    "start": 810.56,
+    "end": 817.56,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n\n* System calls such as send and receive [PIECES 1\nused for communication\n— Cooperating : each send must have a\n\nreceive\n« Advantage : Explicit sharing, less error Fue\nprone\n* Limitation : Slow. Each call involves\nmarshalling / demarshalling of Kamel\n\ninformation\n\nShared\nmemory"
+  },
+  {
+    "text": "this particular message passing is that the sharing is explicit. Essentially, both process",
+    "start": 818.16,
+    "end": 825.16,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n\n* System calls such as send and receive [FRSIeEEES 1\nused for communication\n— Cooperating : each send must have a\n\nreceive\n« Advantage : Explicit sharing, less error Ss\nprone\n° Limitation : Slow. Each call involves\nmarshalling / demarshalling of Karna)\n\ninformation\n\nShared\nmemory"
+  },
+  {
+    "text": "1 and process 2 would require support for the kernel to transfer data between each other.",
+    "start": 825.36,
+    "end": 832.36,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n\n* System calls such as send and receive [FSIS 1\nused for communication\n— Cooperating : each send must have a\n\nreceive\n« Advantage : Explicit sharing, less error\nprone Process 2\n¢ Limitation : Slow. Each call involves\nmarshalling / demarshalling of Kernel\n\ninformation\n\nShared\nmemory"
+  },
+  {
+    "text": "The limitations is that it is slow each call for the send or receive involves the marshalling",
+    "start": 832.52,
+    "end": 838.52,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n\n* System calls such as send and receive [FSIS 1\nused for communication\n— Cooperating : each send must have a\n\nreceive\n« Advantage : Explicit sharing, less error\nprone Process 2\n¢ Limitation : Slow. Each call involves\nmarshalling / demarshalling of Kernel\n\ninformation\n\nShared\nmemory"
+  },
+  {
+    "text": "or and demarshalling of information and as we know in general a system call has significant",
+    "start": 838.52,
+    "end": 845.52,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n\n* System calls such as send and receive [FISIeEEES 1\nused for communication\n— Cooperating : each send must have a\n\nreceive\n« Advantage : Explicit sharing, less error Ss\nprone\n* Limitation : Slow. Each call involves\nmarshalling / demarshalling of Karna)\n\ninformation\n\nShared\nmemory"
+  },
+  {
+    "text": "overheads. Therefore, message passing is quite slow compared to shared memory. However,",
+    "start": 845.64,
+    "end": 852.64,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n\n* System calls such as send and receive [PIECES 1\nused for communication\n— Cooperating : each send must have a\n\nreceive\n« Advantage : Explicit sharing, less error Fue\nprone\n* Limitation : Slow. Each call involves\nmarshalling / demarshalling of Kamel\n\ninformation\n\nShared\nmemory"
+  },
+  {
+    "text": "it is less error prone than shared memory because the kernel manages the sharing and",
+    "start": 853.96,
+    "end": 860.96,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n\n* System calls such as send and receive [PIECES 1\nused for communication\n— Cooperating : each send must have a\n\nreceive\n« Advantage : Explicit sharing, less error Fue\nprone\n* Limitation : Slow. Each call involves\nmarshalling / demarshalling of Kamel\n\ninformation\n\nShared\nmemory"
+  },
+  {
+    "text": "therefore, would be able to do the synchronization between the process 1 and process 2.",
+    "start": 861.36,
+    "end": 867.96,
+    "ocr_text": "Message Passing\n\nuserspace\n\n* Shared memory created in the kernel\n\n* System calls such as send and receive [PIECES 1\nused for communication\n— Cooperating : each send must have a\n\nreceive\n« Advantage : Explicit sharing, less error Fue\nprone\n* Limitation : Slow. Each call involves\nmarshalling / demarshalling of Kamel\n\ninformation\n\nShared\nmemory"
+  },
+  {
+    "text": "Another very common application of message passing is the use of pipes. Now, pipes are",
+    "start": 867.96,
+    "end": 873.4,
+    "ocr_text": "Pipes\n\n— Always between parent and child\n— Always unidirectional\n— Accessed by two associated file descriptors:\n* fd[0] for reading from pipe ;\n* fd[1] for writing to the pipe ‘ fd(1) fd[0]\n\nProcess Ww A\n\npipe\nKernel Btran"
+  },
+  {
+    "text": "used between parent and child processes only. Essentially, you can only communicate data",
+    "start": 873.4,
+    "end": 880.4,
+    "ocr_text": "Pipes\n\n— Always between parent and child\n— Always unidirectional\n— Accessed by two associated file descriptors:\n* fd[0] for reading from pipe ;\n* fd[1] for writing to the pipe ‘ fd(1) fd[0]\n\nProcess Ww A\n\npipe\nKernel Btran"
+  },
+  {
+    "text": "from a parent process to a child process and vice versa. Another aspect of pipes is that",
+    "start": 880.4,
+    "end": 885.64,
+    "ocr_text": "Pipes\n\n— Always between parent and child\n— Always unidirectional\n— Accessed by two associated file descriptors:\n* fd[0] for reading from pipe ;\n+ fd[1] for writing to the pipe fd{1] fd[0]\n\nProcess \\ A\n\npipe\nKernel Burren"
+  },
+  {
+    "text": "it is unidirectional. Now, when a pipe is created generally there are two file descriptors",
+    "start": 885.72,
+    "end": 892.2,
+    "ocr_text": "Pipes\n\n— Always between parent and child\n— Always unidirectional\n— Accessed by two associated file descriptors:\n* fd[0] for reading from pipe\n* fd[1] for writing to the pipe ‘ fd[1) fd[0]\n\nProcess \\ A\n\npipe\nKernel Bttren"
+  },
+  {
+    "text": "which are associated with it that is F T 0 which is used to read from the pipe while F T",
+    "start": 892.2,
+    "end": 898.68,
+    "ocr_text": "Pipes\n\n— Always between parent and child\n— Always unidirectional\n— Accessed by two associated file descriptors:\n* fd[0] for reading from pipe\n* fd[1] for writing to the pipe ‘ fd[1) fd[0]\n\nProcess \\ A\n\npipe\nKernel Bttren"
+  },
+  {
+    "text": "1 is used to write to the pipe. So, we know the unidirectional nature of this particular",
+    "start": 898.68,
+    "end": 905.68,
+    "ocr_text": "Pipes\n\n— Always between parent and child\n— Always unidirectional\n— Accessed by two associated file descriptors:\n* fd[0] for reading from pipe\n+ fd[1] for writing to the pipe i fd{) Fd{0)\n\nProcess WV A\n\n“oof Pipe\nKernel butrer"
+  },
+  {
+    "text": "IPC. So, F T 1 is exclusively used to write to the pipe buffer while F T 0 is used to",
+    "start": 905.68,
+    "end": 912.2,
+    "ocr_text": "Pipes\n\n— Always between parent and child\n— Always unidirectional\n— Accessed by two associated file descriptors:\n* fd[0] for reading from pipe ;\n* fd[1] for writing to the pipe ‘ fd[1) fd[0]\n\nProcess WwW A\n\npipe\nKernel buffer"
+  },
+  {
+    "text": "read from the pipe buffer. So, in order to obtain 2 way communication between the parent",
+    "start": 912.2,
+    "end": 918.0,
+    "ocr_text": "Pipes\n\n— Always between parent and child\n— Always unidirectional\n— Accessed by two associated file descriptors:\n* fd[0] for reading from pipe ;\n* fd[1] for writing to the pipe ‘ fd[1) fd[0]\n\nProcess WwW A\n\npipe\nKernel buffer"
+  },
+  {
+    "text": "and the child we would require 2 pipes to be obtained pipe 0 and pipe 1. So, when pipe",
+    "start": 918.0,
+    "end": 925.0,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "0 is opened it would create 2 file descriptors 1 to write into pipe 0 and the other one to",
+    "start": 925.96,
+    "end": 932.96,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "read to from pipe 0. Similarly, there are 2 file descriptors to write to pipe 1 and read",
+    "start": 933.72,
+    "end": 940.72,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "from pipe 1. Similarly, there are 2 pair of file descriptors for pipes in the child process.",
+    "start": 941.72,
+    "end": 948.72,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n_~_\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes\n\n4"
+  },
+  {
+    "text": "Now, you know that these additional descriptors are not required. Therefore, it we could",
+    "start": 950.36,
+    "end": 957.84,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n“Ss\n\n* Two pipes opened * Close the unnecessary\npiped and pipet pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "actually close the extra file descriptors to obtain something like this. Now, in order",
+    "start": 957.84,
+    "end": 963.08,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n“Ss\n\n* Two pipes opened * Close the unnecessary\npiped and pipet pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "that the parent sends some information to the child the parent will write to pipe 0 while",
+    "start": 963.08,
+    "end": 970.08,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n“Ss\n\n* Two pipes opened * Close the unnecessary\npiped and pipet pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "the child will read from pipe 0. In order to let the child sends some information to the",
+    "start": 970.56,
+    "end": 975.96,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n“Ss\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "parent the child will write to pipe 1 while the parent will read from the pipe 1.",
+    "start": 975.96,
+    "end": 982.96,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n“Ss\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "So, let us see an example of the use of pipes. So, this again is a standard Linux example",
+    "start": 982.96,
+    "end": 989.96,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n“Ss\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "and as we have said. So, we create a parent and child process. So, that the there is a",
+    "start": 991.64,
+    "end": 998.64,
+    "ocr_text": "Example\n\n(child process sending a string to parent)\n\nStdio.h:\nnistd.h:\nstdlib.h\n\nfrinclude\ninclude\n}tinclude\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe (pipefd) ;\n\nswitch (pid=fork()) {\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0:\nclose(pipefd(o]);\nFILE *out = fdopen(pipefd[1],\nfprintf(out, \"Hello World\\n\");\nbreak;\n\ndefault:\nclose(pipefd[1]);\nFILE *in = fdopen(pipefd[®],\nfscanf(in, » recy);\nprintf (\"%s\", recv);\nbreak;\n\nW\");\n\nHB\n\n* in child process */\n* close unnecessary pipefd */\n\n* open pipe descriptor as stream */\n* write to out stream */\n\n* in parent process */\n* close unnecessary pipefd *\n* open descriptor as stream\n\nread from in stream */"
+  },
+  {
+    "text": "unidirectional communication from the parent to the child. So, let us look at this particular",
+    "start": 1000.08,
+    "end": 1006.08,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude\nftinclude\n}tinclude\n\nStdio.h:\nunistd.h:\nstdlib.h\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\npipe (pipefd) ;\n\nswitch(pid=fork()) {\n\nclose(pipefd[1]);\n\nFILE *in = fdopen(pipefd[0],\nfscanf(in, » recy);\nprintf (\"%s\", recv);\n\nbreak;\n\nHB\n\n* close unnecessary pipefd *\n* open descriptor as stream\n\ncase -1: perror(\"fork\");\nexit(1);\ncase 0: /* in child process */\nclose(pipefd{o]); 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\ndefault: * in parent process */\n\nread from in stream */"
+  },
+  {
+    "text": "thing. First we invoke this particular system called pipe and give it this pipe F t. So,",
+    "start": 1006.08,
+    "end": 1012.08,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\ninclude <stdlib.h>\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd(o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "pipe F t is defined over here and taking 2 elements and then we invoke the system call",
+    "start": 1012.08,
+    "end": 1019.08,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\ninclude <stdlib.h>\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd(o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "Foc. So, as we have studied the Foc system call would create a child process which is",
+    "start": 1019.56,
+    "end": 1025.04,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\ninclude <stdlib.h>\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe (pipefd) ;\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd(o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "the exact duplicate of the parent process. So, in the parent process the value of a P",
+    "start": 1025.04,
+    "end": 1032.04,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\nftinclude <stdlib.h\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd[o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "I d that is the value what Foc returns is the child's P I d value and it is a value which",
+    "start": 1032.04,
+    "end": 1039.04,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\nftinclude <stdlib.h\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd[o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "is greater than 0. On the other hand in the child process the value return by Foc is 0.",
+    "start": 1039.68,
+    "end": 1046.68,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\nftinclude <stdlib.h\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pidafork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd[o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recy);\nbreak;"
+  },
+  {
+    "text": "So, let us see what happens in the child process first. So, in the child process because",
+    "start": 1048.88,
+    "end": 1054.4,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\nftinclude <stdlib.h\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pidsfork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]); 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd[o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "the P I d value is 0. So, it would come over here and the first thing what we do is we",
+    "start": 1054.4,
+    "end": 1061.4,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\nftinclude <stdlib.h\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pidsfork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]); 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd[o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "close pipe F t 0. So, closing pipe F t 0 would mean that we are closing the read pipe to",
+    "start": 1061.4,
+    "end": 1068.4,
+    "ocr_text": "Example\n\n(child process sending a string to parent)\n\nfrinclude\nftinclude <\n}tinclude\n\nstdio.h:\nunistd.h:\nstdlib.h\n\nint main(){\nint pipefd(2);\nint pid;\nchar recv(32];\n\npipe (pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\ncase 0:\nclose(pipefd{o]) ;\nFILE *out = fdopen(pipefd{1],\nfprintf(out, \"Hello World\\n\");\nbreak;\ndefault:\n\nclose(pipefd[1]);\n\nFILE *in = fdopen(pipefd[®],\nfscanf(in, » recy);\nprintf(\"%s\", recv);\n\nbreak;\n\nw\");\n\nHB\n\n* in child process */\n* close unnecessary pipefd */\n\n* open pipe descriptor as stream */\n* write to out stream */\n\n* in parent process */\n* close unnecessary pipefd *\n* open descriptor as stream\n\nread from in stream */"
+  },
+  {
+    "text": "the to the child that is. So, we are we are having like 2 pipes over here corresponding",
+    "start": 1069.28,
+    "end": 1074.6,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild . Child\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "to pipe 0 and we are just go closing the read pipe while the pipe 1 that is the right",
+    "start": 1074.6,
+    "end": 1080.6,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild . Child\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "file descriptor is still open. Now, let us see what happens in the child process. In the",
+    "start": 1080.92,
+    "end": 1086.64,
+    "ocr_text": "Pipes for two way\ncommunication\n\n—\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes\n\nChild Child"
+  },
+  {
+    "text": "child process the value of P I d return by Foc is 0 therefore, it will result in this",
+    "start": 1086.64,
+    "end": 1091.0,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\ninclude <stdlib.h>\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\n<lose(pipefd{o]); 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd(o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "particular code being executed. So, in this code first there is we are closing the pipe",
+    "start": 1091.0,
+    "end": 1097.0,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\ninclude <stdlib.h>\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\n<lose(pipefd{o]); 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd(o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "F t 0. So, this means that the file descriptor corresponding to the read pipe is closed. Second",
+    "start": 1097.24,
+    "end": 1104.24,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\nftinclude <stdl\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd(o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "we are then opening a second file called F t open corresponding to file descriptor 1 and",
+    "start": 1104.8,
+    "end": 1111.8,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\nftinclude <stdl\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd(o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "it is open in the right mode and we could then use F print F out hollow world. So, essentially",
+    "start": 1114.24,
+    "end": 1121.24,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\nftinclude <stdlib.h\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, “Hello World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd[o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); /* read from in stream */\nprintf(\"%s\", recv);\nbreak;"
+  },
+  {
+    "text": "what we are doing is to this pipe with descriptor 1 we are writing hollow world. So, if you go",
+    "start": 1121.24,
+    "end": 1127.24,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\ninclude <stdlib.h>\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]); /* close unnecessary pipefd */\nFILE *out = fdopen(pipefd[1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hello World\\n\"); /* write to out stream */\nbreak; s\n\ndefault: /* in parent process */\nclose(pipefd{1]); /* close unnecessary pipefd *\nFILE *in = fdopen(pipefd(o], \"r\"); /* open descriptor as stream\nfscanf(in, \"%s\", recv); /* read from in stream */\nprintf(*%s\", recv);\nbreak;"
+  },
+  {
+    "text": "back to this particular thing. So, what we are seeing is that we are writing hollow",
+    "start": 1127.24,
+    "end": 1134.24,
+    "ocr_text": "Pipes for two way\ncommunication\n\nee\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "world into this pipe 1. Now, in the parent process which would execute over here because",
+    "start": 1134.44,
+    "end": 1141.44,
+    "ocr_text": "Pipes for two way\ncommunication\n\nee\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "Foc would return with a value which is greater than 0. So, we are closing the right pipe",
+    "start": 1143.44,
+    "end": 1150.44,
+    "ocr_text": "Example\n\n(child process sending a string to parent)\n\nStdio.h:\nunistd.h:\nstdlib.h\n\nfrinclude\n}tinclude\n}tinclude\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe (pipefd) ;\n\nswitch(pidsfork()) {\n\ncase -1: pérror(\"fork\");\nexit(1);\n\ncase 0:\nclose(pipefd{o]);\nFILE *out = fdopen(pipefd[1],\nfprintf(out, \"Hello World\\n\");\nbreak;\n\ndefault:\nclose(pipefd{1]);\nFILE *in = fdopen(pipefd(o],\nfscanf(in, \"%s\", recv);\nprintf(\"%s\", recv);\nbreak;\n\n}\n\n);\n\nHB\n\n* in child process */\n* close unnecessary pipefd */\n\n* open pipe descriptor as stream */\n* write to out stream */\n\n* in parent process */\n* close unnecessary pipefd *\n* open descriptor as stream\n\nread from in stream */"
+  },
+  {
+    "text": "and opening using F t open the read pipe. So, we are then using F scan F to read whatever",
+    "start": 1150.44,
+    "end": 1156.44,
+    "ocr_text": "Example\n\n(child process sending a string to parent)\n\nfrinclude\nftinclude <\n}tinclude\n\nstdio.h:\nunistd.h:\nstdlib.h\n\nint main(){\nint pipefd(2);\nint pid;\nchar recv(32];\n\npipe (pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\ncase 0:\nclose(pipefd{o]) ;\nFILE *out = fdopen(pipefd{1],\nfprintf(out, \"Hello World\\n\");\nbreak;\ndefault:\n\nclose(pipefd{1]);\n\nFILE *in = fdopen(pipefd[0],\nfscdhf(in, » recy);\nprintf( » recy);\n\nbreak;\n\nw\");\n\nHB\n\n* in child process */\n* close unnecessary pipefd */\n\n* open pipe descriptor as stream */\n* write to out stream */\n\n* in parent process */\n* close unnecessary pipefd *\n* open descriptor as stream\n\nread from in stream */"
+  },
+  {
+    "text": "has been pushed into the pipe in this case it is hollow world and printing it to the screen.",
+    "start": 1157.16,
+    "end": 1163.16,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\nftinclude <stdlib.h\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hyllo World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd[o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf( » recy);\nbreak;"
+  },
+  {
+    "text": "So, essentially what we have implemented in this in the program is this lower part. So,",
+    "start": 1163.16,
+    "end": 1168.16,
+    "ocr_text": "Example\n(child process sending a string to parent)\n\nftinclude <stdio.h:\nftinclude <unistd.h\nftinclude <stdlib.h\n\nint main(){\nint pipefd(2];\nint pid;\nchar recv[32];\n\npipe(pipefd) ;\n\nswitch(pid=fork()) {\n\ncase -1: perror(\"fork\");\nexit(1);\n\ncase 0: /* in child process */\nclose(pipefd{o]) ; 7* close unnecessary pipefd */\nFILE *out = fdopen(pipefd{1], \"w\"); /* open pipe descriptor as stream */\nfprintf(out, \"Hyllo World\\n\"); /* write to out stream */\nbreak;\n\ndefault: /* in parent process */\nclose(pipefd{1]); 7* close unnecessary pipefd *\nFILE *in = fdopen(pipefd[o], \"r\"); /* open descriptor as stream\nfscanf(in, » recy); 7* read from in stream */\nprintf( » recy);\nbreak;"
+  },
+  {
+    "text": "the child opens this pipe in the right mode and puts hollow world into this pipe while",
+    "start": 1168.64,
+    "end": 1175.64,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n* Two pipes opened * Close the unnecessary\npiped and pipe pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "the parent then opens the pipe 1 in the read mode and reads the string hollow world from",
+    "start": 1175.64,
+    "end": 1182.64,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n* Two pipes opened * Close the unnecessary\npiped and pipet pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "the pipe. Thus the string hollow world has been transferred from the child to the parent.",
+    "start": 1183.36,
+    "end": 1189.64,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n* Two pipes opened * Close the unnecessary\npiped and pipet pipes\n\n* Note the unnecessary\npipes"
+  },
+  {
+    "text": "So, you can actually try to implement this particular program and execute in a Linux system.",
+    "start": 1189.64,
+    "end": 1196.64,
+    "ocr_text": "Pipes for two way\ncommunication\n\nChild Child\n\n* Two pipes opened * Close the unnecessary\n\npiped and pipet pipes\n\n* Note the unnecessary\n\npipes"
+  },
+  {
+    "text": "Besides the message passing a shared memory and pipes that you have studied so far a third",
+    "start": 1199.64,
+    "end": 1205.64,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "way of inter process communication is by what is known as signals. So, signals are a synchronous",
+    "start": 1205.8,
+    "end": 1212.8,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "unidirectional communication between processes. The operating system defines some predefined",
+    "start": 1213.76,
+    "end": 1220.76,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "signals and these signals could be sent from the operating system to the two a process",
+    "start": 1220.76,
+    "end": 1226.36,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "or between one process to another. Signals are essentially small integers for instance",
+    "start": 1226.36,
+    "end": 1232.36,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "and each of these integers has a predefined meaning for instance 9 would mean to kill",
+    "start": 1232.44,
+    "end": 1238.08,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "a process while 11 would mean a segmentation fault and so on. So, in order to send a signal",
+    "start": 1238.08,
+    "end": 1245.08,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "to the process we could for instance have kill send it to this PID and we could send this",
+    "start": 1246.44,
+    "end": 1253.44,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n- kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.htm|"
+  },
+  {
+    "text": "particular signal number which is an integer. In order that the process handles that signal",
+    "start": 1253.96,
+    "end": 1260.96,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n- kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.htm|"
+  },
+  {
+    "text": "is to define this particular function called signal which takes the signal number for",
+    "start": 1261.96,
+    "end": 1268.96,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.htm|"
+  },
+  {
+    "text": "instance 9 or 11 and then the handler. So, handler is appointed to the signal handler",
+    "start": 1269.68,
+    "end": 1276.68,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "for that particular number. So, as a result we could send signals from one process to",
+    "start": 1278.08,
+    "end": 1285.08,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "another and depending on the type of the signal the corresponding handler would be executed.",
+    "start": 1285.24,
+    "end": 1292.24,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "In this video we had seen a brief introduction to IPCs essentially we had seen different",
+    "start": 1293.72,
+    "end": 1299.6,
+    "ocr_text": "Signals\n\nAsynchronous unidirectional communication\nbetween processes\n\nSignals are a small integer\n\n— eg. 9: kill, 11: segmentation fault\n\nSend a signal to a process\n\n— kill(pid, signum)\n\nProcess handler for a signal\n\n— sighandler_t signal(signum, handler);\n\n— Default if no handler defined\n\nref : http://www.comptechdoc.org/os/linux/programming/linux_pgsignals.html"
+  },
+  {
+    "text": "types of IPCs like message passing shared memory pipes and asynchronous transfers using",
+    "start": 1299.6,
+    "end": 1306.84,
+    "ocr_text": "eh"
+  },
+  {
+    "text": "signals. These IPCs are used extensively in systems to communicate between processes",
+    "start": 1306.84,
+    "end": 1313.84,
+    "ocr_text": "eh"
+  },
+  {
+    "text": "and therefore, we are able to achieve or build applications which are extremely modular",
+    "start": 1315.96,
+    "end": 1321.96,
+    "ocr_text": "eh"
+  },
+  {
+    "text": "with small programs with each program focusing on only a certain aspect in the entire system.",
+    "start": 1321.96,
+    "end": 1328.96,
+    "ocr_text": "eh"
+  },
+  {
+    "text": "Thank you.",
+    "start": 1331.08,
+    "end": 1331.6,
+    "ocr_text": "eh"
+  }
+]

@@ -1,0 +1,998 @@
+[
+  {
+    "text": "Hello, in today's class we will be having a very brief introduction to an operating",
+    "start": 0.0,
+    "end": 21.2,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n\\"
+  },
+  {
+    "text": "concept called processes.",
+    "start": 21.2,
+    "end": 23.12,
+    "ocr_text": "Topics Covered\n\nFrom Programs to Processes\n\nMemory Maps\n\nSystem Calls\n\nFiles\n\nOS structure (Monolithic and Microkernels)"
+  },
+  {
+    "text": "So, the topics that we will cover is from programs to processes, memory maps, system",
+    "start": 23.28,
+    "end": 30.48,
+    "ocr_text": "Topics Covered\n\nFrom Programs to Processes\n\nMemory Maps\n\nSystem Calls\n\nFiles\n\nOS structure (Monolithic and Microkernels)"
+  },
+  {
+    "text": "calls, files and essentially the structure of the operating system. Consider this particular",
+    "start": 30.48,
+    "end": 39.48,
+    "ocr_text": "Topics Covered\n\nFrom Programs to Processes\n\nMemory Maps\n\nSystem Calls\n\nFiles\n\nOS structure (Monolithic and Microkernels)"
+  },
+  {
+    "text": "program written in C. So, this program prints hello world onto the screen.",
+    "start": 39.48,
+    "end": 44.04,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\nchar str[] = \"Hello World\\n\";\nprintf(\"%s\", str);"
+  },
+  {
+    "text": "In order to compile and run this program, we first need to use a compiler such as GCC",
+    "start": 44.04,
+    "end": 49.76,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\nchar str[] = \"Hello World\\n\";\nprintf(\"%s\", str);"
+  },
+  {
+    "text": "and specify the C code name such as hello dot C in this case and what we will get is an",
+    "start": 49.76,
+    "end": 54.96,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\nchar str[] = \"Hello World\\n\";\n\nprintf(\"%s\", str);\n| ace hello.c\nExecutable\n(a.out)\nStored on\n\nhard disk"
+  },
+  {
+    "text": "executable in this case it is called A dot out. This executable is stored on the hard",
+    "start": 54.96,
+    "end": 60.36,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\nchar str[] = \"Hello World\\n\";\n\nprintf(\"%s\", str);\n| ace hello.c\nExecutable\n(a.out)\nStored on\n\nhard disk"
+  },
+  {
+    "text": "disk. In order to run this particular program, we specify a command like dot slash A dot",
+    "start": 60.36,
+    "end": 66.88,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\nchar str[] = \"Hello World\\n\";\n\nprintf(\"%s\", str);\n| save hello.c\nExecutable\n(a.out)\nStored on\n\nhard disk"
+  },
+  {
+    "text": "out and it results in a process being created in the RAM. So, this process is essentially",
+    "start": 66.88,
+    "end": 74.36,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\nchar str[] = \"Hello World\\n\";\nprintf(\"%s\", str);\n\n}\n\n| save hello.c\n\nExecutable\n\n(a.out) Pretest\n\n$./a.out\n\nStored on Executes from\nhard disk RAM"
+  },
+  {
+    "text": "the A dot out program under execution which is present in the RAM. To define it formally,",
+    "start": 74.36,
+    "end": 80.0,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\nchar str[] = \"Hello World\\n\";\nprintf(\"%s\", str);\n\n}\n\n| save hello.c\n\nExecutable\n\n(a.out) Pretest\n\n$./a.out\n\nStored on Executes from\nhard disk RAM"
+  },
+  {
+    "text": "a process is a program under execution which is executed from RAM and essentially comprises",
+    "start": 80.0,
+    "end": 86.8,
+    "ocr_text": "Executing Programs\n\n(Process)\n#include <stdio.h> « Process\nint main(){ - A program in execution\nchar str[] = \"Hello World\\n\"; — Present in the RAM\n; printf(\"ss\", str); — Comprises of\n+ Executable instructions\n| save hello.c + Stack\n+ Heap\n* State in the OS (in kernel)\nExecutable — State contains : registers, list\n(a.out) Process of open files, related\n$./a.out processes, etc."
+  },
+  {
+    "text": "of various sections such as the executable instruction stack heap and also a hidden section",
+    "start": 86.8,
+    "end": 93.36,
+    "ocr_text": "Executing Programs\n\n(Process)\n#include <stdio.h> * Process\nint main(){ -A program in execution\nchar str[] = \"Hello World\\n\"; — Present in the RAM\n' printf(\"%s\", str); — Comprises of\n+ Executable instructions\n| save hello.c + Stack\n+ Heap\n+ State in the OS (in kernel)\nExecutable — State contains : registers, list\n(a.out) Process of open files, related\n$./a.out processes, etc."
+  },
+  {
+    "text": "known as the state. So, this state is actually maintained by the operating system and contains",
+    "start": 93.36,
+    "end": 99.32,
+    "ocr_text": "Executing Programs\n\n(Process)\n#include <stdio.h> * Process\nint main(){ -A program in execution\nchar str[] = \"Hello World\\n\"; — Present in the RAM\n' printf(\"%s\", str); — Comprises of\n+ Executable instructions\n| save hello.c + Stack\n+ Heap\n+ State in the OS (in kernel)\nExecutable — State contains : registers, list\n(a.out) Process of open files, related\n$./a.out processes, etc."
+  },
+  {
+    "text": "various things like the registers, list of open files, process, list of related processes",
+    "start": 99.32,
+    "end": 105.68,
+    "ocr_text": "Executing Programs\n\n(Process)\n#include <stdio.h> « Process\nint main(){ -A program in execution\nchar str[] = \"Hello World\\n\"; — Present in the RAM\n; printf(\"ss\", str); — Comprises of\n+ Executable instructions\n| save hello.c + Stack\n+ Heap\n+ State in the OS (in kernel)\nBeate — State contains : registers, list\n(a.out) Process of open files, felated\n$./a.out processes, etc."
+  },
+  {
+    "text": "etcetera. So, in today's class, we will look more into detail about what this particular",
+    "start": 105.68,
+    "end": 112.04,
+    "ocr_text": "Executing Programs\n\n(Process)\n#include <stdio.h> « Process\nint main(){ -A program in execution\nchar str[] = \"Hello World\\n\"; — Present in the RAM\n; printf(\"ss\", str); — Comprises of\n+ Executable instructions\n| save hello.c + Stack\n+ Heap\n* State in the OS (in kernel)\nBeate — State contains : registers, list\n(a.out) Process of open files, related\n$./a.out , Processes, etc."
+  },
+  {
+    "text": "process contains and how it is managed. So, let us take a very simple example. So, this",
+    "start": 112.04,
+    "end": 117.6,
+    "ocr_text": "Executing Programs\n\n(Process)\n#include <stdio.h> « Process\nint main(){ -A program in execution\nchar str[] = \"Hello World\\n\"; — Present in the RAM\n; printf(\"ss\", str); — Comprises of\n+ Executable instructions\n| save hello.c + Stack\n+ Heap\n* State in the OS (in kernel)\nBeate — State contains : registers, list\n(a.out) Process of open files, related\n$./a.out , Processes, etc."
+  },
+  {
+    "text": "is a program and this is a process that is created when this program is executed. Now,",
+    "start": 117.6,
+    "end": 125.0,
+    "ocr_text": "Process Memory Map\n\nif (a == 1) return;\n\n* * a;\nfact(a - 1, b);\n\nint main(){\nint n, *m;\n\nscanf( » &);\nmalloc(sizeof(int));\nm= 1;\n\nfact(n, m);\nprintf (\"Factoria\nfree(m);\n\nProgram\n\nMAX_SIZE\nStack US\n\nthd\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "the process has various sections. For example, it has the text data heap and the stack.",
+    "start": 125.0,
+    "end": 130.76,
+    "ocr_text": "Process Memory Map\n\nif (a == 1) return;\n\n* * a;\nfact(a - 1, b);\n\nint main(){\nint n, *m;\n\nscanf( » &);\nmalloc(sizeof(int));\nm= 1;\n\nfact(n, m);\nprintf (\"Factoria\nfree(m);\n\nProgram\n\nMAX_SIZE\nStack US\n\nthd\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "Now, various parts of this program when executed get mapped into the various sections of",
+    "start": 130.76,
+    "end": 136.32,
+    "ocr_text": "Process Memory Map\n\ni\ni\n\nint calls;\n\nnclude <stdlib.h>\n\nd fact(int a, int *b)\n\n) return;\nfact(a - 1, b);\nint main(){\n\nint n, *m;\n\nscanf(\"%d\", &n);\nm = malloc(sizeof(int));\n\n+m = 1;\nfact(n, m);\n\nprintf (\"Factorial (%d) is %d\\n\", n, *m);\nfree(m);\n\nProgram\n\nMAX_SIZE\nStack US\n\nthd\n\nHeap\n\nData\n\n(global and static)\n\nbs\n\nText\n(instructions)\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "the process. For instance, all the instructions such as the instructions involved in the function",
+    "start": 136.32,
+    "end": 142.56,
+    "ocr_text": "Process Memory Map\n\nMAX_SIZE\nStack ~\nif (a 1) return;\n. +a;\nfact(a - 1, b); Heap\nt main(){ Data\nint n, *m; (global and static)\nscanf( » &);\nmalloc(sizeof(int))}\nm= 1;\nfact(n, m); Text\npares be out (instructions)\n0\n\nProgram Memory Map of a Process"
+  },
+  {
+    "text": "mean will get mapped into the text section of the process. Similarly, other functions such",
+    "start": 142.56,
+    "end": 151.48,
+    "ocr_text": "Process Memory Map\n\nMAX_SIZE\nStack ~\nif (a 1) return;\n. +a;\nfact(a - 1, b); Heap\nt main(){ Data\nint n, *m; (global and static)\nscanf( » &);\nmalloc(sizeof(int))}\nm= 1;\nfact(n, m); Text\npares be out (instructions)\n0\n\nProgram Memory Map of a Process"
+  },
+  {
+    "text": "as the fact function over here, the instructions involved in this will also get mapped into",
+    "start": 151.56,
+    "end": 155.92,
+    "ocr_text": "Process Memory Map\n\nHeesctms MAX_SIZE\nnt calls Stack _\n' fact(int a, int *b) TV\n' calls++;\n1 if (a == 1) return;\n{sb = *b * a;\n fact(a - 1, b); Heap\n{int main(){ Data\n{int a, *m; (global and static)\n1 scanf(\"d\", &n);\nq alloc(sizeof(int));\n! m=;\n| fact(n, m); Text\nH Gewad ea ate MUS) o Mtb (instructions)\n0\n\nProgram Memory Map of a Process"
+  },
+  {
+    "text": "the text section. Now, the global data and also static data gets mapped into the data section",
+    "start": 155.92,
+    "end": 162.92,
+    "ocr_text": "Process Memory Map\n\ninclude\n‘include\n\nint calls;\n\nvoid fact(int a, int *b)\n{\ncalls++;\nif (a\n*b = *b * a;\nfact(a - 1, b);\n\n1) return;\n\niH\n\nint main(){\nint n, *m;\n\nscanf(\"%sd\", &n);\nmalloc(sizeof(int));\n\nm= 1;\n\nfact(n, m);\nprintf(\"Factorial(%d) is %d\\n\",\nfree(m) ;\n\nProgram\n\nStack\n\ntid\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\nMAX_SIZE\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "of the process. So, this section is actually divided into two parts called as initialized",
+    "start": 164.76,
+    "end": 170.76,
+    "ocr_text": "Process Memory Map\n\ninclude\n‘include\n\nint calls;\n\nvoid fact(int a, int *b)\n{\ncalls++;\nif (a\n*b = *b * a;\nfact(a - 1, b);\n\n1) return;\n\niH\n\nint main(){\nint n, *m;\n\nscanf(\"%sd\", &n);\nmalloc(sizeof(int));\n\nm= 1;\n\nfact(n, m);\nprintf(\"Factorial(%d) is %d\\n\",\nfree(m) ;\n\nProgram\n\nStack\n\ntid\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\nMAX_SIZE\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "and non-initialized sections. Third section is the heap. Now, any dynamically allocated",
+    "start": 170.84,
+    "end": 176.6,
+    "ocr_text": "Process Memory Map\n\nMAX_SIZE\nStack ~\n' 1) return;\nHG +a;\n' fact(a - 1, b); He\ni} ep\n{int main(){ Data\ni int n, *m; (global and static)\n1 scanf(\"d\", &n);\ni malloc(sizeof(int));\nm=;\n| fact(n, m); Text\nfee STE SD ER AO OL (instructions)\n0\n\nProgram Memory Map of a Process"
+  },
+  {
+    "text": "memory such as m which is dynamically allocated using my log gets created in the heap. Now,",
+    "start": 176.6,
+    "end": 183.6,
+    "ocr_text": "i\ni\n\nin\n\nint\n\nProcess Memory Map\n\nnclude <stdlib.h:\nt calls;\nfact(int a, int *b)\ncalls++;\nif (a\n\n*b = *b * a;\nfact(a - 1, b);\n\n1) return;\n\nmain(){\nint n, *m;\n\nscanf(\"%d\", &n);\nmalloc(sizeof (int)) ;\nm=1; &\n\nfact(n, m);\nprintf(\"Factoria\nfree(m);\n\nProgram\n\nMAX_SIZE\nStack US\n\nthd\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "the final section is called the stack which contains all the local variables such as n and",
+    "start": 184.44,
+    "end": 191.44,
+    "ocr_text": "i\ni\n\nin\n\nint\n\nProcess Memory Map\n\nnclude <stdlib.h:\nt calls;\nfact(int a, int *b)\ncalls++;\nif (a\n\n*b = *b * a;\nfact(a - 1, b);\n\n1) return;\n\nmain(){\nint n, *m;\n\nscanf(\"%d\", &n);\nmalloc(sizeof (int)) ;\nm=1; &\n\nfact(n, m);\nprintf(\"Factoria\nfree(m);\n\nProgram\n\nMAX_SIZE\nStack US\n\nthd\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "m and also information about function invocation. For example, in this case, we have a recursive",
+    "start": 194.6,
+    "end": 201.6,
+    "ocr_text": "Process Memory Map\n\n1) return;\n\n* * a;\nfact(a - 1, b);\n\nint main(){\nint n, 40;\n\nscanf(\"%d\", &n);\n\nmalloc (sizeof (int))\nm= 1;\n\nfact(n, m);\nprintf(\"Factoria\nfree(m);\n\nProgram\n\nStack\n\ntid\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\nMAX_SIZE\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "function which is getting invoked. So, all this information is present in the stack.",
+    "start": 201.6,
+    "end": 206.4,
+    "ocr_text": "Process Memory Map\n\nint calls;\n\nvoid fact(int a, int *b)\n\ncalls++;\n\n1) return;\n\n*b = *b * a;\nfact(g - 1, b);\nt main(){\n\n*n;\nscanf(\"sd\", &n);\n\nmalloc(sizeof (int)\nm= 1;\n\nfact(n, m);\nprintf (\"Factoria\nfree(m);\n\nProgram\n\nye\n\nStack\n\ntd\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\nMAX_SIZE\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "Now, the memory map of a process comprising all of the sections has a maximum limit",
+    "start": 206.4,
+    "end": 212.2,
+    "ocr_text": "Process Memory Map\n\nint calls;\n\nvoid fact(int a, int *b)\n\ncalls++;\nif (a == 1) return;\n\n* * a;\nfact(a - 1, b);\n\nt main(){\n\nscanf(\"%d\", &n);\nmalloc(sizeof (int)\nm= 1;\n\nfact(n, m);\nprintf (\"Factoria\nfree(m);\n\nProgram\n\nye\n\nStack\n\ntd\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\nMAX_SIZE\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "calling max size. So, typically at least in processes which are used in typical operating",
+    "start": 212.2,
+    "end": 217.2,
+    "ocr_text": "Process Memory Map\n\nint calls;\n\nvoid fact(int a, int *b)\n\ncalls++;\nif (a == 1) return;\n\n* * a;\nfact(a - 1, b);\n\nt main(){\n\nscanf(\"%d\", &n);\nmalloc(sizeof (int)\nm= 1;\n\nfact(n, m);\nprintf (\"Factoria\nfree(m);\n\nProgram\n\nye\n\nStack\n\ntd\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\nMAX_SIZE\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "systems these days, this max size is going to be fixed by the OS. For instance, in a 32-bit",
+    "start": 217.44,
+    "end": 224.44,
+    "ocr_text": "Process Memory Map\n\n1) return;\n\n* * a;\nfact(a - 1, b);\n\nint main(){\nint n, *m;\n\nscanf(\"%d\", &n);\n\nmalloc (sizeof (int))\nm= 1;\n\nfact(n, m);\nprintf(\"Factoria\nfree(m);\n\nProgram\n\nStack\n\ntid\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\nMAX_SIZE\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "Linux operating system, the max size or every process is fixed at 0xc followed by 7",
+    "start": 224.44,
+    "end": 230.96,
+    "ocr_text": "Process Memory Map\n\n1) return;\n\n* * a;\nfact(a - 1, b);\n\nint main(){\nint n, *m;\n\nscanf(\"%d\", &n);\n\nmalloc (sizeof (int))\nm= 1;\n\nfact(n, m);\nprintf(\"Factoria\nfree(m);\n\nProgram\n\nStack\n\ntid\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\nMAX_SIZE\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "rows. In the xv6 operating system which we are looking at for this course, the max size",
+    "start": 230.96,
+    "end": 237.96,
+    "ocr_text": "stdlil\n\nnt calls;\n\nProcess Memory Map\n\nd fact(int a, int *b)\n\n) return;\n\n*b = *b * a;\nfact(a - 1, b);\n\nmain(){\n\nscanf(\"%d\", &n);\n\nm = malloc(sizeof(int));\n+m = 1;\n\nfact(n, m);\nprintf(\"Factorial(%d) is %d\\n\",\nfree(m);\n\nProgram\n\nMAX_SIZE\nStack —\n0xc0900000\nLinux\n‘ ‘ ‘ x80000000\nin xv6\nHeap\nData\n(global and static)\nText\n(instructions)\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "of a process is fixed at the address 0x8000000. So, what we had seen is that every process",
+    "start": 238.44,
+    "end": 245.44,
+    "ocr_text": "Process Memory Map\n\nnclude <s\nint calls;\n\nd fact(int a, int *b)\n\n) return;\n\n* a;\n- 1, b);\n\nscanf(\"%d\", &n);\n\nm = malloc(sizeof(int));\nm= 1;\n\nfact(n, m);\n\nprintf (\"Fac ) is\nfree(m);\n\nProgram\n\nStack\n\ntd\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\nMAX_SIZE\n\nxe0000000\nin Linux\n\n0x80000000\nin xv6\n\n0\n\nMemory Map of a Process"
+  },
+  {
+    "text": "a program that is a program under execution gets mapped into an area which starts at",
+    "start": 251.52,
+    "end": 256.84,
+    "ocr_text": "Beyond the Programs Memory Map\n\nMAX_SIZE\n* Stack US\n\ntd\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "0 and ends at max size. So, what is present beyond this max size of the process. So,",
+    "start": 256.84,
+    "end": 263.84,
+    "ocr_text": "Beyond the Programs Memory Map\n\nMAX_SIZE\nStack US\n\n[ttt\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "typically the kernel or the operating system gets mapped to the memory region from the",
+    "start": 263.84,
+    "end": 270.84,
+    "ocr_text": "Beyond the Programs Memory Map\n\nMAX_SIZE\nStack US\n\n[ttt\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "max size to the maximum limit. The entire thing like text that is the instructions of the",
+    "start": 270.96,
+    "end": 277.96,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text, data,\ndevice memory)\n\nMAX_SIZE\nStack US\n\ntd\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "operating system, operating system data, the OS heap and also device memory gets mapped",
+    "start": 277.96,
+    "end": 284.96,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text, data,\ndevice memory)\n\nMAX_SIZE\nStack US\n\ntd 4\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "into this upper region of the OS. So, typically any user program could access any part of this",
+    "start": 285.96,
+    "end": 291.96,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text? data,\ndevice memory)\n\nC MAX_SIZE\n© Stack US\n\ntd\n\na\n\n2a\nsch\n\nar\n\nHeap\n\n«ee\n\n=) Data\n(global and static)\n\nSS\n\nrt\n\nText\n(instructions)\n\nSt"
+  },
+  {
+    "text": "lower region that is the green region over here. So, there would not be any problem to actually",
+    "start": 295.2,
+    "end": 300.68,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text, data,\ndevice memory)\n\n‘a MAX_SIZE\nStack US\n\ntd\n\nK\n\nUser Process can access\n\nHeap\n\nKernel can access\n\nXK\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "read data from any of these sections or even write data to parts of these sections.",
+    "start": 300.68,
+    "end": 307.68,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text, data,\ndevice memory)\n\n‘a MAX_SIZE\nStack US\n\ntd\n\nK\n\nUser Process can access\n\nHeap\n\nKernel can access\n\nXK\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "However, the process cannot access any data present in the kernel memory that is beyond",
+    "start": 307.68,
+    "end": 314.2,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text, data,\ndevice memory)\n\n‘a MAX_SIZE\nStack US\n\ntd\n\nA\n\nUser Process can access\n\nHeap\n\nKernel can access\n\nXK\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "the max size limit. However, the kernel or the operating system which is executing from",
+    "start": 314.28,
+    "end": 321.12,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text, data,\ndevice memory)\n\n‘a MAX_SIZE\nStack US\n\ntd\n\nA\n\nUser Process can access\n\nHeap\n\nKernel can access\n\nXK\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "this upper region can access data from any part of the region that is it could execute",
+    "start": 321.12,
+    "end": 326.6,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text, data,\ndevice memory)\n\n‘a MAX_SIZE\nStack US\n\ntd 4\n\nK\n\nUser Process can access\n\nHeap\n\nKernel can access\n\nXK\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "or access data from in this kernel region as well as in the user space region.",
+    "start": 326.6,
+    "end": 333.6,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text, data,\ndevice memory)\n\n‘a MAX_SIZE\nStack US\n\ntd\n\nK\n\nUser Process can access\n\nHeap\n\nKernel can access\n\nXK\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "Now, what happens when we actually have multiple processes running in the same system.",
+    "start": 333.6,
+    "end": 339.6,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text, data,\ndevice memory)\n\n‘a MAX_SIZE\nStack US\n\ntd\n\nK\n\nUser Process can access\n\nHeap\n\nKernel can access\n\nXK\n\nData\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "So, each process would have its own memory map, having its own instructions data heap",
+    "start": 340.08,
+    "end": 346.28,
+    "ocr_text": "Beyond the Programs Memory Map\n\nOxFE000000\n\nKernel\n(text, data,\ndevice memory)\n\n‘a MAX_SIZE\nStack US\n\ntd\n\nK\n\nUser Process can access\n\nHeap\n\nKernel can access\n\nXK\n\n, Data\n\n(global and static)\n\nText\n(instructions)"
+  },
+  {
+    "text": "and stack and also the kernel component is also present beyond the max size. So, what",
+    "start": 346.28,
+    "end": 351.92,
+    "ocr_text": "Beyond the Programs Memory Map\n\n_ OxFE000000 OxFE000000\nKernel Kernel\n(text, data, (text, data,\ndevice memory) device memory)\nQn i -\nMAX_SIZE MAX_SIZE\n3 Stack S Stack S\nOo Qn\ne | 8}y ics TTI\no oO\nrs) Oo\n=< 8\n2) & Heap Heap\n5 is}\n< | Bs Data Data\n8 (global and static) (global and static)\n°\na\n2 Text Text\n2 (instructions) (instructions)\nik 0 0\n\nProcess 1 Process 2"
+  },
+  {
+    "text": "you see is that every process in the system would have the kernel starting at max size",
+    "start": 351.92,
+    "end": 357.64,
+    "ocr_text": "Beyond the Programs Memory Map\n\n_ OxFE000000 OxFE000000\nKernel Kernel\n(text, data, (text, data,\ndevice memory) device memory)\nQn i -\nMAX_SIZE MAX_SIZE\n3 Stack S Stack S\nOo Qn\ne | 8}y ics TTI\no oO\nrs) Oo\n=< 8\n2) & Heap Heap\n5 is}\n< | Bs Data Data\n8 (global and static) (global and static)\n°\na\n2 Text Text\n2 (instructions) (instructions)\nik 0 0\n\nProcess 1 Process 2"
+  },
+  {
+    "text": "and extending beyond. Only the lower parts and this kernel part is going to be same for",
+    "start": 357.64,
+    "end": 363.64,
+    "ocr_text": "Beyond the Programs Memory Map\n\n- OxFE000000 OxFE000000\nKernel Kernel\n(text, data, (text, data,\ndevice memory) device memory)\nn co\n& | MAX_SIZE MAX_SIZE\n3 Stack S Stack S\nOo Qn\ne|8}p ics TTI\no oO\nrs) ce}\n=< ©\n2: & Heap Heap\n5 o\n< | BS Data Data\n8 (global and static) (global and static)\n°\na\n8 Text Text\n2 (instructions) (instructions)\nSS 0 0\n\nProcess 1 Process 2"
+  },
+  {
+    "text": "every process that is executing in the system. Below this max size is going to vary from",
+    "start": 363.64,
+    "end": 369.04,
+    "ocr_text": "Beyond the Programs Memory Map\n\n- OxFE000000 OxFE000000\nKernel Kernel\n(text, data, (text, data,\ndevice memory) device memory)\nn co\n& | MAX_SIZE MAX_SIZE\n3 Stack S Stack S\nOo Qn\ne|8}p ics TTI\no oO\nrs) ce}\n=< ©\n2: & Heap Heap\n5 o\n< | BS Data Data\n8 (global and static) (global and static)\n°\na\n8 Text Text\n2 (instructions) (instructions)\nSS 0 0\n\nProcess 1 Process 2"
+  },
+  {
+    "text": "one process to another. So, what does this mean? So, what it means is that when you execute",
+    "start": 369.12,
+    "end": 376.62,
+    "ocr_text": "K\n\nKernel can access\nUser Process can access\n\nBeyond the Programs Memory Map\n\nXK\n\nKernel\n(text, data,\n\ndevice memory)\n\nStack\n\ntd\n\nHeap\n\nData\n\n(global and static)\n\nText\n\n(instructions)\n\nDS\n\nProcess 1\n\nOxFE000000\n\nMAX_SIZE\n\nKernel\n(text, data,\ndevice memory)\n\nStack\n\ntod\n\nHeap\n\nData\n\n(global and static)\n\nText\n(instructions)\n\nProcess 2\n\nOxFE000000\n\nMAX_SIZE"
+  },
+  {
+    "text": "one process and then execute another process the regions above the max size is going to",
+    "start": 376.62,
+    "end": 383.62,
+    "ocr_text": "Beyond the Programs Memory Map\n\n_ OxFE000000 OxFE000000\nKernel Kernel\n(text, data, (text, data,\ndevice memory) device memory)\nn co\nMAX_SIZE MAX_SIZE\n3 Stack S Stack S\nOo Qn\ne | 8}P rcs TTI\no oO\nrs) Oo\n=< 8\n2; 5 Heap Heap\n5 is}\n< | BS Data Data\n8 (global and static) (global and static)\nie}\na\n8 Text Text\n2 (instructions) (instructions)\n0 0\n\nProcess 1 Process 2"
+  },
+  {
+    "text": "be similar while the regions below the max size is going to change from one process to",
+    "start": 383.62,
+    "end": 389.0,
+    "ocr_text": "Beyond the Programs Memory Map\n\n_ OxFE000000 OxFE000000\nKernel Kernel\n(text, data, (text, data,\ndevice memory) device memory)\nn co\nMAX_SIZE MAX_SIZE\n3 Stack S Stack S\nOo Qn\ne | 8}P rcs TTI\no oO\nrs) Oo\n=< 8\n2; 5 Heap Heap\n5 is}\n< | BS Data Data\n8 (global and static) (global and static)\nie}\na\n8 Text Text\n2 (instructions) (instructions)\n0 0\n\nProcess 1 Process 2"
+  },
+  {
+    "text": "another. So, we mentioned that user programs can will not be able to access any data in",
+    "start": 389.0,
+    "end": 395.12,
+    "ocr_text": "Beyond the Programs Memory Map\n\n_ OxFE000000 OxFE000000\nKernel Kernel\n(text, data, (text, data,\ndevice memory) device memory)\nn co\nMAX_SIZE MAX_SIZE\n3 Stack S Stack S\nOo Qn\ne | 8}y tq TI\noO oO\nrs) Oo\n=< 8\n2; 5 Heap Heap\n5 is}\n< | BS Data Data\n8 (global and static) (global and static)\n°\na\n8 Text Text\n2 (instructions) (instructions)\nkK 0 0\n\nProcess 1 Process 2"
+  },
+  {
+    "text": "the kernel space. So, in that case how does the user program actually invoke the operating",
+    "start": 395.16,
+    "end": 399.76,
+    "ocr_text": "Beyond the Programs Memory Map\n\n_ OxFE000000 OxFE000000\nKernel Kernel\n(text, data, (text, data,\ndevice memory) device memory)\na Poa\nMAX_SIZE MAX_SIZE\n3 Stack S Stack S\noO no\n©} 8); rs Tid\no oO\nrs) oO\n=< ©\n2) & Heap Heap\nOo oO\n< | BN Data Data\n8 (global and static) (global and static)\nfo}\na\n3 Text Text\n2 (instructions) (instructions)\nSs 0 0\n\nProcess 1 Process 2"
+  },
+  {
+    "text": "system? So, there are special invocation functions which the operating system support.",
+    "start": 399.76,
+    "end": 406.6,
+    "ocr_text": "Beyond the Programs Memory Map\n\n_ OxFE000000 OxFE000000\nKernel Kernel\n(text, data, (text, data,\ndevice memory) device memory)\na Poa\nMAX_SIZE MAX_SIZE\n3 Stack S Stack S\noO no\n©} 8); rs Tid\no oO\nrs) oO\n=< ©\n2) & Heap Heap\nOo oO\n< | BN Data Data\n8 (global and static) (global and static)\nfo}\na\n3 Text Text\n2 (instructions) (instructions)\nSs 0 0\n\nProcess 1 Process 2"
+  },
+  {
+    "text": "These are known as system calls. So, a system calls are a set of functions which the OS",
+    "start": 406.6,
+    "end": 411.6,
+    "ocr_text": "Communicating with the OS\n(System Calls)\n\n* System call invokes a function in\nthe kernel using a Trap\n\n* This causes\n\n— Processor to shift from user mode Kernel\nto privileged mode ~\n\n* Oncompletion of the system yozen Calls\ncall, execution gets transferred\nback to the user process\n\nUser Process"
+  },
+  {
+    "text": "support and a user process could invoke any of the system calls to get information or",
+    "start": 411.6,
+    "end": 417.8,
+    "ocr_text": "Communicating with the OS\n(System Calls)\n\n* System call invokes a function in\nthe kernel using a Trap\n\n* This causes\n\n— Processor to shift from user mode Kernel\nto privileged mode ~\n\n* Oncompletion of the system yozen Calls\ncall, execution gets transferred\nback to the user process\n\nUser Process"
+  },
+  {
+    "text": "to access hardware or other resources within the kernel. So, what happens when a system",
+    "start": 417.8,
+    "end": 424.56,
+    "ocr_text": "Communicating with the OS\n(System Calls)\n\n* System call invokes a function in\nthe kernel using a Trap\n\n* This causes\n\n— Processor to shift from user mode Kernel\nto privileged mode\n\n* Oncompletion of the system yozen Calls\ncall, execution gets transferred\nback to the user process\n\nUser Process"
+  },
+  {
+    "text": "call is invoked is that a process which is generally running in a user mode gets shifted",
+    "start": 424.6,
+    "end": 430.6,
+    "ocr_text": "Communicating with the OS\n(System Calls)\n\n* System call invokes a function in\nthe kernel using a Trap\n\n* This causes\n\n— Processor to shift from user mode Kernel\nto privileged mode\n\n* Oncompletion of the system yozen Calls\ncall, execution gets transferred\nback to the user process\n\nUser Process"
+  },
+  {
+    "text": "to something known as a kernel mode or a privilege mode which will allow the kernel or",
+    "start": 430.6,
+    "end": 435.52,
+    "ocr_text": "Communicating with the OS\n(System Calls)\n\n* System call invokes a function in\nthe kernel using a Trap\n\n* This causes\n\n— Processor to shift from user mode Kernel\nto privileged mode\n\n* Oncompletion of the system [een Calls\ncall, execution gets transferred\nback to the user process\n\nUser Process"
+  },
+  {
+    "text": "the operating system to actually execute. When the system calls completes execution then",
+    "start": 435.52,
+    "end": 440.76,
+    "ocr_text": "Communicating with the OS\n(System Calls)\n\n* System call invokes a function in\nthe kernel using a Trap\n\n* This causes\n\n— Processor to shift from user mode Kernel\nto privileged mode\n\n* Oncompletion of the system yozen Calls\ncall, execution gets transferred\nback to the user process\n\nUser Process"
+  },
+  {
+    "text": "the user process will resume its execution from where it actually stopped.",
+    "start": 440.76,
+    "end": 445.24,
+    "ocr_text": "Communicating with the OS\n(System Calls)\n\n* System call invokes a function in\nthe kernel using a Trap\n\n* This causes\n\n— Processor to shift from user mode Kernel\nto privileged mode\n\n* Oncompletion of the system yozen Calls\ncall, execution gets transferred\nback to the user process\n\nUser Process"
+  },
+  {
+    "text": "So, let us take an example of the printf statement. So, printf in fact is a library call.",
+    "start": 445.24,
+    "end": 452.24,
+    "ocr_text": "Example (write system call)\n\nprintf (\" s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nJ trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "So, it is present in this libc and it results in particular function in the user space known",
+    "start": 452.64,
+    "end": 459.24,
+    "ocr_text": "Example (write system call)\n\nprintf (\" s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nJ trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "as write to be invoked and this function would then invoke a system call call write with",
+    "start": 459.84,
+    "end": 466.32,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace =| Wi\n] trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "a parameter called STD out. So, STD out is a special parameter which essentially tells the",
+    "start": 466.32,
+    "end": 473.32,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nJ trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "operating system that the string provided by printf should be displayed on to the standard",
+    "start": 473.6,
+    "end": 480.6,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nJ trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "output that is the screen. So, the write is a system call which causes a trap to be triggered",
+    "start": 480.92,
+    "end": 487.92,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nJ trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "and this trap will result in something known as a trap handler in the kernel space to be",
+    "start": 487.92,
+    "end": 493.24,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nJ trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "executed and the trap handler would then invoke a function which will correspond to the",
+    "start": 493.24,
+    "end": 500.24,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nJ trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "write system call. So, this write system call will then be responsible for actually printing",
+    "start": 500.24,
+    "end": 506.24,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\n] trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "the string provided by STR onto the screen. After the write system call completes then",
+    "start": 506.32,
+    "end": 513.32,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nJ trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "the execution is transferred back to the user space and the process continues to execute.",
+    "start": 513.32,
+    "end": 520.32,
+    "ocr_text": "Example (write system call)\n\nprintf(\"%s\", str);\n\nlibc invocation\n\nUser\nwrite(STDOUT)\n\nspace\nJ trap\n\nTrap Handler\n\nKernel\nspace\n\nImplementation\nof\nwrite syscall"
+  },
+  {
+    "text": "What is the difference between a system call versus a standard function call or procedure",
+    "start": 520.4,
+    "end": 525.4,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "call. So, for one important difference is that when we want to invoke a function in",
+    "start": 525.4,
+    "end": 530.4,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "a program or in a process we use an instruction such as a call instruction. This is a standard",
+    "start": 530.4,
+    "end": 536.0,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "x86 assembly instruction and this will result in the function getting called and after that",
+    "start": 536.08,
+    "end": 543.08,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "function gets invoked it returns back to the calling function.",
+    "start": 543.24,
+    "end": 548.72,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "In order to invoke a system call however we use a trap instruction such as the int 0 x",
+    "start": 548.72,
+    "end": 554.2,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "8 0. So, int here stands for interrupt or software interrupt and it results in the system",
+    "start": 554.2,
+    "end": 561.2,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "shifting from the user space or the user space mode of operation to the kernel space.",
+    "start": 561.92,
+    "end": 568.92,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "So, the trap instruction causes the kernel to be invoked and it causes instructions in",
+    "start": 568.92,
+    "end": 575.92,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int.0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "the kernel to then be executed. However, when we use the standard function call or the",
+    "start": 576.88,
+    "end": 581.8,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "procedure call using the call instruction there is no change or shift from user space",
+    "start": 581.8,
+    "end": 587.6,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "to kernel space and so on. So, the execution continues to remain in the user space as it",
+    "start": 587.64,
+    "end": 593.36,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift ~\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "was before. Another very subtle difference between the system call and a standard procedure",
+    "start": 593.36,
+    "end": 598.64,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift ~\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "call or a function call is that the destination address or the destination function which is",
+    "start": 598.64,
+    "end": 605.32,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "invoked can be at a relocatable address. So, it could change every time the program is",
+    "start": 605.32,
+    "end": 611.48,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "compiled and so on. However, with the system call when a trap instruction is used the hardware",
+    "start": 611.48,
+    "end": 617.48,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "actually or the processor actually decides where the next instruction in the kernel space",
+    "start": 617.64,
+    "end": 622.84,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "should get invoked. So, this is going to be fixed irrespective of what program is running,",
+    "start": 622.84,
+    "end": 628.08,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "what operating system is running and so on. So, one crucial aspect when actually designing",
+    "start": 628.08,
+    "end": 634.08,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "operating systems is what system call should the operating system supports. We had seen",
+    "start": 634.24,
+    "end": 641.24,
+    "ocr_text": "System Call vs Procedure Call\n\nSystem Call\n\nProcedure Call\n\nUses a TRAP instruction\n(such as int 0x80)\n\nUses a CALL instruction\n\nSystem shifts from user\nspace to kernel space\n\nStays in user space ... no\nshift\n\nTRAP always jumps to a\nfixed addess (depending on\nthe architecture)\n\nRe-locatable address"
+  },
+  {
+    "text": "that the only way a user process could invoke a particular functionality in the operating",
+    "start": 641.56,
+    "end": 648.56,
+    "ocr_text": "System Call Interfaces\n\n* System calls provide users with interfaces into the OS.\n\n« What set of system calls should an OS support?\n— Offer sophisticated features\n— But yet be simple and abstract whatever is necessary\n\n— General design goal : rely on a few mechanisms that can be\ncombined to provide generality\n\nUser's User's\nProcess Process\n\n\\__ System Call Interface"
+  },
+  {
+    "text": "system is through the system call interface. So, the question now comes that if a person",
+    "start": 648.56,
+    "end": 653.4,
+    "ocr_text": "System Call Interfaces\n\n* System calls provide users with interfaces into the OS.\n\n« What set of system calls should an OS support?\n— Offer sophisticated features\n— But yet be simple and abstract whatever is necessary\n\n— General design goal : rely on a few mechanisms that can be\ncombined to provide generality\n\nUser's User's\nProcess Process\n\n\\_ System Call Interface"
+  },
+  {
+    "text": "is actually designing an operating system. So, what are the interface that the system",
+    "start": 653.4,
+    "end": 658.0,
+    "ocr_text": "System Call Interfaces\n\n* System calls provide users with interfaces into the OS.\n\n« What set of system calls should an OS support?\n— Offer sophisticated features\n— But yet be simple and abstract whatever is necessary\n\n— General design goal : rely on a few mechanisms that can be\ncombined to provide generality\n\nUser's User's\nProcess Process\n\n\\_ System Call Interface"
+  },
+  {
+    "text": "call should support there. So, one obvious requirement is that the system call interface",
+    "start": 658.0,
+    "end": 663.48,
+    "ocr_text": "System Call Interfaces\n\n* System calls provide users with interfaces into the OS.\n\n« What set of system calls should an OS support?\n— Offer sophisticated features\n— But yet be simple and abstract whatever is necessary\n\n— General design goal : rely on a few mechanisms that can be\ncombined to provide generality\n\nUser's User's\nProcess Process\n\n\\__ System Call Interface\nv"
+  },
+  {
+    "text": "should have several substicated features. So, that a user process could actually very",
+    "start": 663.48,
+    "end": 668.52,
+    "ocr_text": "System Call Interfaces\n\n* System calls provide users with interfaces into the OS.\n\n« What set of system calls should an OS support?\n— Offer sophisticated features\n— But yet be simple and abstract whatever is necessary\n\n— General design goal : rely on a few mechanisms that can be\ncombined to provide generality\n\nUser's User's\nProcess Process\n\n\\__ System Call Interface\nv"
+  },
+  {
+    "text": "easily be able to interface or invoke several important functionality in the operating",
+    "start": 668.52,
+    "end": 674.56,
+    "ocr_text": "System Call Interfaces\n\n* System calls provide users with interfaces into the OS.\n\n« What set of system calls should an OS support?\n— Offer sophisticated features\n— But yet be simple and abstract whatever is necessary\n\n— General design goal : rely on a few mechanisms that can be\ncombined to provide generality\n\nUser's User's\nProcess Process\n\n\\__ System Call Interface"
+  },
+  {
+    "text": "system. However, a different approach is to have a very simple system call interface",
+    "start": 674.56,
+    "end": 680.2,
+    "ocr_text": "System Call Interfaces\n\n* System calls provide users with interfaces into the OS.\n\n« What set of system calls should an OS support?\n— Offer sophisticated features\n— But yet be simple and abstract whatever is necessary\n\n— General design goal : rely on a few mechanisms that can be\ncombined to provide generality\n\nUser's User's\nProcess Process\n\n\\__ System Call Interface"
+  },
+  {
+    "text": "and abstract whatever is necessary from the operating system. So, we will see in the",
+    "start": 680.2,
+    "end": 685.68,
+    "ocr_text": "System Call Interfaces\n\n* System calls provide users with interfaces into the OS.\n\n« What set of system calls should an OS support?\n— Offer sophisticated features\n— But yet be simple and abstract whatever is necessary\n\n— General design goal : rely on a few mechanisms that can be\ncombined to provide generality\n\nUser's User's\nProcess Process\n\n\\__ System Call Interface"
+  },
+  {
+    "text": "next slide a particular example in this. Let us take an example of system calls that",
+    "start": 685.68,
+    "end": 692.68,
+    "ocr_text": "File System Calls\n(How to design?)\n\n. Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "and OS supports for accessing files. So, as we know files are data which is persistent",
+    "start": 692.92,
+    "end": 699.92,
+    "ocr_text": "File System Calls\n(How to design?)\n\n. Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "across reboots. So, these are data which is stored in the hard disk and could be read",
+    "start": 700.64,
+    "end": 705.64,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "written or accessed using functions such as F open, close, read write and so on.",
+    "start": 706.76,
+    "end": 713.76,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "Every time we do an file open it would require that the hard disk be accessed. So, a process",
+    "start": 714.92,
+    "end": 721.44,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "would need to invoke a system call into the kernel and the kernel should actually take",
+    "start": 722.0,
+    "end": 725.52,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc. .\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "care of accessing the hard disk or hard disk buffers or any other storage medium to open",
+    "start": 725.52,
+    "end": 731.0,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "the file and return back a pointer to the process.",
+    "start": 731.0,
+    "end": 734.64,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "Now the question comes is how does an operating system designer decide what system calls should",
+    "start": 734.64,
+    "end": 741.64,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "be provided or supported in order to access files. So, some of the obvious things are like",
+    "start": 741.64,
+    "end": 746.64,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media.\n\nb&b"
+  },
+  {
+    "text": "there should be system calls to open a file read or write to a file there should be system",
+    "start": 746.96,
+    "end": 751.96,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "calls to actually modify the creation date set permissions and so on. The operating system",
+    "start": 751.96,
+    "end": 758.44,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "could also support more complicated or more sophisticated operations such as being",
+    "start": 758.44,
+    "end": 763.44,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "able to seek into a particular offset within a file be able to link between files and so",
+    "start": 763.44,
+    "end": 770.44,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "on. So, these are the essential requirements that a system call for handling files should",
+    "start": 770.44,
+    "end": 776.44,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "support. On the other hand operating system should be able to hide some details about",
+    "start": 776.8,
+    "end": 781.64,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n— Open a file, read/write file, creation date,\n\nrae Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "the file for instance details which should not be supported by system calls is like things",
+    "start": 781.64,
+    "end": 788.14,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n— Open a file, read/write file, creation date,\n\nrae Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media."
+  },
+  {
+    "text": "such as like details about the storage media where the file is stored for instance whether",
+    "start": 788.14,
+    "end": 793.32,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations*in the storage media."
+  },
+  {
+    "text": "the file is stored on a USB drive or a hard disk or a CD ROM. This is actually abstracted",
+    "start": 793.32,
+    "end": 798.96,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations*in the storage media."
+  },
+  {
+    "text": "out by the operating system and the user process would not be easily able to know where",
+    "start": 798.96,
+    "end": 805.96,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\nfile, linking, etc. System Calls\n+ What should the file system calls hide?\n— Details about the storage media. im\n— Exact locations in the storage media."
+  },
+  {
+    "text": "the file is stored. Another aspect which is abstracted out by the operating system is the",
+    "start": 806.44,
+    "end": 812.44,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\n\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\n\nfile, linking, etc. System Calls\n\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media.\nR"
+  },
+  {
+    "text": "exact locations in the storage media. We will now look at how a typical operating system",
+    "start": 812.44,
+    "end": 818.96,
+    "ocr_text": "File System Calls\n(How to design?)\n\n¢ Files: data persistent across reboots\n+ What should the file system calls expose?\n\n— Open a file, read/write file, creation date, Process\n\npermissions, etc.\n— Permission for multiple access to files\n— More sophisticated options like seeking into a file\n\nfile, linking, etc. System Calls\n\n+ What should the file system calls hide?\n— Details about the storage media.\n— Exact locations in the storage media.\nR"
+  },
+  {
+    "text": "structure looks like. So, the operating system suppose we consider this as this big green",
+    "start": 818.96,
+    "end": 824.56,
+    "ocr_text": "What goes into an OS?\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication"
+  },
+  {
+    "text": "block have several modules built internally. For example, it would have a memory management",
+    "start": 824.56,
+    "end": 829.24,
+    "ocr_text": "What goes into an OS?\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication"
+  },
+  {
+    "text": "module which manages all the memory in the system. It would have a CPU scheduling block",
+    "start": 829.32,
+    "end": 836.32,
+    "ocr_text": "What goes into an OS?\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication"
+  },
+  {
+    "text": "there is also the file system management module which will control how the file system such",
+    "start": 836.32,
+    "end": 842.6,
+    "ocr_text": "What goes into an OS?\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication"
+  },
+  {
+    "text": "as the those present in hard disk or CD ROMs are managed. So, you have a networking stack",
+    "start": 842.6,
+    "end": 849.6,
+    "ocr_text": "What goes into an OS?\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication"
+  },
+  {
+    "text": "which manages the TCP IP network and you have something known as the inter process communication",
+    "start": 849.6,
+    "end": 855.12,
+    "ocr_text": "What goes into an OS?\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication"
+  },
+  {
+    "text": "module which would take care of processes communicating with each other. So, two important",
+    "start": 855.2,
+    "end": 860.7,
+    "ocr_text": "What goes into an OS?\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication"
+  },
+  {
+    "text": "things which have not been mentioned as yet is the system call interface which allows",
+    "start": 860.7,
+    "end": 866.7,
+    "ocr_text": "What goes into an OS?\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication"
+  },
+  {
+    "text": "user processes to actually access features or functionalities within each of these modules.",
+    "start": 866.7,
+    "end": 873.2,
+    "ocr_text": "What goes into an OS?\n\nSystem Call Interface\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication\n\nDevice Drivers"
+  },
+  {
+    "text": "Another aspect is the device drivers which would take care of communicating with the hardware",
+    "start": 873.3,
+    "end": 879.3,
+    "ocr_text": "What goes into an OS?\n\nSystem Call Interface\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication\n\nDevice Drivers"
+  },
+  {
+    "text": "devices and other resources hardware resources within the system. So, this essentially is",
+    "start": 879.3,
+    "end": 886.3,
+    "ocr_text": "What goes into an OS?\n\nSystem Call Interface\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication\n\nDevice Drivers"
+  },
+  {
+    "text": "all the different modules that an operating system supports. So, in a monolithic structure",
+    "start": 887.34,
+    "end": 894.34,
+    "ocr_text": "What goes into an OS?\n\nSystem Call Interface\n\nMemory CPU File System\nManagement Scheduling Management\nNetworking Inter Process\n\nStack Communication\n\n; ‘ S\nDevice Drivers"
+  },
+  {
+    "text": "of an operating system all these various modules in the OS are present in a single addressable",
+    "start": 895.06,
+    "end": 901.54,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll interface\nMemory cPU File System\nManagement Scheduling — Management\n\nNetworking Inter Process\nStack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "kernel space. So, what this means is that this is just one large chunk of code and all",
+    "start": 901.54,
+    "end": 906.78,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll interface\nMemory cPU File System\nManagement Scheduling — Management\n\nNetworking Inter Process\nStack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "of them are you could think of as one large program where all these modules are present",
+    "start": 906.86,
+    "end": 913.46,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll interface\nMemory cPU File System\nManagement Scheduling — Management\n\nNetworking Inter Process\nStack Communicatica\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "in. So, therefore, calling any function from the memory management to say the networking",
+    "start": 913.46,
+    "end": 918.66,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll interface\nMemory cPU File System\nManagement Scheduling — Management\n\nNetworking Inter Process\nStack Communicatica\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "stack would just mean a simple function call. Similarly, from the networking stack to the",
+    "start": 918.66,
+    "end": 924.66,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll Interface\nMemory CPU File System\nManagement Scheduling Management\n\nHeke Inter Process\n‘Stack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "device driver would be another function call. So, this would be is essentially the advantage",
+    "start": 924.66,
+    "end": 931.66,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll Interface\nMemory CPU File System\nManagement Scheduling Management\n\nHeke Inter Process\n‘Stack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "of having such a monolithic structure is that you could there is a direct communication",
+    "start": 931.66,
+    "end": 935.34,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll interface\nMemory cPU File System\nManagement Scheduling © Management\n\nNetworking Inter Process\nStack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "between one module and another. On the other hand the kernel space becomes very large. So,",
+    "start": 935.38,
+    "end": 942.38,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll interface\nMemory cPU File System\nManagement Scheduling — Management\n\nNetworking Inter Process\nStack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "and therefore, difficult to maintain and is likely to have more bugs. So, typical operating",
+    "start": 942.38,
+    "end": 949.38,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll interface\nMemory cPU File System\nManagement Scheduling — Management\n\nNetworking Inter Process\nStack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "systems such as Linux and XV6 and MS does uses a monolithic structure. So, to take an",
+    "start": 949.66,
+    "end": 956.66,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll Interface\nMemory cPU File System\nManagement Scheduling — Management\n\nNetworking Inter Process\nStack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "example the Linux operating system all the Linux kernel has around 10 million lines of",
+    "start": 957.46,
+    "end": 964.06,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll interface\nMemory cPU File System\nManagement Scheduling — Management\n\nNetworking Inter Process\nStack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "code. So, all the 10 million lines of code comprises of the entire kernel Linux kernel",
+    "start": 964.14,
+    "end": 970.3,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll interface\nMemory cPU File System\nManagement Scheduling — Management\n\nNetworking Inter Process\nStack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "which is actually present in this area. Another common structure of the operating system is",
+    "start": 970.3,
+    "end": 976.3,
+    "ocr_text": "OS Structure :\nMonolithic Structure\n\nUser Space Processes\n\nSystem Calll interface\nMemory cPU File System\nManagement Scheduling — Management\n\nNetworking Inter Process\nStack Communication\n\nKernel space\n\nDeice Drivers\n\nLinux, MS-DOS, xv6\n\nAll components of OS in kernel space\n\nCons : Large size, difficult to maintain, likely to have more bugs,\ndifficult to verify\n\nPros : direct communication between modules in the kernel by\nprocedure calls"
+  },
+  {
+    "text": "known as the micro kernel structure where the kernel is actually highly modular and every",
+    "start": 976.3,
+    "end": 982.82,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\n= F\n21g slg 2] 5 — Interactions between\n2s 8 e : g 2 components strictly through\nfe Fa|ad| o well defined interfaces (no\n= backdoors)\n8 ee\nHf Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\ncj scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "component in the kernel has its own addressable space. So, it is like having each of these",
+    "start": 982.82,
+    "end": 988.46,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\n= F\n21g slg 2] 5 — Interactions between\n2s 8 e : g 2 components strictly through\nfe Fa|ad| o well defined interfaces (no\n= backdoors)\n8 ee\nHf Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\ncj scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "as independent processes and you have a very small micro kernel which actually runs in",
+    "start": 988.54,
+    "end": 995.54,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\nc 5\n218 alg 2] 5 — Interactions between\n23/8 el3 8 2 components strictly through\nfe Fa|ad| o well defined interfaces (no\n= backdoors)\n8 ee\nEt Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\n$s scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "the in the kernel space which is in charge of managing communication between each of",
+    "start": 995.54,
+    "end": 1001.3,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\nL space.\ni ;\n21g slg 2] 5 — Interactions between\n258 e 2 2 % components strictly through\ni olo @ ez! & \" F\nrela 2/00 well defined interfaces (no\n= backdoors)\n2 a\nEt Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\ncj scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "these processes and also communication between user process and the operating system processes.",
+    "start": 1001.3,
+    "end": 1008.3,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\nL space.\ni ;\n21g slg 2] 5 — Interactions between\n258 e 2 2 % components strictly through\ni olo @ ez! & \" F\nrela 2/00 well defined interfaces (no\n= backdoors)\n2 a\nEt Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\ncj scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "So, the advantage here is that this micro kernel is extremely small. So, ideally it is",
+    "start": 1011.3,
+    "end": 1016.3,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\nc .\n21g see] 5 — Interactions between\n238 e 3 g| & components strictly through\n= Fa|ad| o well defined interfaces (no\n= backdoors)\n8 reat\nEt Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\n$s scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "small enough to actually fit into the L1 cache of the system itself. So, typically it would",
+    "start": 1016.42,
+    "end": 1022.42,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\nc 5\n21g slg 2] 5 — Interactions between\n265 8 e > g 2 components strictly through\n_ e Fa|ad| o well defined interfaces (no\n= backdoors)\n8 (oar\nEt Microkernel * Kernel has basic inter process\n3 (interprogess communication, communication and scheduling\n$s scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "be quite fast. However, the drawback is that you now cannot have direct calls from say",
+    "start": 1022.42,
+    "end": 1028.82,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\nc 5\n21g slg 2] 5 — Interactions between\n265 8 e > g 2 components strictly through\n_ e Fa|ad| o well defined interfaces (no\n= backdoors)\n8 (oar\nEt Microkernel * Kernel has basic inter process\n3 (interprogess communication, communication and scheduling\n$s scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "the file management to a device driver or rather like unlike the monolithic kernel where you",
+    "start": 1028.82,
+    "end": 1033.82,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\n= .\n21g slg 2] 5 — Interactions between\n265 8 e > g 2 components strictly through\n* fe FaAad| & well defined interfaces (no\n= backdoors)\n8 reat\nEt Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\n$s scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "could make direct function invocation from a file management module to a device driver function.",
+    "start": 1033.82,
+    "end": 1040.82,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\n= .\n21g slg 2] 5 — Interactions between\n265 8 e > g 2 components strictly through\n* fe FaAad| & well defined interfaces (no\n= backdoors)\n8 reat\nEt Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\n$s scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "Here every invocation of that form should be through a communication channel known as",
+    "start": 1040.82,
+    "end": 1045.14,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\nc 5\n21g slg 2] 5 — Interactions between\n238 e S33 components strictly through\nEs e EB)AS| well defined interfaces (no\n=| backdoors)\n8 heart\nEt Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\n$s scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "an IPC or inter process communication channel. With this we would actually end today's lecture",
+    "start": 1045.14,
+    "end": 1052.14,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\nc 5\n21g slg 2] 5 — Interactions between\n238 e S33 components strictly through\nEs e EB)AS| well defined interfaces (no\n=| backdoors)\n8 heart\nEt Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\n$s scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  },
+  {
+    "text": "and from the next lecture we will actually look more about CPU sharing. Thank you.",
+    "start": 1052.78,
+    "end": 1059.78,
+    "ocr_text": "OS Structure : Microkernel\n\n* Highly modular.\nUser Space Processes .\n— Every component has its own\n~ space.\nc 5\n21g slg 2] 5 — Interactions between\n238 e S33 components strictly through\nEs e EB)AS| well defined interfaces (no\n=| backdoors)\n8 heart\nEt Microkernel * Kernel has basic inter process\n3 (interprocess communication, communication and scheduling\n$s scheduling)\n\n— Everything else in user space.\n\n— Ideally kernel is so small that it\nEg. QNX and L4 fits in the first level cache"
+  }
+]

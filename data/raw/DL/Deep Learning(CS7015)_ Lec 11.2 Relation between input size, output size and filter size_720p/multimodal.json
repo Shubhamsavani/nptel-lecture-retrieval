@@ -1,0 +1,770 @@
+[
+  {
+    "text": "So, now we will go to the next module where we will try to learn the relationship between",
+    "start": 0.0,
+    "end": 18.84,
+    "ocr_text": "NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "the input size, the output size and the filter size. So, so far we have not said anything",
+    "start": 18.84,
+    "end": 24.04,
+    "ocr_text": "Relation between input size, output size\n\nand filter size"
+  },
+  {
+    "text": "about the dimensions of the input. I have just been very vague that it is m cross n and",
+    "start": 24.04,
+    "end": 27.8,
+    "ocr_text": "Relation between input size, output size\n\nand filter size"
+  },
+  {
+    "text": "also for the filter I have just said 3 cross 3, 5 cross y and so on. And in fact, I am",
+    "start": 27.8,
+    "end": 32.52,
+    "ocr_text": "e@ So far we have not said anything explicit about the dimensions of the\n@ inputs\n@ filters\n@ outputs"
+  },
+  {
+    "text": "not even told you what the dimensions of the outputs are except that we got some intuition",
+    "start": 32.52,
+    "end": 36.84,
+    "ocr_text": "e@ So far we have not said anything explicit about the dimensions of the\n@ inputs\n@ filters\n@ outputs"
+  },
+  {
+    "text": "that it seems that the output dimension is smaller than the input dimension. So, let us",
+    "start": 36.84,
+    "end": 41.48,
+    "ocr_text": "e So far we have not said anything explicit about the dimensions of the\n@ inputs\n@ filters\n@ outputs\n\nand the relations between them"
+  },
+  {
+    "text": "look at these in more detail and see what do these different outputs look like. Why do",
+    "start": 41.48,
+    "end": 46.32,
+    "ocr_text": "e So far we have not said anything explicit about the dimensions of the\n@ inputs\n@ filters\n@ outputs\n\nand the relations between them"
+  },
+  {
+    "text": "I care about these things, what do the inputs and the output sizes look like because these",
+    "start": 46.32,
+    "end": 50.36,
+    "ocr_text": "e@ So far we have not said anything explicit about the dimensions of the\n\n@ inputs\n@ filters\n@ outputs\n\nand the relations between them\n\ne We will see how they are related but before that we will define a few quantities"
+  },
+  {
+    "text": "are your matrices that you will be dealing with. This tell you, these tell you how many",
+    "start": 50.36,
+    "end": 53.8,
+    "ocr_text": "e@ So far we have not said anything explicit about the dimensions of the\n\n@ inputs\n@ filters\n@ outputs\n\nand the relations between them\n\ne We will see how they are related but before that we will define a few quantities"
+  },
+  {
+    "text": "parameters you are going to have, these tell you what is the size of the memory that",
+    "start": 53.8,
+    "end": 57.6,
+    "ocr_text": "e@ So far we have not said anything explicit about the dimensions of the\n\n@ inputs\n@ filters\n@ outputs\n\nand the relations between them\n\ne We will see how they are related but before that we will define a few quantities"
+  },
+  {
+    "text": "you need to load this entire network into your memory. So, that is why this computation",
+    "start": 57.6,
+    "end": 62.36,
+    "ocr_text": "@ So far we have not said anything explicit about the dimensions of the\n\n@ inputs\n@ filters\n@ outputs\n\nand the relations between them\n\ne@ We will see how they are related but before that we will define a few quantities"
+  },
+  {
+    "text": "is very, very important and I will have some more things to say about it towards the end",
+    "start": 62.36,
+    "end": 65.92,
+    "ocr_text": "@ So far we have not said anything explicit about the dimensions of the\n\n@ inputs\n@ filters\n@ outputs\n\nand the relations between them\n\ne@ We will see how they are related but before that we will define a few quantities"
+  },
+  {
+    "text": "of this lecture or some lecture. So, if you first define the following quantities.",
+    "start": 65.92,
+    "end": 72.16,
+    "ocr_text": "e We first define the following quanti-\nties\n\nKhapra ©S7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "So, we have the input which has a width w 1, height h 1 and depth d 1. So, if you are looking",
+    "start": 72.16,
+    "end": 79.36,
+    "ocr_text": "e We first define the following quanti-\nties\n\nKhapra ©S7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "at the original image then the depth is going to be 3 in most cases. It is going to be",
+    "start": 79.36,
+    "end": 83.68,
+    "ocr_text": "e We first define the following quanti-\nties\n\ne Width (W,), Height (H,) and Depth\n(D,) of the original input\n\nMitesh M. Khapra 7015 (Deep Learn ecture 11"
+  },
+  {
+    "text": "r g b. There is something one of the stride s, I will come back to it later on, but",
+    "start": 83.68,
+    "end": 89.32,
+    "ocr_text": "e We first define the following quanti-\nties\n\ne Width (W,), Height (H,) and Depth\n(D,) of the original input\n\nMitesh M. Khapra 7015 (Deep Learn ecture 11"
+  },
+  {
+    "text": "I am just defining it here or others just introducing it here. And then you have number of",
+    "start": 89.32,
+    "end": 94.54,
+    "ocr_text": "e We first define the following quanti-\nties\n\ne Width (W)), Height (H,) and Depth\n(D,) of the original input\n\ne The Stride S (We will come back to\nthis later)\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "filters. So, I said that every filter that you apply, you are going to get one feature",
+    "start": 94.54,
+    "end": 98.88,
+    "ocr_text": "e We first define the following quanti-\nties\n\ne Width (W)), Height (H,) and Depth\n(D,) of the original input\n\ne The Stride S (We will come back to\nthis later)\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "map which is 2 dimensional. If you have k such filters, you will get k feature maps, each",
+    "start": 98.88,
+    "end": 103.64,
+    "ocr_text": "e We first define the following quanti-\nties\n\nWidth (Wj), Height (H;) and Depth\n(D,) of the original input\n\nThe Stride S (We will come back to\nthis later)\n\ne The number of filters A’\n\nMitesh M. Khapra 5 (D 16a ) : Lecture 11"
+  },
+  {
+    "text": "of them is 2 d. So, you will have something one as number of filters k and then you will",
+    "start": 103.64,
+    "end": 108.6,
+    "ocr_text": "e We first define the following quanti-\nties\n\nWidth (Wj), Height (H;) and Depth\n(D,) of the original input\n\nThe Stride S (We will come back to\nthis later)\n\ne The number of filters A’\n\nMitesh M. Khapra 5 (D 16a ) : Lecture 11"
+  },
+  {
+    "text": "have something another special extent of these filters. So, that is the number 3 cross",
+    "start": 108.6,
+    "end": 113.24,
+    "ocr_text": "e We first define the following quanti-\nties\n\ne Width (W,), Height (H,) and Depth\n(D,) of the original input\n\ne@ The Stride S (We will come back to\nthis later)\n\ne The number of filters\n\nin e The spatial extent (#°) of each filter\n\n(the depth of each filter is same as\nthe depth of cach input)\n\nMitesh M. Khapra éE 5 (Deep Learn Leeture 11"
+  },
+  {
+    "text": "3, 5 cross 5 which I have been saying. So, that is known as a special extent and I am",
+    "start": 113.24,
+    "end": 117.56,
+    "ocr_text": "e We first define the following quanti-\nties\n\ne Width (W,), Height (H,) and Depth\n(D,) of the original input\n\ne@ The Stride S (We will come back to\nthis later)\n\ne The number of filters\n\nin e The spatial extent (#°) of each filter\n\n(the depth of each filter is same as\nthe depth of cach input)\n\nMitesh M. Khapra éE 5 (Deep Learn Leeture 11"
+  },
+  {
+    "text": "going to refer to it as f. And you are going to always assume square filters. So, it is",
+    "start": 117.56,
+    "end": 122.52,
+    "ocr_text": "e We first define the following quanti-\nties\n\ne Width (W)), Height (H,) and Depth\n(D,) of the original input\n\ne The Stride S (We will come back to\nthis later)\n\ne The number of filters\n\n- e The spatial extent (#’) of each filter\n\n(the depth of each filter is same as\nthe depth of each input)\n\nMitesh M. Khapra E 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "always going to be f cross f. Is that fine? And the depth of the filter is one more thing",
+    "start": 122.52,
+    "end": 128.08,
+    "ocr_text": "e We first define the following quanti-\nties\n\ne Width (W)), Height (H,) and Depth\n(D,) of the original input\n\ne The Stride S (We will come back to\nthis later)\n\ne The number of filters\n\n- e The spatial extent (#’) of each filter\n\n(the depth of each filter is same as\nthe depth of each input)\n\nMitesh M. Khapra E 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "which I need to worry about, but I have already said that I am going to assume that the depth",
+    "start": 128.08,
+    "end": 131.72,
+    "ocr_text": "Mitesh M. Khapra\n\nWe first define the following quanti-\nties\n\nWidth (W 1), Height (H;) and Depth\n(D,) of the original input\n\nThe Stride S (We will come back to\nthis later)\n\nThe number of filters\n\nThe spatial extent (#’) of each filter\n(the depth of each filter is same as\nthe depth of cach input)\n\nThe output is W2 x Hy x Dz (we will\nsoon see a formula for computing W2,\nHy and D2)"
+  },
+  {
+    "text": "of the filter is the same as the depth of the input. Now, the output is again a volume",
+    "start": 131.72,
+    "end": 138.6,
+    "ocr_text": "Mitesh M. Khapra\n\nWe first define the following quanti-\nties\n\nWidth (W 1), Height (H;) and Depth\n(D,) of the original input\n\nThe Stride S (We will come back to\nthis later)\n\nThe number of filters\n\nThe spatial extent (#’) of each filter\n(the depth of each filter is same as\nthe depth of cach input)\n\nThe output is W2 x Hy x Dz (we will\nsoon see a formula for computing W2,\nHy and D2)"
+  },
+  {
+    "text": "which is of size W 2, H 2 and D 2. And my quest is to find out how do I compute these",
+    "start": 138.6,
+    "end": 144.92,
+    "ocr_text": "We first define the following quanti-\nties\n\nWidth (W 1), Height (H;) and Depth\n(D,) of the original input\n\nThe Stride S (We will come back to\nthis later)\n\nThe number of filters 1”\n\nThe spatial extent (#’) of each filter\n(the depth of each filter is same as\nthe depth of cach input)\n\nThe output is W2 x Hy x Dz (we will\nsoon see a formula for computing W2,\nHy and D2)\n\nMitesh M ©S7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "W 2's, H 2's and D 2's. That is what I want to figure out. It is not very difficult,",
+    "start": 144.92,
+    "end": 149.28,
+    "ocr_text": "We first define the following quanti-\nties\n\nWidth (W 1), Height (H;) and Depth\n(D,) of the original input\n\nThe Stride S (We will come back to\nthis later)\n\nThe number of filters 1”\n\nThe spatial extent (#’) of each filter\n(the depth of each filter is same as\nthe depth of cach input)\n\nThe output is W2 x Hy x Dz (we will\nsoon see a formula for computing W2,\nHy and D2)\n\nMitesh M ©S7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "but I just want to do it properly. So, that is what the setup is. So, we have defined",
+    "start": 149.28,
+    "end": 154.2,
+    "ocr_text": "Mitesh\n\nM. Khapra\n\nWe first define the following quanti-\nties\n\nWidth (W 1), Height (H;) and Depth\n(D,) of the original input\n\nThe Stride S (We will come back to\nthis later)\n\nThe number of filters\n\nThe spatial extent (#’) of each filter\n(the depth of each filter is same as\nthe depth of each input)\n\nThe output is W2 x Hy x Dz (we will\nsoon see a formula for computing W2,\nHy and D2)\n\n015 (Deep Learning)"
+  },
+  {
+    "text": "the sizes of everything on the input and the filters. Now, you want to look at how do",
+    "start": 154.2,
+    "end": 157.68,
+    "ocr_text": "Mitesh\n\nM. Khapra\n\nWe first define the following quanti-\nties\n\nWidth (W 1), Height (H;) and Depth\n(D,) of the original input\n\nThe Stride S (We will come back to\nthis later)\n\nThe number of filters\n\nThe spatial extent (#’) of each filter\n(the depth of each filter is same as\nthe depth of each input)\n\nThe output is W2 x Hy x Dz (we will\nsoon see a formula for computing W2,\nHy and D2)\n\n015 (Deep Learning)"
+  },
+  {
+    "text": "we get the output sizes. So, let us compute this for one example. So, this is my original",
+    "start": 157.68,
+    "end": 163.4,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\n7015 (Deep"
+  },
+  {
+    "text": "image. So, I am looking at a 2 dimensional input which I believe is 7 cross 7 and I am",
+    "start": 163.4,
+    "end": 170.12,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\n7015 (Deep"
+  },
+  {
+    "text": "applying a 3 cross 3 filter to it. So, every time I slide the filter, I will get one pixel",
+    "start": 170.12,
+    "end": 174.16,
+    "ocr_text": "@ Let us compute the dimension (W2, Hz) of\nthe output\n\nM. Khap:"
+  },
+  {
+    "text": "in the output and I got the entire feature map. Now, it is obvious that the size of the",
+    "start": 174.16,
+    "end": 179.64,
+    "ocr_text": "@ Let us compute the dimension (W2, Hz) of\nthe output\n\nM. Khap:"
+  },
+  {
+    "text": "output is less than the size of the input. Why is it so? Because there are certain pixels",
+    "start": 179.64,
+    "end": 184.6,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output"
+  },
+  {
+    "text": "at which I cannot place the filter. Why? It will go out of the boundary. So, I cannot,",
+    "start": 184.6,
+    "end": 191.0,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output"
+  },
+  {
+    "text": "if this is my pixel of interest, I cannot place my filter there because then the filter",
+    "start": 191.0,
+    "end": 195.24,
+    "ocr_text": "@ Let us compute the dimension (W2, H2) of\nthe output\n\nhat FD ba @ Notice that we can’t place the kernel at the\ns the input boundary\n\ncorners as it will cro:\n\npixel of interest\n\n7015 (De"
+  },
+  {
+    "text": "will go outside the image and I do not know what the average to compute the average.",
+    "start": 195.24,
+    "end": 199.36,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\nojojelele @ Notice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\npixel of interest"
+  },
+  {
+    "text": "Those values are undefined. Do you get that? So, in general for a, let me see. For a 3 cross,",
+    "start": 199.36,
+    "end": 209.76,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\nojojelele @ Notice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\npixel of interest"
+  },
+  {
+    "text": "in fact, this is true for all these pixels which have been shaded out. Any of these pixels",
+    "start": 209.76,
+    "end": 213.16,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\nelelele @ Notice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\nho M. Khapre ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "I cannot place the filter because it will go outside the boundary. So, now for a 3 cross",
+    "start": 213.16,
+    "end": 217.72,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\nelelele @ Notice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\nho M. Khapre ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "3 filter, what is the reduction in the size of the output compared to the input? The width",
+    "start": 217.72,
+    "end": 223.68,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\n@ Notice that we can’t place the kernel at the\ncorners as it will cross the input boundary"
+  },
+  {
+    "text": "decreases by 2 and the height decreases by 2. So, can I be bold enough and say that the",
+    "start": 223.68,
+    "end": 232.88,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\n@ Notice that we can’t place the kernel at the\ncorners as it will cross the input boundary"
+  },
+  {
+    "text": "width and height decreases by not yet. So, let us see if we had a 5 cross 5 kernel.",
+    "start": 232.88,
+    "end": 243.56,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\n@ Notice that we can’t place the kernel at the\n$s the input boundary\n\ncorners as it will cros\n\nS7015 (Deep"
+  },
+  {
+    "text": "Then which are the places at which I will not be able to place the filter? These two shaded",
+    "start": 243.56,
+    "end": 248.08,
+    "ocr_text": "Let us compute the dimension (W2, f/2) of\nthe output\n\nNotice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\nThis is true for all the shaded points (the\nkernel crosses the input boundary)\n\nThis results in an output which is of smaller\ndimensions than the input\n\nAs the size of the kernel increases, this be-\ncomes true for even more pixels\n\nFor example, let’s consider a 5 x 5 kerne"
+  },
+  {
+    "text": "boxes and both these boxes I cannot place the filter because the filter will go outside",
+    "start": 248.08,
+    "end": 251.84,
+    "ocr_text": "In general, Wo =W, -F +1\nAy =H, -F+1\n\nWe will refine this formula further\n\nLet us compute the dimension (W2, //2) of\nthe output\n\nNotice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\nThis is true for all the shaded points (t\nkernel crosses the input boundary)\n\nThis results in an output which is of smaller\ndimensions than the input\n\nAs the size of the kernel increases, this be-\ncomes true for even more pixels\n\nFor example, let’s consider a 5 x 5 kerne\n\nWe have an even smaller output now"
+  },
+  {
+    "text": "the image. So, now can you tell me how many? So, in this case the size reduces by how much?",
+    "start": 251.84,
+    "end": 258.92,
+    "ocr_text": "In general, Wo =W, -F +1\nAy =H, -F+1\n\nWe will refine this formula further\n\nLet us compute the dimension (W2, //2) of\nthe output\n\nNotice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\nThis is true for all the shaded points (t\nkernel crosses the input boundary)\n\nThis results in an output which is of smaller\ndimensions than the input\n\nAs the size of the kernel increases, this be-\ncomes true for even more pixels\n\nFor example, let’s consider a 5 x 5 kerne\n\nWe have an even smaller output now"
+  },
+  {
+    "text": "The width reduces by no, the width reduces by 4, sorry, yeah. And the height reduces by",
+    "start": 258.92,
+    "end": 265.08,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\n@ Notice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\noa @ This is true for all the shaded points (t\nkernel crosses the input boundary)\n\net @ This results in an output which is of smaller\n\npixel of interest dimensions than the input\n\n@ As the size of the kernel increases, this be-\ncomes true for even more pixels\n\n@ For example, let’s consider a 5 x 5 kerne\n\n@ We have an even smaller output now"
+  },
+  {
+    "text": "4. So, now can I say that the width and height actually reduced by f minus 1 where f is the",
+    "start": 265.08,
+    "end": 270.0,
+    "ocr_text": "pixel\n\n_OEEH\n\nof interest\n\nLet us compute the dimension (W2, Hz) of\nthe output\n\nNotice that we can’t place the kernel at the\n\ncorners as it will cross the input boundary\n\nThis is true for all the shaded points (t\nkernel crosses the input boundary)\n\nThis results in an output which is of smaller\ndimensions than the input\n\nAs the size of the kernel increases, this be-\ncomes true for even more pixels\n\nFor example, let’s consider a 5 x 5 kerne\n\nWe have an even smaller output now"
+  },
+  {
+    "text": "size of the filter? Is that okay? How many if you get this? So, you do not get this? No,",
+    "start": 270.0,
+    "end": 277.32,
+    "ocr_text": "pixel\n\n_OEEH\n\nof interest\n\nLet us compute the dimension (W2, Hz) of\nthe output\n\nNotice that we can’t place the kernel at the\n\ncorners as it will cross the input boundary\n\nThis is true for all the shaded points (t\nkernel crosses the input boundary)\n\nThis results in an output which is of smaller\ndimensions than the input\n\nAs the size of the kernel increases, this be-\ncomes true for even more pixels\n\nFor example, let’s consider a 5 x 5 kerne\n\nWe have an even smaller output now"
+  },
+  {
+    "text": "you do not get this. So, in the 3 cross 3 case you see that there is 1 row and 1 column",
+    "start": 277.32,
+    "end": 283.56,
+    "ocr_text": "Let us compute the dimension (W2, f/2) of\nthe output\n\nNotice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\nThis is true for all the shaded points (the\nkernel crosses the input boundary)\n\nThis results in an output which is of smaller\ndimensions than the input\n\nAs the size of the kernel increases, this be-\n\ncomes true for even more pixels"
+  },
+  {
+    "text": "on each side left and right which I cannot apply. So, let us focus on the columns. So, columns",
+    "start": 283.56,
+    "end": 288.76,
+    "ocr_text": "Let us compute the dimension (W2, f/2) of\nthe output\n\nNotice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\nThis is true for all the shaded points (the\nkernel crosses the input boundary)\n\nThis results in an output which is of smaller\ndimensions than the input\n\nAs the size of the kernel increases, this be-\n\ncomes true for even more pixels"
+  },
+  {
+    "text": "give me the width. So, when I have a 3 cross 3 filter there are 2 columns which get",
+    "start": 288.76,
+    "end": 294.2,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\nelolelele @ Notice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\n@ This is true for all the shaded points (the\nkernel crosses the input boundary)\n\n@ This results in an output which is of smaller\ndimensions than the input\n\n@ As the size of the kernel increases, this be-\ncomes true for even more pixels\n\n7015 (Deep"
+  },
+  {
+    "text": "stopped acted because these are the boundary columns. When I have a 5 cross 5 filter how",
+    "start": 294.2,
+    "end": 298.92,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\nelolelele @ Notice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\n@ This is true for all the shaded points (the\nkernel crosses the input boundary)\n\n@ This results in an output which is of smaller\ndimensions than the input\n\n@ As the size of the kernel increases, this be-\ncomes true for even more pixels\n\n7015 (Deep"
+  },
+  {
+    "text": "many columns get stopped acted? 2 on the left hand side 2 on the right hand side is a",
+    "start": 298.92,
+    "end": 302.36,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\nNotice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\n@ This is true for all the shaded points (the\nkernel crosses the input boundary)\n\n@ This results in an output which is of smaller\ndimensions than the input\n\n@ As the size of the kernel increases, this be-\ncomes true for even more pixels\n\n'S7015 (Deep"
+  },
+  {
+    "text": "total of 4. If I have a 7 cross 7 filter 3 on the left hand side 3 on the right hand",
+    "start": 302.36,
+    "end": 306.4,
+    "ocr_text": "@ Let us compute the dimension (W2, //2) of\nthe output\n\nNotice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\n@ This is true for all the shaded points (the\nkernel crosses the input boundary)\n\n@ This results in an output which is of smaller\ndimensions than the input\n\n@ As the size of the kernel increases, this be-\ncomes true for even more pixels\n\n'S7015 (Deep"
+  },
+  {
+    "text": "side. So, total of 6. So, you see the relation it is always f minus 1, right? So, your new",
+    "start": 306.4,
+    "end": 313.22,
+    "ocr_text": "@ Let us compute the dimension (W2, lz) of\nthe output\n\nNotice that we can’t place the kernel at the\ns the input boundary\n\ncorners as it will cro:\n\n@ This is true for all the shaded points (the\nkernel crosses the input boundary)\n\n@ This results in an output which is of smaller\ndimensions than the input\n\n@ As the size of the kernel increases, this be-\ncomes true for even more pixels\n\nho M. Khapre ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "width and height is always going to be w 1 minus f minus 1 which is w 1 minus f plus 1.",
+    "start": 313.22,
+    "end": 320.12,
+    "ocr_text": "@ Let us compute the dimension (W2, lz) of\nthe output\n\nNotice that we can’t place the kernel at the\ns the input boundary\n\ncorners as it will cro:\n\n@ This is true for all the shaded points (the\nkernel crosses the input boundary)\n\n@ This results in an output which is of smaller\ndimensions than the input\n\n@ As the size of the kernel increases, this be-\ncomes true for even more pixels\n\nho M. Khapre ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "Is that okay? Everyone gets this and same for the height. The width and height are going",
+    "start": 320.12,
+    "end": 323.52,
+    "ocr_text": "We will re\n\nine this formula further\n\nLet us compute the dimension (W2, //2) of\nthe output\n\nNotice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\nThis is true for all the shaded points (the\nkernel crosses the input boundary)\n\nThis results in an output which is of smaller\ndimensions than the input\n\nAs the size of the kernel increases, this be-\ncomes true for even more pixels\n\nFor example, let’s consider a 5 x 5 kerne\n\nWe have an even smaller output now"
+  },
+  {
+    "text": "to be symmetric because the filter we have chosen to be symmetric. It is f cross f.",
+    "start": 323.52,
+    "end": 328.4,
+    "ocr_text": "We will re\n\nine this formula further\n\nLet us compute the dimension (W2, //2) of\nthe output\n\nNotice that we can’t place the kernel at the\ncorners as it will cross the input boundary\n\nThis is true for all the shaded points (the\nkernel crosses the input boundary)\n\nThis results in an output which is of smaller\ndimensions than the input\n\nAs the size of the kernel increases, this be-\ncomes true for even more pixels\n\nFor example, let’s consider a 5 x 5 kerne\n\nWe have an even smaller output now"
+  },
+  {
+    "text": "Now, but what if we want the output to be the same as the input? What do we do? Padding.",
+    "start": 328.4,
+    "end": 334.84,
+    "ocr_text": "@ What if we want the output to be of same\n\nsize as the input?"
+  },
+  {
+    "text": "Okay? We can use something known as padding. So, that means now I will have a boundary",
+    "start": 334.84,
+    "end": 340.64,
+    "ocr_text": "@ What if we want the output to be of same\n\nsize as the input?"
+  },
+  {
+    "text": "of 0s. So, I am saying that this is my original image and outside it there is a black border",
+    "start": 340.64,
+    "end": 346.16,
+    "ocr_text": "@ What if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate number of 0\ninputs so that you can now apply the kernel\n\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\nclololololofo}olo\n\nclolololololo}olo\n\nS7015 (Deep"
+  },
+  {
+    "text": "or a white border. I do not know whether 0 stands for black or white. It is embarrassing",
+    "start": 346.16,
+    "end": 349.88,
+    "ocr_text": "What if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate number of 0\ninputs so that you can now apply the kernel\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\nclololololofo}olo\n\nclolololololo}olo\n\nh M. Khapra ©S7015 (Deep Learning) ; Lecture 11"
+  },
+  {
+    "text": "but black. So, it is a black border outside the image. And now I am going to take an",
+    "start": 349.88,
+    "end": 356.04,
+    "ocr_text": "What if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate number of 0\ninputs so that you can now apply the kernel\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\nclololololofo}olo\n\nclolololololo}olo\n\nh M. Khapra ©S7015 (Deep Learning) ; Lecture 11"
+  },
+  {
+    "text": "average that way. So, now this was the pixel earlier on which I could not place the filter,",
+    "start": 356.04,
+    "end": 361.36,
+    "ocr_text": "@ What if we want the output to be of same\n\nO}O}OTOloO}o;ol/oyo size as the input?\n08 0 ° , , ,\nWe can use something known as padding\n0 0\n0 0 @ Pad the inputs with appropriate number of 0.\nry ol= inputs so that you can now apply the kernel\n0 0 at the corners\n0) 0) @ Let us use pad P = 1 with a3 x 3 kernel\n0 0\nofo]/o}osolo]ojo]o\n\n$S7015 (Deep"
+  },
+  {
+    "text": "but now I can artificially place on it assuming that there is a black boundary around it. So,",
+    "start": 361.36,
+    "end": 365.68,
+    "ocr_text": "@ What if we want the output to be of same\n\nO}O}OTOloO}o;ol/oyo size as the input?\n08 0 ° , , ,\nWe can use something known as padding\n0 0\n0 0 @ Pad the inputs with appropriate number of 0.\nry ol= inputs so that you can now apply the kernel\n0 0 at the corners\n0) 0) @ Let us use pad P = 1 with a3 x 3 kernel\n0 0\nofo]/o}osolo]ojo]o\n\n$S7015 (Deep"
+  },
+  {
+    "text": "now what would be the output size? Same as the input. So, now can you tell me? So, I have",
+    "start": 365.68,
+    "end": 371.88,
+    "ocr_text": "clolo}|olo\n\n)\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate number of 0\ninputs so that you can now apply the kernel\nat the corners\n\nLet us use pad P = 1 with a 3 x 3 kernel"
+  },
+  {
+    "text": "w 1, I have f and now I have something known as p also. So, I know that w output rather,",
+    "start": 371.88,
+    "end": 381.24,
+    "ocr_text": "clolo}|olo\n\n)\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate number of 0\ninputs so that you can now apply the kernel\nat the corners\n\nLet us use pad P = 1 with a 3 x 3 kernel"
+  },
+  {
+    "text": "w 2 is the output is 1. Now, when I add the padding, what would the formula be? 2p. Is",
+    "start": 381.24,
+    "end": 391.0,
+    "ocr_text": "What if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate number of 0\n— inputs so that you can now apply the kernel\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\nclolol|clolololo\n\nclololololofo}clo\n\nS7015 (Deep"
+  },
+  {
+    "text": "that fine? Everyone gets that? Okay. So, now if I have a 5 cross 5 filter and if I want",
+    "start": 391.0,
+    "end": 397.68,
+    "ocr_text": "@ What if we want the output to be of same\n\nOO OFo]/ ol ol ololo size as the input?\nof 0 ° , . .\nWe can use something known as padding\n0 0\n0 0 @ Pad the inputs with appropriate number of 0.\n0 ol= inputs so that you can now apply the kernel\n0 0 at the corners\n0 0 @ Let us use pad P = 1 with a3 x 3 kernel\n0 0\no]o]o}oso]o]ojo]o"
+  },
+  {
+    "text": "the output size to be the same as the input size, what is the padding that I should use?",
+    "start": 397.68,
+    "end": 402.84,
+    "ocr_text": "clolololololo}olo\nclolofolololo}olo\nelelelelelele\n\nWe now have,\n\nW,=W,-F+2P+1\nHy =H, —-F4+2P41\n\nWe will refine this formula further\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\n@ Pad the inputs with appropriate number of 0.\n\ninputs so that you can now apply the kernel\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\n@ This means we will add one row and one\n\ncolumn of 0 inputs at the top, bottom, left\nand right"
+  },
+  {
+    "text": "p is equal to 2 right. That is clear from the example that we saw that there were two shaded",
+    "start": 402.84,
+    "end": 410.44,
+    "ocr_text": "clolololololo}olo\nclolofolololo}olo\nelelelelelele\n\nWe now have,\n\nW,=W,-F+2P+1\nHy =H, —-F4+2P41\n\nWe will refine this formula further\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\n@ Pad the inputs with appropriate number of 0.\n\ninputs so that you can now apply the kernel\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\n@ This means we will add one row and one\n\ncolumn of 0 inputs at the top, bottom, left\nand right"
+  },
+  {
+    "text": "columns and rows which were problematic. So, I need to do a padding of 2 and then if I",
+    "start": 410.44,
+    "end": 415.12,
+    "ocr_text": "clolololololo}olo\n\nclolofolololo}olo\neleleleleleie\n\nWe will re\n\nWe mow have,\n\nWo =W, —F +2P\n\nHy = Hy —F +2P\n\n1\n1\n\nine this formula further\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\nPad the inputs with appropriate uumber of 0\n\ninputs so that you can now apply the kernel\nat the corners\n\nLet us use pad P = 1 with a 3 x 3 kernel\n\nThis means we will add one row and one\ncolumn of 0 inputs at the top, bottom, left\nand right"
+  },
+  {
+    "text": "substitute in this formula, you can just see right. So, 5 plus 4 plus 1 right. So, you",
+    "start": 415.12,
+    "end": 421.36,
+    "ocr_text": "clolololololo}olo\n\nWe will re\n\nelololololololojo\nll\nelelelelelele\n\nWe now hat\nx 4 +\n\nSs\n\nWo =W,-F+42P 41\n\nHy =H, -F+2P+1\n\nine thi.\n\nformula further\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate number of 0.\ninputs so that you can now apply the kernel\nat the corners\n\nLet us use pad P = 1 with a 3 x 3 kernel\n\n@ This means we will add one row and one\n\ncolumn of 0 inputs at the top, bottom, left\nand right"
+  },
+  {
+    "text": "will get back w 1. Is that fine? Is that okay? How many if you get this? How the formula",
+    "start": 421.36,
+    "end": 426.88,
+    "ocr_text": "clolololololo}olo\n\nWe will re\n\nelololololololojo\nll\nelelelelelele\n\nWe now hat\nx 4 +\n\nSs\n\nWo =W,-F+42P 41\n\nHy =H, -F+2P+1\n\nine thi.\n\nformula further\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate number of 0.\ninputs so that you can now apply the kernel\nat the corners\n\nLet us use pad P = 1 with a 3 x 3 kernel\n\n@ This means we will add one row and one\n\ncolumn of 0 inputs at the top, bottom, left\nand right"
+  },
+  {
+    "text": "works with the padding? How many if you do not get this? P is a raise your hands? You",
+    "start": 426.88,
+    "end": 430.44,
+    "ocr_text": "clolololololo}olo\nclolofolololo}olo\neleleleleleie\n\nWe nou, have,\nWo=-W,-F+2P4+1\nAy = H,—-F+2P4+1\n\nine thi.\n\nWe will re\n\nformula further\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate uumber of 0\ninputs so that you can now apply the kernel\nat the corners\n\nLet us use pad P = 1 with a3 x 3 kernel\n\nThis means we will add one row and one\ncolumn of 0 inputs at the top, bottom, left\nand right"
+  },
+  {
+    "text": "do not get this. Okay. So, remember in the 3 cross 3 case, there was one column on the",
+    "start": 430.44,
+    "end": 435.8,
+    "ocr_text": "clolololololo}olo\nclolofolololo}olo\neleleleleleie\n\nWe nou, have,\nWo=-W,-F+2P4+1\nAy = H,—-F+2P4+1\n\nine thi.\n\nWe will re\n\nformula further\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate uumber of 0\ninputs so that you can now apply the kernel\nat the corners\n\nLet us use pad P = 1 with a3 x 3 kernel\n\nThis means we will add one row and one\ncolumn of 0 inputs at the top, bottom, left\nand right"
+  },
+  {
+    "text": "left and right which was a problem. So, when I see a padding of 1, I add one column to",
+    "start": 435.8,
+    "end": 441.12,
+    "ocr_text": "clolololololo}olo\nclolofolololo}olo\neleleleleleie\n\nWe_no Ww pray Je ;\nWo=-W,-F+2P4+1\nHy =H, -F+2P4+1\n\nWe will refine this formula further\n\n@ What if we want the output to be of same\nsize as the input?\nWe can use something known as padding\n\n@ Pad the inputs with appropriate number of 0.\ninputs so that you can now apply the kernel\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\n@ This means we will add one row and one\ncolumn of 0 inputs at the top, bottom, left\nand right\n\n1M. Khapra\n\n'S7015 (Deep Learning) : T"
+  },
+  {
+    "text": "the left, one column to the right, one column to the bottom and one column to the top.",
+    "start": 441.12,
+    "end": 445.2,
+    "ocr_text": "clolololololo}olo\nclolofolololo}olo\neleleleleleie\n\nWe_no Ww pray Je ;\nWo=-W,-F+2P4+1\nHy =H, -F+2P4+1\n\nWe will refine this formula further\n\n@ What if we want the output to be of same\nsize as the input?\nWe can use something known as padding\n\n@ Pad the inputs with appropriate number of 0.\ninputs so that you can now apply the kernel\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\n@ This means we will add one row and one\ncolumn of 0 inputs at the top, bottom, left\nand right\n\n1M. Khapra\n\n'S7015 (Deep Learning) : T"
+  },
+  {
+    "text": "And that is exactly the problematic region in the 3 cross 3 case right. So, that means,",
+    "start": 445.2,
+    "end": 452.08,
+    "ocr_text": "clolololololololo\nclolofolololo}olo\neleleleleleie\n\nWe now have,\nSs uy +}\n\nSs\n\nWo =W,-F42P41\nHy =H, -F+2P+1\n\nWe will refine this formula further\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate number of 0\ninputs so that you can now apply the kernel\nat the corners\n\nLet us use pad P = 1 with a3 x 3 kernel\n\n@ This means we will add one row and one\n\ncolumn of 0 inputs at the top, bottom, left\nand right\n\n(Deep:"
+  },
+  {
+    "text": "this was my original formula. Okay. Now, the new width is going to be plus 2 times the",
+    "start": 452.08,
+    "end": 459.44,
+    "ocr_text": "clolololololololo\nclolofolololo}olo\neleleleleleie\n\nWe now have,\nSs uy +}\n\nSs\n\nWo =W,-F42P41\nHy =H, -F+2P+1\n\nWe will refine this formula further\n\nWhat if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\nPad the inputs with appropriate number of 0\ninputs so that you can now apply the kernel\nat the corners\n\nLet us use pad P = 1 with a3 x 3 kernel\n\n@ This means we will add one row and one\n\ncolumn of 0 inputs at the top, bottom, left\nand right\n\n(Deep:"
+  },
+  {
+    "text": "padding which I am going to use because I have used one padding here and one padding here",
+    "start": 459.44,
+    "end": 463.18,
+    "ocr_text": "@ What if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\n@ Pad the inputs with appropriate number of 0.\n\ninputs so that you can now apply the kernel\n\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\n@ This means we will add one row and one\n\nclolololololo}olo\nclolofolololo}olo\neleleleleleie\n\nWe now, pave,\n\nW2=W, B+ oP +1\nAy =A,-F+2P4+1\nWe will refine this formula further\n\ncolumn of 0 inputs at the top, bottom, left\nand right\n\nid= Fay +2?"
+  },
+  {
+    "text": "right. Now, in the 3 cross 3 case that is okay. Now, in the 5 cross 5 case, how many",
+    "start": 463.18,
+    "end": 468.6,
+    "ocr_text": "@ What if we want the output to be of same\nsize as the input?\n\nWe can use something known as padding\n\n@ Pad the inputs with appropriate number of 0.\n\ninputs so that you can now apply the kernel\n\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\n@ This means we will add one row and one\n\nclolololololo}olo\nclolofolololo}olo\neleleleleleie\n\nWe now, pave,\n\nW2=W, B+ oP +1\nAy =A,-F+2P4+1\nWe will refine this formula further\n\ncolumn of 0 inputs at the top, bottom, left\nand right\n\nid= Fay +2?"
+  },
+  {
+    "text": "columns were problematic? 2. So, that means, I have to use a padding of 2. When I see a",
+    "start": 468.6,
+    "end": 472.72,
+    "ocr_text": "@ What if we want the output to be of same\nsize as the input?\n\n@ We can use something known as padding\n\n@ Pad the inputs with appropriate number of 0.\n\ninputs so that you can now apply the kernel\n\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\n@ This means we will add one row and one\n\nWe now, rave,\n\nW2=W, FP 42P 41\nAy =H, -F+2P41\nWe will refine this formula further\n\nfofojolojo[ofo]ofo\n\nlo b elelelelelele\n\ni elelelelelele\nelelelelelele\n= [elelelelelele\nelelelelelele\nelelelelelele\nelelelelelele\n\nofofololofolo\n\ncolumn of 0 inputs at the top, bottom, left\nand right\n\nih Fat +2?"
+  },
+  {
+    "text": "padding of 2, I add 2 on all the sides. So, now again if you substitute in this formula,",
+    "start": 472.72,
+    "end": 478.56,
+    "ocr_text": "@ What if we want the output to be of same\nsize as the input?\n\n@ We can use something known as padding\n\n@ Pad the inputs with appropriate number of 0.\n\ninputs so that you can now apply the kernel\n\nat the corners\n\n@ Let us use pad P = 1 with a3 x 3 kernel\n\n@ This means we will add one row and one\n\nWe now, rave,\n\nW2=W, FP 42P 41\nAy =H, -F+2P41\nWe will refine this formula further\n\nfofojolojo[ofo]ofo\n\nlo b elelelelelele\n\ni elelelelelele\nelelelelelele\n= [elelelelelele\nelelelelelele\nelelelelelele\nelelelelelele\n\nofofololofolo\n\ncolumn of 0 inputs at the top, bottom, left\nand right\n\nih Fat +2?"
+  },
+  {
+    "text": "you would have w 1 minus 5 plus 1 plus 4. So, that will give you back w 1 right. So,",
+    "start": 478.56,
+    "end": 487.92,
+    "ocr_text": "@ What if we want the output to be of same\n\nfolojolojo]o]o]ofo size as the input?\n0 elelelelelele . . .\n| p @ We can use something known as padding\n» elelelelelele\nelelelelelele @ Pad the inputs with appropriate number of 0.\n= Telelelelelele inputs so that you can now apply the kernel\nelelelelelele at the corners\nelelelelelele @ Let us use pad P = 1 with a3 x 3 kernel\nil ad ad Hdl Hdl dl ad @ This means we will add one row and one\nOi] 9. 0] 7] 9] o Ee column of 0 inputs at the top, bottom, left\n\nand right\n\nWe now have,\nSs 4 ay\n\n5\nWo =W,-F42P 41\nSMF erPHt Uy gy rk\nHy =H, -F4+2P4+1\n\nWe will refine this formula further"
+  },
+  {
+    "text": "that is how it is. Okay. Now, the question is we have taken care of filter size and padding.",
+    "start": 487.92,
+    "end": 497.4,
+    "ocr_text": "e@ What does the stride S do?"
+  },
+  {
+    "text": "Now, the other thing that we need to look at is stride. Okay. So, the stride defines the",
+    "start": 497.4,
+    "end": 501.6,
+    "ocr_text": "e@ What does the stride S do?\n\ne It defines the intervals at which the\nfilter is applied (here S = 2)"
+  },
+  {
+    "text": "interval at which the filter is applied. Now, what do I mean by that? So, remember that",
+    "start": 501.6,
+    "end": 506.32,
+    "ocr_text": "e@ What does the stride S do?\n\ne It defines the intervals at which the\nfilter is applied (here S = 2)"
+  },
+  {
+    "text": "stride is basically a step right. The same definition as it applies to walking right.",
+    "start": 506.32,
+    "end": 512.04,
+    "ocr_text": "O;}O;}OFO;}O}O0;O0);0)]0 Y - ©\ne@ What does the stride S do?\n\n0 0\n0 0 e It defines the intervals at which the\n\ne . . : y 5\n0 0 filter is applied (here S = 2)\n0 0 = . . .\n5 5 e Here, we are essentially skipping\n0 0 every 2nd pixel which will again\n0 0 result in an output which is of\nofololo}fololo}o]o smaller dimensions"
+  },
+  {
+    "text": "So, right now what we were doing is we placed the filter as this pixel at the center, then",
+    "start": 512.04,
+    "end": 518.0,
+    "ocr_text": "O;}O;}OFO;}O}O0;O0);0)]0 Y - ©\ne@ What does the stride S do?\n\n0 0\n0 0 e It defines the intervals at which the\n\ne . . : y 5\n0 0 filter is applied (here S = 2)\n0 0 = . . .\n5 5 e Here, we are essentially skipping\n0 0 every 2nd pixel which will again\n0 0 result in an output which is of\nofololo}fololo}o]o smaller dimensions"
+  },
+  {
+    "text": "this pixel as the center and then this pixel as the center. Instead of that, I could take",
+    "start": 518.0,
+    "end": 522.12,
+    "ocr_text": "O;}O;OFO;}O}O0};0);0)]0 r . 4 «\ne@ What does the stride S do?\n\nol/@lple 0\n0 j 0 e It defines the intervals at which the\n\ne re . . 7 G\n0 0 filter is applied (here S = 2)\n0 0 = . . .\n5 5 e Here, we are essentially skipping\na 0 every 2nd pixel which will again\n0 al 0 result in an output which is of\n9] o}o}o}ololofofo smaller dimensions"
+  },
+  {
+    "text": "a that means, my stride is 1. I am taking 1 step at a time. So, if I do a stride of 2,",
+    "start": 522.12,
+    "end": 526.72,
+    "ocr_text": "O;}O;OFO;}O}O0};0);0)]0 r . 4 «\ne@ What does the stride S do?\n\nol/@lple 0\n0 j 0 e It defines the intervals at which the\n\ne re . . 7 G\n0 0 filter is applied (here S = 2)\n0 0 = . . .\n5 5 e Here, we are essentially skipping\na 0 every 2nd pixel which will again\n0 al 0 result in an output which is of\n9] o}o}o}ololofofo smaller dimensions"
+  },
+  {
+    "text": "what would happen? I will apply 2 alternate pixels right. So, this is how I will move. So,",
+    "start": 526.72,
+    "end": 534.2,
+    "ocr_text": "O;O;OFO;O};O;O0];0)]0 r : 2 «\n\ne@ What does the stride S do?\nol/@lpls 0\n0 0 e It defines the intervals at which the\n0 0 filter is applied (here S = 2)\n0 0 = . . .\n5 e Here, we are essentially skipping\n0 i every 2nd pixel which will again\n0 0 result in an output which is of\nofojo}ojojolojojo smaller dimensions\n\n‘015 (Deep"
+  },
+  {
+    "text": "then what would happen to my output size? If my stride is 2, what would happen? It will",
+    "start": 534.2,
+    "end": 540.08,
+    "ocr_text": "O;O;OFO;O};O;O0];0)]0 r : 2 «\n\ne@ What does the stride S do?\nol/@lpls 0\n0 0 e It defines the intervals at which the\n0 0 filter is applied (here S = 2)\n0 0 = . . .\n5 e Here, we are essentially skipping\n0 i every 2nd pixel which will again\n0 0 result in an output which is of\nofojo}ojojolojojo smaller dimensions\n\n‘015 (Deep"
+  },
+  {
+    "text": "become half. Okay. So, what would the formula be then? So, so far my formula was, now",
+    "start": 540.08,
+    "end": 548.68,
+    "ocr_text": "O;}O;}O0/}/0;/0}0F0/;/0)]0 Y . .\ne@ What does the stride S do?\n0 oO\n0 ‘ 0 e It defines the intervals at which the\nee ei ele a . . y ©\n0 0 filter is applied (here S = 2)\noO 0 = . . .\n5 = e Here, we are essentially skipping\ni 0 every 2nd pixel which will again\n0 0 result in an output which is of\n9} o}olololojolofo smaller dimensions\n\n1M. Khapra ‘$7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "if I have a stride of 2, what would the formula be? Then, write the whole thing by 2, by S",
+    "start": 548.68,
+    "end": 556.8,
+    "ocr_text": "O;}O;}O0/}/0;}/0]}0F0/;/0]0 Q . 4 ©\n\ne@ What does the stride S do?\n0 0\n0 0 e It defines the intervals at which the\n\nee ele . . : y\n\n0 0 filter is applied (here S = 2)\n0 0 = . . .\n5 5 e Here, we are essentially skipping\n0 0 every 2nd pixel which will again\n0 0 result in an output which is of\n9}o}olo}olo}jofofo smaller dimensions\n\nIo W,- F+2Poy"
+  },
+  {
+    "text": "move right. If it was S was 3, then this would have become 1 third roughly right. If S was",
+    "start": 556.8,
+    "end": 561.84,
+    "ocr_text": "O;O/;/O0/0/0]}0F0/0)]0 r : 4 «\ne@ What does the stride S do?\n\n0 oO\n0 0 e It defines the intervals at which the\n\nee, ele . . . y ©\n0 0 filter is applied (here S = 2)\n0 0 => . . .\n5 = e Here, we are essentially skipping\n0 0 every 2nd pixel which will again\n0 0 result in an output which is of\no{o}ojofojolojojo smaller dimensions\n\nIo- W,- F+2ha("
+  },
+  {
+    "text": "4, this would have become 1 fourth. So, what should I divide by S? So, I should divide",
+    "start": 561.84,
+    "end": 568.04,
+    "ocr_text": "O;O/;/O0/0/0]}0F0/0)]0 r : 4 «\ne@ What does the stride S do?\n\n0 oO\n0 0 e It defines the intervals at which the\n\nee, ele . . . y ©\n0 0 filter is applied (here S = 2)\n0 0 => . . .\n5 = e Here, we are essentially skipping\n0 0 every 2nd pixel which will again\n0 0 result in an output which is of\no{o}ojofojolojojo smaller dimensions\n\nIo- W,- F+2ha("
+  },
+  {
+    "text": "the whole thing by S. Yes. Okay. So, turns out that is not exactly that, but you get the",
+    "start": 568.04,
+    "end": 576.56,
+    "ocr_text": "O;}O;O/0;/0};0F0/0)]0 a . a ©\n\ne@ What does the stride S do?\n0 0\n0 0 e It defines the intervals at which the\n\ne el ele . . : y\n\n0 0 filter is applied (here S = 2)\noO 0 = . . .\n5 5 e Here, we are essentially skipping\nPs 0 every 2nd pixel which will again\n0 0 result in an output which is of\nOfo}o}o}olofofofo smaller dimensions"
+  },
+  {
+    "text": "intuition and you can work out the formula. So, you do not divide this by S and you will",
+    "start": 576.56,
+    "end": 580.12,
+    "ocr_text": "O;}O;O;}/O0;/0}0;0/0)]0 Y - ©\ne@ What does the stride S do?\n\n0 oO\n0 0 e It defines the intervals at which the\n\nee el,ele n . : y\n0 0 filter is applied (here S = 2)\n\ne el,ele\n0 0 = . . .\n5 - elelele e Here, we are essentially skipping\n0 0 elelele every 2nd pixel which will again\n0 0 result in an output which is of\no}ololololofololo smaller dimensions\n\nSo what should our final formula look like,\n\nW, -—F+2P 7\nW = a ()\n\nA,—-F+2P\nHy= SO 4"
+  },
+  {
+    "text": "figure it out. It is easy to see because of some ceiling and flooring and things like that.",
+    "start": 580.12,
+    "end": 583.92,
+    "ocr_text": "O;}O;O;}/O0;/0}0;0/0)]0 Y - ©\ne@ What does the stride S do?\n\n0 oO\n0 0 e It defines the intervals at which the\n\nee el,ele n . : y\n0 0 filter is applied (here S = 2)\n\ne el,ele\n0 0 = . . .\n5 - elelele e Here, we are essentially skipping\n0 0 elelele every 2nd pixel which will again\n0 0 result in an output which is of\no}ololololofololo smaller dimensions\n\nSo what should our final formula look like,\n\nW, -—F+2P 7\nW = a ()\n\nA,—-F+2P\nHy= SO 4"
+  },
+  {
+    "text": "So, you can go back and check that out and basically you could just think of this that",
+    "start": 583.92,
+    "end": 588.4,
+    "ocr_text": "O;}O;O;}/O0;/0}0;0/0)]0 Y - ©\ne@ What does the stride S do?\n\n0 oO\n0 0 e It defines the intervals at which the\n\nee el,ele n . : y\n0 0 filter is applied (here S = 2)\n\ne el,ele\n0 0 = . . .\n5 - elelele e Here, we are essentially skipping\n0 0 elelele every 2nd pixel which will again\n0 0 result in an output which is of\no}ololololofololo smaller dimensions\n\nSo what should our final formula look like,\n\nW, -—F+2P 7\nW = a ()\n\nA,—-F+2P\nHy= SO 4"
+  },
+  {
+    "text": "this was your original weight in the absence of stride or rather when the stride was 1.",
+    "start": 588.4,
+    "end": 592.52,
+    "ocr_text": "O;}O;O;/O0/}/0}0;0/0)]0 r . “f «\ne@ What does the stride S do?\noO 0\n0 0 e It defines the intervals at which the\nei e,ele = . : y\n0 0 filter is applied (here S = 2)\nelelele\noO 0 = . . .\n7 elelele e Here, we are essentially skipping\n0 a elelele every 2nd pixel which will again\n0 0 result in an output which is of\nofololololofololo smaller dimensions\n\nSo"
+  },
+  {
+    "text": "So, now if you are going to take longer strides, you have to account for that. If you take",
+    "start": 592.52,
+    "end": 596.2,
+    "ocr_text": "O;}O;O;/O0/}/0}0;0/0)]0 r . “f «\ne@ What does the stride S do?\noO 0\n0 0 e It defines the intervals at which the\nei e,ele = . : y\n0 0 filter is applied (here S = 2)\nelelele\noO 0 = . . .\n7 elelele e Here, we are essentially skipping\n0 a elelele every 2nd pixel which will again\n0 0 result in an output which is of\nofololololofololo smaller dimensions\n\nSo"
+  },
+  {
+    "text": "a stride of 2, stride of 2, your weight is going to become half. If you take a stride of",
+    "start": 596.2,
+    "end": 600.64,
+    "ocr_text": "O;}O;}O/O0;}/0}0;0/;/0)]0 r . 4 «\ne@ What does the stride S do?\n\n0 0\nof | 0 e It defines the intervals at which the\n\ne e,ele a . : y ©\n0 0 filter is applied (here S = 2)\n\ne ei,ele\n0 0 = . . .\n- elelele e Here, we are essentially skipping\n0 0 elelele every 2nd pixel which will again\n0 0 result in an output which is of\no}o}o}ofolofojofo smaller dimensions\n\n5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "4, your weight is going to become 1 fourth. Okay. Is that fine? Do not worry about this",
+    "start": 600.64,
+    "end": 604.48,
+    "ocr_text": "O;}O;}O/O0;}/0}0;0/;/0)]0 r . 4 «\ne@ What does the stride S do?\n\n0 0\nof | 0 e It defines the intervals at which the\n\ne e,ele a . : y ©\n0 0 filter is applied (here S = 2)\n\ne ei,ele\n0 0 = . . .\n- elelele e Here, we are essentially skipping\n0 0 elelele every 2nd pixel which will again\n0 0 result in an output which is of\no}o}o}ofolofojofo smaller dimensions\n\n5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "additional plus 1, you can go home and figure it out. Finally, coming to the depth of the",
+    "start": 604.48,
+    "end": 608.84,
+    "ocr_text": "O;}O;}O/O0;}/0}0;0/;/0)]0 r . 4 «\ne@ What does the stride S do?\n\n0 0\nof | 0 e It defines the intervals at which the\n\ne e,ele a . : y ©\n0 0 filter is applied (here S = 2)\n\ne ei,ele\n0 0 = . . .\n- elelele e Here, we are essentially skipping\n0 0 elelele every 2nd pixel which will again\n0 0 result in an output which is of\no}o}o}ofolofojofo smaller dimensions\n\n5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "output. What would the depth of the output be? So, let me just see. Right now all our",
+    "start": 608.84,
+    "end": 613.72,
+    "ocr_text": "e Finally, coming to the depth of the\noutput."
+  },
+  {
+    "text": "formulas were W 2 H 2 in the presence of filter padding and stride. Sorry, but we never had",
+    "start": 613.72,
+    "end": 623.36,
+    "ocr_text": "e Finally, coming to the depth of the\noutput."
+  },
+  {
+    "text": "a formula for D 2. So, that is what I am asking you. What is the depth of the output? Same",
+    "start": 623.36,
+    "end": 628.44,
+    "ocr_text": "e Finally, coming to the depth of the\noutput."
+  },
+  {
+    "text": "as the. Every filter is going to give you 1 to dimensional output. If you have k filters,",
+    "start": 628.44,
+    "end": 635.04,
+    "ocr_text": "e Finally, coming to the depth of the\noutput."
+  },
+  {
+    "text": "you will get k to dimensional output. That means the depth of your output is k. So, the",
+    "start": 635.04,
+    "end": 639.6,
+    "ocr_text": "os e Finally, coming to the depth of the\noutput.\n\ne Each filter gives us one 2D output.\n\ne & filters will give us A such 2D out-\n\nMs puts"
+  },
+  {
+    "text": "depth is very simple. It is just equal to k, the number of filters that you have. So,",
+    "start": 639.6,
+    "end": 643.56,
+    "ocr_text": "os e Finally, coming to the depth of the\noutput.\n\ne Each filter gives us one 2D output.\n\ne & filters will give us A such 2D out-\n\nMs puts"
+  },
+  {
+    "text": "I want you guys to note down these 3 formulas. Now, let us do some exercises. So, this is",
+    "start": 643.56,
+    "end": 651.44,
+    "ocr_text": "os e Finally, coming to the depth of the\noutput.\n\ne Each filter gives us one 2D output.\n\ne & filters will give us A such 2D out-\n\nMs puts"
+  },
+  {
+    "text": "my original input, which is 227 cross 227 cross 3. I have decided to apply 11 cross 11",
+    "start": 651.44,
+    "end": 660.48,
+    "ocr_text": "Let us do a few exerci\n\nMH =?\n+ =\n96 fillers Wa =\nStride = 4\nPadding = 0 ~~\nWo = Maabeer 4) Dr=?\n\nHy = EP yy\n\n387015 (Deep"
+  },
+  {
+    "text": "filters and I am not going to tell you the depth of the filter because it is going to be",
+    "start": 660.48,
+    "end": 663.76,
+    "ocr_text": "Let us do a few exercises\n\nMy =?\n* =\n96 filters Wa=\nStride = 4\nPadding =0 al\nWo = Maabeer 4) Dr=?\n\nH,— 7H -E2P 4\n\nho M. Khapre ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "the same as the input. Okay. And I have 96 such filters. I have decided to use a stride",
+    "start": 663.76,
+    "end": 669.32,
+    "ocr_text": "Let us do a few exercises\n\nMy =?\n* =\n96 filters Wa=\nStride = 4\nPadding =0 al\nWo = Maabeer 4) Dr=?\n\nH,— 7H -E2P 4\n\nho M. Khapre ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "of 4. There is no padding. Can you tell me what is the output volume going to look like?",
+    "start": 669.32,
+    "end": 675.72,
+    "ocr_text": "Let us do a few exercises\n\nHy =?\n\n96 filters\n\nStride =4\n\n187015 (Deep"
+  },
+  {
+    "text": "What are the dimensions of the output volume? Okay. So, D 2 is simple. What is D 2? 96.",
+    "start": 675.72,
+    "end": 682.52,
+    "ocr_text": "Let us do a few exerci\n\nI=?\n* =\n96 fillers Wea?\nStride =4\nPaddin ——_\\-——\nWy = Maseeer yy Dr=?\nH,— *b-ERP\n\n387015 (Deep"
+  },
+  {
+    "text": "What is W 2? 55 H 2. Okay. You guys have the last laugh. Okay. Fine. So, similarly you",
+    "start": 682.52,
+    "end": 689.72,
+    "ocr_text": "Let us do a few exerci\n\nI=?\n* =\n96 fillers Wea?\nStride =4\nPaddin ——_\\-——\nWy = Maseeer yy Dr=?\nH,— *b-ERP\n\n387015 (Deep"
+  },
+  {
+    "text": "can do it for. So, actually the computation which I did this was just not some random",
+    "start": 689.72,
+    "end": 693.88,
+    "ocr_text": "Let us do a few exerci\n\nWa =?\n6 fillers 2\n\nStride = 1\nPadding = 0 ~~\n\nWy = Maseeze yy Dy =\n\n1 Hy thE\n\nMitesh M. Khapra ©7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "computation. This is actually the first convolution layer from LXNet. So, one of the popular",
+    "start": 693.88,
+    "end": 699.56,
+    "ocr_text": "Let us do a few exerci\n\nWa =?\n6 fillers 2\n\nStride = 1\nPadding = 0 ~~\n\nWy = Maseeze yy Dy =\n\n1 Hy thE\n\nMitesh M. Khapra ©7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "architectures that we are going to cover later on. So, this is what LXNet does at its input.",
+    "start": 699.56,
+    "end": 704.44,
+    "ocr_text": "Let us do a few exerci\n\n1\n* =\n5b = 2TH py\n96 fillers 1\nStride = 4\nPadding = 0 ——\nWe = Wa=eH2r yy 96\n\nHy — 12 E2P yy\n\n187015 (Deep"
+  },
+  {
+    "text": "It takes the RGB input and gives you a volume of this slice, this side and then there is",
+    "start": 704.44,
+    "end": 709.36,
+    "ocr_text": "Let us do a few exerci\n\n1\n* =\n5b = 2TH py\n96 fillers 1\nStride = 4\nPadding = 0 ——\nWe = Wa=eH2r yy 96\n\nHy — 12 E2P yy\n\n187015 (Deep"
+  },
+  {
+    "text": "something else with this volume. So, we will see that later on. There is one more exercise.",
+    "start": 709.36,
+    "end": 713.12,
+    "ocr_text": "Let us do a few exercises\n\n11\n* =\nsb 2 yy\n96 fillers 1\nStride = 4\nPadding =0 ——_.-—*\nWo = Wacker yy 96\n\nHy = 2 E12P 4 |\n\n387015 (Deep"
+  },
+  {
+    "text": "You can do it later on. I do not want to do it now. Okay.",
+    "start": 713.12,
+    "end": 715.56,
+    "ocr_text": "Let us do a few exercises\n\n11\n* =\nsb 2 yy\n96 fillers 1\nStride = 4\nPadding =0 ——_.-—*\nWo = Wacker yy 96\n\nHy = 2 E12P 4 |\n\n387015 (Deep"
+  }
+]

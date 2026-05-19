@@ -1,0 +1,1772 @@
+[
+  {
+    "text": "So, we now turn our attention to a very interesting and important class of graphs called directed",
+    "start": 0.0,
+    "end": 5.8,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "acyclic graphs or DAGs.",
+    "start": 5.8,
+    "end": 8.8,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, to motivate this class of graphs, let's look at a problem where we have a bunch of tasks",
+    "start": 8.8,
+    "end": 15.04,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "to perform with some constraints.",
+    "start": 15.04,
+    "end": 17.2,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "Suppose we are going on a forintritt, then of course we need a passport, we need to buy",
+    "start": 17.2,
+    "end": 22.64,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "a ticket, we require a visa probably, we want to buy some travel insurance, we probably",
+    "start": 22.64,
+    "end": 29.4,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "need some foreign exchange as well and perhaps we want to buy some gifts for our hosts.",
+    "start": 29.4,
+    "end": 35.28,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "Now these tasks are dependent on each other in certain ways.",
+    "start": 35.28,
+    "end": 40.16,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "Without a passport you cannot buy a ticket, not can you buy any travel insurance.",
+    "start": 40.16,
+    "end": 45.1,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "For the visa you need both the ticket and the insurance to be available and without a visa",
+    "start": 45.1,
+    "end": 50.8,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "the bank will not give you foreign exchange.",
+    "start": 50.8,
+    "end": 53.76,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "And finally you would not like to buy gifts for your hosts unless the trip is confirmed.",
+    "start": 53.76,
+    "end": 59.48,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So unless you have all these things including the visa and hand, you don't want to invest",
+    "start": 59.48,
+    "end": 63.2,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "in the gift.",
+    "start": 63.2,
+    "end": 67.08,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So our goal is that given these constraints in what sequence should we perform these six",
+    "start": 67.08,
+    "end": 73.28,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDirected acyclic graphs (DAGs)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "operations, getting a passport, buying a ticket, getting insurance, getting a visa, buying",
+    "start": 73.28,
+    "end": 79.16,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "foreign exchange and buying gifts for our hosts.",
+    "start": 79.16,
+    "end": 82.52,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "What sequence should we do it so that whenever we want to approach a task the constraints",
+    "start": 82.52,
+    "end": 88.64,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "that are required for the task are satisfied.",
+    "start": 88.64,
+    "end": 94.36,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So as you would expect we will model this using a graph.",
+    "start": 94.36,
+    "end": 99.48,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "In this graph the vertices will be the tasks and then we will have an edge pointing from",
+    "start": 99.48,
+    "end": 106.44,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "T1 to T2.",
+    "start": 106.44,
+    "end": 108.76,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "If T1 must come before T2, in other words T2 depends on T1.",
+    "start": 108.76,
+    "end": 112.52,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "You cannot do T2 unless T1 has been completed.",
+    "start": 112.52,
+    "end": 115.6,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So as an example, getting a passport must come before buying a ticket.",
+    "start": 115.6,
+    "end": 119.88,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So if T1 is getting a passport T2 could be getting a ticket.",
+    "start": 119.88,
+    "end": 124.0,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "Similarly you must have a visa before you buy foreign exchange.",
+    "start": 124.0,
+    "end": 128.88,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So there will be an edge from getting a visa to buying foreign exchange.",
+    "start": 128.88,
+    "end": 135.0,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So if we look at the constraints that we wrote, this is the graph that we had.",
+    "start": 135.0,
+    "end": 139.24,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So we had a constraint with such, you need a passport to buy a ticket, you need a passport",
+    "start": 139.24,
+    "end": 143.32,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "to buy insurance, you need both a ticket and insurance to get a visa.",
+    "start": 143.32,
+    "end": 147.04,
+    "ocr_text": "Buy\n\nGet ——— ticket —_\n\npassport —_ ™ Get\n\n——~» Buy ——— a\n\ninsurance sS\n\n\\ a Buy\n\\ gifts\nx\n\nct dependen:\n\nks should re:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex rer,\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So there are two constraints pointing to visa.",
+    "start": 147.04,
+    "end": 150.52,
+    "ocr_text": "B\neee,\n\nGet ———” ticket\n\npassport —_\n\ninsurance\n\ns should respect dependen\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n* Passport, Insurance, Ticket, Visa, Forex, Gift\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex\n\nss\n— Get\n\n3 es, 5\n—~» Buy => visa\n\nVSS\n‘ a Buy\n\ngifts\n\nb |\nBuy foreign\nexchange"
+  },
+  {
+    "text": "Then you need a visa to buy foreign exchange and finally you said we will buy a gift only",
+    "start": 150.52,
+    "end": 154.68,
+    "ocr_text": "B\neee,\n\nGet ———” ticket\n\npassport —_\n\ninsurance\n\ns should respect dependen\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n* Passport, Insurance, Ticket, Visa, Forex, Gift\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex\n\nss\n— Get\n\n3 es, 5\n—~» Buy => visa\n\nVSS\n‘ a Buy\n\ngifts\n\nb |\nBuy foreign\nexchange"
+  },
+  {
+    "text": "if the trip is confirmed and at some point at this stage when all these operations are",
+    "start": 154.68,
+    "end": 159.12,
+    "ocr_text": "B\neee,\n\nGet ———” ticket\n\npassport —_\n\ninsurance\n\ns should respect dependen\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n* Passport, Insurance, Ticket, Visa, Forex, Gift\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex\n\nss\n— Get\n\n3 es, 5\n—~» Buy => visa\n\nVSS\n‘ a Buy\n\ngifts\n\nb |\nBuy foreign\nexchange"
+  },
+  {
+    "text": "done we can assume the trip is confirmed because nothing is blocking us getting on the",
+    "start": 159.12,
+    "end": 163.24,
+    "ocr_text": "Buy\nticket\n\nGet\n\n—— Get\npassport —\ni, Buy = visa\ninsurance ma\nena “a Buy\nOrder of tasks should respect dependen \\ gifts\n\\\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "plane.",
+    "start": 163.24,
+    "end": 164.56,
+    "ocr_text": "Buy\nticket\n\nGet\n\n—— Get\npassport —\ni, Buy = visa\ninsurance ma\nena “a Buy\nOrder of tasks should respect dependen \\ gifts\n\\\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So this is a graph that we have and now our goal is to sequence these six operations in",
+    "start": 164.56,
+    "end": 171.12,
+    "ocr_text": "Buy\nticket\n\nGet\n\n—— Get\npassport —\ni, Buy = visa\ninsurance ma\nena “a Buy\nOrder of tasks should respect dependen \\ gifts\n\\\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\nBuy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "such a way that whenever we want to perform a task whatever it depends on has already",
+    "start": 171.12,
+    "end": 175.68,
+    "ocr_text": "Buy\nGet ———— ticket SS\n—* Get\n\npassport\nSo Buy arr vise\n\ninsurance\n\nSS Buy\n\ngifts\n\nct dependencies\n\nOrder of tasks should re:\nq\n\nBuy foreign\n\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "been done.",
+    "start": 175.68,
+    "end": 177.2,
+    "ocr_text": "Buy er\n\nGet ———— ticket —~—\\\npassport —_\n\ninsurance\n\nks should res\n\nOrder of ta:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n* Passport, Insurance, Ticket, Visa, Forex, Gift\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex\n\nct dependencies\n\nGet\n\ney\n—~» Buy _——> visa\n\nSS Buy\n\\ gifts\n|\nBuy foreign\nexchange"
+  },
+  {
+    "text": "So we can see that you need a passport to do anything.",
+    "start": 177.2,
+    "end": 179.44,
+    "ocr_text": "Buy er\n\nGet ———— ticket —~—\\\npassport —_\n\ninsurance\n\nks should res\n\nOrder of ta:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n* Passport, Insurance, Ticket, Visa, Forex, Gift\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex\n\nct dependencies\n\nGet\n\ney\n—~» Buy _——> visa\n\nSS Buy\n\\ gifts\n|\nBuy foreign\nexchange"
+  },
+  {
+    "text": "So we always need to start with getting a passport.",
+    "start": 179.44,
+    "end": 182.64,
+    "ocr_text": "Buy er\n\nGet ———— ticket —~—\\\npassport —_\n\ninsurance\n\nks should res\n\nOrder of ta:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n* Passport, Insurance, Ticket, Visa, Forex, Gift\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex\n\nct dependencies\n\nGet\n\ney\n—~» Buy _——> visa\n\nSS Buy\n\\ gifts\n|\nBuy foreign\nexchange"
+  },
+  {
+    "text": "Now there is no dependency between buying a ticket and buying insurance as per the constraints",
+    "start": 182.64,
+    "end": 186.88,
+    "ocr_text": "Buy er\n\nGet ———— ticket —~—\\\npassport —_\n\ninsurance\n\nks should res\n\nOrder of ta:\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n* Passport, Insurance, Ticket, Visa, Forex, Gift\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex\n\nct dependencies\n\nGet\n\ney\n—~» Buy _——> visa\n\nSS Buy\n\\ gifts\n|\nBuy foreign\nexchange"
+  },
+  {
+    "text": "we have so far.",
+    "start": 186.88,
+    "end": 188.28,
+    "ocr_text": "Get ——— ticket —~\n\npassport —\n~~» Buy _=— > visa\n\ninsurance ~\\\n“a Buy\nOrder of tasks should respect dependenci \\ gifts\n\\\n* Passport, Ticket, Insurance, Visa, Gift, Forex om\n= Buy foreign\n\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So after a passport you can either buy a ticket first and then buy insurance or you can",
+    "start": 188.28,
+    "end": 192.88,
+    "ocr_text": "Get ——— ticket —~\n\npassport —\n~~» Buy _=— > visa\n\ninsurance ~\\\n“a Buy\nOrder of tasks should respect dependenci \\ gifts\n\\\n* Passport, Ticket, Insurance, Visa, Gift, Forex om\n= Buy foreign\n\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "buy insurance first and then buy a ticket.",
+    "start": 192.88,
+    "end": 195.56,
+    "ocr_text": "Get ——— ticket —~\n\npassport —\n~~» Buy _=— > visa\n\ninsurance ~\\\n“a Buy\nOrder of tasks should respect dependenci \\ gifts\n\\\n* Passport, Ticket, Insurance, Visa, Gift, Forex om\n= Buy foreign\n\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So there is a different ordering possible which does not violate the constraints.",
+    "start": 195.56,
+    "end": 200.08,
+    "ocr_text": "Buy fel\nGet ——— ticket\npassport —__\n\nwy\n——~» Buy ———\n\ninsurance\nOrder of tasks should respect dependenci gifts\n* Passport, Ticket, Insurance, Visa, Gift, Forex\nSe Buy foreign\n\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "On the other hand for a visa we need both right.",
+    "start": 200.08,
+    "end": 203.08,
+    "ocr_text": "Buy fel\nGet ——— ticket\npassport —__\n\nwy\n——~» Buy ———\n\ninsurance\nOrder of tasks should respect dependenci gifts\n* Passport, Ticket, Insurance, Visa, Gift, Forex\nSe Buy foreign\n\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So visa must come after both ticket and insurance.",
+    "start": 203.08,
+    "end": 206.52,
+    "ocr_text": "Buy fel\nGet ——— ticket\npassport —__\n\nwy\n——~» Buy ———\n\ninsurance\nOrder of tasks should respect dependenci gifts\n* Passport, Ticket, Insurance, Visa, Gift, Forex\nSe Buy foreign\n\n* Passport, Insurance, Ticket, Visa, Forex, Gift exchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "But again having done the visa then there is no constraint between buying the foreign exchange",
+    "start": 206.52,
+    "end": 211.76,
+    "ocr_text": "Buy\nGet ———— ticket ——\\\n™ Get\npassport ~\nSSA py Zoi\ninsurance SY\n\nOrder of tasks should res\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\n~ Buy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift’ exchange\n\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "and buying gifts.",
+    "start": 211.76,
+    "end": 212.76,
+    "ocr_text": "Buy\nGet ———— ticket ——\\\n™ Get\npassport ~\nSSA py Zoi\ninsurance SY\n\nOrder of tasks should res\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\n~ Buy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift’ exchange\n\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So you could do the foreign exchange before the gift or the gift before the foreign exchange.",
+    "start": 212.76,
+    "end": 216.96,
+    "ocr_text": "Buy\nGet ———— ticket ——\\\n™ Get\npassport ~\nSSA py Zoi\ninsurance SY\n\nOrder of tasks should res\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\n~ Buy foreign\n* Passport, Insurance, Ticket, Visa, Forex, Gift’ exchange\n\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So there are in this particular example there are two possible ways of reordering the ticket",
+    "start": 216.96,
+    "end": 221.48,
+    "ocr_text": "Buy\n—— ticket —X\\\n\nGet Sven\ne\npassport —__ Pees i an\n—~» Buy => visa )\ninsurance Wass\n\nOrder of tasks should respect dependencies\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\n=\n* Passport, Insurance, Ticket,(Visa, Forex, Gif\n\n4\nBuy foreign\nexchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "and the insurance and there are two possible ways of reordering the gifts and the foreign",
+    "start": 221.48,
+    "end": 225.2,
+    "ocr_text": "Buy\n—— ticket —X\\\n\nGet Sven\ne\npassport —__ Pees i an\n—~» Buy => visa )\ninsurance Wass\n\nOrder of tasks should respect dependencies\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\n=\n* Passport, Insurance, Ticket,(Visa, Forex, Gif\n\n4\nBuy foreign\nexchange\n* Passport, Ticket, Insurance, Visa, Forex, Gift\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "exchange.",
+    "start": 225.2,
+    "end": 226.2,
+    "ocr_text": "Get ——— ticket —~—\\\npassport —\n\n~~» _ Buy _=—> visa\n\ninsurance\n\nOrder of tasks should respect dependencies\n\ngifts |\n\\\n\n}\nBuy foreign\nexchange\n\nSl\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\n* Passport, Ticket, Insurance, Visa, Forex, Gift_\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So overall there are four different sequences which are compatible with these constraints.",
+    "start": 226.2,
+    "end": 234.16,
+    "ocr_text": "Get ——— ticket —~—\\\npassport —\n\n~~» _ Buy _=—> visa\n\ninsurance\n\nOrder of tasks should respect dependencies\n\ngifts |\n\\\n\n}\nBuy foreign\nexchange\n\nSl\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\n* Passport, Ticket, Insurance, Visa, Forex, Gift_\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "So this class of graph is an important class and it has two important features.",
+    "start": 234.16,
+    "end": 239.52,
+    "ocr_text": "Get ——— ticket —~—\\\npassport —\n\n~~» _ Buy _=—> visa\n\ninsurance\n\nOrder of tasks should respect dependencies\n\ngifts |\n\\\n\n}\nBuy foreign\nexchange\n\nSl\n\n* Passport, Ticket, Insurance, Visa, Gift, Forex\n\n* Passport, Ticket, Insurance, Visa, Forex, Gift_\n\n* Passport, Insurance, Ticket, Visa, Gift, Forex"
+  },
+  {
+    "text": "One is of course it is directed because this dependencies are from one task to another",
+    "start": 239.52,
+    "end": 243.78,
+    "ocr_text": "Buy\nGet ——— ticket —__\n\npassport ~ = Get\nPd Buy ———* Visa\ninsurance \\\nos Buy\nFeatures of the graph N gifts\n\nBuy foreign\nexchange"
+  },
+  {
+    "text": "task.",
+    "start": 243.78,
+    "end": 244.78,
+    "ocr_text": "Buy\nGet ——— ticket —__\n\npassport ~ = Get\nPd Buy ———* Visa\ninsurance \\\nos Buy\nFeatures of the graph N gifts\n\nBuy foreign\nexchange"
+  },
+  {
+    "text": "It is not a symmetric dependency and there are no cycles.",
+    "start": 244.78,
+    "end": 248.88,
+    "ocr_text": "Buy\nGet ——— ticket —__\n\npassport ~ = Get\nPd Buy ———* Visa\ninsurance \\\nos Buy\nFeatures of the graph N gifts\n\nBuy foreign\nexchange"
+  },
+  {
+    "text": "So if you add a cycle it would mean that a group of tasks depend on each other.",
+    "start": 248.88,
+    "end": 252.48,
+    "ocr_text": "Buy\nGet ———— ticket >\n\na\npassport —_ oy Get\n———~» Buy ———> Visa\ninsurance N >\n_ a Buy\nFeatures of the graph \\\\ gifts\nx\nBuy foreign\n\nexchange"
+  },
+  {
+    "text": "So there is no way to start because each task depends on something else in the cycle.",
+    "start": 252.48,
+    "end": 256.12,
+    "ocr_text": "Buy\nGet ———— ticket >\n\na\npassport —_ oy Get\n———~» Buy ———> Visa\ninsurance N >\n_ a Buy\nFeatures of the graph \\\\ gifts\nx\nBuy foreign\n\nexchange"
+  },
+  {
+    "text": "So you have to break the cycle somewhere in order to get started but you cannot break",
+    "start": 256.12,
+    "end": 259.2,
+    "ocr_text": "Buy\nGet ————’ ticket ~\n\npassport —\n\nDie\n—— Get\n—~» Buy ————= visa\n\ninsurance \\ SN .\n\\ uy\n\\ gifts\nx\n\nSpel\n\nres of the graph\n\nBuy foreign\nexchange"
+  },
+  {
+    "text": "it anyway because each task depends on something else in the cycle.",
+    "start": 259.2,
+    "end": 262.72,
+    "ocr_text": "Buy\nGet ————’ ticket ~\n\npassport —\n\nDie\n—— Get\n—~» Buy ————= visa\n\ninsurance \\ SN .\n\\ uy\n\\ gifts\nx\n\nSpel\n\nres of the graph\n\nBuy foreign\nexchange"
+  },
+  {
+    "text": "So this graph will have directions on the edges and there cannot be any cycles in this graph.",
+    "start": 262.72,
+    "end": 269.52,
+    "ocr_text": "Buy\nGet ————’ ticket ~\n\npassport —\n\nDie\n—— Get\n—~» Buy ————= visa\n\ninsurance \\ SN .\n\\ uy\n\\ gifts\nx\n\nSpel\n\nres of the graph\n\nBuy foreign\nexchange"
+  },
+  {
+    "text": "So we call such a graph a directed a cyclic graph.",
+    "start": 269.52,
+    "end": 273.28,
+    "ocr_text": "Buy\nGet ————’ ticket ~\n\npassport —\n\nDie\n—— Get\n—~» Buy ————= visa\n\ninsurance \\ SN .\n\\ uy\n\\ gifts\nx\n\nSpel\n\nres of the graph\n\nBuy foreign\nexchange"
+  },
+  {
+    "text": "So a directed a cyclic graph is just a directed graph in which there is no directed",
+    "start": 273.28,
+    "end": 278.36,
+    "ocr_text": "Buy\nGet ————’ ticket ~\n\npassport —\n\nDie\n—— Get\n—~» Buy ————= visa\n\ninsurance \\ SN .\n\\ uy\n\\ gifts\nx\n\nSpel\n\nres of the graph\n\nBuy foreign\nexchange"
+  },
+  {
+    "text": "path from any vertex back to itself.",
+    "start": 278.36,
+    "end": 280.48,
+    "ocr_text": "Buy\nGet ————’ ticket ~\n\npassport —\n\nDie\n—— Get\n—~» Buy ————= visa\n\ninsurance \\ SN .\n\\ uy\n\\ gifts\nx\n\nSpel\n\nres of the graph\n\nBuy foreign\nexchange"
+  },
+  {
+    "text": "So if I started any vertex v it should not be the case that I can follow a sequence of",
+    "start": 280.48,
+    "end": 285.24,
+    "ocr_text": "Buy\nGet ————’ ticket ~\n\npassport —\n\nDie\n—— Get\n—~» Buy ————= visa\n\ninsurance \\ SN .\n\\ uy\n\\ gifts\nx\n\nSpel\n\nres of the graph\n\nBuy foreign\nexchange"
+  },
+  {
+    "text": "directed edges in the same direction and somehow come back to be.",
+    "start": 285.24,
+    "end": 288.64,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "So this should not be there.",
+    "start": 288.64,
+    "end": 290.44,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "So this should not be any cycle.",
+    "start": 290.44,
+    "end": 292.64,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "We abbreviate the name directed a cyclic graph as DAG.",
+    "start": 292.64,
+    "end": 297.0,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "So very often for simplicity we will call these graphs DAGs.",
+    "start": 297.0,
+    "end": 304.44,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "So the problem that we had at rest in our example is that we are given a cycle.",
+    "start": 304.44,
+    "end": 308.32,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "So we have set of tasks and we want to write them out in a sequence which respects the",
+    "start": 308.32,
+    "end": 313.28,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "constraints.",
+    "start": 313.28,
+    "end": 314.28,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "The constraints are nothing but the edges.",
+    "start": 314.28,
+    "end": 316.68,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "So in general we are given a set of vertices.",
+    "start": 316.68,
+    "end": 318.88,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "These are our tasks abstractly one to n and we want to read right out one to n in a",
+    "start": 318.88,
+    "end": 324.16,
+    "ocr_text": "* Enumé t artices as {i1,i\n* jr 2d¢ k) in E\nars befor r ratio\n* ) kr topological sorti"
+  },
+  {
+    "text": "such a way that the constraints are respected.",
+    "start": 324.16,
+    "end": 326.96,
+    "ocr_text": ". \\ (\n. ume t rt S\n° i i I =\noy c k)\nars or r atic\n. ) kr orting"
+  },
+  {
+    "text": "What this means is that we will write out a sequence of numbers which is the permutation",
+    "start": 326.96,
+    "end": 330.56,
+    "ocr_text": ". \\ (\n. ume t rt S\n° i i I =\noy c k)\nars or r atic\n. ) kr orting"
+  },
+  {
+    "text": "of one to n in such a way that whenever there is an constraint of the form jk that is",
+    "start": 330.56,
+    "end": 336.32,
+    "ocr_text": ". \\ (\n. ume t rt S\n° i i I =\noy c k)\nars or r atic\n. ) kr orting"
+  },
+  {
+    "text": "there is an edge jk then in the enumeration that we have performed j must come before",
+    "start": 336.32,
+    "end": 341.2,
+    "ocr_text": ". \\ (\n. ume t rt S\n° i i I =\noy c k)\nars or r atic\n. ) kr orting"
+  },
+  {
+    "text": "k right.",
+    "start": 341.2,
+    "end": 342.28,
+    "ocr_text": ". \\ (\n. ume t rt S\n° i i I =\noy c k)\nars or r atic\n. ) kr orting"
+  },
+  {
+    "text": "So it cannot be that we have to do j before k according to our constraint but in the sequence",
+    "start": 342.28,
+    "end": 346.64,
+    "ocr_text": ". \\ (\n. ume t rt S\n° i i I =\noy c k)\nars or r atic\n. ) kr orting"
+  },
+  {
+    "text": "that we produce k happens before j right.",
+    "start": 346.64,
+    "end": 349.64,
+    "ocr_text": "* um t ; sy\natic\n5 or r\nsort\nKr Soi"
+  },
+  {
+    "text": "So the the see the order of vertices in the final sequence must respect the constraints",
+    "start": 349.64,
+    "end": 355.08,
+    "ocr_text": "* um t ; sy\natic\n5 or r\nsort\nKr Soi"
+  },
+  {
+    "text": "given by the data.",
+    "start": 355.08,
+    "end": 356.68,
+    "ocr_text": "* um t ; sy\natic\n5 or r\nsort\nKr Soi"
+  },
+  {
+    "text": "So for various reasons this is known as topologically sorting the data.",
+    "start": 356.68,
+    "end": 364.84,
+    "ocr_text": "* um t ; sy\natic\n5 or r\nsort\nKr Soi"
+  },
+  {
+    "text": "So the first observation is that if the directed graph had a cycle then you will not be able",
+    "start": 364.84,
+    "end": 370.8,
+    "ocr_text": "* um t ; sy\natic\n5 or r\nsort\nKr Soi"
+  },
+  {
+    "text": "to topologically order it because if it had a cycle then for instance supposing j and",
+    "start": 370.8,
+    "end": 376.08,
+    "ocr_text": "* um t ; sy\natic\n5 or r\nsort\nKr Soi"
+  },
+  {
+    "text": "k are vertices on the cycle then you will have a path from j to k and a path from k to",
+    "start": 376.08,
+    "end": 380.76,
+    "ocr_text": "on"
+  },
+  {
+    "text": "j.",
+    "start": 380.76,
+    "end": 381.76,
+    "ocr_text": "on"
+  },
+  {
+    "text": "Now it is easy to see that the topological ordering constraint extends to paths that is",
+    "start": 381.76,
+    "end": 386.36,
+    "ocr_text": "on"
+  },
+  {
+    "text": "if I have j before k as an edge I know that j must appear before k in the final sequence.",
+    "start": 386.36,
+    "end": 392.16,
+    "ocr_text": "on"
+  },
+  {
+    "text": "So if there is a path from j to k then there is a sequence of dependencies from j to k",
+    "start": 392.16,
+    "end": 395.96,
+    "ocr_text": "on"
+  },
+  {
+    "text": "so j must appear before k.",
+    "start": 395.96,
+    "end": 397.68,
+    "ocr_text": "on"
+  },
+  {
+    "text": "Now if I have a cycle it says that j must come before k and k must come before j.",
+    "start": 397.68,
+    "end": 402.44,
+    "ocr_text": "on"
+  },
+  {
+    "text": "So there is no way to break this dichotomy.",
+    "start": 402.44,
+    "end": 405.52,
+    "ocr_text": "on"
+  },
+  {
+    "text": "So we will end up with a situation where we cannot order this set of paths to respect",
+    "start": 405.52,
+    "end": 410.64,
+    "ocr_text": ". n\n* 1 1\n) Ce ordered\n* First lis mi |\n* Ther =} } } 1\nr d' C"
+  },
+  {
+    "text": "the constraints.",
+    "start": 410.64,
+    "end": 411.88,
+    "ocr_text": ". n\n* 1 1\n) Ce ordered\n* First lis mi |\n* Ther =} } } 1\nr d' C"
+  },
+  {
+    "text": "So if the graph has cycles then it is clear that there is no topological ordering possible.",
+    "start": 411.88,
+    "end": 419.68,
+    "ocr_text": ". n\n* 1 1\n) Ce ordered\n* First lis mi |\n* Ther =} } } 1\nr d' C"
+  },
+  {
+    "text": "So what we claim however is that for DAGs that is if there is no cycle the graph is actually",
+    "start": 419.68,
+    "end": 425.36,
+    "ocr_text": ". n\n* 1 1\n) Ce ordered\n* First lis mi |\n* Ther =} } } 1\nr d' C"
+  },
+  {
+    "text": "a-cyclic then we can always order it topologically.",
+    "start": 425.36,
+    "end": 430.2,
+    "ocr_text": ". n\n* 1 1\n) Ce ordered\n* First lis mi |\n* Ther =} } } 1\nr d' C"
+  },
+  {
+    "text": "So the strategy is to order the vertices as follows.",
+    "start": 430.2,
+    "end": 434.92,
+    "ocr_text": ". n\n* 1 1\n) Ce ordered\n* First lis mi |\n* Ther =} } } 1\nr d' C"
+  },
+  {
+    "text": "You first list all the vertices which have no dependencies.",
+    "start": 434.92,
+    "end": 438.64,
+    "ocr_text": ". n\n* 1 1\n) Ce ordered\n* First lis mi |\n* Ther =} } } 1\nr d' C"
+  },
+  {
+    "text": "In our earlier example the vertex which had no dependencies was getting a passport.",
+    "start": 438.64,
+    "end": 442.24,
+    "ocr_text": ". n\n* 1 1\n) Ce ordered\n* First lis mi |\n* Ther =} } } 1\nr d' C"
+  },
+  {
+    "text": "We did not need to do anything before getting a passport so we can do that first.",
+    "start": 442.24,
+    "end": 446.72,
+    "ocr_text": "ic"
+  },
+  {
+    "text": "But once we have knocked off the dependency you see any vertex which all its dependencies",
+    "start": 446.72,
+    "end": 451.96,
+    "ocr_text": "ic"
+  },
+  {
+    "text": "are now satisfied and then we can numerate that.",
+    "start": 451.96,
+    "end": 455.44,
+    "ocr_text": "ic"
+  },
+  {
+    "text": "So we can systematically list out vertices with no incoming edges then vertices all of",
+    "start": 455.44,
+    "end": 460.0,
+    "ocr_text": "ic"
+  },
+  {
+    "text": "whose incoming edges have already been accounted for in our new generation and so on.",
+    "start": 460.0,
+    "end": 466.64,
+    "ocr_text": "ic"
+  },
+  {
+    "text": "So to formalize this notion we introduced some terminology.",
+    "start": 466.64,
+    "end": 470.32,
+    "ocr_text": "* indegree(v)\n\n* outdegree(v): r of ec ut of"
+  },
+  {
+    "text": "So recall that for an undirected graph we use the term degree of v to refer to the number",
+    "start": 470.32,
+    "end": 476.36,
+    "ocr_text": "* indegree(v)\n\n* outdegree(v): r of ec ut of"
+  },
+  {
+    "text": "of vertices connected to v.",
+    "start": 476.36,
+    "end": 478.28,
+    "ocr_text": "degree(v)\n* indegree(v) : number of edges in\n\nSe\n* outdegree(v): I f edges out of v Va"
+  },
+  {
+    "text": "So if we was connected by an edge to four vertices then we would say that the degree of v is",
+    "start": 478.28,
+    "end": 482.68,
+    "ocr_text": "degree(v)\n* indegree(v) : number of edges in\n\nSe\n* outdegree(v): I f edges out of v Va"
+  },
+  {
+    "text": "four.",
+    "start": 482.68,
+    "end": 484.0,
+    "ocr_text": "degree(v)\n* indegree(v) : number of edges in\n\nSe\n* outdegree(v): I f edges out of v Va"
+  },
+  {
+    "text": "Now since we have a directed graph we have directions on these edges.",
+    "start": 484.0,
+    "end": 487.52,
+    "ocr_text": "degree(v)\n* indegree(v) : number of edges in\n\nSe\n* outdegree(v): I f edges out of v Va"
+  },
+  {
+    "text": "We have some edges which are coming in and some edges which are going out.",
+    "start": 487.52,
+    "end": 491.36,
+    "ocr_text": "* indegree(v) : number o\n\n* outdegree(v): c ot"
+  },
+  {
+    "text": "So we separate out the degree into the indegree and the out degree.",
+    "start": 491.36,
+    "end": 495.08,
+    "ocr_text": "* indegree(v) : number o\n\n* outdegree(v): c ot"
+  },
+  {
+    "text": "So the indegree is a number of edges pointing into v, directed into v.",
+    "start": 495.08,
+    "end": 500.16,
+    "ocr_text": "ev)\n* indegree(v) : number of edges into ae =\n* outdegree(v): ls f edges out of v UO"
+  },
+  {
+    "text": "The out degree of v is a number of edges pointing out of v.",
+    "start": 500.16,
+    "end": 505.96,
+    "ocr_text": "ev)\n* indegree(v) : number of edges into ae =\n* outdegree(v): ls f edges out of v UO"
+  },
+  {
+    "text": "So our first claim is that every dag has at least one vertex with indegree zero.",
+    "start": 505.96,
+    "end": 511.96,
+    "ocr_text": "* indegree(v)\n\n* outdegree(v): 1 Der of ut O'"
+  },
+  {
+    "text": "In terms of our example the vertex with indegree zero is something which has no dependencies.",
+    "start": 511.96,
+    "end": 518.12,
+    "ocr_text": "* indegree(v)\n\n* outdegree(v): 1 Der of ut O'"
+  },
+  {
+    "text": "Nothing it doesn't depend on anything because nothing pointing into it.",
+    "start": 518.12,
+    "end": 522.16,
+    "ocr_text": "* indegree(v) er of edges\n\n* outdegree(v) of _ of"
+  },
+  {
+    "text": "Now how do we prove this?",
+    "start": 522.16,
+    "end": 524.36,
+    "ocr_text": "* indegree(v) er of edges\n\n* outdegree(v) of _ of"
+  },
+  {
+    "text": "Well supposing we start with any vertex v such that it has indegree greater than zero.",
+    "start": 524.36,
+    "end": 530.24,
+    "ocr_text": "* indegree(v) er of edges\n\n* outdegree(v) of _ of"
+  },
+  {
+    "text": "This is as something pointing into it then it must have some edge coming into it.",
+    "start": 530.24,
+    "end": 536.68,
+    "ocr_text": "* indegree(v)\n* outdegree(v) er of es out of"
+  },
+  {
+    "text": "So let us call that v2.",
+    "start": 536.68,
+    "end": 538.12,
+    "ocr_text": "* indegree(v) ibe\n* outdegree(v) ber of e S of"
+  },
+  {
+    "text": "Now supposing this does not have indegree zero then it must also have something pointing",
+    "start": 538.12,
+    "end": 541.84,
+    "ocr_text": "* indegree(v) ibe\n* outdegree(v) ber of e S of"
+  },
+  {
+    "text": "into it.",
+    "start": 541.84,
+    "end": 542.84,
+    "ocr_text": "* indegree(v) ibe\n* outdegree(v) ber of e S of"
+  },
+  {
+    "text": "So then I get a third vertex.",
+    "start": 542.84,
+    "end": 544.8,
+    "ocr_text": "* indegree(v) ibe\n* outdegree(v) ber of e S of"
+  },
+  {
+    "text": "So in this way if I keep finding that the vertices I am encountering have indegree greater",
+    "start": 544.8,
+    "end": 549.28,
+    "ocr_text": "* indegree(v) ibe\n* outdegree(v) ber of e S of"
+  },
+  {
+    "text": "than zero eventually I must enumerate all the vertices in my graph.",
+    "start": 549.28,
+    "end": 555.4,
+    "ocr_text": "* indegree(v)\n* outdegree(v) iL yf"
+  },
+  {
+    "text": "Now if there is still not the case that the nth vertex if there are n vertices the nth",
+    "start": 555.4,
+    "end": 561.04,
+    "ocr_text": "* indegree(v)\n\n* outdegree(v): | Der O ut of"
+  },
+  {
+    "text": "vertex still does not have indegree zero then it must have an incoming edge but that cannot",
+    "start": 561.04,
+    "end": 564.6,
+    "ocr_text": "* indegree(v)\n\n* outdegree(v): | Der O ut of"
+  },
+  {
+    "text": "be from a new vertex.",
+    "start": 564.6,
+    "end": 565.92,
+    "ocr_text": "* indegree(v)\n\n* outdegree(v): | Der O ut of"
+  },
+  {
+    "text": "So it must point from one of the existing vertices which I have already seen before.",
+    "start": 565.92,
+    "end": 571.0,
+    "ocr_text": "«\nBS, >\nNz 1\n\n* indegree(v)\n* outdegree(v) Der of"
+  },
+  {
+    "text": "So therefore if I have a continuous sequence of vertices all of which are pointing into",
+    "start": 571.0,
+    "end": 576.32,
+    "ocr_text": "«\nBS, >\nNz 1\n\n* indegree(v)\n* outdegree(v) Der of"
+  },
+  {
+    "text": "each the previous one with indegree not equal to zero then I will end up with a cycle.",
+    "start": 576.32,
+    "end": 581.48,
+    "ocr_text": "yeas\nV. f\nZ\n* indegree(v) € e s into\n* outdegree(v) yf 3 out of\nh le t tex indegre"
+  },
+  {
+    "text": "But this is a contradiction because we have an a-cyclic graph.",
+    "start": 581.48,
+    "end": 584.84,
+    "ocr_text": "yeas\nV. f\nZ\n* indegree(v) € e s into\n* outdegree(v) yf 3 out of\nh le t tex indegre"
+  },
+  {
+    "text": "So in any directed a-cyclic graph there must be at least one vertex with indegree zero",
+    "start": 584.84,
+    "end": 590.44,
+    "ocr_text": "yeas\nV. f\nZ\n* indegree(v) € e s into\n* outdegree(v) yf 3 out of\nh le t tex indegre"
+  },
+  {
+    "text": "which corresponds to a task with no dependencies from where we can start our enumeration of",
+    "start": 590.44,
+    "end": 595.88,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "the tasks.",
+    "start": 595.88,
+    "end": 601.16,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "So this is a more elaborate version of the algorithm that we described earlier.",
+    "start": 601.16,
+    "end": 605.52,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "So we pick a vertex with indegree zero.",
+    "start": 605.52,
+    "end": 608.56,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "Right?",
+    "start": 608.56,
+    "end": 609.56,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "Recall that such a vertex has no dependencies.",
+    "start": 609.56,
+    "end": 613.44,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "Now we enumerate it because it now has it's available for enumeration and then we delete",
+    "start": 613.44,
+    "end": 618.4,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "it from the graph.",
+    "start": 618.4,
+    "end": 619.68,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "So when we delete a vertex with indegree zero from a graph so supposing we have a tag like",
+    "start": 619.68,
+    "end": 626.64,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "this.",
+    "start": 626.64,
+    "end": 627.64,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "So supposing we pick this one and we delete it then clearly what remains is a tag because",
+    "start": 627.64,
+    "end": 633.28,
+    "ocr_text": "Ds\nVy f\n* indegree(v)\n* outdegree(v) yf 5 of \\\n\nh : te hi"
+  },
+  {
+    "text": "we distilled directed and we have not introduced any cycle.",
+    "start": 633.28,
+    "end": 636.92,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "So it was already a-cyclic and by deleting an edge we can't introduce a cycle so clearly",
+    "start": 636.92,
+    "end": 640.88,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "it's a tag.",
+    "start": 640.88,
+    "end": 641.88,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "So we can apply the same criterion.",
+    "start": 641.88,
+    "end": 643.88,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "This new tag must also have at least one degree with vertex with indegree zero so we",
+    "start": 643.88,
+    "end": 648.0,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "can enumerate that and keep going.",
+    "start": 648.0,
+    "end": 650.36,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "Right?",
+    "start": 650.36,
+    "end": 651.36,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "So we keep enumerating vertices with indegree zero until the tag becomes empty.",
+    "start": 651.36,
+    "end": 655.4,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "Each vertex we enumerate we will delete from the tag.",
+    "start": 655.4,
+    "end": 663.6,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "So let us apply the strategy to this tag.",
+    "start": 663.6,
+    "end": 667.32,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "So we first begin by labeling every vertex by its indegree.",
+    "start": 667.32,
+    "end": 672.04,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "So in red we have indicated the indegree of every vertex.",
+    "start": 672.04,
+    "end": 675.08,
+    "ocr_text": "Indegree\n0"
+  },
+  {
+    "text": "So for instance one and two have no incoming edges so they have indegree zero.",
+    "start": 675.08,
+    "end": 679.64,
+    "ocr_text": "Indegree\n\npas"
+  },
+  {
+    "text": "Vertex three has two edges coming in so it has indegree two.",
+    "start": 679.64,
+    "end": 682.72,
+    "ocr_text": "Indegree\n\npas"
+  },
+  {
+    "text": "Vertex eight has four edges coming in so it has indegree four and so on.",
+    "start": 682.72,
+    "end": 687.96,
+    "ocr_text": "Indegree\n\npas"
+  },
+  {
+    "text": "Now we have to pick a vertex of indegree zero enumerate it and eliminate it.",
+    "start": 687.96,
+    "end": 693.92,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So we have a choice between one and two.",
+    "start": 693.92,
+    "end": 695.96,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So let's suppose we start with one.",
+    "start": 695.96,
+    "end": 698.2,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So we start with one we eliminate it and now when we eliminate it we also eliminate the",
+    "start": 698.2,
+    "end": 702.4,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "edges going out of it.",
+    "start": 702.4,
+    "end": 703.96,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So the edges coming into three four and five will reduce by one because the vertex one",
+    "start": 703.96,
+    "end": 708.72,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "is gone.",
+    "start": 708.72,
+    "end": 709.8,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So if the edges coming into them reduce by one their indegree is also reduced by one.",
+    "start": 709.8,
+    "end": 714.16,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So what happens when we eliminate one is that we enumerate it and we reduce the indegree",
+    "start": 714.16,
+    "end": 719.92,
+    "ocr_text": "Indegree\n\nee\n\n=\n\n0\n] 0\n/ oe at a\nal a 1 ae 4"
+  },
+  {
+    "text": "of three four and five from two one one to one zero zero.",
+    "start": 719.92,
+    "end": 723.4,
+    "ocr_text": "Indegree\n\nee\n\n=\n\n0\n] 0\n/ oe at a\nal a 1 ae 4"
+  },
+  {
+    "text": "So recall that before that the indegree is were two one and one.",
+    "start": 723.4,
+    "end": 726.48,
+    "ocr_text": "Indegree\n\nee\n\n=\n\n0\n] 0\n/ oe at a\nal a 1 ae 4"
+  },
+  {
+    "text": "Now these edges which are coming into them have been deleted right.",
+    "start": 726.48,
+    "end": 730.84,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So when we delete this we also delete the incoming edges.",
+    "start": 730.84,
+    "end": 734.12,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So now we have one zero zero.",
+    "start": 734.12,
+    "end": 735.92,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "Now we have three choices two the original one which are indegree zero and we have now",
+    "start": 735.92,
+    "end": 739.88,
+    "ocr_text": "1 :\n——\n\n0\n\nen"
+  },
+  {
+    "text": "two new vertices four and five which correspond to tasks if you want to call them whose prerequisites",
+    "start": 739.88,
+    "end": 745.96,
+    "ocr_text": "1 :\n——\n\n0\n\nen"
+  },
+  {
+    "text": "have been completed.",
+    "start": 745.96,
+    "end": 747.68,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So task one was a prerequisite only prerequisite for four task one was the only prerequisite",
+    "start": 747.68,
+    "end": 752.4,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "for five it has been completed so four and five are now available.",
+    "start": 752.4,
+    "end": 755.4,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So we can choose any of two four and five it doesn't matter.",
+    "start": 755.4,
+    "end": 758.68,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So let's suppose we choose four then again these two edges will go so this will reduce",
+    "start": 758.68,
+    "end": 764.04,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "to one and this will reduce to three.",
+    "start": 764.04,
+    "end": 767.8,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So we can do that we eliminate four and reduce the indegree of six from two to one to",
+    "start": 767.8,
+    "end": 772.44,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "indegree of eight from four to three.",
+    "start": 772.44,
+    "end": 776.2,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "Now perhaps we should decide to eliminate task two.",
+    "start": 776.2,
+    "end": 780.16,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So when you do plus two then the degree of three reduces and the degree of eight again",
+    "start": 780.16,
+    "end": 784.12,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "reduces.",
+    "start": 784.12,
+    "end": 785.12,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So notice that eight still has two pending requirements namely five and seven.",
+    "start": 785.12,
+    "end": 789.84,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So it cannot be done yet but three and five are available.",
+    "start": 789.84,
+    "end": 793.28,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So perhaps I do five.",
+    "start": 793.28,
+    "end": 795.8,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So now eight still has one and now I have no choice the only task with Indegree zero is",
+    "start": 795.8,
+    "end": 799.96,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "three.",
+    "start": 799.96,
+    "end": 800.96,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So then I do three.",
+    "start": 800.96,
+    "end": 801.96,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So now I can see that this is actually the way it is drawn is just a sequence.",
+    "start": 801.96,
+    "end": 805.56,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "I must do three before six six before seven seven before eight.",
+    "start": 805.56,
+    "end": 809.12,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So I have no choice at this point.",
+    "start": 809.12,
+    "end": 810.64,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "I must enumerate it as three and six and seven and then finally eight.",
+    "start": 810.64,
+    "end": 816.28,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "At this point my graph is empty and I have obtained a sequence of vertices which is a",
+    "start": 816.28,
+    "end": 821.04,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "valid topological order because every pair of vertices which occur as an edge in my original",
+    "start": 821.04,
+    "end": 826.6,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "graph is ordered so that the source of the edge appears before the target of the edge.",
+    "start": 826.6,
+    "end": 834.24,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So let's look at some pseudo code for the algorithm which we just executed by hand.",
+    "start": 834.24,
+    "end": 839.0,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So in this particular algorithm we first start by computing the Indegree.",
+    "start": 839.0,
+    "end": 844.76,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "So in order to compute the Indegree we need to find out how many for vertex I we need",
+    "start": 844.76,
+    "end": 849.84,
+    "ocr_text": "ALI"
+  },
+  {
+    "text": "to find out how many J satisfy the property that AJI is equal to one because this corresponds",
+    "start": 849.84,
+    "end": 855.12,
+    "ocr_text": "ALI"
+  },
+  {
+    "text": "to an edge from J to I.",
+    "start": 855.12,
+    "end": 857.72,
+    "ocr_text": "NIE |\n\n4 v\n\n|"
+  },
+  {
+    "text": "So in an adjacency matrix this corresponds to looking at the column containing I because",
+    "start": 857.72,
+    "end": 862.96,
+    "ocr_text": "NIE |\n\n4 v\n\n|"
+  },
+  {
+    "text": "in the column containing I we will have entries of the form a one I a two I and so on.",
+    "start": 862.96,
+    "end": 871.92,
+    "ocr_text": "NIE |\n\n4 v\n\n|"
+  },
+  {
+    "text": "So we will have these entries and we want to scan all of these and then add up all the",
+    "start": 871.92,
+    "end": 875.32,
+    "ocr_text": "Nill"
+  },
+  {
+    "text": "ones.",
+    "start": 875.32,
+    "end": 876.32,
+    "ocr_text": "Nill"
+  },
+  {
+    "text": "So we start by setting Indegree equal to one Indegree I equal to zero and then for every",
+    "start": 876.32,
+    "end": 880.52,
+    "ocr_text": "Nill"
+  },
+  {
+    "text": "row J we add AJI so it's either zero or one and so we therefore collect all the incoming",
+    "start": 880.52,
+    "end": 886.48,
+    "ocr_text": "Nill"
+  },
+  {
+    "text": "edges which point into I as the Indegree of I.",
+    "start": 886.48,
+    "end": 889.96,
+    "ocr_text": "aaa [|| |\n|)\nchoose 4 saa"
+  },
+  {
+    "text": "Now we start enumerating.",
+    "start": 889.96,
+    "end": 892.12,
+    "ocr_text": "aaa [|| |\n|)\nchoose 4 saa"
+  },
+  {
+    "text": "So we know this is a diet so we know there is at least one J with Indegree zero at every",
+    "start": 892.12,
+    "end": 896.24,
+    "ocr_text": "aaa [|| |\n|)\nchoose 4 saa"
+  },
+  {
+    "text": "point.",
+    "start": 896.24,
+    "end": 897.24,
+    "ocr_text": "aaa [|| |\n|)\nchoose 4 saa"
+  },
+  {
+    "text": "So we choose any such J okay choose a J which has Indegree zero enumerated.",
+    "start": 897.24,
+    "end": 901.76,
+    "ocr_text": "aaa [|| |\n|)\nchoose 4 saa"
+  },
+  {
+    "text": "Now when we enumerate we want to eliminate it from the graph rather than going and actually",
+    "start": 901.76,
+    "end": 907.44,
+    "ocr_text": "aaa [|| |\n|)\nchoose 4 saa"
+  },
+  {
+    "text": "modifying the graph itself we will just work with Indegree as a kind of approximate version",
+    "start": 907.44,
+    "end": 912.92,
+    "ocr_text": "aaa [|| |\n|)\nchoose 4 saa"
+  },
+  {
+    "text": "of the modified graph.",
+    "start": 912.92,
+    "end": 914.36,
+    "ocr_text": "aaa [|| |\n|)\nchoose 4 saa"
+  },
+  {
+    "text": "So we first set the Indegree to minus one for this particular vertex so minus one means",
+    "start": 914.36,
+    "end": 918.72,
+    "ocr_text": "aaa [|| |\n|)\nchoose 4 saa"
+  },
+  {
+    "text": "it cannot be in the graph because you cannot have minus one edges point you can have at",
+    "start": 918.72,
+    "end": 921.88,
+    "ocr_text": "Nl"
+  },
+  {
+    "text": "least zero edges or more right.",
+    "start": 921.88,
+    "end": 924.0,
+    "ocr_text": "Nl"
+  },
+  {
+    "text": "So this effectively means that J is not going to be considered henceforth and now for every",
+    "start": 924.0,
+    "end": 928.48,
+    "ocr_text": "Nl"
+  },
+  {
+    "text": "outgoing edge from J so wherever we have J pointing to K we want to decrement this because",
+    "start": 928.48,
+    "end": 934.64,
+    "ocr_text": "Nl"
+  },
+  {
+    "text": "we are going to eliminate this edge by eliminating J we eliminate this edge.",
+    "start": 934.64,
+    "end": 938.24,
+    "ocr_text": "Nl"
+  },
+  {
+    "text": "So for every K from one to n we scan all the outgoing neighbors of J and if JK is an",
+    "start": 938.24,
+    "end": 942.84,
+    "ocr_text": "Nila\n\no—>-\nA v\n\nu\n\nerat bana\nBala)"
+  },
+  {
+    "text": "edge AJK is one we reduce the Indegree of K by one.",
+    "start": 942.84,
+    "end": 950.8,
+    "ocr_text": "Nila\n\no—>-\nA v\n\nu\n\nerat bana\nBala)"
+  },
+  {
+    "text": "So what is the complexity of the algorithm is fairly easy to see that for this adjacency",
+    "start": 950.8,
+    "end": 955.04,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "matrix of parentheses it is n squared as we saw initializing the Indegree itself takes",
+    "start": 955.04,
+    "end": 960.04,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "time n squared right because we have one outer loop from one to n and then for each outer",
+    "start": 960.04,
+    "end": 964.96,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "loop we have an inner loop from one to n so this is an n squared loop and then if we",
+    "start": 964.96,
+    "end": 970.0,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "when we enumerate the vertices again we have an outer loop which will enumerate every vertex",
+    "start": 970.0,
+    "end": 974.4,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "once and then for the inner loop we have to enumerate or check all its neighbors and",
+    "start": 974.4,
+    "end": 980.76,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "decrement right.",
+    "start": 980.76,
+    "end": 981.76,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "So we have two n squared loops and therefore this whole thing takes outer n squared.",
+    "start": 981.76,
+    "end": 991.36,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "Now we can as we saw with DFS and DFS right if we use an adjacency list we can be a little",
+    "start": 991.36,
+    "end": 997.96,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "more clever and we can bring down this time to linear from n squared we can bring it down",
+    "start": 997.96,
+    "end": 1003.6,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "to outer n plus n.",
+    "start": 1003.6,
+    "end": 1005.52,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "So how do we do this?",
+    "start": 1005.52,
+    "end": 1006.52,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "Well we have these lists right so we have lists say 1, 2 and for each of these we have",
+    "start": 1006.52,
+    "end": 1015.08,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "a list of its neighbors.",
+    "start": 1015.08,
+    "end": 1018.44,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "So if we go through this as we said each edge in this now this is a directed graph so each",
+    "start": 1018.44,
+    "end": 1023.12,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "edge is represented only once if there is an edge from i to j we will appear as an entry",
+    "start": 1023.12,
+    "end": 1028.16,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "j in the list for i right.",
+    "start": 1028.16,
+    "end": 1032.0,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "So if we scan these lists every time we see a j we know there is an edge pointing into",
+    "start": 1032.0,
+    "end": 1036.68,
+    "ocr_text": "Initia"
+  },
+  {
+    "text": "j and we will increment.",
+    "start": 1036.68,
+    "end": 1038.16,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "So we start off by setting all the integrals to 0 we scan all the lists and every time we",
+    "start": 1038.16,
+    "end": 1042.96,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "see an entry in a list we increment this in degree so in one scan of the list that is",
+    "start": 1042.96,
+    "end": 1047.72,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "in time order m we can find the integers.",
+    "start": 1047.72,
+    "end": 1051.8,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "Now we have the list of integers so we can put all the integers vertices into a queue",
+    "start": 1051.8,
+    "end": 1057.44,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "this makes it easy to find which vertex to enumerate next right.",
+    "start": 1057.44,
+    "end": 1061.68,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "So at the end of this scan we have done an order m scan to find all the integrals now",
+    "start": 1061.68,
+    "end": 1066.64,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "in an order n scan we can put all the 0 degree vertices into a queue.",
+    "start": 1066.64,
+    "end": 1071.44,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "Now we can do the rest pretty much as we did before we enumerate the first vertex in",
+    "start": 1071.44,
+    "end": 1076.2,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "the queue and then we go to its list which is now explicitly available to us in this",
+    "start": 1076.2,
+    "end": 1080.92,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "adjacent list is outgoing neighbors decrement its in degree and if any of those integrals",
+    "start": 1080.92,
+    "end": 1085.76,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "become 0 we can add it to the queue so we know it is to be processed now.",
+    "start": 1085.76,
+    "end": 1091.24,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "So this becomes overall it takes order m time to scan the list takes order n time to",
+    "start": 1091.24,
+    "end": 1096.44,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "start the queue up and then this is a loop of order n where across all the updates we",
+    "start": 1096.44,
+    "end": 1102.16,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "will overall obtain the integrals order m times so it is order n plus n.",
+    "start": 1102.16,
+    "end": 1107.88,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "So here is the corresponding pseudo code right.",
+    "start": 1107.88,
+    "end": 1111.08,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "So the first step is to initialize the degree to 0 for every vertex in our graph then",
+    "start": 1111.08,
+    "end": 1118.32,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "we go through all the edges right.",
+    "start": 1118.32,
+    "end": 1121.08,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\ni\n\n//proportional\n\noutdegree(j)"
+  },
+  {
+    "text": "So we do this by looking at each adjacent list for each vertex we look at each neighbor",
+    "start": 1121.08,
+    "end": 1126.48,
+    "ocr_text": "//€dges are in adjacency list\n\n//proportional to outdegree(i)\ni\n\n//proportional\n\noutdegree(j)"
+  },
+  {
+    "text": "ij in the adjacent seal list and for each of these we increment the integral of j because",
+    "start": 1126.48,
+    "end": 1131.76,
+    "ocr_text": "//Edges are in adjacency\n\n//proportional to outdegree(i)\ni\n\n//proportional\n\noutdegree(j)"
+  },
+  {
+    "text": "we are looking at edges pointing into j not pointing out of i.",
+    "start": 1131.76,
+    "end": 1135.16,
+    "ocr_text": "//Edges are in adjacency\n\n//proportional to outdegree(i)\ni\n\n//proportional\n\noutdegree(j)"
+  },
+  {
+    "text": "So this the pointing into j will come in different list but as and when we encounter them",
+    "start": 1135.16,
+    "end": 1139.16,
+    "ocr_text": "//Edges are in adjacency\n\n1) //proportional to outdegreeCi)\ni\n\n//proportional\n\noutdegree(j)"
+  },
+  {
+    "text": "for each of them we will account for them and add one to it.",
+    "start": 1139.16,
+    "end": 1142.24,
+    "ocr_text": "//Edges are in adjacency\n\n1) //proportional to outdegreeCi)\ni\n\n//proportional\n\noutdegree(j)"
+  },
+  {
+    "text": "Now we go through the list one more time a list of vertices and every time we see an",
+    "start": 1142.24,
+    "end": 1146.56,
+    "ocr_text": "//Edges are in adjacency\n\n1) //proportional to outdegreeCi)\ni\n\n//proportional\n\noutdegree(j)"
+  },
+  {
+    "text": "integral 1 0 we add i to the queue and now we do this loop till the queue becomes empty",
+    "start": 1146.56,
+    "end": 1153.56,
+    "ocr_text": "//Edges are in adjacency\n\nI) //proportional to outdegreeCi)\ni\n\n//proportional\n\noutdegree(j)"
+  },
+  {
+    "text": "we know there is at least one at every point remember as long as the graph a diagram is",
+    "start": 1153.56,
+    "end": 1156.84,
+    "ocr_text": "//Edges are in adjacency\n\nI) //proportional to outdegreeCi)\ni\n\n//proportional\n\noutdegree(j)"
+  },
+  {
+    "text": "not empty we know there is at least one in degree i vertex vertex with index is 0.",
+    "start": 1156.84,
+    "end": 1163.04,
+    "ocr_text": "//€dges are in adjacency list\n\n1) //proportional to outdegreeCi)\ni\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "So there must be it must be in the queue because we added them all originally to the queue",
+    "start": 1163.04,
+    "end": 1166.56,
+    "ocr_text": "//€dges are in adjacency list\n\n1) //proportional to outdegreeCi)\ni\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "and each one we generate we will add to the queue.",
+    "start": 1166.56,
+    "end": 1169.32,
+    "ocr_text": "//Edges are in adjacency\n\nI) //proportional to outdegreeCi)\ni\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "So as long as the queue is not empty we take off the first element of the queue then we",
+    "start": 1169.32,
+    "end": 1173.12,
+    "ocr_text": "//Edges are in adjacency\n\nI) //proportional to outdegreeCi)\ni\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "look at its adjacent seal list decrement the integrase of all those vertices and if any",
+    "start": 1173.2,
+    "end": 1178.64,
+    "ocr_text": "//Edges are in adjacency\n\nI) //proportional to outdegreeCi)\ni\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "of them happens to now become integrase 0 we added to the queue.",
+    "start": 1178.64,
+    "end": 1182.92,
+    "ocr_text": "Edges are in adjacency list\n\n1) //proportional to outdegreeCi)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "So this becomes now a linear implementation of topological sort using adjacent seal list",
+    "start": 1182.92,
+    "end": 1188.56,
+    "ocr_text": "Edges are in adjacency list\n\n1) //proportional to outdegreeCi)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "and a queue to process the elements because the problem with the reason why we need this",
+    "start": 1188.56,
+    "end": 1193.0,
+    "ocr_text": "//Edges are in adjacency list\n1) //proportional to outdegreeCi)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "queue is that otherwise if we have to scan all the vertices every time to determine whether",
+    "start": 1193.0,
+    "end": 1197.84,
+    "ocr_text": "//Edges are in adjacency list\n1) //proportional to outdegreeCi)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "a vertex has become indegree 0 then that becomes an order n scan within this so it becomes",
+    "start": 1197.84,
+    "end": 1202.56,
+    "ocr_text": "//Edges are in adjacency\n\n1) //proportional to outdegreeCi)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "order n square again.",
+    "start": 1202.56,
+    "end": 1204.0,
+    "ocr_text": "//Edges are in adjacency\n\n1) //proportional to outdegreeCi)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "So we need the queue to make sure that we do not spend time trying to identify the next",
+    "start": 1204.0,
+    "end": 1208.52,
+    "ocr_text": "//Edges are in adjacency\n\n1) //proportional to outdegreeCi)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "vertex to enumerate we do not have to go through all the vertices and check the integrase",
+    "start": 1208.52,
+    "end": 1213.4,
+    "ocr_text": "//€dges are in adjacency list\n\nI) //proportional to outdegreeCi)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "when we see the integrase 0 we put it in the queue so automatically it will come out without",
+    "start": 1213.4,
+    "end": 1217.44,
+    "ocr_text": "//€dges are in adjacency list\n\nI) //proportional to outdegreeCi)\n\n//proportional to outdegree(j)"
+  },
+  {
+    "text": "having to do any further check so it gets absorbed in this order m work that we are doing",
+    "start": 1217.44,
+    "end": 1221.88,
+    "ocr_text": "//€dges are in adjacency list\n\n1) //proportional to outdegreeCi)\ni\n\n//proportional\n\noutdegree(j)"
+  },
+  {
+    "text": "here.",
+    "start": 1221.88,
+    "end": 1222.08,
+    "ocr_text": "//€dges are in adjacency list\n\n1) //proportional to outdegreeCi)\ni\n\n//proportional\n\noutdegree(j)"
+  }
+]

@@ -1,0 +1,920 @@
+[
+  {
+    "text": "Hello and welcome to this video. In today's video we will look at interrupts which forms",
+    "start": 0.0,
+    "end": 21.92,
+    "ocr_text": "\\ NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "a crucial part in all modern day operating systems.",
+    "start": 21.92,
+    "end": 25.92,
+    "ocr_text": "\\ NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "So, unlike normal software or normal programs that we write, operating systems are event",
+    "start": 26.24,
+    "end": 32.48,
+    "ocr_text": "\\ NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "pace that is whenever an event occurs only that the operating system executes. To see what this",
+    "start": 32.48,
+    "end": 40.8,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\nPrivilege level\n\nH © User process 1 |"
+  },
+  {
+    "text": "means let us look at the slides. So, suppose you have a user process that is running.",
+    "start": 40.8,
+    "end": 47.28,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\nPrivilege level\n\nH © User process 1 |"
+  },
+  {
+    "text": "So, as we have seen before, user process runs in user space and in the Intel",
+    "start": 47.28,
+    "end": 54.4,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\nPrivilege level\n\nH © User process 1 |"
+  },
+  {
+    "text": "nomenclature this is in ring 3. Now, this user process continues to execute on the processor",
+    "start": 54.48,
+    "end": 61.92,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\nPrivilege level\n\nH © User process 1 |"
+  },
+  {
+    "text": "until an event occurs. So, when this event occurs it would trigger the operating system to execute.",
+    "start": 62.96,
+    "end": 70.56,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\nPrivilege level\n\n4 © User process 1 |"
+  },
+  {
+    "text": "So, this triggering of the operating system will also result in a change in the privilege level.",
+    "start": 71.2,
+    "end": 76.64,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\nPrivilege level"
+  },
+  {
+    "text": "So, the system would no longer be executing in the user space, but rather it will be",
+    "start": 77.68,
+    "end": 84.0,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\nPrivilege level"
+  },
+  {
+    "text": "in privilege level 0 or that is executing in the kernel space. So, the operating system",
+    "start": 84.0,
+    "end": 90.56,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\nPrivilege level"
+  },
+  {
+    "text": "would essentially execute and service this particular event and at the end of that execution,",
+    "start": 90.56,
+    "end": 97.52,
+    "ocr_text": "OS & Events\n\n* OS is event driven\n— executes only when there is an interrupt\n\n)\nY\n\nOs\n\nJ\n\nUser process 1\n\nPrivilege level"
+  },
+  {
+    "text": "the control is fed back to user space and the process will continue to execute.",
+    "start": 98.24,
+    "end": 104.64,
+    "ocr_text": "OS & Events\n\n* OS is event driven\n— executes only when there is an interrupt\n\n47\\ os\n\nUser process 1"
+  },
+  {
+    "text": "So, the user space process which would execute after the OS completes could be the same process",
+    "start": 105.68,
+    "end": 113.2,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\nOs\n\nA User process 1\n\nUser process 2\n\nPrivilege level\n\nevent\n\nseetime"
+  },
+  {
+    "text": "that is user process 1 or some other user process. In this example, it is user process 2.",
+    "start": 113.2,
+    "end": 119.44,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\nOs\n\nA User process 1\n\nUser process 2\n\nPrivilege level\n\nevent\n\nseetime"
+  },
+  {
+    "text": "Let us look at how events are classified. So, various literature categorizes events in different",
+    "start": 121.76,
+    "end": 128.16,
+    "ocr_text": "OS & Events\n\n¢ OS is event driven\n\n— executes only when there is an interrupt\n\n>\n))\n\n)\nJ\n\nOs\n\nUser process 1\n\nUser process,2\n\nPrivilege level\n\nevent\n\nseetime"
+  },
+  {
+    "text": "ways, but what we will do is we will follow the categorization of events based on this particular",
+    "start": 128.16,
+    "end": 134.16,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n- Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "book called the art of assembly language programming which can be downloaded from this website.",
+    "start": 134.16,
+    "end": 139.92,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n- Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "So, in this book events are classified into three different types. These are hardware",
+    "start": 140.64,
+    "end": 146.56,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n- Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/\\"
+  },
+  {
+    "text": "interrupts, traps and exceptions. So, hardware interrupts or sometimes just called as interrupts",
+    "start": 146.56,
+    "end": 152.48,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\nAborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "raised by external hardware devices. For example, the network card when it receives a packet",
+    "start": 153.36,
+    "end": 159.36,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\nAborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "would could possibly raise an interrupt or other devices such as the keyboard, mouse or a USB",
+    "start": 159.36,
+    "end": 166.16,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n— Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "device when plugged in could raise in a raise in hardware interrupt. So, these hardware interrupts",
+    "start": 166.24,
+    "end": 173.12,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n- Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "are in asynchronous and can occur at any time. Besides hardware interrupts, there are traps and",
+    "start": 173.12,
+    "end": 181.04,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n- Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "exceptions. Traps are sometimes known as software interrupts. They are raised by user programs in",
+    "start": 181.04,
+    "end": 187.76,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps ®\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n— Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "order to invoke some operating system functionality. For instance, if a user program wants to print",
+    "start": 187.76,
+    "end": 194.48,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n- Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "something on the monitor, it would invoke a trap which essentially would be a system call",
+    "start": 194.48,
+    "end": 200.56,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n- Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "to the operating system and the OS will then take care of writing the particular text or writing",
+    "start": 202.32,
+    "end": 209.36,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n— Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "the particular data onto the screen. The third type of event is known as exceptions. These",
+    "start": 209.36,
+    "end": 217.04,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (Such as page fault)\nAborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "events are generated automatically by the processor itself as a result of an illegal instruction.",
+    "start": 218.0,
+    "end": 224.72,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\nAborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "So, there are two types of exceptions. These are false and aborts. A very common example of a",
+    "start": 225.76,
+    "end": 232.64,
+    "ocr_text": "Events\n\nHardware Interrupts :\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n\\Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "fault is a page fault. So, false are essentially exceptions from which the processor could recover.",
+    "start": 232.64,
+    "end": 239.84,
+    "ocr_text": "Events\n\nHardware Interrupts :\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n\\Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "For instance, when there is a page fault that occurs when a process is executing, it would result",
+    "start": 240.4,
+    "end": 246.16,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n— Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "in the OS or in the operating system executing and loading the required page from the swap space",
+    "start": 246.88,
+    "end": 253.76,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n— Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "into the RAM. On the other hand, an exception which is of the form abort would be very difficult",
+    "start": 253.76,
+    "end": 260.8,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n— Aborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "to recover such as a divide by 0 exception. So, when a divide by 0 exception occurs in a program,",
+    "start": 260.8,
+    "end": 268.56,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\n- Aborts difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "typically the program would be terminated. Essentially, the operating system has no way to recover",
+    "start": 268.56,
+    "end": 274.56,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\nAborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "from such a divide by 0 exception. This particular slide shows the various classification of events",
+    "start": 274.56,
+    "end": 282.88,
+    "ocr_text": "Events\n\nHardware Interrupts\n\n— or just called Interrupts\n\n— Raised by hardware devices\n\n— They are asynchronous and may occur at any time\n\nTraps\n— Sometimes known as software interrupts\n— Raised by user programs, to invoke an OS functionality\n\nExceptions\n— generated automatically by the processor itself as a result of an illegal instruction\n— Faults : recoverable errors (such as page fault)\nAborts : difficult to recover (such as divide by 0)\n\nref : Art of Assembly Language Programming\n(http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/)"
+  },
+  {
+    "text": "into exceptions, traps and interrupts. Exceptions are further classified into faults and aborts.",
+    "start": 283.84,
+    "end": 290.48,
+    "ocr_text": "Event Types\n\nEvents\n\na\n\nExceptions Traps Interrupts\n\nJ\n\nFaults\n\nAborts"
+  },
+  {
+    "text": "So, we will now take a specific case of interrupts that is of hardware interrupts.",
+    "start": 291.36,
+    "end": 297.12,
+    "ocr_text": "Event Types\n\nEvents\n\nee\n\nExceptions Traps Interrupts\n\nJ\n\nFaults\n\nAborts"
+  },
+  {
+    "text": "So, let us look at hardware interrupts. In general, processors today have a dedicated pin on the",
+    "start": 297.6,
+    "end": 306.08,
+    "ocr_text": "Hardware Interrupts\n\nINT,\nProcessor"
+  },
+  {
+    "text": "IC known as the interrupt pin. So, this pin is often shortened or just called by the INT pin",
+    "start": 306.08,
+    "end": 312.72,
+    "ocr_text": "Hardware Interrupts\n\nINT,\nProcessor"
+  },
+  {
+    "text": "or in some processors as the INTR pin. So, devices such as the keyboard will be connected to the",
+    "start": 312.72,
+    "end": 319.12,
+    "ocr_text": "Hardware Interrupts\n\nINT,\nProcessor"
+  },
+  {
+    "text": "processor through the INT pin. When a particular key is pressed on the keyboard, it would result in the",
+    "start": 319.12,
+    "end": 326.8,
+    "ocr_text": "Hardware Interrupts\n\nINT,\nProcessor"
+  },
+  {
+    "text": "in an interrupt being generated to the processor. Now, let us see how this particular interrupt",
+    "start": 326.88,
+    "end": 333.92,
+    "ocr_text": "Hardware Interrupts\n\nINT,\nProcessor\nrs"
+  },
+  {
+    "text": "takes place and what happens in the processor. So, the processor typically would be executing",
+    "start": 334.56,
+    "end": 339.92,
+    "ocr_text": "Hardware Interrupts\n\nINT,\nProcessor\nrs"
+  },
+  {
+    "text": "a program and would be executing some instructions. Now, when a key is pressed and interrupt is",
+    "start": 340.64,
+    "end": 347.2,
+    "ocr_text": "Hardware Interrupts\n\nINT, b\nProcessor\n\nKey press\n(interrupt"
+  },
+  {
+    "text": "generated to the processor and that would result in a switch in the processor to what is known as",
+    "start": 347.2,
+    "end": 355.6,
+    "ocr_text": "Hardware Interrupts\n\nINT,\nProcessor\n\nKey press\n(interrupt"
+  },
+  {
+    "text": "the interrupt handler routine. So, in this particular case since it is the keyboard which has",
+    "start": 355.6,
+    "end": 361.36,
+    "ocr_text": "Hardware Interrupts\n\nINT] >\nProcessor\nKeyboard\nKey press Interrupt\n(interrupt Handler\nRoutine\n\nIRET"
+  },
+  {
+    "text": "resulted in the interrupt, the keyboard interrupt handler routine would be invoked.",
+    "start": 362.0,
+    "end": 367.92,
+    "ocr_text": "Hardware Interrupts\n\nINT] >\nProcessor\nKeyboard\nKey press Interrupt\n(interrupt Handler\nRoutine\n\nIRET"
+  },
+  {
+    "text": "The processor would then begin to execute this keyboard handler routine until an instruction",
+    "start": 367.92,
+    "end": 373.12,
+    "ocr_text": "Hardware Interrupts\n\nINT] =>\nProcessor\nKeyboard\nKey press Interrupt\n(interrupt Handler\nRoutine\n\nIRET"
+  },
+  {
+    "text": "such as the IRET is obtained. When the IRET instruction gets executed, the context is switched",
+    "start": 373.12,
+    "end": 380.96,
+    "ocr_text": "Hardware Interrupts\n\nINT] =>\nProcessor\nKeyboard\nKey press Interrupt\n(interrupt Handler\nRoutine\n\nIRET"
+  },
+  {
+    "text": "back to the program which was originally being run. So, in this way we see that interrupts could",
+    "start": 381.04,
+    "end": 388.0,
+    "ocr_text": "Hardware Interrupts\n\nINT] >\nProcessor\nKeyboard\nKey press Interrupt\n(interrupt Handler\nRoutine\n\nIRET\n&"
+  },
+  {
+    "text": "occur any time during the program's execution. It would result in a new context being executed",
+    "start": 388.0,
+    "end": 394.64,
+    "ocr_text": "Hardware Interrupts\n\nINT,\nProcessor\n\nKey press\n(interrupt"
+  },
+  {
+    "text": "and at the end of that execution, the processor goes back to the original context.",
+    "start": 395.36,
+    "end": 400.8,
+    "ocr_text": "Hardware Interrupts\n\nINT,\nProcessor\n\nKey press\n(interrupt"
+  },
+  {
+    "text": "So, typically systems do not have just one device connected to the processor.",
+    "start": 402.16,
+    "end": 407.12,
+    "ocr_text": "Hardware Interrupts\n\nINT,\nProcessor\n\nKey press\n(interrupt"
+  },
+  {
+    "text": "That could be several devices. For instance, systems could have timers, USB drives,",
+    "start": 407.12,
+    "end": 413.84,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\n«\n\nSE -\nProcessor"
+  },
+  {
+    "text": "keyboards, mouse, network cards and so on. However, as we have seen previously, the processor just has",
+    "start": 413.84,
+    "end": 421.12,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\n«\n\nSE -\nProcessor"
+  },
+  {
+    "text": "a single interrupt pin. So, how is it possible then that several devices share the single interrupt",
+    "start": 421.12,
+    "end": 429.04,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\n®\nGD\n0 Se\noe :\na >\nProcessor"
+  },
+  {
+    "text": "pin. In order to achieve this, a special hardware is used in systems. So, this is known as the",
+    "start": 429.04,
+    "end": 436.64,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nee\n \\\n\nLoe _\nProcessor"
+  },
+  {
+    "text": "interrupt controller. The job of the interrupt controller is to ensure that the single pin of the",
+    "start": 436.64,
+    "end": 443.6,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nInterrupt\n\n3 controller\n=\n“yp Processor"
+  },
+  {
+    "text": "interrupt is shared between multiple devices. So, the interrupt controller would receive interrupts",
+    "start": 443.6,
+    "end": 449.76,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nInterrupt\n\n3 controller\n=\n“yp Processor"
+  },
+  {
+    "text": "from each of these devices and then channelize that interrupt to the INT pin of the processor.",
+    "start": 449.76,
+    "end": 455.28,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nInterrupt\n\né, : controller\nSS\n“yy Processor"
+  },
+  {
+    "text": "The processor would then communicate with the interrupt controller to determine which of these",
+    "start": 455.28,
+    "end": 460.32,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nInterrupt ;\ncontroller mes\nInterrupt\nHandler\nProcessor Routine\n\nUSB\nInterrupt\nHandler\nRoutine\n\nKeyboard\nInterrupt\nHandler\nRoutine"
+  },
+  {
+    "text": "devices had actually generated the interrupt. And as a result, the processor would then execute",
+    "start": 460.32,
+    "end": 467.28,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nInterrupt ;\ncontroller mes\nInterrupt\nHandler\nProcessor Routine\n\nUSB\nInterrupt\nHandler\nRoutine\n\nKeyboard\nInterrupt\nHandler\nRoutine"
+  },
+  {
+    "text": "the corresponding interrupt handler routine. For instance, if the timer had resulted in the interrupt,",
+    "start": 467.28,
+    "end": 473.84,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nInterrupt =\n\ncontroller ae\n\nSS _ Handler\nProcessor pouting\n\nUSB\nInterrupt\nHandler\nRoutine\n\nKeyboard\nInterrupt\nHandler\nRoutine"
+  },
+  {
+    "text": "then the timer interrupt handler routine would be invoked. On the other hand, if a USB device",
+    "start": 473.84,
+    "end": 478.72,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nInterrupt =\n\ncontroller ae\n\nSS _ Handler\nProcessor pouting\n\nUSB\nInterrupt\nHandler\nRoutine\n\nKeyboard\nInterrupt\nHandler\nRoutine"
+  },
+  {
+    "text": "had resulted in the interrupt, the USB interrupt handler routine would be invoked and so on.",
+    "start": 479.6,
+    "end": 485.92,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nInterrupt :\ncontroller pimer\n\nIN Interrupt\nHandler\nProcessor Routine\n\nUSB\nInterrupt\nHandler\nRoutine\n\nSS\n\n=>\n\nKeyboard\nInterrupt\nHandler\nRoutine"
+  },
+  {
+    "text": "Thus, the interrupt handler routine invoked is going to be very specific to the device that",
+    "start": 485.92,
+    "end": 491.84,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nInterrupt -\nSe _ me\nHandler\nea Routine\n\nUSB\nInterrupt\nHandler\nRoutine\n\nKeyboard\nInterrupt\nHandler\nRoutine"
+  },
+  {
+    "text": "cost the interrupt to occur. So, one commonly used interrupt controller is known as the programmable",
+    "start": 492.4,
+    "end": 499.84,
+    "ocr_text": "Hardware Interrupts\n(Handling Multiple Devices)\n\nInterrupt -\nSe _ me\nHandler\nea Routine\n\nUSB\nInterrupt\nHandler\nRoutine\n\nKeyboard\nInterrupt\nHandler\nRoutine"
+  },
+  {
+    "text": "interrupt controller. So, it is numbered as 8259 and pictorially this is how it gets connected.",
+    "start": 499.84,
+    "end": 506.72,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to INT\n\nCPU\n\nDevices raise interrupts by an rad A >|\n‘interrupt request’ (IRQ) i\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device —\n\ninterrupted u\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "So, the 8259 has two sides. This is the input side and the output side. The output is connected",
+    "start": 506.72,
+    "end": 514.24,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to INT\n\nCPU\n\nDevices raise interrupts by an rad A >|\n‘interrupt request’ (IRQ) 1 >) os\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device —\n\ninterrupted 7\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "to the int pin of the CPU. There is also an int A pin which is an interrupt acknowledge pin.",
+    "start": 514.24,
+    "end": 520.56,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to INT\n\nCPU\n\nDevices raise interrupts by an rad A >|\n‘interrupt request’ (IRQ) 1 >) os\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device —\n\ninterrupted 7\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "On the other side, we have 8 IRQ lines. IRQ stands here for interrupt requests. So, on the input",
+    "start": 521.28,
+    "end": 529.36,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to INT\n\nCPU\n\nDevices raise interrupts by an aad A >|\n‘interrupt request’ (IRQ) td)\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device >|\n\ninterrupted 7\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "side, there are up to 8 devices that can be connected to the 8259. These devices are labeled",
+    "start": 529.36,
+    "end": 536.64,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to : INT\n\nCPU [eee\n\nDevices raise interrupts by an ad A >|\n‘interrupt request’ (IRQ) i\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device >|\n\ninterrupted 4\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "device 0 to device 7. All these devices could independently request and interrupt from the CPU.",
+    "start": 536.8,
+    "end": 544.24,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to INT\n\nCPU\n\nDevices raise interrupts by an ‘ and A >|\n‘interrupt request’ (IRQ) i >\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device —\n\ninterrupted Z\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "The 8259 would then channelize that interrupt through the int iint pin of the CPU.",
+    "start": 544.24,
+    "end": 549.92,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to INT\n\nCPU\n\nDevices raise interrupts by an ‘ and A >|\n‘interrupt request’ (IRQ) i >\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device —\n\ninterrupted Z\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "The CPU would acknowledge the interrupt through the iint A pin and also determine which of these",
+    "start": 550.56,
+    "end": 557.12,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to INT\n\nCPU\n\nDevices raise interrupts by an rad Loe]\n‘interrupt request’ (IRQ) md\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device >|\n\ninterrupted 2\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "8 devices had requested the interrupt. Now, what would happen if two devices request the interrupt",
+    "start": 557.12,
+    "end": 565.68,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to INT\nCPU [eevee >\n\n‘ yar ir-wal INTA\nDevices raise interrupts by an ——|\n‘interrupt request’ (IRQ) i;\n\nF —\n\nCPU acknowledges and queries the yl\n8259 to determine which device >|\ninterrupted\nPriorities can be assigned to each\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "at exactly the same time? In such a case, 8259 would use some priority encoding algorithm",
+    "start": 565.68,
+    "end": 572.32,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to A INT\n\nCPU m A >|\n; ran . Sq INTA\n\nDevices raise interrupts by an ——|\n\n‘interrupt request’ (IRQ) md)\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device —\n\ninterrupted Z\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "to determine which of these devices should be given the privilege to request for the interrupt first.",
+    "start": 572.32,
+    "end": 578.48,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to A INT\n\nCPU m A >|\n; ran . Sq INTA\n\nDevices raise interrupts by an ——|\n\n‘interrupt request’ (IRQ) md)\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device —\n\ninterrupted Z\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "Another feature of the 8259 is that it can be cascaded to support more than 8 devices. Thus,",
+    "start": 579.68,
+    "end": 587.28,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to : INT\nCPU\n\n. . . H INTA.\nDevices raise interrupts by an ——|\n‘interrupt request’ (IRQ) i >i\nCPU acknowledges and queries the ao\n8259 to determine which device - >|\ninterrupted\nPriorities can be assigned to each\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "more than 8 devices could pass interrupts to the CPU. So, in legacy computers, typically there are",
+    "start": 587.28,
+    "end": 594.48,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to INT\n\nCPU\n\nDevices raise interrupts by an rad A >|\n‘interrupt request’ (IRQ) itd <=\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device —e\n\ninterrupted 7\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "two 8259 controllers present. One is configured as the master while the other is configured as the slave.",
+    "start": 594.48,
+    "end": 602.08,
+    "ocr_text": "Programmable Interrupt Controller\n(8259)\n\n8259 (Programmable interrupt\n\ncontroller) relays upto 8 interrupt to INT\n\nCPU\n\nDevices raise interrupts by an rad A >|\n‘interrupt request’ (IRQ) itd <=\n\nCPU acknowledges and queries the rad\n\n8259 to determine which device —e\n\ninterrupted 7\n\nPriorities can be assigned to each\n\nIRQ line\n\n8259s can be cascaded to support\nmore interrupts"
+  },
+  {
+    "text": "The slave 8259 controller is connected to one of the input channels of the master 8259.",
+    "start": 602.08,
+    "end": 609.28,
+    "ocr_text": "Interrupts in legacy CPUs\n\nSwtemTiner |---|\n+ 15 IRQs (IRQO to IRQ15), so 15 Kepord |__|\n\n. - 7 INTA,\npossible devices >|\n‘Serial Devees |__|\nA 259\nae |\n* Limitations PaalldDeices [>|\n— Limited IRQs Floppy Dives |—° >|\n— Not suited for multi-processor / ae Nee\nmulti-core platforms\n(CMOS Cik Sy!\nmalate [2 >\n10\n\navaiable — |} p>\nwvaiatle = |_*'_>»l\n2 ase\nwvaiable = |---|\nMath Processor |__}\n\nPrimaryHD — |_¥_p}\n\n‘SecondaryHO |-—_—>"
+  },
+  {
+    "text": "So, if any of these devices connected to the slave 8259 request and interrupt, this interrupt",
+    "start": 610.16,
+    "end": 618.56,
+    "ocr_text": "Interrupts in legacy CPUs\n\nSystem Timer 2 _»}\n+ 15 IRQs (IRQO to IRQ15), so 15 Keyboard |__|\n\n. : i INTA,\npossible devices >|\nSerial Devees |S __pp4\nA 289\noo |\n* Limitations PaalldDeices [>|\n— Limited IRQs Fiopoy Dives |—° >>|\n— Not suited for multi-processor / ee el\nmulti-core platforms\n8\n(CMOS Clck >|\nwaiatie — -2 -»\n10\n\npvaiable — |} pp\nwvaiable ~— |_*\"_>»|\n2 a)\nwvaiable = |_|\nMath Processor |-__}\n\nPrimaryHD [4 yp}\n\n‘SecondaryHO [2 _o"
+  },
+  {
+    "text": "is channelized to the master 8259 and the master 8259 would then channelize this interrupt to the CPU.",
+    "start": 618.56,
+    "end": 627.84,
+    "ocr_text": "Interrupts in legacy CPUs\n\nSwtemTiner \">|\n+ 15 IRQs (IRQO to IRQ15), so 15 Kepord |__|\n\n. - A INTA,\npossible devices >|\n‘Serial Devees |S __>»\nA 289\nae |\n+ Limitations Pantene |p|\n— Limited IRQs Flopoy Dives |-—° >>|\n— Not suited for multi-processor / eS |e\nmulti-core platforms\n(CMOS Cio Sy!\nmalate |—2->\n10\n\navaiable — |__|\nwvaiatie — |_*'_>»|\n2 Ld\nwvaiale = |p»\nMath Processor |_\"_}\n\nPrimaryHD | _p}\n\n‘SecondaryHO |-—_—p>t"
+  },
+  {
+    "text": "So, one limitation of this legacy configuration of the 8259 is the limited IRQs. So,",
+    "start": 628.96,
+    "end": 635.92,
+    "ocr_text": "Interrupts in legacy CPUs\n\nSwtemTiner |---|\n1\n>}\n\n+ 15 IRQs (IRQO to IRQ15), so 15 Keyboard\n\nji . A INTA,\npossible devices >|\n‘Serial Devices =<\nA 259\nae |\n* Limitations PaalldDeices [>|\n— Limited IRQs Floppy ives |—° >>|\n— Not suited for multi-processor / Fe a eT\nmulti-core platforms\n‘CMOS Ciok Sy!\nAvailable | 2 |\n10\n\navaiable — |__|\nwvaiatie ~— |__|\n2 Ld\nwvaiable = |---|\nMath Processor |__}\n\nPrimaryHD — |-—*_p}\n\n‘SecondaryHO | _—ot"
+  },
+  {
+    "text": "each device could as we have seen can support only 8 devices and therefore, if you have large number",
+    "start": 635.92,
+    "end": 642.56,
+    "ocr_text": "Interrupts in legacy CPUs\n\nSwtemTiner  [—°->|\n1\n>}\n\n+ 15 IRQs (IRQO to IRQ15), so 15 Keyboard\n\n. - Fi INTA,\npossible devices >|\nSerial Devees |S __>»|\n4 29\nae |\n* Limitations PaalldDeices [>|\n— Limited IRQs Floppy Dives |-—°\n— Not suited for multi-processor / pee |\nmulti-core platforms\n‘CMOS Cio Syl\nmalate [2 >\n10\n\navaiable — |} pp\nwvaiatle — |_*'_>»\n2 Ld\nwvaiale ~— |-——p»|\nMath Processor |-__}\n\nPrimaryHD | _yp}\n\n‘SecondaryHO |-—_pot"
+  },
+  {
+    "text": "of devices in your system, then you would require several 8259 controllers to be present.",
+    "start": 642.56,
+    "end": 648.24,
+    "ocr_text": "Interrupts in legacy CPUs\n\nSwtemTiner  [—°->|\n1\n>}\n\n+ 15 IRQs (IRQO to IRQ15), so 15 Keyboard\n\n. - Fi INTA,\npossible devices >|\nSerial Devees |S __>»|\n4 29\nae |\n* Limitations PaalldDeices [>|\n— Limited IRQs Floppy Dives |-—°\n— Not suited for multi-processor / pee |\nmulti-core platforms\n‘CMOS Cio Syl\nmalate [2 >\n10\n\navaiable — |} pp\nwvaiatle — |_*'_>»\n2 Ld\nwvaiale ~— |-——p»|\nMath Processor |-__}\n\nPrimaryHD | _yp}\n\n‘SecondaryHO |-—_pot"
+  },
+  {
+    "text": "Another major limitation of this configuration is that the support for multi-processor and",
+    "start": 648.64,
+    "end": 654.32,
+    "ocr_text": "Interrupts in legacy CPUs\n\nSwtemTiner |\" |\n+ 15 IRQs (IRQO to IRQ15), so 15 Kepoad |__|\n\n. : Fi INTA,\npossible devices >|\n‘Serial Devees |__|\nA 289\nae |\n* Limitations PaalldDeices [>>|\n— Limited IRQs Floppy ives |—° >>|\n— Not suited for multi-processor / ae ey\nmulti-core platforms\n‘CMOS Ciok Sy\nmalate [2\n10\n\navaiable — |} pp\nwvaiatle ~— |_*'_>»|\n12 2259\n\nwvaiale = |p»\nMath Processor |_\"_}\nPrimaryHD | _yp}\n\n‘SecondaryHO |-—° _—ot}"
+  },
+  {
+    "text": "multi-core platforms is difficult. Essentially, as we see now here, there is only one CPU that is",
+    "start": 654.32,
+    "end": 661.04,
+    "ocr_text": "Interrupts in legacy CPUs\n\nSwtemTiner |\" |\n+ 15 IRQs (IRQO to IRQ15), so 15 Kepoad |__|\n\n. : Fi INTA,\npossible devices >|\n‘Serial Devees |__|\nA 289\nae |\n* Limitations PaalldDeices [>>|\n— Limited IRQs Floppy ives |—° >>|\n— Not suited for multi-processor / ae ey\nmulti-core platforms\n‘CMOS Ciok Sy\nmalate [2\n10\n\navaiable — |} pp\nwvaiatle ~— |_*'_>»|\n12 2259\n\nwvaiale = |p»\nMath Processor |_\"_}\nPrimaryHD | _yp}\n\n‘SecondaryHO |-—° _—ot}"
+  },
+  {
+    "text": "connected to the master 8259 programmable interrupt controller. This particular INT pin cannot be",
+    "start": 661.04,
+    "end": 668.32,
+    "ocr_text": "Interrupts in legacy CPUs\n\nSwtemTiner \">|\n+ 15 IRQs (IRQO to IRQ15), so 15 Kepord |__|\n\n. : : INTA,\npossible devices >|\n‘Serial Devees [2 __>»|\nA 289\nae |\n* Limitations PaalldDeices [>>|\n— Limited IRQs Floppy Dives |—° >>|\n— Not suited for multi-processor / ee |\nmulti-core platforms\n8\n(CMOS Clck >|\nmalate [2 >\n10\n\navaiable — |\" pp\nwvaiable = |_“'_>»|\n2 ase\nwvaiabie = |_|\nMath Processor |-__}\n\nPrimaryHD — |_*_p}\n\n‘SecondaryHO |-—>_—>4"
+  },
+  {
+    "text": "sent to another CPU, which may result in some problems. In current systems, the 8259 programmable",
+    "start": 668.4,
+    "end": 677.52,
+    "ocr_text": "Interrupts in legacy CPUs\n\nSwtemTiner |---|\n+ 15 IRQs (IRQO to IRQ15), so 15 Kepord |__|\n\n, 5 A INTA,\npossible devices >|\n‘Serial Devices =<\n4 259\noo |\n* Limitations PaalldDeices [>|\n— Limited IRQs Floppy Dives |—° >>|\n— Not suited for multi-processor / Feeble\nmulti-core platforms\n8\n(CMOS Chek >|\nAvailable | 2 |\n10\n\navaiable ~— |__|\nwvaiatle — | _“\"_>»|\n12 Ld\nwvaiable == |}\nMath Processor |-__}\n\nPrimaryHD — |-4_y}\n\n‘SecondaryHO |-—>_—>4"
+  },
+  {
+    "text": "interrupt controller is replaced by something known as APEC or advanced programmable interrupt",
+    "start": 677.52,
+    "end": 683.2,
+    "ocr_text": "Advanced Programmable Interrupt\nController (APIC)\n\nProcessor #1 Processor #Z Processor #3 Processor #4\ncpu cpu cpu cpu\nLocal APIC Local APIC Local APIC Local APIC\ninteruptt Aipis interrupt A ipis interrupt Apis interrupt * ips\nMessages Messages J Messages, messages\nweet 3-wire APIC Bus\nsages\ny\nExternal | —>|\nInterrupts [>| YO APIC\nSystem Chip Set\n\n+ External interrupts are routed from peripherals to CPUs in multi processor systems\nthrough APIC. b\n+ APIC distributes and prioritizes interrupts to processors\n+ Comprises of two components\n— Local APIC (LAPIC)\n— WVOAPIC\n\n+ APICs communicate through a special 3-wire APIC bus."
+  },
+  {
+    "text": "controller. The configuration for the APEC in modern systems is as shown over here. So,",
+    "start": 683.2,
+    "end": 689.6,
+    "ocr_text": "Advanced Programmable Interrupt\nController (APIC)\n\nProcessor #1 Processor #Z Processor #3 Processor #4\ncpu cpu cpu cpu\nLocal APIC Local APIC Local APIC Local APIC\ninteruptt Aipis interrupt A ipis interrupt Apis interrupt * ips\nMessages Messages J Messages, messages\nweet 3-wire APIC Bus\nsages\ny\nExternal | —>|\nInterrupts [>| YO APIC\nSystem Chip Set\n\n+ External interrupts are routed from peripherals to CPUs in multi processor systems\nthrough APIC. b\n+ APIC distributes and prioritizes interrupts to processors\n+ Comprises of two components\n— Local APIC (LAPIC)\n— WVOAPIC\n\n+ APICs communicate through a special 3-wire APIC bus."
+  },
+  {
+    "text": "each CPU in a multi-core or multi-processor system would have a local APEC as shown here.",
+    "start": 689.6,
+    "end": 697.44,
+    "ocr_text": "Advanced Programmable Interrupt\nController (APIC)\n\nprocessor #1 Processor #z Processor #3 Processors\nCPR CPU CPU CPU\nLocal APIC Local APIC Local APIC Local APIC\ninteruptt Apis interrupt A ipis interrupt A pis interrupt * ips\nMessages. Messages J Messages Meseagts\nInterrupt Sewire APIC Bus\nMessages\nY\nExternal -}—>|\nInterrupts [—>| YO APIC\nSystem Chip Set\n\n+ External interrupts are routed from peripherals to CPUs in multi processor systems\nthrough APIC.\n+ APIC distributes and prioritizes interrupts to processors\n+ Comprises of two components\n— Local APIC (LAPIC)\n— WVOAPIC\n\n+ APICs communicate through a special 3-wire APIC bus."
+  },
+  {
+    "text": "So, processor 1 has a local APEC, processor 2 has its own APEC, processor 3 has its own local",
+    "start": 697.44,
+    "end": 703.44,
+    "ocr_text": "Advanced Programmable Interrupt\nController (APIC)\n\nProcessor #1 Processor #2 Processor #5 Processor #4\nCPU cPU cPU cPU\nLocal APIC UBeal APIC Local APIC Local APIC\n\ninterupt} Aipis interrupt A ipis interrupt A ipis interrupt * ips\nMessages, Messages | Messages Meseonte\n\n3ewire APIC Bus\n\nInterrupt\nMessages\nY\nExternal -}—>|\nInterupts -—s| _ YOAPIC\n\nSystem Chip Set\n\n+ External interrupts are routed from peripherals to CPUs in multi processor systems\nthrough APIC.\n+ APIC distributes and prioritizes interrupts to processors\n+ Comprises of two components\n— Local APIC (LAPIC)\n— WVOAPIC\n\n+ APICs communicate through a special 3-wire APIC bus."
+  },
+  {
+    "text": "APEC and so on. In addition to this, there is something known as an IO APEC, which is present",
+    "start": 703.44,
+    "end": 709.92,
+    "ocr_text": "Advanced Programmable Interrupt\nController (APIC)\n\nProcessor #1 Processor #2 Processor #5 Processor #4\nCPU cPU cPU cPU\nLocal APIC UBeal APIC Local APIC Local APIC\n\ninterupt} Aipis interrupt A ipis interrupt A ipis interrupt * ips\nMessages, Messages | Messages Meseonte\n\n3ewire APIC Bus\n\nInterrupt\nMessages\nY\nExternal -}—>|\nInterupts -—s| _ YOAPIC\n\nSystem Chip Set\n\n+ External interrupts are routed from peripherals to CPUs in multi processor systems\nthrough APIC.\n+ APIC distributes and prioritizes interrupts to processors\n+ Comprises of two components\n— Local APIC (LAPIC)\n— WVOAPIC\n\n+ APICs communicate through a special 3-wire APIC bus."
+  },
+  {
+    "text": "in the system chip set. Now, external devices such as keyboards, mouse, network cards and so on",
+    "start": 709.92,
+    "end": 717.52,
+    "ocr_text": "Advanced Programmable Interrupt\nController (APIC)\n\nprocessor Processor ez Processor #3 Processor #4\nCPU CPU CPU CPU\nLocal APIC Local APIC Local APIC Local APIC\nInterupt} Aipis interrupt A ipis interrupt A pis interrupt ® ips\n\nMessages, Messages | Messages. Messages\n\nInterrupt Sewire APIC Bus\n\nMessages\nY\nExternal -}—>|\nInterrupts [—>| YO APIC\nyystem Chip Set\n\n+ External interrupts are routed from peripherals to CPUs in multi processor systems\nthrough APIC.\n+ APIC distributes and prioritizes interrupts to processors\n+ Comprises of two components\n— Local APIC (LAPIC)\n— WVOAPIC\n\n+ APICs communicate through a special 3-wire APIC bus."
+  },
+  {
+    "text": "would request interrupts through the IO APEC, which is then channelized to one of the local",
+    "start": 718.24,
+    "end": 725.44,
+    "ocr_text": "Advanced Programmable Interrupt\nController (APIC)\n\nProcessor #1 Processor #2 Processor #3 Processor #4\ncpu cpu cpu cpu\nLocal APIC Local APIC Local APIC Local APIC\ninterupt* Aipis interrupt A ipis interrupt A pis interrupt ® ips\nMessages Messages J Messages, Messages\nitera 3-wire APIC Bus\nsages\ny\nExternal | —>|\nInterrupts >| _ YO APIC\nSystem Chip Set\n\n+ External interrupts are routed from peripherals to CPUs in multi processor systems\nthrough APIC.\n+ APIC distributes and prioritizes interrupts to processors\n+ Comprises of two components\n— Local APIC (LAPIC)\n-— WVOAPIC\n\n+ APICs communicate through a special 3-wire APIC bus."
+  },
+  {
+    "text": "APECs in each CPU. Thus, interrupts can be distributed and prioritized between CPUs. Also,",
+    "start": 725.52,
+    "end": 733.36,
+    "ocr_text": "Advanced Programmable Interrupt\nController (APIC)\n\nprocessor Fi rocessor#z Processor #3 Processors\nCPU CPU CPU CPU\nLocal APIC Local APIC Local APIC Local APIC\ninterupt} Aipis interrupt A ipis interrupt Apis interrupt * Pips\nMessages. Messages | Messages. Mascot\nInterrupt Sewire APIC Bus\nMessages\nY\nExternal -}—>|\nInterrupts —>| YO APIC\nSystem Chip Set\n\n+ External interrupts are routed from peripherals to CPUs in multi processor systems\nthrough APIC.\n+ APIC distributes and prioritizes interrupts to processors\n+ Comprises of two components\n— Local APIC (LAPIC)\n-— WVOAPIC\n\n+ APICs communicate through a special 3-wire APIC bus."
+  },
+  {
+    "text": "the local APECs as well as the IO APECs communicate through interrupt messages and IPIs,",
+    "start": 733.36,
+    "end": 740.16,
+    "ocr_text": "Advanced Programmable Interrupt\nController (APIC)\n\nprocessor Fi rocessor#z Processor #3 Processors\nCPU CPU CPU CPU\nLocal APIC Local APIC Local APIC Local APIC\ninterupt} Aipis interrupt A ipis interrupt Apis interrupt * Pips\nMessages. Messages | Messages. Mascot\nInterrupt Sewire APIC Bus\nMessages\nY\nExternal -}—>|\nInterrupts —>| YO APIC\nSystem Chip Set\n\n+ External interrupts are routed from peripherals to CPUs in multi processor systems\nthrough APIC.\n+ APIC distributes and prioritizes interrupts to processors\n+ Comprises of two components\n— Local APIC (LAPIC)\n-— WVOAPIC\n\n+ APICs communicate through a special 3-wire APIC bus."
+  },
+  {
+    "text": "that is, inter-processor interrupts. So, the local APEC receives interrupts from the IO APEC",
+    "start": 740.88,
+    "end": 748.48,
+    "ocr_text": "Advanced Programmable Interrupt\nController (APIC)\n\nprocessor Processor ez Processor Processor #4\nCPU CPU CPU CPU\nLocal APIC Local APIC Local APIC Local APIC\nInterupth Aipjs interrupt A ipis interrupt Apis interrupt * ips\nMessages, S Messages | Messages Messages\nInterrupt Sewire APIC Bus\nMessages\nY\nExternal -—>|\nInterrupts L—>| YO APIC\nSystem Chip Set\n\n+ External interrupts are routed from peripherals to CPUs in multi processor systems\nthrough APIC.\n+ APIC distributes and prioritizes interrupts to processors\n+ Comprises of two components\n— Local APIC (LAPIC)\n— WVOAPIC\n\n+ APICs communicate through a special 3-wire APIC bus."
+  },
+  {
+    "text": "and roots it to the corresponding local CPU. The local APEC can also receive some local interrupts.",
+    "start": 748.48,
+    "end": 755.28,
+    "ocr_text": "LAPIC and I/OAPIC\n\n¢ LAPIC:\n— Receives interrupts from I/O APIC and routes it to the local CPU\n\n— Can also receive local interrupts (such as from thermal sensor,\ninternal timer, etc}\n\n— Send and receive IPls (Inter processor interrupts)\n\n+ IPls used to distribute interrupts between processors or execute\nsystem wide functions like booting, load distribution, etc.\n\n¢ I/O APIC\n— Present in chipset (north bridge)\n— Used to route external interrupts to local APIC"
+  },
+  {
+    "text": "Such as interrupts from the thermal sensor, which is present on the CPU, the internal timer",
+    "start": 755.28,
+    "end": 761.68,
+    "ocr_text": "LAPIC and I/OAPIC\n\n¢ LAPIC:\n— Receives interrupts from I/O APIC and routes it to the local CPU\n\n— Can also receive local interrupts (such as from thermal sensor,\ninternal timer, etc)\n\n— Send and receive IPls (Inter processor interrupts)\n\n+ IPls used to distribute interrupts between processors or execute\nsystem wide functions like booting, load distribution, etc.\n\n¢ I/O APIC\n— Present in chipset (north bridge)\n— Used to route external interrupts to local APIC"
+  },
+  {
+    "text": "and so on. So, the local APEC could also send and receive IPIs, which is inter-processor interrupts,",
+    "start": 761.68,
+    "end": 769.2,
+    "ocr_text": "LAPIC and I/OAPIC\n\n¢ LAPIC:\n— Receives interrupts from I/O APIC and routes it to the local CPU\n\n— Can also receive local interrupts (such as from thermal sensor,\ninternal timer, etc)\n\n— Send and receive IPls (Inter processor interrupts)\n\n+ IPls used to distribute interrupts between processors or execute\nsystem wide functions like booting, load distribution, etc.\n\n¢ I/O APIC\n— Present in chipset (north bridge)\n— Used to route external interrupts to local APIC"
+  },
+  {
+    "text": "which allows interrupts between processors, that it allows processors to do system-wide functions,",
+    "start": 769.2,
+    "end": 775.36,
+    "ocr_text": "LAPIC and I/OAPIC\n\n¢ LAPIC:\n— Receives interrupts from I/O APIC and routes it to the local CPU\n— Can also receive local interrupts (such as from thermal sensor,\ninternal timer, etc)\n— Send and receive IPls (Inter processor interrupts)\n\n+ IPls used to distribute interrupts between processors or execute\nsystem wide functions like booting, load distribution, etc.\n\n¢ I/O APIC\n— Present in chipset (north bridge)\n— Used to route external interrupts to local APIC"
+  },
+  {
+    "text": "like booting, low distribution and so on. The IO APEC is present in the system chip set,",
+    "start": 775.36,
+    "end": 782.08,
+    "ocr_text": "LAPIC and I/OAPIC\n\n¢ LAPIC:\n— Receives interrupts from I/O APIC and routes it to the local CPU\n\n— Can also receive local interrupts (such as from thermal sensor,\ninternal timer, etc)\n\n— Send and receive IPls (Inter processor interrupts)\n\n+ IPls used to distribute interrupts between processors or execute\nsystem wide functions like booting, load distribution, etc.\n\n¢ I/O APIC\n— Present in chipset (north bridge)\n— Used to route external interrupts to local APIC"
+  },
+  {
+    "text": "which is sometimes known as the Northbridge. This particular APEC is used to route external",
+    "start": 782.08,
+    "end": 788.8,
+    "ocr_text": "LAPIC and I/OAPIC\n\n¢ LAPIC:\n— Receives interrupts from I/O APIC and routes it to the local CPU\n\n— Can also receive local interrupts (such as from thermal sensor,\ninternal timer, etc)\n\n— Send and receive IPls (Inter processor interrupts)\n\n+ IPls used to distribute interrupts between processors or execute\nsystem wide functions like booting, load distribution, etc.\n\n¢ I/O APIC\n— Present in chipset (north bridge)\n— Used to route external interrupts to local APIC"
+  },
+  {
+    "text": "interrupts into the local APEC. So, we have seen so far that we have multiple devices,",
+    "start": 788.8,
+    "end": 795.68,
+    "ocr_text": "LAPIC and I/OAPIC\n\n¢ LAPIC:\n— Receives interrupts from I/O APIC and routes it to the local CPU\n\n— Can also receive local interrupts (such as from thermal sensor,\ninternal timer, etc)\n\n— Send and receive IPls (Inter processor interrupts)\n\n+ IPls used to distribute interrupts between processors or execute\nsystem wide functions like booting, load distribution, etc.\n\n¢ I/O APIC\n— Present in chipset (north bridge)\n— Used to route external interrupts to local APIC"
+  },
+  {
+    "text": "which are connected to an interrupt controller, which could be either an APEC or in legacy systems",
+    "start": 796.32,
+    "end": 801.44,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt v7\ni\" t\ncontroller IN @ ii\nTimer Timer ~\nInterrupt el Processor Interrupt\nHandler\nRoutine\n\nHow does the processor know the location of the Interrupt Handler Routine?"
+  },
+  {
+    "text": "based on the A to finite controller. When any of these devices request an interrupt,",
+    "start": 802.4,
+    "end": 808.56,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt v7\ni\" t\ncontroller IN @ ii\nTimer Timer ~\nInterrupt el Processor Interrupt\nHandler\nRoutine\n\nHow does the processor know the location of the Interrupt Handler Routine?"
+  },
+  {
+    "text": "the interrupt is channelized to the processor and it would result in the corresponding interrupt",
+    "start": 808.64,
+    "end": 814.48,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt a\"\ncontroller IN @ \\\nTimer Ba a Timer ~~\nInterrupt BIOCSS Sch Interrupt\nHandler\nRoutine\n\nHow does the processor know the location of the Interrupt Handler Routine?"
+  },
+  {
+    "text": "handler routine to be invoked. How does the processor know the location of the interrupt handler",
+    "start": 814.48,
+    "end": 819.68,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt a\"\ncontroller IN @ \\\nTimer Ba a Timer ~~\nInterrupt BIOCSS Sch Interrupt\nHandler\nRoutine\n\nHow does the processor know the location of the Interrupt Handler Routine?"
+  },
+  {
+    "text": "routine? So, the interrupt handler routine, just like all other software codes or all other",
+    "start": 819.68,
+    "end": 825.68,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt 4\ncontroller IN @ i\nTimer Timer ~\nInterrupt Ba Processor Interrupt\nHandler\nRoutine\n\nHow does the processor know the location of the Interrupt Handler Routine?\nR"
+  },
+  {
+    "text": "codes. So, the important question that one needs to ask here is how does the processor know the",
+    "start": 826.4,
+    "end": 832.24,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt 4\ncontroller IN @ i\nTimer Timer ~\nInterrupt Ba Processor Interrupt\nHandler\nRoutine\n\nHow does the processor know the location of the Interrupt Handler Routine?\nR"
+  },
+  {
+    "text": "location of the interrupt handler routine? So, the interrupt handler routine is just like any other",
+    "start": 832.24,
+    "end": 838.16,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt 4\ncontroller IN @ i\nTimer Timer ~\nInterrupt Ba Processor Interrupt\nHandler\nRoutine\n\nHow does the processor know the location of the Interrupt Handler Routine?\nR"
+  },
+  {
+    "text": "software code is also executed from the RAM. So, the question that we are posting here is how",
+    "start": 838.16,
+    "end": 844.48,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt ee\ncontroller IN e i\nTimer Timer ~\nInterrupt Ba Processor Interrupt\nHandler\nRoutine\n\nHow does the processor know the location of the Interrupt Handler Routine?"
+  },
+  {
+    "text": "does the processor know the starting location or the address of the interrupt handler routine?",
+    "start": 844.48,
+    "end": 850.8,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt ee\ncontroller IN e i\nTimer Timer ~\nInterrupt Ba Processor Interrupt\nHandler\nRoutine\n\nHow does the processor know the location of the Interrupt Handler Routine?"
+  },
+  {
+    "text": "So, in order to achieve this, what happens is the following. So, each of the devices that are",
+    "start": 851.44,
+    "end": 856.48,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt vy\n‘ma e r\nma Ba i Timer ~~\nInterrupt BIOCSS Sch Interrupt\nHandler\nRoutine\n\nHow does the processor know the location of the Interrupt Handler Routine?"
+  },
+  {
+    "text": "connected to the interrupt controller is also has a dedicated number known as the IRQ number.",
+    "start": 856.56,
+    "end": 863.84,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\ncontroller\nINT\nTimer\nInterrupt ra Processor\n\nEach interrupt is associated with a number.\n+ When a hardware interrupt occurs, the\nProcessor obtains the corresponding number\n\nfrom the interrupt controller.\n+ The number is often called IRQ Number"
+  },
+  {
+    "text": "So, when a device requests an interrupt and the INTP in the processor gets asserted,",
+    "start": 864.4,
+    "end": 871.92,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\ncontroller\nINT\nTimer\nInterrupt ra Processor\n\nEach interrupt is associated with a number.\n+ When a hardware interrupt occurs, the\nProcessor obtains the corresponding number\n\nfrom the interrupt controller.\n+ The number is often called IRQ Number"
+  },
+  {
+    "text": "the processor would then obtain the IRQ number from the interrupt controller.",
+    "start": 871.92,
+    "end": 877.36,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\ncontroller\nINT\nTimer :\nInterrupt | Processor\n\nEach interrupt is associated with a number.\n+ When a hardware interrupt occurs, the\nProcessor obtains the corresponding number\n\nfrom the interrupt controller.\n+ The number is often called IRQ Number"
+  },
+  {
+    "text": "In this way, the processor now determines which of these devices has requested for the interrupt.",
+    "start": 877.36,
+    "end": 882.24,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\ncontroller\nINT\nTimer\nInterrupt Pa Processor\n\nEach interrupt is associated with a number.\n+ When a hardware interrupt occurs, the\nProcessor obtains the corresponding number\n\nfrom the interrupt controller.\n+ The number is often called IRQ Number"
+  },
+  {
+    "text": "We will now see how the processor uses the IRQ number. In the memory of the system,",
+    "start": 883.2,
+    "end": 888.96,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\ncontroller\nINT\nTimer\nInterrupt Pa Processor\n\nEach interrupt is associated with a number.\n+ When a hardware interrupt occurs, the\nProcessor obtains the corresponding number\n\nfrom the interrupt controller.\n+ The number is often called IRQ Number"
+  },
+  {
+    "text": "a table known as the interrupt descriptor table or IDT is stored. So, this IDT table is pointed to",
+    "start": 888.96,
+    "end": 896.24,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\n\ni\nINT\nimer Timer\nInterrupt | | Processor Interrupt\nHandler\nRoutine\n. IDTR\n\nInterrupt descriptor table\n@tored in memory. Has 256 entries)"
+  },
+  {
+    "text": "by a register stored in the processor known as the IDTR. This is interrupt descriptor table",
+    "start": 896.24,
+    "end": 904.56,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\n\ncontroller\nINT\nTimer wa Timer\nInterrupt BTOCossch Interrupt\nHandler\nRoutine\n! IDTR\n\nInterrupt descriptor table\n(stored in memory. Has 256 entries)"
+  },
+  {
+    "text": "so each entry in this descriptor table contains information of where in memory the corresponding",
+    "start": 905.52,
+    "end": 912.32,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\n\ncontroller\nINT\nTimer | Timer\nInterrupt BIOCessol Interrupt\nHandler\nRoutine\n: IDTR\n\nInterrupt descriptor table\n(stored in memory. Has 256 entries)"
+  },
+  {
+    "text": "interrupt handler routine is present. So, the processor would use the IRQ number to look into the",
+    "start": 912.32,
+    "end": 919.84,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\n\ncontroller\nINT\nTimer | Timer\nInterrupt BIOCessol Interrupt\nHandler\nRoutine\n: IDTR\n\nInterrupt descriptor table\n(stored in memory. Has 256 entries)"
+  },
+  {
+    "text": "interrupt descriptor table. From this descriptor, the corresponding location of the interrupt",
+    "start": 919.84,
+    "end": 927.52,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\n‘me i\n\nSm or Timer\nInterrupt BIOCoSsol Interrupt\n\nHandler\n\nRoutine\nIDTR\nIRQ Num\n| Interrupt descriptor table\n\n(stored in memory. Has 256 entries)"
+  },
+  {
+    "text": "handler routine is obtained and thereafter, the processor can then execute instructions from",
+    "start": 927.6,
+    "end": 934.56,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\n\ncontroller\nINT\nAes | Timer\nInterrupt BIOCoSSch Interrupt\nHandler\n\nRoutine\n\nIDTR\nIRQ Num\n\nInterrupt descriptor table\n(stored in memory. Has 256 entries)"
+  },
+  {
+    "text": "this handler routine. So, what is the contents of the interrupt descriptor table? In the X86",
+    "start": 934.56,
+    "end": 941.6,
+    "ocr_text": "Hardware Interrupts\n(Interrupt Handler Routine)\n\nInterrupt\n\ncontroller\nINT\nAes | Timer\nInterrupt BIOCoSSch Interrupt\nHandler\n\nRoutine\n\nIDTR\nIRQ Num\n\nInterrupt descriptor table\n(stored in memory. Has 256 entries)"
+  },
+  {
+    "text": "system, since it also has segmentation. So, therefore, the each interrupt descriptor would",
+    "start": 941.6,
+    "end": 947.44,
+    "ocr_text": "Interrupt Descriptor Table\n\nInterrupt descriptor table\n\nloo\n\nD\nP| P fof a\nfh\n\n‘Trap Gate\nReserved|\nInterrupt/Trap Gate\n\nOffset 0-15\n\n[ Offset 16-31\n\nSegment Selector\n\nDPL - Descriptor PrivilegeLevel\nP- Present Bit\n4"
+  },
+  {
+    "text": "contain the segment selector as well as the offset. The segment selector as we have seen is",
+    "start": 947.44,
+    "end": 953.04,
+    "ocr_text": "Interrupt Descriptor Table\n\nInterrupt descriptor table\n\n‘Trap Gate\n\nD\n[ Pltset 1631 P| P Jolt 11 1]0 0 0|Reserved\na L\n\nSegment Selector Offset 0-15 Interrupt/Trap Gate\n\nDPL - Descriptor Privilege Level\nP- Present Bit"
+  },
+  {
+    "text": "of 16 bits and while the offset is of 32 bits. So, 0 bits 0 to 15 are here and the bits 16 to",
+    "start": 953.04,
+    "end": 961.68,
+    "ocr_text": "Interrupt Descriptor Table\n\nInterrupt descriptor table\n\n‘Trap Gate\n\nD\n[ Pltset 1631 P| P Jolt 11 1]0 0 0|Reserved\na L\n\nSegment Selector Offset 0-15 Interrupt/Trap Gate\n\nDPL - Descriptor Privilege Level\nP- Present Bit"
+  },
+  {
+    "text": "31 are present over here. There are other aspects in the interrupt descriptor such as the present",
+    "start": 961.68,
+    "end": 968.08,
+    "ocr_text": "Interrupt Descriptor Table\n\nInterrupt descriptor table\n\n‘Trap Gate\n\nD\n[ Offset 16-31 P| P Joli 11 1/0 00|Reserved\nL\n\nSegment Selector Offset0-15 py Interrupt/Trap Gate\n\nDPL - Descriptor PrivilegeLevel\nP- Present Bit"
+  },
+  {
+    "text": "bit and the descriptor privilege level. So, let us see how this interrupts descriptors are used",
+    "start": 968.08,
+    "end": 975.84,
+    "ocr_text": "Interrupt Descriptor Table\n\nInterrupt descriptor table\n\nTrap Gate\n\nD\n[ Offset 16-31 P| P Jolt 11 1]0 0 0|Reserved\nL\n\nSegment Selector Offset 0-15 Interrupt/Trap Gate\n\nDPL - Descriptor Privilege Level\nP- Present Bit b"
+  },
+  {
+    "text": "in reality. So, the processor would obtain the IRQ number or the interrupt vector from the",
+    "start": 975.92,
+    "end": 982.48,
+    "ocr_text": "Interrupt Descriptor\n\nDestination\noT Code Segment\n\nInterrupt\nProcedure\n\nInterrupt\n\n(obtained from D\neither the PIC oPAPIC) one\n\nautomatically\nDIR” by CPU\nSegment Selector\nDT or LOT\nIDTR : pointer to iDT | pagress\ntable in memory\n\n}e4 bytes"
+  },
+  {
+    "text": "programmable interrupt controller or the appic and as we have seen this interrupt vector is used",
+    "start": 983.2,
+    "end": 990.32,
+    "ocr_text": "Interrupt Descriptor\n\nDestination\noT Code Segment\n\nInterrupt\nProcedure\n\nInterrupt\n\n(obtained from D\neither the PIC oPAPIC) one\n\nautomatically\nDIR” by CPU\nSegment Selector\nDT or LOT\nIDTR : pointer to iDT | pagress\ntable in memory\n\n}e4 bytes"
+  },
+  {
+    "text": "to index into the IDT table and the corresponding interrupt or trap gate contains the segment selector",
+    "start": 990.32,
+    "end": 999.2,
+    "ocr_text": "(obtained from\neither the PIC or APIC)\n\nIDTR : pointer to [DT\ntable in memory\n\nInterrupt Descriptor\n\noT\n\nInterrupt\n‘Vector\n\n>| Interrupt or\n\nDTR~\n\n‘Segment Selector\n\nGOT or LOT\n\nSegment\nDescriptor\n\n‘Trap Gate\n\nOffset —~\n>Q>\n\nBase\nAddress\n\n[}e4 bytes\n\nDestination\nCode Segment\n\nInterrupt\nProcedure\n\nDone\n\nautomatically\nby CPU"
+  },
+  {
+    "text": "as well as the offset. So, the segment selector is then used to index into the GDT or the LDT table",
+    "start": 999.2,
+    "end": 1006.4,
+    "ocr_text": "Interrupt Descriptor Table\n\nInterrupt descriptor table\n\n‘Trap Gate\n\nD\n[ Offset 16-31 P| P Jolt 11 1/0 00|Reserved\nL\n\nSegment Selector Offset 0-15 Interrupt/Trap Gate\n\nDPL - Descriptor PrivilegeLevel\nP- Present Bit"
+  },
+  {
+    "text": "from which the base address of the code segment is obtained. The offset part is then taken and added",
+    "start": 1007.04,
+    "end": 1014.56,
+    "ocr_text": "(obtained from\neither the PIC or APIC)\n\nIDTR : pointer to [DT\ntable in memory\n\nInterrupt Descriptor\n\nor\n\nInterrupt__, | Interrupt or\n\nVector ‘Trap Gate\n\nDTR~\nsegment Selector\ncorertor\n>| descriptor\n\nOffset —~,\n>Q>\n\nBase\nAddress\n\n}e4 bytes\n\nDestination\nCode Segment\n\nInterrupt\nProcedure\n\nDone\n\nautomatically\nby CPU"
+  },
+  {
+    "text": "to the base address to obtain the final address where the interrupt procedure is present.",
+    "start": 1014.56,
+    "end": 1020.88,
+    "ocr_text": "(obtained from\neither the PIC or APIC)\n\nIDTR : pointer to [DT\ntable in memory\n\nInterrupt Descriptor\n\nor\n\nInterrupt__, | Interrupt or\n\nVector ‘Trap Gate\n\nDTR~\nsegment Selector\ncorertor\n>| descriptor\n\nOffset —~,\n>Q>\n\nBase\nAddress\n\n}e4 bytes\n\nDestination\nCode Segment\n\nInterrupt\nProcedure\n\nDone\n\nautomatically\nby CPU"
+  },
+  {
+    "text": "So, the Intel X86 systems support 56 different types of events. Some of these events are used",
+    "start": 1021.2,
+    "end": 1029.76,
+    "ocr_text": "Interrupt Descriptor\n\nDestination\nor Code Segment\n\nInterrupt\nOffset —~ Procedure\n>Q>\n\nInterrupt__, | Interrupt or\n\n‘Vector ‘Trap Gate\n\n(obtained from i:\n\neither the PIC or APIC) Done\n\nautomatically\n\nDTR~ by CPU\nsegmant Stetor\ncor ortot\nIDTR : pointer to IDT Ferre\ntable in memory\nse\n\n| 64 bytes"
+  },
+  {
+    "text": "internally for faults and aborts while others can be called figured for hardware interrupts as well",
+    "start": 1029.76,
+    "end": 1035.76,
+    "ocr_text": "Interrupt Descriptor\n\nDestination\nor Code Segment\n\nInterrupt\nOffset —~ Procedure\n>Q>\n\nInterrupt__, | Interrupt or\n\n‘Vector ‘Trap Gate\n\n(obtained from i:\n\neither the PIC or APIC) Done\n\nautomatically\n\nDTR~ by CPU\nsegmant Stetor\ncor ortot\nIDTR : pointer to IDT Ferre\ntable in memory\nse\n\n| 64 bytes"
+  },
+  {
+    "text": "as for software interrupts. So, this particular table gives some of these interrupts and exceptions",
+    "start": 1035.76,
+    "end": 1042.96,
+    "ocr_text": "Exception and Interrupt Vectors\nin Intel x86\n\nVector [Mne- | Description Te Gror | Source\nNo. monic Code\n° WOE | Owvie Ear Fout Ne | ON and OV retaxtions\n1 woe | Reserveo Faw Trap |No | Forte useonyy\n2 Ec NM nternpt tnternpt | No__| Nonmastabe external nterrupt.\n3 ee | Breatpoint 2p No | NT 3 istreton.\n4 oF | Overtiow 2p No | ITOinstructon\n5 wen | BOUND Range Exceeded No | souNDinstrction\n6 uo | nvaidOpcade (Undetined Opcose No | Ub2instruction or reserved opcode!\n? nm | Device Not Avatabe (No Math No | Foating paint or WAITIFWAT struction\n8 oF | Double Faut Abort Yes | Ary struction that can generate an\nfeero) | exception. an NM, or an NTR\n\" Coprocessor Segment Overrun | Fautt No | Foating point instruction?\nserved\n6 ats | vaiaTss Fout ves wk subtchor TSS access.\nn ane | Segment Not Present Foust ves | Loading segment registers accessing\nsystom segments.\ni ass | Stadc-Segment Faust out ves | stack operations ad SS register loads\n3 ace | General Pro Fout Yes | Ary memory eference and athe\n“4 wee | Page Faust Fout ves | Ary memory eference\n15 = (ntl reserved Donot use No\n16 aur [x87 FPURoaingPoReror(Man | Fout No [x87 FPU towing point or WAITIFWATT\nFoul fsteuction\n” aac opment Oreck Fout ves | Ary dat reference in memory?\nero\n18 amc ie neck Abort No | rr codes tary) andsource a\nxm | sIMDFloatingPoint Exception | Fault No | SSE/SSE2/S563 floating point\n20 ave | Vieateaton Exception Fout no | err vations!\naa |= ntl reserved Donot use\nw2ss | - User Defined (Non esarved) bnterupt Exterolinterupt or NT ninstruction\n\ninterrupts"
+  },
+  {
+    "text": "that are supported by Intel X86 systems especially we would like to see that interrupt with vector",
+    "start": 1042.96,
+    "end": 1049.84,
+    "ocr_text": "Exception and Interrupt Vectors\nin Intel x86\n\nVector [Mne- | Description Te Gror | Source\nNo. monic Code\n° WOE | Owvie Ear Fout Ne | ON and OV retaxtions\n1 woe | Reserveo Faw Trap |No | Forte useonyy\n2 Ec NM nternpt tnternpt | No__| Nonmastabe external nterrupt.\n3 ee | Breatpoint 2p No | NT 3 istreton.\n4 oF | Overtiow 2p No | ITOinstructon\n5 wen | BOUND Range Exceeded No | souNDinstrction\n6 uo | nvaidOpcade (Undetined Opcose No | Ub2instruction or reserved opcode!\n? nm | Device Not Avatabe (No Math No | Foating paint or WAITIFWAT struction\n8 oF | Double Faut Abort Yes | Ary struction that can generate an\nfeero) | exception. an NM, or an NTR\n\" Coprocessor Segment Overrun | Fautt No | Foating point instruction?\nserved\n6 ats | vaiaTss Fout ves wk subtchor TSS access.\nn ane | Segment Not Present Foust ves | Loading segment registers accessing\nsystom segments.\ni ass | Stadc-Segment Faust out ves | stack operations ad SS register loads\n3 ace | General Pro Fout Yes | Ary memory eference and athe\n“4 wee | Page Faust Fout ves | Ary memory eference\n15 = (ntl reserved Donot use No\n16 aur [x87 FPURoaingPoReror(Man | Fout No [x87 FPU towing point or WAITIFWATT\nFoul fsteuction\n” aac opment Oreck Fout ves | Ary dat reference in memory?\nero\n18 amc ie neck Abort No | rr codes tary) andsource a\nxm | sIMDFloatingPoint Exception | Fault No | SSE/SSE2/S563 floating point\n20 ave | Vieateaton Exception Fout no | err vations!\naa |= ntl reserved Donot use\nw2ss | - User Defined (Non esarved) bnterupt Exterolinterupt or NT ninstruction\n\ninterrupts"
+  },
+  {
+    "text": "number 0 to 31 are internal to the processor of these the vector number 0 to 20 are used for",
+    "start": 1049.84,
+    "end": 1058.72,
+    "ocr_text": "Exception and Interrupt Vectors\nin Intel x86\n\nVector\n\nNo.\n&\n\n6\n\nMoe\nmonic\n\nWE\n#08\n\n9°\noF\n\neR\nuo\nae\n\n#0F\n\nars\nave\n\nss\n\nte\n\nDescription\n\nDivide Ger\nRESERVED\n\nNM iternpt\n\nBrealpoint\n\nOvertiow\n\nBOUND Range Exceeded\nknvid Opcode (Undefined Opcode\n\nDevice No\n\nalate (No Math\n\nDouble Faust\n\nCoprocessor Segment Overrun\nserved\n\nvais TSS\n\nSegment Not Present\n\nStack Segment Fatt\n\nGeneral Pro\n\nPager aut\n(hte reserved Donot we\n\n187 FPU Floating Point Ervor (Ma\nFoul\n\norment eck\n\nSIMO Floating Point Exception\n\nViruaization Exception\nbn reserved Donot use\n\nUser Defined (Non reserved)\n\nTe\n\nbnterupt\n\nror\nCode\n\nrs\n\nNe\n\nes\nes\n\nes\n\nves\nNe\n\nves\nero\nte\n\nNo\n\nNe\n\nSource\n\nDW and DW retaxctons.\nFor nel useony.\nNonmaslable external interupt\nINT 3 fstrutin,\nmi\n\neOWND instruction\n\n02 instruction or reserved opcode?\neating poi or WATIEWAIT instruction.\nAny struction that can goneate an\n‘exception, an NM o¢anNTR\n\nating pont instruction?\n\nswitchor TSS access.\n\nLoading segment egistersor accessing\nsystom segments.\n\nack operations and SS restr loads\n\n‘ay emery rerence and the\n\n‘ay memmary cterence\n\n187 FPU fling pont or WATE WAIT\n\nAy oa\n\nference i memary?\n\nror codes if any) andsource x\ndependent\nSSE/SSEZ/SSE3 Heating point\n\neT ve\n\nExteralinterupt or NT ninstruction"
+  },
+  {
+    "text": "various faults or aborts. The interrupt vector numbers from 30 to 255 can be user defined.",
+    "start": 1058.72,
+    "end": 1068.8,
+    "ocr_text": "Exception and Interrupt Vectors\nin Intel x86\n\nVeer [Mne- | Description Te Gror | Source\nNo. monic Code\n° WOE | Ovide Ear Fat Ne | OW and DV rntaxtions\n1 woe | Reserveo Faw Trap |No | Foritel useonyy\n2 = NM nternpt rnternpt | No__| Nonmastabe external interrupt.\na 8° | Breatpoint 2p No | NT 3 instruction.\n4 wor | Overtiow 2p No | ITOinstructn\n5 wen | BOUND Range Exceeded Fout Ne | souNDinstrction\n6 uo | invaidOpcade (Undefined Opcode) | Faut No | Ub2instruction o reserved opcode!\n? nm | Device Not Avatable (No Math | Fault No | Foating paint or WATIFWAT struction\n8 oF | Double Faut Abort Yes | Ary instruction that can generate an\n(aero) | exception, an NM or an NTR\n9 Coprocessor Segment Overrun | Fautt No | Posting point instruction’\n(reserved)\n10 ats | nvaisTss Fost es wk Sudtchor TSS access.\n\" ane | Segment Not Present Fost Yes | Loading segment regstersor accessing\nsystom segments.\nir 5s | Stadc-Segment Faust out ves | Stack operations and SS register lads.\n3 ace | General Pow Foust Yes | Ary memery reference and che!\n“4 wee — | PageFaut Fout ves | Ary memory eferonce\n15 = (ntl reserved Donot we. No\n16 ae [x87 FPUPoaingPomteror(Man | Fout No [x87 FPU towing pont o WATFWAIT\nFoul traction\n” aac orment eck rout ves | Ary dat reference in memory?\nero\n18 amc ine heck Abort No | ror codes it any) andsource re model\ndependent *\n19 axe | siMDFleatingPoint Exception | Faust No | SSE/SSE2/S5E3 floating point\n20 ve | Vieuateaton Exception rout ne | err vations!\naan |= Intl reserved Donot use\nwess |- User Defined (Non esarved) bnterupt Enteral interuptor NT ninstruction\n\nbnterupts"
+  },
+  {
+    "text": "So, some of these user defined interrupts are configured as hardware interrupts while others",
+    "start": 1068.8,
+    "end": 1074.72,
+    "ocr_text": "Exception and Interrupt Vectors\nin Intel x86\n\nVecer [Moe | Description Te Gror | Source\n\nNo. monic Code\n\n° WOE | Owvide Ear Fout Ne | ON and OV kntaxtions\n\n1 woe | Reserveo Fauu Trap |No | Forte useonyy\n\n2 = NM iternpt rnternpt | No__| Nonmustabe external nterust.\n\n3 ep | Breatpoint 2p No | NB instruction.\n\n4 oF | Overtiow 2p No | ITOinstructon\n\n5 #92 | BOUND Range Exceeded Foust ne | soUNDinstruction\n\n6 uo | invaidOpcade (Undetined Opcode) | Faut No | Ub2instruction a reserved opcode!\n\n7 nm | Device Not Avatable (No Math | Fault | Boating paint or WATIFWAT struction\n\n8 oF | Double Faut Abort Yes | Ary struction that can gonerate an\n\n(aero) | exception, an NM or an NTR\n\nCoprocessor Segment Overrun | Fautt No | Poating point instruction’\nexetved\n\n10 ats | vaiaTss Fout ves sk subtchor TSS access\n\n\" ane | Segment Not Present Foust ves | Loading segment registersor accessing\n\nsystom segments.\n\n1 ss | stadcSepment faut Fout ves | tack operations and SS register lads.\n\n3 ace | General Protection Foust Yes | Ary memory eference and athe\n\n“4 wee | PageFaut out ves | Ary memory eference\n\n15 Z (ntl reserved Donot we No\n\n16 ae [x87 FPUPoaing Pom eror(Man | Fout No [x87 FPU towing pat o WATFWAIT\nFoul fteuction,\n\n” aac orment eck Foust ves | Ary data reference in memary?\n\nero\n18 mc | Machine creck Abort No | rr codes tary) andsource re model\naxe | siMDFleatingPoint Exception | Fault No | SSE/SSE2/S5E3 floating point\n\n20 ve | vieuateaton Exception rout no | err vations!\n\naa |= Intl reserved Donot use\n\n3225s |- User tified (Non ceserved) bnterpt Exteralnterupt or NT ninstruction\nbnnerpts"
+  },
+  {
+    "text": "used as software interrupts. So, in the next video we will look at how interrupts are handled in",
+    "start": 1075.44,
+    "end": 1083.84,
+    "ocr_text": "Exception and Interrupt Vectors\nin Intel x86\n\nVecer [Moe | Description Te Gror | Source\n\nNo. monic Code\n\n° WOE | Owvide Ear Fout Ne | ON and OV kntaxtions\n\n1 woe | Reserveo Fauu Trap |No | Forte useonyy\n\n2 = NM iternpt rnternpt | No__| Nonmustabe external nterust.\n\n3 ep | Breatpoint 2p No | NB instruction.\n\n4 oF | Overtiow 2p No | ITOinstructon\n\n5 #92 | BOUND Range Exceeded Foust ne | soUNDinstruction\n\n6 uo | invaidOpcade (Undetined Opcode) | Faut No | Ub2instruction a reserved opcode!\n\n7 nm | Device Not Avatable (No Math | Fault | Boating paint or WATIFWAT struction\n\n8 oF | Double Faut Abort Yes | Ary struction that can gonerate an\n\n(aero) | exception, an NM or an NTR\n\nCoprocessor Segment Overrun | Fautt No | Poating point instruction’\nexetved\n\n10 ats | vaiaTss Fout ves sk subtchor TSS access\n\n\" ane | Segment Not Present Foust ves | Loading segment registersor accessing\n\nsystom segments.\n\n1 ss | stadcSepment faut Fout ves | tack operations and SS register lads.\n\n3 ace | General Protection Foust Yes | Ary memory eference and athe\n\n“4 wee | PageFaut out ves | Ary memory eference\n\n15 Z (ntl reserved Donot we No\n\n16 ae [x87 FPUPoaing Pom eror(Man | Fout No [x87 FPU towing pat o WATFWAIT\nFoul fteuction,\n\n” aac orment eck Foust ves | Ary data reference in memary?\n\nero\n18 mc | Machine creck Abort No | rr codes tary) andsource re model\naxe | siMDFleatingPoint Exception | Fault No | SSE/SSE2/S5E3 floating point\n\n20 ve | vieuateaton Exception rout no | err vations!\n\naa |= Intl reserved Donot use\n\n3225s |- User tified (Non ceserved) bnterpt Exteralnterupt or NT ninstruction\nbnnerpts"
+  },
+  {
+    "text": "the CPU as well as in the operating system. Thank you.",
+    "start": 1083.84,
+    "end": 1092.56,
+    "ocr_text": "IIT Madras Production\n\nFunded by\nDepartment of Higher Education\nMinistry of Human Resource Development\nGovernment of India\n\nwww.nptel.ac.in\n\nCopyrights Reserved"
+  }
+]

@@ -1,0 +1,1622 @@
+[
+  {
+    "text": "So, let us now turn to the problem of finding common sub words and sub sequences between",
+    "start": 0.0,
+    "end": 7.0,
+    "ocr_text": "NPTEL MOOG, JAN-FEB 2015\nWeek 7, Module 4\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nCommon Subwords and Subsequences\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "two sequences. So, the first problem we look at is what is called the longest common sub",
+    "start": 7.0,
+    "end": 13.92,
+    "ocr_text": "NPTEL MOOG, JAN-FEB 2015\nWeek 7, Module 4\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nCommon Subwords and Subsequences\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "word problem. So, let us suppose we are given two words. So, the moment let us assume",
+    "start": 13.92,
+    "end": 19.24,
+    "ocr_text": "NPTEL MOOG, JAN-FEB 2015\nWeek 7, Module 4\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nCommon Subwords and Subsequences\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "the words in English or a language like that. We are given two strings and we want to",
+    "start": 19.24,
+    "end": 24.84,
+    "ocr_text": "NPTEL MOOG, JAN-FEB 2015\nWeek 7, Module 4\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nCommon Subwords and Subsequences\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "find the length of the longest common sub word between them. And a sub word is just",
+    "start": 24.84,
+    "end": 29.88,
+    "ocr_text": "NPTEL MOOG, JAN-FEB 2015\nWeek 7, Module 4\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nCommon Subwords and Subsequences\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "a segment. So, for instance if I have secret and secretary and the longest common sub",
+    "start": 29.88,
+    "end": 35.9,
+    "ocr_text": "NPTEL MOOG, JAN-FEB 2015\nWeek 7, Module 4\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nCommon Subwords and Subsequences\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "word is just the prefix secret and it has length 6. Between bisect and price sect I have",
+    "start": 35.9,
+    "end": 43.84,
+    "ocr_text": "NPTEL MOOG, JAN-FEB 2015\nWeek 7, Module 4\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nCommon Subwords and Subsequences\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "this common segment I sect. If I have bisect and secret on the other hand then the",
+    "start": 43.84,
+    "end": 50.72,
+    "ocr_text": "NPTEL MOOG, JAN-FEB 2015\nWeek 7, Module 4\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nCommon Subwords and Subsequences\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "common sub word is of length 3 namely SEC. And if I have director and secretary then",
+    "start": 50.72,
+    "end": 59.72,
+    "ocr_text": "NPTEL MOOG, JAN-FEB 2015\nWeek 7, Module 4\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nCommon Subwords and Subsequences\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "there are actually only two length sub words and there are two of them. So, EC occurs in",
+    "start": 59.72,
+    "end": 64.6,
+    "ocr_text": "Bg, ~ AA -- Aw,"
+  },
+  {
+    "text": "both of them and so does RE. So, we have a more than one candidate for the longest common",
+    "start": 64.6,
+    "end": 74.56,
+    "ocr_text": "Bg, ~ AA -- Aw,"
+  },
+  {
+    "text": "sub word. But our main two goal at the moment is to compute not the sub word itself, but",
+    "start": 74.56,
+    "end": 79.16,
+    "ocr_text": "Bg, ~ AA -- Aw,"
+  },
+  {
+    "text": "the length we will see how we can recover the sub word quite easily from the length",
+    "start": 79.16,
+    "end": 83.6,
+    "ocr_text": "Bg, ~ AA -- Aw,"
+  },
+  {
+    "text": "calculation. So, the focus is the moment is to get the length of the sub word. So, let",
+    "start": 83.6,
+    "end": 90.24,
+    "ocr_text": "Bg, ~ AA -- Aw,"
+  },
+  {
+    "text": "us look at this thing more formally. So, we have two words a 0 to am and b 0 to b n.",
+    "start": 90.24,
+    "end": 99.12,
+    "ocr_text": "Bg, ~ AA -- Aw,"
+  },
+  {
+    "text": "And now what we want to say is that if I write out a 0 a 1 then I have a position a i",
+    "start": 99.12,
+    "end": 105.66,
+    "ocr_text": "Bg, ~ AA -- Aw,"
+  },
+  {
+    "text": "plus 1 and so on and then a m. So, if I can find some segments starting with a i and b j.",
+    "start": 105.66,
+    "end": 114.66,
+    "ocr_text": "Bg, ~ AA -- Aw,"
+  },
+  {
+    "text": "So, if I start from here in a read of k letters which are from b j and a read of k letters.",
+    "start": 114.66,
+    "end": 120.1,
+    "ocr_text": "Bg, ~ AA -- Aw,"
+  },
+  {
+    "text": "So, I read a i a i plus 1 or k minus 1 i plus k minus 1 and b j b j plus 1 or b j plus",
+    "start": 120.1,
+    "end": 126.7,
+    "ocr_text": "Beh AA. %\naa “\n\nIhde\nU0 1 --bybay--"
+  },
+  {
+    "text": "k minus 1. Then if these are both k length segments which are equal then I will say that",
+    "start": 126.7,
+    "end": 131.54,
+    "ocr_text": "AE aise\n\nPom ay ie"
+  },
+  {
+    "text": "u and v have a common sub word of length k. So, they must be a matching sub segment segment",
+    "start": 131.54,
+    "end": 136.86,
+    "ocr_text": "AE aise\n\nPom ay ie"
+  },
+  {
+    "text": "of the word. And now the aim is to find the length of the longest such segment. So, the",
+    "start": 136.86,
+    "end": 142.3,
+    "ocr_text": "AE aise\n\nPom ay ie"
+  },
+  {
+    "text": "longest common sub word of u and w. So, here is a root force algorithm. You just try out",
+    "start": 142.3,
+    "end": 150.26,
+    "ocr_text": "AE aise\n\nPom ay ie"
+  },
+  {
+    "text": "every position we look at every a i and b j. So, you look at every i and j i between",
+    "start": 150.26,
+    "end": 155.82,
+    "ocr_text": "Oy x\nlee ee"
+  },
+  {
+    "text": "0 and m and j between 0 and n and then I just keep looking. I look at these two match",
+    "start": 155.82,
+    "end": 162.3,
+    "ocr_text": "Oy x\nlee ee"
+  },
+  {
+    "text": "I look at the next letter and go on I keep going until I find two positions which do not",
+    "start": 162.3,
+    "end": 167.66,
+    "ocr_text": "Oy x\nlee ee"
+  },
+  {
+    "text": "match. Then I know that the longest sub word starting from these two positions is only",
+    "start": 167.66,
+    "end": 172.94,
+    "ocr_text": "Oy x\nlee ee"
+  },
+  {
+    "text": "this much. So, I match a a plus 1 b i plus 1 as far as possible and I keep track of the",
+    "start": 172.94,
+    "end": 178.34,
+    "ocr_text": "Oy x\nlee ee"
+  },
+  {
+    "text": "longest such match I do this for every a i and b j. So, if m is greater than n then",
+    "start": 178.34,
+    "end": 185.66,
+    "ocr_text": "Oy x\nlee ee"
+  },
+  {
+    "text": "first of all the number of choices of a i and b j is m times n. And in general I will",
+    "start": 185.66,
+    "end": 193.5,
+    "ocr_text": "Oy aN\nhae ="
+  },
+  {
+    "text": "go through the length of the end of the shortest shorter word matching everything. So, I",
+    "start": 193.5,
+    "end": 198.26,
+    "ocr_text": "Oy aN\nhae ="
+  },
+  {
+    "text": "could do order n work before I reach the end of the scan. Everything matches until the",
+    "start": 198.26,
+    "end": 205.14,
+    "ocr_text": "Oy aN\nhae ="
+  },
+  {
+    "text": "end of the shorter word then I could do order n work. So, therefore, this will be o of",
+    "start": 205.14,
+    "end": 210.42,
+    "ocr_text": "Dips 5 =e\n\nConair ahi Ly"
+  },
+  {
+    "text": "m times n into m or o m n square. So, now I will go list to see whether we can make this",
+    "start": 210.42,
+    "end": 218.42,
+    "ocr_text": "Dips 5 =e\n\nConair ahi Ly"
+  },
+  {
+    "text": "more efficient by doing something inductive of this. So, the first observation in the inductive",
+    "start": 218.42,
+    "end": 225.7,
+    "ocr_text": "Dips 5 =e\n\nConair ahi Ly"
+  },
+  {
+    "text": "observation is that if I have a a a plus 1 if I have b j b j plus 1. So, if I have a sub",
+    "start": 225.7,
+    "end": 232.7,
+    "ocr_text": "eee\n\nhy,"
+  },
+  {
+    "text": "word starting from here of length k then if I look at the next position and go forward",
+    "start": 232.7,
+    "end": 239.78,
+    "ocr_text": "eee\n\nhy,"
+  },
+  {
+    "text": "this must be a sub word of length k minus 1. So, there is a common sub word of length",
+    "start": 239.78,
+    "end": 245.26,
+    "ocr_text": "Arun -\n\nWeare.\nzeae"
+  },
+  {
+    "text": "k at i j if you know leave there is a long common sub word of length k minus 1 at i plus",
+    "start": 245.26,
+    "end": 250.66,
+    "ocr_text": "Arun -\n\nWeare.\nzeae"
+  },
+  {
+    "text": "1 j plus 1. So, in other words I look at i j if i j is equal then there is possible",
+    "start": 250.66,
+    "end": 259.82,
+    "ocr_text": "Mish &\nkel\n\noe _"
+  },
+  {
+    "text": "to start a word at common sub word at i a a a a b j. So, a i is equal to b j I look at",
+    "start": 259.82,
+    "end": 265.62,
+    "ocr_text": "Mish &\nkel\n\noe _"
+  },
+  {
+    "text": "the longest from longest common sub word I could have got from i plus 1 j plus 1 and",
+    "start": 265.62,
+    "end": 269.42,
+    "ocr_text": "Avra -\nwel\n\nkes _"
+  },
+  {
+    "text": "I had one to it. On the other hand of a i is not equal to b j then I cannot have a common",
+    "start": 269.42,
+    "end": 273.86,
+    "ocr_text": "Avra -\nwel\n\nkes _"
+  },
+  {
+    "text": "sub word starting here because the very first letter does not match. So, then I just",
+    "start": 273.86,
+    "end": 276.74,
+    "ocr_text": "Avra -\nwel\n\nkes _"
+  },
+  {
+    "text": "say the length of the longest common sub word starting at that position is 0. So, this",
+    "start": 276.74,
+    "end": 282.1,
+    "ocr_text": "Ayr -\nwel\n\nTs _"
+  },
+  {
+    "text": "gives us a handle on the inductive structure. So, I look at two positions if they are not",
+    "start": 282.1,
+    "end": 286.78,
+    "ocr_text": "Ayr -\nwel\n\nTs _"
+  },
+  {
+    "text": "equal I declare that there is no common sub word starting there. If they are equal then",
+    "start": 286.78,
+    "end": 291.3,
+    "ocr_text": "Ayr -\nwel\n\ngues _"
+  },
+  {
+    "text": "I postpone the problem to the next position and I add one to whatever I get in the next",
+    "start": 291.3,
+    "end": 295.42,
+    "ocr_text": "Ayr -\nwel\n\ngues _"
+  },
+  {
+    "text": "position. And the boundary condition is when one of the words is empty right when we",
+    "start": 295.42,
+    "end": 301.98,
+    "ocr_text": "Ayr -\nwel\n\ngues _"
+  },
+  {
+    "text": "have no letters left. So, we cannot extend one of the words anymore we cannot go forward",
+    "start": 301.98,
+    "end": 306.7,
+    "ocr_text": "Arua -\nwel\n\nee _"
+  },
+  {
+    "text": "then we can say that there cannot be a some common sub word because there are no letters",
+    "start": 306.7,
+    "end": 309.86,
+    "ocr_text": "Arua -\nwel\n\nee _"
+  },
+  {
+    "text": "to use from one of the two words ok. So, for convenience although our words go from a",
+    "start": 309.86,
+    "end": 320.46,
+    "ocr_text": "Arua -\nwel\n\nee _"
+  },
+  {
+    "text": "0 to a m and from b 0 to b n ok. We will allow a an m plus 1's position and an n plus",
+    "start": 320.46,
+    "end": 328.86,
+    "ocr_text": "Ry oo aw mM\n\nbo --by ny"
+  },
+  {
+    "text": "1 position. So, we will have positions 0 to m plus 1 and nu and 0 to n plus 1 and d.",
+    "start": 328.86,
+    "end": 333.74,
+    "ocr_text": "Ry oo aw mM\n\nbo --by ny"
+  },
+  {
+    "text": "So, m plus 1 means I have gone beyond the last position and nu I have exhausted all the",
+    "start": 333.98,
+    "end": 337.98,
+    "ocr_text": "Ry oo aw mM\n\nbo --by ny"
+  },
+  {
+    "text": "letters likewise n plus 1 and v means we have reached the end of the word in v. So, what",
+    "start": 337.98,
+    "end": 343.66,
+    "ocr_text": "Ry - Buy mm\n\nbo --byan"
+  },
+  {
+    "text": "we said is that if we have reached the end of the word in u then no matter where we are",
+    "start": 343.66,
+    "end": 350.02,
+    "ocr_text": "Ry - Buy mm\n\nbo --byan"
+  },
+  {
+    "text": "in v there is no common sub word. So, the length of the common sub word is 0 likewise if",
+    "start": 350.02,
+    "end": 355.06,
+    "ocr_text": "Ry - wy om\n\nbo --byan"
+  },
+  {
+    "text": "we have reached the end of the word in v wherever we are in u there is no common sub word",
+    "start": 355.06,
+    "end": 359.82,
+    "ocr_text": "Ry a aw, mM\n\nbo --by nv"
+  },
+  {
+    "text": "length is 0 and if we are not in these two cases we are not to the end of the word then",
+    "start": 359.82,
+    "end": 365.18,
+    "ocr_text": "Ry a aw, mM\n\nbo --by nv"
+  },
+  {
+    "text": "we check whether a i is equal to p j if a i is not equal to p j we declare as we saw",
+    "start": 365.18,
+    "end": 369.7,
+    "ocr_text": "Ry - wy mm\n\nbo eolby et"
+  },
+  {
+    "text": "earlier with the longest common sub word has length 0 otherwise we inductively compute",
+    "start": 369.7,
+    "end": 375.3,
+    "ocr_text": "Ry - wy mm\n\nbo eolby et"
+  },
+  {
+    "text": "the value for the next position in both the words and add 1 to it because we can extend",
+    "start": 375.3,
+    "end": 379.9,
+    "ocr_text": "Ry - wy mm\n\nbo --bunn"
+  },
+  {
+    "text": "that word by 1 because a i is equal to p j. So, we could write a memo wise because",
+    "start": 379.9,
+    "end": 389.7,
+    "ocr_text": "Ry - wy mm\n\nbo --bunn"
+  },
+  {
+    "text": "it function for that but we will directly try to compute a dynamic programming solution",
+    "start": 389.7,
+    "end": 396.02,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n*\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "for this problem ok. So, we will typically have these sub problems of the form L c w",
+    "start": 396.02,
+    "end": 403.62,
+    "ocr_text": "* LCWii,j) depends on\nLCOW(i+1 ,j+1)\n\n* Last row and column\nhave no\ndependencies\n\n* Start at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "i j right these are our basic sub problem. So, what we saw from the earlier thing is that",
+    "start": 403.62,
+    "end": 409.54,
+    "ocr_text": "* LCWii,j) depends on\nLCOW(i+1 ,j+1)\n\n* Last row and column\nhave no\ndependencies\n\n* Start at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "if I have a i equal to p j I need to look at a i plus 1 j p j plus 1. So, L c i w L c",
+    "start": 409.54,
+    "end": 416.18,
+    "ocr_text": "* LCWi(i,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\nhave no\ndependencies\n\n* Start at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "w i j depends on L c w i plus 1 j plus 1 right. So, we have this kind of sub problem dependency",
+    "start": 416.26,
+    "end": 422.34,
+    "ocr_text": "*\n\n*\n\n*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\nLast row and column\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "at every point a value needs to look to the one which is below. So, we have in this just to",
+    "start": 422.34,
+    "end": 429.78,
+    "ocr_text": "*\n\n*\n\n*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\nLast row and column\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "be here this is our area and this is our j right. So, it has to look down and right. So,",
+    "start": 430.82,
+    "end": 438.26,
+    "ocr_text": ">\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n*\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "therefore, now with our convention that we draw the arrows backwards that is if this if this",
+    "start": 438.26,
+    "end": 443.78,
+    "ocr_text": "law Li.)\n\n* LCWi(i, cone on ——\nLOW(+ a |. eee\n\n* Last row and column ao\n\nhave no\n\ne\ndependencies\nel\n\n3\nStart at bottom right 14\ncorner and fill by row 15 |\nor by column 6 | - |\n\n6\n\na"
+  },
+  {
+    "text": "square depends on this square then we draw an arrow indicating the dependency universe right.",
+    "start": 443.78,
+    "end": 449.14,
+    "ocr_text": "law Li.)\n\n* LCWi(i, cone on ——\nLOW(+ a |. eee\n\n* Last row and column ao\n\nhave no\n\ne\ndependencies\nel\n\n3\nStart at bottom right 14\ncorner and fill by row 15 |\nor by column 6 | - |\n\n6\n\na"
+  },
+  {
+    "text": "So, I need to compute the bottom of the arrow before I can get to the top that is what the",
+    "start": 449.14,
+    "end": 452.82,
+    "ocr_text": "Law Li,»\n\n* LCOW(,j ee on pannEooEe\nLOW(+4 +1 a, |. . ee\n\n* Last row and column fa\nhave no ae 5\ndependencies\n\n* Start at bottom right ed\n\ncorner and fill by row 15 |\n\nor by column le: |"
+  },
+  {
+    "text": "end result I need to compute this before I can compute this ok. So, now we can start at this",
+    "start": 452.82,
+    "end": 459.62,
+    "ocr_text": "Law Li,»\n\n* LCOW(,j ee on pannEooEe\nLOW(+4 +1 a, |. . ee\n\n* Last row and column fa\nhave no ae 5\ndependencies\n\n* Start at bottom right ed\n\ncorner and fill by row 15 |\n\nor by column le: |"
+  },
+  {
+    "text": "corner because this depends on nothing and then start working. So, as we saw at the boundary",
+    "start": 459.62,
+    "end": 466.74,
+    "ocr_text": "* LCWii,j) depends on\nLCW(i+1,j+1) i\n\n* Last row and column\nhave no\ndependencies\n\n* Start at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "where I have exhausted one word where either the first word or the second word is. So,",
+    "start": 466.74,
+    "end": 470.1,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n4:\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "we have written the word by the way by second and secret is to tell us what the values of a i and",
+    "start": 470.1,
+    "end": 474.74,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n4:\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "b i. So, these are the values of a i and these are the values of b j right. So, these are my two words.",
+    "start": 474.74,
+    "end": 481.06,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n4:\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "So, initially at the boundary every call longest commons of word is 0 because one of the two",
+    "start": 481.54,
+    "end": 486.66,
+    "ocr_text": "LG]\n| | [olsl2(s|4/s/6|\na\n\n* LCWii,j) depends on\nLCW(i+1,j+1)\n\nAe\n* Last row and column\nhave no\ndependencies\n\n*\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "words is empty and now I can do it say row by row a column by column. So, let us do it by column",
+    "start": 486.66,
+    "end": 491.7,
+    "ocr_text": "* LCWii,j) depends on\nLCOW(i+1,j+1)\n\nAe\n* Last row and column\nhave no\ndependencies\n\n* Start at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "for a change ok. So, now at this point we have that a 5 is equal to b 5 therefore, we get 1 plus",
+    "start": 491.78,
+    "end": 501.86,
+    "ocr_text": "* LCWii,j) depends on\nLCOW(i+1,j+1)\n\nAe\n* Last row and column\nhave no\ndependencies\n\n* Start at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "l c w of 6 6 right and therefore, we get 1 everywhere else c and t e and t they are not the t. So,",
+    "start": 502.66,
+    "end": 510.66,
+    "ocr_text": ".\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n*\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "everywhere else it is just 0 because the value do not match. Now, if I go to the previous",
+    "start": 510.66,
+    "end": 516.98,
+    "ocr_text": "* LCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\nhave no\ndependencies\n\n* Start at bottom right\ncorner and fill by row\nor by column\n\nb-Lewlb 6)"
+  },
+  {
+    "text": "ah column now here the only one that has anything to say is e and e but there because the next one",
+    "start": 517.7,
+    "end": 524.98,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n*\n\nLast row and column\nhave no\ndependencies\n\n*\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "is 0 I just get 1 plus 0 is 1. So, I go to the previous one in fact, the value know there is no",
+    "start": 524.98,
+    "end": 530.5,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n*\n\nLast row and column\nhave no\ndependencies\n\n*\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "r and b i sec. So, therefore, all the values the sub word is 0. So, I come to the next thing again",
+    "start": 530.5,
+    "end": 537.38,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCOW(i+1,j+1)\n\n* Last row and column\n\n*\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "now I have one place where c and c match. So, I say that the longest commons of word starting here",
+    "start": 537.38,
+    "end": 542.74,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n*\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "is 1 plus whatever happens at t and r but t and r don't match which 1 plus 0 is 1.",
+    "start": 542.74,
+    "end": 546.82,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n*\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "But now, because this c is now proceeded by an e. So, at this e I find that it is 1 plus whatever",
+    "start": 547.38,
+    "end": 554.34,
+    "ocr_text": "a\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n*\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "happens to the bottom right. So, it is 1 plus 1 is 2 and likewise at s I find that s and s",
+    "start": 554.34,
+    "end": 561.62,
+    "ocr_text": "a\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n*\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "match and it is 1 plus whatever is to bottom right will be constant right. So, we identify in this",
+    "start": 561.62,
+    "end": 566.5,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\n*\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "way we put an entry 3 here. So, in this particular table it is a bit mysterious where the answer is",
+    "start": 566.5,
+    "end": 573.54,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "so, what we have to do is find the entry with the largest and find the entry which has the",
+    "start": 574.34,
+    "end": 579.7,
+    "ocr_text": "*\n\nLCWii,j) depends on\nLCW(i+1,j+1)\n\n* Last row and column\n\nhave no\ndependencies\n\nStart at bottom right\ncorner and fill by row\nor by column"
+  },
+  {
+    "text": "largest value in this case 2, 0 this is our largest value. So, this tells us that between these",
+    "start": 579.7,
+    "end": 585.62,
+    "ocr_text": "* Find (i,j) with largest\nentry\n\n* LCW(2,0) =3\n\n* Read off the actual\nsubword diagonally"
+  },
+  {
+    "text": "two words the longest commons of word has length 3. As I said before, we are only computing the",
+    "start": 585.62,
+    "end": 591.86,
+    "ocr_text": "| | folsfelsaja|s |e)\n|. TE\n\n* Find (i,j) with largest\nentry\n* LCW(2,0) =3\n\n* Read off the actual\nsubword diagonally"
+  },
+  {
+    "text": "longest commons of word. So, how do we actually find the sub word? Well, we can actually in this case",
+    "start": 591.86,
+    "end": 597.7,
+    "ocr_text": "| | folsfelsaja|s |e)\n|. TE\n\n* Find (i,j) with largest\nentry\n* LCW(2,0) =3\n\n* Read off the actual\nsubword diagonally"
+  },
+  {
+    "text": "very easily read it off we know that there is a longest commons of word here of length 3 that",
+    "start": 597.7,
+    "end": 601.78,
+    "ocr_text": "* Find (i,j) with largest\nentry\n\n* LCW(2,0) =3\n\n* Read off the actua\nsubword diagonally"
+  },
+  {
+    "text": "means that it must be succeeded by word of length 2 and so on. So, this particular diagonal tells us",
+    "start": 601.78,
+    "end": 606.98,
+    "ocr_text": "* Find (i,j) with largest\nentry\n\n* LCW(2,0) =3\n\n* Read off the actua\nsubword diagonally"
+  },
+  {
+    "text": "what the letters in the word are and if I just project this diagonal on to both the one column",
+    "start": 606.98,
+    "end": 612.9,
+    "ocr_text": "| | jofaf2|s/4]s5 [6\n|... Goacoed\n\n* Find (i,j) with largest\nentry\n\n* LCW(2,0) =3\n\n* Read off the actual\nsubword diagonally"
+  },
+  {
+    "text": "I will get the word is cc right. So, in this example as we see once we have computed the length",
+    "start": 612.9,
+    "end": 618.02,
+    "ocr_text": "| | jofaf2|s/4]s5 [6\n|... Goacoed\n\n* Find (i,j) with largest\nentry\n\n* LCW(2,0) =3\n\n* Read off the actual\nsubword diagonally"
+  },
+  {
+    "text": "it is very easy to read off the solution. So, here is some code for this particular algorithm",
+    "start": 618.02,
+    "end": 628.1,
+    "ocr_text": "| | jofa[2|si4|s |e)\n| | [stefelrjel et].\n>\n\nie\n[2 |s|\n5 |\nLo\n\n* Find (i,j) with largest\nentry\n\n* LCW(2,0) =3\n\n* Read off the actual\nsubword diagonally\n\n|\ni\nLol"
+  },
+  {
+    "text": "to dynamic programming version just to make it less confusing I have explicitly used the variables",
+    "start": 628.1,
+    "end": 634.9,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n#c for col"
+  },
+  {
+    "text": "r and c is for i and j. So, r is the row it goes this way and c goes this way.",
+    "start": 634.9,
+    "end": 640.42,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n#c for col"
+  },
+  {
+    "text": "So, what we say is that initially if I am looking at the last column these are all 0s",
+    "start": 642.02,
+    "end": 648.18,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "and if I am looking at the bottom row this so, the remember that the numbering is from 0 to n plus 1",
+    "start": 649.86,
+    "end": 656.34,
+    "ocr_text": "# u[@..m], v[Q..n]\n\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "and from 0 to n plus 1. So, I am looking at the bottom row when the row number is n plus 1 every",
+    "start": 657.06,
+    "end": 662.9,
+    "ocr_text": "O | 0\nrs\nmarly Cc\n\n# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "column is 0. So, this puts the 0s so, these 2 lines just populate things. Now, we have to find",
+    "start": 662.9,
+    "end": 670.02,
+    "ocr_text": "O | 0\nrs\nmarly Cc\n\n# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "remember the goal is to find the maximum position in the entire array in order to give the answer",
+    "start": 670.9,
+    "end": 675.62,
+    "ocr_text": "oc wt\n\nv | :\nnee D\n\n# u[@..m], v[Q..n]\n\n( # r for row\nac tOntcol"
+  },
+  {
+    "text": "finally. So, we will just keep track of that with the value here. So, we will initially assume that",
+    "start": 675.62,
+    "end": 680.1,
+    "ocr_text": "oc wt\n\npal 9\nGed i\nne D\n\n# u[@..m], v[Q@..n]\n\n[ # r for row\n; #c for col"
+  },
+  {
+    "text": "the maximum common word is of length 0. Now, what we do is we just go column by column row by row",
+    "start": 680.1,
+    "end": 685.94,
+    "ocr_text": "oc wt\n\npal 9\nGed i\nne D\n\n# u[@..m], v[Q@..n]\n\n[ # r for row\n; #c for col"
+  },
+  {
+    "text": "so, we go to each column from n to 0. So, we do column by column and each column we go row by row",
+    "start": 686.1,
+    "end": 691.7,
+    "ocr_text": "oc wt\n\non 9\n4 fe a,\nmeiVec— D\n\n# u[@..m], v[Q..n]\n\n( # r for row\n# c for col"
+  },
+  {
+    "text": "from bottom to top m to 0. We look at the word position r and position c is u r equal to bc.",
+    "start": 691.7,
+    "end": 702.58,
+    "ocr_text": "oc wt\n\non 9\n4 fe a,\nmeiVec— D\n\n# u[@..m], v[Q..n]\n\n( # r for row\n# c for col"
+  },
+  {
+    "text": "If so, I add 1 so, this should be w plus n not s.",
+    "start": 703.14,
+    "end": 707.3,
+    "ocr_text": "oc wt\n\n2) ()\nnp D\n# u[@..m], v[Q..n]\n\n( # r for row\n#-c for col"
+  },
+  {
+    "text": "So, if I have u of r is equal to b of c, then the longest common word length of the longest",
+    "start": 707.38,
+    "end": 720.42,
+    "ocr_text": "® | ()\n\n«| i\n\nneg B\n\n# u[@..m], v[Q..n]\n\n( # r for row\n\n#c for col\nweer\nW"
+  },
+  {
+    "text": "bound word r c is 1 plus at a plus 1 c plus 1. Otherwise, it is 0 because there is no common word",
+    "start": 720.42,
+    "end": 725.22,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "and if the new value of computed is bigger than the value of c in so far, then I will update it",
+    "start": 726.1,
+    "end": 732.74,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n#c for col"
+  },
+  {
+    "text": "to the current value and finally, the end I will just return this length.",
+    "start": 732.82,
+    "end": 736.42,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n#c for col"
+  },
+  {
+    "text": "This was a very straightforward iterative way to process this thing,",
+    "start": 736.42,
+    "end": 739.94,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "column by column. You could invert these two indices and do it row by row. So, that is an exercise.",
+    "start": 739.94,
+    "end": 745.22,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "So, we had seen earlier that if we just look blindly at every position and try to scan the word",
+    "start": 749.22,
+    "end": 753.14,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "starting at that position, we get something which is a water m n square. Now, this solution",
+    "start": 753.14,
+    "end": 757.86,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "requires us to fill in the table of size m times n. So, obviously, every entry in this m times",
+    "start": 758.02,
+    "end": 764.26,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "n table, we just have to look at the neighbors to fill it up. So, it is a constant time operation.",
+    "start": 764.26,
+    "end": 768.66,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "So, m times n entries, we fill in m times n times. So, we have an order m1 and an document.",
+    "start": 768.66,
+    "end": 773.14,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "If you use dynamic programming, we have done it. But if you use memorization also, you will get the",
+    "start": 773.14,
+    "end": 777.3,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "same answer. Although remember, there is a recursive course, might cost you in terms of actual",
+    "start": 777.3,
+    "end": 781.78,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "implementation time. So, we can now look at a slightly more general problem than longest",
+    "start": 781.78,
+    "end": 790.58,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "common sub word, one which is more interesting computationally. So, what if we do not look for an",
+    "start": 790.58,
+    "end": 795.78,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "exact match, but we allow ourselves to drop some letters. So, we have a sub sequence,",
+    "start": 795.78,
+    "end": 802.74,
+    "ocr_text": "# u[@..m], v[Q..n]\n# r for row\n\n# c for col"
+  },
+  {
+    "text": "not a sub word, which allows us to drop some letters and now we want to know if after",
+    "start": 804.02,
+    "end": 808.66,
+    "ocr_text": "sect”, “sec/¢t\nPee Nee"
+  },
+  {
+    "text": "dropping some letters, what is the longest match we can find. So, now, earlier examples,",
+    "start": 808.66,
+    "end": 813.62,
+    "ocr_text": "sect”, “sec/¢t\nPee Nee"
+  },
+  {
+    "text": "some of them are the same. Like in this case, without dropping any letters, I could get six and I",
+    "start": 813.62,
+    "end": 817.7,
+    "ocr_text": "sect”, “sec/¢t\nPee Nee"
+  },
+  {
+    "text": "can't improve it, same way with this i-seq, I cannot improve it. But now, if I look at bisect",
+    "start": 817.7,
+    "end": 823.38,
+    "ocr_text": "sect”, “sec/¢t\nPee Nee"
+  },
+  {
+    "text": "and secret, earlier, we only had a length 3 match, SCC, but now I can extend this match to length",
+    "start": 823.38,
+    "end": 832.18,
+    "ocr_text": "sect”, “sec/¢t\nPee Nee"
+  },
+  {
+    "text": "4, because here if I add a t, here I can drop 2 letters and get a t. So, I can actually get a match,",
+    "start": 832.18,
+    "end": 838.26,
+    "ocr_text": "sect”, “sec/¢t\nPee Nee"
+  },
+  {
+    "text": "which is length 4. Likewise, in this to a director and secretary earlier, we had RE, RE,",
+    "start": 838.26,
+    "end": 844.34,
+    "ocr_text": "sect”, “sec/¢t\nPee Nee"
+  },
+  {
+    "text": "and we had EC, EC, but now by doing this dropping, I can get EC, TR, I can get EC, TR.",
+    "start": 845.14,
+    "end": 857.46,
+    "ocr_text": "sect”, “sec/¢t\nPee Nee"
+  },
+  {
+    "text": "And similarly, I can get RE, TR, I can get RE, TR. So, if we allow ourselves to drop letters,",
+    "start": 858.5,
+    "end": 867.3,
+    "ocr_text": "sect”, “sec/¢t\nPee Nee"
+  },
+  {
+    "text": "we can get longer sequences than match. And this is called the longest common sub sequence.",
+    "start": 867.3,
+    "end": 872.02,
+    "ocr_text": "sect”, “sec/¢t\nPee Nee"
+  },
+  {
+    "text": "So, one way of thinking about it in terms of our earlier longest common subword is that I can now,",
+    "start": 873.7,
+    "end": 878.66,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "if I have matched a certain segment, I can continue to match to the right. So, I can let both",
+    "start": 879.54,
+    "end": 884.82,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "indices go forward. So, I can go down and right in the grid and look for another place where there",
+    "start": 884.82,
+    "end": 889.78,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "is a match. So, earlier, we had a 3 level match between SCC and then we had a 1 level match between t.",
+    "start": 889.78,
+    "end": 895.78,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "So, I can combine these to make a 4 level on this common sub sequence, but we will do a",
+    "start": 895.78,
+    "end": 900.18,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "because the sub sequence calculation in a much more dynamic way than this.",
+    "start": 900.18,
+    "end": 903.62,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "So, before we proceed, it is useful to look at why, along the common sub sequence problem is",
+    "start": 906.18,
+    "end": 911.3,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "interesting. So, one of the areas is in bioinformatics. So, biologists are interested in identity",
+    "start": 911.3,
+    "end": 919.46,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "how close two species are to each other in the genetic sense. So, if we look at our DNA,",
+    "start": 920.42,
+    "end": 926.9,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "our DNA is basically a long string over an alphabet of size 4. So, these are 4 proteins in",
+    "start": 926.9,
+    "end": 933.86,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "form at V and DNA, they are abbreviated as ATGC. So, now if we look at two strings of DNA,",
+    "start": 933.86,
+    "end": 941.3,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "a natural way to compare how close they are to each other is to ask how much they, how well they",
+    "start": 941.3,
+    "end": 947.46,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "can be aligned to features drop of few things here and then. So, it could be that one species has",
+    "start": 947.46,
+    "end": 951.62,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "a few extra genes, other species has a few extra genes doing something else and if we drop those",
+    "start": 951.62,
+    "end": 955.54,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "genes, then everything else is the same, but these genes may occur at different places in the two",
+    "start": 955.54,
+    "end": 959.62,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "species. So, it is not that there is a common part and then there is an extra part, it is rather",
+    "start": 959.62,
+    "end": 964.74,
+    "ocr_text": "* LCS is longest path\nwe can find between\nnon-zero LCW\nentries, moving right\nand down"
+  },
+  {
+    "text": "that the new genes are expressed among the other genes. So, we need to know if we can drop a few",
+    "start": 964.74,
+    "end": 969.14,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "genes and one and a few genes and another can be overlapped. So, that is a longest common sub sequence",
+    "start": 969.14,
+    "end": 973.46,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "problem. If you use unix or linux or any related operating system, there is a command called",
+    "start": 974.42,
+    "end": 980.66,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "diff which allows you to check whether two text files are the same or find a minimal difference",
+    "start": 980.66,
+    "end": 986.18,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "between them. So, the diff command also does a longest common sub sequence, it treats each line",
+    "start": 986.18,
+    "end": 991.46,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "as a character and it says what is the minimum number of lines I can drop between these two files",
+    "start": 991.46,
+    "end": 997.46,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "before I can match them up and then it tells you how to insert things back. But basically,",
+    "start": 998.1,
+    "end": 1002.42,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "it is doing a longest common sub sequence calculation to tell you how close two text files are to each",
+    "start": 1002.42,
+    "end": 1007.38,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "other. So, there are plenty of applications for this longest common sub sequence problem.",
+    "start": 1007.38,
+    "end": 1011.22,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "So, let us try to understand the inductive structure of this longest common sub sequence problem",
+    "start": 1013.62,
+    "end": 1017.7,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "directly not through the longest common sub word. So, the first thing to note is that if I am looking",
+    "start": 1017.7,
+    "end": 1025.94,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "for this longest common sub word between two and supposing I find that A 0 is in fact equal to B 0.",
+    "start": 1025.94,
+    "end": 1031.62,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "Now, I claim that I should combine them in the solution and then look for a solution in the rest.",
+    "start": 1032.66,
+    "end": 1039.7,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "So, I should do something where I say that there is one match A 0 equal to B 0 and then I must find",
+    "start": 1040.74,
+    "end": 1046.18,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "the rest. So, this requires a little bit of an argument because it could be that this is not",
+    "start": 1046.18,
+    "end": 1053.54,
+    "ocr_text": "Fle]"
+  },
+  {
+    "text": "the optimum way to do it. So, remember this is a bit like a greedy thing we are saying that because",
+    "start": 1053.54,
+    "end": 1058.1,
+    "ocr_text": "Fle]"
+  },
+  {
+    "text": "A 0 is equal to B 0 match it up and then proceed. So, one might argue that this is not the way I",
+    "start": 1058.1,
+    "end": 1063.14,
+    "ocr_text": "Fle]"
+  },
+  {
+    "text": "want to go supposing A 0 in fact should be matched to B 2. That would be the best solution.",
+    "start": 1063.14,
+    "end": 1070.58,
+    "ocr_text": "Fle]"
+  },
+  {
+    "text": "So, it is not a good idea to match A 0 to B 0. But now, notice that a B 0 is matched to B 2 because",
+    "start": 1070.58,
+    "end": 1076.9,
+    "ocr_text": "oo"
+  },
+  {
+    "text": "if the sub sequence then anything to the right say A 1 is matched to something it must be further",
+    "start": 1076.9,
+    "end": 1080.98,
+    "ocr_text": "oo\n|"
+  },
+  {
+    "text": "to the right. These lines I cannot have anything which crosses like this. I cannot have any",
+    "start": 1080.98,
+    "end": 1086.18,
+    "ocr_text": "oo\n|"
+  },
+  {
+    "text": "match with crosses because they must occur in the same sequence. So, A 0 is matched to B 2,",
+    "start": 1086.18,
+    "end": 1091.46,
+    "ocr_text": "oo\n|"
+  },
+  {
+    "text": "A 1 match to match to something to the right, A 2 must be matched to something still further to",
+    "start": 1091.46,
+    "end": 1095.54,
+    "ocr_text": "oo\n|"
+  },
+  {
+    "text": "the right and so on. So, all these matches go from bottom from the top where to the bottom",
+    "start": 1095.54,
+    "end": 1100.1,
+    "ocr_text": "oo\n|"
+  },
+  {
+    "text": "where without crossing each other. So, now if I take this solution and I know that A 0 is B 0,",
+    "start": 1100.1,
+    "end": 1107.14,
+    "ocr_text": "oo\n|"
+  },
+  {
+    "text": "then I can actually move this arrow here and make it match like this and remove this.",
+    "start": 1107.14,
+    "end": 1111.86,
+    "ocr_text": "oo\n|"
+  },
+  {
+    "text": "What will this do? It will disturb the original solution by no longer saying A 0 is matched to B 2",
+    "start": 1112.5,
+    "end": 1117.3,
+    "ocr_text": "oo\n|"
+  },
+  {
+    "text": "but A 0 is matched to B 0. But in terms of the quality of the solution, the number of matches",
+    "start": 1117.3,
+    "end": 1122.74,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "the same. Earlier A 0 is matched somewhere else now it is matched to B 0. So, the length of the",
+    "start": 1122.74,
+    "end": 1127.3,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "longest common sequence does not change. So, turning this argument backwards it says that therefore,",
+    "start": 1127.3,
+    "end": 1132.66,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "if A 0 is equal to B 0, it is very safe to assume that A 0 B 0 forms part of the solution and",
+    "start": 1132.66,
+    "end": 1138.98,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "proceed with the rest of the problem. So, we can look at the sub problem from A 1 and B 1.",
+    "start": 1138.98,
+    "end": 1144.02,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "So, this is the first case. So, the first case says that we can look at if A 0 is equal to B 0,",
+    "start": 1144.98,
+    "end": 1151.3,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "we can look at this sub problem from A 1 to B 1. Now, if it is not equal,",
+    "start": 1151.3,
+    "end": 1157.86,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "then one is not sure what to do. It is not a sound idea to drop both. For instance,",
+    "start": 1160.1,
+    "end": 1165.86,
+    "ocr_text": "Eel"
+  },
+  {
+    "text": "supposing I have something like straw and a spray, then just because the S does not match the A,",
+    "start": 1165.86,
+    "end": 1180.34,
+    "ocr_text": "Skraw"
+  },
+  {
+    "text": "it does not mean that I should remove both of them because I should keep the S alive to match with",
+    "start": 1180.34,
+    "end": 1184.1,
+    "ocr_text": "Skraw\nastray\n\nEE)\nYS"
+  },
+  {
+    "text": "the next S. So, both cannot be there because they do not equal each other and if S matches something",
+    "start": 1184.1,
+    "end": 1191.7,
+    "ocr_text": "Skraw\nastray\n\nEE)\nYS"
+  },
+  {
+    "text": "on the right then A cannot match as something was if they are both different, if they are not equal,",
+    "start": 1191.78,
+    "end": 1196.82,
+    "ocr_text": "Qkraw\n\ngstray\n\nEg]\nY"
+  },
+  {
+    "text": "then this must match something there and this must match something here and both cannot happen",
+    "start": 1196.82,
+    "end": 1200.58,
+    "ocr_text": "Akraw\n\nastray\n\nBE\nY"
+  },
+  {
+    "text": "because they will cross and this we said is not a lot. So, only one of them can match something",
+    "start": 1200.58,
+    "end": 1203.94,
+    "ocr_text": "Akraw\n\nastray\n\nBE\nY"
+  },
+  {
+    "text": "to the right on the other side, but we do not know which one. So, this is what the general principle",
+    "start": 1203.94,
+    "end": 1209.46,
+    "ocr_text": "Akraw\n\nastray\n\nBE\nY"
+  },
+  {
+    "text": "of these inductive solutions is that you do not try to choose one or the other. So, if I leave",
+    "start": 1209.46,
+    "end": 1216.98,
+    "ocr_text": "Qkraw\n\nastray\n\nEe)\n®"
+  },
+  {
+    "text": "B 0 and I drop A 0, then I get a solution, I get a sub problem which has A 1 to AM and B 0 to PM.",
+    "start": 1217.62,
+    "end": 1226.58,
+    "ocr_text": "Qkraw\n\nastray\n\nBi\nY"
+  },
+  {
+    "text": "If on the other hand I keep A 0 and I drop B 0, then A 0 to AM remains, but now it is B 1 to PM.",
+    "start": 1227.7,
+    "end": 1234.58,
+    "ocr_text": "Akraw\n\ngstray\n\nHE)\nY"
+  },
+  {
+    "text": "So, these are my two possible sub problems knowing that both A 0 and B 0 cannot be there,",
+    "start": 1235.38,
+    "end": 1241.14,
+    "ocr_text": "Qkraw\n\ngstray\n\nBi)\n®"
+  },
+  {
+    "text": "but I should allow one of them to be there. Otherwise, I may have a sub-automation.",
+    "start": 1241.14,
+    "end": 1244.58,
+    "ocr_text": "Qkraw\n\ngstray\n\nBi)\n®"
+  },
+  {
+    "text": "So, dropping one of them it is like in the job should you make case where you say that if this job",
+    "start": 1245.14,
+    "end": 1249.22,
+    "ocr_text": "Akraw\n\nastray\n\nBE\nY"
+  },
+  {
+    "text": "is there something else is not there. If A 0 is there, B 0 is not there. B 0 is there, A 0 is not there,",
+    "start": 1249.22,
+    "end": 1254.18,
+    "ocr_text": "Akraw\n\nastray\n\nBE\nY"
+  },
+  {
+    "text": "but beyond that I cannot say anything. So, therefore, I solve both of these problems in principle",
+    "start": 1254.18,
+    "end": 1259.06,
+    "ocr_text": "Akraw\n\nastray\n\nBE\nY"
+  },
+  {
+    "text": "and take the maximum, the better of the two. So, this is the inductive structure now.",
+    "start": 1259.06,
+    "end": 1263.86,
+    "ocr_text": "Qkraw\n\nastray\n\nBE"
+  },
+  {
+    "text": "Either the first letter matches in which case I include it in my sequence and solve the remaining",
+    "start": 1263.86,
+    "end": 1268.58,
+    "ocr_text": "Qkraw\n\nastray\n\nBE"
+  },
+  {
+    "text": "sub-problem or the first letter does not match, in which case I generate two sub-problems, one",
+    "start": 1268.58,
+    "end": 1274.26,
+    "ocr_text": "Akraw\n\nastray\n\nBE\nY"
+  },
+  {
+    "text": "by dropping each of the letters at the and I take the maximum of the two.",
+    "start": 1274.26,
+    "end": 1277.94,
+    "ocr_text": "Akraw\n\nastray\n\nBE\nY"
+  },
+  {
+    "text": "So, as usual let L C S I comma J stand for the L C S for the problem starting at A i and B J.",
+    "start": 1280.1,
+    "end": 1288.18,
+    "ocr_text": "wll '\n= mM\n* | ((m or"
+  },
+  {
+    "text": "So, if A i is equal to B J as we said L C S of i J is 1 plus L C S of i plus 1 J plus 1.",
+    "start": 1289.46,
+    "end": 1296.18,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "This says we will assume that A i equal to B J is included in our solution and then proceed with",
+    "start": 1296.18,
+    "end": 1301.62,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "the rest of the input. If it is not, then I have to drop one of them. So, either I look at L C S I",
+    "start": 1301.62,
+    "end": 1308.42,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "plus 1 comma J or L C S I J plus 1, I look at both and then I take the maximum of these two",
+    "start": 1308.42,
+    "end": 1314.9,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "and there is no other thing because the current one does not match.",
+    "start": 1314.9,
+    "end": 1317.22,
+    "ocr_text": "<<]"
+  },
+  {
+    "text": "So, as with the longest common sub-word problem, we will extend the positions to go beyond the",
+    "start": 1318.98,
+    "end": 1324.66,
+    "ocr_text": "a"
+  },
+  {
+    "text": "word to indicate the word is over. So, we will go from 0 to M plus 1 and 0 to M plus 1.",
+    "start": 1324.66,
+    "end": 1329.38,
+    "ocr_text": "a"
+  },
+  {
+    "text": "And when we have reached M plus 1 or M plus 1, then the L C S problem will give us 0 because",
+    "start": 1329.38,
+    "end": 1333.62,
+    "ocr_text": "a"
+  },
+  {
+    "text": "there cannot be a common sub sequence since one of the words is going to be M D.",
+    "start": 1333.62,
+    "end": 1336.98,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\n+\n\nDependencies for\nLCS(m,n) are known\n\n«\n\nStart at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "So, the sub-problem dependency in L C S is a little more complicated than in L C W.",
+    "start": 1341.46,
+    "end": 1346.74,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\n+\n\nDependencies for\nLCS(m,n) are known\n\n«\n\nStart at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "In L C W, we only had this dependency. That is we said that i J dependent i plus 1 J plus 1.",
+    "start": 1346.74,
+    "end": 1352.98,
+    "ocr_text": "Pe\n\n*\n\n*\n\nLCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\nDependencies for\nLCS(m,n) are known\n\nStart at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "But now we are also dependency on i plus 1 J and i J plus 1. So, we have a dependency coming",
+    "start": 1352.98,
+    "end": 1358.58,
+    "ocr_text": "Pe\n\n*\n\n*\n\nLCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\nDependencies for\nLCS(m,n) are known\n\nStart at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "from the right and from below as well. So, we have a three-way dependency as we saw all these",
+    "start": 1358.58,
+    "end": 1364.82,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\n\ne\n\nDependencies for\nLCS(m,n) are known\n\n*\n\nStart at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "values are going to be 0 over here. So, this is the first non-trivial value that we can compute",
+    "start": 1364.82,
+    "end": 1369.86,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\n\ne\n\nDependencies for\nLCS(m,n) are known\n\n*\n\nStart at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "because all its three neighbors are nowhere else. So, if you look at here for example,",
+    "start": 1369.86,
+    "end": 1374.26,
+    "ocr_text": "6\n\nLCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "the bottom neighbor is not. If I look here, the right neighbor is not. So, at L C S M comma N,",
+    "start": 1374.26,
+    "end": 1379.94,
+    "ocr_text": "6\n\nLCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "5 comma 5 in this case, the value is available to compute because everything around it,",
+    "start": 1379.94,
+    "end": 1384.98,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\noo\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "the three dependent squares around it are all populated. So, I can do that and then I can again",
+    "start": 1384.98,
+    "end": 1390.1,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\noo\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "do rho by rho. Once I have got this, I can do this because I will have all three value. Once I do",
+    "start": 1390.1,
+    "end": 1393.54,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n*\n\nStart at LCS(m,n)\ner\n\nand fill by row,\n\ncolumn or diagonal"
+  },
+  {
+    "text": "this, I can or I can go left, I can do this and so on or I can do diagonal. So, let us do it column",
+    "start": 1393.54,
+    "end": 1399.38,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n*\n\nStart at LCS(m,n)\ner\n\nand fill by row,\n\ncolumn or diagonal"
+  },
+  {
+    "text": "by column. So, we start with the base case where the L C S at the boundary is 0 because you cannot",
+    "start": 1399.38,
+    "end": 1406.34,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n*\n\nStart at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "have a longer common sub sequence with an M D word. Then we fill up the first column and here we",
+    "start": 1406.34,
+    "end": 1414.66,
+    "ocr_text": "*\n\n*\n\n*\n\nLCS(i,j) depends on\nTew ,j+1) as well\nas LCS(i+1 i) and\nLCS(i,j+1)\n\nDependencies for\nLCS(m,n) are known\n\nStart at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "get a 1 because when the two match we have 1 plus L C S O, I plus 1, J plus 1.",
+    "start": 1414.66,
+    "end": 1424.1,
+    "ocr_text": "*\n\n*\n\n*\n\nLCS(i,j) depends on\nTew ,j+1) as well\nas LCS(i+1 i) and\nLCS(i,j+1)\n\nDependencies for\nLCS(m,n) are known\n\nStart at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "Now, we have some differences. So, when it does not match like when C,",
+    "start": 1427.78,
+    "end": 1431.06,
+    "ocr_text": "* LCS(i,j) depends on\n\n*\n\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\n\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "so if I look at C and E, they do not match. Then what I am supposed to do is I am going to",
+    "start": 1432.18,
+    "end": 1437.46,
+    "ocr_text": "* LCS(i,j) depends on\n\n*\n\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\n\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "suppose to take the maximum of these two. So, this is like the maximum of these two I get one.",
+    "start": 1437.46,
+    "end": 1441.94,
+    "ocr_text": "*\n\n*\n\nLCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\n\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "Now, since I take the maximum of these two, I get one. Max from these two I get one and so on.",
+    "start": 1441.94,
+    "end": 1445.38,
+    "ocr_text": "*\n\n*\n\nLCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\n\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "So, the longest common sub word problem, it says if the current letter does not match, then I get",
+    "start": 1445.38,
+    "end": 1449.46,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\n[1 |2]3|4|\n6\n\n[sfelc}r\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\nand fill by row,\ncolumn or diagonal\n\nSS\n\na se\nali\nob |\nen\n[2 8\n}3 8\nlac\n5\n[is] +"
+  },
+  {
+    "text": "a 0. Here it is not there because I am allowed to drop this letter and go ahead. So, therefore,",
+    "start": 1449.46,
+    "end": 1453.86,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\n[1 |2]3|4|\n6\n\n[sfelc}r\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\nand fill by row,\ncolumn or diagonal\n\nSS\n\na se\nali\nob |\nen\n[2 8\n}3 8\nlac\n5\n[is] +"
+  },
+  {
+    "text": "this one propagates along this column. Similarly, the one propagates along the previous column because",
+    "start": 1453.86,
+    "end": 1458.9,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\n[1 |2]3|4|\n6\n\n[sfelc}r\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\nand fill by row,\ncolumn or diagonal\n\nSS\n\na se\nali\nob |\nen\n[2 8\n}3 8\nlac\n5\n[is] +"
+  },
+  {
+    "text": "nothing is an R. Now, I get some additions. When I reach C and C, it is 1 plus I plus 1, J plus 1,",
+    "start": 1458.9,
+    "end": 1468.98,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "so I get it. Likewise, when I go to the next column, when I reach E and E, it is 1 plus I plus",
+    "start": 1468.98,
+    "end": 1475.7,
+    "ocr_text": "* LCS(i,j) depends on\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\n*\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\nand fill by row,\ncolumn or diagonal"
+  },
+  {
+    "text": "1, J plus 1. So, I get a 3. And finally, when I reach this S and S, I get this 4 and now this",
+    "start": 1475.7,
+    "end": 1483.94,
+    "ocr_text": "* LCS(i,j) depends on\n\n*\n\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\n\nand fill by row,\ncolumn or diagonal\n\n0123\noS\n\nBa\nGig\n\naes\noie\n[o |b |\n[2 8.\n/3 8\n[4 fe.\n[st\nLe] +"
+  },
+  {
+    "text": "4 propagates because here I take the max of these two, so I get this 4, max of these two,",
+    "start": 1483.94,
+    "end": 1488.34,
+    "ocr_text": "* LCS(i,j) depends on\n\n*\n\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1)\n\nDependencies for\nLCS(m,n) are known\n\n* Start at LCS(m,n)\n\nand fill by row,\ncolumn or diagonal\n\n0123\noS\n\nBa\nGig\n\naes\noie\n[o |b |\n[2 8.\n/3 8\n[4 fe.\n[st\nLe] +"
+  },
+  {
+    "text": "I get 4. So, in this particular case, actually L C S O, 0, 0 is my answer. Remember in L C W,",
+    "start": 1488.34,
+    "end": 1495.62,
+    "ocr_text": "* LCS(i,j) depends on\n\n*\n\n*\n\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\nLCS(i,j+1\n\nDependencies for\nLCS(m,n) are known\n\nStart at LCS(m,n)\nand fill by row,\ncolumn or diagonal\n\neas |S] elfen\n\n[2\noie\nEte\nFae]\npis\nBe\nBe\n\nEAC ca\nfom"
+  },
+  {
+    "text": "I had to look around in the whole grid to find out where the maximum was. In L C S, we do not have",
+    "start": 1495.62,
+    "end": 1502.18,
+    "ocr_text": "(cs(0.5]\n\n* LCS(i,j) depends on\n\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\n\nLCS(i,j+1)\n\nEe\n\nx\nPuss\nBo\nBars\nBE\nBe\nmE\n\nEe\n\nDependencies for\nLCS(m,n) are known\n\nfuse\n\n* Start at LCS(m,n)\nand fill by row,\ncolumn or diagonal\n\n6 es] 3] 59 |)."
+  },
+  {
+    "text": "to do that. The value you get at 0, 0 is actually the answer you are looking for.",
+    "start": 1502.18,
+    "end": 1506.02,
+    "ocr_text": "(cs(0.5]\n\n* LCS(i,j) depends on\n\nLCS(i+1,j+1) as well\nas LCS(i+1,j) and\n\nLCS(i,j+1)\n\nEe\n\nx\nPuss\nBo\nBars\nBE\nBe\nmE\n\nEe\n\nDependencies for\nLCS(m,n) are known\n\nfuse\n\n* Start at LCS(m,n)\nand fill by row,\ncolumn or diagonal\n\n6 es] 3] 59 |)."
+  },
+  {
+    "text": "And now as before, you can trace back the path, why was each value filled? Was it filled because it",
+    "start": 1508.26,
+    "end": 1514.1,
+    "ocr_text": "* Trace back the path\nby which each entry\n\nwas filled\n\n* Each diagonal step is\nan element of the\nEGS"
+  },
+  {
+    "text": "took 1 plus I plus 1, J plus 1 or was it filled because with max of the other two neighbors,",
+    "start": 1514.1,
+    "end": 1518.5,
+    "ocr_text": "* Trace back the path\nby which each entry\n\nwas filled\n\n* Each diagonal step is\nan element of the\nEGS"
+  },
+  {
+    "text": "if so, which was the max. So, it is very clear that this 4 came because it was a max because",
+    "start": 1518.5,
+    "end": 1523.06,
+    "ocr_text": "* Trace back the path\nby which each entry\nwas filled\n\n* Each diagonal step is\nan element of the\nLCS\n\n* “sect”"
+  },
+  {
+    "text": "S is not equal to b, so it came from below. And this 4 also came from below. Now, S is equal to S,",
+    "start": 1523.06,
+    "end": 1528.5,
+    "ocr_text": "* Trace back the path\nby which each entry\nwas filled\n\n* Each diagonal step is\nan element of the\nLCS\n\n* “sect”"
+  },
+  {
+    "text": "so this came from here and so on. So, you can trace out this value and everywhere where you have this",
+    "start": 1528.5,
+    "end": 1532.42,
+    "ocr_text": "* Trace back the path\nby which each entry\nwas filled\n\n* Each diagonal step is\nan element of the\nLCS\n\n* “sect”\n\nee\neae\neae\nEsk\ncaES\njae\nBe\n\noe\n\nBERR\nBREE"
+  },
+  {
+    "text": "diagonal, it was there because the value is matched. So, there are, the value is 4 and there",
+    "start": 1532.42,
+    "end": 1538.82,
+    "ocr_text": "* Trace back the path\nby which each entry\nwas filled\n\n* Each diagonal step is\nan element of the\nLCS\n\n* “sect”\n\nee\neae\neae\nEsk\ncaES\njae\nBe\n\noe\n\nBERR\nBREE"
+  },
+  {
+    "text": "are exactly 4 diagonal steps. This one, this one, this one and the one on the bottom right.",
+    "start": 1538.82,
+    "end": 1543.7,
+    "ocr_text": "* Trace back the path\nby which each entry\nwas filled\n\n* Each diagonal step is\nan element of the\n\nLCS\n\nUS\n\nBE\neur\nBS\nesr\npare\nBe\na) 2\n\n3 dies] 4 [Sd |"
+  },
+  {
+    "text": "These are the 4 matches which constitute the longest common sub-sequence and you can read it off",
+    "start": 1544.34,
+    "end": 1548.34,
+    "ocr_text": "* Trace back the path\nby which each entry\nwas filled\n\n* Each diagonal step is\nan element of the\n\nLCS\n\nUS\n\nBE\neur\nBS\nesr\npare\nBe\na) 2\n\n3 dies] 4 [Sd |"
+  },
+  {
+    "text": "at the thing and it forms the sequence, SCCT. So, as we saw before, provided you can compute the answer",
+    "start": 1548.42,
+    "end": 1556.82,
+    "ocr_text": "* Trace back the path\nby which each entry\nwas filled\n\n* Each diagonal step is\nan element of the\nLCS\n\n* “sect”\n\n0123\noS\n\n&\nEa\njo [> |\n\nrae\n\nAn\nf-\n\nie\na\no/b\nafi\n2s)\nHE\n[4 fo)\n[5] |\nLs] +"
+  },
+  {
+    "text": "numerically, you can go back and retrace that computation and figure out the witness as it is called.",
+    "start": 1556.82,
+    "end": 1562.18,
+    "ocr_text": "* Trace back the path\nby which each entry\nwas filled\n\n* Each diagonal step is\nan element of the\nLCS\n\n* “sect”\n\n——<—\n\nee\njo]\nER\na\njo [>|\nEa\nbaa\n\nrare\n\nAn\n\ner Py Leys) oe ED"
+  },
+  {
+    "text": "Now, which word actually which sub-sequence actually gives rise to this answer?",
+    "start": 1562.18,
+    "end": 1565.86,
+    "ocr_text": "* Trace back the path\nby which each entry\nwas filled\n\n* Each diagonal step is\nan element of the\nLCS\n\n* “sect”\n\n——<—\n\nee\njo]\nER\na\njo [>|\nEa\nbaa\n\nrare\n\nAn\n\ner Py Leys) oe ED"
+  },
+  {
+    "text": "So, the code for LCS is a little bit simpler than for LCSW because we do not have to keep track of",
+    "start": 1568.66,
+    "end": 1574.58,
+    "ocr_text": "# u[0..m], v[Q@..n]"
+  },
+  {
+    "text": "as maximum value and where it occurs because we only need to find a value at 0. So, as before,",
+    "start": 1574.58,
+    "end": 1580.1,
+    "ocr_text": "# u[0..m], v[Q@..n]"
+  },
+  {
+    "text": "we use R and C to be a little clearer that rows goes this way and columns go this way. So, columns",
+    "start": 1580.1,
+    "end": 1586.66,
+    "ocr_text": "# u[Q..m], v[Q@..n]"
+  },
+  {
+    "text": "go from 0 to n minus 1, n plus 1 and rows go from 0 to n plus 1. So, we initialize the boundary",
+    "start": 1586.66,
+    "end": 1593.06,
+    "ocr_text": "7)\na\nsll\nv[Q.\nAls\n{ti}\n[Q.\nu\n#"
+  },
+  {
+    "text": "to be 0 and then we do column by column, row by row from bottom to top. If the two are equal,",
+    "start": 1593.06,
+    "end": 1598.9,
+    "ocr_text": "7)\na\nsll\nv[Q.\nAls\n{ti}\n[Q.\nu\n#"
+  },
+  {
+    "text": "then you add 1 plus the value of the bottom right. If the two are not equal, I take the maximum",
+    "start": 1598.9,
+    "end": 1604.58,
+    "ocr_text": "Gs\nOS\not\n\n# u[0..m], v[@..n] ~"
+  },
+  {
+    "text": "of these two values and copy it. And finally, when these values are filled out, I return the value at 0.0.",
+    "start": 1604.58,
+    "end": 1611.86,
+    "ocr_text": "Gs\nOS\not\n\n# u[0..m], v[@..n] ~"
+  },
+  {
+    "text": "So, this is similar to LCW, right? We basically fill out an n size table, each entry in the table",
+    "start": 1614.98,
+    "end": 1623.22,
+    "ocr_text": "@\nOS\nsaceom\n\n# u[0..m], v[@..n] ~"
+  },
+  {
+    "text": "is easy to compute, it takes only constant amount of time. You have to look at the three neighbors",
+    "start": 1623.22,
+    "end": 1627.3,
+    "ocr_text": "@\nOS\nsaceom\n\n# u[0..m], v[@..n] ~"
+  },
+  {
+    "text": "and therefore, overall using dynamic programming, we have demonstrated an order m and algorithm,",
+    "start": 1627.3,
+    "end": 1632.58,
+    "ocr_text": "@\nOS\nsaceom\n\n# u[0..m], v[@..n] ~"
+  },
+  {
+    "text": "you can also use memorization at the cost of the patient.",
+    "start": 1632.58,
+    "end": 1643.22,
+    "ocr_text": "@\nOS\nsaceom\n\n# u[0..m], v[@..n] ~"
+  }
+]

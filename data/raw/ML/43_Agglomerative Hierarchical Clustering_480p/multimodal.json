@@ -1,0 +1,764 @@
+[
+  {
+    "text": "Good morning. Today we come to the last lecture of this week or the last lecture of the",
+    "start": 0.0,
+    "end": 26.2,
+    "ocr_text": "Course Name\nintyoduction to Machine Learning"
+  },
+  {
+    "text": "class string. In fact, the last lecture of this class, we will talk about hierarchical",
+    "start": 26.2,
+    "end": 31.0,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 9: Clustering\nPart C: Hierarchical Clustering\n\nSucdeshna Sarkar\n\n<haragpur"
+  },
+  {
+    "text": "clustering rather we talk about a specific bottom up hierarchical clustering algorithm.",
+    "start": 31.0,
+    "end": 38.48,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 9: Clustering\nPart C: Hierarchical Clustering\n\nSucdeshna Sarkar\n\n<haragpur"
+  },
+  {
+    "text": "Earlier we have seen K means algorithm which is an example of a top down clustering method.",
+    "start": 38.48,
+    "end": 44.4,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 9: Clustering\nPart C: Hierarchical Clustering\n\nSucdeshna Sarkar\n\n<haragpur"
+  },
+  {
+    "text": "Today we will look at a bottom up clustering method. Now, hierarchical clustering is very",
+    "start": 44.4,
+    "end": 50.8,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invergebrate\n\nHe oe wofm ingect craStacean\nANN OK NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "common. For example, when scientists look at the animal kingdom, they divide them hierarchically.",
+    "start": 50.8,
+    "end": 57.8,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invergebrate\n\nHe oe wofm ingect craStacean\nANN OK NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "Animals as vertebrates and invertebrates within vertebrates, you have fish, reptile,",
+    "start": 57.8,
+    "end": 63.4,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invergebrate\n\nHe oe wofm ingect craStacean\nANN OK NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "amphibians, mammals and so on. So, this produces a nested sequence of clusters. So, we can in",
+    "start": 63.4,
+    "end": 72.72,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invergebrate\n\nHe oe wofm ingect craStacean\nANN OK NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "order to get a hierarchical cluster, we can recursively use a partitional clustering algorithm",
+    "start": 72.72,
+    "end": 79.8,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invertfebrate\n\nAKA KR NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "like K means. We discussed the K means algorithm in the last class and the K means algorithm",
+    "start": 79.8,
+    "end": 86.28,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invertfebrate\n\nAKA OK NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "can be recursively used to do a hierarchical clustering. But today we will talk about a bottom",
+    "start": 86.28,
+    "end": 93.64,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invertfebrate\n\nAKA OK NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "up clustering method called agglomerative clustering. In agglomerative clustering, we",
+    "start": 93.64,
+    "end": 101.4,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invertfebrate\n\nAKA OK NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "build the clusters from the bottom level. That is we assume that a free object initially",
+    "start": 101.4,
+    "end": 108.84,
+    "ocr_text": "Types of hierarchical clustering\n\n- Agglomerative (bottom up) clustering: It builds the\ndendrogram (tree) from the bottom level, and\n— merges the most similar (or nearest) pair of clusters\n\n— stops when all the data points are merged into a single cluster\n(i.e., the root cluster).\n\n* Divisive (top down) clustering: It starts with all data\npoints in one cluster, the root.\n— Splits the root into a set of child clusters. Each child cluster is\nrecursively divided further\n\n— stops when only singleton clusters of individual data points\nremain, i.e., each cluster with only a single point"
+  },
+  {
+    "text": "we are given M objects. We assume that a free object is a cluster of its own. Then what",
+    "start": 108.84,
+    "end": 117.72,
+    "ocr_text": "Types of hierarchical clustering\n\n- Agglomerative (bottom up) clustering: It builds the\ndendrogram (tree) from the bottom level, and\n— merges the most similar (or nearest) pair of clusters\n\n— stops when all the data points are merged into a single cluster\n(i.e., the root cluster).\n\n* Divisive (top down) clustering: It starts with all data\npoints in one cluster, the root.\n— Splits the root into a set of child clusters. Each child cluster is\nrecursively divided further\n\n— stops when only singleton clusters of individual data points\nremain, i.e., each cluster with only a single point"
+  },
+  {
+    "text": "we do is we find the distance between each pair of clusters and those clusters that pair",
+    "start": 117.72,
+    "end": 125.96,
+    "ocr_text": "Types of hierarchical clustering\n\n- Agglomerative (bottom up) clustering: It builds the\ndendrogram (tree) from the bottom level, and\n— merges the most similar (or nearest) pair of clusters\n\n— stops when all the data points are merged into a single cluster\n(i.e., the root cluster).\n\n* Divisive (top down) clustering: It starts with all data\npoints in one cluster, the root.\n— Splits the root into a set of child clusters. Each child cluster is\nrecursively divided further\n\n— stops when only singleton clusters of individual data points\nremain, i.e., each cluster with only a single point"
+  },
+  {
+    "text": "which is closest to each other is marched. So, that at the next step we have M minus 1",
+    "start": 126.04,
+    "end": 132.72,
+    "ocr_text": "Types of hierarchical clustering\n\n- Agglomerative (bottom up) clustering: It builds the\ndendrogram (tree) from the bottom level, and\n— merges the most similar (or nearest) pair of clusters\n\n— stops when all the data points are merged into a single cluster\n(i.e., the root cluster).\n\n* Divisive (top down) clustering: It starts with all data\npoints in one cluster, the root.\n— Splits the root into a set of child clusters. Each child cluster is\nrecursively divided further\n\n— stops when only singleton clusters of individual data points\nremain, i.e., each cluster with only a single point"
+  },
+  {
+    "text": "clusters. Again, we try to find the closest clusters in march so that we have M minus",
+    "start": 132.72,
+    "end": 138.84,
+    "ocr_text": "Types of hierarchical clustering\n\n- Agglomerative (bottom up) clustering: It builds the\ndendrogram (tree) from the bottom level, and\n— merges the most similar (or nearest) pair of clusters\n\n— stops when all the data points are merged into a single cluster\n(i.e., the root cluster).\n\n* Divisive (top down) clustering: It starts with all data\npoints in one cluster, the root.\n— Splits the root into a set of child clusters. Each child cluster is\nrecursively divided further\n\n— stops when only singleton clusters of individual data points\nremain, i.e., each cluster with only a single point"
+  },
+  {
+    "text": "2 clusters like this we go on until all the clusters are marched. So, this is the g",
+    "start": 138.84,
+    "end": 147.36,
+    "ocr_text": "Types of hierarchical clustering\n\n- Agglomerative (bottom up) clustering: It builds the\ndendrogram (tree) from the bottom level, and\n— merges the most similar (or nearest) pair of clusters\n— stops when all the data points are merged into a single cluster\n(i.e., the root cluster).\n- Divisive (top down) clustering: It starts with all data\npoints in one cluster, the root.\n— Splits the root into a set of child clusters. Each child cluster is\nrecursively divided further\n— stops when only singleton clusters of individual data points\nremain, i.e., each cluster with only a single point"
+  },
+  {
+    "text": "stop agglomerative hierarchical clustering. We could also use divisive clustering for",
+    "start": 147.36,
+    "end": 154.8,
+    "ocr_text": "Types of hierarchical clustering\n\n- Agglomerative (bottom up) clustering: It builds the\ndendrogram (tree) from the bottom level, and\n— merges the most similar (or nearest) pair of clusters\n— stops when all the data points are merged into a single cluster\n(i.e., the root cluster).\n- Divisive (top down) clustering: It starts with all data\npoints in one cluster, the root.\n— Splits the root into a set of child clusters. Each child cluster is\nrecursively divided further\n— stops when only singleton clusters of individual data points\nremain, i.e., each cluster with only a single point"
+  },
+  {
+    "text": "to make hierarchical clusters. We can start with all data in one cluster take K equal to 2",
+    "start": 154.8,
+    "end": 162.64,
+    "ocr_text": "Types of hierarchical clustering\n\n- Agglomerative (bottom up) clustering: It builds the\ndendrogram (tree) from the bottom level, and\n— merges the most similar (or nearest) pair of clusters\n— stops when all the data points are merged into a single cluster\n(i.e., the root cluster).\n- Divisive (top down) clustering: It starts with all data\npoints in one cluster, the root.\n— Splits the root into a set of child clusters. Each child cluster is\nrecursively divided further\n— stops when only singleton clusters of individual data points\nremain, i.e., each cluster with only a single point"
+  },
+  {
+    "text": "divided into 2 clusters. Then each cluster we can recursively keep dividing. So, this gives us",
+    "start": 162.64,
+    "end": 170.8,
+    "ocr_text": "Types of hierarchical clustering\n\n- Agglomerative (bottom up) clustering: It builds the\ndendrogram (tree) from the bottom level, and\n— merges the most similar (or nearest) pair of clusters\n\n— stops when all the data points are merged into a single cluster\n(i.e., the root cluster).\n\n* Divisive (top doWn) clustering: It starts with all data\npoints in one cluster, the root.\n— Splits the root into a set of child clusters. Each child cluster is\nrecursively divided further\n\n— stops when only singleton clusters of individual data points\nremain, i.e., each cluster with only a single point"
+  },
+  {
+    "text": "top down hierarchical clustering. However, we will not discuss it further in this class.",
+    "start": 170.8,
+    "end": 175.76,
+    "ocr_text": "Types of hierarchical clustering\n\n- Agglomerative (bottom up) clustering: It builds the\ndendrogram (tree) from the bottom level, and\n— merges the most similar (or nearest) pair of clusters\n\n— stops when all the data points are merged into a single cluster\n(i.e., the root cluster).\n\n* Divisive (top down) clustering: It starts with all data\npoints in one cluster, the root.\n— Splits the root into a set of child clusters. Each child cluster is\nrecursively divided further\n\n— stops when only singleton clusters of individual data points\nremain, i.e., each cluster with only a single point"
+  },
+  {
+    "text": "Now, the bottom up hierarchical clustering gives rise to a structure called the dendrogram.",
+    "start": 177.44,
+    "end": 185.44,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\n\ndefined as the union\n\ntheir children."
+  },
+  {
+    "text": "So, what is happening is that if you have the different objects,",
+    "start": 186.88,
+    "end": 192.16,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "suppose these two objects are the most similar to each other they are merged at step 1.",
+    "start": 192.16,
+    "end": 204.08,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "Then step 2 the next similar next most similar objects are merged. So, this is step 1,",
+    "start": 205.44,
+    "end": 214.4,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "this is step 2 and then step 3 the next most similar objects are merged.",
+    "start": 215.36,
+    "end": 222.04,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "So, let us say this is step 3, step 4 and next most similar objects are merged.",
+    "start": 222.04,
+    "end": 229.52,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "In step 5 the next most similar objects are merged in step 3 the next most similar objects",
+    "start": 229.52,
+    "end": 236.76,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "are merged in step 7 and the next most similar objects are merged.",
+    "start": 236.76,
+    "end": 242.1,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "So, this structure gives rise to a tree which we call dendrogram and as we see in that",
+    "start": 242.1,
+    "end": 251.58,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "in the dendrogram the nodes represent the subsets of S. So, this is a node this represents",
+    "start": 251.58,
+    "end": 258.98,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S$\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "these three points this node represents these six points this node represents these three",
+    "start": 258.98,
+    "end": 266.58,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S$\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "points. So, each node represents a subset of the points and the characteristics of the",
+    "start": 266.58,
+    "end": 272.62,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S$\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "tree is that the root is the whole input set the root of the tree is the entire set and",
+    "start": 272.62,
+    "end": 280.52,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S$\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "the leaves are the individual elements and the internal nodes are defined as the union",
+    "start": 280.52,
+    "end": 288.7,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S$\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "of their children. We can also represent this by this sort of diagram. So, this is the",
+    "start": 288.7,
+    "end": 300.3,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S$\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "one cluster this is another cluster this is a nested cluster this is a nested clusters.",
+    "start": 300.3,
+    "end": 306.54,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S$\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "So, the objects are hierarchically nested which can be represented like this sort of a",
+    "start": 306.54,
+    "end": 315.38,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\nDendrogram\n\n— Given an input set S$\n\n— nodes represent subsets\nofS\n\n— Features of the tree:\n\n— The root is the whole\ninput set S.\n\n— The leaves are the\nindividual elements of S.\n\n— The internal nodes are\ndefined as the union of\ntheir children."
+  },
+  {
+    "text": "set diagram or this sort of a dendrogram. So, this tree may be cut at different levels",
+    "start": 315.38,
+    "end": 325.98,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\ndistance\n\n5 6 3 2\nobject numbers\n\nra — orm\n49g\n\nnN\n\n87\n\n12\n\nDendrogram\n\nEach level of the tree\nrepresents a\npartition of the input\ndata into several\n(nested) clusters or\ngroups.\n\nMay be cut at any\nlevel: Each\nconnected\ncomponent forms a\ncluster."
+  },
+  {
+    "text": "if you cut at this level you get only one cluster if you cut at the root if you cut at",
+    "start": 325.98,
+    "end": 331.5,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\ndistance\n\nord\n\n5 6 3 2\nobject numbers\n\n\"\n\n87\n\n12\n\nDendrogram\n\nEach level of the tree\nrepresents a\npartition of the input\ndata into several\n(nested) clusters or\ngroups.\n\nMay be cut at any\nlevel: Each\nconnected\ncomponent forms a\ncluster."
+  },
+  {
+    "text": "a particular level this will give you a certain number of clusters for example, this cut",
+    "start": 331.5,
+    "end": 338.18,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\ndistance\n\nord\n\n5 6 3 2\nobject numbers\n\n\"\n\n87\n\n12\n\nDendrogram\n\nEach level of the tree\nrepresents a\npartition of the input\ndata into several\n(nested) clusters or\ngroups.\n\nMay be cut at any\nlevel: Each\nconnected\ncomponent forms a\ncluster."
+  },
+  {
+    "text": "gives you 1 2 3 4 clusters this cut gives you 1 2 3 4 5 6 clusters. So, cutting the dendrogram",
+    "start": 338.26,
+    "end": 348.14,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\ndistance\n\nord\n\n5 6 3 2\nobject numbers\n\n\"\n\n87\n\n12\n\nDendrogram\n\nEach level of the tree\nrepresents a\npartition of the input\ndata into several\n(nested) clusters or\ngroups.\n\nMay be cut at any\nlevel: Each\nconnected\ncomponent forms a\ncluster."
+  },
+  {
+    "text": "at different levels you get different numbers of clusters. So, you cannot you need not decide",
+    "start": 348.14,
+    "end": 357.02,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\ndistance\n\nord\n\n5 6 3 2\nobject numbers\n\n\"\n\n87\n\n12\n\nDendrogram\n\nEach level of the tree\nrepresents a\npartition of the input\ndata into several\n(nested) clusters or\ngroups.\n\nMay be cut at any\nlevel: Each\nconnected\ncomponent forms a\ncluster."
+  },
+  {
+    "text": "the number of clusters a priori you can construct the dendrogram and cut it at the desired",
+    "start": 357.02,
+    "end": 363.42,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\ndistance\n\nord\n\n5 6 3 2\nobject numbers\n\n\"\n\n87\n\n12\n\nDendrogram\n\nEach level of the tree\nrepresents a\npartition of the input\ndata into several\n(nested) clusters or\ngroups.\n\nMay be cut at any\nlevel: Each\nconnected\ncomponent forms a\ncluster."
+  },
+  {
+    "text": "level to get number of clusters that you require. So, for different values of k you get",
+    "start": 363.42,
+    "end": 373.06,
+    "ocr_text": "Dendrogram: Hierarchical Clustering\n\ndistance\n\nord\n\n5 6 3 2\nobject numbers\n\n\"\n\n87\n\n12\n\nDendrogram\n\nEach level of the tree\nrepresents a\npartition of the input\ndata into several\n(nested) clusters or\ngroups.\n\nMay be cut at any\nlevel: Each\nconnected\ncomponent forms a\ncluster."
+  },
+  {
+    "text": "different clusters as is illustrated by this picture. So, the algorithm is notionally",
+    "start": 373.06,
+    "end": 383.38,
+    "ocr_text": "simioity scale\n\nHierarchical clustering\n\nmom\nNog\n\nHl\n\nria"
+  },
+  {
+    "text": "very simple the basic algorithm is very simple. Initially, each data point forms a cluster",
+    "start": 383.38,
+    "end": 389.54,
+    "ocr_text": "ee\nHierrarchical Agglomerative clustering\n\n¢ Initially each data point forms a cluster.\n\n¢ Compute the distance matrix between the\nclusters.\n\n= Repeat\n— Merge the two closest clusters\n— Update the distance matrix\n\n¢ Until only a single cluster remains.\n\nDifferent definitions of the distance leads to\ndifferent algorithms."
+  },
+  {
+    "text": "we compute the distance or proximity matrix between the clusters and we repeat the following",
+    "start": 390.5,
+    "end": 397.5,
+    "ocr_text": "ee\nHierrarchical Agglomerative clustering\n\n¢ Initially each data point forms a cluster.\n\n¢ Compute the distance matrix between the\nclusters.\n\n= Repeat\n— Merge the two closest clusters\n— Update the distance matrix\n\n¢ Until only a single cluster remains.\n\nDifferent definitions of the distance leads to\ndifferent algorithms."
+  },
+  {
+    "text": "steps we match the two closest clusters. After marching we update the distance matrix and",
+    "start": 397.9,
+    "end": 404.9,
+    "ocr_text": "ee\nHierrarchical Agglomerative clustering\n\n¢ Initially each data point forms a cluster.\n\n¢ Compute the distance matrix between the\nclusters.\n\n= Repeat\n— Merge the two closest clusters\n— Update the distance matrix\n\n¢ Until only a single cluster remains.\n\nDifferent definitions of the distance leads to\ndifferent algorithms."
+  },
+  {
+    "text": "we continue these two steps until we get only a single cluster. Now, the main thing",
+    "start": 407.14,
+    "end": 414.14,
+    "ocr_text": "ee\nHierrarchical Agglomerative clustering\n\n¢ Initially each data point forms a cluster.\n\n¢ Compute the distance matrix between the\nclusters.\n\n= Repeat\n— Merge the two closest clusters\n— Update the distance matrix\n\n¢ Until only a single cluster remains.\n\nDifferent definitions of the distance leads to\ndifferent algorithms."
+  },
+  {
+    "text": "think about this algorithm is the distance measure depending on different definitions of",
+    "start": 414.54,
+    "end": 421.54,
+    "ocr_text": "ee\nHierrarchical Agglomerative clustering\n\n¢ Initially each data point forms a cluster.\n\n¢ Compute the distance matrix between the\nclusters.\n\n= Repeat\n— Merge the two closest clusters\n— Update the distance matrix\n\n¢ Until only a single cluster remains.\n\nDifferent definitions of the distance leads to\ndifferent algorithms."
+  },
+  {
+    "text": "the distance will give us different algorithms. Now, initial step is every point so, this",
+    "start": 421.54,
+    "end": 428.54,
+    "ocr_text": "ee\nHierrarchical Agglomerative clustering\n\n¢ Initially each data point forms a cluster.\n\n¢ Compute the distance matrix between the\nclusters.\n\n= Repeat\n— Merge the two closest clusters\n— Update the distance matrix\n\n¢ Until only a single cluster remains.\n\nDifferent definitions of the distance leads to\ndifferent algorithms."
+  },
+  {
+    "text": "is the set of objects initially every object is a cluster by itself. So, every point is",
+    "start": 434.86,
+    "end": 441.62,
+    "ocr_text": "Initialization\n¢ Each individual point is taken as a cluster\n\n* Construct distance/proximity matrix\n__| p1 | p2 | ps3 | pa |ps\npt -\np2\nps\nPa\nps\n\nDistance/Proximity Matrix"
+  },
+  {
+    "text": "a cluster and if there are m points we have a m by n proximity matrix between each pair",
+    "start": 441.62,
+    "end": 448.62,
+    "ocr_text": "Initialization\n\n¢ Each individual point is taken as a cluster\n* Construct distance/proximity matrix\n\npi| p2 | p3| pa|ps\n\npt\n\np2\nps\n\npa\nPS.\n\nDistance/Proximity Matrix"
+  },
+  {
+    "text": "so, there will be m square pairs between each pair we can compute the distance and fill",
+    "start": 449.62,
+    "end": 455.02,
+    "ocr_text": "Initialization\n\n¢ Each individual point is taken as a cluster\n* Construct distance/proximity matrix\n\npi| p2 | p3| pa|ps\n\npt\n\np2\nps\n\npa\nPS.\n\nDistance/Proximity Matrix"
+  },
+  {
+    "text": "it up in this matrix. Then at an intermediate state we would have a number of clusters and",
+    "start": 455.02,
+    "end": 462.02,
+    "ocr_text": "Intermediate State\n\nAfter some merging steps, we have some clusters\n\ne1 |c2| cs | ca lcs\n\nzi\nz\n=\nca\nzs\nDistance/Proximity Matrix\nCa} Cee) ° © PY ¢\nH 1 i ot i"
+  },
+  {
+    "text": "the proximity matrix will be defined suppose there are k clusters there will be k square",
+    "start": 462.54,
+    "end": 469.54,
+    "ocr_text": "Intermediate State\n\nAfter some merging steps, we have some clusters\n\ne1 |c2| cs | ca lcs\n\nzi\nz\n=\nca\nzs\nDistance/Proximity Matrix\nCa} Cee) ° © PY ¢\nH 1 i ot i"
+  },
+  {
+    "text": "elements in the proximity matrix. Now, suppose in this matrix C 2 and C 5 so, we have this",
+    "start": 471.9,
+    "end": 478.9,
+    "ocr_text": "Intermediate State\n\n+ After some merging steps, we have some clusters\n\ne1 |c2| cs | ca lcs\n\n1\n\nc2\n\nCe 3 =\nce\nzs\nDistance/Proximity Matrix\n\nSens\n2 Tle i sl"
+  },
+  {
+    "text": "proximity matrix and we compute we find the distance between this 5 C 2 pairs and",
+    "start": 478.9,
+    "end": 485.9,
+    "ocr_text": "Intermediate State\n\nMerge the two closest clusters (C2 and C5) and update the\n\ndistance matrix.\ne1 |c2| cs | ca los\n\nca\ncs\nDistance/Proximity Matrix\n\nie ay"
+  },
+  {
+    "text": "suppose we find C 2 and C 5 are the closest. Now, what we will do is that we will merge",
+    "start": 493.22,
+    "end": 499.22,
+    "ocr_text": "Intermediate State\n\n+ After some merging steps, we have some clusters\n\ne1|c2| cs | ca lcs\n\n1\n\nc2\n\nCe} =\noe\n\n> cs\nDistance/Proximity Matrix"
+  },
+  {
+    "text": "C 2 and C 5 so, that these two columns and these two rows in the proximity matrix will",
+    "start": 499.22,
+    "end": 506.22,
+    "ocr_text": "Intermediate State\n\nMerge the two closest clusters (C2 and C5) and update the\n\ndistance matrix.\nc1 |c2| cs | ca los |\n\nca\ncs\nDistance/Proximity Matrix\noe $4 °\n' 1"
+  },
+  {
+    "text": "be collapsed into one row one column. So, the next step we will have 4 clusters so,",
+    "start": 506.86,
+    "end": 513.86,
+    "ocr_text": "Intermediate State\n\nMerge the two closest clusters (C2 and C5) and update the\n\ndistance matrix.\nc1 |c2| cs | ca los |\n\nca\ncs\nDistance/Proximity Matrix\noe $4 °\n' 1"
+  },
+  {
+    "text": "4 rows and 4 columns in the proximity matrix. So, after merging we will get this 4 rows",
+    "start": 513.86,
+    "end": 520.86,
+    "ocr_text": "After Merging\n\n* Update the distance matrix\n\nC3 = :\n\nc3 2\n\n(e} 2 2\n} |\nL |"
+  },
+  {
+    "text": "and 4 columns and we have to find out how to fill up this column and this row. Now, how",
+    "start": 521.98,
+    "end": 528.98,
+    "ocr_text": "After Merging\n\n* Update the distance matrix\n\nC3 = :\n\nc3 2\n\n(e} 2 2\n} |\nL |"
+  },
+  {
+    "text": "we fill up will depend on the distance measured that we will use and we will talk about",
+    "start": 529.62,
+    "end": 536.1,
+    "ocr_text": "After Merging\n\n* Update the distance matrix\n\nC23 =\n\nc3 2"
+  },
+  {
+    "text": "certain common measures that we use for this. Now, when we have to find the closest pair",
+    "start": 536.58,
+    "end": 543.58,
+    "ocr_text": "After Merging\n\n* Update the distance matrix\n\nC23 =\n\nc3 2"
+  },
+  {
+    "text": "as we said that there are different ways to measure distance of two clusters. Some",
+    "start": 547.86,
+    "end": 553.86,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n- Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n° Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "popular methods are single link complete link average link centroid in single link",
+    "start": 553.86,
+    "end": 560.86,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n- Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n° Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "clustering when we combine two clusters when we look at the sorry rather when we look",
+    "start": 560.86,
+    "end": 567.86,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n- Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n° Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "at the similarity between two clusters. Suppose we have clustered C i and clustered C",
+    "start": 571.22,
+    "end": 578.22,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n° Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n- Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "j so, we have clustered C i comprising of the points that we have to find out the",
+    "start": 578.7,
+    "end": 585.7,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n° Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n- Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "difference x 1 x 2 and clustered C j comprising x 3 x 4 x 5. Now, what is the distance between",
+    "start": 590.86,
+    "end": 597.86,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n° Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n- Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "C i and C j we find the similarity of x 1 with x 3 x 1 with x 4 x 1 with x 5 x 2 with",
+    "start": 604.3,
+    "end": 611.3,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n° Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n- Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "x 3 x 4 and x 5 and we find that pair which is the most similar among a pair we find",
+    "start": 611.3,
+    "end": 618.3,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n° Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n- Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "that pair which such so that one of them belongs here one of them belongs here and we",
+    "start": 624.9,
+    "end": 631.9,
+    "ocr_text": "Ge C;\n\nae"
+  },
+  {
+    "text": "take the most similar pair. The similarity of the most similar pair we take as the similarity",
+    "start": 631.9,
+    "end": 638.9,
+    "ocr_text": "Ge C;\n\nae"
+  },
+  {
+    "text": "between the two clusters in single link clustering. In complete link which we will talk next we take the",
+    "start": 639.18,
+    "end": 654.18,
+    "ocr_text": "Ge C;\n\nae"
+  },
+  {
+    "text": "least similar pair as a measure of the similarity between two clusters when we take the similarity",
+    "start": 654.38,
+    "end": 662.38,
+    "ocr_text": "Ge C;\n\nae"
+  },
+  {
+    "text": "between two clusters in single link we take the value of the similarity between the most",
+    "start": 662.7,
+    "end": 669.7,
+    "ocr_text": "Ge C;\n\nae"
+  },
+  {
+    "text": "similar pair in complete link we take the similarity as the value of the least similar",
+    "start": 671.58,
+    "end": 678.58,
+    "ocr_text": "Ge C;\n\nae"
+  },
+  {
+    "text": "pair in average link we take the similarity of the similarity of the similarity of the",
+    "start": 683.14,
+    "end": 690.14,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n- Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n- Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "average of their similarity and in centroid we take the class we take this to be represented",
+    "start": 692.38,
+    "end": 699.38,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n- Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n- Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "by its centroid this to be represented by its centroid and look at the similarity between",
+    "start": 701.18,
+    "end": 707.18,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n- Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n- Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "the two centroid. So, in single link the distance between clusters C i and C j is the",
+    "start": 707.18,
+    "end": 714.18,
+    "ocr_text": "Closest Pair\n\n- A few ways to measure distances of two clusters.\n¢ Single-link\n— Similarity of the most similar (single-link)\n- Complete-link\n— Similarity of the /east similar points\n- Centroid\n\n— Clusters whose centroids (centers of gravity) are the\nmost similar\n\n- Average-link\n— Average cosine between pairs of elements"
+  },
+  {
+    "text": "minimum distance between clusters C i and C j is the minimum distance between any object",
+    "start": 714.18,
+    "end": 721.18,
+    "ocr_text": "ee\nDistance between two clusters\n* Single-link distance between clusters C; and C;\nis the minimum distance between any object\n\nin C, and any object in C,\n\nsim(C,,C ,) = pas sim(x,y)"
+  },
+  {
+    "text": "in C i and any object in C j or maximum similarity of one object in C i with one object in C j",
+    "start": 721.42,
+    "end": 728.42,
+    "ocr_text": "ee\nDistance between two clusters\n* Single-link distance between clusters C; and C;\nis the minimum distance between any object\n\nin C, and any object in C,\n\nsim(C,,C ,) = pas sim(x,y)"
+  },
+  {
+    "text": "which is given by this formula. Same C i C j equal to max x belongs to C i y belongs",
+    "start": 728.42,
+    "end": 735.42,
+    "ocr_text": "ee\nDistance between two clusters\n* Single-link distance between clusters C; and C;\nis the minimum distance between any object\n\nin C, and any object in C,\n\nsim(C,,C ,) = pas sim(x,y)"
+  },
+  {
+    "text": "to C j same x y. So, for an example if these are the points in single link we will take the",
+    "start": 735.42,
+    "end": 742.42,
+    "ocr_text": "ee\nDistance between two clusters\n* Single-link distance between clusters C; and GC,\nis the minimum distance between any object\n\nin C; and any object in GC,\n\nsim(C,,C ;) = -anax, sim(x, y)"
+  },
+  {
+    "text": "most similar points then the next most similar points and so on and then combine them.",
+    "start": 750.14,
+    "end": 757.14,
+    "ocr_text": "Single Link Example\n\nIt Can result in\n“straggly” (long and\n\nthin) clusters due to\n“ chaining effect."
+  },
+  {
+    "text": "So, as we see that single link clustering can result in straggly that is long and thin",
+    "start": 758.14,
+    "end": 764.14,
+    "ocr_text": "Single Link Example\n\nIt Can result in\n“straggly” (long and\n\nthin) clusters due to"
+  },
+  {
+    "text": "clusters due to chaining effect. Next we look at so in single link clustering the similarity",
+    "start": 767.26,
+    "end": 774.26,
+    "ocr_text": "Single Link Example\n\nIt Can result in\n“straggly” (long and\n\nthin) clusters due to"
+  },
+  {
+    "text": "is determined by one pair of points that is one link in the proximity graph. So, if the",
+    "start": 774.58,
+    "end": 781.58,
+    "ocr_text": "Single-link clustering: example\n\n¢ Determined by one pair of points, i.e., by one\nlink in the proximity graph."
+  },
+  {
+    "text": "proximity graph has these values so what we need to do is that we have to look at the",
+    "start": 781.58,
+    "end": 786.58,
+    "ocr_text": "Single-link clustering: example\n\n¢ Determined by one pair of points, i.e., by one\nlink in the proximity graph."
+  },
+  {
+    "text": "most similar pair and march them. In a complete link method on the other hand the distance",
+    "start": 795.66,
+    "end": 802.66,
+    "ocr_text": "Complete link method\n\n* The distance between two clusters is the distance of\ntwo furthest data points in the two clusters.\n\nsim(c,,c,)= min sim(x, vy)\n\nxEC;, vec,\n\nMakes “tighter,” spherical clusters that are typically preferable.\n\nIt is sensitive to outliers because they are far away"
+  },
+  {
+    "text": "between two clusters is the distance between the least similar pair. So, which is given",
+    "start": 803.22,
+    "end": 809.72,
+    "ocr_text": "Complete link method\n\n* The distance between two clusters is the distance of\ntwo furthest data points in the two clusters.\n\nsim(c,,c,)= min sim(x, vy)\n\nxEC;, vec,\n\nMakes “tighter,” spherical clusters that are typically preferable.\n\nIt is sensitive to outliers because they are far away"
+  },
+  {
+    "text": "by the following formula same of C i C j is mean x included in C i y included in C j",
+    "start": 809.72,
+    "end": 817.22,
+    "ocr_text": "Complete link method\n\n+ The distance between two clusters is the distance of\ntwo furthest data points in the two clusters.\n\nsim(c,,c,)= min sim(x, vy)\n\nxEC;, vec,\n\nMakes “tighter,” spherical clusters that are typically preferable.\n\nIt is sensitive to outliers because they are far away"
+  },
+  {
+    "text": "is same x y and complete link makes tighter more spherical clusters. Unlike single link",
+    "start": 817.22,
+    "end": 824.22,
+    "ocr_text": "Complete link method\n\n+ The distance between two clusters is the distance of\ntwo furthest data points in the two clusters.\n\nsim(c,,c,)= min sim(x, v)\n\nxEC;, VEC,\n\nMakes “tighter,” spherical clusters that are typically preferable.\n\nIt is sensitive to outliers because they are far away"
+  },
+  {
+    "text": "where you can have long in clusters however, complete link clustering is sensitive to out",
+    "start": 824.32,
+    "end": 831.32,
+    "ocr_text": "Complete link method\n\n+ The distance between two clusters is the distance of\ntwo furthest data points in the two clusters.\n\nsim(c,,c,)= min sim(x, v)\n\nxEC;, VEC,\n\nMakes “tighter,” spherical clusters that are typically preferable.\n\nIt is sensitive to outliers because they are far away"
+  },
+  {
+    "text": "layers because they are far away. So, if there is one object in a cluster which is very",
+    "start": 837.4,
+    "end": 844.4,
+    "ocr_text": "Complete link method\n\n+ The distance between two clusters is the distance of\ntwo furthest data points in the two clusters.\n\nsim(c,,c,)= min sim(x, v)\n\nxEC;, VEC,\n\nMakes “tighter,” spherical clusters that are typically preferable.\n\nIt is sensitive to outliers because they are far away"
+  },
+  {
+    "text": "far away from the other objects it will influence the similarity which is not always desirable",
+    "start": 844.4,
+    "end": 851.4,
+    "ocr_text": "Complete link method\n\n+ The distance between two clusters is the distance of\ntwo furthest data points in the two clusters.\n\nsim(c,,c,)= min sim(x, v)\n\nxEC;, VEC,\n\nMakes “tighter,” spherical clusters that are typically preferable.\n\nIt is sensitive to outliers because they are far away"
+  },
+  {
+    "text": "again you have this matrix and you look at can apply complete link. And the same example",
+    "start": 855.22,
+    "end": 861.22,
+    "ocr_text": "Complete Link Example"
+  },
+  {
+    "text": "as we saw before we can show that when we apply complete link these are the different steps",
+    "start": 861.98,
+    "end": 868.98,
+    "ocr_text": "Complete Link Example"
+  },
+  {
+    "text": "that we get. We notice that here the clusters are more tight than what we get in the single",
+    "start": 868.98,
+    "end": 875.98,
+    "ocr_text": "Complete Link Example"
+  },
+  {
+    "text": "link example. Now, let us discuss the computational complexity of the clustering methods. So, I",
+    "start": 876.2,
+    "end": 883.2,
+    "ocr_text": "Complete Link Example\n\n(Se"
+  },
+  {
+    "text": "will keep a long term method in the first step you need to find similarity of the objects,",
+    "start": 883.2,
+    "end": 890.2,
+    "ocr_text": "Complete Link Example\n\n(Se"
+  },
+  {
+    "text": "the n objects you require to find n square similarity in the beginning then you have n minus",
+    "start": 890.2,
+    "end": 897.2,
+    "ocr_text": "Computational Complexity\n\n¢ Inthe first iteration, all HAC methods need to\ncompute similarity of all pairs of N initial\ninstances, which is O(N).\n\n* In each of the subsequent N—2 merging iterations,\ncompute the distance between the most recently\ncreated cluster and all other existing clusters.\n\n* In order to maintain an overall O(N?)\nperformance, computing similarity to each other\ncluster must be done in constant time.\n\n— Often O(N?) if done naively or O(N? log N) if done\nmore cleverly"
+  },
+  {
+    "text": "one steps. So, in each step you are margin the clusters and while margin you have to find",
+    "start": 909.98,
+    "end": 916.98,
+    "ocr_text": "Computational Complexity\n\n¢ Inthe first iteration, all HAC methods need to\ncompute similarity of all pairs of N initial\ninstances, which is O(N).\n\n* In each of the subsequent N—2 merging iterations,\ncompute the distance between the most recently\ncreated cluster and all other existing clusters.\n\n* In order to maintain an overall O(N?)\nperformance, computing similarity to each other\ncluster must be done in constant time.\n\n— Often O(N?) if done naively or O(N? log N) if done\nmore cleverly"
+  },
+  {
+    "text": "out the most similar pair and update. Now, how much time you spend will depend on the",
+    "start": 917.98,
+    "end": 924.98,
+    "ocr_text": "Computational Complexity\n\n¢ Inthe first iteration, all HAC methods need to\ncompute similarity of all pairs of N initial\ninstances, which is O(N).\n\n* In each of the subsequent N—2 merging iterations,\ncompute the distance between the most recently\ncreated cluster and all other existing clusters.\n\n* In order to maintain an overall O(N?)\nperformance, computing similarity to each other\ncluster must be done in constant time.\n\n— Often O(N?) if done naively or O(N? log N) if done\nmore cleverly"
+  },
+  {
+    "text": "type of clustering method that we are using single link complete link average link or",
+    "start": 925.3,
+    "end": 929.94,
+    "ocr_text": "Computational Complexity\n\n¢ Inthe first iteration, all HAC methods need to\ncompute similarity of all pairs of N initial\ninstances, which is O(N).\n\n* In each of the subsequent N—2 merging iterations,\ncompute the distance between the most recently\ncreated cluster and all other existing clusters.\n\n* In order to maintain an overall O(N?)\nperformance, computing similarity to each other\ncluster must be done in constant time.\n\n— Often O(N?) if done naively or O(N? log N) if done\nmore cleverly"
+  },
+  {
+    "text": "centroid base and it also depends on the type of data structure that you can take.",
+    "start": 929.94,
+    "end": 935.94,
+    "ocr_text": "Computational Complexity\n\n¢ Inthe first iteration, all HAC methods need to\ncompute similarity of all pairs of N initial\ninstances, which is O(N).\n\n* In each of the subsequent N—2 merging iterations,\ncompute the distance between the most recently\ncreated cluster and all other existing clusters.\n\n* In order to maintain an overall O(N?)\nperformance, computing similarity to each other\ncluster must be done in constant time.\n\n— Often O(N?) if done naively or O(N? log N) if done\nmore cleverly"
+  },
+  {
+    "text": "So, if you naively do this usually it is order of m cube but in certain cases you can",
+    "start": 935.94,
+    "end": 942.94,
+    "ocr_text": "Computational Complexity\n\n¢ Inthe first iteration, all HAC methods need to\ncompute similarity of all pairs of N initial\ninstances, which is O(N).\n\n* In each of the subsequent N—2 merging iterations,\ncompute the distance between the most recently\ncreated cluster and all other existing clusters.\n\n* In order to maintain an overall O(N?)\nperformance, computing similarity to each other\ncluster must be done in constant time.\n\n— Often O(N?) if done naively or O(N? log N) if done\nmore cleverly"
+  },
+  {
+    "text": "also achieve n square log n complexity we will not describe the details. So, we talked",
+    "start": 943.82,
+    "end": 950.82,
+    "ocr_text": "Computational Complexity\n\n¢ Inthe first iteration, all HAC methods need to\ncompute similarity of all pairs of N initial\ninstances, which is O(N).\n\n* In each of the subsequent N—2 merging iterations,\ncompute the distance between the most recently\ncreated cluster and all other existing clusters.\n\n* In order to maintain an overall O(N?)\nperformance, computing similarity to each other\ncluster must be done in constant time.\n\n— Often O(N?) if done naively or O(N? log N) if done\nmore cleverly"
+  },
+  {
+    "text": "about single link and complete link in average link clustering actually average link there",
+    "start": 953.74,
+    "end": 958.74,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any aoe in Gj\n\nSS Ss sim(X, ¥)\n\nele JA =\n\nCompromise between single Ane Perniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "people have described in two different ways. You can average across all ordered pairs in",
+    "start": 958.74,
+    "end": 965.74,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,V)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers. >\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "the merged cluster or over all pairs between the two original clusters. The second formulation",
+    "start": 966.06,
+    "end": 973.06,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,¥)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all Pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "is shown here but there are other formulations of average link clustering. So, anyway here",
+    "start": 974.06,
+    "end": 980.06,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,¥)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all Pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "we find similarity of clusters C i and C j is average of similarity of x y where x",
+    "start": 980.06,
+    "end": 987.06,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any ll in Gj\n\n= S sim(X,V)\n\nelas\n\nCompromise between single ane Pomplere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsinC,,C,) ="
+  },
+  {
+    "text": "belongs to C i y belongs to C j. It is a compromise between single and complete link",
+    "start": 988.54,
+    "end": 995.54,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any ll in Gj\n\n= S sim(X,¥)\n\nelas\n\nCompromise between single ane Pomolere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "it is less susceptible to noise and less susceptible to outliers it also produces",
+    "start": 995.9,
+    "end": 1001.54,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,V)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "sparital clusters.",
+    "start": 1001.54,
+    "end": 1004.54,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,V)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "The complexity we have already talked about with this we come to the close of today's",
+    "start": 1004.54,
+    "end": 1011.54,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,V)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "lecture. There are other clustering methods like density base clustering for example,",
+    "start": 1012.14,
+    "end": 1019.14,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,V)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "the DB scan algorithm and several others but we will not talk about this in this course",
+    "start": 1019.42,
+    "end": 1025.42,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,V)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "so this brings us to the end of the class on clustering and also the end of the course",
+    "start": 1026.06,
+    "end": 1032.74,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,V)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "in machine learning. I hope you all have enjoyed this course. Thank you very much for",
+    "start": 1032.74,
+    "end": 1039.06,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,V)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  },
+  {
+    "text": "putting up to the entire course all the best.",
+    "start": 1039.06,
+    "end": 1042.06,
+    "ocr_text": "Average Link Clustering\n\nSimilarity of two clusters = average similarity between\nany object in Ci and any all in Gj\n\n= S sim(X,V)\n\nelas\n\nCompromise between single ane Pomniere link. Less\n\nsusceptible to noise and outliers.\n\nTwo options:\n\n— Averaged across all ordered pairs in the merged\ncluster\n\n— Averaged over all pairs between the two original\nclusters\n\nsim(c,,c,) ="
+  }
+]

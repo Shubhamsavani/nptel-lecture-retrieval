@@ -1,0 +1,506 @@
+[
+  {
+    "text": "So, welcome to lecture 2 of CS7015 which is the course on deep learning. So, we will",
+    "start": 0.0,
+    "end": 17.24,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n\\"
+  },
+  {
+    "text": "talk about mecholic pits neuron, thresholding logic, perceptrons and a learning algorithm",
+    "start": 17.24,
+    "end": 22.66,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 2\nMcCulloch Pitts Neuron, Thresholding Logic, Perceptrons, Perceptron\n\nLearning Algorithm and Convergence, Multilayer Perceptrons (MLPs),\nRepresentation Power of MLPs\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras\n\nMitesh M. Khapra 5 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "for perceptrons and talk about the convergence of this algorithm. And then we will talk about",
+    "start": 22.66,
+    "end": 26.88,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 2\nMcCulloch Pitts Neuron, Thresholding Logic, Perceptrons, Perceptron\n\nLearning Algorithm and Convergence, Multilayer Perceptrons (MLPs),\nRepresentation Power of MLPs\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras\n\nMitesh M. Khapra 5 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "multi-layered network of perceptrons and finally, the representation power of perceptrons.",
+    "start": 26.88,
+    "end": 31.96,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 2\nMcCulloch Pitts Neuron, Thresholding Logic, Perceptrons, Perceptron\n\nLearning Algorithm and Convergence, Multilayer Perceptrons (MLPs),\nRepresentation Power of MLPs\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras\n\nMitesh M. Khapra 5 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "So, let us start module 1 which is on biological neurons. So, remember during the history we",
+    "start": 31.96,
+    "end": 38.26,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 2\nMcCulloch Pitts Neuron, Thresholding Logic, Perceptrons, Perceptron\n\nLearning Algorithm and Convergence, Multilayer Perceptrons (MLPs),\nRepresentation Power of MLPs\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras\n\nMitesh M. Khapra 5 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "had started all the way back in the 1880s when we spoke about biological neurons. So,",
+    "start": 38.26,
+    "end": 43.0,
+    "ocr_text": "Module 2.1: Biological Neurons\n\nMitesh M. Khapra G (Deep Learning) : Leeture 2"
+  },
+  {
+    "text": "we will just start there spend a few minutes on it and then go on to the computational",
+    "start": 43.0,
+    "end": 46.96,
+    "ocr_text": "Module 2.1: Biological Neurons\n\nMitesh M. Khapra G (Deep Learning) : Leeture 2"
+  },
+  {
+    "text": "models which is mecholic pits neuron. So, now this is a course on deep learning. So,",
+    "start": 46.96,
+    "end": 51.52,
+    "ocr_text": "y e The most fundamental unit of a deep\n\nneural network is called an artificial\n\nneuron\n\nw3\n\nr2 r3\n\nArtificial Neuron\n\nMitesh M. Khapra 7015 (Deep ning) ; Leetur"
+  },
+  {
+    "text": "we are going to talk about deep neural networks.",
+    "start": 51.52,
+    "end": 54.32,
+    "ocr_text": "y e The most fundamental unit of a deep\n\nneural network is called an artificial\n\nneuron\n\nw3\n\nr2 r3\n\nArtificial Neuron\n\nMitesh M. Khapra 7015 (Deep ning) ; Leetur"
+  },
+  {
+    "text": "Now, the most fundamental unit of a deep neural network is something on as an artificial",
+    "start": 54.64,
+    "end": 59.42,
+    "ocr_text": "y e The most fundamental unit of a deep\n\nneural network is called an artificial\n\nneuron\n\nw3\n\nr2 r3\n\nArtificial Neuron\n\nMitesh M. Khapra 7015 (Deep ning) ; Leetur"
+  },
+  {
+    "text": "neuron. Now, the question is why is it called a neuron? Where does the inspiration come",
+    "start": 59.42,
+    "end": 64.56,
+    "ocr_text": "y e The most fundamental unit of a deep\nneural network is called an artificial\nneuron\n\nw3\n\nr2 ry\n\nArtificial Neuron\n\nMitesh M. Khapra 5 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "from? So, we already know that the inspiration comes from biology and more specifically it",
+    "start": 64.56,
+    "end": 69.88,
+    "ocr_text": "y e The most fundamental unit of a deep\nneural network is called an artificial\nneuron\n\nw3\n\nr2 ry\n\nArtificial Neuron\n\nMitesh M. Khapra 5 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "comes from the brain because we saw that way back in the 1890s this term neuron was",
+    "start": 69.88,
+    "end": 75.2,
+    "ocr_text": "e The most fundamental unit of a deep\nial\n\nneural network is called an arti\nneuron\n\ne Why is it called a neuron ? Where\ndoes the inspiration come from ?\n\ne The inspiration comes from biology\n(more specifically, from the brain)\n\nLS\n\nArtificial Neuron\n\nM. Khapra 115 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "coined for neural processing units or the cells in our brain. So, now, before we move on",
+    "start": 75.2,
+    "end": 81.64,
+    "ocr_text": "Artificia\n\nL3\n\nNeuron\n\nThe most fundamental unit of a deep\n\nneural network is called an artificial\n\nneuron\n\nWhy is it called a neuron ? Where\ndoes the inspiration come from ?\nThe inspiration comes from biology\n(more specifically, from the brain)\nbiological neurons = neural cells =\n\nneural processing units\n\n1M. Khapra\n\n015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "to the computational neurons or the artificial neurons, we will just see the biological",
+    "start": 81.64,
+    "end": 85.76,
+    "ocr_text": "Artificia\n\nL3\n\nNeuron\n\nThe most fundamental unit of a deep\n\nneural network is called an artificial\n\nneuron\n\nWhy is it called a neuron ? Where\ndoes the inspiration come from ?\nThe inspiration comes from biology\n(more specifically, from the brain)\nbiological neurons = neural cells =\n\nneural processing units\n\n1M. Khapra\n\n015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "neurons in a bit more detail and then we will move on from there. So, this is what a typical",
+    "start": 85.76,
+    "end": 91.36,
+    "ocr_text": "Biological Ncurons*\n\n“Image adapted from\nhttps://cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg\n\n15 (Deep"
+  },
+  {
+    "text": "biological neuron looks like. So, here actually there are two neurons. This portion is called",
+    "start": 91.36,
+    "end": 99.08,
+    "ocr_text": "Biological Ncurons*\n\n“Image adapted from\nhttps://cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg\n\n15 (Deep"
+  },
+  {
+    "text": "the dendrite. So, it is used to receive inputs from all the other neurons. So, that is",
+    "start": 99.08,
+    "end": 105.08,
+    "ocr_text": "<a e dendrite: receives signals from other\n\nneurons\n\ndendrite -~*\n\nBiological Ncurons*\n\n“Image adapted from\nhttps: //cdn.vectorstock.com/i/composite/12, 25/neuron-cell-vector-81225. jpg"
+  },
+  {
+    "text": "the place where the input comes in. Then remember we said that in 1950s we discovered",
+    "start": 105.08,
+    "end": 111.4,
+    "ocr_text": "<a e dendrite: receives signals from other\n\nneurons\n\nsynapse @ synapse: point of connection to\n\nother neurons\ndendrite\n\nBiological Ncurons*\n\n“Image adapted from\nhttps://cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg"
+  },
+  {
+    "text": "that these neurons are actually discrete cells and there is something which connects them.",
+    "start": 111.56,
+    "end": 115.6,
+    "ocr_text": "<a e dendrite: receives signals from other\n\nneurons\n\nsynapse @ synapse: point of connection to\n\nother neurons\ndendrite\n\nBiological Ncurons*\n\n“Image adapted from\nhttps://cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg"
+  },
+  {
+    "text": "So, that connection is called a synapse and it decides the strength of the connection",
+    "start": 115.6,
+    "end": 120.08,
+    "ocr_text": "<u e dendrite: receives signals from other\n\nneurons\n\nsynapse @ synapse: point of connection to\n\nother neurons\ndendrite\n\nBiological Ncurons*\n\n“Image adapted from\nhttps: //cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg"
+  },
+  {
+    "text": "between these two neurons. So, there is an input, there is some strength to the connection.",
+    "start": 120.08,
+    "end": 125.64,
+    "ocr_text": "<u e dendrite: receives signals from other\n\nneurons\n\nsynapse @ synapse: point of connection to\n\nother neurons\ndendrite\n\nBiological Ncurons*\n\n“Image adapted from\nhttps: //cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg"
+  },
+  {
+    "text": "Then once this neuron receives inputs from various other neurons, it starts processing",
+    "start": 125.64,
+    "end": 130.16,
+    "ocr_text": "<w e dendrite: receives signals from other\n\nneurons\n\ne@ synapse: point of connection to\nother neurons\ndendrite\n\n@ soma: proc $s the information\n\nBiological Neurons*\n\n“Image adapted from\nhttps: //cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg"
+  },
+  {
+    "text": "unit. So, that is the central processing unit which is called the Soma and once it is",
+    "start": 130.16,
+    "end": 133.96,
+    "ocr_text": "<w e dendrite: receives signals from other\n\nneurons\n\ne@ synapse: point of connection to\nother neurons\ndendrite\n\n@ soma: proc $s the information\n\nBiological Neurons*\n\n“Image adapted from\nhttps: //cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg"
+  },
+  {
+    "text": "done this processing, it is ready to send its output to other set of neurons. So, that",
+    "start": 133.96,
+    "end": 139.16,
+    "ocr_text": "<w e dendrite: receives signals from other\n\nneurons\n\ne@ synapse: point of connection to\nother neurons\ndendrite\n\n@ soma: proc $s the information\n\nBiological Neurons*\n\n“Image adapted from\nhttps: //cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg"
+  },
+  {
+    "text": "output is carried on by the X on. So, we have inputs, we have some weights attached to",
+    "start": 139.16,
+    "end": 144.2,
+    "ocr_text": "e dendrite: receives signals from other\n\nother neurons\n\nneurons\n7 Synapse @ synapse: point of connection to\ndendrite e\n\ne@ soma: processes the information\n\ne axon: transmits the output of this\nneuron\n\nsoma\ne\n\nBiological Neurons*\n\n“Image adapted from\nhttps: //cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg"
+  },
+  {
+    "text": "the input, we have some processing and then an output. So, that is what a typical biological",
+    "start": 144.2,
+    "end": 149.18,
+    "ocr_text": "e dendrite: receives signals from other\n\nother neurons\n\nneurons\n7 Synapse @ synapse: point of connection to\ndendrite e\n\ne@ soma: processes the information\n\ne axon: transmits the output of this\nneuron\n\nsoma\ne\n\nBiological Neurons*\n\n“Image adapted from\nhttps: //cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg"
+  },
+  {
+    "text": "neuron looks like. And let us see a very very cartoonish illustration of how this works,",
+    "start": 149.18,
+    "end": 155.68,
+    "ocr_text": "dendrite\n\naxon ~~ mane\nsynapse\n\nsoma\ne\n\nBiological Ncurons*\n\n“Image adapted from\nhttps: //cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225. jpg\n\ndendrite: receives signals from other\n\nneurons\n\nsynapse: point of connection to\nother neurons\n\nsoma: processes the information\n\naxon: transmits the output of this\nneuron"
+  },
+  {
+    "text": "how the neuron works. So, since organs interact with the outside world and then they pass",
+    "start": 155.68,
+    "end": 161.04,
+    "ocr_text": "e Let us see a very cartoonish illustra-\ntion of how a neuron works\ne@ Our sense organs interact with the\n<> outside world\n\nX e They relay information to the neur-\n\nons"
+  },
+  {
+    "text": "on this information to the neuron and then the neuron decides whether I need to take some",
+    "start": 161.04,
+    "end": 165.04,
+    "ocr_text": "e Let us see a very cartoonish illustra-\ntion of how a neuron works\ne@ Our sense organs interact with the\n<> outside world\n\nX e They relay information to the neur-\n\nons"
+  },
+  {
+    "text": "action. In this case, the action could be whether I should laugh or not, whether the",
+    "start": 165.04,
+    "end": 168.78,
+    "ocr_text": "e Let us see a very cartoonish illustra-\n\ntion of how a neuron works\ne Our sense organs interact with the\noutside world\ne They relay information to the neur-\nons\ne The neurons (may) get activated and\nproduces a response (laughter in this\ncase)\n\na < a\nTD KNOW IT?\n\n(Deep"
+  },
+  {
+    "text": "input is really funny enough to evoke laughter. So, if that happens, this is known as something",
+    "start": 168.78,
+    "end": 173.18,
+    "ocr_text": "e Let us see a very cartoonish illustra-\n\ntion of how a neuron works\ne Our sense organs interact with the\noutside world\ne They relay information to the neur-\nons\ne The neurons (may) get activated and\nproduces a response (laughter in this\ncase)\n\na < a\nTD KNOW IT?\n\n(Deep"
+  },
+  {
+    "text": "that the neuron has fired. Now, of course, in reality is not just a single neuron which",
+    "start": 173.18,
+    "end": 178.9,
+    "ocr_text": "e Let us see a very cartoonish illustra-\n\ntion of how a neuron works\ne Our sense organs interact with the\noutside world\ne They relay information to the neur-\nons\ne The neurons (may) get activated and\nproduces a response (laughter in this\ncase)\n\na < a\nTD KNOW IT?\n\n(Deep"
+  },
+  {
+    "text": "does all this, there is a massively parallel interconnected network of neurons. So, you see",
+    "start": 178.9,
+    "end": 183.98,
+    "ocr_text": "e Of course, in reality, it is not just a single\n\nneuron which does all this"
+  },
+  {
+    "text": "a massive network here. Now, the neurons in the lower level side, so these neurons, they",
+    "start": 183.98,
+    "end": 191.86,
+    "ocr_text": "e Of course, in reality, it is not just a single\n\nneuron which does all this"
+  },
+  {
+    "text": "actually interact with the sensory organs, they do some processing based on the inputs.",
+    "start": 191.86,
+    "end": 196.5,
+    "ocr_text": "e Of course, in reality, it is not just a single\n\nneuron which does all this\n\ne There is a massively parallel interconnected\n\nnetwork of neurons\n\ne The sense organs relay information to the low-\n> est layer of neurons"
+  },
+  {
+    "text": "So, they decide whether I should fire or not and if they fire, they transmit this information",
+    "start": 196.5,
+    "end": 200.94,
+    "ocr_text": "e Of course, in reality, it is not just a single\nneuron which does all this\n\ne There is a massively parallel interconnected\nnetwork of neurons\n\ne The sense organs relay information to the low-\n\n5 est layer of neurons\n\ne@ Some of these neurons may fire (in red) in re-\nsponse to this information and in turn relay\ninformation to other neurons they are connec-\nted to\n\n‘DONT YOUTHINK THAT FI WERE WR\n\n* |"
+  },
+  {
+    "text": "to the next set of neurons. And this process continues, still the information is relayed",
+    "start": 200.94,
+    "end": 204.94,
+    "ocr_text": "e Of course, in reality, it is not just a single\nneuron which does all this\n\ne There is a massively parallel interconnected\nnetwork of neurons\n\ne The sense organs relay information to the low-\n\n5 est layer of neurons\n\ne@ Some of these neurons may fire (in red) in re-\nsponse to this information and in turn relay\ninformation to other neurons they are connec-\nted to\n\n‘DONT YOUTHINK THAT FI WERE WR\n\n* |"
+  },
+  {
+    "text": "all the way back and then finally, you decide whether you need to take any action or not,",
+    "start": 204.94,
+    "end": 209.54,
+    "ocr_text": "e Of course, in reality, it is not just a single\nneuron which does all this\n\ne There is a massively parallel interconnected\nnetwork of neurons\n\ne The sense organs relay information to the low-\n\n5 est layer of neurons\n\ne@ Some of these neurons may fire (in red) in re-\nsponse to this information and in turn relay\ninformation to other neurons they are connec-\nted to\n\n‘DONT YOUTHINK THAT FI WERE WR\n\n* |"
+  },
+  {
+    "text": "again in which this case it should be laughter. So, that is how it works and when I say massively",
+    "start": 209.54,
+    "end": 215.02,
+    "ocr_text": "Of course, in reality, it is not just a single\nneuron which does all this\n\nThere is a massively parallel interconnected\nnetwork of neurons\n\nThe sense organs relay information to the low-\nest layer of neurons\n\nSome of these neurons may fire (in red) in re-\nsponse to this information and in turn relay\ninformation to other neurons they are connec-\nted to\n\nThese neurons may also fire (again, in red)\nand the process continues eventually resulting\nin a response (laughter in this case)"
+  },
+  {
+    "text": "parallel interconnected network, I really mean it because there are 10 ways to 11 which",
+    "start": 215.02,
+    "end": 220.18,
+    "ocr_text": "Of course, in reality, it is not just a single\nneuron which does all this\n\nThere is a massively parallel interconnected\nnetwork of neurons\n\nThe sense organs relay information to the low-\nest layer of neurons\n\nSome of these neurons may fire (in red) in re-\nsponse to this information and in turn relay\ninformation to other neurons they are connec-\nted to\n\nThese neurons may also fire (again, in red)\nand the process continues eventually resulting\nin a response (laughter in this case)\n\nAn average human brain has around 10!! (100\nbillion) neurons!\n\n(Deep"
+  },
+  {
+    "text": "is roughly 100 billion neurons in the brain.",
+    "start": 220.18,
+    "end": 223.18,
+    "ocr_text": "Of course, in reality, it is not just a single\nneuron which does all this\n\nThere is a massively parallel interconnected\nnetwork of neurons\n\nThe sense organs relay information to the low-\nest layer of neurons\n\nSome of these neurons may fire (in red) in re-\nsponse to this information and in turn relay\ninformation to other neurons they are connec-\nted to\n\nThese neurons may also fire (again, in red)\nand the process continues eventually resulting\nin a response (laughter in this case)\n\nAn average human brain has around 10!! (100\nbillion) neurons!\n\n(Deep"
+  },
+  {
+    "text": "Now, this massively parallel network also ensures that there is some division of work. Now,",
+    "start": 223.18,
+    "end": 229.06,
+    "ocr_text": "Of course, in reality, it is not just a single\nneuron which does all this\n\nThere is a massively parallel interconnected\nnetwork of neurons\n\nThe sense organs relay information to the low-\nest layer of neurons\n\nSome of these neurons may fire (in red) in re-\nsponse to this information and in turn relay\ninformation to other neurons they are connec-\nted to\n\nThese neurons may also fire (again, in red)\nand the process continues eventually resulting\nin a response (laughter in this case)\n\nAn average human brain has around 10!! (100\nbillion) neurons!\n\n(Deep"
+  },
+  {
+    "text": "what do I mean by that is not that every neuron is responsible for taking care of whether",
+    "start": 229.06,
+    "end": 232.9,
+    "ocr_text": "e This massively parallel network also ensures\n\nthat there is division of work\n\n&EEEEE © ¢\n\nSrhoG Kk ek\nLEG SRI LS HE\nSE Eek SES, Oe\n\n808 &\né : GOS & Ce\nC&S PZEL ESE PES &\nCOS GL Ce\n\n2 Ky bck\nSESE PF GEESE CER,\n\nMitesh M. Khapra ©7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "I should laugh or not or not every neuron is responsible for processing visual data.",
+    "start": 232.9,
+    "end": 237.62,
+    "ocr_text": "e This massively parallel network also ensures\n\nthat there is division of work\n\n&EEEEE © ¢\n\nSrhoG Kk ek\nLEG SRI LS HE\nSE Eek SES, Oe\n\n808 &\né : GOS & Ce\nC&S PZEL ESE PES &\nCOS GL Ce\n\n2 Ky bck\nSESE PF GEESE CER,\n\nMitesh M. Khapra ©7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "Some neurons may process visual data, some neurons may process speeds data and so on. So,",
+    "start": 237.62,
+    "end": 241.78,
+    "ocr_text": "e This massively parallel network also ensures\n\nthat there is division of work\n\nS&ECEER re\n\ncane\nSG CLK\n205 & Es & Ge\n\n<\nVO KNOW IT?” «|\n\nil\n\nKhapra ©S7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "there is this division of work every neuron has a certain role to play. So, for example,",
+    "start": 241.78,
+    "end": 246.74,
+    "ocr_text": "e This massively parallel network also ensures\n\nthat there is division of work\n\nS&ECEER re\n\ncane\nSG CLK\n205 & Es & Ge\n\n<\nVO KNOW IT?” «|\n\nil\n\nKhapra ©S7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "in this cartoonish example that we took right. So, there might be this one neuron which",
+    "start": 246.74,
+    "end": 252.54,
+    "ocr_text": "e This massively parallel network also ensures\nthat there is division of work\n\ne Each neuron may perform a certain role or\nrespond to a certain stimulus\n\nfires if visual\nis funny\n\nA simplified illustration\n\nMitesh M. Khapra ‘015 (Deep ning) : Lecture"
+  },
+  {
+    "text": "fires if the visuals are funny, whatever you are seeing is funny. There will be one neuron",
+    "start": 252.62,
+    "end": 257.3,
+    "ocr_text": "e This massively parallel network also ensures\nthat there is division of work\n\ne Each neuron may perform a certain role or\nrespond to a certain stimulus\n\nfires if visual\nis funny\n\nA simplified illustration\n\nMitesh M. Khapra ‘015 (Deep ning) : Lecture"
+  },
+  {
+    "text": "which finds, shelden's speech to be funny, the way he speaks. So, that might be funny and",
+    "start": 257.3,
+    "end": 262.3,
+    "ocr_text": "e This massively parallel network also ensures\nthat there is division of work\n\ne Each neuron may perform a certain role or\nrespond to a certain stimulus\n\nfires if visual ~~ *\n\nis funny fires if speech\nstyle is funny\n\nA simplified illustration\n\nMitesh M. Khapra 7015 (Deep Learning)"
+  },
+  {
+    "text": "there might be another neuron which actually files the dialogue content to be funny.",
+    "start": 262.3,
+    "end": 267.1,
+    "ocr_text": "e This massively parallel network also ensures\nthat there is division of work\n\ne Each neuron may perform a certain role or\nrespond to a certain stimulus\n\nfires if visual ~~ *\n\nis funny fires if speech\nstyle is funny\n\nA simplified illustration\n\nMitesh M. Khapra 7015 (Deep Learning)"
+  },
+  {
+    "text": "And now all of this pass on the information to the next level and this guy would fire if",
+    "start": 267.1,
+    "end": 271.06,
+    "ocr_text": "e This massively parallel network also ensures\n\nfires if at least\n\n2 of the 3 inputs fired that there is division of work\n{ e Each neuron may perform a certain role or\n\n) respond to a certain stimulus\n\nfires if text\n\nfires if visual ~~ 2 > is funny\nis funny fires if speech\n\nstyle is funny\n\nA simplified illustration\n\nMitesh M. Khapra ‘$7015 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "at least two of these three inputs are funny. So, that means, I have some threshold based",
+    "start": 271.06,
+    "end": 275.7,
+    "ocr_text": "e This massively parallel network also ensures\n\nfires if at least\n\n2 of the 3 inputs fired that there is division of work\n{ e Each neuron may perform a certain role or\n\n) respond to a certain stimulus\n\nfires if text\n\nfires if visual ~~ 2 > is funny\nis funny fires if speech\n\nstyle is funny\n\nA simplified illustration\n\nMitesh M. Khapra ‘$7015 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "on which I decide whether to react on or not. If it is really funny, then only I laugh",
+    "start": 275.7,
+    "end": 279.26,
+    "ocr_text": "e This massively parallel network also ensures\n\nfires if at least\n\n2 of the 3 inputs fired that there is division of work\n\\ e Each neuron may perform a certain role or\n\nrespond to a certain stimulus\n\nfires if text\nis funny\n\nfires if visual\nis funny fires if speech\n\nstyle is funny\n\nA simplified illustration\n\nMitesh M. Khapra ‘$7015 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "right, otherwise there is a lot laugh right. So, the neurons in the brain as was obvious",
+    "start": 279.26,
+    "end": 284.9,
+    "ocr_text": "e This massively parallel network also ensures\n\nfires if at least\n\n2 of the 3 inputs fired that there is division of work\n\\ e Each neuron may perform a certain role or\n\nrespond to a certain stimulus\n\nfires if text\nis funny\n\nfires if visual\nis funny fires if speech\n\nstyle is funny\n\nA simplified illustration\n\nMitesh M. Khapra ‘$7015 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "in the previous slide are arranged in a hierarchy and now we will take a more realistic example",
+    "start": 284.9,
+    "end": 288.94,
+    "ocr_text": "e This massively parallel network also ensures\n\nfires if at least\n\n2 of the 3 inputs fired that there is division of work\n\\ e Each neuron may perform a certain role or\n\nrespond to a certain stimulus\n\nfires if text\nis funny\n\nfires if visual\nis funny fires if speech\n\nstyle is funny\n\nA simplified illustration\n\nMitesh M. Khapra ‘$7015 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "where we look at the visual cortex. So, this is the portion of the brain which is responsible",
+    "start": 288.94,
+    "end": 293.94,
+    "ocr_text": "Motor commana e The neurons in the brain are arranged\n\na eee yaEaaE:\nnk el Yamsmsies} in a hierarchy\n\n12.“ |) cree: Comers ie y\nwee? x A e We illustrate this with the help of\n\nvisual cortex (part of the brain) which\ndeals with processing visual informa-\ntion\n\n—————» To spinal cor\nTo finge muscle <__ ___— 160-220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\nMitesh M. Khapra 'S7015 (Deep Learni"
+  },
+  {
+    "text": "for processing visual information right. So, as you see here you have our retina from",
+    "start": 293.94,
+    "end": 299.14,
+    "ocr_text": "Motor commana e The neurons in the brain are arranged\n\na eee yaEaaE:\nnk el Yamsmsies} in a hierarchy\n\n12.“ |) cree: Comers ie y\nwee? x A e We illustrate this with the help of\n\nvisual cortex (part of the brain) which\ndeals with processing visual informa-\ntion\n\n—————» To spinal cor\nTo finge muscle <__ ___— 160-220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\nMitesh M. Khapra 'S7015 (Deep Learni"
+  },
+  {
+    "text": "where the information starts flowing and it goes through various levels right. So, you",
+    "start": 299.14,
+    "end": 304.02,
+    "ocr_text": "otoxcommand e The neurons in the brain are arranged\n\nCategorical judgments\n\ndecison maning 1° Sample vsua fms 5 in a hierarchy\n\n120-160 — sae. SESS od\nwoe e. ° We illustrate this with the help of\n\nvisual cortex (part of the brain) which\ndeals with processing visual informa-\ntion\n\n~~~ To spinal cora\n+ Toofinger muscle ._ __ 160-220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\nMitesh M. Khapra 'S7015 (Deep Le"
+  },
+  {
+    "text": "see you follow the arrows and you will see there are several levels there is one level",
+    "start": 304.02,
+    "end": 307.46,
+    "ocr_text": "otoxcommand e The neurons in the brain are arranged\n\nCategorical judgments\n\ndecison maning 1° Sample vsua fms 5 in a hierarchy\n\n120-160 — sae. SESS od\nwoe e. ° We illustrate this with the help of\n\nvisual cortex (part of the brain) which\ndeals with processing visual informa-\ntion\n\n~~~ To spinal cora\n+ Toofinger muscle ._ __ 160-220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\nMitesh M. Khapra 'S7015 (Deep Le"
+  },
+  {
+    "text": "here then another here another here and so on right. So, it is again as I was trying",
+    "start": 307.46,
+    "end": 311.18,
+    "ocr_text": "Motor commana e@ The neurons in the brain are arranged\n\nee eee\nontonnahng 1° Sipe veal ns § in a hierarchy\nnat sagen, sera j\n\noy We illustrate this with the help of\nvisual cortex (part of the brain) which\ndeals with processing visual informa-\ntion\n\n+ To spinal cora\n+ Trfiinger muscle .__ __ 160.220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\nMitesh M. Khapra 'S7015 (Deep Learni Lecture"
+  },
+  {
+    "text": "to illustrate in that cartoon the information is relate through multiple layers and then",
+    "start": 311.18,
+    "end": 315.78,
+    "ocr_text": "Motor commana e@ The neurons in the brain are arranged\n\nee eee\nontonnahng 1° Sipe veal ns § in a hierarchy\nnat sagen, sera j\n\noy We illustrate this with the help of\nvisual cortex (part of the brain) which\ndeals with processing visual informa-\ntion\n\n+ To spinal cora\n+ Trfiinger muscle .__ __ 160.220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\nMitesh M. Khapra 'S7015 (Deep Learni Lecture"
+  },
+  {
+    "text": "it goes all the way back to the spinal cord which decides that in this case I need to",
+    "start": 315.78,
+    "end": 320.24,
+    "ocr_text": "Categorical judgments ’ ‘\ndecision making ‘Simple visual forms\n+ cages, comers\n\n~~» To spinal cora\n\nTro finger muscle <__ ___ 160-220 ms\n\n180-260 ms -____——\n\n[picture from Simon Thorpe]\n\ne The neurons in the brain are arranged\nin a hierarchy\ne We illustrate this with the help of\n\nvisual cortex (part of the brain) which\ndeals with processing visual informa-\ntion\n\nMitesh M. Khapra\n\nCS7015 (Deep Learni"
+  },
+  {
+    "text": "move the muscle right. So, that is what is being decided here right. So, the information",
+    "start": 320.24,
+    "end": 324.02,
+    "ocr_text": "Categorical judgments ’ ‘\ndecision making ‘Simple visual forms\n+ cages, comers\n\n~~» To spinal cora\n\nTro finger muscle <__ ___ 160-220 ms\n\n180-260 ms -____——\n\n[picture from Simon Thorpe]\n\ne The neurons in the brain are arranged\nin a hierarchy\ne We illustrate this with the help of\n\nvisual cortex (part of the brain) which\ndeals with processing visual informa-\ntion\n\nMitesh M. Khapra\n\nCS7015 (Deep Learni"
+  },
+  {
+    "text": "flows through a hierarchy of layers and in this particular case I am going to focus on",
+    "start": 324.02,
+    "end": 329.42,
+    "ocr_text": "Categorical judgments ’ ‘\ndecision making ‘Simple visual forms\n+ cages, comers\n\n~~» To spinal cora\n\nTro finger muscle <__ ___ 160-220 ms\n\n180-260 ms -____——\n\n[picture from Simon Thorpe]\n\ne The neurons in the brain are arranged\nin a hierarchy\ne We illustrate this with the help of\n\nvisual cortex (part of the brain) which\ndeals with processing visual informa-\ntion\n\nMitesh M. Khapra\n\nCS7015 (Deep Learni"
+  },
+  {
+    "text": "these three circled layers which are V 1, V 2 and A IT right. So, these actually form",
+    "start": 329.42,
+    "end": 337.48,
+    "ocr_text": "Categorical judgments, 401901 >\ndecision making\n\nCe\n100-1308 rc 7 OF\n\n-\nLGN 7] j Nene ¥\n\n“aasoyects +\n~~» To spinal cord\n_ 160-720 me\n\n180-260 ms\n\n[picture from Simon Thorpe]\n\nThe neurons in the brain are arranged\nin a hierarchy\n\nWe illustrate this with the help of\nvisual cortex (part of the brain) which\ndeals with processing visual informa-\ntion\n\nStarting from the retina, the informa-\ntion is relayed to several layers (follow\nthe arrows)\n\nWe observe that the layers V1, V2 to\nAIT form a hierarchy (from identify-\n\ning simple visual forms to high level\nobjects)"
+  },
+  {
+    "text": "a hierarchy and let us see what this hierarchy does right. So, at layer 1 you detect edges",
+    "start": 337.48,
+    "end": 342.9,
+    "ocr_text": "Categorical judgments,\ndecision making —_\n\nLayer 1: detect edges & corners\n120-160 mania ae\n\nae\n\n1 descriptions,\nSosa eee\n\n+ To spinal cora\n= Tofinge: muscle <__ __— —-160-220 ms.\n180-260 ms\n\n[picture from Simon Thorpe]\n\nSample illustration of hierarchical\nprocessing*\n\n“Idea borrowed from Hugo Larochelle’s lecture slides"
+  },
+  {
+    "text": "and corners. So, I am looking at you all I just see some dots and some shapes. So, that",
+    "start": 342.9,
+    "end": 347.58,
+    "ocr_text": "Categorical judgments,\ndecision making —_\n\nLayer 1: detect edges & corners\n120-160 mania ae\n\nae\n\n1 descriptions,\nSosa eee\n\n+ To spinal cora\n= Tofinge: muscle <__ __— —-160-220 ms.\n180-260 ms\n\n[picture from Simon Thorpe]\n\nSample illustration of hierarchical\nprocessing*\n\n“Idea borrowed from Hugo Larochelle’s lecture slides"
+  },
+  {
+    "text": "is what layer 1 recognises I just recognize some edges and some dots and so on. Now, layer",
+    "start": 347.58,
+    "end": 353.38,
+    "ocr_text": "Categorical judgments, 14:48) ~ fd\n\ndecision making —~.\n\na\nwowndatne”\n\na\n30-50,\n\nSimple visual forms\n¥. edges, comers\n\n+ To spinal cora\nTo finge muscle. __ __ 160-220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\n‘ ° Layer 1: detect edges & corners\n\nSample illustration of hierarchical\nprocessing*\n\n“Idea borrowed from Hugo Larochelle’s lecture slides"
+  },
+  {
+    "text": "2 tries to group all of these together and come up with some meaningful feature groups",
+    "start": 353.38,
+    "end": 358.7,
+    "ocr_text": "Categorical judgments, 14:48) ~ fd\n\ndecision making —~.\n\na\nwowndatne”\n\na\n30-50,\n\nSimple visual forms\n¥. edges, comers\n\n+ To spinal cora\nTo finge muscle. __ __ 160-220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\n‘ ° Layer 1: detect edges & corners\n\nSample illustration of hierarchical\nprocessing*\n\n“Idea borrowed from Hugo Larochelle’s lecture slides"
+  },
+  {
+    "text": "right. So, it realises these two edges actually form the nose these two dots actually form",
+    "start": 358.7,
+    "end": 363.8,
+    "ocr_text": "Categorical judgments,\ndecision making\n\n‘i\nwomMhee g .\n\n+” Simple visual forms $ ° : q\na caasatcomeeaan _ Layer 1: detect edges & corners\n\n140-190\n\nnose\nmouth Layer 2: form feature groups\n\neyes °°\n\n1 descriptions, 8\nvot veee\n\n~~ To spinal cora\nTo finge muscle. __ __— —-160-220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\nSample illustration of hierarchical\nprocessing*\n\n“Idea borrowed from Hugo Larochelle’s lecture slides"
+  },
+  {
+    "text": "the eyes and these two edges actually form the mouth right. So, that is slightly higher",
+    "start": 363.8,
+    "end": 369.06,
+    "ocr_text": "Categorical judgments,\ndecision making\n\n‘i\nwomMhee g .\n\n+” Simple visual forms $ ° : q\na caasatcomeeaan _ Layer 1: detect edges & corners\n\n140-190\n\nnose\nmouth Layer 2: form feature groups\n\neyes °°\n\n1 descriptions, 8\nvot veee\n\n~~ To spinal cora\nTo finge muscle. __ __— —-160-220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\nSample illustration of hierarchical\nprocessing*\n\n“Idea borrowed from Hugo Larochelle’s lecture slides"
+  },
+  {
+    "text": "level of processing that it is doing and then layer 3 further collects all this and leads",
+    "start": 369.06,
+    "end": 374.38,
+    "ocr_text": "Categorical judgments,\ndecision making\n\n7?!\n100-130, ms,\nPFC C4\n\nLayer 1: detect edges & corners\n\nnose\nmouth — Layer 2: form feature groups\n\n‘epriopeds\n\n+ To spinal cora\n+ Tofinga: muscle ._ ____ 160.220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\nSample illustration of hierarchical\nprocessing*\n\n“Idea borrowed from Hugo Larochelle’s lecture slides"
+  },
+  {
+    "text": "to higher level objects right. So, now it is realising all these things put together",
+    "start": 374.38,
+    "end": 378.42,
+    "ocr_text": "Categorical judgments,\ndecision making\n\n7?!\n100-130, ms,\nPFC C4\n\nLayer 1: detect edges & corners\n\nnose\nmouth — Layer 2: form feature groups\n\n‘epriopeds\n\n+ To spinal cora\n+ Tofinga: muscle ._ ____ 160.220 ms\n180-260 ms\n\n[picture from Simon Thorpe]\n\nSample illustration of hierarchical\nprocessing*\n\n“Idea borrowed from Hugo Larochelle’s lecture slides"
+  },
+  {
+    "text": "is actually a human face right. So, you add edges and circles or dots then you add some",
+    "start": 378.42,
+    "end": 383.62,
+    "ocr_text": "Categorical judgments e907\ndecision making\n\n120-460 a - ‘ —\n100-130, ms, .\n4\n\nnose\nmouth — Layer 2: form feature groups\n\nLayer 1: detect edges & corners\n\neyes °°\n\n~——+ To spinal cora\n+ To linge: muscta ._ ____ 160.220 ms\n180-260 ms\n\nLayer 3: detect high level\n\n[picture from Simon Thorpe] objects, faces, ete.\n\nSample illustration of hierarchical\nprocessing*\n\n“Idea borrowed from Hugo Larochelle’s lecture slides\n\nS7015 (Deep"
+  },
+  {
+    "text": "feature groups and then the feature groups combine into objects right. So, that is how this",
+    "start": 383.62,
+    "end": 387.98,
+    "ocr_text": "Categorical judgments e907\ndecision making\n\n120-460 a - ‘ —\n100-130, ms, .\n4\n\nnose\nmouth — Layer 2: form feature groups\n\nLayer 1: detect edges & corners\n\neyes °°\n\n~——+ To spinal cora\n+ To linge: muscta ._ ____ 160.220 ms\n180-260 ms\n\nLayer 3: detect high level\n\n[picture from Simon Thorpe] objects, faces, ete.\n\nSample illustration of hierarchical\nprocessing*\n\n“Idea borrowed from Hugo Larochelle’s lecture slides\n\nS7015 (Deep"
+  },
+  {
+    "text": "hierarchy processes. So, here is a disclaimer I understand very little about how the human",
+    "start": 387.98,
+    "end": 392.98,
+    "ocr_text": "Disclaimer\ne I understand very little about how the brain works!\n\ne@ What you saw so far is an overly simplified explanation of how the brain works!\n\ne But this explanation suffices for the purpose of this course!"
+  },
+  {
+    "text": "brain works right and what you saw is a very oversimplified explanation of how the brain works",
+    "start": 392.98,
+    "end": 397.9,
+    "ocr_text": "Disclaimer\ne I understand very little about how the brain works!\n\ne@ What you saw so far is an overly simplified explanation of how the brain works!\n\ne But this explanation suffices for the purpose of this course!"
+  },
+  {
+    "text": "right. What I told you is there is an input a layer of networks which does a network which",
+    "start": 397.9,
+    "end": 403.9,
+    "ocr_text": "Disclaimer\ne I understand very little about how the brain works!\n\ne@ What you saw so far is an overly simplified explanation of how the brain works!\n\ne But this explanation suffices for the purpose of this course!\n\nMitesh M. Khapra 7015 (Deep Learning) : Lecture 2"
+  },
+  {
+    "text": "has many layers which does some processing and then you have an output right that is the",
+    "start": 403.9,
+    "end": 407.74,
+    "ocr_text": "Disclaimer\ne I understand very little about how the brain works!\n\ne@ What you saw so far is an overly simplified explanation of how the brain works!\n\ne But this explanation suffices for the purpose of this course!\n\nMitesh M. Khapra 7015 (Deep Learning) : Lecture 2"
+  },
+  {
+    "text": "very simplistic view that I gave you. This is an oversimplified version but this version",
+    "start": 407.74,
+    "end": 412.7,
+    "ocr_text": "Disclaimer\ne I understand very little about how the brain works!\n\ne@ What you saw so far is an overly simplified explanation of how the brain works!\n\ne But this explanation suffices for the purpose of this course!"
+  },
+  {
+    "text": "suffices for everything that we need for this course right. This is not a biology or",
+    "start": 412.7,
+    "end": 416.02,
+    "ocr_text": "Disclaimer\ne I understand very little about how the brain works!\n\ne@ What you saw so far is an overly simplified explanation of how the brain works!\n\ne But this explanation suffices for the purpose of this course!"
+  },
+  {
+    "text": "neural processing course right. So, it is enough for this course. So, that is where we",
+    "start": 416.02,
+    "end": 419.86,
+    "ocr_text": "Disclaimer\ne | understand very little about how the brain works!\n\ne What you saw so far is an overly simplified explanation of how the brain works!\n\ne But this explanation suffices for the purpose of this course!\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "will end module 1.",
+    "start": 419.86,
+    "end": 421.1,
+    "ocr_text": "Disclaimer\ne | understand very little about how the brain works!\n\ne What you saw so far is an overly simplified explanation of how the brain works!\n\ne But this explanation suffices for the purpose of this course!\n\nMitesh M. Khapra"
+  }
+]

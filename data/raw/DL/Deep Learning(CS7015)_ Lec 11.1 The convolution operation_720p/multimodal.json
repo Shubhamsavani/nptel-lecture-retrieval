@@ -1,0 +1,1226 @@
+[
+  {
+    "text": "So, while let us start. So, so far in the course we have looked at feed forward neural",
+    "start": 0.0,
+    "end": 17.96,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n\\"
+  },
+  {
+    "text": "networks, we have seen how to train them. And we have seen two special cases of feed forward",
+    "start": 17.96,
+    "end": 23.44,
+    "ocr_text": "$7015 (Deep Learning) : Lecture 11\n\nConvolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras"
+  },
+  {
+    "text": "neural networks, one was the auto encoders for learning representations or learning",
+    "start": 23.44,
+    "end": 29.24,
+    "ocr_text": "$7015 (Deep Learning) : Lecture 11\n\nConvolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras"
+  },
+  {
+    "text": "latent representations of inputs. And the other thing that we had seen was how to use",
+    "start": 29.24,
+    "end": 36.32,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 11\n\nConvolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras\n\n(Deep"
+  },
+  {
+    "text": "the feed forward neural network to learn word representations where we saw this word to",
+    "start": 36.32,
+    "end": 39.96,
+    "ocr_text": "$7015 (Deep Learning) : Lecture 11\n\nConvolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engincering\nIndian Institute of Technology Madras"
+  },
+  {
+    "text": "wake algorithm and it is different variance. It was continuous bag of words, skip gram",
+    "start": 39.96,
+    "end": 44.44,
+    "ocr_text": "$7015 (Deep Learning) : Lecture 11\n\nConvolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engincering\nIndian Institute of Technology Madras"
+  },
+  {
+    "text": "model, grab and so on. So, those are all in some sense applications of the feed forward",
+    "start": 44.44,
+    "end": 48.44,
+    "ocr_text": "$7015 (Deep Learning) : Lecture 11\n\nConvolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engincering\nIndian Institute of Technology Madras"
+  },
+  {
+    "text": "neural network. And now we will move on from there, we will look at a different type",
+    "start": 48.44,
+    "end": 52.92,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 11\n\nConvolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras"
+  },
+  {
+    "text": "of neural network today, which is convolutional neural networks. And we look at some specific",
+    "start": 52.92,
+    "end": 56.92,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 11\n\nConvolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras"
+  },
+  {
+    "text": "architectures, which have become popular over the past few years. So, fill that I will",
+    "start": 56.92,
+    "end": 63.24,
+    "ocr_text": "$7015 (Deep Learning) : Lecture 11\n\nConvolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engincering\nIndian Institute of Technology Madras\n\n(Deep"
+  },
+  {
+    "text": "start this lecture on convolutional neural networks. So, in the first module, we will",
+    "start": 63.24,
+    "end": 67.88,
+    "ocr_text": "$7015 (Deep Learning) : Lecture 11\n\nConvolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engincering\nIndian Institute of Technology Madras\n\n(Deep"
+  },
+  {
+    "text": "look at the convolution operation. So, let us see. So, suppose we are tracking the position",
+    "start": 67.88,
+    "end": 74.32,
+    "ocr_text": "e Suppose we are tracking the position\nof an aeroplane using a laser sensor at\n\ndiscrete time intervals"
+  },
+  {
+    "text": "of an aeroplane using a laser sensor at discrete time intervals. So, you have this,",
+    "start": 74.32,
+    "end": 82.08,
+    "ocr_text": "e Suppose we are tracking the position\nof an aeroplane using a laser sensor at\n\ndiscrete time intervals"
+  },
+  {
+    "text": "so you have this aeroplane, suppose it is going from say Chennai to Delhi. And at discrete",
+    "start": 83.08,
+    "end": 88.12,
+    "ocr_text": "e Suppose we are tracking the position\n\nof an aeroplane using a laser sensor at\ndiscrete time intervals"
+  },
+  {
+    "text": "time intervals, you are seeing the tracking the position of the aeroplane, how far it is",
+    "start": 88.12,
+    "end": 92.56,
+    "ocr_text": "e@ Suppose we are tracking the position\n\nof an aeroplane using a laser sensor at\ndiscrete time intervals"
+  },
+  {
+    "text": "from Chennai at this point, maybe it is 50 kilometers, 100 kilometers and so on. And now",
+    "start": 92.56,
+    "end": 97.28,
+    "ocr_text": "e@ Suppose we are tracking the position\n\nof an aeroplane using a laser sensor at\ndiscrete time intervals"
+  },
+  {
+    "text": "your laser, you think that it might be noisy, it might not be giving you very accurate measurements.",
+    "start": 97.28,
+    "end": 103.64,
+    "ocr_text": "e Suppose we are tracking the position\n\n\"5\n\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\n“ “\nFr SF FS\n\nxO xy xr"
+  },
+  {
+    "text": "So, you would be taking these measurements, I would say intervals of, of course, it is",
+    "start": 103.64,
+    "end": 106.96,
+    "ocr_text": "e Suppose we are tracking the position\n\n\"5\n\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\n“ “\nFr SF FS\n\nxO xy xr"
+  },
+  {
+    "text": "not in practice you would not do that, but just indulge me for the purpose of illustration",
+    "start": 106.96,
+    "end": 111.36,
+    "ocr_text": "e@ Suppose we are tracking the position\niN of an aeroplane using a laser sensor at\n\ndiscrete time intervals"
+  },
+  {
+    "text": "that say you are taking these measurements every 5 seconds or 10 seconds or something like",
+    "start": 111.44,
+    "end": 114.72,
+    "ocr_text": "e@ Suppose we are tracking the position\niN of an aeroplane using a laser sensor at\n\ndiscrete time intervals"
+  },
+  {
+    "text": "that. Now, since the sensor is noisy, instead of relying on a single measurement, you would",
+    "start": 114.72,
+    "end": 119.44,
+    "ocr_text": "e@ Suppose we are tracking the position\niN of an aeroplane using a laser sensor at\n\ndiscrete time intervals"
+  },
+  {
+    "text": "probably want to take the average of the past few measurements that you have taken. So,",
+    "start": 119.44,
+    "end": 123.2,
+    "ocr_text": "e@ Suppose we are tracking the position\nof an aeroplane using a laser sensor at\n\nxy\n\ndiscrete time intervals\n\nay & =\n1 e Now suppose our sensor is noisy\ne To obtain a less noisy estimate we\nwould like to average several measure-\nments\n\n1M. Khapra (015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "that would give you a more accurate representation of what the current position is. Does that make",
+    "start": 123.2,
+    "end": 128.28,
+    "ocr_text": "e@ Suppose we are tracking the position\nof an aeroplane using a laser sensor at\n\nxy\n\ndiscrete time intervals\n\nay & =\n1 e Now suppose our sensor is noisy\ne To obtain a less noisy estimate we\nwould like to average several measure-\nments\n\n1M. Khapra (015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "sense, like you are taking multiple measurements and taking averages of those. And of course,",
+    "start": 128.28,
+    "end": 132.6,
+    "ocr_text": "e Suppose we are tracking the position\nRD of an aeroplane using a laser sensor at\n\ndiscrete time intervals\ne Now suppose our sensor is noisy\n\ne To obtain a less noisy estimate we\n\nwould like to average several measure-\n\nments"
+  },
+  {
+    "text": "more recent, recent measurements are more important as compared to the previous measurements.",
+    "start": 132.6,
+    "end": 137.92,
+    "ocr_text": "e Suppose we are tracking the position\nRD of an aeroplane using a laser sensor at\n\ndiscrete time intervals\ne Now suppose our sensor is noisy\n\ne To obtain a less noisy estimate we\n\nwould like to average several measure-\n\nments"
+  },
+  {
+    "text": "So, this is suppose at time step t, say this was t minus 5 seconds and this was t minus",
+    "start": 137.92,
+    "end": 143.88,
+    "ocr_text": "Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\n\nwould like to average several measure-\nments\n\nMore recent measurements are more\n\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "5 minutes, suppose. So, obviously, you would not want to take, give a very large weight",
+    "start": 143.88,
+    "end": 148.84,
+    "ocr_text": "Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\n\nwould like to average several measure-\nments\n\nMore recent measurements are more\n\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "is to the measurement that you have taken t minus 5 minutes back, because the plane would",
+    "start": 148.84,
+    "end": 152.64,
+    "ocr_text": "e@ Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\ne Now suppose our sensor is noisy\n\ne To obtain a less noisy estimate we\nwould like to average several measure-\nments\n\ne More recent measurements are more\nimportant so we would like to take a\nweighted average\n\n1M. Khapra 015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "have moved by a lot by that time. So, it rely more on the recent measurements and less",
+    "start": 152.64,
+    "end": 156.92,
+    "ocr_text": "e@ Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\ne Now suppose our sensor is noisy\n\ne To obtain a less noisy estimate we\nwould like to average several measure-\nments\n\ne More recent measurements are more\nimportant so we would like to take a\nweighted average\n\n1M. Khapra 015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "on the previous measurements. So, now the mathematical way of",
+    "start": 156.92,
+    "end": 160.88,
+    "ocr_text": "Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\nwould like to average several measure-\nments\n\nMore recent measurements are more\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "fighting this is that, you know the positions or the readings that you have taken at time",
+    "start": 160.96,
+    "end": 167.0,
+    "ocr_text": "Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\nwould like to average several measure-\nments\n\nMore recent measurements are more\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "steps 1, 2, 3 up to time step t, you are interested in the revised estimation of this",
+    "start": 167.0,
+    "end": 172.44,
+    "ocr_text": "Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\nwould like to average several measure-\nments\n\nMore recent measurements are more\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "measurement. So, you have taken some measurement at time step t and you want a revised measurement",
+    "start": 172.44,
+    "end": 176.6,
+    "ocr_text": "Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\nwould like to average several measure-\nments\n\nMore recent measurements are more\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "of that. And the way you are going to compute that is, you are going to take a weighted average.",
+    "start": 176.6,
+    "end": 181.64,
+    "ocr_text": ">.\nye =\n\noo\n\na=0\n\nSuppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\n\nwould like to average several measure-\nments\n\nMore recent measurements are more\n\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "So, W is the weight of all the previous measurements that you have taken. So, the measurement that",
+    "start": 181.64,
+    "end": 186.76,
+    "ocr_text": ">.\nye =\n\noo\n\na=0\n\nSuppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\n\nwould like to average several measure-\nments\n\nMore recent measurements are more\n\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "you took at t minus 1, t minus 2, t minus 3 all the way up to t minus infinity. And for",
+    "start": 186.76,
+    "end": 192.44,
+    "ocr_text": "e Suppose we are tracking the position\ni - .\niN iN of an aeroplane using a laser sensor at\ndiscrete time intervals\n\ne@ Now suppose our sensor is noisy\n\ne To obtain a less noisy estimate we\n\nwould like to average several measure-\n\n~o\nsie ments\n= €t gf0—q =\na=0- = e More recent measurements are more\n\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "each of them, we would have a weight associated with this. So, this operation, this thing,",
+    "start": 192.44,
+    "end": 198.6,
+    "ocr_text": "e Suppose we are tracking the position\ni - .\niN iN of an aeroplane using a laser sensor at\ndiscrete time intervals\n\ne@ Now suppose our sensor is noisy\n\ne To obtain a less noisy estimate we\n\nwould like to average several measure-\n\n~o\nsie ments\n= €t gf0—q =\na=0- = e More recent measurements are more\n\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "you can write it as the following operation that you have a vector of measurements or an",
+    "start": 198.6,
+    "end": 204.64,
+    "ocr_text": "Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\n\nwould like to average several measure-\nments\n\nMore recent measurements are more\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "area of measurements, which is x. And you have an area of weights associated with these",
+    "start": 204.64,
+    "end": 210.04,
+    "ocr_text": "Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\n\nwould like to average several measure-\nments\n\nMore recent measurements are more\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "measurements. The farther the measurement from the current time step, hopefully smaller",
+    "start": 210.04,
+    "end": 213.88,
+    "ocr_text": "Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\n\nwould like to average several measure-\nments\n\nMore recent measurements are more\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "is the weight assigned to that. And this operation is known as the convolution operation.",
+    "start": 213.88,
+    "end": 218.0,
+    "ocr_text": "Suppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\n\nwould like to average several measure-\nments\n\nMore recent measurements are more\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "So, you have x, which is the input W is known as the filter and the operation that is defined",
+    "start": 218.0,
+    "end": 224.88,
+    "ocr_text": "convolution\n\nSuppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\n\nwould like to average several measure-\nments\n\nMore recent measurements are more\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "as this equation is known as the convolution operation. But of course, in practice, you",
+    "start": 224.88,
+    "end": 230.16,
+    "ocr_text": "convolution\n\nSuppose we are tracking the position\nof an aeroplane using a laser sensor at\ndiscrete time intervals\n\nNow suppose our sensor is noisy\n\nTo obtain a less noisy estimate we\n\nwould like to average several measure-\nments\n\nMore recent measurements are more\nimportant so we would like to take a\nweighted average"
+  },
+  {
+    "text": "would not do this from infinity, you would probably keep a window. You will see that",
+    "start": 230.16,
+    "end": 233.84,
+    "ocr_text": "e@ In practice, we would only sum over a\nsmall window\n\n3 > L1—aW—a\n\na=0"
+  },
+  {
+    "text": "I will rely on the previous six measurements, that means, whatever I took at t minus 1",
+    "start": 233.84,
+    "end": 237.72,
+    "ocr_text": "e@ In practice, we would only sum over a\nsmall window\n\n3 > L1—aW—a\n\na=0"
+  },
+  {
+    "text": "second, t minus 2 second up to t minus 6 seconds. Beyond that, it does not really make",
+    "start": 237.72,
+    "end": 242.0,
+    "ocr_text": "e@ In practice, we would only sum over a\nsmall window\n\n7 iol » Uj—-aW—a\n\na=0"
+  },
+  {
+    "text": "sense. So, let us see how this computation happens. So, this weight array. So, now what",
+    "start": 242.0,
+    "end": 246.56,
+    "ocr_text": "e@ In practice, we would only sum over a\nsmall window\n\n7 iol » Uj—-aW—a\n\na=0"
+  },
+  {
+    "text": "would be the dimension of this weight array, how many entries would it have? 7, 0 to 6.",
+    "start": 246.56,
+    "end": 252.36,
+    "ocr_text": "e@ In practice, we would only sum over a\n\n6 < small window\n\nss > Uy,—-qW—a . .\ne@ The weight array (w) is known as the\nfilter"
+  },
+  {
+    "text": "So, 7 entries. And this is what my situation looks like. So, this is the x, the measurements",
+    "start": 252.36,
+    "end": 260.64,
+    "ocr_text": "e@ In practice, we would only sum over a\n\n6 < small window\n\nss > Uy,—-qW—a . .\ne@ The weight array (w) is known as the\nfilter"
+  },
+  {
+    "text": "which I have taken using the laser. So, I have taken some measurements. Now, I am at a",
+    "start": 260.64,
+    "end": 265.64,
+    "ocr_text": "a=0\nweg Woy Wig WHR Wey Wy wo\nW}0.01| 0.01 /0.02}0.02) 0.04] 0.4 | 0.5\n\n@ In practice, we would only sum over a\nsmall window\n\ne@ The weight array (w) is known as the\nfilter\n@ We just slide the filter over the input and\n\ncompute the value of s; based on a win\ndow around x;\n\nX\\ | 1.00] 1.10) 1.20] 1.40] 1.70) 1 80/1 90 | 2.10 | 2.20 | 2.40 | 2.50] 2.70\nBy rf 80,\n$6 = LoWo + LeW-1 + Law—2 + {Wx + Law—4 + U5 W—5 + LEW 6"
+  },
+  {
+    "text": "particular time step and I want to make a revised estimate. So, I have this x t and from",
+    "start": 265.64,
+    "end": 272.12,
+    "ocr_text": "e@ In practice, we would only sum over a\n6\n\nsmall window\nod > vy—aW—a . .\nrf e@ The weight array (w) is known as the\na= : =\nfilter\n\n@ We just slide the filter over the input and\ncompute the value of s; based on a win\ndow around wx;\n\nWig Wo Wo4 Wg WH Wi wo\n\nW}0.01| 0.01 /0.02}0.02) 0.04] 0.4 | 0.5\n\n1.00} 1.10) 1.20}1.40}1 70/1 80) 1.90) 2.1\n\n7s\n\nSs 1.80\n\n2.20 | 2.40 | 2.50| 2.70\n\n$6 = L6Wo + LeW-1 + Vaw—2 + L3W—3 + LqwW—4 + Le W—5 + LEW 6\n\nS7015 (Deep"
+  },
+  {
+    "text": "that I want to compute st. And the way I am going to do that is by taking a weighted average",
+    "start": 272.12,
+    "end": 277.84,
+    "ocr_text": "e@ In practice, we would only sum over a\n6\n\nsmall window\nod > vy—aW—a . .\nrf e@ The weight array (w) is known as the\na= : =\nfilter\n\n@ We just slide the filter over the input and\ncompute the value of s; based on a win\ndow around wx;\n\nWig Wo Wo4 Wg WH Wi wo\n\nW}0.01| 0.01 /0.02}0.02) 0.04] 0.4 | 0.5\n\n1.00} 1.10) 1.20}1.40}1 70/1 80) 1.90) 2.1\n\n7s\n\nSs 1.80\n\n2.20 | 2.40 | 2.50| 2.70\n\n$6 = L6Wo + LeW-1 + Vaw—2 + L3W—3 + LqwW—4 + Le W—5 + LEW 6\n\nS7015 (Deep"
+  },
+  {
+    "text": "of all these previous measurements. Is the setup clear to everyone? And now, this is what",
+    "start": 277.84,
+    "end": 284.52,
+    "ocr_text": "———__\n0.01) 0.02}0.02|}0.04) 0.4 | 0.5\n\ne@ In practice, we would only sum over a\nsmall window\n\n@ The weight array (w) is known as the\nfilter\n@ We just slide the filter over the input and\n\ncompute the value of s; based on a win\ndow around x;\n\n2.20 | 2.40\n\n2.50) 2.70.\n\n$6 = LEW\n\n+ t5 Wo\n\n+ egw\n\n1.80\n\nSy\n\n2+ &3wW\n\n+ gw\n\n4+ %5Ww—5\n\n+ 5 W—6\n\nS7015 (Deep"
+  },
+  {
+    "text": "my formula is going to be. So, the revised estimate of s 6 is going to be whatever was",
+    "start": 284.52,
+    "end": 290.4,
+    "ocr_text": "———__\n0.01) 0.02}0.02|}0.04) 0.4 | 0.5\n\ne@ In practice, we would only sum over a\nsmall window\n\n@ The weight array (w) is known as the\nfilter\n@ We just slide the filter over the input and\n\ncompute the value of s; based on a win\ndow around x;\n\n2.20 | 2.40\n\n2.50) 2.70.\n\n$6 = LEW\n\n+ t5 Wo\n\n+ egw\n\n1.80\n\nSy\n\n2+ &3wW\n\n+ gw\n\n4+ %5Ww—5\n\n+ 5 W—6\n\nS7015 (Deep"
+  },
+  {
+    "text": "x 6 into w 0. That means, the weight assigned to the current time step. x 5 into w minus",
+    "start": 290.4,
+    "end": 297.8,
+    "ocr_text": "@ In practice, we would only sum over a\n\n6 small window\ns.= > vi—-aW—a . .\nA e@ The weight array (w) is known as the\na= . :\nfilter\n\n@ We just slide the filter over the input and\na, compute the valuc of s; based on a win\n\nia dow around x;\nwa Woy wz Wy wo\n\nwig Woy we 2\n\n'}0.01| 0.01 | 0.02}0.02]0.04) 0.4 | 0.5\n— Se\n(A seterriran ran rope 10| 2.20 2.40] 2.50] 2.70\net\nSs fi 80,\nSy\n\nS65 = LEWo + 1+ caweg + e3w—3 + Lawe4 + UpWo5 + eoW-6"
+  },
+  {
+    "text": "1, that means, weight assigned to the time step minus 1, x 4 into minus 2 and so on. So,",
+    "start": 297.8,
+    "end": 302.96,
+    "ocr_text": "@ In practice, we would only sum over a\n\n7 small window\ns.= > vy—aW—a . .\n6 e@ The weight array (w) is known as the\na= . 8\nfilter\n\n@ We just slide the filter over the input and\ncompute the value of s; based on a win-\n\ndow around x;\n\nw\n\n6 Woy WH4 Wa\n\n710.0\n\n0.01 0.02} 0.02 0.04} 0.4 | 0.5\n\n|\n(9 setemrirzn rane of 10| 2.20| 2.40] 2.50] 2.70\n\nS 1.80,\n\nSy\n\n$6 = LoWo + LeW-1 + Law—2 + U3W—3 + Law—4 + LHW 5 + LGW 6\n\n©S7015 (Deep Learning) : Leetu"
+  },
+  {
+    "text": "you get this. So, I have these 7 weights and I will multiply with them with the 7 previous",
+    "start": 302.96,
+    "end": 307.76,
+    "ocr_text": "@ In practice, we would only sum over a\n\n7 small window\ns.= > vy—aW—a . .\n6 e@ The weight array (w) is known as the\na= . 8\nfilter\n\n@ We just slide the filter over the input and\ncompute the value of s; based on a win-\n\ndow around x;\n\nw\n\n6 Woy WH4 Wa\n\n710.0\n\n0.01 0.02} 0.02 0.04} 0.4 | 0.5\n\n|\n(9 setemrirzn rane of 10| 2.20| 2.40] 2.50] 2.70\n\nS 1.80,\n\nSy\n\n$6 = LoWo + LeW-1 + Law—2 + U3W—3 + Law—4 + LHW 5 + LGW 6\n\n©S7015 (Deep Learning) : Leetu"
+  },
+  {
+    "text": "readings, 1 is to 1 multiplication and I will get the weighted average. And using that,",
+    "start": 307.76,
+    "end": 312.8,
+    "ocr_text": "e@ In practice, we would only sum over a\n\nW small window\ns.= > vi—-aW—a . A\n6 e@ The weight array (w) is known as the\na= : 8\nfilter\n\n@ We just slide the filter over the input and\ncompute the value of s; based on a win-\n\ndow around wx;\n\nw\n\n6 Wo5\n\n7} 0.01} 0.01 | 0.02 | 0.02\n\norirset toe 2 10| 2.20 | 2.40 | 2.50 | 2. 70)\n\net\ns 1.80 |\nSt\n\n$6 = L6Wo + LeW—1 + Vaw—2 + L3W—3 + Lqw—4 + Le Wo5 + LEW 6\n\nho M. Khapre ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "I get a revised estimate. Now, I want to get a revised estimate for the next entry. How",
+    "start": 312.8,
+    "end": 317.88,
+    "ocr_text": "e@ In practice, we would only sum over a\n\nW small window\ns.= > vi—-aW—a . A\n6 e@ The weight array (w) is known as the\na= : 8\nfilter\n\n@ We just slide the filter over the input and\ncompute the value of s; based on a win-\n\ndow around wx;\n\nw\n\n6 Wo5\n\n7} 0.01} 0.01 | 0.02 | 0.02\n\norirset toe 2 10| 2.20 | 2.40 | 2.50 | 2. 70)\n\net\ns 1.80 |\nSt\n\n$6 = L6Wo + LeW—1 + Vaw—2 + L3W—3 + Lqw—4 + Le Wo5 + LEW 6\n\nho M. Khapre ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "will I get it? I will just slide this weight matrix. So, I will just slide it by 1. I will",
+    "start": 317.88,
+    "end": 323.32,
+    "ocr_text": "e@ In practice, we would only sum over a\n\n6 small window\nod > vi-aW—a A .\n6 @ The weight array (w) is known as the\na= : 8\nfilter\n\n@ We just slide the filter over the input and\nSy compute the value of s; based on a win-\n\ndow around «x\n\n0.01 0.02}0.02|0.04) 0.4 | 0.5\n\nw\n\n6 Ws\n\n7} 0.0\n\nQe Zl 7 Tht st ath 2 10} 2.20 | 2.40} 2.50] 2.70\n\nce ae\n\ns (.s0\nSk\n\n$6 = LoWo + L5W-1 + Law—2 + L3W—3 + Law—4 + L5W 5 + LGW 6\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "again do the same computation and get the revised measurements. Again for the next entry,",
+    "start": 323.32,
+    "end": 328.12,
+    "ocr_text": "e@ In practice, we would only sum over a\n\n6 small window\nod > vi-aW—a A .\n6 @ The weight array (w) is known as the\na= : 8\nfilter\n\n@ We just slide the filter over the input and\nSy compute the value of s; based on a win-\n\ndow around «x\n\n0.01 0.02}0.02|0.04) 0.4 | 0.5\n\nw\n\n6 Ws\n\n7} 0.0\n\nQe Zl 7 Tht st ath 2 10} 2.20 | 2.40} 2.50] 2.70\n\nce ae\n\ns (.s0\nSk\n\n$6 = LoWo + L5W-1 + Law—2 + L3W—3 + Law—4 + L5W 5 + LGW 6\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "I will slide it by 1. Slide it by 1, slide it by 1 and I will keep getting these entries.",
+    "start": 328.12,
+    "end": 332.88,
+    "ocr_text": "e@ In practice, we would only sum over a\n\n6 small window\nss > U—-aW—a . .\n6 e@ The weight array (w) is known as the\na= . 2\nfilter\n@ We just slide the filter over the input and\ncompute the value of s; based on a win\ndow around x;\nWie Woy Woy Wg WH2 WH Wo\nWw 0.01} 0.01 }0.02/0.02)0.04]0.4 |0.5\n\nX | 1.00] 1.10) 1.20} 1.40) 1.70) 1.80} 1.90 | 2.10 | 2.20 | 2.40 | 2.50] 2.70\n\nSs 1.80} 1.96] 2.11) 2.16\n\n$6 = LEWo + L5W-1 + LaW—2 + €3W—3 + Law—4 + U5 W 5 + LEW 6"
+  },
+  {
+    "text": "So, everyone gets this setup. How do you do the convolution operation? It is basically",
+    "start": 332.88,
+    "end": 336.44,
+    "ocr_text": "e@ In practice, we would only sum over a\n\n6 small window\nss > U—-aW—a . .\n6 e@ The weight array (w) is known as the\na= . 2\nfilter\n@ We just slide the filter over the input and\ncompute the value of s; based on a win\ndow around x;\nWie Woy Woy Wg WH2 WH Wo\nWw 0.01} 0.01 }0.02/0.02)0.04]0.4 |0.5\n\nX | 1.00] 1.10) 1.20} 1.40) 1.70) 1.80} 1.90 | 2.10 | 2.20 | 2.40 | 2.50] 2.70\n\nSs 1.80} 1.96] 2.11) 2.16\n\n$6 = LEWo + L5W-1 + LaW—2 + €3W—3 + Law—4 + U5 W 5 + LEW 6"
+  },
+  {
+    "text": "a weighted average of the previous entries. So, here the input as well as the kernel is",
+    "start": 336.44,
+    "end": 344.12,
+    "ocr_text": "e@ In practice, we would only sum over a\n6 small window\n5. = > vi —-aW—a . ;\n6 e@ The weight array (w) is known as the\na= ; 8\nfilter\n@ We just slide the filter over the input and\ncompute the value of s; based on a win\ndow around x;\nWig Woy Wa Woy WZ Ww) wo\nWw 0.01/0.01/0.02/0.02 0.01} 0.4/0.5 /@ Here the input (and the kernel) is one\ndimensional\nX } 1.00} 1.10) 1.20] 1.40} 1.70} 1.80) 1.90) 2.10] 2.20 | 2.40] 2.50) 2.70\n$ 1.80) 1.96) 2.11 2.16] 2.28] 2.42\n\n$6 = LoWo + L5W-1 + LaW—2 + L3W—3 + Law—4 + LHW 5 + LGW 6"
+  },
+  {
+    "text": "kind of one dimensional. So, you have, I mean, it is, so you do not have a 2D input here.",
+    "start": 344.12,
+    "end": 350.0,
+    "ocr_text": "e@ In practice, we would only sum over a\n6 small window\n5. = > vi —-aW—a . ;\n6 e@ The weight array (w) is known as the\na= ; 8\nfilter\n@ We just slide the filter over the input and\ncompute the value of s; based on a win\ndow around x;\nWig Woy Wa Woy WZ Ww) wo\nWw 0.01/0.01/0.02/0.02 0.01} 0.4/0.5 /@ Here the input (and the kernel) is one\ndimensional\nX } 1.00} 1.10) 1.20] 1.40} 1.70} 1.80) 1.90) 2.10] 2.20 | 2.40] 2.50) 2.70\n$ 1.80) 1.96) 2.11 2.16] 2.28] 2.42\n\n$6 = LoWo + L5W-1 + LaW—2 + L3W—3 + Law—4 + LHW 5 + LGW 6"
+  },
+  {
+    "text": "You just have a single dimensional input here. Can you use a convolution operation on a 2D",
+    "start": 350.0,
+    "end": 356.08,
+    "ocr_text": "@ In practice, we would only sum over a\n6 small window\ns.= > v1—aW—a : .\n6 e The weight array (w) is known as the\na= . 8\nfilter\n@ We just slide the filter over the input and\ncompute the value of s; based on a win\ndow around x;\nWie Woy Wa Woy Wp Wi) wo\nWw |0.01/0.01/0.02|0.02/0.01) 0.4 }0.5 |@ Here the input (and the kernel) is one\ndimensional\nx |1.00/1.10/1.20]1.40/ 1.70] 1.80] 1.90] 2.10] 2.20] 2.40) 2.50) 2.70\ns 1.80) 1.96} 2.11) 2.16] 2.28] 2.42\n\n$6 = L6Wo + LeW—1 + Vaw—2 + L3W—3 + Lqw—4 + LHe Wo5 + LEW 6"
+  },
+  {
+    "text": "input also? Do you know of any 2D inputs? Images, right. So, we can think of images as 2D",
+    "start": 356.08,
+    "end": 364.28,
+    "ocr_text": "In practice, we would only sum over a\n\n6 small window\ns.= Soa aW—a . .\n= @ The weight array (w) is known as the\nfilter\n@ We just slide the filter over the input and\ncompute the value of s; based on a win\ndow around x;\nwig Wop Woi4 WZ Wiz Wy wo\nWw 0.01/0.01/0.02]0.02 0.01) 0.4 0.5 |@ Here the input (and the kernel) is one\n\ndimensional\n\nX | 1.00} 1.10) 1.20] 1.40) 1.70) 1.80) 1.90/2.10| 2.20) 2.40] 2.50)2.70)@ Can we use a convolutional operation on\na 2D input also?\n\nSs 1.80} 1.96] 2.11 | 2.16) 2.28] 2.42\n\n$6 = LoWo + L5W-1 + LaW—2 + L3W—3 + Law 4 + LHW 5 + LEW 6"
+  },
+  {
+    "text": "inputs. Now, again I am trying to do the same thing. The setup is the same. The story",
+    "start": 364.28,
+    "end": 368.4,
+    "ocr_text": "In practice, we would only sum over a\n\n6 small window\ns.= Soa aW—a . .\n= @ The weight array (w) is known as the\nfilter\n@ We just slide the filter over the input and\ncompute the value of s; based on a win\ndow around x;\nwig Wop Woi4 WZ Wiz Wy wo\nWw 0.01/0.01/0.02]0.02 0.01) 0.4 0.5 |@ Here the input (and the kernel) is one\n\ndimensional\n\nX | 1.00} 1.10) 1.20] 1.40) 1.70) 1.80) 1.90/2.10| 2.20) 2.40] 2.50)2.70)@ Can we use a convolutional operation on\na 2D input also?\n\nSs 1.80} 1.96] 2.11 | 2.16) 2.28] 2.42\n\n$6 = LoWo + L5W-1 + LaW—2 + L3W—3 + Law 4 + LHW 5 + LEW 6"
+  },
+  {
+    "text": "just changes from laser to a camera now. So, I have taken an image. Maybe the image was",
+    "start": 368.4,
+    "end": 373.64,
+    "ocr_text": "e We can think of images as 2D inputs\n\n015 (Deep"
+  },
+  {
+    "text": "captured and I am not very confident about all the pixels that I have captured. So, now",
+    "start": 373.64,
+    "end": 379.0,
+    "ocr_text": "e We can think of images as 2D inputs\n\n015 (Deep"
+  },
+  {
+    "text": "for any given pixel, I want to re-estimate it using its neighborhood. That is what I want",
+    "start": 379.0,
+    "end": 386.72,
+    "ocr_text": "e@ We can think of images as 2D inputs"
+  },
+  {
+    "text": "to do. So, this is the pixel and I am going to look at some neighborhood around it. So,",
+    "start": 386.72,
+    "end": 391.88,
+    "ocr_text": "e We can think of images as 2D inputs\n\n(Deep"
+  },
+  {
+    "text": "every cell here is one pixel. Just assume that every cell here is one pixel. So, now",
+    "start": 391.88,
+    "end": 396.32,
+    "ocr_text": "e We can think of images as 2D inputs\n\n(Deep"
+  },
+  {
+    "text": "I am going to re-estimate this pixel by taking a weighted average of all its neighborhoods.",
+    "start": 396.32,
+    "end": 401.4,
+    "ocr_text": "e@ We can think of images as 2D inputs\n\nMitesh M. Kh 'S7015 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "So, now can you tell me what is my filter going to look like in this particular case? My",
+    "start": 401.4,
+    "end": 406.48,
+    "ocr_text": "e@ We can think of images as 2D inputs\n\nMitesh M. Kh 'S7015 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "filter would be just 3 cross 3, right. So, whatever neighbors I want to average on, for",
+    "start": 406.48,
+    "end": 409.96,
+    "ocr_text": "e We can think of images as 2D inputs\n\nMitesh M. Khapra ©S7015 (Deep"
+  },
+  {
+    "text": "every neighbor I want to wait. So, if I am going to average on a neighborhood of 3 cross",
+    "start": 409.96,
+    "end": 414.08,
+    "ocr_text": "e We can think of images as 2D inputs\n\nMitesh M. Khapra ©S7015 (Deep"
+  },
+  {
+    "text": "3, then for each of these I will want to wait. So, my filter would also be of size 3 cross",
+    "start": 414.08,
+    "end": 418.04,
+    "ocr_text": "e We can think of images as 2D inputs\n\nMitesh M. Khapra ©S7015 (Deep"
+  },
+  {
+    "text": "3. How many if you get this? So, we now like to use a 2D filter which would be m cross",
+    "start": 418.04,
+    "end": 423.8,
+    "ocr_text": "e@ We can think of images as 2D inputs\n\nMitesh M. Khapra CS7015 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "m. And in general it would be m cross m. So, it would always be a square filter, but I am",
+    "start": 423.96,
+    "end": 429.4,
+    "ocr_text": "e@ We can think of images as 2D inputs\n\nMitesh M. Khapra CS7015 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "just taking the case. Now, what this nasty looking formula is doing, right. So, I have a",
+    "start": 429.4,
+    "end": 436.08,
+    "ocr_text": "e@ We can think of images as 2D inputs\n\ne We would now like to use a 2D filter\n(nxn)\n\ne First let us see what the 2D formula\nlooks like\n\nmond\n\nSij = (I* K),, =Sovo4n aj—bKa,b\n\na=0 b=0\n\n(Deep Learning) : L"
+  },
+  {
+    "text": "particular pixel. So, this is an image. So, I will refer to this pixel as Iij. So, it is",
+    "start": 436.08,
+    "end": 443.48,
+    "ocr_text": "e@ We can think of images as 2D inputs\ne We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\nmond\n\n=(*K),; =Sovo4n ag -bKap\n\na=0 b=0"
+  },
+  {
+    "text": "the Ijth entry in the image. I want to re-estimate for that. I want an Sij for that. So, the way",
+    "start": 443.48,
+    "end": 450.88,
+    "ocr_text": "e@ We can think of images as 2D inputs\ne We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\nmond\n\n=(*K),; =Sovo4n ag -bKap\n\na=0 b=0"
+  },
+  {
+    "text": "I am going to do that is, I am going to look at m rows and n columns before it, right.",
+    "start": 450.88,
+    "end": 457.88,
+    "ocr_text": "e We can think of images as 2D inputs\ne We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\nmond\n\n()- (I«K),; =Sovor ag bWab\na=0 b=0\n\n7015 (Deep Learnin"
+  },
+  {
+    "text": "So, I am going to look at this neighborhood of m cross m. And for each of these I would",
+    "start": 458.84,
+    "end": 465.52,
+    "ocr_text": "e We can think of images as 2D inputs\ne We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\n7 (mW\na . X -\nb> (I«K),; = Ti-ag—pKa,p\n(\\ 0 b=0\n\n7015 (Deep Learnin Leeture 11"
+  },
+  {
+    "text": "have a weight associated with it. So, if I am looking at say for example, this was 4,",
+    "start": 465.52,
+    "end": 470.52,
+    "ocr_text": "e@ We can think of images as 2D inputs\ne@ We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like"
+  },
+  {
+    "text": "4, this pixel was 4, 4. Then I will look at 4 minus 1, 4 minus 1. So, that would be",
+    "start": 471.76,
+    "end": 479.0,
+    "ocr_text": "e@ We can think of images as 2D inputs\ne@ We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like"
+  },
+  {
+    "text": "I3, 3. So, I will look at that neighbor. And with that neighbor I would have some weight",
+    "start": 479.0,
+    "end": 484.32,
+    "ocr_text": "e We can think of images as 2D inputs\ne We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\n(R= LE ED\n\n4-1 44\n\n015 (Deep Learnir"
+  },
+  {
+    "text": "associated. Do you get that? How this formula expands? So, this formula would have m cross",
+    "start": 484.32,
+    "end": 489.32,
+    "ocr_text": "e We can think of images as 2D inputs\ne We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\n(R= LE ED\n\n4-1 44\n\n015 (Deep Learnir"
+  },
+  {
+    "text": "n terms. For every term you would have a have a weight. And that way you can just represented",
+    "start": 489.32,
+    "end": 494.28,
+    "ocr_text": "e@ We can think of images as 2D inputs\ne@ We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\n(B= ces iva iD)\n\n4-1 44\n— 33 K,,\n\nMitesh M. Kh"
+  },
+  {
+    "text": "as this filter matrix. So, get this what this formula is doing. It looks a bit nasty,",
+    "start": 494.28,
+    "end": 499.28,
+    "ocr_text": "e@ We can think of images as 2D inputs\ne@ We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\n(B= ces iva iD)\n\n4-1 44\n— 33 K,,\n\nMitesh M. Kh"
+  },
+  {
+    "text": "but it is just the weighted average of all the neighborhood that you have. And the neighborhood",
+    "start": 499.28,
+    "end": 503.48,
+    "ocr_text": "e We can think of images as 2D inputs\ne We would now like to use a 2D filter\n(mxn)\n\ne First let us see what the 2D formula\nlooks like\n\na=0 b=0\n4 Pa"
+  },
+  {
+    "text": "is a two dimensional neighborhood in this case. How many if you get this properly? Now,",
+    "start": 503.48,
+    "end": 508.12,
+    "ocr_text": "e We can think of images as 2D inputs\ne We would now like to use a 2D filter\n(mxn)\n\ne First let us see what the 2D formula\nlooks like\n\na=0 b=0\n4 Pa"
+  },
+  {
+    "text": "this in this formula actually I am looking at minus a and minus b. That means I am looking",
+    "start": 508.12,
+    "end": 512.08,
+    "ocr_text": "e@ We can think of images as 2D inputs\ne@ We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\na=0 b=0\n, 4 att\n\n33 K,,\n\nMitesh M. Kh"
+  },
+  {
+    "text": "at previous neighbors, right. Now, you should have these questions, right. Why previous neighbors?",
+    "start": 512.08,
+    "end": 517.08,
+    "ocr_text": "e@ We can think of images as 2D inputs\ne@ We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\na=0 b=0\n, 4 att\n\n33 K,,\n\nMitesh M. Kh"
+  },
+  {
+    "text": "Why not future neighbors? So, why am I not looking at this neighborhood? So, there is no",
+    "start": 517.08,
+    "end": 521.92,
+    "ocr_text": "e We can think of images as 2D inputs\n\ne We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\n(B)- 79. - Tiny fey)\n\na=0 b=0\n, 4 Pasa"
+  },
+  {
+    "text": "correct answer here. Different convolution operations. I mean different packages use",
+    "start": 521.92,
+    "end": 527.92,
+    "ocr_text": "e We can think of images as 2D inputs\n\ne We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\n(B)- 79. - Tiny fey)\n\na=0 b=0\n, 4 Pasa"
+  },
+  {
+    "text": "different convolution operations, but the most standard one I believe is when you look",
+    "start": 527.92,
+    "end": 532.64,
+    "ocr_text": "We can think of images as 2D inputs\n\nWe would now like to use a 2D filter\n(mmxn)\n\nFirst let us see what the 2D formula\nlooks like\n\nThis formula looks at all the preced-\ning neighbours (i — a,j — b)\n\nmond\n\nSip = (T* BK), = SO SO Lay Kaw\n\na=0 b=0"
+  },
+  {
+    "text": "at the next neighborhood, right. That means you are at this pixel and you will look at",
+    "start": 532.64,
+    "end": 536.96,
+    "ocr_text": "We can think of images as 2D inputs\n\nWe would now like to use a 2D filter\n(mmxn)\n\nFirst let us see what the 2D formula\nlooks like\n\nThis formula looks at all the preced-\ning neighbours (i — a,j — b)\n\nmond\n\nSip = (T* BK), = SO SO Lay Kaw\n\na=0 b=0"
+  },
+  {
+    "text": "this neighborhood. The neighborhood after it, right not the before it. And in fact,",
+    "start": 537.96,
+    "end": 543.96,
+    "ocr_text": "Sy\n\n=(*K),;\n\nmond\n\nSe Peer\n\na=0 b=0\n\ne We can think of images as 2D inputs\n\ne We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\ne This formula looks at all the preced-\ning neighbours (i — a,j — b)\n\ne In practice, we use the following for-\nmula which looks at the succeeding\nneighbours\n\n7015 (Deep Learning"
+  },
+  {
+    "text": "so this is the formula that I am going to look at plus j and plus b. That means I am looking",
+    "start": 543.96,
+    "end": 549.88,
+    "ocr_text": "Sy\n\n=(*K),;\n\nmond\n\nSe Peer\n\na=0 b=0\n\ne We can think of images as 2D inputs\n\ne We would now like to use a 2D filter\n(amxn)\n\ne First let us see what the 2D formula\nlooks like\n\ne This formula looks at all the preced-\ning neighbours (i — a,j — b)\n\ne In practice, we use the following for-\nmula which looks at the succeeding\nneighbours\n\n7015 (Deep Learning"
+  },
+  {
+    "text": "at pixels in the rows after this and in the columns after this picture. All of you get",
+    "start": 549.88,
+    "end": 554.56,
+    "ocr_text": "mond\n\nSy =(* BR) = DY Fn sp Bus\n\na=0 b=0\n\nWe can think of images as 2D inputs\nWe would now like to use a 2D filter\n(amxn)\n\nFirst let us see what the 2D formula\nlooks like\n\nThis formula looks at all the preced-\ning neighbours (i — a,j — b)\n\nIn practice, we use the following for-\nmula which looks at the succeeding\nneighbours"
+  },
+  {
+    "text": "this instead of before. Now, what is even more natural to do? The nav surrounding thing,",
+    "start": 554.56,
+    "end": 558.96,
+    "ocr_text": "mond\n\nSy =(* BR) = DY Fn sp Bus\n\na=0 b=0\n\nWe can think of images as 2D inputs\nWe would now like to use a 2D filter\n(amxn)\n\nFirst let us see what the 2D formula\nlooks like\n\nThis formula looks at all the preced-\ning neighbours (i — a,j — b)\n\nIn practice, we use the following for-\nmula which looks at the succeeding\nneighbours"
+  },
+  {
+    "text": "right. So, I will have this pixel and I look at it is such a way that this pixel is the",
+    "start": 558.96,
+    "end": 562.96,
+    "ocr_text": "e We can think of images as 2D inputs\n\ne We would now like to use a 2D filter\n(mxn\n\ne First let us see what the 2D formula\nlooks like\n\ne This formula looks at all the preced-\ning neighbours (i — a,j — b)\n\ne In practice, we use the following for-\nmula which looks at the succeeding\n\nmond\n\n. = . neighbours\nSy =(E* KB) = DO basin Kaw\n\na=0 b=0 7"
+  },
+  {
+    "text": "center of the neighborhood, right. So, that is what I am going to go towards after a couple",
+    "start": 562.96,
+    "end": 567.2,
+    "ocr_text": "e We can think of images as 2D inputs\n\ne We would now like to use a 2D filter\n(mxn\n\ne First let us see what the 2D formula\nlooks like\n\ne This formula looks at all the preced-\ning neighbours (i — a,j — b)\n\ne In practice, we use the following for-\nmula which looks at the succeeding\n\nmond\n\n. = . neighbours\nSy =(E* KB) = DO basin Kaw\n\na=0 b=0 7"
+  },
+  {
+    "text": "of slides and that is what I will use for all my convolution operations. But in terms of",
+    "start": 567.2,
+    "end": 571.84,
+    "ocr_text": "mond\n\nSy =(U«K), = SO CL bog th Kab\n\na=0 b=0\n\nWe can think of images as 2D inputs\n\nWe would now like to use a 2D filter\n\n(mxn\nFirst\nlooks\nThis\n\nlet us see what the 2D formula\nlike\n\normula looks at all the preced-\n\ning neighbours (i — a,j — b)\n\nIn practice, we use the following for-\n\nmula\nneigh\n\nwhich looks at the succeeding\n\nOurs"
+  },
+  {
+    "text": "textbook definitions, these are the definitions that you will find in textbooks, okay.",
+    "start": 571.84,
+    "end": 575.52,
+    "ocr_text": "mond\n\nSy =(U«K), = SO CL bog th Kab\n\na=0 b=0\n\nWe can think of images as 2D inputs\n\nWe would now like to use a 2D filter\n\n(mxn\nFirst\nlooks\nThis\n\nlet us see what the 2D formula\nlike\n\normula looks at all the preced-\n\ning neighbours (i — a,j — b)\n\nIn practice, we use the following for-\n\nmula\nneigh\n\nwhich looks at the succeeding\n\nOurs"
+  },
+  {
+    "text": "So, let us apply this to a toy example. So, I have this input which is two dimensional",
+    "start": 575.52,
+    "end": 580.84,
+    "ocr_text": "at\n\nOutput\n\nKernel\n\naw+bx+ey+fz\n\ne Let us apply this idea to a toy exam-\n\nple and see the results"
+  },
+  {
+    "text": "input. I have a kernel which is a 2 cross 2 kernel. So, my m is equal to n is equal to",
+    "start": 580.84,
+    "end": 586.84,
+    "ocr_text": "at\n\nOutput\n\nKernel\n\naw+bx+ey+fz\n\ne Let us apply this idea to a toy exam-\n\nple and see the results"
+  },
+  {
+    "text": "2. So, I am going to place this kernel at this location, okay. And then what will I get",
+    "start": 586.84,
+    "end": 594.44,
+    "ocr_text": "Output\n\naw+bx+ey+fz\n\ne Let us apply this idea to a toy exam-\nple and see the results\n\n(Deep"
+  },
+  {
+    "text": "as the output a into w plus b into x plus e into y plus f into sin, right. And I will keep",
+    "start": 594.44,
+    "end": 600.44,
+    "ocr_text": "Output\n\naw+bx+ey+fz\n\ne Let us apply this idea to a toy exam-\nple and see the results\n\n(Deep"
+  },
+  {
+    "text": "sliding this to get the other entries. The observed something about the input and the",
+    "start": 600.44,
+    "end": 605.92,
+    "ocr_text": "e Let us apply this idea to a toy exam-\n\nple and see the results\n\n[|\nBan\n\nOutput\n\naw+bx+ey+iz || bw+cx+fy+gz"
+  },
+  {
+    "text": "output size, the output size has reduced, why we will get back to this. So, right now",
+    "start": 605.92,
+    "end": 613.44,
+    "ocr_text": "Kernel\n\nOutput\n\naw+bx+ey+fz\n\nbw+cex+fy+gz\n\ncw+dx+gy+hz\n\new+fx+iy+jz\n\nfw+yex+tjy+kz\n\ngw+hx+ky+lz\n\ne Let us apply this idea to a toy exam-\nple and see the results"
+  },
+  {
+    "text": "I just need you to know, it is obvious nothing great about it. But I will just get back",
+    "start": 613.44,
+    "end": 616.72,
+    "ocr_text": "Kernel\n\nOutput\n\naw+bx+ey+fz\n\nbw+cex+fy+gz\n\ncw+dx+gy+hz\n\new+fx+iy+jz\n\nfw+yex+tjy+kz\n\ngw+hx+ky+lz\n\ne Let us apply this idea to a toy exam-\nple and see the results"
+  },
+  {
+    "text": "to it more formally later on, okay. So, for the rest of the discussion, we will use the",
+    "start": 616.72,
+    "end": 621.28,
+    "ocr_text": "e For the rest of the discussion we will\nuse the following formula for convolu-\n\ntion"
+  },
+  {
+    "text": "following formula for convolution which is the centered formula, right. So, m by 2 to m",
+    "start": 621.28,
+    "end": 626.32,
+    "ocr_text": "e For the rest of the discussion we will\nuse the following formula for convolu-\n\ntion"
+  },
+  {
+    "text": "by 2 that means, I will be looking at a neighborhood which is centered on the pixel of interest.",
+    "start": 626.32,
+    "end": 631.92,
+    "ocr_text": "e For the rest of the discussion we will\nuse the following formula for convolu-\n\ntion"
+  },
+  {
+    "text": "That is why this minus m by 2 to plus m by 2. Is that fine, okay. So, this is how I am",
+    "start": 631.92,
+    "end": 637.64,
+    "ocr_text": "e For the rest of the discussion we will\nuse the following formula for convolu-\n\ntion"
+  },
+  {
+    "text": "going to look at it. So, this is how I will paste. If this is the pixel of interest which",
+    "start": 637.64,
+    "end": 641.56,
+    "ocr_text": "e For the rest of the discussion we will\nuse the following formula for convolu-\n\ni je 4a, B+ tion\n\ne In other words we will assume that\nthe kernel is centered on the pixel of\ninterest"
+  },
+  {
+    "text": "I want to re-estimate, I will place the kernel such that it this pixel lies at the center",
+    "start": 641.56,
+    "end": 646.04,
+    "ocr_text": "e For the rest of the discussion we will\nuse the following formula for convolu-\n\ni je 4a, B+ tion\n\ne In other words we will assume that\nthe kernel is centered on the pixel of\ninterest"
+  },
+  {
+    "text": "of the kernel, okay. So, you will be looking at both preceding and succeeding neighbors,",
+    "start": 646.04,
+    "end": 651.4,
+    "ocr_text": "e For the rest of the discussion we will\nuse the following formula for convolu-\ntion\n\ne In other words we will assume that\nthe kernel is centered on the pixel of\ninterest\n\n@ So we will be looking at both preceed-\ning and succeeding neighbors"
+  },
+  {
+    "text": "okay. So, let us see some examples of 2D convolution applied to images. So, this is an image, I",
+    "start": 651.4,
+    "end": 659.28,
+    "ocr_text": "e For the rest of the discussion we will\nuse the following formula for convolu-\ntion\n\ne In other words we will assume that\nthe kernel is centered on the pixel of\ninterest\n\n@ So we will be looking at both preceed-\ning and succeeding neighbors"
+  },
+  {
+    "text": "decide to apply the following convolution operation to it. Can you tell me what the resulting",
+    "start": 659.28,
+    "end": 663.68,
+    "ocr_text": "e For the rest of the discussion we will\nuse the following formula for convolu-\ntion\n\ne In other words we will assume that\nthe kernel is centered on the pixel of\ninterest\n\n@ So we will be looking at both preceed-\ning and succeeding neighbors"
+  },
+  {
+    "text": "image would be? Blood. Why blood? They were taking the average, right. So, it would be",
+    "start": 663.68,
+    "end": 669.16,
+    "ocr_text": "blurs the image"
+  },
+  {
+    "text": "blood. You get the intuition. So, this kernel basically I have fitted at every pixel and",
+    "start": 669.16,
+    "end": 674.96,
+    "ocr_text": "blurs the image"
+  },
+  {
+    "text": "I have computed the average around it and placed that pixel by that average value.",
+    "start": 674.96,
+    "end": 678.8,
+    "ocr_text": "blurs the image"
+  },
+  {
+    "text": "And anyway, going to take average things are going to get blurred, right, because all",
+    "start": 678.8,
+    "end": 681.52,
+    "ocr_text": "blurs the image\n\nMitesh M. Kt ©S7015 (Deep Learning)"
+  },
+  {
+    "text": "the sharpness is gone, okay. Now, let us look at this kernel. What will this do? Shop",
+    "start": 681.52,
+    "end": 686.52,
+    "ocr_text": "blurs the image\n\nMitesh M. Kt ©S7015 (Deep Learning)"
+  },
+  {
+    "text": "and why? Because one was blurred or other has to be sharpened. What is happening here?",
+    "start": 686.52,
+    "end": 690.2,
+    "ocr_text": "Mitesh M. Khapra C 5 Leeture 11"
+  },
+  {
+    "text": "It is subtracting the neighbors, right. So, you are taking five times the current pixel",
+    "start": 690.2,
+    "end": 695.48,
+    "ocr_text": "Mitesh M. Khapra C 5 Leeture 11"
+  },
+  {
+    "text": "and subtracting the neighbors from it, right. So, if the neighbors are similar, those would",
+    "start": 695.48,
+    "end": 699.04,
+    "ocr_text": "Mitesh M. Khapra C 5 Leeture 11"
+  },
+  {
+    "text": "get subtracted and this would stand out really, right. Does that make sense, okay. This will",
+    "start": 699.04,
+    "end": 703.52,
+    "ocr_text": "Mitesh M. Khapra C 5 Leeture 11"
+  },
+  {
+    "text": "result in a, but this, okay, on my laptop, this looks like a sharpened image. I do not",
+    "start": 703.52,
+    "end": 708.32,
+    "ocr_text": "Mitesh M. Khapra C 5 Leeture 11"
+  },
+  {
+    "text": "know why it is looking like this here, okay. It is a sharpened image, okay. Just trust me.",
+    "start": 708.32,
+    "end": 711.72,
+    "ocr_text": "Mitesh M. Khapra"
+  },
+  {
+    "text": "You can, so actually a comment, right. So, people who have used adobe or any of these photoshopping",
+    "start": 711.72,
+    "end": 718.32,
+    "ocr_text": "Mitesh M. Khapra"
+  },
+  {
+    "text": "software, right. So, you have this click button right where you say take an image, sharpened,",
+    "start": 718.32,
+    "end": 723.76,
+    "ocr_text": "Mitesh M. Khapra"
+  },
+  {
+    "text": "blur it. So, this is exactly what the tool is doing in the background. It is applying this",
+    "start": 723.76,
+    "end": 727.8,
+    "ocr_text": "Mitesh M. Khapra"
+  },
+  {
+    "text": "convolution operation throughout the image. So, when you say blur, it is basically placing",
+    "start": 727.8,
+    "end": 731.64,
+    "ocr_text": "Mitesh M. Khapra"
+  },
+  {
+    "text": "that convolution operation throughout the image and computing the blurred image and same",
+    "start": 731.64,
+    "end": 735.24,
+    "ocr_text": "Mitesh M. Khapra"
+  },
+  {
+    "text": "for sharpening and all these other special effects that you have. Most of them come out of",
+    "start": 735.24,
+    "end": 739.56,
+    "ocr_text": "Mitesh M. Khapra 5 (De #) : Lecture 11"
+  },
+  {
+    "text": "some convolution operation, okay. So, for example, the next one, what would this do?",
+    "start": 739.56,
+    "end": 745.84,
+    "ocr_text": "Mitesh M. Khapra 5 (De #) : Lecture 11"
+  },
+  {
+    "text": "Okay, so I will give you a hint. When will this result in a zero output? When all the neighbors",
+    "start": 745.84,
+    "end": 753.04,
+    "ocr_text": "Mitesh M. Khapra 5 (De #) : Lecture 11"
+  },
+  {
+    "text": "are the same as this, right. So, then when will it result in non-zero output? When there",
+    "start": 753.04,
+    "end": 758.96,
+    "ocr_text": "Mitesh M. Khapra 5 (De #) : Lecture 11"
+  },
+  {
+    "text": "is a difference, when there is a difference. So, look at this image. Tell me one place",
+    "start": 758.96,
+    "end": 763.0,
+    "ocr_text": "det"
+  },
+  {
+    "text": "where you know that it will result in non-zero output. All the boundaries, right. So, this",
+    "start": 763.0,
+    "end": 767.6,
+    "ocr_text": "det"
+  },
+  {
+    "text": "is basically an edge detector, okay. In the slides it appears properly, okay. So, this is",
+    "start": 767.6,
+    "end": 774.56,
+    "ocr_text": "det"
+  },
+  {
+    "text": "basically an edge detector and you get the intuition that these boundaries where the neighbors",
+    "start": 774.56,
+    "end": 778.44,
+    "ocr_text": "det"
+  },
+  {
+    "text": "are not the same as the current pixel, you will not get a zero value. In this case, when",
+    "start": 778.44,
+    "end": 782.8,
+    "ocr_text": "detects the edges"
+  },
+  {
+    "text": "all the neighbors are the same as the current pixel, so you are taking the sum of the eight",
+    "start": 782.8,
+    "end": 786.76,
+    "ocr_text": "detects the edges"
+  },
+  {
+    "text": "neighbors and subtracting the current value eight times, so that would be zero, right.",
+    "start": 786.76,
+    "end": 791.28,
+    "ocr_text": "detects the edges"
+  },
+  {
+    "text": "Okay, so enough of examples. So, now we will see a working example of a 2D convolution.",
+    "start": 791.28,
+    "end": 796.12,
+    "ocr_text": "detects the edges"
+  },
+  {
+    "text": "So, I just want to drill this idea of what happens when you do a 2D convolution. So, what",
+    "start": 796.12,
+    "end": 801.44,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage"
+  },
+  {
+    "text": "we are going to do is, we have this 3 cross 3 kernel, okay. And assume that every thing",
+    "start": 801.44,
+    "end": 807.72,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage"
+  },
+  {
+    "text": "here is a pixel, okay. Everything here is a pixel. So, I am going to slide this 3 cross 3",
+    "start": 807.72,
+    "end": 813.2,
+    "ocr_text": "one value in the output\n\ne We just slide the kernel over the input\nimage\n\ne Each time we slide the kernel we get"
+  },
+  {
+    "text": "kernel across this filter. Now, when I place the filter once on the image, how many outputs",
+    "start": 813.2,
+    "end": 819.08,
+    "ocr_text": "one value in the output\n\ne We just slide the kernel over the input\nimage\n\ne Each time we slide the kernel we get"
+  },
+  {
+    "text": "do I get? One output. So, if I keep sliding it across the image, I will keep getting one,",
+    "start": 819.08,
+    "end": 824.8,
+    "ocr_text": "one value in the output\n\ne@ We just slide the kernel over the input\nimage\n\ne Each time we slide the kernel we get"
+  },
+  {
+    "text": "one pixel in the output, okay. So, what the resulting thing that I get is known as a feature",
+    "start": 824.8,
+    "end": 830.96,
+    "ocr_text": "one value in the output\n\ne@ We just slide the kernel over the input\nimage\n\ne Each time we slide the kernel we get"
+  },
+  {
+    "text": "map, okay. Because it is the original input that you have taken. For every pixel, you have",
+    "start": 830.96,
+    "end": 837.28,
+    "ocr_text": "one value in the output\n\nimage\n\ne Each time we slide the kernel we get\n\ne@ We just slide the kernel over the input"
+  },
+  {
+    "text": "tried to approximate it or whatever filter weights you have applied, right. It necessarily",
+    "start": 837.28,
+    "end": 841.64,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nMitesh M. Khapra C 5 scarning) : Leeture 11"
+  },
+  {
+    "text": "does not mean that you are taking an average. It could be some weird average of your neighborhood,",
+    "start": 841.64,
+    "end": 846.6,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nMitesh M. Khapra C 5 scarning) : Leeture 11"
+  },
+  {
+    "text": "right. So, you have extracted some features from there. So, for example, in the edge detector",
+    "start": 846.6,
+    "end": 851.0,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nelelelele\\e\\e\\e\\\n\n\\e\\e\\ele\\e\\\n\n\\e\\e\\e\n\n\\ \\elelele\\e\\e\\e\\e\n\n{. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "case, you could think of it that you have extracted the feature that this pixel does not",
+    "start": 851.0,
+    "end": 855.4,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nelelelele\\e\\e\\e\\\n\n\\e\\e\\ele\\e\\\n\n\\e\\e\\e\n\n\\ \\elelele\\e\\e\\e\\e\n\n{. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "lie at a boundary, right. That is why you get the black pixel. Do you get that? Do you",
+    "start": 855.4,
+    "end": 860.88,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nMitesh M. Khapra\n\ning) ; Leeture 11"
+  },
+  {
+    "text": "see this way of interpreting a convolution operation that you are trying to extract some",
+    "start": 860.88,
+    "end": 864.24,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nMitesh M. Khapra\n\ning) ; Leeture 11"
+  },
+  {
+    "text": "features from that neighborhood. So, in this earlier example, whenever you got a black,",
+    "start": 864.24,
+    "end": 869.28,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nMitesh M. Khapra\n\ning) ; Leeture 11"
+  },
+  {
+    "text": "you are basically extracting the feature that this pixel does not lie at a boundary, is",
+    "start": 869.28,
+    "end": 873.36,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nelelelele\\e\\e\n\ne\ne\n\\% [4\n\no\\\n\nele\n\n\\elele\n\nMitesh M. Khapra\n\ning) ; Leeture 11"
+  },
+  {
+    "text": "that okay, fine. So, now you could get one such feature map by using a single 3 cross",
+    "start": 873.36,
+    "end": 878.64,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nelelelele\\e\\e\n\ne\ne\n\\% [4\n\no\\\n\nele\n\n\\elele\n\nMitesh M. Khapra\n\ning) ; Leeture 11"
+  },
+  {
+    "text": "3 convolution operation, okay. If I use multiple such convolution operations, what would happen?",
+    "start": 878.64,
+    "end": 884.84,
+    "ocr_text": "one value in the output\n\nimage\n\ne@ Each time we slide the kernel we get\n\ne@ We just slide the kernel over the input:"
+  },
+  {
+    "text": "I will get multiple feature maps, okay. So, let us try to understand this. What is the",
+    "start": 884.84,
+    "end": 888.92,
+    "ocr_text": "one value in the output\n\nimage\n\ne@ Each time we slide the kernel we get\n\ne@ We just slide the kernel over the input:"
+  },
+  {
+    "text": "dimension of my original image m cross n into 3? Why is it in 3? RGB channels, okay.",
+    "start": 888.92,
+    "end": 896.84,
+    "ocr_text": "e@ We just slide the kernel over the input:\n\nimage\n\ne Each time we slide the kernel we get\n\none value in the output\n\nLeeture 11"
+  },
+  {
+    "text": "RGB is what we will have, right. So, we will have this 3 cross m cross n. So, we will",
+    "start": 897.4,
+    "end": 903.2,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne Each time we slide the kernel we get\none value in the output\n\nMitesh M. Khapra 5 (D wearning) : Leeture 11"
+  },
+  {
+    "text": "return back to this idea. And from now, this one image by using a single kernel. So, this",
+    "start": 903.2,
+    "end": 907.96,
+    "ocr_text": "e@ We just slide the kernel over the input\nimage\n\ne Each time we slide the kernel we get\none value in the output\n\nMitesh M. Khapra 5 (D wearning) : Leeture 11"
+  },
+  {
+    "text": "in fact, in for this figure, right, I am assuming that the input is 1 cross m cross n. I am",
+    "start": 907.96,
+    "end": 912.28,
+    "ocr_text": "one value in the output\n\nimage\n\ne@ We just slide the kernel over the input\ne Each time we slide the kernel we get"
+  },
+  {
+    "text": "not assuming there are 3 channels, although it is a colored image, but just bear with me.",
+    "start": 912.28,
+    "end": 916.2,
+    "ocr_text": "one value in the output\n\nimage\n\ne@ We just slide the kernel over the input\ne Each time we slide the kernel we get"
+  },
+  {
+    "text": "So, it is 1 cross m cross n image. And when I apply a filter, I get a 1 feature map. If",
+    "start": 916.2,
+    "end": 921.64,
+    "ocr_text": "one value in the output\n\nimage\n\ne@ Each time we slide the kernel we get\n\ne@ We just slide the kernel over the input"
+  },
+  {
+    "text": "I apply k such filters, I will get k feature maps. So, 1 feature map could be for the blurring",
+    "start": 921.64,
+    "end": 926.36,
+    "ocr_text": "one value in the output\n\nimage\n\ne@ Each time we slide the kernel we get\n\ne@ We just slide the kernel over the input"
+  },
+  {
+    "text": "one, one could be the sharpening one, one could be the edge detector and so on, right.",
+    "start": 926.36,
+    "end": 931.0,
+    "ocr_text": "e@ We just slide the kernel over the input:\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nelelelelelele\\e\n\n=\n\n-\n\nBESear\n\nie | |\n\nMitesh M. Khapra\n\n7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "There are various such filters that you could apply, okay. Now, in the 1D case, we slide",
+    "start": 931.0,
+    "end": 936.76,
+    "ocr_text": "e@ We just slide the kernel over the input:\nimage\n\ne@ Each time we slide the kernel we get\none value in the output\n\nelelelelelele\\e\n\n=\n\n-\n\nBESear\n\nie | |\n\nMitesh M. Khapra\n\n7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "a 1 dimensional filter over a 1 dimensional input. In the 2D case, we slide a 2 dimensional",
+    "start": 936.76,
+    "end": 942.12,
+    "ocr_text": "Question\n@ Inthe 1D case, we slide a one dimensional\n\nfilter over a one dimensional input\n\ne In the 2D case, we slide a two dimen-\nstional filter over a two dimensional out-\nput"
+  },
+  {
+    "text": "filter on a 2 dimensional input. What would happen in the 3D case? So, now, they are going",
+    "start": 942.12,
+    "end": 946.72,
+    "ocr_text": "Question\n@ Inthe 1D case, we slide a one dimensional\n\nfilter over a one dimensional input\n\ne In the 2D case, we slide a two dimen-\nstional filter over a two dimensional out-\nput"
+  },
+  {
+    "text": "to this RGB images, right. So, they will have 3 cross m cross n as the input. What would",
+    "start": 946.72,
+    "end": 951.12,
+    "ocr_text": "tion\n\n@ Inthe 1D case, we slide a one dimensional\nfilter over a one dimensional input\n\ne@ In the 2D case, we slide a two dimen-\nstional filter over a two dimensional out-\n\nput\n\n@ What would happen in the 3D case?\n\n(Deep"
+  },
+  {
+    "text": "happen in the 3D case? 3D case, not 3D. So, what would a 3D filter look like? Look",
+    "start": 951.12,
+    "end": 957.84,
+    "ocr_text": "tion\n\n@ Inthe 1D case, we slide a one dimensional\nfilter over a one dimensional input\n\ne@ In the 2D case, we slide a two dimen-\nstional filter over a two dimensional out-\n\nput\n\n@ What would happen in the 3D case?\n\n(Deep"
+  },
+  {
+    "text": "like a cuboid, a box basically and we will call it a volume, right, volume because it has",
+    "start": 957.84,
+    "end": 962.8,
+    "ocr_text": "e@ What would a 3D filter look like?\n\nINPUT.\n\nKhapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "a width, it has a height and it will have a depth. So, this is what a 3D filter would look",
+    "start": 962.8,
+    "end": 967.32,
+    "ocr_text": "e@ What would a 3D filter look like?\n\nINPUT.\n\nKhapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "like. I will assume that its depth is the same as the depth of your input. What is the",
+    "start": 967.32,
+    "end": 972.04,
+    "ocr_text": "e@ What would a 3D filter look like?\n\ne It will be 3D and we will refer to it as a volume\n\nINPUT.\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "depth of your input in this case? 3. So, I will assume that the depth of the filter is",
+    "start": 972.04,
+    "end": 975.96,
+    "ocr_text": "e@ What would a 3D filter look like?\n\ne It will be 3D and we will refer to it as a volume\n\nINPUT.\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "the same as the depth of the input and the width and height could be 3 cross 3, 5 cross",
+    "start": 975.96,
+    "end": 981.92,
+    "ocr_text": "e@ What would a 3D filter look like?\n\ne It will be 3D and we will refer to it as a volume"
+  },
+  {
+    "text": "5, 7 cross 7, anything, right. So, we will get into that in more details later on. So,",
+    "start": 981.92,
+    "end": 986.52,
+    "ocr_text": "e@ What would a 3D filter look like?\n\ne It will be 3D and we will refer to it as a volume"
+  },
+  {
+    "text": "once again, we will slide this volume across the entire image, okay. What is the output",
+    "start": 986.52,
+    "end": 993.2,
+    "ocr_text": "e What would a 3D filter look like?\n\ne It will be 3D and we will refer to it as a volume\n\nVA @ Once again we will slide the volume over the\n= 3D input and compute the convolution oper-\nation\noureur\n\nINPUT. Zs"
+  },
+  {
+    "text": "going to be 2D or 3D? Why? So, when I was 1D, I was getting 1D output, when I was 2D,",
+    "start": 993.2,
+    "end": 1002.24,
+    "ocr_text": "e What would a 3D filter look like?\n\ne It will be 3D and we will refer to it as a volume\n\nVA @ Once again we will slide the volume over the\n= 3D input and compute the convolution oper-\nation\noureur\n\nINPUT. Zs"
+  },
+  {
+    "text": "I was getting 2D output, 3D again 2D output, why? Because I have assumed that, no, not",
+    "start": 1002.24,
+    "end": 1008.44,
+    "ocr_text": "a\n\nINPUT.\n\nG\n\nouTPUT\n\ne@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\n\ne Once again we will slide the volume over the\n3D input and compute the convolution oper-\nation"
+  },
+  {
+    "text": "width. The depth of the filter is the same as the depth of the input. So, now you just",
+    "start": 1008.44,
+    "end": 1013.4,
+    "ocr_text": "e@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\n\ne Once again we will slide the volume over the\n3D input and compute the convolution oper-\nation\n\nouTPUT\n\nINPUT."
+  },
+  {
+    "text": "imagine this if you can. Suppose the filter was of depth 2 instead of 3, okay. Then I would",
+    "start": 1013.4,
+    "end": 1021.32,
+    "ocr_text": "e@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\n\ne Once again we will slide the volume over the\n3D input and compute the convolution oper-\nation\n\nouTPUT\n\nINPUT."
+  },
+  {
+    "text": "slide it horizontally first, vertically and then across the depth also. So, then what",
+    "start": 1021.32,
+    "end": 1027.8,
+    "ocr_text": "e@ What would a 3D filter look like?\n\ne It will be 3D and we will refer to it as a volume\n\n~\n\nOnce again we will slide the volume over the\n= 3D input and compute the convolution oper-\nation\n\nouTPUT\n\nINPUT.\n\n=\nBy\nLY.\n\nS\n=\na\n\n1M. Khapra 015 (Deep Li"
+  },
+  {
+    "text": "would the output be in that case? 3 dimensional. 3 dimensional and it would have depth of 2.",
+    "start": 1027.8,
+    "end": 1032.76,
+    "ocr_text": "e@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\n\ne Once again we will slide the volume over the\n3D input and compute the convolution oper-\nation\n\nouTPUT\n\na INPUT\n=\na\n\n1M. Khapra 015 (Deep Li"
+  },
+  {
+    "text": "I will not get that, right. But for this lecture, I am always going to assume that the depth",
+    "start": 1032.76,
+    "end": 1038.28,
+    "ocr_text": "e@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\n\ne Once again we will slide the volume over the\n3D input and compute the convolution oper-\nation\n\nouTPUT\n\na INPUT\n=\na\n\n1M. Khapra 015 (Deep Li"
+  },
+  {
+    "text": "of the filter is equal to the depth of the input, always, right. And that is how it is",
+    "start": 1038.28,
+    "end": 1044.2,
+    "ocr_text": "e@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\ne Once again we will slide the volume over the\n\n3D input and compute the convolution oper-\nation\n\nouTPUT\n\nINPUT."
+  },
+  {
+    "text": "for all the convolution neural networks that we will see. The depth of the input is going",
+    "start": 1044.2,
+    "end": 1047.12,
+    "ocr_text": "e@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\ne Once again we will slide the volume over the\n\n3D input and compute the convolution oper-\nation\n\nouTPUT\n\nINPUT."
+  },
+  {
+    "text": "to be equal to the depth of the filter, rather the depth of the filter is going to be equal",
+    "start": 1047.12,
+    "end": 1051.56,
+    "ocr_text": "e@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\n\ne@ Once again we will slide the volume over the\n3D input and compute the convolution oper-\nation\n\nouTPUT\n\nINPUT.\n\n1M. Khapra 015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "to the depth of the input. So, whenever I apply a 3D filter, I am actually doing a 2D",
+    "start": 1051.56,
+    "end": 1055.96,
+    "ocr_text": "e@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\n\ne@ Once again we will slide the volume over the\n3D input and compute the convolution oper-\nation\n\nouTPUT\n\nINPUT.\n\n1M. Khapra 015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "convolution. Because I am moving only along the width and the height, I am not moving along",
+    "start": 1055.96,
+    "end": 1060.32,
+    "ocr_text": "e@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\ne Once again we will slide the volume over the\n\n3D input and compute the convolution oper-\nation\n\nouTPUT\n\nINPUT.\n\nM. Khapra 15 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "the depth. So, the output is going to be 2D, okay. So, now can I have multiple such filters?",
+    "start": 1060.32,
+    "end": 1068.36,
+    "ocr_text": "e@ What would a 3D filter look like?\ne It will be 3D and we will refer to it as a volume\ne Once again we will slide the volume over the\n\n3D input and compute the convolution oper-\nation\n\nouTPUT\n\nINPUT.\n\nM. Khapra 15 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "Yes. Each filter will give me a 2D output. If I have k such filters, I will have a k cross",
+    "start": 1068.36,
+    "end": 1075.28,
+    "ocr_text": "6\nLe)\n66\n6006\n+6\noee\n6\n606\n66\noee\n¢6\n606\n66\noe\nae\n6006\n66\noe\n6\n0\nourpur\n\nINPUT.\n\nWhat would a 3D filter look like?\n\nIt will be 3D and we will refer to it as a volume\nOnce again we will slide the volume over the\n3D input and compute the convolution oper-\nation\n\nNote that in this lecture we will assume that\nthe filter always extends to the depth of the\nimage\n\nIn effect, we are doing a 2D convolution oper-\nation on a 3D input (because the filter moves\nalong the height and the width but not along\nthe depth)\n\nAs a result the output will be 2D (only width\nand height, no depth)\n\nLeeture 11"
+  },
+  {
+    "text": "2D output, right, k 2D outputs.",
+    "start": 1075.28,
+    "end": 1077.56,
+    "ocr_text": "ae 4 »\nAis x\n| Onlipe oduction’\nhee ani I bi, Ue lg aR\n(C}Ccqeeaman rites BERNE\nRavichandran\n\nMohanarangan"
+  }
+]

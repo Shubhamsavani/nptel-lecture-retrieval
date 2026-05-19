@@ -1,0 +1,1238 @@
+[
+  {
+    "text": "So, let's turn our attention now to weighted graphs.",
+    "start": 0.0,
+    "end": 4.8,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nShortest paths in weighted graphs\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "Graphs in which edges have costs associated with them.",
+    "start": 4.8,
+    "end": 9.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nShortest paths in weighted graphs\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "The most important thing that we can do with weighted graphs is to compute shortest paths.",
+    "start": 9.0,
+    "end": 14.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, let's review what we have seen so far.",
+    "start": 14.0,
+    "end": 17.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, we have been looking at unweighted graphs, that is sets of vertices and sets of edges,",
+    "start": 17.0,
+    "end": 21.5,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "where each edge is just a connection between two vertices.",
+    "start": 21.5,
+    "end": 24.5,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "We have seen two systematic strategies to explore such graphs,",
+    "start": 24.5,
+    "end": 28.5,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "breadth-first search and depth-first search.",
+    "start": 28.5,
+    "end": 31.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "Now, both of these will be linear in the size of the graph,",
+    "start": 31.0,
+    "end": 34.5,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "if we use an adjacency list representation for the edges.",
+    "start": 34.5,
+    "end": 38.5,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "Now, we saw that while we explore a graph using either BFS or DFS from a given vertex,",
+    "start": 38.5,
+    "end": 44.5,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "not only do we discover which vertices are connected to the start vertex,",
+    "start": 44.5,
+    "end": 48.5,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "we can also recover the path back to the start vertex by keeping extra information",
+    "start": 48.5,
+    "end": 52.5,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "such as the parent of each node we visit.",
+    "start": 52.5,
+    "end": 55.5,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "We observed that breadth-first search, because of its layer by layer strategy,",
+    "start": 56.0,
+    "end": 60.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "actually uncovers the shortest distance to every vertex in terms of the number of edges from the start vertex.",
+    "start": 60.0,
+    "end": 67.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "And depth-first search does not find the shortest path.",
+    "start": 67.0,
+    "end": 71.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "It gives us a lot of other information in terms of the order in which we visited.",
+    "start": 71.0,
+    "end": 75.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, by keeping track of the pre and post DFS numbering,",
+    "start": 75.0,
+    "end": 77.5,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 1\n\n|\n|\n|\nDESIGN AND ANALYSIS |\nOF ALGORITHMS\nShortest paths in weighted graphs |\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "we can actually recover structural properties of the graph.",
+    "start": 77.5,
+    "end": 82.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "Now, we look at what happens if we add costs to the edges.",
+    "start": 83.0,
+    "end": 87.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "Now, depending on the application, these costs have several natural interpretations.",
+    "start": 87.5,
+    "end": 91.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "For example, in the initial example of a graph, we looked at an airline routing map.",
+    "start": 91.5,
+    "end": 97.0,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "So, on such a graph, the edge weight, the cost associated with an edge,",
+    "start": 97.0,
+    "end": 103.0,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "could be the ticket price on the flight.",
+    "start": 103.0,
+    "end": 105.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "Or if edges represent roads in a network of highways,",
+    "start": 106.5,
+    "end": 110.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "then we might have a cost representing the toll that one has to pay on a particular segment of road.",
+    "start": 110.5,
+    "end": 115.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "Or if we have a railway network, it might represent the distance between two stations.",
+    "start": 115.5,
+    "end": 121.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "Or on a simple traffic road map of a city,",
+    "start": 121.5,
+    "end": 124.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "it might represent how much time one might expect to take between two intersections at busy times.",
+    "start": 124.5,
+    "end": 130.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "So, in general, a weighted graph is just a normal graph,",
+    "start": 132.5,
+    "end": 136.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "along with an extra function which tells us the cost of each edge.",
+    "start": 136.5,
+    "end": 139.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "It's usual to call this a weight function.",
+    "start": 140.5,
+    "end": 142.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "So, weight function just assigns each edge in each sum number.",
+    "start": 142.5,
+    "end": 145.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "So, let's think of it some real number.",
+    "start": 145.5,
+    "end": 147.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "So, now, if we have a path from V0 to Vn,",
+    "start": 149.5,
+    "end": 153.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "so we have a path from Vc to Vn,",
+    "start": 153.5,
+    "end": 155.5,
+    "ocr_text": "rom inimi"
+  },
+  {
+    "text": "we have a sequence of n edges, V0, V1, V1, V2.",
+    "start": 155.5,
+    "end": 158.5,
+    "ocr_text": "path"
+  },
+  {
+    "text": "Each of these in a weighted graph could have a weight.",
+    "start": 158.5,
+    "end": 161.5,
+    "ocr_text": "path"
+  },
+  {
+    "text": "And an actual thing to do would be to add the cost of these weights.",
+    "start": 161.5,
+    "end": 165.5,
+    "ocr_text": "path"
+  },
+  {
+    "text": "So, supposing these are distances,",
+    "start": 165.5,
+    "end": 167.5,
+    "ocr_text": "path"
+  },
+  {
+    "text": "then the total distance, if we follow this path from V1 to Vn,",
+    "start": 167.5,
+    "end": 170.5,
+    "ocr_text": "path"
+  },
+  {
+    "text": "will be the sum of the distances.",
+    "start": 170.5,
+    "end": 172.5,
+    "ocr_text": "path"
+  },
+  {
+    "text": "If it's a sequence of flights, the total cost that we pay for it,",
+    "start": 172.5,
+    "end": 175.5,
+    "ocr_text": "path"
+  },
+  {
+    "text": "it will be the sum of the cost.",
+    "start": 175.5,
+    "end": 177.5,
+    "ocr_text": "path"
+  },
+  {
+    "text": "So, we will extend weights from edges to paths by just adding up the sum of the weights along each path.",
+    "start": 177.5,
+    "end": 185.5,
+    "ocr_text": "path"
+  },
+  {
+    "text": "And now, an actual problem that we want to solve is to find the shortest path between a given parallel to C.",
+    "start": 185.5,
+    "end": 192.5,
+    "ocr_text": "\\ 50\n\n10 20\n10 5"
+  },
+  {
+    "text": "What is the minimum cost that I can incur to go from V0 to Vn?",
+    "start": 193.5,
+    "end": 198.5,
+    "ocr_text": "\\ 50\n\n10 20\n10 5"
+  },
+  {
+    "text": "So, we have seen before that breadth first search will solve this problem if our cost is in terms of number of edges.",
+    "start": 200.5,
+    "end": 207.5,
+    "ocr_text": "\\ 50\n\n10 20\n10 5"
+  },
+  {
+    "text": "Another way of saying it is that we can assume that each edge has the same cost,",
+    "start": 207.5,
+    "end": 211.5,
+    "ocr_text": "10 20\n10 5"
+  },
+  {
+    "text": "one or any fixed number.",
+    "start": 211.5,
+    "end": 213.5,
+    "ocr_text": "10 20\n10 5"
+  },
+  {
+    "text": "So, that as I traverse more edges, the cost is proportional to number of edges.",
+    "start": 213.5,
+    "end": 217.5,
+    "ocr_text": "10 20\n10 5"
+  },
+  {
+    "text": "But if we do not have this property, the cost can be arbitrary, then breadth first search does not work.",
+    "start": 217.5,
+    "end": 222.5,
+    "ocr_text": "Ye SB\n: 50\n“40 20\n10 5"
+  },
+  {
+    "text": "For instance, in this example, we see that between 1 and 3, there is a direct edge,",
+    "start": 222.5,
+    "end": 227.5,
+    "ocr_text": "Ye SB\n: 50\n“40 20\n10 5"
+  },
+  {
+    "text": "but its weight is 80.",
+    "start": 227.5,
+    "end": 229.5,
+    "ocr_text": "as\n: 50\n\n10 5"
+  },
+  {
+    "text": "And we can do a shorter, per cost path from 1 to 3 by going via 2.",
+    "start": 229.5,
+    "end": 234.5,
+    "ocr_text": "as\n: 50\n\n10 5"
+  },
+  {
+    "text": "So, it has 2 edges, but the total cost is only 10 plus 6, which is 60.",
+    "start": 234.5,
+    "end": 239.5,
+    "ocr_text": "as\n: 50\n\n10 5"
+  },
+  {
+    "text": "So, the shortest path in a weighted graph need not be the shortest in terms of number of edges.",
+    "start": 239.5,
+    "end": 244.5,
+    "ocr_text": "FS fi itt umber\n\n10 20\n10 5"
+  },
+  {
+    "text": "We are talking about the sum of the costs along the edges.",
+    "start": 244.5,
+    "end": 247.5,
+    "ocr_text": "FS fi itt umber\n\n10 20\n10 5"
+  },
+  {
+    "text": "So, we might have longer paths in terms of number of edges, but shorter total cost.",
+    "start": 247.5,
+    "end": 252.5,
+    "ocr_text": "a/\\s\n: 50\n\n10 5"
+  },
+  {
+    "text": "And our goal is to compute such paths regardless of the actual length of the shortest path.",
+    "start": 252.5,
+    "end": 258.5,
+    "ocr_text": "a/\\s\n: 50\n\n10 5"
+  },
+  {
+    "text": "So, we can ask two types of questions regarding shortest paths.",
+    "start": 260.5,
+    "end": 264.5,
+    "ocr_text": "Ir Ne ror 1"
+  },
+  {
+    "text": "One is the so-called single source problem.",
+    "start": 264.5,
+    "end": 267.5,
+    "ocr_text": "Ir Ne ror 1"
+  },
+  {
+    "text": "In the single source shortest path problem, we have a designated place from where we start all our paths.",
+    "start": 267.5,
+    "end": 273.5,
+    "ocr_text": "Ir Ne ror 1"
+  },
+  {
+    "text": "And we want to find the shortest distance to every other path.",
+    "start": 273.5,
+    "end": 276.5,
+    "ocr_text": "on\nror\nitem"
+  },
+  {
+    "text": "Now, this map is very natural application.",
+    "start": 276.5,
+    "end": 279.5,
+    "ocr_text": "on\nror\nitem"
+  },
+  {
+    "text": "So, supposing you are a manufacturer and you have a factory where you make all your items.",
+    "start": 279.5,
+    "end": 284.5,
+    "ocr_text": "on\nror\nitem"
+  },
+  {
+    "text": "Now, you have to distribute these items across the country.",
+    "start": 284.5,
+    "end": 287.5,
+    "ocr_text": "on\nror\nitem"
+  },
+  {
+    "text": "So, how do you find the shortest way to transport your items from the factory,",
+    "start": 287.5,
+    "end": 291.5,
+    "ocr_text": "ror"
+  },
+  {
+    "text": "which is a single point, to all the places where it can be sold, to all the retail outlets?",
+    "start": 291.5,
+    "end": 295.5,
+    "ocr_text": "ror"
+  },
+  {
+    "text": "Or you might be a courier company.",
+    "start": 295.5,
+    "end": 297.5,
+    "ocr_text": "* Tra hed p rom factc ne"
+  },
+  {
+    "text": "Now, a courier company will ship all items to a given state to a centralized office.",
+    "start": 297.5,
+    "end": 302.5,
+    "ocr_text": "* Tra hed p rom factc ne"
+  },
+  {
+    "text": "And from this centralized office, it has to be distributed to all parts of the city.",
+    "start": 302.5,
+    "end": 306.5,
+    "ocr_text": "* Tra hed p rom factc ne"
+  },
+  {
+    "text": "So, how do you compute the shortest paths from the distribution office to all the different addresses,",
+    "start": 306.5,
+    "end": 311.5,
+    "ocr_text": "* Tra hed p rom factc ne"
+  },
+  {
+    "text": "to which the courier items have to be delivered?",
+    "start": 311.5,
+    "end": 315.5,
+    "ocr_text": "* Tra hed p rom factc ne"
+  },
+  {
+    "text": "Another problem would be to compute the shortest distance between any pair of cities, or any pair of vertices.",
+    "start": 315.5,
+    "end": 323.5,
+    "ocr_text": "* Tra hed p rom factc ne"
+  },
+  {
+    "text": "So, this would be a natural problem.",
+    "start": 323.5,
+    "end": 325.5,
+    "ocr_text": "* Tra hed p rom factc ne"
+  },
+  {
+    "text": "For example, if you have a routing network, up an airline or a train network.",
+    "start": 325.5,
+    "end": 329.5,
+    "ocr_text": "* Tra hed p rom factc ne"
+  },
+  {
+    "text": "Now, whenever you want to travel from city A to city B, you would like to compute the shortest path between A and B.",
+    "start": 329.5,
+    "end": 335.5,
+    "ocr_text": "* Tra hed p rom factc ne"
+  },
+  {
+    "text": "For instance, if you use a service like Google Maps and you say that you want to go from a source to a destination,",
+    "start": 335.5,
+    "end": 341.5,
+    "ocr_text": "* For ins shortest pat rom 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "it will try to compute the shortest path and give you the time in terms of walking, driving, etc.",
+    "start": 341.5,
+    "end": 346.5,
+    "ocr_text": "* For ins shortest pat rom 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, we have two different types of problems.",
+    "start": 346.5,
+    "end": 349.5,
+    "ocr_text": "* For ins shortest pat rom 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "One, where we have the single source and we want the shortest path to every destination, but only from that source.",
+    "start": 349.5,
+    "end": 354.5,
+    "ocr_text": "* For ins shortest pat rom 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "And another version, where we want to find the shortest path between every pair of vertices.",
+    "start": 354.5,
+    "end": 361.5,
+    "ocr_text": "* For ins shortest pat rom 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, we will begin by looking at the single source shortest path problem.",
+    "start": 361.5,
+    "end": 365.5,
+    "ocr_text": "* For ins shortest pat rom 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, we have to design, we have to designate in such a problem, what is the start vertex?",
+    "start": 365.5,
+    "end": 370.5,
+    "ocr_text": "Dr ins hortest p rom 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, maybe our start vertex, let us by convention, assume it is the vertex one.",
+    "start": 370.5,
+    "end": 374.5,
+    "ocr_text": "Dr ins hortest p rom 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "Remember that we usually call our vertices 1, 2, 3 up to n.",
+    "start": 374.5,
+    "end": 377.5,
+    "ocr_text": "Dr ins hortest p rom 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, here we have a graph of 7 vertices, and the edge weights are written by the side of the edges in the red.",
+    "start": 377.5,
+    "end": 383.5,
+    "ocr_text": "* For instan hortest paths from 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "And we want to start at one and find out how to get from one to every other vertex in the shortest possible cost",
+    "start": 383.5,
+    "end": 389.5,
+    "ocr_text": "* For instan hortest paths from 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "and a systematic way to compute this.",
+    "start": 389.5,
+    "end": 394.5,
+    "ocr_text": "* For ins: e, shortest paths from 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, here is an analogy which will help explain the algorithm.",
+    "start": 394.5,
+    "end": 398.5,
+    "ocr_text": "* For ins: e, shortest paths from 1\n\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, let us assume that every vertex is an oil dipole, and all the edges are pipelines.",
+    "start": 398.5,
+    "end": 405.5,
+    "ocr_text": "pot"
+  },
+  {
+    "text": "And the pipelines are the costs are the lengths of the pipeline.",
+    "start": 405.5,
+    "end": 409.5,
+    "ocr_text": "«In r\n* Fire tr inifor r"
+  },
+  {
+    "text": "Now, when we set fire to this original vertex, start vertex 1, a fire will catch on all the pipes connected to vertex 1.",
+    "start": 410.5,
+    "end": 419.5,
+    "ocr_text": "«In r\n* Fire tr inifor r"
+  },
+  {
+    "text": "Assuming that the fire travels at a uniform speed, it will reach the shortest, the closest vertex first.",
+    "start": 419.5,
+    "end": 429.5,
+    "ocr_text": "«In r\n* Fire tr inifor r"
+  },
+  {
+    "text": "So, the first vertex, first oil dipole that catches fire after the first vertex is the nearest vertex to 1.",
+    "start": 429.5,
+    "end": 435.5,
+    "ocr_text": "«In r\n* Fire tr inifor r"
+  },
+  {
+    "text": "Then the second oil dipole that catches fire is the second nearest vertex to 1.",
+    "start": 436.5,
+    "end": 441.5,
+    "ocr_text": "80 6\n: 50\nI) 10 20\n= 10 5"
+  },
+  {
+    "text": "And assuming this fire is traveling at a uniform speed, when measuring the speed at which the fire reaches each vertex,",
+    "start": 441.5,
+    "end": 447.5,
+    "ocr_text": "80 6\n: 50\nI) 10 20\n= 10 5"
+  },
+  {
+    "text": "we will actually end up computing the shortest path.",
+    "start": 447.5,
+    "end": 451.5,
+    "ocr_text": "80 6\n: 50\nI) 10 20\n= 10 5"
+  },
+  {
+    "text": "So, let us try to execute this analogy, this strategy on this particular algorithm.",
+    "start": 451.5,
+    "end": 458.5,
+    "ocr_text": "80 6\n: 50\nI) 10 20\n= 10 5"
+  },
+  {
+    "text": "So, we begin by setting fire to the source vertex at times 0.",
+    "start": 458.5,
+    "end": 463.5,
+    "ocr_text": "80 6\n: 50\nI) 10 20\n= 10 5"
+  },
+  {
+    "text": "And now a fire will start going along the edge 1, 3 and the edge 1, 2.",
+    "start": 464.5,
+    "end": 469.5,
+    "ocr_text": "80 6\n: 50\nI) 10 20\n= 10 5"
+  },
+  {
+    "text": "Now, since the edge 1, 2 is shorter in 10 units of time, vertex 2 will burn.",
+    "start": 469.5,
+    "end": 474.5,
+    "ocr_text": "70\n80 6\n\n50\n\nws 10 20\n\na 10 5"
+  },
+  {
+    "text": "At this point, we have indicated by the fact that there is a small burn portion here,",
+    "start": 474.5,
+    "end": 480.5,
+    "ocr_text": "70\n80 6\n\n50\n\nws 10 20\n\na 10 5"
+  },
+  {
+    "text": "that there is a partial fire going from 1 to 3, but it is only traveled 10 out of 8 units, only 1-8 of the way it is traveled from 1 to 3.",
+    "start": 480.5,
+    "end": 488.5,
+    "ocr_text": "70\n80 6\nte 50\nWw 10 20"
+  },
+  {
+    "text": "So, a t equal to 10 vertex 2 burns and we can say that this is the shortest cost of the shortest distance to vertex 2.",
+    "start": 489.5,
+    "end": 496.5,
+    "ocr_text": "[--)\nIS\no\n\n50\n\n10 5"
+  },
+  {
+    "text": "Now, the fire continues to propagate through 2 in 2 directions, from 2 to 3 and from 2 to 5.",
+    "start": 496.5,
+    "end": 504.5,
+    "ocr_text": "50\n\n10 5"
+  },
+  {
+    "text": "And, meanwhile of course, the fire from 1 to 3 also continues in the same rate as it was before.",
+    "start": 504.5,
+    "end": 510.5,
+    "ocr_text": "50\n\n10 5"
+  },
+  {
+    "text": "Now, we can see that after 6 units of time, vertex 3 will burn.",
+    "start": 510.5,
+    "end": 514.5,
+    "ocr_text": "= 50\n\n10 5"
+  },
+  {
+    "text": "So, t equal to 16 vertex 3 has burned.",
+    "start": 515.5,
+    "end": 517.5,
+    "ocr_text": "/80 NI\n¢ ‘ 50\n\n10 5"
+  },
+  {
+    "text": "Now, this has the fire from 1 to 3 has traveled 16 by 80 of this distance,",
+    "start": 517.5,
+    "end": 523.5,
+    "ocr_text": "/80 NI\n¢ ‘ 50\n\n10 5"
+  },
+  {
+    "text": "that the fire from 2 to 5 has traveled 6 by 20 of this distance.",
+    "start": 523.5,
+    "end": 528.5,
+    "ocr_text": "/80 NI\n¢ ‘ 50\n\n10 5"
+  },
+  {
+    "text": "Now, having burned 3, a new fire will continue in this direction.",
+    "start": 528.5,
+    "end": 533.5,
+    "ocr_text": "780 Ne\n4 We) 50\n\n10 5"
+  },
+  {
+    "text": "This old fire from 1 to 3 continues as before.",
+    "start": 533.5,
+    "end": 536.5,
+    "ocr_text": "780 Ne\n4 We) 50\n\n10 5"
+  },
+  {
+    "text": "And of course, the fire from 2 to 5 continues as before.",
+    "start": 536.5,
+    "end": 539.5,
+    "ocr_text": ">\n. “Ar Ne\n50"
+  },
+  {
+    "text": "So, now we have to see which of these will reach its destination first.",
+    "start": 539.5,
+    "end": 542.5,
+    "ocr_text": ">\n. “Ar Ne\n50"
+  },
+  {
+    "text": "So, we can see that the fire from 2 to 5 has in 14 units of time will reach 5 by which time either 3 or 4 would have burned.",
+    "start": 543.5,
+    "end": 551.5,
+    "ocr_text": ">\n. “Ar Ne\n50"
+  },
+  {
+    "text": "So, if we continue other 14, another 14 units of time at t equal to 30, we find that vertex 5 burns.",
+    "start": 551.5,
+    "end": 558.5,
+    "ocr_text": "50"
+  },
+  {
+    "text": "And here we have done 14 out of 70 from 3 to 4 and we have done 30 out of 80 totally from 1 to 3.",
+    "start": 558.5,
+    "end": 566.5,
+    "ocr_text": "1\n80 Ag t= 30\n4 XY 8 59\n\niC 10 5"
+  },
+  {
+    "text": "So, these fires are still on their way from the starting point of the edge to the ending point of the edge.",
+    "start": 567.5,
+    "end": 572.5,
+    "ocr_text": "1\n80 Ag t= 30\n4 XY 8 59\n\niC 10 5"
+  },
+  {
+    "text": "Now, continuing in this vein, the fire now propagates from 5 to 6 and 7 and you can see that in 10 units of time,",
+    "start": 572.5,
+    "end": 580.5,
+    "ocr_text": "1\n80 Ag t= 30\n4 XY 8 59\n\niC 10 5"
+  },
+  {
+    "text": "we will find that vertex 7 burns.",
+    "start": 580.5,
+    "end": 583.5,
+    "ocr_text": "1\n80 Ag t= 30\n4 XY 8 59\n\niC 10 5"
+  },
+  {
+    "text": "And now from 7, the new fire starts towards 6.",
+    "start": 583.5,
+    "end": 587.5,
+    "ocr_text": "1\n80 Ag t= 30\n4 XY 8 59\n\niC 10 5"
+  },
+  {
+    "text": "There is an old fire coming from 5 to 6, but this will overtake it because this has still got,",
+    "start": 587.5,
+    "end": 591.5,
+    "ocr_text": "1\n80 Ag t= 30\n4 XY 8 59\n\niC 10 5"
+  },
+  {
+    "text": "this has only done 10 by 50.",
+    "start": 592.5,
+    "end": 594.5,
+    "ocr_text": "1\n80 Ag t= 30\n4 XY 8 59\n\niC 10 5"
+  },
+  {
+    "text": "So, there is still 40 units of time to go before the fire reaches 6 from 5,",
+    "start": 594.5,
+    "end": 598.5,
+    "ocr_text": "1\n80 Ag t= 30\n4 XY 8 59\n\niC 10 5"
+  },
+  {
+    "text": "but in 5 units of time it will reach from 7.",
+    "start": 598.5,
+    "end": 601.5,
+    "ocr_text": "1\n80 Ag t= 30\n4 XY 8 59\n\niC 10 5"
+  },
+  {
+    "text": "So, therefore, at t equal to 45, you find that vertex 6 burns.",
+    "start": 601.5,
+    "end": 605.5,
+    "ocr_text": "1\n80 Ag t= 30\n4 XY 8 59\n\niC 10 5"
+  },
+  {
+    "text": "And now the only vertex vertices which are mating to burn are actually 3 and 4.",
+    "start": 605.5,
+    "end": 612.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, at this point, if we continue, we will find that at t equal to 86,",
+    "start": 612.5,
+    "end": 619.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "actually sorry vertex 3 had already burned.",
+    "start": 620.5,
+    "end": 622.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, this fire had not reached it vertex 3, but the only vertex remaining to burn was 4.",
+    "start": 622.5,
+    "end": 626.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "And at time 86, at the 70 units after the fire started at the beginning of the edge,",
+    "start": 626.5,
+    "end": 633.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "it finally reaches.",
+    "start": 633.5,
+    "end": 636.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "And now everything is burnt and now we have labeled each vertex by the shortest time it took from for the initial fire to reach them.",
+    "start": 636.5,
+    "end": 642.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "And this we claim is the shortest path to each vertex from the start vertex 1.",
+    "start": 642.5,
+    "end": 647.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, let us see how we would actually compute this burning process that we described.",
+    "start": 650.5,
+    "end": 654.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "So, what we do is we associate a time to the shortest distance as a quantity with each vertex.",
+    "start": 654.5,
+    "end": 661.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10 5"
+  },
+  {
+    "text": "And initially we do not know anything, so we assume that the vertex is not reachable.",
+    "start": 661.5,
+    "end": 664.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10"
+  },
+  {
+    "text": "That is the shortest cost every vertex is infinity.",
+    "start": 664.5,
+    "end": 666.5,
+    "ocr_text": "70\n80 6\n50\n10 20\n10"
+  },
+  {
+    "text": "Now, we know that the vertex 0 vertex 1, the start vertex is reachable in no time at all.",
+    "start": 666.5,
+    "end": 673.5,
+    "ocr_text": "80 6\n\nMc 10 20\n\n10\n\n50"
+  },
+  {
+    "text": "So, we assign its cost to be 0.",
+    "start": 673.5,
+    "end": 675.5,
+    "ocr_text": "80 6\n\nMc 10 20\n\n10\n\n50"
+  },
+  {
+    "text": "And having assigned this cost to be 0, we can now recompute its neighbor's cost as the minimum of the cost that you can reach through 1.",
+    "start": 675.5,
+    "end": 682.5,
+    "ocr_text": "80 6\n\nMc 10\n\n50\n20\n10"
+  },
+  {
+    "text": "And their cost that we already know.",
+    "start": 682.5,
+    "end": 684.5,
+    "ocr_text": "80 6\n\nMc 10\n\n50\n20\n10"
+  },
+  {
+    "text": "So, from 1 to 3, we can go in time 80, we know we believe right now is infinity.",
+    "start": 684.5,
+    "end": 689.5,
+    "ocr_text": "80 6\n\nMc 10\n\n50\n20\n10"
+  },
+  {
+    "text": "So, we know that we can improve the infinity to 80.",
+    "start": 689.5,
+    "end": 692.5,
+    "ocr_text": "70\n80 6\n50\n10 20\nw 10 5"
+  },
+  {
+    "text": "Similarly, we can improve the infinity of 2 to 10.",
+    "start": 692.5,
+    "end": 695.5,
+    "ocr_text": "70\n80 6\n50\n10 20\nw 10 5"
+  },
+  {
+    "text": "So, in this process we get 2 updates.",
+    "start": 695.5,
+    "end": 698.5,
+    "ocr_text": "80 6\n\nKo 10\n\n50\n20\n10"
+  },
+  {
+    "text": "Now, all the other vertices we still do not know how to reach them, so they do not get changed.",
+    "start": 698.5,
+    "end": 702.5,
+    "ocr_text": "80 6\n\nKo 10\n\n50\n20\n10"
+  },
+  {
+    "text": "Now, among these 2, we find that 10 is smaller than 80.",
+    "start": 702.5,
+    "end": 705.5,
+    "ocr_text": "80 6\n\nKo 10\n\n50\n20\n10"
+  },
+  {
+    "text": "So, 10 now there can be no shorter path to 10.",
+    "start": 705.5,
+    "end": 708.5,
+    "ocr_text": "80 F\n\n50\n710 20\n8 10 5"
+  },
+  {
+    "text": "So, we say that 10 is burnt and we update its neighbors again.",
+    "start": 708.5,
+    "end": 711.5,
+    "ocr_text": "80 F\n\n50\n710 20\n8 10 5"
+  },
+  {
+    "text": "So, we say that vertex 2 burns at time 10.",
+    "start": 711.5,
+    "end": 714.5,
+    "ocr_text": "80 F\n\n50\n710 20\n8 10 5"
+  },
+  {
+    "text": "Now, because it burns at time 10, we can update the cost to 3 as the minimum of 10 plus 16 or 18, which is 16.",
+    "start": 714.5,
+    "end": 722.5,
+    "ocr_text": "80 F\n\n50\n710 20\n8 10 5"
+  },
+  {
+    "text": "And now we can reset 5 from infinity down to 10 plus 20 is 30.",
+    "start": 722.5,
+    "end": 727.5,
+    "ocr_text": "80 6\n\n50\nMK 10 \\/ 20\nak 10 5"
+  },
+  {
+    "text": "So, we continue in this way now using the fact that now among the things that are going to burn,",
+    "start": 728.5,
+    "end": 735.5,
+    "ocr_text": "Mo\n\n80\n\n50\n20\n10"
+  },
+  {
+    "text": "3 is going to burn at 16 and 5 is going to burn at 30, it is clear that 3 burns next.",
+    "start": 735.5,
+    "end": 740.5,
+    "ocr_text": "80 ;\n\n50\nyo 10 20\n8 10 5"
+  },
+  {
+    "text": "So, we reset its status to burnt and we update its neighbor namely 4 to 16 plus 70 is 86.",
+    "start": 740.5,
+    "end": 749.5,
+    "ocr_text": "80 ;\n\n50\nyo 10 20\n8 10 5"
+  },
+  {
+    "text": "Now, among those which are not burnt, namely 4 and 5, which have a finite value, 5 will burn next.",
+    "start": 749.5,
+    "end": 755.5,
+    "ocr_text": "20\n10\n\n50"
+  },
+  {
+    "text": "So, we set its status to burnt and we update its neighbors to 80 and 40 at 6.",
+    "start": 756.5,
+    "end": 762.5,
+    "ocr_text": "ys 70\n80 6\n50\n\nay el\nwe W10 8 40 5"
+  },
+  {
+    "text": "We have 80 and 7 we are 40.",
+    "start": 762.5,
+    "end": 764.5,
+    "ocr_text": "ys 70\n80 6\n50\n\nay el\nwe W10 8 40 5"
+  },
+  {
+    "text": "Now, 7 burns next.",
+    "start": 764.5,
+    "end": 766.5,
+    "ocr_text": "ys 70\n80 6\n50\n\nay el\nwe W10 8 40 5"
+  },
+  {
+    "text": "So, we now look at the cost going out of 7 and we replace the 80 at 6 by 45.",
+    "start": 766.5,
+    "end": 772.5,
+    "ocr_text": "50\n\nWo"
+  },
+  {
+    "text": "And now, 45 burns next, 6 burns next at 45.",
+    "start": 772.5,
+    "end": 776.5,
+    "ocr_text": "50\n\nWo"
+  },
+  {
+    "text": "So, we market burnt and finally, we mark 4 burn at 86.",
+    "start": 776.5,
+    "end": 783.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "So, to write this formula as an algorithm, we maintain this information about burnt vertices",
+    "start": 783.5,
+    "end": 788.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "and the time it takes to burn a vertex in two different arrays.",
+    "start": 788.5,
+    "end": 791.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "So, we have an array called burnt vertices, which is Boolean array.",
+    "start": 791.5,
+    "end": 796.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "So, it tells us whether a vertex has been burnt or not.",
+    "start": 796.5,
+    "end": 799.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "And then we have an expected burnt time array, which tells us the time at which vertex is believed to burn.",
+    "start": 799.5,
+    "end": 806.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "So, initially we said that no vertices are burnt.",
+    "start": 806.5,
+    "end": 808.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "So, we said that all the vertices to have burnt vertex value falls.",
+    "start": 808.5,
+    "end": 812.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "And initially, we said the expected time for every vertex to infinity.",
+    "start": 812.5,
+    "end": 816.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "Now, infinity of course is a concept which is difficult to estimate.",
+    "start": 816.5,
+    "end": 821.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "But we can easily check that no vertex can be at a distance which is bigger than the sum of all the costs in the graph plus 1.",
+    "start": 821.5,
+    "end": 829.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "Because at most you can actually, the shortest path will actually take even fewer edges.",
+    "start": 829.5,
+    "end": 833.5,
+    "ocr_text": "Ma 70 ~\n\n50 4\n10 5\n(us\n\nWo 10 er 20 nN"
+  },
+  {
+    "text": "But at most you can use every edge.",
+    "start": 833.5,
+    "end": 835.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "There is no part in using an edge twice.",
+    "start": 835.5,
+    "end": 837.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "At most you can use every edge once.",
+    "start": 837.5,
+    "end": 839.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "If you add up all the costs in the graph and add one to it, then this can definitely be treated as infinity.",
+    "start": 839.5,
+    "end": 846.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "No actual cost can be smaller larger than this cost.",
+    "start": 846.5,
+    "end": 850.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "So, we can use infinity, but for infinity there is a concrete strategy to assign infinity.",
+    "start": 850.5,
+    "end": 854.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "Now, we start with the start source vertex which we assume is one.",
+    "start": 854.5,
+    "end": 858.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "Set its expected burnt time to 1.",
+    "start": 858.5,
+    "end": 860.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "And now we repeatedly look at the smallest expected burnt time, burn it next.",
+    "start": 860.5,
+    "end": 867.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "And reset the expected burnt time for all its neighbors based on the current burnt time of that neighbor and the minimum of that and the value of the burnt time through this vertex.",
+    "start": 867.5,
+    "end": 878.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "So, this is a very simple algorithm.",
+    "start": 878.5,
+    "end": 880.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "So, here it is in pseudo code.",
+    "start": 880.5,
+    "end": 882.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "So, we have these two vertices burnt vertex array.",
+    "start": 882.5,
+    "end": 886.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "And we have the expected burnt time array.",
+    "start": 886.5,
+    "end": 891.5,
+    "ocr_text": "// assume source is S$"
+  },
+  {
+    "text": "So, we initialize burnt vertex to false and expected burnt time to infinity for all vertices.",
+    "start": 891.5,
+    "end": 897.5,
+    "ocr_text": "// assume source is S$"
+  },
+  {
+    "text": "Now, we set the source vertex expected burnt time to 0.",
+    "start": 897.5,
+    "end": 901.5,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "And now we choose the smallest unburnt vertex.",
+    "start": 901.5,
+    "end": 906.5,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "So, we look for a u which has not been burnt and whose expected burnt time is minimum.",
+    "start": 906.5,
+    "end": 911.5,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "Make it burnt.",
+    "start": 911.5,
+    "end": 913.5,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "And for each of its outgoing neighbors which is not burnt if the current estimate for that is bigger than the estimate of going through u that is the burnt time of u plus the weight from u to b then you update the burnt time of b to be the new way.",
+    "start": 914.5,
+    "end": 931.5,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "So, in our actual algorithm burnt and expected burnt time have a natural interpretation.",
+    "start": 931.5,
+    "end": 937.5,
+    "ocr_text": "// assume source is S$"
+  },
+  {
+    "text": "So, burnt is just visited.",
+    "start": 938.5,
+    "end": 939.5,
+    "ocr_text": "// assume source is S$"
+  },
+  {
+    "text": "So, when we have visited a vertex we have burnt it.",
+    "start": 939.5,
+    "end": 941.5,
+    "ocr_text": "// assume source is S$"
+  },
+  {
+    "text": "And the distance is just the expected one time.",
+    "start": 941.5,
+    "end": 944.5,
+    "ocr_text": "// assume source is S$"
+  },
+  {
+    "text": "So, we can just rewrite exactly this is the same algorithm.",
+    "start": 944.5,
+    "end": 947.5,
+    "ocr_text": "// assume source is S$"
+  },
+  {
+    "text": "It is just that bb has been replaced by a visited and ebt has been replaced by a distance.",
+    "start": 947.5,
+    "end": 953.5,
+    "ocr_text": "// assume source is S$"
+  },
+  {
+    "text": "So, we set visited to false distance to infinity start with the initial distance to the start vertex is 0.",
+    "start": 953.5,
+    "end": 960.5,
+    "ocr_text": "// assume source is S$"
+  },
+  {
+    "text": "And then it repeatedly for each unvisited vertex with minimum distance set it to be visited and updated neighbors.",
+    "start": 960.5,
+    "end": 966.5,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "This is Daik's test algorithm for single source shortest paths.",
+    "start": 966.5,
+    "end": 971.5,
+    "ocr_text": "// assume source is S$"
+  }
+]

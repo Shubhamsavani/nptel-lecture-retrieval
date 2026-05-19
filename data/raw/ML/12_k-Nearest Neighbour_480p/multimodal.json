@@ -1,0 +1,1460 @@
+[
+  {
+    "text": "Good morning. Today we will start module 3 in this module. We will talk about instance-based",
+    "start": 0.0,
+    "end": 27.08,
+    "ocr_text": "jachi\n\nearning"
+  },
+  {
+    "text": "learning and then we will talk about feature selection. We will show how in instance-based learning",
+    "start": 27.08,
+    "end": 34.92,
+    "ocr_text": "jachi\n\nearning"
+  },
+  {
+    "text": "feature dimensionality is a problem and feature large having many features is a problem for",
+    "start": 34.92,
+    "end": 42.0,
+    "ocr_text": "jachi\n\nearning"
+  },
+  {
+    "text": "many other learning algorithms and we will look for methods for feature selection. In the",
+    "start": 42.0,
+    "end": 47.24,
+    "ocr_text": "jachi\n\nearning"
+  },
+  {
+    "text": "first part of the lecture which we will have today we will talk about instance-based learning",
+    "start": 47.24,
+    "end": 53.64,
+    "ocr_text": "jachi\n\nearning"
+  },
+  {
+    "text": "and specifically the K nearest neighbor algorithm. So, what we have is that suppose in machine",
+    "start": 53.64,
+    "end": 62.96,
+    "ocr_text": "jachi\n\nearning"
+  },
+  {
+    "text": "learning in supervised learning you have got training examples x, y set of them x i, y i",
+    "start": 62.96,
+    "end": 71.92,
+    "ocr_text": "& 4\n\n(%, 16)"
+  },
+  {
+    "text": "or you can say x i, f, x i. So, these examples are given to you and given these examples",
+    "start": 71.92,
+    "end": 80.88,
+    "ocr_text": "& 4\n\n(%, 16)"
+  },
+  {
+    "text": "you want to come up with a function f. You want to find an estimate for the function f. In",
+    "start": 80.96,
+    "end": 89.04,
+    "ocr_text": "& 4\n\n(%, 16)"
+  },
+  {
+    "text": "the previous module we have seen how to learn linear regression, a linear function f or",
+    "start": 89.04,
+    "end": 96.76,
+    "ocr_text": "& 4\n\n(%, 16)"
+  },
+  {
+    "text": "a decision tree a function which is a decision tree to estimate this f. Today we will look",
+    "start": 96.76,
+    "end": 104.72,
+    "ocr_text": "& 4\n\n(%, 16)"
+  },
+  {
+    "text": "at another setting called instance-based learning which is also called lazy learning. I mean",
+    "start": 105.12,
+    "end": 113.64,
+    "ocr_text": "& 4\n\n(%, 16)"
+  },
+  {
+    "text": "the algorithm that we will discuss is a lazy algorithm. We will tell what it means. Insta-space",
+    "start": 113.64,
+    "end": 122.64,
+    "ocr_text": "& 4\n\n(%, 16)"
+  },
+  {
+    "text": "learning what we do is that when we get the training examples we do not process them and",
+    "start": 122.64,
+    "end": 130.24,
+    "ocr_text": "Tnstan a- hare (ey\n\n& @\n(% {@))"
+  },
+  {
+    "text": "learn a model. Instead we just store the examples. When we need to classify an instance",
+    "start": 130.24,
+    "end": 137.24,
+    "ocr_text": "i ee\nTnstan ce - hack laaaning\n\n(%, 1@))"
+  },
+  {
+    "text": "that time we do something. So, we do not immediately learn a model that is why the algorithm",
+    "start": 138.08,
+    "end": 144.28,
+    "ocr_text": "i ee\nTnstan ce - hack laaaning\n\n(%, 1@))"
+  },
+  {
+    "text": "that we will discuss is also called a lazy algorithm. That is the algorithm does not come",
+    "start": 144.28,
+    "end": 151.28,
+    "ocr_text": "(4) Tare ee leet\n( UG, {(@)) lazy T\nf"
+  },
+  {
+    "text": "up with a model appriary. Rather when it gets the test instance it uses the stored instances",
+    "start": 151.28,
+    "end": 158.28,
+    "ocr_text": "(4) Tare ee leet\n( UG, {(@)) lazy T\nf"
+  },
+  {
+    "text": "in memory in order to find the possible y. So, how does it do it? Suppose this is the",
+    "start": 161.4,
+    "end": 168.4,
+    "ocr_text": "fe \\\nYe 4d\n\ndngtan ve - hare lanwrg\n\nSo\nLaay algeither\n\nSs"
+  },
+  {
+    "text": "instant space and you have different points in the instant space for each point you have",
+    "start": 169.48,
+    "end": 176.48,
+    "ocr_text": "(% {@)) P lazy alggeihes"
+  },
+  {
+    "text": "the corresponding x value and the y value. When you are given a new instance you find",
+    "start": 176.96,
+    "end": 183.48,
+    "ocr_text": "(% 4) Tost sbecol lenis"
+  },
+  {
+    "text": "what is the closest instance in terms of the x value. And suppose this is the closest",
+    "start": 187.52,
+    "end": 194.52,
+    "ocr_text": "CS 4) Instone - hapch laxawing\n( 1h t (:)) Lazy alggrithes\n\n="
+  },
+  {
+    "text": "instance you find the y value of the instance and you guess the y value of this as the y",
+    "start": 195.12,
+    "end": 201.8,
+    "ocr_text": "(% {()) lazy algarilhen"
+  },
+  {
+    "text": "value of this. This is the basic nearest neighbor algorithm. Now in order to do this given",
+    "start": 201.8,
+    "end": 208.8,
+    "ocr_text": "(% {()) lazy algarilhen"
+  },
+  {
+    "text": "a test instance you have to find similar instances. So, you want to find the most similar",
+    "start": 210.36,
+    "end": 217.36,
+    "ocr_text": "oy"
+  },
+  {
+    "text": "instance or we will see in some cases we want to find some neighboring instances the most",
+    "start": 217.4,
+    "end": 222.4,
+    "ocr_text": "Tisha: eee kiieg\n\nQO.\n2 SS"
+  },
+  {
+    "text": "the nearest instances. Now how to find this similarity or what is the distance function",
+    "start": 238.36,
+    "end": 245.36,
+    "ocr_text": "Instance - aed leaning\nee\n\n(% 16)  Seamae Find sion. inst\n| z"
+  },
+  {
+    "text": "or the metric that we consider for similarity. We can use a standard metric like Euclidean",
+    "start": 245.76,
+    "end": 251.56,
+    "ocr_text": "Laay algeitte Find sioulon insta"
+  },
+  {
+    "text": "distance or other metrics like cosine and other depending on the type of data that you",
+    "start": 251.56,
+    "end": 257.56,
+    "ocr_text": "Laay algeitte Find sioulon insta"
+  },
+  {
+    "text": "are looking for. So, the basic k nearest neighbor algorithm the algorithm that I am going",
+    "start": 257.56,
+    "end": 263.56,
+    "ocr_text": "& 4 ’ Tistals beatae\n\nFind siowlan_ insta\n\n(1s, 460) temalante\n\n2"
+  },
+  {
+    "text": "to describe is called the k nearest neighbor algorithm. And let us outline that algorithm",
+    "start": 263.96,
+    "end": 270.96,
+    "ocr_text": "& 4 ’ Tistals beatae\n\nFind siowlan_ insta\n\n(1s, 460) temalante\n\n2"
+  },
+  {
+    "text": "as we have seen earlier learning algorithms have two phases training phase and testing phase",
+    "start": 275.36,
+    "end": 282.36,
+    "ocr_text": "k neg"
+  },
+  {
+    "text": "or the use phase. So, in the training phase normally the model is learnt as I have said",
+    "start": 282.36,
+    "end": 289.36,
+    "ocr_text": "k neg"
+  },
+  {
+    "text": "for such lazy algorithm we have seen earlier learning algorithms have two phases training",
+    "start": 292.36,
+    "end": 298.36,
+    "ocr_text": "kinearest neig hbow"
+  },
+  {
+    "text": "phase and testing phase or the use phase. So, in the training phase normally the model",
+    "start": 298.36,
+    "end": 304.36,
+    "ocr_text": "kKnear\neS\nt neigh\n4 ous"
+  },
+  {
+    "text": "is learnt as I have said for such lazy algorithms we do not learn a model during training.",
+    "start": 304.92,
+    "end": 311.92,
+    "ocr_text": "kKnear\neS\nt neigh\n4 ous"
+  },
+  {
+    "text": "So, in the training phase we just save the training examples we just save the examples.",
+    "start": 316.56,
+    "end": 323.56,
+    "ocr_text": "kK nearest neiglhlooue\n,\n\n\\\n\n“Vrain ing bhaa ca"
+  },
+  {
+    "text": "It is possible in a more advanced implementation to store the examples in some data structure",
+    "start": 323.56,
+    "end": 330.56,
+    "ocr_text": "kK nearest neiglhlooue\n,\n\n\\\n\n“Vrain ing bhaa ca"
+  },
+  {
+    "text": "so that searching through this examples become faster but we will talk about that later.",
+    "start": 340.76,
+    "end": 345.76,
+    "ocr_text": "k nearest nei hbewL\nTraining bhoae: Save the examples"
+  },
+  {
+    "text": "So, the basically we just store the instances then at prediction time so this is training",
+    "start": 345.76,
+    "end": 352.26,
+    "ocr_text": "k nearest nei hbewL\nTraining bhoae: Save the examples"
+  },
+  {
+    "text": "time so at prediction time what we do is we get the test instance and find the k training",
+    "start": 352.26,
+    "end": 359.26,
+    "ocr_text": "k nearest nei hbewL\nTraining bhoae: Save the examples"
+  },
+  {
+    "text": "examples. So, we get the test instance for the test instance we are given only the x value.",
+    "start": 365.26,
+    "end": 374.26,
+    "ocr_text": "k nearest nei how\neaciining bhane* Save the examples\n\nPrediction cee Get the ’"
+  },
+  {
+    "text": "So, we are given only the x value so we are given only x t and we have to predict the",
+    "start": 374.26,
+    "end": 381.26,
+    "ocr_text": "k nearest nei how\neaciining bhane* Save the examples\n\nPrediction cee Get the ’"
+  },
+  {
+    "text": "corresponding y t. So, what we do is that we find the training example x 1 y 1 that is closest",
+    "start": 381.26,
+    "end": 388.26,
+    "ocr_text": "Training prac: Save the examples\nPrediction dime. Get the test metane xe"
+  },
+  {
+    "text": "to x t. So, among all the examples that we have stored in the training phase given x t",
+    "start": 404.26,
+    "end": 411.26,
+    "ocr_text": "Training phase: Save the examples\n\nPrediction dime. Get the tact mrtane Le\nFodt tha ted"
+  },
+  {
+    "text": "we find that value of x i so that it is closest to x t and then we predict the training",
+    "start": 423.1,
+    "end": 430.1,
+    "ocr_text": "ie nearest neighbowL\nTraining bare? Save the examples\n\nPred: Lon Lites. Get ae fast metane Xe\nFind the “Eratng & (24,4)\n\n=?\n\n‘se {lat 1s dosek 45 Xy"
+  },
+  {
+    "text": "y t as the output so we predict sorry not y t y 1 as the output y t. This is the basic one",
+    "start": 435.26,
+    "end": 441.26,
+    "ocr_text": "kinearest neighbour\n\n“Veaining phe: Save the examples\n\nPrediction dime. Get ue test mrtane xe\nfi brat ou (%,3)\nth. otek fe Xp\n\n*\n\n*"
+  },
+  {
+    "text": "nearest neighbor algorithm. Now, in a more generalized form of the algorithm instead of",
+    "start": 451.78,
+    "end": 458.78,
+    "ocr_text": "knearest neighbour\nSSS he eee\n\nVraining phare Save the examples\nWot\n\neeceeamen re,\nPrediction time. Get sin testi “e He\n2 the “trang & (2,4)\n\nFis dost +2 X,\n\nfa an the oukpuk Se"
+  },
+  {
+    "text": "finding the single nearest neighbor instead of finding the single example which is closest",
+    "start": 458.78,
+    "end": 465.78,
+    "ocr_text": "kKinearest nerghlbouwr\nSe Ee eee\nTraining phar: Save the examplea\nae\n\nee og last meta Xe"
+  },
+  {
+    "text": "to the text example what we do is that we find k training examples x 1 y 1 x 2 y 2 x k",
+    "start": 466.42,
+    "end": 473.42,
+    "ocr_text": "Training phase: Save the examples\n\nGet the fest nctaner xe\nwd the “trarng & (%,4)\nrat 1s closerk te Xy\n\nPredictor '"
+  },
+  {
+    "text": "y k which are closest to x t. So, k may be 3 4 5 etcetera we find k nearest",
+    "start": 473.42,
+    "end": 480.42,
+    "ocr_text": "Training phase: Save the examples\n\nGet the fest nctaner xe\nwd the “trarng & (%,4)\nrat 1s closerk te Xy\n\nPredictor '"
+  },
+  {
+    "text": "examples we are a training examples and predict as the output y t what we are going to",
+    "start": 480.42,
+    "end": 487.42,
+    "ocr_text": "Training phase: Save the examples\n\nPrediction dime. Get ve tact metane x\nFind the K bratmng tu) \\\n\nthat is dose eX, L"
+  },
+  {
+    "text": "be the output y t. So, k may be 3 4 5 etcetera we find k nearest examples we are a training",
+    "start": 490.94,
+    "end": 497.94,
+    "ocr_text": "knearest neighbour\n_TVeoining prac: Save the examples\nPrediction dine. Get the test metane Xe\nfi i\" breanng es fe\n- wd) G4) Xe\nD. rs dhe output 4"
+  },
+  {
+    "text": "4 5 etcetera we find k nearest examples we are a training examples and predict as the",
+    "start": 497.96,
+    "end": 505.96,
+    "ocr_text": "Training phase? Save the examples\n_Tocining pia\n\nDre diction time Get the test metane x\n2 ee. X34) Ke,\n\nneil eek closet te X,\nae 6 ta oath atta: 4"
+  },
+  {
+    "text": "output y t what should be predict it depends on whether we are doing a classification problem",
+    "start": 508.3,
+    "end": 515.3,
+    "ocr_text": "k nearest neighbour\n\n\\raining phase Save the examples\n\nPrediction tine Get the test metane ee\n\nPe =. See 3 H,3) Gu), Xe,\n\nane closes te X4"
+  },
+  {
+    "text": "or a regression problem for a classification problem. We look at y 1 y 2 y k and we look",
+    "start": 515.98,
+    "end": 522.98,
+    "ocr_text": "kinearest neighbour\n\n“Teodining phases Save the examples\nd\n\nGet the tectmelane 2\n\nFind the K bramaa & Cecvt\n\nPredick ay tL oukpuk Y,\n\nPre diction time."
+  },
+  {
+    "text": "and we can predict that class which is the majority class among y 1 y 2 y k we can predict",
+    "start": 528.94,
+    "end": 534.94,
+    "ocr_text": "Knearest neighbour\nTraining phase: Save the examples\nPrediction time - Get the testimstene XH\nFind the K braann = C7\nPe, es. wd) wy) Cee)\nPredict"
+  },
+  {
+    "text": "the most frequent of the majority class. So, we predict the majority of the class",
+    "start": 537.22,
+    "end": 544.22,
+    "ocr_text": "d\n\n\\raining phase Save the examples\ni\n\nPrediction = r’ Get the test metane Xe\nP Ga the ko bratnng ok %,4) wu) Oy ac\n\nAah closek +e X\nRocdik\n\na the ue Se"
+  },
+  {
+    "text": "from y 1 y 2 y k but what if it is a regression problem we have got different numerical outputs",
+    "start": 557.94,
+    "end": 564.94,
+    "ocr_text": "bk nearest neighbour\nTraining bhoae: Save the examples\n\nhe destmetane =\nA tion tine. Get t Mee\nee the k t es 9) Gu), Ce daly\nShieh ar closerk b.\n\nPredict a"
+  },
+  {
+    "text": "y 1 y 2 y k but what if it is a regression problem we have got different numerical outputs y 1 y 2 y k and we will predict the average",
+    "start": 564.94,
+    "end": 571.94,
+    "ocr_text": "bk nearest neighbour\nTraining bhoae: Save the examples\n\nhe destmetane =\nA tion tine. Get t Mee\nee the k t es 9) Gu), Ce daly\nShieh ar closerk b.\n\nPredict a"
+  },
+  {
+    "text": "and we will predict the average. So, we will predict the average class which is the",
+    "start": 584.94,
+    "end": 589.94,
+    "ocr_text": "kK nearest neighbowr\nGet the test metane ee k\n\n~ fre bromig 03 xa) Bu, Oe it\nich am closest ts Xp\n\n. ptt predic the retry don don $4 t. Sf\n\nhoi"
+  },
+  {
+    "text": "average class. We will predict the average of y 1 among y 1 y 2 y k I find out the average",
+    "start": 594.94,
+    "end": 601.94,
+    "ocr_text": "Kinearest neighbour\nTeoining phare: Save the examples\nPrediction <—_ Get the tect instane xe\n\niva ko brady es yy & y (x, %\n\n4 me th xe ye ) Xn ge\ndey the output 4\nHick the negirty dons Lane\n\ntoni, \"Sof"
+  },
+  {
+    "text": "and predict it as the estimate of y t this is the basic k nearest neighbor algorithm which",
+    "start": 606.62,
+    "end": 613.62,
+    "ocr_text": "Training phase, Save the examples\n{ Get 1 test metane Xe\n\nFd 4 digs 9 65 5%9) Ga), ersel\n\ndich ane i Xe\n\nPade fond y\nthe va “e\nRegenian Jee x) he Yes 5"
+  },
+  {
+    "text": "is very simple. Now, let us just look at the one nearest neighbor for one nearest neighbor",
+    "start": 614.62,
+    "end": 621.62,
+    "ocr_text": "Training phase, Save the examples\n{ Get 1 test metane Xe\n\nFd 4 digs 9 65 5%9) Ga), ersel\n\ndich ane i Xe\n\nPade fond y\nthe va “e\nRegenian Jee x) he Yes 5"
+  },
+  {
+    "text": "let us see if you look at this slide here these points are the different instances in",
+    "start": 621.86,
+    "end": 628.86,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n¢ Training method:\n— Save the training examples\n¢ At prediction time:\n\n— Find the k training examples (x1, ),...(x,y,) that\nare closest to the test example x\n— Predict the most frequent class among those y's."
+  },
+  {
+    "text": "the instant space. Now, depending on where your test point will be if your test point",
+    "start": 632.02,
+    "end": 639.02,
+    "ocr_text": "What is the decision boundary?\n\nVoronoi diagram\n\n="
+  },
+  {
+    "text": "is here the closest point to this is this point. So, in this space we have different points",
+    "start": 639.58,
+    "end": 646.58,
+    "ocr_text": "What is the decision boundary?\nVoronoi diagram"
+  },
+  {
+    "text": "the classification of a point in this space for one nearest neighbor is coming from the",
+    "start": 653.66,
+    "end": 660.66,
+    "ocr_text": "[raining phar es Save the examples\n= ae\n\nGet the testimetane\n\nPred tion ire\nee Find the ke bs ee a - Ce dehy\n\nWack an closest te\nPredick\n\n¢ a A ;"
+  },
+  {
+    "text": "name most nearby point. Therefore, you can think of we can divide the space into regions.",
+    "start": 661.66,
+    "end": 668.66,
+    "ocr_text": "What is the decision boundary?\nVoronoi diagram"
+  },
+  {
+    "text": "So, this blue region this violet region or whatever purple region corresponds to those",
+    "start": 671.78,
+    "end": 678.28,
+    "ocr_text": "\\raiving bhaae: Save the examples\nDe a\n\nPrediction time Get the tex --etenx Xe\nfee | 3%) te) (evel\n\nPredid"
+  },
+  {
+    "text": "places in space for which this is the nearest neighbor this region is the region for which",
+    "start": 678.28,
+    "end": 685.28,
+    "ocr_text": "What is the decision boundary?\n\nVoronoi diagram"
+  },
+  {
+    "text": "this is the nearest neighbor. So, we have divided the space into different regions and",
+    "start": 686.08,
+    "end": 693.08,
+    "ocr_text": "What is the decision boundary?\n\nVoronoi diagram"
+  },
+  {
+    "text": "this particular type of division or this structure it is structure is called the boronoy diagram.",
+    "start": 693.96,
+    "end": 700.96,
+    "ocr_text": "What is the decision boundary?\n\nVoronoi diagram"
+  },
+  {
+    "text": "In this boronoy diagram which can be constructed by you know you take any two neighboring points",
+    "start": 700.96,
+    "end": 707.96,
+    "ocr_text": "4\n\nVraining phos phare Save the examples\n\nGet th -€ metank Xe\nFind theoks\n\nPre dic tion time.\n\n/\nbs ton SM, hy\n\n‘Sy 34s"
+  },
+  {
+    "text": "and to a find a perpendicular by sector of the line joining the two points that will",
+    "start": 708.44,
+    "end": 713.92,
+    "ocr_text": "What is the decision boundary?\n\nVoronoi diagram"
+  },
+  {
+    "text": "give you a separation surface. So, like this you can draw the boronoy diagram and",
+    "start": 713.92,
+    "end": 719.92,
+    "ocr_text": "What is the decision boundary?\n\nVoronoi diagram"
+  },
+  {
+    "text": "in this boronoy diagram in this region this is the nearest point for this region all",
+    "start": 719.92,
+    "end": 725.92,
+    "ocr_text": "What is the decision boundary?\n\nVoronoi diagram"
+  },
+  {
+    "text": "points in this region this is the neighboring point. So, this is captures the decision boundary",
+    "start": 725.92,
+    "end": 731.92,
+    "ocr_text": "What is the decision boundary?\nVoronoi diagram"
+  },
+  {
+    "text": "of one nearest neighbor and as we have seen if you look at this slide this is the basic",
+    "start": 731.92,
+    "end": 738.92,
+    "ocr_text": "What is the decision boundary?\nVoronoi diagram"
+  },
+  {
+    "text": "K nearest neighbor classification which we have already discussed in the training time",
+    "start": 739.92,
+    "end": 745.92,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n* Training method:\n— Save the training examples\n° At prediction time:\n— Eind the k training examples (x1,¥4),...(x,y,) that are closest\nto the test example x\n— Classification: Predict the most frequent class among those\nyis.\n— Regression: Predict the average of among the yi’s.\n\n* Improvements:\n— Weighting examples from the neighborhood\n— Measuring “closeness”\n— Finding “close” examples in a large training set quickly"
+  },
+  {
+    "text": "a training method is to save the training examples. At prediction time you find the K training",
+    "start": 746.28,
+    "end": 753.28,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n* Training method:\n— Save the training examples\n* At prediction time:\n— Eind the k training examples (x1,¥1),...(x,y,) that are closest\nto the test example x\n— Classification: Predict the most frequent class among those\nyis.\n— Regression: Predict the average of among the yi’s.\n\n* Improvements:\n— Weighting examples from the neighborhood\n— Measuring “closeness”\n— Finding “close” examples in a large training set quickly"
+  },
+  {
+    "text": "examples that are closest to the test example x for classification you predict the most frequent",
+    "start": 753.28,
+    "end": 760.28,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n* Training method:\n— Save the training examples\n* At prediction time:\n— Eind the k training examples (x1,¥1),...(x,y,) that are closest\nto the test example x\n— Classification: Predict the most frequent class among those\nyis.\n— Regression: Predict the average of among the yi’s.\n\n* Improvements:\n— Weighting examples from the neighborhood\n— Measuring “closeness”\n— Finding “close” examples in a large training set quickly"
+  },
+  {
+    "text": "class among those K y i values for regression you predict the average among the y i's. So,",
+    "start": 760.6,
+    "end": 767.6,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n*¢ Training method:\n— Save the training examples\n° At prediction time:\n— Find the k training examples (x,¥1),...(x,y,) that are closest\nto the test example x\n— Classification: Predict the most frequent class among those\nyis.\n— Regression: Predict the average of among the yi’s.\n\n* Improvements:\n— Weighting examples from the neighborhood\n— Measuring “closeness”\n— Finding “close” examples in a large training set quickly"
+  },
+  {
+    "text": "this is a very simple algorithm. So, what we will discuss are certain points related to",
+    "start": 767.6,
+    "end": 773.6,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n* Training method:\n— Save the training examples\n¢ At prediction time:\n— Find the k training examples (x1,¥1),...(x,y,) that are closest\nto the test example x\n— Classification: Predict the most frequent class among those\nyis.\n— Regression: Predict the average of among the yi’s.\n\n* Improvements:\n— Weighting examples from the neighborhood\n— Measuring “closeness”\n— Finding “close” examples in a large training set quickly"
+  },
+  {
+    "text": "this algorithm and how to improve the algorithm some of the issues that we will discuss is",
+    "start": 780.2,
+    "end": 787.2,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n* Training method:\n— Save the training examples\n° At prediction time:\n— Find the k training examples (x1,¥1),...(x,y,) that are closest\nto the test example x\n— Classification: Predict the most frequent class among those\nyis.\n— Regression: Predict the average of among the yi’s.\n\n* Improvements:\n— Weighting examples from the neighborhood\n— Measuring “closeness”\n— Finding “close” examples in a large training set quickly"
+  },
+  {
+    "text": "when we use K nearest neighbor where K is greater than 1 is there a possibility of giving",
+    "start": 787.2,
+    "end": 794.2,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n* Training method:\n— Save the training examples\n° At prediction time:\n— Find the k training examples (x1,¥1),...(x,y,) that are closest\nto the test example x\n— Classification: Predict the most frequent class among those\nyis.\n— Regression: Predict the average of among the yi’s.\n\n* Improvements:\n— Weighting examples from the neighborhood\n— Measuring “closeness”\n— Finding “close” examples in a large training set quickly"
+  },
+  {
+    "text": "different weights to these K neighbors. So, we can weight different examples maybe because",
+    "start": 795.04,
+    "end": 802.04,
+    "ocr_text": "K-nearest neighbour\na"
+  },
+  {
+    "text": "of distance. Second issue is how to measure closeness what type of distance function one",
+    "start": 802.04,
+    "end": 809.04,
+    "ocr_text": "K-nearest neighbour\na"
+  },
+  {
+    "text": "can use today we will discuss that we can use Euclidean distance function as one of the",
+    "start": 809.56,
+    "end": 815.24,
+    "ocr_text": "how\n\n{nei\n\n; K-near\n\na)"
+  },
+  {
+    "text": "metric but other distance functions are possible. The third issue which is important which",
+    "start": 815.24,
+    "end": 820.96,
+    "ocr_text": "K-nearest neighbour\na Oo"
+  },
+  {
+    "text": "we will discuss later is how to find the closest points quickly at runtime as we have",
+    "start": 820.96,
+    "end": 827.96,
+    "ocr_text": "K-nearest neighbour\na Oo"
+  },
+  {
+    "text": "seen in such lazy algorithms during training time we do not learn a model at prediction",
+    "start": 829.6,
+    "end": 836.4,
+    "ocr_text": "K-nearest neighbour\na Oo"
+  },
+  {
+    "text": "time we get a point and find the nearest instances. If we do not use a good data structure or",
+    "start": 836.4,
+    "end": 842.4,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n* Training method:\n— Save the training examples\n° At prediction time:\n— Find the k training examples (xz,y1),...(x,y,) that are closest\nto the test example x\n— Classification: Predict the most frequent class among those\nyis.\n— Regression: Predict the average of among the yi’s.\n\n* Improvements:\n— Weighting examples from the neighborhood\n— Measuring “closeness”\n— Finding “close” examples in a large training set quickly"
+  },
+  {
+    "text": "a good method to store the examples we have to go through all the training examples find",
+    "start": 842.4,
+    "end": 849.4,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n* Training method:\n— Save the training examples\n° At prediction time:\n— Find the k training examples (xz,y1),...(x,y,) that are closest\nto the test example x\n— Classification: Predict the most frequent class among those\nyis.\n— Regression: Predict the average of among the yi’s.\n\n* Improvements:\n— Weighting examples from the neighborhood\n— Measuring “closeness”\n— Finding “close” examples in a large training set quickly"
+  },
+  {
+    "text": "the distance and find the smallest of them and if the training such is large this may take",
+    "start": 849.4,
+    "end": 855.4,
+    "ocr_text": "Basic k-nearest neighbor classification\n\n* Training method:\n— Save the training examples\n° At prediction time:\n— Eind the k training examples (x,y ),...(x,y,) that are closest\nto the test example x\n— Classification: Predict the most frequent class among those\nyis.\n— Regression: Predict the average of among the yi’s.\n\n* Improvements:\n— Weighting examples from the neighborhood\n— Measuring “closeness”\n— Finding “close” examples in a large training set quickly"
+  },
+  {
+    "text": "considerable time. So, one issue of concern is to set up data structures so that this can",
+    "start": 855.4,
+    "end": 862.4,
+    "ocr_text": "st neighbour\nA"
+  },
+  {
+    "text": "be done efficiently which we will not discuss today but we will get some ideas in later",
+    "start": 862.4,
+    "end": 867.64,
+    "ocr_text": "st neighbour\nA"
+  },
+  {
+    "text": "classes. So, first we look at a standard distance function called the Euclidean distance",
+    "start": 867.64,
+    "end": 874.64,
+    "ocr_text": "nearest neighbour\nVea"
+  },
+  {
+    "text": "function in Euclidean distance function what we do suppose each instance x has n attributes",
+    "start": 878.0,
+    "end": 885.0,
+    "ocr_text": "k-Nearest Neighbor\n\nDist(e,,¢,) = her, ©@)= attr,(c,))\ni=l\n\nprediction,,,, =?\n\ntest\n\n¢ Average of k points more reliable when:\n— noise in attributes\n— noise in class labels\n\n— classes partially overlap\n\nattribute_2\n\nattribute_1"
+  },
+  {
+    "text": "x i 1 x i 2 x i n. Suppose we have n attributes which we have to do is the",
+    "start": 889.24,
+    "end": 897.52,
+    "ocr_text": "k nearest neighbour\nVe = 6G), e)"
+  },
+  {
+    "text": "attributes and between two instances x i and x j x j 1 x j 2 x j n. So, given these two",
+    "start": 897.64,
+    "end": 904.64,
+    "ocr_text": "k nearest neighloour\nri = Chi hig 5 Lin)\n\nAY"
+  },
+  {
+    "text": "instances we find want to find how close they are I think all of you know about the Euclidean",
+    "start": 911.96,
+    "end": 918.96,
+    "ocr_text": "k nearest neig {aloo\nNe = Chi iz . Lin)\nXin Jt) %z.- Tb"
+  },
+  {
+    "text": "distance. In Euclidean distance how do we measure the distance between these points we",
+    "start": 918.96,
+    "end": 924.56,
+    "ocr_text": "Kez Chin Xa, . , tin)\n\nSoe Oty, Ge. 14m)"
+  },
+  {
+    "text": "say that the distance Euclidean x i x j is given by root over x i k minus x j k whole square",
+    "start": 924.56,
+    "end": 931.56,
+    "ocr_text": "Kez Chin Xa, . , tin)\n\nSoe Oty, Ge. 14m)"
+  },
+  {
+    "text": "sigma k equal to 1 to n. So, this is the Euclidean distance function called the distance",
+    "start": 931.56,
+    "end": 938.56,
+    "ocr_text": "ie nearest neig labour\nxi Ss (hin Xe, roel Lin)\n\nX45 Oty, Xe. s%m)\n\nDiet Cy,"
+  },
+  {
+    "text": "of the distance. So, this is the Euclidean distance function called the distance of the",
+    "start": 941.12,
+    "end": 947.76,
+    "ocr_text": "Kez Mir Yn. . tin)\n\nXi = Oty, Ge a)\n\n1 Jeo"
+  },
+  {
+    "text": "distance j k whole square sigma k equal to 1 to n. So, this is the Euclidean distance.",
+    "start": 947.76,
+    "end": 954.76,
+    "ocr_text": ": k nearest neighbour\nKez inte. , Li)\n\nx; = Oty, Ge es 14m)\n\nDee « hee"
+  },
+  {
+    "text": "So, we can find the Euclidean distance from a test point to all the points that we have",
+    "start": 962.2,
+    "end": 969.2,
+    "ocr_text": "k nearest netghlow\nKe = (hin Xie 5 Lin)\nXy= = OM, Mz. - %4n)\n\ns Dist uti duain eas 25))"
+  },
+  {
+    "text": "got from training and select that point which has the smallest Euclidean distance. When",
+    "start": 970.56,
+    "end": 977.36,
+    "ocr_text": "kK nearest neighbour\ni = (hit Xie , tiny)\nXi = Gy, Ge. 7 yt)\n\nDist Ertidean Oe"
+  },
+  {
+    "text": "we take k as to be more than 1 we can take the if it is a regression problem we can",
+    "start": 977.36,
+    "end": 984.36,
+    "ocr_text": "g\nKi = (Lit Xie , tin)\n\nXi = Gn, Ke - 4m)"
+  },
+  {
+    "text": "take the average of the values. Now, when do we go for averaging with large k or and when",
+    "start": 984.36,
+    "end": 991.36,
+    "ocr_text": "g\nKi = (Lit Xie , tin)\n\nXi = Gn, Ke - 4m)"
+  },
+  {
+    "text": "do we go for k equal to 1. So, we will go for averaging under circumstances where there",
+    "start": 993.16,
+    "end": 1000.16,
+    "ocr_text": "k nearest neighbour\nSe ee\nKez Minky. , Ly)\n\nXi = Gn, Ge. -- 14m)\n+ Exutki dean (ea ¥))\n\nP We\n‘ Mine Kin)\nBee:"
+  },
+  {
+    "text": "are noise in attributes. So, because of the noise the instance that is closes to the test",
+    "start": 1000.16,
+    "end": 1007.16,
+    "ocr_text": "Pt = (Lit Xie 5 Lin)\nXi = Ny, Ge -- yn)\n\nDist Eat daain (> ="
+  },
+  {
+    "text": "instance may not capture everything about the test instance in a better way than another",
+    "start": 1016.4,
+    "end": 1022.4,
+    "ocr_text": "K-nearest neighbour\neee ea\neco s.)\n. Nn, Ke -- ~ AGise in adtnib visa"
+  },
+  {
+    "text": "instance which is slightly further away, but still close. Then there can be noise in class",
+    "start": 1022.4,
+    "end": 1028.68,
+    "ocr_text": "K-nearest neighbour\neee ea\neco s.)\n. Nn, Ke -- ~ AGise in adtnib visa"
+  },
+  {
+    "text": "labels and thirdly classes may be overlapping. So, under such circumstances there is a",
+    "start": 1028.68,
+    "end": 1035.68,
+    "ocr_text": "Kenearest neighbour\nAe = Gan hig , Lin)\nxy = Cy, Ke... 14m) oT cdtnibe ute\n\nDist Budi dean ea ¥ ~ Noisap\n\ney Hig ~Kicy\n\n&:)"
+  },
+  {
+    "text": "case for using k larger than 1 and we will see that when we use a larger value of k we",
+    "start": 1035.68,
+    "end": 1042.68,
+    "ocr_text": "Kinearest neighbour\nKez Cin ke. , Li)\nXj = Cty, Gz. -- 14m) _ Nbise in ettrib ute\n: ~ Noise tn class fabela\n\nDist Beheearnaane”\n7"
+  },
+  {
+    "text": "get a better a smoother classifier. Now, the case is a larger than 1 and we will see",
+    "start": 1042.68,
+    "end": 1049.68,
+    "ocr_text": "Kinearest neighbour\nKez Cin ke. , Li)\nXj = Cty, Gz. -- 14m) _ Nbise in ettrib ute\n: ~ Noise tn class fabela\n\nDist Beheearnaane”\n7"
+  },
+  {
+    "text": "that when we use a larger value of k we get a better a smoother classifier. Now, the",
+    "start": 1053.0,
+    "end": 1060.0,
+    "ocr_text": "Ke nearest neg laboour\nUNE = (hit Xig 4 Lin)\ni Ly, Ge: 14m) _ Nise in etbibutes\n\n. \\\nDist Butt haan (% ¥)) —~ noi ars fabela\n\n= Clos a prank"
+  },
+  {
+    "text": "second thing we will worry about is when we look at the Euclidean distance we are taking",
+    "start": 1072.68,
+    "end": 1079.68,
+    "ocr_text": "i = (Lin Mig _ Ling)\nXj = by) ee 1%) Ad Ise in ath utes\n\nDict Eadoeeemeememe) fe in gaat\nSea may p sob overtop\n\ney"
+  },
+  {
+    "text": "the sum of squares root over sum of squares of the distance for each attribute. Let us",
+    "start": 1081.04,
+    "end": 1086.68,
+    "ocr_text": "Ve (Li Mig | sa)\nXj = My, Xz. 1%») ee\npes Euctiteal 0 x) Meise clave laheta\n\n( Ta CRA ay Parkially ontop\nKi, Gn)\ntk"
+  },
+  {
+    "text": "not use k here because k is used for k nearest neighbor, but we are talking about index variable.",
+    "start": 1086.68,
+    "end": 1093.68,
+    "ocr_text": "‘ Kenearest nei how\nKi = (ir Xe, eS tin)\na) = Gy, 247 oe 1%) _ ise in athibuta\n\nDist Euch dean eo mf ~~ Moise in class Labela\n\n= Clorses oncry Pashiabng overlay"
+  },
+  {
+    "text": "So, let us use m. Now, all attributes are not equally important or the attributes may have different scales.",
+    "start": 1093.68,
+    "end": 1100.68,
+    "ocr_text": "‘ Kenearest nei how\nKi = (ir Xe, eS tin)\na) = Gy, 247 oe 1%) _ ise in athibuta\n\nDist Euch dean eo mf ~~ Moise in class Labela\n\n= Clorses oncry Pashiabng overlay"
+  },
+  {
+    "text": "So, a normal Euclidean distance treats all the attributes at the same scale. So, this",
+    "start": 1116.24,
+    "end": 1123.24,
+    "ocr_text": "knearest neighbour\nyx = (Lit Mee | tin)\nxy a Yn, Ge. -- 4m) _ Noise in altnib uta\n' £ Aco ¥)) —~ Noise in class fobels\n. Classes may Parhiadhs overs\nee.\nE: 5 *\n\nDist &«"
+  },
+  {
+    "text": "is a normal Euclidean distance, but there may be a case for giving different weights to the attribute.",
+    "start": 1123.68,
+    "end": 1130.68,
+    "ocr_text": "knearest neighbour\nyx = (Lit Mee | tin)\nxy a Yn, Ge. -- 4m) _ Noise in altnib uta\n' £ Aco ¥)) —~ Noise in class fobels\n. Classes may Parhiadhs overs\nee.\nE: 5 *\n\nDist &«"
+  },
+  {
+    "text": "When you are giving equal weights to the attributes you can give equal weights only under certain",
+    "start": 1130.68,
+    "end": 1136.68,
+    "ocr_text": "; kinearest neighbour\n\ntis\nxj a On, eae in)\nDist Fy B&B ea Go %) — Noise in clars [abela\nres = Clorses EMG Poshiakhs vero\n\nCin\n\n_ Nise in attributes"
+  },
+  {
+    "text": "circumstances or certain assumptions. So, this is the first example of the Euclidean distance.",
+    "start": 1136.68,
+    "end": 1143.68,
+    "ocr_text": "knearest neighloowr\nKe = (hi Hin. , tin)\n\nXA = hy, Me. -- 14m)\n\nDist. Eudi deain Cx, ¥))"
+  },
+  {
+    "text": "We give equal weights to all attributes. Now, if you can do so only if the scale of attributes",
+    "start": 1153.68,
+    "end": 1160.68,
+    "ocr_text": "knearest neiglhloou\nei = (Sas hie a Lin) equak wtighta foot\nXy = ty, Ge. -- 14m)\n\nDist Budi deain es a)\n\n4 > (Hn inj ="
+  },
+  {
+    "text": "are similar.",
+    "start": 1165.28,
+    "end": 1172.28,
+    "ocr_text": "Ki = (ir Xie - Lin) equal wotiglts to all aftriont\n\nxy Cy, Me -3%im) gnlu of Me seal\nDist Buti dean es x) ’\n\niN 2( inn inj"
+  },
+  {
+    "text": "What do you mean by scale? Suppose height is an attribute. If you are measuring height in",
+    "start": 1172.28,
+    "end": 1179.28,
+    "ocr_text": "Ki = (ir Xie - Lin) equal wotiglts to all aftriont\n\nxy Cy, Me -3%im) gnlu of Me seal\nDist Buti dean es x) ’\n\niN 2( inn inj"
+  },
+  {
+    "text": "centimeter versus height in feet the differences are not the same. So, you have to the different",
+    "start": 1187.88,
+    "end": 1196.88,
+    "ocr_text": "KG = Cui hin i Lin) equal weight bo al abbubv\nXy . On Mize oD) - only ¢ Khe saleef the\nDist. But dan oh. > olbubutes ane chilean\n\nK-nearest neighbour\nnL\nLL"
+  },
+  {
+    "text": "attributes depending on about scale you use it it will contribute more value or less value",
+    "start": 1197.04,
+    "end": 1205.04,
+    "ocr_text": "K-nearest neighbow\niy in , Lin) equal tights to wth aitub\nX)= bn, Se. 4) = only of Me solecf te\n\nDist Bade Be 6) alt labs oe ctmilere\n\nim)"
+  },
+  {
+    "text": "to the distance. So, if you are giving equal weights you are assuming that the scale of",
+    "start": 1205.04,
+    "end": 1210.8,
+    "ocr_text": "K-nearest neighbour\nSee\n\nx; - iy des ; in) equad weights to oll atbuluhe-\nX= Mn Sie 0%) ly of Be sealed the"
+  },
+  {
+    "text": "the attributes and the differences and are similar. What do you mean by differences?",
+    "start": 1210.8,
+    "end": 1217.8,
+    "ocr_text": "K-nearest neighbour\nSee\n\nx; - iy des ; in) equad weights to oll atbuluhe-\nX= Mn Sie 0%) ly of Be sealed the"
+  },
+  {
+    "text": "This x i m minus x j m how different they are for different pairs of training examples",
+    "start": 1217.8,
+    "end": 1230.8,
+    "ocr_text": "k nearest nei hboow :\nyee CG hin, tin) equod weal bo all attuiool’\n\nXie On, Ge. sn — onlay rf Me sealeod the\nDist Eudi dean &% %) wba ane similar\n\nthe “4\nA py 7. inj 4\n\nMm"
+  },
+  {
+    "text": "if that is similar then only you can use equal weights. Secondly, you make the assumption",
+    "start": 1230.8,
+    "end": 1237.8,
+    "ocr_text": "ie thud!\nMi = Mi Xn | equal weights to alk afm\nxy = OM, X- 2) _ only rf Khe saleof the\n\n=| sf ana similar\nDist buiic peti 2 a Curd the Afbecenves"
+  },
+  {
+    "text": "that you scale attributes so that they have equal range. If one of the attributes of values",
+    "start": 1238.8,
+    "end": 1253.8,
+    "ocr_text": "k nearest neighbour\nin) equal weiglts to ah obtniate!\n\nMiz ite,\n- oly rf Me Sh aie\n\nAiG OM, izes\n>) oll are siiaslan\neine. dfhusnies\n\njn\n\nDist Bacidaan ("
+  },
+  {
+    "text": "from 0 to 1000 another has values from 0 to 1 then their range is not the same. So, their",
+    "start": 1255.96,
+    "end": 1263.96,
+    "ocr_text": "kK nearest neighbour\n(- Cay x: - bs!\n. : a Hie By) equal welts eal tes\n— ny, Xe.\nj 1 Sz _ only rb kee salec the\n\nobfdabe ane stiatlan\nOk the Afbarenues\n\nScahe altsboules be qual range\n\nDist Buti din eA"
+  },
+  {
+    "text": "ranges should be similar and the variance should be similar. Under such condition only",
+    "start": 1263.96,
+    "end": 1270.96,
+    "ocr_text": "kK nearest neighbour\n(- Cay x: - bs!\n. : a Hie By) equal welts eal tes\n— ny, Xe.\nj 1 Sz _ only rb kee salec the\n\nobfdabe ane stiatlan\nOk the Afbarenues\n\nScahe altsboules be qual range\n\nDist Buti din eA"
+  },
+  {
+    "text": "you can go for such a simple Euclidean distance function. Also you are assuming that you are",
+    "start": 1278.08,
+    "end": 1285.08,
+    "ocr_text": "knearest neighbour 9\n\nU 4) bytes!\n- Cos, , tiny) equal weighs to all abbule\n2 Gn, Xz. 0%in) nly £ he scale of the\n\n:|\n\n= Scale alircbouleo to equsk\ndad ehial varia senge"
+  },
+  {
+    "text": "taking x i m minus y i m whole square. So, assuming that classes are spherical. So, the",
+    "start": 1286.08,
+    "end": 1293.08,
+    "ocr_text": "bk nearest neighbour =\nequad weight fo alk atbutrde\n\nMex Hi tn, tn)\nXj Oy, Gesu) enly of fhe scakeal the\n\nDist Gaerne ey\n\nof Mi. ana simile"
+  },
+  {
+    "text": "second assumption is that classes are spherical in shape. Under these assumptions you can use",
+    "start": 1295.48,
+    "end": 1302.48,
+    "ocr_text": "k nearest neighbour 7\nPe : (li, Digs tin) equal weight to lh atbrularke!\nXi = Gn, Kz. a gh ~ only ft ke soled oa\n\n> Offadea ang ctmlen\nDist Exci dean ¢ » Oud the dfbronies\n\n— Sale altybutes te eqush Dou.\nAnde Susk vaniance is"
+  },
+  {
+    "text": "basic Euclidean distance. But what if the classes are not spherical? What if one attribute",
+    "start": 1302.48,
+    "end": 1309.48,
+    "ocr_text": "k nearest neighbour 7\nPe : (li, Digs tin) equal weight to lh atbrularke!\nXi = Gn, Kz. a gh ~ only ft ke soled oa\n\n> Offadea ang ctmlen\nDist Exci dean ¢ » Oud the dfbronies\n\n— Sale altybutes te eqush Dou.\nAnde Susk vaniance is"
+  },
+  {
+    "text": "is more important than another attribute? What if some attributes have more noise than",
+    "start": 1322.04,
+    "end": 1329.04,
+    "ocr_text": "knearest neighbour re\nXe - Ai Dion tin) equal woes fo hh gihun\nie Yn, Ye. 7 a f khe sale of the\n\n. Lube ane strailan\nDist Bui Ae, x)) On the bow\n\n— Sole altyubutes te eqUah range\nPeas ual Variance :\n: TO Oe phic"
+  },
+  {
+    "text": "what you have in other attributes? Under those cases this distance function will have some",
+    "start": 1329.64,
+    "end": 1335.64,
+    "ocr_text": "a nearest neighbour\n<\n\nXe Chin N,.. , Ln) equal seigla to abl aslo\nXj = Xn, Gz -54iN) only re kee sale ef the\n\n, FA , ? oltabntes steele\nDist Ex (> oe ) ei bbasere,\nKin) — Sobealisutn be equ range\n7 ees Uall Variance .\nOOH ae ophoricg f"
+  },
+  {
+    "text": "problems and the way you can overcome this problem. There are several things that one",
+    "start": 1335.64,
+    "end": 1341.12,
+    "ocr_text": "k nearest neighbour -\nPea = Ga hig J tin) equak weighks to alk astbubr te\nX45 (hae aN = only of he salecf the\nct Cally, Fe X)) —licbede ae crcl\n> ) == D Cunah tha deflesenies\nla = Stale alirsbulas to equah\ngi Gul vavians “es\n| aD sey Qs. Photek\n\nee"
+  },
+  {
+    "text": "can do. One is you use larger k to smooth out the differences and you use weighted Euclidean",
+    "start": 1341.12,
+    "end": 1348.12,
+    "ocr_text": "k nearest neighbour -\nPea = Ga hig J tin) equak weighks to alk astbubr te\nX45 (hae aN = only of he salecf the\nct Cally, Fe X)) —licbede ae crcl\n> ) == D Cunah tha deflesenies\nla = Stale alirsbulas to equah\ngi Gul vavians “es\n| aD sey Qs. Photek\n\nee"
+  },
+  {
+    "text": "distance function. Now, what we will do? Now, when you say you use larger k you have to",
+    "start": 1348.12,
+    "end": 1355.12,
+    "ocr_text": "x - (CGR hig tin) equal wtights to ah albulules!\n& z (Xp, Ge 141m) ~ only if Hee scale of the\n\nopr k Dict Buchan (5 %) eS ae\n\nis >(Xian inj = Sober altrslouteo bo eqns Range\n\nMw Gund ual Vamianca\n~ Ghee a"
+  },
+  {
+    "text": "have some idea how large or small k impacts. I think before we try to look at the",
+    "start": 1355.12,
+    "end": 1362.12,
+    "ocr_text": "ki nearest nei hboow\nMes Chi ee Zin) equod weights toa\n‘“ Gn, pe ara f He sale:\n\nMm"
+  },
+  {
+    "text": "class, let us look at some example. So, this picture taken from the book by Hastitip",
+    "start": 1385.12,
+    "end": 1395.12,
+    "ocr_text": "Vee a , Lin) equal weighhs to oh\n-- IM, «%\nA iy Ge. - 14m) = onlyng the soled\n\n= Use largnk | Dist Buchan %) om a an\nbs Age"
+  },
+  {
+    "text": "Shiraari and Friedman shows an example where we have three classes blue, red and green.",
+    "start": 1395.84,
+    "end": 1402.84,
+    "ocr_text": "1-Nearest Neighbor\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "They are denoted by the blue, red and green circles. So, if you use one nearest neighbor",
+    "start": 1404.84,
+    "end": 1411.84,
+    "ocr_text": "1-Nearest Neighbor\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "you have decision boundaries between blue and green, green and red, red and blue etcetera.",
+    "start": 1412.72,
+    "end": 1417.72,
+    "ocr_text": "1-Nearest Neighbor\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "Based on that these lines show you the decision boundary between the classes. So, you see",
+    "start": 1417.72,
+    "end": 1424.72,
+    "ocr_text": "14-Nearest Neighbor\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "that this decision boundary is very in a it is not at all sport. So, what we can see is",
+    "start": 1424.72,
+    "end": 1431.72,
+    "ocr_text": "14-Nearest Neighbor\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "that if you have small value of k, so small value of k it captures fine structures of the",
+    "start": 1431.72,
+    "end": 1438.72,
+    "ocr_text": "1-Nearest Neighbor\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "problem space better. You can see that these lines capture very fine structures of the",
+    "start": 1453.16,
+    "end": 1460.16,
+    "ocr_text": "equal weights to oth\n_ ¢ 4 = only Ge he ma\nF Use ae Dist. bavi %i) oie pe\n= Seale albrboudes to equ\neos ual vaniarnce\nChor Me 220g"
+  },
+  {
+    "text": "problem space. For example, here you see in this region the classes blue whereas in this",
+    "start": 1461.88,
+    "end": 1468.72,
+    "ocr_text": "Sivall a. Capture\n\nequal wtighks to oll\n\nly rf the scale cf\n\nI Use lagen k Dist Eudi dean ea %) a on\nde ie)"
+  },
+  {
+    "text": "region the class is red. So, in the small region here the classes blue whereas these classes",
+    "start": 1471.16,
+    "end": 1477.64,
+    "ocr_text": "1-Nearest Neighbor\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "are red. So, the fine differences between the classes are captured when k is small. So,",
+    "start": 1477.64,
+    "end": 1484.64,
+    "ocr_text": "14-Nearest Neighbor\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "when small k captures fine structure of problem space better if such fine structures exist.",
+    "start": 1484.64,
+    "end": 1491.64,
+    "ocr_text": "14-Nearest Neighbor\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "And this may be necessary if the training set is small.",
+    "start": 1491.64,
+    "end": 1498.64,
+    "ocr_text": "Stal le Captura fine st\nequal weighka to ol\n\n7 - only 4 khe sale of!\n‘2 46) altubwke ane strlen\n— = Oud the dfbrenes\n~d Gindh eGush variance\n\nan sey Ons Phovicak"
+  },
+  {
+    "text": "On the other hand you can use large value of k under the following circumstances. Let us",
+    "start": 1521.64,
+    "end": 1528.64,
+    "ocr_text": "Stroll le. Captures fine stuclane of problem space batt\nAS g\n\nue be ng cw Alf focsma\nequal wtighks fo ok\nSO ealy re be saleof\n— Use larger k,| Dist Bact duan jd oblvtnkes one ctrtlan\nx Be ee\n\n= Sale alfhdlondee fo equ\nGunde ual variance"
+  },
+  {
+    "text": "first look at an example on the same data set using 15 nearest neighbor. What you notice",
+    "start": 1538.76,
+    "end": 1545.76,
+    "ocr_text": "‘im Use larger k Diseeaeene? 2)\n\n‘e,\n\n~ Use wi ghth eC ring pa\n| dislane fu ru Ss"
+  },
+  {
+    "text": "here is that the classes are more smooth the neighboring classes in a here all of them are",
+    "start": 1545.86,
+    "end": 1557.86,
+    "ocr_text": "15-Nearest Neighbors\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "classified as red rather than blue for 15 nearest neighbor. So, use large k under these",
+    "start": 1557.86,
+    "end": 1565.86,
+    "ocr_text": "15-Nearest Neighbors\n\nFrom Hastie, Tibshirani, Friedman 2001 p418"
+  },
+  {
+    "text": "circumstances. When you use large k the classifier that you get is less sensitive to noise particularly",
+    "start": 1565.86,
+    "end": 1572.86,
+    "ocr_text": "Capture fine stuctane of grote spo batt\n\nmay Be new thyy fecsmath Halug s\n\nSe\n\n— Use lange ist. Ex dean Cry x)\n| Use weig\n\n~f"
+  },
+  {
+    "text": "noise in the output class. So, particularly noise in the output class is less than the output",
+    "start": 1584.26,
+    "end": 1591.26,
+    "ocr_text": "elke le. Captura fine stuckape of paste space batt\nmay De ne casey fecsmath Hauing 9\n\nLonge le: : [ys sensi\n\nHive ts me\n\n:\n\na Cay"
+  },
+  {
+    "text": "similarly class noise you get better probability estimates for discrete classes. And you can use for discrete classes.",
+    "start": 1595.86,
+    "end": 1602.86,
+    "ocr_text": "lle le. Captura fine stmuclape of proten space bat\nmay be necossy focsmath Aadung 9\n\nLonge le: © eps sensitive te no (pardacrbacly Lm\n\n\"a\nI Use larger he ;\n\n~ Use weightod |\ndisane un"
+  },
+  {
+    "text": "If the classes are discrete you get better probability estimates if you use large values",
+    "start": 1625.86,
+    "end": 1631.46,
+    "ocr_text": "Simoll le Captures fine stuckane of excblem sforce b dh\n: may be neaosaiy fecsmatl Mainang 5\nLonge Ie lws sensitive ts no (panhenbasly dans =)\neesti pros cotinata diserla qoses"
+  },
+  {
+    "text": "of k. Thirdly if you have larger size of training set then you can use large values of",
+    "start": 1631.46,
+    "end": 1638.96,
+    "ocr_text": "Simoll le Captures fine stuckane of excblem sforce b dh\n: may be neaosaiy fecsmatl Mainang 5\nLonge Ie lws sensitive ts no (panhenbasly dans =)\neesti pros cotinata diserla qoses"
+  },
+  {
+    "text": "k. So, larger training set allows you to use larger k. If you have very small size",
+    "start": 1638.96,
+    "end": 1645.96,
+    "ocr_text": "cinill te ke Capture fine stuctane of grdllem space bettie\nmay De recast fer smath Howuing 5\n\nLowele ee sensitive ty no (pacsdaendauby Bsc pc0\" =\nbetta pro eohnates fy docerel qaoses"
+  },
+  {
+    "text": "training set size you cannot use large k you have to use small k. So, this is the basic",
+    "start": 1656.26,
+    "end": 1663.26,
+    "ocr_text": "Sradl le capt fn ste lane of pire -\noe oa may be nest fre snot Haauing 2\n\nLange le: Pe sensitive ts no (pasdaenbaly cloas rei -)\n\"ttn pd “hats dacerte poses\n‘ = :\n\nUse larger k|\n\nUne UGE 1\ndisow Mee 1k u"
+  },
+  {
+    "text": "idea of getting different values of k. Now, let us look at the next diagram on this",
+    "start": 1663.26,
+    "end": 1670.26,
+    "ocr_text": "Sradl le capt fn ste lane of pire -\noe oa may be nest fre snot Haauing 2\n\nLange le: Pe sensitive ts no (pasdaenbaly cloas rei -)\n\"ttn pd “hats dacerte poses\n‘ = :\n\nUse larger k|\n\nUne UGE 1\ndisow Mee 1k u"
+  },
+  {
+    "text": "slide. So, this picture shows you know this shows the number x axis is the number of",
+    "start": 1670.26,
+    "end": 1679.26,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.230\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\n—— Test Error\n—— 10-fola cv\n—— Training Error\nBayes Error\n\nT T r T r\n\n5 10 15 20 25\n\nNumber of Neighbors\n\n30"
+  },
+  {
+    "text": "neighbors. The blue line is test error the green line is 10 fold cross validation error and",
+    "start": 1679.48,
+    "end": 1686.48,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.230\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\n—— Test Error\n—— 10-fola cv\n—— Training Error\nBayes Error\n\n== r r T\n\n° 5 10 15 20\n\nNumber of Neighbors"
+  },
+  {
+    "text": "the red line is training error. And the dashed line is base error which is close to the",
+    "start": 1689.4,
+    "end": 1696.4,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.30\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\n—— Test Error\n—— 10-fola cv\n—— Training Error\n- Bayes Error\n\n10 15 20\n\nNumber of Neighbors\n\n25\n\n30"
+  },
+  {
+    "text": "true error. We see that in the training set as we are increasing the value of k you know",
+    "start": 1696.4,
+    "end": 1703.4,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.30\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\n—— Test Error\n—— 10-fola cv\n—— Training Error\n- Bayes Error\n\n10 15 20 25 30\n\nNumber of Neighbors"
+  },
+  {
+    "text": "the initially the error will increase and then error will after that remain almost steady.",
+    "start": 1703.4,
+    "end": 1710.4,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.30\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\n—— Test Error\n—— 10-fola cv\n—— Training Error\n- Bayes Error\n\n10 15 20 25 30\n\nNumber of Neighbors"
+  },
+  {
+    "text": "But for the test error and for the cross validation error we see that for k equal to",
+    "start": 1715.92,
+    "end": 1722.92,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.30\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\n—— _ Test Error\n—— 10-fola cv\n—— Training Error\nBayes Error\n\n9 + T r\n\n10 15 20 25 30\n\nNumber of Neighbors"
+  },
+  {
+    "text": "1 for one nearest neighbor the error is high and then the error falls off. After sometime",
+    "start": 1722.92,
+    "end": 1729.92,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.30\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\n—— _ Test Error\n—— 10-fola cv\n—— Training Error\nBayes Error\n\n9 + T r\n\n10 15 20 25 30\n\nNumber of Neighbors"
+  },
+  {
+    "text": "the error rises and then keeps almost fixed. So, this is the region where the test error",
+    "start": 1730.48,
+    "end": 1736.28,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.30\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\n—— _ Test Error\n—— 10-fola cv\n—— Training Error\nBayes Error\n\n10 15 20 25 30\n\nNumber of Neighbors"
+  },
+  {
+    "text": "is smallest and this is the region where the cross validation error is smallest. So,",
+    "start": 1736.28,
+    "end": 1742.28,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.30\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\n—— _ Test Error\n—— 10-fold cv\n—— Training Error\nBayes Error\n\n10 15 20 25 30\n\nNumber of Neighbors"
+  },
+  {
+    "text": "in this particular example the error is smallest at around k equal to 5 or k equal to 7.",
+    "start": 1742.28,
+    "end": 1749.28,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.30\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\n—— _ Test Error\n—— 10-fold cv\n—— Training Error\nBayes Error\n\n10 15 20 25 30\n\nNumber of Neighbors"
+  },
+  {
+    "text": "So, therefore, small k the error is high large k also it increases and some middle value",
+    "start": 1749.28,
+    "end": 1755.28,
+    "ocr_text": "Misclassification Errors\n\n0.05 010 015 020 0.25 0.230\n\n0.0\n\nFrom Hastie, Tibshirani, Friedman 2001 p419\n\nTest Error\n10-fold CV\nTraining Error\nBayes Error\n\n10 15 20 25\n\nNumber of Neighbors\n\n30"
+  },
+  {
+    "text": "of k you have the best performance if you look at the test error.",
+    "start": 1755.28,
+    "end": 1760.96,
+    "ocr_text": "Sorel fe Capture hne stmclunse of erctlem space batt\nA may be necoany fersmod Hodung 5\nLone ke [ws sensitive no (panheubasly doe ee)\nbet prot eohnaks ky fsx choses\n#\n\nan N\n\nUse larger k| i\nUse UGE |\ndicta thu"
+  },
+  {
+    "text": "Now, we come to the second question the first question issue was using different value",
+    "start": 1760.96,
+    "end": 1766.44,
+    "ocr_text": "Sorel fe Capture hne stmclunse of erctlem space batt\nA may be necoany fersmod Hodung 5\nLone ke [ws sensitive no (panheubasly doe ee)\nbet prot eohnaks ky fsx choses\n#\n\nan N\n\nUse larger k| i\nUse UGE |\ndicta thu"
+  },
+  {
+    "text": "of k the second issue was to use weighted distance function. Now, we will see how we can use",
+    "start": 1766.44,
+    "end": 1773.44,
+    "ocr_text": "Small le Captura fine stucta = of paetlem spoe bettie\n3 may be ngaosihy focsmath Hadning 9\nlws sensitive t nov (parkecubasly ae ae),\nd\nbein prob cotnata hor dasercle poses\n\nLonge k&\n\nUse larger k %\n\nUse wou Yoke\ndictoame FC\n\n~ f"
+  },
+  {
+    "text": "weighted distance function in the case of weighted distance function what we do is that we",
+    "start": 1774.8,
+    "end": 1781.0,
+    "ocr_text": "Small le Captura fine stucta = of paetlem spoe bettie\n3 may be ngaosihy focsmath Hadning 9\nlws sensitive t nov (parkecubasly ae ae),\nd\nbein prob cotnata hor dasercle poses\n\nLonge k&\n\nUse larger k %\n\nUse wou Yoke\ndictoame FC\n\n~ f"
+  },
+  {
+    "text": "define the distance you know let me write it in our notation distance between x i and",
+    "start": 1781.0,
+    "end": 1788.0,
+    "ocr_text": "Weighted Euclidean Distance\n\nD(cl,c2) = {= w, - (attr,(cl) — attr, (c2)y\na\n\nlarge weights => attribute is more important\nsmall weights == attribute is less important\nzero weights == attribute doesn’t matter\n\nWeights allow kNN to be effective with axis-parallel\nelliptical classes\n\nWhere do weights come from?"
+  },
+  {
+    "text": "x j is depends on. So, we have different attributes with different weights we have n attributes",
+    "start": 1788.0,
+    "end": 1795.0,
+    "ocr_text": "Weighted Euclidean Distance\n\nD(cl,c2) = Ae w, - (attr (cl) — attr, (c2)y\ni=1\n\nlarge weights => attribute is more important\nsmall weights == attribute is less important\nzero weights == attribute doesn’t matter\n\nWeights allow kNN to be effective with axis-parallel\nelliptical classes\n\nWhere do weights come from?"
+  },
+  {
+    "text": "and their weights w 1 w 2 w n. So, we take sigma m equal to 1 to n and then we use w m into",
+    "start": 1797.56,
+    "end": 1804.56,
+    "ocr_text": "Small le Capture fine stucline of erctlem spoce bettie\n\nmay be necaskey forsmath Halung s\nLange le lws sensitne ts nov (pardaenbay dears Piva)\nbdtn. prot eotnakas fr her poses\n\nUse larga kl’ + Lange. beamng cob allows wre of Longer ke\n\nae wight | gh tuh)= oe\n\ndisown ua A « Hear\nB gf"
+  },
+  {
+    "text": "x i m minus x j m whole square. So, this is weighted Euclidean distance we are using different",
+    "start": 1811.0,
+    "end": 1818.0,
+    "ocr_text": "Sina le caplita fine sbuclane of pen ste bee\na mai be ng cwsany forsmath Hang 9\nLonge k& lws sensitive t nove (pasdaenlay cars ao)\nbeter prob cobinate he diserele qhoses\nbeyllois Lure of hanger ke\n\nUse larger k| : - Longe treat 2\n\nUse UG td,\ndidanee flu\n\nDe y 2)"
+  },
+  {
+    "text": "weights for different attributes. So, for those attributes which are more important",
+    "start": 1823.96,
+    "end": 1830.24,
+    "ocr_text": "bet\n\nSmold le Capture fine stuclane of cyte Space\n> may be necesthiy fecsmasl Heaeng so\n\n[z loos sensitive t nov (pardacubaly clans a,\nbetin prob cotnaks he daserle poses\n\n~ bang. tee dlseas wre L Larger ke\nXi) a\n\nST ‘\n\nUse WGA\ndidanee fin\n\nD"
+  },
+  {
+    "text": "for the particular classification we can use larger weights and for less important attributes",
+    "start": 1830.24,
+    "end": 1838.24,
+    "ocr_text": "d ry ble\n\nSmodl le Capture fine stuclane of prstem\n. may be recon forsmalt i\nLongele: os sensitive t no (paraenbady clears 10\nLz \"Uf preh eahinakes hor dase Jers4\ncoballaves We SE Larger le\n\n)\n\nUse oui ghted\ndistaae tu"
+  },
+  {
+    "text": "we can use smaller weights. These weights can also be decided based on you know if an",
+    "start": 1838.48,
+    "end": 1843.96,
+    "ocr_text": "3 may be neaosaht fersmmath Hanung 9\ns paz)\n\nlws sensitive to no (paaenauy chan\npeti. prot cohaks by daserele qerses\n\nMy 2g cekrullsias re of Langer kk\n\nLonge ke"
+  },
+  {
+    "text": "attribute has larger range we can use small weights if just small range we can use larger",
+    "start": 1843.96,
+    "end": 1849.96,
+    "ocr_text": "3 may be neaosaht fersmmath Hanung 9\ns paz)\n\nlws sensitive to no (paaenauy chan\npeti. prot cohaks by daserele qerses\n\nMy 2g cekrullsias re of Langer kk\n\nLonge ke"
+  },
+  {
+    "text": "weights or we can scale the attributes. So, that they have similar range we can sort",
+    "start": 1849.96,
+    "end": 1855.96,
+    "ocr_text": "L\n\nCops of trtlem\n\nmay be neavstt forsinabl Homng 5 :\n\nLowel lws sensitive ty nov (pardaeubaly dias oz )\nbit 4 eohmates her Ais chased\n\ncebatlows ure of banger ke\n\nSmall"
+  },
+  {
+    "text": "of normalize the attributes. So, that they have same mean and same standard deviation",
+    "start": 1855.96,
+    "end": 1862.2,
+    "ocr_text": "tt\n\nSirol le. Capture fine Shire!\n« may be news forsmath Homing 5\n\né\nLonge le [ws sensitive t no (pardacubaly oe =\na prs cotiwentes Acre prs\n\nng cob allows re of banger lk"
+  },
+  {
+    "text": "based on that we can then fix the weights depending on the importance of the attributes.",
+    "start": 1862.52,
+    "end": 1868.52,
+    "ocr_text": "tt\n\nSirol le. Capture fine Shire!\n« may be news forsmath Homing 5\n\né\nLonge le [ws sensitive t no (pardacubaly oe =\na prs cotiwentes Acre prs\n\nng cob allows re of banger lk"
+  },
+  {
+    "text": "And if an attribute does not matter it is irrelevant that attribute has zero weight.",
+    "start": 1868.52,
+    "end": 1875.52,
+    "ocr_text": "Stoll be Capture fine stucline of prcllem sioace batt\n\n- may Be nec format Hamug s-\n\nlors sensitive ty no (panketauky class ep\n¢\n\nLangu. tere j cubollows Lore j Langer ke\n\nLarge es"
+  },
+  {
+    "text": "So, this brings us to an important question that if we have the instant space defined in",
+    "start": 1875.52,
+    "end": 1882.52,
+    "ocr_text": "Stroll le Capture free stuctine of grctlem < ee\nmay be neaasang forsmall Keng 5°\nLael lan seetin te na (bechebly cas ver)\nUse lagak | afte cobaldawss Ure f Leager kk\n\nSS"
+  },
+  {
+    "text": "terms of a large number of attributes or features it poses a problem in defining an",
+    "start": 1884.52,
+    "end": 1891.52,
+    "ocr_text": "Stroll le Capture free stuctine of grctlem < ee\nmay be neaasang forsmall Keng 5°\nLael lan seetin te na (bechebly cas ver)\nUse lagak | afte cobaldawss Ure f Leager kk\n\nSS"
+  },
+  {
+    "text": "appropriate similarity metric and it may also pose a problem for different other learning",
+    "start": 1891.52,
+    "end": 1898.52,
+    "ocr_text": "Smolk le Capture fine stuctape of prtlem space\n3 gray be neasssny for-sonatl\na\n\nls sensitive ty nor (pacrdacubady class ae)\nbein prob oc hnaks by diserele qposes\n\n—\n\nUse larger k\n\nUse agit D Yi, n) =\nHy. , ‘"
+  },
+  {
+    "text": "problems. Because some features may be more important than others and some features may",
+    "start": 1898.52,
+    "end": 1904.72,
+    "ocr_text": "bet\n\nStroll le Captures frre stuctane of prblem space bh\n: ol forsmath fag so\n\nts no (pardecubadhy hans ae)\nnats te Asa’ post’\n\naa be news\n\nLonwe le [ws sénsitve\n\nas ‘ bot prot ont\nUne UGE, D ay %\ndhistomee fh"
+  },
+  {
+    "text": "be irrelevant and this specifically impacts K nearest neighbor or instant space learning",
+    "start": 1904.72,
+    "end": 1910.52,
+    "ocr_text": "bet\n\nStroll le Captures frre stuctane of prblem space bh\n: ol forsmath fag so\n\nts no (pardecubadhy hans ae)\nnats te Asa’ post’\n\naa be news\n\nLonwe le [ws sénsitve\n\nas ‘ bot prot ont\nUne UGE, D ay %\ndhistomee fh"
+  },
+  {
+    "text": "algorithms greatly. So, it is important for us to remove extra features because if you have",
+    "start": 1910.52,
+    "end": 1917.52,
+    "ocr_text": "Srna le Capture fine stuctane of probe\nmay be necwsany forsmall\n\nlms sénsitive ty nov (parkertauy clans me)\nbein pre\n\nnatalia 4 Asoc erst"
+  },
+  {
+    "text": "a very high dimensional space two items which are similar may still differ in some unimportant",
+    "start": 1921.4,
+    "end": 1929.4,
+    "ocr_text": "Capture fine stuclare of eadlem so\nues) be necastiy forsmath Aang 3\n\nlws sensitwe ty nov (pavdaenbarly dee\nAse larga k| = fangee teas EM elles Uae of Larger ke\n\nLone k:\n\nUse wuightal i \\D Ly4\ndhidanee fu"
+  },
+  {
+    "text": "attributes and the differences in distance between different pairs of items will be almost",
+    "start": 1930.32,
+    "end": 1937.32,
+    "ocr_text": "Capture fine stucly = f aiden\nmay be ne cost for small Honing\n\nigs sensitive t no (pislaty cans noi)\ncakes 47 decor chases\n\nUse larger KI :\n\nUne oUt\ndistane fu"
+  },
+  {
+    "text": "similar. So, it will be difficult to find good representative training examples for a given",
+    "start": 1938.24,
+    "end": 1945.24,
+    "ocr_text": "Capture fine stmclanre of pile\nmay be near forsimath Halwing 3\nLonge le: lms sensitive t no (pardacubay das rove)\n¢\nrahi kee ky dso gee\n\nStood le\n\nbutin F\n\nUre weights | \\DQ&L\ndhistowe far"
+  },
+  {
+    "text": "S example. So, feature reduction is very important we will talk about feature reduction in a later",
+    "start": 1946.68,
+    "end": 1953.68,
+    "ocr_text": "Stroll le Capture fine struc are of pale space bettie\na may be necosaty forsale Aanung 9\n_ ee bdtin peta coin ake be discrete qprses\nUse UG ted | D Wye ‘ets\ndhidamee flu \\"
+  },
+  {
+    "text": "class may be in the next class. But to summarize in distance weighted K nearest neighbor we",
+    "start": 1953.68,
+    "end": 1960.68,
+    "ocr_text": "Stroll le Capture fine struc are of pale space bettie\na may be necosaty forsale Aanung 9\n_ ee bdtin peta coin ake be discrete qprses\nUse UG ted | D Wye ‘ets\ndhidamee flu \\"
+  },
+  {
+    "text": "have a trade off between small and large K which can be difficult because large K means",
+    "start": 1960.68,
+    "end": 1967.68,
+    "ocr_text": "Distance-Weighted kNN\n\n* tradeoff between small and large k can be difficult\n— use large k, but more emphasis on nearer neighbors?\n\nk k\n><, * class, >», * value\nprediction,, => n= »)\n\ni=l i=\n\n1\n\n1 a\n© Dist (eqs Crest)"
+  },
+  {
+    "text": "more emphasis on the other neighbors. So, in the weighted K n n the prediction is based",
+    "start": 1967.68,
+    "end": 1974.68,
+    "ocr_text": "Distance-Weighted kNN\n\n* tradeoff between small and large k can be difficult\n— use large k, but more emphasis on nearer neighbors?\n\nk k\n><, * class, >», * value\nprediction,... => (or + D)\n\n=: =e\n\nf=1\n\niL\n\nSe\n© Dist (eqs Crest)"
+  },
+  {
+    "text": "on this weighted average and this weight can be based on the distance the weight can be proportional",
+    "start": 1974.68,
+    "end": 1981.68,
+    "ocr_text": "Distance-Weighted kNN\n\n* tradeoff between small and large k can be difficult\n— use large k, but more emphasis on nearer neighbors?\n\nk k\n><, * class, >», * value\nprediction,... => (or + D)\n\n=: =e\n\nf=1\n\niL\n\nSe\n© Dist (eqs Crest)"
+  },
+  {
+    "text": "to the inverse of the distance between the two examples. So, for a particular test example",
+    "start": 1981.68,
+    "end": 1988.68,
+    "ocr_text": "Distance-Weighted kNN\n\n* tradeoff between small and large k can be difficult\n— use large k, but more emphasis on nearer neighbors?\n\nk k\n><, * class, >, * value\nprediction,,,. => (or > D)\n\n=, = Ww,\n\ni=1\n\n1\n\n= =\n© Dist (eqs Crest)"
+  },
+  {
+    "text": "suppose this is a test example suppose this is a test example and these are free nearest",
+    "start": 1991.92,
+    "end": 1998.92,
+    "ocr_text": "Small fe. Capture fine stuctune of exstlem space batt\n~ ot Houung Se\n\nmay be necwsaty forse\nLonge ke [ws sensitive t no (paraenbay cloas a)\nbon prot no ban hed hk hist arsed\n\nUse larger k.| : ~ Lana. tre yelloseos Ure hanger te\n\nUse wight D bay 4\nhistone far Z"
+  },
+  {
+    "text": "neighbors. Now, this is closest this is medium distance this is a little further. Now,",
+    "start": 1998.92,
+    "end": 2005.92,
+    "ocr_text": "bet\n\nSmall ke Capture fine stuckape of erctlem space beth\n. may De necoseh focsmath Aauuing 5\n\nLange le: los sensitive % nov (pasdacubaly clans a)\n\neohnata ho Ast chaste\n\nbet. prot"
+  },
+  {
+    "text": "we look at the class of all these three instances and take a weighted average we give larger",
+    "start": 2016.68,
+    "end": 2023.18,
+    "ocr_text": "% Stn le Capture fine stuckane of prt\nmay be neceshy fecsmath Hawg\n\na\nke Ime sensitive t no'— (pardeenbanly chars ee)\n\n¢\n\nbot prob eotwate be diserle poses\nag ot allawas Wwe (hanger ke\n\nse"
+  },
+  {
+    "text": "weight to this smaller to this and smaller to this based on this we can do the averaging",
+    "start": 2023.18,
+    "end": 2030.18,
+    "ocr_text": "% Stn le Capture fine stuckane of prt\nmay be neceshy fecsmath Hawg\n\na\nke Ime sensitive t no'— (pardeenbanly chars ee)\n\n¢\n\nbot prob eotwate be diserle poses\nag ot allawas Wwe (hanger ke\n\nse"
+  },
+  {
+    "text": "this is called distance weighted K nearest neighbor. We can also instead of using this",
+    "start": 2030.98,
+    "end": 2037.98,
+    "ocr_text": "soil le. Capt tyres fine stuclane of f cxbem space bette\nmay be necosiny forsmath owing 5\n\n; \\ aa is sensitive f no (pardacubadly das 108\nbebe veh cohtrates hor descr pasted\nculos ure of Larger b\n\n= ae. | larger kN : - fo\n— Use weighted Dy Yi,\ndidaunee flu"
+  },
+  {
+    "text": "distance in you know the weight based on the you know inverse of the distance we can",
+    "start": 2039.06,
+    "end": 2046.06,
+    "ocr_text": "\\ bagel\n\nmay De neaeskty fecsmouh anung 5\na\n\nls sensitve t nov (pecrdacudadig fire ai\nbetta prob cobWnaha hor duscrla qorses\n\n7 Lonayy. Hosen SA allen we of Larger hs"
+  },
+  {
+    "text": "use other types of functions for this weighting. So, one of the ideas is locally weighted",
+    "start": 2046.06,
+    "end": 2053.06,
+    "ocr_text": "Smal le Captures fine stuclmne of tytlem space batt\n\nmay be newaste forsinahl Haising 8\n\nLonge le lws sénsitwe ts nov (pannenbarly clays roi\nle\n\n4 eghyrate ke Ast asta\ncb allows Le of Larger t"
+  },
+  {
+    "text": "averaging but locally weighted averaging does is that suppose K is the number of training",
+    "start": 2053.06,
+    "end": 2060.06,
+    "ocr_text": "Smal le Captures fine stuclmne of tytlem space batt\n\nmay be newaste forsinahl Haising 8\n\nLonge le lws sénsitwe ts nov (pannenbarly clays roi\nle\n\n4 eghyrate ke Ast asta\ncb allows Le of Larger t"
+  },
+  {
+    "text": "points. So, instead of you know we could also take instead of taking K as 3 or 4 or 5 we",
+    "start": 2060.06,
+    "end": 2066.06,
+    "ocr_text": "Locally Weighted Averaging\n\n* Letk = number of training points\n*° Let weight fall-off rapidly with distance\n\nk k\n> w, * class, > w, * value,\nprediction,,,, = —'—; (or\n\nfest Kk\n™ l™,\n\nWw, = @ KernelWidth Dist, 6 sa)\n\ne KernelWidth controls size of neighborhood that has large\neffect on value (analogous to k)"
+  },
+  {
+    "text": "could take very large value of K in fact, K could be entire training examples and then",
+    "start": 2066.54,
+    "end": 2073.06,
+    "ocr_text": "Smal le Capt {ute fine s stucla ve of pretlem space bettie\nme : may be necasany forsinath Homung Sc\n; Longe le ~ sensitive 45 na (pardacrbarls Shas 10\"\n_ t= bute prt Snats de ccreke oo\n\n— Use ugh tA Dy Ui x\ndideune fh"
+  },
+  {
+    "text": "we could give different weights to different training examples. So, if K is the total number",
+    "start": 2073.06,
+    "end": 2080.06,
+    "ocr_text": "Smal le Capt {ute fine s stucla ve of pretlem space bettie\nme : may be necasany forsinath Homung Sc\n; Longe le ~ sensitive 45 na (pardacrbarls Shas 10\"\n_ t= bute prt Snats de ccreke oo\n\n— Use ugh tA Dy Ui x\ndideune fh"
+  },
+  {
+    "text": "of training points we can define a weighting function. So, that the weight of nearby functions",
+    "start": 2080.18,
+    "end": 2087.18,
+    "ocr_text": "Locally Weighted Averaging\n\n* Let k = number of training points\n¢ Let weight fall-off rapidly with distance\nk k\n><, * class, > w, * value,\ni=)\n\nprediction,,,, = ——; (or\n\nfest k\n™ ml,\n: a\n\nWw, = g Kernel Width Dist 6 as)\n\ne KernelWidth controls size of neighborhood that has large\neffect on value (analogous to k)"
+  },
+  {
+    "text": "will be reasonably will have some reasonable values, but for further training points also",
+    "start": 2087.18,
+    "end": 2094.18,
+    "ocr_text": "Smal le. Capture fine stuclane of gxctlem ae ‘\n—— mag De necosiy fecsmosh faowung §\n\nAi a erbashy bars roi\nLongele aos sensitive ts no (paste Fi\n= betta prob coat by diserle posts\n{ me ~ bara. tate callers wre f Larger b\n© NIA 4 dl\n\nm="
+  },
+  {
+    "text": "some weight will be taken. But that weight function it will fall off rapidly weight distance.",
+    "start": 2094.18,
+    "end": 2100.18,
+    "ocr_text": "Smal le. Capture fine stuclane of gxctlem ae ‘\n—— mag De necosiy fecsmosh faowung §\n\nAi a erbashy bars roi\nLongele aos sensitive ts no (paste Fi\n= betta prob coat by diserle posts\n{ me ~ bara. tate callers wre f Larger b\n© NIA 4 dl\n\nm="
+  },
+  {
+    "text": "For example, you could think of the weighting function based on a based on a Gaussian function",
+    "start": 2100.94,
+    "end": 2107.94,
+    "ocr_text": "ne stuckane of exctlem space bet\n\nx S\nStroll le. Captures {\n: fer smath 4a.\n\nmay be necosany\n\n*\nlos sensitive ts no (pankenbaly clans 10\"\n~hmakis dicerele arsed\n\nLonge le\n\\ botget\n7 * better py =\n\n_ Use WU Gt Dy ara\ndidn fh ;"
+  },
+  {
+    "text": "right. So, you know this is you know very rough is Gaussian function suppose this is your",
+    "start": 2110.06,
+    "end": 2117.06,
+    "ocr_text": "—_——\n— Use larger |\n_ Use wag |\nddan fh"
+  },
+  {
+    "text": "test point. So, any example which is here you know it will get this much of weight and",
+    "start": 2121.98,
+    "end": 2128.18,
+    "ocr_text": "mate\n\n” dicta 3"
+  },
+  {
+    "text": "example here will get this much of weight example here will get this much of weight and",
+    "start": 2128.18,
+    "end": 2133.18,
+    "ocr_text": "— Use larger k|\na Use UG tA\ndistane turd"
+  },
+  {
+    "text": "examples further away will get almost 0 weight, but it will get some value of weight.",
+    "start": 2133.18,
+    "end": 2138.18,
+    "ocr_text": "— Use larger k|\na Use UG tA\ndistane turd"
+  },
+  {
+    "text": "So, we could use different weighting functions for example, here we are saying W K is 1 by",
+    "start": 2138.18,
+    "end": 2145.18,
+    "ocr_text": "Tec loe |\n\n} Use larga k!\n\n- Use Ugh FA,\ndidn fh"
+  },
+  {
+    "text": "e to the power kernel width into distance between C K and C T. So, using a exponential function",
+    "start": 2146.74,
+    "end": 2153.74,
+    "ocr_text": "Locally Weighted Averaging\n\n* Let k = number of training points\n° Let weight fall-off rapidly with distance\n\nk k\n> w, * class, > w, * value,\nprediction,,,, = —'—; (or\n\nfest k\n= L,\n\nWk >= ~ KernelWidih Dist(cx © sas)\ne &\n\ne KernelWidth controls size of neighborhood that has large\neffect on value (analogous to k)"
+  },
+  {
+    "text": "and the weight is falling off rapidly after you know based on this kernel weight. So,",
+    "start": 2155.14,
+    "end": 2162.14,
+    "ocr_text": "Locally Weighted Averaging\n\n* Letk = number of training points\n* Let weight fall-off rapidly with distance\n\nk k\n> w, * class, > w, * value,\nprediction,,,, = ——; (or &\n\ntest Kk\nml Lo,\n\nWw, = @ Rerme| Vid Dist ey .6 ass)\n\ne KernelWidth controls size of neighborhood that has large\neffect on value (analogous to k)"
+  },
+  {
+    "text": "controls how much of the neighborhood you want to give reasonable weighting. So, if kernel",
+    "start": 2162.14,
+    "end": 2169.14,
+    "ocr_text": "Locally Weighted Averaging\n\n* Letk = number of training points\n* Let weight fall-off rapidly with distance\n\nk k\n> w, * class, > w, * value,\nprediction,,,, = ——; (or &\n\ntest Kk\nml Lo,\n\nWw, = @ Rerme| Vid Dist ey .6 ass)\n\ne KernelWidth controls size of neighborhood that has large\neffect on value (analogous to k)"
+  },
+  {
+    "text": "weight is large you are considering more in a more area in the neighborhood. If it is",
+    "start": 2169.14,
+    "end": 2175.14,
+    "ocr_text": "Locally Weighted Averaging\n\n* Letk = number of training points\n* Let weight fall-off rapidly with distance\n\nk k\n> w, * class, > w, * value,\nprediction,,,, = ——; (or &\n\ntest Kk\nml Lo,\n\nWw, = @ Rerme| Vid Dist ey .6 ass)\n\ne KernelWidth controls size of neighborhood that has large\neffect on value (analogous to k)"
+  },
+  {
+    "text": "small you are using less area in the neighborhood based on that you can do locally weighted",
+    "start": 2175.14,
+    "end": 2181.38,
+    "ocr_text": "— Use wi yted\ndione fh"
+  },
+  {
+    "text": "averaging. With this we come to a close for this today's lecture. In the next lecture",
+    "start": 2181.38,
+    "end": 2188.38,
+    "ocr_text": "— Use wi yted\ndione fh"
+  },
+  {
+    "text": "we will discuss issues about feature dimensionality reduction and other issues. Thank you very much.",
+    "start": 2188.38,
+    "end": 2196.38,
+    "ocr_text": "_\n\n_ Use wd Yted\ndidoaae fi"
+  }
+]

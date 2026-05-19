@@ -1,0 +1,776 @@
+[
+  {
+    "text": "Hello, in a previous video we have seen how the operating system has to manage the CPU",
+    "start": 0.0,
+    "end": 24.2,
+    "ocr_text": "\\| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "because it is probably the most important resource in the system. Arguably the second most important",
+    "start": 24.2,
+    "end": 33.88,
+    "ocr_text": "\\| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "resource rather the second most important hardware resource in the system is the memory.",
+    "start": 33.88,
+    "end": 41.08,
+    "ocr_text": "\\| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "In this video we will look at how the operating system manages the memory. Essentially we",
+    "start": 41.08,
+    "end": 48.72,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nnt main(){\nchar sol ett World\\n\"\nprintf (\"%s\" );"
+  },
+  {
+    "text": "will see how the operating system manages the RAM present in the system. So, let us review",
+    "start": 48.72,
+    "end": 57.56,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nnt main(){\nchar sol ett World\\n\"\nprintf (\"%s\" );"
+  },
+  {
+    "text": "this particular slide again. We have seen that when we take a particular program and this",
+    "start": 57.56,
+    "end": 62.92,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nnt main(){\nchar sol ett World\\n\"\nprintf (\"%s\" );"
+  },
+  {
+    "text": "could be any program written in any language and when we compile it we get what is known",
+    "start": 62.92,
+    "end": 70.64,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nnt main(){\nchar sol ett World\\n\"\nprintf (\"%s\" );"
+  },
+  {
+    "text": "as an executable. Now, the executable will be stored on the hard disk and whenever a user",
+    "start": 70.64,
+    "end": 78.64,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\naint main(){\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\n\n'$gcc hello.c\n\nExecutable\n(a.out)\n\nStored on\nhard disk"
+  },
+  {
+    "text": "runs this program or executes this program it creates what is known as a process. So, this",
+    "start": 78.64,
+    "end": 89.88,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\nchar str[] = “Hello World\\n\";\nPrintti¢sss 7) Str);\n\n$gcc hello.c\n\nExecutable\n(a.out)\n\nts\n\nStored on\nhard disk"
+  },
+  {
+    "text": "process is created by the operating system and it executes in RAM. So, essentially what the",
+    "start": 89.88,
+    "end": 99.2,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\n\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\n$gcc hello.c\n\nExecutable\n(a.out)\n\n$./a.out\n\nStored on\nhard disk\n\nFrocess\n\nExecutes from\nRAM\n\n¢ Process\n— A program in execution\n— Present in the RAM\n— Comprises of\n* Executable instructions\n* Stack\n* Heap\n* State in the OS (in kernel)\nState contains : registers, list\nof open files, related\nprocesses, etc."
+  },
+  {
+    "text": "operating system would do is that the executable stored in the hard disk would be loaded into",
+    "start": 99.2,
+    "end": 106.52,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\n\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\n$gcc hello.c\n\nExecutable\n(a.out)\n\n$./a.out\n\nStored on\nhard disk\n\nProcess\n\nNe)\n\nExecutes from\nRAM\n\n¢ Process\n— A program in execution\n— Present in the RAM\n— Comprises of\n* Executable instructions\n* Stack\n* Heap\n* State in the OS (in kernel)\nState contains : registers, list\nof open files, related\nprocesses, etc."
+  },
+  {
+    "text": "the RAM and then on execution is passed to this particular program and this program will",
+    "start": 106.52,
+    "end": 114.68,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h> e Process\nint main(){ _ i i\nchar str[] = “Hello World\\n\"; A program in execution\n\nprintfleésss\"> str);\n\n— Present in the RAM\n\n— Comprises of\n\n$gcc hello.c * Executable instructions\n* Stack\nExecutable Process * Heap\na.out . P .\n( ) $./a.out . State in ie OSs (in koma!)\n« — State contains : registers, list\nStored on Executes from of open files, related\n\nhard disk RAM processes, etc."
+  },
+  {
+    "text": "then execute in the CPU. So, as we have seen this particular process which is present in memory",
+    "start": 114.68,
+    "end": 124.6,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h> e Process\nint main(){ _ i i\nchar str[] = “Hello World\\n\"; A program in execution\n\nprintfleésss\"> str);\n\n— Present in the RAM\n\n— Comprises of\n\n$gcc hello.c * Executable instructions\n* Stack\nExecutable Process * Heap\na.out . P .\n( ) $./a.out . State in ie OSs (in koma!)\n« — State contains : registers, list\nStored on Executes from of open files, related\n\nhard disk RAM processes, etc."
+  },
+  {
+    "text": "comprises of several segments such as the text segment which contains the executable",
+    "start": 124.6,
+    "end": 133.4,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\n\nchar str[] = “Hello World\\n\";\nprintf (\"%s\", str);\n$gcc hello.c\n\nExecutable\n(a.out)\n\n$./a.out\n\nStored on\nhard disk\n\nProcess\n%\n\nExecutes from\nRAM\n\n¢ Process\n— A program in execution\n— Present in the RAM\n— Comprises of\n* Executable instructions\n* Stack\n* Heap\n* State in the OS (in kernel)\nState contains : registers, list\nof open files, related\nprocesses, etc."
+  },
+  {
+    "text": "instructions, the stack, heap and also as we have seen some hidden meta data in the operating",
+    "start": 133.44,
+    "end": 142.6,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\n\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\n$gcc hello.c\n\nExecutable\n(a.out)\n\n$./a.out\n\nStored on\nhard disk\n\nProcess\n\nExecutes from\nRAM\n\n¢ Process\n— A program in execution\n— Present in the RAM\n— Comprises of\n¢ Executable instructions\n* Stack\n* Heap\n* State in the OS (in kernel)\nState contains : registers, list\nof open files, related\nprocesses, etc."
+  },
+  {
+    "text": "system such as registers list of open files and related processes. So, all these actually",
+    "start": 142.6,
+    "end": 151.28,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\n\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\n$gcc hello.c\n\nExecutable\n(a.out)\n\n$./a.out\n\nStored on\nhard disk\n\nProcess\n\nExecutes from\nRAM\n\n¢ Process\n— A program in execution\n— Present in the RAM\n— Comprises of\n* Executable instructions\n* Stack\n* Heap\n. State in the OS (in kernel)\nState contains : registers, list\nof open files, related\nprocesses, etc."
+  },
+  {
+    "text": "constitute the process. Now, what is important for us is this process and its presence in the",
+    "start": 151.28,
+    "end": 163.84,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h> e Process\nint main(){ _ i i\nchar str[] = “Hello World\\n\"; A plogrennity execution\n\nprintf(\"%s\", str);\n\n— Present in the RAM\n\n— Comprises of\n\npace hello.c * Executable instructions\n* Stack\n\nExecutable Process + Heap\n\na.out . . ;\n\n( ) $ /a.out State in the Os ti keene!)\n\n— State contains : registers, list\ni ft\n\nStored on Executes from of open files, related\n\nhard disk RAM processes, etc."
+  },
+  {
+    "text": "RAM. So, as we know the RAM or random access memory also called as the main memory is a",
+    "start": 163.84,
+    "end": 172.48,
+    "ocr_text": "Executing Programs\n(Process)\n\n#include <stdio.h>\n\nint main(){\n\nchar str[] = “Hello World\\n\";\nPrint =ts55) Str)\n$gcc hello.c\n\nExecutable\n(a.out)\n\n$./a.out\n\nStored on\nhard disk\n\nProcess\n\nExecutes from\nRAM\n\n¢ Process\n— A program in execution\n— Present in the RAM\n— Comprises of\n* Executable instructions\n* Stack\n* Heap\n* State in the OS (in kernel)\nState contains : registers, list\nof open files, related\nprocesses, etc."
+  },
+  {
+    "text": "limited resource in the system. So, each system would have something like 4, 8, 16 or 32 GB",
+    "start": 172.48,
+    "end": 180.4,
+    "ocr_text": "Sharing RAM\n\npy ss9oold Jo dew [iowa\n\nProcess 3\n\nHLL\n\n€ sseoold Jo dew Kiowa)\n\nProcess 1\n\nal Zsse00Jd Jo dew Kiowa)\n\n| sseoold Jo dew {iowa"
+  },
+  {
+    "text": "of RAM. At the same time we may have multiple processes executing almost simultaneously.",
+    "start": 180.4,
+    "end": 189.52,
+    "ocr_text": "fy ssedoid jo dew Aioway\\y\n\n€ssa00ld Jo dew {lows\n\n%\na\n\nSharing RAM\n\nZsse00Jd Jo dew [iowa\n\nProcess 1\n\n| ssaooid jo dew Aioway\\,"
+  },
+  {
+    "text": "So, like we have seen in the previous video these processes may execute in a time-slized manner",
+    "start": 189.52,
+    "end": 196.08,
+    "ocr_text": "Sharing RAM\n\npy ssoold Jo dew Kiowa)\n\nProcess 3\n\nHLL\n\n€ ssedod jo dew Aioweyy\n\n%\nol\n\nProcess 1\n\nal Zsse00Jd Jo dew [iowa\n\n| sseoold Jo dew Aioway)"
+  },
+  {
+    "text": "and if there are multiple processes present in the system then these processes could also execute",
+    "start": 197.44,
+    "end": 205.6,
+    "ocr_text": "Sharing RAM\n\npy ssoold Jo dew Kiowa)\n\nHLL\n\n€ ssedod jo dew Aioweyy\n\n© | Process 3\n\n%\nol\n\nProcess 1\n\nal Zsse00Jd jo dew [iowa\n\n| sseoold Jo dew Aioway)"
+  },
+  {
+    "text": "in parallel. However, in all these cases these processes and their corresponding memory map",
+    "start": 205.6,
+    "end": 215.6,
+    "ocr_text": "Sharing RAM\n\npy ssoold Jo dew Kiowa)\n\nProcess 3\n\nHLL\n\n€ ssedod jo dew Aioweyy\n\n%\nol\n\nProcess 1\n\nal Zsse00Jd jo dew [iowa\n\n| sseoold Jo dew Aioway)"
+  },
+  {
+    "text": "should be present in the RAM. Essentially the memory map corresponding to process 1, the memory",
+    "start": 215.6,
+    "end": 223.92,
+    "ocr_text": "Sharing RAM\n\nProcess 1\n\nfy ssadoid jo dew Aiowayy\n\n-\n\n€ssao0ld Jo dew {owas\n\n\\ %\nA\n\nZsse00Jd jo dew Kiowa)\n\n2\n\n| ssaooid Jo dew Aioway\\,"
+  },
+  {
+    "text": "map corresponding to process 2, memory map of process 3 and the memory map of process 4 should",
+    "start": 223.92,
+    "end": 230.96,
+    "ocr_text": "Sharing RAM\n\nProcess 1\n\nfy ssadoid jo dew Aiowayy\n\n-\n\n€ssao0ld Jo dew {owas\n\n\\ %\nA\n\nZsse00Jd jo dew Kiowa)\n\n2\n\n| ssaooid Jo dew Aioway\\,"
+  },
+  {
+    "text": "be present in the RAM in order that these 4 processes execute in parallel or in a multitasked",
+    "start": 231.04,
+    "end": 240.96,
+    "ocr_text": "Sharing RAM\n\npy ssaoold Jo dew [iowa\n\nProcess 3\n\nom\n\n€ ssaoold jo dew Aioway\\,\n\nProcess 1\n\nal Zsse00Jd jo dew [iowa\n\n| ssaooid jo dew Aoway\\,"
+  },
+  {
+    "text": "environment. Now, what we are going to see is how the operating system manages this resource",
+    "start": 240.96,
+    "end": 251.12,
+    "ocr_text": "Sharing RAM\n\npy sseoold Jo dew Aioway\\)\n\nProcess 3\n\n€ ssedod jo dew Aioweyy\n\nProcess 1\n\nal Zsse00Jd jo dew Kiowa)\n\nTL\n\n| sseoold Jo dew Aiowey)"
+  },
+  {
+    "text": "or in other words the RAM such that it would allow multiple processes to execute almost simultaneously.",
+    "start": 251.12,
+    "end": 260.16,
+    "ocr_text": "ssadoid jo dew Aioway\\y\n\n€ssaoold Jo dew {owas\n\n=\n\nSharing RAM\n\nZsse00Jd Jo dew Kiowa)\n\nHL\n\n| ssadoid jo dew Aoway\\,\n\nProcess 1"
+  },
+  {
+    "text": "In the system, so one of the most primitive ways of managing the memory especially",
+    "start": 260.96,
+    "end": 270.16,
+    "ocr_text": "Sharing RAM\n\nProcess 3\n\nProcess 1\n\npy ssaoold Jo dew [iowa\n\n-\n\n€ sseoold Jo dew Kiowa)\n\np>\n\n&,\no\n\nZsse00ld Jo dew Kiowa)\n\n2\n\n| sseoold Jo dew Aiowey)"
+  },
+  {
+    "text": "done for the older or not operating systems is what is known as the single contiguous model.",
+    "start": 271.36,
+    "end": 278.32,
+    "ocr_text": "Single Contiguous Model\n* No sharing eM\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "So, essentially in this we have a RAM over here which is the RAM of the system",
+    "start": 279.36,
+    "end": 284.88,
+    "ocr_text": "Single Contiguous Model\n* No sharing pay\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "and what is ensured or what is done by the operating system is that this RAM is occupied by one process",
+    "start": 285.76,
+    "end": 298.64,
+    "ocr_text": "Single Contiguous Model\n* No sharing RAM\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "at a time essentially at any particular instant there is only one process and its memory map that",
+    "start": 298.64,
+    "end": 307.28,
+    "ocr_text": "Single Contiguous Model\n* No sharing RAM\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "is present in the RAM. So, after this process completes executing will the next process we loaded",
+    "start": 307.28,
+    "end": 316.64,
+    "ocr_text": "Single Contiguous Model\n\nRAM\n* No sharing\n— One process occupies RAM at a time\n— When one process completes, another process is\nallocated RAM\nProcess memory size is restricted by RAM o\n\nsize"
+  },
+  {
+    "text": "into the RAM. So, the drawbacks are quite obvious the first is that if we are forced to have a very",
+    "start": 316.64,
+    "end": 327.84,
+    "ocr_text": "Single Contiguous Model\n* No sharing RAM\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "sequential execution when one process completes only then the second process would occupy the RAM",
+    "start": 327.84,
+    "end": 335.44,
+    "ocr_text": "Single Contiguous Model\n\nRAM\n\n* No sharing\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "and so on. Another limitation of this particular model that is the single contiguous model is that",
+    "start": 336.0,
+    "end": 343.92,
+    "ocr_text": "Single Contiguous Model\n\nRAM\n\n* No sharing\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "the size of the process is limited by the RAM size. For instance, let us say we have a RAM which",
+    "start": 343.92,
+    "end": 354.8,
+    "ocr_text": "Single Contiguous Model\n\nRAM\n\n* No sharing\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "is of say 12 kilobytes while this is seems to be a very small amount of RAM. This size of RAM",
+    "start": 354.8,
+    "end": 363.68,
+    "ocr_text": "Single Contiguous Model\n\nRAM\n\n* No sharing\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize °"
+  },
+  {
+    "text": "is quite common in embedded system. So, given this RAM of say 12 kilobytes and let us say our",
+    "start": 363.68,
+    "end": 373.52,
+    "ocr_text": "Single Contiguous Model\n\nRAM\n\n* No sharing\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "process size is of 100 kilobytes then it is quite obvious that this process cannot execute",
+    "start": 374.32,
+    "end": 383.28,
+    "ocr_text": "Single Contiguous Model\n\n* No sharing Rau\n— One process occupies RAM at a time\n— When one process completes, another process is\nallocated RAM 5\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "using this RAM essentially the RAM is not sufficient to hold the entire process. The next model that we will",
+    "start": 383.44,
+    "end": 397.04,
+    "ocr_text": "Single Contiguous Model\n\nRAM\n\n* No sharing\n— One process occupies RAM at a time\n\n— When one process completes, another process is\nallocated RAM\n\nProcess memory size is restricted by RAM\nsize"
+  },
+  {
+    "text": "see which is a slight improvement over the single contiguous model is what is known as a partition",
+    "start": 397.04,
+    "end": 404.08,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n420k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "model. Essentially in this model at any instant of time we could have multiple processes that occupy",
+    "start": 404.08,
+    "end": 414.48,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n420k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "the RAM simultaneously. For instance in this particular case we have two processes this blue",
+    "start": 414.48,
+    "end": 422.56,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n420k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "process and the green process that occupy the RAM and therefore the processor could then execute",
+    "start": 422.56,
+    "end": 431.92,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n480k 30k Free Oo"
+  },
+  {
+    "text": "this process as well as this process either in parallel or in a time-slized manner.",
+    "start": 432.88,
+    "end": 439.52,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "Now in order to manage such a partitions the operating system would require something known as",
+    "start": 441.44,
+    "end": 449.68,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "a partition table. So, typically this partition table will also be present in the RAM it will be",
+    "start": 449.68,
+    "end": 456.48,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemc!ly Size Process Usage\n\nAddress\n\nOx0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "present in an area which is not shown over here. So, the partition table would have the base",
+    "start": 456.48,
+    "end": 464.16,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "address of a process the size of the process and a process identifier. For instance the blue process",
+    "start": 464.16,
+    "end": 474.4,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "has a memory or a base address of 0X0 indicating that it is starting from the 0th location in the RAM",
+    "start": 474.4,
+    "end": 481.6,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k Inuse [i\n120k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "and this process has a size of 20 kilobytes. So, 120 kilobytes means up to this point.",
+    "start": 482.4,
+    "end": 491.2,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "There is also a flag known as the usage flag which mentions whether this particular area in RAM",
+    "start": 494.4,
+    "end": 502.56,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n180k 30k Free Oo"
+  },
+  {
+    "text": "is in use or it is free. For instance let us take process 1 that is this one the green one over here.",
+    "start": 502.56,
+    "end": 511.2,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 inuse\n120k 60k 1 Inuse |_|\n480k 30k Free oO"
+  },
+  {
+    "text": "So, this process 1 starts at the memory location 120 kilobytes or that is this point and has a size",
+    "start": 511.6,
+    "end": 524.16,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage 7\nAddress\n\n0x0 120k 4 Inuse [i\n\n420k 60k 1 Inuse |_|\n\n480k 30k Free Oo"
+  },
+  {
+    "text": "of 60 kilobytes. So, it extends up to 180 kilobytes and this area is also in use. Now there is an",
+    "start": 524.16,
+    "end": 535.2,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n480k 30k Free Oo"
+  },
+  {
+    "text": "other entry in the partition table which is specified as free. So, this starts at 180 kilobytes",
+    "start": 535.2,
+    "end": 544.16,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n180k 30k Free oO"
+  },
+  {
+    "text": "and extends for a size of 30 kilobytes. So, this corresponds to this white area over here.",
+    "start": 544.16,
+    "end": 550.24,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n180k 30k Free oO"
+  },
+  {
+    "text": "So, the operating system could possibly use this free memory to run perhaps a third process",
+    "start": 551.76,
+    "end": 563.52,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n120k 60k 1 Inuse |_|\n480k 30k Free Oo"
+  },
+  {
+    "text": "and therefore, would be able to have three processes present in the RAM at the same time.",
+    "start": 564.16,
+    "end": 570.48,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse fi\n120k 60k 1 Inuse |_|\n480k 30k Free! Oo"
+  },
+  {
+    "text": "So, let us say a new process with the identifier 5 has just been created.",
+    "start": 572.48,
+    "end": 579.76,
+    "ocr_text": "Partition Model\n\nRAM\n* As long sufficient contiguous space is available, new\nprocesses are allocated memory.\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse [i\n420k 60k 1 Inuse |_|\n480k 30k Free Oo"
+  },
+  {
+    "text": "So, the operating system would look into the partition table and create a particular entry for",
+    "start": 581.04,
+    "end": 590.08,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\na |\n\nL_]\n\nallocated memory.\n\nProcess 5 of size 20k started Process 5 allocated RAM\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\nOx0 420k 4 Inuse\n120k 6Ok 1 Inuse |_|\n180k 20k 5 InUse |_|\n200k 10k\n\nree"
+  },
+  {
+    "text": "this new process. Now, since this process requires a size of 20 kilobytes of RAM.",
+    "start": 590.16,
+    "end": 596.96,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\na |\n\nCL]\n\nallocated memory.\n\nProcess 5 of size 20k started Process 5 allocated RAM\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse\n120k 60k 1 In use\n\n480k 20k 5 Inuse*’ [|\n200k 10k\n\nFree"
+  },
+  {
+    "text": "Therefore, the operating system would allocate 20 kilobytes of RAM for that process.",
+    "start": 597.84,
+    "end": 604.24,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\nallocated memory.\n\nLC]\nProcess 5 of size 20k started Process 5 allocated RAM\nPartition Table\nMemory Size Process Usage\nAddress\nOx0 120k 4 Inuse\n120k 60k 1 Inuse |_|\n180k. 20k 5 InUse |_|\n200k —‘10k\n\nFree"
+  },
+  {
+    "text": "So, this allocation is done from the free space and as we see over here the third process now gets",
+    "start": 604.8,
+    "end": 612.32,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\nallocated memory.\n\nLC]\nProcess 5 of size 20k started Process 5 allocated RAM\nPartition Table\nMemory Size Process Usage\nAddress\nOx0 120k 4 Inuse\n120k 60k 1 Inuse |_|\n180k. 20k 5 InUse |_|\n200k —‘10k\n\nFree"
+  },
+  {
+    "text": "present in the RAM while the free space reduces in size. So, we now have on the 10 kilobytes free space.",
+    "start": 613.28,
+    "end": 623.12,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\nallocated memory.\n\n.\n\n[2]\nProcess 5 of size 20k started Process 5 allocated RAM\nPartition Table\nMemory Size Process Usage\nAddress\nOx0 420k 4 Inuse =\n120k 6Ok 1 Inuse |_|\n180k 20k «5 InUse [|\n200k 10k\n\nFree"
+  },
+  {
+    "text": "Similarly, when a process completes execution for instance when process 1 completes its execution,",
+    "start": 625.2,
+    "end": 631.76,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\na |\n\nCL]\n\nallocated memory.\n\nProcess 5 of size 20k started Process 5 allocated RAM\n\n| Process 1 completed fe\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\nOx0 120k 4 Inuse\n120k 60k Free\n\n180k 20k «5 InUse |_|\n200k 10k\n\nree"
+  },
+  {
+    "text": "the area in RAM that it holds will be deallocated. Consequently, the entry corresponding to the",
+    "start": 632.72,
+    "end": 641.6,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\na |\n\nCL]\n\nallocated memory.\n\nProcess 5 of size 20k started Process 5 allocated RAM\n\n| Process 1 completed fe\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\nOx0 120k 4 Inuse\n120k 60k Free\n\n180k 20k «5 InUse |_|\n200k 10k\n\nree"
+  },
+  {
+    "text": "partition table will be free. So, this would lead to a free memory of 60 k in the RAM. So,",
+    "start": 641.6,
+    "end": 654.08,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\na |\n\nCL]\n\nallocated memory.\n\nProcess 5 of size 20k started Process 5 allocated RAM\n\nProcess 1 completed\n\nProcess 1 deallocated\n\nag: from RAM\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 420k 4 Inuse\n120k 60k Free\n\n180k 20k 5 InUse |_|\n200k 10k\n\nFree"
+  },
+  {
+    "text": "this corresponds to this particular area in the RAM which was used by process 1.",
+    "start": 654.08,
+    "end": 660.64,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\na |\n\nCL]\n\nallocated memory.\n\nProcess 5 of size 20k started Process 5 allocated RAM\n\nProcess 1 completed Process 1 deallocated\nig: from RAM\nPartition Table\nMemory Size Process Usage\nAddress\nOx0 120k 4 Inuse\n120k 60k», Free\n180k 20k 5 InUse |\n200k 10k\n\nFree"
+  },
+  {
+    "text": "While this technique of partitioning the RAM and therefore, allowing multiple processes to be",
+    "start": 662.32,
+    "end": 670.88,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\na\n\nCL]\n\n.\n\nallocated memory.\n\nProcess 5 of size 20k started | Process 5 allocated RAM\n\n| Process 1 completed | Process 1 deallocated\n\ntg: from RAM\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse\n120k 60k Free\n\n180k 20k «5 InUse |_|\n200k 10k\n\nFree"
+  },
+  {
+    "text": "allocated in the RAM is quite easy to do. It could lead to something known as fragmentation.",
+    "start": 670.88,
+    "end": 678.72,
+    "ocr_text": "Partition Model\n\n(allocating/deallocating processes)\n\nRAM\nAs long sufficient contiguous space is available, new processes\na\n\nL_]\n\n.\n\nallocated memory.\n\nProcess 5 of size 20k started _ Process 5 allocated RAM\n\nProcess 1 completed Process 1 deallocated\ntgs from RAM\nPartition Table\nMemory Size Process Usage\nAddress\nOx0 420k 4 Inuse =\n120k 60k Free\n180k 20k «5 InUse [|\n200k 10k\n\nree)"
+  },
+  {
+    "text": "So, let us say this is how our RAM looks and as we seen we have a total of 70 kilobytes of RAM",
+    "start": 680.08,
+    "end": 692.48,
+    "ocr_text": "Partition Model\n\n(fragmentation)\n* Can lead to fragmentation\n— memory space is available but not contiguous\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 Inuse\n120k 60k Free oO\n180k 20k 5 InUse [|\n200k 10k Free oO"
+  },
+  {
+    "text": "which is free. That is we have 60 kilobytes here plus another 10. So, that is 70 kilobytes of",
+    "start": 693.36,
+    "end": 700.32,
+    "ocr_text": "Partition Model\n\n(fragmentation)\n* Can lead to fragmentation\n— memory space is available but not contiguous\n\nPartition Table\n\nMemory Size Process Usage\n\nAddress\n\nOx0 120k 4 inuse =\n120k 60k » Free Oo\n180k 20k 5 InUse [|\n200k 10k Free oO"
+  },
+  {
+    "text": "free RAM memory. However, in spite of having 70 kilobytes of RAM a new process such as a new",
+    "start": 700.32,
+    "end": 710.48,
+    "ocr_text": "Partition Model\n\n(fragmentation)\n\nCan lead to fragmentation\n\n— memory space is available but not contiguous\n\nNew process (6) of size\n65k cannot start, even\nthough 70k free memory\n\nPartition Table is available\nMemory Size Process Usage\n\nAddress\n\nOx0 120k 4 inuse =\n120k Te) Free\n\n180k 20k 5 InUse [|\n\n200k Gok > Free oO"
+  },
+  {
+    "text": "process with ID 6 which has a size 65 k cannot start even though 70 kilobytes of free RAM is",
+    "start": 710.48,
+    "end": 721.2,
+    "ocr_text": "Partition Model\n\n(fragmentation)\n\nCan lead to fragmentation\n\n— memory space is available but not contiguous\n\nNew process, (6) of size\n65k cannot start, even\nthough 70k free memory\n\nPartition Table is available\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 nue =\n120k eK > Free\n\n180k 20k 5 InUse [|\n\n200k Gok > Free oO"
+  },
+  {
+    "text": "available. And the reason for this is that the 70 kilobytes of free memory is not in continuous",
+    "start": 721.2,
+    "end": 727.6,
+    "ocr_text": "Partition Model\n\n(fragmentation)\n\nCan lead to fragmentation\n\n— memory space is available but not contiguous\n\nNew process (6) of size\n65k cannot start, even\nthough 70k free memory\n\nPartition Table Bole\nMemory Size Process Usage\n\nAddress\n\nOx0 120k 4 inuse\n120k 60k > Free\n\n180k 20k 5 InUse [|\n\n200k Gok > Free oO"
+  },
+  {
+    "text": "locations. For instance, we have 60 kilobytes of free memory present here and 10 kilobytes of",
+    "start": 727.6,
+    "end": 735.6,
+    "ocr_text": "Partition Model\n\n(fragmentation)\n\nCan lead to fragmentation\n\n— memory space is available but not contiguous\n\nNew process (6) of size\n65k cannot start, even\nthough 70k free memory\n\nPartition Table is available\nMemory Size Process Usage\n\nAddress\n\nOx0 120k 4 inuse =\n120k Te) Free\n\n180k 20k 5 InUse [|\n\n200k Gok > Free oO"
+  },
+  {
+    "text": "free memory present here. So, individually each of these blocks of free memory is not sufficient",
+    "start": 735.6,
+    "end": 744.4,
+    "ocr_text": "Partition Model\n\n(fragmentation)\n\nCan lead to fragmentation\n\n— memory space is available but not contiguous\n\nNew process (6) of size\n65k cannot start, even\nthough 70k free memory\n\nPartition Table is available\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 nue\n120k Te) Free\n\n180k 20k 5 InUse [|\n\n200k Gok > Free oO"
+  },
+  {
+    "text": "to start a new process of 65 kilobytes. So, this is what is termed as fragmentation and could result",
+    "start": 744.4,
+    "end": 752.64,
+    "ocr_text": "Partition Model\n\n(fragmentation)\n\nCan lead to fragmentation\n\n— memory space is available but not contiguous\n\nNew process (6) of size\n65k cannot start, even\nthough 70k free memory\n\nPartition Table is available\nMemory Size Process Usage\n\nAddress\n\n0x0 120k 4 nue\n120k Te) Free\n\n180k 20k 5 InUse [|\n\n200k Gok > Free oO"
+  },
+  {
+    "text": "in what is known as the under utilization of the RAM. Now, let us assume that when a new process",
+    "start": 752.72,
+    "end": 762.88,
+    "ocr_text": "Partition Model\n\n(fragmentation)\n\nCan lead to fragmentation\n\n— memory space is available but not contiguous\n\nNew process (6) of size\n65k cannot start, even\nthough 70k free memory\n\nPartition Table is available\nMemory Size Process Usage\n\nAddress\n\nOx0 120k 4 inuse\n120k Te) Free\n\n180k 20k 5 InUse [|\n\n200k Gok > Free oO"
+  },
+  {
+    "text": "arrives there is sufficient amount of free spaces that are present in the RAM memory.",
+    "start": 762.88,
+    "end": 769.76,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)\n\n=\n|\n|\n="
+  },
+  {
+    "text": "So, next the operating system has to decide that which among these free memory should the new",
+    "start": 770.96,
+    "end": 778.16,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)"
+  },
+  {
+    "text": "process be loaded into. So, instance over here there is a new process which has just arrived and",
+    "start": 778.16,
+    "end": 785.92,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)\n\n=\n|\n|\n="
+  },
+  {
+    "text": "we have three blocks of free memory this one this one and this one. So, which of these three blocks",
+    "start": 785.92,
+    "end": 794.4,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)\n\nCo\n_\n\n|\n|\n|"
+  },
+  {
+    "text": "of free memory in the RAM should the new process be loaded into. So, there could be several algorithms",
+    "start": 794.4,
+    "end": 803.76,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)\n\nCo\n_\n\n|\n|\n|"
+  },
+  {
+    "text": "to achieve this. So, one of the most simplest algorithm is something known as the first fit.",
+    "start": 804.72,
+    "end": 811.04,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)\n\n=\n|\n|\n="
+  },
+  {
+    "text": "So, with this first fit algorithm what the operating system would do is scan the free blocks in",
+    "start": 812.24,
+    "end": 821.04,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nrst fit (may make fragmentation worse)\n\n=\n|\n|\n="
+  },
+  {
+    "text": "RAM starting from the top and use the first available free block which is at least as large",
+    "start": 821.04,
+    "end": 832.16,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)\n\n=\n|\n|\n="
+  },
+  {
+    "text": "as the processes requirements. So, for instance over here this RAM is scanned from the top and it",
+    "start": 832.24,
+    "end": 840.64,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)"
+  },
+  {
+    "text": "could see that the first free block is too small for the process to fit in. Therefore, it is not",
+    "start": 840.64,
+    "end": 848.0,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)\n\n=\n|\n|\n="
+  },
+  {
+    "text": "allocated here. The next free block is large enough to allocate this process. Therefore,",
+    "start": 848.0,
+    "end": 854.64,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)"
+  },
+  {
+    "text": "the process is allocated here. While this first fit allocation algorithm is extremely",
+    "start": 854.64,
+    "end": 863.12,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)"
+  },
+  {
+    "text": "easy to perform from an OS perspective it could make fragmentation worse.",
+    "start": 864.72,
+    "end": 870.32,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)\n\n® fod"
+  },
+  {
+    "text": "Essentially with the first fit what we are doing is that we are breaking the amount of free blocks",
+    "start": 871.36,
+    "end": 879.44,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)\no"
+  },
+  {
+    "text": "into smaller and smaller chunks. Thus individually each chunk will not be able to cater to a single",
+    "start": 879.52,
+    "end": 888.96,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)"
+  },
+  {
+    "text": "process thus making the fragmentation worse. The other algorithm that we will see is known as",
+    "start": 888.96,
+    "end": 896.24,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse)"
+  },
+  {
+    "text": "the best fit algorithm and this performs considerably well with respect to the fragmentation.",
+    "start": 896.24,
+    "end": 904.24,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)\n\niE\n|\n|\n| |\n\n=\n=\n|\n="
+  },
+  {
+    "text": "Essentially it will not fragment the memory as much as the first fit algorithm.",
+    "start": 904.88,
+    "end": 910.88,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)\n\niE\n|\n|\n| |\n\n=\n=\n|\n="
+  },
+  {
+    "text": "So, what happens here is that when a new process enters or is created the operating system which",
+    "start": 912.08,
+    "end": 919.28,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)\n\n[4\n|\n|\n|_|\n\n=\n=\n|\n="
+  },
+  {
+    "text": "can through all free blocks that are available and choose the block which is the best fit for that",
+    "start": 919.28,
+    "end": 928.16,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)\n\n=\n=\n|\n=\n\n— |\n\n|\nrt"
+  },
+  {
+    "text": "process. So, in this particular case as we have seen earlier as well this particular free block",
+    "start": 928.16,
+    "end": 934.64,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)\n\n=\n=\n|\n=\n\n7\ni\n|"
+  },
+  {
+    "text": "is too small to cater to this new process. This free block is too large while the third free block",
+    "start": 935.2,
+    "end": 945.2,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)"
+  },
+  {
+    "text": "is just correct. So, the operating system would allocate this process into this free block as shown",
+    "start": 945.2,
+    "end": 952.72,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)\n\n=\n=\n|\n=\n\n=\n|\n|\n="
+  },
+  {
+    "text": "now here. While the best fit algorithm efficiently utilizes the available RAM reducing the fragmentation",
+    "start": 952.72,
+    "end": 961.28,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)\n\n=\n=\n|\n=\n\n=\n|\n|\n="
+  },
+  {
+    "text": "issue there may be a performance hit. Essentially it may result in a deterioration of performance.",
+    "start": 961.28,
+    "end": 968.72,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)"
+  },
+  {
+    "text": "The reason being is that now the operating system has to scan through every free block that is",
+    "start": 968.72,
+    "end": 975.04,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)"
+  },
+  {
+    "text": "available and needs to make a decision about which free block is best for the new process and",
+    "start": 975.04,
+    "end": 983.36,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)"
+  },
+  {
+    "text": "this would take some time. Another issue with the partitioning model is the case of deallocation.",
+    "start": 983.36,
+    "end": 991.92,
+    "ocr_text": "Partition Model\n(finding the right fit)\n\nFirst fit (may make fragmentation worse) Best fit (may affect performance)"
+  },
+  {
+    "text": "So, essentially deallocation would occur when a process completes its execution and",
+    "start": 992.72,
+    "end": 1000.0,
+    "ocr_text": "Partition Model\n(deallocation)\n\nDeallocation of memory can have overheads of merging partitions"
+  },
+  {
+    "text": "or is terminated and has to be removed from the RAM in order to allow a new process or another",
+    "start": 1000.08,
+    "end": 1009.52,
+    "ocr_text": "Partition Model\n(deallocation)\n\nDeallocation of memory can have overheads of merging partitions"
+  },
+  {
+    "text": "process to execute from the RAM. So, deallocation would require that the new that a new free block",
+    "start": 1009.52,
+    "end": 1018.72,
+    "ocr_text": "Partition Model\n(deallocation)\n\nDeallocation of memory can have overheads of merging partitions"
+  },
+  {
+    "text": "be created and it would result in the free flag set corresponding to this block in the partition",
+    "start": 1018.8,
+    "end": 1031.04,
+    "ocr_text": "Partition Model\n(deallocation)\n\nDeallocation of memory can have overheads of merging partitions"
+  },
+  {
+    "text": "table. So, what the operating system now has to do is that it should detect that there are indeed",
+    "start": 1031.04,
+    "end": 1039.12,
+    "ocr_text": "Partition Model\n(deallocation)\n\nDeallocation of memory can have overheads of merging partitions"
+  },
+  {
+    "text": "three continuous free blocks that are present in the RAM and as a result of this it should detect",
+    "start": 1039.92,
+    "end": 1047.04,
+    "ocr_text": "Partition Model\n(deallocation)\n\nDeallocation of memory can have overheads of merging partitions"
+  },
+  {
+    "text": "these three continuous free blocks and be able to merge these three blocks into one single block.",
+    "start": 1047.52,
+    "end": 1054.0,
+    "ocr_text": "Partition Model\n(deallocation)\n\nDeallocation of memory can have overheads of merging partitions\n\n=\n|\n|\n=\n\ntv]"
+  },
+  {
+    "text": "The advantage of merging it into one big free block is that now this larger free block could",
+    "start": 1055.04,
+    "end": 1062.8,
+    "ocr_text": "Partition Model\n(deallocation)\n\nDeallocation of memory can have overheads of merging partitions"
+  },
+  {
+    "text": "cater to a larger process and thereby reducing the effect of fragmentation.",
+    "start": 1062.8,
+    "end": 1069.84,
+    "ocr_text": "Partition Model\n(deallocation)\n\nDeallocation of memory can have overheads of merging partitions"
+  },
+  {
+    "text": "So, thus we have seen that the major limitation of the single contiguous model as well as the",
+    "start": 1071.52,
+    "end": 1076.96,
+    "ocr_text": "Partition Model\n(deallocation)\n\nDeallocation of memory can have overheads of merging partitions"
+  },
+  {
+    "text": "partition model is that the entire memory map of the process needed to be present in RAM",
+    "start": 1076.96,
+    "end": 1084.64,
+    "ocr_text": "Limitations\n\nEntire process needs to be in RAM\nAllocation needed to be in contiguous memory\nThese led to\n— Fragmentation\n— Limit the size of process by RAM size\n— Performance degradation\n* Due to book keeping\n* Managing partitions\n\nLuckily for us, modern day operating systems do much better in managing memory\nusing two concepts\nVirtual Memory and Segmentation"
+  },
+  {
+    "text": "during its entire execution. So, all allocation for the entire process needed to be in contiguous",
+    "start": 1086.08,
+    "end": 1092.88,
+    "ocr_text": "Limitations\n\nEntire process needs to be in RAM\nAllocation needed to be in contiguous memory\nThese led to\n— Fragmentation\n— Limit the size of process by RAM size\n— Performance degradation\n* Due to book keeping\n* Managing partitions\n\nLuckily for us, modern day operating systems do much better in managing memory\nusing two concepts\nVirtual Memory and Segmentation"
+  },
+  {
+    "text": "memory and because of these issues it had led to fragmentation limit on the size of the process",
+    "start": 1092.88,
+    "end": 1100.96,
+    "ocr_text": "Limitations\n\nEntire process needs to be in RAM\nAllocation needed to be in contiguous memory\nThese led to\n— Fragmentation\n— Limit the size of process by RAM size\n— Performance degradation\n* Due to book keeping\n* Managing partitions\n\nLuckily for us, modern day operating systems do much better in managing memory\nusing two concepts\nVirtual Memory and Segmentation"
+  },
+  {
+    "text": "you based depending on the RAM size and also performance degradation due to bookkeeping",
+    "start": 1101.84,
+    "end": 1108.56,
+    "ocr_text": "Limitations\n\nEntire process needs to be in RAM\nAllocation needed to be in contiguous memory\nThese led to\n— Fragmentation\n— Limit the size of process by RAM size\n— Performance degradation\n+ Due to book keeping\n+ Managing partitions\n\nLuckily for us, modern day operating systems do much better in managing memory\nusing two concepts\nVirtual Memory and Segmentation"
+  },
+  {
+    "text": "and also the management of partitions. So, luckily for us modern day operating systems do much",
+    "start": 1108.56,
+    "end": 1116.4,
+    "ocr_text": "Limitations\n\nEntire process needs to be in RAM\nAllocation needed to be in contiguous memory\nThese led to\n— Fragmentation\n— Limit the size of process by RAM size\n— Performance degradation\n* Due to book keeping\n* Managing pavtitions\n\nLuckily for us, modern day operating systems do much better in managing memory\nusing two concepts\nVirtual Memory and Segmentation"
+  },
+  {
+    "text": "better in managing memory. So, most modern day operating systems use two concepts that is",
+    "start": 1116.4,
+    "end": 1126.64,
+    "ocr_text": "Limitations\n\nEntire process needs to be in RAM\nAllocation needed to be in contiguous memory\nThese led to\n— Fragmentation\n— Limit the size of process by RAM size\n— Performance degradation\n+ Due to book keeping\n« Managing partitions\n\nLuckily for us, modern day operating systems do much better in managing memory\nusing two concepts\nVirtual Memory and Segmentation"
+  },
+  {
+    "text": "virtual memory and segmentation. So, in the next few videos we will look into these memory concepts",
+    "start": 1126.64,
+    "end": 1134.24,
+    "ocr_text": "Limitations\n\nEntire process needs to be in RAM\nAllocation needed to be in contiguous memory\nThese led to\n— Fragmentation\n— Limit the size of process by RAM size\n— Performance degradation\n* Due to book keeping\n« Managing partitions\n\nLuckily for us, modern day operating systems do much better in managing memory\nusing two concepts\nVirtual Memory and Segmentation\nX"
+  },
+  {
+    "text": "rather these memory management concepts and we will also see how the Intel X86",
+    "start": 1135.2,
+    "end": 1141.04,
+    "ocr_text": "Limitations\n\nEntire process needs to be in RAM\nAllocation needed to be in contiguous memory\nThese led to\n— Fragmentation\n— Limit the size of process by RAM size\n— Performance degradation\n* Due to book keeping\n* Managing partitions\n\nLuckily for us, modern day operating systems do much better in managing memory\nusing two concepts\nVirtual Memory and Segmentation"
+  },
+  {
+    "text": "processes manage memory. Thank you.",
+    "start": 1141.04,
+    "end": 1151.04,
+    "ocr_text": "Limitations\n\nEntire process needs to be in RAM\nAllocation needed to be in contiguous memory\nThese led to\n— Fragmentation\n— Limit the size of process by RAM size\n— Performance degradation\n* Due to book keeping\n* Managing partitions\n\nLuckily for us, modern day operating systems do much better in managing memory\nusing two concepts\nVirtual Memory and Segmentation"
+  }
+]

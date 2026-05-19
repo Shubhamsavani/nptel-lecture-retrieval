@@ -1,0 +1,1052 @@
+[
+  {
+    "text": "So, now let us look at shortest paths in graphs where we allow negative edge weights.",
+    "start": 0.0,
+    "end": 7.52,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 3 ;\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nNegative edges: Bellman-Ford algorithm\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cnii.ac.in/~madhavan"
+  },
+  {
+    "text": "In particular let us look at the Bellman Ford algorithm.",
+    "start": 7.52,
+    "end": 11.32,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nNegative edges: Bellman-Ford algorithm\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So recall that the correctness for Daix-Sav's algorithm relied on an invariant property",
+    "start": 11.32,
+    "end": 17.24,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nNegative edges: Bellman-Ford algorithm\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "that every vertex that we burn automatically has the shortest path computed at the time",
+    "start": 17.24,
+    "end": 22.88,
+    "ocr_text": "* By induction, assume we have identified shortest\npaths to all vertices already burnt\n\nBurnt vertices\n\n© oO\n\n* Next vertex to burn is v, via x\n\n* Cannot later find a shorter path from y to w to v"
+  },
+  {
+    "text": "when we burn it.",
+    "start": 22.88,
+    "end": 24.24,
+    "ocr_text": "* By induction, assume we have identified shortest\npaths to all vertices already burnt\n\nBurnt vertices\n\n© oO\n\n* Next vertex to burn is v, via x\n\n* Cannot later find a shorter path from y to w to v"
+  },
+  {
+    "text": "However, as we saw this argument does not work if we can have negative edge weights",
+    "start": 24.4,
+    "end": 29.6,
+    "ocr_text": "* By induction, assume we have identified shortest\npaths to all vertices already burnt\n\nBurnt vertices\n\n© oO\n\n* Next vertex to burn is v, via x\n\n* Cannot later find a shorter path from y to w to v"
+  },
+  {
+    "text": "because we may find later a path via vertex which we have not burnt yet which becomes a shorter path",
+    "start": 29.6,
+    "end": 35.36,
+    "ocr_text": "* Our correctness argument is no longer valid\n\nBurnt vertices\n\n®\n\n© ©\n\n* Next vertex to burn is v, via x\n\n* Might find a shorter path later with negative weights\nfrom y to w to v"
+  },
+  {
+    "text": "to a vertex we have burned earlier.",
+    "start": 35.36,
+    "end": 38.0,
+    "ocr_text": "* Our correctness argument is no longer valid\n\nBurnt vertices\n\n®\n\n© ©\n\n* Next vertex to burn is v, via x\n\n* Might find a shorter path later with negative weights\nfrom y to w to v"
+  },
+  {
+    "text": "We also said that allowing negative edge weights is one thing but allowing negative cycles",
+    "start": 38.88,
+    "end": 43.76,
+    "ocr_text": "* Our correctness argument is no longer valid\n\nBurnt vertices\n\n®\n\n© ©\n\n* Next vertex to burn is v, via x\n\n* Might find a shorter path later with negative weights\nfrom y to w to v"
+  },
+  {
+    "text": "is not a good idea because once you have a negative cycle you can go around around cycle",
+    "start": 43.76,
+    "end": 48.32,
+    "ocr_text": "* Our correctness argument is no longer valid\n\nBurnt vertices\n\n®\n\n© ©\n\n* Next vertex to burn is v, via x\n\n* Might find a shorter path later with negative weights\nfrom y to w to v"
+  },
+  {
+    "text": "as many times as you want and I have definitely reduced length of the path.",
+    "start": 48.32,
+    "end": 52.4,
+    "ocr_text": "* Our correctness argument is no longer valid\n\nBurnt vertices\n\n®\n\n© ©\n\n* Next vertex to burn is v, via x\n\n* Might find a shorter path later with negative weights\nfrom y to w to v"
+  },
+  {
+    "text": "So, the shortest path is not even a very defined quantity.",
+    "start": 52.4,
+    "end": 55.68,
+    "ocr_text": "S? Vi > V2—> V3 +> Vm >t\n\n3 Sa Vite et Vr"
+  },
+  {
+    "text": "So, so long as we have negative edges but not negative cycles shortest paths do exist",
+    "start": 55.68,
+    "end": 60.96,
+    "ocr_text": "S? Vi > V2—> V3 +> Vm >t\n\n3 Sa Vite et Vr"
+  },
+  {
+    "text": "and we can hope to compute them.",
+    "start": 60.96,
+    "end": 62.4,
+    "ocr_text": "S? Vi > V2—> V3 +> Vm >t\n\n3 Sa Vite et Vr"
+  },
+  {
+    "text": "So, let us first look at two basic properties about shortest paths which hold regardless of",
+    "start": 64.8,
+    "end": 70.0,
+    "ocr_text": "S? Vi > V2—> V3 +> Vm >t\n\n3 Sa Vite et Vr"
+  },
+  {
+    "text": "whether the edges can be negative or not provided we do not have negative cycles.",
+    "start": 70.0,
+    "end": 74.56,
+    "ocr_text": "S? Vi > V2—> V3 +> Vm >t\n\n3 Sa Vite et Vr"
+  },
+  {
+    "text": "So, the first property is fairly obvious that a shortest path will never go through a loop.",
+    "start": 75.76,
+    "end": 80.16,
+    "ocr_text": "S7 Vi 7 V2 V3 >Vm >t\n\n« KES te av Vr"
+  },
+  {
+    "text": "So, supposing I want to go from S to T right and suppose along the way I actually go through",
+    "start": 80.56,
+    "end": 86.88,
+    "ocr_text": "S7 Vi 7 V2 V3 >Vm >t\n\n« KES te av Vr"
+  },
+  {
+    "text": "the same vertex twice and then I continue. Now, what we know is that this is a loop right and since",
+    "start": 86.88,
+    "end": 94.48,
+    "ocr_text": "S? Vi 7 V2 7 V3... 7 Vm > t\n\n. CSD Vi ato Vr Vr"
+  },
+  {
+    "text": "it is a loop the weight is greater than or equal to 0 it cannot be negative because we have",
+    "start": 94.48,
+    "end": 100.32,
+    "ocr_text": "S? Vi 7 V2 7 V3... 7 Vm > t\n\n. CSD Vi ato Vr Vr"
+  },
+  {
+    "text": "ruled out negative loops. So, therefore, if I take this path and I just cut out this loop then I",
+    "start": 100.32,
+    "end": 107.04,
+    "ocr_text": "* > Se ay"
+  },
+  {
+    "text": "have a direct path from S to T and if I look at the cost of direct path from S to T it cannot",
+    "start": 107.04,
+    "end": 111.92,
+    "ocr_text": "S? Vi 7 V2 > V3... 7% Vm > t\n\nE SIXES POV ae eV Vr"
+  },
+  {
+    "text": "be any bigger than this one because at mover at best this loop has 0 and I have decreased nothing",
+    "start": 111.92,
+    "end": 117.12,
+    "ocr_text": "S? Vi 7 V2 > V3... 7% Vm > t\n\nE SIXES POV ae eV Vr"
+  },
+  {
+    "text": "but at in the general case the loop has some positive cost and I actually reduce the cost right.",
+    "start": 117.12,
+    "end": 122.48,
+    "ocr_text": "$3\n\nS? Vi 7 V2 7 V3... 7 Vm > t\n\nWS 2 Valent cs 2 is We"
+  },
+  {
+    "text": "So, shortest path never loops. So, it will never be the same vertex twice.",
+    "start": 123.36,
+    "end": 127.84,
+    "ocr_text": "$3\n\nS? Vi 7 V2 7 V3... 7 Vm > t\n\nWS 2 Valent cs 2 is We"
+  },
+  {
+    "text": "This means that can at first have at most n minus 1 edges because I can only allow so I",
+    "start": 127.84,
+    "end": 132.88,
+    "ocr_text": "S? Vi 7 V2 V3... 7 Vm > t\n\n* E ADCS ei ae =s ie “hi"
+  },
+  {
+    "text": "totally have n vertices. So, if I do not allow any vertex to repeat anywhere along the way then",
+    "start": 132.96,
+    "end": 140.08,
+    "ocr_text": "S? Vi 7 V2 V3... 7 Vm > t\n\n* E ADCS ei ae =s ie “hi"
+  },
+  {
+    "text": "obviously, I can only have n minus 1 vertices n minus 1 edges right. So, there is a bound on the",
+    "start": 140.08,
+    "end": 144.8,
+    "ocr_text": "* Re\n\nS7Vi7 V27 V3... 7% Vm >t\n\n* Eve fixs 4 V4... > Vy ise rtest pa Vr"
+  },
+  {
+    "text": "length of the shortest path. The other property is that regardless of how the shortest path looks",
+    "start": 144.8,
+    "end": 150.64,
+    "ocr_text": "* Re\n\nS7Vi7 V27 V3... 7% Vm >t\n\n* Eve fixs 4 V4... > Vy ise rtest pa Vr"
+  },
+  {
+    "text": "along the way every path that makes up the shortest path is itself the shortest path. So,",
+    "start": 151.68,
+    "end": 156.64,
+    "ocr_text": "* SS\n\nS=Vi =. V2 = V3 >*Vm >t\n\n* Sad VE a ep Vr"
+  },
+  {
+    "text": "for instance if I have a path like this from S to T which goes through some intermediate vertices",
+    "start": 156.64,
+    "end": 161.6,
+    "ocr_text": ": t SS\n\nSI V1 7 V2 V3... > Vm > t\n\n* Sy Vr"
+  },
+  {
+    "text": "v 1 v 2 or to v m then if I look at the path only up to v m then this is the shortest path",
+    "start": 161.6,
+    "end": 167.36,
+    "ocr_text": ": t SS\n\nSI V1 7 V2 V3... > Vm > t\n\n* Sy Vr"
+  },
+  {
+    "text": "from S to v m they cannot be any shorter path because supposing there was another shorter path",
+    "start": 169.84,
+    "end": 175.52,
+    "ocr_text": "$55\n\nlege pe ee pea\n\nS>Vii= Vo— V3 + vm\n\nSai Vi Vr"
+  },
+  {
+    "text": "ok. Suppose there is a shorter way to get from S to v m then I can take this and this and the",
+    "start": 175.52,
+    "end": 180.24,
+    "ocr_text": "$55\n\nlege pe ee pea\n\nS>Vii= Vo— V3 + vm\n\nSai Vi Vr"
+  },
+  {
+    "text": "red path now will be shorter than the green path ok. So, therefore, the fact that I am going to T",
+    "start": 180.24,
+    "end": 184.96,
+    "ocr_text": "rs\n\n$ ~~~\n\n* SS\n\nSaeeVi a? Vor avs\n\n: SoM... > Wis Vr"
+  },
+  {
+    "text": "via v m and this is the shortest path means that there must also be only this much of a short path",
+    "start": 184.96,
+    "end": 190.64,
+    "ocr_text": "rs\n\n$ ~~~\n\n* SS\n\nSaeeVi a? Vor avs\n\n: SoM... > Wis Vr"
+  },
+  {
+    "text": "from S to v m and this holds at every point. So, again for example, S to v 2 this must be the shortest",
+    "start": 190.64,
+    "end": 194.88,
+    "ocr_text": "rs\n\n$ ~~~\n\n* SS\n\nSaeeVi a? Vor avs\n\n: SoM... > Wis Vr"
+  },
+  {
+    "text": "path because otherwise if there were a shortest path then I will take that shorter path and then",
+    "start": 194.88,
+    "end": 199.12,
+    "ocr_text": "rs\n\n$ ~~~\n\n* SS\n\nSaeeVi a? Vor avs\n\n: SoM... > Wis Vr"
+  },
+  {
+    "text": "I will add out this path which I already have and I will get a shorter path to everything from V",
+    "start": 199.12,
+    "end": 202.64,
+    "ocr_text": "SS)"
+  },
+  {
+    "text": "3 onwards right. So, every prefix of a shortest path is itself a shortest path. So, these two",
+    "start": 202.64,
+    "end": 208.16,
+    "ocr_text": "SS)"
+  },
+  {
+    "text": "properties are enough for us to arrive at Bellman Ford algorithm the Bellman Ford algorithm for shortest",
+    "start": 208.16,
+    "end": 213.52,
+    "ocr_text": "Rea Oo"
+  },
+  {
+    "text": "path in the presence of negative edge weights. So, to get to the Bellman Ford algorithm we have to",
+    "start": 213.52,
+    "end": 219.84,
+    "ocr_text": "Rea Oo"
+  },
+  {
+    "text": "analyze a little bit more about what is happening in Daixas algorithm ok. So, in Daixas algorithm whenever",
+    "start": 219.84,
+    "end": 225.84,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "we burn a vertex whenever we visit it we update all its neighbors right. So, we update the distance",
+    "start": 225.84,
+    "end": 232.56,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "of a when we burn a vertex j we update for every edge j k right we update the distance to k to be",
+    "start": 232.56,
+    "end": 240.24,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "what distance we already know for k together with the distance to j and the edge from j to k.",
+    "start": 240.32,
+    "end": 246.56,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "So, we have a newly discovered distance through j perhaps and we compare it to the distance we",
+    "start": 246.56,
+    "end": 251.04,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "already know and we keep the smaller of the two. So, let us call this operation and update",
+    "start": 251.04,
+    "end": 254.8,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "an updating k from j. So, in Daixas algorithm we only do this update when we burn j and the",
+    "start": 254.8,
+    "end": 262.4,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "correctness of Daixas algorithm says that when we burn j the distance to j is the correct distance to j",
+    "start": 262.4,
+    "end": 268.08,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "right. So, what we have seen is that in the negative edge weight case what if we use the",
+    "start": 268.4,
+    "end": 273.28,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "strategy of Daixas algorithm this may not be the case that when we burn a vertex just because it is",
+    "start": 273.28,
+    "end": 278.4,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "in the shortest expected distance among the unburnt vertices does not guarantee that this is the",
+    "start": 278.4,
+    "end": 284.08,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "correct distance right we might find later on a smaller distance. But in spite of this this",
+    "start": 284.08,
+    "end": 289.04,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "update operation has some useful properties which we can exploit. So, the crucial thing is that",
+    "start": 289.04,
+    "end": 295.04,
+    "ocr_text": "Distance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nupdate(j,k)"
+  },
+  {
+    "text": "the update gives us an upper bound on the distance to k right we already have so, at any point the",
+    "start": 295.04,
+    "end": 301.12,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) nore than Distance(j)+weight(j,k)\n\nistance(j) j\nho k, Distance(k) is «\n\nistance(k)"
+  },
+  {
+    "text": "invariant that we have is that the value that we have in distance to k is greater than or equal to",
+    "start": 301.12,
+    "end": 306.64,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) nore than Distance(j)+weight(j,k)\n\nistance(j) j\nho k, Distance(k) is «\n\nistance(k)"
+  },
+  {
+    "text": "the actual shortest distance from the source to k. Initially we may assume it is infinity so,",
+    "start": 306.64,
+    "end": 311.12,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nDistance(k) is yre than Distance(j)+weight(j,k)\n\nistance(j) orre dj\ntes o k, Distance(k)\n\nistance(k)"
+  },
+  {
+    "text": "that is surely greater than the actual shortest distance. At any point when we reduce it we reduce",
+    "start": 311.12,
+    "end": 316.8,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nDistance(k) is yre than Distance(j)+weight(j,k)\n\nistance(j) orre dj\ntes o k, Distance(k)\n\nistance(k)"
+  },
+  {
+    "text": "it because we have found a concrete path which gives us a shorter distance right. So, at when we",
+    "start": 316.8,
+    "end": 322.48,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\n* Distance(k) is no more than Distance(j)+weight(j,k)\n\nistance(j) is correct and j\ncan o k, Distance(k)\n\nistance(k)"
+  },
+  {
+    "text": "do this after the sub date we know that the distance to k is no more than the distance we have",
+    "start": 322.48,
+    "end": 327.92,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\n* Distance(k) is no more than Distance(j)+weight(j,k)\n\nistance(j) is correct and j\ncan o k, Distance(k)\n\nistance(k)"
+  },
+  {
+    "text": "just discovered through j because if it was already less than we keep it that way because we found",
+    "start": 327.92,
+    "end": 332.0,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) is r I istance(j)+weight(j,k)\n\nistance(j) orrect and j is\nSI k, Distance(k) is\n\nistance(k)"
+  },
+  {
+    "text": "it through a previous j prime or we have found it now in which case we have upgraded it in the",
+    "start": 332.0,
+    "end": 336.56,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) is r I istance(j)+weight(j,k)\n\nistance(j) orrect and j is\nSI k, Distance(k) is\n\nistance(k)"
+  },
+  {
+    "text": "sub date operation. This also means because of our previous observation about shortest paths that",
+    "start": 336.56,
+    "end": 341.84,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) istance(j)+weight(j,k)\n\nistance(j) j\n¢ k, Distance(k)\n\nistance(k)"
+  },
+  {
+    "text": "we actually undikes as of them also that a distance j is actually correct and the shortest path",
+    "start": 341.84,
+    "end": 347.28,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) istance(j)+weight(j,k)\n\nistance(j) j\n¢ k, Distance(k)\n\nistance(k)"
+  },
+  {
+    "text": "now consists of just adding this edge we are not claiming it is but if it is the shortest path",
+    "start": 347.36,
+    "end": 353.04,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) r I istance(j)+weight(j,k)\n\nistance(j) rec djist\n2 k, Distance(k) is\n\nistance(k)"
+  },
+  {
+    "text": "then the distance to k will be correctly completed. So, in a nutshell this update operation is a",
+    "start": 353.04,
+    "end": 358.96,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) r I istance(j)+weight(j,k)\n\nistance(j) rec djist\n2 k, Distance(k) is\n\nistance(k)"
+  },
+  {
+    "text": "safe operation because it will never bring distance of k below the actual value. So, it will always",
+    "start": 358.96,
+    "end": 364.08,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) ne in Distance(j)+weight(j,k)\n\nistance(j) rec djis\n3 k, Distance(k)\n\nJistance(k)"
+  },
+  {
+    "text": "be above the value that we want. So, we can keep doing spurious updates or unnecessary updates",
+    "start": 364.08,
+    "end": 369.52,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) ne in Distance(j)+weight(j,k)\n\nistance(j) rec djis\n3 k, Distance(k)\n\nJistance(k)"
+  },
+  {
+    "text": "and it does not hurt us. So, redundant updates cannot upset this calculation it just may not",
+    "start": 369.52,
+    "end": 374.48,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) r istance(j)+weight(j,k)\n\nistance(j) is « j\nte k, Distance(k)\n\nistance(k)"
+  },
+  {
+    "text": "make progress but may not it will not send us to a situation from which we cannot recover the",
+    "start": 374.56,
+    "end": 379.2,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))\n\nistance(k) r istance(j)+weight(j,k)\n\nistance(j) is « j\nte k, Distance(k)\n\nistance(k)"
+  },
+  {
+    "text": "minimum cost because we will always be at an act or above the minimum cost. So, whenever we do a",
+    "start": 379.2,
+    "end": 383.68,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance()+weight(,k))\n\n* Distance(k) is no more than Distance()+weight(, k)\n\nf Distance(j) is correc id j\nae o k, Distance(k) is\n\nJistance(k)"
+  },
+  {
+    "text": "min we will always be coming down but not crossing below the actual value we want to find.",
+    "start": 383.68,
+    "end": 388.08,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance()+weight(,k))\n\n* Distance(k) is no more than Distance()+weight(, k)\n\nf Distance(j) is correc id j\nae o k, Distance(k) is\n\nJistance(k)"
+  },
+  {
+    "text": "So, if we look at diced as algorithm then what it does is a particular sequence of really",
+    "start": 391.84,
+    "end": 397.68,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))"
+  },
+  {
+    "text": "updates right it chooses the smallest vertex smallest distance vertex which is not burnt and",
+    "start": 397.68,
+    "end": 403.12,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))"
+  },
+  {
+    "text": "up burns it and the proof breaks down because this sequence does not necessarily give us a",
+    "start": 403.12,
+    "end": 409.2,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))"
+  },
+  {
+    "text": "shortest path if the weights can be negative. So, an actual question to ask is what sequence of",
+    "start": 409.2,
+    "end": 415.92,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))"
+  },
+  {
+    "text": "updates should I do in order to actually get the shortest path is there a better way of computing this",
+    "start": 415.92,
+    "end": 421.52,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))"
+  },
+  {
+    "text": "the sequence of updates rather than going by the greedy heuristic of diced as algorithm.",
+    "start": 423.6,
+    "end": 428.16,
+    "ocr_text": "update(j,k):\nDistance(k) = min(Distance(k), Distance(j)+weight(j,k))"
+  },
+  {
+    "text": "So, suppose we have two vertices S and T we want to find the shortest path from S to T and",
+    "start": 428.72,
+    "end": 436.64,
+    "ocr_text": "s> Vi V2 Vs >Vm >t\n\nupdate(s,v1)\nupdate(v1,v2),...,update(v2,v3),...,update(vm,t)\n\nistance()) jis\nde k, Distance(k)\nupdate(j,k)"
+  },
+  {
+    "text": "suppose there is the shortest path which goes where we want to be M as we have seen before.",
+    "start": 436.64,
+    "end": 441.44,
+    "ocr_text": "Sait? V2 52 oe? Vm\n\nupdate(s,v1)\nupdate(v1,v2),..., update(v2, v3), ..., uodate(Vm,t)\n\nistance(/) jis\nk, Distance(k)\nupdate(j,k)"
+  },
+  {
+    "text": "Now, if we do the updates in this order that is we first compute the update from S to V1 then",
+    "start": 442.32,
+    "end": 449.76,
+    "ocr_text": "Sait? V2 52 oe? Vm\n\nupdate(s,v1)\nupdate(v1,v2),..., update(v2, v3), ..., uodate(Vm,t)\n\nistance(/) jis\nk, Distance(k)\nupdate(j,k)"
+  },
+  {
+    "text": "we compute we want to V2 then we compute V2 to V the in between we can do other things it is only",
+    "start": 449.76,
+    "end": 454.8,
+    "ocr_text": "S7? V1 7 V2 7 V3... 7% Vm > t\n\nla update(s,v1)\nupdate(v1,v2),..., update(v2,v3), ..., uodate(Vm,t)\n\nistance(j) is c and j is >\nde sl I k, Distance(k)\nupdate(j,k)"
+  },
+  {
+    "text": "these updates happen in this sequence then V3 to V4 and so on and finally, V2 Vm to T",
+    "start": 455.76,
+    "end": 461.36,
+    "ocr_text": "S7? V1 7 V2 V3... 7% Vm >t\n\n* u € nce update(s,v1)\n,update(v1,v2),..., update(v2,v3), ..., uodate(Vm,t)\n\n* istance(j) xt jis\nlode I ‘ I k, Distance(k)\nupdate(j,k)"
+  },
+  {
+    "text": "then what do we know well we knew earlier that if we had correctly computed the distance up to S",
+    "start": 462.32,
+    "end": 467.6,
+    "ocr_text": "S7? V1 7 V2 V3... 7% Vm >t\n\n* u € nce update(s,v1)\n,update(v1,v2),..., update(v2,v3), ..., uodate(Vm,t)\n\n* istance(j) xt jis\nlode I ‘ I k, Distance(k)\nupdate(j,k)"
+  },
+  {
+    "text": "then this update will correctly compute the distance of to V1 because this is the second last",
+    "start": 468.32,
+    "end": 472.16,
+    "ocr_text": "3 >t\n\nHp TAN 2. eee NSP tee MT\n\nDU : update(s,v1)\nupdate(v1,v2),..., update(v2,vs),..., update(Vm,t),...\n\nistance()) j >\nde s| ; I k, Distance(k)\nupdate(j,k)"
+  },
+  {
+    "text": "node on this right. So, if distance of j is correct and j is the second last node of the",
+    "start": 472.16,
+    "end": 476.64,
+    "ocr_text": "3 >t\n\nHp TAN 2. eee NSP tee MT\n\nDU : update(s,v1)\nupdate(v1,v2),..., update(v2,vs),..., update(Vm,t),...\n\nistance()) j >\nde s| ; I k, Distance(k)\nupdate(j,k)"
+  },
+  {
+    "text": "shortest path to k distance of k is correct after the update. So, because distance of S was 0",
+    "start": 476.64,
+    "end": 482.0,
+    "ocr_text": "A a\n\nSpas 16, Nea NE) > Vm\n\n> update(s,v1)\nupdate(v1,Vv2),...,update(v2,vs),..., update(Vm,t),..\n\nJistance()) is « and j is C\ndeo ‘ 1 k, Distance(k)\n>r update(j,k)"
+  },
+  {
+    "text": "and it is correct when we do update S V1 this distance becomes correct. Now, we might do all sorts",
+    "start": 482.08,
+    "end": 486.8,
+    "ocr_text": "A a\n\nSpas 16, Nea NE) > Vm\n\n> update(s,v1)\nupdate(v1,Vv2),...,update(v2,vs),..., update(Vm,t),..\n\nJistance()) is « and j is C\ndeo ‘ 1 k, Distance(k)\n>r update(j,k)"
+  },
+  {
+    "text": "of other updates we do not bother us but now when we come to V2 we will be updating V2 from V1 and",
+    "start": 486.8,
+    "end": 492.16,
+    "ocr_text": "“g >t\n\nSpee DAN Olen NiGeeena aM\n\nseq update(s,v1)\nupdate(v1,v2),..., update(v2,vs),..., update(Vm,t),.\n\nistance()) ; jis >\nde on < k, Distance(k)\nupdate(j,k)"
+  },
+  {
+    "text": "V1 is the second last path in this shortest path and therefore, this also becomes a correct value",
+    "start": 492.16,
+    "end": 497.76,
+    "ocr_text": "“g >t\n\nSpee DAN Olen NiGeeena aM\n\nseq update(s,v1)\nupdate(v1,v2),..., update(v2,vs),..., update(Vm,t),.\n\nistance()) ; jis >\nde on < k, Distance(k)\nupdate(j,k)"
+  },
+  {
+    "text": "then this also becomes a correct value. So, in the middle of all these updates if we identify",
+    "start": 497.76,
+    "end": 503.6,
+    "ocr_text": "update(s, v1)\nupdate(s, V2) pice ..., Update(Vim,t)\n\nea!) 1 j\n) k, Distance(k) is\n3 sndeted, k)"
+  },
+  {
+    "text": "this particular sub sequence of updates S to V1 then we want to V2 then V2 to V3 then we have got",
+    "start": 503.6,
+    "end": 509.28,
+    "ocr_text": "update(s, v1)\nupdate(s, V2) pice ..., Update(Vim,t)\n\nea!) 1 j\n) k, Distance(k) is\n3 sndeted, k)"
+  },
+  {
+    "text": "the distance. So, now the question is how do we make sure that we have the sequence of updates",
+    "start": 509.28,
+    "end": 515.2,
+    "ocr_text": "‘shy > Vol V3]... > Vm > t\nDur update s > ‘update(s,v1)\nupdate(v1,v2),..., update(v2,v3), ..., update(Vm,t)\n\nistance(j) is c xt 1 j is eC\neons 1 k, Distance(k)\n>r update(j,k)"
+  },
+  {
+    "text": "for S n t. So, Bellman Ford algorithm basically says do not try to find a particular sequence",
+    "start": 515.2,
+    "end": 525.68,
+    "ocr_text": "‘shy > Vol V3]... > Vm > t\nDur update s > ‘update(s,v1)\nupdate(v1,v2),..., update(v2,v3), ..., update(Vm,t)\n\nistance(j) is c xt 1 j is eC\neons 1 k, Distance(k)\n>r update(j,k)"
+  },
+  {
+    "text": "just generally compute all possible sequences of updates. So, at a high level this is the algorithm",
+    "start": 525.68,
+    "end": 531.68,
+    "ocr_text": "‘shy > Vol V3]... > Vm > t\nDur update s > ‘update(s,v1)\nupdate(v1,v2),..., update(v2,v3), ..., update(Vm,t)\n\nistance(j) is c xt 1 j is eC\neons 1 k, Distance(k)\n>r update(j,k)"
+  },
+  {
+    "text": "it says initially assign the distance of S to be 0 and the distance of U to be infinity for",
+    "start": 531.68,
+    "end": 538.72,
+    "ocr_text": "Iteration 1"
+  },
+  {
+    "text": "every other vertex. Now, we just blindly do every update n minus 1 times. So, what you do is",
+    "start": 538.72,
+    "end": 546.48,
+    "ocr_text": "Iteration 1"
+  },
+  {
+    "text": "initially you update for every edge given the fact that S has distance 0 and U is infinity otherwise",
+    "start": 546.48,
+    "end": 553.2,
+    "ocr_text": "Iteration 1"
+  },
+  {
+    "text": "then we update everything. So, all of these updates where S is the source vertex and V is the",
+    "start": 553.2,
+    "end": 557.36,
+    "ocr_text": "Iteration 1"
+  },
+  {
+    "text": "target vertex these will give us now some finite values for these Vs whereas, these will just",
+    "start": 557.36,
+    "end": 561.92,
+    "ocr_text": "Iteration 1"
+  },
+  {
+    "text": "remain infinity. So, this will become finite and these will become infinity. Now, you have done one",
+    "start": 561.92,
+    "end": 567.6,
+    "ocr_text": "Iteration 1"
+  },
+  {
+    "text": "full sequence of updates in which other than S all the neighbors of S now have some finite values.",
+    "start": 567.68,
+    "end": 572.64,
+    "ocr_text": "GD) tute\nGu)”"
+  },
+  {
+    "text": "Now, you do this whole thing again. So, you update every edge again and then you update every",
+    "start": 572.64,
+    "end": 579.04,
+    "ocr_text": "GD) tute\nGu)”"
+  },
+  {
+    "text": "edge again. Now, we know that a path shortest path between any two vertices has at most n minus 1",
+    "start": 579.04,
+    "end": 586.64,
+    "ocr_text": "tT\n\nIteration 1 Iteration 2 (nd"
+  },
+  {
+    "text": "edges. Therefore, if we do this thing n minus 1 time the claim is that if I want any sequence of",
+    "start": 587.28,
+    "end": 593.52,
+    "ocr_text": "Iteration 1 Iteration 2 Sears =i"
+  },
+  {
+    "text": "updates I might find a sequence of updates who goes like this or I might find any sequence of",
+    "start": 593.52,
+    "end": 598.32,
+    "ocr_text": "Iteration 1 Iteration 2 Sears =i"
+  },
+  {
+    "text": "n minus 1 updates which is a legal path will be represented in this. So, this is a very clever",
+    "start": 598.32,
+    "end": 603.52,
+    "ocr_text": "Iteration 1 Iteration 2 ene | Iteration n-1\n\na eee"
+  },
+  {
+    "text": "matrix which has all the updates after one iteration all the updates after two iterations. Now,",
+    "start": 603.52,
+    "end": 608.96,
+    "ocr_text": "Iteration 1 Iteration 2 ene | Iteration n-1\n\na eee"
+  },
+  {
+    "text": "if I want a particular sequence of update E1 then update E2 then update then I will find E1",
+    "start": 608.96,
+    "end": 613.68,
+    "ocr_text": "Iteration 1 Iteration 2 eee Iteration n-1"
+  },
+  {
+    "text": "here then I will look for E2 here then I will find E3 here and then so on. So, every possible path",
+    "start": 613.68,
+    "end": 619.52,
+    "ocr_text": "Iteration 1 Iteration 2 eee Iteration n-1"
+  },
+  {
+    "text": "is represented. In particular given our example here where S goes from the path goes from S to B1,",
+    "start": 619.6,
+    "end": 625.36,
+    "ocr_text": "Iteration 1 Iteration 2 fee | Iteration n-1\n[Ay (aa,"
+  },
+  {
+    "text": "V1 to V2 and so on then we find that the first update comes in iteration 1. Then after having",
+    "start": 625.36,
+    "end": 630.48,
+    "ocr_text": "Iteration 1 Iteration 2 porno | Iteration n-1"
+  },
+  {
+    "text": "updated V1 the next iteration V1, V2 gives us the correct distance to V2.",
+    "start": 630.48,
+    "end": 634.48,
+    "ocr_text": "Iteration 1 Iteration 2 porno | Iteration n-1"
+  },
+  {
+    "text": "iteration 3 will give us V2 to V3 and so on and finally iteration n minus 1 actually this may",
+    "start": 634.48,
+    "end": 639.52,
+    "ocr_text": "Iteration 1 Iteration 2 porno | Iteration n-1"
+  },
+  {
+    "text": "not be n minus 1 it depends on the length of this path. So, this path actually has n minus 1 steps",
+    "start": 639.52,
+    "end": 644.56,
+    "ocr_text": "Iteration 1 Iteration 2 ee Iteration n-1"
+  },
+  {
+    "text": "in the last one will give us the update from nVm to t and the correct distance for t but this could",
+    "start": 644.56,
+    "end": 648.96,
+    "ocr_text": "Iteration 1 Iteration 2 ee Iteration n-1"
+  },
+  {
+    "text": "actually be even less than n minus 1 if the path is of less lesser length.",
+    "start": 648.96,
+    "end": 652.88,
+    "ocr_text": "Iteration 1 Iteration 2 ieee | Iteration n-1\n\ni)"
+  },
+  {
+    "text": "So, the algorithm is actually remarkably simple right. You start from a source vertex S. So,",
+    "start": 655.76,
+    "end": 660.96,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "initially you assign the distance to be infinity for every vertex and you initialize the distance",
+    "start": 660.96,
+    "end": 665.52,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "of S to be 0. Now, n minus 1 times you blindly repeat the following operation for every edge in",
+    "start": 665.52,
+    "end": 672.64,
+    "ocr_text": "//source s, with -ve weights\n=\n\n|\n\n//repeat n-1 times"
+  },
+  {
+    "text": "your graph apply the distance distance update. So, you take the distance of the target of that edge",
+    "start": 672.64,
+    "end": 678.64,
+    "ocr_text": "//source s, with -ve weights\n=\n\n|\n\n//repeat n-1 times"
+  },
+  {
+    "text": "to be the minimum of the current distance for that target or the distance to the source of the",
+    "start": 678.96,
+    "end": 684.0,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "edge plus the weight of the edge right. So, we just blindly do this n minus 1 times and because",
+    "start": 684.0,
+    "end": 688.32,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "of this property that you will find for every valid shortest path you will find a sequence of",
+    "start": 688.32,
+    "end": 693.92,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "updates which matches that path in this sequence that you are computing here you will always get",
+    "start": 693.92,
+    "end": 699.36,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "the shortest path to every other vertex starting from S.",
+    "start": 699.36,
+    "end": 702.24,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "So, let us look at an example and see how the Bellman Ford algorithm actually works. So,",
+    "start": 703.2,
+    "end": 709.6,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "here is a graph which has some cycles and it has some negative weights but there are no negative",
+    "start": 709.6,
+    "end": 713.92,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "cycles. For instance, you will see that here we have a cycle whose weight is minus 2 plus 1",
+    "start": 713.92,
+    "end": 719.12,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "is minus 1 plus 2 is plus 1. Similarly, here we have a cycle whose weight is if you go around",
+    "start": 719.12,
+    "end": 724.96,
+    "ocr_text": "//source s, with -ve weights\n\n=\n\n//repeat n-1 times"
+  },
+  {
+    "text": "6 to 3 to 4 to 5 you have minus 2 plus 1 is minus 1 plus 3 is plus 2 minus 1 is plus 1 it is",
+    "start": 725.44,
+    "end": 733.52,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "what is again a cycle of plus 1. So, there are negative weights but no negative cycles and now in",
+    "start": 733.52,
+    "end": 739.12,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "this we want to compute shortest paths from 1 to every other vertex. So, one is our source vertex.",
+    "start": 739.12,
+    "end": 744.56,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "So, we set up this iteration. So, in the initial step we set the distance of vertex 1 to 0 and",
+    "start": 745.84,
+    "end": 751.76,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "everything else is infinity. Now, we will in the first step try to update all neighbors of things",
+    "start": 751.76,
+    "end": 757.92,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "that we have here. Now, all values which are infinity will not update their neighbors but the",
+    "start": 757.92,
+    "end": 761.68,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "value 1 will it has 2 neighbors 8 2 and 8. So, these two things now become finite values 10 and 8",
+    "start": 761.68,
+    "end": 769.68,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "respectively. Now, we have these 3 vertices which are what finite values. So, you would expect",
+    "start": 769.68,
+    "end": 776.48,
+    "ocr_text": "Iteration\n\nC9)\n\ne"
+  },
+  {
+    "text": "that their neighbors namely 7 and 2 has a neighbor 6. So, the only outgoing is from 2 is 6 the only",
+    "start": 776.64,
+    "end": 782.48,
+    "ocr_text": "Iteration\n\nO”-@ | 0 1]\nGo)\n\n2 =e\n©"
+  },
+  {
+    "text": "outgoing is from 8 to 7. You would expect 7 and 6 to get updated and indeed in the next step you",
+    "start": 782.48,
+    "end": 788.08,
+    "ocr_text": "Iteration\n\nO”-@ | 0 1]\nGo)\n\n2 =e\n©"
+  },
+  {
+    "text": "find that 6 and 7 get values which are updated from those values. So, 8 plus 1 is 9 10 plus 2 is 12.",
+    "start": 788.08,
+    "end": 795.6,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "Now, having got this you will find that we have now updated 1 2 8 7 and 6. Now,",
+    "start": 796.56,
+    "end": 806.0,
+    "ocr_text": "o : as\n@ ;"
+  },
+  {
+    "text": "notice that I can now have another path not this path from 1 to 2. But I have a path which goes",
+    "start": 806.0,
+    "end": 812.32,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "this way from 1 to 2 by 7 and this becomes a smaller path because of this minus 4.",
+    "start": 812.32,
+    "end": 818.56,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "So, in this iteration I will actually find the first non-trivial update which would not",
+    "start": 820.08,
+    "end": 824.32,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "which will violate the digester assumption that all vertexes are invariant. So, the distance",
+    "start": 824.32,
+    "end": 830.8,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "to 2 which was already computed to be 10 will actually shrink. In addition to that of course,",
+    "start": 830.8,
+    "end": 835.28,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "because we are new neighbors of 6. So, 6 will now give us a new value for 3 and so on.",
+    "start": 835.28,
+    "end": 840.16,
+    "ocr_text": "A Vee @"
+  },
+  {
+    "text": "So, in this iteration I find as I said that the value of 2 reduces the value of 3 becomes something",
+    "start": 840.16,
+    "end": 847.84,
+    "ocr_text": "A Vee @"
+  },
+  {
+    "text": "finite. Notice the value of 6 itself changes why because earlier we were looking at a path like this",
+    "start": 847.84,
+    "end": 853.76,
+    "ocr_text": "Iteration\n:0:1:2:3"
+  },
+  {
+    "text": "and now we have discovered that is actually a better path like this which has also a negative edge",
+    "start": 854.8,
+    "end": 858.8,
+    "ocr_text": "Iteration\n:0:1:2:3"
+  },
+  {
+    "text": "to add to the benefit. So, we come down from 12 to 8 plus 1 minus 1 is 8. So, we continue like this",
+    "start": 858.8,
+    "end": 866.8,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "at the next step the path to 3 shrinks further and that is because now having got a better path for",
+    "start": 866.8,
+    "end": 874.48,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "6. So, in the previous path we said over the path to 6 was 12 and 12 minus 2 was 10.",
+    "start": 874.48,
+    "end": 880.96,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "Now we said oh it is not 12 it is 8. So, 8 minus 2 is actually 6. So, we got a better path to 3",
+    "start": 882.0,
+    "end": 888.48,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "we have discovered a new path because we had a path to 3 from 10 plus 1 is 11 and so on.",
+    "start": 888.8,
+    "end": 893.68,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "So, we continue one more step and then because now we know that 4 was reachable in 11 steps",
+    "start": 894.64,
+    "end": 901.76,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "4 plus 3 is 14. So, 5 is reachable but 4 itself now because the value of 3 got updated. So,",
+    "start": 901.76,
+    "end": 907.2,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "in this iteration the value of 3 gets updated from 11 to 7. This will get propagated after one more",
+    "start": 907.84,
+    "end": 914.56,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "iteration. So, now this value comes down from 14 to 7 plus 3. But in this process what has",
+    "start": 914.56,
+    "end": 922.8,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "happened is the value of 3 has itself gone down one more time right. So, its value again reduces the",
+    "start": 922.8,
+    "end": 928.32,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "value of 4 and then finally after the n minus 1 iteration we get a stable set of values. So,",
+    "start": 928.32,
+    "end": 934.32,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "these now turn out to be the shortest paths to all the vertices from the start vertex form.",
+    "start": 934.32,
+    "end": 938.56,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "So, what is the complexity of this algorithm? Well we have this outer loop. So, we just run this",
+    "start": 938.8,
+    "end": 946.56,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "update n minus 1 time. So, it runs order n times and now in each loop we basically blindly",
+    "start": 947.44,
+    "end": 953.36,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "update every edge. So, we have an adjacency matrix we have to identify the edges the only ways",
+    "start": 953.36,
+    "end": 958.32,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "to look at every entry and wherever we see an entry we take that ij at jk and we update it.",
+    "start": 958.32,
+    "end": 962.64,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "But in an adjacency list we have exactly the edges that we want right. So, we have 1, 2 up to n",
+    "start": 963.52,
+    "end": 969.2,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "and we have exactly the edges. So, we can do to subdate an order n time. So, if we use an adjacency",
+    "start": 969.2,
+    "end": 974.08,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "matrix just identifying which are the edges takes us order n square time because we have to probe",
+    "start": 974.08,
+    "end": 977.76,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "every entry in the adjacency matrix. adjacency list we can do it in order n times. So,",
+    "start": 977.76,
+    "end": 981.76,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "therefore, if we use an adjacency matrix representation overall delmin 4 diagonal takes n",
+    "start": 981.76,
+    "end": 987.2,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "cube time whereas, with an adjacency list representation we can reduce it to mn and so,",
+    "start": 987.2,
+    "end": 991.76,
+    "ocr_text": "Iteration"
+  },
+  {
+    "text": "if therefore, the number of edges is small this is going to be a much better solution than n cube.",
+    "start": 991.76,
+    "end": 1003.12,
+    "ocr_text": "Iteration"
+  }
+]

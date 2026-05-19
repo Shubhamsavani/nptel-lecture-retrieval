@@ -1,0 +1,1478 @@
+[
+  {
+    "text": "Hello friends, Anit Van here. Welcome to the hands on Python coding session of the fifth",
+    "start": 0.0,
+    "end": 24.96,
+    "ocr_text": "Course Name"
+  },
+  {
+    "text": "week of this course. So, today we are going to learn how to work with support vector machines",
+    "start": 24.96,
+    "end": 31.12,
+    "ocr_text": "Course Name"
+  },
+  {
+    "text": "in scikit learn. So, we will take up support vector classification first see how different",
+    "start": 31.12,
+    "end": 38.6,
+    "ocr_text": "Course Name"
+  },
+  {
+    "text": "corners affect the performance of the support vector machine classifier and then we will",
+    "start": 38.6,
+    "end": 44.48,
+    "ocr_text": "Course Name"
+  },
+  {
+    "text": "have a demo, a quick demo, a quick glance at support vector regression because support",
+    "start": 44.48,
+    "end": 50.28,
+    "ocr_text": "Course Name"
+  },
+  {
+    "text": "vector regression is not a part of this course still like as we are doing classification we",
+    "start": 50.28,
+    "end": 53.76,
+    "ocr_text": "Course Name"
+  },
+  {
+    "text": "are also going to do regression. So, the data sets that we are going to use today are",
+    "start": 53.76,
+    "end": 58.98,
+    "ocr_text": "Course Name"
+  },
+  {
+    "text": "the iris data set which we have used almost in all of the coding sessions and the post",
+    "start": 58.98,
+    "end": 64.88,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel Help\n\n+) xc QW | a) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "and house price prediction data set which will be using in the regression part and we will",
+    "start": 64.88,
+    "end": 70.4,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel Help\n\n+) xc QW | a) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "be predicting the price of houses from certain features. So, and this session is going to",
+    "start": 70.4,
+    "end": 76.48,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel Help\n\n+) xc QW | a) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "be a bit different from the previous coding sessions because this time I am going to execute",
+    "start": 76.48,
+    "end": 81.24,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel Help\n\n+) xc QW | a) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "the code directly from the ipython notebook cell by cell and you will be able to like follow",
+    "start": 81.32,
+    "end": 86.12,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel Help\n\n+) xc QW | a) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "the you know the flow of the code better I suppose. So, let us see how it goes all right.",
+    "start": 86.12,
+    "end": 91.6,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel Help\n\n+) xc QW | a) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "So, the first thing that I want to tell you people is a quick recap of what support vector",
+    "start": 91.6,
+    "end": 99.04,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel Help\n\n+) xc QW | a) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "machine really is. So, support vector machine is a linear classifier. So, the entire idea",
+    "start": 99.04,
+    "end": 107.04,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel Help\n\n+) xc QW | a) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "is about having us about like finding the a linear decision boundary which is at the",
+    "start": 107.04,
+    "end": 114.04,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (astosavea\n\nFile Edit’ View Insert Gell Kernel_ Help\n\n+) [GW a) em) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]+ from _future__ import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n%matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "maximum margin from the training point. So, what is the margin? The margin of the margin",
+    "start": 118.08,
+    "end": 125.08,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (astosaveq\n\nFile Edit’ View Insert Gell Kernel_ Help\n\n+) [GW ) ae) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]+ from _future__ import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n%matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "is defined as the perpendicular distance of a point from the decision boundary. So, the",
+    "start": 126.04,
+    "end": 133.04,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (astosavea\n\nFile Edit’ View Insert Gell Kernel_ Help\n\n+) [GW ) ae) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]+ from _future__ import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svn\nfrom sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n%matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "support vector machine classifier tries to maximize the minimum margin of the training",
+    "start": 133.04,
+    "end": 139.04,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (astosavea\n\nFile Edit’ View Insert Gell Kernel_ Help\n\n+) [GW ) ae) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]+ from _future__ import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svn\nfrom sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n%matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "points. So, it tries to like fit our decision boundary which tries to generalize as much",
+    "start": 139.04,
+    "end": 144.76,
+    "ocr_text": "SJupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel. Help\n\n+) [Ge] + lm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ] from _future__ import division, print_function\nimport numpy as np\nfrom sklearn import datasets, avm\nfron sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n%matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "as possible and the amount of you know the amount of trade off that we want to make for",
+    "start": 144.76,
+    "end": 151.76,
+    "ocr_text": "SJupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel. Help\n\n+) [Ge] + lm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ] from _future__ import division, print_function\nimport numpy as np\nfrom sklearn import datasets, avm\nfron sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n%matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "the training set accuracy and you know margin or the amount of test set generalization",
+    "start": 153.6,
+    "end": 160.6,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (autosaves)\n\nFile Edit’ View Insert Gell Kernel. Help\n\n+) [QW a) Wm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n%matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "is controlled by the regularization parameter. So, all of these things have already been taught",
+    "start": 161.4,
+    "end": 168.4,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (astosavea\n\nFile Edit’ View Insert Gell Kernel_ Help\n\n+) [GW ) ae) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]: from _future__ import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svn\nfrom sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n%matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "in the theory and the tutorial sessions and today we are going to see how they can be implemented",
+    "start": 169.48,
+    "end": 176.48,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (astosaveq\n\nFile Edit’ View Insert Gell Kernel_ Help\n\n+) [GW ) ae) sm) c | code 3) [|| CelrToolbar || & || | @\n\nIn [ ]+ from _future__ import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n%matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "in circuit learn. So, first we do all the imports all right. So, the modules which we will",
+    "start": 177.36,
+    "end": 184.04,
+    "ocr_text": "Cyupyter ML-Anirban_Tutorial4 (autosaves)\nFle Edt View Insert Gell Kernel_—Help\n\n+c |G) ee mc || Code +) [|| CeToolbar | & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline!\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ Jt iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX_train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "be using are like numpy then we will be using the data sets of circuit learn and the SVM",
+    "start": 184.04,
+    "end": 190.04,
+    "ocr_text": "Cyupyter ML-Anirban_Tutorial4 (autosaves)\nFle Edt View Insert Gell Kernel_—Help\n\n+c |G) ee mc || Code +) [|| CeToolbar | & || | @\n\nIn [ ]: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline!\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ Jt iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX_train, X_test, y train, y test = train test_split(x, y, test_size:\n\n.25, random_state=42)"
+  },
+  {
+    "text": "module and also we are going to use the train test plate function from circuit learn dot",
+    "start": 190.04,
+    "end": 194.76,
+    "ocr_text": "Syupyter ML-Anirban_Tutoriald utosaves)\nFle Edt View Insert Cell Kernel_—Help\n\n+) xc [ QW) a) +m) c | code #) |) CellToobar| & a @\n\nIn [ J: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm ;\nfron sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y_train, y test = train test_split(x, y, test_size=0.25, random state=42)"
+  },
+  {
+    "text": "cross validation and then we import mat plot lip and say that like we want to use in line",
+    "start": 194.76,
+    "end": 201.76,
+    "ocr_text": "Syupyter ML-Anirban_Tutoriald utosaves)\nFle Edt View Insert Cell Kernel_—Help\n\n+) xc [ QW) a) +m) c | code #) |) CellToobar| & a @\n\nIn [ J: from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm ;\nfron sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y_train, y test = train test_split(x, y, test_size=0.25, random state=42)"
+  },
+  {
+    "text": "plots. So, I instituted the first code first block of code. So, all the imports are done",
+    "start": 201.76,
+    "end": 208.76,
+    "ocr_text": "Syupyter ML-Anirban_Tutoriald utosaves)\nFile Edit View insert Coll Kernel_—‘Help\n\n+) [QW ) a) nm) c {code #) |) CellToobar | & | @\n\nIn [ ]:| from future import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train test_split\nimport matplotlib.pyplot as plt\n‘matplotlib inline\n\n1. Support Vector Classification\n\n1.1 Load the\n\ndataset\n\nIn [ ]t iris = datasets.load_iris()\nX = iris.data[:,:2]\ny = iris.target\n\nX train, X_test, y_train, y test = train_test_split(x, y, test_size=0.25, random state=42)"
+  },
+  {
+    "text": "now cool. So, now we will first load the data set. So, the data set that we are going to",
+    "start": 208.76,
+    "end": 215.76,
+    "ocr_text": "SJUpyter ML-Anirban_Tutorial4 (unsaved changes)\n\nFle Edit’ View Insert Cell Kernel_—-Help\n\nBl +) x [elm a) +) nm) c|/ code 3) [ |) CelrToolbar | & || |\nsmarpiotiip insane\n\n/¥sers/Anirban/anaconda/1ib/python2.7/site-packages/matplot1ib/font_manager.py:273: UserWarni\nng the font cache using fc-list. This may take a moment.\nwarnings.warn('Matplotlib is building the font cache using fc-list. This may take a moment.\n\n1. Support Vector Classification\n\n1.1 Load the Iris dataset\n\nIn [ Jt iris = datasets.load_iris()\nX = iris.data[:,:2)\ny = iris.target\n\nX_train, X test, y train, y test = train test_split(x, y, test_size=0.25, ri\n\n1.2 Use Support Vector Machine with different kinds of kernels: wat"
+  },
+  {
+    "text": "use is the iris data set and data sets dot load iris this function directly loads the",
+    "start": 215.76,
+    "end": 220.64,
+    "ocr_text": "SJUpyter ML-Anirban_Tutorial4 unsaved changes)\nFile Edit View insert Coll Kernel_—‘Holp\n\nBi+) x @ BR + | MC) Code +) @ Cellfoobar & & G\n1.1 Load the Iris dataset\n\nim [ ]:| iris = datasets.load_ iris |\nX= iris.datal\niris-target\n\nX train, X test, y train, y test = train test_split(x, y, test_size=0.25, random state=42)\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluat\n\nin [ ]:| def evaluate_on_test_data(model=None):\npredictions = model.predict(x_test)\n0\n\nmisclassifications\nfor i in range(len(y_test)):\nif predictions[i] ==\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy"
+  },
+  {
+    "text": "data set into the iris variable. And next we load the features the input features into",
+    "start": 220.64,
+    "end": 227.64,
+    "ocr_text": "SJUpyter ML-Anirban_Tutorial4 unsaved changes)\nFile Edit View insert Coll Kernel_—‘Holp\n\nBi+) x @ BR + | MC) Code +) @ Cellfoobar & & G\n1.1 Load the Iris dataset\n\nim [ ]:| iris = datasets.load_ iris |\nX= iris.datal\niris-target\n\nX train, X test, y train, y test = train test_split(x, y, test_size=0.25, random state=42)\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluat\n\nin [ ]:| def evaluate_on_test_data(model=None):\npredictions = model.predict(x_test)\n0\n\nmisclassifications\nfor i in range(len(y_test)):\nif predictions[i] ==\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy"
+  },
+  {
+    "text": "the variable x and the input labels into the variable y and then we split the entire data",
+    "start": 229.92,
+    "end": 236.92,
+    "ocr_text": "SJUpyter ML-Anirban_Tutorial4 unsaved changes)\nFile Edit View insert Coll Kernel_—‘Help\n\nB+) x @ Be + | BC) Code +) @ Cellfoobar &  G\n1.1 Load the Iris dataset\n\nIn [ ]: iris = datasets.load_iris()\nJE iris.datat\ny = iris.target\n\nX train, X test, y train, y test = train test_split(x, y, test_size=0.25, random state=42)\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluat\n\nin [ ]: def evaluate_on_test_data(model=None):\npredictions = model.predict(x_test)\nmisclassifications\nfor i in range(len(\nif predicti\n\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy"
+  },
+  {
+    "text": "set we split the entire data set into training and test sets and we use the train test plate",
+    "start": 236.92,
+    "end": 243.92,
+    "ocr_text": "SJUpyter ML-Anirban_Tutorial4 unsaved changes)\nFile Edit View insert Coll Kernel ‘Help\n\n+) xc [@) |e) +m) c|{ code 3) [|| CelrToolbar || a || | @\n\n1.1 Load the Iris dataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data|\ny = iris.target\n\nX_train, X test, y train, y test = train test_split/X, y, test_size=0.25, random_state=42)|\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluat\n\nin [ ]: def evaluate_on_test_data(model=None):\n\npredictions = model.predict(x_test)\n\nmisclassifications = 0\n\nfor i in range(len(y_test)):\n\nif predictions[i] == y test(i}:\n41\n\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy"
+  },
+  {
+    "text": "function from circuit learn dot cross validation and we say that the test site site is going",
+    "start": 244.2,
+    "end": 250.0,
+    "ocr_text": "SJUpyter ML-Anirban_Tutorial4 unsaved changes)\nFile Edit View insert Coll Kernel ‘Help\n\n+) xc [@) |e) +m) c|{ code 3) [|| CelrToolbar || a || | @\n\n1.1 Load the Iris dataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data|\ny = iris.target\n\nX_train, X test, y train, y test = train test_split/X, y, test_size=0.25, random_state=42)|\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluat\n\nin [ ]: def evaluate_on_test_data(model=None):\n\npredictions = model.predict(x_test)\n\nmisclassifications = 0\n\nfor i in range(len(y_test)):\n\nif predictions[i] == y test(i}:\n41\n\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy"
+  },
+  {
+    "text": "to be just 25 percent of the total example size cool. So, we go ahead and execute this",
+    "start": 250.0,
+    "end": 257.0,
+    "ocr_text": "Syupyter ML-Anirban_Tutorial4 (autosaves)\nFle Edit View Insert Cell Kemel_—Help\n\nB+) x @ Be + | BC) Code +) @ Cellfoobar &  G\n1.1 Load the Iris dataset\n\nIn [ ]: iris = datasets.load_iris()\nX = iris.data[\niris.target\n\nX train, X test, y train, y test = train test_split(x, y, test_size-0§%5, random state=42)\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluat\n\nin [ ]: def evaluate_on_test_data(model=None):\npredictions = model.predict(x_test)\nmisclassifications\nfor i in range(len(\nif predicti\n\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy"
+  },
+  {
+    "text": "done. Now, we are going to you know check the performance of different kinds of kernels",
+    "start": 257.0,
+    "end": 264.0,
+    "ocr_text": "SJUpyter ML-Anirban_Tutorial4 (unsaved changes)\n\nFile\n\nEdit View Insert «Cell «= Kernel Help\n\nB+) GB ele mW Mm) || code +) [|| CetrToolbar | & | ao | @\n\ny 7 tbapseanyee\n\nXtrain, Xtest, y train, y test = train test_split(X, y, test_size-0.25, random state=42)\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluate pert\n\nIn [ }: def evaluate «\npredictions = model.predict (x_4\nmisclassifications = 0\nfor i in range(len(y_test)):\n\nif predictions[i} == y test(i}:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\ntest_data(model=None):\nt)\n\nIn [ }: kernels = (‘linear', ‘poly’, 'rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(x_train, y train)\nPRE ee PE PR RD to"
+  },
+  {
+    "text": "of different kinds of kernels on the at the problem of classification of iris flowers.",
+    "start": 264.12,
+    "end": 270.64,
+    "ocr_text": "SJUpyter ML-Anirban_Tutorial4 (unsaved changes)\n\nFile\n\nEdit View Insert «Cell «= Kernel Help\n\nB+) GB ele mW Mm) || code +) [|| CetrToolbar | & | ao | @\n\ny 7 tbapseanyee\n\nXtrain, Xtest, y train, y test = train test_split(X, y, test_size-0.25, random state=42)\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluate pert\n\nIn [ }: def evaluate «\npredictions = model.predict (x_4\nmisclassifications = 0\nfor i in range(len(y_test)):\n\nif predictions[i} == y test(i}:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\ntest_data(model=None):\nt)\n\nIn [ }: kernels = (‘linear', ‘poly’, 'rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(x_train, y train)\nPRE ee PE PR RD to"
+  },
+  {
+    "text": "So, we define a function which we name like evaluate on the train on the test data. So,",
+    "start": 270.64,
+    "end": 277.64,
+    "ocr_text": "JTL ML-Anirban_Tutorial4 (unsaved changes)\nit View Insert © Call Kernel Help |p\n\n|W ee) mc) Code #) |) Cellfoober| & | @\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluate performance\n\n]: | def evaluate_on_test_data(model=None):\npredictions = model.predict (x test)\nmisclassifications = 0\nfor i in range(len(y_test))\n\nif predictions[i] == y_test(i}:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\n}:| kernels = (‘Linear', ‘poly’, 'rb£')\n\naccuracies = []\n\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel. fit(X_train, y_train)\nacc = evaluate_on_test_data(model)\naccuracies.append(acc)\nprint(\"{} ® accuracy obtained with kernel = {}\".format(acc, kernel))"
+  },
+  {
+    "text": "it is going to take a model and it is going to evaluate it on the test data. So, first",
+    "start": 279.48,
+    "end": 284.48,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® w+ WM Mm C | Code +) @) Cellfoolbar & % O\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]: | def evaluate_on_test_data(model=None) :\npredictions = model.predict(X_test)\nmisclassifications = 0\nfor i in range(len(y_test)):\n\nif predictions[i] == y_test[i]:\nmisclassifications += 1\n\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\n\nreturn accuracy\n\n[ ]: kernels = (‘linear','poly', 'rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels) :\nmodel = svm.SVC(kernel=kernel)"
+  },
+  {
+    "text": "you are going to find the predictions all right the predicted values from the model as",
+    "start": 284.48,
+    "end": 291.48,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® w+ WM Mm C | Code +) @) Cellfoolbar & % O\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]: | def evaluate_on_test_data(model=None) :\npredictions = model.predict(X_test)\nmisclassifications = 0\nfor i in range(len(y_test)):\n\nif predictions[i] == y_test[i]:\nmisclassifications += 1\n\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\n\nreturn accuracy\n\n[ ]: kernels = (‘linear','poly', 'rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels) :\nmodel = svm.SVC(kernel=kernel)"
+  },
+  {
+    "text": "for the inputs given. So, all the test inputs they are to be so they are going to be supplied",
+    "start": 292.48,
+    "end": 297.96,
+    "ocr_text": "[0 wcanensstnenteosat miner = = 5\nEdit View Insert Cell Kernel Help\n\nx © B® + HW Mm C | Code +] @ | Cellfoolbar & & O\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]: | def evaluate_on_test_data(model=None) :\npredictions = model.predict(X_test)\nmisclassifications = 0\nfor i in range(len(y_test)):\n\nif predictions[i] == y_test[i]:\nmisclassifications += 1\n\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\n\nreturn accuracy\n\n[ ]: kernels = (‘linear','poly', 'rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels) :\nmodel = svm.SVC(kernel=kernel)"
+  },
+  {
+    "text": "through the variable x test. So, x test you can see that it has been created here right",
+    "start": 297.96,
+    "end": 303.96,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® w+ WM Mm C | Code +) @) Cellfoolbar &  % O\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]: def evaluate_on_test_data(model=None) :\npredictions = model.predict (zest)\nmisclassifications = 0\nfor i in range(len(y_test)):\n\nif predictions[i] == y_test[i]:\nmisclassifications += 1\n\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\n\nreturn accuracy\n\n[ ]: kernels = ('linear','poly', 'rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)"
+  },
+  {
+    "text": "by the train test plate. So, it is going to take the in the test test set inputs and",
+    "start": 303.96,
+    "end": 308.96,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® w+ WM Mm C | Code +) @) Cellfoolbar &  % O\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]: def evaluate_on_test_data(model=None) :\npredictions = model.predict (zest)\nmisclassifications = 0\nfor i in range(len(y_test)):\n\nif predictions[i] == y_test[i]:\nmisclassifications += 1\n\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\n\nreturn accuracy\n\n[ ]: kernels = ('linear','poly', 'rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)"
+  },
+  {
+    "text": "it is going to predict their corresponding labels. And now we declare a variable which",
+    "start": 308.96,
+    "end": 315.96,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® + HW MC | Code +] @) | Cellfoolbar & t% O\n\ny = iris.target\n\nX_train, K/€est, y train, y test = train test_split(x, y, test_size=0.25, rani\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]:| def evaluate_on_test_data(model=None):\npredictions = model.predict(x test)\nmisclassifications = 0\nfor i in range(len(y_test)):\nif predictions[i] == y_test[i]:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a\nreturn accuracy"
+  },
+  {
+    "text": "is called misclassifications which is going to calculate how many count how many misclassifications",
+    "start": 315.96,
+    "end": 322.12,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® w+ MW Mm C | Code +] @) Cellfoolbar & % O\n\nea RT See et Te Ne ESOS PAREN STE SCOT e meen mene yomatae\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]: def evaluate_on_test_data(model=None) :\npredictions = model.predict(X_test)\nmisclassifications = 0]\nfor i in range(len(y_test)):\nif predictions[i] y_test[i]:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\n[ ]:| kernels = (‘linear','poly', 'rbf')\naccuracies = []\npe fetes. Sectet) fe. ss escoececiisyin"
+  },
+  {
+    "text": "has have happened. And next we go ahead and we do run this for loop. So, in this for loop",
+    "start": 322.12,
+    "end": 328.36,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® w+ MW Mm C | Code +] @) Cellfoolbar & % O\n\nea RT See et Te Ne ESOS PAREN STE SCOT e meen mene yomatae\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]: def evaluate_on_test_data(model=None) :\npredictions = model.predict(X_test)\nmisclassifications = 0]\nfor i in range(len(y_test)):\nif predictions[i] y_test[i]:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\n[ ]:| kernels = (‘linear','poly', 'rbf')\naccuracies = []\npe fetes. Sectet) fe. ss escoececiisyin"
+  },
+  {
+    "text": "we are looping over the entire length of the test set. And if the prediction if the",
+    "start": 328.36,
+    "end": 333.88,
+    "ocr_text": "[0 wcansstentensat ines ——— 2\nEdit View Insert Cell Kernel Help\n\nx © Be + WM Mm C | Code +] @ Cellfoolbar & &% O\n\nea RE ee et OTe Ee ESS LSP AEE STE ESOC e meen mene rmmatae\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]:| def evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nmisclassifications = 0\nfor i in range(len(y_test))):\nif predictions[i] == y test[i]:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y_ test) #Accuracy as a percentage\nreturn accuracy\n\n[ ]:| kernels = (‘linear', 'poly', 'rbf')\naccuracies = []\nes fetes, Sectei oc sae ssccptessetisyn"
+  },
+  {
+    "text": "ith prediction is not is equal to the actual prediction then oops. So, there is a there",
+    "start": 333.88,
+    "end": 340.88,
+    "ocr_text": "[0 wcansstentensat ines ——— 2\nEdit View Insert Cell Kernel Help\n\nx © Be + WM Mm C | Code +] @ Cellfoolbar & &% O\n\nea RE ee et OTe Ee ESS LSP AEE STE ESOC e meen mene rmmatae\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]:| def evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nmisclassifications = 0\nfor i in range(len(y_test))):\nif predictions[i] == y test[i]:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y_ test) #Accuracy as a percentage\nreturn accuracy\n\n[ ]:| kernels = (‘linear', 'poly', 'rbf')\naccuracies = []\nes fetes, Sectei oc sae ssccptessetisyn"
+  },
+  {
+    "text": "is a bug here. So, let me fix it. So, it is not misclassifications it is correct classifications.",
+    "start": 340.96,
+    "end": 347.96,
+    "ocr_text": "[0 wean sstenteseAt ine Tore ————=—= 5\nEdit View Insert Cell Kernel Help\n\nx © Be + WM Mm C | Code +] @ Cellfoolbar & &% O\n\nea RET ee ete Ee ESSE PAREN STE S RCM meee\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]:| def evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nmisclassifications = 0\nfor i in range(len(y_test)):\nif predictions[i] == y test[i]:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\n[ ]: | kernels = (‘linear', 'poly', 'rbf')\naccuracies = []\nes fetes, Sectei oc ssessccptessetisyn"
+  },
+  {
+    "text": "So, number of correct classifications we initialize it as 0. And every time if we when we find",
+    "start": 351.56,
+    "end": 358.56,
+    "ocr_text": "[ince Shien EE ER\nEdit View Insert Cell Kernel Help\n\nx © B® + mW Mm C | Code +] @ | Cellfoolbar  & tt O\n\nee RET See eRe Ee ESS PAREN ST EEC Ce meen mene rma\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]:| def evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nclassifications = 0\nfor i in range(len(y test)):\nif predictions[i] == y test[i]:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\n[ ]: | kernels = (‘linear', 'poly', 'rbf')\naccuracies = []\nes fetes, Sectsi oc sseeesccpte sets"
+  },
+  {
+    "text": "that a prediction is equal to the actual value the target value then we increase the number",
+    "start": 359.08,
+    "end": 366.08,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © Be w+ WM Mm C | Code +] @ | Cellfoolbar &  % O\n\nea RET See et OTe Oe ESS PAE N STE LST Ee meen wma rmantae\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]: def evaluate_on_test_data(model=None) :\npredictions = model.predict(X_test)\ncorrect_classifications = 0\nfor i in range(len(y_test)):\nif predictions[i] = y_test[i]:\nmisclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\n[ ]: | kernels = (‘linear', 'poly', 'rbf')\naccuracies = []\nes fetes Secest oc sseesscptessetisyn"
+  },
+  {
+    "text": "increase the number of correct classifications by 1. And then finally, we calculate the accuracy",
+    "start": 366.08,
+    "end": 373.08,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® + WH Mm C | Code +] @ | Cellfoolbar  & tt O\n\nea RE See et Se Ne ESS S PAREN STEELS CE e meen mene rmaetas\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]:| def evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\ncorrect_classifications = 0\nfor i in range(len(y _test)):\nif predictions[i] == y_test[i]:\ncorrectclassifications += 1\naccuracy = 100*misclassifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\n[ ]: | kernels = (‘linear', 'poly', 'rbf')\naccuracies = []\nves fetes, Secest oe sseessscptessetisyn"
+  },
+  {
+    "text": "as the number of correct classifications. So, this has already calculated the total",
+    "start": 376.2,
+    "end": 383.2,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® + WM MC | Code +] @ | Cellfoolbar  & tt O\n\nae RET See et OSS Ne ESS LS PAREN STE EST e meen mene romantae\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]:| def evaluate_on_test_data(model=None):\n\npredictions = model.predict(X_test)\ncorrect_classifications = 0\nfor i in range(len(y _test)):\n\nif predictions[i] == y test[i]:\n\ncorrect_classifications += 1\n\naccuracy = 100*cklassifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\n[ ]: | kernels = (‘linear', 'poly', 'rbf')\naccuracies = []\nes fetes, Sect oc ssessccptesetisyn"
+  },
+  {
+    "text": "number of correct classifications and length of y test will give you the total number",
+    "start": 386.16,
+    "end": 391.16,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® + HW Mm C | Code +) @) Cellfoolbar  & tt O\n\nee RET See et Oe ee ECS PAREN STE SOT e meen mene romantae\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]: | def evaluate_on_test_data(model=None):\n\npredictions = model.predict(xX_test)\ncorrect_classifications = 0\nfor i in range(len(y test)):\n\nif predictions[i] y_test[i]:\n\ncorrect_classifications += 1\n\naccuracy = 100*correct_classifications/len(y test)! #Accuracy as a percent:\nreturn accuracy\n\n[ ]:| kernels = (‘linear', 'poly', 'rbf')\naccuracies = []\nes fetes, Senet oc sseeesccptessetisyn"
+  },
+  {
+    "text": "of test cases. So, this fraction times 100 will give us the accuracy as a percentage.",
+    "start": 391.16,
+    "end": 398.16,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\nx © B® + HW Mm C | Code +) @) Cellfoolbar  & tt O\n\nee RET See et Oe ee ECS PAREN STE SOT e meen mene romantae\n\n1.2 Use Support Vector Machine with different kinds of kernels\n\n[ ]: | def evaluate_on_test_data(model=None):\n\npredictions = model.predict(xX_test)\ncorrect_classifications = 0\nfor i in range(len(y test)):\n\nif predictions[i] y_test[i]:\n\ncorrect_classifications += 1\n\naccuracy = 100*correct_classifications/len(y test)! #Accuracy as a percent:\nreturn accuracy\n\n[ ]:| kernels = (‘linear', 'poly', 'rbf')\naccuracies = []\nes fetes, Senet oc sseeesccptessetisyn"
+  },
+  {
+    "text": "And so, we have the accuracy as a percentage over here and we return the accuracy. And",
+    "start": 402.56,
+    "end": 407.88,
+    "ocr_text": "Sa\n\nView Insert Cell Kernel Help\n\n2B * + WH MC Code +) &  Celfooba &2 & O\n\nay EE ST ESPEN TOTO mae warren\n\n1.2 Use Support Vector Machine with different kinds of kernels anc\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\ncorrect_classifications = 0\nfor i in range(len(y test)):\nif predictions[i] == y test[i]:\ncorrect_classifications += 1\n\naccuracy = 100*correct classifications/len(y test) #Accuracy as a percentage\nreturn accuracy\n\nkernels = (‘linear','poly', 'rbf')\naccuracies = []\nea geese Sete fe pa eens,"
+  },
+  {
+    "text": "next we compile this function and then we we are going to explore three kinds of",
+    "start": 407.88,
+    "end": 414.16,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\n+ x @)B ® 6 W MC) Code $ | @ Cellfoolbar & tf GB\n\n1.2 Use Support Vector Machine with different kinds of kern\n\nIn [3]: | def evaluate_on_test_data(model=None):\n\npredictions = model.predict(x_test)\ncorrect_classifications = 0\nfor i in range(len(y test) ):\n\nif predictions[i] y_test[i}:\n\ncorrect_classifications += 1\n\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\n\nIn [ ]:| kernels = ('linear', 'poly','rbf£')\naccuracies = []\nfor index, kernel in enumerate(kernels):"
+  },
+  {
+    "text": "kernels here linear polynomial and r v f kernel. So, r v f kernel also happens to be called",
+    "start": 414.16,
+    "end": 419.44,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\n+ x @)B ® 6 W MC) Code $ | @ Cellfoolbar & tf GB\n\n1.2 Use Support Vector Machine with different kinds of kern\n\nIn [3]: | def evaluate_on_test_data(model=None):\n\npredictions = model.predict(x_test)\ncorrect_classifications = 0\nfor i in range(len(y test) ):\n\nif predictions[i] y_test[i}:\n\ncorrect_classifications += 1\n\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\n\nIn [ ]:| kernels = ('linear', 'poly','rbf£')\naccuracies = []\nfor index, kernel in enumerate(kernels):"
+  },
+  {
+    "text": "as Gaussian kernel. So, we have a new with declare a new array or list as you say in",
+    "start": 419.44,
+    "end": 426.44,
+    "ocr_text": "Edit View Insert Cell_~—-Kernel__—~—-Help\n+ x @®)B& ® 6 HW MC) Code + | Cellfoolbar & tf OB\n“correct_classifications +=\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]: | keenels)=\"( linear!) \"poly )\"2be\")\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "python called accuracies and you see that like for index and kernel in enumerate kernel.",
+    "start": 427.44,
+    "end": 434.44,
+    "ocr_text": "Edit View Insert Cell ~—-Kernel__—~—-Help\n+ «x @)B ® 6 HW MC) Code ¢ | Cellfoolba & tf OB\n“correct_classifications +=\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel. fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "So, enumerate kernel is going to return an index which will be like in z i the 0 or",
+    "start": 436.88,
+    "end": 443.88,
+    "ocr_text": "Edit View Insert Cell_~—-Kernel__~—- Help\n+ x @)/B ® % HW MC) Code + | Cellfoolba & tf OB\n“correct_classifications +=\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear', ‘poly’, 'rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "2 and the corresponding element from this tuple. So, for index and kernel in enumerate",
+    "start": 444.0,
+    "end": 450.88,
+    "ocr_text": "Edit View Insert Cell_~—-Kernel__~—- Help\n+ x @)/B ® % HW MC) Code + | Cellfoolba & tf OB\n“correct_classifications +=\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear', ‘poly’, 'rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "kernels and so like you are going to take each kernel 1 by 1 and then you first declare",
+    "start": 450.88,
+    "end": 457.88,
+    "ocr_text": "Edit View Insert —Cell_~—Kernel_~—- Help\n+ «x @)/B ® % HW MC) Code + |B Cellfoolba & tf OB\n“correct_classifications +=\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear', ‘poly’, 'rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels)):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "the model. So, s v m dot s v c as we can see over here s v m dot s v c. So, s v c stands",
+    "start": 458.12,
+    "end": 465.12,
+    "ocr_text": "Edit View Insert —Cell__~—‘Kernel__~—- Help\n+ x @®)/B ® % HW MC) Code ¢ | Cellfoolbar & tf OG\n“correct_classifications +=\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear', ‘poly’, 'rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel |\nmodel.fit(X_train, y train)\nace = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "for support vector classifier and s v m dot x s v c is going to make an instance of",
+    "start": 467.04,
+    "end": 472.68,
+    "ocr_text": "Edit View Insert Cell_~—- Kernel__~—-Help\n+ «x @)B ®& % HW MC) Code ¢ | Cellfoolba & tf OG\n“correct_classifications +=\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear', ‘poly’, 'rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = SvmsSVG(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "that classifier with the value of kernel equal to the kernel that we have like we are going",
+    "start": 472.76,
+    "end": 478.6,
+    "ocr_text": "Edit View Insert Cell_~—- Kernel__~—-Help\n+ «x @)B ®& % HW MC) Code ¢ | Cellfoolba & tf OG\n“correct_classifications +=\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear', ‘poly’, 'rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = SvmsSVG(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "to take in this particular in a particular iteration. So, first your linear is going to",
+    "start": 478.6,
+    "end": 483.08,
+    "ocr_text": "[0 wean sstnteoeat miner 2\n\nSa w\nEdit View Insert Cell__~—-Kernel__~—-Help\n+ «x @)/B ® % W MC) Code ¢ | Cellfoolbar & tf OB\ncorrect_classifications += 1\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "come and sit here then polynomial then r v f. So, we are going to take the kernels 1 by",
+    "start": 483.08,
+    "end": 486.6,
+    "ocr_text": "[0 wean sstnteoeat miner 2\n\nSa w\nEdit View Insert Cell__~—-Kernel__~—-Help\n+ «x @)/B ® % W MC) Code ¢ | Cellfoolbar & tf OB\ncorrect_classifications += 1\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "1 in this fall loop and then fits it on the training data. So, model dot fit as you have",
+    "start": 486.6,
+    "end": 492.6,
+    "ocr_text": "Edit View Insert —Cell_~—-Kernel_~—- Help\n+ «x @)B& ® % WH MC) Code + | Cellfoolbar & tf OG\ncorrect_classifications\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear', 'poly','rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "seen earlier. So, there is a like scikit learn has this wonderful like really really impressive",
+    "start": 492.6,
+    "end": 497.44,
+    "ocr_text": "Edit View Insert —Cell_~—-Kernel_~—- Help\n+ «x @)B& ® % WH MC) Code + | Cellfoolbar & tf OG\ncorrect_classifications\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear', 'poly','rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "API in which every single machine learning model has the same API you always instantiate",
+    "start": 497.44,
+    "end": 502.12,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n+x @ BH ® ©) HW MC Code ¢||@_ Cellfoobar & tt\n) return accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel. fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies .append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n1.3 Visualize the decision boundaries\nIn [ ]: | #frain SVMs with different kernels\n\nsve = svm.SVC(kernel='linear').fit(X_train, y train)"
+  },
+  {
+    "text": "the model with certain parameters and hyper parameters with the with the hyper parameter",
+    "start": 502.2,
+    "end": 506.2,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n+x @ BH ® ©) HW MC Code ¢||@_ Cellfoobar & tt\n) return accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel. fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies .append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n1.3 Visualize the decision boundaries\nIn [ ]: | #frain SVMs with different kernels\n\nsve = svm.SVC(kernel='linear').fit(X_train, y train)"
+  },
+  {
+    "text": "values and then you just do a model dot fit and on the training data all right and model",
+    "start": 506.2,
+    "end": 511.0,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n+o x @ BH ® ©) WN MC Code ¢||@ > Cellfoobar & tt O@\n| return accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies.append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n1.3 Visualize the decision boundaries\nIn [ ]: #frain SVMs with different kernels\n\nsve = svm.SVC(kernel='linear').fit(X_train, y train)"
+  },
+  {
+    "text": "dot predict on the test data. And so, this is really impressive and this is really nice",
+    "start": 511.0,
+    "end": 515.88,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n+o x @ BH ® ©) WN MC Code ¢||@ > Cellfoobar & tt O@\n| return accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies.append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n1.3 Visualize the decision boundaries\nIn [ ]: #frain SVMs with different kernels\n\nsve = svm.SVC(kernel='linear').fit(X_train, y train)"
+  },
+  {
+    "text": "and the same thing as you have seen before is going to like we applied as well here.",
+    "start": 515.88,
+    "end": 522.88,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n+x @ BH *® ©) HW MC | Code ¢||@_ Cellfoobar & tt O@\nreturn accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel. fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies.append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n1.3 Visualize the decision boundaries\nIn [ ]: #frain SVMs with different kernels\n\nsve = svm.SVC(kernel='linear').fit(X_train, y train)"
+  },
+  {
+    "text": "So, model dot fit x train y train does the training of the s v m and then finally, we",
+    "start": 522.88,
+    "end": 529.88,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n+x @ BH *® ©) HW MC | Code ¢||@_ Cellfoobar & tt O@\nreturn accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel. fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies.append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n1.3 Visualize the decision boundaries\nIn [ ]: #frain SVMs with different kernels\n\nsve = svm.SVC(kernel='linear').fit(X_train, y train)"
+  },
+  {
+    "text": "calculate the accuracy. So, we invoke this function which we have declared before we",
+    "start": 530.52,
+    "end": 536.2,
+    "ocr_text": "Edit View Insert Cell Kernel Help\n\n+ «x @)B ® 6 WH MC) Code + | @  Cellfoolba & tf OB\n\n| return accuracy\n\nIn [ ]:| kernels = ('linear', 'poly','rbf')\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nace = evaluate _on_test_data(model)\naccuracies .append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries\n\nIn [ ]:|#frain SVMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(xX_train, y train)"
+  },
+  {
+    "text": "have defined before and we pass the trained model and ask it to evaluated on the s data.",
+    "start": 536.2,
+    "end": 543.68,
+    "ocr_text": "Edit View Insert = Cell ~—sKernel_~—-Help\n+ x © BR & + HW MC | Code ¢ | Cellfoolba & tf OB\naccuracy\nreturn accuracy\nIn [ ]: kernels = (‘linear','poly','rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(mpdel)\naccuracies .append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc,\n\nInf— ll:\n\n1.3 Visualize the decision boundaries\n\n#Train SVMs with different kernels"
+  },
+  {
+    "text": "And it returns the accuracy and just accumulate the accuracy is in this accuracy vector all",
+    "start": 543.68,
+    "end": 550.36,
+    "ocr_text": "Edit View Insert = Cell ~—sKernel_~—-Help\n+ x © BR & + HW MC | Code ¢ | Cellfoolba & tf OB\naccuracy\nreturn accuracy\nIn [ ]: kernels = (‘linear','poly','rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(mpdel)\naccuracies .append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc,\n\nInf— ll:\n\n1.3 Visualize the decision boundaries\n\n#Train SVMs with different kernels"
+  },
+  {
+    "text": "right. So, you append the s is c the accuracy in the accuracy list and then finally, so",
+    "start": 550.36,
+    "end": 556.36,
+    "ocr_text": "Edit View Insert’ Cell__—Kernel_—- Help\n+ «x @)B *& 6 HW MC) Code ¢ |B Cellfoolba & tf @\nif predictions[i] == y test[i]\ncorrect_classifications += 1\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = ('linear', ‘poly’, 'rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel. fit(X train, y train)\nacc = evaluate_on_test_data(model)\naccuracies.append(acc}| ,\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "this is if you do not know this particular syntax. So, this syntax is that of the print command",
+    "start": 556.44,
+    "end": 563.44,
+    "ocr_text": "Edit View Insert Cell_~—-Kernel__~—-Help\n+ x @)B ® % HW MC) Code + |B Cellfoolba & tf OG\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies .append(acc)\nprint(\"{} % accuracy obtained with kernll'= {}\".format(acc, kernel))\n\nIn [ ]:\n\n1.3 Visualize the decision boundaries\n\n#?rain SVMs with different kernels"
+  },
+  {
+    "text": "which is in Python 3 and I have used this for a purpose over here and so to activate this",
+    "start": 563.44,
+    "end": 571.44,
+    "ocr_text": "Edit View Insert Cell_~—-Kernel__~—-Help\n+ x @)B ® % HW MC) Code + |B Cellfoolba & tf OG\naccuracy = 100*correct_classifications/len(y test) #Accuracy as a perc\nreturn accuracy\nIn [ ]:| kernels = (‘linear','poly','rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies .append(acc)\nprint(\"{} % accuracy obtained with kernll'= {}\".format(acc, kernel))\n\nIn [ ]:\n\n1.3 Visualize the decision boundaries\n\n#?rain SVMs with different kernels"
+  },
+  {
+    "text": "particular syntax of print command you have to like import from this underscore underscore",
+    "start": 571.72,
+    "end": 578.72,
+    "ocr_text": "u pyter ML-Anirban_Tutorial4 (autosaved)\nEdit View Insert Cell Kernel Help\n\n+ <x © RB ® & HW MC | Code $)| @) Cellfoolbar)| & t @\n\nIn [1]:| from future import division, print_function I\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train _test_split\nimport matplotlib.pyplot as plt\ntmatplotlib inline\n\n/Users/Anirban/anaconda/1ib/python2.7/site-packages/matplot1ib/font_manage\nng the font cache using fc-list. This may take a moment.\nwarnings.warn('Matplotlib is building the font cache using fc-list. This"
+  },
+  {
+    "text": "future underscore underscore you have to you have to import this print function. So,",
+    "start": 578.72,
+    "end": 584.72,
+    "ocr_text": "u pyter ML-Anirban_Tutorial4 (autosaved)\nEdit View Insert Cell Kernel Help\n\n+ x @© BR * 4 WH MC) Code ¢|| @) Cellfoolbar | & | @\n\nIn [1]: from future _, import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n¢matplotlib inline\n\n/Users/Anirban/anaconda/1ib/python2.7/site-packages/matplot1ib/font_manage\nng the font cache using fc-list. This may take a moment.\nwarnings.warn('Matplotlib is building the font cache using fc-list. This"
+  },
+  {
+    "text": "if you do this and you have to do this before all other previous imports. So, if you do",
+    "start": 584.8,
+    "end": 589.16,
+    "ocr_text": "u pyter ML-Anirban_Tutorial4 (autosaved)\nEdit View Insert Cell Kernel Help\n\n+ x @© BR * 4 WH MC) Code ¢|| @) Cellfoolbar | & | @\n\nIn [1]: from future _, import division, print_function\nimport numpy as np\nfrom sklearn import datasets, svm\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n¢matplotlib inline\n\n/Users/Anirban/anaconda/1ib/python2.7/site-packages/matplot1ib/font_manage\nng the font cache using fc-list. This may take a moment.\nwarnings.warn('Matplotlib is building the font cache using fc-list. This"
+  },
+  {
+    "text": "this import then the syntax of print function changes and this particular print function",
+    "start": 589.16,
+    "end": 594.48,
+    "ocr_text": "u pyter ML-Anirban_Tutorial4 (autosaved)\n\nEdit View Insert Cell Kernel Help\n+ «x @ B® YM MC | Code ¢|| @)| Cellfoolbar || & | @\nIn [1]: from _future__ import division, print_function\n\nimport numpy as np\n\nfrom sklearn import datasets, svm\n\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n\n’matplotlib inline\n\n/Users/Anirban/anaconda/1ib/python2.7/site-packages/matplot1lib/font_manage\nng the font cache using fc-list. This may take a moment.\nwarnings.warn('Matplotlib is building the font cache using fc-list. This\n\n1. Support Vector Classification"
+  },
+  {
+    "text": "is much more versatile and much more elegant than the one that was used in Python 2.",
+    "start": 594.48,
+    "end": 599.48,
+    "ocr_text": "u pyter ML-Anirban_Tutorial4 (autosaved)\n\nEdit View Insert Cell Kernel Help\n+ «x @ B® YM MC | Code ¢|| @)| Cellfoolbar || & | @\nIn [1]: from _future__ import division, print_function\n\nimport numpy as np\n\nfrom sklearn import datasets, svm\n\nfrom sklearn.cross_validation import train_test_split\nimport matplotlib.pyplot as plt\n\n’matplotlib inline\n\n/Users/Anirban/anaconda/1ib/python2.7/site-packages/matplot1lib/font_manage\nng the font cache using fc-list. This may take a moment.\nwarnings.warn('Matplotlib is building the font cache using fc-list. This\n\n1. Support Vector Classification"
+  },
+  {
+    "text": "So, to use this particular syntax in Python 2 you have to do the import from future and",
+    "start": 599.48,
+    "end": 606.48,
+    "ocr_text": "u pyter ML-Anirban_Tutorial4 (autosaved)\n\nEdit View Insert Cell Kernel Help\n+ & @ BR + WMC) Code ¢| | @_ Cellfoobar & t% @\nIn [ ]:| kernels = (‘linear','poly','rbf')\n\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc\n\n1.3 Visualize the decision boundaries"
+  },
+  {
+    "text": "then this goes like this. So, this is going to be so, this is a blank placeholder it is",
+    "start": 606.48,
+    "end": 611.6,
+    "ocr_text": "u pyter ML-Anirban_Tutorial4 (autosavea)\nEdit View Insert Cell Kernel Help\n\n+ x @ BR & + MW MC) Code +] @_ Celffoolbar & t% @\nin [| J?) Kerness = ( 4anear , pory , ror)\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies .append(acc)\nprint(\"(}|,% accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries\n\nIn [ ]:| #frain SVMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(X_train, y train)"
+  },
+  {
+    "text": "going to be filled by accuracy. So, so much of accuracy has been obtained with kernel",
+    "start": 611.6,
+    "end": 616.24,
+    "ocr_text": "u pyter ML-Anirban_Tutorial4 (autosavea)\nEdit View Insert Cell Kernel Help\n\n+ x @ BR & + MW MC) Code +] @_ Celffoolbar & t% @\nin [| J?) Kerness = ( 4anear , pory , ror)\naccuracies = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies .append(acc)\nprint(\"(}|,% accuracy obtained with kernel = {}\".format(acc, kernel))\n\n1.3 Visualize the decision boundaries\n\nIn [ ]:| #frain SVMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(X_train, y train)"
+  },
+  {
+    "text": "this all right. So, we are going to like test every single kernel one by one in this",
+    "start": 616.24,
+    "end": 621.56,
+    "ocr_text": "u pyter ML-Anirban_Tutorial4 (autosaved)\nEdit View Insert Cell Kernel Help\n\n+ x @ BR + WMC) Code +] @_ Celffoobar & t% @\n\nIn [ ]:| kernels = ('linear','poly', 'rbf')\n\naccuracies = []\n\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"(}| 8 accuracy obtained with kernel = {}\".format(acc,\n\n1.3 Visualize the de\n\nion boundaries\n\nIn [ ]:| #frain SVMs with different kernels"
+  },
+  {
+    "text": "particular section. So, let us go ahead and run this cool. So, here we have the results",
+    "start": 621.56,
+    "end": 626.88,
+    "ocr_text": "u pyter ML-Anirban_Tutorial4 (autosaved)\nEdit View Insert Cell Kernel Help\n\n+ x @ BR + WMC) Code +] @_ Celffoobar & t% @\n\nIn [ ]:| kernels = ('linear','poly', 'rbf')\n\naccuracies = []\n\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies. append(acc)\nprint(\"(}| 8 accuracy obtained with kernel = {}\".format(acc,\n\n1.3 Visualize the de\n\nion boundaries\n\nIn [ ]:| #frain SVMs with different kernels"
+  },
+  {
+    "text": "and you see that the accuracy of the linear and rbf kernels are equal and this is the",
+    "start": 626.88,
+    "end": 634.08,
+    "ocr_text": "u pyte { ML-Anirban_Tutorial4 (unsaved changes)\nEdit View Insert Cell Kernel Help\n\n+ & @ BH & + WH MC) Code +] @_ Cellfoolbar & t% @\n| VES EMUCAy SACLHCS ae eNUNSEALE [ACLHELO Pe\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies.append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel) )\n\n84.2105263158 % accuracy obtained with kernel = linear\n81.5789473684 % accuracy obtained with kernel = poly\n84.2105263158 % accuracy obtained with kernel = rbf\n\n1.3 Visualize the decision boundaries\n\nTr f 1¢ | siteeain GUMe with diffarant kernala"
+  },
+  {
+    "text": "particular case over here not always is the same case and the accuracy of the polynomial",
+    "start": 634.24,
+    "end": 642.24,
+    "ocr_text": "u pyte { ML-Anirban_Tutorial4 (unsaved changes)\nEdit View Insert Cell Kernel Help\n\n+ & @ BH & + WH MC) Code +] @_ Cellfoolbar & t% @\n| VES EMUCAy SACLHCS ae eNUNSEALE [ACLHELO Pe\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies.append(acc)\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel) )\n\n84.2105263158 % accuracy obtained with kernel = linear\n81.5789473684 % accuracy obtained with kernel = poly\n84.2105263158 % accuracy obtained with kernel = rbf\n\n1.3 Visualize the decision boundaries\n\nTr f 1¢ | siteeain GUMe with diffarant kernala"
+  },
+  {
+    "text": "kernel is little bit lower. So, let us now go ahead and try and visualize the decision",
+    "start": 642.88,
+    "end": 649.88,
+    "ocr_text": "u pyte {) ML-Anirban_Tutorial4 (unsaved changes)\nEdit View Insert Cell Kernel Help\n\n+ & @ BR & + WMC) Code ¢|/ @ | Cellfoobar &  t% @\n[VES EHUCA/ SACLHES at eNUNSZALE TACLHELO Pe\nmodel = svm.SVC(kernel=kernel)\nmodel.fit(X_train, y train)\nacc = evaluate_on_test_data(model)\naccuracies.append(acc)\nprint(\"() % accuracy obtained with kernel = {}\".format(acc, kernel))\n\n84.2105263158 % accuracy obtained with kernel = linear\n81.5789473684 % accuracy obtained with kernel = poly\n84.2105263158 % accuracy obtained with kernel = rbf\n\n1.3 Visualize the decision boundaries\n\nTr tf 1¢|sditeein GUMe with different karnela"
+  },
+  {
+    "text": "boundaries. So, this will give a good insight into how the problem is being solved by the",
+    "start": 650.64,
+    "end": 657.64,
+    "ocr_text": "SJupyter ML-Aniroantutorials unsaved changes)\n\nFle Edit View Insert «Cell. -Kemel_ Help\n\n+ GB ee WN mC) Code\n\n1.3 Visualize the decision boundaries\n\nIn ( ]: #Prain SVMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(x_train, y train)\nrbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y train)\npoly_svc = svm.SVC(kernel='poly', degree=3).fit(X_train, y train)\n\n‘#ereate a mesh to plot in\n\nh= .02 # step size in the mesh\n\nx.min, x_max = X[:, O}qmin() - 1, X[2, O]-max() + 1\n\nyomin, ymax = X[t, 1].min() - 1, X{2, 1].max() + 1\n\nxx, yy = np.meshgrid(np.arange(x min, x max, h),\nnp.arange(y min, y max, h))\n\n‘#efine title for the plots\ntitles = ['svc with linear kernel’,\n\n“sve with RBF kernel’,\n\n\"sve with polynomial (degree 3) kernel'}"
+  },
+  {
+    "text": "support vector classifier. So, let us just go ahead and look at the code. So, this particular",
+    "start": 657.64,
+    "end": 663.52,
+    "ocr_text": "SJUPYter ML-Anirban_Tutorial4 (unsaved changes)\n\nFle Edt View Inert «Cell, Keel Help\n\n+) @) Be) +) nm Cc || code #) | @ | Coltoolbar |/ @ | a | @\n\n1.3 Visualize the decision boundaries\n\nIn { ]: #Prain SvMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(x_train, y train)\nxbf_sve = svm.SVC(kernel='rbf\", ganma=0.7).fit(X_train, y train)\npoly_sve = svm.SVC(kernel='poly', degree=3).fit(X_train, y train)\n\nfcreate a mesh to plot in\n\nh= .02 # step size in the mesh\n\nx.min, x_max = X[t, 0]-min() ~ 1, X[2, O]-max() +1\n\nymin, ymax = X{t, 1)ymin() - 1, X[+, 1]-max() +1\n\nxx, yy = np.meshgrid(np.arange(x min, x max, h),\nnp.arange(y min, y max, h))\n\n#oefine title for the plots\ntitles = ['svc with linear kernel’,\n\n\"sve with RBF kernel’,\n\n\"svc with polynomial (degree 3) kernel']\n\nlf in enumerate((svc, rbf_svc, poly_svc)):"
+  },
+  {
+    "text": "section visualizes the decision boundaries. So, the first segment we are going to train different",
+    "start": 663.6,
+    "end": 671.6,
+    "ocr_text": "SJUPYter ML-Anirban_Tutorial4 (unsaved changes)\n\nFle Edt View Inert «Cell, Keel Help\n\n+) @) Be) +) nm Cc || code #) | @ | Coltoolbar |/ @ | a | @\n\n1.3 Visualize the decision boundaries\n\nIn { ]: #Prain SvMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(x_train, y train)\nxbf_sve = svm.SVC(kernel='rbf\", ganma=0.7).fit(X_train, y train)\npoly_sve = svm.SVC(kernel='poly', degree=3).fit(X_train, y train)\n\nfcreate a mesh to plot in\n\nh= .02 # step size in the mesh\n\nx.min, x_max = X[t, 0]-min() ~ 1, X[2, O]-max() +1\n\nymin, ymax = X{t, 1)ymin() - 1, X[+, 1]-max() +1\n\nxx, yy = np.meshgrid(np.arange(x min, x max, h),\nnp.arange(y min, y max, h))\n\n#oefine title for the plots\ntitles = ['svc with linear kernel’,\n\n\"sve with RBF kernel’,\n\n\"svc with polynomial (degree 3) kernel']\n\nlf in enumerate((svc, rbf_svc, poly_svc)):"
+  },
+  {
+    "text": "kinds of classifiers. So, we train them all over once more. So, we just name them as SBC.",
+    "start": 671.6,
+    "end": 678.6,
+    "ocr_text": "1.3 Visualize the decision boundaries\n\nIn[ ]:\n\n#frain SVMs with different kernels}\n\nsve = svm.SVC(kernel='linear').fit(x_train, y train)\n\nrbf_sve = svm.SvC(kernel='rbf', gamma=0.7).fit(x_train, y train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x train, y train)\n\n#Create a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx_min, x max = X[:, 0]-min() - 1, X[:, 0].max() + 1\n\ny_min, y max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel’,\n\"svc with RBF kernel’,\n\"svc with polynomial (degree 3) kernel']"
+  },
+  {
+    "text": "So, the simple SBC this model is going to be a linear kernel SVM and it has been trained",
+    "start": 678.6,
+    "end": 684.44,
+    "ocr_text": "1.3 Visualize the decision boundaries\n\nIn[ ]:\n\n#Train SVMs with different kernels\n\nB¥e = svm.SVC(kernel='linear').fit(x_train, y train)\n\nrbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x_train, y train)\n\n#Create a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\ny_min, y max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel’,\n\n\"svc with RBF kernel’,\n\n\"svc with polynomial (degree 3) kernel']"
+  },
+  {
+    "text": "on the training data. The second rbf SBC is trained is an rbf kernel SVM and it has been",
+    "start": 684.44,
+    "end": 692.44,
+    "ocr_text": "1.3 Visualize the decision boundaries\n\nIn[ ]:\n\n#Train SVMs with different kernels\n\nB¥e = svm.SVC(kernel='linear').fit(x_train, y train)\n\nrbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x_train, y train)\n\n#Create a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\ny_min, y max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel’,\n\n\"svc with RBF kernel’,\n\n\"svc with polynomial (degree 3) kernel']"
+  },
+  {
+    "text": "trained. So, gamma is another parameter of the SVM. So, you can actually look up the",
+    "start": 692.92,
+    "end": 696.28,
+    "ocr_text": "1.3 Visualize the decision boundaries\n\nIn[ 1]:\n\n#Train SVMs with different kernels\n\nsve = svm.SVC(kernel='linear').fit(x_train, y train)\n\nfbElsve = svm.svc(kernel='rbf', gamma=0.7).fit(x_train, y train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x train, y train)\n\n#create a mesh to plot in\n\nh= .02 # step size in the mesh\n\nxmin, x max = X[:, 0].min() - 1, X[:, 0]-max() +1\n\ny_min, y max = X[:, 1].min() - 1, X[{:, 1]-max() +1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel’,\n\"svc with RBF kernel’,\n\"svc with polynomial (degree 3) kernel']"
+  },
+  {
+    "text": "documentation of support vector machine or support vector classifier of circuit learn",
+    "start": 696.28,
+    "end": 700.76,
+    "ocr_text": "1.3 Visualize the decision boundaries\n\nIn[ ]:\n\n#Train SVMs with different kernels\n\nsvc = svm.SVC(kernel='linear').fit(x_train, y train)\n\nEbEsve = svm.svc(kernel='rbf', gamma=0.7).fit(x_train, y train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x_train, y train)\n\n#Create a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx_min, x max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\ny_min, y max = X[:, 1].min() - 1, X[{:, 1]-max() +1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel’,\n\"svc with RBF kernel’,\n\"svc with polynomial (degree 3) kernel']"
+  },
+  {
+    "text": "and you will find all of those like the definitions of each of these parameters.",
+    "start": 700.76,
+    "end": 704.96,
+    "ocr_text": "1.3 Visualize the decision boundaries\n\nIn[ ]:\n\n#Train SVMs with different kernels\n\nsvc = svm.SVC(kernel='linear').fit(x_train, y train)\n\nEbEsve = svm.svc(kernel='rbf', gamma=0.7).fit(x_train, y train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x_train, y train)\n\n#Create a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx_min, x max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\ny_min, y max = X[:, 1].min() - 1, X[{:, 1]-max() +1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel’,\n\"svc with RBF kernel’,\n\"svc with polynomial (degree 3) kernel']"
+  },
+  {
+    "text": "And then you train it on the training data and now you have a polynomial kernel SVM in",
+    "start": 704.96,
+    "end": 709.48,
+    "ocr_text": "1.3 Visualize the decision boundaries\n\nIn[ ]:\n\n#Train SVMs with different kernels\n\nsvc = svm.SVC(kernel='linear').fit(x_train, y train)\n\nEbEsve = svm.svc(kernel='rbf', gamma=0.7).fit(x_train, y train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x_train, y train)\n\n#Create a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx_min, x max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\ny_min, y max = X[:, 1].min() - 1, X[{:, 1]-max() +1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel’,\n\"svc with RBF kernel’,\n\"svc with polynomial (degree 3) kernel']"
+  },
+  {
+    "text": "the same way. So, here you are going to so, in this section I will highlight. So, in this",
+    "start": 709.48,
+    "end": 714.4,
+    "ocr_text": "1.3 Visualize the decision boundaries\n\nIn [ ]:| #frain SVMs with different kernels\nsve = svm.SVC(kernel='linear').fit(X_train, y train)\nxbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y_train)\npolly svc = svm.SvC(kernel='poly', degree=3).fit(X_train, y train)\n\n#Create a mesh to plot in\n\nh= .02 # step size in the mesh\n\nx_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\ny_min, y max = X[:, 1].min() - 1, X[:, 1].max() +1\n\nxx, yy = np.meshgrid(np.arange(x_min, x max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel’,\n\n\"svc with RBF kernel’,\n\n\"svc with polynomial (degree 3) kernel']"
+  },
+  {
+    "text": "section you are going to initialize different kinds of kernels and train them. Now, we would",
+    "start": 714.4,
+    "end": 721.4,
+    "ocr_text": "1.3 Visualize the decision boundaries\n\nIn [ ]:| #frain SVMs with different kernels\nsve = svm.SVC(kernel='linear').fit(X_train, y train)\nxbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y_train)\npolly svc = svm.SvC(kernel='poly', degree=3).fit(X_train, y train)\n\n#Create a mesh to plot in\n\nh= .02 # step size in the mesh\n\nx_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\ny_min, y max = X[:, 1].min() - 1, X[:, 1].max() +1\n\nxx, yy = np.meshgrid(np.arange(x_min, x max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel’,\n\n\"svc with RBF kernel’,\n\n\"svc with polynomial (degree 3) kernel']"
+  },
+  {
+    "text": "like have to have a mesh plot which will look beautiful. So, that is why you are in this",
+    "start": 722.28,
+    "end": 727.8,
+    "ocr_text": "1.3 Visualize the decision boundaries\n\nIn [ J?\n\n#frain SVMs with different kernels\n\nsve = svm.SVC(kernel='linear').fit(X_train, y train)\n\nrbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X train, y train)\npoly_sve = svm.SVC(kernel='poly', degree=3).fit(X_train, y train)\n\n#Create a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx_min, x_max = X[:, 0].min() - 1, X[:, 0].max() +1\n\ny_min, y_max = X[:, 1].min() - 1, X[:, 1].max() +1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel',\n\"svc with RBF kernel’,\n\"svc with polynomial (degree 3) kernel']"
+  },
+  {
+    "text": "section you create a mesh of points. So, it extends from the minimum possible value of",
+    "start": 727.8,
+    "end": 734.8,
+    "ocr_text": "In [ ]:\n\n#frain SVMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(X_train, y train)\n\nrbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y_train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x_train, y train)\n\n#Create a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\nymin, y max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['Svc with linear kernel',\n\n‘svc with RBF kernel',\n\n\"svc with polynomial (degree 3) kernel']\n\nfor i, clf in enumerate((svc, rbf_svc, poly_svc)):\n\nRe epee ae ped roe SR a Ak in, a ode"
+  },
+  {
+    "text": "the training set of each feature of the training set to their maximum possible values. So, x",
+    "start": 734.8,
+    "end": 739.76,
+    "ocr_text": "In [ ]:\n\n#frain SVMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(X_train, y train)\n\nrbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y_train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x_train, y train)\n\n#Create a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\nymin, y max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['Svc with linear kernel',\n\n‘svc with RBF kernel',\n\n\"svc with polynomial (degree 3) kernel']\n\nfor i, clf in enumerate((svc, rbf_svc, poly_svc)):\n\nRe epee ae ped roe SR a Ak in, a ode"
+  },
+  {
+    "text": "mean and x max have been calculated and a bit with and like one point earlier and one",
+    "start": 739.76,
+    "end": 746.76,
+    "ocr_text": "#frain SVMs with different kernels\nsve = svm.SVC(kernel='linear').fit(X_train, y train)\n\nrbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x_train, y train)\n\n#Create a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx_min, x_max = X[:, 0].min() - 1, X[:, 0].max() +1\n\ny_min, y max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel',\n\n\"svc with RBF kernel’,\n\n\"svc with polynomial (degree 3) kernel']\n\nfor i, clf in enumerate((svc, rbf_svc, poly_svc)):\n\ngg Sa ea aN os ie lg a rey one en"
+  },
+  {
+    "text": "point later. So, this code is just for like a nice plot and then you define the mesh using",
+    "start": 747.52,
+    "end": 753.72,
+    "ocr_text": "In [ ]:\n\n#frain SVMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(X_train, y train)\n\nrbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x_train, y train)\n\n#cCreate a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx min, x max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\ny_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\nxx, yy = np.meshgrid(np.arange(x_min, x max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['Svc with linear kernel',\n\n\"svc with RBF kernel’,\n\n\"svc with polynomial (degree 3) kernel\" ]\n\nfor i, clf in enumerate((svc, rbf_svc, poly_svc)):\n\ni= i A I le eT Os eee eae eee"
+  },
+  {
+    "text": "numpy dot mesh grid. And now you go ahead and discuss and we are making plots. So, the titles",
+    "start": 753.72,
+    "end": 760.72,
+    "ocr_text": "In [ ]:\n\n#frain SVMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(X_train, y train)\n\nrbf_sve = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y train)\npoly_sve = svm.SvC(kernel='poly', degree=3).fit(x_train, y train)\n\n#cCreate a mesh to plot in\n\nh = .02 # step size in the mesh\n\nx min, x max = X[:, 0].min() - 1, X[:, 0].max() + 1\n\ny_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\nxx, yy = np.meshgrid(np.arange(x_min, x max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['Svc with linear kernel',\n\n\"svc with RBF kernel’,\n\n\"svc with polynomial (degree 3) kernel\" ]\n\nfor i, clf in enumerate((svc, rbf_svc, poly_svc)):\n\ni= i A I le eT Os eee eae eee"
+  },
+  {
+    "text": "will be like this. So, you are making an array of these titles and then you again like",
+    "start": 762.48,
+    "end": 769.48,
+    "ocr_text": "= aman — Ale, veemanyy — ay Mus, Vyemanyy © o\n\ny_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h),\nnp.arange(y min, y max, h))\n\n#Define title for the plots\ntitles = ['SVC with linear kernel',\n\n‘svc with RBF kernel',\n\n“svc with polynomial (degree 3) kernel']\n\nfor i, clf in enumerate((svc, rbf_svc, poly_svc)):\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x_min, m_max]x[y min, y max].\nplt.figure(i)\n\nZ = clf.predict(np.c_[xx.ravel(), yy.ravel()])\n# Put the result into a color plot\n\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)"
+  },
+  {
+    "text": "go ahead and evaluate different models. So, this like in this particular line what we",
+    "start": 770.0,
+    "end": 777.0,
+    "ocr_text": "for i, clf in enumerate((svc, rbf_svc, poly_svc)):\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x_min, m_max]x[y min, y max].\nplt.figure(i)\n\nZ = clf.predict(np.c_[xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length’)\n\nplt.ylabel('Sepal width’)\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy.max())\n\nplt.xticks(())\n\nplt.yticks(())"
+  },
+  {
+    "text": "are going to do is we are again enumerating over this tuple. So, all of these three models",
+    "start": 778.96,
+    "end": 785.96,
+    "ocr_text": "for i, clf in énumerate((sve, rbf_svc, poly_svc)):\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x min, m max]x[y min, y max].\nplt.figure(i)\n\nZ = clf.predict(np.c_[xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length’)\n\nplt.ylabel('Sepal width’)\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy.max())\n\nplt.xticks(())\n\nplt.yticks(())"
+  },
+  {
+    "text": "separated by commas within first brackets makes a tuple which is an iterable. And when",
+    "start": 785.96,
+    "end": 791.96,
+    "ocr_text": "for i, clf in enumerate (((Svey/Ebf_svc, poly_svc)):\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x_min, m_max]x[y min, y max].\nplt.figure(i)\n\nZ = clf.predict(np.c_[xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length’)\n\nplt.ylabel('Sepal width’)\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy.max())\n\nplt.xticks(())\n\nplt.yticks(())"
+  },
+  {
+    "text": "you use enumerate on this then it returns and index of each element it takes it returns",
+    "start": 791.96,
+    "end": 798.96,
+    "ocr_text": "for i, clf in enumerate (((Svey/Ebf_svc, poly_svc)):\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x_min, m_max]x[y min, y max].\nplt.figure(i)\n\nZ = clf.predict(np.c_[xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length’)\n\nplt.ylabel('Sepal width’)\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy.max())\n\nplt.xticks(())\n\nplt.yticks(())"
+  },
+  {
+    "text": "each element 1 by 1, returns the elements 1 by 1 and it returns the index of the element",
+    "start": 799.12,
+    "end": 805.12,
+    "ocr_text": "for il, clf in enumerate((svc, rbf_svc, poly_svc)):\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x_min, m_max]x[y min, y max].\nplt.figure(i)\n\n% = clf.predict(np.c_[{xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length’)\n\nplt.ylabel('Sepal width’)\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy.max())\n\nplt.xticks(())\n\nplt.yticks(())"
+  },
+  {
+    "text": "as well as the element itself. So, we are going to have s v c first with an index of 0",
+    "start": 805.12,
+    "end": 812.12,
+    "ocr_text": "for i, cf in enumerate((svc, rbf_svc, poly_svc)):\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x min, m max]x[y min, y max].\nplt.figure(i)\n\nZ = clf.predict(np.c_[xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length’)\n\nplt.ylabel('Sepal width’)\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy.max())\n\nplt.xticks(())\n\nplt.yticks(())"
+  },
+  {
+    "text": "equal to 0 and then r b f s v c then poly s v c. And then you first initialize the figure",
+    "start": 812.12,
+    "end": 819.12,
+    "ocr_text": "for i, cf in enumerate((svc, rbf_svc, poly_svc)):\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x min, m max]x[y min, y max].\nplt.figure(i)\n\nZ = clf.predict(np.c_[xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length’)\n\nplt.ylabel('Sepal width’)\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy.max())\n\nplt.xticks(())\n\nplt.yticks(())"
+  },
+  {
+    "text": "and you do all the predict for all the points in the mesh.",
+    "start": 822.24,
+    "end": 828.04,
+    "ocr_text": "—————eeEE——————ee\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x_min, m_max]x[y min, y max].\nplt.figure(i)\n\n% = clf.predict(np.c_[xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length')\n\nplt.ylabel('Sepal width’)\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy-max())\n\nplt.xticks(())\n\nplt.yticks(())\n\nplt.title(titles[i])"
+  },
+  {
+    "text": "So, what we are trying to do over here is find out which part of the space belongs to",
+    "start": 828.44,
+    "end": 834.44,
+    "ocr_text": "SS SS\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x_min, m_max]x[y min, y max].\nplt.figure(i)\n\n% = clf.predict(np.c_[xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length')\n\nplt.ylabel('Sepal width’)\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy-max())\n\nplt.xticks(())\n\nplt.yticks(())\n\nplt.title(titles[i])"
+  },
+  {
+    "text": "which particular category and you will see in a second how this thing actually looks.",
+    "start": 834.44,
+    "end": 839.44,
+    "ocr_text": "SS SS\n# Plot the decision boundary. For that, we will assign a color to each\n# point in the mesh [x_min, m_max]x[y min, y max].\nplt.figure(i)\n\n% = clf.predict(np.c_[xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length')\n\nplt.ylabel('Sepal width’)\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy-max())\n\nplt.xticks(())\n\nplt.yticks(())\n\nplt.title(titles[i])"
+  },
+  {
+    "text": "So, then you put everything into a contour plot and finally place the points of the data",
+    "start": 839.44,
+    "end": 846.44,
+    "ocr_text": "% = clf.predict(np.c_[xx.ravel(), yy-ravel()])\n\n# Put the result into a color plot\n% = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length')\n\nplt.ylabel('Sepal width\")\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy-max())\n\nplt.xticks(())\n\nplt.yticks(())\n\nplt.title(titles[i])\n\nplt.show()"
+  },
+  {
+    "text": "set in the plot and do the levelings of the axis over here. And then you have to do",
+    "start": 850.24,
+    "end": 857.24,
+    "ocr_text": "% = clf.predict(np.c_[xx.ravel(), yy.ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length’)\n\nplt.ylabel('Sepal width')\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy-max())\n\nplt.xticks(())\n\nplt.yticks(())\n\nplt.title(titles[i])\n\nplt.show()"
+  },
+  {
+    "text": "some more cosmetic changes to the training to the plot and then you put the titles on",
+    "start": 858.44,
+    "end": 865.04,
+    "ocr_text": "Z = Z.reshape(xx.shape)\nplt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\n\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length')\n\nplt.ylabel('Sepal width’)\n\noplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy-max())\n\nplt.xticks(())\n\nplt.yticks(())\n\nplt.title(titles[i])\n\nplt.show()\n\n2. Support Vector Regression"
+  },
+  {
+    "text": "the plots and finally you show all the plots. So, let us go ahead and run this part see",
+    "start": 865.32,
+    "end": 871.32,
+    "ocr_text": "Z = Z%.reshape(xx.shape)\nplt.contourf(xx, yy, 2, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length’)\n\nplt.ylabel('Sepal width')\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy-max())\n\nplt.xticks()\n\nplt.yticks(())\n\nplt.title(titles[i])\n\nplt.show()\n\nSVC with linear kernel\n\nvy |"
+  },
+  {
+    "text": "how beautiful it is. So, it generates these three plots and the first one is for the",
+    "start": 871.32,
+    "end": 876.32,
+    "ocr_text": "Z = Z%.reshape(xx.shape)\nplt.contourf(xx, yy, 2, cmap=plt.cm.Paired, alpha=0.8)\n\n# Plot also the training points\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.ocean)\nplt.xlabel('Sepal length’)\n\nplt.ylabel('Sepal width')\n\nplt.xlim(xx.min(), xx.max())\n\nplt.ylim(yy.min(), yy-max())\n\nplt.xticks()\n\nplt.yticks(())\n\nplt.title(titles[i])\n\nplt.show()\n\nSVC with linear kernel\n\nvy |"
+  },
+  {
+    "text": "linear kernel, the second one is for the r v f kernel and the third one is for the polynomial",
+    "start": 876.32,
+    "end": 880.72,
+    "ocr_text": "[ia ean Be x\n\nTS JUPYEEL ML: Antan orl neem\n\n2. Support Vector Regression"
+  },
+  {
+    "text": "kernel. So, let us go ahead and inspect these 1 by 1 and compare. So, in the linear kernel",
+    "start": 880.72,
+    "end": 886.2,
+    "ocr_text": "[ia ean Be x\n\nTS JUPYEEL ML: Antan orl neem\n\n2. Support Vector Regression"
+  },
+  {
+    "text": "is nothing but just a linear decision boundary like no feature transformation. So, the",
+    "start": 886.6,
+    "end": 893.6,
+    "ocr_text": "[0 wasn snnnnasunt ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\nSepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "entire idea of kernel is like you have this set of like you may have a set of training",
+    "start": 893.6,
+    "end": 901.1,
+    "ocr_text": "[0 wasn snnnnasunt ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\nSepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "point as SVM is a linear classifier it always makes a linear decision boundary. When you",
+    "start": 901.1,
+    "end": 907.3,
+    "ocr_text": "[0 ween snnnnesant evn Tovor\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "have a data set in which the points are not linearly separable then it does not perform",
+    "start": 907.3,
+    "end": 913.5,
+    "ocr_text": "plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "well. So, you need to have some non-linear decision boundary and that is why that is where",
+    "start": 913.5,
+    "end": 919.86,
+    "ocr_text": "plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "kernel is coming. So, the idea is that when the points are not linearly separable you are",
+    "start": 919.86,
+    "end": 927.1,
+    "ocr_text": "[0 ween scnnnnesant ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "going to transform them using some feature transformation function into another higher",
+    "start": 927.1,
+    "end": 931.26,
+    "ocr_text": "[0 ween scnnnnesant ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "dimensional space preferably in which the points would presumably be linearly separable.",
+    "start": 931.26,
+    "end": 938.26,
+    "ocr_text": "[0 ween scnnnnesant ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "So, you are assuming that the points are not linearly separable in the current feature",
+    "start": 938.26,
+    "end": 943.26,
+    "ocr_text": "[0 ween scnnnnesant ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "space, but when they are mapped to a much higher dimensional feature space then they will",
+    "start": 943.3,
+    "end": 947.42,
+    "ocr_text": "[0 ween scnnnnesant ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "be linearly separable. So, you first do that feature mapping using some non-linear function",
+    "start": 947.42,
+    "end": 952.38,
+    "ocr_text": "[0 ween scnnnnesant ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "and then in that higher dimensional space you are going you will go ahead and make an",
+    "start": 952.38,
+    "end": 957.3,
+    "ocr_text": "[0 ween scnnnnesant ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "SVM right which is the linear decision boundary. But this entire process can be bypassed.",
+    "start": 957.3,
+    "end": 964.8,
+    "ocr_text": "[0 ween scnnnnesant ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "So, first feature transformation then SVM. So, this can be bypassed by using a kernel.",
+    "start": 964.8,
+    "end": 969.54,
+    "ocr_text": "SVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "So, kernel function is a function which returns directly the dot product of the transformed",
+    "start": 969.54,
+    "end": 974.86,
+    "ocr_text": "SVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "points from the points in the initial of the original feature space. So, a kernel function",
+    "start": 974.86,
+    "end": 982.42,
+    "ocr_text": "SVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "takes points from the original feature space and returns the dot product of those points",
+    "start": 982.42,
+    "end": 987.42,
+    "ocr_text": "SVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "in the transformed space. And I have explained this more explicitly in the with like hands",
+    "start": 987.42,
+    "end": 992.98,
+    "ocr_text": "SVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "like with with with proper figures and everything in the tutorial session of this week. So,",
+    "start": 992.98,
+    "end": 999.02,
+    "ocr_text": "SVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "the entire idea of kernel is to extrapolate SVM's to the non-linear decision boundaries",
+    "start": 999.02,
+    "end": 1006.86,
+    "ocr_text": "SVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "to have an SVM with non-linear decision boundaries. So, you do not you all you all continue",
+    "start": 1006.86,
+    "end": 1012.82,
+    "ocr_text": "SVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "to have a linear decision boundary, but the decision boundary is in a different space.",
+    "start": 1012.82,
+    "end": 1019.86,
+    "ocr_text": "SVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "So, to which you first transform your data points to right. So, this linear kernel SVM",
+    "start": 1019.86,
+    "end": 1027.82,
+    "ocr_text": "[0 wan sstncnnesnan eve tovore\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "is doing the linear decision boundary classification in the original feature space. And you can see",
+    "start": 1027.82,
+    "end": 1036.22,
+    "ocr_text": "[0 wan sstncnnesnan eve tovore\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "that as the points of the first class these green points they are linearly separable from",
+    "start": 1036.22,
+    "end": 1042.46,
+    "ocr_text": "plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "the other point other classes. So, they have been neatly separated into a different region.",
+    "start": 1042.46,
+    "end": 1047.3,
+    "ocr_text": "plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "However, the other two classes they are not linearly separable. And hence you need",
+    "start": 1047.3,
+    "end": 1054.18,
+    "ocr_text": "[0 ween snnnnasant ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "to like this linear decision boundary it tries to like you know maximally separate the",
+    "start": 1054.18,
+    "end": 1059.9,
+    "ocr_text": "[0 ween snnnnasant ever\n\n| plt.show()\n\nSVC with linear kernel\n\n‘Sepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "points of the two classes, but it has a lot of misclassifications right. However, see",
+    "start": 1059.9,
+    "end": 1066.42,
+    "ocr_text": "[0 wae scnnnasant ever\n\n| plt.show()\n\nSVC with linear kernel\n\nSepal width\n\n‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "what happens with the R B F kernel. So, all of these decision boundaries they are non-linear",
+    "start": 1066.42,
+    "end": 1071.9,
+    "ocr_text": "‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "as you can see the linear decision the linearly separable first class continues to be separated",
+    "start": 1071.9,
+    "end": 1078.26,
+    "ocr_text": "‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "neatly, but in this case the points of the white points and these blue points have been",
+    "start": 1078.3,
+    "end": 1087.7,
+    "ocr_text": "‘Sepal length\n\nSVC with RBF kernel"
+  },
+  {
+    "text": "separated better, because as you can see before that the accuracy oops this was for the",
+    "start": 1087.7,
+    "end": 1098.22,
+    "ocr_text": "-xlim(xx-min(), xx.max())\n-ylim(yy-min(), yy-max())\n\nplt.xticks ()\nplt.yticks(())\nplt.title(titles[i])\n\nplt.show()\n\nSVC with linear kernel\n\nSepal width"
+  },
+  {
+    "text": "polynomial kernel. So, it does not it does not so the R B F kernel",
+    "start": 1098.22,
+    "end": 1103.06,
+    "ocr_text": "ee “a\n\nNODES;\nmodel.fit(X_train, y_ train)\n\nacc = evaluate_on_test_data(model)\naccuracies.append(acc)\n\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel\n\n84.2105263158 % accuracy obtained with kernel = linear\n81.5789473684 % accuracy obtained with kernel = poly\n84.2105263158 % accuracy obtained with kernel = rbf\n\n1.3 Visualize the decision boundaries\n\n[5]\n\n: | #frain SVMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(X_train, y train)\nxbf_svc = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y_‘\npoly_svc = svm.SVC(kernel='poly', degree=3).fit(X_train, y.\n\n#cCreate a mesh to plot in"
+  },
+  {
+    "text": "get the same accuracy as the linear kernel for this particular example. However, you can",
+    "start": 1103.14,
+    "end": 1109.62,
+    "ocr_text": "ee “a\n\nNODES;\nmodel.fit(X_train, y_ train)\n\nacc = evaluate_on_test_data(model)\naccuracies.append(acc)\n\nprint(\"{} % accuracy obtained with kernel = {}\".format(acc, kernel\n\n84.2105263158 % accuracy obtained with kernel = linear\n81.5789473684 % accuracy obtained with kernel = poly\n84.2105263158 % accuracy obtained with kernel = rbf\n\n1.3 Visualize the decision boundaries\n\n[5]\n\n: | #frain SVMs with different kernels\nsvc = svm.SVC(kernel='linear').fit(X_train, y train)\nxbf_svc = svm.SVC(kernel='rbf', gamma=0.7).fit(X_train, y_‘\npoly_svc = svm.SVC(kernel='poly', degree=3).fit(X_train, y.\n\n#cCreate a mesh to plot in"
+  },
+  {
+    "text": "see that the decision boundaries are non-linear now. So, you might could have like as these",
+    "start": 1109.62,
+    "end": 1115.82,
+    "ocr_text": "‘Sepal length\n\nSVC with RBF kernel\n\nSepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "decision boundaries are non-linear. So, you could have a better performance in this case.",
+    "start": 1115.82,
+    "end": 1122.82,
+    "ocr_text": "2 =o\n\n‘Sepal length\n\nSVC with RBF kernel\n\n‘Sepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "And the only thing that I want you to be able to notice here is that the decision",
+    "start": 1124.5,
+    "end": 1129.34,
+    "ocr_text": "2 =o\n\n‘Sepal length\n\nSVC with RBF kernel\n\n‘Sepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "boundaries become non-linear. So, the points are first transformed using the using a particular",
+    "start": 1129.42,
+    "end": 1135.42,
+    "ocr_text": "‘Sepal length\n\nSVC with RBF kernel\n\n‘Sepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "feature function sorry a feature transformation function and then in that transformed domain",
+    "start": 1135.42,
+    "end": 1141.42,
+    "ocr_text": "‘Sepal length\n\nSVC with RBF kernel\n\n‘Sepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "they are separated by linear decision boundaries. And when those decision boundaries are visualized",
+    "start": 1141.42,
+    "end": 1146.42,
+    "ocr_text": "‘Sepal length\n\nSVC with RBF kernel\n\n‘Sepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "in the original space they look non-linear and similar is the case with polynomial kernel.",
+    "start": 1146.42,
+    "end": 1153.42,
+    "ocr_text": "SVC with RBF kernel\n\n‘Sepal length\n\n‘SVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "And you can see that it is like it has tried to divide the space using like cubic polynomials.",
+    "start": 1153.42,
+    "end": 1160.42,
+    "ocr_text": "SVC with RBF kernel\n\n‘Sepal length\n\n‘SVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "So, as it is a degree 3 kernel so it will be fitting polynomials of degree 3 and splitting",
+    "start": 1163.46,
+    "end": 1170.46,
+    "ocr_text": "Sepal length\n\n‘SVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "the space. Whereas, these would look like contours in Gaussian like Gaussian plots. So,",
+    "start": 1170.46,
+    "end": 1178.46,
+    "ocr_text": "‘Sepal length\n\n‘SVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "if you like it it has fitted Gaussian on the data one on this part one on this and one",
+    "start": 1179.1,
+    "end": 1188.1,
+    "ocr_text": "‘Sepal width\n\nSVC with RBF kernel\n\n‘Sepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "on that. Or maybe I am not sure about how many components have been chosen. But you can",
+    "start": 1188.1,
+    "end": 1195.58,
+    "ocr_text": "‘Sepal width\n\nSVC with RBF kernel\n\nSepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "find out that there is a function and these things like it is like you know these decision",
+    "start": 1195.66,
+    "end": 1202.42,
+    "ocr_text": "‘Sepal width\n\nSVC with RBF kernel\n\nSepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "boundaries they are contours of a Gaussian alright. So, this is how it is and both of these",
+    "start": 1202.46,
+    "end": 1209.46,
+    "ocr_text": "‘Sepal width\n\nSVC with RBF kernel\n\nSepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "like polynomial kernel and the RBF kernel they give non-linear decision boundaries whereas,",
+    "start": 1214.3,
+    "end": 1220.3,
+    "ocr_text": "SVC with RBF kernel\n\nSepal length\n\nSVC with polynomial (degree 3) kernel"
+  },
+  {
+    "text": "the linear kernel gives linear decision boundaries. So, we can like go ahead and find see how",
+    "start": 1220.3,
+    "end": 1226.3,
+    "ocr_text": "sepaieng\n\n2. Support Vector Regression\n\n2.1 Load data from the Boston dataset\n\nim { }+ Boston = datasets.load_boston()\n\nmois"
+  },
+  {
+    "text": "support vector regression works. So, support vector regression works this way. First",
+    "start": 1226.3,
+    "end": 1233.3,
+    "ocr_text": "sepaieng\n\n2. Support Vector Regression\n\n2.1 Load data from the Boston dataset\n\nim { }+ Boston = datasets.load_boston()\n\nmois"
+  },
+  {
+    "text": "we will load the data oops yeah what is wrong something is wrong piece something is wrong",
+    "start": 1241.34,
+    "end": 1248.34,
+    "ocr_text": "2. Support Vector Regression\n\n2.1 Load data from the Boston dataset\n\n: boston = datasets.load_boston()\n\nX = boston.data\ny = boston.target\n\naS raspy ery"
+  },
+  {
+    "text": "there we are. So, first we load the data so, data sets dot load Boston is a function that",
+    "start": 1256.42,
+    "end": 1262.94,
+    "ocr_text": "2. Support Vector Regression\n\n2.1 Load data from the Boston dataset\n\nIn [ ]: boston = datasets.load_boston|\nX = boston.data\ny = boston.target\n\nX train, X test, y train, y test = train_test_split(x, y, test_size=0.25, random_st\n\n2.2 Use Support Vector Machine with different kinds of kernels and\n\nIn [ ]:| def evaluate_on_test_data(model=None):\n\npredictions = model.predict(X_test)\n\nsum_of_squared_error = 0\n\nfor i in range(len(y test)):\nerr = (predictions[iJ]-y_test[i]) **2\nsum_of_squared_error += err\n\nmean_squared_error = sum_of_squared_error/len(y test)\n\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a percentage"
+  },
+  {
+    "text": "loads the Boston house price prediction data set of cycle learn into the environment and",
+    "start": 1262.94,
+    "end": 1269.94,
+    "ocr_text": "2. Support Vector Regression\n\n2.1 Load data from the Boston dataset\n\nIn [ ]: boston = datasets.load_boston|\nX = boston.data\ny = boston.target\n\nX train, X test, y train, y test = train_test_split(x, y, test_size=0.25, random_st\n\n2.2 Use Support Vector Machine with different kinds of kernels and\n\nIn [ ]:| def evaluate_on_test_data(model=None):\n\npredictions = model.predict(X_test)\n\nsum_of_squared_error = 0\n\nfor i in range(len(y test)):\nerr = (predictions[iJ]-y_test[i]) **2\nsum_of_squared_error += err\n\nmean_squared_error = sum_of_squared_error/len(y test)\n\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a percentage"
+  },
+  {
+    "text": "stores it within this variable Boston. We take out the inputs and the targets make the",
+    "start": 1269.94,
+    "end": 1275.34,
+    "ocr_text": "2. Support Vector Regression\n\n2.1 Load data from the Boston dataset\n\nIn [ ]:| boston = datasets.load_boston()\nX = boston.data\ny = boston.target\n\nX_train, X_test, y train, y test = train test_split(x, y, test_size=0.25, random st\n\n2.2 Use Support Vector Machine with different kinds of kernels and\n\nIn [ ]:| def evaluate_on_test_data(model=None):\n\npredictions = model.predict(Xx_test)\n\nsum_of_squared_error = 0\n\nfor i in range(len(y test)):\nerr = (predictions[iJ]-y_test[i]) **2\nsum_of_squared_error += err\n\nmean_squared_error = sum_of_squared_error/len(y test)\n\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a percentage"
+  },
+  {
+    "text": "training and test splits and then we have a similar evaluate on test data function.",
+    "start": 1275.34,
+    "end": 1282.34,
+    "ocr_text": "2.2 Use Support Vector Machine with different kinds of kernels and evaluate |\n\ndef evaluate_on_test_data(model=None):\n\npredictions = model.predict(x_test)\n\nsum_of_squared_error = 0\n\nfor i in range(len(y _test)):\nerr = (predictions[i]-y test[i]) **2\nsum_of_squared_error += err\n\nmean_squared_error = sum_of_squared_error/len(y test)\n\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a percentage\n\nreturn RMSE\n\nkernels = (‘linear','rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVR(kernel=kernel)\nmodel.fit(x_train, y train)\nRMSE = evaluate_on_test_data(model)\nRMSE_vec. append (RMSE)\nprint(\"RMSE={} obtained with kernel = {}\".format(RMSE, kernel))"
+  },
+  {
+    "text": "And over here in as this is a regression problem as this is a regression problem we do",
+    "start": 1282.34,
+    "end": 1289.34,
+    "ocr_text": "2.2 Use Support Vector Machine with different kinds of kernels and evaluate |\n\ndef evaluate_on_test_data(model=None):\n\npredictions = model.predict(x_test)\n\nsum_of_squared_error = 0\n\nfor i in range(len(y _test)):\nerr = (predictions[i]-y test[i]) **2\nsum_of_squared_error += err\n\nmean_squared_error = sum_of_squared_error/len(y test)\n\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a percentage\n\nreturn RMSE\n\nkernels = (‘linear','rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVR(kernel=kernel)\nmodel.fit(x_train, y train)\nRMSE = evaluate_on_test_data(model)\nRMSE_vec. append (RMSE)\nprint(\"RMSE={} obtained with kernel = {}\".format(RMSE, kernel))"
+  },
+  {
+    "text": "not have classification error misclassification as our objective. So, what we are going to",
+    "start": 1290.38,
+    "end": 1297.38,
+    "ocr_text": "X_train, X_test, y train, y test = train_test_split(x, y, test_size=0.25, random_state=42)\n\n2.2 Use Support Vector Machine with different kinds of kernels and evaluate |\n\ndef evaluate_on_test_data(model=None):\n\npredictions = model.predict(x_test)\n\nsum_of_squared_error = 0\n\nfor i in range(len(y_test)\nerr = (predictions[i]-y test[i]) **2\nSum_of_squared_error += err\n\nmean_squared_error = sum_of_squared_error/len(y test)\n\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a percentage\n\nreturn RMSE\n\nkernels = (‘linear', 'rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):\n\nmodel = svm.SVR(kernel=kernel)\n\nmodel. fit(x_train, y train)\n\nRMSE = evaluate_on_test_data(model)\n\nRMSE_vec. append (RMSE)\n\nprint(\"RMSE={} obtained with kernel = {}\".format(RMSE, kernel))"
+  },
+  {
+    "text": "use is the mean square error the root mean square error. So, we calculated this way so,",
+    "start": 1299.54,
+    "end": 1305.54,
+    "ocr_text": "2.2 Use Support Vector Machine with different kinc\n\nIn [ ]:\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\nerr = (predictions[i]-y_test[i]) **2\n\\sum_of_squared_error += err:\nmean_squared_error = sum_of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a\nreturn RMSE\n\nenta:\n\nIn [ ]:\n\nkernels = ('linear','rbf£')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):"
+  },
+  {
+    "text": "first we initialize the sum of square error this variable as 0 and then we calculate",
+    "start": 1305.54,
+    "end": 1312.54,
+    "ocr_text": "2.2 Use Support Vector Machine with different kinc\n\nIn [ ]:\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\nerr = (predictions[i]-y_test[i]) **2\nsum_of squared _error += err\nmean_squared_error = sum_of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a\nreturn RMSE\n\nenta:\n\nIn [ ]:\n\nkernels = ('linear','rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):"
+  },
+  {
+    "text": "the square of the error. So, the whatever number has been predicted by the system so,",
+    "start": 1313.14,
+    "end": 1318.5,
+    "ocr_text": "2.2 Use Support Vector Machine with different kinc\n\nIn [ ]:\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\nerr = (predictions[i]-y_test[i]) **2\nsum_of squared _error += err\nmean_squared_error = sum_of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a\nreturn RMSE\n\nenta:\n\nIn [ ]:\n\nkernels = ('linear','rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):"
+  },
+  {
+    "text": "model dot predict x text will give the predictions for the text data and each prediction",
+    "start": 1318.5,
+    "end": 1324.0,
+    "ocr_text": "2.2 Use Support Vector Machine with different kinc\n\nIn [ ]:\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\nerr = (predictions[i]-y_test[i]) **2\n\\sum_of_squared_error += err\nmean_squared_error = sum_of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a\nreturn RMSE\n\nenta:\n\nIn [ ]:\n\nkernels = ('linear','rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):"
+  },
+  {
+    "text": "predicted value is subtracted from the true value and raise to the power of 2. So, this",
+    "start": 1324.0,
+    "end": 1329.18,
+    "ocr_text": "2.2 Use Support Vector Machine with different kinc\n\nIn [ ]:\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\nerr = (predictions[i]-y_test[i]) **2\n\\sum_of_squared_error += err\nmean_squared_error = sum_of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a\nreturn RMSE\n\nenta:\n\nIn [ ]:\n\nkernels = ('linear','rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):"
+  },
+  {
+    "text": "gives the square error we keep accumulating that within this variable and we get the sum",
+    "start": 1329.18,
+    "end": 1334.18,
+    "ocr_text": "2.2 Use Support Vector Machine with different kinc\n\nIn [ ]:\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\nerr = (predictions[i]-y_test[i]) **2\njsum_of_squared_error += err\nmean_squared_error = sum_of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a\nreturn RMSE\n\nenta:\n\nIn [ ]:\n\nkernels = ('linear','rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):"
+  },
+  {
+    "text": "of square errors and then finally, we calculate the mean square error by dividing the sum",
+    "start": 1334.26,
+    "end": 1339.26,
+    "ocr_text": "2.2 Use Support Vector Machine with different kinc\n\nIn [ ]:\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\nerr = (predictions[i]-y_test[i]) **2\njsum_of_squared_error += err\nmean_squared_error = sum_of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a\nreturn RMSE\n\nenta:\n\nIn [ ]:\n\nkernels = ('linear','rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):"
+  },
+  {
+    "text": "of square error by total number of points in the test set and then this should not be accuracy.",
+    "start": 1339.26,
+    "end": 1346.26,
+    "ocr_text": "2.2 Use Support Vector Machine with different kind\n\nIn [ ]: def evaluate_on_test_data(model=None):\npredictions = model.predict(X_test)\nsum_of_squared_error = 0\nfor i in range(len(y test)):\n\nerr = (predictions[i]-y_test[i]) **2\nsum_of squared error += err\nmean_squared_error = sum_of_squared_error/len(y test)\nRMSE = np.sqrt(mean_squared_error) #Accuracy as a percentag\nreturn RMSE\n\nIn [ ]:| kernels = (‘linear','rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVR(kernel=kernel)"
+  },
+  {
+    "text": "Let me remove this comment. So, the root mean square error is given by np dot square root",
+    "start": 1346.78,
+    "end": 1353.78,
+    "ocr_text": "i\n\ndi\n\n[0 wae ssnnnnasant vee Tovore\n\n#\n¥\n\nLs\n\nbesten. data\nbesten. target\n\n¢¥ain, H test, y¥_t¥ain, y_test = t¥ain_test_spiit(H#, y, test_size=0.2\n\n2.2 Use Support Vector Machine with different kinds of ke\n\ndef evyaliate en_test_data(medel=iene):\n\npredictions = medel,predicet(#_test)\n\nsum_ef squared error = 0\n\nfee i im Fange(ien(y_test)):\nere = (predictions|/ij=y_test[ij) **2\nsum_ef_squared_errer += err\n\nWean squared error = sum of squared _error/ien(y_ test)\n\nRMSE = Ap. Sart (mean_squared_error)\n\nBeturn RMSE"
+  },
+  {
+    "text": "so, you find the square root of the error of the mean square error and you have root mean",
+    "start": 1357.7,
+    "end": 1363.42,
+    "ocr_text": "X_train, X test, y train, y test = train test_split(X, y, test_size=0.7\n\n2.2 Use Support Vector Machine with different kinds of ke\n\n1:\n\ndef evaluate_on_test_data(model=None):\n\npredictions = model.predict(X_test)\n\nsum_of_squared error = 0\n\nfor i in range(len(y test)):\nerr = (predictions[i]-y_test[i]) **2\nsum_of_squared error += err\n\nmean_squared_error = sum of_squared error/len(y test)\n\nRMSE = np.sqrt(mean_squared, error) |\n\nreturn RMSE\n\nI\n\n1\n\nkernels = (‘linear','rbf')\nee aS\n\nrack"
+  },
+  {
+    "text": "square error. So, this gives an estimate of how close the or how far away the predicted",
+    "start": 1363.42,
+    "end": 1370.42,
+    "ocr_text": "X_train, X test, y train, y test = train test_split(X, y, test_size=0.7\n\n2.2 Use Support Vector Machine with different kinds of ke\n\n1:\n\ndef evaluate_on_test_data(model=None):\n\npredictions = model.predict(X_test)\n\nsum_of_squared error = 0\n\nfor i in range(len(y test)):\nerr = (predictions[i]-y_test[i]) **2\nsum_of_squared error += err\n\nmean_squared_error = sum of_squared error/len(y test)\n\nRMSE = np.sqrt(mean_squared, error) |\n\nreturn RMSE\n\nI\n\n1\n\nkernels = (‘linear','rbf')\nee aS\n\nrack"
+  },
+  {
+    "text": "values from the regressor are from the true values and let us evaluate just two kernels",
+    "start": 1371.54,
+    "end": 1378.54,
+    "ocr_text": "[ 1: def evaluate_on_test_data(model=None):\n\npredictions = model.predict(X_test)\n\nsum_of_squared_error = 0\n\nfor i in range(len(y_test)):\nerr = (predictions[i]-y_test[i]) **2\nsum_of_squared_error += err\n\nmean_squared_error = sum_of_squared_error/len(y test)\n\nRMSE = np.sqrt(mean_squared_error)\n\nreturn RMSE\n\n[ ]: kernels = ('linear','rbf')\n\nRMSE_vec = []\n\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVR(kernel=kernel)\nmodel.fit(X_train, y train)\nRMSE = evaluate_on_test_data(model)\nRMSE_vec. append (RMSE)\nprint (\"RMSF=!} obtained with kernel = {}\".format/(RMSE. kernel))"
+  },
+  {
+    "text": "over here. So, first we compile this part and go ahead to the next part. So, we will evaluate",
+    "start": 1379.98,
+    "end": 1386.98,
+    "ocr_text": "RMSE = np.sqrt(mean_squared_error) |\nreturn RMSE\n\n[ ]:| kernels = ('linear','rb£')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVR(kernel=kernel)\nmodel.fit(xX_train, y_train)\nRMSE = evaluate_on_test_data(model)\nRMSE_vec. append (RMSE)\nprint(\"RMSE={} obtained with kernel = {}\".format(RMSE, kernel) )"
+  },
+  {
+    "text": "the linear kernel SVM and the RBF kernel SVM in this section. Let me zoom down a little",
+    "start": 1386.98,
+    "end": 1393.98,
+    "ocr_text": "X_train, X test, y train, y test = train test_split(X, y, test_size=0.7\n\n2.2 Use Support Vector Machine with different kinds of k«\n\n[6]: def evaluate_on_test_data(model=None):\n\npredictions = model.predict(X_test)\n\nsum_of_squared error = 0\n\nfor i in range(len(y test)):\nerr = (predictions[i]-y_test[i]) **2\nsum_of_squared_error += err\n\nmean_squared_error = sum_of_squared_error/len(y test)\n\nRMSE = np.sqrt(mean_squared_error)\n\nreturn RMSE\n\n[ ]:| kernels = (‘linear', 'rbf')\nRMSE_vec = []\nfar indey. kernel in eniumerate(/(karnelae)\\:"
+  },
+  {
+    "text": "bit it is better now. So, the RMSC vector this thing is going to accumulate the root mean",
+    "start": 1398.78,
+    "end": 1405.78,
+    "ocr_text": "2.2 Use Support Vector Machine with different kinds of kernels and evaluate per\n\nIn [6]: | def evaluate_on_test_data(model=None) t\npredictions = model.predict (x test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\n\nerr = (predictions{i}-y_test{i]) **2\n\nsum_of squared error += err\nmean_squared_error = sum of_squared error/len(y test)\nRMSE = np.sqrt(mean_squared_error)\nreturn RMSE\n\nin [ }: | KGen@Is(l=(lineae!ylEbE! )\nRMSE_vec = (]\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVR(kernel=kernel)\nmodel. fit(x_train, y train)\nRMSE = evaluate_on_test_data(model)\nRMSE_vec. append (RMSE)\nprint(\"RMSE={) obtained with kernel = {}\".format(RMSE, kernel))"
+  },
+  {
+    "text": "square error values and first we like just like previously, let me say that the value",
+    "start": 1408.98,
+    "end": 1415.98,
+    "ocr_text": "In (6):\n\nin (yt\n\nX = boston.data\ny = boston. target\n\nX_train, x test, y train, y test = train test_split(x, y, test_size=0.25, random state=42)\n\n2.2 Use Support Vector Machine with different kinds of kernels and evaluate per\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict (x test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\nerr = (predictions[i}-y_test{i}) **2\nsum_of_squared error += err\nmean_squared_error = sum of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error)\nreturn RMSE\n\nkernels = (‘Linear’, ‘xbé\")\nRMSE_vec = []\nfor index, kernel in enuerate(kernels):\n\nmodel = svm.5VR(kernel=kernel)\n\nmodel. fit(x train, y train)\n\nRUSE = evaluate_on test, data(model)\n\nRUSE_vec. append (RUSE)\n\nprint(\"RUSE={) obtained with kernel = {}\".format (RMSE, kernel))"
+  },
+  {
+    "text": "we did. So, we take the kernels one by one we fit the support vector regressor on to",
+    "start": 1417.46,
+    "end": 1423.46,
+    "ocr_text": "In (6):\n\nin (yt\n\nX = boston.data\ny = boston.target\n\nX_train, x test, y train, y test = train test_split(x, y, test_size=0.25, random _state=42)\n\n2.2 Use Support Vector Machine with different kinds of kernels and evaluate per\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict (x test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\nerr = (predictions[i}-y_test{i}) **2\nsum_of_squared error += err\nmean_squared_error = sum of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error)\nreturn RMSE\n\nkernels = (‘Linear’, ‘xbé\")\nRUSE_veo 4 (]\nfor index, kernel in enuerate(kernels):\n\nmodel = svm.SVR(kernel=kernel)\n\nmodel. fit(x train, y train)\n\nRUSE = evaluate_on_test,_data(nodel)\n\nRUSE_vec. append (RMSE)\n\nprint(\"RUSE={) obtained with kernel = {}\".format (RMSE, kernel))"
+  },
+  {
+    "text": "the with the kernel on the training data and then we calculate the root mean square error",
+    "start": 1423.46,
+    "end": 1430.46,
+    "ocr_text": "In (6):\n\nin (yt\n\nX = boston.data\ny = boston.target\n\nX_train, x test, y train, y test = train test_split(x, y, test_size=0.25, random _state=42)\n\n2.2 Use Support Vector Machine with different kinds of kernels and evaluate per\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict (x test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)):\nerr = (predictions[i}-y_test{i}) **2\nsum_of_squared error += err\nmean_squared_error = sum of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error)\nreturn RMSE\n\nkernels = (‘Linear’, ‘xbé\")\nRUSE_veo 4 (]\nfor index, kernel in enuerate(kernels):\n\nmodel = svm.SVR(kernel=kernel)\n\nmodel. fit(x train, y train)\n\nRUSE = evaluate_on_test,_data(nodel)\n\nRUSE_vec. append (RMSE)\n\nprint(\"RUSE={) obtained with kernel = {}\".format (RMSE, kernel))"
+  },
+  {
+    "text": "by calling this function and we append this value to the RMSC vector and finally, print",
+    "start": 1433.94,
+    "end": 1440.94,
+    "ocr_text": "2.1 Load data from the Boston dataset\n\nIn [ ]:| boston = datasets.1oad_boston()\nX = boston.data\ny = boston.target\n\nX_train, X test, y train, y test = train t\n\nst_split(X, y, test_siz\n\n0.25, random_state=42)\n\n2.2 Use Support Vector Machine with different kinds of kernels and evaluate per\n\nIn [6]:\n\n1_test_data(model=None) +\n\npredictions = model.predict (x test)\n\nsum_of_squared_error = 0\n\nfor i in range(len(y_test)):\nerr = (predictions{i}-y_!\nsum_of_squared_error += err\n\nmean_squared_error = sum of_squared_error/len(y test)\n\nRMSE = np.sqrt(mean_squared_error)\n\nreturn RMSE\n\neLi}) #42\n\nIn { }t| kernels = (‘linear','rbf\")\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):\nmodel = svm.SVR(kernel=kernel)\nmodel. fit(x_train, y train)\nRMSE = evaluate_on_test_data(model)"
+  },
+  {
+    "text": "these values out. So, let us see how these work. So, we find that the RMSC is a 0.3774 and",
+    "start": 1441.06,
+    "end": 1448.06,
+    "ocr_text": "In dt\n\nIn [6]:\n\nin (J:\n\nboston = datasets.load_boston()\nX = boston.data\ny = boston. target\n\nX train, X test, y train, y test = train test_split(x, y, test_size=0.25, random state=42)\n\n2.2 Use Support Vector Machine with different kinds of kernels and evaluate per\n\ndef evaluate_on_test_data(model=None):\npredictions = model.predict (x test)\nsum_of_squared_error = 0\nfor i in range(len(y test)):\nerr = (predictions(i}-y test(i]) **2\nsum_of_squared error += err\nmean_squared_error = sum of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error)\nreturn RMSE\n\nkernels = ('linear','rbf')\nRMSE_vec = []\nfor index, kernel in enumerate(kernels):\n\nmodel = svm.SVR(kernel=kernel)\n\nmodel. fit(x_train, y train)\n\nRMSE = evaluate_on_test_data(model)\n\nRMSE_vec. append (RMSE)\n\nprint(\"RMSE=(} obtained with kernel = {}\".format(RMSE, kernel))"
+  },
+  {
+    "text": "0.34. So, in this case as you can see that the RBF kernel works better and because it",
+    "start": 1450.3,
+    "end": 1457.3,
+    "ocr_text": "2.2 Use Support Vector Machine with different | kinds of kernels and evaluate per\n\nIn [6]: | def evaluate_on_test_data(model=None) :\npredicti model.predict (x test)\nsum_of_squared_error = 0\nfor i in range(len(y test)\n\nerr = (predictions[i}-y_test(i]) **2\nsum_of_squared error += err\nmean_squared_error = sum of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_ error)\nreturn RMSE\n\nIn [7]: | kernels = (‘Linear', 'rbé')\n\nRMSE_vec = [}\n\nfor index, kernel in enunerate(kernels)+\nmodel’ = svm.SVR(kerne1=kernel)\nnodel.fit(x train, y train)\nRMSE = ©\nRMSE_vec.. append (RMSE)\nprint (\"RUSE=/) obtained with kernel = {)\".format(RMSE, Kernel))\n\n377409239688 obtained with kernel = linear\n347297682639 obtained with kernel = rbf"
+  },
+  {
+    "text": "can fit more like it can fit a non-linear curve on to the data and there are some more",
+    "start": 1458.78,
+    "end": 1466.26,
+    "ocr_text": "2.2 Use Support Vector Machine with different | kinds of kernels and evaluate per\n\nIn [6]: | def evaluate_on_test_data(model=None) :\npredictions = model.predict(x test)\nsum_of_squared_error = 0\nfor i in range(len(y_test)\n\nerr = (predictions[i}-y test(i]) **2\nsum_of_squared error += err\nmean_squared_error = sum of_squared_error/len(y_test)\nRMSE = np.sqrt(mean_squared_error)\nreturn RMSE\n\nIn [7]: | kernels = (‘Linear', 'rbé')\n\nRMSE_vec = []\n\nfor index, kernel in enunerate(kernels)+\nmodel’ = svm.SVR(kernel=kernel)\nnodel.fit(x train, y train)\nRMSE = ©\nRMSE_vec. append (RMSE)\nprint (\"RUSE=/) obtained with kernel = {)\".format(RMSE, kernel))\n\n377409239688 obtained with kernel = linear\n347297682639 obtained with kernel = rbf"
+  },
+  {
+    "text": "things that you can do with these models. For example, you can actually find out all",
+    "start": 1466.26,
+    "end": 1473.26,
+    "ocr_text": "plt.xlabel('Sepal lengtt\nplt.ylabel('Sepal width’)\n\nplt.xLim(xx.min(), xx.max())\nplt.ylim(yy.min(), yy.max())\nplt.xticks(())\nplt.yticks(())\nplt.title(titles[i})\n\nplt.show() 1\n\n‘SVC with linear kernel\n\nory\n\n°\n\nSepal length\n\nSVC with RBF kernel\n\nyr aa"
+  },
+  {
+    "text": "the different soil insert as one more cell below and show you something else. So, let",
+    "start": 1473.62,
+    "end": 1479.9,
+    "ocr_text": "plt.xlabel('Sepal lengtt\nplt.ylabel('Sepal width’)\n\nplt.xLim(xx.min(), xx.max())\nplt.ylim(yy.min(), yy.max())\nplt.xticks(())\nplt.yticks(())\nplt.title(titles[i})\n\nplt.show() 1\n\n‘SVC with linear kernel\n\nory\n\n°\n\nSepal length\n\nSVC with RBF kernel\n\nyr aa"
+  },
+  {
+    "text": "us take one of these classifiers one of these models say we take the RBF SVC and we find",
+    "start": 1479.9,
+    "end": 1486.9,
+    "ocr_text": "JUPYTEN ML-Aneoan Tt emnteneot"
+  },
+  {
+    "text": "out what all points were used as support vectors by this classifier. So, I will open",
+    "start": 1487.74,
+    "end": 1494.74,
+    "ocr_text": "TJUPYEER ML-Anrban Tor jenn\n\n2: Supper Vester Reareasian\n24 bead data trem the Beaten dat\n\n18 RRFRARARER"
+  },
+  {
+    "text": "the circuit learn documentation, a circuit learn. So, this documentation gives you a lot",
+    "start": 1496.54,
+    "end": 1503.54,
+    "ocr_text": "TJUPYEER ML-Anrban Tor jenn\n\n2: Supper Vester Reareasian\n24 bead data trem the Beaten dat\n\n18 RRFRARARER"
+  },
+  {
+    "text": "of resources.",
+    "start": 1515.06,
+    "end": 1522.06,
+    "ocr_text": "GoGgle sien seeenwcer cesteaton\n\nSty cen mea apo vet canton"
+  },
+  {
+    "text": "Yes, there we go.",
+    "start": 1526.26,
+    "end": 1533.26,
+    "ocr_text": "GoGgle sien seeenwcer cesteaton\n\nSty cen mea apo vet canton"
+  },
+  {
+    "text": "Yes. So, this particular attribute of a model the support vectors under",
+    "start": 1540.38,
+    "end": 1551.26,
+    "ocr_text": "Ds\n\nGoGo simmer ce cotton a]\n\nre Bie)\n\ntne pr een\n=n\n\n1, Suppor ver Matin — sng 017.1 dosmertaton\n\nseam sine ve stisamm Nise"
+  },
+  {
+    "text": "4 will give you the support vectors. So, if we can go ahead and if we want to see",
+    "start": 1556.26,
+    "end": 1563.26,
+    "ocr_text": "TJUPYtEL ML-Aniben Tort tonne\n\n=\n\n2. Support Vector Regression\n\n2.1 Load data trom the Boston dataset\n\n2.2 Use Support Vector Machine with cliferent kinds of Kernels and evaluate performance"
+  },
+  {
+    "text": "what all points were used as support vectors we can print these here. So, we can see that",
+    "start": 1563.54,
+    "end": 1570.54,
+    "ocr_text": "TJUPYtEL ML-Aniben Tort tonne\n\n=\n\n2. Support Vector Regression\n\n2.1 Load data trom the Boston dataset\n\n2.2 Use Support Vector Machine with cliferent kinds of Kernels and evaluate performance"
+  },
+  {
+    "text": "so many support vectors. So, all of these points were used as support vectors and if we",
+    "start": 1570.82,
+    "end": 1575.82,
+    "ocr_text": "TS JUPYEEN ML Anan Tor jenn\n\n1"
+  },
+  {
+    "text": "see if we check how many support vectors were used here we can just find the length of",
+    "start": 1575.82,
+    "end": 1582.82,
+    "ocr_text": "[0 wcannsstnentessat nine Tore\n\n[ia eat She nen SE\n\nJUPYTEr ML-Aneban Tt umn nro"
+  },
+  {
+    "text": "this array and there are 70 support vectors for the RBF kernel SVM. Whereas, if we just",
+    "start": 1583.1,
+    "end": 1590.1,
+    "ocr_text": "[0 wcannsstnentessat nine Tore\n\n[ia eat She nen SE\n\nJUPYTEr ML-Aneban Tt umn nro"
+  },
+  {
+    "text": "use the SVC if we check for the SVC there were 67 support vectors and they can be like",
+    "start": 1596.82,
+    "end": 1603.82,
+    "ocr_text": "‘Ve with polynomial Segre 3 kerma\n\nen\noxtt10n¢ 67\n2. Support Vector Regression\n\n2.1 Load data from the Boston dataset\n\nim [ 1| Boston = datasets. toad boston()\ny= boston. target\n\nX.train, Xtost, y train, y test = train test split(x, y, test_eizen0.25, random state=t2)\n\nwith different kinds of kernels and evaluate performance\n\n2.2 Use Support Vector Ma"
+  },
+  {
+    "text": "found this way. Just like remove the length you will see all of those points that were",
+    "start": 1605.54,
+    "end": 1611.74,
+    "ocr_text": "In (10): bve-support_vectors_)\nouei0}+ 67\n\n2. Support Vector Regression\n\n2.1 Load data from the Boston dataset\n\nmon"
+  },
+  {
+    "text": "used as support vectors. So, these are all the points from all of these points are from",
+    "start": 1611.74,
+    "end": 1616.06,
+    "ocr_text": "In (10): bve-support_vectors_)\nouei0}+ 67\n\n2. Support Vector Regression\n\n2.1 Load data from the Boston dataset\n\nmon"
+  },
+  {
+    "text": "the training set and these are the points which define the decision boundary that the",
+    "start": 1616.06,
+    "end": 1622.06,
+    "ocr_text": "ie\n\ni\n2\n4\n5\n2\n4\n2\na\n2\n4\n\nn\n\na\nvi\nny\nny\non\nay\nni\na\non\nni\n4\na\nn\n314\ni\nn\n“1\nain\n\non\non\na\ni\nay\na)\nHy\nny\n\"\nua"
+  },
+  {
+    "text": "classifier is using and the polynomial one. So, poly SVC is using length of poly SVC support",
+    "start": 1622.06,
+    "end": 1629.06,
+    "ocr_text": "ie\n\ni\n2\n4\n5\n2\n4\n2\na\n2\n4\n\nn\n\na\nvi\nny\nny\non\nay\nni\na\non\nni\n4\na\nn\n314\ni\nn\n“1\nain\n\non\non\na\ni\nay\na)\nHy\nny\n\"\nua"
+  },
+  {
+    "text": "vectors if you can check. So, there are 55 support vectors over here. So, these things and",
+    "start": 1629.18,
+    "end": 1636.18,
+    "ocr_text": "[0 ween ssnnnnasant evn Toor"
+  },
+  {
+    "text": "there are other attributes as well a lot of attributes and the documentation of psychedelon",
+    "start": 1636.18,
+    "end": 1641.18,
+    "ocr_text": "Seale\n\nVC with polynomial Segre 3) kernel\n\nSeale\n\nIn (11): 1en(poly_sve.support_vectors_\n\nOue(A}s array(( 5-4, 3.71,\n(52, 340\n\nt\nt\ncas,\ncas,\ncas,\ntsa\nose,\nte.\nt\nt\nt\nt\nt\n7\n\n5.7,\n5.6,"
+  },
+  {
+    "text": "is really good and all of these parameters. So, I will just open the list of the parameters",
+    "start": 1651.1,
+    "end": 1658.1,
+    "ocr_text": "IYO ren se,\nPees whan\n\n14 pm estos Mares\n\nFA Centon\n\n(92 Raggi\n\n143 Gamba eatnanon. wey\n\n| 8 (impaty\n\n45: Ip ramen ies\n\n=-\n1.4. SuppoHt Vector Machines\n\nSNOT eet MCAT FSM) 8 Be i RYO a (MAMTA: ae Yr s,m wi NAN\nwiacuon\n\nPr ie ati vara ain\n\n+ Eaenve high sor poe\n\n+ RK IRATE HM Of conor Le fea Man Mee error aga\n\n+ Ung cae pri aie asec TACB (cat Dune Vat). Me ab nan\nteow\n\n+ Mail Acar Karr ERE fy spacing or fs deci a CoA Kets aro\nraved 0 aac pes bray BAN bre\n\nAcariaisiies il aupoart waar eine ele\n\n4 U hye purr ot roan to un giar Maar Hw OUD of eI. INE tHetR 6 My a Qe\nteHocrm em,\n\n+ SV Mp. onl rly prove fall expats. wie Ae valid Umlng An waymive i\n“aa eo Sermo ai psi. Bok)\n\n{ie sion Vg er Sax Oh age | ema ny 30 cn fo VN\n\n(eR, aRAERY | ont RAEN Cty. wes amerve) eOITYNE vartate ay hit, Howeve WO st al SUAS WO a\n(ra dala rss Neve Ya Hon uc dan. Fay aphral perranes, cam Coane wi elke)\nHeute matels (aren) wit) de yesionres"
+  },
+  {
+    "text": "let me open linear SVC just SVC. So, these are the different parameters of the model and",
+    "start": 1660.06,
+    "end": 1666.06,
+    "ocr_text": "[0 sar anornasaresssrsbonrrn cata\n\neyes (444.Classifcation\n\n+ 1473.80R |\n\nar eae svc, musve and Linearsve are classes capable of performing multiclass classification on a datasot.\nSVC with linear kernel LinearSVC (linear kernel)\n3 §\n5 =\na Es\na a\n‘Sepal length Sepal length\nSVC with RBF kernel ‘SVC with polynomial (degree 3) k\n\nF=4\n5\na\na\n\nSepal width"
+  },
+  {
+    "text": "you can have different combinations of them according to the need of the problem at hand",
+    "start": 1672.94,
+    "end": 1679.94,
+    "ocr_text": "ory para So once\nena sg, pn oy\n\nSoectes te wemtinernoLies Ov asa N RIDE COKOE BLE ©\n‘sonod. econ’ ce cea. mura gem\" W Oe ba EEN\nhen ts cant specomie re mers onem ne\n‘ean arey tna faceiane ee\n\near os en es\nBanos eta ssn nhs i not\n\ngun ts, geal\n\n‘isetossoanomeg 0 state"
+  },
+  {
+    "text": "like these things these are the different we use the support vectors all of these different",
+    "start": 1679.94,
+    "end": 1685.94,
+    "ocr_text": "probability estimation.\nAttributes: support_: array-like, shape = [n_SV]\nIndices of support vectors.\n\n‘support_vectors_: array-like, shape =|\n\n1_SV, n_features}\n‘Support vectors.\n\n‘n_support_: array-Ike, dtype=int32, shape = [n_class]\nNumber of support vectors for each class.\n\ndual_coef_: array, shape\n\n=[n_ciass-1, n_SV]\nCoefficient ofthe support vector in the decision function. For multiclass, coefficient for\nall 1-v5-1 classifiers. The layout of the coefficients in the multiclass case is somewhat\nnon-trivial. See the section about mult-class classification in the SVM section of the User\nGuide for details\n\n‘coet_: array, shape = n_class-1, n_features}\n\n‘Weights assigned to the features (coefficients in the primal problem). This is only\navailable in the case of a linear kernel\n\ncoet_is a readonly property derived from dual_coef_ and support_vectors_."
+  },
+  {
+    "text": "parameters of the support vector machine can be obtained by just invoking the corresponding",
+    "start": 1685.94,
+    "end": 1692.94,
+    "ocr_text": "'SVC wit RBF kernel\n\n4n [12]1, len poly_sve.support_vectors_\noueti2ys 55"
+  },
+  {
+    "text": "attribute value. So, that is all for today. Today we studied how to use the support vector",
+    "start": 1692.94,
+    "end": 1699.94,
+    "ocr_text": "'SVC wit RBF kernel\n\n4n [12]1, len poly_sve.support_vectors_\noueti2ys 55"
+  },
+  {
+    "text": "machine module of psychedelon to have classifications and regressions and there are lot of the",
+    "start": 1699.94,
+    "end": 1705.94,
+    "ocr_text": "Syupyter ML-Aniran_Tutoriald (atossves)\nFile Edit View = insert «Call Kernel Help. 7 |Pye\n\nB+) OB ee) Wm Cc cow 2 (| Catteote |e) a\n\nIn (1): from _future_ import division, print function\nSmport sumpy as 2p\nfron sklearn import datasets, sva\nfron sklearn.cross validation inport train test, split\nAmport aatplotiib.pyplot ea plt\ntnatplotlib inline\n\n‘/oser0/anizban/anaconéa/1ib/python2.7/eite-packagos/atplotiib/font_ manager.py:273+ UserWaraing: Matplotib is b\nfag the font cache using fe-list. This may take a sonents\n‘warnings.varn('Matplotlib is building the font cache using fe-List. This may take « moment.\n\n1, Support Vector Classification\n\n1.1 Load the Iris dataset\n\nTe (2): ite =\n\ntrain, MIGHE, y train, y toot = train test split(x, y, test_eize-0.25, random st\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluate performance\n\n2m (2): [RL en"
+  },
+  {
+    "text": "support vector machines are extremely sophisticated and extremely efficient machine learning models",
+    "start": 1705.94,
+    "end": 1713.94,
+    "ocr_text": "Syupyter ML-Aniran_Tutoriald (atossves)\nFile Edit View = insert «Call Kernel Help. 7 |Pye\n\nB+) OB ee) Wm Cc cow 2 (| Catteote |e) a\n\nIn (1): from _future_ import division, print function\nSmport sumpy as 2p\nfron sklearn import datasets, sva\nfron sklearn.cross validation inport train test, split\nAmport aatplotiib.pyplot ea plt\ntnatplotlib inline\n\n‘/oser0/anizban/anaconéa/1ib/python2.7/eite-packagos/atplotiib/font_ manager.py:273+ UserWaraing: Matplotib is b\nfag the font cache using fe-list. This may take a sonents\n‘warnings.varn('Matplotlib is building the font cache using fe-List. This may take « moment.\n\n1, Support Vector Classification\n\n1.1 Load the Iris dataset\n\nTe (2): ite =\n\ntrain, MIGHE, y train, y toot = train test split(x, y, test_eize-0.25, random st\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluate performance\n\n2m (2): [RL en"
+  },
+  {
+    "text": "and they have been the state of the art at a lot of different applications for a long",
+    "start": 1714.94,
+    "end": 1719.94,
+    "ocr_text": "Syupyter ML-Aniran_Tutoriald (atossves)\nFile Edit View = insert «Call Kernel Help. 7 |Pye\n\nB+) OB ee) Wm Cc cow 2 (| Catteote |e) a\n\nIn (1): from _future_ import division, print function\nSmport sumpy as 2p\nfron sklearn import datasets, sva\nfron sklearn.cross validation inport train test, split\nAmport aatplotiib.pyplot ea plt\ntnatplotlib inline\n\n‘/oser0/anizban/anaconéa/1ib/python2.7/eite-packagos/atplotiib/font_ manager.py:273+ UserWaraing: Matplotib is b\nfag the font cache using fe-list. This may take a sonents\n‘warnings.varn('Matplotlib is building the font cache using fe-List. This may take « moment.\n\n1, Support Vector Classification\n\n1.1 Load the Iris dataset\n\nTe (2): ite =\n\ntrain, MIGHE, y train, y toot = train test split(x, y, test_eize-0.25, random st\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluate performance\n\n2m (2): [RL en"
+  },
+  {
+    "text": "time and I would like recommend you to go ahead and find other applications of support vector",
+    "start": 1719.94,
+    "end": 1726.94,
+    "ocr_text": "Syupyter ML-Aniran_Tutoriald (atossves)\nFile Edit View = insert «Call Kernel Help. 7 |Pye\n\nB+) OB ee) Wm Cc cow 2 (| Catteote |e) a\n\nIn (1): from _future_ import division, print function\nSmport sumpy as 2p\nfron sklearn import datasets, sva\nfron sklearn.cross validation inport train test, split\nAmport aatplotiib.pyplot ea plt\ntnatplotlib inline\n\n‘/oser0/anizban/anaconéa/1ib/python2.7/eite-packagos/atplotiib/font_ manager.py:273+ UserWaraing: Matplotib is b\nfag the font cache using fe-list. This may take a sonents\n‘warnings.varn('Matplotlib is building the font cache using fe-List. This may take « moment.\n\n1, Support Vector Classification\n\n1.1 Load the Iris dataset\n\nTe (2): ite =\n\ntrain, MIGHE, y train, y toot = train test split(x, y, test_eize-0.25, random st\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluate performance\n\n2m (2): [RL en"
+  },
+  {
+    "text": "machines as well and try to understand learn understand and implement this particular part",
+    "start": 1727.3,
+    "end": 1734.3,
+    "ocr_text": "Syupyter ML-Aniran_Tutoriald (atossves)\nFile Edit View = insert «Call Kernel Help. 7 |Pye\n\nB+) OB ee) Wm Cc cow 2 (| Catteote |e) a\n\nIn (1): from _future_ import division, print function\nSmport sumpy as 2p\nfron sklearn import datasets, sva\nfron sklearn.cross validation inport train test, split\nAmport aatplotiib.pyplot ea plt\ntnatplotlib inline\n\n‘/oser0/anizban/anaconéa/1ib/python2.7/eite-packagos/atplotiib/font_ manager.py:273+ UserWaraing: Matplotib is b\nfag the font cache using fe-list. This may take a sonents\n‘warnings.varn('Matplotlib is building the font cache using fe-List. This may take « moment.\n\n1, Support Vector Classification\n\n1.1 Load the Iris dataset\n\nTe (2): ite =\n\ntrain, MIGHE, y train, y toot = train test split(x, y, test_eize-0.25, random st\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluate performance\n\n2m (2): [RL en"
+  },
+  {
+    "text": "of this course that is the support vector machines and kernel machines and all of this",
+    "start": 1737.86,
+    "end": 1740.94,
+    "ocr_text": "Syupyter ML-Aniran_Tutoriald (atossves)\nFile Edit View = insert «Call Kernel Help. 7 |Pye\n\nB+) OB ee) Wm Cc cow 2 (| Catteote |e) a\n\nIn (1): from _future_ import division, print function\nSmport sumpy as 2p\nfron sklearn import datasets, sva\nfron sklearn.cross validation inport train test, split\nAmport aatplotiib.pyplot ea plt\ntnatplotlib inline\n\n‘/oser0/anizban/anaconéa/1ib/python2.7/eite-packagos/atplotiib/font_ manager.py:273+ UserWaraing: Matplotib is b\nfag the font cache using fe-list. This may take a sonents\n‘warnings.varn('Matplotlib is building the font cache using fe-List. This may take « moment.\n\n1, Support Vector Classification\n\n1.1 Load the Iris dataset\n\nTe (2): ite =\n\ntrain, MIGHE, y train, y toot = train test split(x, y, test_eize-0.25, random st\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluate performance\n\n2m (2): [RL en"
+  },
+  {
+    "text": "theory very well. So, this is one of the most important sections of this course see you",
+    "start": 1740.94,
+    "end": 1747.94,
+    "ocr_text": "Syupyter ML-Aniran_Tutoriald (atossves)\nFile Edit View = insert «Call Kernel Help. 7 |Pye\n\nB+) OB ee) Wm Cc cow 2 (| Catteote |e) a\n\nIn (1): from _future_ import division, print function\nSmport sumpy as 2p\nfron sklearn import datasets, sva\nfron sklearn.cross validation inport train test, split\nAmport aatplotiib.pyplot ea plt\ntnatplotlib inline\n\n‘/oser0/anizban/anaconéa/1ib/python2.7/eite-packagos/atplotiib/font_ manager.py:273+ UserWaraing: Matplotib is b\nfag the font cache using fe-list. This may take a sonents\n‘warnings.varn('Matplotlib is building the font cache using fe-List. This may take « moment.\n\n1, Support Vector Classification\n\n1.1 Load the Iris dataset\n\nTe (2): ite =\n\ntrain, MIGHE, y train, y toot = train test split(x, y, test_eize-0.25, random st\n\n1.2 Use Support Vector Machine with different kinds of kernels and evaluate performance\n\n2m (2): [RL en"
+  }
+]

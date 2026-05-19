@@ -1,0 +1,374 @@
+[
+  {
+    "text": "So, now so far what we have done is we have seen the influence of neurons on the or what",
+    "start": 0.0,
+    "end": 23.18,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n\\"
+  },
+  {
+    "text": "image patches cause a neuron to fire. Then we have visualized the weight. So, neurons",
+    "start": 23.18,
+    "end": 27.68,
+    "ocr_text": "Finding influence of input pixels using\nbackpropagation\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "have been visualized, weights have been visualized. Then we have done some occlusion experiments",
+    "start": 27.68,
+    "end": 31.82,
+    "ocr_text": "Finding influence of input pixels using\nbackpropagation\n\nMitesh M. Khapra 015 (Deep Learning)"
+  },
+  {
+    "text": "on the input image. Now, we will take this further and we are interested in seeing that",
+    "start": 31.82,
+    "end": 36.04,
+    "ocr_text": "Finding influence of input pixels using\nbackpropagation\n\nMitesh M. Khapra 015 (Deep Learning)"
+  },
+  {
+    "text": "what pixels in the image actually help in the output or in any neuron in the intermediate",
+    "start": 36.04,
+    "end": 43.96,
+    "ocr_text": "Finding influence of input pixels using\nbackpropagation\n\nMitesh M. Khapra 7015 (Deep Learning)"
+  },
+  {
+    "text": "layers. And we will find out some principle we are finding this influence right and we",
+    "start": 43.96,
+    "end": 47.48,
+    "ocr_text": "Finding influence of input pixels using\nbackpropagation\n\nMitesh M. Khapra 7015 (Deep Learning)"
+  },
+  {
+    "text": "are going to use back propagation that means we are going to use gradients. So, we can",
+    "start": 47.48,
+    "end": 52.24,
+    "ocr_text": "Finding influence of input pixels using\nbackpropagation\n\nMitesh M. Khapra 7015 (Deep Learning)"
+  },
+  {
+    "text": "think of an image as an m cross n input going from x 0 x 1 all the way up to x m cross n",
+    "start": 52.24,
+    "end": 58.88,
+    "ocr_text": "Finding influence of input pixels using\nbackpropagation\n\nMitesh M. Khapra 7015 (Deep Learning)"
+  },
+  {
+    "text": "nothing great about that. And we are interested in finding the influence of each of these",
+    "start": 58.88,
+    "end": 63.6,
+    "ocr_text": "e We can think of an image as am x n\n\ninputs wo, a1,..\n\nimxn\n\n015 (Deep Learn’\n\n«\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "inputs on a given neuron. Now, what is one way of computing influence that you have learned",
+    "start": 63.6,
+    "end": 70.7,
+    "ocr_text": "e We can think of an image as am x n\n\ninputs wo, a1,..\n\nimxn\n\n015 (Deep Learn’\n\n«\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "in this course? What is the hero of this course gradients right. So, gradients tell you the",
+    "start": 70.7,
+    "end": 77.2,
+    "ocr_text": "e We can think of an image as am x n\n\ninputs w9,@1,-.-,¢mxn\n\ne We are interested in finding the influ-\nence of each of these inputs(2;) on a\ngiven neuron(h;)\n\nMitesh M. Khapra 87015 (Deep Learn"
+  },
+  {
+    "text": "influence. So, now can you tell me if I want to compute what is the influence of this neuron",
+    "start": 77.2,
+    "end": 82.36,
+    "ocr_text": "e@ We can think of an image as am xn\ninputs w9,1,.--,2mxn\n\ne@ We are interested in finding the influ-\nence of each of these inputs(2;) on a\ngiven neuron(h;)\n\nflatten,\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "or this input on this neuron. What would you do? Do a j by do x i. But can you compute",
+    "start": 82.36,
+    "end": 90.28,
+    "ocr_text": "e@ We can think of an image as am xn\ninputs w9,1,.--,2mxn\n\ne@ We are interested in finding the influ-\nence of each of these inputs(2;) on a\ngiven neuron(h;)\n\nflatten,\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "that? How will you compute that? How do you compute the gradient with respect to the input?",
+    "start": 90.28,
+    "end": 94.48,
+    "ocr_text": "e We can think of an image as am x n\ninputs w9,1,..-,Lmxn\n\ne We are interested in finding the influ-\nence of cach of these inputs(2;) on a\ngiven neuron(h,;)\n\nflatten\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "We have always stopped at the last hidden layer and the weights before that. So, how will",
+    "start": 94.48,
+    "end": 98.64,
+    "ocr_text": "e We can think of an image as am x n\ninputs w9,1,..-,Lmxn\n\ne We are interested in finding the influ-\nence of cach of these inputs(2;) on a\ngiven neuron(h,;)\n\nflatten\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "we do that? How will you do this? K this is a trick question just a hint. Is there a",
+    "start": 98.64,
+    "end": 104.4,
+    "ocr_text": "e We can think of an image as am xn\ninputs 9,01,..-,mxn\n\ne We are interested in finding the influ-\nence of cach of these inputs(x;) on a\ngiven neuron(h;)\n\nflatten\n\nMitesh M. Khapra 87015 (Deep Learn"
+  },
+  {
+    "text": "restriction on the chain rule or can you do it? You can just keep adding links to the",
+    "start": 104.4,
+    "end": 109.58,
+    "ocr_text": "e We can think of an image as am xn\ninputs 9,01,..-,mxn\n\ne We are interested in finding the influ-\nence of cach of these inputs(x;) on a\ngiven neuron(h;)\n\nflatten\n\nMitesh M. Khapra 87015 (Deep Learn"
+  },
+  {
+    "text": "chain right. So, what is so difficult about that? You already know how to compute the",
+    "start": 109.58,
+    "end": 113.26,
+    "ocr_text": "e@ We can think of an image as am xn\ninputs 9,21,.--,mxn\n\ne We are interested in finding the influ-\nence of each of these inputs(a;) on a\ngiven neuron(h;)\n\nflatten\n\nMitesh M. Khapra 87015 (Deep Learn"
+  },
+  {
+    "text": "gradient still this point. And in fact, you also know how to compute the gradient still",
+    "start": 113.26,
+    "end": 116.86,
+    "ocr_text": "e@ We can think of an image as am xn\ninputs 9,21,.--,mxn\n\ne We are interested in finding the influ-\nence of each of these inputs(a;) on a\ngiven neuron(h;)\n\nflatten\n\nMitesh M. Khapra 87015 (Deep Learn"
+  },
+  {
+    "text": "this point. What is stopping you from doing it up to this point? What if I just call this",
+    "start": 116.86,
+    "end": 121.92,
+    "ocr_text": "e We can think of an image as am x n\ninputs w9,21,..-,mxn\n\ne@ We are interested in finding the influ-\nence of each of these inputs(2;) on a\ngiven neuron(h;)\n\nMitesh M. Khapra ©$7015 (Deep Learn"
+  },
+  {
+    "text": "h instead of x then you would have a problem right. And actually we call it h right we call",
+    "start": 121.92,
+    "end": 127.36,
+    "ocr_text": "e We can think of an image as am x n\ninputs w9,21,..-,mxn\n\ne@ We are interested in finding the influ-\nence of each of these inputs(2;) on a\ngiven neuron(h;)\n\nMitesh M. Khapra ©$7015 (Deep Learn"
+  },
+  {
+    "text": "it h 0. You can do it right it is straightforward. So, let us see if I want to compute do h j",
+    "start": 127.36,
+    "end": 133.56,
+    "ocr_text": "e@ We can think of an image as am xn\ninputs w9,1,..-,mxn\n\ne We are interested in finding the influ-\nence of each of these inputs(2;) on a\ngiven neuron(h;)\n\ne If a small change in x; causes a large\nchange in h; then we can say that x;\nhas a lot of influence of hj\n\ni) Ain tt\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "by do x i. I can see that if the if do h j by do x i is 0 that means this pixel has 0",
+    "start": 133.56,
+    "end": 140.2,
+    "ocr_text": "e@ We can think of an image as am xn\ninputs w9,1,..-,mxn\n\ne We are interested in finding the influ-\nence of each of these inputs(2;) on a\ngiven neuron(h;)\n\ne If a small change in x; causes a large\nchange in h; then we can say that x;\nhas a lot of influence of hj\n\ni) Ain tt\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "input on the neuron. If it is large then it has a high influence if it is small then it",
+    "start": 140.2,
+    "end": 145.52,
+    "ocr_text": "—) no influence\n\nflatten\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "has a low influence right. So, this is how I will see whether a pixel has an influence",
+    "start": 145.52,
+    "end": 149.64,
+    "ocr_text": "Oh .\nJ _9 —» no influence\n\nOn;\nOh;\n— = large —> high influence\nOh;\n\n“= small —> low influence\n\nh M. Khapra 015 (Deep Learning)"
+  },
+  {
+    "text": "of certain neurons in the in some of the hidden layer. And this is not restricted to convolutional",
+    "start": 149.64,
+    "end": 155.52,
+    "ocr_text": "Oh .\nJ _9 —» no influence\n\nOn;\nOh;\n— = large —> high influence\nOh;\n\n“= small —> low influence\n\nh M. Khapra 015 (Deep Learning)"
+  },
+  {
+    "text": "neural networks as you can see I am just actually treating it like a feed forward neural",
+    "start": 155.52,
+    "end": 158.88,
+    "ocr_text": "h M. Khapra\n\n~~ =0 —») no influence\nOn;\n\nOh; oo,\n\n—!, = large —> high influence\nOh .\n\n—/ — small —> low influence\nOx;\n\n015 (Deep Learning)"
+  },
+  {
+    "text": "network with sparse connections. So, we could just compute these partial derivatives",
+    "start": 158.88,
+    "end": 163.28,
+    "ocr_text": "h M. Khapra\n\n~~ =0 —») no influence\nOn;\n\nOh; oo,\n\n—!, = large —> high influence\nOh .\n\n—/ — small —> low influence\nOx;\n\n015 (Deep Learning)"
+  },
+  {
+    "text": "and visualize this gradient itself as an image. So, what do I mean by that is I am going",
+    "start": 163.28,
+    "end": 170.48,
+    "ocr_text": "h M. Khapra\n\n~~ =0 —») no influence\nOn;\n\nOh; oo,\n\n—!, = large —> high influence\nOh .\n\n—/ — small —> low influence\nOx;\n\n015 (Deep Learning)"
+  },
+  {
+    "text": "to compute do h i by do x 0 do h i by do x 1 all the way up to do h i by do x m n right.",
+    "start": 170.48,
+    "end": 177.2,
+    "ocr_text": "y= 0 —») no influence\nOx;\n\nOh; a\n\n—+ = large — high influence\nOh .\n\n—/ — small —> low influence\nOx;\n\nHacren e@ We could just compute these partial\n\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\na"
+  },
+  {
+    "text": "So, I am going to compute these m cross n entities and I can just visualize this as an image.",
+    "start": 177.2,
+    "end": 182.6,
+    "ocr_text": "0 —» no influence\nOx;\nOh; La.\n— = large —> high influence\nOh :\n—/ — small —> low influence\nOx;\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\nh M. Khapra"
+  },
+  {
+    "text": "Now, what do you expect this image to look like if 0 represents gray color what do you",
+    "start": 182.6,
+    "end": 189.0,
+    "ocr_text": "0 —» no influence\nOx;\nOh; La.\n— = large —> high influence\nOh :\n—/ — small —> low influence\nOx;\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\nh M. Khapra"
+  },
+  {
+    "text": "expect this image to largely look like what would you actually hope for. This image should",
+    "start": 189.0,
+    "end": 193.32,
+    "ocr_text": "—- =0 —» no influence\nOx;\n\nOh; La\n\nt= large —> high influence\nOh :\n\n—/ — small —> low influence\nOx;\n\natten e We could just compute these partial\n\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself"
+  },
+  {
+    "text": "be largely gray because most of the input pixels should not be influencing a given pixel",
+    "start": 193.32,
+    "end": 197.92,
+    "ocr_text": "—- =0 —» no influence\nOx;\n\nOh; La\n\nt= large —> high influence\nOh :\n\n—/ — small —> low influence\nOx;\n\natten e We could just compute these partial\n\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself"
+  },
+  {
+    "text": "in the hidden layer right that pixel should influence by only a small number of pixels.",
+    "start": 197.92,
+    "end": 202.6,
+    "ocr_text": "—/ —( —») no influence\nOn;\n\nOh; Le\n\n—! = large —> high influence\nOh :\n\n—/ — small —> low influence\nOx;\n\nan i: » OO]\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself"
+  },
+  {
+    "text": "So, that we can say that this is the patch which causes it to fire and not that every pixel",
+    "start": 202.6,
+    "end": 206.96,
+    "ocr_text": "—/ —( —») no influence\nOn;\n\nOh; Le\n\n—! = large —> high influence\nOh :\n\n—/ — small —> low influence\nOx;\n\nan i: » OO]\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself"
+  },
+  {
+    "text": "in the input is causing it to fire because that is meaningless that does not that is not",
+    "start": 206.96,
+    "end": 210.0,
+    "ocr_text": "=0 —,» no influence\nOx;\nOh; Le\n— = large —> high influence\nOh :\n—t — small —> low influence\nOx;\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\nesh M. Khapra"
+  },
+  {
+    "text": "something that we care about. How many if you get this please raise your hands. So, I will",
+    "start": 210.0,
+    "end": 213.92,
+    "ocr_text": "=0 —,» no influence\nOx;\nOh; Le\n— = large —> high influence\nOh :\n—t — small —> low influence\nOx;\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\nesh M. Khapra"
+  },
+  {
+    "text": "just repeat it if a pixel fires for every pixel if a neuron in the hidden layer is influenced",
+    "start": 213.92,
+    "end": 220.56,
+    "ocr_text": "=0 —,» no influence\nOx;\nOh; Le\n— = large —> high influence\nOh :\n—t — small —> low influence\nOx;\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\nesh M. Khapra"
+  },
+  {
+    "text": "by all the pixels in the input that means it is not really discriminating it is not really",
+    "start": 220.56,
+    "end": 224.88,
+    "ocr_text": "=0 —» no influence\nOn;\nOh; Le\n— = large —> high influence\nOh :\n—/ — small —> low influence\nOx;\n\nlone)\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\nesh M. Khapra"
+  },
+  {
+    "text": "specialized right. We want neurons which fire only for certain patches in the input. So,",
+    "start": 224.88,
+    "end": 230.64,
+    "ocr_text": "=0 —» no influence\nOn;\nOh; Le\n— = large —> high influence\nOh :\n—/ — small —> low influence\nOx;\n\nlone)\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\nesh M. Khapra"
+  },
+  {
+    "text": "that we know that this neuron is responsible for this kind of a pattern ok. So, if I plot",
+    "start": 230.64,
+    "end": 236.04,
+    "ocr_text": "=0 —,» no influence\n\nOx;\nOh; Le\n\nJ = large — high influence\n7 g &\nOx;\nOh :\n—t — small —> low influence\nOn;\n\nOO)\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\nh M. Khapra"
+  },
+  {
+    "text": "this as an image I would want most of these entries to be close to 0 right because I want",
+    "start": 236.04,
+    "end": 240.96,
+    "ocr_text": "=0 —,» no influence\nOn;\nOh; to.\n—!. = large —> high influence\nOh :\n—1 — small —> low influence\nOx;\n\nO_O)\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\nesh M. Khapra"
+  },
+  {
+    "text": "the influence to be 0 ok. Now, the question is how do you compute these gradients. So,",
+    "start": 240.96,
+    "end": 246.84,
+    "ocr_text": "=0 —,» no influence\nOn;\nOh; to.\n—!. = large —> high influence\nOh :\n—1 — small —> low influence\nOx;\n\nO_O)\n\ne We could just compute these partial\nderivatives w.r.t all the inputs\n\ne And then visualize this gradient ma-\ntrix as an image itself\n\nesh M. Khapra"
+  },
+  {
+    "text": "we will just treat them as a free forward neural network. We already know how to do back",
+    "start": 246.84,
+    "end": 250.96,
+    "ocr_text": "e But how do we compute these gradi-\nents?\n\ne@ Recall that we can represent CNNs\nby feedforward neural network\n\nMitesh M. Khapra ©87015 (Deep Learn"
+  },
+  {
+    "text": "propagation across these roots and we just need to add one more term to the chain right.",
+    "start": 250.96,
+    "end": 256.56,
+    "ocr_text": "e But how do we compute these gradi-\nents?\n\ne@ Recall that we can represent CNNs\nby feedforward neural network\n\nMitesh M. Khapra ©87015 (Deep Learn"
+  },
+  {
+    "text": "So, I will just show you what we will do here. So, I am interested in dou H 32 by dou",
+    "start": 256.56,
+    "end": 262.2,
+    "ocr_text": "But how do we compute these gradi-\nents?\n\ne Recall that we can represent CNNs\nby feedforward neural network\n\nThen we already know how to com-\npute influences (gradient) using back-\npropogation\n\nFor example, we know how to back-\nflatten prop the gradients till the first hidden\nlayer\n\niy 3\nOhs2 Oho Ohi;\n= | Org > Ohi; Ox\n\n4\nhi= ) Wik;\nj=l\n\nOhi\nz = Wwi2\nOx2\n\nMitesh M. KI"
+  },
+  {
+    "text": "X 2. So, I will observe that there are four paths which go from H 32 to X 2 or rather",
+    "start": 262.2,
+    "end": 268.92,
+    "ocr_text": "But how do we compute these gradi-\nents?\n\ne Recall that we can represent CNNs\nby feedforward neural network\n\nThen we already know how to com-\npute influences (gradient) using back-\npropogation\n\nFor example, we know how to back-\nflatten prop the gradients till the first hidden\nlayer\n\niy 3\nOhs2 Oho Ohi;\n= | Org > Ohi; Ox\n\n4\nhi= ) Wik;\nj=l\n\nOhi\nz = Wwi2\nOx2\n\nMitesh M. KI"
+  },
+  {
+    "text": "from X 2 to H 32. So, I will just sum up the gradients along these four paths right.",
+    "start": 268.92,
+    "end": 274.48,
+    "ocr_text": "But how do we compute these gradi-\nents?\n\nRecall that we can represent CNNs\nby feedforward neural network\n\nThen we already know how to com-\npute influences (gradient) using back-\npropogation\n\nFor example, we know how to back-\n\nprop the gradients till the first hidden\nlayer"
+  },
+  {
+    "text": "And if I solve it I will just be left with this ok. So, that is how I will visualize. So,",
+    "start": 274.48,
+    "end": 280.12,
+    "ocr_text": "But how do we compute these gradi-\nents?\n\nRecall that we can represent CNNs\nby feedforward neural network\n\nThen we already know how to com-\npute influences (gradient) using back-\npropogation\n\nFor example, we know how to back-\n\nprop the gradients till the first hidden\nlayer"
+  },
+  {
+    "text": "this is very simple we have done a lot of gradients in class. So, you can just go back and check",
+    "start": 280.12,
+    "end": 283.84,
+    "ocr_text": "flatten\n\nh M. Khapra\n\nns\n\nBut how do we compute these gradi-\nents?\n\nRecall that we can represent CNNs\nby feedforward neural network\n\nThen we already know how to com-\npute influences (gradient) using back-\npropogation\n\nFor example, we know how to back-\nprop the gradients till the first hidden\nlayer\n\n(Deep Learning)"
+  },
+  {
+    "text": "this and it should work out well ok. So, so you can just see this and this way we can",
+    "start": 283.84,
+    "end": 290.04,
+    "ocr_text": "flatten\n\nh M. Khapra\n\nns\n\nBut how do we compute these gradi-\nents?\n\nRecall that we can represent CNNs\nby feedforward neural network\n\nThen we already know how to com-\npute influences (gradient) using back-\npropogation\n\nFor example, we know how to back-\nprop the gradients till the first hidden\nlayer\n\n(Deep Learning)"
+  },
+  {
+    "text": "just compute the gradients for all the input pixels and now I am going to plot it as a image",
+    "start": 290.04,
+    "end": 295.16,
+    "ocr_text": "flatten\n\nh M. Khapra\n\nns\n\nBut how do we compute these gradi-\nents?\n\nRecall that we can represent CNNs\nby feedforward neural network\n\nThen we already know how to com-\npute influences (gradient) using back-\npropogation\n\nFor example, we know how to back-\nprop the gradients till the first hidden\nlayer\n\n(Deep Learning)"
+  },
+  {
+    "text": "and this is what my image looks like. Do you see what is happening here? It is all very",
+    "start": 295.16,
+    "end": 303.04,
+    "ocr_text": "e This is what we get if we compute the\ngradients and plot it as an image\n\nMitesh M. Khapra 387015 (Deep L"
+  },
+  {
+    "text": "murky right. Most of it is gray that is fine we expected it, but there is nothing really",
+    "start": 303.04,
+    "end": 307.46,
+    "ocr_text": "e This is what we get if we compute the\ngradients and plot it as an image\n\nMitesh M. Khapra 387015 (Deep L"
+  },
+  {
+    "text": "standing out right. Even in this patch where you have some non-grape pixels it is almost",
+    "start": 307.46,
+    "end": 312.48,
+    "ocr_text": "e This is what we get if we compute the\ngradients and plot it as an image\n\nMitesh M. Khapra 387015 (Deep L"
+  },
+  {
+    "text": "like the entire cat region is appearing as non-grape. The influences are not coming out",
+    "start": 312.48,
+    "end": 318.4,
+    "ocr_text": "e This is what we get if we compute the\ngradients and plot it as an image\n\nMitesh M. Khapra 387015 (Deep L"
+  },
+  {
+    "text": "to be very sharp. We would have wanted something like only the eye pixels cause some neuron",
+    "start": 318.4,
+    "end": 323.36,
+    "ocr_text": "e This is what we get if we compute the\ngradients and plot it as an image\n\nMitesh M. Khapra 015 (Deep Learning)"
+  },
+  {
+    "text": "to fire or only the ear pixels cause some neuron to fire and that is not really happening",
+    "start": 323.36,
+    "end": 328.16,
+    "ocr_text": "e This is what we get if we compute the\ngradients and plot it as an image\n\nMitesh M. Khapra 015 (Deep Learning)"
+  },
+  {
+    "text": "ok. So, it does not produce very sharp influences. So, someone proposed something on this guided",
+    "start": 328.16,
+    "end": 335.84,
+    "ocr_text": "e This is what we get if we compute the\ngradients and plot it as an image\n\ne The above procedure does not show\nvery sharp influences\n\nMitesh M. Khapra 15 (Deep"
+  },
+  {
+    "text": "back propagation which we are going to see next and that helps you to better understand",
+    "start": 335.84,
+    "end": 339.8,
+    "ocr_text": "e This is what we get if we compute the\ngradients and plot it as an image\n\ne The above procedure does not show\nvery sharp influences\n\ne Springenberg ct al. proposed “guided\nback propagation” which gives a bet-\nter idea about the influences\n\nh A 115 (Deep Learni"
+  },
+  {
+    "text": "the influence of the input pixels.",
+    "start": 339.8,
+    "end": 341.56,
+    "ocr_text": "e This is what we get if we compute the\ngradients and plot it as an image\n\ne The above procedure does not show\nvery sharp influences\n\ne Springenberg ct al. proposed “guided\nback propagation” which gives a bet-\nter idea about the influences\n\nh A 115 (Deep Learni"
+  }
+]

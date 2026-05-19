@@ -1,0 +1,1220 @@
+[
+  {
+    "text": "So, let us look at a formal algorithm to explore a graph. So, recall that a graph consists",
+    "start": 0.0,
+    "end": 7.48,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nBreadth first search (BFS)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "of a set of vertices and a set of edges. The edges are the connections between the vertices.",
+    "start": 7.48,
+    "end": 12.44,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nBreadth first search (BFS)\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "They may be directed or undirected. So, if you look at the undirected graph, the problem",
+    "start": 12.44,
+    "end": 18.56,
+    "ocr_text": "* Eact\nis an edge ir"
+  },
+  {
+    "text": "we are looking at is to find out whether a source vertex is connected to a target vertex.",
+    "start": 18.56,
+    "end": 23.92,
+    "ocr_text": "* Eact\nis an edge ir"
+  },
+  {
+    "text": "And we said that this amounts to finding a path from V0, the source vertex to VK, the",
+    "start": 23.92,
+    "end": 29.28,
+    "ocr_text": "* Eact\nis an edge ir"
+  },
+  {
+    "text": "target vertex, where each pair of vertices on the path is connected by an edge in the graph.",
+    "start": 29.28,
+    "end": 35.4,
+    "ocr_text": "* Eact\nis an edge ir"
+  },
+  {
+    "text": "So, we argued that we could easily do this for small graphs visually, but if we want",
+    "start": 35.4,
+    "end": 42.2,
+    "ocr_text": "1234516 7 8 9 10)\n\n[5 | Joo |] >] >] » 9 ro |="
+  },
+  {
+    "text": "to write an algorithm, we need a way of representing the graph. So, the first thing we decided",
+    "start": 42.2,
+    "end": 46.52,
+    "ocr_text": "1234516 7 8 9 10)\n\n[5 | Joo |] >] >] » 9 ro |="
+  },
+  {
+    "text": "was that we would name the vertices 1 to n. So, if we have n vertices, we will just",
+    "start": 46.52,
+    "end": 50.96,
+    "ocr_text": "1234151617 8 910)\n\n[5 [002 |] >] >] = oo ro |="
+  },
+  {
+    "text": "call them 1, 2, 3, 4 up to n. Then we can represent the structure of the graph through",
+    "start": 50.96,
+    "end": 55.28,
+    "ocr_text": "1234151617 8 910)\n\n[5 [002 |] >] >] = oo ro |="
+  },
+  {
+    "text": "an adjacency matrix. In this adjacency matrix, the ijth entry indicates the presence or absence",
+    "start": 55.28,
+    "end": 62.44,
+    "ocr_text": "123415167 8 910)\n\n[5 [oo |] >] or] = e910 |="
+  },
+  {
+    "text": "of an edge from vertex i to vertex j. So, a ij is 1, if there is an edge, a ij is 0, if",
+    "start": 62.44,
+    "end": 68.48,
+    "ocr_text": "123415167 8 910)\n\n[5 [oo |] >] or] = e910 |="
+  },
+  {
+    "text": "there is no such edge. In this matrix, if we want to find out where the pair of vertices",
+    "start": 68.48,
+    "end": 73.4,
+    "ocr_text": "g\n>|\n||\nis\n||\nE\n«|\n|\n\nEREREEEEEE"
+  },
+  {
+    "text": "are directly connected, we just have to probe the appropriate entry. So, we can do that",
+    "start": 73.4,
+    "end": 77.12,
+    "ocr_text": "g\n>|\n||\nis\n||\nE\n«|\n|\n\nEREREEEEEE"
+  },
+  {
+    "text": "in constant time to find all the outgoing neighbors of a vertex, we have to scan the",
+    "start": 77.12,
+    "end": 82.34,
+    "ocr_text": "J} 234516 7 8 910)\n\n[5 | Joo) ] >] o>] » eo ro] ="
+  },
+  {
+    "text": "row for that vertex. So, that takes linear time in terms of the number of vertices.",
+    "start": 82.34,
+    "end": 87.42,
+    "ocr_text": "J} 234516 7 8 910)\n\n[5 | Joo) ] >] o>] » eo ro] ="
+  },
+  {
+    "text": "Now, one thing we observed is that typically in many graphs, this matrix is largely 0.",
+    "start": 87.42,
+    "end": 94.08,
+    "ocr_text": "J} 2341516 7 8 9 10)\n\n[5 [ooo] >] >] = eo ro] ="
+  },
+  {
+    "text": "Most pairs are not connected. So, we can get a more compact representation by just listing",
+    "start": 94.08,
+    "end": 98.88,
+    "ocr_text": "J} 2341516 7 8 9 10)\n\n[5 [ooo] >] >] = eo ro] ="
+  },
+  {
+    "text": "out the neighbors of each vertex. So, instead of keeping a row of 1s and 0s, we just record",
+    "start": 98.88,
+    "end": 103.72,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "those vertices whose entries are 1. So, this gives us a more efficient representation",
+    "start": 103.72,
+    "end": 108.78,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "for graphs where the number of edges is closer to the number of vertices. But in this case,",
+    "start": 108.78,
+    "end": 114.0,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "in order to find out whether a given pair ij is connected, we have to look at the list",
+    "start": 114.0,
+    "end": 117.92,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "for i and c of j appears in it. Now, our strategy for finding a path connecting a source",
+    "start": 117.92,
+    "end": 125.36,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "vertex and a target vertex was as follows. We would start at the source vertex and keep",
+    "start": 125.36,
+    "end": 130.2,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "exploring the graph systematically. Each time we went to a vertex, we would mark it as",
+    "start": 130.2,
+    "end": 134.52,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "visited and then we had to make sure that when we were exploring vertices, we did not",
+    "start": 134.52,
+    "end": 139.2,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "re-explore the same vertex twice. So, we said there would be two fundamental strategies,",
+    "start": 139.2,
+    "end": 144.04,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "breadth first and depth first. So, today we are going to look at breadth first search.",
+    "start": 144.04,
+    "end": 149.52,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "So, the idea of breadth first search is to explore the graph level by level. So, we start",
+    "start": 149.52,
+    "end": 155.8,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "at the source vertex and we now explore all the vertices which are one step away connected",
+    "start": 155.8,
+    "end": 161.2,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "by a direct edge to the source vertex. Then we look at all vertices which are newly connected,",
+    "start": 161.2,
+    "end": 167.6,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "one step away from level one vertices. So, these are two steps away from the source",
+    "start": 167.6,
+    "end": 171.8,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "vertex. Then for three steps and so on. Now, while we are doing this exploration, we",
+    "start": 171.8,
+    "end": 177.68,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "have to keep track of two quantities. We have to first note of course, whether a given",
+    "start": 177.68,
+    "end": 182.68,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "vertex has been visited, has it been explored, is it connected to the source vertex? Also,",
+    "start": 182.68,
+    "end": 188.12,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "for each such vertex, we have to explore its neighbors. So, for each vertex, we need to",
+    "start": 188.12,
+    "end": 193.48,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "know a, has it been visited and we may not be able to explore it as soon as it is visited.",
+    "start": 193.48,
+    "end": 199.52,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "So, we need to remember that we have explored it or not explored it and those which are",
+    "start": 199.52,
+    "end": 204.16,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "not explored, we have to make sure we explore them once. So, the way to do this is to use",
+    "start": 204.16,
+    "end": 211.84,
+    "ocr_text": "—EREREEREEE"
+  },
+  {
+    "text": "some data structures to keep track of these quantities. As we said, the set of vertices",
+    "start": 211.84,
+    "end": 217.12,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "is numbered one to n. So, we can keep an array visited with entries one to n which tells",
+    "start": 217.12,
+    "end": 223.72,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "us whether or not vertex i has been visited. Now, whenever we visit a vertex, we need to",
+    "start": 223.72,
+    "end": 230.04,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "subsequently explore it. Since we may not explore it immediately, we may have to keep it",
+    "start": 230.04,
+    "end": 236.08,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "pending for a while. So, we have to keep a collection of these vertices which have been",
+    "start": 236.08,
+    "end": 240.92,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "visited but have not yet been explored. There are many ways to do this, but one natural",
+    "start": 240.92,
+    "end": 246.52,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "way is to explore them in the order in which they were visited. So, if we want to explore",
+    "start": 246.52,
+    "end": 251.92,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "in the order in which they were visited, a natural data structure to keep the list of",
+    "start": 251.92,
+    "end": 256.88,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "unexplored but visited vertices is a queue. So, we put each visited vertex into the queue,",
+    "start": 256.88,
+    "end": 262.56,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "the first time we have come to it and then we process all the vertices in the queue until",
+    "start": 262.56,
+    "end": 266.8,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "all vertices have been explored. So, here are some high level pseudo-code for breadth",
+    "start": 266.8,
+    "end": 272.8,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "first search. When we reach a vertex i which we have visited for the first time, we will",
+    "start": 272.8,
+    "end": 278.64,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "eventually explore it. What does it mean to explore vertex? We look at the outgoing edges",
+    "start": 278.64,
+    "end": 283.08,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "i comma j. If j has already been visited, we have nothing to do. On the other hand, if",
+    "start": 283.08,
+    "end": 288.2,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "j has not been visited, then we will mark it as visited and add it to the queue to be",
+    "start": 288.2,
+    "end": 292.76,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "explored later. So, we begin by marking the source vertex and adding it to the queue.",
+    "start": 292.76,
+    "end": 299.08,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "And at each stage, we will explore the vertex at the head of the queue. If at some stage,",
+    "start": 299.08,
+    "end": 304.12,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "there are no vertices in the queue, it means that every vertex we have visited has been",
+    "start": 304.12,
+    "end": 307.72,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "explored and so there is no new information left and we can stop the exploration. So,",
+    "start": 307.72,
+    "end": 314.36,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "before giving the actual code for breadth first search, let's work out the example that",
+    "start": 314.36,
+    "end": 319.04,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "we have and see how these data structures are updated. So, we have these 10 vertices 1",
+    "start": 319.04,
+    "end": 325.12,
+    "ocr_text": "BSEEEERSS8"
+  },
+  {
+    "text": "to 10 and we are looking for parts starting at 1. So, in the queue, we have two pointers",
+    "start": 325.12,
+    "end": 331.6,
+    "ocr_text": "z\nHEBEEESEBE\n\nheadlttait"
+  },
+  {
+    "text": "as usual. We have a pointer which we indicate in green which is the head of the queue and",
+    "start": 331.6,
+    "end": 336.04,
+    "ocr_text": "z\nHEBEEESEBE\n\nheadlttait"
+  },
+  {
+    "text": "a pointer red which is tail of the queue. So, we initialize the queue to have the starting",
+    "start": 336.04,
+    "end": 341.6,
+    "ocr_text": ")\nBEEHESEESE"
+  },
+  {
+    "text": "vertex 1 and we also mark this vertex as being visited. Now, we have to explore one.",
+    "start": 341.6,
+    "end": 348.88,
+    "ocr_text": ")\nBEEHESEESE"
+  },
+  {
+    "text": "So, what we do is we remove one from the queue and systematically check each of its outgoing",
+    "start": 348.88,
+    "end": 355.68,
+    "ocr_text": "&\nBREEESESSe\n\n\\ aa\n\\\\\\\nONY\n\\ \\ \\\\\n/ \\ OA ASIN\nSS) 4\nVy"
+  },
+  {
+    "text": "edges and if those target vertices are not already visited, we add them. So, two is the first",
+    "start": 355.68,
+    "end": 362.24,
+    "ocr_text": "HEBREESEBE"
+  },
+  {
+    "text": "in order of 1 to 10, first neighbor of 1. It has not been visited so we add it to the queue",
+    "start": 362.88,
+    "end": 368.48,
+    "ocr_text": "HEBREESEBE"
+  },
+  {
+    "text": "and mark 2 is visited the visited at it. Likewise, we mark 3 is visited and then we mark 4",
+    "start": 368.48,
+    "end": 374.4,
+    "ocr_text": "ERERSEEEES"
+  },
+  {
+    "text": "visited. At this state, we have finished exploring vertex 1. So, now we go back to the queue and see",
+    "start": 374.4,
+    "end": 381.04,
+    "ocr_text": "ERERSEEEES"
+  },
+  {
+    "text": "if there is anything yet to be explored which has been visited and there is. So, we pick up the",
+    "start": 381.04,
+    "end": 384.96,
+    "ocr_text": "EEBEESESSS"
+  },
+  {
+    "text": "first search namely 2. So, we remove 2 from the queue and we explore its outgoing neighbors.",
+    "start": 384.96,
+    "end": 390.32,
+    "ocr_text": "EEBEESESSS"
+  },
+  {
+    "text": "Now, the outgoing neighbors of 2 in this case are 1 and 3, but since 1 and 3 are both visited,",
+    "start": 390.88,
+    "end": 396.08,
+    "ocr_text": "ESSSE sshae"
+  },
+  {
+    "text": "we have no work to do and we go on and go back to the queue. So, in the next state, we pick up the",
+    "start": 396.08,
+    "end": 402.64,
+    "ocr_text": "BEBEEESEBE\nE"
+  },
+  {
+    "text": "vertex 3 and we look at its outgoing neighbors. Again, it has outgoing neighbors 1 and 2 both of which",
+    "start": 402.64,
+    "end": 408.48,
+    "ocr_text": "BEBEEESEBE\nE"
+  },
+  {
+    "text": "are already visited. So, there is nothing to be done. We come back to the queue and pick up 4 and",
+    "start": 408.48,
+    "end": 413.68,
+    "ocr_text": "EREEEGESSa"
+  },
+  {
+    "text": "try to explore it. So, 4 has a neighbor 1 which has already been visited. The next neighbor is 5.",
+    "start": 413.68,
+    "end": 421.04,
+    "ocr_text": "EREEEGESSa"
+  },
+  {
+    "text": "Since 5 is new, we added to the queue and we mark it as visited and then it has a neighbor 8.",
+    "start": 421.12,
+    "end": 427.28,
+    "ocr_text": "HEBREESERE\nE"
+  },
+  {
+    "text": "So, we add that also to the queue and mark it as visited. Now, we have finished exploring 4.",
+    "start": 428.16,
+    "end": 434.48,
+    "ocr_text": "ESSERE SSsESe"
+  },
+  {
+    "text": "So, we go back to the queue and look for the next thing to be explored which in this case is 5.",
+    "start": 434.48,
+    "end": 438.32,
+    "ocr_text": "ESSERE SSsESe"
+  },
+  {
+    "text": "So, 5 has got neighbors 4, 6 and 7. 4 has already been visited, but 6 is new and so is 7.",
+    "start": 439.2,
+    "end": 449.52,
+    "ocr_text": "EE SHESSEBE"
+  },
+  {
+    "text": "Now, we go back and explore 8. So, 8 has neighbors 4, 6 and 9. 4 and 6 are old, but 9 is new.",
+    "start": 451.04,
+    "end": 461.04,
+    "ocr_text": "|] >] +]-0] 2] ~]2]>]2)\n2 -"
+  },
+  {
+    "text": "So, we add 9 to the queue. Now, we go back and explore 6 because 6 is the vertex at the head of the queue.",
+    "start": 461.6,
+    "end": 467.44,
+    "ocr_text": "REEESEEESE\n2 -"
+  },
+  {
+    "text": "So, now we look at neighbors of 6. Neighbors of 6 are 5, 7, 8 and 9. So, when we remove 6 from the queue,",
+    "start": 468.72,
+    "end": 477.84,
+    "ocr_text": "EEEREEEESS"
+  },
+  {
+    "text": "we have nothing to do. We go back and find that there is nothing to be done because all the neighbors",
+    "start": 477.84,
+    "end": 482.4,
+    "ocr_text": "ESSEBSSEER"
+  },
+  {
+    "text": "of 6 have already been visited. Then we pick up 7. Once again, we find that all the neighbors of 7",
+    "start": 482.4,
+    "end": 488.56,
+    "ocr_text": "ESSEBSSEER"
+  },
+  {
+    "text": "have already been visited. Finally, we pick up 9. We pick up 9. We find that it has neighbors 6, 8 and 10.",
+    "start": 488.56,
+    "end": 495.92,
+    "ocr_text": "BEBEESESSE\nise"
+  },
+  {
+    "text": "10 is new. So, 10 gets marked and added to the queue. Finally, we go to 10 and we find it has only",
+    "start": 496.64,
+    "end": 503.36,
+    "ocr_text": "oS\n\nes,\n\nESEESSES53"
+  },
+  {
+    "text": "1 neighbor 9 which is already visited. At this stage, the queue becomes empty and the algorithm",
+    "start": 503.44,
+    "end": 508.0,
+    "ocr_text": "oS\n\nes,\n\nESEESSES53"
+  },
+  {
+    "text": "terminates. Now, in this case, we have marked all the vertices that are visited, which indicates",
+    "start": 508.0,
+    "end": 512.88,
+    "ocr_text": "HEBREESEBE\nE"
+  },
+  {
+    "text": "that every vertex in this graph is actually reachable from back. If we had had more vertices,",
+    "start": 512.88,
+    "end": 518.16,
+    "ocr_text": "HEBREESEBE\nE"
+  },
+  {
+    "text": "for example, if we had had a component in this graph, there is nothing to stop us from having",
+    "start": 518.16,
+    "end": 523.04,
+    "ocr_text": "BEBE SSSESe\nE"
+  },
+  {
+    "text": "many components. So, we could have had a graph with more vertices 11, 12, 13 and 14.",
+    "start": 523.04,
+    "end": 528.72,
+    "ocr_text": "BEBE SSSESe\nE"
+  },
+  {
+    "text": "Then this process starting from 1 would have left 11, 12, 13 and 14 marked as unvisited.",
+    "start": 528.72,
+    "end": 533.6,
+    "ocr_text": "HEBESESEBe\nE"
+  },
+  {
+    "text": "So, here is some more formal code for BFS. So, BFS is a function which takes as its argument,",
+    "start": 538.16,
+    "end": 544.48,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "the vertex from where we want to explore the graph. So, as we said, the vertices are called 1 to",
+    "start": 544.48,
+    "end": 549.52,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "n. We have this array visited, which is initialized to 0 and we have a queue to mark the vertices",
+    "start": 549.52,
+    "end": 556.88,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "still to be explored and this is initialized to empty. So, we begin by marking",
+    "start": 557.12,
+    "end": 564.08,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "where visited of i equal to 1. So, vertex i is marked as visited and we add it to the queue.",
+    "start": 564.08,
+    "end": 569.28,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "Now, so long as the queue is not empty, we proceed in the following group. We extract the head",
+    "start": 570.16,
+    "end": 574.48,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "of the queue, the vertex to be explored next. For each of its outgoing edges, if it is something",
+    "start": 574.48,
+    "end": 581.44,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "which has not been visited before, we mark it as visited and we add it to the queue. So,",
+    "start": 581.44,
+    "end": 586.16,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "this is exactly the core for the algorithm, we just execute behind in the",
+    "start": 586.16,
+    "end": 590.4,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "quite straightforward. There are two data structures and array to keep track of the visited",
+    "start": 590.4,
+    "end": 594.96,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "vertices and a queue to keep track of vertices which need to be explored further.",
+    "start": 594.96,
+    "end": 598.8,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "So, how do we analyze the complexity of our algorithm such as this? One way to do it is to look",
+    "start": 601.76,
+    "end": 607.12,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "at the loop. So, remember that when we have an algorithm like this, which has a loop,",
+    "start": 607.12,
+    "end": 611.12,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "the loop is usually the place where we have to look for it. So, we have one iteration where we have",
+    "start": 611.12,
+    "end": 615.52,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "a loop of 1 to n where we assign visited gj to 0. So, this is a this is something which takes",
+    "start": 615.52,
+    "end": 621.68,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "for the end time. And now we have a loop here where we keep extracting things from the queue",
+    "start": 622.24,
+    "end": 628.0,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "and we do things here. So, we have to kind of understand how many times this loop is going to",
+    "start": 628.0,
+    "end": 633.52,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n=\nSy\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "execute and how much time this inner loop is going to execute. So, each vertex enters the queue",
+    "start": 633.52,
+    "end": 640.16,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n=\nSy\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "exactly once. So, if we enter it exactly once, then it says that this outer loop here",
+    "start": 640.16,
+    "end": 648.4,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n5\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "will take order and time because assuming that the graph is connected, every graph will be every",
+    "start": 649.76,
+    "end": 655.12,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n5\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "vertex will be visited once and when that vertex will visit it will enter the queue and it will",
+    "start": 655.12,
+    "end": 659.2,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q\n\n)\n\ne"
+  },
+  {
+    "text": "come out in the head of the queue exactly once. Now, for each vertex, we have to scan all its",
+    "start": 659.2,
+    "end": 666.32,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q\n\n)\n\ne"
+  },
+  {
+    "text": "neighbors. So, what we said was that this will be order n if we have an adjacency matrix because",
+    "start": 666.4,
+    "end": 673.04,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n=\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "we need to go from the big first entry for j and we have to look at the entire row per",
+    "start": 673.84,
+    "end": 680.72,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\n=\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "j. So, this is order n. So, therefore, if the graph is connected first of all,",
+    "start": 680.72,
+    "end": 685.6,
+    "ocr_text": "// BFS starting from vertex i\n//Initialization\n() l\n\n//Start the exploration at i aa\n\n()\nU\n\n//Explore each vertex in Q U"
+  },
+  {
+    "text": "every vertex will get into the queue. So, we will do the queue loop exactly n times and for each",
+    "start": 685.6,
+    "end": 691.12,
+    "ocr_text": "// BFS starting from vertex i\n//Initialization\n() l\n\n//Start the exploration at i aa\n\n()\nU\n\n//Explore each vertex in Q U"
+  },
+  {
+    "text": "j that is extracted, we need to examine all its neighbors. So, that will be a scan of size n",
+    "start": 691.12,
+    "end": 695.84,
+    "ocr_text": "// BFS starting from vertex i\n//Initialization\n() l\n\n//Start the exploration at i aa\n\n()\nU\n\n//Explore each vertex in Q U"
+  },
+  {
+    "text": "and therefore, overall its order n scale, these two nested loops of size n.",
+    "start": 696.32,
+    "end": 700.4,
+    "ocr_text": "// BFS starting from vertex i\n//Initialization\n() l\n\n//Start the exploration at i aa\n\n()\nU\n\n//Explore each vertex in Q U"
+  },
+  {
+    "text": "So, this is clearly a situation where if we have very few edges, we can improve the complexity by",
+    "start": 703.12,
+    "end": 708.56,
+    "ocr_text": "// BFS starting from vertex i\n//Initialization\n() l\n\n//Start the exploration at i aa\n\n()\nU\n\n//Explore each vertex in Q U"
+  },
+  {
+    "text": "using an adjacency list representation instead of an adjacency matrix representation. So,",
+    "start": 708.56,
+    "end": 713.52,
+    "ocr_text": "// BFS starting from vertex i\n//Initialization\n() l\n\n//Start the exploration at i aa\n\n()\nU\n\n//Explore each vertex in Q U"
+  },
+  {
+    "text": "if the number of edges is m and m is much smaller than m squared, so if m is say proportional to",
+    "start": 713.52,
+    "end": 721.28,
+    "ocr_text": "// BFS starting from vertex i\n//Initialization\n() l\n\n//Start the exploration at i aa\n\n()\nU\n\n//Explore each vertex in Q U"
+  },
+  {
+    "text": "n itself, then what we can do is in the list associated with j, we just have to look at the",
+    "start": 721.52,
+    "end": 729.68,
+    "ocr_text": "// BFS starting from vertex i\n//Initialization\n() l\n\n//Start the exploration at i aa\n\n()\nU\n\n//Explore each vertex in Q U"
+  },
+  {
+    "text": "neighbors of j. We do not have to look at all the vertices, all the order n entries in the",
+    "start": 729.68,
+    "end": 734.24,
+    "ocr_text": "// BFS starting from vertex i\n//Initialization\n() l\n\n//Start the exploration at i aa\n\n()\nU\n\n//Explore each vertex in Q U"
+  },
+  {
+    "text": "adjacency matrix. This is called the degree. So, the degree of a vertex is a number of vertices",
+    "start": 734.24,
+    "end": 741.36,
+    "ocr_text": "// BFS starting from vertex i\n//Initialization\n() l\n\n//Start the exploration at i aa\n\n()\nU\n\n//Explore each vertex in Q U"
+  },
+  {
+    "text": "connected to it. So, if we do this, then what we will find is that inside the iteration of the",
+    "start": 741.36,
+    "end": 749.04,
+    "ocr_text": "| )\n* Mai 5\n—"
+  },
+  {
+    "text": "inner loop, each step of scanning for the neighbors takes time proportionate degree of j.",
+    "start": 749.04,
+    "end": 753.44,
+    "ocr_text": "| )\n* Mai 5\n—"
+  },
+  {
+    "text": "Now, the degree of j of course varies from one node to another. So, how do we count this correctly?",
+    "start": 754.64,
+    "end": 760.0,
+    "ocr_text": "| )\n* Mai 5\n—"
+  },
+  {
+    "text": "So, if you do not count it per loop, but count it across the entire processing of the entire",
+    "start": 761.2,
+    "end": 766.64,
+    "ocr_text": "| )\n* Mai 5\n—"
+  },
+  {
+    "text": "set of vertices, what we will see is that for every edge in the graph, perform i, j.",
+    "start": 766.64,
+    "end": 775.04,
+    "ocr_text": "| )\n* Mai 5\n—"
+  },
+  {
+    "text": "There will be a time when i is processed and I will see j in this list and there will be a time",
+    "start": 775.04,
+    "end": 781.12,
+    "ocr_text": "| )\n* Mai 5\n—"
+  },
+  {
+    "text": "when j is processed and I will see i in this list. In other words, if I take all the adjacency lists",
+    "start": 781.12,
+    "end": 787.68,
+    "ocr_text": "| )\n* Mai 5\n—"
+  },
+  {
+    "text": "of all the vertices, each edge would be represented twice and i, i, j will appear as an entry j in the",
+    "start": 787.68,
+    "end": 794.24,
+    "ocr_text": "| )\n* Mai 5\n—"
+  },
+  {
+    "text": "list for i and an entry i in the list for j. So, while it is not easy to count per iteration,",
+    "start": 794.24,
+    "end": 801.28,
+    "ocr_text": "| )\n* Mai 5\n—"
+  },
+  {
+    "text": "if I count across all iterations, I will explore each edge exactly twice. So, 2n is ordered m.",
+    "start": 801.28,
+    "end": 808.24,
+    "ocr_text": "7 >4\n- o——"
+  },
+  {
+    "text": "So, overall exploring the neighbors across all n-literation takes times o n. So, what this means is",
+    "start": 808.24,
+    "end": 815.12,
+    "ocr_text": "7 >4\n- o——"
+  },
+  {
+    "text": "that the first iteration of visiting the marking, everything visited takes time o n.",
+    "start": 815.12,
+    "end": 823.12,
+    "ocr_text": "c ] )\nr rtio ur f ye} Jegree\nrr yr 1 r\n*O ) 1b ne\n>4\n- = b"
+  },
+  {
+    "text": "Then we have an o n loop across which we do o n steps totally across the n steps. So, it is",
+    "start": 823.12,
+    "end": 829.76,
+    "ocr_text": "c ] )\nr rtio ur f ye} Jegree\nrr yr 1 r\n*O ) 1b ne\n>4\n- = b"
+  },
+  {
+    "text": "over on n plus n. So, the complexity of the breadth first search, if we are using an adjacency list,",
+    "start": 829.76,
+    "end": 835.44,
+    "ocr_text": "c ] )\nr rtio ur f ye} Jegree\nrr yr 1 r\n*O ) 1b ne\n>4\n- = b"
+  },
+  {
+    "text": "it drops to o n plus n versus order n square for the adjacency matrix. So, if we have fewer edges,",
+    "start": 836.0,
+    "end": 844.32,
+    "ocr_text": "c ] )\nr rtio ur f ye} Jegree\nrr yr 1 r\n*O ) 1b ne\n>4\n- = b"
+  },
+  {
+    "text": "then it makes a lot of sense to use adjacency list for breadth first search.",
+    "start": 844.32,
+    "end": 847.68,
+    "ocr_text": "c ] )\nr rtio ur f ye} Jegree\nrr yr 1 r\n*O ) 1b ne\n>4\n- = b"
+  },
+  {
+    "text": "Now, in graphs, the input size is typically taken to be m and n. In other words,",
+    "start": 849.76,
+    "end": 857.44,
+    "ocr_text": "c ] )\nr rtio ur f ye} Jegree\nrr yr 1 r\n*O ) 1b ne\n>4\n- = b"
+  },
+  {
+    "text": "both parameters are somewhat independent of each other because we could have a set of vertices",
+    "start": 857.44,
+    "end": 862.4,
+    "ocr_text": "* Ho tif pat it"
+  },
+  {
+    "text": "with very few edges with very many edges. So, usually m and n together are taken to be the input",
+    "start": 862.4,
+    "end": 866.64,
+    "ocr_text": "* Ho tif pat it"
+  },
+  {
+    "text": "size. So, order m plus n is actually a linear algorithm. So, this is called best possible",
+    "start": 866.64,
+    "end": 871.84,
+    "ocr_text": "* Ho tif pat it"
+  },
+  {
+    "text": "because you have to read the input in order to process it typically. So, in linear time,",
+    "start": 871.84,
+    "end": 875.92,
+    "ocr_text": "* Ho tif pat it"
+  },
+  {
+    "text": "we are able to do breadth first search. So, we can do something more in breadth first search.",
+    "start": 875.92,
+    "end": 884.8,
+    "ocr_text": "* Ho tif pat it"
+  },
+  {
+    "text": "All we have identified is which vertices are connected to the initial vertex one or the source",
+    "start": 884.96,
+    "end": 891.04,
+    "ocr_text": "* Ho tif pat it"
+  },
+  {
+    "text": "vertex in general from where you start with first search. So, how do we identify how to go from",
+    "start": 891.04,
+    "end": 897.28,
+    "ocr_text": "+ IfE t <I\nDr t\n* Wt rk vi rem r th\n{ i rer"
+  },
+  {
+    "text": "the source vertex to a given vertex? So, if we start at i and bf s i set visited j equal to 1,",
+    "start": 897.28,
+    "end": 903.92,
+    "ocr_text": "+ IfE t <I\nDr t\n* Wt rk vi rem r th\n{ i rer"
+  },
+  {
+    "text": "we know that i and j are connected, but we do not know the path. So, what we can easily do",
+    "start": 903.92,
+    "end": 908.96,
+    "ocr_text": "+ IfE t <I\nDr t\n* Wt rk vi rem r th\n{ i rer"
+  },
+  {
+    "text": "is to remember where we marked each vertex one. So, when we mark a vertex k as visited,",
+    "start": 909.76,
+    "end": 916.56,
+    "ocr_text": "+ IfE t <I\nDr t\n* Wt rk vi rem r th\n{ i rer"
+  },
+  {
+    "text": "it is marked because it is the neighbor of some already visited neighbor j.",
+    "start": 917.36,
+    "end": 920.64,
+    "ocr_text": "+ IfE t <I\nDr t\n* Wt rk vi rem r th\n{ i rer"
+  },
+  {
+    "text": "So, then we can say that k was marked by j. You will use the word parent. So, we will say that",
+    "start": 922.08,
+    "end": 928.96,
+    "ocr_text": "BFS starting f\n\nvertex i\n\n//Initialization\n\nrt the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "the parent of k is j. Then by following the parent links, we can reconstruct the path backwards",
+    "start": 928.96,
+    "end": 935.6,
+    "ocr_text": "BFS starting f\n\nvertex i\n\n//Initialization\n\nrt the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "from k to the original source vertex. So, this is very easy to do in our code. So, we just have to add",
+    "start": 935.68,
+    "end": 943.28,
+    "ocr_text": "BFS starting f\n\nvertex i\n\n//Initialization\n\nrt the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "one line. So, two lines. So, initially we say that for every vertex, the parent is undefined.",
+    "start": 943.28,
+    "end": 951.04,
+    "ocr_text": "BFS starting f\n\nvertex i\n\n//Initialization\n\nrt the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "So, it might set a value like minus 1 because we know that the names of vertices are 1 to n.",
+    "start": 951.04,
+    "end": 955.12,
+    "ocr_text": "// BFS starting from vertex i\n\n//Initialization\n\nart the exploration at i\n\n//€xplore each vertex in Q"
+  },
+  {
+    "text": "And then when we mark a vertex, since we are exploring an edge j k, the parent of j is going",
+    "start": 956.24,
+    "end": 963.36,
+    "ocr_text": "// BFS starting from ve\n\n//Initialization\n\nrt the exploration at i\n\n//€xplore each vertex in Q"
+  },
+  {
+    "text": "k is going to be j. So, we assign the parent of k equal to j. The rest of the code is",
+    "start": 963.36,
+    "end": 967.36,
+    "ocr_text": "// BFS starting from ve\n\n//Initialization\n\nrt the exploration at i\n\n//€xplore each vertex in Q"
+  },
+  {
+    "text": "identical to the earlier vectors. So, if you just added this new area parent to keep track of",
+    "start": 967.36,
+    "end": 971.76,
+    "ocr_text": "// BFS starting from vertex\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "how we mark the vertices so that we can reconstruct the path.",
+    "start": 972.24,
+    "end": 975.52,
+    "ocr_text": "// BFS starting from vertex\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "So, we can go backwards. So, because k was marked by j, j would be marked by some other thing",
+    "start": 979.28,
+    "end": 983.6,
+    "ocr_text": "// BFS starting from vertex\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "and so on. So, by just following these links back, we can go back from any k to the start vertex.",
+    "start": 983.6,
+    "end": 989.28,
+    "ocr_text": "// BFS starting from vertex\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "And therefore, we can reconstruct the path. The other thing that we can do in breadth",
+    "start": 989.28,
+    "end": 996.0,
+    "ocr_text": "// BFS starting from vertex\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "for search is keep track of the level. So, remember we said that breadth for search actually",
+    "start": 996.0,
+    "end": 1000.56,
+    "ocr_text": "// BFS starting from vertex\n\n//Initialization\n\n//Start the exploration at i\n\n//Explore each vertex in Q"
+  },
+  {
+    "text": "explores a graph level by level. It looks at all the vertices with a one step away from the source.",
+    "start": 1000.56,
+    "end": 1005.28,
+    "ocr_text": ", - tiall"
+  },
+  {
+    "text": "Then those vertices with one step away from these vertices. So, they are at level 2,",
+    "start": 1005.28,
+    "end": 1008.64,
+    "ocr_text": ", - tiall"
+  },
+  {
+    "text": "two steps away from the source and so on. So, it should have just saying that the vertex is",
+    "start": 1008.64,
+    "end": 1012.72,
+    "ocr_text": ", - tiall"
+  },
+  {
+    "text": "visited. We can ask at what level it was visited. So, initially we say that all the levels are",
+    "start": 1012.72,
+    "end": 1019.04,
+    "ocr_text": ", - tiall"
+  },
+  {
+    "text": "undepaint and then each time we visit a new vertex, it is one level more than the vertex from which",
+    "start": 1019.04,
+    "end": 1025.36,
+    "ocr_text": ", - tiall"
+  },
+  {
+    "text": "it was visited. So, eventually we say that if level j is assigned some number p, it must be",
+    "start": 1025.36,
+    "end": 1031.28,
+    "ocr_text": ", - tiall"
+  },
+  {
+    "text": "p steps away from the original vertex. So, this can also be easily added to our code along with",
+    "start": 1031.28,
+    "end": 1038.56,
+    "ocr_text": ", - tiall"
+  },
+  {
+    "text": "the parent code. So, last time we added this assignment for the parent. Now, we also add",
+    "start": 1038.56,
+    "end": 1046.72,
+    "ocr_text": "BFS starting from vertex i\n\n//initialization\n\n//Start the exploration at i, level[i] set to 0\n\n//€xplore each vertex in Q, increment level for each ne"
+  },
+  {
+    "text": "the assignment for level. So, we say initially the level of each vertex is undepaint. So,",
+    "start": 1047.68,
+    "end": 1052.72,
+    "ocr_text": "BFS starting from vertex i\n\n//initialization\n\n//Start the exploration at i, level[i] set to\n\ne each vertex in Q, increment level for each new vertex"
+  },
+  {
+    "text": "it is some non-sensical value like minus 1. Then we say that the level of the start vertex is 0",
+    "start": 1052.72,
+    "end": 1060.72,
+    "ocr_text": "BFS starting from vertex i\n\n//initialization\n\n//Start the exploration at i, level[i] set to\n\ne each vertex in Q, increment level for each new vertex"
+  },
+  {
+    "text": "and now whenever we visit a new vertex, if it is level, if it is visited then it must have a level.",
+    "start": 1061.6,
+    "end": 1068.64,
+    "ocr_text": "BFS starting from vert\n\n//Initialization\n\n//Start the exploration at i, level[i] set to\n\n//€xplore each vertex in Q, increment level for each new vertex"
+  },
+  {
+    "text": "So, if its level is minus 1, if its level is minus 1, it means it is not visited. So, level minus",
+    "start": 1068.64,
+    "end": 1075.84,
+    "ocr_text": "BFS starting from vert\n\n//initialization\n\n//Start the exploration at i, level[i] set to\n\n//Explore each vertex in Q, increment level for each new vertex"
+  },
+  {
+    "text": "1 means not visited. This is the same as in our earlier thing, same as visited k is 0 and if so,",
+    "start": 1075.92,
+    "end": 1090.8,
+    "ocr_text": "// BFS start\n\n//Initialization\n\n//Start the exploration at i, level[i] set to 0\n\n//€xplore each vertex in Q, increment level for each new"
+  },
+  {
+    "text": "we adjust the level of k to be one more than the level of j from which it was visited and of course,",
+    "start": 1090.8,
+    "end": 1095.52,
+    "ocr_text": "BFS starting from vert\n\n//initialization\n\n//Start the exploration at i, level[i] set to\n\n//€xplore each vertex in Q, increment level for each new vertex"
+  },
+  {
+    "text": "we set the parent as we see. So, we can see how this works on our earlier example. So, as",
+    "start": 1095.52,
+    "end": 1101.36,
+    "ocr_text": "EEEEEEEESE"
+  },
+  {
+    "text": "usual we start with 1 and we mark its level as 0 and it does not have a parent. Now, when we add",
+    "start": 1101.36,
+    "end": 1106.88,
+    "ocr_text": "EEEEEEEESE"
+  },
+  {
+    "text": "2, 3 and 4, all of them will be at level 1 and all of them will have as parent 1 because we have",
+    "start": 1106.88,
+    "end": 1113.36,
+    "ocr_text": "HSERSESSES"
+  },
+  {
+    "text": "to explore from 1. Then as before, 2 does not add anything new to at least, 3 does not add anything",
+    "start": 1113.36,
+    "end": 1119.68,
+    "ocr_text": "HSERSESSES"
+  },
+  {
+    "text": "to this. Now, 4 will add 5 and 8. So, for these 2, the level will be 2 and the parent will be 4,",
+    "start": 1119.68,
+    "end": 1129.76,
+    "ocr_text": "EREEEEEHES"
+  },
+  {
+    "text": "indicating that I got to 5 and 8 from 4 in my exploration. Then from 5, I will get 6 and 7.",
+    "start": 1129.76,
+    "end": 1138.24,
+    "ocr_text": "BSBREEEEBE\nE"
+  },
+  {
+    "text": "So, these are now at level 3 because 5 was itself at level 2 and therefore, 6 and 7 are at level 3",
+    "start": 1138.24,
+    "end": 1144.08,
+    "ocr_text": "EESSESEESS Be"
+  },
+  {
+    "text": "and their parents are 5. From 8, I will go to 9. So, 9 is also at level 3 because 8 was already",
+    "start": 1144.08,
+    "end": 1151.04,
+    "ocr_text": "EESSESEESS Be"
+  },
+  {
+    "text": "at level 2. So, 9 is at level 3 and its parent is 8 and finally, we will find that 10 is at level 4",
+    "start": 1151.04,
+    "end": 1159.28,
+    "ocr_text": "ESERSEEEEE\nE"
+  },
+  {
+    "text": "and its parent is 9. So, now we can trace back. So, we can say that I got from 10, I came from 9.",
+    "start": 1159.28,
+    "end": 1166.32,
+    "ocr_text": "+\n\na\n\nEREEESEESS"
+  },
+  {
+    "text": "So, 9 came from 8. So, 8 came from 4, 4 came from 1. So, the path is actually 10 to 9, 8 to 4,",
+    "start": 1166.88,
+    "end": 1177.36,
+    "ocr_text": "—\n\na\n\nEREEBEREEE"
+  },
+  {
+    "text": "2 and you can see indeed, you have a path from 10 to 9 to 8 to 4 to 1. So, this is how you can",
+    "start": 1178.0,
+    "end": 1187.36,
+    "ocr_text": "iS\n\nPOCO\n\nRAT\n\n+"
+  },
+  {
+    "text": "reconstruct the path information and also the distance information at the same time when you are",
+    "start": 1187.36,
+    "end": 1193.2,
+    "ocr_text": "iS\n\nPOCO\n\nRAT\n\n+"
+  },
+  {
+    "text": "computing breadth first search. So, breadth first search if we add this level predicate, it actually",
+    "start": 1193.2,
+    "end": 1201.36,
+    "ocr_text": "iS\n\nPOCO\n\nRAT\n\n+"
+  },
+  {
+    "text": "gives us the shortest path to each node in terms of the number of edges. Now, in general,",
+    "start": 1201.36,
+    "end": 1207.68,
+    "ocr_text": "* BF 1 S or\nter e"
+  },
+  {
+    "text": "we will see that if we do not have a uniform cost, if we have different cost on edges,",
+    "start": 1207.68,
+    "end": 1212.8,
+    "ocr_text": "* BF 1 S or\nter e"
+  },
+  {
+    "text": "then the shortest path need not be just the shortest in terms of number of edges. We have to add",
+    "start": 1212.88,
+    "end": 1217.36,
+    "ocr_text": "* BF 1 S or\nter e"
+  },
+  {
+    "text": "the cost associated with the path. These are called weighted graphs, but in an unwinded graph,",
+    "start": 1217.36,
+    "end": 1222.8,
+    "ocr_text": "* BF 1 S or\nter e"
+  },
+  {
+    "text": "it is a graph, it just has simple edges the way we have it now.",
+    "start": 1222.8,
+    "end": 1226.4,
+    "ocr_text": "* BF 1 S or\nter e"
+  },
+  {
+    "text": "Breadth first search has the added advantage of computing the shortest path in terms of number of edges",
+    "start": 1227.04,
+    "end": 1232.24,
+    "ocr_text": "* BF 1 S or\nter e"
+  },
+  {
+    "text": "from the source vertex to every reachable vertex from it.",
+    "start": 1232.24,
+    "end": 1240.96,
+    "ocr_text": "* BF 1 S or\nter e"
+  }
+]

@@ -1,0 +1,1556 @@
+[
+  {
+    "text": "So, we continue with the discussion on control hazards. So, if you recall what you are discussing",
+    "start": 0.0,
+    "end": 23.64,
+    "ocr_text": "Lecture 58: PIPELINE HAZARDS (PART 4)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR."
+  },
+  {
+    "text": "in our last lecture, we looked at various schemes with which we are trying to reduce the branch",
+    "start": 23.64,
+    "end": 32.84,
+    "ocr_text": "Lecture 58: PIPELINE HAZARDS (PART 4)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR."
+  },
+  {
+    "text": "penalty. But, whatever our approaches, we were either making some predictions, static predictions,",
+    "start": 32.84,
+    "end": 41.88,
+    "ocr_text": "Lecture 58: PIPELINE HAZARDS (PART 4)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR."
+  },
+  {
+    "text": "we were assuming beforehand branch is taken or not taken or we are relying on the compiler",
+    "start": 41.88,
+    "end": 51.32,
+    "ocr_text": "Lecture 58: PIPELINE HAZARDS (PART 4)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR."
+  },
+  {
+    "text": "to move codes around and give the pipeline a better code to execute, which will generate less number of stalls.",
+    "start": 51.32,
+    "end": 61.96,
+    "ocr_text": "Lecture 58: PIPELINE HAZARDS (PART 4)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR."
+  },
+  {
+    "text": "But, both these approaches are static in some respect, which means whatever we are deciding or",
+    "start": 61.96,
+    "end": 72.04,
+    "ocr_text": "Lecture 58: PIPELINE HAZARDS (PART 4)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR."
+  },
+  {
+    "text": "predicting or assuming that is statically done once. Now, we look at some approaches where we",
+    "start": 72.04,
+    "end": 80.6,
+    "ocr_text": "Lecture 58: PIPELINE HAZARDS (PART 4)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR."
+  },
+  {
+    "text": "try to exploit the dynamic behavior of a loop of a branch instruction to improve or enhance the",
+    "start": 80.84,
+    "end": 92.52,
+    "ocr_text": "Lecture 58: PIPELINE HAZARDS (PART 4)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR."
+  },
+  {
+    "text": "performance of which respect to the control hazards even more. So, we start with this lecture.",
+    "start": 92.52,
+    "end": 100.28,
+    "ocr_text": "Lecture 58: PIPELINE HAZARDS (PART 4)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR."
+  },
+  {
+    "text": "So, what I have just now mentioned, this is stated here. So, in our earlier lectures, we have seen",
+    "start": 100.68,
+    "end": 113.08,
+    "ocr_text": "Lecture 58: PIPELINE HAZARDS (PART 4)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR."
+  },
+  {
+    "text": "that in order to reduce the branch penalties, we are using some kind of static approach, either you",
+    "start": 113.08,
+    "end": 120.92,
+    "ocr_text": "Introduction\n\n+ What we have seen so far to reduce branch penaltie:\nmple hare based schemes th tic prediction approach\nsken oF not taken)\nare-based scheme with compl (delayed bran\n+ We shall now explore some hardware based approaches to dynamically\npredict the outcome of a branch\n\nNeTEL on NANONAL Ny\nUTRHARAGPUR SERTHeATION couRSES Sor"
+  },
+  {
+    "text": "are doing some prediction as I said, we are assuming that the branch is taken or the branch is not taken",
+    "start": 120.92,
+    "end": 127.0,
+    "ocr_text": "Introduction\n\n+ What we have seen so far to reduce branch penaltie:\nmple hardware-based schemes th: rgtic prediction approach\n(assume taken or not taken)\n— software-based scheme with compiler support (« d branches)\n+ We shall now explore some hardware based approaches to dynamically\npredict the outcome of a branch\n\nNPTEL ONLIN\nITKHARAGPUR RERTIEeaTION counses"
+  },
+  {
+    "text": "or we are relying on the compiler asking the compiler that well, we have our branch delay slots.",
+    "start": 127.88,
+    "end": 135.08,
+    "ocr_text": "Introduction\n\nWhat we have seen so far to reduce branch penaltie:\nbased schemes th atic prediction approach\nyor not taken).\nbased scheme with conipiler support (c d branches)\nWe shall now explore some hardware based approaches to dynamically\npredict the outcome of a branch\n\n(PTEL ONUNE\nIIT KHARAGPUR QEATIFICATION COURSES"
+  },
+  {
+    "text": "Please try and fill up the branch delay slots with some useful instructions.",
+    "start": 135.8,
+    "end": 140.52,
+    "ocr_text": "Introduction\n\nWhat we have seen so far to reduce branch penaltie:\n\nmple hardware-based schemes th: tatic prediction approa\nume taken or not taken)\n\nare-based scheme with compiler support (delayed branches)\nWe shall now explore some hardware based approaches to dynamically\npredict the outcome of a branch\n\nNPTEL OnLine\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "But, what we will be doing now is that these are purely hardware based approaches, what we are",
+    "start": 142.52,
+    "end": 148.28,
+    "ocr_text": "Introduction\n\nWhat we have seen so far to reduce branch penaltie:\n\nmple hardware-based schemes th: tatic prediction approa\nume taken or not taken)\n\nare-based scheme with compiler support (delayed branches)\nWe shall now explore some hardware based approaches to dynamically\npredict the outcome of a branch\n\nNPTEL OnLine\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "discussing now to dynamically predict the outcome of a branch, dynamc because it is dynamic.",
+    "start": 148.28,
+    "end": 156.52,
+    "ocr_text": "Introduction\n\nWhat we have seen so far to reduce branch penaltie:\n\nare-based schemes th. tatic prediction approach\nken or not taken)\n\nare-based scheme with compiler support (¢ d branches)\n\nWe shall now explore some hardware based approaches to dynamically\n\npredict the outcome of a branch\n\nNPTEL ONLINE\nIITKHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "So, the prediction can change with time. Like you see in a program, whenever there is a branch",
+    "start": 156.52,
+    "end": 162.36,
+    "ocr_text": "Introduction\n\nWhat we have seen so far to reduce branch penaltie:\n\nare-based schemes that uses a static prediction approach\nnor not taken)\n\nare-based scheme with compiler support (delayed branches)\nWe shall now explore some hardware based approaches to dynamically\npredict the outcome of a branch\n\n(TEL OW\nIITKHARAGPUR CEtTIneaON counses"
+  },
+  {
+    "text": "depending on the program, some of the branches can be taken most of the time, some other branches",
+    "start": 163.4,
+    "end": 170.2,
+    "ocr_text": "Introduction\n\nWhat we have seen so far to reduce branch penaltie:\n\nare-based schemes that uses a static prediction approach\nnor not taken)\n\nare-based scheme with compiler support (delayed branches)\nWe shall now explore some hardware based approaches to dynamically\npredict the outcome of a branch\n\n(TEL OW\nIITKHARAGPUR CEtTIneaON counses"
+  },
+  {
+    "text": "can be not taken most of the time. So, you really cannot say statically beforehand that all",
+    "start": 170.2,
+    "end": 177.24,
+    "ocr_text": "Introduction\n\nWhat we have seen so far to reduce branch penalties?\nmple hardware-based atic prediction approach\nume taken or not taken),\nare-based scheme with compiler support (delayed branches)\nWe shall now explore some hardware based approaches to dynamically\npredict the outcome of a branch\n\nfe}"
+  },
+  {
+    "text": "branches are mostly taken or mostly not taken, you cannot say like that. Depending on your program,",
+    "start": 177.24,
+    "end": 183.88,
+    "ocr_text": "\\\nSR)\n2"
+  },
+  {
+    "text": "the way you have written the program, a branch can be either mostly taken or mostly not taken",
+    "start": 183.88,
+    "end": 190.36,
+    "ocr_text": "\\\nSR)\n2"
+  },
+  {
+    "text": "or it can be 50-50 also, there can be situations. So, the first approach we talk about,",
+    "start": 190.36,
+    "end": 199.4,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\n\nmemory (like cache) that is indexed\nby the lower few bits of the branch\n\ninstruction address.\n1-bit prediction scheme\n= The memory contains the target\nss of branch, and also a bit\n\nwhether the branch was\n\n(PTEL ONLINE\nITKHARAGPUR CfarieaioN\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nbranch addre:\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "this uses a data structure, data structure means hardware data structure called a branch prediction",
+    "start": 200.84,
+    "end": 209.72,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\n\nmemory (like cache) that is indexed\nby the lower few bits of the branch\n\ninstruction address.\n1-bit prediction scheme\n= The memory contains the target\nss of branch, and also a bit\n\nwhether the branch was\n\n(PTEL ONLINE\nITKHARAGPUR CfarieaioN\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nbranch addre:\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "buffer. Branch prediction buffer is depicted here. So, what this BPV is? It is a small high speed",
+    "start": 209.72,
+    "end": 219.4,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high\nmemory (like cache) that is indexed\nby the lowe: of the branch\ninstructic\n\nther the branch was\n\nNPTEL ONLINE\n\nBuffer (BPB)\n\nkebit\nBranch add\n\nPrediction\n\nPredicted\nbranch addr\n\na"
+  },
+  {
+    "text": "memory, it is like a cache memory, a high speed memory. And this is the address of the branch,",
+    "start": 219.4,
+    "end": 226.28,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n\n= The memory contains the target\naddress of br.\nthat\n\n.PTEL ONLINE\nIIT KHARAGPUR CEATIFICATION couRsEs\n\nkebit\n\nBranch address\n\nPrediction\n\nPredicted\nbranch addre:"
+  },
+  {
+    "text": "which is shown in pink, this one. Now, you recall in MIPS32, whenever your branch address,",
+    "start": 226.28,
+    "end": 234.44,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n— The memory contains the target\naddress of br.\n\nthat say:\n\nAch, and also a bit\nther the branch\n\nNPTEL ONLIN\nIIT KHARAGPUR IECATION\n\nCERTIFICATION COURSES\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nbranch address\n\nae on\n\ni)"
+  },
+  {
+    "text": "because every instruction starts with an address, which is a multiple of four, what is what does",
+    "start": 235.0,
+    "end": 242.28,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n— The memory contains the target\naddress of br.\n\nthat say:\n\nAch, and also a bit\nther the branch\n\nNPTEL ONLIN\nIIT KHARAGPUR IECATION\n\nCERTIFICATION COURSES\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nbranch address\n\nae on\n\ni)"
+  },
+  {
+    "text": "that mean? That whenever you have a 32-bit address, the last two bits will always be zero.",
+    "start": 242.28,
+    "end": 249.16,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n— The memory contains the target\naddress of br.\n\nthat say:\n\nAch, and also a bit\nther the branch\n\nNPTEL ONLIN\nIIT KHARAGPUR IECATION\n\nCERTIFICATION COURSES\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nbranch address\n\nae on\n\ni)"
+  },
+  {
+    "text": "That means, multiple of four. Then you have remaining 30 bits. Here, you are selecting a few bits",
+    "start": 250.28,
+    "end": 258.44,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n— The memory contains the target\naddress of br.\n\nthat say:\n\nAch, and also a bit\nther the branch\n\nNPTEL ONLIN\nIIT KHARAGPUR IECATION\n\nCERTIFICATION COURSES\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nbranch address\n\nae on\n\ni)"
+  },
+  {
+    "text": "from the lower side. Let us say K number of bits. So, how many bits that is a design parameter?",
+    "start": 258.44,
+    "end": 265.4,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed kebie\nmemory (like cache) that is indexed\n\nby the lower few bits of the branch\n\ninstruction address.\n\nBranch address\n\n1-bit prediction scheme\n\n= The memory contains the target tein\naddress of branch, and also a bit predict\n\nthat says whether the branch was Predicted\nrecently taken or not branch address\n\nITKHARAGPUR GEttinesTION courses"
+  },
+  {
+    "text": "This can be 456, whatever, let us say we use six bits, let us say.",
+    "start": 266.04,
+    "end": 269.64,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed kebie\nmemory (like cache) that is indexed\n\nby the lower few bits of the branch\n\ninstruction address.\n\nBranch address\n\n1-bit prediction scheme\n\n= The memory contains the target tein\naddress of branch, and also a bit predict\n\nthat says whether the branch was Predicted\nrecently taken or not branch address\n\nITKHARAGPUR GEttinesTION courses"
+  },
+  {
+    "text": "So, our approach will be something like this. These k bits of the branch address,",
+    "start": 271.8,
+    "end": 278.84,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed kebie\nmemory (like cache) that is indexed\n\nby the lower few bits of the branch\n\ninstruction address.\n\nBranch address\n\n1-bit prediction scheme\n\n= The memory contains the target tein\naddress of branch, and also a bit predict\n\nthat says whether the branch was Predicted\nrecently taken or not branch address\n\nITKHARAGPUR GEttinesTION courses"
+  },
+  {
+    "text": "we are using to access this table, BPV. BPV is like a small high-speed memory, that is indexed by",
+    "start": 279.08,
+    "end": 290.36,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed kebie\nmemory (like cache) that is indexed\n\nby the lower few bits of the branch\n\ninstruction address.\n\nBranch address\n\n1-bit prediction scheme\n\n= The memory contains the target tein\naddress of branch, and also a bit predict\n\nthat says whether the branch was Predicted\nrecently taken or not branch address\n\nITKHARAGPUR GEttinesTION courses"
+  },
+  {
+    "text": "the lower few bits of the instruction. What is the meaning of this? See, let us come back to this",
+    "start": 290.36,
+    "end": 297.16,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n\n— The memory contains the target\nch, and also a bit\nherth\n\naddress of br.\nrecently\n\nbranch\n\nNPTEL ONLINE\nITKHARAGPUR ATIFICATION\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nbranch addre:\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "again. If I take it is 6, go to the bar 6 means how much? 64, right? So, I will be having a small memory,",
+    "start": 297.16,
+    "end": 305.96,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n\n— The memory contains the target\nch, and also a bit\nherth\n\naddress of br.\nrecently\n\nbranch\n\nNPTEL ONLINE\nITKHARAGPUR ATIFICATION\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nbranch addre:\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "with 64 entries, 0, 1, up to 63. So, these few bits will be used as the address to access this memory.",
+    "start": 308.84,
+    "end": 322.76,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n\n— The memory contains the target\nch, and also a bit\nherth\n\naddress of br.\nrecently\n\nbranch\n\nNPTEL ONLINE\nITKHARAGPUR ATIFICATION\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nbranch addre:\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "This is what I am saying. So, these k bits are indexed, this BPV is indexed by these k bits.",
+    "start": 325.4,
+    "end": 334.92,
+    "ocr_text": "Branch Pre\n\nThe BPB is a small high-speed\nmemory (like cache) that is in\nby the lower few bits ofthe b:\ninstruction\n1-bit prediction s\n— The memory c\nof branch, and al\nhat says whether the bra\n\nITKHARAGPUR\n\ndiction Buffer (BPB)\n\nkebit\ndexed Branch address\n\nranch\n\nPrediction\n\nPredicted\nbranch addre:\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "And what is stored in this memory? Here, the predicted branch address is stored.",
+    "start": 335.64,
+    "end": 343.24,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed kebie\nmemory (like cache) that is indexed\n\nBranch address\nby the lower few bits of the branch\n\ninstruction address.\n\n1-bit prediction scheme\n\n= The memory contains the target Prediction\n\nPredicted\nbranch addre:\n\n(PTEL ONLINE\nIIT KHARAGPUR GEiTiFICATION couRsES"
+  },
+  {
+    "text": "The predicted branch address can be either the address of the next instruction or the address",
+    "start": 345.32,
+    "end": 351.64,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed kebie\nmemory (like cache) that is indexed\n\nBranch address\nby the lower few bits of the branch\n\ninstruction address.\n\n1-bit prediction scheme\n\n= The memory contains the target Prediction\n\nPredicted\nbranch addre:\n\n(PTEL ONLINE\nIIT KHARAGPUR GEiTiFICATION couRsES"
+  },
+  {
+    "text": "of the target. Like, suppose I have an instruction, branch if equal to 0, let us say R1 L.",
+    "start": 351.64,
+    "end": 361.24,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed kebie\nmemory (like cache) that is indexed\n\nBranch address\nby the lower few bits of the branch\n\ninstruction address.\n\n1-bit prediction scheme\n\n= The memory contains the target Prediction\n\nPredicted\nbranch addre:\n\n(PTEL ONLINE\nIIT KHARAGPUR GEiTiFICATION couRsES"
+  },
+  {
+    "text": "So, when this instruction is executed, if it is not taken branch, so next instruction executed",
+    "start": 361.56,
+    "end": 370.6,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed kebie\nmemory (like cache) that is indexed\n\nBranch address\nby the lower few bits of the branch\n\ninstruction address.\n\n1-bit prediction scheme\n\n= The memory contains the target Prediction\n\nPredicted\nbranch addre:\n\n(PTEL ONLINE\nIIT KHARAGPUR GEiTiFICATION couRsES"
+  },
+  {
+    "text": "will be the next one. If it is a taken branch, next instruction executed will be the one from the",
+    "start": 370.6,
+    "end": 376.52,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed\nmemory (like cache) that is\ny the lower few bits of the branch\n\ndexed\n\ninstruction address.\n1-bit prediction scheme\nThe memory contains the target\n\nof branch, and also a bit\n° branch v\n\naddr\nthat says whether th\n\nNPTEL Ont\nITKHARAGPUR CERTIFICATION COURSES\n\nkebit\n\nch address\n\nPrediction\n\nPredicted\nbranch addre:\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "label L. So, this is one possible branch address, this is the other possible branch address.",
+    "start": 376.52,
+    "end": 383.16,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed\nmemory (like cache) that is\ny the lower few bits of the branch\n\ndexed\n\ninstruction address.\n1-bit prediction scheme\nThe memory contains the target\n\nof branch, and also a bit\n° branch v\n\naddr\nthat says whether th\n\nNPTEL Ont\nITKHARAGPUR CERTIFICATION COURSES\n\nkebit\n\nch address\n\nPrediction\n\nPredicted\nbranch addre:\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "So, the predicted branch address is stored here. So, the idea is that you check the last few",
+    "start": 383.56,
+    "end": 394.12,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed\nmemory (like cache) that is\ny the lower few bits of the branch\n\ndexed\n\ninstruction address.\n1-bit prediction scheme\nThe memory contains the target\n\nof branch, and also a bit\n° branch v\n\naddr\nthat says whether th\n\nNPTEL Ont\nITKHARAGPUR CERTIFICATION COURSES\n\nkebit\n\nch address\n\nPrediction\n\nPredicted\nbranch addre:\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "k bits, you index it, look up this table and see what is stored here.",
+    "start": 394.12,
+    "end": 400.44,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed\nmemory (like cache) that is\ny the lower few bits of the branch\n\ndexed\n\ninstruction address.\n1-bit prediction scheme\nThe memory contains the target\n\nof branch, and also a bit\n° branch v\n\naddr\nthat says whether th\n\nNPTEL Ont\nITKHARAGPUR CERTIFICATION COURSES\n\nkebit\n\nch address\n\nPrediction\n\nPredicted\nbranch addre:\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "And whatever is stored here, that is your predicted branch address from where you start fetching",
+    "start": 402.28,
+    "end": 407.16,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed kebie\nmemory (like cache) that is indexed\n\nby the lower few bits of the branch\n\ninstruction address.\n\nBranch address\n\n1-bit prediction scheme\n\n= The memory contains the target resienton\naddress of branch, and also a bit predic\nthat say: ther the branch was een\n\nrecently taken or not branch addre:\n\nNe Ni\nIITKHARAGPUR REtTIeatON counses"
+  },
+  {
+    "text": "the next instruction. And this green one, you have some additional bit stored in the one bit",
+    "start": 407.32,
+    "end": 414.52,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction schem\n\n— The memory contains the target\naddress of branch, and also a bit\n\nwhether the branch was\n\nNPTEL ONLINE\nITKHARAGPUR ITRCATION\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nh addre:\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "prediction scheme, you have single bits with every entry. This will tell whether the last",
+    "start": 414.52,
+    "end": 421.24,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction schem\n\n— The memory contains the target\naddress of branch, and also a bit\n\nwhether the branch was\n\nNPTEL ONLINE\nITKHARAGPUR ITRCATION\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nh addre:\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "prediction was a taken branch or not taken branch. Let us say 0 means taken and 1 means not taken.",
+    "start": 421.24,
+    "end": 429.08,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n\n— The memory contains the target\n\nthat say:\nrecently\n\nbranch was\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nddress\n\n@Qrewyae.\nA"
+  },
+  {
+    "text": "So, that will also contain that, that what was the prediction taken or not taken.",
+    "start": 429.88,
+    "end": 435.16,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n\n— The memory contains the target\n\nthat say:\nrecently\n\nbranch was\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES\n\nBuffer (BPB)\n\nkebit\nBranch address\n\nPrediction\n\nPredicted\nddress\n\n@Qrewyae.\nA"
+  },
+  {
+    "text": "So, this is how it is done. Now, this one bit prediction scheme, you see, just one thing.",
+    "start": 437.48,
+    "end": 447.4,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPB is a small high-speed kebie\nmemory (like cache) that is indexed\n\nby the lower few bits of the branch\n\ninstruction address.\n\nBranch address\n\n1-bit prediction scheme\n\n= The memory contains the target\naddress of branch, and also a bit\n\nat says whether the branch was Predicted\nrecently taken or not branch madres\n\nPrediction\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "So, whenever you encounter a branch instruction, you check this k bits, go to the index and also",
+    "start": 449.64,
+    "end": 458.52,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\nThe BPBis a small high-s\n\nmemory (like cache) that is indexed\n\need\n\nkebit\nBranch add\n\nby the lower few bits of the branch\n\ninstruction addr:\ndiction\n\nays whether the br:\n\nITKHARAGPUR\n\nPrediction\n\nPredicted\nbranch addr\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "check the prediction, because you will also come to know later whether the branch is actually",
+    "start": 458.52,
+    "end": 462.6,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction addri\ndiction scheme\nory contains\nof branch\nays whether\n\n>a bit\nne branch was\n\naddre nd al\nthat\n\nNPTEL ONLINE\nITKHARAGPUR ITERCATION\n\nBuffer (BPB)\n\nkebit\nBranch addr\n\nPrediction\n\nPredicted\nbi\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "taken or not taken. So, you can compare with the prediction whether this matching, whatever",
+    "start": 462.6,
+    "end": 468.04,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction addri\ndiction scheme\nory contains\nof branch\nays whether\n\n>a bit\nne branch was\n\naddre nd al\nthat\n\nNPTEL ONLINE\nITKHARAGPUR ITERCATION\n\nBuffer (BPB)\n\nkebit\nBranch addr\n\nPrediction\n\nPredicted\nbi\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "was there whether it is the same. So, if it is matching, then you know that well you are correct.",
+    "start": 468.04,
+    "end": 472.12,
+    "ocr_text": "Branch Prediction\n\nThe BPB is a small high-speed\nmemory (like cache) that is indexed\nby the lower few bits of the branch\ninstruction address.\n\n1-bit prediction scheme\n\n= The memory contains the target\naddress of branch, and also a bit\n\nwhether the branch\n\n(PTEL ONLINE\nIIT KHARAGPUR Cea r\n\nBuffer (BPB)\n\nkebie\nBranch address\n\nPrediction\n\nPredicted\nbranch addre:\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "But there are some problems. This one bit prediction scheme means the prediction may be incorrect,",
+    "start": 475.08,
+    "end": 481.48,
+    "ocr_text": "L-bit prediction scheme (contd.):\n\n= The prediction may be incorrect > it may correspond to some other branch\nInstruction that has the same lower-order k address bits.\n\n— Inthis scheme, instruction fetching begins from the predicted addre\n— If the prediction is later found to be wrong, the prediction bit is inverted,"
+  },
+  {
+    "text": "because the value you are getting from the BPP, it may correspond to some other branch instruction",
+    "start": 481.48,
+    "end": 490.36,
+    "ocr_text": "L-bit prediction scheme (contd.):\n\n= The prediction may be incorrect > it may correspond to some other branch\nInstruction that has the same lower-order k address bits.\n\n— Inthis scheme, instruction fetching begins from the predicted addre\n— If the prediction is later found to be wrong, the prediction bit is inverted,"
+  },
+  {
+    "text": "that has the same lower k bit address bits. Like here, you are using a particular branch address,",
+    "start": 490.76,
+    "end": 499.16,
+    "ocr_text": "L-bit prediction scheme (contd.)\n\n— The prediction may be incorrect > it may correspond to some other branch\nInstruction that has the same lower-order k address bit:\n\n— In this scheme, instruction fetching begins from the predicted addre\n\n— If the prediction is later found to be wrong, the prediction bit is inverted,\n\na\n\n<7)"
+  },
+  {
+    "text": "you are looking at the last k bits. So, there can be some other branch address for which",
+    "start": 499.16,
+    "end": 505.72,
+    "ocr_text": "L-bit prediction scheme (contd.)\n\n— The prediction may be incorrect > it may correspond to some other branch\nInstruction that has the same lower-order k address bit:\n\n— In this scheme, instruction fetching begins from the predicted addre\n\n— If the prediction is later found to be wrong, the prediction bit is inverted,\n\na\n\n<7)"
+  },
+  {
+    "text": "accidentally this k bits may be identical. So, they will both point to the same location.",
+    "start": 505.72,
+    "end": 512.76,
+    "ocr_text": "|\n\nee\n\n63] J\n\n=> bs"
+  },
+  {
+    "text": "So, you will be trying to get the same entry here in the BPP and say that this will be your",
+    "start": 513.72,
+    "end": 521.72,
+    "ocr_text": "|\n\nee\n\n63] J\n\n=> bs"
+  },
+  {
+    "text": "target branch address. Obviously, maybe this entry was for this one. Now, by mistake for the",
+    "start": 521.72,
+    "end": 527.88,
+    "ocr_text": "|\n\nee\n\n63] J\n\n=> bs"
+  },
+  {
+    "text": "other one also, you are mapped here. So, that will be a wrong prediction. So, sometimes the",
+    "start": 527.88,
+    "end": 535.88,
+    "ocr_text": "|\n\nee\n\n63] J\n\n=> bs"
+  },
+  {
+    "text": "prediction may be incorrect. And here, the instruction fetching will begin from the predicted address",
+    "start": 535.88,
+    "end": 543.24,
+    "ocr_text": "L-bit prediction scheme (contd.):\n\n— The prediction may be incorrect > it may correspond to some other branch\nInstruction that has the same lower-order k address bits.\n\n— In this scheme, instruction fetching begins from the predicted addre\n— Ifthe prediction is later found to be wrong, the prediction bit is inverted,\n\nNPTEL on\n\nUTRHARAGPUR CERTINeATION counses"
+  },
+  {
+    "text": "and during execution later on, well for MIPS 32 as I said at the end of ID, you will come to know",
+    "start": 544.68,
+    "end": 553.08,
+    "ocr_text": "L-bit prediction scheme (contd.):\n\n— The prediction may be incorrect > it may correspond to some other branch\nInstruction that has the same lower-order k address bits.\n\n— In this scheme, instruction fetching begins from the predicted addre\n— Ifthe prediction is later found to be wrong, the prediction bit is inverted,\n\nNPTEL on\n\nUTRHARAGPUR CERTINeATION counses"
+  },
+  {
+    "text": "whether your prediction is right or wrong. So, at the end of ID, anyway you will be knowing that",
+    "start": 553.08,
+    "end": 560.68,
+    "ocr_text": "/ Za\n\ny oL_ |\nay =|\nSA\n\n(posal"
+  },
+  {
+    "text": "whatever you have taken from BPP and you are going ahead was a right prediction or a wrong prediction.",
+    "start": 560.68,
+    "end": 568.04,
+    "ocr_text": "L-bit prediction scheme (contd.)\n\n— The prediction may be incorrect > it may correspond to some other branch\n\nInstruction that has the same lower-order k address bit:\n— In this scheme, instruction fetching begins from the predicted addre\n— Ifthe prediction is later fourld to be wrong, the prediction bit is inverted."
+  },
+  {
+    "text": "So, if you later on see that your prediction is wrong, you can appropriately change the prediction",
+    "start": 568.04,
+    "end": 577.32,
+    "ocr_text": "L-bit prediction scheme (contd.)\n\n— The prediction may be incorrect > it may correspond to some other branch\n\nInstruction that has the same lower-order k address bit:\n— In this scheme, instruction fetching begins from the predicted addre\n— Ifthe prediction is later fourld to be wrong, the prediction bit is inverted."
+  },
+  {
+    "text": "bit in the BPP. Because as I said, there is a prediction bit in the BPP, which will tell whether",
+    "start": 577.32,
+    "end": 582.92,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\n2 small high-speed kebie\nmemory (like cache) that is indexed\n\nby the lower fe branch\n\ninstruction addr!\n\nBranch add\n\nPrediction\n\nPredicted\nrecently taken or not\n\nNPTEL ONLIN NATIONAL i\nIITKHARAGPUR GEMTIneaTION counses TeHNOUg"
+  },
+  {
+    "text": "the last prediction was taken or not taken. And instruction fetching will begin from the predicted",
+    "start": 582.92,
+    "end": 590.12,
+    "ocr_text": "Branch Prediction Buffer (BPB)\n\n2 small high-speed kebie\nmemory (like cache) that is indexed\n\nby the lower fe branch\n\ninstruction addr!\n\nBranch add\n\nPrediction\n\nPredicted\nrecently taken or not\n\nNPTEL ONLIN NATIONAL i\nIITKHARAGPUR GEMTIneaTION counses TeHNOUg"
+  },
+  {
+    "text": "address. And the drawback here is that, suppose I have a branch instruction which is taken most",
+    "start": 590.12,
+    "end": 599.32,
+    "ocr_text": "L-bit prediction scheme (contd.):\n\n— The prediction may be incorrect > it may correspond to some other branch\nInstruction that has the same lower-order k address bits.\n\n— In this scheme, instruction fetching begins from the predicted addre\n— If the prediction is later found to be wrong, the prediction bit is inverted,\n\nNPTEL oni\nCEATIFICATION Counses"
+  },
+  {
+    "text": "of the time. So, when it is not taken, there will two incorrect predictions rather than one.",
+    "start": 599.32,
+    "end": 607.64,
+    "ocr_text": "L-bit prediction scheme (contd.):\n\n= The prediction may be incorrect > it may correspond to some other branch\nInstruction that has the same lower-order k address bits\n\n— In this scheme, instruction fetching begins from the predicted address\n— If the prediction is later found to be wrong, the prediction bit is invert\nDrawback of the 1-bit prediction scheme:\n\n— Consider a branch that is taken most of the time. When it is not taken, there will\n\nbe two incorrect predictions, rather than one."
+  },
+  {
+    "text": "Why? Let us look at a scenario. Suppose, I have a loop. Let us say the loop is executing 100 times.",
+    "start": 609.32,
+    "end": 617.56,
+    "ocr_text": "L-bit prediction scheme (contd.):\n\n= The prediction may be incorrect > it may correspond to\n\nInstruction that has the same lower-order k address bits.\n\nsome other branch\n\n— In this scheme, instruction fetching begins from the predicted addre\n\n— If the prediction is later found to be wrong, the prediction bit is inverted,\n\nDrawback of the 1-bit prediction scheme:\n\n— Consider a branch that is taken most of the time. When it is not taken, ther\nbe two incorrect predictions, rather than one.\n\nNPTEL ONLINE\n\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, for 99 of the time, it will be branch, yes, branch, yes, taken branch. But for the last time,",
+    "start": 617.56,
+    "end": 628.52,
+    "ocr_text": "L-bit prediction scheme (contd.):\n\n= The prediction may be incorrect > it may correspond to\n\nInstruction that has the same lower-order k address bits.\n\nsome other branch\n\n— In this scheme, instruction fetching begins from the predicted addre\n\n— If the prediction is later found to be wrong, the prediction bit is inverted,\n\nDrawback of the 1-bit prediction scheme:\n\n— Consider a branch that is taken most of the time. When it is not taken, ther\nbe two incorrect predictions, rather than one.\n\nNPTEL ONLINE\n\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "it will be coming out of the loop that will be a wrong prediction. So, this out of this 100,",
+    "start": 628.52,
+    "end": 638.2,
+    "ocr_text": "L-bit prediction scheme (contd.):\n\n= The prediction may be incorrect > it may correspond to\n\nInstruction that has the same lower-order k address bits.\n\nsome other branch\n\n— In this scheme, instruction fetching begins from the predicted addre\n\n— If the prediction is later found to be wrong, the prediction bit is inverted,\n\nDrawback of the 1-bit prediction scheme:\n\n— Consider a branch that is taken most of the time. When it is not taken, ther\nbe two incorrect predictions, rather than one.\n\nNPTEL ONLINE\n\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the last time will be getting one wrong prediction. So, that bit will be appropriately inverted also",
+    "start": 638.2,
+    "end": 645.56,
+    "ocr_text": "L-bit prediction scheme (contd.):\n\n= The prediction may be incorrect > it may correspond to\n\nInstruction that has the same lower-order k address bits.\n\nsome other branch\n\n— In this scheme, instruction fetching begins from the predicted addre\n\n— If the prediction is later found to be wrong, the prediction bit is inverted,\n\nDrawback of the 1-bit prediction scheme:\n\n— Consider a branch that is taken most of the time. When it is not taken, ther\nbe two incorrect predictions, rather than one.\n\nNPTEL ONLINE\n\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "again BPP, that it is not taken. For the earlier 99 times, it was taken, taken, taken. So,",
+    "start": 645.56,
+    "end": 651.96,
+    "ocr_text": "\\\n\n\\ 3 i 2 Oe :"
+  },
+  {
+    "text": "in BPP that entry was showing us taken. Next time, when we again go back and enter that loop loop,",
+    "start": 651.96,
+    "end": 658.84,
+    "ocr_text": "\\\n\n\\ 3 i 2 Oe :"
+  },
+  {
+    "text": "again, maybe this is a nested loop. Next time, when you enter that loop again, the first iteration",
+    "start": 658.84,
+    "end": 666.92,
+    "ocr_text": "\\\n\n\\ 3 i 2 Oe :"
+  },
+  {
+    "text": "of that loop will, there will again be a mis prediction. Because last time, you had said the prediction",
+    "start": 666.92,
+    "end": 672.92,
+    "ocr_text": "\\\n\n\\ 3 i 2 Oe :"
+  },
+  {
+    "text": "bit to not taken because it has come out of the loop. But next time, when we enter, the first time,",
+    "start": 673.88,
+    "end": 679.16,
+    "ocr_text": "\\\n\n\\ 3 i 2 Oe :"
+  },
+  {
+    "text": "there will be a loop again. So, there will be a wrong prediction. So, there will be twice,",
+    "start": 679.16,
+    "end": 683.72,
+    "ocr_text": "\\\n\n\\ 3 i 2 Oe :"
+  },
+  {
+    "text": "last iteration of the current loop and the first iteration of the next loop. There will be two",
+    "start": 684.76,
+    "end": 694.28,
+    "ocr_text": "\\\n\n\\ 3 i 2 Oe :"
+  },
+  {
+    "text": "mis predictions for every execution of the loop. So, let us take an example.",
+    "start": 694.28,
+    "end": 699.88,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\ntimes before exiting\n\nfor (loop-0; 1o0p<i000; loopt+)\n«\n\nfor (is0; 4\nAti) = Ati] + 5"
+  },
+  {
+    "text": "So, here I have a loop whatever I am trying to explain. Let us say, I have a loop here in a loop",
+    "start": 700.6,
+    "end": 707.72,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\ntimes before exiting\n\nfor (loop-0; 1o0p<i000; loopt+)\n«\n\nfor (is0; 4\nAti) = Ati] + 5"
+  },
+  {
+    "text": "that executes 20 times. And this is inside an outer loop. So, I am looking at the inner loop.",
+    "start": 708.6,
+    "end": 716.44,
+    "ocr_text": "Consider the following ne:\ntimes before exiting\n\nfor (loop=0; 1o0p<1000;\n«\n\nfor (180; 1<20; i++)\nAti] = ate} + 5\n\nITKHARAGPUR\n\nExample 1\n\ned loop where the inner loop iterates for 20\n\nToope+)\n\nNPTEL oui\nCERTIFICAT"
+  },
+  {
+    "text": "So, inner loop is executing 20 times. So, what we are saying that for this inner loop,",
+    "start": 717.0,
+    "end": 723.88,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\ntimes before exiting\n+ For every execution of the inner loop\nEre, there will be two misprediction:\na) Last iteration of the current loop.\nfor (1-0; 1<20; 1+) b) First iteration of the next loc\nAti] = ALA] + 5\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "there will be two mis predictions. Last iteration of the current loop. So, when I equal to 19,",
+    "start": 724.68,
+    "end": 731.8,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\ntimes before exiting\n+ For every execution of the inner loop\nEre, there will be two misprediction:\na) Last iteration of the current loop.\nfor (1-0; 1<20; 1+) b) First iteration of the next loc\nAti] = ALA] + 5\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "last time it will be coming out of the loop. But for I equal to 0 to 18, it was looping,",
+    "start": 732.6,
+    "end": 739.24,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\n\ntimes before exiting\n\n4\n\n(loop=0; 1oop<1000;\n\nfor (ico\nAta)\n\n= AL)\n\nITKHARAGPUR\n\n+ For every execution of the inner loop\n\nnecett) there will be\na) Last iteration of the current loop.\n\nb) First iteration of the next loc\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "taken, taken, taken, taken. But for I equal to 19, it will be not taken. But when it comes back and",
+    "start": 739.24,
+    "end": 746.52,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\ntimes before exiting\n\n+ For every execution of the inner loop\nfor (loop=0; 1o0p<1000; loop++)\n«\n\nthere will be two misprediction:\na) Last iteration of the current loop.\n\n£o# (4-0; 1<20; 144) b) First iteration of the next loo}\nAti] = ALG] + 5\n\nnen\nIIT KHARAGPUR GEtTIneaTION counses"
+  },
+  {
+    "text": "enters the loop again for the next loop of the outer loop, next iteration of the outer loop.",
+    "start": 746.52,
+    "end": 752.28,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\nbefore exiting.\n+ For every execution of the inner loop\nthere d Excrrstd 097 Et non +t) there will be two misprediction:\na). Last iteration of the current loop.\nfor (4-0; 1<20; i++) b) First iteration of the next Ic\nAti] — ALG] + 5"
+  },
+  {
+    "text": "So, again it will start with I equal to 0. And last time it was a not taken prediction.",
+    "start": 753.08,
+    "end": 758.04,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\nbefore exiting.\n+ For every execution of the inner loop\nthere d Excrrstd 097 Et non +t) there will be two misprediction:\na). Last iteration of the current loop.\nfor (4-0; 1<20; i++) b) First iteration of the next Ic\nAti] — ALG] + 5"
+  },
+  {
+    "text": "So, with not taken for I equal to 0, it will try to take the branch. So, it will be a mis prediction",
+    "start": 758.76,
+    "end": 764.76,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\ntimes before exiting\n\n+ For every execution of the inner loop\nfor (loop-0; 1o0p<1000;\n4\n\nthere will be two misprediction:\na) Last iteration of the current loop.\n\nfor Gino; 4<20; b) First iteration of the next loc\nALi) = ALi}\n\nmRanaceun Sete courses @ ewe"
+  },
+  {
+    "text": "again. So, the first iteration of the next loop will also be mis prediction. So, actually,",
+    "start": 764.76,
+    "end": 770.36,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\ntimes before exiting\n\n+ For every execution of the inner loop\nfor (loop-0; 1o0p<1000;\n4\n\nthere will be two misprediction:\na) Last iteration of the current loop.\n\nfor Gino; 4<20; b) First iteration of the next loc\nALi) = ALi}\n\nmRanaceun Sete courses @ ewe"
+  },
+  {
+    "text": "though this branch is taken 95 percent of the time in reality, 19 times it is taken one time,",
+    "start": 771.88,
+    "end": 778.44,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\ntimes before exiting\n\n+ For every execution of the inner loop\nfor (loop=0; 1e0p<1000;\n«\n\nthere will be two misprediction:\n») Last iteration of the cufrent loop.\n\nfor (1-0; 1<20 b) First iteration of the next loc\nAti] = ati) +\n\nNPTEL ONLINE NATIONAL gg\n2"
+  },
+  {
+    "text": "it is not taken. But this one bit prediction scheme provides correct prediction 18 times and",
+    "start": 778.44,
+    "end": 786.6,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\n\ntimes before exiting\n\n«\n\n(@oop=0; 1oop<1000;\n\nfor (1-0; 4<20;\nALi] = Ata) +\n\nITKHARAGPUR\n\nis + For every execution of the inner loop\neee) there will be two misprediction:\na) Last iteration of the c\n\nfthe\n\nrent loop.\nb) First iteration next loo}\n\nThough the branch is taken 95% of the\n\ntime (19 out of 20), correct prediction\n\naccuracy.\n\nNPTEL ONLINE\nCERTIFICATION couRSES"
+  },
+  {
+    "text": "twice it is mis predicting. So, it is having 90 percent accuracy. This is one drawback of this",
+    "start": 786.6,
+    "end": 794.92,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\n\ntimes before exiting\n\n«\n\nGeop=0; loop<1000;\n\nfor (1-0; 4<20;\nAti] = Ati) +\n\nITKHARAGPUR\n\nzs + For every execution of the inner loop\nSEEAER) there will be two misprediction:\n2) Last iteration of the curre\n\nb) First iteration\n\nloop.\nf the next loo}\n\nThough the branch is taken 95:\ntime (19 out of 20), correct predic\n\n6 of the\n\n= 90% accuracy.\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "one bit prediction scheme. So, to avoid it, you can have a two bit prediction scheme.",
+    "start": 794.92,
+    "end": 801.64,
+    "ocr_text": "Example 1\n\nConsider the following nested loop where the inner loop iterates for 20\n\ntimes before exiting\n\n«\n\nGeop=0; loop<1000;\n\nfor (1-0; 4<20;\nAti] = Ati) +\n\nITKHARAGPUR\n\nzs + For every execution of the inner loop\nSEEAER) there will be two misprediction:\n2) Last iteration of the curre\n\nb) First iteration\n\nloop.\nf the next loo}\n\nThough the branch is taken 95:\ntime (19 out of 20), correct predic\n\n6 of the\n\n= 90% accuracy.\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "Because the trouble with the earlier scheme was that every time there was a mis prediction,",
+    "start": 802.2,
+    "end": 806.76,
+    "ocr_text": "iction scheme\n\nNATIONAL oF\nTECHNOL). i NRAWA\naan"
+  },
+  {
+    "text": "I was flipping that bit like in that branch prediction buffer B PB.",
+    "start": 806.84,
+    "end": 814.84,
+    "ocr_text": "iction scheme\n\nNATIONAL oF\nTECHNOL). i NRAWA\naan"
+  },
+  {
+    "text": "There was this prediction bit, this was 0 or 1, 0 mean let us say taken,",
+    "start": 817.08,
+    "end": 824.12,
+    "ocr_text": "iction scheme\n\nNATIONAL oF\nTECHNOL). i NRAWA\naan"
+  },
+  {
+    "text": "1 means let us say not taken. So, here we were flipping this bit as soon as there is a mis prediction.",
+    "start": 826.6,
+    "end": 835.16,
+    "ocr_text": "iction scheme\n\nNATIONAL oF\nTECHNOL). i NRAWA\naan"
+  },
+  {
+    "text": "We are not taking this fact into account just like the early example showed that most of the",
+    "start": 835.64,
+    "end": 844.28,
+    "ocr_text": "a ~~\nfos"
+  },
+  {
+    "text": "practical scenarios will be like this. And if you follow this immediately flipping policy,",
+    "start": 844.28,
+    "end": 851.16,
+    "ocr_text": "a ~~\nfos"
+  },
+  {
+    "text": "there will be two mis predictions in every loop. So, our modified strategy will go like this,",
+    "start": 851.8,
+    "end": 859.0,
+    "ocr_text": "a ~~\nfos"
+  },
+  {
+    "text": "we are saying that well, let us do like this. We will not change the prediction every time there",
+    "start": 859.08,
+    "end": 865.56,
+    "ocr_text": "a ~~\nfos"
+  },
+  {
+    "text": "is a mis prediction, we will be waiting two times. If there is two consecutive mis predictions,",
+    "start": 865.56,
+    "end": 872.28,
+    "ocr_text": "a ~~\nfos"
+  },
+  {
+    "text": "then only we will be changing the prediction information. If we do it, then if you think of",
+    "start": 872.92,
+    "end": 880.6,
+    "ocr_text": "a ~~\nfos"
+  },
+  {
+    "text": "the earlier case, then 19 of the times we can have correct prediction. Let us see how it works.",
+    "start": 880.6,
+    "end": 887.32,
+    "ocr_text": "+  2-bit prediction scheme:\n\n— {ries to avoid two mispredictions per loop in the 1-bit prediction scheme.\n\nNPTEL ONLINE NATIONAL [pu\ni"
+  },
+  {
+    "text": "Here, we try to avoid the two mis predictions per loop in the example that I have shown for the",
+    "start": 889.48,
+    "end": 895.08,
+    "ocr_text": "+  2-bit prediction scheme:\n\n— {ries to avoid two mispredictions per loop in the 1-bit prediction scheme.\n\nNPTEL ONLINE NATIONAL [pu\ni"
+  },
+  {
+    "text": "one bit prediction scheme. Let us see, here in the two bit scheme, I am showing a state transition",
+    "start": 895.08,
+    "end": 905.32,
+    "ocr_text": "tion schem:\nto avoid two mispredictions per loop in the 1-bit prediction s\n\nptured by the followi ition diag\n\nnr\nSee\n\n(00)\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "diagram. The green states, these are the states, four states are shown. The green states are the",
+    "start": 905.32,
+    "end": 915.56,
+    "ocr_text": "2-bit prediction schem\n\n— Tries to avoid two mispredictions per loop in the 1-bit prediction scheme\n\n= Here, a prediction is changed (taken to not-taken, or vice versa) only aft\n\nptured by the follow nsition diagram\n\nNT\n\nEach state is\nencoded in 2\n\n(00)\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "stable states. 0 0 indicates predict not taken, one one indicates predict taken. So, while you are",
+    "start": 915.56,
+    "end": 925.72,
+    "ocr_text": "2-bit prediction schem\n\nTries to avoid two mispredictions per loop in the 1-bit prediction scheme\nHere, a prediction is changed (taken to not-taken, or vice versa) only\nCan be captured by the following ition diagear\nNT\nPredict Take\nEach state is\nencoded in 2\n\nnr bits\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES Tech"
+  },
+  {
+    "text": "here, if your loop you are seeing taken taken taken taken, you remain here. And while you are",
+    "start": 925.72,
+    "end": 932.52,
+    "ocr_text": "2-bit prediction scheme\n\n— Tries to avoid two mispredictions per loop in the 1-bit prediction\n\n— Here, a prediction is changed (taken to not-taken, or vice versa) only aft\n\nptured by the following state t » diagram\nNT\nEach state is\n\nencoded in 2\nbits.\n\ndict Not Taken ict Not\n(01) (0\n\nNeTEL ONLIN\nITKHARAGPUR CEtTIneaTION courses"
+  },
+  {
+    "text": "here, if it is not taken, not taken, not taken, you remain here. But if it is predict taken,",
+    "start": 932.52,
+    "end": 940.04,
+    "ocr_text": "2-bit prediction scheme\n\n— Tries to avoid two mispredictions per loop in the 1-bit prediction\n\n— Here, a prediction is changed (taken to not-taken, or vice versa) only aft\n\nptured by the following state t » diagram\nNT\nEach state is\n\nencoded in 2\nbits.\n\ndict Not Taken ict Not\n(01) (0\n\nNeTEL ONLIN\nITKHARAGPUR CEtTIneaTION courses"
+  },
+  {
+    "text": "if you get a not taken mis prediction, you do not straight away go here. But rather, you come to",
+    "start": 940.76,
+    "end": 949.32,
+    "ocr_text": "2-bit prediction schem\n\nTries to avoid two mispredictions per loop in the 1-bit prediction scheme\n\na prediction is changed (taken to not-taken, or vice versa) only aft\n\nptured by the following ition diagram\nNT\n\nEach state is\nencoded in 2\n\nPredict Not\n(00)\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "a intermediate state. This is still predict taken, but maybe. So, here, if you see that next time,",
+    "start": 949.32,
+    "end": 959.96,
+    "ocr_text": "2-bit prediction schem\nto avoid two mispredictions per loop in the 1-bit prediction scheme\na prediction is changed (taken to not-taken, or vice versa) only aft\nptured by the following state transition diaj\nNT\nEach state is\n\nencoded in 2\nbits.\n\njet Not Taken | —y\n(01\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "again there is a mis prediction, then only you move here, which means that your behavior of the",
+    "start": 959.96,
+    "end": 966.52,
+    "ocr_text": "2-bit prediction scheme\n\nTries to avoid two mispredictions 5\nHere, a prediction is changed (taken to not-taken, or vice versa) only\nptured by the following ition diagrar\nNT\nPredict Take\nEach state is\nencoded in 2\n\nnr bits\n\nPredictNot Taken | —>\n(00)\n\nNPTEL ONLINE NATIONAL\nCERTIFICATION COURSES TECHNOL"
+  },
+  {
+    "text": "loop has possibly changed. Earlier, it was mostly taken. Now, somehow it has become mostly not taken.",
+    "start": 966.52,
+    "end": 972.52,
+    "ocr_text": "2-bit prediction scheme\n\nTries to avoid two mispredictions 5\nHere, a prediction is changed (taken to not-taken, or vice versa) only\nptured by the following ition diagrar\nNT\nPredict Take\nEach state is\nencoded in 2\n\nnr bits\n\nPredictNot Taken | —>\n(00)\n\nNPTEL ONLINE NATIONAL\nCERTIFICATION COURSES TECHNOL"
+  },
+  {
+    "text": "But if you see that the next time, it is again taken, you again come back here. Similar is the case",
+    "start": 974.04,
+    "end": 980.28,
+    "ocr_text": "2-bit prediction scheme\n\nTries to avoid two mispredictions per loop in the 1-bit prediction scheme\n\nre, a prediction is changed (taken to not-taken, or vice v\n\nNT\n\ndict Not Taken Predict Not Taken\n(01) (00)\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\n\nEach state is\nencoded in 2\nbits."
+  },
+  {
+    "text": "here, if it is not taken and if you find it is a taken mis prediction, you temporarily come here.",
+    "start": 980.28,
+    "end": 987.24,
+    "ocr_text": "2-bit prediction scheme\n\nTries to avoid two mispredictions per loop in the 1-bit prediction scheme\n\nre, a prediction is changed (taken to not-taken, or vice v\n\nNT\n\ndict Not Taken Predict Not Taken\n(01) (00)\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\n\nEach state is\nencoded in 2\nbits."
+  },
+  {
+    "text": "This is again predict not taken, but not green, maybe case. So, if it is again taken, that means,",
+    "start": 987.24,
+    "end": 995.32,
+    "ocr_text": "2-bit prediction scheme\n\nTries to avoid two mispredictions per loop in the 1-bit prediction s\n\nre, a prediction is changed (taken to not-taken, or vice versa) only aft\n\nCan be captured by the following ition diagrar\nNT\nEach state is\n\nencoded in 2\n\nPredict Not Taken\n(00)\n\nNeTEL ONLIN\nITKHARAGPUR CEMTInOaTION counses"
+  },
+  {
+    "text": "two consecutive mis predictions, then you permanently move here. And if it is again,",
+    "start": 995.32,
+    "end": 1001.08,
+    "ocr_text": "diction scheme\nto avoid two mispredictions per loop in the 1-bit prediction sche\n2 prediction is changed (taken to not-taken, or vice versa) only\nptured by the follow\nNT\nEach state is\n\nencoded in 2\nbits.\n\nict Not Taken\n(00)\n\ne\nCERTIFICATION COURSES\n\nNPTEL onus"
+  },
+  {
+    "text": "not taken, you again come back here. So, since each state is encoded in two bits, we call it a two",
+    "start": 1001.08,
+    "end": 1008.84,
+    "ocr_text": "diction scheme\nto avoid two mispredictions per loop in the 1-bit prediction sche\n2 prediction is changed (taken to not-taken, or vice versa) only\nptured by the follow\nNT\nEach state is\n\nencoded in 2\nbits.\n\nict Not Taken\n(00)\n\ne\nCERTIFICATION COURSES\n\nNPTEL onus"
+  },
+  {
+    "text": "bit prediction scheme. So, here, your prediction is changing only after two consecutive mis predictions.",
+    "start": 1008.84,
+    "end": 1017.88,
+    "ocr_text": "2-bit prediction schem\n\nto avoid two mispredictions per loop in the 1-bit prediction scheme\na prediction is changed (taken to not-taken, or vice versa) only\nptured by the following state transition diagram\nNT\nPredict Taken\nEach state is\nencoded in 2\n\nnr bits\n\ndict Not\n(01)\n\nTEL ONLINE\nIIT KHARAGPUR CERTIeaION courses"
+  },
+  {
+    "text": "So, in general, this will give you better behavior as compared to the one bit prediction scheme.",
+    "start": 1018.68,
+    "end": 1025.64,
+    "ocr_text": "2-bit prediction scheme\n\nto avoid two mispredictions per loop in the 1-bit prediction\na prediction is changed (taken to not-taken, or vice versa) only\n\nCan be captured by the follow sition diage\n\nNT\n\nEach state is\nencoded in 2\n\nnr bits.\n\ndict Not Taken Predict Not Taken\n(01) (00)\n\nnen 5\nIIT KHARAGPUR GEMTInesTION counses"
+  },
+  {
+    "text": "Now, the thing is that for a MIPS32 pipeline, really, you do not gain much with this,",
+    "start": 1030.04,
+    "end": 1036.44,
+    "ocr_text": "An observation\n\nIt may be noted that the 2-bit prediction scl\nthe MIPS32 pipeline.\n\nNpTeL onus\nIT KHARAGPUR CEATIFICATION couRsEs\n\nne as disc\n\nussed cannot speed up.\n\nNATIONAL Ip oF,\ncr Go."
+  },
+  {
+    "text": "because in MIPS32 pipeline, as I said, because of the simplicity of the instruction set,",
+    "start": 1036.44,
+    "end": 1042.12,
+    "ocr_text": "An observation\n\nIt may be noted that the 2-bit prediction scl\nthe MIPS32 pipeline.\n\nNpTeL onus\nIT KHARAGPUR CEATIFICATION couRsEs\n\nne as disc\n\nussed cannot speed up.\n\nNATIONAL Ip oF,\ncr Go."
+  },
+  {
+    "text": "simplicity of the instruction encoding, we will come to everything at the end of ID anyway.",
+    "start": 1042.76,
+    "end": 1048.6,
+    "ocr_text": "An observation\n\nIt may be noted that the 2-bit prediction scl\nthe MIPS32 pipeline.\n\nNpTeL onus\nIT KHARAGPUR CEATIFICATION couRsEs\n\nne as disc\n\nussed cannot speed up.\n\nNATIONAL Ip oF,\ncr Go."
+  },
+  {
+    "text": "We will know whether the branch will be taken or not taken. We will also know the address of the",
+    "start": 1049.8,
+    "end": 1055.16,
+    "ocr_text": "An observation\n\nIt may be noted that the 2-bit prediction scl\nthe MIPS32 pipeline.\n\nNpTeL onus\nIT KHARAGPUR CEATIFICATION couRsEs\n\nne as disc\n\nussed cannot speed up.\n\nNATIONAL Ip oF,\ncr Go."
+  },
+  {
+    "text": "target at the end of ID itself. So, whether we are using one bit prediction or two bit prediction,",
+    "start": 1055.16,
+    "end": 1061.96,
+    "ocr_text": "ie ‘ip.\n\nae"
+  },
+  {
+    "text": "really does not help much in for MIPS32, because we have to wait till the end of ID",
+    "start": 1061.96,
+    "end": 1071.72,
+    "ocr_text": "ie ‘ip.\n\nae"
+  },
+  {
+    "text": "to come to know that whether or prediction was correct or not correct.",
+    "start": 1073.16,
+    "end": 1077.16,
+    "ocr_text": "ie ‘ip.\n\nae"
+  },
+  {
+    "text": "This is what I told. So, for MIPS32 pipeline, we need to do something more.",
+    "start": 1081.8,
+    "end": 1089.88,
+    "ocr_text": "+ An observation:\n\nIt may be noted that the 2-bit prediction me as discussed cannot speed up\nthe MIPS32 pipeli\n\n— In MIPS32 pipeline, both the branch outcome and branch target address ¢\nknown together (viz, at the end of 1D)\n\nNATIONAL psy\nTecenotg?” gl)\nme\n\nWav\n\n‘_"
+  },
+  {
+    "text": "See, if we look at the pipeline stages again, it was fetch, it was decode, it was execute,",
+    "start": 1090.2,
+    "end": 1101.0,
+    "ocr_text": "An observation\nIt may be noted that the 2-bit prediction sc s discussed cannot speed ui\nthe MIPS32 pipeline\n\nIn MIPS32 pipeline, both the branch outcome and branch target addre:\nknown together (viz, at the end of ID)\n\nTo improve MIPS32 pipayine performance, w .d to kno\nfetch by the end of IF\n\npredicted next value of PC?\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "M M and W B. Suppose, this is a branch instruction, this was executing. What I am saying is that,",
+    "start": 1103.32,
+    "end": 1111.16,
+    "ocr_text": "we\n\nia Ie ID Ex MEM"
+  },
+  {
+    "text": "it is only at the end of ID here, you come to know about the branch outcome precisely.",
+    "start": 1112.36,
+    "end": 1119.72,
+    "ocr_text": "we\n\nia Ie ID Ex MEM"
+  },
+  {
+    "text": "So, all your decision will be here, but because you will be fetching the next instruction immediately",
+    "start": 1119.96,
+    "end": 1135.96,
+    "ocr_text": "GEG: Te mp) ex men We\n\nBranch"
+  },
+  {
+    "text": "here, but branch outcome is known later. So, maybe this fetching will be wrong.",
+    "start": 1135.96,
+    "end": 1144.28,
+    "ocr_text": "gee TF aD) ex men we\n\nGranch"
+  },
+  {
+    "text": "So, what we are trying to do here is that, can we do something in the I F stage itself,",
+    "start": 1144.68,
+    "end": 1152.36,
+    "ocr_text": "gee TF aD) ex men we\n\nGranch"
+  },
+  {
+    "text": "so that fetching can start in the immediately next cycle with some predictive accuracy.",
+    "start": 1153.24,
+    "end": 1163.08,
+    "ocr_text": "eee: =\nE {LH ID| ex men WB\n\nBranch\noutcome"
+  },
+  {
+    "text": "Because, this is the branch instruction, we cannot know until ID is over anyway. This is the",
+    "start": 1164.76,
+    "end": 1171.32,
+    "ocr_text": "eee: =\nE {LH ID| ex men WB\n\nBranch\noutcome"
+  },
+  {
+    "text": "trouble, but here, we are saying that, well, we do not know this is a branch, all right.",
+    "start": 1171.32,
+    "end": 1177.4,
+    "ocr_text": "eee: =\nE {LH ID| ex men WB\n\nBranch\noutcome"
+  },
+  {
+    "text": "You see, there are two things. Firstly, I am saying that the instruction, unless you decode it,",
+    "start": 1177.4,
+    "end": 1184.36,
+    "ocr_text": "eee: =\nE {LH ID| ex men WB\n\nBranch\noutcome"
+  },
+  {
+    "text": "during the ID stage, you will not know that it is a branch instruction.",
+    "start": 1186.28,
+    "end": 1190.6,
+    "ocr_text": "_\n“ cont\neu 4 ix"
+  },
+  {
+    "text": "And, if you do not know, if you do not know, it is a branch instruction, then all these things",
+    "start": 1191.72,
+    "end": 1198.04,
+    "ocr_text": "_\n“ cont\neu 4 ix"
+  },
+  {
+    "text": "become meaningless, it can mean add instruction also, but what you can do better is that,",
+    "start": 1198.04,
+    "end": 1204.36,
+    "ocr_text": "_\n“ cont\neu 4 ix"
+  },
+  {
+    "text": "you apply a little intelligence. Suppose, I maintain the address memory address of the instructions.",
+    "start": 1204.36,
+    "end": 1212.52,
+    "ocr_text": "_\n“ cont\neu 4 ix"
+  },
+  {
+    "text": "I know that the instruction at memory address 1000 is a branch.",
+    "start": 1213.4,
+    "end": 1219.64,
+    "ocr_text": "=\n\\"
+  },
+  {
+    "text": "So, whenever I am fetching an instruction, I am comparing that the value of the program counter",
+    "start": 1221.16,
+    "end": 1227.72,
+    "ocr_text": "=\n\\"
+  },
+  {
+    "text": "from where I am fetching is that, the address of a known branch instruction, which I had seen",
+    "start": 1227.8,
+    "end": 1234.44,
+    "ocr_text": "=\n\\"
+  },
+  {
+    "text": "earlier, there will be another table, I compare. If I see that 1000 is there, so I will know that,",
+    "start": 1234.44,
+    "end": 1242.52,
+    "ocr_text": "=\n\\"
+  },
+  {
+    "text": "well, I am fetching, I do not know what instruction it is, but because 1000 is there in that table,",
+    "start": 1242.52,
+    "end": 1248.12,
+    "ocr_text": "_\na"
+  },
+  {
+    "text": "I will know that, this is a branch instruction, because of that, this 1000 is in that table.",
+    "start": 1249.32,
+    "end": 1255.56,
+    "ocr_text": "_\na"
+  },
+  {
+    "text": "So, I can start my manipulation during IF itself, I will not have to wait till ID.",
+    "start": 1257.8,
+    "end": 1263.32,
+    "ocr_text": "_\na"
+  },
+  {
+    "text": "So, this is the philosophy we will be following now. So, this last statement actually talks about",
+    "start": 1265.0,
+    "end": 1273.48,
+    "ocr_text": "_\na"
+  },
+  {
+    "text": "that, to improve the MIPS 32 performance, we need to know from what address to fetch by the end",
+    "start": 1273.48,
+    "end": 1282.36,
+    "ocr_text": "ITKHARAGPUR\n\nAn observation\n\nIt may be noted that the 2-bit prediction\n\nthe MIPS32 pipeline\n\nIn MIPS32 pipeline.\nknown together (viz\nTo imprave MIPS32 pipeline\nfetch by the end of IF\n\nboth the\nthe end of 1D)\nperformance, «\n\nd next value of PC?\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nbranch outcome\n\nme as discussed cannot speed up\n\nand branch target address gets\n\n.d to know from what address to\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "of IF, whether the instruction is a branch, as I said, it is not decoded yet, decoding will be",
+    "start": 1282.52,
+    "end": 1289.24,
+    "ocr_text": "An observation\nIt may be noted that the 2-bit prediction s discussed cannot speed up\nthe MIPS32 pipeline\n\nIn MIPS32 pipeline, both the branch outcome and branch target address gets\nknown together (viz. at the end of ID)\n\nTo improve MIPS32 pipeline performance, we need to know from what address to\nfetch by the end of IF\n\nTEL ON\nIIT KHARAGPUR RERTIeaION counses"
+  },
+  {
+    "text": "done only during ID. And what is the predicted next fellow PC, this also we want.",
+    "start": 1289.24,
+    "end": 1294.6,
+    "ocr_text": "An observation\n\nIt may be noted that the 2-bit prediction s s discussed cannot speed up\nthe MIPS32 pipel\nIn MIPS32 pipeline, both the branch outcome and branch target address gets\n\nknown together (viz. at the end of 1D)\nTo Improve MIPS32 pipeline performance from what address to\nfetch by the end of IE\n\nmaaaceun SESH counses | eer"
+  },
+  {
+    "text": "We want so many things earlier before the instruction is decoded.",
+    "start": 1296.44,
+    "end": 1299.8,
+    "ocr_text": "An observation\nIt may be noted that the 2-bit prediction discussed cannot speed up\nthe MIPS32 pipeline\n\nIn MIPS32 pipeline, both the branch outcome and branch target address gets\nknown together (viz. at the end of 1D)\n\nTo improve MIPS32 pipeline performance, we need to know from what address to\nfetch by the end of IF\n\nNPTEL ON NATIONAL ID\nIITKHARAGPUR GEATeATON counses TECHNOL"
+  },
+  {
+    "text": "So, we use something called branch target buffer. BTB is a high speed memory, let us look into this",
+    "start": 1300.28,
+    "end": 1315.16,
+    "ocr_text": "An observation\nIt may be noted that the 2-bit prediction discussed cannot speed up\nthe MIPS32 pipeline\n\nIn MIPS32 pipeline, both the branch outcome and branch target address gets\nknown together (viz. at the end of 1D)\n\nTo improve MIPS32 pipeline performance, we need to know from what address to\nfetch by the end of IF\n\nNPTEL ON NATIONAL ID\nIITKHARAGPUR GEATeATON counses TECHNOL"
+  },
+  {
+    "text": "into some detail to explain how it works. So, it is a high speed memory, just like the earlier",
+    "start": 1315.16,
+    "end": 1324.76,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n— Since we are predicting the next instruction address from where fetching will 5\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructio!\naddresses stored in the BTB > represent addresses of known branch\n\n— 8TB also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma"
+  },
+  {
+    "text": "structure we saw, that branch prediction buffer, that stores the predicted address for the",
+    "start": 1324.76,
+    "end": 1332.36,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n— Since we are predicting the next instruction address from where fetching will 5\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructio!\naddresses stored in the BTB > represent addresses of known branch\n\n— 8TB also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma"
+  },
+  {
+    "text": "next instruction after branch. So, whenever there is a branch instruction, from where you will",
+    "start": 1332.36,
+    "end": 1338.92,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n— Since we are predicting the next instruction address from where fetching will s\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructior\naddresses stored in the BTB > represent addresses of known branche:\n\n— 818 also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma"
+  },
+  {
+    "text": "be fetching the next instruction, is it the next instruction following or is it the target",
+    "start": 1338.92,
+    "end": 1345.4,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n— Since we are predicting the next instruction address from where fetching will s\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructior\naddresses stored in the BTB > represent addresses of known branche:\n\n— 818 also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma"
+  },
+  {
+    "text": "instruction, that will be your predicted next instruction, that will be stored there.",
+    "start": 1345.4,
+    "end": 1351.32,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n= Since we are pr the next instruction address from where fetching will s\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructior\naddresses stored in the BTB > represent addresses of known branche:\nBTB also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "Since, we are predicting the next instruction from where we are fetching before the decoding,",
+    "start": 1351.64,
+    "end": 1359.88,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n= Since we are pr the next instruction address from where fetching will s\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructior\naddresses stored in the BTB > represent addresses of known branche:\nBTB also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "because we will also have to know whether the fetched instruction is predicted as taken branch or not.",
+    "start": 1359.88,
+    "end": 1365.08,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n= Since we are pr the next instruction address from where fetching will s\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructior\naddresses stored in the BTB > represent addresses of known branche:\nBTB also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, we will see the structure, how it is there. So, just as I said,",
+    "start": 1365.96,
+    "end": 1371.64,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n— Since we are predicting the next inst 1m address from where fetching will s\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructior\naddresses stored in the BTB > represent addresses of known branche:\n\n— BTB also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma\n\nere. owune ——e—\n\nS"
+  },
+  {
+    "text": "the program counter, the PC value from where you are fetching the instruction,",
+    "start": 1373.56,
+    "end": 1377.24,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n— Since we are predicting the next inst 1m address from where fetching will s\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructior\naddresses stored in the BTB > represent addresses of known branche:\n\n— BTB also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma\n\nere. owune ——e—\n\nS"
+  },
+  {
+    "text": "that also needs to be stored in that memory, because that will tell me whether that is a known",
+    "start": 1378.12,
+    "end": 1387.88,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n— Since we are predicting the next inst 1m address from where fetching will s\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructior\naddresses stored in the BTB > represent addresses of known branche:\n\n— BTB also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma\n\nere. owune ——e—\n\nS"
+  },
+  {
+    "text": "address of a branch instruction. Like I will come back to this, let me show a diagram first.",
+    "start": 1387.88,
+    "end": 1395.56,
+    "ocr_text": "> Not predicted t.\nbranch; proceed normall\n\nstruction is branch; predicted\nused as the next PC\n\nwere ONLINE\nITKHARAGPUR QEMTIneaTION courses"
+  },
+  {
+    "text": "You see, this is how the table looks like. There are two, there are actually three parts.",
+    "start": 1395.56,
+    "end": 1401.56,
+    "ocr_text": "> Not predicted t.\nbranch; proceed normall\n\nstruction is branch; predicted\nused as the next PC\n\nwere ONLINE\nITKHARAGPUR QEMTIneaTION courses"
+  },
+  {
+    "text": "The first part is, the address of the branch instruction, this is the PC value,",
+    "start": 1402.28,
+    "end": 1407.96,
+    "ocr_text": "> Not predicted t.\nbranch; proceed normall\n\nstruction is branch; predicted\nused as the next PC\n\nwere ONLINE\nITKHARAGPUR QEMTIneaTION courses"
+  },
+  {
+    "text": "then the predicted next address. So, while you are fetching an instruction,",
+    "start": 1410.76,
+    "end": 1417.8,
+    "ocr_text": "branch; proceed normal\nction is branch: pr\nbe used as th\n\n| SERB courses | rier ge\n\nep"
+  },
+  {
+    "text": "this is actually an associative memory, you will have to search this parallelly.",
+    "start": 1418.6,
+    "end": 1422.84,
+    "ocr_text": "> Not predicted\nbranch; proce\nLuction is branch; predicted\nu: PC\n\nNPTEL ONLINE NATIONAL ji\nIT KHARAGPUR CERTIFICATION COURSES TeCNOU II gi\n\nGy"
+  },
+  {
+    "text": "So, when an instruction is being fetched, you parallelly check whether this PC value is already",
+    "start": 1424.84,
+    "end": 1431.48,
+    "ocr_text": "> Not predicted\nbranch; proce\nLuction is branch; predicted\nu: PC\n\nNPTEL ONLINE NATIONAL ji\nIT KHARAGPUR CERTIFICATION COURSES TeCNOU II gi\n\nGy"
+  },
+  {
+    "text": "present here or not. If you see that it is already present, what it means? It means that the",
+    "start": 1431.64,
+    "end": 1439.32,
+    "ocr_text": "Not predicted to be\n\nction is branch; predicted\n\nNPTEL ONLINE NATIONAL I\nITKHARAGPUR CERTIFICATION COURSES TeCHNOU"
+  },
+  {
+    "text": "instruction is a branch instruction, because only the addresses of the branch instructions will",
+    "start": 1439.32,
+    "end": 1445.32,
+    "ocr_text": "Tuction Bi\n\nNot predicted to\n>\nbranch; proceed norma\n‘ruction is branch: predicted\n“das the next PC\n\nNPTEL ONLINE NATIONAL Laing oF\nITKHARAGPUR CERTIFICATION COURSES TECHNOL"
+  },
+  {
+    "text": "be storing in this table. So, if the PC is matching here, you will definitely know that",
+    "start": 1445.32,
+    "end": 1452.2,
+    "ocr_text": "Not predicte\n>\nbranch; proceed normall\nInstruction is branch; predicted\nused as the next PC\n\nNPTEL On NATIONAL joi\nIT KHARAGPUR CERTIFICATION COURSES TECHNOU"
+  },
+  {
+    "text": "this is a branch instruction. And if it is a branch instruction, then the corresponding predicted",
+    "start": 1452.2,
+    "end": 1458.6,
+    "ocr_text": "Not predicte\n>\nbranch; proceed normall\nInstruction is branch; predicted\nused as the next PC\n\nNPTEL On NATIONAL joi\nIT KHARAGPUR CERTIFICATION COURSES TECHNOU"
+  },
+  {
+    "text": "PC value, that you will be using as your next PC from here to fetch the instruction.",
+    "start": 1458.6,
+    "end": 1464.68,
+    "ocr_text": "Not predicted to\n\nNpTeL DyLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "But if you see that it is not matching, then it is not predicted as a branch, you proceed normally.",
+    "start": 1466.2,
+    "end": 1473.8,
+    "ocr_text": ">> Not predicted to be\nbranch; proceed normally.\n\n‘ruction Is branch: predicted\nsd az the next PC\n\nIIT KHARAGPUR GERTIeATION courses"
+  },
+  {
+    "text": "And also there is a third field taken or not taken. So, you also keep this, so that if there is",
+    "start": 1475.16,
+    "end": 1481.0,
+    "ocr_text": "Not predicted to\n>\nbranch; proceed norma\n\n‘ruction Is branch: predicted\nused as the next PC\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "a prediction mismatch, you can update this. Let us go back. So, the PC of the instruction being",
+    "start": 1481.0,
+    "end": 1490.76,
+    "ocr_text": "Not predicted to\n>\nbranch; proceed norma\n\n‘ruction Is branch: predicted\nused as the next PC\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "fetched is matched against a set of instruction addresses stored in the table. As I said,",
+    "start": 1490.76,
+    "end": 1498.6,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n= Since we are pr 1@ next instruction address from where fetching will start\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructior\naddresses stored in the BTB > \"represent addresses of known branch\n\n— BTB also stores whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma\n\n1PTEL ONLINE\nIT KHARAGPUR GERTInesION courses"
+  },
+  {
+    "text": "these table, whatever is stored there, they represent addresses of known branches that were",
+    "start": 1499.4,
+    "end": 1508.04,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n— Since we are pr the next instruction address from where fetching will s\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructior\naddresses stored in the BTB > represent addresses of known branche:\n\n— BTB also stores'whether the branch was predicted T or NT, and helps keep the\nmisprediction penalty sma"
+  },
+  {
+    "text": "encountered earlier. And it also stores whether the branch was predicted as a taken or not taken.",
+    "start": 1508.04,
+    "end": 1515.56,
+    "ocr_text": "Branch Target Buffer (BTB)\n\nThe BTB is a high-speed memory that stores the predicted address for the\n\nnext instruction after a branch\n\n— Since we are predicting the next instruction address from where fetching will s\nbefore decoding the instruction, it is required to know whether the fetched\ninstruction is predicted as a taken branch\nThe PC of the instruction being fetched is matched against a set of instructio!\naddresses stored in the BTB > represent addresses of known branche!\n\n= 878 also stores whether the h was predicted T or NT, and helps keep the\nmisprediction penalty sma\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, this is the data structure and this is how you are comparing. So, how will be using it now?",
+    "start": 1518.04,
+    "end": 1524.36,
+    "ocr_text": "Not predicted to be\n\nction is branch: predicted\nUsed az the next PC\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Let us see, this is the flow chart, which tells you what happens during the IF stage,",
+    "start": 1524.36,
+    "end": 1532.6,
+    "ocr_text": "Not predicted to be\n\nction is branch: predicted\nUsed az the next PC\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "what happens during ID, what happens during EX. Now, in the during the IF stage as you can see,",
+    "start": 1533.24,
+    "end": 1541.16,
+    "ocr_text": "Enter branch PGand || Mispredicted branch Correct prediction:\nrestart fetch at other ‘without stalls\ntarget: update GTB\n\nLed\n|"
+  },
+  {
+    "text": "you are sending the program counter to memory for fetching the instruction.",
+    "start": 1542.12,
+    "end": 1547.0,
+    "ocr_text": "ITKHARAGPUR\n\nMispredicted branch,\nkill fetched instruction;\nrestart fetch at other\ntarget: update GTB\n\nNPTEL OnLine\nCERTIFICAT\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "Parallel E, you are also sending it to BTB, just like here, you are also sending the PC to BTB",
+    "start": 1547.8,
+    "end": 1554.36,
+    "ocr_text": "Enter branch PGand || Mispredic Correct prediction;\nnext PC into BTR |] kill fetched instruction: continue\nrestart fetch at other without\ntarget: update 616\n\nvere. on NATIONAL a\nITRHARAGPUR RERTIRCATION couRSES TORO ey"
+  },
+  {
+    "text": "for searching here. So, while it is being fetched, you parallelly check whether it is in the branch",
+    "start": 1554.36,
+    "end": 1561.72,
+    "ocr_text": "Enter branch PGand || Mispredic Correct prediction;\nnext PC into BTR |] kill fetched instruction: continue\nrestart fetch at other without\ntarget: update 616\n\nvere. on NATIONAL a\nITRHARAGPUR RERTIRCATION couRSES TORO ey"
+  },
+  {
+    "text": "target buffer or not. Suppose you find yes, which means it is a branch instruction,",
+    "start": 1561.72,
+    "end": 1569.96,
+    "ocr_text": "Kutch\n\nEnter branch PCand || Mispredicted branch Correct prediction:\nnext PC into BTB |} kill fetched instruction: continue execution\nstart fetch at other without stalls\ntarget: update &\n\nNPTEL OnLine\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "you send out the predicted PC, where from here predicted PC.",
+    "start": 1570.92,
+    "end": 1575.48,
+    "ocr_text": "Enter branch PC and Correct prediction;\nstart fetch at other without stalls\ntarget: update B16\n\n—"
+  },
+  {
+    "text": "Well, at the end of the ID, the instruction which is fetched will also have completed the",
+    "start": 1578.2,
+    "end": 1584.6,
+    "ocr_text": "Normal instruction\n\nEnter branch PC and Correct prediction:\n\nNPTEL ONLine\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "decoding process. So, then you also know whether your prediction and the decoding of the instruction,",
+    "start": 1584.6,
+    "end": 1593.4,
+    "ocr_text": "Normal instruction\n\nEnter branch PC and Correct prediction:\n\nNPTEL ONLine\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "whatever was there, the prediction is matching or not. If you see that the predictions match,",
+    "start": 1593.4,
+    "end": 1598.6,
+    "ocr_text": "I\"\n\nNormal instruction\n\nkill fetched instruction; continue\nart fetch at other without\ntarget: update 616\n\nNPTEL OnLine\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "which means whatever you are doing, whatever the predicted PC value you are using,",
+    "start": 1599.4,
+    "end": 1604.92,
+    "ocr_text": "ie\n\nt=\n\nNormal in\n\nMapredicted branch, Correct prediction:\nkill fetched instruction: continue\nrestart fetch at other without\ntarget: update B16\n\nNPTEL ONLine\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "that is the correct prediction, you continue execution without installs.",
+    "start": 1604.92,
+    "end": 1609.16,
+    "ocr_text": "ie\n\nt=\n\nNormal in\n\nMapredicted branch, Correct prediction:\nkill fetched instruction: continue\nrestart fetch at other without\ntarget: update B16\n\nNPTEL ONLine\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "But, if you see that 12 prediction is wrong, because your table says that it is taken,",
+    "start": 1610.12,
+    "end": 1617.88,
+    "ocr_text": "ere. oun NATIONAL Wao\n\nmenaraceuR SEMEN coves | caer ge\nee\n\n3 |\n\n7"
+  },
+  {
+    "text": "but after decoding you see that it is not taken, that means it is a mis-per dictated branch.",
+    "start": 1617.88,
+    "end": 1622.92,
+    "ocr_text": "10 ) no\n\nITKHARAGPUR\n\nNPTEL OnLine\nCERTIFICATION COURSES\n\nNATIONAL bs\nTECHNOL"
+  },
+  {
+    "text": "So, if it is a mis-per dictated branch, then you will have to kill the instruction you are fetched.",
+    "start": 1623.64,
+    "end": 1628.84,
+    "ocr_text": "10 ) no\n\nITKHARAGPUR\n\nNPTEL OnLine\nCERTIFICATION COURSES\n\nNATIONAL bs\nTECHNOL"
+  },
+  {
+    "text": "So, you need a stall here and you will have to restart fetch at the other target.",
+    "start": 1628.84,
+    "end": 1633.72,
+    "ocr_text": "Enter branch PCand || Mipredi Correct prediction;\nnext PC into BTR |] kill fetched insteuction continue execution\nrestart fetch at other without stalls\ntarget: update\n\nay\n\n| %S |"
+  },
+  {
+    "text": "And once you do this, you will also have to update BTB, because now your prediction has changed.",
+    "start": 1634.52,
+    "end": 1640.44,
+    "ocr_text": "Enter branch PCand || Mipredi Correct prediction;\nnext PC into BTR |] kill fetched insteuction continue execution\nrestart fetch at other without stalls\ntarget: update\n\nay\n\n| %S |"
+  },
+  {
+    "text": "So, you will have to modify this T and N T and also update the predicted PC.",
+    "start": 1641.4,
+    "end": 1646.36,
+    "ocr_text": "NATIONAL ais\nITKHARAGPUR CERTIFICATION COURSES TNO gi x"
+  },
+  {
+    "text": "And here, if it is not in the BTB, well, it can mean two things, that it is either not a branch",
+    "start": 1648.84,
+    "end": 1656.76,
+    "ocr_text": "ITKHARAGPUR\n\nInara.\n\nEnter branch PGand || Mipredi\nnext PC into BTB |] kill fetched instruction;\nrestart fetch at other\ntarget; update B16\n\nNPTEL ONLine\nCERTIFICATION COURSES\n\nNATIONAL Ib\nTECHNOL"
+  },
+  {
+    "text": "instruction or it is a branch instruction, but you are seeing it for the first time.",
+    "start": 1656.76,
+    "end": 1661.72,
+    "ocr_text": "Enter branch PC and Correct pred\nPCinto BTB || kill fetched instruction: continue\nrestart fetch at other without\ntarget: update G16\n\nwere ow a nanos a\nipoianacoun SERN couss | por §\n\nr ¢."
+  },
+  {
+    "text": "So, whether or not it is a branch instruction, that again you will come to know during ID.",
+    "start": 1661.8,
+    "end": 1667.32,
+    "ocr_text": "Enter branch PC and Correct pred\nPCinto BTB || kill fetched instruction: continue\nrestart fetch at other without\ntarget: update G16\n\nwere ow a nanos a\nipoianacoun SERN couss | por §\n\nr ¢."
+  },
+  {
+    "text": "If you see that it is a branch instruction, then you will have to enter this information",
+    "start": 1668.28,
+    "end": 1673.96,
+    "ocr_text": "—=\n\nNormal instruction\n\nMispredicted branch, Correct prediction;\nart fetch at other ‘without stalls\ntarget: update 618\n\nwre. ona ‘sown aig\nsmuanacoun SERN couses | ran ae\nS\n\n“4"
+  },
+  {
+    "text": "into BTB, because you are seeing the branch instruction for the first time.",
+    "start": 1673.96,
+    "end": 1677.72,
+    "ocr_text": "—=\n\nNormal instruction\n\nMispredicted branch, Correct prediction;\nart fetch at other ‘without stalls\ntarget: update 618\n\nwre. ona ‘sown aig\nsmuanacoun SERN couses | ran ae\nS\n\n“4"
+  },
+  {
+    "text": "But, if it is not, it is a non-branch instruction, you proceed normally to the execution cycle.",
+    "start": 1678.84,
+    "end": 1685.48,
+    "ocr_text": "ra\n\nNormal instruction\n\nITKHARAGPUR\n\nKate\n\n‘er branch PC and Correct prediction;\n\nNPTEL OnLine\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "This is how it works.",
+    "start": 1685.48,
+    "end": 1687.72,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTB and is correct\nOtherwise, there will be penalty of\nat least one clock cycle.\nSince the 8T8 may also need to be\nupdated, the penalty can be two\n\nclock cycles.\n\nNPTEL ON\nIIT KHARAGPUR EEtrinesTON couRses"
+  },
+  {
+    "text": "Now, this table shows the various penalties.",
+    "start": 1690.2,
+    "end": 1693.24,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTB and is correct\nOtherwise, there will be penalty of\nat least one clock cycle.\nSince the 8T8 may also need to be\nupdated, the penalty can be two\n\nclock cycles.\n\nNPTEL ON\nIIT KHARAGPUR EEtrinesTON couRses"
+  },
+  {
+    "text": "You see, if an entries found in the BTB and the prediction is correct, prediction is true",
+    "start": 1695.0,
+    "end": 1702.76,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTB and is correct\nOtherwise, there will be penalty of\nat least one clock cycle.\nSince the 8T8 may also need to be\nupdated, the penalty can be two\n\nclock cycles.\n\nNPTEL ON\nIIT KHARAGPUR EEtrinesTON couRses"
+  },
+  {
+    "text": "and the actual branch was true, then there is no penalty or it is not taken and not taken,",
+    "start": 1702.76,
+    "end": 1709.32,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTBand is correct.\n\nOtherwise, there will be penalty of\n\nat least one clock cycle\nSince the 8T8 may al:\nupdated, the penalty ¢\nclock cycles.\n\nPenalty\nCycles\n\nIT KHARAGPUR CERTIFICATION COURSES\n\nNPTEL ONLINE I\n\n2\n\nNATIONAL Lig oF\n\nTECHNOL\nf\n\nfae\nwes J"
+  },
+  {
+    "text": "then also there is no penalty. But, if the prediction is wrong, found in the BTB,",
+    "start": 1709.4,
+    "end": 1716.28,
+    "ocr_text": "+ There will not be any branch\nnal\nBTB and is correct ¥ r r °\nOtherwise, there will be penalty of : = am\nnr\n\nupdated, the penalty can be two\n\nclock cycles.\n\nNPTEL ONLIN\nIIT KHARAGPUR GEtinestION counses"
+  },
+  {
+    "text": "prediction is true, actual branch is taken, sorry, not taken, or it is not taken and taken.",
+    "start": 1717.24,
+    "end": 1724.44,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTBand is correct\nOtherwise, there will be penalty of\nat least one clock cycle.\nSince the 818 may also need to be\nupdated, the penalty can be two\n\nclock cycles.\n\nNPTEL ONLINE\nIT'KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Then the penalty cycles can be too, why too? Well, means earlier we have seen that penalty",
+    "start": 1725.0,
+    "end": 1730.6,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTBand is correct\nOtherwise, there will be penalty of\nat least one clock cycle.\nSince the 818 may also need to be\nupdated, the penalty can be two\n\nclock cycles.\n\nNPTEL ONLINE\nIT'KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "is one for branch, but here, since we also have to update the BTB, we assume that for updating",
+    "start": 1730.6,
+    "end": 1737.16,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTBand is correct\nOtherwise, there will be penalty of\nat least one clock cycle.\nSince the 8T8 may also need to be\nupdated, the penalty can be\n\nclock cycles.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\nNATIONAL Wy\nTECHNOUS"
+  },
+  {
+    "text": "BTB, we need another cycle. So, that is why the penalty we are seeing as true.",
+    "start": 1737.24,
+    "end": 1740.84,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTBand is correct\nOtherwise, there will be penalty of\nat least one clock cycle.\nSince the 8T8 may also need to be\nupdated, the penalty can be\n\nclock cycles.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\nNATIONAL Wy\nTECHNOUS"
+  },
+  {
+    "text": "And if it is not found in the BTB, you will have to update the BTB for actual branches taken,",
+    "start": 1744.12,
+    "end": 1752.76,
+    "ocr_text": "There will not be any branch\n\npenalty if an entry is found in the\nBTB and is correct.\nOtherwise, there will be penalty of\nat least one clock cycle\nSince the 8T8 may also need to be\nupdated, the penalty can be two\n\nPenalty\nCycles\n\nITKHARAGPUR CERTIFICATION COURSES\n\nNPTEL ONLINE |\n\nNr\n\nNATIONAL bg\n\nTECHNOL\n\na\nQD) ws\n-"
+  },
+  {
+    "text": "penalty cycles is true, if the actual branch is not taken, penalty cycle is one.",
+    "start": 1753.56,
+    "end": 1758.28,
+    "ocr_text": "There will not be any branch\n\npenalty if an entry is found in the\nBTB and is correct.\nOtherwise, there will be penalty of\nat least one clock cycle\nSince the 8T8 may also need to be\nupdated, the penalty can be two\n\nPenalty\nCycles\n\nITKHARAGPUR CERTIFICATION COURSES\n\nNPTEL ONLINE |\n\nNr\n\nNATIONAL bg\n\nTECHNOL\n\na\nQD) ws\n-"
+  },
+  {
+    "text": "So, these are the assumed values and there is also justification as that said.",
+    "start": 1758.28,
+    "end": 1765.32,
+    "ocr_text": "There will not be any branch\nt be any branch mae\npenalty if an entry is found in the (cycles\nBTBand is correct y t T 0\n\nOtherwise, there will be penalty of t\nat least one clock cycle.\n\nNT\nnt\n\nSince the BT8 may also need to be\nupdated, the penalty can be two\n\nNpTEL ONLINE\nIPKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, this is what has said, since the BTB may also need to be updated, the penalty can be two",
+    "start": 1767.24,
+    "end": 1773.4,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTBand is correct.\n\nthere will be penalty of\n\nat least one clock cycle.\nSince the 8T8 may also need to be\nupdated, the penalty can be two\nclock cycles\n\nEni\nSe\n\nNT\n\nITKHARAGPUR CERTIFICATION COURSES\n\nNPTEL ONLINE |\n\nNr\n\nNATIONAL\nTECHNOL"
+  },
+  {
+    "text": "clock cycles in these cases, because here you have to update BTB.",
+    "start": 1773.4,
+    "end": 1776.28,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTBand is correct.\n\nthere will be penalty of\n\nat least one clock cycle.\nSince the 8T8 may also need to be\nupdated, the penalty can be two\nclock cycles\n\nEni\nSe\n\nNT\n\nITKHARAGPUR CERTIFICATION COURSES\n\nNPTEL ONLINE |\n\nNr\n\nNATIONAL\nTECHNOL"
+  },
+  {
+    "text": "Right, fine. Now, there is a small example where you can work out based on these values,",
+    "start": 1778.84,
+    "end": 1785.16,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTB and is correct\n\nOtherwise, there will be penalty of\n\nat least one clock cycle.\nSince the 8T8 may also need to be\nupdated, the penalty can be two\nclock cycles.\n\nEni\n\nnr\n\nITKHARAGPUR CERTIFICATION COURSES\n\nNPTEL ONLINE |\n\nNr\n\nNATIONAL jaa OF\n\nTECHNOL!\n\n&\n\nSava"
+  },
+  {
+    "text": "that let us take an example where the BTB, there is a BTB and 90 percent of the branches in a",
+    "start": 1787.08,
+    "end": 1793.8,
+    "ocr_text": "Example 2\n\n+ Consider the following parameters of a MIPS pipeline with BTB:\n— 90% D are found in BTS.\n\n= 8% of the predictions are incorrect\n\n— 75% of the branches are taken.\n\nCompute the branch penalty\n\nnalty = (% Branches found in BTB x % Mispredictions x 2)\n\nBranch pe\nBranches not found in BTB x % Taken branches x\n\ns not found in BTB x % Not-taken branches\n\nX0.75x2 + 0.10%0.25x1 = 0.32 clock¢\n\nNPTEL ONLIN\nITKHARAGPUR GERTIneaON counses\n\n2)\n\nyele:"
+  },
+  {
+    "text": "program, they are actually found in BTB and out of them 8 percent of the predictions are incorrect",
+    "start": 1793.8,
+    "end": 1802.12,
+    "ocr_text": "Example 2\n\n+ Consider the following parameters of a MIPS pipeline with BTB:\n— 90% D are found in BTS.\n\n= 8% of the predictions are incorrect\n\n— 75% of the branches are taken.\n\nCompute the branch penalty\n\nnalty = (% Branches found in BTB x % Mispredictions x 2)\n\nBranch pe\nBranches not found in BTB x % Taken branches x\n\ns not found in BTB x % Not-taken branches\n\nX0.75x2 + 0.10%0.25x1 = 0.32 clock¢\n\nNPTEL ONLIN\nITKHARAGPUR GERTIneaON counses\n\n2)\n\nyele:"
+  },
+  {
+    "text": "and the remaining 92 percent are correct and 75 percent of the branches are actually taken.",
+    "start": 1802.12,
+    "end": 1808.36,
+    "ocr_text": "Example 2\n\nameters of a MIPS pipeline with BTB:\n\n+ Consider the following F\n— 90% of the branches are found in BT\n28% of the predictions are incorrect\n— 75% of the branches are taken.\n\nCompute the branch penalty\nfound in BTB x % Mispredictions x 2)\n\nBranch penalty = (% Branch\nken branches x 2)\n\nches not found in BTB x % T\nBranches not found in BTB x % Not-taken branches x\n25x1 = 0.32 clock cycle:\n\n0.90 x 0.08 x2 + 0.10x 0.75 x2 + 0.10 x¢\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nITKHARAGPUR"
+  },
+  {
+    "text": "So, what will be the branch penalty? So, the branch penalty will be just you from",
+    "start": 1808.36,
+    "end": 1813.08,
+    "ocr_text": "Example 2\n\n+ Consider the following parameters of a MIPS pipeline with BTB:\n— 90% of the branches are found in BTS.\n= 8% of the predictions are incorrect\n— 75% of the branches are taken.\nCompute the branch penalty\nBranch penalty = (% Branches found in BTB x % Mispredictions x 2)\n(% Branches not found in BTB x % Taken branches x 2)\n+ (% Branches not found in BTB x % Not-taken branches\n0.90 x 0.08 x2 + 0.10x0.75x2 + 0.10x0.25x1 = 0.32 clock cy’\n\nNPTEL ONLIN\nITKHARAGPUR CfitincattOn courses"
+  },
+  {
+    "text": "following the table, wherever there is penalty 2, 2, 2, 1, these are the four cases where there",
+    "start": 1813.08,
+    "end": 1817.64,
+    "ocr_text": "Example 2\n\n+ Consider the following parameters of a MIPS pipeline with BTB:\n— 90% of the branches are found in BTS.\n= 8% of the predictions are incorrect\n— 75% of the branches are taken.\nCompute the branch penalty\nBranch penalty = (% Branches found in BTB x % Mispredictions x 2)\n(% Branches not found in BTB x % Taken branches x 2)\n+ (% Branches not found in BTB x % Not-taken branches\n0.90 x 0.08 x2 + 0.10x0.75x2 + 0.10x0.25x1 = 0.32 clock cy’\n\nNPTEL ONLIN\nITKHARAGPUR CfitincattOn courses"
+  },
+  {
+    "text": "is penalty, right. The first case is branch found in BTB and there is mispericTION, for this",
+    "start": 1817.64,
+    "end": 1827.0,
+    "ocr_text": "Example 2\n\n+ Consider the following parameters of a MIPS pipeline with BTB:\n— 90% of the branches are found in BTS.\n— 8% of the predictions are incorrect\n— 75% of the branches are taken.\n\nCompute the branch penalty\n\nBranch penalty = (% Branches found in BTB x % Mispredictions x 2)\n+ (6 Branches not found in BTB x % Taken branches x 2)\n\n+ (% Branches not found in BT x % Not-taken branches x\n\n0.90 x 0.08 x2 + 0.10 x 0.75 x2 + 0.10x0.25x1 = 0.32 clock cycle:\n\n(PTEL ONUNE NATIONAL\nIIT KHARAGPUR GEiriFieATiON courses Tennouy"
+  },
+  {
+    "text": "penalty is 2, you see, there is a 2 here and a 2 here, found in the buffer, but there is a mispericTION,",
+    "start": 1827.0,
+    "end": 1834.68,
+    "ocr_text": "There will not be any branch\npenalty if an entry is found in the\nBTB and is correct\nrwise, there will be penalty of\nt one clock cycle.\nthe BTB may also ne\nupdated, the penalty can be\n\nclock cycles.\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "or not found in BTB and it is taken branch, for this it is 2, this is 2, not found in BTB,",
+    "start": 1837.0,
+    "end": 1846.2,
+    "ocr_text": "Example 2\n\nameters of a MIPS pipeline with\n\n+ Consider the following\n— 90% of the branches are found in BTS.\n— 8% of the predictions are incorrect\n— 75% of the branches are taken.\nCompute the branch penalty\nBranches found in BTB. x % Mispredictions x 2)\nnot found in BTB x % Taken braaches\nNot-taken branches x\n\nBranch penalty =\n(% Branches x 2)\n+ (% Branches not found in BTS x\n\n0.32 clock cycl\n\n+ 0.10x 0.75 x2 + 0.10x0.25 x1\n\n0.90 x 0.08 x\n\nNPTEL ONLIN\nIIT KHARAGPUR GERTIeaTION counses"
+  },
+  {
+    "text": "not taken branch for this it is 1, this is 1, ok. Now, just put the values, percentage branch",
+    "start": 1846.2,
+    "end": 1852.44,
+    "ocr_text": "Example 2\nMIPS pipeline with BTB\n\n+ Consider the following parameters of\n\n‘of the branches are found in BTS.\n\nof the predictions\n\n= 90:\n\n— 75% of the branches are taken.\n\nCompute the branch penalty\n\nBranch penalty = (% Branghes found in BTB\n\n+ (% Branch\n\n0.90 x 0.08\n\nNPTEL ONL\nITKHARAGPUR recat\n\nBranches not found in BTB x\ns not found in BTB x\n\n+ 0.10x 0.75 x2 + 0.10x0.25 x1\n\nMispredictions x 2)\n\n{ Taken branches\n\nNot-taken branches x\n0.32 clock yc\n\nNATIONAL\n\n5\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "is 0.9, mispericTION is 0.08, not found in BTB is 10 percent, 75 percent taken branch, 25 percent",
+    "start": 1852.44,
+    "end": 1862.44,
+    "ocr_text": "Example 2\nMIPS pipeline with BTB\n\n+ Consider the following parameters of\n\n‘of the branches are found in BTS.\n\nof the predictions\n\n= 90:\n\n— 75% of the branches are taken.\n\nCompute the branch penalty\n\nBranch penalty = (% Branghes found in BTB\n\n+ (% Branch\n\n0.90 x 0.08\n\nNPTEL ONL\nITKHARAGPUR recat\n\nBranches not found in BTB x\ns not found in BTB x\n\n+ 0.10x 0.75 x2 + 0.10x0.25 x1\n\nMispredictions x 2)\n\n{ Taken branches\n\nNot-taken branches x\n0.32 clock yc\n\nNATIONAL\n\n5\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "not taken branch. So, if we calculate branch penalty comes to 0.32 clock cycles. So, you",
+    "start": 1862.44,
+    "end": 1870.12,
+    "ocr_text": "Example 2\n\n+ Consider the following parameters of a MIPS pipeline with BTB:\n\n— 90% of the branches are found in BTS.\n= 8% of the predictions are incorrect\n— 75% of the branches are taken.\n\nCompute the branch penalty.\n\nfound in BTB x % Mispredictions x 2)\n\nches not found in BTB x % Taken branches x 2)\n\n+ (% Branches not found in BTB x % Not-taken branches\n0.32 clock cy’\n\nBranch pe\n\n0.90 x 0.08 x 2 + 0.10 0.75x2 + 0.10x0.25 x1\n\nNPTEL ONLIN\nIIT KHARAGPUR GEMTINeaTION counses"
+  },
+  {
+    "text": "compare this with delayed branches where the average penalty was 0.5 clock cycles, but here,",
+    "start": 1870.92,
+    "end": 1877.4,
+    "ocr_text": "Example 2\n\n+ Consider the following parameters of a MIPS pipeline with BTB:\n— 90% of the branches are found in BTS.\n= 8% of the predictions are in\n\ni Bee Delayed branch\n\n— 75% of the branches are t Benalerone.s cioewevclen\n\nCompute the branch penalty on the sveragi\n\nBranch penalty = (% Branches found in BTB x % Mispredictions x 2)\n(% Branches not found in BTB x % Taken branches\n+ (% Branches not found in BTB x % Not-taken branches\n\n0.90 x 0.08 x2 + 0.10 0.75x2 + 0.10x0.25 x1\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "based on the realistic values on real programs, you see that your performance can become better,",
+    "start": 1877.4,
+    "end": 1883.08,
+    "ocr_text": "Example 2\n\nmeters of a MIPS pipeline with BTB:\n\n+ Consider the following r\n\n— 90% of the branches are found in BTS.\n— 8% of the predictions ar\n\nDelayed branch requil\npenalty of 0.5 clock cycles\n\n— 75% of the branches are t\n\nCompute the branch penalty on the averag:\n\nfound in BTB x % Mispredictions x 2)\n\nBranch pe\nnot found in BTB x % Taken branches x 2)\ns not found in BTB x % Not-taken branches x\n\n+ 0.10 x¢\n\n+ (% Branch\n0.90 x 0.08 x2 + 0.10 x 0.75 x2 25x1 = 0.32 clock cycl\n\n(PTEL ONLINE\nIT KHARAGPUR GEtTineaWON courses"
+  },
+  {
+    "text": "your branch penalty becomes less than 0.5, ok. And lastly, you will look at some conditional",
+    "start": 1884.44,
+    "end": 1894.76,
+    "ocr_text": "Example 2\n\nmeters of a MIPS pipeline with BTB:\n\n+ Consider the following r\n\n— 90% of the branches are found in BTS.\n— 8% of the predictions ar\n\nDelayed branch requil\npenalty of 0.5 clock cycles\n\n— 75% of the branches are t\n\nCompute the branch penalty on the averag:\n\nfound in BTB x % Mispredictions x 2)\n\nBranch pe\nnot found in BTB x % Taken branches x 2)\ns not found in BTB x % Not-taken branches x\n\n+ 0.10 x¢\n\n+ (% Branch\n0.90 x 0.08 x2 + 0.10 x 0.75 x2 25x1 = 0.32 clock cycl\n\n(PTEL ONLINE\nIT KHARAGPUR GEtTineaWON courses"
+  },
+  {
+    "text": "instructions which also help in reducing branch penalty is in fact, MIPS has a number of such",
+    "start": 1894.76,
+    "end": 1901.48,
+    "ocr_text": "Example 2\n\n+ Consider the following parameters of a MIPS pipeline with BTB:\n— 90% of the branches are found in BT\n\n— 8% of the predictions are incorrect SHEEN\n\npenalty of 0.5 clock cycles\non the averag:\n\nof the branches are taken.\n\nfound in BTB x % Mispredictions x 2)\npes not found in BTB x % Taken branches x 2)\n\nBranches not found in BTB x % Not-taken branches x 1)\n\n0.90 x 0.08 x2 + 0.10x 0.75 x2 + 0.10x0.25x1 = 0.32 clock cycle:\n\nNPTEL ONLINE. NATIONAL, in\n=\n|\n\ny"
+  },
+  {
+    "text": "conditional instructions. So, what are conditional instructions? There is something like conditional",
+    "start": 1901.48,
+    "end": 1907.4,
+    "ocr_text": "Conditional Instructions\n\n+ Conditional instruction:\n\ns can help eliminate some branch instructior\nhence also the corresponding branch penalties.\n= MiPs32 hi\n\nnumber of conditional instructions (e.g. condition:\n\nmove)\n\ndence into data dependence.\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "moves, let us look at a justification why you need this. Consider a C code like this if x equal to",
+    "start": 1907.4,
+    "end": 1915.32,
+    "ocr_text": "Conditional Instructions\n\nConditional instructions can help eliminate some branch instruction:\nhence also the corresponding branch penaltie\n\nMiIPS32 has a number of conditional instructions (e.g. conditional m\n\nUsing branch\nRE\n\nnple code.\n\n(== 0) AaB\n\n+ RI holds x\n+ R2 holds A\n+ R3 holds B\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\nand"
+  },
+  {
+    "text": "0 equal to b, this is a conditional move, ok. Let us say register R1 holds the address of x, R2",
+    "start": 1915.32,
+    "end": 1924.68,
+    "ocr_text": "Conditional Instructions\n\ncan help eliminate some branch instruction\n\n+ Conditional instructions\nhence also the corresponding branch penalties.\n\nMIPS32 has a number of conditional instructions (e.g. conditional move)\n—— ional\n\need Using branch\n\nif Oe == 0) A=\n\n+ RI holds x\n\n+ R2 holds A\n\ncneveaes. Essentially, we converted the control\ndep\n\nNPTEL ONLINE NATIONAL ge\nCERTIFICATION COURSES TeaNOug Ny\n\ndence into data dependence\n\nITKHARAGPUR"
+  },
+  {
+    "text": "holds the address of a, R3 holds the address of b, not there are the values of a, b, c, let us say,",
+    "start": 1924.68,
+    "end": 1933.56,
+    "ocr_text": "Conditional Instructions\n\ncan help eliminate some branch instruction\n\n+ Conditional instructions\nhence also the corresponding branch penalties.\n\nMIPS32 has a number of conditional instructions (e.g. conditional move)\n—— ional\n\need Using branch\n\nif Oe == 0) A=\n\n+ RI holds x\n\n+ R2 holds A\n\ncneveaes. Essentially, we converted the control\ndep\n\nNPTEL ONLINE NATIONAL ge\nCERTIFICATION COURSES TeaNOug Ny\n\ndence into data dependence\n\nITKHARAGPUR"
+  },
+  {
+    "text": "values. So, just using conventional branch instruction, our program will be like this, branch if not 0, R1,",
+    "start": 1933.56,
+    "end": 1942.76,
+    "ocr_text": "Conditional Instructions\n\nConditional instructions can help eliminate some branch instruction\n\nhence also the corresponding branch penalties.\n\nMIPS32 has a number of conditional in\n\nif (e500) A=\n+ RI holds\n+ R2 hold:\n+ R3 hold:\n\nEssentially, we converted the control\n\ndependence into data dependence.\n\nIITKHARAGPUR GEtTIneaTION counses"
+  },
+  {
+    "text": "you skip, if it is 0, then only you move R3 to R2, add R3 and 0, move it to R2, A equal to b,",
+    "start": 1943.96,
+    "end": 1952.52,
+    "ocr_text": "Conditional Instructions\n\n+ Conditional instructions can help eliminate some branch instruction\nhence also the corresponding branch penalties.\n— MIPS32 has a number of conditional instructions (e.g. conditional mow\nUsing branch\nAne le code.\nif (== 0) A= Bw\n+ RI holds x\n+ R2 holds A\nEssentially, we converted the control\nSaRSinolds dependence into data dependence,\n\nnen\nIT KHARAGPUR eerie"
+  },
+  {
+    "text": "but there is a conditional move instruction also in MIPS, it says conditional move if 0,",
+    "start": 1953.4,
+    "end": 1959.56,
+    "ocr_text": "Conditional Instructions\n\n+ Conditional instructions can help eliminate\n\n>me branch instruction\nhe\n\n1ce also the corresponding branch penalties.\nMIPS32 has a number of conditional instructions (e.g. conditional move)\n\n(x == 0) A= B ees\nRabo dependence into data depe\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "R2, R3, R1, it says if R1 is 0, then move R3 to R2. So, you can avoid the branch instruction",
+    "start": 1960.44,
+    "end": 1969.88,
+    "ocr_text": "Conditional Instructions\n\nConditional instructions can help eliminate\n\n>me branch instruction:\n\nhence also the corresponding branch penaltie\n\n= miPs32 hi\n\n‘An example code:\nif (== 0) ASB\n+ RI hold:\n+ R2 hold:\n+ R3 hold:\n\nITKHARAGPUR\n\nnumber of conditional ins!\n\ntructions (e.g. conditional move)\n\nE y, we converted the control\n\ndependence ir\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "altogether. So, whatever control hazards were there, you are avoiding this. So, basically we are",
+    "start": 1969.88,
+    "end": 1977.4,
+    "ocr_text": "Conditional Instructions\n\nConditional instructions can help eliminate some branch instructions and\nhence also the corresponding branch penaltie\n\nMIPS32 has a number of conditional instructions (e.g. conditional move)\n\nConditional\n\nample code:\n(== 0) AaB\n\n+ RI holds x\n+ R2 holds A\n\ny. we converted the control\n+ R3 holds B 8 ‘\n\ndependence into data depe\n\nNPTEL Ont\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "converting the control dependence into data dependency. So, MIPS in fact has a whole set of conditional",
+    "start": 1977.48,
+    "end": 1984.28,
+    "ocr_text": "Conditional Instructions\nConditional instructions can help eliminate some branch instructior\n\n1ce also the corresponding branch penalties.\n\nMIPS32 has a number of conditional instructions (e.g. conditional move)\n\nntially, we converted the control\n\ndependence into data dependence.\n\nNPTEL ON\nIT KHARAGPUR GEttineaON courses"
+  },
+  {
+    "text": "instructions just for this purpose, the compiler can use it to advantage and eliminate many branch",
+    "start": 1984.28,
+    "end": 1990.76,
+    "ocr_text": "Conditional Instructions\nConditional instructions can help eliminate some branch instructior\n\n1ce also the corresponding branch penalties.\n\nMIPS32 has a number of conditional instructions (e.g. conditional move)\n\nntially, we converted the control\n\ndependence into data dependence.\n\nNPTEL ON\nIT KHARAGPUR GEttineaON courses"
+  },
+  {
+    "text": "instructions. So, with this way come to the end of this lecture and over the last few lecture,",
+    "start": 1990.76,
+    "end": 1998.76,
+    "ocr_text": "Conditional Instructions\n\nome branch instructions and\n\nConditional instructions can help eliminate\nhence also the corresponding branch penaltie\n\nMIPS32 has a number of conditional instru\n\nample code\nif (== 0) ASB\n\n+ RI holds x\n+ R2 holds A\n\nally, we converted the control\nRs olesB dependence into data dependence.\n\nNPTEL ONLINE HAmONAL\nCERTIFICATION COURSES TECHNOL"
+  },
+  {
+    "text": "we discussed the various hazard scenarios in the MIPS pipeline and we had looked at many of the",
+    "start": 1999.64,
+    "end": 2006.92,
+    "ocr_text": "(ory!"
+  },
+  {
+    "text": "modern techniques that are used to detect and mitigate the effects of hazards.",
+    "start": 2007.0,
+    "end": 2013.72,
+    "ocr_text": "(ory!"
+  },
+  {
+    "text": "So, we shall see some other means advance issues later in some lectures, but for this",
+    "start": 2014.92,
+    "end": 2021.8,
+    "ocr_text": "(ory!"
+  },
+  {
+    "text": "lecture I think we are done and we can stop here. Thank you.",
+    "start": 2023.0,
+    "end": 2033.0,
+    "ocr_text": "(ory!"
+  }
+]

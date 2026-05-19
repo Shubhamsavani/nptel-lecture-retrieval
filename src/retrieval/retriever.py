@@ -5,39 +5,45 @@ Implements the full retrieval pipeline:
 
   1. [Optional] LLM query analysis via Ollama
   2. BGE-large query embedding  (dense)
-  3. BM25 keyword scoring       (sparse)
-  4. Reciprocal Rank Fusion     (merge dense + sparse)
+  3. [Optional] BM25 keyword scoring  (sparse)
+  4. Reciprocal Rank Fusion     (merge dense + sparse, if BM25 enabled)
   5. Content-type score boost   (code/theory differentiation)
   6. Cross-encoder re-ranking   (top-50 → top_k*4 with ms-marco-MiniLM)
-  7. Lecture-level deduplication (NEW — no repeated videos in results)
+  7. Lecture-level deduplication (no repeated videos in results)
 
 CHANGES IN THIS VERSION
 -----------------------
+  NEW — use_ocr parameter
+    When use_ocr=False, OCR text is stripped from the passage sent to the
+    cross-encoder reranker. Dense retrieval still uses the same FAISS index,
+    but the passage constructed for reranking uses transcript-only text.
+    This correctly isolates the OCR contribution in ablation experiments.
+
+  NEW — use_bm25 parameter
+    When use_bm25=False, BM25 sparse retrieval is skipped entirely.
+    Only dense FAISS results are used (no RRF fusion).
+    When use_bm25=True, RRF merges dense + sparse results as before.
+
   Fix 1 — Lecture deduplication
     After final ranking, only the highest-scored segment per unique
     youtube_url is kept. Fills top_k slots from unique lectures only.
 
-  Fix 2A — Ollama KV-cache bleeding (your queue theory — confirmed correct)
+  Fix 2A — Ollama KV-cache bleeding
     Added "keep_alive": 0 to every Ollama API call. Forces Ollama to evict
     the model from VRAM after each generation, destroying the KV cache.
-    Without this, sequential requests share residual context from previous
-    queries. Also added "num_ctx": 512 to hard-cap the context window.
 
-  Fix 2B — Fragile JSON extraction (regex grabbed wrong brace block)
+  Fix 2B — Fragile JSON extraction
     Replaced re.search(r'\{.*\}', ..., re.DOTALL) with a character-by-
-    character brace-counting extractor. The old regex failed when the LLM
-    included example braces in its reasoning text, or when it wrapped output
-    in markdown code blocks. The new extractor is robust to all these cases.
+    character brace-counting extractor.
 
   Fix 4 — Prompt indentation contamination
-    The old prompt had 4-space Python method indentation on every line.
     Fixed with textwrap.dedent() before sending to Ollama.
 
 CONFIRMATION SCRIPTS
 --------------------
-    python retriever.py --confirm-ollama-bleed   # test KV-cache bleed fix
-    python retriever.py --confirm-json-parser    # test JSON extractor edge cases
-    python retriever.py --query "BST" --confirm-dedup  # test deduplication
+    python retriever.py --confirm-ollama-bleed
+    python retriever.py --confirm-json-parser
+    python retriever.py --query "BST" --confirm-dedup
 
 Usage
 -----
@@ -45,6 +51,7 @@ Usage
     python retriever.py --query "BST insertion" --strategy c3
     python retriever.py --query "BST insertion" --llm --verbose
     python retriever.py --query "BST insertion" --top-k 10
+    python retriever.py --query "BST insertion" --no-ocr --no-bm25
     python retriever.py --test
     python retriever.py --no-rerank --query "BST insertion"
 """
@@ -126,6 +133,11 @@ _index_cache: dict[str, dict] = {}
 
 
 def _load_index(strategy: str) -> dict:
+    """
+    Loads FAISS + metadata + BM25 indexes for the given strategy key.
+    Strategy can be a simple key like 'c1', 'c2', 'c3' or a variant key
+    like 'c2_w150', 'c3_t025' for chunk sensitivity experiments.
+    """
     if strategy in _index_cache:
         return _index_cache[strategy]
 
@@ -140,10 +152,10 @@ def _load_index(strategy: str) -> dict:
             f"FAISS index not found: {faiss_path}\n"
             f"Run: python embedder.py --strategy {strategy}"
         )
-    if not bm25_path.exists():
+    if not meta_path.exists():
         raise FileNotFoundError(
-            f"BM25 index not found: {bm25_path}\n"
-            f"Run: python bm25_builder.py --strategy {strategy}"
+            f"Metadata not found: {meta_path}\n"
+            f"Run: python embedder.py --strategy {strategy}"
         )
 
     print(f"  Loading indexes for strategy={strategy} ...", flush=True)
@@ -152,8 +164,17 @@ def _load_index(strategy: str) -> dict:
     faiss_index = faiss.read_index(str(faiss_path))
     metadata    = json.loads(meta_path.read_text(encoding="utf-8"))
 
-    with open(bm25_path, "rb") as fh:
-        bm25_data = pickle.load(fh)
+    # BM25 is optional — if file missing, sparse retrieval will be unavailable
+    bm25_obj    = None
+    corpus      = []
+    if bm25_path.exists():
+        with open(bm25_path, "rb") as fh:
+            bm25_data = pickle.load(fh)
+        bm25_obj = bm25_data["bm25"]
+        corpus   = bm25_data.get("corpus", [])
+    else:
+        print(f"  WARNING: BM25 index not found: {bm25_path} "
+              f"(sparse retrieval unavailable for strategy={strategy})", flush=True)
 
     elapsed = time.time() - t0
     print(f"  Loaded {faiss_index.ntotal:,} vectors in {elapsed:.1f}s", flush=True)
@@ -161,8 +182,8 @@ def _load_index(strategy: str) -> dict:
     _index_cache[strategy] = {
         "faiss":    faiss_index,
         "metadata": metadata,
-        "bm25":     bm25_data["bm25"],
-        "corpus":   bm25_data["corpus"],
+        "bm25":     bm25_obj,
+        "corpus":   corpus,
     }
     return _index_cache[strategy]
 
@@ -196,31 +217,7 @@ def _tokenise(text: str) -> list[str]:
 def _extract_json_object(text: str) -> dict | None:
     """
     Extracts the first complete, outermost JSON object from a string.
-
-    WHY THIS REPLACES re.search(r'\{.*\}', text, re.DOTALL):
-
-    The old regex fails in 3 scenarios:
-      1. LLM includes example braces in reasoning:
-            {"intent": "code", "reasoning": "user wants code like {x for x}"}
-         Greedy .* makes the regex grab everything up to the LAST },
-         producing an incomplete or malformed JSON string.
-
-      2. LLM wraps output in markdown code block:
-            ```json
-            {"intent": "code", ...}
-            ```
-         The regex includes backticks in the match, json.loads() fails.
-
-      3. LLM adds trailing text after JSON:
-            {"intent": "code", ...}\nI hope this helps!
-         Works with the old regex but only by luck.
-
-    This function instead:
-      - Strips markdown fences first
-      - Scans character-by-character counting { and } depth
-      - Returns the exact substring from opening { to its matching }
-      - Handles escaped characters inside strings correctly
-      - Falls back to searching the remainder if first block fails to parse
+    Handles markdown fences, trailing text, braces inside string values.
     """
     # Strip markdown fences
     text = re.sub(r'```(?:json)?\s*', '', text).strip()
@@ -254,7 +251,6 @@ def _extract_json_object(text: str) -> dict | None:
                 try:
                     return json.loads(candidate)
                 except json.JSONDecodeError:
-                    # This block failed — look for another JSON object after it
                     remainder = text[i + 1:]
                     if '{' in remainder:
                         return _extract_json_object(remainder)
@@ -270,31 +266,9 @@ def _extract_json_object(text: str) -> dict | None:
 def analyse_query_with_llm(query: str) -> dict:
     """
     Uses local Ollama LLM to classify query intent and expand the query.
-
-    FIXES APPLIED:
-
-    Fix 2A — keep_alive: 0
-      Forces Ollama to evict the model from GPU VRAM after each generation.
-      This destroys the KV cache, so the next request starts with a completely
-      fresh context. Without this, sequential requests bleed context from
-      previous queries, causing inconsistent JSON output.
-
-      Your diagnosis was correct: the "queue" problem is specifically that
-      Ollama's KV cache persists between calls by default (keep_alive defaults
-      to 5 minutes). The model's internal state is not reset between requests.
-      Setting keep_alive=0 forces a full unload/reload cycle.
-
-    Fix 2B (num_ctx: 512)
-      Caps the context window. Some Ollama builds partially persist state even
-      with keep_alive=0. A small num_ctx ensures any leaked context is minimal.
-
-    Fix 4 — textwrap.dedent()
-      The old prompt was indented 4 spaces on every line due to Python method
-      indentation. dedent() strips the common leading whitespace before the
-      string reaches Ollama. Some LLMs treat leading whitespace as meaningful
-      context and produce differently formatted responses without it.
+    keep_alive=0 forces KV-cache eviction between calls.
+    textwrap.dedent() strips Python method indentation from the prompt.
     """
-    # FIX 4: dedent strips the 4-space method indentation from every line
     prompt = textwrap.dedent(f"""
         You are a query analyser for an educational video retrieval system.
         Analyse this search query and respond with ONLY valid JSON, no other text.
@@ -326,11 +300,11 @@ def analyse_query_with_llm(query: str) -> dict:
                 "model":      OLLAMA_MODEL,
                 "prompt":     prompt,
                 "stream":     False,
-                "keep_alive": 0,          # FIX 2A: evict model, clear KV cache
+                "keep_alive": 0,
                 "options": {
-                    "temperature":    0.0,    # fully deterministic
-                    "num_predict":    200,    # enough for JSON, not more
-                    "num_ctx":        512,    # FIX 2B: cap context window
+                    "temperature":    0.0,
+                    "num_predict":    200,
+                    "num_ctx":        512,
                     "top_p":          1.0,
                     "repeat_penalty": 1.0,
                 },
@@ -341,7 +315,6 @@ def analyse_query_with_llm(query: str) -> dict:
         raw_text = response.json().get("response", "").strip()
         print(f"  LLM raw: {raw_text[:120]!r}", flush=True)
 
-        # FIX 2B: use robust brace-counting extractor
         parsed = _extract_json_object(raw_text)
 
         if parsed:
@@ -364,7 +337,6 @@ def analyse_query_with_llm(query: str) -> dict:
     except Exception as e:
         print(f"  LLM error: {e}", flush=True)
 
-    # Graceful fallback — pipeline never crashes due to LLM issues
     return {
         "intent":         _detect_intent_heuristic(query),
         "expanded_query": query,
@@ -414,6 +386,8 @@ def _dense_retrieve(query: str, index_data: dict, k: int) -> list[tuple[int, flo
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _sparse_retrieve(query: str, index_data: dict, k: int) -> list[tuple[int, float]]:
+    if index_data.get("bm25") is None:
+        return []
     tokens = _tokenise(query)
     if not tokens:
         return []
@@ -472,7 +446,7 @@ def _apply_content_boost(
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Cross-encoder re-ranking
+# Cross-encoder re-ranking  — OCR-aware
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _rerank(
@@ -480,7 +454,20 @@ def _rerank(
     candidates: list[tuple[int, float]],
     metadata:   list[dict],
     top_k:      int,
+    use_ocr:    bool = True,          # NEW: controls whether OCR text is included
 ) -> list[tuple[int, float]]:
+    """
+    Cross-encoder reranker.
+
+    use_ocr=True  → passage = OCR text + transcript  (E4, E5, E8, E9 style)
+    use_ocr=False → passage = transcript only         (E1–E3, E7 style)
+
+    This is the correct place to control OCR contribution because:
+    - The FAISS index was built with combined text, so dense scores are fixed.
+    - The reranker passage is the only place we can cleanly exclude OCR.
+    - This gives a fair comparison: same dense candidates, different passage
+      content sent to the cross-encoder.
+    """
     reranker   = _get_rerank_model()
     pairs      = []
     valid_idxs = []
@@ -489,9 +476,16 @@ def _rerank(
         if idx >= len(metadata):
             continue
         seg        = metadata[idx]
-        ocr        = seg.get("ocr_text", "").replace("\n---\n", " ").replace("\n", " ").strip()
         transcript = seg.get("transcript", "").strip()
-        passage    = f"{ocr} {transcript}" if (ocr and not seg.get("ocr_failed")) else transcript
+
+        if use_ocr and not seg.get("ocr_failed", True):
+            # Include OCR text prepended to transcript
+            ocr = seg.get("ocr_text", "").replace("\n---\n", " ").replace("\n", " ").strip()
+            passage = f"{ocr} {transcript}" if ocr else transcript
+        else:
+            # Transcript only — ignore OCR even if present in metadata
+            passage = transcript
+
         pairs.append([query, passage[:512]])
         valid_idxs.append(idx)
 
@@ -515,28 +509,7 @@ def _deduplicate_by_lecture(
 ) -> list[tuple[int, float]]:
     """
     Keeps only the highest-scored segment per unique YouTube video.
-
-    WHY NEEDED:
-      Without dedup, "BST insertion" might return:
-        Rank 1: DSA Lecture 12 at 4:32  ← same video
-        Rank 2: DSA Lecture 12 at 5:10  ← same video
-        Rank 3: DSA Lecture 12 at 6:45  ← same video
-        Rank 4: DSA Lecture 8  at 2:00
-        Rank 5: DSA Lecture 9  at 7:30
-
-      With dedup:
-        Rank 1: DSA Lecture 12 at 4:32  ← best timestamp kept
-        Rank 2: DSA Lecture 8  at 2:00
-        Rank 3: DSA Lecture 9  at 7:30
-        Rank 4: Deep Learning Lecture 5 at 3:20
-        Rank 5: OS Lecture 3 at 1:15
-
-    DEDUP KEY: youtube_url (unique per video, more reliable than lecture_title).
-    Falls back to course_id + lecture_number if youtube_url is empty.
-
-    Walks the ranked list (already score-sorted) and keeps the first
-    occurrence of each unique URL, stopping when top_k unique lectures found.
-    Scans up to top_k * 10 candidates to ensure we can fill top_k slots.
+    Dedup key: youtube_url, falling back to course_id + lecture_number.
     """
     seen_urls = set()
     deduped   = []
@@ -548,7 +521,6 @@ def _deduplicate_by_lecture(
         seg = metadata[idx]
         url = seg.get("youtube_url", "")
 
-        # Fallback key when url is missing
         dedup_key = url if url else (
             f"{seg.get('course_id', '')}_{seg.get('lecture_number', idx)}"
         )
@@ -572,14 +544,33 @@ def search(
     top_k:      int  = DEFAULT_TOP_K,
     use_llm:    bool = False,
     use_rerank: bool = True,
+    use_ocr:    bool = True,           # NEW: include OCR text in reranker passage
+    use_bm25:   bool = True,           # NEW: enable/disable sparse BM25 retrieval
     verbose:    bool = False,
 ) -> list[dict]:
     """
     Full retrieval pipeline. Returns top_k results from unique lectures.
+
+    Parameters
+    ----------
+    query      : Search query string.
+    strategy   : Index strategy key — 'c1', 'c2', 'c3', or variant keys
+                 like 'c2_w150', 'c3_t025' for chunk sensitivity runs.
+    top_k      : Number of unique lectures to return.
+    use_llm    : If True, use Ollama LLM for query expansion/intent analysis.
+    use_rerank : If True, apply cross-encoder reranking.
+    use_ocr    : If True, include OCR text in the reranker passage.
+                 If False, reranker sees transcript-only passages.
+                 Dense retrieval (FAISS) is unaffected — it always uses the
+                 index as built. This correctly measures OCR contribution.
+    use_bm25   : If True, run BM25 sparse retrieval and fuse with dense via RRF.
+                 If False, only dense FAISS results are used (no RRF).
+                 This correctly measures BM25 / hybrid retrieval contribution.
+    verbose    : Print timing and intermediate step info.
     """
     t_total = time.time()
 
-    # Step 1: Query analysis
+    # ── Step 1: Query analysis ────────────────────────────────────────────────
     if use_llm:
         t0             = time.time()
         analysis       = analyse_query_with_llm(query)
@@ -595,48 +586,68 @@ def search(
         if verbose:
             print(f"  Heuristic intent: {intent}")
 
+    if verbose:
+        print(f"  Config  : use_ocr={use_ocr} | use_bm25={use_bm25} | "
+              f"strategy={strategy}", flush=True)
+
     index_data = _load_index(strategy)
     metadata   = index_data["metadata"]
 
-    # Step 2: Dense
-    t0 = time.time()
+    # ── Step 2: Dense retrieval (always runs) ─────────────────────────────────
+    t0    = time.time()
     dense = _dense_retrieve(expanded_query, index_data, CANDIDATE_K)
     if verbose:
         print(f"  Dense   : {time.time()-t0:.2f}s | {len(dense)} candidates")
 
-    # Step 3: Sparse
-    t0 = time.time()
-    sparse = _sparse_retrieve(expanded_query, index_data, CANDIDATE_K)
-    if verbose:
-        print(f"  BM25    : {time.time()-t0:.2f}s | {len(sparse)} candidates")
+    # ── Step 3 + 4: Sparse retrieval + RRF fusion (conditional on use_bm25) ───
+    if use_bm25:
+        t0     = time.time()
+        sparse = _sparse_retrieve(expanded_query, index_data, CANDIDATE_K)
+        if verbose:
+            print(f"  BM25    : {time.time()-t0:.2f}s | {len(sparse)} candidates")
 
-    # Step 4: RRF
-    t0    = time.time()
-    fused = _reciprocal_rank_fusion(dense, sparse)
-    if verbose:
-        print(f"  RRF     : {time.time()-t0:.3f}s | {len(fused)} unique")
+        t0    = time.time()
+        fused = _reciprocal_rank_fusion(dense, sparse)
+        if verbose:
+            print(f"  RRF     : {time.time()-t0:.3f}s | {len(fused)} unique")
+    else:
+        # Dense only — convert to same (idx, score) format, normalise scores
+        # to [0,1] range using rank-based scoring to match RRF scale
+        fused = []
+        k_rrf = 60
+        for rank, (idx, _) in enumerate(dense, start=1):
+            fused.append((idx, 1.0 / (k_rrf + rank)))
+        if verbose:
+            print(f"  BM25    : DISABLED — dense only ({len(fused)} candidates)")
 
-    # Step 5: Content boost
+    # ── Step 5: Content boost ─────────────────────────────────────────────────
     fused     = _apply_content_boost(fused, metadata, intent)
     rerank_in = fused[:RERANK_K]
 
-    # Step 6: Cross-encoder (request more than top_k so dedup has room)
+    # ── Step 6: Cross-encoder reranking (use_ocr controls passage content) ────
     if use_rerank and rerank_in:
         t0 = time.time()
-        reranked = _rerank(query, rerank_in, metadata, top_k=top_k * 4)
+        reranked = _rerank(
+            query      = query,
+            candidates = rerank_in,
+            metadata   = metadata,
+            top_k      = top_k * 4,
+            use_ocr    = use_ocr,      # ← OCR isolation happens here
+        )
         if verbose:
             print(f"  Rerank  : {time.time()-t0:.2f}s | "
-                  f"{len(rerank_in)} → {len(reranked)}")
+                  f"{len(rerank_in)} → {len(reranked)} "
+                  f"(OCR={'ON' if use_ocr else 'OFF'})")
     else:
         reranked = rerank_in[:top_k * 4]
 
-    # Step 7: Deduplication (NEW)
+    # ── Step 7: Deduplication ─────────────────────────────────────────────────
     final = _deduplicate_by_lecture(reranked, metadata, top_k)
     if verbose:
         print(f"  Dedup   : {len(reranked)} segments → {len(final)} unique lectures")
         print(f"  Total   : {time.time()-t_total:.2f}s")
 
-    # Build output
+    # ── Build output ──────────────────────────────────────────────────────────
     results = []
     for rank, (idx, score) in enumerate(final, start=1):
         if idx >= len(metadata):
@@ -730,18 +741,6 @@ def run_tests(strategy: str, use_llm: bool, use_rerank: bool) -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _confirm_ollama_bleed() -> None:
-    """
-    Sends two rapid sequential LLM requests with opposite expected intents.
-    Reports whether each response correctly matches its own query.
-
-    To reproduce the BUG: comment out "keep_alive": 0 in the request dict
-    inside analyse_query_with_llm(), then run this.
-    To confirm the FIX: run with keep_alive: 0 in place (default in this file).
-
-    WHAT TO LOOK FOR:
-      BUG:  Response 2 shows intent="code" — contaminated by request 1
-      FIX:  Response 2 shows intent="theoretical" — independent context
-    """
     import requests as req
     print("\n=== OLLAMA KV-CACHE BLEED CONFIRMATION ===")
     print(f"Model: {OLLAMA_MODEL}")
@@ -791,7 +790,6 @@ def _confirm_ollama_bleed() -> None:
 
 
 def _confirm_json_parser() -> None:
-    """Tests the JSON extractor against all edge cases that break the old regex."""
     print("\n=== JSON EXTRACTOR EDGE-CASE TESTS ===\n")
 
     cases = [
@@ -802,7 +800,7 @@ def _confirm_json_parser() -> None:
         ('```json\n{"intent": "conceptual", "expanded_query": "VM", "reasoning": "c"}\n```',
          "conceptual", "3. JSON in markdown code block"),
         ('{"intent": "code", "expanded_query": "loop", "reasoning": "like {x for x in y}"}',
-         "code", "4. Braces inside string value (broke greedy regex)"),
+         "code", "4. Braces inside string value"),
         ('{"intent": "theoretical", "expanded_query": "backprop", "reasoning": "t"}\n\nI hope this helps!',
          "theoretical", "5. Trailing text after JSON"),
         ('Sure! {"intent": "conceptual", "expanded_query": "net", "reasoning": "c"} Done.',
@@ -824,7 +822,6 @@ def _confirm_json_parser() -> None:
 
 
 def _confirm_dedup(query: str, strategy: str) -> None:
-    """Shows before/after deduplication for a given query."""
     print(f"\n=== DEDUPLICATION CONFIRMATION ===")
     print(f"Query: {query} | Strategy: {strategy}\n")
 
@@ -863,16 +860,38 @@ def _confirm_dedup(query: str, strategy: str) -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Flask API helper
+# Flask / Streamlit API helper
 # ─────────────────────────────────────────────────────────────────────────────
 
-def api_search(query: str, strategy: str = "c3", use_llm: bool = False) -> list[dict]:
-    results = search(query=query, strategy=strategy, use_llm=use_llm, verbose=False)
+def api_search(
+    query:    str,
+    strategy: str  = "c3",
+    use_llm:  bool = False,
+    use_ocr:  bool = True,
+    use_bm25: bool = True,
+) -> list[dict]:
+    """
+    Thin wrapper for use by app.py (Streamlit) and any Flask API layer.
+    Exposes use_ocr and use_bm25 so the UI can toggle them independently.
+    """
+    results = search(
+        query    = query,
+        strategy = strategy,
+        use_llm  = use_llm,
+        use_ocr  = use_ocr,
+        use_bm25 = use_bm25,
+        verbose  = False,
+    )
     return [
         {
+            "rank":         r.get("rank"),
             "transcript":   r.get("transcript", ""),
             "ocr_text":     r.get("ocr_text", ""),
             "youtube_link": r.get("youtube_deep_link", ""),
+            "course_name":  r.get("course_name", ""),
+            "lecture_title": r.get("lecture_title", ""),
+            "start_sec":    r.get("start_sec", 0),
+            "score":        r.get("retrieval_score", 0),
         }
         for r in results
     ]
@@ -886,18 +905,21 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="NPTEL lecture retrieval engine")
     parser.add_argument("--query",     type=str,  default=None)
     parser.add_argument("--strategy",  type=str,  default=DEFAULT_STRATEGY,
-                        choices=["c1", "c2", "c3"])
+                        choices=["c1", "c2", "c3",
+                                 "c2_w150", "c2_w250",
+                                 "c3_t025", "c3_t030", "c3_t040"])
     parser.add_argument("--top-k",     type=int,  default=DEFAULT_TOP_K)
     parser.add_argument("--llm",       action="store_true")
     parser.add_argument("--no-rerank", action="store_true")
+    parser.add_argument("--no-ocr",    action="store_true",
+                        help="Disable OCR text in reranker passage (transcript only).")
+    parser.add_argument("--no-bm25",   action="store_true",
+                        help="Disable BM25 sparse retrieval (dense only).")
     parser.add_argument("--verbose",   action="store_true")
     parser.add_argument("--test",      action="store_true")
-    parser.add_argument("--confirm-ollama-bleed", action="store_true",
-                        help="Test KV-cache bleed fix.")
-    parser.add_argument("--confirm-json-parser",  action="store_true",
-                        help="Test JSON extractor edge cases.")
-    parser.add_argument("--confirm-dedup",        action="store_true",
-                        help="Test deduplication (requires --query).")
+    parser.add_argument("--confirm-ollama-bleed", action="store_true")
+    parser.add_argument("--confirm-json-parser",  action="store_true")
+    parser.add_argument("--confirm-dedup",        action="store_true")
     args = parser.parse_args()
 
     if args.confirm_ollama_bleed:
@@ -924,6 +946,8 @@ def main() -> None:
         top_k      = args.top_k,
         use_llm    = args.llm,
         use_rerank = not args.no_rerank,
+        use_ocr    = not args.no_ocr,
+        use_bm25   = not args.no_bm25,
         verbose    = args.verbose,
     )
     print_results(results, args.query)

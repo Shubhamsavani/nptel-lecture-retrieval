@@ -1,0 +1,752 @@
+[
+  {
+    "text": "In this video lecture, we will look at the completely fair scheduler. So, the completely",
+    "start": 0.0,
+    "end": 20.88,
+    "ocr_text": "NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "fair scheduler or the CFS scheduler is the default scheduler used in the NUX kernels",
+    "start": 20.88,
+    "end": 26.64,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas.\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "in the latest versions. So, the CFS scheduler has been incorporated in the Linux kernels",
+    "start": 26.64,
+    "end": 33.6,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas.\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "since version number 2.6.23 and has been used as the scheduling algorithm since 2007. So, it",
+    "start": 33.6,
+    "end": 42.36,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas.\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "was based on the rotating staircase deadline scheduler by Kohn Kollivas. So, the advantage",
+    "start": 42.36,
+    "end": 50.32,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas.\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "of the CFS scheduler compared to the O1 scheduler in particular is that there are no",
+    "start": 50.32,
+    "end": 57.44,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas. R\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "heuristics which are used and there is very elegant handling of IO bound and CPU bound",
+    "start": 57.44,
+    "end": 63.88,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas.\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "processes. Essentially, the interactive and non-interactive",
+    "start": 63.88,
+    "end": 69.2,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas.\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "or batch processes are very easily fit into this particular scheduler. So, we will see",
+    "start": 69.2,
+    "end": 74.8,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas.\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "a very brief overview of the CFS scheduler. Now, as the name suggests, the CFS scheduler",
+    "start": 74.8,
+    "end": 82.24,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas.\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "or the completely fair scheduler aims at dividing the processor time or the CPU time fairly",
+    "start": 82.24,
+    "end": 90.12,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas.\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "or equally among the processes. In other words, if there are N processes present in the",
+    "start": 90.12,
+    "end": 96.88,
+    "ocr_text": "Completely Fair Scheduling\n(CFS)\n\nThe Linux scheduler since 2.6.23\nBy Ingo Molnar\n\n— based on the Rotating Staircase Deadline Scheduler (RSDL) by Con\nKolivas.\n\n— Incorporated in the Linux kernel since 2007\nNo heuristics.\nElegant handling of I/O and CPU bound processes."
+  },
+  {
+    "text": "system or present in the ready queue and waiting to be scheduled, then each process will",
+    "start": 96.88,
+    "end": 103.24,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\n1\n\nNV} Ny] Vy]\n\nw] ow] w] wo\n\nAL AL ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "receive 100 by N percentage of the CPU time. So, this is the ideal fairness. Let us take",
+    "start": 103.24,
+    "end": 110.6,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\n1\n\nNV} Ny] Vy]\n\nw] ow] w] wo\n\nAL AL ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "a small theoretical example for this ideal fair scheduling. Let us consider the 4 processes",
+    "start": 110.6,
+    "end": 117.0,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\n1\n\nNV} Ny] Vy]\n\nw] ow] w] wo\n\nALA] ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "A, B, C and D and having the burst time 8 milliseconds, 4 milliseconds, 16 milliseconds",
+    "start": 117.0,
+    "end": 122.68,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n(100/N)% of the CPU time\n\nIdeal Fairness\n\n0/9O|/a\\|>\nwm} rm] ro] rm\nwl ol wl oe\nalaAlaAlA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "and D has the 4 milliseconds respectively. So, what we will do is let us just divide the",
+    "start": 122.68,
+    "end": 130.72,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n(100/N)% of the CPU time\n\nIdeal Fairness\n\n0/9O|/a\\|>\nwm} rm] ro] rm\nwl ol wl oe\nalaAlaAlA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "time into quanta or 4 milliseconds slices and what we will now see is how the ideal fair",
+    "start": 130.72,
+    "end": 138.24,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\n1\n\nNV} Ny] Ny]\n\nw] ow] w] wo\n\nALA] ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "scheduling should take place. So, in an ideal fair scheduling at the end of say this 4",
+    "start": 138.24,
+    "end": 143.92,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\n1\n\nJy} rm] rm]\n\nw] ow] w] wo\n\nAL AL ALA\n\n{\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "millisecond epoch, all processes which are in the ready queue should have executed for",
+    "start": 143.92,
+    "end": 150.56,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\n1\n\nJy} rm] rm]\n\nw] ow] w] wo\n\nAL AL ALA\n\n{\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "the same amount of clock cycles. For instance, if we look at this particular first epoch,",
+    "start": 150.56,
+    "end": 158.44,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nw] wl] w] ow\nALA] ALA\n\n1\n\nJu{[ mp} rnin\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "so it has 4 milliseconds and we have 4 processes present in the ready queue. Therefore, each",
+    "start": 158.44,
+    "end": 164.64,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/4 = 1ms of the processor time\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "process should get 4 divided by 4 that is 1 milliseconds of processor time. Therefore,",
+    "start": 164.64,
+    "end": 172.2,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/4 = 1ms of the processor time\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "A, B, C and D will execute for 1 millisecond. In a similar way for the second cycle, there",
+    "start": 172.2,
+    "end": 179.72,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/4 = 1ms of the processor time\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "are 4 processes again and therefore, these 4 processes get an equal share of the slice.",
+    "start": 179.72,
+    "end": 188.64,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/4 = 1ms of the processor time\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "So, each process executes for 1 millisecond again. So, therefore, in all A has executed",
+    "start": 188.64,
+    "end": 194.32,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/4 = 1ms of the processor time\n\nAL AL ALA\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "for 2 milliseconds, B for 2, C for 2 and D for 2 milliseconds. Similarly, for 3 and for",
+    "start": 194.32,
+    "end": 201.6,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/4 = 1ms of the processor time\n\nAL AL ALA\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "4. So, at the end of the 4th epoch, we see that",
+    "start": 201.6,
+    "end": 207.64,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/4 = 1ms of the processor time\n\nAL AL ALA\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "the processes B and D have completed. So, what happens next? Now, after B and D completes,",
+    "start": 207.64,
+    "end": 214.0,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/4 = 1ms of the processor time\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "we see that we have 2 processes present in the ready queue that is A and C. Also, the",
+    "start": 214.0,
+    "end": 219.84,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/4 = 1ms of the processor time\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "time quanta remains as 4 milliseconds. So, now each process gets 4 divided by 2 that",
+    "start": 219.84,
+    "end": 227.84,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/2 = 2ms of the processor time\n\nNV} Ny] Vy]\nw]w] w] wo\nAL AL ALA\n\n1\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "is 2 milliseconds of the processor time. Therefore, process A execute for 2 milliseconds. Similarly,",
+    "start": 227.84,
+    "end": 235.32,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/2 = 2ms of the processor time\n\nNV} N/V]\nwl] wow] w] wo\nAL AL ALA\n\n1\n\n4\n\n4ms slice\n\nexecution with respect,to time"
+  },
+  {
+    "text": "for the next epoch, A execute for 2 more milliseconds and C execute for 2 more milliseconds. So,",
+    "start": 235.32,
+    "end": 248.44,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/2 = 2ms of the processor time\n\nNV} Ny] Vy]\nw] wo] w] wo\nAL AL ALA\n\n1\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "both have executed for 8 milliseconds and as a result, A has completed executing. Now,",
+    "start": 248.44,
+    "end": 255.32,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nEach process gets\n4/2 = 2ms of the processor time\n\nNV} Ny] Vy]\nw] wow] w] w\nALA, ALA\n\n1\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "the last part, we see that only C is present in the ready queue and it is the, since it",
+    "start": 255.32,
+    "end": 262.24,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nThe single process gets the entire\n4ms of the processor time\n\n16\n\n1\n\nNV} Ny] Vy]\n\nw] ow] w] wo\n\nALA] ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "is the only process which is present in the ready queue. So, it is given the entire slot",
+    "start": 262.24,
+    "end": 267.2,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nThe single process gets the entire\n4ms of the processor time\n\n16\n\n1\n\nNV} Ny] Vy]\n\nw] ow] w] wo\n\nALA] ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "of 4 milliseconds. So, C executes for 4 milliseconds and followed by the final slot where it",
+    "start": 267.2,
+    "end": 277.14,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nThe single process gets the entire\n4ms of the processor time\n\n1\n\nNV} Ny] Ny]\n\nw]w}] w] wo\n\nAL AL ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "executes for another 4 milliseconds to complete its burst time. So, what you see in this",
+    "start": 277.14,
+    "end": 283.04,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nThe single process gets the entire\n4ms of the processor time\n\n16\n\n1\n\nNV} Ny] Vy]\n\nwl] ow] w] wo\n\nALA] ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "ideal scheduling is that in each epoch or in each slot, the scheduler is trying to divide",
+    "start": 283.04,
+    "end": 294.92,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nThe single process gets the entire\n4ms of the processor time\n\n16\n\n1\n\nNV} Ny] Vy]\n\nwl] ow] w] wo\n\nALA] ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "the time equally among the processes. So, that A asymptotically, all processes execute",
+    "start": 294.92,
+    "end": 302.52,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nThe single process gets the entire\n4ms of the processor time\n\n16\n\n1\n\nNV} Ny] Vy]\n\nw] ow] w] wo\n\nALA] ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "for the same amount of time in the CPU. So, you see that all processes execute for 4 milliseconds",
+    "start": 302.52,
+    "end": 309.88,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nThe single process gets the entire\n4ms of the processor time\n\n16\n\n1\n\nNV} Ny] Vy]\n\nAL AL ALA\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "here at the end of this all process execute for 6 milliseconds and 8 milliseconds and so",
+    "start": 309.88,
+    "end": 314.56,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nThe single process gets the entire\n4ms of the processor time\n\n16\n\n1\n\nNV} Ny] nV]\n\nw] wo] w] wo\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "on. How is this ideal fair scheduling incorporated in the CFS scheduler? So, this is done by what",
+    "start": 314.56,
+    "end": 321.6,
+    "ocr_text": "Ideal Fair Scheduling\n\nDivide processor time equally among processes\n\nIdeal Fairness : If there are N processes in\nthe system, each process should have got\n\n(100/N)% of the CPU time\n\nIdeal Fairness\n\nThe single process gets the entire\n4ms of the processor time\n\n16\n\n1\n\nNV} Ny] nV]\n\nw] wo] w] wo\n\n4\n\n4ms slice\n\nexecution with respect to time"
+  },
+  {
+    "text": "is known as the virtual run times. In each processes PCP that is in each processes process",
+    "start": 321.6,
+    "end": 329.12,
+    "ocr_text": "Virtual Runtimes\n\n¢ With each runnable process is included a\nvirtual runtime (vruntime)\n— At every scheduling point, if process has run\nfor t ms, then (vruntime += t)\n—vruntime for a process therefore\nmonotonically increases"
+  },
+  {
+    "text": "control block and entry is present known as the V run time or the virtual run time. At",
+    "start": 329.12,
+    "end": 335.6,
+    "ocr_text": "Virtual Runtimes\n\n¢ With each runnable process is included a\nvirtual runtime (vruntime)\n— At every scheduling point, if process has run\nfor t ms, then (vruntime += t)\n—vruntime for a process therefore\nmonotonically increases"
+  },
+  {
+    "text": "every scheduling point if a process has run for t milliseconds, then its V run time is",
+    "start": 335.6,
+    "end": 341.44,
+    "ocr_text": "Virtual Runtimes\n\n¢ With each runnable process is included a\nvirtual runtime (vruntime)\n— At every scheduling point, if process has run\nfor t ms, then (vruntime += t)\n—vruntime for a process therefore\nmonotonically increases"
+  },
+  {
+    "text": "implemented by t. V run time for a process therefore, will monototonically increase.",
+    "start": 341.44,
+    "end": 349.52,
+    "ocr_text": "Virtual Runtimes\n\n¢ With each runnable process is included a\nvirtual runtime (vruntime)\n— At every scheduling point, if process has run\nfor t ms, then (vruntime += t)\n—vruntime for a process therefore\nmonotonically increases"
+  },
+  {
+    "text": "Now, the basic CFS idea is whenever there is a context which that is required to be done,",
+    "start": 349.52,
+    "end": 359.16,
+    "ocr_text": "Virtual Runtimes\n\n¢ With each runnable process is included a\nvirtual runtime (vruntime)\n— At every scheduling point, if process has run\nfor t ms, then (vruntime += t)\n—vruntime for a process therefore\nmonotonically increases"
+  },
+  {
+    "text": "always choose the task which has the lowest V run time. So, this is maintained by a variable",
+    "start": 359.16,
+    "end": 365.28,
+    "ocr_text": "The CFS Idea\n\n¢ When timer interrupt occurs\n— Choose the task with the lowest vruntime\n(min_vruntime)\n— Compute its dynamic timeslice\n— Program the high resolution timer with this timeslice\n* The process begins to execute in the CPU\n\n¢ When interrupt occurs again\n\n— Context switch if there is another task with a smaller\nruntime"
+  },
+  {
+    "text": "called min underscore V run time that is the this is a pointer to the task having the lowest",
+    "start": 365.32,
+    "end": 371.24,
+    "ocr_text": "The CFS Idea\n\n¢ When timer interrupt occurs\n— Choose the task with the lowest vruntime\n(min_vruntime)\n— Compute its dynamic timeslice\n— Program the high resolution timer with this timeslice\n* The process begins to execute in the CPU\n\n¢ When interrupt occurs again\n\n— Context switch if there is another task with a smaller\nruntime"
+  },
+  {
+    "text": "virtual run time. So, then the time slice required is the dynamic time slice for this particular",
+    "start": 371.24,
+    "end": 379.72,
+    "ocr_text": "The CFS Idea\n\n¢ When timer interrupt occurs\n— Choose the task with the lowest vruntime\n(min_vruntime)\n— Compute its dynamic timeslice\n— Program the high resolution timer with this timeslice\n* The process begins to execute in the CPU\n\n¢ When interrupt occurs again\n\n— Context switch if there is another task with a smaller\nruntime"
+  },
+  {
+    "text": "process is computed and the high resolution timer is programmed with this particular time",
+    "start": 379.72,
+    "end": 385.6,
+    "ocr_text": "The CFS Idea\n\n¢ When timer interrupt occurs\n— Choose the task with the lowest vruntime\n(min_vruntime)\n— Compute its dynamic timeslice\n— Program the high resolution timer with this timeslice\n* The process begins to execute in the CPU\n\n¢ When interrupt occurs again\n\n— Context switch if there is another task with a smaller\nruntime"
+  },
+  {
+    "text": "slice. The process begins to then execute in the CPU when an interrupt occurs again a",
+    "start": 385.6,
+    "end": 392.56,
+    "ocr_text": "The CFS Idea\n\n¢ When timer interrupt occurs\n— Choose the task with the lowest vruntime\n(min_vruntime)\n— Compute its dynamic timeslice\n— Program the high resolution timer with this timeslice\n¢ The process begins to execute in the CPU\n\n¢ When interrupt occurs again\n\n— Context switch if there is another task with a smaller\nruntime"
+  },
+  {
+    "text": "context which will occur if there is an other task with a smaller run time. So, you see",
+    "start": 392.56,
+    "end": 398.32,
+    "ocr_text": "The CFS Idea\n\n¢ When timer interrupt occurs\n— Choose the task with the lowest vruntime\n(min_vruntime)\n— Compute its dynamic timeslice\n— Program the high resolution timer with this timeslice\n¢ The process begins to execute in the CPU\n\n¢ When interrupt occurs again\n\n— Context switch if there is another task with a smaller\nruntime"
+  },
+  {
+    "text": "that this particular process which is selected to run over here will continue to run until",
+    "start": 398.32,
+    "end": 404.92,
+    "ocr_text": "The CFS Idea\n\n¢ When timer interrupt occurs\n— Choose the task with the lowest vruntime\n(min_vruntime)\n— Compute its dynamic timeslice\n— Program the high resolution timer with this timeslice\n* The process begins to execute in the CPU\n\n¢ When interrupt occurs again\n\n— Context switch if there is another task with a smaller\nruntime"
+  },
+  {
+    "text": "there is an other task with a lower run time. Now, in order to manage this various task",
+    "start": 404.92,
+    "end": 412.92,
+    "ocr_text": "The CFS Idea\n\n¢ When timer interrupt occurs\n— Choose the task with the lowest vruntime\n(min_vruntime)\n— Compute its dynamic timeslice\n— Program the high resolution timer with this timeslice\n* The process begins to execute in the CPU\n\n¢ When interrupt occurs again\n\n— Context switch if there is another task with a smaller\nruntime"
+  },
+  {
+    "text": "with various run times the CFS scheduler with quite unlike the schedulers which we seen",
+    "start": 413.72,
+    "end": 419.24,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n— Each node in the tree represents a\nrunnable task Ds\n— Nodes ordered according to their vruntime aN\n— Nodes on the left have lower vruntime F\ncompared to nodes on the right of the tree @ . Ce\nmom wo my oY\n\n— The left most node is the task with the\nleast vruntime @) @\nThis is cached in min_vruntime\n\nwe fe\n\nVietual runtine\n\nCPU\n\nmin_v untime"
+  },
+  {
+    "text": "so far do not use a ready queue instead it uses a red black tree data structure. So, in",
+    "start": 419.32,
+    "end": 426.32,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime virtual runtime\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree\n\n— The left most node is the task with the\nleast vruntime @) @)\n\n25 31\n\n= eo wwe fw\n\nVirtual runt\n\nThis is cached in min_vruntime\n\nMost need: ‘east need of CPU\n\nmin_viuntime"
+  },
+  {
+    "text": "this red black tree or the R B tree data structure each node in the tree is represented as",
+    "start": 427.48,
+    "end": 434.0,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime\n\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree ._ = yO SS s-\nmi | ni\n— The left most node is the task with the @ («)\nleast vruntime\n\nThis is cached in min_vruntime wy ‘wo et wR TN\n\nVirtual runtime\n\nMost need: ‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "a runable task nodes are ordered according to the virtual run time nodes on the left have",
+    "start": 434.0,
+    "end": 441.0,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime\n\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree ._ = yO SS s-\nmi | ni\n— The left most node is the task with the @ («)\nleast vruntime\n\nThis is cached in min_vruntime wy ‘wo et wR TN\n\nVirtual runtime\n\nMost need: ‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "a lower run time a lower V run time compared to nodes on the right of the tree that is",
+    "start": 441.0,
+    "end": 448.0,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime e ‘\n\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree\n\n— The left most node is the task with the fn tai to a + (@)\nleast vruntime\n\nThis is cached in min_vruntime wy ‘wo ft wR TN\n\nVirtual runtime\n\nMost need: ‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "if you see these particular things so each node is a task and each node has a number written",
+    "start": 449.0,
+    "end": 456.0,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime\n— Nodes on the left have lower vruntime\n\ncompared to nodes on the right of the tree .\nmeg = f ty J\n— The left most node is the task with the teal ir’\n\nleast vruntime\n\nThis is cached in min_vruntime ww\n\nwe fe\n\nVirtual runtime\n\n‘east need of CPU\n\nmin_viuntime"
+  },
+  {
+    "text": "over here which is the virtual run time for that particular task. So, you see that each",
+    "start": 456.72,
+    "end": 461.72,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime virtual runtime\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree\n\n— The left most node is the task with the\nleast vruntime @) @)\n\n25 31\n\n= eo wm we wo\n\nVirtual runt\n\nThis is cached in min_vruntime\n\nMost need: ‘east need of CPU\n\nmin_viuntime"
+  },
+  {
+    "text": "task on the left has a lower virtual run time compared to task on the right.",
+    "start": 461.72,
+    "end": 466.28,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime virtual runtime\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree\n\n— The left most node is the task with the\nleast vruntime @) @)\n\n25 31\n\n= eo wm we wo\n\nVirtual runt\n\nThis is cached in min_vruntime\n\nMost need: ‘east need of CPU\n\nmin_viuntime"
+  },
+  {
+    "text": "Now, the left most node of this R B tree is the task which has the lowest V run time",
+    "start": 466.28,
+    "end": 473.28,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime e ‘\n\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree\n\n— The left most node is the task with the mA tai to a + (@)\nleast vruntime\n\nThis is cached in min_vruntime ww wo fe wR TN\n\nVirtual runtime\n\nMost need: ‘east need of CPU\n\nmin_viuntime"
+  },
+  {
+    "text": "the lowest virtual run time. So, in this particular case it is this particular node which corresponds",
+    "start": 473.8,
+    "end": 478.8,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime e ‘\n\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree\n\n— The left most node is the task with the mA tai to a + (@)\nleast vruntime\n\nThis is cached in min_vruntime ww wo fe wR TN\n\nVirtual runtime\n\nMost need: ‘east need of CPU\n\nmin_viuntime"
+  },
+  {
+    "text": "to the task having the lowest virtual run time therefore, the scheduler should pick up",
+    "start": 481.96,
+    "end": 488.46,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime\n— Nodes on the left have lower vruntime\n\ncompared to nodes on the right of the tree .\nme | iM mt) ]\n— The left most node is the task with the teal ir’\n\nleast vruntime\n\nThis is cached in min_vruntime .\n\nWM fe\n\nVirtual runtime\n\nMost need: ‘east need of CPU\n\nmin_viuntime"
+  },
+  {
+    "text": "this task to run next in order to find this task there are two ways which are possible",
+    "start": 488.64,
+    "end": 494.64,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime @ virtual runtime\n\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree\n— The left most node is the task with the\nleast vruntime\nThis is cached in min_vruntime\n\n8 a\nmm Me hk\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "one is you could traverse the tree and go towards the left until you reach a leaf or",
+    "start": 494.64,
+    "end": 500.64,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime @ virtual runtime\n\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree\n— The left most node is the task with the\nleast vruntime\nThis is cached in min_vruntime\n\n8 a\nmm Me hk\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "the other way is we could directly have a pointer like the mean underscore V run time",
+    "start": 500.72,
+    "end": 505.2,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime @\n\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree\n\n— The left most node is the task with the\nleast vruntime\n\nThis is cached in min_vruntime\n\n8 a\nhoe fo om\na moe hk\n\nVirtual runt\n\nMost need: ‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "which points to the left most node of the tree. So, whenever the scheduler needs to",
+    "start": 505.2,
+    "end": 512.2,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n— Each node in the tree represents a\nrunnable task\n— Nodes ordered according to their vruntime\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree ~\n‘ x me wm mw\n— The left most node is the task with the (8)\nleast vruntime\nThis is cached in min_vruntime\n\nwy WO MM fe\n\nVirtual runtime\n\nMost need: ‘east need of CPU\n\nmin_viuntime"
+  },
+  {
+    "text": "make a context which it would just need to look into where mean V run time points to and",
+    "start": 512.6,
+    "end": 518.08,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n— Each node in the tree represents a\nrunnable task\n— Nodes ordered according to their vruntime\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree ~\n‘ x me wm mw\n— The left most node is the task with the (8)\nleast vruntime\nThis is cached in min_vruntime\n\nwy WO MM fe\n\nVirtual runtime\n\nMost need: ‘east need of CPU\n\nmin_viuntime"
+  },
+  {
+    "text": "pick out this particular task this quite naturally will be the lowest or the task with the",
+    "start": 518.08,
+    "end": 524.8,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime\n\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree ~ ~\n\n— The left most node is the task with the 5 omens rt (@)\nleast vruntime\n\nThis is cached in min_vruntime\n\n65\n\n= eo wm wm Tf\n\nVirtual runt\n\nMost need: ‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "lowest virtual run time. So, this choice of the lowest V run time is can be done in order",
+    "start": 524.8,
+    "end": 531.8,
+    "ocr_text": "Picking the Next Task to Run\n\n+ CFS uses a red-black tree.\n\n— Each node in the tree represents a\nrunnable task\n\n— Nodes ordered according to their vruntime\n\n— Nodes on the left have lower vruntime\ncompared to nodes on the right of the tree ~ ~\n\n— The left most node is the task with the 5 omens rt (@)\nleast vruntime\n\nThis is cached in min_vruntime\n\n65\n\n= eo wm wm Tf\n\nVirtual runt\n\nMost need: ‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "one and therefore, independent of the number of processes present in the R B tree. So,",
+    "start": 533.64,
+    "end": 540.24,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch, yOR\n\nodes repress\n\n— Pick the left most node of the tree @ sched enti ty(s) @)\n* This has the lowest runtime. { virtual runtime /\n* Itis cached in min_vruntime. Therefore\naccessed in O(1) u @Q @ by\n— Ifthe previous process is runnable, it is ae @\n\ninserted into the tree depending on its\n\nnew vruntime. Done in O(log(n)) wy wa ww ww wo\n* Tasks move from left to right of tree after, la)\nits execution completes... starvation Moai nesd ocr east need of CPU\navoided\n\nmin_vruntime"
+  },
+  {
+    "text": "at the end of the time slice if this process which is currently executing is still runable",
+    "start": 540.24,
+    "end": 545.24,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\nIt is cached in min_vruntime. Therefore\naccessed in O(1)\n— Ifthe previous process is runnable, it is\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n)) = wm ww\n\n* Tasks move from left to right of tree after,\nits execution completes... starvation\navoided\n\nhoe fo om\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "that is it has not blocked on an I O or it has not exited then it is new virtual run time",
+    "start": 545.24,
+    "end": 551.76,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\n\n* Itis cached in min_vruntime. Therefore\naccessed in O(1)\n— Ifthe previous process is runnable, it is\n\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n)) wy wwe wo\n* Tasks move from left to right of tree after, wut) Erne ibe\nits execution completes... starvation\navoided\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "is computed based on the amount of time it has executed in the CPU then it is inserted",
+    "start": 551.88,
+    "end": 557.44,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\n\n* Itis cached in min_vruntime. Therefore\naccessed in O(1)\n— Ifthe previous process is runnable, it is\n\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n)) wy wwe wo\n* Tasks move from left to right of tree after, wut) Erne ibe\nits execution completes... starvation\navoided\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "back into the tree corresponding to its virtual run time. So, a process in other words would",
+    "start": 557.44,
+    "end": 564.44,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch, @.\n\nrepres\n\nsched_entity(s)\nindexed by the\nvidual runtime\n\n— Pick the left most node of the tree\n* This has the lowest runtime.\n* Itis cached in min_vruntime. Therefore\naccessed in O(1)\n— Ifthe previous process is runnable, it is\ninserted into the tree depending on its\n\nMoe fo |\n\nnew vruntime. Done in O(log(n)) my WO ww ww\n* Tasks move from left to right of tree after, Virtual runtime\nits execution completes... starvation Most need of £e' east need of CPU\navoided\n\nmin_vruntime"
+  },
+  {
+    "text": "be picked out from the left most part of the tree because it has the lowest virtual run",
+    "start": 564.44,
+    "end": 570.44,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch, @.\n\nrepres\n\nsched_entity(s)\nindexed by the\nvidual runtime\n\n— Pick the left most node of the tree\n* This has the lowest runtime.\n* Itis cached in min_vruntime. Therefore\naccessed in O(1)\n— Ifthe previous process is runnable, it is\ninserted into the tree depending on its\n\nMoe fo |\n\nnew vruntime. Done in O(log(n)) my WO ww ww\n* Tasks move from left to right of tree after, Virtual runtime\nits execution completes... starvation Most need of £e' east need of CPU\navoided\n\nmin_vruntime"
+  },
+  {
+    "text": "time and then it would execute in the CPU for some time say T milliseconds and at the",
+    "start": 570.44,
+    "end": 577.44,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\n\n* Itis cached in min_vruntime. Therefore\naccessed in O(1)\n— Ifthe previous process is runnable, it is\n\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n)) Lis) a) wm we wo\n* Tasks move from left to right of tree after, att)\nits execution completes... starvation\navoided\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "end of its time slice is virtual run time would be incremented by T values and it would",
+    "start": 577.52,
+    "end": 583.84,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\n\nIt is cached in min_vruntime. Therefore\naccessed in O(1)\n\n— Ifthe previous process is runnable, it is\n\nfond im og\n\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n)) my WO wm we ND\n* Tasks move from left to right of tree after, ale il\nits execution completes... starvation eel) ses need of CPU\navoided\n\nmin_vruntime"
+  },
+  {
+    "text": "be inserted again into the tree. Now, it will not go to the left of the tree but it",
+    "start": 583.84,
+    "end": 589.08,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\n\nIt is cached in min_vruntime. Therefore\naccessed in O(1)\n\n— Ifthe previous process is runnable, it is\n\nfond im og\n\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n)) my WO wm we ND\n* Tasks move from left to right of tree after, ale il\nits execution completes... starvation eel) ses need of CPU\navoided\n\nmin_vruntime"
+  },
+  {
+    "text": "will rather be inserted somewhere in the middle towards the right thus as the virtual run time",
+    "start": 589.08,
+    "end": 596.08,
+    "ocr_text": "Picking the Next Task to Run\n\np\n@\n\nw we fe\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\nIt is cached in min_vruntime. Therefore\naccessed in O(1)\n\n— Ifthe previous process is runnable, it is\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n))\n\n+ Tasks move from left to right of tree ater\n\nits execution completes... starvation\navoided\n\nVirtual run\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "increment a process moves towards from the left towards the right. This ensures that",
+    "start": 596.08,
+    "end": 603.08,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\n\n* Itis cached in min_vruntime. Therefore\naccessed in O(1)\n— Ifthe previous process is runnable, it is\n\nbeats af\n\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n)) wy eo Noe fy\n* Tasks move from left to right of tree after_, AG Val)\nits execution completes... starvation\navoided\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "every process gets a chance to execute because it ensures that at one point or the",
+    "start": 603.08,
+    "end": 610.08,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\n\n* Itis cached in min_vruntime. Therefore\naccessed in O(1)\n— Ifthe previous process is runnable, it is\n\nbeats af\n\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n)) wy eo Noe fy\n* Tasks move from left to right of tree after_, AG Val)\nits execution completes... starvation\navoided\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "other every process is going to have the minimum virtual run time in this particular tree",
+    "start": 612.36,
+    "end": 619.32,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\nIt is cached in min_vruntime. Therefore\naccessed in O(1)\n— Ifthe previous process is runnable, it is\ninserted into the tree depending on its\n\nhoe fo om tS\n\nnew vruntime. Done in O(log(n)) my wa we Noe fe\n* Tasks move from left to right of tree after,\nits execution completes... starvation Meostneed) east need of CPU\navoided\n\nmin_vruntime"
+  },
+  {
+    "text": "and therefore, will get executed thus starvation is avoided.",
+    "start": 619.32,
+    "end": 624.12,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\nIt is cached in min_vruntime. Therefore\naccessed in O(1)\n\n— Ifthe previous process is runnable, it is\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n)) my WO a ww ww\n\n+ Tasks move from left to right of tree after,\n\nits execution completes... starvation\navoided\n\nhoe fo om tS\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "So, why do we choose the red black tree or rather why did the Linux kernel choose the",
+    "start": 624.12,
+    "end": 629.56,
+    "ocr_text": "Picking the Next Task to Run\n\n*At a context switch,\n— Pick the left most node of the tree\n* This has the lowest runtime.\nIt is cached in min_vruntime. Therefore\naccessed in O(1)\n\n— Ifthe previous process is runnable, it is\ninserted into the tree depending on its\nnew vruntime. Done in O(log(n)) my WO a ww ww\n\n+ Tasks move from left to right of tree after,\n\nits execution completes... starvation\navoided\n\nhoe fo om tS\n\n‘east need of CPU\n\nmin_vruntime"
+  },
+  {
+    "text": "red black tree for the CFS shed wheeler. So, one obvious reason is the RB tree is self",
+    "start": 629.56,
+    "end": 636.56,
+    "ocr_text": "Why Red Black Tree?\n\n* Self Balancing\n— No path in the tree will be twice as long as any other path\n\n* All operations are O(log n)\n— Thus inserting / deleting tasks from the tree is quick and efficient"
+  },
+  {
+    "text": "balancing. So, no path in the tree will be twice as long as any other path because of",
+    "start": 636.56,
+    "end": 642.56,
+    "ocr_text": "Why Red Black Tree?\n\n* Self Balancing\n— No path in the tree will be twice as long as any other path\n\n* All operations are O(log n)\n— Thus inserting / deleting tasks from the tree is quick and efficient"
+  },
+  {
+    "text": "self balancing nature of the tree due to this all operations will be ordered of log n",
+    "start": 642.56,
+    "end": 648.56,
+    "ocr_text": "Why Red Black Tree?\n\n* Self Balancing\n— No path in the tree will be twice as long as any other path\n\n* All operations are O(log n)\n— Thus inserting / deleting tasks from the tree is quick and efficient"
+  },
+  {
+    "text": "thus inserting or deleting tasks from the tree can be quick and done very efficiently.",
+    "start": 648.76,
+    "end": 655.76,
+    "ocr_text": "Why Red Black Tree?\n\n* Self Balancing\n— No path in the tree will be twice as long as any other path\n\n* All operations are O(log n)\n— Thus inserting / deleting tasks from the tree is quick and efficient"
+  },
+  {
+    "text": "Now, how are priorities implemented in the CFS shed wheeler. So, essentially CFS does not",
+    "start": 656.32,
+    "end": 662.82,
+    "ocr_text": "Priorities and CFS\n\n* Priority (due to nice values) used to weigh the vruntime\n\n¢ if process has run for t ms, then\nvruntime += t * (weight based on nice of process)\n\n¢ A lower priority implies time moves at a faster rate\ncompared to that of a high priority task"
+  },
+  {
+    "text": "use any exclusive priority based choose as we seen in the O 1 scheduler but rather it",
+    "start": 662.82,
+    "end": 669.82,
+    "ocr_text": "Priorities and CFS\n\n* Priority (due to nice values) used to weigh the vruntime\n\n¢ if process has run for t ms, then\nvruntime += t * (weight based on nice of process)\n\n¢ A lower priority implies time moves at a faster rate\ncompared to that of a high priority task"
+  },
+  {
+    "text": "uses priorities to only way the virtual run time for instance if a process has run for",
+    "start": 669.82,
+    "end": 676.82,
+    "ocr_text": "Priorities and CFS\n\n* Priority (due to nice values) used to weigh the vruntime\n\n* if process has run for t ms, then\nvruntime += t * (weight based on nice of process)\n\n¢ A lower priority implies time moves at a faster rate\ncompared to that of a high priority task"
+  },
+  {
+    "text": "T milliseconds then the virtual run time is implemented by T into weight based on the",
+    "start": 676.82,
+    "end": 684.66,
+    "ocr_text": "Priorities and CFS\n\n* Priority (due to nice values) used to weigh the vruntime\n\n¢ if process has run for t ms, then\nvruntime += t * (weight based on nice of process)\n\n¢ A lower priority implies time moves at a faster rate\ncompared to that of a high priority task"
+  },
+  {
+    "text": "nice value of the process essentially based on the static priority of the process.",
+    "start": 684.68,
+    "end": 689.68,
+    "ocr_text": "Priorities and CFS\n\n* Priority (due to nice values) used to weigh the vruntime\n\n¢ if process has run for t ms, then\nvruntime += t * (weight based on nice of process)\n\n¢ A lower priority implies time moves at a faster rate\ncompared to that of a high priority task"
+  },
+  {
+    "text": "So, a lower priority implies that the time moves at a faster rate compared to that of",
+    "start": 689.68,
+    "end": 696.68,
+    "ocr_text": "Priorities and CFS\n\n* Priority (due to nice values) used to weigh the vruntime\n\n* if process has run for t ms, then\nvruntime += t * (weight based on nice of process)\n\n¢ A lower priority implies time moves at a faster rate\ncompared to that of a high priority task"
+  },
+  {
+    "text": "a high priority task. So, essentially what we are doing is we are providing a weight for",
+    "start": 696.76,
+    "end": 704.76,
+    "ocr_text": "Priorities and CFS\n\n* Priority (due to nice values) used to weigh the vruntime\n\n* if process has run for t ms, then\nvruntime += t * (weight based on nice of process)\n\n¢ A lower priority implies time moves at a faster rate\ncompared to that of a high priority task"
+  },
+  {
+    "text": "the time that it is executes that is we are either accelerating the time or decelerating",
+    "start": 706.44,
+    "end": 712.44,
+    "ocr_text": "Priorities and CFS\n\n* Priority (due to nice values) used to weigh the vruntime\n\n* if process has run for t ms, then\nvruntime += t,* (weight based on nice of process)\n\n¢ A lower priority implies time moves at a faster rate\ncompared to that of a high priority task"
+  },
+  {
+    "text": "the time at which a process runs. So, this weight is used to implement priorities in the",
+    "start": 712.44,
+    "end": 719.44,
+    "ocr_text": "Priorities and CFS\n\n* Priority (due to nice values) used to weigh the vruntime\n\n* if process has run for t ms, then\nvruntime += t,* (weight based on nice of process)\n\n¢ A lower priority implies time moves at a faster rate\ncompared to that of a high priority task"
+  },
+  {
+    "text": "CFS scheduling algorithm. Next we will look at how the CFS scheduler distinguishes between",
+    "start": 719.44,
+    "end": 725.24,
+    "ocr_text": "Priorities and CFS\n\n* Priority (due to nice values) used to weigh the vruntime\n\n¢ if process has run for t ms, then\nvruntime += t * (weight based on nice of process)\n&\n\n¢ A lower priority implies time moves at a faster rate\ncompared to that of a high priority task"
+  },
+  {
+    "text": "an IO bound and a CPU bound process. So, essentially this distinguishing is done very",
+    "start": 725.24,
+    "end": 732.24,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "efficiently. It is based on the fact that IO bound processes have a very small CPU burst",
+    "start": 732.24,
+    "end": 739.24,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "and therefore, its V run time does not increment very significantly. As a result of this",
+    "start": 740.24,
+    "end": 746.24,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "it is more often than not appearing in the left part of the RB tree. Therefore, it gets",
+    "start": 748.0,
+    "end": 755.0,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "to execute more often than other processes. This is because of the fact that as we mentioned",
+    "start": 756.24,
+    "end": 761.24,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "as time progresses each process in the CFS scheduler is picked up from the left most",
+    "start": 761.24,
+    "end": 768.24,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "node and executes and then is placed on the right. Therefore, in general every process moves",
+    "start": 768.8,
+    "end": 775.8,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "towards the right part of the RB tree present in the scheduler. Now, for the IO bound",
+    "start": 775.8,
+    "end": 782.8,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "process since the V run time does not change too much or increments just by a small margin,",
+    "start": 783.28,
+    "end": 790.28,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "it does not move to the extreme right. But rather it still stays towards the left part",
+    "start": 791.12,
+    "end": 796.12,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "of the tree thus very soon it will soon find itself with the as a process with the lowest",
+    "start": 796.12,
+    "end": 803.12,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "V run time and will have a chance to execute again in the CPU.",
+    "start": 803.12,
+    "end": 808.12,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "Now, as a second effect due to the small V run time or the small virtual run time of the",
+    "start": 808.12,
+    "end": 814.12,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "IO bound processes it is given a larger time slice to execute in the CPU. Thus we see the",
+    "start": 814.12,
+    "end": 821.12,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "IO bound and CPU bound processes are very well distinguished quite inherently by the CFS",
+    "start": 822.12,
+    "end": 828.12,
+    "ocr_text": "I/O and CPU bound processes\n\n¢ What we need,\n\n— I/O bound should get higher priority and get a longer\ntime to execute compared to CPU bound\n\n— CFS achieves this efficiently\n* I/O bound processes have small CPU bursts therefore will\nhave a low vruntime. They would appear towards the left of\nthe tree.... Thus are given higher priorities\n+ I/O bound processes will typically have larger time slices,\nbecause they have smaller vruntime"
+  },
+  {
+    "text": "algorithm. When a new process gets created it gets added to the red black tree. Now, it",
+    "start": 828.12,
+    "end": 835.12,
+    "ocr_text": "New Process\n\n¢ Gets added to the RB-tree\n\n¢ Starts with an initial value of\nmin_vruntime..\n\n¢ This ensures that it gets to execute quickly"
+  },
+  {
+    "text": "starts with the initial value of min V run time therefore, gets placed to the left most",
+    "start": 835.52,
+    "end": 841.82,
+    "ocr_text": "New Process\n\n¢ Gets added to the RB-tree\n\n¢ Starts with an initial value of\nmin_vruntime..\n\n¢ This ensures that it gets to execute quickly"
+  },
+  {
+    "text": "node of the tree and this ensures that it gets to execute very quickly. So, as it executes",
+    "start": 841.82,
+    "end": 848.82,
+    "ocr_text": "New Process\n\n¢ Gets added to the RB-tree\n\n¢ Starts with an initial value of\nmin_vruntime..\n\n¢ This ensures that it gets to execute quickly"
+  },
+  {
+    "text": "depending on the amount of time it executes whether it is an interactive or a CPU bound",
+    "start": 848.82,
+    "end": 855.82,
+    "ocr_text": "New Process\n\n¢ Gets added to the RB-tree\n\n¢ Starts with an initial value of\nmin_vruntime..\n\n¢ This ensures that it gets to execute quickly"
+  },
+  {
+    "text": "process it is positioned within the RB tree would vary. This was a brief introduction",
+    "start": 856.94,
+    "end": 863.94,
+    "ocr_text": "New Process\n\n¢ Gets added to the RB-tree\n\n¢ Starts with an initial value of\nmin_vruntime..\n\n¢ This ensures that it gets to execute quickly"
+  },
+  {
+    "text": "to the CFS scheduler which is the default scheduler in current versions of the Linux kernel.",
+    "start": 863.94,
+    "end": 870.94,
+    "ocr_text": "New Process\n\n¢ Gets added to the RB-tree\n\n¢ Starts with an initial value of\nmin_vruntime..\n\n¢ This ensures that it gets to execute quickly"
+  },
+  {
+    "text": "Thank you.",
+    "start": 870.94,
+    "end": 871.46,
+    "ocr_text": "New Process\n\n¢ Gets added to the RB-tree\n\n¢ Starts with an initial value of\nmin_vruntime..\n\n¢ This ensures that it gets to execute quickly"
+  }
+]

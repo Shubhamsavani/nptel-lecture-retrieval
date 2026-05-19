@@ -1,0 +1,1856 @@
+[
+  {
+    "text": "Welcome back to the course on Computer Network and Internet Protocols. So, in the last class",
+    "start": 0.0,
+    "end": 20.32,
+    "ocr_text": "PROF. SANDIP.CHAKRABORTY\n\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\n. INDIAN INSTITUTE OF TECHNOLOGY, KHARAGPUR"
+  },
+  {
+    "text": "we are discussing about the concept of software-defined networking and we have looked into the",
+    "start": 20.32,
+    "end": 26.2,
+    "ocr_text": "PROF. SANDIP.CHAKRABORTY\n\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\n. INDIAN INSTITUTE OF TECHNOLOGY, KHARAGPUR"
+  },
+  {
+    "text": "basic architecture for the software-defined networking and the broad concepts around that. So,",
+    "start": 26.2,
+    "end": 31.88,
+    "ocr_text": "PROF. SANDIP.CHAKRABORTY\n\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\n. INDIAN INSTITUTE OF TECHNOLOGY, KHARAGPUR"
+  },
+  {
+    "text": "today we will gradually go towards an implementation perspective of the software-defined networking and",
+    "start": 31.88,
+    "end": 40.92,
+    "ocr_text": "PROF. SANDIP.CHAKRABORTY\n\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\n. INDIAN INSTITUTE OF TECHNOLOGY, KHARAGPUR"
+  },
+  {
+    "text": "the software component of it where the routers or the network devices are software controlled.",
+    "start": 40.92,
+    "end": 48.04,
+    "ocr_text": "PROF. SANDIP.CHAKRABORTY\n\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\n. INDIAN INSTITUTE OF TECHNOLOGY, KHARAGPUR"
+  },
+  {
+    "text": "So, we will look into that what type of software or which software will actually control this",
+    "start": 48.04,
+    "end": 54.52,
+    "ocr_text": "Network Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "entire networking architecture. So, in this context we will look into a specific open source",
+    "start": 54.52,
+    "end": 61.08,
+    "ocr_text": "Network Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "protocol implementation which is called open flow and subsequent classes we will look into a",
+    "start": 61.64,
+    "end": 69.16,
+    "ocr_text": "Network Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "demonstration of ISTN network by utilizing open flow protocol stack. So, let us go to the",
+    "start": 69.16,
+    "end": 75.64,
+    "ocr_text": "Network Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "details of that. So, as we are discussing that traditionally in the network community the",
+    "start": 75.64,
+    "end": 82.84,
+    "ocr_text": "Network Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "innovation is a closed innovation. So, closed innovation means in a single box we have the individual",
+    "start": 82.84,
+    "end": 89.96,
+    "ocr_text": "Network Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "components or individual networking components which should be there. Like here if you just follow",
+    "start": 89.96,
+    "end": 95.96,
+    "ocr_text": "Network Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding\n\nHants"
+  },
+  {
+    "text": "this diagram you have the packet forwarding hardware the network operating system and different",
+    "start": 95.96,
+    "end": 104.2,
+    "ocr_text": "Closed Innovations\n\nNetwork Operating Network Operating\nSystem System\nPacket Forwarding Packet Forwarding\nHardware Hardware\n\nNetwork Operating Network Operating\nSystem System\nPacket Forwarding |B Packet Forwarding\nHardware | weiner\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "kind of networking application everything is bounded on the single bounding box. So,",
+    "start": 104.2,
+    "end": 111.0,
+    "ocr_text": "Closed Innovations\n\nNetwork Operating Network Operating\nSystem System\nPacket Forwarding Packet Forwarding\nHardware Hardware\n\nNetwork Operating Network Operating\nSystem System\nPacket Forwarding |B Packet Forwarding\nHardware | weiner\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "this contains the router hardware. So, you can talk it as a router. So, this contains the router",
+    "start": 111.56,
+    "end": 117.24,
+    "ocr_text": "Network Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIITKHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\n\nPacket Forwarding\nHo"
+  },
+  {
+    "text": "hardware and inside the router you have the hardware component which is implemented in T-cam",
+    "start": 117.24,
+    "end": 123.4,
+    "ocr_text": "Closed Innovations in\n\nNetworking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "or in traditional router it is cam. So, one of these type of hardware and top of that we have the",
+    "start": 123.96,
+    "end": 132.04,
+    "ocr_text": "Closed Innovations in\n\nNetworking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "network operating system that actually implements the different kind of networking protocols and",
+    "start": 133.08,
+    "end": 139.16,
+    "ocr_text": "Closed Innovations in\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\n\nSystem\n\nPacket Forwarding\n\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetworking Community\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "the routing control protocols and on a top of that we have different kind of applications like",
+    "start": 139.24,
+    "end": 144.92,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\n\nSystem\n\nPacket Forwarding\n\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "the firewall application the packet forwarding applications which are there inside the router.",
+    "start": 144.92,
+    "end": 149.4,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\n\nSystem\n\nPacket Forwarding\n\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "Now, whenever you purchase a single router this entire bounding box that comes from a vendor",
+    "start": 149.96,
+    "end": 157.24,
+    "ocr_text": "Closed Innovations in\n\nNetworking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\n|\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIITKHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "and that is why we call it as a closed innovation. So, closed innovation basically says that well",
+    "start": 157.24,
+    "end": 164.2,
+    "ocr_text": "Closed Innovations in\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\ne Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "both the hardware as well as software along with the applications which are associated with your",
+    "start": 164.52,
+    "end": 170.92,
+    "ocr_text": "Closed Innovations in\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\ne Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "network functionalities everything is coming from the same vendor as the same package.",
+    "start": 171.56,
+    "end": 176.68,
+    "ocr_text": "Closed Innovations in\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\ne Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "As a result the problem comes in terms of first interoperability the second is the network",
+    "start": 176.68,
+    "end": 182.84,
+    "ocr_text": "Closed Innovations in\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\ne Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "manageability. So, if you purchase a Cisco router and the net gear router or a HP router",
+    "start": 182.84,
+    "end": 188.68,
+    "ocr_text": "Closed Innovations in\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\ne Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "in general it is the burden of the network operator to look into the individual configurations",
+    "start": 189.56,
+    "end": 195.08,
+    "ocr_text": "Closed Innovations in\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\ne Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "of the routers and then configure them in such a way. So, that these routers can talk with each",
+    "start": 195.08,
+    "end": 201.24,
+    "ocr_text": "Closed Innovations in\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\ne Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "other or forward packets from one router to another router. And this operating systems",
+    "start": 201.24,
+    "end": 207.4,
+    "ocr_text": "Closed Innovations in\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nIIT KHARAGPUR\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\ne Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "they being the vendor specific like whenever you are purchasing a router from Cisco the network",
+    "start": 208.2,
+    "end": 214.52,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\n‘Network Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURS!\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "operating system is coming from Cisco, Cisco internet operating system IOS or any other operating",
+    "start": 214.68,
+    "end": 220.52,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\n‘Network Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURS!\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "system whenever you are purchasing a router from net gear the operating system is coming from them.",
+    "start": 220.52,
+    "end": 225.88,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\n‘Network Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURS!\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "So, because the operating system and the firmware are hardware dependent and it is vendor specific",
+    "start": 225.88,
+    "end": 232.12,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\n‘Network Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURS!\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "and that is why the configuration or handling the operating system for a network administrator",
+    "start": 232.12,
+    "end": 239.16,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\n‘Network Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURS!\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "who will actually give the input of the networking policy for them this entire",
+    "start": 239.16,
+    "end": 245.32,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\n‘Network Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURS!\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "architecture becomes difficult to handle. So, because of that we gradually move from this kind",
+    "start": 245.96,
+    "end": 254.36,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\n‘Network Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURS!\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "of closed innovation network to a open innovation network. So, the open innovation network basically",
+    "start": 254.36,
+    "end": 262.12,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\n‘Network Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURS!\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware"
+  },
+  {
+    "text": "talks about something like this. Now, the vendors will only supply the packet forwarding",
+    "start": 262.68,
+    "end": 268.92,
+    "ocr_text": "Closed Innovations in the Networking Community\n\nNetwork Operating\nSystem\nPacket Forwarding\nHardware\n\nNetwork Operating\n\nSystem\n\nPacket Forwarding\n\nHardware\n\nNetwork Operating\nSystem\nPacket Forwardii\nHardware\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES,\n\nNetwork Operating\nSystem\nPacket Forwarding"
+  },
+  {
+    "text": "hardware which are the dump switches or we call it as the open switches or the blind switches.",
+    "start": 268.92,
+    "end": 275.8,
+    "ocr_text": "Network Operating System\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\n\n!\n1\ni\nHardware !\n1\ni\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, there are different terminologies which are being used in the networking community.",
+    "start": 275.8,
+    "end": 280.52,
+    "ocr_text": "Packet Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, you are getting this packet forwarding hardware from different vendors and then you have a",
+    "start": 281.24,
+    "end": 288.76,
+    "ocr_text": "Packet Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "central network wide operating system this network operating system which is a open operating system.",
+    "start": 288.76,
+    "end": 296.44,
+    "ocr_text": "Network Operating System\n\nPacket Forwarding,\nHardware\n\nPacket Forwarding\n\n!\n1\ni\nHardware !\n1\ni\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nCo rl"
+  },
+  {
+    "text": "So, now we are basically segregating the hardware from the software or in routing functionalities",
+    "start": 296.44,
+    "end": 305.32,
+    "ocr_text": "Packet Forwarding\nHardware\n\nIIT KHARAGPUR\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nPacket Forwarding\nHardware\n\nPacket Forwarding"
+  },
+  {
+    "text": "as we are discussing in the last class we are separating out the data functionalities or the",
+    "start": 305.32,
+    "end": 309.8,
+    "ocr_text": "Packet Forwarding\nHardware\n\nIIT KHARAGPUR\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nPacket Forwarding\nHardware\n\nPacket Forwarding"
+  },
+  {
+    "text": "data path functionalities from the control functionalities. So, the data path functionalities",
+    "start": 309.8,
+    "end": 315.16,
+    "ocr_text": "Packet Forwarding\nHardware\n\nIIT KHARAGPUR\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nPacket Forwarding\nHardware\n\nPacket Forwarding"
+  },
+  {
+    "text": "are still implemented inside the hardware inside this packet forwarding engine where you have",
+    "start": 315.16,
+    "end": 322.12,
+    "ocr_text": "Packet Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\nHo\n\ni\n\neH bHereUS y *%"
+  },
+  {
+    "text": "this Tcam implementation. So, it is still in the hardware site but on the software site you can",
+    "start": 322.2,
+    "end": 328.84,
+    "ocr_text": "Packet Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\nHo\n\ni\n\neH bHereUS y *%"
+  },
+  {
+    "text": "choose your own software which you can utilize to configure all these hardware are to be done.",
+    "start": 328.84,
+    "end": 334.52,
+    "ocr_text": "Packet Forwarding\nHardware\n\nIIT KHARAGPUR\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nPacket Forwarding\nHardware\n\nPacket Forwarding"
+  },
+  {
+    "text": "And then on top of that you can write your own network applications and the advantage is that now",
+    "start": 334.52,
+    "end": 339.88,
+    "ocr_text": "Packet Forwarding\nHardware\n\nIIT KHARAGPUR\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nPacket Forwarding\nHardware\n\nPacket Forwarding"
+  },
+  {
+    "text": "you do not need to bother about whether your routers are coming from Cisco or from NetGear.",
+    "start": 339.88,
+    "end": 344.76,
+    "ocr_text": "Packet Forwarding\nHardware\n\nIIT KHARAGPUR\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nPacket Forwarding\nHardware\n\nPacket Forwarding"
+  },
+  {
+    "text": "You can purchase the hardware from any vendors in the world and then you can connect it in your",
+    "start": 345.48,
+    "end": 352.28,
+    "ocr_text": "SDN Based Approach to Open the Innovatio’\n\nPacket Forwarding\n\nPacket Forwarding Hardware\n\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "network and all these hardware should be programmable with the help of this network operating system.",
+    "start": 352.28,
+    "end": 359.88,
+    "ocr_text": "SDN Based Approach to Open the Innovatio’\n\nPacket Forwarding\n\nPacket Forwarding Hardware\n\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, the only modification in the hardware site is that now these hardware the packet forwarding",
+    "start": 359.88,
+    "end": 365.32,
+    "ocr_text": "Packet Forwarding,\n\nPacket Forwarding Hardware\n\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware _ wie\n\n*\nes\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n5 tet sve. yue"
+  },
+  {
+    "text": "hardware are programmable hardware. So, these are programmable hardware that means with the help",
+    "start": 365.4,
+    "end": 374.84,
+    "ocr_text": "Packet Forwarding\n\nPacket Forwarding Hardware\n\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "of this network operating system you can dynamically program the hardware so that you can",
+    "start": 374.84,
+    "end": 379.64,
+    "ocr_text": "Packet Forwarding\n\nPacket Forwarding Hardware\n\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "install the forwarding rules or you can install the configurations dynamically based on",
+    "start": 380.36,
+    "end": 386.2,
+    "ocr_text": "SDN Based Approach to Open the Innovatio!\n\nPacket Forwarding\n\nPacket Forwarding Hardware\n\nHen vare\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\ntan bHers"
+  },
+  {
+    "text": "the network operating system that you are choosing. So, the question comes that with this kind of",
+    "start": 387.08,
+    "end": 393.88,
+    "ocr_text": "SDN Based Approach to Open the Innovatio’\n\nPacket Forwarding,\n\nPacket Forwarding Hardware\n\nHe\" vare\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "SDA architecture where we are gradually moving from a closed innovation network to a open",
+    "start": 393.88,
+    "end": 399.64,
+    "ocr_text": "SDN Based Approach to Open the Innovatio’\n\nPacket Forwarding,\n\nPacket Forwarding Hardware\n\nHe\" vare\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "innovation network what are the requirements and how will you fulfill those requirements.",
+    "start": 399.64,
+    "end": 404.52,
+    "ocr_text": "SDN Based Approach to Open the Innovatio’\n\nPacket Forwarding,\n\nPacket Forwarding Hardware\n\nHe\" vare\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, the things come from here. So, this was the broad SDA architecture as we are discussing.",
+    "start": 404.52,
+    "end": 414.2,
+    "ocr_text": "DN Architecture\n\nNAW Topology) N/WM@mtapP | Land ‘Application\n‘ewer app a nee\nPolicy\nFlow Optimizer okra ‘NW Bandas\nbd 290\n\n: ane\nca\n\nTOR Switches (DC atewars (Edge Routers) oe\nLayer\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www-howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/\n\na ane"
+  },
+  {
+    "text": "So, we have the infrastructure layer at the bottom. So, these infrastructure layer have different",
+    "start": 414.2,
+    "end": 420.28,
+    "ocr_text": "DN Architecture\n\nNAW Topology) N/WM@mtapP | Land ‘Application\n‘ewer app a nee\nPolicy\nFlow Optimizer okra ‘NW Bandas\nbd 290\n\n: ane\nca\n\nTOR Switches (DC atewars (Edge Routers) oe\nLayer\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www-howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/\n\na ane"
+  },
+  {
+    "text": "kind of hardware like you have the servers you can have the open switches you can have the",
+    "start": 420.28,
+    "end": 426.2,
+    "ocr_text": "DN Architecture\n\nNW Topolcsy —)( W/WMemtape ) tana ‘Application\newer app 5 Taya\nPolicy\nFlow Optimizer ‘enforcement NOW Bandwidth\nse 20\n\nwe | (TNA ee\n\nae or\ncontrol\ni, ee aie\n\nTOR Switches (DC atewars (Edge Routers) a\nLayer\n\nSwitches (Openfiow)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "top of rack switches you can have edge routers or data center gateways then we have a control layer",
+    "start": 426.68,
+    "end": 433.0,
+    "ocr_text": "DN Architecture\n\nN/WTopolosy —) W/WMemta6e )  taaa Application\nviewer app 3 layer\nPolicy\nFlow Optimizer ‘enforcement NW Bandwidth\nbd 290\n\noe | (TNA\n\na\n=\nwr\n\nTOR witches ie ar\nSwitches (Openow) ayer\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "in between and that control layer has all the control functionalities which are inbuilt inside",
+    "start": 433.8,
+    "end": 439.96,
+    "ocr_text": "DN Architecture\n\nN/WTopolosy —) W/WMemta6e )  taaa Application\nviewer app 3 layer\nPolicy\nFlow Optimizer ‘enforcement NW Bandwidth\nbd 290\n\noe | (TNA\n\na\n=\nwr\n\nTOR witches ie ar\nSwitches (Openow) ayer\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "that and on top of that you have different kind of networking application the application layer",
+    "start": 439.96,
+    "end": 446.36,
+    "ocr_text": "DN Architecture\n\nNAW Mert 200) Load ealancer ‘Application\nory ayer\nPolicy\ncles NW Bandwidth\n0\n\nControl\n\nlayer +\n\nImage source:\nJOR Senes Ec Oona iges Rete Infrastructure https://www.howtoforge.com/tutorial,\nny Layer software-defined-networking-sdn-\n- architecture-and-role-of-openflow/\n\nIIT KHARAGPUR\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "where you can write down the network application like the flow optimizer the network topology",
+    "start": 446.44,
+    "end": 451.24,
+    "ocr_text": "DN Architecture\n\nNAW Topology) N/WMemt96P | Losd Balancer ‘Application\n\nome 290 layer\n\nPoly\n\nFlow Opuimier ‘enforcement NW Bandwidth\n\nco 200 NAW Automation 9p =\na.\n\n— control\n\npm\n\nee\n\nSitch (Openiow) Irie\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nImage source:\n[sSeses acer tte tense Infrastructure https://www-howtoforge.com/tutorial,\n\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "viewer network management application policy enforcement application load balance network",
+    "start": 451.24,
+    "end": 457.24,
+    "ocr_text": "DN Architecture\n\nNAW Topology) N/WMemt96P | Losd Balancer ‘Application\n\nome 290 layer\n\nPoly\n\nFlow Opuimier ‘enforcement NW Bandwidth\n\nco 200 NAW Automation 9p =\na.\n\n— control\n\npm\n\nee\n\nSitch (Openiow) Irie\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nImage source:\n[sSeses acer tte tense Infrastructure https://www-howtoforge.com/tutorial,\n\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "automation network bandwidth management whatever application you can think of and you can design",
+    "start": 457.24,
+    "end": 462.76,
+    "ocr_text": "IITKHARAGPUR\n\nDN Architecture\n\ntoad Batncer Application\n=\" — 299 layer\nPolicy\nFlow Optenzer cvocanen 2 ai\n7\nam ——\n\npo alee\na\n\nt\n\nControl\n\nlayer +\n\nJ soutiooun trace\n\nTe otehes po Seeelicee nee Infrastructure\n= Layer\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nImage source:\n\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "on top of that. So, this control layer which works like a brain of this entire network we are",
+    "start": 462.76,
+    "end": 469.8,
+    "ocr_text": "IITKHARAGPUR\n\nDN Architecture\n\ntoad Batncer Application\n=\" — 299 layer\nPolicy\nFlow Optenzer cvocanen 2 ai\n7\nam ——\n\npo alee\na\n\nt\n\nControl\n\nlayer +\n\nJ soutiooun trace\n\nTe otehes po Seeelicee nee Infrastructure\n= Layer\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nImage source:\n\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "making it logically centralized. So, now the architecture is that we have multiple hardware",
+    "start": 469.88,
+    "end": 475.48,
+    "ocr_text": "DN Architecture\n\nControl\n\nlayer\n\nImage source:\nTe etches eee Infrastructure https://www-howtoforge.com/tutorial,\nSea layer software-defined-networking-sdn-\n\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "components which are there and all these hardware components are connected to a central controller",
+    "start": 475.48,
+    "end": 483.4,
+    "ocr_text": "DN Architecture\n\nWW Topology NAW emt app Lend Rebeocer. ‘Application\n\n“Southbound Interface\nImage source:\n\nTeSesces cima ee Infrastructure https://www-howtoforge.com/tutorial,\nSea oe layer software-defined-networking-sdn-\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES."
+  },
+  {
+    "text": "and this controller actually contains the control layer. So, these hardware are connected",
+    "start": 484.52,
+    "end": 491.48,
+    "ocr_text": "DN Architecture\n\nWW Topology NAW emt app Lend Rebeocer. ‘Application\n\n“Southbound Interface\nImage source:\n\nTeSesces cima ee Infrastructure https://www-howtoforge.com/tutorial,\nSea oe layer software-defined-networking-sdn-\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES."
+  },
+  {
+    "text": "over the network as they are there in the normal network. So, because these are just just a",
+    "start": 491.48,
+    "end": 498.92,
+    "ocr_text": "DN Architecture\n\nSouthbound interface\nImage source:\n\nTestes Picea eee Infrastructure https://www-howtoforge.com/tutorial,\nSS layer software-defined-networking-sdn-\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES."
+  },
+  {
+    "text": "blanket hardware or this just not have does not have any kind of software inbuilt we call it as",
+    "start": 498.92,
+    "end": 505.64,
+    "ocr_text": "DN Architecture\n\n“Southbound interface\nImage source:\n\nLd rosea nore Infrastructure https://www-howtoforge.com/tutorial,\nSe layer software-defined-networking-sdn-\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "the blind hardware or the open hardware and in case of normal networking terminology rather",
+    "start": 505.64,
+    "end": 516.36,
+    "ocr_text": "DN Architecture\n\nSouthbound nerface\nImage source:\nTeSesees oe Infrastructure https://www-howtoforge.com/tutorial,\nSs layer software-defined-networking-sdn-\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES."
+  },
+  {
+    "text": "than calling it as a router we call it just like a dumb switch. So, this dumb switch does not have",
+    "start": 516.36,
+    "end": 522.6,
+    "ocr_text": "DN Architecture\n\nImage source:\nTeSesees Pc Garewal Route) Infrastructure _https://www.howtoforge.com/tutorial,\naici RGaRIG Layer software-defined-networking-sdn-\n\n2 architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES."
+  },
+  {
+    "text": "any knowledge about what to do neither layer to knowledge, non layer to knowledge and this controller",
+    "start": 522.6,
+    "end": 528.76,
+    "ocr_text": "DN Architecture\n\nImage source:\nTeSesees Pc Garewal Route) Infrastructure _https://www.howtoforge.com/tutorial,\naici RGaRIG Layer software-defined-networking-sdn-\n\n2 architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES."
+  },
+  {
+    "text": "whenever you are programming this controller this controller will actually configure this dumb",
+    "start": 529.08,
+    "end": 534.04,
+    "ocr_text": "DN Architecture\n\nSouthbound nterface\nImage source:\nTsSeses La Infrastructure https://www-howtoforge.com/tutorial,\n\" x 1 g-sdn-\nSes Layer software-defined-networking-sdn.\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES."
+  },
+  {
+    "text": "switch is dynamically put the intelligence inside the switch. Now, this controller has all",
+    "start": 534.04,
+    "end": 539.16,
+    "ocr_text": "DN Architecture\n\nSouthbound nterface\nImage source:\nTsSeses La Infrastructure https://www-howtoforge.com/tutorial,\n\" x 1 g-sdn-\nSes Layer software-defined-networking-sdn.\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES."
+  },
+  {
+    "text": "these different kind of module which can be there like you can have a UI module the cluster module",
+    "start": 539.16,
+    "end": 545.4,
+    "ocr_text": "DN Architecture\n\n“Southbound Interface\n\n” Image source:\nToe etches DC Gotoweraiiig Router) Infrastructure https://www-howtoforge.com/tutorial,\nSSS layer software-defined-networking-sdn-\n\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "to form a cluster the layer to layer 3 module to implement the layer 2 and the layer 3 functionalities",
+    "start": 545.4,
+    "end": 550.68,
+    "ocr_text": "DN Architecture\n\nSouthbound terface\nImage source:\nTeSesces bKicenten pad Infrastructure https://www-howtoforge.com/tutorial,\nSS layer software-defined-networking-sdn-\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "of the network protocol stack the VPN module to create a virtual private network the quality of",
+    "start": 550.68,
+    "end": 557.08,
+    "ocr_text": "DN Architecture\n\nSouthbound terface\nImage source:\nTeSesces bKicenten pad Infrastructure https://www-howtoforge.com/tutorial,\nSS layer software-defined-networking-sdn-\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "service module or access control list module to implement access control list or quality of service",
+    "start": 557.08,
+    "end": 563.4,
+    "ocr_text": "DN Architecture\n\nSouthbound interface\nImage source:\nTeSesces Picola? Infrastructure https://www-howtoforge.com/tutorial,\nSia eae layer software-defined-networking-sdn-\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "DHCP module to implement DHCP protocol and the plugins which we call normally as the",
+    "start": 563.4,
+    "end": 570.04,
+    "ocr_text": "DN Architecture\n\nSouthbound interface\nImage source:\nTeSesces Picola? Infrastructure https://www-howtoforge.com/tutorial,\nSia eae layer software-defined-networking-sdn-\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "subband plugins to interact with the programmable infrastructure layer. So, here you have two different",
+    "start": 570.04,
+    "end": 578.52,
+    "ocr_text": "DN Architecture\n\nImage source:\n\n[esas eee one Infrastructure https://www-howtoforge.com/tutorial,\naaa layer software-defined-networking-sdn-\n= architecture-and-role-of-openflow/\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "interfaces from the control layer from the control layer one interface that talk with the applications",
+    "start": 578.52,
+    "end": 584.76,
+    "ocr_text": "DN Architecture\n\nNW Topolosy —)( W/WMemtape )  toaa ‘Application\n‘ewe 990 fa Tara\nPolicy\nFlow Optimizer ‘enforcement NW Bandwidth\nae 290\n\noe | (NWR ee\n\n= =\nye\n\nTOR Switches (DC atewars (Edge Routers)\n\nInfrastructure\n\nSwitches (Openfow) lever\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "different kind of applications that we call as the not bound interface and then with the control",
+    "start": 584.84,
+    "end": 590.44,
+    "ocr_text": "DN Architecture\n\nNW Topolosy —)( W/WMemtape )  toaa ‘Application\n‘ewe 990 fa Tara\nPolicy\nFlow Optimizer ‘enforcement NW Bandwidth\nae 290\n\noe | (NWR ee\n\n= =\nye\n\nTOR Switches (DC atewars (Edge Routers)\n\nInfrastructure\n\nSwitches (Openfow) lever\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "layer today infrastructure layer we require another interface which is called the southbound",
+    "start": 590.44,
+    "end": 595.08,
+    "ocr_text": "DN Architecture\n\nNIWTopocey —)( W/WMemt96e ) Lana ‘Application\nvows cd layer\nPolicy\nFlow Optimizer ‘enforcement NW Bandwidth\n60 290 NAW Automation 00 =\nNorthbound interface\n\npo al\nCentr\nes te “\n\nTOR Switches (Catewars (Edge Routers) —\n\n‘Switches (Openfow) aetee\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "interface. Now, the task of the not bound interface is to understand this individual application",
+    "start": 595.08,
+    "end": 603.08,
+    "ocr_text": "DN Architecture\n\nN/WTopoley —)| WWMemta6P ) toss ‘Application\n‘ewe 300 es tas\nPolicy\nFlow Optimizer enforcement ‘NW Banda\n60 290 NAW Automation 60 =\n\na\n=\n—_— a vs\n\nTOR Switches (DCatewars (Edge Routers) eet eel\nLayer\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES\n\nImage source:\nhttps://www-howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "layer program and this application layers programs are implemented by utilizing your favorite",
+    "start": 603.08,
+    "end": 611.16,
+    "ocr_text": "DN Architecture\n\nN/WTopoley —)| WWMemta6P ) toss ‘Application\n‘ewe 300 es tas\nPolicy\nFlow Optimizer enforcement ‘NW Banda\n60 290 NAW Automation 60 =\n\na\n=\n—_— a vs\n\nTOR Switches (DCatewars (Edge Routers) eet eel\nLayer\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES\n\nImage source:\nhttps://www-howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "programming language. So, you can use python you can use Java accordingly you have to choose",
+    "start": 611.16,
+    "end": 616.12,
+    "ocr_text": "DN Architecture\n\nNAW Topology NW Mam 26) (Load Balancer ‘Application\nPolicy\n=r a a\n= a\na\n=\n\nemilee\n|\n\nTOR Switches\n\n(DC atewars (Edge Routers) ares\n\nSwitches (Openfiow) Lover,\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nIITKHARAGPUR\n\nImage source:\nhttps://www-howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "the controller. So, for example, in a typical HTML network if you are familiar with python you can",
+    "start": 616.12,
+    "end": 623.72,
+    "ocr_text": "DN Architecture\n\nNAW Topolosy NAWMem 900) Load Balancer ‘Application\nviewer a6P aa layer\nPolicy\nFlow Optimizer ‘enforcement r NAW Bandit\n90 290 NNW Automation 299 =\n\nControl\nLayer\n\n(DC atewars (Edge Routers) =\nLayer\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nIIT KHARAGPUR |\n\nImage source:\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "choose the box or you kind of controller if you are familiar with Java programming language if you",
+    "start": 623.72,
+    "end": 630.36,
+    "ocr_text": "DN Architecture\n\nNAW Topolosy NAWMem 900) Load Balancer ‘Application\nviewer a6P aa layer\nPolicy\nFlow Optimizer ‘enforcement r NAW Bandit\n90 290 NNW Automation 299 =\n\nControl\nLayer\n\n(DC atewars (Edge Routers) =\nLayer\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nIIT KHARAGPUR |\n\nImage source:\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "want to implement your application using Java programming language you can use open daylight controller",
+    "start": 630.36,
+    "end": 635.48,
+    "ocr_text": "DN Architecture\n\nNAV Topolosy NAW Mem 200) Load Balancer ‘Application\nReicks ny layer\nPolicy\nFlow Optimizer enforcement r NAV Bandit\n0 200 [NIW Automation 299 =\nao\nContro!\n\ni\nmun\n\nTOR Switches\n\n(DC atewars (Edge Routers) anne\n\nSwitches (Openfiow) bd\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nIITKHARAGPUR\n\nImage source:\nhttps://www-howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "which support Java programming language. So, you can write down this application with your",
+    "start": 635.64,
+    "end": 640.76,
+    "ocr_text": "DN Architecture\n\nNAW Topolosy NAWMem 200 | Load Balancer ‘Application\nRoveeataal 299 Layer\nPolicy\nFlow Optimizer ‘enforcement NAW Bandit\n\n2p\n\noe | (TN Aone\n\ni\n: : ca\nmee\n\nTOR Switches (DC atewars (Edge Routers) =\nLayer\n\n‘Switches (Openfiow)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www-howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "favorite programming language and the task of this not bound interface is to understand what is",
+    "start": 640.76,
+    "end": 645.72,
+    "ocr_text": "DN Architecture\n\nNAW Topolosy NAWMem 200 | Load Balancer ‘Application\nRoveeataal 299 Layer\nPolicy\nFlow Optimizer ‘enforcement NAW Bandit\n\n2p\n\noe | (TN Aone\n\ni\n: : ca\nmee\n\nTOR Switches (DC atewars (Edge Routers) =\nLayer\n\n‘Switches (Openfiow)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www-howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "written inside the application compiled the application to the corresponding network protocol",
+    "start": 645.72,
+    "end": 651.4,
+    "ocr_text": "DN Architecture\n\nNW Topology) WWMM) Lana ‘Application\n‘ewe 900 je Taya\nPoley us\nFlow Optimizer ‘enforcement NW Bandas\n60 290 NAW Automation pp ea\naa on™\n=, contra\n\na a a\nt ¢\n\nTOR Switches\n\nJ sourrtouns ntrtace\nsccmemraaeenmmae Infrastructure\n\n‘Switches Openfiow) ste\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nIIT KHARAGPUR\n\nImage source:\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "and then map it to one of these modules which are there inside the controller. So, you can",
+    "start": 651.4,
+    "end": 659.64,
+    "ocr_text": "DN Architecture\n\nNW Topology) WWMM) Lana ‘Application\n‘ewe 900 je Taya\nPoley us\nFlow Optimizer ‘enforcement NW Bandas\n60 290 NAW Automation pp ea\naa on™\n=, contra\n\na a a\nt ¢\n\nTOR Switches\n\nJ sourrtouns ntrtace\nsccmemraaeenmmae Infrastructure\n\n‘Switches Openfiow) ste\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nIIT KHARAGPUR\n\nImage source:\nhttps://www.howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "utilize this module to write your own program. So, for example, with the help of you can write a",
+    "start": 659.64,
+    "end": 664.92,
+    "ocr_text": "DN Architecture\n\nee NAW Marte Load Balancer ‘Application\n= a layer\nPolicy\nFlow Optimizer raion =\n™ ™p\n\npie soca\n> Control\n\nLcda rid (DCatewars (Edge Routers)\n\nInfrastructure\n\nSwitches Openfiow) Layer\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www-howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "load balancer application where you can utilize the layer 2 layer 3 forwarding module to forward the",
+    "start": 664.92,
+    "end": 670.52,
+    "ocr_text": "DN Architecture\n\nee NAW Marte Load Balancer ‘Application\n= a layer\nPolicy\nFlow Optimizer raion =\n™ ™p\n\npie soca\n> Control\n\nLcda rid (DCatewars (Edge Routers)\n\nInfrastructure\n\nSwitches Openfiow) Layer\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nImage source:\nhttps://www-howtoforge.com/tutorial\nsoftware-defined-networking-sdn-\narchitecture-and-role-of-openflow/"
+  },
+  {
+    "text": "packet to a specific destination. Now, this controller layer from this individual network",
+    "start": 670.52,
+    "end": 679.0,
+    "ocr_text": "DN Architecture\n\nJ sourrtound ntrtace\nImage source:\n\nee, scomamnaanermnen Infrastructure https://www-howtoforge.com/tutorial,\nrea layer software-defined-networking-sdn-\narchitecture-and-role-of-openflow/\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "functionalities they have to convert it to the rules the rules that will be programmed to",
+    "start": 679.0,
+    "end": 683.64,
+    "ocr_text": "DN Architecture\n\nJ sourtbouns ntrtace\nImage source:\n\nee, secretes Infrastructure https://www-howtoforge.com/tutorial,\naoa aman layer software-defined-networking-sdn-\narchitecture-and-role-of-openflow/\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the router and whenever incoming packet comes that rule will be executed. So, from this individual",
+    "start": 683.64,
+    "end": 691.72,
+    "ocr_text": "DN Architecture\n\nJ sourtbouns ntrtace\nImage source:\n\nee, secretes Infrastructure https://www-howtoforge.com/tutorial,\naoa aman layer software-defined-networking-sdn-\narchitecture-and-role-of-openflow/\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "network protocol to the rule conversion that is done by the southbound interface. So,",
+    "start": 691.72,
+    "end": 698.04,
+    "ocr_text": "DN Architecture\n\nJ sourtbouns mtrtace\nImage source:\n\n[DCatewars (Edge Routers)\n\nInfrastructure https://www-howtoforge.com/tutorial,\n== layer software-defined-networking-sdn-\n\narchitecture-and-role-of-openflow/\n\nNPTEL ONLINE\n\nIITKHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "we look into the details about how these rules are being implemented and how you convert a",
+    "start": 698.04,
+    "end": 704.2,
+    "ocr_text": "DN Architecture\n\nJ _sextntound inert\nImage source:\n\nEe CE Infrastructure _https://www.howtoforge.com/tutorial\nlayer software-defined-networking-sdn-\nrele architecture-and-role-of-openflow/\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "particular protocol to a corresponding rules in the HTML terminology or in the open",
+    "start": 704.2,
+    "end": 710.04,
+    "ocr_text": "DN Architecture\n\nJ _sextntound inert\nImage source:\n\nEe CE Infrastructure _https://www.howtoforge.com/tutorial\nlayer software-defined-networking-sdn-\nrele architecture-and-role-of-openflow/\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "float terminology. So, what we require in summary? So, to talk between the network operating system",
+    "start": 710.04,
+    "end": 719.32,
+    "ocr_text": "DN Architecture\n\nJ _sousrtouna ntrtace\nImage source:\n\n(Catewars (Edge Routers)\n\nInfrastructure https://www-howtoforge.com/tutorial,\n== layer software-defined-networking-sdn-\n\narchitecture-and-role-of-openflow/\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "and the corresponding infrastructure we require an open interface to the hardware. So,",
+    "start": 719.4,
+    "end": 725.08,
+    "ocr_text": "Interfacing Between Control and Data Planes\nOpen API for app\ndevelopment\n\nExtensible operating system I\nto convert programs to rules\n\nPacket Forwarding\nHardware\n\nHardware\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\n\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "that you do not depend on the corresponding vendors to program your network we require",
+    "start": 725.08,
+    "end": 733.48,
+    "ocr_text": "development al Ea El---&\n\nNetwork Operating System\n\nExtensible operating system I\nto convert programstorules =!\nI\n\nPacket Forwarding\nHardware\n\nOpen interface to\n\nAUTRES packet Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "an open interface to the hardware for that. The second thing is that we require an open API",
+    "start": 733.48,
+    "end": 739.56,
+    "ocr_text": "development al Ea El---&\n\nNetwork Operating System\n\nExtensible operating system I\nto convert programstorules =!\nI\n\nPacket Forwarding\nHardware\n\nOpen interface to\n\nAUTRES packet Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "for the application development. So, that any application developer can develop a network",
+    "start": 739.56,
+    "end": 745.4,
+    "ocr_text": "Interfacing Between Control and Planes\nOpen API for app\ndevelopment | =e | | oe | | oo |\n\nExtensible operating system I\nto convert programs to rules\n\nPacket Forwarding\nHardware\n\nHardware\n\nPacket Forwarding\nHardware\n\nPacket Forwarding\nHardware\n\nNPTEL ONLINE\n\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "application and the third thing is that we require an extensible operating system to convert",
+    "start": 745.48,
+    "end": 751.64,
+    "ocr_text": "Interfacing Between Control and Data Planes\nOpen API for app\ndevelopment | = |\n\nExtensible operating\na Es\nto convert programs to rules\n\nPacket Forwarding\nHardware\n\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware Hardware\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "the programs to the rules. So, this applications they are nothing but a program from that program.",
+    "start": 751.64,
+    "end": 758.68,
+    "ocr_text": "Interfacing Between Control and Data Planes\nOpen API for app\ndevelopment | = |\n\nExtensible operating\na Es\nto convert programs to rules\n\nPacket Forwarding\nHardware\n\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware Hardware\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "We need to map it to the corresponding rule which will be executed at the tickam hardware of the",
+    "start": 758.68,
+    "end": 763.96,
+    "ocr_text": "Interfacing Between Control and Data Planes\nOpen API for app — as\ndevelopment ae | ane | (aia) | ane | | aon | Ea\n\nNetwork Operating System\n\nExtensible operating system\nee\nto convert programs to rules\n\nPacket Forwarding\nHardware\n\nOpen interface t\nthe hardware_erss essere\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\neerreeasnrsre"
+  },
+  {
+    "text": "target forwarding engine which is there inside the switches.",
+    "start": 764.04,
+    "end": 768.04,
+    "ocr_text": "Interfacing Between Control and Data Planes\nOpen API for app — as\ndevelopment ae | ane | (aia) | ane | | aon | Ea\n\nNetwork Operating System\n\nExtensible operating system\nee\nto convert programs to rules\n\nPacket Forwarding\nHardware\n\nOpen interface t\nthe hardware_erss essere\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\neerreeasnrsre"
+  },
+  {
+    "text": "Well, so what is open flow? So, open flow is a protocol for controlling the forwarding",
+    "start": 772.12,
+    "end": 779.4,
+    "ocr_text": "Interfacing Between Control and Data Planes\nOpen API for app = —\ndevelopment | =e | ae |\nNetwork Operating System\n\nExtensible operating system\nto convert programs to rules\n\nPacket Forwarding\nHardware\n\nOpen interface to\nAUC ICUs i Packet Forwarding\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nerrs esnsre"
+  },
+  {
+    "text": "behavior of Ethernet switches in STN network. Initially this concept of open flow was released",
+    "start": 779.4,
+    "end": 786.76,
+    "ocr_text": "What is OpenFlow\n\n* Protocol for controlling the forwarding behavior of Ethernet switches in a\nSDN\n\n* Initially released by Clean Slate Program at Stanford, specifications now\nmaintained by Open Networking Forum\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "by Kinslet program at Stanford and currently the specifications are maintained by open networking",
+    "start": 787.48,
+    "end": 794.2,
+    "ocr_text": "What is OpenFlow\n\n* Protocol for controlling the forwarding behavior of Ethernet switches in a\nSDN\n\n* Initially released by Clean Slate Program at Stanford, specifications now\nmaintained by Open Networking Forum\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "forum. So, the interesting fact is here that now this entire networking architecture they are",
+    "start": 794.2,
+    "end": 800.6,
+    "ocr_text": "What is OpenFlow\n\n* Protocol for controlling the forwarding behavior of Ethernet switches in a\nSDN\n\n* Initially released by Clean Slate Program at Stanford, specifications now\nmaintained by Open Networking Forum\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "becoming open, they are moving from a closed community or from a vendor specific community",
+    "start": 800.6,
+    "end": 806.2,
+    "ocr_text": "What is OpenFlow\n\n* Protocol for controlling the forwarding behavior of Ethernet switches in a\nSDN\n\n* Initially released by Clean Slate Program at Stanford, specifications now\nmaintained by Open Networking Forum\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "to a open networking community where every vendors join altogether. So, the vendors are building",
+    "start": 806.2,
+    "end": 812.36,
+    "ocr_text": "What is OpenFlow\n\n* Protocol for controlling the forwarding behavior of Ethernet switches in a\nSDN\n\n* Initially released by Clean Slate Program at Stanford, specifications now\nmaintained by Open Networking Forum\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "their hardwares and the community is building the open source operating system and the interface",
+    "start": 812.44,
+    "end": 819.0,
+    "ocr_text": "What is OpenFlow\n\n* Protocol for controlling the forwarding behavior of Ethernet switches in a\nSDN\n\n* Initially released by Clean Slate Program at Stanford, specifications now\nmaintained by Open Networking Forum\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "to interact with the corresponding hardware. So, this helps in two ways first of all it makes",
+    "start": 819.0,
+    "end": 826.68,
+    "ocr_text": "What is OpenFlow\n\n* Protocol for controlling the forwarding behavior of Ethernet switches in a\nSDN\n\n* Initially released by Clean Slate Program at Stanford, specifications now\nmaintained by Open Networking Forum\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the innovation specific or it makes the innovation rapid because now this entire software is open",
+    "start": 826.68,
+    "end": 836.2,
+    "ocr_text": "What is OpenFlow\n\n* Protocol for controlling the forwarding behavior of Ethernet switches in a\nSDN\n\n* Initially released by Clean Slate Program at Stanford, specifications now\nmaintained by Open Networking Forum\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "to the community. You can design your own network protocol and test on a hardware for that you",
+    "start": 836.2,
+    "end": 841.64,
+    "ocr_text": "What is OpenFlow\n\n* Protocol for controlling the forwarding behavior of Ethernet switches in a\nSDN\n\n* Initially released by Clean Slate Program at Stanford, specifications now\nmaintained by Open Networking Forum\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "do not need to search for an hardware where you can implement your own protocol. You can purchase",
+    "start": 841.64,
+    "end": 847.16,
+    "ocr_text": "Northbound aoe | ao» | EI - ——\n\nInterface\nNetwork Operating System\n\nONOS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwardit Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "any STN supported switch, open switch and then you can do your protocol implementation on top of",
+    "start": 847.16,
+    "end": 855.32,
+    "ocr_text": "Northbound aoe | ao» | EI - ——\n\nInterface\nNetwork Operating System\n\nONOS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwardit Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "this open source operating system. And the second advantage comes from the network management",
+    "start": 855.32,
+    "end": 861.24,
+    "ocr_text": "Northbound aoe | ao» | EI - ——\n\nInterface\nNetwork Operating System\n\nONOS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwardit Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "perspective where the network administrator they do not bother about reading the 1000 page manuals",
+    "start": 861.24,
+    "end": 869.08,
+    "ocr_text": "Northbound aoe | ao» | EI - ——\n\nInterface\nNetwork Operating System\n\nONOS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwardit Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "from three different vendors. So, they can just concentrate on a specific operating system",
+    "start": 870.04,
+    "end": 876.28,
+    "ocr_text": "Northbound aoe | ao» | EI - ——\n\nInterface\nNetwork Operating System\n\nONOS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwardit Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "and then try to write their own rules on top of that specific network operating system.",
+    "start": 876.28,
+    "end": 880.68,
+    "ocr_text": "Northbound aoe | ao» | EI - ——\n\nInterface\nNetwork Operating System\n\nONOS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwardit Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, in terms of STN massaging interface as we are mentioning that from network operating system",
+    "start": 883.48,
+    "end": 890.68,
+    "ocr_text": "Northbound aoe | ao» | EI - ——\n\nInterface\nNetwork Operating System\n\nONOS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwardit Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "to the hardware we have the southbound interface then from the network operating system to the",
+    "start": 890.68,
+    "end": 898.04,
+    "ocr_text": "Northbound aoe | ao» | EI - ——\n\nInterface\nNetwork Operating System\n\nONOS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwardit Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "application we have the northbound interface that provides the programming API.",
+    "start": 898.04,
+    "end": 903.0,
+    "ocr_text": "SDN Messaging Interface\n\nNorthbound\nInterface\n\nONOS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "And then this network operating system can be implemented in any open source operating system",
+    "start": 903.0,
+    "end": 908.76,
+    "ocr_text": "SDN Messaging Interface\n\nNorthbound\nInterface\n\nONOS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "there are multiple standard industry specific operating systems which are available nowadays.",
+    "start": 908.76,
+    "end": 914.68,
+    "ocr_text": "inert al\n\nONOsS, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\n. easnr ve."
+  },
+  {
+    "text": "You can explore that there are these onus operating system which is very popular nowadays.",
+    "start": 915.32,
+    "end": 920.76,
+    "ocr_text": "imertace al\n\nNetwork Operating System\n\nONos, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\n4 env ga.4"
+  },
+  {
+    "text": "There is this new controller which is a lightweight controller. Currently many industries they are",
+    "start": 920.76,
+    "end": 927.24,
+    "ocr_text": "imertace al\n\nNetwork Operating System\n\nONos, 1 Southbound\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\n4 env ga.4"
+  },
+  {
+    "text": "utilizing new controller to write network programs and then other controllers like master or open",
+    "start": 927.32,
+    "end": 932.84,
+    "ocr_text": "SDN Messaging Interface\nNorthbound\nInterface oe | or |\n\nONOS, 1 Southbound\n\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\n\neasnrve"
+  },
+  {
+    "text": "daylight. So, as we are mentioning at the application layer side you have a programming API",
+    "start": 932.84,
+    "end": 944.36,
+    "ocr_text": "SDN Messaging Interface\nNorthbound\nInterface oe | or |\n\nONOS, 1 Southbound\n\nMaestro, Ryu | Interface Packet Forwarding\nPacket Forwarding Hardware\nHardware\n\nPacket Forwarding Packet Forwarding\nHardware\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\n\neasnrve"
+  },
+  {
+    "text": "in your preferred programming language. At the control layer you have one of the network controller",
+    "start": 944.36,
+    "end": 950.2,
+    "ocr_text": "Programming Toro a) (Ni nese tet aac esto\nAPI in your preferred iu. eo —\nprogramming 0 60 N/W Automation app meal\nSEES a a\nONOS/ Maestro/ ese ey paaey corse)\nRyu/ a ee\n\nOpenDayLight | (taal\n\nOpenFlow popen mete a (OLE Infrastructure https://www.howtoforge.com\ninterfacing with So Layer ‘[tutorial/software-defined-\n\nnetworking-sdn-architecture-\nhardware pfopen\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES.\neerreesns re."
+  },
+  {
+    "text": "onus master or you are open daylight and at the infrastructure layer you have this open flow",
+    "start": 950.2,
+    "end": 957.48,
+    "ocr_text": "Programming ww Teneoey —\\(_NWMant Pe) toed Blanca (EEE\nA es\n\nAPlin your preferred on. a =\n\nprogramming a 0 NW hacen oP 2\n\nlanguage qT qT qT Mert ierioes\n\nONOS/ Maestro/ Qe seme) peaeaey covet),\nRyu/ a (as ia\nOpenDayLight —_|_ inate oasinnent eerie)\n\nne\n\nOpenFlow popen me *s ee Rate Infrastructure https://www.howtoforge.com\ninterfacing with aha [OSS layer [tutorial/software-defined-\n\nnetworking-sdn-architecture-\nhardware ' atl\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES."
+  },
+  {
+    "text": "supported hardware and this southbound interface is controlled by this open interface",
+    "start": 958.68,
+    "end": 964.52,
+    "ocr_text": "Programming Newcmoe, | (GRUNER) (nae na\nAPlin your preferred on. pate as wWendaan\nprogramming = ba eae =\nlanguage qT qT qT Nertabound terioce\nONOS/ Maestro/ Dn ln\"...\nRyu/ a ial\n\nOpenDayLight —_|bnsetresoommetnne\na a\n\nOpenFlow 7 Gyan aie = ices Route Infrastructure https://www.howtoforge.com\ninterfacing with ‘Sitch (Opentiow) layer ‘[tutorial/software-defined-\n\nnetworking-sdn-architecture-\nhardware ' ala\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "using with the hardware that is the open flow specification that we are talking right now.",
+    "start": 964.52,
+    "end": 969.16,
+    "ocr_text": "Programming Newcmoe, | (GRUNER) (nae na\nAPlin your preferred on. pate as wWendaan\nprogramming = ba eae =\nlanguage qT qT qT Nertabound terioce\nONOS/ Maestro/ Dn ln\"...\nRyu/ a ial\n\nOpenDayLight —_|bnsetresoommetnne\na a\n\nOpenFlow 7 Gyan aie = ices Route Infrastructure https://www.howtoforge.com\ninterfacing with ‘Sitch (Opentiow) layer ‘[tutorial/software-defined-\n\nnetworking-sdn-architecture-\nhardware ' ala\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Now, let us look into that how open flow works. So, we have a switch the inter switch as we are",
+    "start": 972.2,
+    "end": 979.24,
+    "ocr_text": "Programming eacreeet || NW Memeaee Load Btncer ee\n\n4 300 J\nAPlin your preferred oi ten —\nprogramming co NAW tration 60 ES\n\nlanguage qT qT qT Nartatoine ietiecs\n\nONOS/ Maestro/ Qe) seme aareaiey mK cowrete\nRyu/ aaa aces ae\nOpenDayLight (Neeser eee\nt t J sourdoue ntrace\nImage source:\n\nOpenFlow eopen aoa on see oe Infrastructure https://www.howtoforge.com\ninterfacing with ‘Switches (Opentiow) layer [tutorial/software-defined-\n\nnetworking-sdn-architecture-\nhardware -roleweteapen\n\n*'- NPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\neee ehsP#arsus"
+  },
+  {
+    "text": "discussing in the last class we have the control path which is implemented in the software",
+    "start": 979.24,
+    "end": 984.2,
+    "ocr_text": "How OpenFlow Works\n\nControl Path (Software)\n\nData Path (Hardware, TCAM)\n\n=\n-s\nNPTEL ONLINE 5\nIIT KHARAGPUR CERTIFICATION COURSES\nAe"
+  },
+  {
+    "text": "and the data path which is implemented in the hardware or in small specific Tcam type of hardware.",
+    "start": 984.2,
+    "end": 989.72,
+    "ocr_text": "How OpenFlow Works\n\nControl Path (Software)\n\nData Path (Hardware, TCAM)\n\n=\n-s\nNPTEL ONLINE 5\nIIT KHARAGPUR CERTIFICATION COURSES\nAe"
+  },
+  {
+    "text": "Now, at the control path we are having a part of the network operating system to interact the",
+    "start": 990.28,
+    "end": 997.96,
+    "ocr_text": "How OpenFlow Works\n\nControl Path (Software)\n\nData Path (Hardware, TCAM)\n\nNPTEL ONLINE ey\nIT KHARAGPUR CERTIFICATION COURSES\nar oe a i"
+  },
+  {
+    "text": "client version of the network operating system you can talk it if it is there in this",
+    "start": 997.96,
+    "end": 1003.24,
+    "ocr_text": "How OpenFlow Works\n\nOpenFlow Messaging API using SSL/TCP\n\nControl Path (Software)\n6\n\nData Path (Hardware, TCAM)\n\n*) NPTELONLINE oe\nIIT KHARAGPUR CERTIFICATION COURSES\nNPTEL a ne A"
+  },
+  {
+    "text": "software implementation in the switch that is a kind of very minimal implementation of the control",
+    "start": 1004.2,
+    "end": 1011.0,
+    "ocr_text": "How OpenFlow Works\n\nOpenFlow Messaging API using SSL/TCP\n\nControl Path (Software)\n6\n\nData Path (Hardware, TCAM)\n\n*) NPTELONLINE oe\nIIT KHARAGPUR CERTIFICATION COURSES\nNPTEL a ne A"
+  },
+  {
+    "text": "functionalities just the client version of it so that you can talk with the switches and then",
+    "start": 1011.0,
+    "end": 1017.16,
+    "ocr_text": "| How OpenFlow Works\n\nOpenFlow Messaging API using SSL/TCP"
+  },
+  {
+    "text": "you have this open flow protocol open flow client which is there inside the switch.",
+    "start": 1018.04,
+    "end": 1026.52,
+    "ocr_text": "| How OpenFlow Works\n\nOpenFlow Messaging API using SSL/TCP\n\n$s\n\n=\n£)NPTEL ONLINE fox\nIIT KHARAGPUR CERTIFICATION COURSES\nce on ee ee a"
+  },
+  {
+    "text": "So, you can call it as the client version of the open flow and then you have a open flow",
+    "start": 1027.48,
+    "end": 1033.48,
+    "ocr_text": "| How OpenFlow Works\n\nOpenFlow Messaging API using SSL/TCP\n\n2.\nr, a\n£) NPTEL ONLINE B\nIIT KHARAGPUR CERTIFICATION COURSES\nce ne"
+  },
+  {
+    "text": "controller which is implemented in a logical centralized machine and then this open flow",
+    "start": 1033.48,
+    "end": 1039.8,
+    "ocr_text": "| How OpenFlow Works\n\nOpenFlow Messaging API using SSL/TCP\n\n2.\nr, a\n£) NPTEL ONLINE B\nIIT KHARAGPUR CERTIFICATION COURSES\nce ne"
+  },
+  {
+    "text": "messaging API which normally uses SSL and a TCP kind of message which talk with this open flow",
+    "start": 1039.8,
+    "end": 1047.8,
+    "ocr_text": "| How OpenFlow Works\n\nOpenFlow Messaging API using SSL/TCP\n\nControl Path (Software)\n\n$\n\nData Path (Hardware, TCAM)\n\n; =\n£) NPTEL ONLINE a\nIIT KHARAGPUR CERTIFICATION COURSES .\na a"
+  },
+  {
+    "text": "controller. Now, the thing is that at the software side inside switch you have a very minimal",
+    "start": 1047.8,
+    "end": 1055.56,
+    "ocr_text": "| How OpenFlow Works\n\nOpenFlow Messaging API using SSL/TCP\n\n¢)NPTEL ONLINE fe)\nIIT KHARAGPUR CERTIFICATION COURSES\neRe ear rear sus"
+  },
+  {
+    "text": "implementation the client version of the implementation so that you can just receive a message from",
+    "start": 1055.56,
+    "end": 1061.48,
+    "ocr_text": "| How OpenFlow Works\n\nOpenFlow Messaging API using SSL/TCP\n\n¢)NPTEL ONLINE fe)\nIIT KHARAGPUR CERTIFICATION COURSES\neRe ear rear sus"
+  },
+  {
+    "text": "the controller parse the message and then configure the switch accordingly. Remaining protocols",
+    "start": 1061.48,
+    "end": 1067.4,
+    "ocr_text": "| How OpenFlow Works\n\nOpenFlow Messaging API using SSL/TCP\n\n¢)NPTEL ONLINE fe)\nIIT KHARAGPUR CERTIFICATION COURSES\neRe ear rear sus"
+  },
+  {
+    "text": "the routing protocols and all these things that you do not need to implement inside the switch any more.",
+    "start": 1067.4,
+    "end": 1073.96,
+    "ocr_text": "Software\n\nsrc dst sport dport\nHardware mac | mac | St!P | 4t!P | tcp | tcp\n\n| action\n\nLayer\n\neth3\n\n128.9.1.1\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, here is an example of open flow. So, at the switch side you have this open flow client",
+    "start": 1077.32,
+    "end": 1084.2,
+    "ocr_text": "Software\n\nsrc dst sport dport\nHardware mac | mac | St!P | 4t!P | tcp | tcp\n\n| action\n\nLayer\n\neth3\n\n128.9.1.1\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "at the hardware layer we are maintaining a simple t come table. So, this t come table has",
+    "start": 1084.76,
+    "end": 1090.36,
+    "ocr_text": "Software\n\nsrc dst sport dport\nHardware mac | mac | St!P | 4t!P | tcp | tcp\n\n| action\n\nLayer\n\neth3\n\n128.9.1.1\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "multiple fields like source mac destination mac source IP destination IP source port TCP",
+    "start": 1090.36,
+    "end": 1097.48,
+    "ocr_text": "Software\n\nHardware\nLayer\n\nIIT KHARAGPUR\n\nsrc dst sport dport .\nmac | MAC srcIP dst IP Tcp.| TCP | action\n< - 128.9.1.10 * eth3\n\neth2\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\neth3 eth4a"
+  },
+  {
+    "text": "source port destination TCP destination port and the corresponding action that you want to execute.",
+    "start": 1097.48,
+    "end": 1103.32,
+    "ocr_text": "Software\n\nHardware\nLayer\n\nIIT KHARAGPUR\n\nsrc dst sport dport rs\n¢ ,) acti\nmac _mac® SI ACIP tcp, tcp 7) action\n* * — 128.9.1.10 * eth3\n\neth2\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\neth3"
+  },
+  {
+    "text": "Now, a simple rule looks like this from the hardware layer side that your source mac is start that",
+    "start": 1103.32,
+    "end": 1110.28,
+    "ocr_text": "Software\n\nHardware\nLayer\n\nIIT KHARAGPUR\n\nsrc dst sport dport rs\n¢ ,) acti\nmac _mac® SI ACIP tcp, tcp 7) action\n* * — 128.9.1.10 * eth3\n\neth2\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\neth3"
+  },
+  {
+    "text": "it is a wildcard character that means, you can accept any source mac field you can accept any",
+    "start": 1111.24,
+    "end": 1116.84,
+    "ocr_text": "Software\n\nHardware\nLayer\n\nIITKHARAGPUR\n\nsrc dst sport dport +\n7 ti\nmac _mac® SC! AIP tcp, tcp f) action\n* * — 128.9.1.10 * eth3\n\neth2\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\neth3"
+  },
+  {
+    "text": "destination mac you can accept any source IP your destination IP should be 128.9.1.10 the source",
+    "start": 1116.84,
+    "end": 1124.52,
+    "ocr_text": "Software\n\nHardware\nLayer\n\nIITKHARAGPUR\n\nsrc dst sport dport .\n¢\n\nmac mach, SCI) ast! tcp, top y| action\n\n5 + *  128,9.1.10 * eth3\n\neth2\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\neth3"
+  },
+  {
+    "text": "TCP port and the destination TCP port can be anything and if that is the case then your corresponding",
+    "start": 1124.52,
+    "end": 1130.52,
+    "ocr_text": "Software\n\nHardware\nLayer\n\nIITKHARAGPUR\n\nsrc dst sport dport .\n¢\n\nmac mach, SCI) ast! tcp, top y| action\n\n5 + *  128,9.1.10 * eth3\n\neth2\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\neth3"
+  },
+  {
+    "text": "action will be forward the packet to ETH3. So, this entire thing entire packet forwarding behavior",
+    "start": 1130.52,
+    "end": 1139.32,
+    "ocr_text": "Software\n\nHardware\nLayer\n\nIIT KHARAGPUR\n\nsrc dst sport dport | _..\n4 IP action\n\nmac mac SCI sstIP tcp, ep 7] At\n* +  *,  128.9.1.10*, * | eth3\n\neth2\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\neth3"
+  },
+  {
+    "text": "we can write it as a match and action pair. So, we have a rule we this entire rule that has a",
+    "start": 1139.32,
+    "end": 1147.72,
+    "ocr_text": "nFlow Example\n\nSoftware OpenFlow Client\n\nsport dport\nrele} dstlP? tcp] Tce /\n\nsrc dst ,\n\nHardware MAC __ MAC\nLayer\n\naction\n\n128.9.1.10 *,\n\n128.9.1.1\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "component of match. So, we have certain entries in the tables and then if there is a match then you",
+    "start": 1147.72,
+    "end": 1155.8,
+    "ocr_text": "Software\n\nsrc dst\n\nHardware MAC __ MAC\nLayer\n\ndport\nsrcIP, dst Ip Sort PO\n\n7 Tepe Tp 7) 2\"\n\n128.9.1.10 *,\n\n128.9.1.1\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\neanltea."
+  },
+  {
+    "text": "execute the corresponding action. So, here this is one entry in the t come hardware table.",
+    "start": 1155.8,
+    "end": 1163.0,
+    "ocr_text": "Software\nLayer\n\nsrc dst sport dport -\n\n4 ti\nRETATETC 5 Od mac. Mac SS IE] dst IP? Tepe] tee] ton\n{s *\n7s :\n\nLayer\n\n128.9.1.10 *,\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, you whenever you are receiving a packet you extract the headers are different layers extract",
+    "start": 1163.56,
+    "end": 1171.16,
+    "ocr_text": "Software\nLayer\n\nsrc dst sport dport -\n\n4 ti\nRETATETC 5 Od mac. Mac SS IE] dst IP? Tepe] tee] ton\n{s *\n7s :\n\nLayer\n\n128.9.1.10 *,\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "this source mac destination mac source IP destination IP source TCP port destination TCP port all",
+    "start": 1171.16,
+    "end": 1177.08,
+    "ocr_text": "Software\nLayer\n\nsrc dst sport dport .\n\n¢ ti\nHardware Fs Od mac. Mac“ Ie, dstIP cp, tops) action\nfe *\n7 .\n\nLayer\n\n128.9.1.10 *,\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "this fields from the packet header and then make a match with this rule. So, if there is a match",
+    "start": 1177.08,
+    "end": 1183.96,
+    "ocr_text": "Software\n\nsrc dst sport dport | _\n4 ti\nHardware Ww MAC. _MAC srclP, dstIP op, tcp 7 atta\n\nLayer\n\n128.9.1.10 *,\n\nhb)\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "with a specific rule then you execute the corresponding action. So, the action is to forward it to ETH3.",
+    "start": 1183.96,
+    "end": 1190.52,
+    "ocr_text": "Software\n\nsrc dst sport dport | _\n4 ti\nHardware Ww MAC. _MAC srclP, dstIP op, tcp 7 atta\n\nLayer\n\n128.9.1.10 *,\n\nhb)\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, ETH3 means this particular router where you want to forward the packet. So,",
+    "start": 1190.52,
+    "end": 1195.96,
+    "ocr_text": "Software\nLayer\n\nsrc dst sport dport .\n\n¢ ti\npinball) 6 Od MAC. _MAC src) dstlP) tcp] Topy] ton\nwe *\nuo ,\n\nLayer\n\n128.9.1.10 *,\n\n128.9.1.1\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "here the message that I want to convey to you is that any such network protocol or",
+    "start": 1196.92,
+    "end": 1201.96,
+    "ocr_text": "Software\nLayer\n\nsrc dst sport dport .\n\nq ti\nHardware Od mac. mac *° IE] dstlP* tepe| tee] ator\nx .\n\nLayer\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "better to say most of the networking protocol we can implement it in the form of a match action",
+    "start": 1203.0,
+    "end": 1208.28,
+    "ocr_text": "Software\nLayer\n\nsrc dst sport dport .\n\nq ti\nHardware Od mac. mac *° IE] dstlP* tepe| tee] ator\nx .\n\nLayer\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "pair we will see some examples of data as well. So, there is a tremendous power of this entire",
+    "start": 1208.28,
+    "end": 1217.56,
+    "ocr_text": "Software\nLayer\n\nsrc dst sport dport .\n\nq ti\nHardware Od mac. mac *° IE] dstlP* tepe| tee] ator\nx .\n\nLayer\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "open flow protocol or open flow architecture. So, let us see one interesting use case of open flow.",
+    "start": 1217.56,
+    "end": 1224.04,
+    "ocr_text": "Power of OpenFlow\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\nerreess#e."
+  },
+  {
+    "text": "So, assume that Bob wants his own set of network rules to forward his packet. So, we have a network",
+    "start": 1224.04,
+    "end": 1231.56,
+    "ocr_text": "Power of OpenFlow\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\nerreess#e."
+  },
+  {
+    "text": "controller here. So, this is the controller and these are the HDN switches which are the",
+    "start": 1231.56,
+    "end": 1242.6,
+    "ocr_text": "B Forwarding App\n\ne A Bob wants his own set\nof network rules to\nforward his pack\n\nNPTEL ONLINE\nIIT KHARAGPUR, CERTIFICATION COURSES\ncS"
+  },
+  {
+    "text": "dumb switches as we have mentioned. Now, Bob wants his own forwarding application say Bob wants",
+    "start": 1242.6,
+    "end": 1251.64,
+    "ocr_text": "Power of OpenFlow\n\nol\n\nCox ae\nBob’s Forwarding App\n\n® A Bob wants his own set\nof network rules to\nforward his pack\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\neaanrrve"
+  },
+  {
+    "text": "to forward the packet from this router say router 1 I am naming the routers as router 1 router",
+    "start": 1251.64,
+    "end": 1260.04,
+    "ocr_text": "B Forwarding App\n\n® A Bob wants his own set\nof network rules to\nforward his pack\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "through router 3 and router 4. Now, Bob wants to forward the packet from a machine which is connected",
+    "start": 1260.04,
+    "end": 1266.92,
+    "ocr_text": "Power of OpenFlow\n\ne A Bob wants his own set\nof network rules to\nforward his pack\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\na a"
+  },
+  {
+    "text": "with router 1 to a machine which is connected with router 4 this is the destination. So,",
+    "start": 1267.08,
+    "end": 1273.72,
+    "ocr_text": "Bob wants his own set\nof network rules to\nforward hi:\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "and Bob wants that the packets need to be forwarded from R 12 to R 4. Now, what Bob does he",
+    "start": 1273.72,
+    "end": 1282.2,
+    "ocr_text": "Bob wants his own set\nof network rules to\nforward hi:\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "basically write that this entire thing in a application program inside the controller.",
+    "start": 1282.2,
+    "end": 1288.92,
+    "ocr_text": "IITKHARAGPUR\n\nPower of OpenFlow\n\nBob wants his own set\nof network rules to\nforward hi:\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, the controller combines that program compile step program and after compiling the program",
+    "start": 1288.92,
+    "end": 1294.76,
+    "ocr_text": "B Forwarding App\n\ne A Bob wants his own set\nof network rules to\nforward his pack\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\nPret"
+  },
+  {
+    "text": "the controller simply deploys Bob's forwarding rule in the required hardwares.",
+    "start": 1294.76,
+    "end": 1301.8,
+    "ocr_text": "B Forwarding App\n\ne A Bob wants his own set\nof network rules to\nforward his pack\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\nPret"
+  },
+  {
+    "text": "So, whenever Bob wants to forward the packet this forwarding rules which are there in the",
+    "start": 1301.8,
+    "end": 1307.8,
+    "ocr_text": "Power of OpenFlow\n\nBob’s Forwarding Rules\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\n's Forwarding App\n\nBob wants his own set\nof network rules to\nforward hi:"
+  },
+  {
+    "text": "respective switches they get executed and the packet gets forwarded. Now, when Alice once",
+    "start": 1307.8,
+    "end": 1316.12,
+    "ocr_text": "Power of OpenFlow\n\nBob’s Forwarding Rules\nBob wants his own set\nof network rules to\nforward hi:\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "her own set of network rules to forward a packet Alice also program the same controller",
+    "start": 1316.12,
+    "end": 1322.12,
+    "ocr_text": "h Alice wants her own set\nof network rules to\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "write her own application on top of the controller and then the forwarding rules are installed",
+    "start": 1322.12,
+    "end": 1329.88,
+    "ocr_text": "h Alice wants her own set\nof network rules to\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "in the routers on through which Alice wants to forward the packet. Now, here you can see the",
+    "start": 1329.88,
+    "end": 1337.0,
+    "ocr_text": "Power of OpenFlow\n\nBob's Forwarding Rules |\n\nAlice’s Forwarding Rules\n\npee ae | Alice’s Forwarding App\n3 5\n\nAlice’s Forwarding Rules\n\nBob’s Forwarding Rules\n\noe\nAlice’s Forwarding Rules Alice wants her own set\n_ | of network rules to\n\nforward hi:\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\newe"
+  },
+  {
+    "text": "interesting things that all the routers do not need to have all the rules. So, Bob wants to use",
+    "start": 1337.0,
+    "end": 1343.0,
+    "ocr_text": "Power of OpenFlow\n\nBob’s Forwarding Rules\nAlice’s Forwart 25\n\n2 | Alice’s Forwarding App\njice’s Forwarding Rules\nh Alice wants her own set\nof network rules to\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "this router 1 router 2 and router 3. So, this router or let us not use the term router let us use",
+    "start": 1343.0,
+    "end": 1351.96,
+    "ocr_text": "Power of OpenFlow\n\nBob’s Forwarding Rules\nAlice’s Forwart 25\n\n2 | Alice’s Forwarding App\njice’s Forwarding Rules\nh Alice wants her own set\nof network rules to\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the term open switch. So, Bob wants to use these three switches. So, the rules are installed",
+    "start": 1351.96,
+    "end": 1358.68,
+    "ocr_text": "Power of OpenFlow\n\nVv Bob's Forwarding Rules |\n\n\\\\ Bob's Forwarding Rules h\n| Alice’s Forwarding Rules Alice wants her own set\nof network rules to\n\ne “ forward hi:\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES."
+  },
+  {
+    "text": "on that three switches and when Alice wants to forward the packet Alice once the packet to be",
+    "start": 1358.68,
+    "end": 1367.64,
+    "ocr_text": "Power of OpenFlow\n\nVv Bob's Forwarding Rules\n\nh Alice wants her own set\nof network rules to\nforward hi:\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES."
+  },
+  {
+    "text": "forwarded from R 12 R 4 to R 3. So, the rules are installed in those switches.",
+    "start": 1367.64,
+    "end": 1374.92,
+    "ocr_text": "Power of OpenFlow\n\nVv Bob's Forwarding Rules\n\nice’s Forwart Rules\n\nBob's Forwarding Rules\n\nAlice’s Forwarding App\n\n| Alice’s | Alice’ Forwarding Rules | Rules “T Alice wants her own set\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nof network rules to\nforward hi:"
+  },
+  {
+    "text": "So, if we look into the open flow flow table the open flow table has 4 different component.",
+    "start": 1375.72,
+    "end": 1384.76,
+    "ocr_text": "Rule\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\neertreess re."
+  },
+  {
+    "text": "You have the rule the corresponding action certain statistics about packets the execution",
+    "start": 1385.56,
+    "end": 1393.48,
+    "ocr_text": "Rule\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n."
+  },
+  {
+    "text": "of a particular rule and the priority value which is associated with a route. So, the idea is",
+    "start": 1393.48,
+    "end": 1398.76,
+    "ocr_text": "Rule\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n."
+  },
+  {
+    "text": "something that. So, you have a rule. So, the rule is nothing but a set of fields and that field",
+    "start": 1398.92,
+    "end": 1405.48,
+    "ocr_text": "OpenFlow Flow Table\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n."
+  },
+  {
+    "text": "basically says that in which particular field of an IP packet or here actually in STN you can look",
+    "start": 1405.48,
+    "end": 1413.56,
+    "ocr_text": "OpenFlow Flow Table\n\nMAC | MAC TH IP DST\nID RC DST ype\n\nNPTEL ONLINE\n\nToS | TCP TCP\nSPORT | DPORT\n\nIIT KHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "into MAC, IP, TCP all the headers. So, in your packet header which particular field to look into",
+    "start": 1413.56,
+    "end": 1421.8,
+    "ocr_text": "OpenFlow Flow Table\n\nMAC | MAC TH IP DST\nID RC DST ype\n\nNPTEL ONLINE\n\nToS | TCP TCP\nSPORT | DPORT\n\nIIT KHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "theoretically you can look into any field inside the packet header. So, you can look into the",
+    "start": 1421.8,
+    "end": 1427.88,
+    "ocr_text": "Statistics Priority\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "packet header and the a rule basically specifies what should be or what is your",
+    "start": 1427.88,
+    "end": 1433.8,
+    "ocr_text": "Statistics Priority\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "interested value for a specific field inside the packet header like the switch port,",
+    "start": 1434.52,
+    "end": 1440.12,
+    "ocr_text": "Statistics Priority\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "villain ID, MAC source, MAC destination, Ethernet type, IP source, IP destination, IP type of",
+    "start": 1440.12,
+    "end": 1447.08,
+    "ocr_text": "Statistics\n\nMAC MAC TH IP DST | IP ToS | TCP\nID RC DST ype SPORT | NPORT\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\noe"
+  },
+  {
+    "text": "service for quality of service, TCP source port and TCP destination port. Now, if there is a",
+    "start": 1447.08,
+    "end": 1453.0,
+    "ocr_text": "OpenFlow Flow Table\nation Statistics Priority\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "MACS with this rule that means, with this certain fields that you are specifying then there can be",
+    "start": 1453.08,
+    "end": 1459.16,
+    "ocr_text": "OpenFlow Flow Table\nation Statistics Priority\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "a set of actions and the actions can be designed by you based on your choice. So, the action can be",
+    "start": 1459.16,
+    "end": 1465.48,
+    "ocr_text": "Statistics\n\nPriority\n\n* Forward packets to zero and more ports\n* Encapsulate and forward packets\n* Modify fields\n* Drop packets\nYou can add your own extensions\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\newe"
+  },
+  {
+    "text": "forward the packets to 0 or more ports in the switch encapsulate the packet and then forward the",
+    "start": 1465.48,
+    "end": 1471.88,
+    "ocr_text": "Statistics Priority\n\n* Forward packets to zero and more ports\n* Encapsulate and forward packets\n* Modify fields\n* Drop packets\nYou can add your own extensions\n\nwes ps IPDST | IP ToS | TCP\nsport | npoarT\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\newe"
+  },
+  {
+    "text": "packet, modify certain fields in the packet header and then forward the packet, drop the",
+    "start": 1471.88,
+    "end": 1477.16,
+    "ocr_text": "Statistics Priority\n\n* Forward packets to zero and more ports\n* Encapsulate and forward packets\n* Modify fields\n* Drop packets\nYou can add your own extensions\n\nwes ps IPDST | IP ToS | TCP\nsport | npoarT\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\newe"
+  },
+  {
+    "text": "packets if you want to implement a firewall rule or you can add up your own extension whatever",
+    "start": 1477.16,
+    "end": 1482.04,
+    "ocr_text": "Statistics\n\n* Forward packets to zero and more ports\n* Encapsulate and forward packets\n* Modify fields\n* Drop packets\nYou can add your own extensions\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\ncS"
+  },
+  {
+    "text": "you can think of. The statistics fields it have it maintains certain statistics like the packet",
+    "start": 1482.52,
+    "end": 1490.68,
+    "ocr_text": "Statistics\n\n* Forward packets to zero and more ports\n* Encapsulate and forward packets\n* Modify fields\n* Drop packets\nYou can add your own extensions\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\ncS"
+  },
+  {
+    "text": "counter, the byte counter, number of packets that have been matched with a particular rule and so on",
+    "start": 1490.68,
+    "end": 1495.8,
+    "ocr_text": "Statistics\n\n* Forward packets to zero and more ports\n* Encapsulate and forward packets\n* Modify fields\n* Drop packets\nYou can add your own extensions\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nPacket and byte\ncounters\n\newe"
+  },
+  {
+    "text": "so that it becomes easier for you to get the information from the network and then there is a",
+    "start": 1496.52,
+    "end": 1502.04,
+    "ocr_text": "Statistics\n\nForward packets to zero and more ports\nEncapsulate and forward packets.\nModify fields\n\nDrop packets\n\nYou can add your own extensions\n\nPriority\n\nPacket and byte\ncounters\n\nne bee IPDST | IP ToS | TCP\nsport | nparT\n\nIIT KHARAGPUR\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\n."
+  },
+  {
+    "text": "priority value associated which is the priority of a corresponding route. So, in case of a open",
+    "start": 1502.04,
+    "end": 1507.72,
+    "ocr_text": "Statistics\n\nForward packets to zero and more ports\nEncapsulate and forward packets.\nModify fields\n\nDrop packets\n\nYou can add your own extensions\n\nPriority\n\nPacket and byte\ncounters\n\nne bee IPDST | IP ToS | TCP\nsport | nparT\n\nIIT KHARAGPUR\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\n."
+  },
+  {
+    "text": "flow whenever you have a set of rules if there is a match with multiple rules then the high priority",
+    "start": 1507.8,
+    "end": 1513.16,
+    "ocr_text": "Statistics\n\nForward packets to zero and more ports\nEncapsulate and forward packets.\nModify fields\n\nDrop packets\n\nYou can add your own extensions\n\nPriority\n\nPacket and byte\ncounters\n\nne bee IPDST | IP ToS | TCP\nsport | nparT\n\nIIT KHARAGPUR\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\n."
+  },
+  {
+    "text": "rule is executing general. Here are certain examples of open flow tables if you want to do a switching",
+    "start": 1513.16,
+    "end": 1522.92,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Switching\n\nVLAN | MACSRC | MAC DST IP DST | IPToS | TCP TeP\n1D SPORT | DPORT\n\n12:3F:. * eth2\n° Firewall\nIP ToS | TCP TCP\nSPORT DPORT\n22) drop\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "you have to look into the MAC destination field because you have to look into the MAC destination",
+    "start": 1522.92,
+    "end": 1527.56,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Switching\n\nVLAN | MACSRC | MAC DST IP DST | IPToS | TCP TeP\n1D SPORT | DPORT\n\n12:3F:. * eth2\n° Firewall\nIP ToS | TCP TCP\nSPORT DPORT\n22) drop\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "field. So, you just make a match with the MAC destination you can ignore other fields so,",
+    "start": 1527.56,
+    "end": 1534.04,
+    "ocr_text": "Examples of Flow Flow Tables\n\n. clea\n\nMACSRC | MAC DST IP DST | IP ToS | TCP\nSPORT iam\n\neth2\n\n¢ Firewall\n\nMAC SRC ETH | IP SRC\nType\n* * * * * *\n\nDsT | IP Tos | TCP\nSPORT isa\n\n22 drop\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "we put it as a start as a wildcat character if there is a match with this particular MAC address",
+    "start": 1534.12,
+    "end": 1540.44,
+    "ocr_text": "Examples of Flow Flow Tables\n\n. clea\n\nMACSRC | MAC DST IP DST | IP ToS | TCP\nSPORT iam\n\neth2\n\n¢ Firewall\n\nMAC SRC ETH | IP SRC\nType\n* * * * * *\n\nDsT | IP Tos | TCP\nSPORT isa\n\n22 drop\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "you forward it to Ethernet 2 it be like a normally a switching mechanism.",
+    "start": 1540.44,
+    "end": 1545.32,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Switching\n\nMACSRC | MAC DST IP DST | IP ToS\nsam iam\n\neth2\n\n¢ Firewall\n\nMAC SRC ETH IP DST\nTy\n* * * * * * *\n\nTos | TCP\nSPORT ea\n\n22 drop\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "If you want to implement a firewall you look into the TCP destination port if TCP destination port",
+    "start": 1546.12,
+    "end": 1552.2,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Switching\n\nMACSRC | MAC DST IP DST | IP ToS | TCP TcP\niB SPORT | DPORT\n\n12:3 Eo eth2\nS55 —\n¢ Firewall\nMAC SRC ETH IP Tos | TCP TCP\nType SPORT DPORT\n\n22 drop\n\nNPTEL ONLINE\n\nIITKHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "is 22 then you drop the packet. So, that is the corresponding firewall rule. So, you can design",
+    "start": 1552.2,
+    "end": 1558.84,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Switching\n\nMACSRC | MAC DST IP DST | IP ToS | TCP TcP\niB SPORT | DPORT\n\n12:3 Eo eth2\nS55 —\n¢ Firewall\nMAC SRC ETH IP Tos | TCP TCP\nType SPORT DPORT\n\n22 drop\n\nNPTEL ONLINE\n\nIITKHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "your own firewall rule like that. So, look into certain fields in the packet header if there is",
+    "start": 1558.84,
+    "end": 1563.88,
+    "ocr_text": "Examples of Flow Flow Tables\n\n* Switching\n\nMACSRC | MAC DST IP DST | IP ToS | TCP\nSPORT bear\n\neth2\n° Firewall\nMAC SRC IP SRC | IPDST | IP ToS | TCP\nan SPORT arn\n22 drop\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "a match with those fields of the packet header then you drop the packet. Then forwarding to forward",
+    "start": 1563.88,
+    "end": 1574.84,
+    "ocr_text": "Examples of Flow Flow Tables\n\n* Switching\n\nMACSRC | MAC DST IP DST | IP ToS | TCP\nSPORT bear\n\neth2\n° Firewall\nMAC SRC IP SRC | IPDST | IP ToS | TCP\nan SPORT arn\n22 drop\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "the packet rather than looking into the MAC destination you look into the IP destination.",
+    "start": 1574.84,
+    "end": 1581.88,
+    "ocr_text": "Examples of Flow Flow Tables\n\n* Switching\n\nMACSRC | MAC DST IP DST | IPToS | TCP\nae SPORT mean\n\neth2\n\n¢ Firewall\n\nETH DsT\nTyi\n* * * * * * *\n\nTos | TCP\nSPORT bseam\n\n22 drop\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "If your IP belongs to this subnet 202.2.star that star you forward the packet to Ethernet 2.",
+    "start": 1581.88,
+    "end": 1587.4,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Forwarding\nVLAN MAC SRC | MAC DST TCP TOP\nID SPORT DPORT\n\n* 202.2.*.* eth2\n\n+ Flow Switching\n\nMac Tcp\nDsT ype SPORT ism\n\nZ 00:1F:... 14:B2:.. 0800 202.1.*.* 212.19.*.* * 80 8080 eth2\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "You can make a flow switching which is interesting that means this flow switching with the help of",
+    "start": 1588.04,
+    "end": 1593.4,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n° cee\n\nMACSRC | MAC DST TP TcP\nSPORT | DPORT\n\n* 202.2.*.* aia\n\n+ Flow Switching\n\nmac TH Tcp Tep\nSRC ‘Type SPORT | DPORT\n\n« (orilla.n | MH. | Clef) | Aopdals | zilaaleyge | 80 8080 eth2\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "flow switching you can make a convergence between the packet switching network and the circuit switching",
+    "start": 1593.4,
+    "end": 1598.28,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n° cee\n\nMACSRC | MAC DST TP TcP\nSPORT | DPORT\n\n* 202.2.*.* aia\n\n+ Flow Switching\n\nmac TH Tcp Tep\nSRC ‘Type SPORT | DPORT\n\n« (orilla.n | MH. | Clef) | Aopdals | zilaaleyge | 80 8080 eth2\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "network. So, the idea of the circuit switching network was to use specific path for a specific flow.",
+    "start": 1598.28,
+    "end": 1604.44,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n° cee\n\nMACSRC | MAC DST TP TcP\nSPORT | DPORT\n\n* 202.2.*.* aia\n\n+ Flow Switching\n\nmac TH Tcp Tep\nSRC ‘Type SPORT | DPORT\n\n« (orilla.n | MH. | Clef) | Aopdals | zilaaleyge | 80 8080 eth2\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Now, by looking into multiple fields in the packet header like the MAC source MAC destination,",
+    "start": 1604.44,
+    "end": 1610.44,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n° deli\n\nMACSRC | MAC DST TcP TcP\nSPORT | DPORT\n\nbe 202.2.*.* cite\n\n+ Flow Switching\n\nVLAN | MAC MAC TH ip | TcP Tep\nSRC DsT ype ToS | SPORT | DPORT\n* ,\n\n.) (Lara) | Zopdalt) | pale aey\\is | 80 8080 eth2\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "Ethernet type IP source IP destination TCP source port TCP destination port by looking all this",
+    "start": 1610.44,
+    "end": 1617.72,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n° deli\n\nMACSRC | MAC DST TcP TcP\nSPORT | DPORT\n\nbe 202.2.*.* cite\n\n+ Flow Switching\n\nVLAN | MAC MAC TH ip | TcP Tep\nSRC DsT ype ToS | SPORT | DPORT\n* ,\n\n.) (Lara) | Zopdalt) | pale aey\\is | 80 8080 eth2\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "individual fields you can actually uniquely identify a process to process flow because you are",
+    "start": 1617.72,
+    "end": 1623.72,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Forwarding\nVLAN MAC SRC | MAC DST TCP TOP\nID SPORT DPORT\n\n. 202.2.*.* ati\n\n* Flow Switching\n\nMAC ETH TeP TcP\nDsT ype SPORT | DPORT\n* 00:1F:... 14:B2:.. 0800 202.1.*.* 212.19.*.* * 80 8080. eth2\na\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "also asserting the TCP source port and the destination port. Now, for that particular flow you can",
+    "start": 1623.72,
+    "end": 1629.64,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Forwarding\nVLAN MAC SRC | MAC DST TCP TOP\nID SPORT DPORT\n\n. 202.2.*.* ati\n\n* Flow Switching\n\nMAC ETH TeP TcP\nDsT ype SPORT | DPORT\n* 00:1F:... 14:B2:.. 0800 202.1.*.* 212.19.*.* * 80 8080. eth2\na\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "make a action that forward the packet for this particular flow to this switch. So, that means,",
+    "start": 1629.64,
+    "end": 1634.44,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n+ Forwarding\nVLAI MAC SRC | MAC DST TCP TcP\nID SPORT DPORT\n\nMd 202.2.*.* ate\n\n* Flow Switching\n\nMAC MAC ETH 1p | TCP TcP\nSRC DsT Type ToS _| SPORT | DPORT\n2 i 00:1F:... 14:B2:.. 0800 202.1.*.* 212.19.*.* * 80 8080 eth2\no = .\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "you can make flow specific forwarding or flow specific routing of the data. So, that is a huge",
+    "start": 1634.44,
+    "end": 1642.2,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n+ Forwarding\nVLAI MAC SRC | MAC DST TCP TcP\nID SPORT DPORT\n\nMd 202.2.*.* ate\n\n* Flow Switching\n\nMAC MAC ETH 1p | TCP TcP\nSRC DsT Type ToS _| SPORT | DPORT\n2 i 00:1F:... 14:B2:.. 0800 202.1.*.* 212.19.*.* * 80 8080 eth2\no = .\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "power of a STN based network. Then you can do the source routing source routing where",
+    "start": 1642.2,
+    "end": 1650.12,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n° dia\n\nMACSRC | MAC DST TcP TcP\nSPORT | DPORT\n\nu 202.2.*.* aie\n\n+ Flow Switching\n\nTH Tcp Tcp\nType SPORT | DPORT\n\nbs 00:1F:... 14:B2:.. 0800 202.1.*.* 212.19.*.* * Be 830 eth2\n7\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "if the packet is coming from a specific source and it is distinct to a specific destination,",
+    "start": 1651.4,
+    "end": 1657.16,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\nvl MAC | MAC IP DST uch TCP TcP\nID SRC DST SPORT DPORT\n\n* * * * * 16.2.3.* 202.2.*.* eth2\n\n+ VLAN Switching\n\neg IP DST tcp\nee SPORT corn\n\n14:B2:.. * eth2,\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "then you use a specific path. So, you put the source IP the destination IP if the packet is coming",
+    "start": 1657.16,
+    "end": 1664.6,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\nVLAN MAC IP DST ee TCP TeP\nID RC SPORT DPORT\n\nG erate 02:2 rae eth2\n\n+ VLAN Switching\n\nMAC MAC IP DST rcP TcP\nSRC DsT Type SPORT | DPORT\n\n14:B2:.. * eth2,\n\nNPTEL ONLINE\n\nIITKHARAGPUR | CERTIFICATION COURSES\n\ntanr ge. ."
+  },
+  {
+    "text": "from a subnet at 16.2.3.star and if the destination is 20.2.2.star. That",
+    "start": 1664.6,
+    "end": 1672.12,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\nVLAN MAC IP DST ee TCP TeP\nID RC SPORT DPORT\n\nG erate 02:2 rae eth2\n\n+ VLAN Switching\n\nMAC MAC IP DST rcP TcP\nSRC DsT Type SPORT | DPORT\n\n14:B2:.. * eth2,\n\nNPTEL ONLINE\n\nIITKHARAGPUR | CERTIFICATION COURSES\n\ntanr ge. ."
+  },
+  {
+    "text": "action is forward the packet to Ethernet 2. You can do the villain switching although till now we",
+    "start": 1672.44,
+    "end": 1677.96,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\nVLAN MAC | MAC IP DST es TCP Top\nID RC DsT SPORT DPORT\n\n* * * * * 16.2.3.* ae eth2\n\not\n+ VLAN Switching\n\nMAC MAC IP DST rcP TcP\nSRC DsT Type SPORT | DPORT\n\n14:B2:.. * eth2,\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\ntaunr tea."
+  },
+  {
+    "text": "have not discussed about what is villain virtual LAN. Virtual LAN is basically given a packet,",
+    "start": 1677.96,
+    "end": 1687.64,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\n‘VLAN MAC IP DST Ee TCP ToP\nID RC SPORT DPORT\n\ni WEE! mma eth2\n\na —eoe\n+ VLAN Switching\n\nMAC MAC IP DST rcP TcP\nSRC DsT Type SPORT | DPORT\n\n14:B2:.. * eth2,\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\ntaunreea."
+  },
+  {
+    "text": "a set of packets if you want to send a set of packets or a packet to a specific destination.",
+    "start": 1687.64,
+    "end": 1693.88,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\nvl MAC | MAC ee TCP TCP\nID SRC DsT SPORT DPORT\n\n= 16.2.3.* a eth2\nal ~~\n« VLAN asa\nioe IP DST TCP ‘cP\nSPORT PORT\n\nUEEV AES | eth2,\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "You can forward the packets into multiple ports of the switch which constructs virtual LAN.",
+    "start": 1694.68,
+    "end": 1701.16,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\nvl MAC | MAC ee TCP TCP\nID SRC DsT SPORT DPORT\n\n= 16.2.3.* a eth2\nal ~~\n« VLAN asa\nioe IP DST TCP ‘cP\nSPORT PORT\n\nUEEV AES | eth2,\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, later on we will look into the virtual LAN in details, but with the help of this",
+    "start": 1701.32,
+    "end": 1705.08,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\nVLAT MAC IP DST ue TCP TOP\nID RC SPORT DPORT\n\na WG2E aaa eth2\n\na coe\n* VLAN Switching\n\nMAC MAC IP DST rcP tcp\nSRC DsT Type SPORT | DPORT\n\n14:B2:.. * eth2,\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES\n\ntanrve"
+  },
+  {
+    "text": "this open flow rules you can specify the virtual LAN ID, the corresponding MAC destination",
+    "start": 1706.2,
+    "end": 1711.96,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\n\nvial MAC IP DST ry TcP TcP\n1D SRC SPORT | DPORT\n\ni ss +] — ci\n\n+ VLAN Switching\n\nMAC MAC\nSRC DsT\n\n14:B2:.. *\n\nIP DST tcp Tp\nSPORT | DPORT\n\neth2,\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "and the action is forwarding the packet to two different ports it is 2 and it is 3. That means,",
+    "start": 1712.52,
+    "end": 1717.56,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\n\nvial MAC IP DST ry TcP TcP\n1D SRC SPORT | DPORT\n\ni ss +] — ci\n\n+ VLAN Switching\n\nMAC MAC\nSRC DsT\n\n14:B2:.. *\n\nIP DST tcp Tp\nSPORT | DPORT\n\neth2,\n\nNPTEL ONLINE\n\nIIT KHARAGPUR | CERTIFICATION COURSES"
+  },
+  {
+    "text": "it is 2 and it is 3 are actually connected to virtual LAN 2. So, the packets will be forwarded",
+    "start": 1717.56,
+    "end": 1723.32,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\nVLAI MAC | MAC IP DST oe TCP TcP\nID RC DST SPORT DPORT\n\n* * * * * 16.2.3.* ae eth2\n\nSe ioe\n+ VLAN Switching\n\nMAC MAC IP DST rcP Tp\nSRC DsT Type SPORT | DPORT\n\nTEEPE, | eth2-\n, Z eth3\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURS!"
+  },
+  {
+    "text": "to those interface only. Now, these are the examples of some of the open flow rules. You can",
+    "start": 1723.64,
+    "end": 1734.92,
+    "ocr_text": "Examples of OpenFlow Flow Tables\n\n* Source Routing\nVLAI MAC | MAC IP DST oe TCP TcP\nID RC DST SPORT DPORT\n\n* * * * * 16.2.3.* ae eth2\n\nSe ioe\n+ VLAN Switching\n\nMAC MAC IP DST rcP Tp\nSRC DsT Type SPORT | DPORT\n\nTEEPE, | eth2-\n, Z eth3\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURS!"
+  },
+  {
+    "text": "design your own open flow rules and the corresponding action the entire innovation is open. So,",
+    "start": 1734.92,
+    "end": 1741.08,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n.\n\nwreessre"
+  },
+  {
+    "text": "anyone can contribute there. Let us look into the messages which are there in general open flow",
+    "start": 1741.08,
+    "end": 1746.68,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the messages which are here between the controller and the corresponding switches. So,",
+    "start": 1746.76,
+    "end": 1752.04,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "this communication as we are mentioning they are done via TCP. So, once you have made a TCP",
+    "start": 1753.0,
+    "end": 1759.0,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "connection between the client version of the switch and the controller the open flow",
+    "start": 1759.0,
+    "end": 1764.52,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "hello messages are exchanged between the controller and the switch. So, then negotiate the",
+    "start": 1764.52,
+    "end": 1770.36,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "open flow version the higher version is used and this here certain parameters like what are the",
+    "start": 1770.44,
+    "end": 1777.96,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "different configuration parameters you want to share. Then the controller sends the open flow",
+    "start": 1777.96,
+    "end": 1785.08,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "feature request message the feature request message to get the data part ID of the switch",
+    "start": 1785.08,
+    "end": 1791.16,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "and determine what features are supported by the switch. Say for example, whether the switch",
+    "start": 1791.72,
+    "end": 1797.32,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "supports QS space for adding or not. Now, based on the application program you can send certain",
+    "start": 1797.32,
+    "end": 1803.96,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "open flow messages for switch configurations to update the flow entries or to modify the flow",
+    "start": 1803.96,
+    "end": 1809.24,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "entries or to install a new flow entries. There are some other messages like to check the connection",
+    "start": 1809.24,
+    "end": 1815.16,
+    "ocr_text": "OpenFlow Messages\n\n* Once TCP connection is made, OpenFlow HELLO message is exchanged\nbetween the controller and the switch\n\n— Negotiate OpenFlow version\n— Agree on highest version supported.\n* Controller sends OpenFlow Feature Request message\n— Get the datapath ID of the switch\n— Determine what features switch supports\n\n* Based on the application program, OpenFlow messages for switch\nconfigurations (flow entries) are sent\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "aliveness whether the connection is alive or not open flow can send eco-request and eco-reply",
+    "start": 1815.16,
+    "end": 1820.76,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\nwreessre"
+  },
+  {
+    "text": "messages they can be sent from the controller to switch to check the liveness of the switch or",
+    "start": 1820.76,
+    "end": 1827.16,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\nwreessre"
+  },
+  {
+    "text": "the switch can send it to the controller to check the liveness of the controller.",
+    "start": 1827.16,
+    "end": 1830.44,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Now, to group the flow entries if you want to group multiple flow entries together",
+    "start": 1831.0,
+    "end": 1835.48,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "these groups are configured by the controller to this group configuration messages",
+    "start": 1836.12,
+    "end": 1840.2,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "that can be stored into group tables inside switch. So, open flow has a power that you can combine",
+    "start": 1841.08,
+    "end": 1846.6,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "multiple rules altogether and create a group of rules. So, the messages are there to support",
+    "start": 1846.6,
+    "end": 1852.28,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "that group position. To get the statistic details from the switch you can you have this",
+    "start": 1852.28,
+    "end": 1858.76,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "open flow messages like flow starts, port starts, Q starts, group starts, table starts, all these",
+    "start": 1858.76,
+    "end": 1865.16,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "things that can be sent from the controller. So, that is another advantage like from the",
+    "start": 1865.16,
+    "end": 1869.8,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "controller you can get the statistics from the switch and you can look into the individual",
+    "start": 1869.8,
+    "end": 1875.08,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "statistics that for a particular flow how many packets have been transferred and based on that",
+    "start": 1875.08,
+    "end": 1880.2,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "you can also configure the switch for restricting the bandwidth for a particular flow. So, you have",
+    "start": 1880.2,
+    "end": 1886.84,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "as a network administrator you can get a tremendous power to control your network.",
+    "start": 1887.56,
+    "end": 1892.28,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Then there are certain asynchronous open flow messages like flow rule removal from a switch,",
+    "start": 1892.84,
+    "end": 1898.04,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "configuration apply failure from the switch, port up down status from the switch whether a",
+    "start": 1898.92,
+    "end": 1903.8,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "particular port is up or down, etc that can be sent from the switch to update the controller.",
+    "start": 1903.8,
+    "end": 1909.96,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, if a particular port from a switch is down the switch can send a message to the controller",
+    "start": 1910.68,
+    "end": 1915.8,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "to let it know that this particular port is now down. So, that the controller can design a fail",
+    "start": 1915.8,
+    "end": 1920.92,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "safe mechanism for forwarding the packet. So, this is the entire brief introduction about open flow.",
+    "start": 1920.92,
+    "end": 1928.92,
+    "ocr_text": "OpenFlow Messages\n\n* To check connection aliveness, echo request and echo reply OpenFlow messages\nare sent from either controller or switch.\n\n* To group flow entries, groups are configured by the controller through group\nmessages that can be stored into group tables inside switches\n\n* To get statistics details from the switch, OpenFlow messages like flow stats, port\nstats, queue stats, group stats, table stats, etc. can be sent from controller.\n\n+ Asynchronous OpenFlow messages like flow rule removal from a switch,\nconfiguration apply fail error from switch, port up/down status from switch, etc. can\nbe sent from switch to update controller.\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, now what is happening the entire power is in the hand of network programmer or the network",
+    "start": 1929.8,
+    "end": 1935.88,
+    "ocr_text": "Packet Processi\n\nInterface w/\nOF Controller\n\n- 5\nF ‘\n! i\nr>=) i. 1 OF Client\nwae H\n' H\nOF Switch ! | H\n_— 41.\nit Switching Utility H Image Source:\nit 1 https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nIP Packets\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "administrator, the network administrator controls the entire controller right down he is our",
+    "start": 1935.88,
+    "end": 1942.44,
+    "ocr_text": "Packet Processin\n\nInterface w/\nOF Controller\n\nG ‘\n! H\nP=) => ' OF Client !\neZ I\nH 1\nOF Switch ! [ '\n1) _—\nit Switching Utility I: Image Source:\nit 1 https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nIP Packets\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\newer eesns#erie"
+  },
+  {
+    "text": "own program in the controller and this open flow helps configuring the switches.",
+    "start": 1942.44,
+    "end": 1948.36,
+    "ocr_text": "Packet Processin\n\nInterface w/\nOF Controller\n\nG ‘\n! H\nP=) => ' OF Client !\neZ I\nH 1\nOF Switch ! [ '\n1) _—\nit Switching Utility I: Image Source:\nit 1 https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nIP Packets\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\newer eesns#erie"
+  },
+  {
+    "text": "Now, whenever you are receiving a packet the packet has the payload and the header you look into",
+    "start": 1948.36,
+    "end": 1953.72,
+    "ocr_text": "Packet Processin\n\nInterface w/\nOF Controller\n\n/\n! H\nee ta> 1 OF Client '\n—_ H\n' '\nOF Switch i | '\n1} 41.\nit Switching Utility H Image Source:\nBa 1 https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "the header based on the header field you make a match with the corresponding rule and then",
+    "start": 1953.72,
+    "end": 1958.76,
+    "ocr_text": "Packet Processin\n\nInterface w/\nOF Controller\n\n/\n! H\nee ta> 1 OF Client '\n—_ H\n' '\nOF Switch i | '\n1} 41.\nit Switching Utility H Image Source:\nBa 1 https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "send a packet in the based on the action which is there which is mentioned in the corresponding",
+    "start": 1959.24,
+    "end": 1965.72,
+    "ocr_text": "Packet Processin\n\nInterface w/\nOF Controller\n\nP ‘\n! H\nes => 1 OF Client '\n—_ 1\n! 1\nOF Switch ! [ H\n1} —\nst Switching Utility H Image Source:\nit i https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "open flow table. So, the rules in the open flow table inside the switch they are implemented",
+    "start": 1965.72,
+    "end": 1971.24,
+    "ocr_text": "Packet Processi\n\nInterface w/\nOF Controller\n\noS .,\nFi \\\n1 ; H\ne2 i> OF Client !\n—_ ! 1\nOF Switch ' [ '\n| —E\nst Switching Utility H Image Source:\nit i https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "as a part of the T cam hardware. So, T cam is a programmable memory where you can dynamically",
+    "start": 1971.24,
+    "end": 1977.24,
+    "ocr_text": "Packet Processi\n\nInterface w/\nOF Controller\n\noS .,\nFi \\\n1 ; H\ne2 i> OF Client !\n—_ ! 1\nOF Switch ' [ '\n| —E\nst Switching Utility H Image Source:\nit i https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "program that particular hardware to install the rules. So, this is a very brief introduction of",
+    "start": 1978.2,
+    "end": 1986.04,
+    "ocr_text": "Packet Processin\n\nInterface w/\nOF Controller\n\np ‘\n! H\nes - 1 OF Client i\n—_ 1\n! 1\nOF Switch ' [ '\n| —E\nst Switching Utility | Image Source:\nzt i https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "open flow we will go for certain demo of open flow in the next class before going to that.",
+    "start": 1986.04,
+    "end": 1993.48,
+    "ocr_text": "Packet Processin\n\nInterface w/\nOF Controller\n\ni ,\ni\nP>== mp 1 OF Client i\n1 1\n— ' H\nOF Switch ! '\n| 41.\nst Switching Utility H Image Source:\nif 1 https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, I am just giving you certain pointers that you can explore yourself to look more details",
+    "start": 1994.76,
+    "end": 2001.64,
+    "ocr_text": "Packet Processin\n\nInterface w/\nOF Controller\n\ni ,\ni\nP>== mp 1 OF Client i\n1 1\n— ' H\nOF Switch ! '\n| 41.\nst Switching Utility H Image Source:\nif 1 https://www.researchgate.net\n\n[figure/Structure-of-the-\nOpenFlow-\nswitch fig3_ 284725082\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "of this entire open innovation in the networking community this is a kind of advanced topic in network",
+    "start": 2001.64,
+    "end": 2008.52,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* OpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\nONOS: https://onosproject.org/\n\n* Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "and you should learn that because people predict that our future network is going to be",
+    "start": 2009.72,
+    "end": 2015.4,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* OpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\nONOS: https://onosproject.org/\n\n+ Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "STN controlled. So, there is a link for open networking foundation where you can find out the different",
+    "start": 2015.4,
+    "end": 2021.24,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* OpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\nONOS: https://onosproject.org/\n\n¢ Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "standards different agendas which are there under the open networking foundation.",
+    "start": 2023.16,
+    "end": 2029.4,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* OpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\nONOS: https://onosproject.org/\n\n¢ Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "The open flow specification the current version is table version is 1.5.1 you can look into",
+    "start": 2029.4,
+    "end": 2035.88,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* QOpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\nONOS: https://onosproject.org/\n\n* Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "the different messages they are messages type they are functionality all this thing.",
+    "start": 2035.88,
+    "end": 2040.2,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* QOpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\nONOS: https://onosproject.org/\n\n* Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "The owners owner system popular network controller you can look into the owners details it is the",
+    "start": 2040.2,
+    "end": 2047.4,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* QOpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\nONOS: https://onosproject.org/\n\n* Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "open source thing again you can just install it in a single machine and start using it.",
+    "start": 2047.4,
+    "end": 2052.52,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* QOpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\nONOS: https://onosproject.org/\n\n¢ Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "There is another STN controller called RU I suggest you to look into the new controller as well.",
+    "start": 2052.52,
+    "end": 2058.2,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* QOpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\nONOS: https://onosproject.org/\n\n¢ Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\noe"
+  },
+  {
+    "text": "So, these are all open source tools you are free to download them free to use them. So,",
+    "start": 2058.84,
+    "end": 2065.24,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* QOpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\n* ONOS: https://onosproject.org/\n\n+ Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "explore them that is all about the course today. Thank you all for attending the course. Happy learning.",
+    "start": 2065.24,
+    "end": 2075.24,
+    "ocr_text": "Pointers to Explore\n\n* Open Networking Foundations: https://www.opennetworking.org/\n\n* QOpenFlow specification (version 1.5.1)\nhttps://www.opennetworking.org/wp-content/uploads/2014/10/openflow-\nswitch-v1.5.1.pdf\n\n* ONOS: https://onosproject.org/\n\n+ Ryu SDN Framework: https://osrg.github.io/ryu/\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  }
+]

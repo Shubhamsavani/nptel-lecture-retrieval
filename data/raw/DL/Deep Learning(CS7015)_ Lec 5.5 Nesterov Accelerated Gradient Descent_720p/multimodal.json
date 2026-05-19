@@ -1,0 +1,656 @@
+[
+  {
+    "text": "So, let us look at a messerov accelerated gradient descent. So, now we know that momentum",
+    "start": 0.0,
+    "end": 18.8,
+    "ocr_text": "NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "base gradient descent is good at these gentle regions it moves really fast, but we do not",
+    "start": 18.8,
+    "end": 24.36,
+    "ocr_text": "Question\n\ne Can we do something to reduce these oscillations ?\n\n1M. Khapra $7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "still do not like it because it has this problem of oscillations. It has this problem that",
+    "start": 24.36,
+    "end": 28.48,
+    "ocr_text": "Question\n\ne Can we do something to reduce these oscillations ?\n\n1M. Khapra $7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "it overshoots its objective right it is good and then it has to take a lot of uters.",
+    "start": 28.48,
+    "end": 33.32,
+    "ocr_text": "Question\n\ne Can we do something to reduce these oscillations ?\n\nMitesh M. Khapra CS7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "So, can we do something about reducing these oscillations? So, the answer is always yes.",
+    "start": 33.32,
+    "end": 38.32,
+    "ocr_text": "Question\n\ne Can we do something to reduce these oscillations ?\n\nMitesh M. Khapra CS7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "So, let us look at messerov accelerated gradient descent. So, the idea here is very simple",
+    "start": 38.32,
+    "end": 43.28,
+    "ocr_text": "Question\ne Can we do something to reduce these oscillations ?\n\n@ Yes, let’s look at Nesterov accelerated gradient"
+  },
+  {
+    "text": "look before you leap ok. Now, remember that this was the update rule for momentum",
+    "start": 43.28,
+    "end": 50.72,
+    "ocr_text": "Question\ne Can we do something to reduce these oscillations ?\n\n@ Yes, let’s look at Nesterov accelerated gradient"
+  },
+  {
+    "text": "base gradient descent ok and I will write it down again W t plus 1 is equal to W t minus",
+    "start": 50.72,
+    "end": 57.72,
+    "ocr_text": "Intuition\n\ne@ Look before you leap\n\ne@ Recall that update, = 7 - update;-1 + nV,"
+  },
+  {
+    "text": "gamma into update t minus 1 minus eta into the gradient at the current point ok.",
+    "start": 57.72,
+    "end": 68.32,
+    "ocr_text": "Intuition\ne@ Look before you leap\n\ne@ Recall that update, = y - update;-) + nVwr\n\n4\n4\n\n£\n%\n\n1M. Khapra 7015 (Deep Learn"
+  },
+  {
+    "text": "So, you see that actually I am taking two steps 1 is this step and then one more step",
+    "start": 68.32,
+    "end": 75.84,
+    "ocr_text": "Intuition\n@ Look before you leap\n\ne@ Recall that update, = 7 - update;—) + nV,\n\nMitesh M. Khapra ©$7015 (Deep Learning) : Lectu"
+  },
+  {
+    "text": "and I could just this is one way of visualizing it right that I move according to the history",
+    "start": 76.24,
+    "end": 81.6,
+    "ocr_text": "Intuition\ne@ Look before you leap\n\ne@ Recall that update, = y - update;—) + nVur\n\nMitesh M. Khapra ©$7015 (Deep Learning) : Leetu"
+  },
+  {
+    "text": "and then I move a bit more according to the current gradient. So, everyone sees that there is a",
+    "start": 81.6,
+    "end": 85.2,
+    "ocr_text": "Intuition\ne@ Look before you leap\n\ne@ Recall that update, = y - update;—) + nVur\n\nMitesh M. Khapra ©$7015 (Deep Learning) : Leetu"
+  },
+  {
+    "text": "two step movement happening here ok. Now, can you think what could have been done",
+    "start": 85.2,
+    "end": 89.84,
+    "ocr_text": "Intuition\ne@ Look before you leap\n\ne@ Recall that update, = 4 - update;—) + nV,\n\nMitesh M. Khapra ©7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "look before you leap ok. So, we will see what we can do. So, we know that we are going to move",
+    "start": 90.8,
+    "end": 96.8,
+    "ocr_text": "Intuition\ne@ Look before you leap\n\ne@ Recall that update, = 4 - update;—) + nV,\n\nMitesh M. Khapra ©7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "at least by this one that is fixed we know that our history is telling us to move at least by",
+    "start": 96.8,
+    "end": 101.6,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update; + nVwr,\ne@ So we know that we are going to move by at least by 7 - wpdate,—; and then a\nbit more by 7Vuyz"
+  },
+  {
+    "text": "this one and then we will move a bit more by the gradient ok. So, now, anything about it",
+    "start": 101.6,
+    "end": 108.48,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update; + nVwr,\ne@ So we know that we are going to move by at least by 7 - wpdate,—; and then a\nbit more by 7Vuyz"
+  },
+  {
+    "text": "I am at least going to move this much. What if I had some way of looking ahead",
+    "start": 108.48,
+    "end": 114.72,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update;—; + nV,\ne@ So we know that we are going to move by at least by a updatey- , and then a\n\nbit more by 7Vuyz\n\nM. Khapra"
+  },
+  {
+    "text": "and then do something at that point? Is this what you are saying? Of course, I can verify it but",
+    "start": 116.4,
+    "end": 124.8,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update;—) + nV,\n\ne@ So we know that we are going to move by at least by 4 - update, , and then a\n\nbit more by 7Vwy ——"
+  },
+  {
+    "text": "I am sure it will become clear once I show the equations, but I just want you to think about it",
+    "start": 125.12,
+    "end": 133.52,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update;—) + nV,\ne@ So we know that we are going to move by at least by 7 - wpdate,;—, and then a\n| ees\n\nbit more by 7Vuyz —\n\n7015 (Deep Learn"
+  },
+  {
+    "text": "a bit right it is very simple it will become absolutely clear once I show you the answer",
+    "start": 133.52,
+    "end": 137.68,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update;—) + nV,\ne@ So we know that we are going to move by at least by 7 - wpdate,;—, and then a\n| ees\n\nbit more by 7Vuyz —\n\n7015 (Deep Learn"
+  },
+  {
+    "text": "but just think about it a bit ok. So, here is the answer right why not compute the gradients",
+    "start": 138.48,
+    "end": 144.4,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update;—) + nV,\n\ne@ So we know that we are going to move by at least by 7 - wpdate,—-, and then a\nbit more by 7Vwy"
+  },
+  {
+    "text": "at this look ahead point right. So, you are again adding it in two steps",
+    "start": 144.96,
+    "end": 149.84,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update;—) + nV,\n\ne@ So we know that we are going to move by at least by 7 - wpdate,—-, and then a\nbit more by 7Vwy"
+  },
+  {
+    "text": "minus the history and then minus the current gradient. So, take this value call it the look ahead",
+    "start": 150.16,
+    "end": 158.48,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update;—) + nVur\ne@ So we know that we are going to move by at least by 7 - wpdate,;-; and then a\nbit more by 7Vwy\ne@ Why not calculate the gradient (Vwigekahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\n\nvaluc wy;"
+  },
+  {
+    "text": "point I know that I am going to move by this much. So, let me not compute the gradients at the",
+    "start": 158.48,
+    "end": 162.88,
+    "ocr_text": "Intuition\n@ Look before you leap\ne@ Recall that update, = y - update;-) + nV,\ne@ So we know that we are going to move by at least by 7 - wpdate,—; and then a\nbit more by 7Vuyz\ne Why not calculate the gradient (Vwigekahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nMitesh M. K"
+  },
+  {
+    "text": "current point let me move by this much then compute the gradients and see what happens at that point",
+    "start": 162.88,
+    "end": 168.72,
+    "ocr_text": "Intuition\n@ Look before you leap\ne@ Recall that update, = y - update;-) + nV,\ne@ So we know that we are going to move by at least by 7 - wpdate,—; and then a\nbit more by 7Vuyz\ne Why not calculate the gradient (Vwigekahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nMitesh M. K"
+  },
+  {
+    "text": "does it make sense ok. So, this is the equation right that first I move by that one step",
+    "start": 169.52,
+    "end": 175.52,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update;,-) + nV,\ne@ So we know that we are going to move by at least by 7 - wpdate,;—-; and then a\nbit more by nV\ne@ Why not calculate the gradient (Vwicekahead) at this partially updated value\nof Ww (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nMitesh M. K"
+  },
+  {
+    "text": "I have to make a two step movement. So, I will move by that one step right then I will compute the",
+    "start": 176.08,
+    "end": 182.08,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update,—, + nVur,\ne@ So we know that we are going to move by at least by 7 - wpdate,—; and then a\nbit more by 7Vuy\ne Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\n\n(Wien aheaa = We —V- updates )\n\nupdate; = 7: update, + 7Vw\n\nlook.ahead\n\nWep1 = We — updates\n\nWe will have similar update rule for by"
+  },
+  {
+    "text": "gradient at that position not at my current position right. This was earlier gradient at point",
+    "start": 182.08,
+    "end": 188.48,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update,—, + nVur,\ne@ So we know that we are going to move by at least by 7 - wpdate,—; and then a\nbit more by 7Vuy\ne Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\n\n(Wien aheaa = We —V- updates )\n\nupdate; = 7: update, + 7Vw\n\nlook.ahead\n\nWep1 = We — updates\n\nWe will have similar update rule for by"
+  },
+  {
+    "text": "t now I have already moved a bit. So, I can compute the gradient there and then move in the",
+    "start": 188.48,
+    "end": 195.44,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update; + nV,\ne@ So we know that we are going to move by at least by 7 - wpdate,;—, and then a\nbit more by 7Vuyz\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: Update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\n\n( Wiook.ahead = Wt =: updater_4\n\n~ update, = y- updatey_1 + nVwe\n\nlook.ahead\n\nWey = we — update;\n\nWe will have similar update rule for ly"
+  },
+  {
+    "text": "direction of that gradient does that make sense? How many if you are completely lost?",
+    "start": 195.44,
+    "end": 201.68,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update, + nVur\ne@ So we know that we are going to move by at least by 7 - wpdate,;—; and then a\nbit more by 7nVuyz\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\n\nC Wrook-ahead = Wt = Y: updates_1 )\n\n~ update, = y- updater_ Vw ahead Ss\n\nWey = we — update, ~——\n\nWe will have similar update rule for by K"
+  },
+  {
+    "text": "They are completely lost ok good may not good but good that you raised your hand ok. So,",
+    "start": 201.68,
+    "end": 211.36,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update, + nVur\ne@ So we know that we are going to move by at least by 7 - wpdate,;—; and then a\nbit more by 7nVuyz\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\n\nC Wrook-ahead = Wt = Y: updates_1 )\n\n~ update, = y- updater_ Vw ahead Ss\n\nWey = we — update, ~——\n\nWe will have similar update rule for by K"
+  },
+  {
+    "text": "ok. So, you understood this that there is a two step movement right Wt minus history minus the",
+    "start": 211.36,
+    "end": 218.64,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = 7 - update;_) + nV,\ne@ So we know that we are going to move by at least by 7 - wpdate,-; and then a\nbit more by 7Vuy\ne Why not calculate the gradient (Vwigek_ahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;_1) instead of calculating it using the current\n\nvaluc w,\n\nUpdate rule for NAG\n\n( Wiook-anead = Wt — 7: updates —\n\n. updates = 7: updater) NV WE on ahead SS\n\n— —\n\nWey = we — update; = a\n\nWe will have similar update rule for by"
+  },
+  {
+    "text": "current gradient gradient computed at time step t ok. Now, you know that you are already going to",
+    "start": 218.64,
+    "end": 225.76,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update, + nV\ne@ So we know that we are going to move by at least by 7 - wpdate,;—, and then a\nbit more by nVwy\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = Wt — YY: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\n\n( Wiookahead = Wt = y- updater _4\n\nupdate, = y - updatey_4 ‘ae hen Sy\n\nd\nee\n\nWepy = We — updates\n\nWe will have similar update rule for by $\nNN\n\nMitesh M. K"
+  },
+  {
+    "text": "move by the history right. So, why not just move there and then compute the gradient at that point",
+    "start": 225.84,
+    "end": 232.48,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update,—, + nV\ne@ So we know that we are going to move by at least by 7 - wpdate,—, and then a\nbit more by 7nVuyz\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = We —y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\n\nSe Vly,\n( (Wei otends me ie 98 updater,»\n. updater = 7 updater) 1V wkop ahead ‘Sy\n\nWee = We — updates = =\n\nWe will have similar update rule for b;"
+  },
+  {
+    "text": "here anyway is made some movement you compute the gradient at that point and then decide which is",
+    "start": 232.48,
+    "end": 237.04,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update,—, + nV\ne@ So we know that we are going to move by at least by 7 - wpdate,—, and then a\nbit more by 7nVuyz\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = We —y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\n\nSe Vly,\n( (Wei otends me ie 98 updater,»\n. updater = 7 updater) 1V wkop ahead ‘Sy\n\nWee = We — updates = =\n\nWe will have similar update rule for b;"
+  },
+  {
+    "text": "the direction to move in right. So, that is what this look ahead value is ok. I know it is still",
+    "start": 237.04,
+    "end": 244.48,
+    "ocr_text": "Intuition\n@ Look before you leap\ne@ Recall that update, = 7 - update;—-) + nVur\ne@ So we know that we are going to move by at least by 7 - wpdale,—; and then a\nbit more by nVwy\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\n\nvaluc w,\n\nUpdate rule for NAG\n\na / US\n( Wiookaread — Wt = J update,» V S\n\nupdate, = y- updater) (NV WE ji ancaa >»\n\nWry = we — update; =\n\nWe will have similar update rule for );"
+  },
+  {
+    "text": "not clear to many of you and I am very confident it will become clear in the next five minutes",
+    "start": 244.48,
+    "end": 248.4,
+    "ocr_text": "Intuition\n@ Look before you leap\ne@ Recall that update, = 7 - update;—-) + nVur\ne@ So we know that we are going to move by at least by 7 - wpdale,—; and then a\nbit more by nVwy\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\n\nvaluc w,\n\nUpdate rule for NAG\n\na / US\n( Wiookaread — Wt = J update,» V S\n\nupdate, = y- updater) (NV WE ji ancaa >»\n\nWry = we — update; =\n\nWe will have similar update rule for );"
+  },
+  {
+    "text": "because I will show you one more visualization for this. But just stay with me for a while as",
+    "start": 248.4,
+    "end": 254.56,
+    "ocr_text": "Intuition\n\ne@ Look before you leap\n\ne@ Recall that update, = y - update;—1 + nV,\n\ne@ So we know that we are going to move by at least by 7 - wpdate,—; and then a\nbit more by 7Vuyz\n\ne@ Why not calculate the gradient (Vwigok ahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\nvaluc wy;\n\nUpdate rule for NAG\n\n— / J\nWiook-anead = Wt — 7 updates — _)\\ V KE\nahe We — J * Upaates_1\n\nupdates = y- updates =4 Vwé,\n\nww!\n\nok\n\nWry = we — update; =\n\nWe will have similar update rule for );"
+  },
+  {
+    "text": "long as you get the intuition I am fine I will move ahead and then I will explain it again in a",
+    "start": 254.56,
+    "end": 258.08,
+    "ocr_text": "Intuition\n\ne@ Look before you leap\n\ne@ Recall that update, = y - update;—1 + nV,\n\ne@ So we know that we are going to move by at least by 7 - wpdate,—; and then a\nbit more by 7Vuyz\n\ne@ Why not calculate the gradient (Vwigok ahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\nvaluc wy;\n\nUpdate rule for NAG\n\n— / J\nWiook-anead = Wt — 7 updates — _)\\ V KE\nahe We — J * Upaates_1\n\nupdates = y- updates =4 Vwé,\n\nww!\n\nok\n\nWry = we — update; =\n\nWe will have similar update rule for );"
+  },
+  {
+    "text": "different way ok. Is this fine? That should become clear good that you ask that question ok.",
+    "start": 258.08,
+    "end": 263.6,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update,—, + nV,\n\ne@ So we know that we are going to move by at least by 7 - wpdate,—; and then a\nbit more by 7Vuyz\n\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\nvalue wy;\n\nUpdate rule for NAG\n\nS.SSS—= / US\n( Wiook-anead — Wt — 7) ee Vv :\n\n~~ update, = y+ updates «1 (Qi ico? YS\nsar Sivan wy\n\nWey = we — update; >\n\nWe will have similar update rule for by\n\nMitesh M. K"
+  },
+  {
+    "text": "So, ask me again on the blank slide that I have and then I it should become clear ok.",
+    "start": 263.6,
+    "end": 268.48,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update,—, + nV,\n\ne@ So we know that we are going to move by at least by 7 - wpdate,—; and then a\nbit more by 7Vuyz\n\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;—1) instead of calculating it using the current\nvalue wy;\n\nUpdate rule for NAG\n\nS.SSS—= / US\n( Wiook-anead — Wt — 7) ee Vv :\n\n~~ update, = y+ updates «1 (Qi ico? YS\nsar Sivan wy\n\nWey = we — update; >\n\nWe will have similar update rule for by\n\nMitesh M. K"
+  },
+  {
+    "text": "So, for right now let me just show you what will happen with the code and then I will again explain",
+    "start": 268.48,
+    "end": 272.8,
+    "ocr_text": "Intuition\n\n@ Look before you leap\n\ne@ Recall that update, = y - update;—) + nVwr,\n\ne So we know that we are going to move by at least by 7 - wpdale,;-; and then a\nbit more by nVwy\n\ne Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wook_ahead = We — y: update;_1) instead of calculating it using the current\nvaluc wy;\n\nUpdate rule for NAG\n\n——S=—— / Us\n( Wook ahead — we — Y° update,» V Kk\n\nupdate; = 7: updater CQ areat >\n7\n\nWrey1 = we — update; —$—\n\nWe will have similar update rule for b; fh\n\nMitesh M. K"
+  },
+  {
+    "text": "it with a different way ok ok. So, this is what momentum base gradient descent did ok.",
+    "start": 272.8,
+    "end": 280.64,
+    "ocr_text": "Intuition\n\n@ Look before you leap\n\ne@ Recall that update, = y - update;—) + nVwr,\n\ne So we know that we are going to move by at least by 7 - wpdale,;-; and then a\nbit more by nVwy\n\ne Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wook_ahead = We — y: update;_1) instead of calculating it using the current\nvaluc wy;\n\nUpdate rule for NAG\n\n——S=—— / Us\n( Wook ahead — we — Y° update,» V Kk\n\nupdate; = 7: updater CQ areat >\n7\n\nWrey1 = we — update; —$—\n\nWe will have similar update rule for b; fh\n\nMitesh M. K"
+  },
+  {
+    "text": "Now, let us see what nested of accelerated gradient descent will do. Again the code is simple",
+    "start": 280.64,
+    "end": 284.96,
+    "ocr_text": "def do_nesterov accele\n\n‘ated gradient descent()\n\nw, b, init_w, init_b\n\nprev v w, prev v b, gamma\ni range(max_epochs)\ndw, db ,\n\nVv w= gamma * prev v\nv_b — gamma © prev _v\nxy zip(x, Y)\n\ndw = grad w(w\ndb + grad_b(w\n\nvw, b\nvw, b\n\nvb, x, y)\nv_b, x, y)\n\nw = gamma © prev v w + eta © dw\ngamma b+ eta © db\n\n1) M\n\nKhap!\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n5\n\n©S7015 (Deep Learning)\n\nLeeture"
+  },
+  {
+    "text": "you can just read it up and now I have started executing you see this blue curve coming over there",
+    "start": 284.96,
+    "end": 290.0,
+    "ocr_text": "def do_nesterov accele\n\n‘ated gradient descent()\n\nw, b, init_w, init_b\n\nprev v w, prev v b, gamma\ni range(max_epochs)\ndw, db ,\n\nVv w= gamma * prev v\nv_b — gamma © prev _v\nxy zip(x, Y)\n\ndw = grad w(w\ndb + grad_b(w\n\nvw, b\nvw, b\n\nvb, x, y)\nv_b, x, y)\n\nw = gamma © prev v w + eta © dw\ngamma b+ eta © db\n\n1) M\n\nKhap!\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n5\n\n©S7015 (Deep Learning)\n\nLeeture"
+  },
+  {
+    "text": "fine ok. And now I keep running this now what will happen?",
+    "start": 294.32,
+    "end": 300.24,
+    "ocr_text": "def do_nesterov accelerated gradient_descent()\n\nw, b init_w, init_b ,\nprev v w, prev v b, gamma\ni range(max_epochs)\ndw, db = 0,\n\nVv w= gamma * prev v\nv_b ~ gamma © prev _v\nxy zip(x, Y)\n\ndw += grad w(w - vw, b\ndb — grad b(w vw, b\n\nw = gamma © prev v\n\ngamma\n\nM\n\nKhapra\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n©7015 (Deep Learnin:\n\n)\n\nLeeture\n\n9"
+  },
+  {
+    "text": "You see that all the u turns of the blue curve are inside the u turns of the red curve.",
+    "start": 300.64,
+    "end": 312.64,
+    "ocr_text": "def do nesterov accelerated gradient descent()\n\nw, b, init_w, init_b\n\nprev v w, prev v b, gamma\ni \\p range(max epochs)\ndw, db ,\n\ngamma\ngamma\nxy\n\nprev v\nprev v\nzip(X, Y)\n\nvw\nvib\n\ndw == grad w(w\ndb + grad_b(w\n\nvw, b\nvw, b\n\nv_b, x, y)\nv_b, x, y)\n\neta dw\neta db\n\nw = gamma © prev v w\nb — gamma b\n\n1M\n\nKhapra\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n©S7015 (Deep Learning) : Leeture 5,"
+  },
+  {
+    "text": "So, the objective is being achieved at least empirically I have showed you that right.",
+    "start": 312.64,
+    "end": 316.4,
+    "ocr_text": "def do_nesterov accelerated gradient_descent()\n\nw, b, init_w, init_b ,\nprev v w, prev v b, gamma\ni) range(max_epochs)\ndw, db = 0,\n\nw= gamma © prev v\nb — gamma © prev _v\nxy zip(x, Y)\n\nv\nv\n\ndw = grad w(w - vw, b~- vb, x, y)\ndb - grad b(w vw, b~ vb, x, y)\n\nw = gamma © prev v w + eta © dw\ngamma b+ eta © db\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n1M. Khapr ©7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "It is taking shorter u turns what is probably not clear to all of you is why is this happening?",
+    "start": 316.4,
+    "end": 321.92,
+    "ocr_text": "def do_nesterov accelerated gradient_descent()\n\nw, b, init_w, init_b ,\nprev v w, prev v b, gamma\ni range(max_epochs)\ndw, db ,\n\nw= gamma © prev v\nb — gamma © prev v\nxy zip(x, Y)\n\nv\nv\n\ndw += grad w(w\ndb + grad_b(w\n\nw = gamma © prev v\ngamma\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n1M. Khapr ©S7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "Is it clear to everyone why is this happening? Can everyone visualize that?",
+    "start": 321.92,
+    "end": 326.24,
+    "ocr_text": "def do_nesterov accelerated gradient_descent()\n\nw, b, init_w, init_b ,\nprev v w, prev v b, gamma\ni range(max_epochs)\ndw, db ,\n\nw= gamma © prev v\nb — gamma © prev v\nxy zip(x, Y)\n\nv\nv\n\ndw += grad w(w\ndb + grad_b(w\n\nw = gamma © prev v\ngamma\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n1M. Khapr ©S7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "Ok. So, let us see why this is happening I will give you an alternate explanation for this ok.",
+    "start": 327.84,
+    "end": 333.68,
+    "ocr_text": "def do nesterov accelerated gradient descent()\n\nw, b, init_w, init_b\n\nprev v w, prev v b, gamma\ni» range(max_epochs)\ndw, db - 9,\n\nvw = gamma © prev v\nv_b ~ gamma © prev v\nxy zip(X, Y)\n\ndw += grad w(w\ndb + grad_b(w\n\nvw = gamma © prev v\nvb — gamma\nWow Vw\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n1M. Khapr ©$7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "So, suppose this is my error surface",
+    "start": 333.68,
+    "end": 337.84,
+    "ocr_text": "def do nesterov accelerated gradient descent()\n\nw, b, init_w, init_b\n\nprev v w, prev v b, gamma\ni» range(max_epochs)\ndw, db - 9,\n\nvw = gamma © prev v\nv_b ~ gamma © prev v\nxy zip(X, Y)\n\ndw += grad w(w\ndb + grad_b(w\n\nvw = gamma © prev v\nvb — gamma\nWow Vw\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n1M. Khapr ©$7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "and I have a single variable with respect to which I am trying to optimize. So, this is my w",
+    "start": 342.8,
+    "end": 348.0,
+    "ocr_text": "1M. Khapra ©S7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "ok. I started off with some",
+    "start": 348.72,
+    "end": 352.08,
+    "ocr_text": "1M. Khapra ©S7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "initial value w naught ok. Now, what is the gradient at this point?",
+    "start": 357.2,
+    "end": 364.96,
+    "ocr_text": "1M. Khapra ©7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "Positive negative negative right because when I am going to increase w the function is actually",
+    "start": 369.44,
+    "end": 377.6,
+    "ocr_text": "1M. Khapr ©7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "going to decrease right. So, right. So, the slope is negative. So, where will I move?",
+    "start": 377.6,
+    "end": 387.36,
+    "ocr_text": "Observations about NAG\ne@ Looking ahead helps NAG in correcting its course quicker than momentum\nbased gradient descent\n\n1M. Khapra 015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "This is the number line right. So, this line is actually the number line because it is a single",
+    "start": 387.36,
+    "end": 390.56,
+    "ocr_text": "1M. Khapr CS7015 (Deep Learning) : Lecture:"
+  },
+  {
+    "text": "variable. So, where will I move? Positive side of the number line or the negative side of the number?",
+    "start": 390.56,
+    "end": 394.56,
+    "ocr_text": "1M. Khapr CS7015 (Deep Learning) : Lecture:"
+  },
+  {
+    "text": "Positive side. The derivative is negative I am going to move in the direction opposite to the",
+    "start": 395.52,
+    "end": 399.92,
+    "ocr_text": "Mitesh M. Kh ©7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "derivative. So, I am going to move in the positive direction right. So, I will end up somewhere here.",
+    "start": 399.92,
+    "end": 404.56,
+    "ocr_text": "Mitesh M. Kh ©7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "Is that clear? Fine with everyone ok. So, now I am somewhere here.",
+    "start": 405.52,
+    "end": 410.72,
+    "ocr_text": "1M. Khapra ©7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "What is the derivative at this point?",
+    "start": 413.2,
+    "end": 414.8,
+    "ocr_text": "1M. Khapra ©7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "Now, what is the derivative here? Positive negative negative right. When I am increasing w my",
+    "start": 419.68,
+    "end": 429.36,
+    "ocr_text": "1M. Khapra ©$7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "loss function is decreasing. So, my dl by dw is going to be negative. This is positive, this is negative",
+    "start": 429.36,
+    "end": 436.96,
+    "ocr_text": "1M. Khapr ©S7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "right. So, again I will move in this direction. So, what is happening? A lot of negative updates",
+    "start": 436.96,
+    "end": 443.68,
+    "ocr_text": "de -\n\ndW 4"
+  },
+  {
+    "text": "are getting or sorry, a lot of positive updates are getting accumulated right. And now because of my",
+    "start": 443.68,
+    "end": 448.88,
+    "ocr_text": "de -\n\ndW 4"
+  },
+  {
+    "text": "momentum I am not going to move only by this derivative. I am also going to move by the history",
+    "start": 448.88,
+    "end": 455.6,
+    "ocr_text": "di -\n\nae rm 5\n\n1M. Khapra"
+  },
+  {
+    "text": "right. So, I will end up somewhere further ok. Is that fine? So, now at this point what is the",
+    "start": 456.08,
+    "end": 463.36,
+    "ocr_text": "die -\n\nad i\n\nVW\n\nMitesh M. Khapra CS7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "derivative? Again negative when I am increasing w the function is decreasing. So, what is my update?",
+    "start": 463.36,
+    "end": 471.6,
+    "ocr_text": "die -\n\nad i\n\nVW\n\nMitesh M. Khapra CS7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "Positive or negative? Positive. So, now you see that a lot of positive updates are getting",
+    "start": 472.48,
+    "end": 477.04,
+    "ocr_text": "dl -\n\n“J ii"
+  },
+  {
+    "text": "accumulated right. My momentum is building up. So, now what will happen? Now, if I just move further",
+    "start": 477.04,
+    "end": 483.44,
+    "ocr_text": "dl -\n\n\"AL i\n\n1M. Khapra 015 (Deep Learning)"
+  },
+  {
+    "text": "then again I will get a let me just put it here right. So, I am again moving largely in the",
+    "start": 484.16,
+    "end": 489.84,
+    "ocr_text": "dl -\n\n\"AL i\n\n1M. Khapra 015 (Deep Learning)"
+  },
+  {
+    "text": "positive direction because this guy is also positive all my history was also positive.",
+    "start": 489.84,
+    "end": 495.04,
+    "ocr_text": "dl -\n\n\"AL i\n\n1M. Khapra 015 (Deep Learning)"
+  },
+  {
+    "text": "So, I have moved in the positive direction. Now, what will happen at this point? What is the",
+    "start": 495.04,
+    "end": 499.44,
+    "ocr_text": "di -\n\ned Fr\n\nM. Khapra ©S87015 (Deep Learning) : Leeture 5,"
+  },
+  {
+    "text": "derivative here? No, it is still it is negative sorry sorry. So, again I am going to move",
+    "start": 499.44,
+    "end": 503.84,
+    "ocr_text": "di -\n\ned Fr\n\nM. Khapra ©S87015 (Deep Learning) : Leeture 5,"
+  },
+  {
+    "text": "in the positive side of the number line ok. Now, at this point I want to break down the",
+    "start": 504.48,
+    "end": 509.52,
+    "ocr_text": "di -\n\ned Fr\n\nM. Khapra ©S87015 (Deep Learning) : Leeture 5,"
+  },
+  {
+    "text": "movement into two points. One is what my history was telling me which was all these positive",
+    "start": 509.52,
+    "end": 515.52,
+    "ocr_text": "dl -\n\nAen) 4\n\nMitesh M. Khapra 15 (Deep Learning) : Lectur"
+  },
+  {
+    "text": "updates. But of course, I will not make such a large update because I am waiting them exponentially",
+    "start": 515.52,
+    "end": 519.6,
+    "ocr_text": "di -\n\ndu 4"
+  },
+  {
+    "text": "right. So, but it is telling me to move in the positive direction ok. And I know that the",
+    "start": 519.6,
+    "end": 524.16,
+    "ocr_text": "di -\n\ndu 4"
+  },
+  {
+    "text": "gradient at this point is negative, but I want you to ignore that for now. I just want you to focus",
+    "start": 524.16,
+    "end": 529.28,
+    "ocr_text": "di -\n\ndu 4"
+  },
+  {
+    "text": "on the history. If I just move according to the history where will I end up? I will end up somewhere",
+    "start": 529.28,
+    "end": 535.36,
+    "ocr_text": "dl -\n\ndu 4"
+  },
+  {
+    "text": "here right because the history is very positive. So, I will keep moving in the positive direction",
+    "start": 535.36,
+    "end": 540.56,
+    "ocr_text": "dl -\n\nor ¥\n\n15 (Deep"
+  },
+  {
+    "text": "and this is my w look ahead ok. Now, what will happen if I compute the gradient here?",
+    "start": 540.56,
+    "end": 548.96,
+    "ocr_text": "dl -\n\nor ¥\n\n15 (Deep"
+  },
+  {
+    "text": "The gradient is positive. So, where will I move? Negative. So, you see now why momentum works",
+    "start": 550.32,
+    "end": 556.96,
+    "ocr_text": "dl -\n\ndu +4\n\nVW\n\n(Dee\nPp"
+  },
+  {
+    "text": "because you are able to look ahead to this point instead of what should I have actually done is",
+    "start": 557.68,
+    "end": 561.92,
+    "ocr_text": "di -\n\nAW 4"
+  },
+  {
+    "text": "I should have looked at the gradient at this point. The history is positive. The gradient is",
+    "start": 561.92,
+    "end": 566.56,
+    "ocr_text": "di -\n\nAW 4"
+  },
+  {
+    "text": "also telling me to move positive. So, I would have moved a large positive and I would have ended",
+    "start": 566.56,
+    "end": 570.16,
+    "ocr_text": "di -\n\nAW 4"
+  },
+  {
+    "text": "somewhere here. Instead I just moved by the history. I checked where I end up, I end up here.",
+    "start": 570.16,
+    "end": 576.08,
+    "ocr_text": "di -\n\nAW 4"
+  },
+  {
+    "text": "Now, let me see whether what is the gradient at this point. Have I already overshoot my",
+    "start": 576.08,
+    "end": 579.92,
+    "ocr_text": "dt -\n\ndu +4"
+  },
+  {
+    "text": "overshot my objective? When would I overshoot my objective? It is the sign of the gradient changes",
+    "start": 579.92,
+    "end": 585.84,
+    "ocr_text": "dt -\n\ndu +4"
+  },
+  {
+    "text": "right. It became from negative to positive. And now since it is positive because as I am",
+    "start": 585.84,
+    "end": 590.16,
+    "ocr_text": "dle -\n\n719) F\n\nKhapra ©S7015 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "increasing w, the loss is also increasing. So, now where will I move? Negative. So, now what is",
+    "start": 590.16,
+    "end": 597.44,
+    "ocr_text": "dle -\n\n719) F\n\nKhapra ©S7015 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "the second step? Actually, it is again bringing me close to here. So, instead of taking this large",
+    "start": 597.44,
+    "end": 602.48,
+    "ocr_text": "dl. -\n\ndW 4"
+  },
+  {
+    "text": "u turn, I end up taking this small u turn. Is this clear to everyone now? How many if you still",
+    "start": 602.48,
+    "end": 608.32,
+    "ocr_text": "dl. -\n\ndW 4"
+  },
+  {
+    "text": "do not get it? How many if you get it now? Good. Sure. So, this is what and now you can relate it",
+    "start": 608.32,
+    "end": 616.72,
+    "ocr_text": "1M. Khapra"
+  },
+  {
+    "text": "to what was happening on the figure. So, let us go back right. So, you saw that I was making",
+    "start": 616.72,
+    "end": 621.04,
+    "ocr_text": "def do_nesterov accelerated gradient descent()\n\nw, b, init_w, init_b ,\nprev v w, prev v b, gamma\ni i» range(max_epochs)\ndw, db = 0,\n\nw = gamma * prev v\nb - gamma © prev v\nxy zip(X, Y)\n\nv\nv\n\ndw == grad w(w - vw, b~ vb, x, y)\ndb + grad b(w vw, b- vb, x, y)\n\nw = gamma © prev v w + eta © dw\nb — gamma b+ eta © db\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n1M. Khapra ©7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "these smaller u turns because when I was at this point right, I already moved by the history I knew",
+    "start": 621.04,
+    "end": 627.84,
+    "ocr_text": "def do_nesterov accelerated gradient descent()\n\nw, b, init_w, init_b ,\nprev v w, prev v b, gamma\ni i» range(max_epochs)\ndw, db = 0,\n\nw = gamma * prev v\nb - gamma © prev v\nxy zip(X, Y)\n\nv\nv\n\ndw == grad w(w - vw, b~ vb, x, y)\ndb + grad b(w vw, b- vb, x, y)\n\nw = gamma © prev v w + eta © dw\nb — gamma b+ eta © db\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n1M. Khapra ©7015 (Deep Learning) : Lecture 5"
+  },
+  {
+    "text": "I would lend up somewhere here where I would need to go back right. So, I already accounted for",
+    "start": 627.84,
+    "end": 633.44,
+    "ocr_text": "def do_nesterov accelerated gradient_descent()\n\nw, b init_w, init_b ,\nprev v w, prev v b, gamma\nip range(max_epochs)\ndw, db = 0,\n\nvw — gamma © prev v\nv_b — gamma © prev v\nxy zip(X, Y)\n\ndw = grad w(w ,b-vb, x, y)\ndb + grad_b(w w, b- vb, x, y)\n\nw = gamma © prev v w + eta © dw\nb — gamma eta © db\n\n0,000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n1M. Khapra ©7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "that and made a very small movement. Is this clear? Everyone gets this? How the next sort of",
+    "start": 633.44,
+    "end": 638.48,
+    "ocr_text": "def do_nesterov accelerated gradient_descent()\n\nw, b init_w, init_b ,\nprev v w, prev v b, gamma\nip range(max_epochs)\ndw, db = 0,\n\nvw — gamma © prev v\nv_b — gamma © prev v\nxy zip(X, Y)\n\ndw = grad w(w ,b-vb, x, y)\ndb + grad_b(w w, b- vb, x, y)\n\nw = gamma © prev v w + eta © dw\nb — gamma eta © db\n\n0,000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360\n\n1M. Khapra ©7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "accelerated gradient descent works? Sure, razor hands. So, looking at it helps nag in correcting",
+    "start": 638.48,
+    "end": 644.32,
+    "ocr_text": "def do_nesterov accelerated gradient descent()\n\nw, b init_w, init_b ,\nprev v w, prev v b, gamma\nip range(max_epochs)\ndw, db - 9,\n\nw = gamma © prev v\nb — gamma © prev _v\nxy zip(X, Y)\n\nv\nv\n\ndw = grad w(w - vw, b~- vb, x, y)\ndb + grad b(w vw, b- vb, x, y)\n\nw = gamma * prev v w+ eta ~ dw\ngamma b+ eta © db\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360"
+  },
+  {
+    "text": "its course quicker than momentum base gradient descent. So, it is already looking ahead where do I",
+    "start": 644.32,
+    "end": 648.64,
+    "ocr_text": "def do_nesterov accelerated gradient descent()\n\nw, b init_w, init_b ,\nprev v w, prev v b, gamma\nip range(max_epochs)\ndw, db - 9,\n\nw = gamma © prev v\nb — gamma © prev _v\nxy zip(X, Y)\n\nv\nv\n\ndw = grad w(w - vw, b~- vb, x, y)\ndb + grad b(w vw, b- vb, x, y)\n\nw = gamma * prev v w+ eta ~ dw\ngamma b+ eta © db\n\n0.000 0.045 0.090 0.135 0.180 0.225 0.270 0.315 0.360"
+  },
+  {
+    "text": "land up and already making a correction if required. If not required, it will again move in the",
+    "start": 648.64,
+    "end": 653.12,
+    "ocr_text": "Observations about NAG\n\ne@ Looking ahead helps NAG in correcting its course quicker than momentum\nbased gradient descent\n\nM15 (Deep"
+  },
+  {
+    "text": "right direction right. So, the update is this guy plus the gradient and my update happens on the",
+    "start": 653.12,
+    "end": 660.88,
+    "ocr_text": "Observations about NAG\n\ne@ Looking ahead helps NAG in correcting its course quicker than momentum\nbased gradient descent\n\nM15 (Deep"
+  },
+  {
+    "text": "original value not on the look ahead value. So, her confusion was perhaps that I am doing w look",
+    "start": 660.88,
+    "end": 666.32,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update;—) + nV,\ne@ So we know that we are going to move by at least by 7 - wpdate,-; and then a\nbit more by 7Vwyz\ne Why not calculate the gradient (Vwigekahead) at this partially updated value\nof w (Wlook_ahead = Wt — y: update;_1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\nee [i V LIL\n\n(C Wiook-anead = Wt = - updates1 B) _\nupdate; TT updates TX Ma >>\nN )\n\nWey = Wy — update,\n\nVe will have similar update rule for by\n\na\nea"
+  },
+  {
+    "text": "ahead minus update where this update again has this quantity that is what your confusion was,",
+    "start": 666.32,
+    "end": 671.92,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update;—) + nV,\ne@ So we know that we are going to move by at least by 7 - wpdate,;—; and then a\nbit more by nVwy\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = We — y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\n\noe Yu\n( UU aecipcen Te Gs S008 updates —1 —-\neo :\nWet = Wy — update == =\nt+1 = We Heese\n\n— a. Spa ane\ne will have similar update rule for be"
+  },
+  {
+    "text": "but I am not doing w look ahead I am using w t there. Everyone gets this? Okay. So, that is where",
+    "start": 671.92,
+    "end": 678.24,
+    "ocr_text": "Intuition\ne@ Look before you leap\ne@ Recall that update, = y - update;—) + nV,\ne@ So we know that we are going to move by at least by 7 - wpdate,;—; and then a\nbit more by nVwy\ne@ Why not calculate the gradient (Vwigokahead) at this partially updated value\nof w (Wlook_ahead = We — y: update;—1) instead of calculating it using the current\n\nvaluc wy;\n\nUpdate rule for NAG\n\noe Yu\n( UU aecipcen Te Gs S008 updates —1 —-\neo :\nWet = Wy — update == =\nt+1 = We Heese\n\n— a. Spa ane\ne will have similar update rule for be"
+  },
+  {
+    "text": "now it is clear that why the oscillations are smaller in the case of nag and it is able to",
+    "start": 679.76,
+    "end": 684.72,
+    "ocr_text": "Observations about NAG\n\ne@ Looking ahead helps NAG in correcting its course quicker than momentum\n\nbased gradient descent\n\n@ Hence the oscillations are smaller and the chances of escaping the minima valley\nalso smaller"
+  },
+  {
+    "text": "correct its course quicker. So, that is well we will end this module.",
+    "start": 684.72,
+    "end": 703.52,
+    "ocr_text": "Observations about NAG\n\ne@ Looking ahead helps NAG in correcting its course quicker than momentum\n\nbased gradient descent\n\n@ Hence the oscillations are smaller and the chances of escaping the minima valley\nalso smaller"
+  }
+]

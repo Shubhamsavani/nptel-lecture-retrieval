@@ -1,0 +1,1160 @@
+[
+  {
+    "text": "So, having seen a variety of algorithms for shortest paths on weighted graphs, we now",
+    "start": 0.0,
+    "end": 5.98,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMinimum cost spanning trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "move to a completely different problem, that of computing, what is called a minimum cost",
+    "start": 5.98,
+    "end": 10.72,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMinimum cost spanning trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "spanning tree.",
+    "start": 10.72,
+    "end": 11.82,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMinimum cost spanning trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, to motivate the problem, let's consider the following example.",
+    "start": 11.82,
+    "end": 17.4,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMinimum cost spanning trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "The pose we are in a district, which has a road network, and after a bad cyclone, the",
+    "start": 17.4,
+    "end": 22.72,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMinimum cost spanning trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "roads have all been damaged.",
+    "start": 22.72,
+    "end": 24.2,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMinimum cost spanning trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, the first priority of the government is to restore the roads, so that relief can be",
+    "start": 24.2,
+    "end": 28.8,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMinimum cost spanning trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "signed to various parts of the district, and also people can start moving around again.",
+    "start": 28.8,
+    "end": 33.12,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMinimum cost spanning trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, the priority is to restore enough roads so that everybody can move around.",
+    "start": 33.12,
+    "end": 37.96,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMinimum cost spanning trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, the first criterion for the government to restore roads is your actual connectivity.",
+    "start": 37.96,
+    "end": 42.8,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMinimum cost spanning trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, given this, which set of roads should the government restore first?",
+    "start": 42.8,
+    "end": 48.76,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "So, if the main criterion is minimum connectivity, then it should be clear that there is no point",
+    "start": 48.76,
+    "end": 55.48,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "in restoring roads which form a loop.",
+    "start": 55.48,
+    "end": 57.76,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "For instance, supposing we restore all these four roads, then we could have deleted any",
+    "start": 57.76,
+    "end": 63.56,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "one of these roads say 3 to 4 or 2 to 3, and still one can get from any of these four",
+    "start": 63.56,
+    "end": 68.3,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "towns to any four other towns in the district.",
+    "start": 68.3,
+    "end": 70.8,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "So, removing a net from a loop cannot disconnect a graph, and our aim is to find some subset of",
+    "start": 70.8,
+    "end": 78.2,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "edges within this graph, which are connected in such a way that this is a minimal such set",
+    "start": 78.2,
+    "end": 82.64,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "of edges.",
+    "start": 82.64,
+    "end": 83.64,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "So, what we want is a connected sub graph of this original graph, which does not have any",
+    "start": 84.12,
+    "end": 88.52,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "loops, which is a cyclic, and this is precisely what is called a tree.",
+    "start": 88.52,
+    "end": 93.36,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "So, tree by definition is a connected a cyclic graph, and in particular we start with an",
+    "start": 93.36,
+    "end": 100.28,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "arbitrary graph, and we are looking for a tree with 6 inside that graph, which is a sub",
+    "start": 100.28,
+    "end": 105.04,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "graph in terms of the number of edges, which connects all the vertices in the original",
+    "start": 105.04,
+    "end": 109.2,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "graph.",
+    "start": 109.2,
+    "end": 110.2,
+    "ocr_text": "tree"
+  },
+  {
+    "text": "So, such a tree is called a spanning tree.",
+    "start": 110.2,
+    "end": 112.8,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "It spans the vertices of the original graph, but it forms a tree out of a subset of the",
+    "start": 112.8,
+    "end": 118.08,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "edges.",
+    "start": 118.08,
+    "end": 119.08,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "So, in this graph for instance, one spanning tree we could form are the red edges shown",
+    "start": 119.08,
+    "end": 124.28,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "here, 1, 2, 2, 2, 3, 3 to 4 and 4 to 5.",
+    "start": 124.28,
+    "end": 129.08,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "Of course, we could form other spanning trees, for instance this green one, which is 1,",
+    "start": 129.08,
+    "end": 132.88,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "2, 3, 2 to 3, 2 to 5 and 4 to 5.",
+    "start": 132.88,
+    "end": 135.88,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "So, there are many possible spanning trees that one can construct on a given graph.",
+    "start": 135.88,
+    "end": 142.36,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "Now, supports that the graph also has weights.",
+    "start": 143.36,
+    "end": 146.84,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "In this example, the weight for instance could be the cost of repairing a road.",
+    "start": 146.84,
+    "end": 150.76,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "So, supposing restoring a road has a cost, and now the government would like to not only",
+    "start": 150.76,
+    "end": 155.48,
+    "ocr_text": "70 . J d\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "restore connectivity, but do it at a minimum cost.",
+    "start": 155.48,
+    "end": 159.64,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "So, if for instance the government chose to repair this tree of roads, then the total cost",
+    "start": 159.64,
+    "end": 166.92,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "is 18 plus 6, 24 plus 17, 94 plus 20, 114.",
+    "start": 166.92,
+    "end": 171.68,
+    "ocr_text": "Cost = 114\n\n70 oa;\nuA Ne 8\n10\n\n20"
+  },
+  {
+    "text": "So, it would incur a cost of 140 to restore this spanning tree.",
+    "start": 171.68,
+    "end": 177.48,
+    "ocr_text": "Cost = 114\n\n70 oa;\nuA Ne 8\n10\n\n20"
+  },
+  {
+    "text": "On the other hand, if the government chose this green spanning tree, then the cost reduces",
+    "start": 177.48,
+    "end": 181.48,
+    "ocr_text": "Cost = 114 Cost = 44"
+  },
+  {
+    "text": "to 10 plus 6 is 16 plus 20 is 36 plus 8 is 44.",
+    "start": 181.48,
+    "end": 185.92,
+    "ocr_text": "Cost = 114 Cost = 44"
+  },
+  {
+    "text": "So, different spanning trees now will come with different costs and the goal would be to",
+    "start": 185.92,
+    "end": 191.48,
+    "ocr_text": "Cost=114 Cost=44\n\n70 5 Agionpiinad\n18 \\e \\e spanning\nOar an i"
+  },
+  {
+    "text": "reduce the cost to a minimum.",
+    "start": 191.48,
+    "end": 193.48,
+    "ocr_text": "Cost=114 Cost=44\n\n70 5 Agionpiinad\n18 \\e \\e spanning\nOar an i"
+  },
+  {
+    "text": "In this particular example, you can check that this green tree which has cost 44 is actually",
+    "start": 193.48,
+    "end": 198.12,
+    "ocr_text": "Cost=114 Cost=44\n\n70 5 Agionpiinad\n18 \\e \\e spanning\nOar an i"
+  },
+  {
+    "text": "the minimum cost spanning tree on this particular graph.",
+    "start": 198.12,
+    "end": 202.12,
+    "ocr_text": "Cost=114  Cost=44 NO\n\n20"
+  },
+  {
+    "text": "So, before we move ahead to algorithms to compute minimum cost spanning trees, let us look",
+    "start": 202.12,
+    "end": 210.6,
+    "ocr_text": "Cost=114  Cost=44 NO\n\n20"
+  },
+  {
+    "text": "at some basic facts about trees.",
+    "start": 210.6,
+    "end": 213.4,
+    "ocr_text": "Definition: ree ‘onr\n\nFact 1 I"
+  },
+  {
+    "text": "So, remember that by definition a tree is a connected a cyclic graph.",
+    "start": 213.4,
+    "end": 219.2,
+    "ocr_text": "Definition: ree ‘onr\n\nFact 1 I"
+  },
+  {
+    "text": "So, the graph in general will have n vertices.",
+    "start": 219.2,
+    "end": 222.8,
+    "ocr_text": "Definition: A tr ‘onr\n\nFact 1"
+  },
+  {
+    "text": "So, the claim is that any tree has exactly n minus 1 edges.",
+    "start": 223.44,
+    "end": 228.52,
+    "ocr_text": "Definition: A tr ‘onr\n\nFact 1"
+  },
+  {
+    "text": "So, this is very easy to prove.",
+    "start": 228.52,
+    "end": 231.12,
+    "ocr_text": "Definition: A tr nr\n\nFact 1"
+  },
+  {
+    "text": "There are many different ways of proving it and here is one way of thinking about it.",
+    "start": 231.12,
+    "end": 234.28,
+    "ocr_text": "Definition: A tr nr\n\nFact 1"
+  },
+  {
+    "text": "So, supposing we have a tree.",
+    "start": 234.28,
+    "end": 235.68,
+    "ocr_text": "Definition: A tr nr\n\nFact 1"
+  },
+  {
+    "text": "So, initially the tree is connected by definition.",
+    "start": 235.68,
+    "end": 238.88,
+    "ocr_text": "Definition:\n\nFact 1"
+  },
+  {
+    "text": "So, the entire graph forms one connected component.",
+    "start": 238.88,
+    "end": 242.48,
+    "ocr_text": "Definition:\n\nFact 1"
+  },
+  {
+    "text": "Remember that when we did breadth first and depth first search, we said that we can take",
+    "start": 242.48,
+    "end": 246.64,
+    "ocr_text": "Definition:\n\nFact 1"
+  },
+  {
+    "text": "a node and look at everything connected to it and it forms a connected component.",
+    "start": 246.64,
+    "end": 250.0,
+    "ocr_text": "Definition: A tr ‘onr\n\nFact 1"
+  },
+  {
+    "text": "So, this tree defines one single connected component if we look at it as a graph in isolation.",
+    "start": 250.0,
+    "end": 255.68,
+    "ocr_text": "Definition: A tr ‘onr\n\nFact 1"
+  },
+  {
+    "text": "Now, because it is a tree, if I have an edge from i to j, there cannot be any other path",
+    "start": 255.68,
+    "end": 264.36,
+    "ocr_text": "Definition: A tr nr\n\nFact 1"
+  },
+  {
+    "text": "going from i to j by some other edges because if not that path plus this edge would form",
+    "start": 264.36,
+    "end": 269.0,
+    "ocr_text": "Definition: A tr nr\n\nFact 1"
+  },
+  {
+    "text": "a cycle.",
+    "start": 269.0,
+    "end": 270.0,
+    "ocr_text": "Definition:\n\nFact 1"
+  },
+  {
+    "text": "So, if there is an edge from i to j and I remove it, then by definition this component containing",
+    "start": 270.0,
+    "end": 276.0,
+    "ocr_text": "Definition:\n\nFact 1"
+  },
+  {
+    "text": "i and the component containing j must get disconnected.",
+    "start": 276.0,
+    "end": 278.64,
+    "ocr_text": "Definition: A i nr\n\nFact 1"
+  },
+  {
+    "text": "So, if I start it with one component, now I get two components.",
+    "start": 278.64,
+    "end": 282.0,
+    "ocr_text": "Definition: A i nr\n\nFact 1"
+  },
+  {
+    "text": "So, I delete the first edge from the graph from my tree and I have one component more.",
+    "start": 282.0,
+    "end": 287.0,
+    "ocr_text": "Definition: A i nr\n\nFact 1"
+  },
+  {
+    "text": "Now, I delete one more edge by the same argument whichever component that edge belongs to",
+    "start": 287.0,
+    "end": 291.04,
+    "ocr_text": "Definition: A i nr\n\nFact 1"
+  },
+  {
+    "text": "is split again.",
+    "start": 291.04,
+    "end": 292.04,
+    "ocr_text": "Definition: A i nr\n\nFact 1"
+  },
+  {
+    "text": "So, each time I delete an edge, I increase the number of components I have.",
+    "start": 292.04,
+    "end": 297.32,
+    "ocr_text": "Definition: A i nr\n\nFact 1"
+  },
+  {
+    "text": "But then I know that in the end, if I have n isolated vertices, I can have at most n",
+    "start": 297.32,
+    "end": 302.36,
+    "ocr_text": "Definition: A i nr\n\nFact 1"
+  },
+  {
+    "text": "component.",
+    "start": 302.36,
+    "end": 303.36,
+    "ocr_text": "Definition: A i nr\n\nFact 1"
+  },
+  {
+    "text": "So, I cannot have more than n components if I have n vertices.",
+    "start": 303.36,
+    "end": 305.84,
+    "ocr_text": "Definition: A i nr\n\nFact 1"
+  },
+  {
+    "text": "So, I can only do this deletion n minus 1 times.",
+    "start": 305.84,
+    "end": 308.36,
+    "ocr_text": "Definition\n\nFact 1"
+  },
+  {
+    "text": "So, I start with a tree, I keep deleting edges until everything is disconnected.",
+    "start": 308.36,
+    "end": 312.56,
+    "ocr_text": "Definition\n\nFact 1"
+  },
+  {
+    "text": "I can only do this n minus 1 times and I must do it n minus 1 times to get everything",
+    "start": 312.56,
+    "end": 316.6,
+    "ocr_text": "Definition\n\nFact 1"
+  },
+  {
+    "text": "disconnected.",
+    "start": 316.6,
+    "end": 317.6,
+    "ocr_text": "Definition:\n\nFact 1"
+  },
+  {
+    "text": "Therefore, the tree must have had exactly n minus 1 edges.",
+    "start": 317.6,
+    "end": 321.84,
+    "ocr_text": "Definition:\n\nFact 1"
+  },
+  {
+    "text": "Now, if I take a tree and then I add an edge, it must create a cycle.",
+    "start": 321.84,
+    "end": 328.2,
+    "ocr_text": "Definition:\n\nFact 1"
+  },
+  {
+    "text": "We already saw this in the previous argument that we said.",
+    "start": 328.2,
+    "end": 331.08,
+    "ocr_text": "Fact 2: ga } at"
+  },
+  {
+    "text": "So, supposing I have a tree, so a tree in general looks something like this.",
+    "start": 331.08,
+    "end": 335.2,
+    "ocr_text": "Fact 2: ga } at"
+  },
+  {
+    "text": "So, it is a graph which has kind of no cycles, but many things branching out.",
+    "start": 335.2,
+    "end": 339.76,
+    "ocr_text": "Fact 2: ga } at"
+  },
+  {
+    "text": "Now, if anywhere if I create a tree supposing I add an edge, supposing I take some i there",
+    "start": 339.76,
+    "end": 344.04,
+    "ocr_text": "Fact 2: ga } at"
+  },
+  {
+    "text": "and some j here and I decide to add an edge.",
+    "start": 344.04,
+    "end": 346.56,
+    "ocr_text": "Fact 2:"
+  },
+  {
+    "text": "Right?",
+    "start": 346.56,
+    "end": 347.56,
+    "ocr_text": "Fact 2:"
+  },
+  {
+    "text": "So, we know that because it is a tree, there is already connection.",
+    "start": 347.56,
+    "end": 350.12,
+    "ocr_text": "Fact 2:"
+  },
+  {
+    "text": "So, there is some path within this case through this vertex from i to j.",
+    "start": 350.12,
+    "end": 353.8,
+    "ocr_text": "Fact 2:"
+  },
+  {
+    "text": "So, for that path p plus this edge forms a cycle.",
+    "start": 353.8,
+    "end": 357.0,
+    "ocr_text": "Fact 2:"
+  },
+  {
+    "text": "Right?",
+    "start": 357.0,
+    "end": 358.0,
+    "ocr_text": "Fact 2:"
+  },
+  {
+    "text": "So, in a tree, I have exactly n minus 1 edges and when I add any extra edge, no matter which",
+    "start": 358.0,
+    "end": 362.64,
+    "ocr_text": "Fact 2:"
+  },
+  {
+    "text": "edge I add, it will definitely form a cycle.",
+    "start": 362.64,
+    "end": 365.16,
+    "ocr_text": "Fact 2:"
+  },
+  {
+    "text": "So, another consequence of all these definitions is that between any two paths, any two vertices",
+    "start": 365.16,
+    "end": 373.88,
+    "ocr_text": "Fact 2:"
+  },
+  {
+    "text": "in a tree, they can only be one unique path.",
+    "start": 373.88,
+    "end": 376.92,
+    "ocr_text": "Fact 2:"
+  },
+  {
+    "text": "So, supposing there are actually two paths.",
+    "start": 376.92,
+    "end": 379.48,
+    "ocr_text": "Fact 3: |"
+  },
+  {
+    "text": "So, let us look at two vertices here.",
+    "start": 379.48,
+    "end": 381.12,
+    "ocr_text": "Fact 3: |"
+  },
+  {
+    "text": "We have drawn them as i and j and suppose there are two paths.",
+    "start": 381.12,
+    "end": 383.52,
+    "ocr_text": "Fact 3: |"
+  },
+  {
+    "text": "Right?",
+    "start": 383.52,
+    "end": 384.52,
+    "ocr_text": "Fact 3: |"
+  },
+  {
+    "text": "So, if I follow the two paths, then it is very clear that because there are two different",
+    "start": 384.52,
+    "end": 390.36,
+    "ocr_text": "Fact 3: |"
+  },
+  {
+    "text": "ways of going there, there will be some move somewhere in between.",
+    "start": 390.36,
+    "end": 393.0,
+    "ocr_text": "Fact 3: |"
+  },
+  {
+    "text": "So, notice that it need not be a loop including i and j, it could be somewhere in between",
+    "start": 393.0,
+    "end": 397.48,
+    "ocr_text": "Fact 3: |"
+  },
+  {
+    "text": "i and j.",
+    "start": 397.48,
+    "end": 398.48,
+    "ocr_text": "Fact 3: |"
+  },
+  {
+    "text": "But if you consider all the cases carefully, you can convince yourself, there is no way",
+    "start": 398.48,
+    "end": 402.08,
+    "ocr_text": "Fact 3: |"
+  },
+  {
+    "text": "to have two distinct paths from i to j without creating a loop.",
+    "start": 402.08,
+    "end": 405.64,
+    "ocr_text": "Fact 3: |"
+  },
+  {
+    "text": "And if we have a loop, then the graph is no longer a cyclic.",
+    "start": 405.64,
+    "end": 408.08,
+    "ocr_text": "Fact 3: |\n) jes"
+  },
+  {
+    "text": "So, it is not a tree which is where our assumption to begin with.",
+    "start": 408.08,
+    "end": 411.96,
+    "ocr_text": "Fact 3: |\n) jes"
+  },
+  {
+    "text": "Right?",
+    "start": 411.96,
+    "end": 412.96,
+    "ocr_text": "Fact 3: |\n) jes"
+  },
+  {
+    "text": "So, we have actually the following claim that if we have these three properties, the g is",
+    "start": 412.96,
+    "end": 421.36,
+    "ocr_text": "Fact 3: |\n) jes"
+  },
+  {
+    "text": "connected, g is a cyclic and g has n minus 1 edges, then any of these two imply the third.",
+    "start": 421.36,
+    "end": 428.24,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third"
+  },
+  {
+    "text": "So, g is connected and g is a cyclic by definition it is a tree and we have just shown in our",
+    "start": 428.24,
+    "end": 433.32,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third"
+  },
+  {
+    "text": "first argument that any tree has n minus 1 edges.",
+    "start": 433.32,
+    "end": 435.48,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third"
+  },
+  {
+    "text": "So, the fact that the first two imply the third is what we have already shown.",
+    "start": 435.48,
+    "end": 439.6,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third"
+  },
+  {
+    "text": "Now, you can easily convince yourself to find a formal proof that if g is a a cycling",
+    "start": 439.6,
+    "end": 444.48,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third"
+  },
+  {
+    "text": "and has n minus 1 edges, then in fact it must be connected.",
+    "start": 444.48,
+    "end": 447.6,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third"
+  },
+  {
+    "text": "Everything must be connected to everything.",
+    "start": 447.6,
+    "end": 448.6,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third\n\nae : hee"
+  },
+  {
+    "text": "And finally, if g is connected and it has n minus 1 edges, then it can only be an a cyclic",
+    "start": 448.6,
+    "end": 453.08,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third\n\nae : hee"
+  },
+  {
+    "text": "graph, it cannot have any loops.",
+    "start": 453.08,
+    "end": 454.92,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third\n\nae : hee"
+  },
+  {
+    "text": "Right?",
+    "start": 454.92,
+    "end": 455.92,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third\n\nae : hee"
+  },
+  {
+    "text": "So, these are various ways of looking at trees and sometimes we will use one property or",
+    "start": 455.92,
+    "end": 459.24,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third"
+  },
+  {
+    "text": "another property.",
+    "start": 459.24,
+    "end": 460.24,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third"
+  },
+  {
+    "text": "So, it is useful to keep these things in the back of our mind when we talk about trees",
+    "start": 460.24,
+    "end": 463.28,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third"
+  },
+  {
+    "text": "in general.",
+    "start": 463.28,
+    "end": 465.28,
+    "ocr_text": "Any two of the following facts about a graph G\nimplies the third"
+  },
+  {
+    "text": "So, our target right now is to build a minimum cost spanning.",
+    "start": 465.28,
+    "end": 472.0,
+    "ocr_text": "Two natural strategies\n\nPrim’s Algorithm\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "So, there are two naturally greedy strategies that one can think of.",
+    "start": 472.0,
+    "end": 477.28,
+    "ocr_text": "Two natural strategies\n\nPrim’s Algorithm\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "One is since we are looking for a minimum cost tree to start with the smallest edge and",
+    "start": 477.28,
+    "end": 481.8,
+    "ocr_text": "Two natural strategies\nPrim’s Algorithm\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "incrementally build the tree.",
+    "start": 481.8,
+    "end": 483.4,
+    "ocr_text": "Two natural strategies\nPrim’s Algorithm\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "So, we keep adding edges to the existing tree so that the new graph remains a tree and",
+    "start": 483.4,
+    "end": 488.88,
+    "ocr_text": "Two natural strategies\nPrim’s Algorithm\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "it grows as little as possible in terms of cost.",
+    "start": 488.88,
+    "end": 492.2,
+    "ocr_text": "Two natural strategies\ntal si\nPrim’s Algorithm\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "This will give rise to an algorithm which is called Primz algorithm.",
+    "start": 492.2,
+    "end": 496.72,
+    "ocr_text": "Two natural strategies\ntal si\nPrim’s Algorithm\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "It will also turn out to be very similar to Dykstra's shortest path algorithm with a",
+    "start": 496.72,
+    "end": 500.72,
+    "ocr_text": "Two natural strategies\nSta ’\nPrim’s Algorithm\n\nre Its n\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "single source.",
+    "start": 500.72,
+    "end": 502.68,
+    "ocr_text": "Two natural strategies\nSta ’\nPrim’s Algorithm\n\nre Its n\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "The other strategy we can have is to look at edges in ascending order of cost and keep",
+    "start": 502.68,
+    "end": 508.08,
+    "ocr_text": "Two natural strategies\nSta ’\nPrim’s Algorithm\n\nre Its n\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "adding them so long as we do not violate the tree property.",
+    "start": 508.08,
+    "end": 511.2,
+    "ocr_text": "Two natural strategies\nPrim’s Algorithm\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "Now, this is different from Primz algorithm because here we do not build a tree to start",
+    "start": 511.2,
+    "end": 515.6,
+    "ocr_text": "Two natural strategies\nPrim’s Algorithm\n\nKruskal’s Algorithm"
+  },
+  {
+    "text": "with.",
+    "start": 515.6,
+    "end": 516.6,
+    "ocr_text": "Two natural strategies\nm\nPrim’s Algorithm\n\nKruskal’s Algorithm\n\nJer c"
+  },
+  {
+    "text": "We keep adding edges so that we do not create a cycle but we could have disconnected groups",
+    "start": 516.6,
+    "end": 520.64,
+    "ocr_text": "Two natural strategies\nm\nPrim’s Algorithm\n\nKruskal’s Algorithm\n\nJer c"
+  },
+  {
+    "text": "of edges but eventually they will all connect up to form a tree.",
+    "start": 520.64,
+    "end": 524.52,
+    "ocr_text": "Two natural strategies\nm\nPrim’s Algorithm\n\nKruskal’s Algorithm\n\nJer c"
+  },
+  {
+    "text": "So, we will see these in more detail in the next two lectures but let us just look at",
+    "start": 524.52,
+    "end": 529.2,
+    "ocr_text": "Two natural strategies\nm\nPrim’s Algorithm\n\nKruskal’s Algorithm\n\nJer c"
+  },
+  {
+    "text": "an intuitive example of how these two strategies work.",
+    "start": 529.2,
+    "end": 532.76,
+    "ocr_text": "Two natural strategies\nm\n\nPrim’s Algorithm\n\nKruskal’s Algorithm\n\nJer c"
+  },
+  {
+    "text": "So, let us look at these two algorithms intuitively.",
+    "start": 532.76,
+    "end": 538.36,
+    "ocr_text": "Two natural strategies\nm\n\nPrim’s Algorithm\n\nKruskal’s Algorithm\n\nJer c"
+  },
+  {
+    "text": "We will come to them in more detail later.",
+    "start": 538.36,
+    "end": 540.28,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "So, let us start with Primz algorithm.",
+    "start": 540.28,
+    "end": 542.4,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "Remember that the strategy in Primz algorithm is to start with the smallest weight edge and",
+    "start": 542.4,
+    "end": 546.64,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "then incrementally grow at tree.",
+    "start": 546.64,
+    "end": 548.4,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "So, we start with the smallest edge here which is the edge weight 6 between 2 and 3.",
+    "start": 548.4,
+    "end": 553.2,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "Now, we have to look at the existing tree which consists of this part of the graph and",
+    "start": 553.2,
+    "end": 558.48,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "decide whether to add one of these four edges to extend it.",
+    "start": 558.48,
+    "end": 563.6,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "We cannot add that edge over here.",
+    "start": 563.6,
+    "end": 565.56,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "We cannot add we cannot add this edge because it would not form a tree.",
+    "start": 565.56,
+    "end": 569.36,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "It would be disconnected from this edge.",
+    "start": 569.36,
+    "end": 570.76,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "So, we can add any of these but we choose the smallest one.",
+    "start": 570.76,
+    "end": 573.8,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "So, in this case we choose the edge with weight 10.",
+    "start": 573.8,
+    "end": 576.44,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "So, the next step in the trees to add the edge 1, 2 and now we have this tree.",
+    "start": 576.44,
+    "end": 582.2,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "Now, if we look at the possible edges that we can add we have this edge.",
+    "start": 582.2,
+    "end": 587.56,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "We have this edge and we have this edge.",
+    "start": 587.56,
+    "end": 590.04,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "Now, the smallest among these is the edge with weight 18 but if we add that we get a cycle.",
+    "start": 590.04,
+    "end": 595.44,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "So, this is not a good edge to add.",
+    "start": 595.44,
+    "end": 597.56,
+    "ocr_text": "(oS 20"
+  },
+  {
+    "text": "So, therefore, we must add one of the other two.",
+    "start": 597.56,
+    "end": 599.88,
+    "ocr_text": "(oS 20"
+  },
+  {
+    "text": "Again, we pick the smaller one which in this case is the edge labeled with weight 20.",
+    "start": 599.88,
+    "end": 605.48,
+    "ocr_text": "(oS 20"
+  },
+  {
+    "text": "So, then we get this tree which has now this shape.",
+    "start": 605.48,
+    "end": 609.68,
+    "ocr_text": "(oS 20"
+  },
+  {
+    "text": "So, this is our given tree.",
+    "start": 609.68,
+    "end": 613.12,
+    "ocr_text": "(oS 20"
+  },
+  {
+    "text": "Now, we can add we cannot add this we know.",
+    "start": 613.12,
+    "end": 616.0,
+    "ocr_text": "(oS 20"
+  },
+  {
+    "text": "So, we can either add the edge 70 or the edge labeled with weight 8 and obviously 8 is smaller.",
+    "start": 616.16,
+    "end": 622.52,
+    "ocr_text": "(oS 20"
+  },
+  {
+    "text": "So, finally, we add that and this is the tree that we get.",
+    "start": 622.52,
+    "end": 624.92,
+    "ocr_text": "(oS 20"
+  },
+  {
+    "text": "So, this is the final tree that we get from Prims algorithm by starting with the smallest",
+    "start": 624.92,
+    "end": 630.84,
+    "ocr_text": "(oS 20"
+  },
+  {
+    "text": "edge and incrementally growing the tree.",
+    "start": 630.84,
+    "end": 634.88,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "The other strategy set was to start with the edges in ascending order.",
+    "start": 634.88,
+    "end": 639.56,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "So, we start with the edges with 8 then 8 then I mean.",
+    "start": 639.56,
+    "end": 642.6,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "So, we have this is the first one this is the second one and this is the third one",
+    "start": 642.6,
+    "end": 646.8,
+    "ocr_text": "70\n18 6 8\n\n10 20"
+  },
+  {
+    "text": "and so on.",
+    "start": 646.8,
+    "end": 647.8,
+    "ocr_text": "70\n18 bY 8%\n\nWA 20"
+  },
+  {
+    "text": "So, we consider the edges in this order 1, 2, 3, 4, 5 and 6.",
+    "start": 647.8,
+    "end": 653.92,
+    "ocr_text": "70\n18 bY 8%\n\nWA 20"
+  },
+  {
+    "text": "So, we have the weights 18, 20 and then finally 70.",
+    "start": 653.92,
+    "end": 659.92,
+    "ocr_text": "70\n18 bY 8%\n\nWA 20"
+  },
+  {
+    "text": "So, we have these 6 edges and we consider them in this order.",
+    "start": 659.92,
+    "end": 662.8,
+    "ocr_text": "Ss\nnN\n\nND)\nS\n="
+  },
+  {
+    "text": "So, among these of course, the smallest is 6.",
+    "start": 662.8,
+    "end": 664.96,
+    "ocr_text": "Ss\nnN\n\nND)\nS\n="
+  },
+  {
+    "text": "So, we add that.",
+    "start": 664.96,
+    "end": 666.6,
+    "ocr_text": "Ss\nnN\n\nND)\nS\n="
+  },
+  {
+    "text": "So, this is the start of our tree.",
+    "start": 666.6,
+    "end": 668.6,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "Now, the next one is 8 and that does not form a cycle.",
+    "start": 668.6,
+    "end": 671.6,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "It does not violate the tree property.",
+    "start": 671.6,
+    "end": 673.2,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "So, we add that.",
+    "start": 673.2,
+    "end": 674.2,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "So, notice now the crucial difference between Prims and Krustas algorithm at this point we",
+    "start": 674.2,
+    "end": 677.52,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "do not have a tree.",
+    "start": 677.52,
+    "end": 678.92,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "We have two separate trees in some sense.",
+    "start": 678.92,
+    "end": 681.12,
+    "ocr_text": "10 20"
+  },
+  {
+    "text": "So, we have two different acyclic components within this graph which are not connected to",
+    "start": 681.12,
+    "end": 685.24,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "each other, but we are just going in order of edges.",
+    "start": 685.24,
+    "end": 687.72,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "So, next we see that 10 is the next edge that we can add.",
+    "start": 687.72,
+    "end": 690.84,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "It does not form a cycle.",
+    "start": 690.84,
+    "end": 691.84,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "So, we add that.",
+    "start": 691.84,
+    "end": 692.84,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "So, in some sense we have grown this component and left that component alone.",
+    "start": 692.84,
+    "end": 695.92,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "Now the next one would be 18 but if we add 18, it would form a cycle.",
+    "start": 695.92,
+    "end": 700.44,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "So, we skip 18.",
+    "start": 700.44,
+    "end": 701.44,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "We move to the next one is 20.",
+    "start": 701.44,
+    "end": 703.44,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "20 is fine and 20 will in fact connect the two components and form a tree.",
+    "start": 703.44,
+    "end": 707.36,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "So, we add 20 and now we are done because we have added n minus 1 edges.",
+    "start": 707.36,
+    "end": 711.6,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "There are 5 vertices.",
+    "start": 711.6,
+    "end": 712.6,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  },
+  {
+    "text": "We have added 4 edges and therefore, we have definitely got it.",
+    "start": 712.6,
+    "end": 715.64,
+    "ocr_text": "w/e \\a\n\n(10) 20"
+  }
+]

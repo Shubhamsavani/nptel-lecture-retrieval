@@ -85,6 +85,7 @@ st.markdown("""
     color: #1a1a2e;
     letter-spacing: -0.5px;
     margin: 0;
+    color: #ffffff;  /* ← FIXED TO WHITE */
   }
   .app-subtitle {
     font-size: 0.85rem;

@@ -1,0 +1,2132 @@
+[
+  {
+    "text": "Hello friends and everyone here, welcome to the Python programming session of the last",
+    "start": 0.0,
+    "end": 22.12,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom\nfrom\nfrom\nfrom\nfrom\nfrom\n\nscipy import ndimage\n\ntime import time\n\nsklearn import datasets, manifold\n\nsklearn.cluster import KMeans, AgglomerativeClustering\nsklearn.mixture import GMM\n\nsklearn.cross_validation import StratifiedkFold\n\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\n‘matplotlib inline|\n\n*-means clustering\n\nple adapted from here."
+  },
+  {
+    "text": "week of this course. Today's topics are different kinds of clustering algorithms.",
+    "start": 22.12,
+    "end": 26.64,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom\nfrom\nfrom\nfrom\nfrom\nfrom\n\nscipy import ndimage\n\ntime import time\n\nsklearn import datasets, manifold\n\nsklearn.cluster import KMeans, AgglomerativeClustering\nsklearn.mixture import GMM\n\nsklearn.cross_validation import StratifiedkFold\n\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\n‘matplotlib inline|\n\n*-means clustering\n\nple adapted from here."
+  },
+  {
+    "text": "Now we are going to take up K-means clustering algorithm, then look at Gaussian mixture models",
+    "start": 26.64,
+    "end": 31.12,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom\nfrom\nfrom\nfrom\nfrom\nfrom\n\nscipy import ndimage\n\ntime import time\n\nsklearn import datasets, manifold\n\nsklearn.cluster import KMeans, AgglomerativeClustering\nsklearn.mixture import GMM\n\nsklearn.cross_validation import StratifiedkFold\n\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\n‘matplotlib inline|\n\n*-means clustering\n\nple adapted from here."
+  },
+  {
+    "text": "and finally we are going to look at different hierarchical clustering algorithms. So, I",
+    "start": 31.12,
+    "end": 36.36,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom\nfrom\nfrom\nfrom\nfrom\nfrom\n\nscipy import ndimage\n\ntime import time\n\nsklearn import datasets, manifold\n\nsklearn.cluster import KMeans, AgglomerativeClustering\nsklearn.mixture import GMM\n\nsklearn.cross_validation import StratifiedkFold\n\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\n‘matplotlib inline|\n\n*-means clustering\n\nple adapted from here."
+  },
+  {
+    "text": "have all the code ready and I am going to implement them cell by cell after explaining what",
+    "start": 36.36,
+    "end": 43.08,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom\nfrom\nfrom\nfrom\nfrom\nfrom\n\nscipy import ndimage\n\ntime import time\n\nsklearn import datasets, manifold\n\nsklearn.cluster import KMeans, AgglomerativeClustering\nsklearn.mixture import GMM\n\nsklearn.cross_validation import StratifiedkFold\n\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\n‘matplotlib inline|\n\n*-means clustering\n\nple adapted from here."
+  },
+  {
+    "text": "they do and then we are going to see the results. So, without further ado let us jump right",
+    "start": 43.08,
+    "end": 49.4,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom\nfrom\nfrom\nfrom\nfrom\nfrom\n\nscipy import ndimage\n\ntime import time\n\nsklearn import datasets, manifold\n\nsklearn.cluster import KMeans, AgglomerativeClustering\nsklearn.mixture import GMM\n\nsklearn.cross_validation import StratifiedkFold\n\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\n‘matplotlib inline|\n\n*-means clustering\n\nple adapted from here."
+  },
+  {
+    "text": "in the coding.",
+    "start": 49.4,
+    "end": 50.8,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom\nfrom\nfrom\nfrom\nfrom\nfrom\n\nscipy import ndimage\n\ntime import time\n\nsklearn import datasets, manifold\n\nsklearn.cluster import KMeans, AgglomerativeClustering\nsklearn.mixture import GMM\n\nsklearn.cross_validation import StratifiedkFold\n\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\n‘matplotlib inline|\n\n*-means clustering\n\nple adapted from here."
+  },
+  {
+    "text": "So, first we are going to import the necessary libraries and as you can see that this today",
+    "start": 51.2,
+    "end": 57.8,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom\nfrom\nfrom\nfrom\nfrom\nfrom\n\nscipy import ndimage\n\ntime import time\n\nsklearn import datasets, manifold\n\nsklearn.cluster import KMeans, AgglomerativeClustering\nsklearn.mixture import GMM\n\nsklearn.cross_validation import StratifiedkFold\n\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\n‘matplotlib inline|\n\n*-means clustering\n\nple adapted from here."
+  },
+  {
+    "text": "we are going to use the K-means algorithm. So, these are already implemented under",
+    "start": 57.8,
+    "end": 65.8,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom\nfrom\nfrom\nfrom\nfrom\nfrom\n\nscipy import ndimage\n\ntime import time\n\nsklearn import datasets, manifold\n\nsklearn.cluster import KMeans, AgglomerativeClustering\nsklearn.mixture import GMM\n\nsklearn.cross_validation import StratifiedkFold\n\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\n‘matplotlib inline|\n\n*-means clustering\n\nple adapted from here."
+  },
+  {
+    "text": "scikit-learn.cluster and agglomerative clustering and these two are from scikit-learn.cluster",
+    "start": 65.8,
+    "end": 73.52,
+    "ocr_text": "Import necessary libraries\n\nIn{ ]:\n\nimport numpy as np\n\nfrom scipy import ndimage\n\nfrom time import time\n\nfrom sklearn import datasets, manifold\n\nfrom sklearn.cluster import KMeans, AgglbmerativeClustering\nfrom sklearn.mixture import GMM\n\nfrom sklearn.cross_validation import StratifiedKFold\nimport matplotlib.pyplot as plt\n\nimport matplotlib as mpl\n\nmatplotlib inline\n\n*-means clustering\nple adapted from here."
+  },
+  {
+    "text": "and agglomerative clustering is actually the kind of hierarchical clustering that we are",
+    "start": 73.52,
+    "end": 76.84,
+    "ocr_text": "Import necessary libraries\n\nIn{ ]:\n\nimport numpy as np\n\nfrom scipy import ndimage\n\nfrom time import time\n\nfrom sklearn import datasets, manifold\n\nfrom sklearn.cluster import KMeans, AgglbmerativeClustering\nfrom sklearn.mixture import GMM\n\nfrom sklearn.cross_validation import StratifiedKFold\nimport matplotlib.pyplot as plt\n\nimport matplotlib as mpl\n\nmatplotlib inline\n\n*-means clustering\nple adapted from here."
+  },
+  {
+    "text": "going to take up. The Gaussian mixture models would be taken from scikit-learn.cluster",
+    "start": 76.84,
+    "end": 83.84,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom scipy import ndimage\n\nfrom time import time\n\nfrom sklearn import datasets, manifold\n\nfrom sklearn.cluster import KMeans, AgglomerativeClustering\nfrom sklearn.mixture import GMM\n\nfrom sklearn.cross_validation import stratifiedkFold\nimport matplotlib.pyplot as plt\n\nimport matplotlib as mpl\n\n’matplotlib inline\n\n*-means clustering\nple adapted from here."
+  },
+  {
+    "text": "and so we do not have to really write the main code of these algorithms as these are already",
+    "start": 83.84,
+    "end": 91.24,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom scipy import ndimage\n\nfrom time import time\n\nfrom sklearn import datasets, manifold\n\nfrom sklearn.cluster import KMeans, AgglomerativeClustering\nfrom sklearn.mixture import GMM\n\nfrom sklearn.cross_validation import stratifiedkFold\nimport matplotlib.pyplot as plt\n\nimport matplotlib as mpl\n\n’matplotlib inline\n\n*-means clustering\nple adapted from here."
+  },
+  {
+    "text": "available in scikit-learn. So, after doing the imports so I first execute this particular",
+    "start": 91.24,
+    "end": 97.64,
+    "ocr_text": "Import necessary libraries\n\nInf]:\n\nimport numpy as np\n\nfrom scipy import ndimage\n\nfrom time import time\n\nfrom sklearn import datasets, manifold\n\nfrom sklearn.cluster import KMeans, AgglomerativeClustering\nfrom sklearn.mixture import GMM\n\nfrom sklearn.cross_validation import stratifiedkFold\nimport matplotlib.pyplot as plt\n\nimport matplotlib as mpl\n\n’matplotlib inline\n\n*-means clustering\nple adapted from here."
+  },
+  {
+    "text": "segment and the imports happen. The imports are here. So, after that let us first look",
+    "start": 97.64,
+    "end": 106.72,
+    "ocr_text": "Import necessary libraries\n\nIn [*]:\n\nimport numpy as np\n\nfrom scipy import ndimage\n\nfrom time import time\n\nfrom'sklearn import datasets, manifold\n\nfrom sklearn.cluster import KMeans, AgglomerativeClustering\nfrom sklearn.mixture import GMM\n\nfrom sklearn.cross_validation import StratifiedKFold\nimport matplotlib.pyplot as plt\n\nimport matplotlib as mpl\n\n‘matplotlib inline\n\n/Users/Anirban/anaconda/1ib/python2.7/site-packages/matplot1ib/font_manager .py:273\nng the font cache using fc-list. This may take a moment.\nwarnings.warn('Matplotlib is building the font cache using fc-list. This may tak\n\nneans clustering\n\nple adapted from here."
+  },
+  {
+    "text": "into K-means clustering and I have actually like this is not an original set of examples.",
+    "start": 106.72,
+    "end": 112.64,
+    "ocr_text": "In [ ]:\n\nIng\n\nK-means clustering\n\nExample adapted from here.\n\nLoad dataset 1]\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\ntel = KMeans(n_clusters=num_clusters)\ny1.£it (Xx)\n\nract the labels and the cluster centers"
+  },
+  {
+    "text": "These are right from the official documentation of scikit-learn and I have given the link",
+    "start": 112.64,
+    "end": 118.8,
+    "ocr_text": "In [ ]:\n\nIng\n\nK-means clustering\n\nExample adapted from here.\n\nLoad dataset 1]\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\ntel = KMeans(n_clusters=num_clusters)\ny1.£it (Xx)\n\nract the labels and the cluster centers"
+  },
+  {
+    "text": "to that here. So, that is actually a bit more sophisticated version of the same set of",
+    "start": 118.8,
+    "end": 123.6,
+    "ocr_text": "In [ ]:\n\nIn[ ]:\n\nK-means clustering\nExample adapted from here.\n\nLoad dataset 1]\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (X)\n\nExtract the labels and the cluster centers"
+  },
+  {
+    "text": "experiments. So, let us look at the experiment that we are going to do today. First we are",
+    "start": 123.6,
+    "end": 132.24,
+    "ocr_text": "In [ ]:\n\nIn[ ]:\n\nK-means clustering\nExample adapted from here.\n\nLoad dataset 1]\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (X)\n\nExtract the labels and the cluster centers"
+  },
+  {
+    "text": "going to load the dataset. So, the first section of the code it invokes scikit-learn.cluster",
+    "start": 132.32,
+    "end": 138.24,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nK-means clustering\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (X)\n\nExtract the labels and the cluster centers"
+  },
+  {
+    "text": "and it loads the iris dataset. The same iris dataset that we have used in the previous",
+    "start": 138.24,
+    "end": 142.96,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "exercises and the iris dataset just as a recap. The iris dataset is data dataset that is meant",
+    "start": 142.96,
+    "end": 151.52,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "for classification algorithms and this dataset consists of iris flowers described in terms",
+    "start": 151.52,
+    "end": 159.2,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "of their sepal length, sepal width, petal length and petal width. So, there are four features",
+    "start": 159.2,
+    "end": 166.8,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "describing each instance of iris flowers and depending upon these feature values we have to predict",
+    "start": 166.8,
+    "end": 173.6,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "which particular category that flower falls in. So, it could be in either of the three different",
+    "start": 173.6,
+    "end": 181.28,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "species of iris flowers and that is what we have to do. So, the dataset dot load iris will",
+    "start": 181.28,
+    "end": 188.88,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "directly load the iris dataset into this variable and then we pick up the data. So, iris dot data",
+    "start": 189.28,
+    "end": 197.44,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit(X)"
+  },
+  {
+    "text": "contains the input data, input features and iris dot target contains the target species value",
+    "start": 197.44,
+    "end": 204.08,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris,data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit(X)"
+  },
+  {
+    "text": "the 0, 1 or 2 right three different species which we are trying to predict.",
+    "start": 204.08,
+    "end": 208.64,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris,data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit(X)"
+  },
+  {
+    "text": "And you can see here that we are picking up selecting the first two features of the dataset",
+    "start": 210.24,
+    "end": 218.16,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "and that is what we have been doing in most of our exercises till in this course. So,",
+    "start": 218.4,
+    "end": 223.2,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "this actually keeps it gives a problem simple and it is easy to visualize what is happening.",
+    "start": 224.24,
+    "end": 228.32,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "So, after we have loaded the dataset let us go ahead and load the dataset. So, after we have loaded",
+    "start": 229.04,
+    "end": 233.68,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "the dataset we define and train our model. So, in the clustering algorithm we have to first",
+    "start": 233.68,
+    "end": 239.76,
+    "ocr_text": "In [ ]:\n\nIn [ ]:\n\nExample adapted from here.\n\nLoad dataset\n\niris = datasets.load_iris()\nX,y = iris.data[:,:2], iris.target\n\nDefine and train model\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)"
+  },
+  {
+    "text": "specify how many clusters we would want in the clustering algorithm. So, here is how",
+    "start": 239.76,
+    "end": 245.12,
+    "ocr_text": "data[ 21,\n\nx,y target\n\nDefine and train model\n\nIn [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "the clustering the k-mean slustering algorithm works right. So, first we have we are given",
+    "start": 245.76,
+    "end": 253.68,
+    "ocr_text": "data[ 21,\n\nx,y target\n\nDefine and train model\n\nIn [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "k-mean slustering algorithm is an unsupervised algorithm, unsupervised machine learning algorithm.",
+    "start": 253.68,
+    "end": 258.24,
+    "ocr_text": "data[ 21,\n\nx,y target\n\nDefine and train model\n\nIn [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "So, we do not have class labels here we just want to work with the input feature dimensions.",
+    "start": 258.24,
+    "end": 265.52,
+    "ocr_text": "data[ 21,\n\nx,y target\n\nDefine and train model\n\nIn [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "So, once we have been given our dataset in k-mean slustering we are going to make like first we",
+    "start": 266.4,
+    "end": 274.24,
+    "ocr_text": "data[ 21,\n\nx,y target\n\nDefine and train model\n\nIn [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "have we have to make guesses about k centroid. So, the data will be divided into clusters and",
+    "start": 274.24,
+    "end": 282.24,
+    "ocr_text": "data[ 21,\n\nx,y target\n\nDefine and train model\n\nIn [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "each cluster will have a centroid. So, those centroids are first guessed. So, we can choose randomly",
+    "start": 282.24,
+    "end": 290.56,
+    "ocr_text": "data[ 21,\n\nx,y target\n\nDefine and train model\n\nIn [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "like k of those training samples as the initial centroid and then for every single centroid",
+    "start": 290.56,
+    "end": 297.04,
+    "ocr_text": "data[ 21,\n\nx,y target\n\nDefine and train model\n\nIn [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "for every single once those centroids are here are with us. What we do is for every single of those",
+    "start": 297.04,
+    "end": 304.0,
+    "ocr_text": "data[ 21,\n\nx,y target\n\nDefine and train model\n\nIn [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "points in the dataset we are going to find which centroid is the closest to that particular point",
+    "start": 304.0,
+    "end": 311.12,
+    "ocr_text": "data[ 21,\n\nx,y target\n\nDefine and train model\n\nIn [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "alright and each centroid actually corresponds to one cluster. So, every single data point is",
+    "start": 311.12,
+    "end": 318.72,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "assigned the cluster which is corresponding to the centroid that is closest to the data point",
+    "start": 318.72,
+    "end": 324.72,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "alright. So, after this step the each point of the dataset has a cluster assigned to it which",
+    "start": 324.8,
+    "end": 335.44,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "has a corresponding centroid alright. So, again in the next iteration we are going to update the",
+    "start": 335.44,
+    "end": 340.72,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "centroids. So, each centroid is now going to be shifted to the actual centroid of the",
+    "start": 340.72,
+    "end": 348.24,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "cluster points that were assigned to it alright. So, and then again we are going to like revise",
+    "start": 349.2,
+    "end": 356.24,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "the cluster assignments of every single point in the training set. So, this is how the k-means",
+    "start": 356.24,
+    "end": 361.68,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "algorithm works. So, you have already been taught in great detail in the theory session and",
+    "start": 361.68,
+    "end": 367.44,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "what I just said is a quick recap of the algorithm. So, this is what we are doing here.",
+    "start": 368.24,
+    "end": 373.36,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "The number of clusters is 3 here this means the value of k of the k-means algorithm is 3.",
+    "start": 373.36,
+    "end": 378.4,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "Now, we define the model alright. So, this beautiful API of circuit learn allows us to first as",
+    "start": 379.2,
+    "end": 389.04,
+    "ocr_text": "data[ ral target\n\nDefine and train model\n\n[In [ ]:| num_clusterfs = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "you know declare the model with all the parameters in just one step. So, this k-means",
+    "start": 389.04,
+    "end": 393.12,
+    "ocr_text": "data[ 2); target\n\nDefine and train model\n\nIn [ ]:|num_clusters = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "object is like takes as input the number of clusters in the attribute n clusters. So, this",
+    "start": 393.28,
+    "end": 405.2,
+    "ocr_text": "data[ 2); target\n\nDefine and train model\n\nIn [ ]:|num_clusters = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "particular keyword is assigned the number of clusters 3. So, k-means with n clusters equal to 3",
+    "start": 405.2,
+    "end": 410.0,
+    "ocr_text": "data[ 21; target\n\nDefine and train model\n\nIn [ ]:|num_clusters = 3\n\nmodel = KMeans(n_clusters=nym_clustfrs)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "will do k-means algorithm with on 3 different clusters. So, once this particular model has been",
+    "start": 410.0,
+    "end": 417.76,
+    "ocr_text": "data[ 21; target\n\nDefine and train model\n\nIn [ ]:|num_clusters = 3\n\nmodel = KMeans(n_clusters=nym_clustfrs)\n\nmodel. fit(X)\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "declared we put it on the data alright. So, this actually does the training and you can see",
+    "start": 417.84,
+    "end": 426.08,
+    "ocr_text": "data[ 2)%\n\nx,y target\n\nDefine and train model\n\nIn [ ]:|num_clusters = 3\n\nmodel = KMeans(n_clusters=num_clusters)\n\nmodel. fit(X)| :\n\nExtract the labels and the cluster centers\nIn [ ]: labels = model.labels_\n\ncluster_centers = model.cluster_centers_\n\nPlot the clusters"
+  },
+  {
+    "text": "what kind of object has been created here. So, the number of maximum number of iterations that",
+    "start": 426.08,
+    "end": 431.92,
+    "ocr_text": "Define and train model\n\n: num_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (x\n\n: KMeans(copy_x=True, init='k-means+t+', max_iter=300, n_clusters=3, n_init=10\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.0001,\nverbose=0)\n\nExtract the labels and the cluster centers\n\n: labels = model.labels_\n\nPO a m3) jn ON, LANNE elbnca i maT gee eee Ee NT"
+  },
+  {
+    "text": "were used for achieving the convergence right before deciding the final clusters is given here.",
+    "start": 431.92,
+    "end": 439.2,
+    "ocr_text": "Define and train model\n\n: num_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (x\n\n: KMeans(copy_x=True, init='k-means+t+', max_iter=300, n_clusters=3, n_init=10\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.0001,\nverbose=0)\n\nExtract the labels and the cluster centers\n\n: labels = model.labels_\n\nPO a m3) jn ON, LANNE elbnca i maT gee eee Ee NT"
+  },
+  {
+    "text": "So, it was like 300 different iterations 300 iterations of the k-means",
+    "start": 439.2,
+    "end": 444.56,
+    "ocr_text": "22), iris.target\n\nDefine and train model\n\n: num_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (x\n\n: KMeans(copy_x=True, init='k-means++', max_iter=300, n_clusters=3, n_init=10\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.0001,\nverbose=0)\n\nExtract the labels and the cluster centers\n\n: labels = model.labels_\n\n5 gp green renee Tene Temper y Sena"
+  },
+  {
+    "text": "algorithm. So, number of clusters was 3 and n in it is a variable which specifies the number of",
+    "start": 444.56,
+    "end": 451.92,
+    "ocr_text": "22), iris.target\n\nDefine and train model\n\n: num_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (x\n\n: KMeans(copy_x=True, init='k-means++', max_iter=300, n_clusters=3, n_init=10\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.0001,\nverbose=0)\n\nExtract the labels and the cluster centers\n\n: labels = model.labels_\n\n5 gp green renee Tene Temper y Sena"
+  },
+  {
+    "text": "you know the number of times you want to repeat this entire experiment. So, what clusters you",
+    "start": 451.92,
+    "end": 459.36,
+    "ocr_text": "ris.data[:,:2], iris.target\n\n» and train model\n\nsters = 3\n\nKMeans(n_clusters=num_clusters)\n\nLt (X\n\nsopy_x=True, init='k-meanst++', max_iter=300, n_clusters=3, n_init=10,\nobs: precompute_distances='auto', random_state=None, tol=0.0001,\ns0se=0)\n\n+t the labels and the cluster centers\n\n= model.labels_\n\nper ee =e are en any ae eer"
+  },
+  {
+    "text": "finally end up with actually depends upon the total number the kind of initialization you have",
+    "start": 459.36,
+    "end": 466.24,
+    "ocr_text": "cis.data[:,:2], iris.target\n\n» and train model\n\nsters = 3\n\nKMeans(n_clusters=num_clusters)\n\nit (X\n\nsopy_x=True, init='k-means++', max_iter=300, n_clusters=3, n_init=10,\nbs: precompute_distances='auto', random_state=None, tol=0.0001,\ns0se=0)\n\n+t the labels and the cluster centers\n\n= model.labels_\n\nPPL ep liroe yas) I eka ieee raw tag eas ae ea"
+  },
+  {
+    "text": "on the data points alright. So, the you know the what particular initial points actually define",
+    "start": 466.24,
+    "end": 472.48,
+    "ocr_text": "cis.data[:,:2], iris.target\n\n» and train model\n\nsters = 3\n\nKMeans(n_clusters=num_clusters)\n\nLt (X\n\nsopy_x=True, init='k-meanst++', max_iter=300, n_clusters=3, n_init=10,\nabs: precompute_distances='auto', random_state=None, tol=0.0001,\ns0se=0)\n\n+t the labels and the cluster centers\n\n= model.labels_\n\nPRES)! Segre te ty or ee ere"
+  },
+  {
+    "text": "the final cluster right and that is why you need to restart the experiment again and again",
+    "start": 472.96,
+    "end": 479.52,
+    "ocr_text": "cis.data[:,:2], iris.target\n\n» and train model\n\nsters = 3\n\nKMeans(n_clusters=num_clusters)\n\nLt (X\n\nsopy_x=True, init='k-meanst++', max_iter=300, n_clusters=3, n_init=10,\nabs: precompute_distances='auto', random_state=None, tol=0.0001,\ns0se=0)\n\n+t the labels and the cluster centers\n\n= model.labels_\n\nPRES)! Segre te ty or ee ere"
+  },
+  {
+    "text": "with new and newer and newer with new initializations with different kinds of initializations.",
+    "start": 480.56,
+    "end": 486.0,
+    "ocr_text": "cis.data[:,:2], iris.target\n\n» and train model\n\nsters = 3\n\nKMeans(n_clusters=num_clusters)\n\nLt (X\n\nsopy_x=True, init='k-meanst++', max_iter=300, n_clusters=3, n_init=10,\nabs: precompute_distances='auto', random_state=None, tol=0.0001,\ns0se=0)\n\n+t the labels and the cluster centers\n\n= model.labels_\n\nPRES)! Segre te ty or ee ere"
+  },
+  {
+    "text": "So, say for each experiment of the k-means algorithm you are doing 300 iterations alright.",
+    "start": 486.72,
+    "end": 494.0,
+    "ocr_text": "cis.data[:,:2], iris.target\n\n» and train model\n\nsters = 3\n\nKMeans(n_clusters=num_clusters)\n\nLt (X\n\nsopy_x=True, init='k-meanst++', max_iter=300, n_clusters=3, n_init=10,\nabs: precompute_distances='auto', random_state=None, tol=0.0001,\ns0se=0)\n\n+t the labels and the cluster centers\n\n= model.labels_\n\nPRES)! Segre te ty or ee ere"
+  },
+  {
+    "text": "So, n in it equal to 10 means that we are doing the same experiment 10 times alright with",
+    "start": 494.0,
+    "end": 499.6,
+    "ocr_text": "cis.data[:,:2], iris.target\n\n» and train model\n\nsters = 3\n\nKMeans(n_clusters=num_clusters)\n\nLt (X\n\nsopy_x=True, init='k-meanst++', max_iter=300, n_clusters=3, n_init=10,\nabs: precompute_distances='auto', random_state=None, tol=0.0001,\ns0se=0)\n\n+t the labels and the cluster centers\n\n= model.labels_\n\nPRES)! Segre te ty or ee ere"
+  },
+  {
+    "text": "different initializations and then we will choose the results of that particular experiment which",
+    "start": 499.6,
+    "end": 504.56,
+    "ocr_text": "cis.data[:,:2], iris.target\n\n» and train model\n\nsters = 3\n\nKMeans(n_clusters=num_clusters)\n\nLt (X\n\nsopy_x=True, init='k-meanst++', max_iter=300, n_clusters=3, n_init=10,\nabs: precompute_distances='auto', random_state=None, tol=0.0001,\ns0se=0)\n\n+t the labels and the cluster centers\n\n= model.labels_\n\nPRES)! Segre te ty or ee ere"
+  },
+  {
+    "text": "had the best results and this best results will be judged according to a particular metric which",
+    "start": 504.56,
+    "end": 510.0,
+    "ocr_text": "cis.data[:,:2], iris.target\n\n» and train model\n\nsters = 3\n\nKMeans(n_clusters=num_clusters)\n\nLt (X\n\nsopy_x=True, init='k-meanst++', max_iter=300, n_clusters=3, n_init=10,\nabs: precompute_distances='auto', random_state=None, tol=0.0001,\ns0se=0)\n\n+t the labels and the cluster centers\n\n= model.labels_\n\nPRES)! Segre te ty or ee ere"
+  },
+  {
+    "text": "is internally specified as you know the squared distances. So, the compactness of the clusters",
+    "start": 510.0,
+    "end": 517.84,
+    "ocr_text": "], iris.target\n\nDefine and train model\n\n[3]:\n\nt{3]:\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (x\n\nKMeans(copy_x=True, init='k-means++', max_iter=300, n_clusters=3, n_ini\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.000\nverbose=0) .\n\nExtract the labels and the cluster centers\n\nlabels = model.labels_\n\nPeAGsRe VD Wome Tit eG. MUM TGN Serr SUE TT ew an Wavy Cae OE Turner"
+  },
+  {
+    "text": "alright. So, how compact the clusters are. So, that with that experiment which gives you the",
+    "start": 517.84,
+    "end": 523.92,
+    "ocr_text": "], iris.target\n\nDefine and train model\n\n[3]:\n\nt{3]:\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (x\n\nKMeans(copy_x=True, init='k-means++', max_iter=300, n_clusters=3, n_ini\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.000\nverbose=0) .\n\nExtract the labels and the cluster centers\n\nlabels = model.labels_\n\nPeAGsRe VD Wome Tit eG. MUM TGN Serr SUE TT ew an Wavy Cae OE Turner"
+  },
+  {
+    "text": "most compact clusters are going to be is going to be taken as the considered as the best one and",
+    "start": 523.92,
+    "end": 531.44,
+    "ocr_text": "], iris.target\n\nDefine and train model\n\n[3]:\n\nt{3]:\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (x\n\nKMeans(copy_x=True, init='k-means++', max_iter=300, n_clusters=3, n_ini\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.000\nverbose=0) .\n\nExtract the labels and the cluster centers\n\nlabels = model.labels_\n\nPeAGsRe VD Wome Tit eG. MUM TGN Serr SUE TT ew an Wavy Cae OE Turner"
+  },
+  {
+    "text": "the results corresponding to that that will be used. The next the other you know the other variables",
+    "start": 531.44,
+    "end": 540.08,
+    "ocr_text": "], iris.target\n\nDefine and train model\n\n[3]:\n\nt{3]:\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (x\n\nKMeans(copy_x=True, init='k-means++', max_iter=300, n_clusters=3, n_ini\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.000\nverbose=0) .\n\nExtract the labels and the cluster centers\n\nlabels = model.labels_\n\nPeAGsRe VD Wome Tit eG. MUM TGN Serr SUE TT ew an Wavy Cae OE Turner"
+  },
+  {
+    "text": "can be like the descriptions of these variables are available in the official cycle learned",
+    "start": 540.08,
+    "end": 544.16,
+    "ocr_text": "], iris.target\n\nDefine and train model\n\n[3]:\n\nt{3]:\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (x\n\nKMeans(copy_x=True, init='k-means++', max_iter=300, n_clusters=3, n_ini\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.000\nverbose=0) .\n\nExtract the labels and the cluster centers\n\nlabels = model.labels_\n\nPeAGsRe VD Wome Tit eG. MUM TGN Serr SUE TT ew an Wavy Cae OE Turner"
+  },
+  {
+    "text": "documentation of k-means. So, after we have trained this algorithm let us see what all you know",
+    "start": 544.16,
+    "end": 553.36,
+    "ocr_text": "], iris.target\n\nDefine and train model\n\n[3]:\n\nt{3]:\n\nnum_clusters = 3\nmodel = KMeans(n_clusters=num_clusters)\nmodel. fit (x\n\nKMeans(copy_x=True, init='k-means++', max_iter=300, n_clusters=3, n_ini\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.000\nverbose=0) .\n\nExtract the labels and the cluster centers\n\nlabels = model.labels_\n\nPeAGsRe VD Wome Tit eG. MUM TGN Serr SUE TT ew an Wavy Cae OE Turner"
+  },
+  {
+    "text": "attributes this particular object has. So, this particular model has this particular attribute",
+    "start": 553.36,
+    "end": 560.08,
+    "ocr_text": "dabeis = model.iabeis_\néabeter=cwadetslabedael cluster _centers_\ncluster_centers =-model.cluster_centers_\n\n1\nBet ihe cus ers\n\nfe) ie clusters\nplt.scatter(Xf:,0}, X{+,1};c=labels-astype(npyfloat))\npit. nezaterdS[:,0], X[z,1],c=labels.astype(np.fioat))\npit: beddt2ryeluster centers[:,0], cluster _centers[{:,1], ¢\npit: saawter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(n\npit :Shavtar(x[:,0], X[:,1],c=np.choose(y,[0,2,1])-astype(np.float) )\nBit. ssabeer(X[+,0], X[{:,1],c=np.choose(y,[0,2,1]).astype(np.float))\n\nshow()\n\nssian Mixture Medel\n\nSIE eae\n\nnp.arange(n"
+  },
+  {
+    "text": "called labels underscore ok. So, this labels and labels underscore actually gives the cluster",
+    "start": 560.08,
+    "end": 565.68,
+    "ocr_text": "labels = model.labels_\ncluster_centers = model.cluster_centers_\n\nPlot the clusters\n\nplt.\nplt.\nplt.\nplt.\nplt.\nplt.\n\nscatter(X[:,0], X[:,1],c=labels.astype(np. float) )\nhold(True)\n\nscatter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(n\nshow()\n\nscatter(X[:,0], X[:,1],c=np.choose(y,[0,2,1]).astype(np.float) )\nshow()\n\nRaiccian Mivtiira hAndol"
+  },
+  {
+    "text": "index corresponding to every single training point alright. So, at the end of the clustering",
+    "start": 565.68,
+    "end": 571.76,
+    "ocr_text": "Extract the labels and the cluster centers\n\nlabels = model.labels_;\ncluster_centers = model.cluster_centers_\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np. float) )\nplt.hold(True)\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(n\nn1t.show()\n\nscatter(X[:,0], X[:,1],c=np.choose(y,[0,2,1]).astype(np.float) )\n\nBrrecian AAivtiira AAndal"
+  },
+  {
+    "text": "every point in the training site will be assigned a particular cluster and labels underscore will",
+    "start": 571.76,
+    "end": 576.24,
+    "ocr_text": "Extract the labels and the cluster centers\n\nlabels = model.labels_;\ncluster_centers = model.cluster_centers_\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np. float) )\nplt.hold(True)\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(n\nn1t.show()\n\nscatter(X[:,0], X[:,1],c=np.choose(y,[0,2,1]).astype(np.float) )\n\nBrrecian AAivtiira AAndal"
+  },
+  {
+    "text": "contain those clusters cluster you know those cluster numbers alright. So, I have the labels inside",
+    "start": 576.24,
+    "end": 582.8,
+    "ocr_text": "Extract the labels and the cluster centers\n\nlabels = model. labels |;\ncluster_centers = model.cluster_centers_\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np. float) )\nplt.hold(True)\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(n\nnlt.show()\nscatter(X[:,0], X[:,1],c=np.choose(y,[0,2,1]).astype(np.float) )\nhow()\n\nBKRrreecian AAivtiira AAndal"
+  },
+  {
+    "text": "this and also you can find the cluster centers say you wanted just like three you had three clusters",
+    "start": 582.8,
+    "end": 589.28,
+    "ocr_text": "Extract the labels and the cluster centers\n\nlabels = model. labels |;\ncluster_centers = model.cluster_centers_\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np. float) )\nplt.hold(True)\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(n\nnlt.show()\nscatter(X[:,0], X[:,1],c=np.choose(y,[0,2,1]).astype(np.float) )\nhow()\n\nBKRrreecian AAivtiira AAndal"
+  },
+  {
+    "text": "over here and you can find the cluster centers centers a center right. So, let us print out the",
+    "start": 589.28,
+    "end": 595.6,
+    "ocr_text": "Extract the labels and the cluster centers\n\nlabels = model.1labels_\ncluster_centers = model.clluster_centers_\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np.float) )\nplt.hold(True)\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(n\nn1t.show()\nscatter(X[:,0], X[:,1],c=np.choose(y,[0,2,1]).astype(np. float) )\nhow()\n\nBrrecian AAivtiira AAndal"
+  },
+  {
+    "text": "cluster centers cluster centers yep right and let us go ahead and execute this. So, you see we have",
+    "start": 595.6,
+    "end": 605.36,
+    "ocr_text": "Extract the labels and the cluster centers\n\nlabels = model.labels_\ncluster_centers = model.cluster_centers_\nprint clus\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np. float) )\nplt.hold(True)\n\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], ¢ = np.arange(n\nplt.show()\n\nplt.scatter(X[:,0], X[:,1],c=np.choose(y,[0,2,1]) .astype(np/eluster een\nplt.show() cluster_cen"
+  },
+  {
+    "text": "the labels inside this and these are the cluster centers ok these three one along each row.",
+    "start": 605.36,
+    "end": 610.96,
+    "ocr_text": "Extract the labels and the cluster centers\n\n[4]:\n\nlabels = model.labels_\ncluster_centers = model.cluster_centers_\nprint cluster_centers\n\n[[ 5.006 3.418\n[ 6.81276596 3.07446809]\n[ 5.77358491 2.69245283]]\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np.float) )\nplt.hold(True)\n\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], ¢\n\nplt.show()\n\n= np.arange(n\n\ner La ee 7 Se eee ee nl Pa"
+  },
+  {
+    "text": "Let us plot the clusters ok and this will be interesting. So, this is a simple like this",
+    "start": 611.6,
+    "end": 617.44,
+    "ocr_text": "Extract the labels and the cluster centers\n\n[4]:\n\nlabels = model.labels_\ncluster_centers = model.cluster_centers_\nprint cluster_centers\n\n[[ 5.006 3.418\n[ 6.81276596 3.07446809]\n[ 5.77358491 2.69245283]]\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np.float) )\nplt.hold(True)\n\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], ¢\n\nplt.show()\n\n= np.arange(n\n\ner La ee 7 Se eee ee nl Pa"
+  },
+  {
+    "text": "map plot lib.py plot kplt. So, this plt dot scatter alright. So, first we have",
+    "start": 618.0,
+    "end": 625.52,
+    "ocr_text": "7446809)\n9245283}]\n\nrs\n\n, X[:,1],c=labels.astype(np.float))\n\nr_centers[:,0], cluster_centers[:,1], c = np.arange(num clusters), marker = \"~\", s = 150\n\n, X[:,1],c=np.choose(y, [0,2,1]) -astype(np. float) )\n:\n\nxture Model"
+  },
+  {
+    "text": "doing a scatter plot of all the points in the training set with the labels as were predicted",
+    "start": 626.32,
+    "end": 633.92,
+    "ocr_text": "In [ ]:\n\n[ 681276596 3.07446809]\n[ 5.77358491 2.69245283]]\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np.float))\n\nplt.hold(True) e\n\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(num_cluster:\nplt.show()\n\nplt.scatter(X[:,0], X[:,1],c=np.choose(y,[0,2,1]).astype(np. float) )\n\nplt.show()\n\nGaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function"
+  },
+  {
+    "text": "by the k-means algorithm and then we are marking the cluster centers there and then we",
+    "start": 633.92,
+    "end": 640.8,
+    "ocr_text": "In [ ]:\n\n[ 681276596 3.07446809]\n[ 5.77358491 2.69245283]]\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np.float))\n\nplt.hold(True) e\n\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(num_cluster:\nplt.show()\n\nplt.scatter(X[:,0], X[:,1],c=np.choose(y,[0,2,1]).astype(np. float) )\n\nplt.show()\n\nGaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function"
+  },
+  {
+    "text": "are doing a doing the same like we are plotting out what the ground truth labels look like. So,",
+    "start": 641.28,
+    "end": 647.36,
+    "ocr_text": "[ 6.81276596 3.07446809]\n[ 5.77358491 2.69245283]]\n\nIn [ ]:\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np.float) )\nplt.hold(tTrue)\n\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(num_cluste\nplt.show()\n\nplt.scatter(X[:,0],.:X[,1],c=np.choose(y,[0,2,1]).astype(np. float) )\n\nplt.show()\n\nGaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function"
+  },
+  {
+    "text": "let us go ahead and see how this thing works. So, you see let us look at the first",
+    "start": 647.36,
+    "end": 652.08,
+    "ocr_text": "50\n\n45\n\n40\n\n80\n\n45\n\nhat os .\na i :\n.\n.\na"
+  },
+  {
+    "text": "diagram. So, in this case you can see that in this diagram you can see that the three the",
+    "start": 652.64,
+    "end": 657.6,
+    "ocr_text": "50\n\n45\n\n40\n\n80\n\n45\n\nhat os .\na i :\n.\n.\na"
+  },
+  {
+    "text": "data points were actually divided into three clusters ok and these big triangles these are the",
+    "start": 657.6,
+    "end": 664.48,
+    "ocr_text": "plt.scatter(x,\n\nplt.show()\n\n50\n\n45\n\n40\n\n35\n\n30\n\n25\n\n20\n\n50\n\n4s\n\nyee See ee\n\n50. 55 60 65\n\n70\n\n75\n\n80"
+  },
+  {
+    "text": "cluster centroids that were obtained ok. These are the original labels and you can see that",
+    "start": 664.48,
+    "end": 674.88,
+    "ocr_text": "plt.scatter(x,\n\nplt.show()\n\n50\n\n45\n\n40\n\n35\n\n30\n\n25\n\n20\n\n50\n\n4s\n\nyee See ee\n\n50. 55 60 65\n\n70\n\n75\n\n80"
+  },
+  {
+    "text": "this kevins algorithm could successfully cluster out all the class 0 points into one cluster",
+    "start": 674.88,
+    "end": 682.48,
+    "ocr_text": "30\n\n25\n\n20\n\n15,\n\n50\n\n45\n\n40\n\n35\n\n30\n\n25\n\n20\n\n1s.\n\nfp 8\n0g * 880 ow oe 0; 00, 00\n3 . i bs 171 ar arg\nae phe’. °\n* ire oe\n45.50 55 60 65 70 75 80\neo\noo"
+  },
+  {
+    "text": "as would typically the ksb. However, since class 2 and class like class 1 and class 2 they were",
+    "start": 682.48,
+    "end": 690.32,
+    "ocr_text": "ey here\nsth o” 0\noe Be thagese\n“ie\n\n0 0\n30\n\n25 . i\n« &\n20\n\n15,\n\n50\n\n4s\n\n40\n\n35\n\n30\n\na5"
+  },
+  {
+    "text": "all mixed up right. So, it could not you know properly detect both the classes due to the overlap",
+    "start": 690.32,
+    "end": 697.92,
+    "ocr_text": "15,\n“4.\n\n50\n\n4s\n\n40\n\n35\n\n30\n\n25\n\n20\n\n15,\n40. 445 50 55 60 65 70 75 80 85"
+  },
+  {
+    "text": "and hence there is some inaccuracy over here. So, you can see that how the clustering performs",
+    "start": 698.88,
+    "end": 705.04,
+    "ocr_text": "15,\n\n50\n\n4s\n\n40\n\n35 :\n\nce a\n8 Fee\n\naol og *8te geben tat ee, 2°"
+  },
+  {
+    "text": "right and this this comparison actually reflects that the clustering is doing something meaningful.",
+    "start": 705.04,
+    "end": 711.04,
+    "ocr_text": "as\n\n30\n\n25\n\n20\n\n50\n\n4s\n\n40\n\n35\n\n30\n\n25\n\n20\n\n° °\n\nMey «ey\n3 inf snes\n3\n\n45.50 55 60 65 70 75 80\n\n.\n.\nfF on!\nTee a Steet\n\na0 Pe\"\nLd . oe"
+  },
+  {
+    "text": "So, the objects or the samples of the same class are being clustered into one cluster you can see.",
+    "start": 711.04,
+    "end": 718.88,
+    "ocr_text": "as\n\n30\n\n25\n\n20\n\n50\n\n4s\n\n40\n\n35\n\n30\n\n25\n\n20\n\n° °\n\nMey «ey\n3 inf snes\n3\n\n45.50 55 60 65 70 75 80\n\n.\n.\nfF on!\nTee a Steet\n\na0 Pe\"\nLd . oe"
+  },
+  {
+    "text": "So, all of these samples they belong to one particular class according to the ground truth",
+    "start": 718.88,
+    "end": 723.12,
+    "ocr_text": "as\n\n30\n\n25\n\n20\n\n50\n\n4s\n\n40\n\na5\n\n30\n\n0g\n\n.\nog 388 * Hong\n+ 32> 8°\n. bs\n45 5.0 55 60 65 70 1s 80\n.\n;\nLet\n: ce 7 oo\nPd en ee\n0g Pate gy Ogg, Fogdoe oe,\n© BE °BBgng08°°"
+  },
+  {
+    "text": "and they were all put into one single cluster in by the kevins clustering algorithm right.",
+    "start": 723.12,
+    "end": 729.36,
+    "ocr_text": "as\n\n30\n\n25\n\n20\n\n50\n\n4s\n\n40\n\na5\n\n30\n\n0g\n\n.\nog 388 * Hong\n+ 32> 8°\n. bs\n45 5.0 55 60 65 70 1s 80\n.\n;\nLet\n: ce 7 oo\nPd en ee\n0g Pate gy Ogg, Fogdoe oe,\n© BE °BBgng08°°"
+  },
+  {
+    "text": "And these clusters are also like kind of homogeneous right. Most of the green samples they",
+    "start": 729.36,
+    "end": 735.84,
+    "ocr_text": "35\n\n‘. . 8,\n30 «3? ae ee,\n25\n.\n20\n15, ee\n\n50\n4s\n40\n\n35 7\n\n°°,\n\n‘tbe\n3-8\n\naol og 288s i 48508\n\n°\n\n25 oe"
+  },
+  {
+    "text": "reside in this part and they have been marked properly right. Let us go ahead to Gaussian",
+    "start": 735.84,
+    "end": 742.88,
+    "ocr_text": "15,\n\n50\n\n45\n\n40\n\n35\n\n30\n\n25\n\n°\noe\n8 iF .3,,\n\nithe ee eo, 0\n” Be8\n\n°\n°\n°"
+  },
+  {
+    "text": "mixture model. Let us go ahead and first like gc of what how things change when we change the",
+    "start": 742.96,
+    "end": 749.2,
+    "ocr_text": "15,\n\n50\n\n45\n\n40\n\n35\n\n30\n\n25\n\n°\noe\n8 iF .3,,\n\nithe ee eo, 0\n” Be8\n\n°\n°\n°"
+  },
+  {
+    "text": "number of clusters. Let us make it 8 and we retrain let us execute this part. So, now you can see",
+    "start": 749.2,
+    "end": 757.36,
+    "ocr_text": "Define and train model\n\nIn [3]: | num_clusters = |\nmodel = KMeans(n_clusters=num_clusters)\nmodel. £it(X)\n\nOut[3]: KMeans(copy _x=True, init='k-means++', max_iter=300, n_clusters=3, n_init=10,\nn_jobs=1, precompute_distances='auto', random_state=None, tol=0.0001,\nverbose=0)\n\nExtract the labels and the cluster centers\n\nIn [4]: | labels = model.labels_\n\ncluster_centers = model.cluster_centers_\nprint cluster_centers\n\n[LE 5.006 3.418 1\n[ 6.81276596 3.07446809]"
+  },
+  {
+    "text": "that there are 8 cluster centers and let us plot the clusters again c. The same ground truth",
+    "start": 757.36,
+    "end": 765.36,
+    "ocr_text": "2.33333333)\n3.13793103]\n5238095 3.52857143]]\n\n9\n6\n1\n\nIn [5]:\n\nPlot the clusters\n\nplt.scatter(X[:,0], X[:,1],c=labels.astype(np. float) )\nplt.hold(True)\n\nplt.scatter(cluster_centers[:,0], cluster_centers[:,1], c = np.arange(num_cluste\nplt.show()\n\nplt.scatter(X[:,0], X[:,1],c=np.choose(y,[0,2,1]).astype(np.float) )\n\nplt.show()\n\n50\n\n45\n\n40\n\n35"
+  },
+  {
+    "text": "is here. But now the clusters are there are large number of clusters and you can see that these",
+    "start": 765.44,
+    "end": 773.12,
+    "ocr_text": "15,\n\n50\n\n4s\n\n40\n\nae"
+  },
+  {
+    "text": "points have been clustered together like these together these together all of these are different",
+    "start": 773.12,
+    "end": 776.56,
+    "ocr_text": "15,\n\n50\n\n4s\n\n40\n\nae"
+  },
+  {
+    "text": "clusters and their corresponding cluster centers are marked right. So, this is how kevins",
+    "start": 776.56,
+    "end": 783.2,
+    "ocr_text": "15,\n\n50\n\n50\n\n35\n\n60\n\n65\n\n70\n\n75\n\na0 85\n\n4s\n\n40\n\nas"
+  },
+  {
+    "text": "algorithm works. Kevins algorithm is one of the most you know widely used clustering algorithms",
+    "start": 783.2,
+    "end": 790.88,
+    "ocr_text": "15,\n\n50\n\n50\n\n35\n\n60\n\n65\n\n70\n\n75\n\na0 85\n\n4s\n\n40\n\nas"
+  },
+  {
+    "text": "in literature and it happens to perform really good in most scenarios ok.",
+    "start": 790.96,
+    "end": 799.12,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]:| def make_ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate('rgb'):"
+  },
+  {
+    "text": "A pretty good algorithm to work on to just begin with if you are doing clustering.",
+    "start": 799.12,
+    "end": 804.0,
+    "ocr_text": "Gaussian Mixture Model\nExar taken tom brn\n\nDefine a visualization function\n\n[iceidl claiiniait erect vesialion triliciin ciedl tec"
+  },
+  {
+    "text": "Let us look at Gaussian mixture models next and yeah this is completely like copy-based it from",
+    "start": 804.88,
+    "end": 809.52,
+    "ocr_text": "Gaussian Mixture Model\nExar taken tom brn\n\nDefine a visualization function\n\n[iceidl claiiniait erect vesialion triliciin ciedl tec"
+  },
+  {
+    "text": "another like standard tutorial from the official scikit-learn website and with little",
+    "start": 810.32,
+    "end": 818.16,
+    "ocr_text": "In [\n\nio asso 356065 70 75 a0 85\n\nGaussian Mixture Model\nExample taken from here.\n\nDefine a visualization function\n\ndef make _ellipses(gmm, ax):\n\nVisualize the ga\n\nians in a GMM as ellipses\n\nfor n, color in enunerate(‘rgb'):\nv, w = np.linalg.eigh(gnm._get_covars()(n]{+2, +21)\nu'= w[0} / np-1inalg.norm(w{0})\nangle = np.arctan2(u{1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\na0\nell = mpl.patches.£llipse(gmm.means_(n, :2], v0], vil],\n\n180 + angle, color-color)\n\nell.set_clip_box(ax.bbox)\nell.set_alpha(0.5)\nax.add_artist(ell)"
+  },
+  {
+    "text": "modifications and comments here and there. So, you can actually look up this link and find",
+    "start": 818.16,
+    "end": 823.28,
+    "ocr_text": "gas _s0 3560657075 8085\n\nGaussian Mixture Model\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, ax):\n\nVisualize the ga\nfor n, color in enumerate('rgb'):\n\nv, w= np-linalg.eigh(gmm._get_covars()(n]{+2, :2})\n\nu = w[0] / np-1inalg.norm(w[01)\n\nangle = np.arctan2(u{1), u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv9\n\nell = mpl.patches.E1lipse(gmm.means_{n, :2], v{0l, vil],\n\n180 + angle, color-color)\n\nians in a GMM as ellipses\n\nel1.set_clip_box(ax.bbox)\nel1.set_alpha(0.5)\nax.add_artist(ell)"
+  },
+  {
+    "text": "the actual one and I chose this because these scales are really wonderful visualization of how",
+    "start": 823.28,
+    "end": 828.8,
+    "ocr_text": "gas _s0 3560657075 8085\n\nGaussian Mixture Model\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, ax):\n\nVisualize the ga\nfor n, color in enumerate('rgb'):\n\nv, w= np-linalg.eigh(gmm._get_covars()(n]{+2, :2})\n\nu = w[0] / np-1inalg.norm(w[01)\n\nangle = np.arctan2(u{1), u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv9\n\nell = mpl.patches.E1lipse(gmm.means_{n, :2], v{0l, vil],\n\n180 + angle, color-color)\n\nians in a GMM as ellipses\n\nel1.set_clip_box(ax.bbox)\nel1.set_alpha(0.5)\nax.add_artist(ell)"
+  },
+  {
+    "text": "what things how things actually work while you are working using with real working with gmms.",
+    "start": 828.8,
+    "end": 834.8,
+    "ocr_text": "In dt\n\nGaussian Mixture Model\nExample taken from here.\n\nDefine a visualization function {]\n\ndef make ellipses(gmm, ax):\n\nfor\n\njalize the gaussians in a GMM as ellipses\n\na, color in enumerate('rgb'):\n\nv, w = np.linalg.eigh(gnm._get_covars(){n][:2, :2])\n\nu/= w[0] / np.1inalg-norm(w[0])\n\nangle = np.arctan2(u{1], uf0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nvtno\n\nell = mpl.patches.£1lipse(gnm.means_(n, :2], v{0], vil],\n180 + angle, color-color)\n\nell.set_clip_box(ax.bbox)\n\nt_alpha(0.5)"
+  },
+  {
+    "text": "So, first what our our motivation here is to see how Gaussian mixture models work. So,",
+    "start": 834.8,
+    "end": 840.64,
+    "ocr_text": "In dt\n\nGaussian Mixture Model\nExample taken from here.\n\nDefine a visualization function {]\n\ndef make ellipses(gmm, ax):\n\nfor\n\njalize the gaussians in a GMM as ellipses\n\na, color in enumerate('rgb'):\n\nv, w = np.linalg.eigh(gnm._get_covars(){n][:2, :2])\n\nu/= w[0] / np.1inalg-norm(w[0])\n\nangle = np.arctan2(u{1], uf0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nvtno\n\nell = mpl.patches.£1lipse(gnm.means_(n, :2], v{0], vil],\n180 + angle, color-color)\n\nell.set_clip_box(ax.bbox)\n\nt_alpha(0.5)"
+  },
+  {
+    "text": "let me give you a quick you know explanation of what Gaussian mixture models how Gaussian",
+    "start": 840.64,
+    "end": 846.48,
+    "ocr_text": "Define a visualization function\n\ndef make ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellipses\nfor n, color in enunerate('rgb\")\nv, w = np.linalg.eigh(gmm._get_covars()[n][+2, 121)\nu'= w[0} / np-1inalg.norm(w{0})\nangle = np.arctan2(u(1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\nven\nell = mpl.patches.E1lipse(gmm.means_{n, :2], v{0], v{1],\n180 + angle, color-color)\ne1l.set_clip_box(ax.bbox)\nell-set_alpha(0.5)\nax.add_artist(el1)\n\n>d dataset and make training and test splits\n\ndatasets. load_iris()\n\nup the dataset into non-overlapping training (75%) and testing\n8) sets.\n‘= StratifiedKFold(iris.target, n folds=4)"
+  },
+  {
+    "text": "mixture models work. So, the idea is to the motivation is to like approximate a particular",
+    "start": 846.48,
+    "end": 853.68,
+    "ocr_text": "Define a visualization function\n\ndef make ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellipses\nfor n, color in enunerate('rgb\")\nv, w = np.linalg.eigh(gmm._get_covars()[n][+2, 121)\nu'= w[0} / np-1inalg.norm(w{0})\nangle = np.arctan2(u(1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\nven\nell = mpl.patches.E1lipse(gmm.means_{n, :2], v{0], v{1],\n180 + angle, color-color)\ne1l.set_clip_box(ax.bbox)\nell-set_alpha(0.5)\nax.add_artist(el1)\n\n>d dataset and make training and test splits\n\ndatasets. load_iris()\n\nup the dataset into non-overlapping training (75%) and testing\n8) sets.\n‘= StratifiedKFold(iris.target, n folds=4)"
+  },
+  {
+    "text": "probability distribution all right. So, you have some probability distribution which goes this way",
+    "start": 853.68,
+    "end": 859.2,
+    "ocr_text": "Define a visualization function\n\ndef make ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellipses\nfor n, color in enunerate('rgb\")\nv, w = np.linalg.eigh(gmm._get_covars()[n][+2, 121)\nu'= w[0} / np-1inalg.norm(w{0})\nangle = np.arctan2(u(1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\nven\nell = mpl.patches.E1lipse(gmm.means_{n, :2], v{0], v{1],\n180 + angle, color-color)\ne1l.set_clip_box(ax.bbox)\nell-set_alpha(0.5)\nax.add_artist(el1)\n\n>d dataset and make training and test splits\n\ndatasets. load_iris()\n\nup the dataset into non-overlapping training (75%) and testing\n8) sets.\n‘= StratifiedKFold(iris.target, n folds=4)"
+  },
+  {
+    "text": "and you want to fit curve to that distribution all right and say the distribution like looks like",
+    "start": 859.2,
+    "end": 867.36,
+    "ocr_text": "Define a visualization function\n\ndef make ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellipses\nfor n, color in enunerate('rgb\")\nv, w = np.linalg.eigh(gmm._get_covars()[n][+2, 121)\nu'= w[0} / np-1inalg.norm(w{0})\nangle = np.arctan2(u(1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\nven\nell = mpl.patches.E1lipse(gmm.means_{n, :2], v{0], v{1],\n180 + angle, color-color)\ne1l.set_clip_box(ax.bbox)\nell-set_alpha(0.5)\nax.add_artist(el1)\n\n>d dataset and make training and test splits\n\ndatasets. load_iris()\n\nup the dataset into non-overlapping training (75%) and testing\n8) sets.\n‘= StratifiedKFold(iris.target, n folds=4)"
+  },
+  {
+    "text": "a hillitarian and that can be approximated as you know a linear combination of several Gaussian",
+    "start": 867.36,
+    "end": 875.12,
+    "ocr_text": "Define a visualization function\n\ndef make ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellipses\nfor n, color in enunerate('rgb\")\nv, w = np.linalg.eigh(gmm._get_covars()[n][+2, 121)\nu'= w[0} / np-1inalg.norm(w{0})\nangle = np.arctan2(u(1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\nven\nell = mpl.patches.E1lipse(gmm.means_{n, :2], v{0], v{1],\n180 + angle, color-color)\ne1l.set_clip_box(ax.bbox)\nell-set_alpha(0.5)\nax.add_artist(el1)\n\n>d dataset and make training and test splits\n\ndatasets. load_iris()\n\nup the dataset into non-overlapping training (75%) and testing\n8) sets.\n‘= StratifiedKFold(iris.target, n folds=4)"
+  },
+  {
+    "text": "distributions okay. It is better explained on paper but I do not have one now. So, I will be doing",
+    "start": 875.12,
+    "end": 881.12,
+    "ocr_text": "Define a visualization function\n\ndef make ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellipses\nfor n, color in enunerate('rgb\")\nv, w = np.linalg.eigh(gmm._get_covars()[n][+2, 121)\nu'= w[0} / np-1inalg.norm(w{0})\nangle = np.arctan2(u(1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\nven\nell = mpl.patches.E1lipse(gmm.means_{n, :2], v{0], v{1],\n180 + angle, color-color)\ne1l.set_clip_box(ax.bbox)\nell-set_alpha(0.5)\nax.add_artist(el1)\n\n>d dataset and make training and test splits\n\ndatasets. load_iris()\n\nup the dataset into non-overlapping training (75%) and testing\n8) sets.\n‘= StratifiedKFold(iris.target, n folds=4)"
+  },
+  {
+    "text": "it in the tutorial session. So, Gaussian mixture model is all about fitting a particular distribution",
+    "start": 881.12,
+    "end": 887.04,
+    "ocr_text": "Define a visualization function\n\ndef make ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellipses\nfor n, color in enunerate('rgb\")\nv, w = np.linalg.eigh(gmm._get_covars()[n][+2, 121)\nu'= w[0} / np-1inalg.norm(w{0})\nangle = np.arctan2(u(1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\nven\nell = mpl.patches.E1lipse(gmm.means_{n, :2], v{0], v{1],\n180 + angle, color-color)\ne1l.set_clip_box(ax.bbox)\nell-set_alpha(0.5)\nax.add_artist(el1)\n\n>d dataset and make training and test splits\n\ndatasets. load_iris()\n\nup the dataset into non-overlapping training (75%) and testing\n8) sets.\n‘= StratifiedKFold(iris.target, n folds=4)"
+  },
+  {
+    "text": "using a mixture of Gaussian's a linear combination of several Gaussian distributions and the algorithm",
+    "start": 887.04,
+    "end": 895.44,
+    "ocr_text": "Define a visualization function\n\ndef make ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellipses\nfor n, color in enunerate('rgb\")\nv, w = np.linalg.eigh(gmm._get_covars()[n][+2, 121)\nu'= w[0} / np-1inalg.norm(w{0})\nangle = np.arctan2(u(1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\nven\nell = mpl.patches.E1lipse(gmm.means_{n, :2], v{0], v{1],\n180 + angle, color-color)\ne1l.set_clip_box(ax.bbox)\nell-set_alpha(0.5)\nax.add_artist(el1)\n\n>d dataset and make training and test splits\n\ndatasets. load_iris()\n\nup the dataset into non-overlapping training (75%) and testing\n8) sets.\n‘= StratifiedKFold(iris.target, n folds=4)"
+  },
+  {
+    "text": "is trained by or the model is trained that is the parameters of the model are learned from data",
+    "start": 895.44,
+    "end": 901.36,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "using a particular algorithm which is called the expectation maximization algorithm okay and",
+    "start": 901.36,
+    "end": 905.92,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "which is an efficient and an efficient way of doing an approximate maximum likelihood estimation",
+    "start": 905.92,
+    "end": 915.6,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "all right. So, all of these theoretical details have already might already be covered in class",
+    "start": 915.6,
+    "end": 919.92,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "or else you can look up the web and find out why these things are. So, so what we will be doing",
+    "start": 919.92,
+    "end": 927.6,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "here is we will be like we have a data set right. The data set is that of handwritten characters",
+    "start": 927.68,
+    "end": 935.2,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "handwritten digits okay and from the handwritten digits data set you have to detect in that handwritten",
+    "start": 935.2,
+    "end": 944.08,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "digit data set you have to like run a class training algorithm and try to separate out the",
+    "start": 944.08,
+    "end": 950.56,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "different kinds of digits all right and we will see in a minute how Gaussian mixture model",
+    "start": 950.56,
+    "end": 955.52,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "performs in that particular scenario. So, what we will do it will like try to fit",
+    "start": 955.52,
+    "end": 961.52,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "Gaussian's over different areas of the input space and then try to model the entire",
+    "start": 962.08,
+    "end": 969.92,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "probability distribution as a linear combination of those Gaussian distributions okay.",
+    "start": 969.92,
+    "end": 975.52,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function\n\nIn [ ]: def make_ellipses(gmm, bx):\n\nVisualize the gaussians in a GMM as ellipses\n\nfor n, color in enumerate(‘rgb'):\n\nVv, w= np.linalg.eigh(gmm._get_covars()[n][+2, :21)\n\nu = w[0] / np.linalg.norm(w[01)\n\nangle = np.arctan2(u{1], u{0])\n\nangle = 180 * angle / np.pi # convert to degrees\n\nv=o\n\nell = mpl.patches.Ellipse(gmm.means_(n, :2], v{0l, vi11,\n180 + angle, color-color)\n\ne11.set_clip_box(ax.bbox)\n\ne11.set_alpha(0.5)\n\nax.add_artist (ell)\n\nLoad dataset and make training and test splits"
+  },
+  {
+    "text": "So, finally we will have a nice visualization of how things work I am sorry we won't be working",
+    "start": 975.52,
+    "end": 983.76,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function"
+  },
+  {
+    "text": "on digits in this particular section okay we will be working with digits in the next section okay.",
+    "start": 983.76,
+    "end": 988.88,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function"
+  },
+  {
+    "text": "Here we will be working on right only on the iris data only okay. So, the same iris data that we",
+    "start": 988.88,
+    "end": 994.72,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function"
+  },
+  {
+    "text": "had in the previous case all right and we will be fitting Gaussian's on each of these classes",
+    "start": 994.72,
+    "end": 1001.84,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function"
+  },
+  {
+    "text": "all right and checking how the system works all right we will be working with digits in the",
+    "start": 1001.84,
+    "end": 1006.0,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function"
+  },
+  {
+    "text": "hierarchical clustering because that makes things much more interesting all right let us go ahead.",
+    "start": 1006.0,
+    "end": 1010.8,
+    "ocr_text": "Gaussian Mixture Model\n\nExample taken from here.\n\nDefine a visualization function"
+  },
+  {
+    "text": "So, this is a function which makes this make ellipses function this gives a nice visualization",
+    "start": 1011.76,
+    "end": 1017.84,
+    "ocr_text": "In [ ]: ef make_ellipses(gmm, ax):\n\nVisualize the gau:\n\nans in a GMM\n\nellipses\n\nfor n, color in enumerate(‘rgb'):\nv, w= np.linalg.eigh(gmm._get_covars(){nJ(:2, :2])\nul= w(0] / np-linalg.norm(w{01)\nangle = np.arctan2(u{1], u{0])\nangle = 180 * angle / np.pi # convert to degrees\nvte9\nell = mpl.patches.Ellipse(gmm.means_{n, :2], v{0l vil],\n\n180 + angle, color=color)\n\nell.set_clip_box(ax.bbox)\ne11.set_alpha(0.5)\nax.add_artist (ell)\n\nLoad dataset and make training and test splits\n\nIn [ ]:| iris = datasets.load_iris()\n\n# Break up the dataset into non-overlapping training (75%) and testing\n# (258) sets.\n\nkf = StratifiedkFold(iris.target, n_folds=4)\n\n# only take the first fold.\n\ntrain_index, teet_index = next(iter(sk£))"
+  },
+  {
+    "text": "of Gaussian's all right and let us first compile this function you can go ahead and see how this",
+    "start": 1017.84,
+    "end": 1025.28,
+    "ocr_text": "In [ ]: ef make_ellipses(gmm, ax):\n\nVisualize the gau:\n\nans in a GMM\n\nellipses\n\nfor n, color in enumerate(‘rgb'):\nv, w= np.linalg.eigh(gmm._get_covars(){nJ(:2, :2])\nul= w(0] / np-linalg.norm(w{01)\nangle = np.arctan2(u{1], u{0])\nangle = 180 * angle / np.pi # convert to degrees\nvte9\nell = mpl.patches.Ellipse(gmm.means_{n, :2], v{0l vil],\n\n180 + angle, color=color)\n\nell.set_clip_box(ax.bbox)\ne11.set_alpha(0.5)\nax.add_artist (ell)\n\nLoad dataset and make training and test splits\n\nIn [ ]:| iris = datasets.load_iris()\n\n# Break up the dataset into non-overlapping training (75%) and testing\n# (258) sets.\n\nkf = StratifiedkFold(iris.target, n_folds=4)\n\n# only take the first fold.\n\ntrain_index, teet_index = next(iter(sk£))"
+  },
+  {
+    "text": "function works but this is not really related to this to the main objective of this lecture.",
+    "start": 1025.28,
+    "end": 1030.4,
+    "ocr_text": "In [9]: | def make_ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellips\n\nfor n, color in enumerate('rgb'):\nv, w = np.linalg.eigh(gmm._get_covars(){n][+2, :2])\nu = w[0] / np.linalg.norm(w[0])\nangle = np-arctan2(u(1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\nvino\ne11 = mpl.patches.Ellipse(gmm.means_(n, :2], v{01, v1],\n\n180 + angle, color=color)\n\nel1.set_clip_box(ax.bbox)\nel1.set_alpha(0.5)\nax.add_artist(el1)\n\nLoad dataset and make training and test splits\n\nIn [ ]: iris = datasets.load_iris()\n\n# Break up the dataset into non-overlapping training (75%) and testing\n# (258) sets.\n\nskf = StratifiedKFold(iris.target, n_folds:\n# only take the first fold.\n\ntrain_index, test_index = next(iter(sk£))"
+  },
+  {
+    "text": "Let us go ahead and load the data set and make training and test bits pretty straightforward",
+    "start": 1031.36,
+    "end": 1037.36,
+    "ocr_text": "In [9]: | def make_ellipses(gmm, ax):\n\nVisualize the gaussians in a GMM as ellips\n\nfor n, color in enumerate('rgb'):\nv, w = np.linalg.eigh(gmm._get_covars(){n][+2, :2])\nu = w[0] / np.linalg.norm(w[0])\nangle = np-arctan2(u(1}, u{0])\nangle = 180 * angle / np.pi # convert to degrees\nvino\ne11 = mpl.patches.Ellipse(gmm.means_(n, :2], v{01, v1],\n\n180 + angle, color=color)\n\nel1.set_clip_box(ax.bbox)\nel1.set_alpha(0.5)\nax.add_artist(el1)\n\nLoad dataset and make training and test splits\n\nIn [ ]: iris = datasets.load_iris()\n\n# Break up the dataset into non-overlapping training (75%) and testing\n# (258) sets.\n\nskf = StratifiedKFold(iris.target, n_folds:\n# only take the first fold.\n\ntrain_index, test_index = next(iter(sk£))"
+  },
+  {
+    "text": "let us go ahead to the next section in this we are going to compare different kinds of Gaussian",
+    "start": 1038.16,
+    "end": 1044.72,
+    "ocr_text": "n_classes = len(np.unique(y_train))\n\nIn [ }t\n\nTrain and compare different GMMs\n\n# Try GNMs using different types of covariances.\n\nclassifiers = dict((covar_type, GHM(n_components=n_classes,\ncovariance_type=covar_type, init_params='we'\nfor covar_type in ['spherical', ‘diag’, ‘tied’, ‘full'})\n\nn_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nfor index, (name, classifier) in enumerate(classifiers.items()):\n# Since we have class labels for the training data, we can\n# initialize the GMM parameters in a supervised manner.\nclassifier.means_ = np.array({X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes)})\n\n¥# Train the other parameters using the EM algorithm.\nclassifier. fit(x train)\n\nSa A pag ol"
+  },
+  {
+    "text": "mission models all right and let us first execute the code and then I will talk about it it takes",
+    "start": 1044.72,
+    "end": 1051.28,
+    "ocr_text": "n_classes = len(np.unique(y_train))\n\nIn [ }t\n\nTrain and compare different GMMs\n\n# Try GNMs using different types of covariances.\n\nclassifiers = dict((covar_type, GHM(n_components=n_classes,\ncovariance_type=covar_type, init_params='we'\nfor covar_type in ['spherical', ‘diag’, ‘tied’, ‘full'})\n\nn_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nfor index, (name, classifier) in enumerate(classifiers.items()):\n# Since we have class labels for the training data, we can\n# initialize the GMM parameters in a supervised manner.\nclassifier.means_ = np.array({X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes)})\n\n¥# Train the other parameters using the EM algorithm.\nclassifier. fit(x train)\n\nSa A pag ol"
+  },
+  {
+    "text": "some time to run okay. So, it is here right here. So, what you see here is the performance of",
+    "start": 1051.28,
+    "end": 1058.0,
+    "ocr_text": "In [*]:\n\n# Try GMMs using different types of covariances.\n\nclassifiers = dict((covar_type, GMM(n_components:\ncovariance type=covar_type, init_params='we', n_iter=20))\nfor covar_type in ['spherical', ‘diag’, ‘tied’, ‘£ull'])\n\nn_classifiers = 1en(classifiers)\n\nplt.figure(figsize=(2*3 * n classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nfor index, (name, classifier) in enumerate(classifiers.items()):\n# since we have class labels for the training data, we can\n# initialize the GMM parameters in a supervised manner.\nclassifier-means_ = np.array((X_train{y_train == i).mean(axis-0)\nfor i in xrange(n_classes)])\n\n# Train the other parameters using the EM algorithm.\nclassifier. fit(x_train)\n\nh = plt.subplot(2, n_classifiers / 2, index + 1)\nmake_ellipses(classifier, h)\n\nfor n, color in enunerate('rgb'):\ndata = iris.data[iris.target == n)\nRe Mg ee ary eat re a en"
+  },
+  {
+    "text": "different kinds of Gaussian's. So, what do you see here let us consider it on one. So, these are",
+    "start": 1058.0,
+    "end": 1062.32,
+    "ocr_text": "spherical\n\n‘Train accuracy: 88.3\n\nTest accuracy: 92.3\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "the you know the same iris data set all right and these are the three Gaussian's that are being",
+    "start": 1062.32,
+    "end": 1072.4,
+    "ocr_text": "spherical\n\n‘Train accuracy: 88.3\n\nTest accuracy: 92.3\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "fit over here all right and these circles are actually like kind of contours and gives the",
+    "start": 1072.4,
+    "end": 1081.04,
+    "ocr_text": "‘Train accuracy: 88.3 Train accuracy: 88.3\n\nTest accuracy: 92.3 Test accuracy: 94.9"
+  },
+  {
+    "text": "shape of the two dimensional contour of the Gaussian okay and the bigger crosses they are the test",
+    "start": 1081.84,
+    "end": 1089.28,
+    "ocr_text": "‘Train accuracy: 88.3 Train accuracy: 88.3\n\nTest accuracy: 92.3 Test accuracy: 94.9"
+  },
+  {
+    "text": "data okay. So, on the smaller ones are the twin data. So, what we are doing here is we are trying",
+    "start": 1089.28,
+    "end": 1097.76,
+    "ocr_text": "TATA\n\n>\n\n‘Train accuracy: 88.3 Train accuracy: 88.3\n\nTest accuracy: 92.3 Test accuracy: 94.9"
+  },
+  {
+    "text": "to compare the effect of using different kinds of Gaussian's different kinds of like covariance",
+    "start": 1097.76,
+    "end": 1104.64,
+    "ocr_text": "accuracy: 92.3 .\n. Test accuracy: 94.9"
+  },
+  {
+    "text": "matrices of those Gaussian's all right. A spherical covariance matrix will give rise to this kind",
+    "start": 1104.64,
+    "end": 1112.72,
+    "ocr_text": "accuracy: 92.3 .\n. Test accuracy: 94.9"
+  },
+  {
+    "text": "of clusters and this one is for a diagonal covariance matrix and if you have a full covariance",
+    "start": 1112.72,
+    "end": 1120.56,
+    "ocr_text": "Train accuracy: 88.3 Train accuracy: 88.3\n\nTest accuracy: 92.3 Test accuracy: 94.9"
+  },
+  {
+    "text": "matrix it will be this way and if you have a tired covariance matrix then you will have this kind",
+    "start": 1120.56,
+    "end": 1127.28,
+    "ocr_text": "Test accuracy: 87.2 Test."
+  },
+  {
+    "text": "of clusters. Now, let me tell you what these mean actually. So, a spherical covariance matrix",
+    "start": 1127.28,
+    "end": 1136.64,
+    "ocr_text": "Train accuracy: 95.5,\n\nTest accuracy: 100.0\n\nsetosa\nversicolor\nvirginica"
+  },
+  {
+    "text": "means that the covariance matrix will be diagonal the covariance matrix of each Gaussian I mean okay.",
+    "start": 1136.64,
+    "end": 1146.08,
+    "ocr_text": "SJUPYteL ML-Aniroan_Tutorial_6 Last cnectoon: 7hows ao atone\n\nFla G8t Vow eat Col Karl Ho\nDt eon ee HC om\n\n@ | careote | @|/o/@\n\npit. legend(loce\"lover right\", propedict(size=i2))\n\npltsshowty\nspherical\nsa"
+  },
+  {
+    "text": "So, the different three different mixtures will have three different Gaussian distributions and",
+    "start": 1146.08,
+    "end": 1152.48,
+    "ocr_text": "SJUPYteL ML-Aniroan_Tutorial_6 Last creck: 7 hows ago atone\n\nFla Gat Vow eat Cal Keral Hop\nBt OB ee KC om\n\n@ | careote | @|/ oe\n\npits logend(loc=\"lover right\", propedict(sise=12))\n\nplt.showt)\nspherical oa\nsa os"
+  },
+  {
+    "text": "the covariance matrices of these Gaussian distributions will be different all right. However,",
+    "start": 1153.76,
+    "end": 1160.48,
+    "ocr_text": "SJUPYteL ML-Aniroan_Tutorial_6 Last creck: 7 hows ago atone\n\nFla Gat Vow eat Cal Keral Hop\nBt OB ee KC om\n\n@ | careote | @|/ oe\n\npits logend(loc=\"lover right\", propedict(sise=12))\n\nplt.showt)\nspherical oa\nsa os"
+  },
+  {
+    "text": "in each covariance each covariance matrix will be a diagonal covariance matrix okay. Also,",
+    "start": 1160.72,
+    "end": 1167.28,
+    "ocr_text": "SJUPYTEL ML-Aniroan_Tutorial_6 Last rectoont: 7 hows ago nosed\n\nFla Est Vow eat Cal Karl Hob\nBt eB ee nm Clow\n\n@ | Careooe | @|/ oa\n\nplt-tegend(1oc=\"lower right\", prop-diot(aise=12))\n\nplt.showt)\nsphencl oa\naa os"
+  },
+  {
+    "text": "the diagonal elements should be equal. So, this means that the Gaussian's will be will have a kind",
+    "start": 1167.28,
+    "end": 1174.0,
+    "ocr_text": "SJUPYter ML-Aniroan_Tutorial_6 Lest nectoont: 7hows ao nosed\n\nFl ESt Vow eat Col Kral Hop\nCEES YES SCI ac\n\n© | careone | @|/ oa\n\nple-tegend(1oc=\"lover right\", propadiot(aise=12))\n\npltsshowty\nspherical 5\na ws"
+  },
+  {
+    "text": "of like this kind of like circular or spherical cross section which is also called contour all right.",
+    "start": 1174.0,
+    "end": 1183.04,
+    "ocr_text": "SJUPYter ML-Aniroan_Tutorial_6 Lest nectoont: 7hows ao nosed\n\nFl ESt Vow eat Col Kral Hop\nCEES YES SCI ac\n\n© | careone | @|/ oa\n\nple-tegend(1oc=\"lover right\", propadiot(aise=12))\n\npltsshowty\nspherical 5\na ws"
+  },
+  {
+    "text": "So, it assumes that the data has the same variance along both the and along all the feature",
+    "start": 1183.04,
+    "end": 1189.68,
+    "ocr_text": "SJUPYter ML-Aniroan_Tutorial_6 Lest nectoont: 7hows ao nosed\n\nFl ESt Vow eat Col Kral Hop\nCEES YES SCI ac\n\n© | careone | @|/ oa\n\nple-tegend(1oc=\"lover right\", propadiot(aise=12))\n\npltsshowty\nspherical 5\na ws"
+  },
+  {
+    "text": "axis right. So, this is an assumption and this is the result that you see. So, you see that the",
+    "start": 1189.68,
+    "end": 1194.4,
+    "ocr_text": "Train accuracy: 88.3\n\nTest accuracy: 92.3\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "gaussians are almost circles. So, they are not they are actually their circles but due to",
+    "start": 1196.4,
+    "end": 1201.36,
+    "ocr_text": "Train accuracy: 88.3\n\nTest accuracy: 92.3\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "different scaling of these axis it appears that they are not circles but they are actually circles",
+    "start": 1201.36,
+    "end": 1206.88,
+    "ocr_text": "Train accuracy: 88.3\n\nTest accuracy: 92.3\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "because the variance along both the feature axis are equal in this case all right. So, diagonal",
+    "start": 1206.88,
+    "end": 1213.68,
+    "ocr_text": "Train accuracy: 88.3 Train accuracy: 88.3\n\nTest accuracy: 92.3 . Test accuracy: 94.9"
+  },
+  {
+    "text": "covariance matrices mean that the covariance matrix should be diagonal that means that the",
+    "start": 1214.32,
+    "end": 1220.8,
+    "ocr_text": "Train accuracy: 88.3 Train accuracy: 88.3\n\nTest accuracy: 92.3 . Test accuracy: 94.9"
+  },
+  {
+    "text": "this Gaussian will be aligned along any one of the feature axis all right. So, you can see that",
+    "start": 1221.84,
+    "end": 1229.84,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "the this one this Gaussian is aligned along the y axis okay. So, this one please turn the camera",
+    "start": 1229.84,
+    "end": 1238.48,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "towards my computer. So, the first Gaussian is along the vertical direction all right and the",
+    "start": 1238.48,
+    "end": 1247.36,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "others are horizontal okay. And the same is the case with so what I was talking about is this",
+    "start": 1247.36,
+    "end": 1255.2,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "one all right. I am sorry for the technical problem. So, the first Gaussian you can see that this",
+    "start": 1255.2,
+    "end": 1261.36,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "this is aligned along the vertical feature direction right the others are along the horizontal",
+    "start": 1261.36,
+    "end": 1265.76,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "direction the diagonal covariance matrix means that the Gaussian will be directed along any one",
+    "start": 1265.76,
+    "end": 1271.92,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "of the feature axis all right it would not be skewed and the same is the case here because the",
+    "start": 1271.92,
+    "end": 1277.28,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 92.3\n\n‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "diagonal the Gaussian is aligned along one of the axis that is true because all of these are",
+    "start": 1277.28,
+    "end": 1282.24,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 92.3\n\n‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "aligned along the vertical direction okay. And also there is another extra constraint that",
+    "start": 1282.24,
+    "end": 1288.4,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 92.3\n\n‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "both the variance should be equal along both the feature axis all right. So, this is a much more",
+    "start": 1288.48,
+    "end": 1295.6,
+    "ocr_text": "‘Train accuracy: 88.3\n\nTest accuracy: 92.3\n\n‘Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "stricter you know constraint on the shapes of the Gaussian's than this one all right. Now,",
+    "start": 1295.6,
+    "end": 1305.36,
+    "ocr_text": "Train accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "what you see for the full yeah this one okay. So, this this means that full means that the diagonal",
+    "start": 1305.84,
+    "end": 1315.52,
+    "ocr_text": ", Train accuracy: 89 2\nTain seeuracy: 833\n\nTest accuracy\nTest Securaey: 8\n\n3\n2\n\nTrain accuracy: 95.5\nTrain accuracy: 95.5,\n\nTest accuracy: 100.9\nTest accuracy: 100.0"
+  },
+  {
+    "text": "the covariance matrix is a full matrix all right. So, it does not need to be diagonal all right",
+    "start": 1315.6,
+    "end": 1321.76,
+    "ocr_text": "‘Train accuracy: 89.2 ‘Train accuracy: 95.5\n\nTest accuracy: 87.2 Test accuracy: 100.0"
+  },
+  {
+    "text": "and all the elements are available okay. So, you can have you know skew so you can see that",
+    "start": 1321.76,
+    "end": 1329.36,
+    "ocr_text": "‘Train accuracy: 89.2 ‘Train accuracy: 95.5\n\nTest accuracy: 87.2 Test accuracy: 100.0"
+  },
+  {
+    "text": "the Gaussian's they are no longer aligned along one of these axis all right as the off diagonal",
+    "start": 1329.36,
+    "end": 1334.08,
+    "ocr_text": "‘Train accuracy: 89.2 ‘Train accuracy: 95.5\n\nTest accuracy: 87.2 Test accuracy: 100.0"
+  },
+  {
+    "text": "elements are non-zero allowed to be non-zero. So, the Gaussian can actually steer itself along the",
+    "start": 1334.08,
+    "end": 1340.24,
+    "ocr_text": "‘Train accuracy: 89.2 ‘Train accuracy: 95.5\n\nTest accuracy: 87.2 Test accuracy: 100.0"
+  },
+  {
+    "text": "axis and can have a skew okay. So, this gives a much much more flexibility in the",
+    "start": 1340.8,
+    "end": 1346.4,
+    "ocr_text": "‘Train accuracy: 89.2 ‘Train accuracy: 95.5\n\nTest accuracy: 87.2 Test accuracy: 100.0"
+  },
+  {
+    "text": "modeling and this is reflected in the performances. So, note that the training accuracy is 99% and 87%",
+    "start": 1347.6,
+    "end": 1353.52,
+    "ocr_text": "‘Train aecuracy: 89.2 Train accuracy: 95.5\n\nTest accuracy: 87.2 ‘Test accuracy: 100.0"
+  },
+  {
+    "text": "here okay see the training accuracy okay. So, the training accuracy means that how good the",
+    "start": 1353.52,
+    "end": 1361.44,
+    "ocr_text": "‘Train aecuracy: 89.2 Train accuracy: 95.5\n\nTest accuracy: 87.2 ‘Test accuracy: 100.0"
+  },
+  {
+    "text": "model can fit to the data all right. So, this is what we are doing we are fitting the model to the",
+    "start": 1361.44,
+    "end": 1366.08,
+    "ocr_text": "Train accuracy: 89.2 Train accuracy: 95.5,\n\nTest accuracy: 87.2 Test accuracy: 100.0"
+  },
+  {
+    "text": "data all right. So, we can talk about generalization later but you see that the training accuracy",
+    "start": 1366.08,
+    "end": 1371.36,
+    "ocr_text": "full\n\n‘Train accuracy: 89.2 ‘Train accuracy: 95.5\n\\\n\nTest accuracy: 87.2 Test accuracy: 100.0"
+  },
+  {
+    "text": "is 89.2% here whereas, it was 88.3 and 88.3 in the previous two cases. So, the training accuracy",
+    "start": 1371.36,
+    "end": 1379.92,
+    "ocr_text": "full\n\n‘Train accuracy: 89.2 ‘Train accuracy: 95.5\n\\\n\nTest accuracy: 87.2 Test accuracy: 100.0"
+  },
+  {
+    "text": "improves right just because the full covariance matrix coefficients can fit on the data much better",
+    "start": 1379.92,
+    "end": 1386.24,
+    "ocr_text": "full\n\nTrain accuracy: 89.2\n\nTest accuracy: 87.2\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "okay. And we will talk about generalization later but let me talk about the let me explain what",
+    "start": 1386.96,
+    "end": 1394.24,
+    "ocr_text": "fullll\n\ntated\n\nTein ncearacy= 2525 5 |\n\nTeeaacxoracye L000"
+  },
+  {
+    "text": "diet covariance matrix means. Diet covariance matrix means that the covariance matrix of the",
+    "start": 1394.32,
+    "end": 1400.16,
+    "ocr_text": "fullll\n\ntated\n\nTein ncearacy= 2525 5 |\n\nTeeaacxoracye L000"
+  },
+  {
+    "text": "Gaussian can have off diagonal elements all right. So, the diagonal matrices are full all right.",
+    "start": 1400.16,
+    "end": 1407.52,
+    "ocr_text": "full tied\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "However, all the Gaussian should have the same covariance matrix okay. So, it is imposed. So,",
+    "start": 1407.52,
+    "end": 1413.76,
+    "ocr_text": "full tied\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "you can see that all the ellipses they look the same right only their means are different okay.",
+    "start": 1413.76,
+    "end": 1419.76,
+    "ocr_text": "full tied\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "So, you are allowed to have very you know high dimensional or you know a full full covariance",
+    "start": 1419.76,
+    "end": 1429.04,
+    "ocr_text": "full tied\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "matrix. So, you are allowed to have a lot of parameters in a single a lot of free parameters",
+    "start": 1429.04,
+    "end": 1433.76,
+    "ocr_text": "full tied\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "within a single covariance matrix. But all the covariance matrices with matrices will be tired",
+    "start": 1433.76,
+    "end": 1439.12,
+    "ocr_text": "full tied\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "that means that all the Gaussian's in the mixture will have the same covariance matrix which",
+    "start": 1439.12,
+    "end": 1444.16,
+    "ocr_text": "full tied\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "will be full okay. So, you can see that this particular constraint actually improves the training",
+    "start": 1444.16,
+    "end": 1448.8,
+    "ocr_text": "full tied\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "accuracy to 95.5 percent. So, you can actually fit on the data better and the test accuracy is",
+    "start": 1448.8,
+    "end": 1454.08,
+    "ocr_text": "full tied\n\np: 89.2 Train accuracy: 95.5 *\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "also more okay at all 100 percent. So, you can see that the test accuracy is better for the",
+    "start": 1454.08,
+    "end": 1463.6,
+    "ocr_text": "full tied\n\np: 89.2 Train accuracy: 95.5 *\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "spherical covariance matrix and diagonal covariance matrix than the full covariance matrix okay.",
+    "start": 1463.6,
+    "end": 1468.88,
+    "ocr_text": "Train accuracy: 88.3\n\nTrain accuracy: 88.3\n\nTest accuracy: 92.3 Test accuracy: 94.9"
+  },
+  {
+    "text": "This is because of you can clearly see the overfitting over here. So, as the full covariance matrix",
+    "start": 1469.44,
+    "end": 1475.92,
+    "ocr_text": "Test accuracy: 87.2"
+  },
+  {
+    "text": "has a larger number of parameters okay. So, it can fit on the training data more snugly alright.",
+    "start": 1476.4,
+    "end": 1482.96,
+    "ocr_text": "Train accuracy: 89.2\n\nTest accuracy: 87.2\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "And as it is like it is hence it can actually like overfit on the training data and hence the",
+    "start": 1482.96,
+    "end": 1489.2,
+    "ocr_text": "Train accuracy: 89.2\n\nTest accuracy: 87.2\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "generalization performance is poor and this is what is reflected in the test accuracy over here.",
+    "start": 1489.2,
+    "end": 1494.32,
+    "ocr_text": "Train accuracy: 89.2 Train accuracy: 95.5\n\n‘Test accuracy: 87.2 7 ‘Test accuracy: 100.0"
+  },
+  {
+    "text": "However, the for spherical and diagonal covariance matrices the matrices the the system the model",
+    "start": 1495.04,
+    "end": 1503.04,
+    "ocr_text": "plt.show()\n\nspherical\n\ndiag\n\nTrain accuracy: 88.3\n\nTest accuracy: 92.3\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "does not have have you know many parameters and hence it cannot overfit on the data alright.",
+    "start": 1503.04,
+    "end": 1510.08,
+    "ocr_text": "plt.show()\n\nspherical\n\ndiag\n\nTrain accuracy: 88.3\n\nTest accuracy: 92.3\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "And as the overfitting is less in this case the generalization performance which is reflected in",
+    "start": 1510.08,
+    "end": 1514.8,
+    "ocr_text": "plt.show()\n\nspherical\n\ndiag\n\nTrain accuracy: 88.3\n\nTest accuracy: 92.3\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "the test accuracy is better alright. And you can see that the test accuracy is best for the",
+    "start": 1514.8,
+    "end": 1519.84,
+    "ocr_text": "plt.show()\n\nspherical\n\ndiag\n\nTrain accuracy: 88.3\n\nTest accuracy: 92.3\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9"
+  },
+  {
+    "text": "tired case in which it is imposed that all the different Gaussian's in the mixture will have",
+    "start": 1519.84,
+    "end": 1525.6,
+    "ocr_text": "tied\n\nTrain accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "exact same covariance matrix right. So, let me look at let me show you the code now.",
+    "start": 1525.92,
+    "end": 1532.56,
+    "ocr_text": "tied\n\n‘Train accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "So, what we did is we will pretty simple. So, we first defined a dictionary alright and the",
+    "start": 1533.92,
+    "end": 1542.16,
+    "ocr_text": "tied\n\n‘Train accuracy: 95.5\n\nTest accuracy: 100.0"
+  },
+  {
+    "text": "dictionary will be like some covariance type. So, with the LaVier specifying that we are going to",
+    "start": 1542.16,
+    "end": 1547.12,
+    "ocr_text": "Train and compare different GMUMs\n\n# Try GMMs using different types of covariances.\nclassifiers = dict((covar_type, GMM(n_components=n_classes\ncovariance type=covar_type, init_param\n\nwe', n_ite:\n\n0))\n\nfor covar_type in ['spherical', ‘diag’, ‘tied’, ‘full'})\n\nn_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n_classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nf name, classifier) in enumerate(classifiers.items()):\nve have class labels for the training data, we can\nize the GMM parameters in a supervised manner.\nor.means_ = np.array([{X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes)])"
+  },
+  {
+    "text": "deal with four different covariance matrices types okay. So, spherical diagonal tired and full",
+    "start": 1547.12,
+    "end": 1553.36,
+    "ocr_text": "Train and compare different GUMs\n\n# Try GMMs using different types of covariances.\n\nclassifiers = dict((covar_type, GMM(n_components=n_classes,\ncovariance_type=covar_type, init_params='wc', n_iter=20))\nfor covar_type in ['spherical', ‘diag’, 'tied', ‘full'})\n\nn_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n_classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nf name, classifier) in enumerate(classifiers.items()):\nve have class labels for the training data, we can\nize the GMM parameters in a supervised manner.\ner.means_ = np.array({X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes)])"
+  },
+  {
+    "text": "okay. So, this is something called a dictionary comprehension okay and the dictionary is going to",
+    "start": 1553.36,
+    "end": 1557.92,
+    "ocr_text": "Train and compare different GUMs\n\n# Try GMMs using different types of covariances.\n\nclassifiers = dict((covar_type, GMM(n_components=n_classes,\ncovariance_type=covar_type, init_params='wc', n_iter=20))\nfor covar_type in ['spherical', ‘diag’, 'tied', ‘full'})\n\nn_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n_classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nf name, classifier) in enumerate(classifiers.items()):\nve have class labels for the training data, we can\nize the GMM parameters in a supervised manner.\ner.means_ = np.array({X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes)])"
+  },
+  {
+    "text": "have covariance type and cm components. So, this is that particular dictionary this is the",
+    "start": 1557.92,
+    "end": 1565.52,
+    "ocr_text": "Train and compare different GMUMs\n\n# Try GMMs using different types of covariances.\nclassifiers = dict((covar_type, GMM(n_components=n_classes,\ncovariance type=covar_type, init_params='wc', n_ite:\n\n0))\n\nfor covar_type in ['spherical', 'diag', ‘tied’, ‘full'})\n\nn_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n_classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nf name, classifier) in enumerate(classifiers.items()):\nve have class labels for the training data, we can\nize the GMM parameters in a supervised manner.\nor.means_ = np.array([X_train[y_train == i].mean(axis=0)\nfor i in xrange(n_classes) ])"
+  },
+  {
+    "text": "particular gmm model that we are going to train in each case where n classes will be the n components",
+    "start": 1565.52,
+    "end": 1572.48,
+    "ocr_text": "Train and compare different GMUMs\n\n# Try GMMs using different types of covariances.\n\nclassifiers = dict((covar_type, GHM(nleomponents=nlelasses)\ncovariance type=covar type, init _params='we', n_iter=20))\nfor covar_type in ['spherical', ‘diag’, ‘tied', ‘full'})\n\nn_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n_classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nf name, classifier) in enumerate(classifiers.items()):\nve have class labels for the training data, we can\nize the GMM parameters in a supervised manner.\ner.means_ = np.array([X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes)])"
+  },
+  {
+    "text": "okay number of classes that we have covariance type will come from either one of these elements in",
+    "start": 1572.48,
+    "end": 1578.48,
+    "ocr_text": "Train and compare different GMUMs\n\n# Try GMMs using different types of covariances.\n\nclassifiers = dict((covar_type, GHM(nleomponents=nlelasses)\ncovariance type=covar type, init _params='we', n_iter=20))\nfor covar_type in ['spherical', ‘diag’, ‘tied', ‘full'})\n\nn_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n_classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nf name, classifier) in enumerate(classifiers.items()):\nve have class labels for the training data, we can\nize the GMM parameters in a supervised manner.\ner.means_ = np.array([X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes)])"
+  },
+  {
+    "text": "the list alright and the number of iterations in the approximation in the estimation algorithm",
+    "start": 1578.56,
+    "end": 1584.24,
+    "ocr_text": "Train and compare different GMUMs\n\n# Try GMMs using different types of covariances.\n\nclassifiers = dict((covar_type, GMM(n|/e¢omponents=nelasses)\ncovariance _type=covar type, init_params='we', n_iter=20))\nfor covar_type in ['spherical', ‘diag’, ‘tied’, ‘full'})\n\nn_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n_classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nf name, classifier) in enumerate(classifiers.items()):\nve have class labels for the training data, we can\nize the GMM parameters in a supervised manner.\ner.means_ = np.array([X_train[y_train == i].mean(axis=0)\nfor i in xrange(n_classes) ])"
+  },
+  {
+    "text": "which is em algorithm is going to be 20 okay. So, let us go after this what we do is I will say that",
+    "start": 1584.24,
+    "end": 1592.08,
+    "ocr_text": "Train and compare different GMUMs\n\n# Try GMMs using different types of covariances.\n\nclassifiers = dict((covar_type, GMM(n|/e¢omponents=nelasses)\ncovariance _type=covar type, init_params='we', n_iter=20))\nfor covar_type in ['spherical', ‘diag’, ‘tied’, ‘full'})\n\nn_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n_classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nf name, classifier) in enumerate(classifiers.items()):\nve have class labels for the training data, we can\nize the GMM parameters in a supervised manner.\ner.means_ = np.array([X_train[y_train == i].mean(axis=0)\nfor i in xrange(n_classes) ])"
+  },
+  {
+    "text": "the n classifiers is equal to the nth classifiers okay. So, we in this case it is 4 and then we initialize",
+    "start": 1592.08,
+    "end": 1599.2,
+    "ocr_text": "n_classifiers = len(classifiers)\n\nplt.figure(figsize=(2*3 * n_classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nfor index, (name, classifier) in enumerate(classifiers.items()):\n# Since we have class labels for the training data, we can\n# initialize the GMM parameters in a supervised manner.\nclassifier.means_ = np.array([X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes)])\n\n# Train the other parameters using the EM algorithm.\nclassifier. fit(x_train)\n\nh = plt.subplot(2, n_classifiers / 2, index + 1)\nmake_ellipses(classifier, h)\n\need ie Pe"
+  },
+  {
+    "text": "the plots and subplots and then for every single classifier we first initialize the means to the",
+    "start": 1599.2,
+    "end": 1606.56,
+    "ocr_text": "plt.figure(figsize=(2*3 * n_classifiers / 2, 2*6))\nplt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,\nleft=.01, right=.99)\n\nfor index, (name, classifier) in enumerate(classifiers.items()):\n# Since we have class labels for the training data, we can\n# initialize the GMM parameters in a supervised manner.\nclassifier.means_ = np.array({X_train[{y_train == i].mean(axis=0)\nfor i in xrange(n_classes) ])\n\n# Train the other parameters using the EM algorithm.\nclassifier.fit(x_train)\n\nh = plt.subplot(2, n_classifiers / 2, index + 1)\nmake_ellipses(classifier, h)\n\nfor n, color in enumerate('rgb')\ndata = iris.data[iris.target == n]\nplt.scatter(data[:, 0], data[:, 1], 0.8, color=color,\nlabel=iris.target names[n])"
+  },
+  {
+    "text": "means that we are getting right from the training data. So, as the labels are available in this case",
+    "start": 1606.56,
+    "end": 1612.16,
+    "ocr_text": "for index, (name, classifier) in enumerate(classifiers.items())\n# Since we have class labels for the training data, we can\n# initialize the GMM parameters in a supervised manner.\nclassifier.means_ = np.array([{X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes) })\n\n# Train the other parameters using the EM algorithm.\nclassifier. fit(x_train)\n\nh = plt.subplot(2, n_classifiers / 2, index + 1)\nmake_ellipses(classifier, h)\n\nfor n, color in enumerate('rgb'\ndata = iris.data[iris.target == n]\nplt.scatter(data[:, 0], data[:, 1], 0.8, color=color,\n\nlabel=iris.target_names[n])\n\n# Plot the test data with crosses\n\nfor n, color in enumerate('rgb'):\ndata = X_test[y_test == n]\nplt.plot(data[:, 0], data[:, 1], 'x', color=color)\n\ny_train_ pred = classifier.predict(X_train)"
+  },
+  {
+    "text": "so we know that which particular class as which particular mean alright. So, we extract the mean",
+    "start": 1612.16,
+    "end": 1618.48,
+    "ocr_text": "for index, (name, classifier) in enumerate(classifiers.items())\n# Since we have class labels for the training data, we can\n# initialize the GMM parameters in a supervised manner.\nclassifier.means_ = np.array([{X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes) })\n\n# Train the other parameters using the EM algorithm.\nclassifier. fit(x_train)\n\nh = plt.subplot(2, n_classifiers / 2, index + 1)\nmake_ellipses(classifier, h)\n\nfor n, color in enumerate('rgb'\ndata = iris.data[iris.target == n]\nplt.scatter(data[:, 0], data[:, 1], 0.8, color=color,\n\nlabel=iris.target_names[n])\n\n# Plot the test data with crosses\n\nfor n, color in enumerate('rgb'):\ndata = X_test[y_test == n]\nplt.plot(data[:, 0], data[:, 1], 'x', color=color)\n\ny_train_ pred = classifier.predict(X_train)"
+  },
+  {
+    "text": "here and then we assign the means and then we train the rest of the parameters using classifier.fit",
+    "start": 1618.48,
+    "end": 1625.04,
+    "ocr_text": "for index, (name, classifier) in enumerate(classifiers.items())\n\n# Since we have class labels for the training data, we can\n# initialize the GMM parameters in a supervised manner.\n\nclassifier.means_ = np.array([X_train[y train == i].mean(axis=0)\n\nfor i in xrange(n_classes) ])\n\n# Train the other parameters using the EM algorithm.\nclassifier. fit(x_train)\n\nh = plt.subplot(2, n_classifiers / 2, index + 1)\nmake_ellipses(classifier, h)\n\nfor n, color in enumerate('rgb'\ndata = iris.data[iris.target == n]\nplt.scatter(data[:, 0], data[:, 1], 0.8, color=color,\n\nlabel=iris.target_names[n])\n\n# Plot the test data with crosses\n\nfor n, color in enumerate('rgb'):\ndata = X_test[y_test == n]\nplt.plot(data[:, 0], data[:, 1], 'x', color=color)\n\ny_train_ pred = classifier.predict(Xx_train)"
+  },
+  {
+    "text": "right and then we plot the we initialize the subplot and make ellipses for every single classifier",
+    "start": 1625.84,
+    "end": 1632.88,
+    "ocr_text": "classifier.means_ = np.array([{X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes) ])\n\n# Train the other parameters using the EM algorithm.\nclassifier. fit(X_train)\n\nh = plt.subplot(2, n_classifiers / 2, index + 1)\nmake_ellipses(classifier, h)\n\nfor n, color in enumerate('rgb'):\ndata = iris.data[iris.target == n]\nplt.scatter(data[:, 0], data[:, 1], 0.8, color=color,\nlabel=iris.target_names[n])\n# Plot the test data with crosses\nfor n, color in enumerate('rgb'):\ndata = X_test[y test == n]\nplt.plot(data[:, 0], data[:, 1], 'x', color=color)\n\ny_train pred = classifier.predict(x_train)\n\ntrain_accuracy = np.mean(y train pred.ravel() == y_train.ravel()) * 100\n\nplt.text(0.05, 0.9, ‘Train accuracy: %.1f' % train_accuracy,\ntransform=h.transAxes)"
+  },
+  {
+    "text": "so all of these ellipses that we that you were seeing here. So, they are generated at this step",
+    "start": 1633.6,
+    "end": 1638.16,
+    "ocr_text": "classifier.means_ = np.array([{X_train[y train == i].mean(axis=0)\nfor i in xrange(n_classes) ])\n\n# Train the other parameters using the EM algorithm.\nclassifier. fit(X_train)\n\nh = plt.subplot(2, n_classifiers / 2, index + 1)\nmake_ellipses(classifier, h)\n\nfor n, color in enumerate('rgb'):\ndata = iris.data[iris.target == n]\nplt.scatter(data[:, 0], data[:, 1], 0.8, color=color,\nlabel=iris.target_names[n])\n# Plot the test data with crosses\nfor n, color in enumerate('rgb'):\ndata = X_test[y test == n]\nplt.plot(data[:, 0], data[:, 1], 'x', color=color)\n\ny_train pred = classifier.predict(x_train)\n\ntrain_accuracy = np.mean(y train pred.ravel() == y_train.ravel()) * 100\n\nplt.text(0.05, 0.9, ‘Train accuracy: %.1f' % train_accuracy,\ntransform=h.transAxes)"
+  },
+  {
+    "text": "and then after these ellipses has been made you plot in the data okay and you show their labels",
+    "start": 1639.2,
+    "end": 1647.6,
+    "ocr_text": "make_ellipses(classifier, h)\n\nfor n, color in enumerate('rgb'):\ndata = iris.datafiris.target == n]\nplt.scatter(data[:, 0], data[:, 1], 0.8, color=color,\n\nlabel=iris.target_names[n])\n\n# Plot the test data with crosses\n\nfor n, color in enumerate('rgb'):\ndata = X_test[y test == n]\nplt.plot(data[:, 0], data[:, 1], 'x', color-color)\n\ny_train pred = classifier.predict(x_train)\n\ntrain_accuracy = np.mean(y train_pred.ravel() == y_train.ravel()) * 100\n\nplt.text(0.05, 0.9, ‘Train accuracy: %.1f' % train accuracy,\ntransform=h.transAxes)\n\ny_test_pred = classifier.predict(x_test)\n\ntest_accuracy = np.mean(y test_pred.ravel() == y test.ravel()) * 100\n\nplt.text(0.05, 0.8, ‘Test accuracy: %.1f' % test_accuracy,\ntransform=h.transAxes)\n\nplt.xticks(())"
+  },
+  {
+    "text": "as well and then you do some more fancy you know yeah then you just like find out the training",
+    "start": 1647.6,
+    "end": 1655.84,
+    "ocr_text": "label=iris.target_names[n])\n# Plot the test data with crosses\nfor n, color in enumerate('rgb'):\ndata = X_test[y_test == n]\n\nplt.plot(data[:, 0], data[:, 1], 'x', color=color)\n\ny_train pred = classifier.predict(x_train)\n\ntrain_accuracy = np.mean(y train pred.ravel() == y train.ravel()) * 100\n\nplt.text(0.05, 0.9, ‘Train accuracy: %.1f' % train_accuracy,\ntransform=h.transAxes )\n\ny_test_pred = classifier.predict(x_test)\n\ntest_accuracy = np.mean(y test_pred.ravel() == y_ test.ravel()) * 100\n\nplt.text(0.05, 0.8, ‘Test accuracy: %.1f' % test_accuracy,\ntransform=h.transAxes)\n\nplt.xticks(())\nplt.yticks(())\nplt.title(name)\n\nit. legend(loc='lower right', prop=dict(size=12))"
+  },
+  {
+    "text": "accuracy and test accuracy and print them right on the figure this is what is done okay.",
+    "start": 1655.84,
+    "end": 1662.72,
+    "ocr_text": "y_test_pred = classifier.predict(X_test)\ntest_accuracy = np.mean(y test_pred.ravel() == y test.ravel()) * 100\nplt.text(0.05, 0.8, ‘Test accuracy: %.1f' % test_accuracy,\n\ntrans form=h. transAxes )\n\nplt.xticks(())\nplt.yticks(())\nplt.title(name)\n\nplt.legend(loc='lower right', prop=dict(size=12))\n\n1\nplt.show()\n\nspherical dag\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9\n- ="
+  },
+  {
+    "text": "So, what did we see here we just studied how the GMM how Gaussian mixture models can be",
+    "start": 1663.28,
+    "end": 1671.36,
+    "ocr_text": "y_test_pred = classifier.predict(X_test)\ntest_accuracy = np.mean(y test_pred.ravel() == y test.ravel()) * 100\nplt.text(0.05, 0.8, ‘Test accuracy: %.1f' % test_accuracy,\n\ntrans form=h. transAxes )\n\nplt.xticks(())\nplt.yticks(())\nplt.title(name)\n\nplt.legend(loc='lower right', prop=dict(size=12))\n\n1\nplt.show()\n\nspherical dag\n\nTrain accuracy: 88.3\n\nTest accuracy: 94.9\n- ="
+  },
+  {
+    "text": "you know implemented in circuit learn right and using the inbuilt GMM model under mixture",
+    "start": 1672.16,
+    "end": 1680.48,
+    "ocr_text": "Hierarchical Agglomerative Clustering\n\nExample taken from here.\n\nLoad and pre-process dataset\n\n: digits = datasets.load_digits(n_class=10)\nX = digits.data\n\niqits.target\n\n+, n_features = X.shape\n\need(0)\n\nimages(X, y):\n\nfing a larger dataset shows more clearly the behavior of the"
+  },
+  {
+    "text": "and then we saw the effect of different kinds of different kinds of you know different kinds of",
+    "start": 1681.12,
+    "end": 1691.2,
+    "ocr_text": "Hierarchical Agglomerative Clustering\n\nExample taken from here.\n\nLoad and pre-process dataset\n\n]: digits = datasets.load_digits(n_class=10)\nX = digits.data\ny = digits.target\nn_samples, n_features = X.shape\n\nnp. random. seed(0)\n\ndef nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the"
+  },
+  {
+    "text": "captions different kinds of covariance matrices okay on the performance of the estimation algorithm",
+    "start": 1691.2,
+    "end": 1700.0,
+    "ocr_text": "Hierarchical Agglomerative Clustering\n\nExample taken from here.\n\nLoad and pre-process dataset\n\n]: digits = datasets.load_digits(n_class=10)\nX = digits.data\ny = digits.target\nn_samples, n_features = X.shape\n\nnp. random. seed(0)\n\ndef nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the"
+  },
+  {
+    "text": "and we saw that as the number of parameters is increased by increasing the you know degree of",
+    "start": 1700.0,
+    "end": 1706.16,
+    "ocr_text": "Hierarchical Agglomerative Clustering\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.1load_digits(n_class=10)\nXK = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(x, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "freedom in choosing the covariance matrix the performance on the training set increases which",
+    "start": 1706.16,
+    "end": 1712.48,
+    "ocr_text": "Hierarchical Agglomerative Clustering\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.1load_digits(n_class=10)\nXK = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(x, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "means that it is which starts to overfit on the data on the training data and the performance on the",
+    "start": 1712.48,
+    "end": 1718.0,
+    "ocr_text": "Hierarchical Agglomerative Clustering\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.1load_digits(n_class=10)\nXK = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(x, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "test set you know deteriorates also we saw that P studied what different kinds of covariance",
+    "start": 1718.0,
+    "end": 1726.08,
+    "ocr_text": "Hierarchical Agglomerative Clustering\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.1load_digits(n_class=10)\nXK = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(x, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "matrices mean right cool. So, let us go ahead and study hierarchical algorithm agglomerative",
+    "start": 1726.08,
+    "end": 1732.56,
+    "ocr_text": "Hierarchical Agglomerative Clustering 4]\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.1load_digits(n_class=10)\nXK = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(x, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "clustering. So, hierarchical clustering methods actually like try to do the clustering in a",
+    "start": 1732.56,
+    "end": 1737.76,
+    "ocr_text": "Hierarchical Agglomerative Clustering 4]\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.1load_digits(n_class=10)\nXK = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(x, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "hierarchical fashion right either from a dinner top down approach or in a bottom of approach and",
+    "start": 1737.76,
+    "end": 1742.4,
+    "ocr_text": "Hierarchical Agglomerative Clustering 4]\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.1load_digits(n_class=10)\nXK = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(x, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "agglomerative clustering is a bottom of approach right in which initial clusters are every single",
+    "start": 1742.4,
+    "end": 1747.52,
+    "ocr_text": "Hierarchical Agglomerative Clustering 4]\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.1load_digits(n_class=10)\nXK = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(x, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "points okay. So, you initialize the clusters as the points in the data and then you try to like",
+    "start": 1747.52,
+    "end": 1756.72,
+    "ocr_text": "Hierarchical Agglomerative Clustering 1]\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.1load_digits(n_class=10)\nXK = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(x, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "you know merge those smaller clusters into larger clusters by bringing together similar looking",
+    "start": 1756.72,
+    "end": 1764.88,
+    "ocr_text": "Hierarchical Agglomerative Clustering 4]\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.load_digits(n_class=10)\nX = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "points in one cluster right by reducing the some kind of statistical distance between the",
+    "start": 1764.88,
+    "end": 1771.12,
+    "ocr_text": "Hierarchical Agglomerative Clustering 4]\nExample taken from here.\n\nLoad and pre-process dataset\n\ndigits = datasets.load_digits(n_class=10)\nX = digits.data\n\ny = digits.target\n\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),"
+  },
+  {
+    "text": "cluster points. So, we are going to study different kinds of agglomerative clustering now.",
+    "start": 1771.76,
+    "end": 1777.28,
+    "ocr_text": "Load and pre-process dataset\n\nIn [ ]: | digits = datasets.load_digits(n_class=10)\nX = digits.data\ny = digits.target\nn_samples, n_features = X.shape\n\nnp.random. seed (0)\n\ndef nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n«3 * np.random.normal(size=2),\nmode='constant',\n)-ravel()\nX = np.concatenate([X, np.apply_along_axis(shift, 1, X)])\n¥ = np.concatenate([y, y], axis=0)\nreturn X, ¥"
+  },
+  {
+    "text": "Let us so in this particular experiment as I was talking about as I just like wrong dimension",
+    "start": 1778.0,
+    "end": 1784.0,
+    "ocr_text": "Load and pre-process dataset\n\nIn [ ]: | digits = datasets.load_digits(n_class=10)\nX = digits.data\ny = digits.target\nn_samples, n_features = X.shape\n\nnp.random. seed (0)\n\ndef nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n«3 * np.random.normal(size=2),\nmode='constant',\n)-ravel()\nX = np.concatenate([X, np.apply_along_axis(shift, 1, X)])\n¥ = np.concatenate([y, y], axis=0)\nreturn X, ¥"
+  },
+  {
+    "text": "in the previous earlier in the video that we are going to use the digit dataset here.",
+    "start": 1784.0,
+    "end": 1789.92,
+    "ocr_text": "Load and pre-process dataset\n\nIn [ ]: | digits = datasets.load_digits(n_class=10)\nX = digits.data\ny = digits.target\nn_samples, n_features = X.shape\n\nnp.random. seed (0)\n\ndef nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n«3 * np.random.normal(size=2),\nmode='constant',\n)-ravel()\nX = np.concatenate([X, np.apply_along_axis(shift, 1, X)])\n¥ = np.concatenate([y, y], axis=0)\nreturn X, ¥"
+  },
+  {
+    "text": "So, you load the digit digits and then you you know you find out the you take the input and the",
+    "start": 1790.88,
+    "end": 1799.68,
+    "ocr_text": "Load and pre-process dataset\n\nIn [ ]:| digits = datasets.load_digits(n_class=10)\nX = digits.data\ny = digits.target|\nn_samples, n_features = X.shape\n\nnp.random. seed (0)\n\ndef nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),\nmode='constant',\n)-ravel()\nnp.concatenate([{X, np.apply_along_axis(shift, 1, X)])\nnp.concatenate({y, y], axis=0)\nreturn X, ¥"
+  },
+  {
+    "text": "targets and then you do something and then you write a function. So, this is a function which",
+    "start": 1799.68,
+    "end": 1805.84,
+    "ocr_text": "Load and pre-process dataset\n\nIn [ ]: | digits = datasets.load_digits(n_class=10)\nX = digits.data\ny = digits.target 1\nn_samples, n_features = X.shape\n\nnp.random.seed(0)\n\ndef nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n.3 * np.random.normal(size=2),\nmode='constant',\n)-ravel()\nnp.concatenate([{X, np.apply_along_axis(shift, 1, X)])\nnp.concatenate({y, y], axis=0)\nreturn X, Y¥"
+  },
+  {
+    "text": "extends the database a little bit in extends the dataset by doing some you know some",
+    "start": 1805.84,
+    "end": 1813.28,
+    "ocr_text": "def nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n-3 * np.random.normal(size=2),\nlh mode='constant',\n).ravel()\nX = np.concatenate([X, np.apply_along_axis(shift, 1, X)])\nY = np.concatenate([y, y], axis=0)\nreturn X, Y\n\nX, y = nudge_images(X, y)\n\nalize the clustering\n\nlot_clustering(x_red, X, labels, title=None):\n‘x min, X max = np.min(X red, axis=0), np.max(X red, axi!"
+  },
+  {
+    "text": "shifts random distortions in the images and this is this like this helps in the clustering algorithm",
+    "start": 1814.48,
+    "end": 1821.84,
+    "ocr_text": "def nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n-3 * np.random.normal(size=2),\nlh mode='constant',\n).ravel()\nX = np.concatenate([X, np.apply_along_axis(shift, 1, X)])\nY = np.concatenate([y, y], axis=0)\nreturn X, Y\n\nX, y = nudge_images(X, y)\n\nalize the clustering\n\nlot_clustering(x_red, X, labels, title=None):\n‘x min, X max = np.min(X red, axis=0), np.max(X red, axi!"
+  },
+  {
+    "text": "because it gets to see more samples all right. So, this is we first run this one this actually",
+    "start": 1821.84,
+    "end": 1829.6,
+    "ocr_text": "def nudge_images(X, y):\n# Having a larger dataset shows more clearly the behavior of the\n# methods, but we multiply the size of the dataset only by 2, as the\n# cost of the hierarchical clustering methods are strongly\n# super-linear in n_samples\nshift = lambda x: ndimage.shift(x.reshape((8, 8)),\n+3 * np.random.normal(size=2),\nmode='constant',\n)-ravel()\nX = np.concatenate([X, np.apply_along_axis(shift, 1, X)])\nY = np.concatenate([y, y], axis=0)\nreturn X, Y\n\nI\n\nX, y = nudge_images(X, y)\n\nalize the clustering\n\nlot_clustering(x_red, X, labels, title=None):\n‘x min, X max = np.min(X red, axis=0), np.max(X red, axi!"
+  },
+  {
+    "text": "loads the data and do some initial modification on to the dataset to make it make the algorithm",
+    "start": 1829.6,
+    "end": 1835.04,
+    "ocr_text": "Visualize the clustering\n\nIn [ ]:| def plot_clustering(x_red, X, labels, title=None):\nx_min, x_max = np.min(X_red, axis=0), np.max(X_red, axis=0)\nX_red = (x_red - x_min) / (x_max - x_min)\n\nplt.figure(figsize=(2*6, 2*4))\nfor i in range(X_red.shape[0]):\nplt.text(X_red[i, 0], X_red{i, 1], str(y[i]),\ncolor=plt.cm.spectral(labels[i] / 10.),\nfontdict={'weight': ‘bold’, ‘size’: 9})\n\nplt.xticks([])\n\nplt.yticks([(])\n\nif title is not None:\nplt.title(title, size=17)\n\nlt.axis('off')\n\nt.tight_layout()"
+  },
+  {
+    "text": "more robust in estimating the parameters right and then we let us go ahead and visualize the clustering.",
+    "start": 1835.04,
+    "end": 1841.84,
+    "ocr_text": "Visualize the clustering\n\nIn [ ]: def plot_clustering(x_red, X, labels, title=None):\nx min, x_max = np.min(X_red, axis=0), np.max(X_red, axis=0)\nX_red = (X_red - x_min) / (x_max - x min)\n\nplt.figure(figsize=(2*6, 2*4))\nfor i in range(X_red.shape[0]):\nplt.text(x_red[i, 0], X_red[i, 1], str(y[il),\ncolor=plt.cm.spectral(labels[i] / 10.),\nfontdict={'weight': 'bold', ‘size’: 9})\n\nplt.xticks([])\n\nplt.yticks([])\n\nif title is not None:\nplt.title(title, size=17)\n\nlt.axis('off')\n\nit.tight_layout()"
+  },
+  {
+    "text": "So, this is actually a function which does the visualization for the clustering.",
+    "start": 1841.84,
+    "end": 1854.56,
+    "ocr_text": "Visualize the clustering\n\nIn [ ]: def plot_clustering(x_red, X, labels, title=None):\nx min, x_max = np.min(X_red, axis=0), np.max(X_red, axis=0)\nX_red = (X_red - x_min) / (x_max - x min)\n\nplt.figure(figsize=(2*6, 2*4))\nfor i in range(X_red.shape[0]):\nplt.text(x_red[i, 0], X_red[i, 1], str(y[il),\ncolor=plt.cm.spectral(labels[i] / 10.),\nfontdict={'weight': 'bold', ‘size’: 9})\n\nplt.xticks([])\n\nplt.yticks([])\n\nif title is not None:\nplt.title(title, size=17)\n\nlt.axis('off')\n\nit.tight_layout()"
+  },
+  {
+    "text": "Next what we do is we do a two dimensional embedding of the dataset. So, the dataset is actually",
+    "start": 1854.56,
+    "end": 1862.64,
+    "ocr_text": "Visualize the clustering\n\n‘n [13]: def plot_clustering(x_red, X, labels, title=None):\nx_min, x_max = np.min(X_red, axis=0), np.max(X_red, axis=0)\nX_red = (X_red - x min) / (x_max - x min)\n\nplt.figure(figsize=(2*6, 2*4))\nfor i in range(x_red.shape[0}):\nplt.text(X_red[i, 0], X xed[i, 1], str(y[i]),\ncolor=plt.cm.spectral(labels[i] / 10.),\nfontdict={'weight': 'bold', 'size': 9})\n\nplt.xticks([])\n\nplt.yticks([])\n\nif title is not None:\nplt.title(title, size=17)\n\nn1t.axis('off')\n\n1t.tight_layout()\n\ndataset"
+  },
+  {
+    "text": "one of 8 cross 8 images. So, the images of handwritten digits are 8 cross 8 right. So, there",
+    "start": 1863.28,
+    "end": 1872.0,
+    "ocr_text": "if title is not Non\nplt.title(title, size=17)\n\nplt.axis('off')\n\nplt.tight_layout()\n\nCreate a 2D embedding of the digits dataset\n\nIn [ ]: print(\"Computing embedding”)\nX_xred = manifold.SpectralBmbedding(n_components=2) .fit_transform(X)\nprint (\"Done.\"\n\nand visualize the clusters\n\nWard minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and\njective function but tackled with an agglomerative hierarchical approach.\n1ximum or complete linkage minimizes the maximum distance between observations of pairs of cluster\nerage linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nTr\n\nbad) Su. eee ee, ee, ee say oe"
+  },
+  {
+    "text": "are 64 dimensional images and what we are going to do is we are going to find out we are going",
+    "start": 1872.0,
+    "end": 1877.44,
+    "ocr_text": "if title is not None\nplt.title(title, size=17)\n\nplt.axis('off')\n\nplt.tight_layout()\n\nCreate a 2D embedding of the digits dataset\n\nIn [ ]:\n\nprint (\"Computing embedding\")\nX_red = manifold.spectralimbedding(n_components=2) .fit_transform(X)\n\nprint (\"Done.\n\nTrain and visualize the clusters\n\nWard minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and\nbjective function but tackled with an agglomerative hierarchical approach.\n1ximum or complete linkage minimizes the maximum distance between observations of pairs of cluster\nerage linkage minimizes the average of the distances between all observations of pairs of clusters.\n\naL ae eS Fee pee"
+  },
+  {
+    "text": "to reduce the dimensionality to 2. So, that we can express that we can we can visualize that",
+    "start": 1877.44,
+    "end": 1883.76,
+    "ocr_text": "if title is not Non\nplt.title(title, size=17)\n\nplt.axis('off')\n\nplt.tight_layout()\n\nCreate a 2D embedding of the digits dataset\n\nIn [ ]: | print(\"Computing embedding\")\nX_red = manifold.spectral&mbedding(n_components=2) .fit_transform(X)\nprint (\"Done.\" .\n\nTr:\n\nand visualize the clusters\n\nWard minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and\nbjective function but tackled with an agglomerative hierarchical approach.\n1ximum or complete linkage minimizes the maximum distance between observations of pairs of cluster\nerage linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nwl De a Re, pS Le"
+  },
+  {
+    "text": "on the screen. So, we use scikit-learn.manifold.spectral embedding for this.",
+    "start": 1883.76,
+    "end": 1890.24,
+    "ocr_text": "if title is not Non\nplt.title(title, size=17)\n\nplt.axis('off')\n\nplt.tight_layout()\n\nCreate a 2D embedding of the digits dataset\n\nIn [ ]: | print(\"Computing embedding\")\nX_red = manifold.spectral&mbedding(n_components=2) .fit_transform(X)\nprint (\"Done.\" .\n\nTr:\n\nand visualize the clusters\n\nWard minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and\nbjective function but tackled with an agglomerative hierarchical approach.\n1ximum or complete linkage minimizes the maximum distance between observations of pairs of cluster\nerage linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nwl De a Re, pS Le"
+  },
+  {
+    "text": "We say that the number of components is equal to 2 and then we fit the model and transform the data",
+    "start": 1891.12,
+    "end": 1897.68,
+    "ocr_text": "if title is not None\nplt.title(title, size=17)\n\nplt.axis('off')\n\nplt.tight_layout()\n\nCreate a 2D embedding of the digits dataset\n\nIn [ ]:\n\nprint (\"Computing embedding\")\nX_red = manifold.spectralEmbedding(n_components=2) .fit_transform(X)\n\nprint (\"Done.\n\nTrain and visualize the clusters\n\nWard minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and\nbjective function but tackled with an agglomerative hierarchical approach.\naximum or complete linkage minimizes the maximum distance between observations of pairs of cluster\nerage linkage minimizes the average of the distances between all observations of pairs of clusters.\n\na a eee ee"
+  },
+  {
+    "text": "and we get the reduced dimensional data. So, let us do the dimensionality reduction. So,",
+    "start": 1898.24,
+    "end": 1903.92,
+    "ocr_text": "if title is not Non\nplt.title(title, size=17)\n\nplt.axis('off')\n\nplt.tight_layout()\n\nCreate a 2D embedding of the digits dataset\n\nIn [ ]: print(\"Computing embedding\")\nX_xredi = manifold.SpectralBmbedding(n_components=2) .fit_transform(X)\nprint | \"Done.\"\n\nTr:\n\nand visualize the clusters\n\nWard minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and\nbjective function but tackled with an agglomerative hierarchical approach.\n1ximum or complete linkage minimizes the maximum distance between observations of pairs of cluster\nerage linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nBo) De Sea"
+  },
+  {
+    "text": "it is like first compute same embedding and then it transforms.",
+    "start": 1903.92,
+    "end": 1908.16,
+    "ocr_text": "if title is not Non\nplt.title(title, size=17)\n\nplt.axis('off')\n\nplt.tight_layout()\n\nCreate a 2D embedding of the digits dataset\n\nIn [ ]: print(\"Computing embedding\")\nX_xredi = manifold.SpectralBmbedding(n_components=2) .fit_transform(X)\nprint | \"Done.\"\n\nTr:\n\nand visualize the clusters\n\nWard minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and\nbjective function but tackled with an agglomerative hierarchical approach.\n1ximum or complete linkage minimizes the maximum distance between observations of pairs of cluster\nerage linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nBo) De Sea"
+  },
+  {
+    "text": "And next we are going to train and visualize the clusters on this reduced dimensional data.",
+    "start": 1910.16,
+    "end": 1916.8,
+    "ocr_text": "Create a 2D embedding of the digits dataset\n\nIn [*]:| print (\"Computing embedding\")\nX_red = manifold.SpectralEmbedding(n_components=2).fit_transform(X)\nprint | \"Done.\"\n\nComputing embedding\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of cluster:\n\nerage linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nsklearn.cluster import AgglomerativeClustering\n\nlinkage in ('ward', ‘average’, ‘complete'):"
+  },
+  {
+    "text": "And we are going to talk about three different kinds of linkages that we can specify. So,",
+    "start": 1916.8,
+    "end": 1923.6,
+    "ocr_text": "Create a 2D embedding of the digits dataset\n\nIn [*]:| print (\"Computing embedding\")\nX_xed = manifold.SpectralBmbedding(n_components=2) .fit_transform(x)\nprint (\"Done.\"\n\nComputing embedding\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of cluster\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nsklearn.cluster import AgglomerativeClustering\n\ncinkage in ('ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\nfe os"
+  },
+  {
+    "text": "this is done right we have the data. We are going to talk about three different kinds of linkages",
+    "start": 1923.6,
+    "end": 1930.56,
+    "ocr_text": "Create a 2D embedding of the digits dataset\n\nIn [*]:| print (\"Computing embedding\")\nX_xed = manifold.SpectralBmbedding(n_components=2) .fit_transform(x)\nprint (\"Done.\"\n\nComputing embedding\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of cluster\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nsklearn.cluster import AgglomerativeClustering\n\ncinkage in ('ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\nfe os"
+  },
+  {
+    "text": "in the algorithm. So, for example, this these actually corresponds to the way in which we are",
+    "start": 1931.28,
+    "end": 1939.04,
+    "ocr_text": "print (\"Done\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters {]\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in this ser\n‘objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nfrom sklearn.cluster import AgglomerativeClustering\n\nfor gg’ re in (‘ward', ‘average’, ‘complete'):\n‘ng = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n0\n\ng.fit(x_red)\n\n: %.2fs\" % (linkage, time() - t0))\n\nfustering(X red, X, clustering.labels , “ts linkage\" % linkage)"
+  },
+  {
+    "text": "going to compute the you know how close to clusters are in the statistical space in the feature space.",
+    "start": 1939.04,
+    "end": 1947.44,
+    "ocr_text": "print (\"Done\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters {]\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in this ser\n‘objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nfrom sklearn.cluster import AgglomerativeClustering\n\nfor ggg’ re in (‘ward', ‘average’, ‘complete'):\n‘ng = AgglomerativeClustering(1inkage=linkage, n_clusters=10)\n0\ng.fit(X_red)\n: %.2fs\" % (linkage, time() - t0))\n\nfustering(X red, X, clustering.labels , \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "So, the idea of agglomite of clustering is to the hierarchically combine the similar looking",
+    "start": 1948.48,
+    "end": 1955.28,
+    "ocr_text": "print (\"Done\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters {|\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in this ser\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nfrom sklearn.cluster import AgglomerativeClustering\n\nfor ggg re in (‘ward', ‘average’, ‘complete'):\n‘ng = AgglomerativeClustering(1linkage=linkage, n_clusters=10)\n0\n\ng.fit(X_red)\n\n: %.2fs\" % (linkage, time() - t0))\n\nfustering(X red, X, clustering.labels , “%s linkage\" % linkage)"
+  },
+  {
+    "text": "clusters together and like to go up till the end all right. And so, this how so how do you find",
+    "start": 1955.28,
+    "end": 1963.12,
+    "ocr_text": "print (\"Done\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in this ser\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nfrom sklearn.cluster import AgglomerativeClustering\n\nfor jg ce in (‘ward', ‘average’, ‘complete'):\n‘ng = AgglomerativeClustering(linkage=linkage, n_clusters=10)\nY\ng.fit(X_red)\n+ %.2fs\" % (linkage, time() - t0))\n\nBfustering(x red, X, clustering.labels , \"ts linkage\" % linkage)"
+  },
+  {
+    "text": "out how do you find out how related or how close how similar to clusters are. So, this is",
+    "start": 1963.36,
+    "end": 1971.6,
+    "ocr_text": "print (\"Done\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in this ser\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nfrom sklearn.cluster import AgglomerativeClustering\n\nfor jg ce in (‘ward', ‘average’, ‘complete'):\n‘ng = AgglomerativeClustering(linkage=linkage, n_clusters=10)\nY\ng.fit(X_red)\n+ %.2fs\" % (linkage, time() - t0))\n\nBfustering(x red, X, clustering.labels , \"ts linkage\" % linkage)"
+  },
+  {
+    "text": "specified by these algorithms. So, the words algorithm actually tries to reduce the",
+    "start": 1971.6,
+    "end": 1978.48,
+    "ocr_text": "print (\"Done\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in this ser\n‘objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nfrom sklearn.cluster import AgglomerativeClustering\n\nfor ggg’ ae in ('ward', ‘average’, ‘complete'):\n‘ng = AgglomerativeClustering(1inkage=linkage, n_clusters=10)\n0\n\ng.fit(X_red)\n\n: %.2fs\" % (linkage, time() - t0))\n\nrustering(X red, X, clustering.labels , “%s linkage\" % linkage)"
+  },
+  {
+    "text": "variance in the clusters all right. So, it is going to take kind of like you know squared",
+    "start": 1979.12,
+    "end": 1986.88,
+    "ocr_text": "print \"Done.\"\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in this ser\n‘objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\nfrom sklearn.cluster import AgglomerativeClustering\n\nfor\n\nS-re in ('ward', ‘average’, ‘complete'):\n‘ng = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n0\ng.£it(X_red)\n+ %.2fs\" % (linkage, time() - t0))\n\nfustering(X red, X, clustering.labels , “%s linkage\" % linkage)"
+  },
+  {
+    "text": "exactly. So, it is like squared differences between the sum of squared differences in all clusters",
+    "start": 1986.88,
+    "end": 1994.64,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n1 Objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in (‘ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering.fit(x_red)\n\nit(\"&s : %.2fs\" % (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"ts linkage\" % linkage)"
+  },
+  {
+    "text": "all right. So, it tries to minimize that. So, you can actually look up the paper and study more",
+    "start": 1994.64,
+    "end": 2000.08,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n1 Objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in (‘ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering.fit(x_red)\n\nit(\"&s : %.2fs\" % (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"ts linkage\" % linkage)"
+  },
+  {
+    "text": "about this method. So, this was not taught in the course, but other two were. So, the maximum",
+    "start": 2000.08,
+    "end": 2005.76,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in:\n1 Objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: | from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in ('ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering. fit (x_red)\n\n\\t(\"&s : %.2fs\" % (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"&s linkage\" % linkage)"
+  },
+  {
+    "text": "or complete linkage this algorithm this species this says that the similarity of two clusters is",
+    "start": 2005.76,
+    "end": 2013.12,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: | from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in (‘ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering. fit (x_red)\n\n\\t(\"#s : %.2fs\" % (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "should be judged on the basis of the maximum of the pair wise distances between the points",
+    "start": 2013.12,
+    "end": 2019.68,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: | from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in (‘ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering. fit (x_red)\n\n\\t(\"#s : %.2fs\" % (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "of those two clusters. So, you have cluster A and cluster B. So, you are going to compute pair",
+    "start": 2019.68,
+    "end": 2025.28,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1:/ from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in (‘ward', ‘average’, 'complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering. fit (x_red)\n\n\\t(\"&s : %.2fs\" % (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "wise distances of every point in cluster A from every other every point in cluster B all right.",
+    "start": 2025.28,
+    "end": 2033.68,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: | fom sklearn.cluster import AgglomerativeClustering\n\nfor linkage in ('ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(1inkage=linkage, n_clusters=10)\n9 = time()\n\nstering. fit (x_red)\n\n\\t(\"%s : %.2fs\" % (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "So, you have the set of all of these distances say there are n a points. So, there say there are",
+    "start": 2033.68,
+    "end": 2040.0,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: | fom sklearn.cluster import AgglomerativeClustering\n\nfor linkage in ('ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(1inkage=linkage, n_clusters=10)\n9 = time()\n\nstering. fit (x_red)\n\n\\t(\"%s : %.2fs\" % (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "n 1 points in cluster A and n 2 points in cluster B all right. So, there there will be n 1 into",
+    "start": 2040.0,
+    "end": 2046.16,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: | from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in ('ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering.fit(X_red)\n\n\\t(\"Ss : %.2fs\" $ (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "n 2 n 1 times n 2 distances right. And then you going to say that these two clusters are.",
+    "start": 2046.16,
+    "end": 2054.0,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: | from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in ('ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering.fit(X_red)\n\n\\t(\"Ss : %.2fs\" $ (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "So, you are going to the distance between these two clusters is going to be take chosen as the",
+    "start": 2054.0,
+    "end": 2060.48,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: | from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in ('ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering.fit(X_red)\n\n\\t(\"Ss : %.2fs\" $ (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "maximum of these distances all right. And you are going to judge how similar these two clusters",
+    "start": 2060.48,
+    "end": 2068.24,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: | from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in ('ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering.fit(X_red)\n\n\\t(\"Ss : %.2fs\" $ (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "on the basis of the maximum of these distances. So, this is a complete linkage algorithm.",
+    "start": 2068.72,
+    "end": 2073.6,
+    "ocr_text": "Computing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ 1: | from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in ('ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n9 = time()\n\nstering.fit(X_red)\n\n\\t(\"Ss : %.2fs\" $ (linkage, time() - t0))\n\nt_clustering(x_red, X, clustering.labels_, \"%s linkage\" % linkage)"
+  },
+  {
+    "text": "Average linkage what does does what it also it takes the average of the pair wise distances",
+    "start": 2073.6,
+    "end": 2079.12,
+    "ocr_text": "(ide\n\n{\n\nCreate a 2D embedding of the digits dataset\n\nprint(\"Computing embedding\")\nX_red = manifold, Bpeetralimbedding(n_componente=2) . fit_transform(X)\nprint \"Done.\"\n\nComputing embedding\nDone,\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters, It is a varianoe-minimizing approach and in:\n‘objective function but tackled with an agglomerative hierarchical approach,\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters,\n\nfeom akiearn.eluster import AgglomerativeCiustering"
+  },
+  {
+    "text": "all right. So, you compute the pair wise distances of the points of two clusters and then you",
+    "start": 2079.12,
+    "end": 2083.52,
+    "ocr_text": "(ide\n\n{\n\nCreate a 2D embedding of the digits dataset\n\nprint(\"Computing embedding\")\nX_red = manifold, Bpeetralimbedding(n_componente=2) . fit_transform(X)\nprint \"Done.\"\n\nComputing embedding\nDone,\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters, It is a varianoe-minimizing approach and in:\n‘objective function but tackled with an agglomerative hierarchical approach,\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters,\n\nfeom akiearn.eluster import AgglomerativeCiustering"
+  },
+  {
+    "text": "take the average value of the distance all right. The distance between two clusters is the",
+    "start": 2083.52,
+    "end": 2087.92,
+    "ocr_text": "(ide\n\n{\n\nCreate a 2D embedding of the digits dataset\n\nprint(\"Computing embedding\")\nX_red = manifold, Bpeetralimbedding(n_componente=2) . fit_transform(X)\nprint \"Done.\"\n\nComputing embedding\nDone,\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters, It is a varianoe-minimizing approach and in:\n‘objective function but tackled with an agglomerative hierarchical approach,\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters,\n\nfeom akiearn.eluster import AgglomerativeCiustering"
+  },
+  {
+    "text": "average of the pair wise distances of the points in those two clusters all right.",
+    "start": 2087.92,
+    "end": 2093.36,
+    "ocr_text": "(ide\n\n{\n\nCreate a 2D embedding of the digits dataset\n\nprint(\"Computing embedding\")\nX_red = manifold, Bpeetralimbedding(n_componente=2) . fit_transform(X)\nprint \"Done.\"\n\nComputing embedding\nDone,\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters, It is a varianoe-minimizing approach and in:\n‘objective function but tackled with an agglomerative hierarchical approach,\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters,\n\nfeom akiearn.eluster import AgglomerativeCiustering"
+  },
+  {
+    "text": "Examine these three kinds of these three variants here. So, let me check yeah done.",
+    "start": 2093.36,
+    "end": 2101.52,
+    "ocr_text": "(ide\n\n{\n\nCreate a 2D embedding of the digits dataset\n\nprint(\"Computing embedding\")\nX_red = manifold, Bpeetralimbedding(n_componente=2) . fit_transform(X)\nprint \"Done.\"\n\nComputing embedding\nDone,\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters, It is a varianoe-minimizing approach and in:\n‘objective function but tackled with an agglomerative hierarchical approach,\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters,\n\nfeom akiearn.eluster import AgglomerativeCiustering"
+  },
+  {
+    "text": "So, we import agglomerative clustering from Cycadelun.cluster right. And for linkage in",
+    "start": 2101.52,
+    "end": 2109.84,
+    "ocr_text": "(ide\n\n{\n\nCreate a 2D embedding of the digits dataset\n\nprint(\"Computing embedding\")\nX_red = manifold, Bpeetralimbedding(n_componente=2) . fit_transform(X)\nprint \"Done.\"\n\nComputing embedding\nDone,\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within all clusters, It is a varianoe-minimizing approach and in:\n‘objective function but tackled with an agglomerative hierarchical approach,\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters,\n\nfeom akiearn.eluster import AgglomerativeCiustering"
+  },
+  {
+    "text": "word average and complete we are going to do the clustering all right clustering equal to.",
+    "start": 2109.84,
+    "end": 2114.56,
+    "ocr_text": "+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\nobjective function but tackled with an agglomerative hierarchical approach.\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n{ ]:| from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in (‘ward{, ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n\nt0 = time()\nclustering. fit(x_red)\n\nprint(\"ts : %.2fs\" % (linkage, time() - t0))\n\nplot_clustering(x_red, X, clustering.labels_, \"ts linkage\" % linkage)\n\nplt.show()"
+  },
+  {
+    "text": "So, this particular line it initializes the clustering algorithm ok. The initializes the model",
+    "start": 2114.56,
+    "end": 2122.08,
+    "ocr_text": "+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\nobjective function but tackled with an agglomerative hierarchical approach.\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n{ ]:| from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in (‘ward{, ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n\nt0 = time()\nclustering. fit(x_red)\n\nprint(\"ts : %.2fs\" % (linkage, time() - t0))\n\nplot_clustering(x_red, X, clustering.labels_, \"ts linkage\" % linkage)\n\nplt.show()"
+  },
+  {
+    "text": "and we are starting to know time and then we fit on the dataset. The dataset is the reduced",
+    "start": 2122.56,
+    "end": 2127.68,
+    "ocr_text": "+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\n\nobjective function but tackled with an agglomerative hierarchical approach.\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n{ ]: from sklearn.tluster import AgglomerativeClustering\n\nfor linkage in (‘ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\n\nt0 = time()\nclustering. fit(x_red)\n\nprint(\"ts : %.2fs\" % (linkage, time() - t0))\n\nplot_clustering(x_red, xX, clustering.labels_, \"ts linkage\" % linkage)\n\nplt.show()"
+  },
+  {
+    "text": "dimensional image and then we print how much time was taken right and then we plot the clusters.",
+    "start": 2127.68,
+    "end": 2136.96,
+    "ocr_text": "+ Ward minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in\nobjective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[ J: from sklearn.cluster import AgglomerativeClustering\nfor linkage in (‘ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\nt0 = time()\nclustering. fit (x_red)\nprint(\"$s : %.2fs\" % (linkage, time() - t0))\n\nplot_clustering(x_red, X, clustering.labels_, \"$s linkage\" % linkage)\n\nplt.show()"
+  },
+  {
+    "text": "Let us go ahead and execute this segment it takes some time. Let me shrink the screen a little bit",
+    "start": 2136.96,
+    "end": 2143.6,
+    "ocr_text": "ae\n1S a variance-minimizing approacl\n\nobjective function but tackled with an agglomerative hierarchical approach.\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[*]: | from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in (‘ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\ntO = time()\n\nclustering. fit (x_red)\nprint(\"$s : %.2f5\" % (linkage, time() - t0))\n\nplot_clustering(x_red, X, clustering.labels_, \"#s linkage\" % linkage)\n\nplt.show()"
+  },
+  {
+    "text": "let us see how it works. So, you will see the effect of choosing different kinds of criteria",
+    "start": 2143.84,
+    "end": 2152.88,
+    "ocr_text": "ae\n1S a variance-minimizing approacl\n\nobjective function but tackled with an agglomerative hierarchical approach.\n+ Maximum or complete linkage minimizes the maximum distance between observations of pairs of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pairs of clusters.\n\n[*]: | from sklearn.cluster import AgglomerativeClustering\n\nfor linkage in (‘ward', ‘average’, ‘complete'):\nclustering = AgglomerativeClustering(linkage=linkage, n_clusters=10)\ntO = time()\n\nclustering. fit (x_red)\nprint(\"$s : %.2f5\" % (linkage, time() - t0))\n\nplot_clustering(x_red, X, clustering.labels_, \"#s linkage\" % linkage)\n\nplt.show()"
+  },
+  {
+    "text": "and the these were actually like kind of they are not well proven that this particular criterion",
+    "start": 2152.88,
+    "end": 2159.28,
+    "ocr_text": "Ta (14)\n\n‘Prine \"Computing embedding”)\nX_red = manifold. spectralBabedding(n_conponentsw2).fit_transform(x)\nFint(\"Done.\")\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within al clusters. Iisa variance-minimizing approach and inthis sense is similar to the k-means\n‘objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complet linkage minimizes the maximum distance between observations of pais of clusters.\n\n+ Average linkage minimizes the average ofthe distances between all observations of pairs of clusters.\n\nfrom sklearn-cluster import AgglonerativeClustering\n\nfor Linkage in (\"vard', ‘average\", complete\"):\nclustering = Agglonerativeclustering(inkage=Linkage, n_clusters=10)\n£0 = time()\nclustering. £1¢(x red)\nprint(\"ts : 8.2f6\" & (Linkage, time() - ¢0))\n\nplot_clustering(x red, X, clustering.labels_, \"ts Linkage\" ¥ linkage)\n\nplt.show()"
+  },
+  {
+    "text": "will lead to this kind of this says about a minute ok. So, let us wait and talk. So,",
+    "start": 2159.28,
+    "end": 2164.88,
+    "ocr_text": "X_red = manifold. spectralBabedding(n_conponents2).fit_transform(x)\nEint(\"Done.\")\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared ctferences within all clusters. Iisa variance-minimizing approach and inthis sense is similar to the k-means\n‘objective function but tackled with an agglomerative hierarchical approach\n\n+ Maximum or complet linkage minimizes the maximum distance between observations of pais of clusters.\n\n+ Average linkage minimizes the average ofthe distances between all observations of pais of clusters.\n\nfrom sklearn.cluster import AgglonerativeClustering,\n\nfor Linkage in (‘ward’ + ‘complete\"):\nclustering = AgglonerativeClustering(inkage=Linkage, n_clusters=10)\n£0 = time()\nclustering. £1¢(x red)\nprint(\"ts : 8.2f6\" 4 (Linkage, tine() - ¢0))\n\nplot _clustering(x red, X, clustering.labels_, \"ts Linkage\" ¥ linkage)\n\nplt.show()\n\nward + 19.588"
+  },
+  {
+    "text": "you do not there are no proofs that this will exactly lead to this kind of clusters all right.",
+    "start": 2166.08,
+    "end": 2171.2,
+    "ocr_text": "(\"Computing embedding”)\nX red = sanifold.spectralabedding(n_components2).£it_transfora(x)\nFint(\"Done.\")\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared citfeences within all clusters. Iisa varance-minimizing approach and inthis sense is similar to the k-means\n‘objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complet linkage minimizes the maximum distance between observations of pais of clusters.\n\n+ Average linkage minimizes the average ofthe distances between all observations of pairs of clusters.\n\nfrom sklearn.cluster import AgglonerativeClustering,\n\nfor Linkage in (\"vard\", ‘average\", ‘complete’):\nclustering = Agglonerativeclustering(inkage=Linkage, n_clusters=10)\n£0 = time()\nclustering. £1¢(x red)\nprint(\"ts : t.2f6\" ¥ (Linkage, time() - €0))\n\nplot_clustering(x red, X, clustering.labels_, \"ts Linkage\" ¥ linkage)\n\nplt.show()\n\nward + 19.588"
+  },
+  {
+    "text": "But still you have some you can have some you know some guess about the nature of clusters",
+    "start": 2171.2,
+    "end": 2177.2,
+    "ocr_text": "(\"Computing embedding”)\nX red = sanifold.spectralabedding(n_components2).£it_transfora(x)\nFint(\"Done.\")\n\nComputing embedding\nDone.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared citfeences within all clusters. Iisa varance-minimizing approach and inthis sense is similar to the k-means\n‘objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complet linkage minimizes the maximum distance between observations of pais of clusters.\n\n+ Average linkage minimizes the average ofthe distances between all observations of pairs of clusters.\n\nfrom sklearn.cluster import AgglonerativeClustering,\n\nfor Linkage in (\"vard\", ‘average\", ‘complete’):\nclustering = Agglonerativeclustering(inkage=Linkage, n_clusters=10)\n£0 = time()\nclustering. £1¢(x red)\nprint(\"ts : t.2f6\" ¥ (Linkage, time() - €0))\n\nplot_clustering(x red, X, clustering.labels_, \"ts Linkage\" ¥ linkage)\n\nplt.show()\n\nward + 19.588"
+  },
+  {
+    "text": "that are being produced by these different choices right. You can see that different algorithms",
+    "start": 2177.2,
+    "end": 2183.6,
+    "ocr_text": "(\"Computing embedding”)\nanifold.SpectralEabedding(n_components=2).f1t, transform(x)\n)\n\nComputing enbedding\nDone.\n\nXred\nPEint(\"Done.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared cfferences within all clusters. Iisa variance-minimizing approach and inthis sense is similar to the k-means\n‘objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complet linkage minimizes the maximum distance between observations of pais of clusters.\n\n+ Average linkage minimizes the average ofthe distances between all observations of pairs of clusters.\n\nIm [*]: from sklearn.cluster import AgglonerativeClustering\n\nfor Linkage in (\"vard', ‘average\", ‘complete\"):\nclustering = Agglonerativeclustering(Linkage=Linkage, n_clusters=10)\n£0 = time() ,\nclustering. £1¢(x red)\nprint(\"ts : 8.266\" 4 (ink\n\n+ time) = £0)\n\nplot_clustering(x red, X, clustering.labels_, \"ts Linkage\" ¥ linkage)\n\nplt.show()\n\nward + 19.58\naverage : 18.858"
+  },
+  {
+    "text": "are completing and the times are being noted. The third one is remaining finished soon.",
+    "start": 2183.6,
+    "end": 2189.76,
+    "ocr_text": "(\"Computing embedding”)\nanifold.SpectralEabedding(n_components=2).f1t, transform(x)\n)\n\nComputing enbedding\nDone.\n\nXred\nPEint(\"Done.\n\nTrain and visualize the clusters\n\n+ Ward minimizes the sum of squared cfferences within all clusters. Iisa variance-minimizing approach and inthis sense is similar to the k-means\n‘objective function but tackled with an agglomerative hierarchical approach.\n\n+ Maximum or complet linkage minimizes the maximum distance between observations of pais of clusters.\n\n+ Average linkage minimizes the average ofthe distances between all observations of pairs of clusters.\n\nIm [*]: from sklearn.cluster import AgglonerativeClustering\n\nfor Linkage in (\"vard', ‘average\", ‘complete\"):\nclustering = Agglonerativeclustering(Linkage=Linkage, n_clusters=10)\n£0 = time() ,\nclustering. £1¢(x red)\nprint(\"ts : 8.266\" 4 (ink\n\n+ time) = £0)\n\nplot_clustering(x red, X, clustering.labels_, \"ts Linkage\" ¥ linkage)\n\nplt.show()\n\nward + 19.58\naverage : 18.858"
+  },
+  {
+    "text": "So, in this fancy plotting function it plots with respect to like it you know it writes it plots",
+    "start": 2190.56,
+    "end": 2200.88,
+    "ocr_text": "Train and visualize the clusters\n\n+ Ward minimizes the sum of squared differences within al clusters. tis a variance-minimizing approach and inthis sonse is similar to the k-means\n‘objective function but tackled with an agglomerative hierarchical approach.\n\n‘+ Maximum or complete linkage minimizes the maximum distance between observations of pais of clusters.\n\n+ Average linkage minimizes the average of the distances between all observations of pais of clusters.\n\nfrom sklearn.cluster import AgglonerativeClustering\n\nfor Linkage in (\"vard\", ‘average’, ‘complete’):\nclustering = AgglonerativeClustering(Linkage=Linkage, n_cluste:\n£0 = time()\nclustering. £1¢(x red)\nprint(\"ts ¢ ¥.2f8\" § (Linkage, time() - t0))\n\nplot_clustering(x red, X, clustering.labels_, \"ts Linkage” ¥ linkage)\nplt.show()\n\nward + 19.\naverage : 18.858"
+  },
+  {
+    "text": "with those numbers all right you can see you will see that yeah how they are being plotted.",
+    "start": 2200.88,
+    "end": 2205.76,
+    "ocr_text": "X, y = nudge_images(x, y)\n\nVisualize the clustering\n\nIn [13]: | def plot_clustering(x red, x, labels, title=None):\nXmin, xmax = nprmin(X red, axise0), np.max(X red, axis\nxired'= (x red ~ x.min) / (X.max ~ x’min)\n\nplt.figure(figsize=(2*6, 2¥4))\nfor i in range(x_red.shape(0}):\npit.text(xred{i, 0], Xred{i, 11, str(yii}),\ncolor=pit.cm.spectral(1abels(i} / 10.),\nfontdict=(\"weight': 'bold', ‘size’: 9})\n\nplt.xtioks((1)\n\npit.ytioks((])\n\nfe Cele ts not toner\nplt.title(title, sizen17)\n\nplt.axia( ‘off\")\n\npltstight_layout()\n\nCreate a 2D embedding of the digits dataset\nim [14]: | print (\"Computing embedding\")\n\nX_xed = manifold. Spectralabedding(n_conponents=2).fit_transfora(x)\npFint(\"Done.\")\n\nComputing enbedding\nDone."
+  },
+  {
+    "text": "So, this is a very flaw fancy plotting style in which you instead of putting markers or like",
+    "start": 2205.76,
+    "end": 2213.36,
+    "ocr_text": "X, y = nudge_images(x, y)\n\nVisualize the clustering\n\nIn [13]: | def plot_clustering(x red, x, labels, title=None):\nXmin, xmax = nprmin(X red, axise0), np.max(X red, axis\nxired'= (x red ~ x.min) / (X.max ~ x’min)\n\nplt.figure(figsize=(2*6, 2¥4))\nfor i in range(x_red.shape(0}):\npit.text(xred{i, 0], Xred{i, 11, str(yii}),\ncolor=pit.cm.spectral(1abels(i} / 10.),\nfontdict=(\"weight': 'bold', ‘size’: 9})\n\nplt.xtioks((1)\n\npit.ytioks((])\n\nfe Cele ts not toner\nplt.title(title, sizen17)\n\nplt.axia( ‘off\")\n\npltstight_layout()\n\nCreate a 2D embedding of the digits dataset\nim [14]: | print (\"Computing embedding\")\n\nX_xed = manifold. Spectralabedding(n_conponents=2).fit_transfora(x)\npFint(\"Done.\")\n\nComputing enbedding\nDone."
+  },
+  {
+    "text": "circles or squares in the plot you put the exact digits. So, you can use that function it is",
+    "start": 2213.36,
+    "end": 2218.56,
+    "ocr_text": "ye\nra: te TS,\nPed"
+  },
+  {
+    "text": "quite handy. So, this is the result of choosing words linkage all right. You can see that all the",
+    "start": 2218.56,
+    "end": 2226.16,
+    "ocr_text": "ye\nra: te TS,\nPed"
+  },
+  {
+    "text": "threes and nines they have been like kind of all the threes they stay together all the nines",
+    "start": 2226.16,
+    "end": 2231.04,
+    "ocr_text": "ward linkage"
+  },
+  {
+    "text": "they stay together. But they were all combined into a single cluster all right. And these clusters",
+    "start": 2231.04,
+    "end": 2237.36,
+    "ocr_text": "ward linkage"
+  },
+  {
+    "text": "what you try to notice is that these clusters are more or less homogeneous that this particular",
+    "start": 2237.36,
+    "end": 2241.6,
+    "ocr_text": "ward linkage"
+  },
+  {
+    "text": "cluster consists mostly of sevens right. This one is mostly of fours and fives and this one you see.",
+    "start": 2241.6,
+    "end": 2248.56,
+    "ocr_text": "it a ie’\n\nPy 4\né *\nah"
+  },
+  {
+    "text": "So, the similar looking characters they try to like being cluster together all right. This is mostly",
+    "start": 2248.56,
+    "end": 2255.92,
+    "ocr_text": "it a ie’\n\nPy 4\né *\nah"
+  },
+  {
+    "text": "of zeros almost entirely of zeros right. Let us see how what is the case with the others.",
+    "start": 2255.92,
+    "end": 2261.28,
+    "ocr_text": "average linkage"
+  },
+  {
+    "text": "So, they are a bit different right you see that the words linkage they have",
+    "start": 2261.28,
+    "end": 2264.64,
+    "ocr_text": "average linkage"
+  },
+  {
+    "text": "classified these two groups of threes separately some threes came here some threes came there.",
+    "start": 2264.64,
+    "end": 2271.76,
+    "ocr_text": "average linkage"
+  },
+  {
+    "text": "But complete link average linkage it took all the threes in one cluster.",
+    "start": 2271.76,
+    "end": 2279.04,
+    "ocr_text": "complete linkage"
+  },
+  {
+    "text": "But there are certain cases which is which it is called that the rich gets richer you see.",
+    "start": 2279.36,
+    "end": 2287.44,
+    "ocr_text": "complete linkage"
+  },
+  {
+    "text": "So, the bigger clusters they continue to get more and more points. So, the bigger clusters in",
+    "start": 2287.44,
+    "end": 2293.2,
+    "ocr_text": "complete linkage"
+  },
+  {
+    "text": "case in the in course of that hierarchical agglomeration the bigger clusters will get more and",
+    "start": 2293.2,
+    "end": 2298.24,
+    "ocr_text": "complete linkage"
+  },
+  {
+    "text": "more points and tend to get bigger. So, the rich rich get richer whereas the poor remains poor.",
+    "start": 2298.24,
+    "end": 2303.76,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "So, you see that there is one cluster this red one with one single point here over here all right.",
+    "start": 2303.76,
+    "end": 2309.68,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "So, this is one of the limitations of the average linkage algorithm and in fact there is another",
+    "start": 2309.68,
+    "end": 2314.8,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "point H c over here. So, this four is lonely this is one single cluster all right and this is just",
+    "start": 2315.68,
+    "end": 2323.44,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "because of the nature of this particular algorithm. And this is the result of complete linkage",
+    "start": 2323.44,
+    "end": 2330.24,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "right and you can see certain degree of homogeneity in the labels over here.",
+    "start": 2330.96,
+    "end": 2336.8,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "And there are the number of ways in which you can evaluate these clusters I have",
+    "start": 2338.08,
+    "end": 2341.68,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "not included those codes in this particular exercise. But you can definitely look up the",
+    "start": 2341.68,
+    "end": 2348.0,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "official, scikit-learned documentation and tutorials on different kinds of hierarchical",
+    "start": 2349.12,
+    "end": 2354.08,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "clustering algorithms and each of them I strongly recommend you to do so because they are quite",
+    "start": 2354.08,
+    "end": 2358.72,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "enlightening and really good really good examples and really interesting cool ones. So,",
+    "start": 2359.44,
+    "end": 2363.92,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "yeah just go ahead look at the official documentation of these functions get your hands on them you know",
+    "start": 2365.44,
+    "end": 2371.76,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "bring your own data you just try to implement them on your own data and see the results.",
+    "start": 2371.76,
+    "end": 2376.64,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "So, that is all for today. See you in the next video and it will be a tutorial session on this",
+    "start": 2376.64,
+    "end": 2381.92,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "same content right and that will be the end and this in fact is the final the last hands-on",
+    "start": 2382.4,
+    "end": 2390.72,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "coding session of this course. And I really enjoyed the spending these tutorial sessions these",
+    "start": 2390.72,
+    "end": 2398.32,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "like hands-on coding sessions these are the first of my career and thank you for being with me",
+    "start": 2398.32,
+    "end": 2404.8,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "and giving this wonderful experience and I am really thankful to you for giving me this opportunity.",
+    "start": 2404.8,
+    "end": 2411.28,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  },
+  {
+    "text": "So, bye bye see you in the tutorial class.",
+    "start": 2411.92,
+    "end": 2414.96,
+    "ocr_text": "1g aS chaba\n“,8e®\nos"
+  }
+]

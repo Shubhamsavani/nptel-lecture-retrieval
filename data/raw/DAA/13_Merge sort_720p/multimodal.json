@@ -1,0 +1,824 @@
+[
+  {
+    "text": "So, we have seen two intuitive sort of sorting algorithms, selection sort and insertion",
+    "start": 0.0,
+    "end": 5.28,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge Sort\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "sort, but unfortunately for us both of them turn out to be order n square and we know",
+    "start": 5.28,
+    "end": 12.08,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge Sort\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "that order n square is not really good enough for sorting large arrays. So, what can we do",
+    "start": 12.08,
+    "end": 17.36,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge Sort\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "instead? So, here is one way to sort an array more effectively. So, suppose we divide the",
+    "start": 17.36,
+    "end": 25.84,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge Sort\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "array into two equal parts. So, we just break it in the middle, we look at the left separately",
+    "start": 25.84,
+    "end": 30.96,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 5\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge Sort\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "and the right separately. Now, assume that we can sort the left and right into independently",
+    "start": 30.96,
+    "end": 37.36,
+    "ocr_text": "* Merging A"
+  },
+  {
+    "text": "sorted halves. So, we have the left half sorted and the right half sorted. Now, if there were a",
+    "start": 37.36,
+    "end": 42.0,
+    "ocr_text": "* Merging A"
+  },
+  {
+    "text": "way to combine the two halves efficiently to get a fully sorted array, then we can say that we have",
+    "start": 42.0,
+    "end": 48.24,
+    "ocr_text": "* Merging A"
+  },
+  {
+    "text": "achieved the sorting by breaking it up into two smallest subproblems and combining the result.",
+    "start": 48.24,
+    "end": 53.28,
+    "ocr_text": "* Merging A"
+  },
+  {
+    "text": "So, let us first look at this combining step. So, we are given two sorted lists A and B or two",
+    "start": 53.76,
+    "end": 60.24,
+    "ocr_text": "* Merging A"
+  },
+  {
+    "text": "sorted arrays A and B and we want to combine them into a single sorted list. So, this is something",
+    "start": 60.24,
+    "end": 66.24,
+    "ocr_text": "* Merging A"
+  },
+  {
+    "text": "that we can easily do. Supposing we had two stacks of cards in front of us, each of them is arranged",
+    "start": 66.24,
+    "end": 72.24,
+    "ocr_text": "* Merging A anc"
+  },
+  {
+    "text": "in the same way in say in ascending order. Then what we would do is we would look at the topmost",
+    "start": 72.24,
+    "end": 77.12,
+    "ocr_text": "* Merging A anc"
+  },
+  {
+    "text": "card in each stack and take the smaller of the two and move it to a new stack and we could keep",
+    "start": 77.12,
+    "end": 81.92,
+    "ocr_text": "* Merging A"
+  },
+  {
+    "text": "doing this until eventually we have moved all the elements into a new sorted stack.",
+    "start": 82.0,
+    "end": 87.12,
+    "ocr_text": "* Merging A"
+  },
+  {
+    "text": "So, this is an intuitively merging. So, I have two stacks. So, I have two stacks of cards.",
+    "start": 88.08,
+    "end": 94.4,
+    "ocr_text": "* Merging /"
+  },
+  {
+    "text": "So, I look at the topmost card in each and then one of them goes to a new stack and then this is",
+    "start": 96.0,
+    "end": 102.0,
+    "ocr_text": "[iQ\n(LG\n\n* Merging"
+  },
+  {
+    "text": "gone. And so, now I look at the next value and compare it with this and then one of these goes",
+    "start": 102.0,
+    "end": 107.2,
+    "ocr_text": "[iQ\n(LG\n\n* Merging"
+  },
+  {
+    "text": "here and so on. So, eventually I build up a new stack of sorted things.",
+    "start": 107.28,
+    "end": 110.96,
+    "ocr_text": "* Merging A and"
+  },
+  {
+    "text": "So, let us look at this in a very simple example. So, supposing we want to merge these two sorted list.",
+    "start": 113.76,
+    "end": 119.12,
+    "ocr_text": "* Merging A and"
+  },
+  {
+    "text": "So, this is sorted in ascending order and so is this sorted in ascending order.",
+    "start": 119.12,
+    "end": 122.8,
+    "ocr_text": "* Merging A and"
+  },
+  {
+    "text": "So, the first step is to look at the topmost. So, let us assuming that in terms of topmost that",
+    "start": 123.68,
+    "end": 129.44,
+    "ocr_text": "* Merging A and"
+  },
+  {
+    "text": "these are written like this. So, I have this stack and I have this stack. So, I look at the topmost",
+    "start": 129.52,
+    "end": 137.12,
+    "ocr_text": "* Merging A and"
+  },
+  {
+    "text": "element and then I say that the smaller of the two must be the topmost element of my new stack.",
+    "start": 137.12,
+    "end": 142.88,
+    "ocr_text": "* Merging A and"
+  },
+  {
+    "text": "So, in this case I take 21 out and I move it here. Now, I have to compare what is the topmost",
+    "start": 142.88,
+    "end": 149.52,
+    "ocr_text": "Niet"
+  },
+  {
+    "text": "element in the two stacks, lembith 32 and 55. So, now I compare the smaller of the two is 32",
+    "start": 149.52,
+    "end": 155.2,
+    "ocr_text": "Niet"
+  },
+  {
+    "text": "and move it out. Now, I compare 55 and 74 and so 55 moves out, compare 74 and 64. So, now 64 moves out.",
+    "start": 155.28,
+    "end": 164.72,
+    "ocr_text": "Niet"
+  },
+  {
+    "text": "Now, I have nothing left in the second stack. So, the first stack is sorted order. So, I just copy it",
+    "start": 164.72,
+    "end": 169.6,
+    "ocr_text": "Niet"
+  },
+  {
+    "text": "out in order. So, I first move 74 and then I move 89. So, this is a very intuitive merging thing",
+    "start": 169.6,
+    "end": 175.28,
+    "ocr_text": "Niet"
+  },
+  {
+    "text": "that we do again quite naturally when we are dealing with physically two sorted list.",
+    "start": 175.28,
+    "end": 179.76,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "And we can do it with a normal array as well. So, now how do we use this to sort? As we said",
+    "start": 180.72,
+    "end": 187.04,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "array must break up the problem into two equal subproblems, solve the subproblems and then merge",
+    "start": 188.0,
+    "end": 193.44,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "the two solutions into a final solution. So, we will sort a 0 to a n by 2 a by n by 2 minus 1",
+    "start": 193.44,
+    "end": 200.88,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "to make it distinct. So, we have a within this is 0 to n minus 1. So, we take n by 2",
+    "start": 200.88,
+    "end": 208.88,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "minus 1 and n by 2 as a midpoint. So, we sort this separately, we sort this separately and then we",
+    "start": 209.44,
+    "end": 215.44,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "merge step. So, this is the strategy that we have and this is since the final step involves merging",
+    "start": 215.44,
+    "end": 222.4,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "two solutions. This is quite naturally called merge sort. Now, I have said that we will break up",
+    "start": 222.4,
+    "end": 228.72,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "the thing into two subproblems. So, how do I solve this? Well, I will recursively do the same",
+    "start": 228.72,
+    "end": 233.44,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "thing. I will break this up into two subproblems and I will merge this. I will break this up into two",
+    "start": 233.44,
+    "end": 238.56,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "subproblems and merge this. So, you keep breaking up the thing into subproblems until you reach a",
+    "start": 238.56,
+    "end": 243.68,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "trivial subproblem which is as we have seen which is an array of size 1. So, let us look at an",
+    "start": 243.68,
+    "end": 250.64,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "example before we proceed. So, here is an example of an array that we would like to sort. So,",
+    "start": 250.64,
+    "end": 255.92,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "the first step is to break it up into two parts. So, we take the left part. So, this is our midpoint.",
+    "start": 255.92,
+    "end": 261.04,
+    "ocr_text": "hh 6\nrans"
+  },
+  {
+    "text": "So, we take the left part which is the first four elements and the right part. And now we will",
+    "start": 261.92,
+    "end": 267.04,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "apply merge sort separately to these parts. Finally, we will merge the answer. So, having applied",
+    "start": 267.04,
+    "end": 271.76,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "merge sort to the left part, you must again break it up into two parts. So, I have to take this point",
+    "start": 271.76,
+    "end": 275.68,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "and divide it into two parts. And similarly, on the right, I will have to take this point",
+    "start": 275.68,
+    "end": 280.56,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "and divide it into two parts. Now, we could say that we can easily do arrays of size 2,",
+    "start": 281.68,
+    "end": 288.72,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "but let us just keep going till we reach the base case. The base cases when we have only one",
+    "start": 288.72,
+    "end": 292.8,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "element and no sorting required. So, we will again split each of these into two parts. So,",
+    "start": 292.8,
+    "end": 298.8,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "notice that for convenience, we have taken something where I can keep dividing by two,",
+    "start": 298.8,
+    "end": 302.48,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "but there is no limitation in merge sort. It will work for any size. At some point when you do",
+    "start": 302.48,
+    "end": 306.72,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "an unequal split, the two halves will not be the same size, but that does not really matter.",
+    "start": 306.72,
+    "end": 310.88,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "So, now we break the last step into two parts. So, 43 is now. So, this is in green to indicate that",
+    "start": 311.76,
+    "end": 317.12,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "this is now a single element and hence sorted. So, is this and in the same way, we can take each",
+    "start": 317.12,
+    "end": 323.28,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "of these last steps and get now 8 single elements which are sorted. Now, we start merging. So,",
+    "start": 323.28,
+    "end": 330.4,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "we want to merge these two in order to sort that thing. And similarly, we want to merge these two.",
+    "start": 330.4,
+    "end": 335.52,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "We want to merge these two and we want to merge these two. So, we merge the first two and then",
+    "start": 336.08,
+    "end": 342.48,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "we merge this, the smaller one goes first. So, this is now sorted. Similarly, we merge the second pair.",
+    "start": 342.56,
+    "end": 348.32,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "It does not change in order because 22 is smaller than 78. We merge the third pair and they get",
+    "start": 348.32,
+    "end": 353.12,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "exchanged and we merge the fourth pair and again they get exchanged. So, it is important to know this",
+    "start": 353.12,
+    "end": 357.44,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "exchange did not come by looking at this area of size two directly, but rather by looking at these",
+    "start": 357.44,
+    "end": 361.28,
+    "ocr_text": "A Ps ak A"
+  },
+  {
+    "text": "two values taking the smaller one up first and then the bigger one. Now, I want to merge these two",
+    "start": 361.28,
+    "end": 366.8,
+    "ocr_text": "AK |"
+  },
+  {
+    "text": "arrays into a sorted segment of length four and these two arrays into a sorted segment of length four.",
+    "start": 366.8,
+    "end": 372.4,
+    "ocr_text": "AK |"
+  },
+  {
+    "text": "So, again apply merging. So, it is note that 22 will come first, then 32 will come here, then 43",
+    "start": 372.8,
+    "end": 379.12,
+    "ocr_text": "AK |"
+  },
+  {
+    "text": "will come here and then 78 will come there. So, if I apply this, I will get 22, 32, 43, 78.",
+    "start": 379.12,
+    "end": 384.48,
+    "ocr_text": "AK |"
+  },
+  {
+    "text": "The same way here, 13 should come here, then 57, then 63 and then 91. So, this is the effect of",
+    "start": 384.48,
+    "end": 392.16,
+    "ocr_text": "AK |"
+  },
+  {
+    "text": "merging. And finally, I have to merge these two. So, the smallest one, 30 and will go here,",
+    "start": 392.16,
+    "end": 397.04,
+    "ocr_text": "AK |"
+  },
+  {
+    "text": "then I will get 22, then I will get 32, then I will get 43, then I will get 57, then I will get 63,",
+    "start": 397.04,
+    "end": 405.04,
+    "ocr_text": "AK |"
+  },
+  {
+    "text": "I will get 78, then I will get 91. So, merging these two sub arrays of size four will give me the",
+    "start": 405.04,
+    "end": 412.48,
+    "ocr_text": "AK |"
+  },
+  {
+    "text": "final answer. So, this is how merge short works. You break it up in two parts, recursively solve",
+    "start": 412.48,
+    "end": 418.16,
+    "ocr_text": "AK |"
+  },
+  {
+    "text": "the two parts using the same strategy and merge them. So, this is generally a principle that can be",
+    "start": 418.16,
+    "end": 426.56,
+    "ocr_text": "(4 sine"
+  },
+  {
+    "text": "applied to many problems. So, if you can take a problem and divide it into two or more parts.",
+    "start": 426.56,
+    "end": 432.08,
+    "ocr_text": "(4 sine"
+  },
+  {
+    "text": "Such that this part can be solved independent of that part and there is no overlap. So, you solve",
+    "start": 433.28,
+    "end": 437.76,
+    "ocr_text": "(4 sine"
+  },
+  {
+    "text": "this separately, you solve this separately and now you want to somehow combine.",
+    "start": 437.76,
+    "end": 441.84,
+    "ocr_text": "(4 sine"
+  },
+  {
+    "text": "In this particular album, the combination is merging. We will look later on at other divide and",
+    "start": 442.96,
+    "end": 447.44,
+    "ocr_text": "(4 sine"
+  },
+  {
+    "text": "conquer algorithms where the combination might require a different strategy. But the whole idea is",
+    "start": 447.44,
+    "end": 451.68,
+    "ocr_text": "(4 sine"
+  },
+  {
+    "text": "that if you can break up the problem into smaller problems and then combine them, then you can sometimes",
+    "start": 451.68,
+    "end": 456.24,
+    "ocr_text": "(4 sine"
+  },
+  {
+    "text": "get a lot of benefit in terms of efficiency. So, the crucial thing is to identify how to break up",
+    "start": 456.24,
+    "end": 461.52,
+    "ocr_text": "nd"
+  },
+  {
+    "text": "the problem into disjoint sub problems and how to combine the solutions to these sub problems",
+    "start": 461.52,
+    "end": 466.0,
+    "ocr_text": "nd"
+  },
+  {
+    "text": "efficiently to solve the problem attack. So, let us come back to our merge sort and try to",
+    "start": 466.0,
+    "end": 473.52,
+    "ocr_text": "nd"
+  },
+  {
+    "text": "formalize the algorithm in terms of actual code. So, how do I combine two sorted lists or two",
+    "start": 473.52,
+    "end": 479.76,
+    "ocr_text": "nd"
+  },
+  {
+    "text": "sorted arrays A and B into a third sorted list C? Well, as we saw, if one of the two is empty,",
+    "start": 479.76,
+    "end": 487.36,
+    "ocr_text": "nd"
+  },
+  {
+    "text": "then I do not have to do anything, I just have to copy the other one. So, if there is no element",
+    "start": 487.36,
+    "end": 490.8,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "left in A, then I can just copy the rest of B into C. If B is empty, I can copy A into C.",
+    "start": 490.8,
+    "end": 496.0,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "Otherwise, we compare the first element of A and B and move the smaller of the two into C",
+    "start": 497.28,
+    "end": 501.36,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "and we repeat this until everything has been moved. So, here is a simple iterative merge function.",
+    "start": 501.36,
+    "end": 507.36,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "So, it takes two arrays as input, it takes an array A of size M, so 0 to M minus 1,",
+    "start": 507.36,
+    "end": 514.72,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "and it takes an array B, which may be a different size 0 to N minus 1, and the A is to construct",
+    "start": 515.36,
+    "end": 523.28,
+    "ocr_text": "Bay canta!\n\n// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\nI ;"
+  },
+  {
+    "text": "a new array C. Now, we know the size of C because everything there must come here, so it will be 0 to",
+    "start": 524.48,
+    "end": 529.28,
+    "ocr_text": "Bay canta!\n\n// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\nI ;"
+  },
+  {
+    "text": "M plus N minus 1. So, what we do is we maintain some positions. So, we say that,",
+    "start": 530.24,
+    "end": 538.48,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\n\n)- 4 CP\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "let I be the current position, I am looking at in this, J B the current position, I am looking at",
+    "start": 538.48,
+    "end": 543.12,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\n\né 0 men=\\}\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "in B, and K B the current position, I am trying to fill in C. So, now, we know that there are M plus",
+    "start": 543.12,
+    "end": 549.28,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\n\né 0 men=\\}\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "and steps. So, we put a loop which says that this thing must run M plus and M plus N times.",
+    "start": 549.28,
+    "end": 553.44,
+    "ocr_text": "v\na. \\o m-)\n// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\nk\nG 4 men-\\|\n\n// Current positions in A,B,C respectively\n\n// Case i: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "So, if we have already reached the end, if J has already reached the end, or if AI is smaller",
+    "start": 553.84,
+    "end": 562.8,
+    "ocr_text": "v\na. \\o m-)\n// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\nk\nG 4 men-\\|\n\n// Current positions in A,B,C respectively\n\n// Case i: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "than BJ, so this is the real merge step. If AI is smaller than or equal to BJ, what we will do",
+    "start": 562.8,
+    "end": 568.8,
+    "ocr_text": "v\na \\o m1\n// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\nk\nC 4 men-\\]\n\n// Current positions in A,B,C respectively\n\nks men’\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\nI"
+  },
+  {
+    "text": "is we will copy this value here, and then we will increment I and we will increment J.",
+    "start": 568.8,
+    "end": 573.04,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into C\nk\nie men-\\]\n\n// Current positions in A,B,C respectively\n\nks men?\n// Case 1: Move head of A into C\n\npee ee\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "So, we will move CK will be AI and I will be incremented and K will be incremented.",
+    "start": 574.56,
+    "end": 579.68,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into C\nk\nie men-\\]\n\n// Current positions in A,B,C respectively\n\nks men?\n// Case 1: Move head of A into C\n\npee ee\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "So, this, but this also happens in case J is equal to N, because if J is equal to N, what it",
+    "start": 580.48,
+    "end": 587.92,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into cfm\ni ie men-\\]\n\n// Current positions in A,B,C respectively\n\nk_<_ men?\n// Case 1: Move head of A into C\n\nJo) GIES as be\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "means is that this pointer actually reached all the way there. So, there is nothing left to scan.",
+    "start": 587.92,
+    "end": 592.24,
+    "ocr_text": "min-\\|\n\n// Current positions in A,B,C respectively\n\npe ibs\n// Case 1: Move head of A into C\n\nob es as\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "So, J is equal to N means it is actually beyond the right point, so it is beyond that. So,",
+    "start": 592.24,
+    "end": 596.88,
+    "ocr_text": "min-\\|\n\n// Current positions in A,B,C respectively\n\npe ibs\n// Case 1: Move head of A into C\n\nob es as\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "there is nothing to scan and so we will just copy everything from A to C. So, either we copy the",
+    "start": 596.88,
+    "end": 602.72,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into cf.\na ie men-\\|\n\n// Current positions in A,B,C respectively\n\nks men?\n// Case 1: Move head of A into C\n\nfed be Se ae\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "element current element from A to C if AI is smaller than BJ, or if there is nothing in B,",
+    "start": 602.72,
+    "end": 606.96,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into cf.\na ie men-\\|\n\n// Current positions in A,B,C respectively\n\nks men?\n// Case 1: Move head of A into C\n\nfed be Se ae\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "we copy the current element because we are just copying everything from A to C.",
+    "start": 606.96,
+    "end": 609.84,
+    "ocr_text": "Sra\n\n// Merge A[Q..m-1], B[@..n-1] into Cf.\n% ie men-\\]\n\n// Current positions in A,B,C respectively\n\nks men:\n// Case 1: Move head of A into C\n\npa ee\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "So, the symmetric case is when we are AI bigger than BJ. So, if AI is bigger than BJ,",
+    "start": 613.68,
+    "end": 619.28,
+    "ocr_text": "Sra\n\n// Merge A[Q..m-1], B[@..n-1] into Cf.\n% ie men-\\]\n\n// Current positions in A,B,C respectively\n\nks men:\n// Case 1: Move head of A into C\n\npa ee\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "then what we want to do is copy this value here. So, we want to move J up and K up. So, we copy CK",
+    "start": 620.32,
+    "end": 625.92,
+    "ocr_text": "v\n// Merge A[Q..m-1], B[@..n-1] into C[Q..m+n-1]\nk\nC 4 men-\\|\n\n// Current positions in A,B,C respectively\n\nks min’\n// Case 1: Move head of A into C\n\nes\n\n// Case 2: Move head of B inta C\n\na"
+  },
+  {
+    "text": "is equal to BJ, copy the value at BJ to CK and increment both J and K. And like we did earlier,",
+    "start": 625.92,
+    "end": 632.88,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into Q[Q..m+n-1]\n\na:\n\nmin-\\{\n\n// Current positions in A,B,C respectively\n\nks men?\n// Case 1: Move head of A into C\n\npa Be =\n\n// Case 2: Move head of B into C\n\nGA ee AU,\n[\n\n~~"
+  },
+  {
+    "text": "the other reason we might want to do this is if we have already exceeded the length of,",
+    "start": 632.88,
+    "end": 638.0,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into Q[Q..m+n-1]\n\na:\n\nmin-\\{\n\n// Current positions in A,B,C respectively\n\nks men?\n// Case 1: Move head of A into C\n\npa Be =\n\n// Case 2: Move head of B into C\n\nGA ee AU,\n[\n\n~~"
+  },
+  {
+    "text": "so if we are currently here, so AI has been exhausted, then we would also move the next",
+    "start": 638.0,
+    "end": 642.72,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into q[Q..m+n-1]\n\na:\n\nmin-\\|\n\n// Current positions in A,B,C respectively\n\nks men?\n// Case 1: Move head of A into C\n\nJa) eS ee i UE\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "element blindly from B to C. So, this is a simple while look, it takes exactly as many steps",
+    "start": 642.72,
+    "end": 648.96,
+    "ocr_text": "// Merge A[Q..m-1], B[@..n-1] into q[Q..m+n-1]\n\na:\n\nmin-\\|\n\n// Current positions in A,B,C respectively\n\nks men?\n// Case 1: Move head of A into C\n\nJa) eS ee i UE\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "as there are elements to move. And in each step, I move one more element to see either from A or B",
+    "start": 648.96,
+    "end": 653.68,
+    "ocr_text": "i\nb\n\n// Merge A[Q..m-1], B[@..n-1] into Q[Q..m+n-1]\n\ncf\n\nmin-\\|\n\n// Current positions in A,B,C respectively\n\nks men’\n// Case 1: Move head of A into C\n\nen\n\n// Case 2: Move head of B into C\n\na\n\nPRE"
+  },
+  {
+    "text": "depending on the criterion of the current element I am looking at. So, having got merge out of the",
+    "start": 653.68,
+    "end": 661.92,
+    "ocr_text": "i\nb\n\n// Merge A[Q..m-1], B[@..n-1] into Q[Q..m+n-1]\n\ncf\n\nmin-\\|\n\n// Current positions in A,B,C respectively\n\nks men’\n// Case 1: Move head of A into C\n\nen\n\n// Case 2: Move head of B into C\n\na\n\nPRE"
+  },
+  {
+    "text": "way, now we can look at merge sort itself. So, if we want to sort A of size n,",
+    "start": 662.48,
+    "end": 668.96,
+    "ocr_text": "i\nb\n\n// Merge A[Q..m-1], B[@..n-1] into Q[Q..m+n-1]\n\ncf\n\nmin-\\|\n\n// Current positions in A,B,C respectively\n\nks men’\n// Case 1: Move head of A into C\n\nen\n\n// Case 2: Move head of B into C\n\na\n\nPRE"
+  },
+  {
+    "text": "int C 0 to n minus 1, we have to create a new array as we said because merging has to copy the two",
+    "start": 668.96,
+    "end": 673.76,
+    "ocr_text": "i\nb\n\n// Merge A[Q..m-1], B[@..n-1] into Q[Q..m+n-1]\n\ncf\n\nmin-\\|\n\n// Current positions in A,B,C respectively\n\nks men’\n// Case 1: Move head of A into C\n\nen\n\n// Case 2: Move head of B into C\n\na\n\nPRE"
+  },
+  {
+    "text": "things into a new thing. So, we eventually going to take A and merge it merge sorted into a new array",
+    "start": 673.76,
+    "end": 679.12,
+    "ocr_text": "i\nb\n\n// Merge A[Q..m-1], B[@..n-1] into Q[Q..m+n-1]\n\ncf\n\nmin-\\|\n\n// Current positions in A,B,C respectively\n\nks men’\n// Case 1: Move head of A into C\n\nen\n\n// Case 2: Move head of B into C\n\na\n\nPRE"
+  },
+  {
+    "text": "B of the same size. So, if n is 1, if we have an element of size 1, we have the base case,",
+    "start": 679.12,
+    "end": 684.88,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "nothing is to be done. Otherwise, we will sort the left part into a sub array L. We will sort",
+    "start": 684.88,
+    "end": 691.6,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "the right half into a sub array R for left and right and then we will merge the two using the",
+    "start": 691.6,
+    "end": 696.0,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "function we just looked. So, this is a very clear recursive algorithm. So, we want to merge",
+    "start": 696.0,
+    "end": 702.64,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "sort A from left to right. So, we will assume that when we say from left to right, we mean that the",
+    "start": 703.36,
+    "end": 711.76,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "leftmost position is called left and the rightmost index is actually right minus 1. So,",
+    "start": 711.76,
+    "end": 717.6,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "this is actually 1 more than the index of the position that we want to sort up. So, we want to",
+    "start": 717.6,
+    "end": 722.88,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "sort the segment starting at a left and going up to an including a right minus 1. So, first of all,",
+    "start": 722.88,
+    "end": 727.92,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "if this segment is of length 1, then we just copy the value at into B, we copy the value at a left.",
+    "start": 727.92,
+    "end": 739.84,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "Otherwise, what we do is we make we find the midpoint right and then we copy up to but not",
+    "start": 740.8,
+    "end": 750.88,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "including mid. This is why we use this convention that sub to mid minus 1. So, this will be from left",
+    "start": 750.88,
+    "end": 755.36,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call"
+  },
+  {
+    "text": "a left to a mid minus 1 and this will merge sort from a mid to a right minus 1.",
+    "start": 756.0,
+    "end": 771.28,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDU) EN"
+  },
+  {
+    "text": "So, what we want to make sure is that we are not accidentally overlapping. So, we want to make",
+    "start": 772.16,
+    "end": 776.4,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDk ‘} ph mA-\\]\nas ie f"
+  },
+  {
+    "text": "sure that this mid value which appears in both things, the value at a mid is only in one of them,",
+    "start": 776.4,
+    "end": 780.8,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDUE) 454 [ma]\nAss * Keats)"
+  },
+  {
+    "text": "namely it is in the right hand side not in the left hand side. So, having done this,",
+    "start": 780.8,
+    "end": 783.68,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDUE) 454 [ma]\nAss * Keats)"
+  },
+  {
+    "text": "then I will use my earlier merge function to merge L which is of size mid minus left and R which",
+    "start": 783.68,
+    "end": 790.24,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDUE) 454 [ma]\nAss * Keats)"
+  },
+  {
+    "text": "is of size right minus mid into B. So, this is the function that we already had before. So,",
+    "start": 790.24,
+    "end": 795.12,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDUE) 454 [mat]\ni © Keats)"
+  },
+  {
+    "text": "it is a very simple recursive thing. Find the midpoint, sort the left half, sort the right half",
+    "start": 795.12,
+    "end": 800.48,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDUE) 454 [mat]\nie * Keats)\n\not"
+  },
+  {
+    "text": "and merge there. As we said, it does not really matter that A is of even length or it is a",
+    "start": 800.48,
+    "end": 807.84,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDUE) 454 [mat]\nie * Keats)\n\not"
+  },
+  {
+    "text": "multiple of two. So, it might be that the left half and the right half are not of same length,",
+    "start": 807.84,
+    "end": 811.76,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDW) 454 [mat]\nre * Keats)\n\n=z"
+  },
+  {
+    "text": "one will be longer, one will be shorter, it does not really matter, this works in all cases.",
+    "start": 811.76,
+    "end": 815.36,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDW) 454 [mat]\nre * Keats)\n\n=z"
+  },
+  {
+    "text": "To analyze this is not so straightforward. So, we will postpone that to the next module.",
+    "start": 816.56,
+    "end": 827.68,
+    "ocr_text": "// Sort the segment A[left..right-1] into B\n\n// Base case\n\n// Recursive call\n\nDUE) 454 [mat]\nee * Keats)\n\n=a"
+  }
+]

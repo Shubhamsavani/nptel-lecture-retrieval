@@ -1,0 +1,1430 @@
+[
+  {
+    "text": "So, in our last lecture we were talking about the various IOT transfer techniques specifically",
+    "start": 0.0,
+    "end": 24.88,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "under the programmed IOT category.",
+    "start": 24.88,
+    "end": 27.84,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "So, if you recall we looked at synchronous method of data transmission, then we looked at",
+    "start": 28.48,
+    "end": 34.88,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "asynchronous or handshaking and finally, we were discussing the concept of interrupt driven",
+    "start": 34.88,
+    "end": 41.52,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "data transfer. So, in case of interrupt driven data transfer what we saw was the processor",
+    "start": 41.52,
+    "end": 48.56,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "is doing something whenever the IOT device is ready or the IOModil is ready to transfer",
+    "start": 48.56,
+    "end": 54.4,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "some data, it will be interrupting the CPU by sending a interrupt request signal.",
+    "start": 54.48,
+    "end": 61.6,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "The CPU when it receives interrupt request signal will know that some IOT device is now ready",
+    "start": 62.48,
+    "end": 69.04,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "to transfer data. So, it will be jumping to some interrupt service routine ISR,",
+    "start": 69.04,
+    "end": 76.8,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "where the data transfer will take place and after that it will again return back to the program",
+    "start": 77.84,
+    "end": 84.16,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "which it was executing. So, here while the device is getting ready for transfer the CPU is",
+    "start": 84.16,
+    "end": 91.84,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "able to do something else, CPU is not getting tied up. So, we shall be continuing our discussion",
+    "start": 91.84,
+    "end": 97.76,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "on interrupt driven data transfer in particularly the topic of interrupt handling this we shall",
+    "start": 97.76,
+    "end": 104.88,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "be discussing today. So, let us see we mentioned this earlier also that what exactly happens",
+    "start": 104.88,
+    "end": 113.92,
+    "ocr_text": "Lecture 46: INTERRUPT HANDLING (PART 1)\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "when a interrupt request reaches the CPU. Well, the first thing that happens typically is that",
+    "start": 114.08,
+    "end": 122.72,
+    "ocr_text": "What happens when an interrupt request arrives?"
+  },
+  {
+    "text": "the CPU was executing some instruction when the interrupt request came. So, typically we shall",
+    "start": 123.28,
+    "end": 130.16,
+    "ocr_text": "What happens when an interrupt request arri\n\n+ At the end of the current instruction execution, the PC and progra\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information."
+  },
+  {
+    "text": "be seeing that some exceptions can be there. Typically the instruction which was being executed",
+    "start": 130.16,
+    "end": 136.72,
+    "ocr_text": "/ G Fi\nNeate"
+  },
+  {
+    "text": "will first complete and only after that the interrupt request will be acknowledged.",
+    "start": 136.8,
+    "end": 142.8,
+    "ocr_text": "/ G Fi\nNeate"
+  },
+  {
+    "text": "So, what we are saying is that at the end of the current instruction execution. So, during the",
+    "start": 144.32,
+    "end": 151.28,
+    "ocr_text": "/ G Fi\nNeate"
+  },
+  {
+    "text": "interrupt acknowledge cycle what is done? The program counter and the program status word or PSW",
+    "start": 151.28,
+    "end": 159.28,
+    "ocr_text": "What happens when an interrupt request arrives?\n\n+ At the end of the current instruction execution, the PC and program s'\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information."
+  },
+  {
+    "text": "sometimes called they are saved in a stack. So, you may recall that for normal subroutine or",
+    "start": 159.44,
+    "end": 167.2,
+    "ocr_text": "What happens when an interrupt request arrives?\n\n+ At the end of the current instruction execution, the PC and program s!\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information\n\nmae ae | 2"
+  },
+  {
+    "text": "function call and return only the return address that means the value of the program counter PC",
+    "start": 167.2,
+    "end": 173.92,
+    "ocr_text": "What happens when an interrupt request arrives?\n\n+ At the end of the current instruction execution, the PC and program s!\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information\n\nmae ae | 2"
+  },
+  {
+    "text": "that is saved in the stack. But here we are saving not only the PC but also some status information.",
+    "start": 173.92,
+    "end": 181.84,
+    "ocr_text": "What happens when an interrupt request arrives?\n\n+ At the end of the current instruction execution, the PC and program s!\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information\n\nmae ae | 2"
+  },
+  {
+    "text": "It of course, depends on the processor the ISA what this PSW means or refers to.",
+    "start": 181.84,
+    "end": 187.76,
+    "ocr_text": "What happens when an interrupt request arrives?\n\n+ At the end of the current instruction execution, the PC and program s'\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information.\n\nBtwn | =e"
+  },
+  {
+    "text": "So, typically in computer systems where there are status flags, PSW will contain status flags",
+    "start": 189.28,
+    "end": 197.12,
+    "ocr_text": "What happens when an interrupt request arrives?\n\n+ At the end of the current instruction execution, the PC and program s'\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information.\n\nBtwn | =e"
+  },
+  {
+    "text": "and some other processor status information regarding which level of privilege it is working on",
+    "start": 197.68,
+    "end": 203.84,
+    "ocr_text": "What happens when an interrupt request arrives?\n\n+ Atthe end of the current instruction execution, the PC and program\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information\n\nre NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNO"
+  },
+  {
+    "text": "and so on and so forth. Now, you may recall in MIPS32 processor we do not have any such status flags.",
+    "start": 203.84,
+    "end": 212.4,
+    "ocr_text": "What happens when an interrupt request arrives?\n\n+ Atthe end of the current instruction execution, the PC and program\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information\n\nre NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNO"
+  },
+  {
+    "text": "So, saving of the PSW becomes much simpler there fine. So, after this is done the interrupt",
+    "start": 212.96,
+    "end": 223.04,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program status\nword (PSW) are saved in stack automatically\n\n— PSW contains status flags and other processor status information\n\nThe interruptis acknowledged, the interrupt vector obtained, based on\n\nwhich control transfers to the appropriatedSR\n\nDifferent interrupting devices may have different ISR’s\n\nNATIONAL\nITKHARAGPUR\n\nCERTIFICATION COURSES TECHNO}"
+  },
+  {
+    "text": "is acknowledged which means the interrupt acknowledge signal is activated and means on",
+    "start": 223.04,
+    "end": 230.48,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program status\nword (PSW) are saved in stack automatically\n\n— PSW contains status flags and other processor status information\n\nThe interruptis acknowledged, the interrupt vector obtained, based on\n\nwhich control transfers to the appropriatedSR\n\nDifferent interrupting devices may have different ISR’s\n\nNATIONAL\nITKHARAGPUR\n\nCERTIFICATION COURSES TECHNO}"
+  },
+  {
+    "text": "acknowledging the signal as I had mentioned the external interrupting device or the IOModule",
+    "start": 230.48,
+    "end": 236.16,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program\nword (PSW) are saved in stack automatically\n\n— PSW contains status flags and other processor status information\n\nThe interruptis acknowledged, the interrupt vector obtained, based on\nwhich control tPansfers to the appropriate ISR.\n\nDifferent interrupting devices may have di\n\nNPTEL ON NATION\nIT KHARAGPUR CEITIFICATION CouRsES Tenn"
+  },
+  {
+    "text": "it can supply the interrupt vector. The interrupt vector will identify the device who has interrupted",
+    "start": 236.96,
+    "end": 244.0,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program\nword (PSW) are saved in stack automatically\n\n— PSW contains status flags and other processor status information\n\nThe interruptis acknowledged, the inter\n\nst vector obtained, based on\nwhich control transfers to the appropriat® ISR.\n\nDifferent interrupting devices may have different ISR’s\n\ns\n="
+  },
+  {
+    "text": "using that information you can compute the address of the interrupt service routine and transfer",
+    "start": 244.64,
+    "end": 252.8,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program\nword (PSW) are saved in stack automatically\n\n— PSW contains status flags and other processor status information\n\nThe interruptis acknowledged, the inter\n\nst vector obtained, based on\nwhich control transfers to the appropriat® ISR.\n\nDifferent interrupting devices may have different ISR’s\n\ns\n="
+  },
+  {
+    "text": "control to that ok. Now, of course, different devices may be having different service routines.",
+    "start": 252.8,
+    "end": 259.68,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program st\nword (PSW) are saved in stack automatically\n\nPSW contains status flags and other proce\n\nor status information\nThe interruptis\n\ncknowledged, the interrupt vector obtained, based on\nwhich control transfers to the appropriate ISR.\n\nDifferent interrupting device\n\nNPTEL ON Nano\nIT KHARAGPUR QEITIFICATION CouRsEs Teco"
+  },
+  {
+    "text": "So, you need to get the address of the correct service routine and then jump to that.",
+    "start": 259.68,
+    "end": 265.36,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program\nword (PSW) are saved in stack automatically\n\nPSW contains status flags and other proce\nThe interruptis\n\nor status information\n\ncknowledged, the interrupt vector obtained, based on\nwhich control transfers to the appropriate ISR,\n\nDifferent interrupting devices may have different ISR’s\n\nITKHARAGPUR ou\n\nCERTIFICATION COURSES TECHNO!\n\nSs"
+  },
+  {
+    "text": "Now, after the interrupt handling is completed the interrupt service routine executes a return",
+    "start": 267.84,
+    "end": 274.48,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program st\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information.\nThe interruptis acknowledged, the interrupt vector obtained, based on\nwhich control transfers to the appropriate ISR.\n— Different interrupting devices may have different IS\nAfter handling the interrupt, the ISR executes a special Return From\nInterrupt (RTI) instruction.\n\nRestores the PSW and returns control to the saved PC address\n— Unlike normal RETURN where PSW is not restored."
+  },
+  {
+    "text": "but this is a special kind of a written instruction not a normal written instruction that you do to",
+    "start": 274.48,
+    "end": 282.0,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program st\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information.\nThe interruptis acknowledged, the interrupt vector obtained, based on\nwhich control transfers to the appropriate ISR.\n— Different interrupting devices may have different IS\nAfter handling the interrupt, the ISR executes a special Return From\nInterrupt (RTI) instruction.\n\nRestores the PSW and returns control to the saved PC address\n— Unlike normal RETURN where PSW is not restored."
+  },
+  {
+    "text": "return from a subroutine or a function where only typically the program counter is popped from",
+    "start": 282.0,
+    "end": 287.52,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and progran\nword (PSW) are saved in stack automatically\n= PSW contains status flags and other processor status information\nThe interruptis acknowledged, the interrupt vector obtained, based on\nwhich control transfers to the appropriate ISR.\n— Different interrupting devices may have different IS!\nAfter handling the interrupt, the ISR executes a special Return From\nInterrupt (RTI) instruction.\n\nRestores the PSW and returns control to the saved PC address\n— Unlike normal RETURN where PSW is not restored."
+  },
+  {
+    "text": "the stack and is loaded into PC. But here you have to restore not only the value of the PC",
+    "start": 287.68,
+    "end": 293.68,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and progran\nword (PSW) are saved in stack automatically\n= PSW contains status flags and other processor status information\nThe interruptis acknowledged, the interrupt vector obtained, based on\nwhich control transfers to the appropriate ISR.\n— Different interrupting devices may have different IS!\nAfter handling the interrupt, the ISR executes a special Return From\nInterrupt (RTI) instruction.\n\nRestores the PSW and returns control to the saved PC address\n— Unlike normal RETURN where PSW is not restored."
+  },
+  {
+    "text": "but also the program status ward which was also saved ok. So, this is a special kind of instruction",
+    "start": 294.64,
+    "end": 301.92,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and progran\nword (PSW) are saved in stack automatically\n= PSW contains status flags and other processor status information\nThe interruptis acknowledged, the interrupt vector obtained, based on\nwhich control transfers to the appropriate ISR.\n— Different interrupting devices may have different IS!\nAfter handling the interrupt, the ISR executes a special Return From\nInterrupt (RTI) instruction.\n\nRestores the PSW and returns control to the saved PC address\n— Unlike normal RETURN where PSW is not restored."
+  },
+  {
+    "text": "let us say RTI. So, this will restore the PSW and return control to the saved PC address.",
+    "start": 301.92,
+    "end": 309.28,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program st.\nword (PSW) are saved in stack automatically\n\nPSW contains status flags and other processor status information.\n\nThe interruptis acknowledged, the interrupt vector obtained, based on\nwhich control transfers to the appropriate ISR.\n— Different interrupting devices may have different IS!\nAfter handling the interrupt, the ISR executes a special Return From\nInterrupt (RTI) instruction.\n\nRestores the PSW and returns control to the saved PC address\n— Unlike normal RETURN where PSW is not restored."
+  },
+  {
+    "text": "So, as I said this is slightly different from the normal written instruction where PSW is not",
+    "start": 309.28,
+    "end": 316.48,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program st.\nword (PSW) are saved in stack automatically\n\nPSW contains status flags and other processor status information.\n\nThe interruptis acknowledged, the interrupt vector obtained, based on\nwhich control transfers to the appropriate ISR.\n— Different interrupting devices may have different IS!\nAfter handling the interrupt, the ISR executes a special Return From\nInterrupt (RTI) instruction.\n\nRestores the PSW and returns control to the saved PC address\n— Unlike normal RETURN where PSW is not restored."
+  },
+  {
+    "text": "saved and returned ok just only the PC is restored fine. Now, let us look at an instruction cycle now.",
+    "start": 316.48,
+    "end": 327.36,
+    "ocr_text": "What happens when an interrupt request arrives?\n\nAt the end of the current instruction execution, the PC and program st\nword (PSW) are saved in stack automatically\n— PSW contains status flags and other processor status information\nThe interruptis acknowledged, the interrupt vector obtained, based on\nwhich control transfers to the appropriate ISR.\n— Different interrupting devices may have different IS!\nAfter handling the interrupt, the ISR executes a special Return From\nInterrupt (RTI) instruction.\n\nRestores the PSW and returns control to the saved PC address\n= Unlike normal RETURN where PSW is not restored."
+  },
+  {
+    "text": "Now, in a MIPS32 you recall the instruction cycle consists of 5 steps iF id ex maim and wb.",
+    "start": 328.24,
+    "end": 335.76,
+    "ocr_text": "+ Aninstruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycle:\n\nInstruction Cycle\n\nNPTEL ONLINE NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "These are typically called machine cycles. So, an instruction cycle comprises of",
+    "start": 336.8,
+    "end": 344.48,
+    "ocr_text": "+ An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycles\n\nInstruction Cycle\n\nNPTEL ONLINE NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNO!\n\ni)"
+  },
+  {
+    "text": "typically more than one machine cycles. So, these machine cycles are executed in order to complete",
+    "start": 345.44,
+    "end": 353.6,
+    "ocr_text": "An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycles\n\nInstruction Cycle"
+  },
+  {
+    "text": "the execution of an instruction. Now, let us see. So, means it is at this point when the instruction",
+    "start": 353.6,
+    "end": 362.08,
+    "ocr_text": "An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycles\n\nInstruction Cycle"
+  },
+  {
+    "text": "cycle is complete the instruction execution is complete only then interrupts are acknowledged.",
+    "start": 362.08,
+    "end": 368.96,
+    "ocr_text": "+ Aninstruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycles\n\nInterrupt\nacknowledged\n\nInstruction Cycle"
+  },
+  {
+    "text": "But in between the machine cycles interrupts are not acknowledged even if the interrupt may appear",
+    "start": 369.84,
+    "end": 378.32,
+    "ocr_text": "+ An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycles\n\nInterrupt\n\nInstruction Cycle\n\nNPTEL oni NATIONAL\nIT KHARAGPUR CEITIFICATION CouRsEs TECHNO}"
+  },
+  {
+    "text": "earlier but the processor will wait till the instruction execution is complete only then the",
+    "start": 378.32,
+    "end": 385.76,
+    "ocr_text": "+ An instruction cycle typically consists of several machine cycles.\n\n— For MIPS32, there are 5 machine cycle\n\nInterrupt not\nacknowledged Sm\n\nInstruction Cycle\n\nNPTEL oni\nITKHARAGPUR CEITIFICATION COURSES\n\nInterrupt\n\nNATIONAL\nTECHNO!"
+  },
+  {
+    "text": "interrupt system will get acknowledged this is how it works right. Now, in this context you may",
+    "start": 385.76,
+    "end": 394.4,
+    "ocr_text": "An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycle:\nInterrupt\nacknowledged acknow\n\nInstruction Cycle\n\nNPTEL ONLINE NATIONAL\nUT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "recall one thing that we talked about the machine cycles instruction cycle and said that",
+    "start": 394.56,
+    "end": 404.88,
+    "ocr_text": "An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycle:\nInterrupt\nacknowledged acknow\n\nInstruction Cycle\n\nNPTEL ONLINE NATIONAL\nUT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "interrupts will be acknowledged only at the end of the instruction cycle not in between.",
+    "start": 405.84,
+    "end": 411.2,
+    "ocr_text": "An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycle:\nInterrupt\nacknowledged acknow\n\nInstruction Cycle\n\nNPTEL ONLINE NATIONAL\nUT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "But there is another method of IOTransfer which we have not discussed yet that is direct memory",
+    "start": 412.72,
+    "end": 419.12,
+    "ocr_text": "An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycle:\nInterrupt\nacknowledged acknow\n\nInstruction Cycle\n\nNPTEL ONLINE NATIONAL\nUT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "access. So, if you recall we mentioned earlier dma is one method using which the IOT",
+    "start": 419.2,
+    "end": 426.88,
+    "ocr_text": "An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycle:\nInterrupt\nacknowledged acknow\n\nInstruction Cycle\n\nNPTEL ONLINE NATIONAL\nUT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "can directly transfer some data to memory or back without intervention of the CPU.",
+    "start": 426.88,
+    "end": 435.28,
+    "ocr_text": "An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycle:\nInterrupt\nacknowledged acknow\n\nInstruction Cycle\n\nNPTEL ONLINE NATIONAL\nUT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "Now, here there is slightly difference in terms of the handling of the dma requests.",
+    "start": 437.6,
+    "end": 445.28,
+    "ocr_text": "An instruction cycle typically consists of several machine cycles.\n— For MIPS32, there are 5 machine cycle:\nInterrupt\nacknowledged acknow\n\nInstruction Cycle\n\nNPTEL ONLINE NATIONAL\nUT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "So, whenever a device wants to make such dma transfer we shall be seeing later that we can stop",
+    "start": 445.28,
+    "end": 453.2,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt je remainder of process\ninformation\n\nCPU loads new PC valu\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the processor not only at the end of the instruction cycle but in between also at the end of a",
+    "start": 453.2,
+    "end": 461.12,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt je remainder of process\ninformation\n\nCPU loads new PC valu\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "machine cycle we can stop at the end of IF we can stop at the end of ID or EX or MEM we can stop.",
+    "start": 461.12,
+    "end": 469.2,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt je remainder of process\ninformation\n\nCPU loads new PC valu\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "This is possible because while the transfer is going on the CPU status is not changing it is",
+    "start": 470.08,
+    "end": 476.24,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt je remainder of process\ninformation\n\nCPU loads new PC valu\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "just like a pause while the transfer is going on CPU will pause and then it will again continue.",
+    "start": 476.24,
+    "end": 483.04,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt je remainder of process\ninformation\n\nCPU loads new PC valu\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "This is one difference fine. Now, the general interrupt processing can be summarized by this flow",
+    "start": 483.04,
+    "end": 493.2,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt je remainder of process\ninformation\n\nCPU loads new PC valu\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "diagram where these blue part the portion which is marked in blue these are performed in the",
+    "start": 493.2,
+    "end": 504.4,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt je remainder of process\ninformation\n\nCPU loads new PC valu\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "hardware unit in the CPU while this the pink part this side these are performed by software as",
+    "start": 504.4,
+    "end": 515.28,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt Save remainder of process state\n\nruction\nProcess interrupt request\n\nhe interruy\nE Restore process state information\n\nCPU pushes PSW and PC in\ntore old PSW and PC\n\nCPU loads new PC value based on interr"
+  },
+  {
+    "text": "part of the interrupt service routine. So, let us see what happens. The device controller to which",
+    "start": 515.28,
+    "end": 522.56,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nSave remainder of process state\ninformation\n\nProcess interrupt request\n\nCPU acknowledges the interru\nE Restore process state information\n\nCPU pushes PSW and PC in\nCPU loads new PC value based on interr\n\nImRARAceoR couses | SG HURT\n\n¥"
+  },
+  {
+    "text": "the IODVS is connected it issues an interrupt request. So, CPU receives that CPU will finish the",
+    "start": 522.56,
+    "end": 531.76,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nSave remainder of process state\ninformation\n\nProcess interrupt request\n\nCPU acknowledges the interru\nE Restore process state information\n\nCPU pushes PSW and PC in\nCPU loads new PC value based on interr\n\nImRARAceoR couses | SG HURT\n\n¥"
+  },
+  {
+    "text": "execution of the current instruction as I said and only after that the CPU will save the PC and",
+    "start": 531.76,
+    "end": 539.76,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nnowledges the interrupt\n\nCPU pushes PSW and PC in stack\n\n(CPU loads new PC value based on interrupt\n\nNPTEL ONLINE\n\nITKHARAGPUR CERTIFICATION COURSES\n\nRestore process state information\n\nNATIONAL\nTECHNO!"
+  },
+  {
+    "text": "the PSW of course, it is after that it will acknowledge the interrupt and it will save PSW and PC",
+    "start": 539.76,
+    "end": 547.92,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt\n\nhe interruy\nE Restore process state information\n\nCPU pushes PSW and PC in\n\nCPU loads new PC value based on interr\n\nNPTEL ONLIN Nano}\nIT KHARAGPUR GEMTIeaTION counses Teno"
+  },
+  {
+    "text": "in this stack. See after acknowledging the interrupt as I said somehow the CPU will also know",
+    "start": 548.0,
+    "end": 557.76,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nSave remainder of process state\ninformation\n\nProcess interrupt request\n\nRestore process state information\n\nCPU pushes PSW and PC in\nfore old PSW and PC\n\nCPU loads new PC value based on interr"
+  },
+  {
+    "text": "or try to know that which device has interrupted. So, that the interrupt vector concept can come in.",
+    "start": 557.76,
+    "end": 564.64,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nSave remainder of process state\ninformation\n\nProcess interrupt request\n\nRestore process state information\n\nCPU pushes PSW and PC in\nfore old PSW and PC\n\nCPU loads new PC value based on interr"
+  },
+  {
+    "text": "So, whenever interrupt acknowledge is coming the external device controller will be pushing some",
+    "start": 564.64,
+    "end": 571.12,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nSave remainder of process state\ninformation\n\nProcess interrupt request\n\nRestore process state information\n\nCPU pushes PSW and PC in\nfore old PSW and PC\n\nCPU loads new PC value based on interr"
+  },
+  {
+    "text": "kind of a interrupt vector or a device ID on the database. CPU can read it and can identify the",
+    "start": 571.12,
+    "end": 578.88,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\n‘ontroller issues an interrupt Save remainder of process state\ninformation\n\nhe interruy\nE Restore process state information\n\nCPU pushes PSW and PC in\nCPU loads based on interr\n\nNPTEL ONLIN Nani\nIIT KHARAGPUR GEMTIneaTION counses TECHNO"
+  },
+  {
+    "text": "device. Now, depending on the device CPU will be jump into the appropriate interrupt service",
+    "start": 578.88,
+    "end": 586.16,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\n‘ontroller issues an interrupt Save remainder of process state\ninformation\n\nhe interruy\nE Restore process state information\n\nCPU pushes PSW and PC in\nCPU loads based on interr\n\nNPTEL ONLIN Nani\nIIT KHARAGPUR GEMTIneaTION counses TECHNO"
+  },
+  {
+    "text": "routine which means it will loading the program counter with the address of the corresponding ISR.",
+    "start": 586.16,
+    "end": 594.64,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\n‘ontroller issues an interrupt Save remainder of process state\ninformation\n\nhe interruy\nE Restore process state information\n\nCPU pushes PSW and PC in\nCPU loads based on interr\n\nNPTEL ONLIN Nani\nIIT KHARAGPUR GEMTIneaTION counses TECHNO"
+  },
+  {
+    "text": "After this is done control will jump to the interrupt service routine it is here. Now,",
+    "start": 595.04,
+    "end": 602.8,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nSave remainder of process state\ninformation\n\nhe interruy\ni Restore process state information\n\nCPU pushes PSW and PC in stack\n\n(CPU loads new PC value based on interrupt"
+  },
+  {
+    "text": "you see this part is done by the CPU automatically whenever the interrupt comes.",
+    "start": 602.8,
+    "end": 606.96,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nSave remainder of process state\ninformation\n\nhe interruy\ni Restore process state information\n\nCPU pushes PSW and PC in stack\n\n(CPU loads new PC value based on interrupt"
+  },
+  {
+    "text": "But here when ISR is assumed control there is a program code which is written this is software.",
+    "start": 607.84,
+    "end": 614.08,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nRestore proces:\n\nCPU pushes PSW and PC in\n\nCPU loads new PC value based on interr\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\nstate information\n\nNATIONAL\nTECHNO"
+  },
+  {
+    "text": "So, it will be saving some other processor information if required maybe some registers",
+    "start": 615.44,
+    "end": 621.04,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt dor of process state\n\nnowledges the interrupt\ni Restore process state information\n\nCPU pushes PSW and PC in stack\ntore old PSW and PC\n\n(CPU loads new PC value based on interrupt\n\nNPTEL ONLIN Nani\nIT KHARAGPUR GEMTIHeaTION counses Teno"
+  },
+  {
+    "text": "it will be saving and it will be processing the request if it is a data transfer it will be",
+    "start": 621.84,
+    "end": 627.44,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt dor of process state\n\nnowledges the interrupt\ni Restore process state information\n\nCPU pushes PSW and PC in stack\ntore old PSW and PC\n\n(CPU loads new PC value based on interrupt\n\nNPTEL ONLIN Nani\nIT KHARAGPUR GEMTIHeaTION counses Teno"
+  },
+  {
+    "text": "actually carrying out the transfer and whatever registers for example were saved it will restore",
+    "start": 628.24,
+    "end": 635.36,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\nDevice controller issues an interrupt\n\non of current instruction\n\nnowledges the interru\nE Restore process state information\n\nCPU pushes PSW and PC in\n\n(CPU loads new PC value based on interr\n\nNPTEL ONLIN NATION\nIT KHARAGPUR GEMTIeaTION counses Teen"
+  },
+  {
+    "text": "them back and it will return back by restoring the old PSW and PC. So, the program was running.",
+    "start": 635.36,
+    "end": 644.8,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\n/@ remainder of process state\ninformation\n\nRestore process state information\n\nCPU pushes PSW and PC in\n\nCPU loads new PC value based on interr\n\nNPTEL ONLINE NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNO! 26"
+  },
+  {
+    "text": "So, wherever the interrupt request came the control would branch to the ISR after ISR finishes",
+    "start": 644.88,
+    "end": 651.52,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\n/@ remainder of process state\ninformation\n\nRestore process state information\n\nCPU pushes PSW and PC in\n\nCPU loads new PC value based on interr\n\nNPTEL ONLINE NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNO! 26"
+  },
+  {
+    "text": "it will come back. Now, the point to notice that suppose this was a program which was executing",
+    "start": 651.52,
+    "end": 658.24,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\n/@ remainder of process state\ninformation\n\nRestore process state information\n\nCPU pushes PSW and PC in\n\nCPU loads new PC value based on interr\n\nNPTEL ONLINE NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNO! 26"
+  },
+  {
+    "text": "there are many instructions. And let us say this is my ISR.",
+    "start": 658.24,
+    "end": 664.72,
+    "ocr_text": "General Interrupt Processing\n\nBy hardware\n\n/@ remainder of process state\ninformation\n\nRestore process state information\n\nCPU pushes PSW and PC in\n\nCPU loads new PC value based on interr\n\nNPTEL ONLINE NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNO! 26"
+  },
+  {
+    "text": "Now, you cannot predict beforehand exactly where the interrupt will come.",
+    "start": 668.72,
+    "end": 672.56,
+    "ocr_text": "|\n\n|\nx | Ise\n| = | J\ni te"
+  },
+  {
+    "text": "Maybe the interrupt will arrive here then after the execution of this instruction",
+    "start": 673.28,
+    "end": 680.0,
+    "ocr_text": "|\n\n|\nx | Ise\n| = | J\ni te"
+  },
+  {
+    "text": "you will be jumping to the ISR it will finish and then it will return back.",
+    "start": 680.88,
+    "end": 685.84,
+    "ocr_text": "|\n\n|\nx | Ise\n| = | J\ni te"
+  },
+  {
+    "text": "Maybe the interrupt has come here then after execution of this control will jump",
+    "start": 686.88,
+    "end": 692.4,
+    "ocr_text": "|\n\n|\nx | Ise\n| = | J\ni te"
+  },
+  {
+    "text": "it will get executed and it will be returning here. So, it can actually jump from anywhere in",
+    "start": 693.04,
+    "end": 699.28,
+    "ocr_text": "57a meal"
+  },
+  {
+    "text": "the program depending on where the interrupt request is actually coming fine.",
+    "start": 699.28,
+    "end": 705.44,
+    "ocr_text": "57a meal"
+  },
+  {
+    "text": "So, this is a picture which shows the CPU the device controller and the bus the overall picture.",
+    "start": 707.6,
+    "end": 716.48,
+    "ocr_text": "Interrupt Request\n(NTR)\n\nDevice\n\nController\n\nTrapt ACKnOW\nNTA)\nVector\n\nData Bus\n\nNPTEL ONLINE NATIONAL 7\nIT KHARAGPUR CERTIFICATION COURSES Teena 3S"
+  },
+  {
+    "text": "So, exactly what you have said the device controller will be sending an interrupt request to the CPU",
+    "start": 717.12,
+    "end": 722.4,
+    "ocr_text": "Interrupt Request\n(NTR)\n\nDevice\n\nController\n\nTrapt ACknow\nTA)\n\nData Bus\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO}"
+  },
+  {
+    "text": "CPU at the end of the current instruction execution will be sending back an interrupt",
+    "start": 723.36,
+    "end": 728.24,
+    "ocr_text": "Interrupt Request\n(NTR)\n\nDevice\n\nController\n\nTrapt ACknow\nTA)\n\nData Bus\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO}"
+  },
+  {
+    "text": "technology. So, in response to that device controller will be pushing an interrupt vector on the",
+    "start": 728.24,
+    "end": 734.32,
+    "ocr_text": "Interrupt Request\n(NTR)\n\nDevice\n\nControllers\n\nTrapt Acknow\nTA)\n\nData Bus\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "database CPU will be reading that interrupt vector and will be able to identify which device has",
+    "start": 734.32,
+    "end": 741.92,
+    "ocr_text": "Interrupt Request\n(NTR)\n\nDevice\n\nControllers\n\nTrapt Acknow\nTA)\n\nData Bus\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "interrupted. So, this steps as follows as I said device controller sends interrupt request to",
+    "start": 741.92,
+    "end": 750.48,
+    "ocr_text": "Interrupt Request\n(NTR)\n\nDevice\n\nController\n\nTrapt ACknow\nNTA)\n\nData Bus\n\nNPTEL ONLINE NaTONA\nIT KHARAGPUR CERTIFICATION COURSES TECHNO ae"
+  },
+  {
+    "text": "the CPU CPU finishes the current instruction and sends back acknowledgement device controller",
+    "start": 750.48,
+    "end": 758.32,
+    "ocr_text": "The steps:\na) Device controller sends INTR to the CPU.\n\nb) CPU finishes the current instruction did sends back INTA.\n©) Device controller sends interrupt vector (or number) over data bus\nd) CPUreads the interrupt vector, and identifies the device.\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO"
+  },
+  {
+    "text": "sends interrupt vector number on the database CPU will read it and identify the device.",
+    "start": 758.32,
+    "end": 764.8,
+    "ocr_text": "The steps:\na) Device controller sends INTR to the CPU.\n\nb) CPU finishes the current instruction and sends back INTA.\n©) Device controller sends interrupt vector (or number) over data bus\nd) CPUreads the interrupt vector, and identifies the device\n\nNPTEL ONLINE NATIONAU ae\nUTKHARAGPUR CERTIFICATION COURSES TECHNO =.\n—"
+  },
+  {
+    "text": "This is exactly what I have said with respect to this diagram.",
+    "start": 764.8,
+    "end": 768.8,
+    "ocr_text": "The steps:\na) Device controller sends INTR to the CPU.\n\nb) CPU finishes the current instruction and sends back INTA.\n©) Device controller sends interrupt vector (or number) over data bus\nd) CPUreads the interrupt vector, and identifies the device\n\nNPTEL ONLINE NATIONAU ae\nUTKHARAGPUR CERTIFICATION COURSES TECHNO =.\n—"
+  },
+  {
+    "text": "Now, the question is how is the interrupt vector sent to the database in response to",
+    "start": 769.6,
+    "end": 780.56,
+    "ocr_text": "Interrupt Reque:\n(NTR)\n\nDevice\n\nController\n\nTrterrapt Acknow\n\nTA)\n\nData Bus\n\n¥"
+  },
+  {
+    "text": "INT whatever we have said that whenever this INT signal is coming the device will be putting the",
+    "start": 780.56,
+    "end": 792.24,
+    "ocr_text": "+ Howis the interrupt vector sent on the data bus in response\nto INTA?\n\nInterrupt vector\n\nINTA\n\nNPTEL ON NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNO"
+  },
+  {
+    "text": "interrupt vector on the database. But how does it happen automatically? It is very simple",
+    "start": 792.24,
+    "end": 798.0,
+    "ocr_text": "+ Howis the interrupt vector sent on the data bus in response\nto INTA?\n\nInterrupt vector\n\nata Bu:\n\n| ="
+  },
+  {
+    "text": "here actually what we require here is a tristate buffer. So, on the input side of the tristate",
+    "start": 798.8,
+    "end": 806.08,
+    "ocr_text": "+ Howis the interrupt vector sent on the data bus in response\nto INTA?\n\nInterrupt vector\n\nata Bu:\n\n| ="
+  },
+  {
+    "text": "buffer we have the interrupt vector the output of which is connected to the database and the tristate",
+    "start": 806.08,
+    "end": 813.28,
+    "ocr_text": "How is the interrupt vector sent on the data bus in response\nto INTA?\n\nInterrupt vector\n\nData Bu\n\na nanonall gs\nITRHARAGPUR GERTIFRCATION couRsEs TeaRoY ae\n="
+  },
+  {
+    "text": "buffer is enabled by the interrupt acknowledgement signal. Now, you recall what is a tristate buffer",
+    "start": 813.28,
+    "end": 822.16,
+    "ocr_text": "How is the interrupt vector sent on the data bus in response\nto INTA?\n\nInterrupt vector\n\nData Bu\n\na nanonall gs\nITRHARAGPUR GERTIFRCATION couRsEs TeaRoY ae\n="
+  },
+  {
+    "text": "a tristate buffer is a circuit which has an enable suppose I have an input A and the output B.",
+    "start": 822.8,
+    "end": 832.8,
+    "ocr_text": "+ How is the interrupt vector sent on the data bus in respor\nto INTA?\n\nInterrupt vector\n\nNeTEL ONLIN NATIONAL NSTI\nITKHARAGPUR GEMTIneATION counses TeURSOSy MECHALavA"
+  },
+  {
+    "text": "So, if this buffer is enabled then B will be equal to A if the enable suppose enable B equal to A",
+    "start": 833.6,
+    "end": 842.4,
+    "ocr_text": "+ How is the interrupt vector sent on the data bus in respor\nto INTA?\n\nInterrupt vector\n\nNeTEL ONLIN NATIONAL NSTI\nITKHARAGPUR GEMTIneATION counses TeURSOSy MECHALavA"
+  },
+  {
+    "text": "if enable equal to 1 let us say. But if it is not enabled then the output will be",
+    "start": 843.12,
+    "end": 850.8,
+    "ocr_text": "\\ See\n\n= Z if En=0"
+  },
+  {
+    "text": "electrically disconnected we call it it will be in the high impedance state if enable is 0.",
+    "start": 850.8,
+    "end": 859.36,
+    "ocr_text": "\\ See\n\n= Z if En=0"
+  },
+  {
+    "text": "So, this tristate buffer can either connect or disconnect a signal from a destination point.",
+    "start": 860.8,
+    "end": 869.44,
+    "ocr_text": "\\ See\n\n= Z if En=0"
+  },
+  {
+    "text": "In this case the destination point is the database. So, whenever interrupt technology is active",
+    "start": 869.44,
+    "end": 877.04,
+    "ocr_text": "A if Enel\n\n>\niva}\n\"\n\n= Z if Er=0"
+  },
+  {
+    "text": "the interrupt vector will appear on the database. So, when it is not active tristate buffer will be",
+    "start": 877.04,
+    "end": 882.72,
+    "ocr_text": "+ Howis the interrupt vector sent on the data bus in response\nto INTA?\n\nInterrupt vector"
+  },
+  {
+    "text": "making the output lines high impedance state. So, as if this is not there the database will work as it is.",
+    "start": 882.72,
+    "end": 888.08,
+    "ocr_text": "+ Howis the interrupt vector sent on the data bus in response\nto INTA?\n\nInterrupt vector"
+  },
+  {
+    "text": "So, this is what I said this gets activated when I and A is active and the interrupt vector which",
+    "start": 890.8,
+    "end": 899.44,
+    "ocr_text": "How is the interrupt vector sent on the data bus in response\nto INTA?\n\nInterrupt vector J i\n\nre NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNO"
+  },
+  {
+    "text": "pushed on the database this can be read by the CPU this will help the CPU to identify",
+    "start": 900.16,
+    "end": 906.32,
+    "ocr_text": "How is the interrupt vector sent on the data bus in response\nto INTA?\n\nInterrupt vector\n\nITKHARAGPUR\n\nThe tristate buffer\nis enabled when\n\nINTA is active THEINCEUBE\n\nvector helps the\nCPU to identify the\ncorrect ISR\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNATIONAL\nTECHNO!"
+  },
+  {
+    "text": "which device are interrupted and accordingly it can identify the correct interrupt service routine.",
+    "start": 907.28,
+    "end": 914.88,
+    "ocr_text": "+ Howis the interrupt vector sent on the data bus in response\nto INTA?\n\nThe tristate buffer\nis enabled when\n\nInterrupt vector\nua INTA is active\n\nThe interrupt\nvector helps the\n\nCPU to Mentify the\ncorrect ISR\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Now, let us consider the scenario where multiple devices can interrupt the CPU.",
+    "start": 921.2,
+    "end": 928.8,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n= The interrupt controller interacts with CPU on one side and multiple de\non the othe!\n— For simultaneous interrupt requests, interrupt priority is defined.\nThe interrupt controller is responsible for sending the interrupt vector to CPU,\n\nINTR INTRO and INTAO\nPriority INTR1 and INTAI\nInterrupt\n\nINTR2 and INTA2\nController\n\nINTR3 and INTA."
+  },
+  {
+    "text": "So, let us look at a scenario like this I will look into the detail of this block later.",
+    "start": 930.16,
+    "end": 935.52,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO.\nPriority INTR1 and INTAI\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA\n\nNPTEL ONLIN NATION\nIT KHARAGPUR ERTIeATION counses Tenn"
+  },
+  {
+    "text": "Suppose there are several devices connected on this side. Now, each of these devices will be having",
+    "start": 935.76,
+    "end": 942.24,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU,\n\nINTRO and INTAO\nPritealsy INTR1 and INTA1\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "an interrupt request and interrupt acknowledge. Let us say there are four sets.",
+    "start": 942.24,
+    "end": 946.96,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU,\n\nINTRO and INTAO\nPritealsy INTR1 and INTA1\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Interrupt request 0, interrupt acknowledge 0, then interrupt request 1, interrupt acknowledge 1,",
+    "start": 947.68,
+    "end": 954.72,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO\nPriority *INTRI and INTA1\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA\n\nNPTEL ONLIN NATION\nIT KHARAGPUR CEITIFICATION couRsES Teun"
+  },
+  {
+    "text": "then 2 interrupt request acknowledge and 3. There are four in this example.",
+    "start": 955.6,
+    "end": 961.52,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\nINTRO and INTAO.\nPriority INTR1 and INTA1\n\nInterrupt\n\nINTR2 and INTA2\nController\n\nINTR3 and\n\ni.)"
+  },
+  {
+    "text": "Now, when there are multiple devices that needs to interrupt the CPU. So, one common solution is to",
+    "start": 962.48,
+    "end": 969.68,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\nINTRO and INTAO.\nPriority INTR1 and INTA1\n\nInterrupt\n\nINTR2 and INTA2\nController\n\nINTR3 and\n\ni.)"
+  },
+  {
+    "text": "have a device which is called a priority interrupt controller. So, priority interrupt controller works",
+    "start": 969.68,
+    "end": 977.52,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n— The interrupt controller interacts with CPU on one and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO.\n\nPriority INTR1 and INTA1\nInterrupt. [——_\n\nINTR2 and INTA2\nController\n\nNTA\n\nNPTEL ONLIN NATION\nIT KHARAGPUR CEITIFICATION CouRsES TECHNOL"
+  },
+  {
+    "text": "just exactly like is shown in this diagram. So, on one side it will be having multiple sets of",
+    "start": 977.52,
+    "end": 984.64,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO\nPriority INTR1 and INTA1\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA\n\nNATIONAL\nIIT KHARAGPUR CEITIFICATION couRsES Teno"
+  },
+  {
+    "text": "interrupt request and acknowledge lines through which various device controllers can be connected.",
+    "start": 985.52,
+    "end": 991.68,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO\nPriority INTR1 and INTA1\n\nInterrupt INTR2 and INTA2\nController :\nINTR3 and INTA\n\nNPTEL ONLIN NATION\nIT KHARAGPUR GEnTIFICATION couRsES Teonnou"
+  },
+  {
+    "text": "But on the side of the CPU there is a single interrupt line and a single interrupt acknowledge line.",
+    "start": 992.8,
+    "end": 998.32,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO\nPriority INTR1 and INTA1\n\nInterrupt INTR2 and INTA2\nController :\nINTR3 and INTA\n\nNPTEL ONLIN NATION\nIT KHARAGPUR GEnTIFICATION couRsES Teonnou"
+  },
+  {
+    "text": "So, this is exactly what is written here the interrupt controller interacts with CPU on one side",
+    "start": 1000.24,
+    "end": 1005.92,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n— The interrupt controller interacts with CPU on one and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe inte stroller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO.\nrita INTR1 and INTA1\nInterrupt\n\nINTR2 and INTA2\n» Controller\n\nNTA\n\nNPTEL ONLIN Nano\nIT KHARAGPUR CEITIFICATION CouRsEs Teen"
+  },
+  {
+    "text": "and multiple devices on the other side. Now, here the idea is whenever any one of the devices will",
+    "start": 1006.8,
+    "end": 1016.88,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n— The interrupt controller interacts with CPU on one side and multiple\non the other side.\n\n— For simultaneous interrupt requests, interrupt priority is defined.\nThe interrupt controller is responsible for\n\nending the interrupt vector to CPU,\n\nINTRO and INTAO\nPriority INTR1 and INTA1\nlntercupt INTR2 and INTA2\nController\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "be sending an interrupt request the priority interrupt controller will automatically generate an",
+    "start": 1016.88,
+    "end": 1024.4,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO.\nPriority INTR1 and INTA1\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA\n\nNPTEL ONLINE Nani\nIT KHARAGPUR CEITIFICATION couRsES Teno"
+  },
+  {
+    "text": "interrupt request to the CPU. And when the CPU sends back the acknowledgement the interrupt controller",
+    "start": 1024.4,
+    "end": 1032.0,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO.\nPriority INTR1 and INTA1\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA\n\nNPTEL ONLINE Nani\nIT KHARAGPUR CEITIFICATION couRsES Teno"
+  },
+  {
+    "text": "knows that which device had sent the interrupt. So, whenever acknowledgement comes this interrupt controller",
+    "start": 1032.08,
+    "end": 1040.0,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO.\nPriority INTR1 and INTAI\nInterrupt\n\nINTR2 and INTA2\nController\n\nINTR3 and INTA\n\nNPTEL ONLIN Nano\nIIT KHARAGPUR GEtTIneaTION counses Tenn"
+  },
+  {
+    "text": "will be putting the appropriate interrupt vector on the database corresponding to that interrupting",
+    "start": 1040.0,
+    "end": 1046.4,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe inte stroller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO.\nPriority INTR1 and INTA1\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA\n\nNPTEL ONLIN Nano\nIT KHARAGPUR GEMTIneATION counses Teno"
+  },
+  {
+    "text": "device. So, interrupt controller is responsible for sending the correct interrupt vector to the CPU.",
+    "start": 1046.4,
+    "end": 1054.88,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO\nPriority INTR1 and INTA1\nInterrupt\n\nINTR2 and INTA2\nController\n\nNPTEL ONLIN NATION\nIT KHARAGPUR GEITIFICATION Courses Teno"
+  },
+  {
+    "text": "But just one thing if suppose two or more interrupt lines are activated simultaneously then what will",
+    "start": 1055.84,
+    "end": 1063.52,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n— The interrupt controller interacts with CPU on one and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO\nPriority INTR1 and INTA1\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA\n\nNPTEL ONLIN Nano\nIT KHARAGPUR GEMTIeaTION counses TecHNO"
+  },
+  {
+    "text": "happen? Then this priority comes into the picture. Well, let us say you define a priority where this",
+    "start": 1063.52,
+    "end": 1072.8,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n— The interrupt controller interacts with CPU on one and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO\nPriority INTR1 and INTA1\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA\n\nNPTEL ONLIN Nano\nIT KHARAGPUR GEMTIeaTION counses TecHNO"
+  },
+  {
+    "text": "line 0 has higher priority than 1, 1 has higher priority than 2 and 2 has higher priority than 3.",
+    "start": 1072.8,
+    "end": 1078.72,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n— The interrupt controller interacts with CPU on one side and multiple devic\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\n\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n\nINTRO and INTAO.\nPriority INTR1 and INTA1\nInterrupt\n\nINTR2 and\nController\n\nINTR3 and\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNOL"
+  },
+  {
+    "text": "So, if interrupt request 0 or interrupt request 2 they are activated simultaneously then",
+    "start": 1079.6,
+    "end": 1085.92,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller\n= The interrupt control acts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\n4TRO and INTAO\nPriority INTR1 and INTA1\n\nInterrupt\n\nINTR2 and INTA2\nController\n\nINTR3 and INTA3"
+  },
+  {
+    "text": "this interrupt request 0 will be processed and 2 will be ignored for the time being.",
+    "start": 1086.72,
+    "end": 1092.0,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\nINTRO and INTAO.\nPriority INTR1 and INTA1\n\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA"
+  },
+  {
+    "text": "So, later on so, after finishing the processing of interrupt request 0 then if the interrupt request 2",
+    "start": 1092.64,
+    "end": 1099.68,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\nINTRO and INTAO.\nPriority INTR1 and INTA1\n\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA"
+  },
+  {
+    "text": "is still active it will be processed and handled. This is a typical way using which multiple",
+    "start": 1099.68,
+    "end": 1105.76,
+    "ocr_text": "Multiple Devices Interrupting the CPU\n\n+ Acommon solution is to use a priority interrupt controller.\n= The interrupt controller interacts with CPU on one side and multiple\non the other side.\n— For simultaneous interrupt requests, interrupt priority is defined.\nThe interrupt controller is responsible for sending the interrupt vector to CPU.\nINTRO and INTAO.\nPriority INTR1 and INTA1\n\nInterrupt\n\nINTR2 and INTA2\nController\n\nNTA"
+  },
+  {
+    "text": "interrupts simultaneously coming interrupts can be handled. So, how it works?",
+    "start": 1105.76,
+    "end": 1113.84,
+    "ocr_text": "How it works?\n\n= The INTR line is made active when some of the device(s) activate their\n\nerrupt request line.\n\nINTRO + INTR1 + INTR2 + IN)\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "The interrupt line as I said is activated when some of the devices active with their interrupt request",
+    "start": 1115.92,
+    "end": 1123.76,
+    "ocr_text": "How it works?\n\n= The INTR line is made active when some of the device(s) activate their\n\nerrupt request line.\n\nINTRO + INTR1 + INTR2 + IN)\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "so, how it can be implemented? Just logical or you use a simple or get a four input or get",
+    "start": 1124.32,
+    "end": 1135.84,
+    "ocr_text": "How it works?\n\n= The INTR line is made active when some of the device(s) activate their\n\nerrupt request line.\n\nINTRO + INTR1 + INTR2 + IN)\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "where the four interrupt request lines are connected to the four inputs",
+    "start": 1138.48,
+    "end": 1147.2,
+    "ocr_text": "How it works?\n\n= The INTR line is made active when some of the device(s) activate their\n\nINTRO + INTRI + INTR2 + IN)\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "and the output will be generating the consolidated interrupt request signal to the CPU.",
+    "start": 1148.0,
+    "end": 1158.88,
+    "ocr_text": "INTRO\nage) =r\n\nNTR"
+  },
+  {
+    "text": "This is how this is generated a simple or function.",
+    "start": 1159.68,
+    "end": 1161.92,
+    "ocr_text": "BT\nTNTR) —\nINTR\n\nste\npNTe> Te"
+  },
+  {
+    "text": "This is one then the CPU sends back this should be interrupt technology I N T A.",
+    "start": 1163.92,
+    "end": 1171.84,
+    "ocr_text": "BT\nTNTR) —\nINTR\n\nste\npNTe> Te"
+  },
+  {
+    "text": "So, when the CPU sends back I N T A the interrupt controller will send back the corresponding",
+    "start": 1171.92,
+    "end": 1178.88,
+    "ocr_text": "How it work:\n— The INTR line is made active when some of the device(s) activate\n\nInterrupt request line.\nNTR = INTRO +INTRI + INTR2 + IN’\n\n.n the CPU sends back INTR, the interrupt controller sends back the\n\ncorresponding acknowledge to the interrupting device, and puts the interrupt\n\nvector on the data bus\n\na"
+  },
+  {
+    "text": "acknowledge to the interrupting device and puts the interrupt vector on the data bus.",
+    "start": 1178.88,
+    "end": 1184.16,
+    "ocr_text": "How it work:\n— The INTR line is made active when some of the device(s) activate\n\ninterrupt request line.\nVIR = INTRO + INTRI + INTR2 + IN’\n\n.n the CPU sends back INTR, the interrupt controller sends back the\n\ncorresponding acknowledge to the interrupting device, and puts the interrupt\n\nvector on the data bus"
+  },
+  {
+    "text": "What is mean here is this? Suppose I have the priority interrupt controller here",
+    "start": 1184.16,
+    "end": 1189.44,
+    "ocr_text": "How it work:\n— The INTR line is made active when some of the device(s) activate\n\ninterrupt request line.\nVIR = INTRO + INTRI + INTR2 + IN’\n\n.n the CPU sends back INTR, the interrupt controller sends back the\n\ncorresponding acknowledge to the interrupting device, and puts the interrupt\n\nvector on the data bus"
+  },
+  {
+    "text": "this is PIC and let us suppose device number 2 had interrupted I N T R 2.",
+    "start": 1190.48,
+    "end": 1197.68,
+    "ocr_text": "peTRo\n\nENA) ae\nINTR\n\nTNTRE\nane oe"
+  },
+  {
+    "text": "So, in response by this or function the CPU got this I N T R.",
+    "start": 1198.08,
+    "end": 1203.6,
+    "ocr_text": "gure ——S\nINTR"
+  },
+  {
+    "text": "So, later on when the CPU generates the acknowledgement the PIC will be generating the corresponding",
+    "start": 1205.76,
+    "end": 1215.36,
+    "ocr_text": "geTro ——S\n\nINTR\n\nINTRZ"
+  },
+  {
+    "text": "acknowledgement for this device 2 I N T A 2. This will be done automatically and it also has",
+    "start": 1215.36,
+    "end": 1225.2,
+    "ocr_text": "INTR\n\nINTRZ\n\n----> INTAZ"
+  },
+  {
+    "text": "another responsibility it is also connected to the data bus.",
+    "start": 1225.2,
+    "end": 1228.64,
+    "ocr_text": "INTR\n\nINTRZ\n\n----> INTAZ"
+  },
+  {
+    "text": "So, whenever this interrupt acknowledge is sent by the CPU. So, the corresponding",
+    "start": 1237.92,
+    "end": 1243.04,
+    "ocr_text": "amgrcilis\nx INTR\n\nINTRZ"
+  },
+  {
+    "text": "interrupt vector because PIC also stores the different values of the interrupt vector for all",
+    "start": 1244.16,
+    "end": 1249.92,
+    "ocr_text": "amgrcilis\nx INTR\n\nINTRZ"
+  },
+  {
+    "text": "the devices. So, the interrupt vector for this particular device will be pushed on the",
+    "start": 1250.0,
+    "end": 1254.88,
+    "ocr_text": "amgrcilis\nx INTR\n\nINTRZ"
+  },
+  {
+    "text": "data bus. So, that the CPU can read the value and know that which of the four devices had actually",
+    "start": 1254.88,
+    "end": 1261.68,
+    "ocr_text": "amgrcilis\nx INTR\n\nINTRZ"
+  },
+  {
+    "text": "interrupted right fine. So, this is the second step and the third point to notice that as I said",
+    "start": 1261.68,
+    "end": 1273.92,
+    "ocr_text": "How it work:\nThe INTR\n\n- ine is made\n\nVIR = INTRO +INTR1\n\nn the CPU sends back INTR, th\n\ncorresponding acknowledge to the\nvector on the data bus\n\n= Th\n\nInterrupt controller is progr\n\n45 interrupts can be prog)\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nITKHARAGPUR\n\nactive when some of the\n\n> interrupting device,\n\nmabe\nammed (specified)\n\ndevice(s) activate\n\n+ INTR2 + IN’\n\ne interrupt controller sends back the\nand puts the interrupt\n\nwhere the interrupt vectors for the\n\nNATIONAL\nTECHNO!\n\n|\n\ns\nad"
+  },
+  {
+    "text": "that the interrupt controller can be can be storing the interrupt vectors for the different devices.",
+    "start": 1274.4,
+    "end": 1280.96,
+    "ocr_text": "How it work:\nThe INTR\n\n- ine is made\n\nVIR = INTRO +INTR1\n\nn the CPU sends back INTR, th\n\ncorresponding acknowledge to the\nvector on the data bus\n\n= Th\n\nInterrupt controller is progr\n\n45 interrupts can be prog)\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nITKHARAGPUR\n\nactive when some of the\n\n> interrupting device,\n\nmabe\nammed (specified)\n\ndevice(s) activate\n\n+ INTR2 + IN’\n\ne interrupt controller sends back the\nand puts the interrupt\n\nwhere the interrupt vectors for the\n\nNATIONAL\nTECHNO!\n\n|\n\ns\nad"
+  },
+  {
+    "text": "So, the interrupt controller is in some sense programmable.",
+    "start": 1281.76,
+    "end": 1285.04,
+    "ocr_text": "How it work:\nThe INTR\n\n- Is made active when\n\nvTR 0+ INTRA\nn the CPU sends back INTR, th\n\nto the\n\nINT\n\ncorresponding acknowledg\nvector on the data bus\n\nThe int\nvarious interrupts can be prog\n\nITKHARAGPUR\n\n1 some of the\n\n> interrupting device,\n\nprogrammable\n\n5\nCERTIFICATION COURSES\n\ndevice(s) activate\n\n+ INTR2 + IN’\n\nends back the\nand puts the interrupt\n\ne interrupt controller\n\nwhere the interrupt vectors for the\n\nammed (specified)\n\nNATIONAL\nTECHNO!\n\n|"
+  },
+  {
+    "text": "Programmable means before you are using it you can specify that these will be the",
+    "start": 1286.32,
+    "end": 1292.8,
+    "ocr_text": "How it work:\nThe INTR\n\n- Is made active when\n\nvTR 0+ INTRA\nn the CPU sends back INTR, th\n\nto the\n\nINT\n\ncorresponding acknowledg\nvector on the data bus\n\nThe int\nvarious interrupts can be prog\n\nITKHARAGPUR\n\n1 some of the\n\n> interrupting device,\n\nprogrammable\n\n5\nCERTIFICATION COURSES\n\ndevice(s) activate\n\n+ INTR2 + IN’\n\nends back the\nand puts the interrupt\n\ne interrupt controller\n\nwhere the interrupt vectors for the\n\nammed (specified)\n\nNATIONAL\nTECHNO!\n\n|"
+  },
+  {
+    "text": "interrupt vectors for the four devices. This CPU can initialize some internal register within",
+    "start": 1292.8,
+    "end": 1299.2,
+    "ocr_text": "How it work:\nThe INTR\n\n- Is made active when\n\nvTR 0+ INTRA\nn the CPU sends back INTR, th\n\nto the\n\nINT\n\ncorresponding acknowledg\nvector on the data bus\n\nThe int\nvarious interrupts can be prog\n\nITKHARAGPUR\n\n1 some of the\n\n> interrupting device,\n\nprogrammable\n\n5\nCERTIFICATION COURSES\n\ndevice(s) activate\n\n+ INTR2 + IN’\n\nends back the\nand puts the interrupt\n\ne interrupt controller\n\nwhere the interrupt vectors for the\n\nammed (specified)\n\nNATIONAL\nTECHNO!\n\n|"
+  },
+  {
+    "text": "that PIC where the values of the interrupt vectors can be programmed or specified fine.",
+    "start": 1299.28,
+    "end": 1308.0,
+    "ocr_text": "How it work:\n\n— The INTR line is made active when some of the device(s) activate\n\nVIR = INTRO + INTRI + INTR2 + IN’\nnen the CPU sends back INTR, the interrupt controller sends back the\n\ncorresponding acknowledge to the interrupting device, and puts the interrupt\n\nvector on the data bus\n\nThe interrupt controller is programmable, where the interrupt vectors for the\n\nvarious interrupts can be programmed (specified)\n\nFor more than one interrupt requesy simultaneously active, a priority\n\nmechanism is used (e.g. INTRO is highest priority, followed by INTR1, etc.)\n\nNPTEL ONLINE NATIONAL s\nITKHARAGPUR CERTIFICATION COURSES TECHNOL a"
+  },
+  {
+    "text": "And as it said just previously. So, if more than one request or activated simultaneously we can use",
+    "start": 1312.32,
+    "end": 1318.96,
+    "ocr_text": "How it work:\n\n— The INTR line is made active when some of the device(s) activate\n\nVIR = INTRO + INTRI + INTR2 + IN’\nnen the CPU sends back INTR, the interrupt controller sends back the\n\ncorresponding acknowledge to the interrupting device, and puts the interrupt\n\nvector on the data bus\n\nThe interrupt controller is programmable, where the interrupt vectors for the\n\nvarious interrupts can be programmed (specified)\n\nFor more than one interrupt requesy simultaneously active, a priority\n\nmechanism is used (e.g. INTRO is highest priority, followed by INTR1, etc.)\n\nNPTEL ONLINE NATIONAL s\nITKHARAGPUR CERTIFICATION COURSES TECHNOL a"
+  },
+  {
+    "text": "a priority mechanism. So, let us say by convention interrupt 0 can be having the highest priority",
+    "start": 1318.96,
+    "end": 1324.56,
+    "ocr_text": "How it work:\n\n= The INTR line is made active when some of the device(s) activate\ninterrupt request line.\n\nNTR = INTRO + INTRI + INTR2 + IN’\n.n the CPU sends back INTR, the interrupt controller sends back the\n\ncorresponding acknowledge to the interrupting device, and puts the interrupt\n\nvector on the data bus\n\nThe interrupt controller is programmable, where the interrupt vectors for the\n\nvarious interrupts can be programmed (specified)\n\nFor more than one interrupt r t simultaneously active, a pricity\n\nmechanism is used (e.g. INTRO is highest priority, followed by INTR1, etc.)\n\nNATIONAL\nTECHNO! a.\n\nITKHARAGPUR CEITIFICATION COURSES"
+  },
+  {
+    "text": "followed by interrupt 1 followed by interrupt 2 and then interrupt 3 fine. Another issue is",
+    "start": 1325.12,
+    "end": 1333.68,
+    "ocr_text": "How it work:\nThe INTR\n\n- ine is made\nVIR = INTRO + INTRI\n\nn the CPU sends back INTR, th\nDonding acknowledge to the\n\nFon the data bus\n\nThe int\nvarious interrup!\nFo han onc\nmechanism is used (e.g.\n\nan be prog!\ninterrupt r\n\nINTRO is\n\nGEATIFICATION CouRsES\n\nITKHARAGPUR\n\nactive when some of the\n\n> interrupting device,\n\nrupt controller is programmable\nammed (specified)\n\nhighe\n\ndevice(s) activate\n\n+ INTR2 + IN’\nback the\nand puts the interrupt\n\ne interrupt controller sends\n\nwhere the interrupt vectors for the\n\nt simultaneously active, a priority\n\n.st priority, followed by INTR1, etc.)\n\n|\n\nNATIONAL\nTECHNOL\n\n¢\nae"
+  },
+  {
+    "text": "nesting of interrupts. Let us consider a scenario. Let us say a device D0 had sent an interrupt",
+    "start": 1334.8,
+    "end": 1344.4,
+    "ocr_text": "How it work:\nThe INTR\n\n- ine is made\nVIR = INTRO + INTRI\n\nn the CPU sends back INTR, th\nDonding acknowledge to the\n\nFon the data bus\n\nThe int\nvarious interrup!\nFo han onc\nmechanism is used (e.g.\n\nan be prog!\ninterrupt r\n\nINTRO is\n\nGEATIFICATION CouRsES\n\nITKHARAGPUR\n\nactive when some of the\n\n> interrupting device,\n\nrupt controller is programmable\nammed (specified)\n\nhighe\n\ndevice(s) activate\n\n+ INTR2 + IN’\nback the\nand puts the interrupt\n\ne interrupt controller sends\n\nwhere the interrupt vectors for the\n\nt simultaneously active, a priority\n\n.st priority, followed by INTR1, etc.)\n\n|\n\nNATIONAL\nTECHNOL\n\n¢\nae"
+  },
+  {
+    "text": "to the CPU and the CPU is currently executing the corresponding ISR.",
+    "start": 1344.4,
+    "end": 1349.36,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) A device DO has interrupted and the CPU is executing the ISR for DO.\nb) Inthe mean time, another device D1 has interrupted."
+  },
+  {
+    "text": "Now, while this ISR is being executed let us assume that another device D1 has interrupted.",
+    "start": 1349.92,
+    "end": 1356.88,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) A device DO has interrupted and the CPU is executing the ISR for DO.\n\nb) In the mean time, another device D1 has interrupted."
+  },
+  {
+    "text": "So, what I am saying is that some program was executing this was a program it was executing",
+    "start": 1359.2,
+    "end": 1367.2,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) Adevice DO has interrupted and the CPU is executing the ISR for DO.\nb) In the mean time, another device D1 has interrupted."
+  },
+  {
+    "text": "in between there was an interrupt this interrupt was by device D0.",
+    "start": 1367.92,
+    "end": 1373.36,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) Adevice DO has interrupted and the CPU is executing the ISR for DO.\nb) In the mean time, another device D1 has interrupted."
+  },
+  {
+    "text": "So, because of this interrupt the control had transferred to the ISR corresponding to device D0",
+    "start": 1373.84,
+    "end": 1382.48,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) Adevice DO has interrupted and the CPU is executing the ISR for DO.\nb) In the mean time, another device D1 has interrupted."
+  },
+  {
+    "text": "there are instructions. So, it is being executed. So, after finishing it is supposed to come back",
+    "start": 1384.16,
+    "end": 1390.16,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) Adevice DO has interrupted and the CPU is executing the ISR for DO.\nb) In the mean time, another device D1 has interrupted."
+  },
+  {
+    "text": "like this and resume execution. But what we are assuming is that while this ISR D0 was executing",
+    "start": 1390.8,
+    "end": 1398.24,
+    "ocr_text": "ISRyy"
+  },
+  {
+    "text": "in between there is another interrupt which is arrived from device 1.",
+    "start": 1398.24,
+    "end": 1403.2,
+    "ocr_text": "ISRyy"
+  },
+  {
+    "text": "So, now you may argue that well there is also an ISR for device D1 that also consists of instruction.",
+    "start": 1404.72,
+    "end": 1413.12,
+    "ocr_text": "ISRyy"
+  },
+  {
+    "text": "So, should we stop this go here process this and then come back and resume here.",
+    "start": 1413.12,
+    "end": 1419.2,
+    "ocr_text": "ISRyy"
+  },
+  {
+    "text": "This is called nesting that before something is finished you are going to somewhere else.",
+    "start": 1420.32,
+    "end": 1425.6,
+    "ocr_text": "cryin"
+  },
+  {
+    "text": "This is nesting of interrupt requests before the handling of interrupt request D0 is finished",
+    "start": 1426.16,
+    "end": 1433.44,
+    "ocr_text": "cryin"
+  },
+  {
+    "text": "another interrupt has come this is what is meant by nesting. So, for nesting there can be two",
+    "start": 1433.44,
+    "end": 1442.4,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) A device DO has interrupted and the CPU is executing the ISR for DO.\nb) In the mean time, another device D1 has interrupted."
+  },
+  {
+    "text": "possible scenarios you can think of how to handle this. Well the first one is what I have just",
+    "start": 1442.4,
+    "end": 1450.08,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) A device DO has interrupted and the CPU is executing the ISR for DO.\nb) In the mean time, another device D1 has interrupted."
+  },
+  {
+    "text": "now illustrated D1 can interrupt the interrupt service routine for D0 get process first",
+    "start": 1450.08,
+    "end": 1457.2,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) Adevice DO has interrupted and the CPU is executing the ISR for DO.\nb) In the mean time, another device D1 has interrupted.\n+ Two possible scenarios here\n— D1 will interrupt the ISR for DO, get processed first, and then the ISR\nfor DO will be resum > CREATES PROBLEM FOR MULTI NESTING\n\nITKHARAGPUR GEITIFICATION couRsES"
+  },
+  {
+    "text": "and then the ISR of D0 will be resumed just like what I showed here. So, when the D1 interrupt comes",
+    "start": 1458.4,
+    "end": 1466.0,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) Adevice DO has interrupted and the CPU is executing the ISR for DO.\nb) In the mean time, another device D1 has interrupted.\n+ Two possible scenarios here\n— D1 will interrupt the ISR for DO, get processed first, and then the ISR\nfor DO will be resum > CREATES PROBLEM FOR MULTI NESTING"
+  },
+  {
+    "text": "the ISR of D1 will be process first then it will come back and ISR of D0 will be resumed",
+    "start": 1466.72,
+    "end": 1474.16,
+    "ocr_text": "Proyar"
+  },
+  {
+    "text": "and then it will be finished. Now this will involve nesting of interrupts and theoretically",
+    "start": 1474.16,
+    "end": 1485.44,
+    "ocr_text": "Proyar"
+  },
+  {
+    "text": "means any arbitrary number of such nesting can happen because interrupts may appear one after the",
+    "start": 1485.44,
+    "end": 1490.88,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) Adevice DO has interrupted and the CPU is executing the ISR for DO.\n\nb) In the mean time, another device D1 has interrupted\n\n+ Two possible scenarios here\n— D1will interruptthe ISR for DO, get processed first, and then the ISR\nfor D0 will be resumed. > CREATES PROBLEM FOR MULTI NESTING\n\nNeTEL ON! NATIONAL\nITKHARAGPUR GEITIFICATION couRsEs TECHNOY"
+  },
+  {
+    "text": "other. So, some important interrupt request which came earlier might get delayed for its processing.",
+    "start": 1490.88,
+    "end": 1499.12,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) Adevice DO has interrupted and the CPU is executing the ISR for DO.\n\nb) In the mean time, another device D1 has interrupted\n\n+ Two possible scenarios here\n— D1will interruptthe ISR for DO, get processed first, and then the ISR\nfor D0 will be resumed. > CREATES PROBLEM FOR MULTI NESTING\n\nNeTEL ON! NATIONAL\nITKHARAGPUR GEITIFICATION couRsEs TECHNOY"
+  },
+  {
+    "text": "So, the other thing is that you can disable the interrupt system automatically whenever an",
+    "start": 1499.92,
+    "end": 1508.4,
+    "ocr_text": "How is interrupt nesting handled?\n\n* Consider the scenario\na) A device DO has interrupted and the CPU is executing the ISR for DO.\nb) In the mean time, another device D1 has interrupted.\n* Two possible scenarios her\n— D1 will interrupt the ISR for DO, get processed first, and then the ISR\nfor DO will be resumed. > CREATES PROBLEM FOR MULTI NESTING\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "interrupt is acknowledged. So, that handling of nested interrupts is not required because",
+    "start": 1508.4,
+    "end": 1514.08,
+    "ocr_text": "How is interrupt nesting handled?\n\n-onsider the scenario:\n\na) A device DO has interrupted and the CPU is executing the ISR for DO.\n\nb) In the mean time, another device D1 has interrupted\n\n+ Two possible scenarios her\n\n— D1 will interruptthe ISR for DO, get processed first, and then the ISR\nfor D0 will be resumed. > CREATES PROBLEM FOR MULTI NESTING\n\n= Disable the interrupt system automatically whenever an interruptis\nacknowledged so that handling of nested interruptsis not required,"
+  },
+  {
+    "text": "I mean if you disable the interrupt system then if some interrupt request comes it will not be",
+    "start": 1516.08,
+    "end": 1521.92,
+    "ocr_text": "How is interrupt nesting handled?\n\n-onsider the scenario:\n\na) A device DO has interrupted and the CPU is executing the ISR for DO.\n\nb) In the mean time, another device D1 has interrupted\n\n+ Two possible scenarios her\n\n— D1 will interruptthe ISR for DO, get processed first, and then the ISR\nfor D0 will be resumed. > CREATES PROBLEM FOR MULTI NESTING\n\n= Disable the interrupt system automatically whenever an interruptis\nacknowledged so that handling of nested interruptsis not required,"
+  },
+  {
+    "text": "considered it will be ignored this is another solution. So, whenever you are processing on interrupt",
+    "start": 1521.92,
+    "end": 1527.28,
+    "ocr_text": "How is interrupt nesting handled?\n\n-onsider the scenario:\n\na) A device DO has interrupted and the CPU is executing the ISR for DO.\n\nb) In the mean time, another device D1 has interrupted\n\n+ Two possible scenarios her\n\n— D1 will interruptthe ISR for DO, get processed first, and then the ISR\nfor D0 will be resumed. > CREATES PROBLEM FOR MULTI NESTING\n\n= Disable the interrupt system automatically whenever an interruptis\nacknowledged so that handling of nested interruptsis not required,"
+  },
+  {
+    "text": "service routine you disable the interrupt system so that it will not be disturbed by some other",
+    "start": 1527.28,
+    "end": 1533.04,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\n\nEl: Enable interrupt\n= DI: Disable interrupt"
+  },
+  {
+    "text": "interrupts. So, nesting will not happen. So, for this typical machine instructions are there for",
+    "start": 1533.04,
+    "end": 1544.72,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\n\nEl: Enable interrupt\n= DI: Disable interrupt"
+  },
+  {
+    "text": "enabling and disabling interrupts like EI and DI something like this. So, for this second scenario",
+    "start": 1544.72,
+    "end": 1551.84,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\n\nEl: Enable interrupt\n= DI: Disable interrupt"
+  },
+  {
+    "text": "the interrupt service routine will give an enable interrupt instruction just before return from",
+    "start": 1552.8,
+    "end": 1559.04,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\nel\n= DI: Disable interrupt\n\n+ For the nd scenario as discussed, R will give\n\nbefore RTI\n= Some ISA combine El and RT in a single instruction\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO!"
+  },
+  {
+    "text": "interrupt. So, you see what is happening now we are having a when a design where whenever an",
+    "start": 1559.04,
+    "end": 1567.12,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nble interrupt\nble interrupt\nnd sce: 4, the ISR will give a truction j\nbefore RTL\n— Some ISA combine El and RTI in a sing! truction\n\n:"
+  },
+  {
+    "text": "interrupt comes before jumping to the ISR interrupt is disabled like what I am saying is that a",
+    "start": 1567.12,
+    "end": 1575.36,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nble interrupt\nble interrupt\nnd sce: 4, the ISR will give a truction j\nbefore RTL\n— Some ISA combine El and RTI in a sing! truction\n\n:"
+  },
+  {
+    "text": "program was executing and interrupt comes interrupt request. So, before you are jumping to the ISR",
+    "start": 1575.36,
+    "end": 1584.64,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nble interrupt\nble interrupt\nnd sce: 4, the ISR will give a truction j\nbefore RTL\n— Some ISA combine El and RTI in a sing! truction\n\n:"
+  },
+  {
+    "text": "let us say this is your ISR. Before you are jumping to the ISR your",
+    "start": 1586.8,
+    "end": 1593.04,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nble interrupt\nble interrupt\nnd sce: 4, the ISR will give a truction j\nbefore RTL\n— Some ISA combine El and RTI in a sing! truction\n\n:"
+  },
+  {
+    "text": "automate means you means the hardware is automatically disabling the interrupt.",
+    "start": 1593.04,
+    "end": 1598.56,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nble interrupt\nble interrupt\nnd sce: 4, the ISR will give a truction j\nbefore RTL\n— Some ISA combine El and RTI in a sing! truction\n\n:"
+  },
+  {
+    "text": "So, that execution of the ISR will not be interrupted and in the ISR what is happening before",
+    "start": 1599.36,
+    "end": 1608.0,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nd, the ISR will give a truction j\nbefore RTI\n= Some ISAscombine El and RTI in a single instruction\n\nbat"
+  },
+  {
+    "text": "the return from interrupt instruction that is supposed to be the last instruction there will be an",
+    "start": 1608.0,
+    "end": 1613.04,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nd, the ISR will give a truction j\nbefore RTI\n= Some ISAscombine El and RTI in a single instruction\n\nbat"
+  },
+  {
+    "text": "explicit enable interrupt instruction. So, that before returning back you are enabling interrupt",
+    "start": 1613.04,
+    "end": 1620.4,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nd, the ISR will give a truction j\nbefore RTI\n= Some ISAscombine El and RTI in a single instruction\n\nbat"
+  },
+  {
+    "text": "so that any future interrupt if it comes it should be acknowledged.",
+    "start": 1621.36,
+    "end": 1625.92,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nd, the ISR will give a truction j\nbefore RTI\n= Some ISAscombine El and RTI in a single instruction\n\nbat"
+  },
+  {
+    "text": "So, some instructions at architecture they combine EI and RTI in a single instruction. So,",
+    "start": 1628.32,
+    "end": 1633.68,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nd, the ISR will give a truction j\nbefore RTI\n= Some ISAscombine El and RTI in a single instruction\n\nbat"
+  },
+  {
+    "text": "when you do a return for instruction means RTI return from interrupt. So, interrupt will be",
+    "start": 1633.68,
+    "end": 1638.64,
+    "ocr_text": "+ Typical instruction set architectures have the following instructions:\n\nd, the ISR will give a truction j\nbefore RTI\n= Some ISAscombine El and RTI in a single instruction\n\nbat"
+  },
+  {
+    "text": "automatically enabled you do not need a separate EI and the DI instruction can be used for some other",
+    "start": 1638.64,
+    "end": 1646.96,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\n\nel\n= Dl: Disable interrupt\n\nnd scenario d, the ISR will give a truction j\nbefore RTI\n\n— Some ISA combin@El and RTI in a single instruction"
+  },
+  {
+    "text": "purposes also like sometimes the operating system can execute DI to prevent interrupts from coming",
+    "start": 1646.96,
+    "end": 1655.84,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\n\nble interrupt\nble interrupt\nd, the ISR will give an El instruction j\nbefore RTI\n= Some ISA combine El and RTI in a single instruction\nThe D1 instruction is sometimes used by the’operating system to execute\natomic code (e.g. semaphore wait and signal operations).\n\nNobody should interrupt the code while it is being executed"
+  },
+  {
+    "text": "like there are parts of the operating system where some atomic code is executed.",
+    "start": 1656.8,
+    "end": 1662.16,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\n\nd, the ISR will give an El instruction j\nbefore RTI\n\n= Some ISA combine El and RTI in a single instruction\n\nThe D1 instruction is sometimes used by the operating system to execute\natomic code (e.g. semaphore wait and signal operations).\n\nNobody should interrupt the code while it is being executed"
+  },
+  {
+    "text": "Some example is Sima 4 weight and signal operations for those who have studied operating systems",
+    "start": 1663.04,
+    "end": 1668.56,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\n\nd, the ISR will give an El instruction j\nbefore RTI\n\n= Some ISA combine El and RTI in a single instruction\n\nThe D1 instruction is sometimes used by the operating system to execute\natomic code (e.g. semaphore wait and signal operations).\n\nNobody should interrupt the code while it is being executed"
+  },
+  {
+    "text": "means atomic means there is a function which you should either execute completely or should not",
+    "start": 1669.52,
+    "end": 1677.44,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\nEl: Enable interrupt\nDisable interrupt\nISR will giv ruction just\nbefore RTI\n= Some ISA combine El and RTI in a single instruction\n\nThe D1 instruction is sometimes used by the operating system to execute\n\natomic code (e.g. semaphore wait and signal operations).\n\nNob code whil\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "execute at all. It should never happen that we execute the code halfway through then an interrupt",
+    "start": 1677.44,
+    "end": 1684.0,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\nEl: Enable interrupt\nDisable interrupt\nISR will giv ruction just\nbefore RTI\n= Some ISA combine El and RTI in a single instruction\n\nThe D1 instruction is sometimes used by the operating system to execute\n\natomic code (e.g. semaphore wait and signal operations).\n\nNob code whil\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "comes and you have to stop it should not be allowed like that. So, to allow atomic code execution",
+    "start": 1684.0,
+    "end": 1690.8,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\nEl: Enable interrupt\nDisable interrupt\nISR will giv ruction just\nbefore RTI\n= Some ISA combine El and RTI in a single instruction\n\nThe D1 instruction is sometimes used by the operating system to execute\n\natomic code (e.g. semaphore wait and signal operations).\n\nNob code whil\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "this interrupt system can be disabled ok. So, no external device or anyone should interrupt the",
+    "start": 1690.88,
+    "end": 1699.76,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\n\nel\n= Dl: Disable interrupt\n\nFor the nd sce: d, the ISR will give an El instruction j\nbefore RTI\n\n= Some ISA combine El and RTI in a single instruction\n\nThe D1 instruction is sometimes used by the operating system to execute\natomic code (e.g. semaphore wait and signal operations)\n\nNobody should interrupt the code while it is being executed"
+  },
+  {
+    "text": "code while it is being executed for that DI instruction can be used. So, with this you see",
+    "start": 1699.76,
+    "end": 1708.8,
+    "ocr_text": "Typical instruction set architectures have the following instructions:\n\nel\n= Dl: Disable interrupt\n\nFor the nd sce: d, the ISR will give an El instruction j\nbefore RTI\n\n= Some ISA combine El and RTI in a single instruction\n\nThe D1 instruction is sometimes used by the operating system to execute\natomic code (e.g. semaphore wait and signal operations)\n\nNobody should interrupt the code while it is being executed"
+  },
+  {
+    "text": "we have seen the different cases of interrupts there are some cases which can",
+    "start": 1709.84,
+    "end": 1714.8,
+    "ocr_text": "Cases that make interrupt handling difficult\n\nFor some interrupts, it is not possible to finish the execution of the current\n\ninstruction\n\n— Aspecial RETURN instruction is required that would return and restart the\ninterrupted instruction\n\nSome examples\n\na) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\n\nb) Arithmetic exception: Some error has occurred during some arithmetic\noperation (¢ ision by zero)."
+  },
+  {
+    "text": "make the interrupt handling more difficult like we have assumed so far that whenever an interrupt",
+    "start": 1715.76,
+    "end": 1723.28,
+    "ocr_text": "Cases that make interrupt handling difficult\n\n+ For some interrupts, it is not possible to finish the execution of the current\ninstruction\n— Aspecial RETURN instru is required that would return and restart the\nInterrupted instruction\n+ Some examples\na) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\nIT KHARAGPUR GEITIFICATION CouRsES Teno"
+  },
+  {
+    "text": "is coming I have to finish the current instruction then only I can acknowledge the interrupt.",
+    "start": 1723.28,
+    "end": 1731.04,
+    "ocr_text": "Cases that make interrupt handling difficult\n\n+ For some interrupts, it is not possible to finish the execution of the current\ninstruction\n— Aspecial RETURN instru is required that would return and restart the\nInterrupted instruction\n+ Some examples\na) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\nIT KHARAGPUR GEITIFICATION CouRsES Teno"
+  },
+  {
+    "text": "But there are some cases examples where you cannot finish the current instruction that makes",
+    "start": 1731.44,
+    "end": 1737.84,
+    "ocr_text": "Cases that make interrupt handling difficult\n\n+ For some interrupts, it is not possible to finish the execution of the current\ninstruction\n— Aspecial RETURN instru is required that would return and restart the\nInterrupted instruction\n+ Some examples\na) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\nIT KHARAGPUR GEITIFICATION CouRsES Teno"
+  },
+  {
+    "text": "interrupt handling more difficult. So, this is what is mentioned here for some kind of interrupt",
+    "start": 1737.84,
+    "end": 1746.24,
+    "ocr_text": "Cases that make interrupt handling difficult\n\nFor some interrupts, it is not possible to finish the execution of the current\n\ninstruction\n\n— Aspetial RETURN instruction is required that would return and restart the\nInterrupted instruction\n\nSome examples\n\na) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\n\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\n¥"
+  },
+  {
+    "text": "it is not possible to finish the execution of the current instruction.",
+    "start": 1746.24,
+    "end": 1749.76,
+    "ocr_text": "Cases that make interrupt handling difficult\n\nFor some interrupts, it is not possible to finish the execution of the current\n\ninstruction\n\n— Aspetial RETURN instruction is required that would return and restart the\nInterrupted instruction\n\nSome examples\n\na) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\n\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\n¥"
+  },
+  {
+    "text": "So, for such cases you need a special return instruction that would be returning from the ISR",
+    "start": 1751.12,
+    "end": 1758.16,
+    "ocr_text": "Cases that make interrupt handling difficult\n\nFor some interrupts, it is not possible to finish the execution of the current\n\ninstruction\n\n— Aspetial RETURN instruction is required that would return and restart the\nInterrupted instruction\n\nSome examples\n\na) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\n\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\n¥"
+  },
+  {
+    "text": "but after returning it will be restarting the same instruction which was interrupted not",
+    "start": 1758.88,
+    "end": 1765.28,
+    "ocr_text": "Cases that make interrupt handling difficult\n\nFor some interrupts, it is not possible to finish the execution of the current\n\ninstruction\n\n— Aspecial RETURN instruction is required that would return and restart the\nInterrupted instruction\n\nSome examples\nPage fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\n\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\nNPTEL ONLINE NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNOL"
+  },
+  {
+    "text": "that it will be returning to the next instruction it will be restarting the interrupted instruction.",
+    "start": 1765.84,
+    "end": 1771.28,
+    "ocr_text": "Cases that make interrupt handling difficult\n\nFor some interrupts, it is not possible to finish the execution of the current\n\ninstruction\n\n— Aspecial RETURN instr. is required that would return and restart the\nInterrupted instruction\n\nSome examples\n\n2) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\n\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\nNPTEL ONLIN Nani\nITKHARAGPUR CEiTiFICATION counsEs Tenn"
+  },
+  {
+    "text": "Some examples are page fault this happens in operating system in the memory management",
+    "start": 1771.92,
+    "end": 1779.28,
+    "ocr_text": "Cases that make interrupt handling difficult\n\nFor some interrupts, it is not possible to finish the execution of the current\n\ninstruction\n\n— Aspecial RETURN instr. is required that would return and restart the\nInterrupted instruction\n\nSome examples\n\n2) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\n\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\nNPTEL ONLIN Nani\nITKHARAGPUR CEiTiFICATION counsEs Tenn"
+  },
+  {
+    "text": "when a memory location is accessed which is not presently loaded in memory a page fault interrupt",
+    "start": 1779.92,
+    "end": 1786.48,
+    "ocr_text": "Cases that make interrupt handling difficult\n\nFor some interrupts, it is not possible to finish the execution of the current\ninstruction\n\n— Aspecial RETURN instruction is required that would return and restart the\ninterrupted instruction\n\nSome examples\nPage fault interrupt: A memory location is being accessed that is not presently\navailable in main methory\n\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)"
+  },
+  {
+    "text": "comes. So, you will have to load the requested memory location the page in memory come back and",
+    "start": 1786.48,
+    "end": 1792.72,
+    "ocr_text": "Cases that make interrupt handling difficult\n\nFor some interrupts, it is not possible to finish the execution of the current\ninstruction\n\n— Aspecial RETURN instruction is required that would return and restart the\ninterrupted instruction\n\nSome examples\nPage fault interrupt: A memory location is being accessed that is not presently\navailable in main methory\n\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)"
+  },
+  {
+    "text": "again restart the instruction so that it can access the memory location correctly this time.",
+    "start": 1792.72,
+    "end": 1799.04,
+    "ocr_text": "Cases that make interrupt handling difficult\n\nFor some interrupts, it is not possible to finish the execution of the current\ninstruction\n\n— Aspecial RETURN instruction is required that would return and restart the\ninterrupted instruction\n\nSome examples\nPage fault interrupt: A memory location is being accessed that is not presently\navailable in main methory\n\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)"
+  },
+  {
+    "text": "And you can also think of arithmetic exceptions like division by 0 square root of a negative",
+    "start": 1801.04,
+    "end": 1806.08,
+    "ocr_text": "Cases that make interrupt handling difficult\n\n+ For some interrupts, it is not possible to finish the execution of the current\ninstruction\n— Aspecial RETURN instruction is required that would return and restart the\nInterrupted instruction\n+ Some examples\na) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by Zro)\n\nNPTEL ONLIN Nano\nIIT KHARAGPUR CEITIFICATION couRsES Teun"
+  },
+  {
+    "text": "number. So, in such cases you are not able to finish the instruction. So, interrupt",
+    "start": 1806.08,
+    "end": 1811.76,
+    "ocr_text": "Cases that make interrupt handling difficult\n\n+ For some interrupts, it is not possible to finish the execution of the current\ninstruction\n— Aspecial RETURN instruction is required that would return and restart the\nInterrupted instruction\n+ Some examples\na) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by Zro)\n\nNPTEL ONLIN Nano\nIIT KHARAGPUR CEITIFICATION couRsES Teun"
+  },
+  {
+    "text": "or interrupt handling has to start before the completion of the instruction. So, such cases can",
+    "start": 1814.56,
+    "end": 1820.88,
+    "ocr_text": "Cases that make interrupt handling difficult\n\n+ For some interrupts, it is not possible to finish the execution of the current\ninstruction\n— Aspecial RETURN instruction is required that would return and restart the\nInterrupted instruction\n+ Some examples\na) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by Zro)\n\nNPTEL ONLIN Nano\nIIT KHARAGPUR CEITIFICATION couRsES Teun"
+  },
+  {
+    "text": "make interrupt handling more difficult. So, with this way come to the end of this lecture",
+    "start": 1820.88,
+    "end": 1828.24,
+    "ocr_text": "Cases that make interrupt handling difficult\n\n+ For some interrupts, it is not possible to finish the execution of the current\ninstruction\n— Aspecial RETURN instruction is required that would return and restart the\nInterrupted instruction\n+ Some examples\n2) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\nNPTEL ONLIN Nanio\nITKHARAGPUR CEITIFICATION couRsES Tecnu"
+  },
+  {
+    "text": "in the next lecture also we shall be continuing with our discussion on interrupts and we shall see",
+    "start": 1829.28,
+    "end": 1834.32,
+    "ocr_text": "Cases that make interrupt handling difficult\n\n+ For some interrupts, it is not possible to finish the execution of the current\ninstruction\n— Aspecial RETURN instruction is required that would return and restart the\nInterrupted instruction\n+ Some examples\n2) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\nNPTEL ONLIN Nanio\nITKHARAGPUR CEITIFICATION couRsES Tecnu"
+  },
+  {
+    "text": "some more issues particularly regarding multiple devices sending interrupts and the different",
+    "start": 1835.04,
+    "end": 1841.68,
+    "ocr_text": "Cases that make interrupt handling difficult\n\n+ For some interrupts, it is not possible to finish the execution of the current\ninstruction\n— Aspecial RETURN instruction is required that would return and restart the\nInterrupted instruction\n+ Some examples\n2) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\nNPTEL ONLIN Nanio\nITKHARAGPUR CEITIFICATION couRsES Tecnu"
+  },
+  {
+    "text": "types of interrupts and so on. Thank you.",
+    "start": 1841.68,
+    "end": 1850.8,
+    "ocr_text": "Cases that make interrupt handling difficult\n\n+ For some interrupts, it is not possible to finish the execution of the current\ninstruction\n— Aspecial RETURN instruction is required that would return and restart the\nInterrupted instruction\n+ Some examples\n2) Page fault interrupt: A memory location is being accessed that is not presently\navailable in main memory\nb) Arithmetic exception: Some error has occurred during some arithmetic\n\noperation (e.g. division by zero)\n\nNPTEL ONLIN Nanio\nITKHARAGPUR CEITIFICATION couRsES Tecnu"
+  }
+]

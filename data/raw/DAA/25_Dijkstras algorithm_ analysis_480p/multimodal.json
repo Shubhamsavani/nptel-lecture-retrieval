@@ -1,0 +1,1292 @@
+[
+  {
+    "text": "So, now let us analyze Daik's stress algorithm for the single source shortest path problem.",
+    "start": 0.0,
+    "end": 7.0,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDijkstra’s algorithm: analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, recall the Daik's stress algorithm operates by burning vertices in the analogy we used.",
+    "start": 7.0,
+    "end": 13.2,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDijkstra’s algorithm: analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, we keep track of vertices which have been burnt or visited initially nothing is visited",
+    "start": 13.2,
+    "end": 18.88,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDijkstra’s algorithm: analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "and initially we do not know any distance to any vertex.",
+    "start": 18.88,
+    "end": 21.28,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDijkstra’s algorithm: analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, we assume all distances are at infinity.",
+    "start": 21.28,
+    "end": 24.12,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDijkstra’s algorithm: analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "When we start at the source vertex that is called it 1 by assumption.",
+    "start": 24.12,
+    "end": 29.52,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 4, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDijkstra’s algorithm: analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, we said its distance to 0.",
+    "start": 29.52,
+    "end": 32.36,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "Then we repeatedly pick up the first vertex which is not burnt and which has the minimum",
+    "start": 32.36,
+    "end": 37.88,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "distance among those which are not burnt visited and recompute the distance to all its",
+    "start": 37.88,
+    "end": 43.0,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "neighbors.",
+    "start": 43.0,
+    "end": 44.32,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "So, before we look at the complexity of this algorithm we actually first have to verify",
+    "start": 44.32,
+    "end": 50.2,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "that it is correct.",
+    "start": 50.2,
+    "end": 51.6,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "So, Daik's stress algorithm now makes a sequence of updates it is a bit analogous to BFS",
+    "start": 52.16,
+    "end": 57.2,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "or DFS because it keeps visiting vertices and it visits every vertex only once.",
+    "start": 57.2,
+    "end": 62.24,
+    "ocr_text": ") prove greec Y"
+  },
+  {
+    "text": "Now, it visits vertices in a particular order which is different from breadth first or",
+    "start": 62.24,
+    "end": 66.6,
+    "ocr_text": ") prove greec Y"
+  },
+  {
+    "text": "depth first and we need to justify that this order is actually correct.",
+    "start": 66.6,
+    "end": 70.4,
+    "ocr_text": ") prove greec Y"
+  },
+  {
+    "text": "So, in some sense at every point breadth first search looks at all its neighbors and visits",
+    "start": 70.4,
+    "end": 76.32,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "them say in the order of their vertex number.",
+    "start": 76.32,
+    "end": 78.88,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "At first search we will pick the first neighbor and then explore it further.",
+    "start": 78.88,
+    "end": 82.0,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "Now, Daik's stress algorithm uses a different strategy which is to pick the first the smallest",
+    "start": 82.0,
+    "end": 87.32,
+    "ocr_text": "©\ng\n2\na"
+  },
+  {
+    "text": "distance unvisited neighbor.",
+    "start": 87.32,
+    "end": 89.52,
+    "ocr_text": ") prove greec )"
+  },
+  {
+    "text": "So, we have to justify that this choice which is never undone that is you keep going forward",
+    "start": 89.52,
+    "end": 94.72,
+    "ocr_text": ") prove greec )"
+  },
+  {
+    "text": "and you never go back and say oh maybe I should have chosen a different one that this kind",
+    "start": 94.72,
+    "end": 98.2,
+    "ocr_text": ") prove greec )"
+  },
+  {
+    "text": "of a strategy actually is correct.",
+    "start": 98.2,
+    "end": 100.2,
+    "ocr_text": ") prove greec )"
+  },
+  {
+    "text": "So, this is a general class of algorithms called greedy algorithms where you have a number",
+    "start": 100.2,
+    "end": 104.72,
+    "ocr_text": ") prove greec )"
+  },
+  {
+    "text": "of possible trajectories or parts that you can choose to solve the problem.",
+    "start": 104.72,
+    "end": 110.32,
+    "ocr_text": ") prove greec )"
+  },
+  {
+    "text": "At each stage you make the next choice based on some local information at this point this",
+    "start": 110.32,
+    "end": 115.4,
+    "ocr_text": "©\n>\n2\na"
+  },
+  {
+    "text": "looks like the best choice to make and then somehow magically this best choice that you",
+    "start": 115.4,
+    "end": 119.88,
+    "ocr_text": ") prove greec )"
+  },
+  {
+    "text": "make on local information turns out to be globally the best trajectory to take.",
+    "start": 119.88,
+    "end": 125.4,
+    "ocr_text": ") prove greec )"
+  },
+  {
+    "text": "So, for such greedy algorithms it is important to establish that this local choice of the next",
+    "start": 125.4,
+    "end": 131.84,
+    "ocr_text": ") prove greec )"
+  },
+  {
+    "text": "step actually gives us a global optimum because very often this kind of a local heuristic",
+    "start": 131.84,
+    "end": 137.64,
+    "ocr_text": ") prove greec )"
+  },
+  {
+    "text": "does not give us a correct algorithm.",
+    "start": 137.64,
+    "end": 139.96,
+    "ocr_text": "prove greec )"
+  },
+  {
+    "text": "So, let us first look at the correctness of Daik's stress algorithm.",
+    "start": 139.96,
+    "end": 143.96,
+    "ocr_text": "prove greec )"
+  },
+  {
+    "text": "So, the key to establishing correctness in this particular case is to establish what",
+    "start": 143.96,
+    "end": 148.08,
+    "ocr_text": "prove greec )"
+  },
+  {
+    "text": "is called an invariant.",
+    "start": 148.08,
+    "end": 149.8,
+    "ocr_text": "* Ea\n\nearlier one\n\nidentified shorte\nburnt r\n\nxt vertex to burn is v, via x\n\nannot later find a shorter path from y to v"
+  },
+  {
+    "text": "So, now, the Daik's stress algorithm proceeds as we saw in a sequence of iterations there",
+    "start": 149.8,
+    "end": 154.72,
+    "ocr_text": "* Ea\n\nearlier one\n\nidentified shorte\nburnt r\n\nxt vertex to burn is v, via x\n\nannot later find a shorter path from y to v"
+  },
+  {
+    "text": "are any iterations.",
+    "start": 154.72,
+    "end": 156.64,
+    "ocr_text": "* Ea\n\nearlier one\n\nidentified shorte\nburnt r\n\nxt vertex to burn is v, via x\n\nannot later find a shorter path from y to v"
+  },
+  {
+    "text": "The invariant is that at each iteration we have this characterization of vertices as",
+    "start": 156.64,
+    "end": 162.0,
+    "ocr_text": "identified shorte\ny burnt\n\nvertex to burn is v, via x\n\nnnot later find a shorte"
+  },
+  {
+    "text": "burnt and unburnt and what we want to claim is that the burnt vertices are correctly solved",
+    "start": 162.0,
+    "end": 168.32,
+    "ocr_text": "identified shorte\ny burnt\n\nvertex to burn is v, via x\n\nnnot later find a shorte"
+  },
+  {
+    "text": "that is at any point if we look at the distances assigned to the vertices in the bird set then",
+    "start": 168.32,
+    "end": 174.52,
+    "ocr_text": "ath we discov\n\n* By induction, assume we have identified short\npaths to all vertices already burnt\n\n* Cannot later find a shorter path from y to w to v"
+  },
+  {
+    "text": "those distances are actually the shortest distances from the source vertex to that burnt",
+    "start": 174.52,
+    "end": 178.72,
+    "ocr_text": "ath we discov\n\n* By induction, assume we have identified short\npaths to all vertices already burnt\n\n* Cannot later find a shorter path from y to w to v"
+  },
+  {
+    "text": "vertex.",
+    "start": 178.72,
+    "end": 179.72,
+    "ocr_text": "* Each ne\n\nearlier on\n\n> have identified short\nburnt\n\nvertex to burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "So, if we assume that this inductive invariant is true now it is certainly true at the",
+    "start": 179.72,
+    "end": 183.6,
+    "ocr_text": "* Each ne\n\nearlier on\n\n> have identified short\nburnt\n\nvertex to burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "beginning because right at the beginning the only vertex that we have burnt is the",
+    "start": 183.6,
+    "end": 187.36,
+    "ocr_text": "* Each ne\n\nearlier on\n\n> have identified short\nburnt\n\nvertex to burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "start vertex s right.",
+    "start": 187.36,
+    "end": 188.76,
+    "ocr_text": "t path w\n\nearlie!\n\n* By induction, assume we have identified short\npaths to all vert burnt\n\n2rtex to burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "So, the first vertex we burn is s and we set its distance to 0.",
+    "start": 188.76,
+    "end": 192.4,
+    "ocr_text": "t path w\n\nearlie!\n\n* By induction, assume we have identified short\npaths to all vert burnt\n\n2rtex to burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "So, certainly at that point this property is true that among the burnt vertices the distances",
+    "start": 192.4,
+    "end": 197.24,
+    "ocr_text": "t path w\n\nearlie!\n\n* By induction, assume we have identified short\npaths to all vert burnt\n\n2rtex to burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "are in fact the shortest distances.",
+    "start": 197.24,
+    "end": 199.08,
+    "ocr_text": "* Each new short ds an\n\nearlier\n\ne identified short\nburnt\n\n* By induction\npaths t\n\n0 all ve\n\n* Next ve 0 burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "Now, assuming that we have extended the set for a few vertices now we want to add a new",
+    "start": 199.08,
+    "end": 203.2,
+    "ocr_text": "* Each new short ds an\n\nearlier\n\ne identified short\nburnt\n\n* By induction\npaths t\n\n0 all ve\n\n* Next ve 0 burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "one.",
+    "start": 203.2,
+    "end": 204.2,
+    "ocr_text": "* Each new short ds an\n\nearlier\n\ne identified short\nburnt\n\n* By induction\npaths t\n\n0 all ve\n\n* Next ve 0 burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "So, what we said is that we will pick a vertex v such that if we look at the distance",
+    "start": 204.2,
+    "end": 210.84,
+    "ocr_text": "* Each new short ds an\n\nearlier\n\ne identified short\nburnt\n\n* By induction\npaths t\n\n0 all ve\n\n* Next ve 0 burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "to x plus the weight of x v if you look at this total sum which will be the updated distance",
+    "start": 210.84,
+    "end": 217.68,
+    "ocr_text": "* By induction, ass\npaths to all vert\n\n2rtex to burn is v, via x\n\n* Cannot later find a shorter path from y to w"
+  },
+  {
+    "text": "to v this is smallest among all the vertices which are not burnt.",
+    "start": 217.68,
+    "end": 221.76,
+    "ocr_text": "ds an\n\n* Each new short\n\nearlier\n\nified short\n\nsume V\n\n* By induction\npaths to all ve\n\n©) ©\n\n0 burn is v, via x\n\n* Cannot later find a shorter path from y to w to v"
+  },
+  {
+    "text": "So, the claim is that if we now add this to a burnt set it is if we extend our burnt",
+    "start": 221.76,
+    "end": 227.08,
+    "ocr_text": "ds an\n\n* Each new short\n\nearlier\n\nified short\n\nsume V\n\n* By induction\npaths to all ve\n\n©) ©\n\n0 burn is v, via x\n\n* Cannot later find a shorter path from y to w to v"
+  },
+  {
+    "text": "set like this to include v then the distance to v cannot be actually smaller than what",
+    "start": 227.08,
+    "end": 232.64,
+    "ocr_text": "* By induction\npaths to all vert"
+  },
+  {
+    "text": "we are computed now and it will not change because of a later update.",
+    "start": 232.64,
+    "end": 235.84,
+    "ocr_text": "* By induction\npaths to all vert"
+  },
+  {
+    "text": "So, how would it change because of a later update it could be that as some later point we",
+    "start": 235.84,
+    "end": 240.08,
+    "ocr_text": "ds an\n\n/ induction, assume we have identified short\n1s to all vertices already burnt ,"
+  },
+  {
+    "text": "actually extend a burnt set to include a new w.",
+    "start": 240.08,
+    "end": 243.2,
+    "ocr_text": "ds an\n\n/ induction, assume we have identified short\n1s to all vertices already burnt ,"
+  },
+  {
+    "text": "Now, can it be that there was a path from y to w to v which is shorter than the path",
+    "start": 243.2,
+    "end": 247.76,
+    "ocr_text": "ds an\n\n/ induction, assume we have identified short\n1s to all vertices already burnt ,"
+  },
+  {
+    "text": "we have claimed just now where x to v.",
+    "start": 247.76,
+    "end": 249.92,
+    "ocr_text": "ds an\n\n/ induction, assume we have identified short\n1s to all vertices already burnt ,"
+  },
+  {
+    "text": "So, it is easy to see that the distance to y plus the cost of w x y now this must be",
+    "start": 249.92,
+    "end": 258.88,
+    "ocr_text": "ds an\n\n/ induction, assume we have identified short\n1s to all vertices already burnt ,"
+  },
+  {
+    "text": "bigger than or equal to the earlier thing because we chose v and not w because of this",
+    "start": 258.88,
+    "end": 264.72,
+    "ocr_text": "ve have\n\nburnt\n\ninduction\n\nassume\n\nalready\n\norter path fre"
+  },
+  {
+    "text": "point w was not the smallest one v was.",
+    "start": 264.72,
+    "end": 266.88,
+    "ocr_text": "ve have\n\nburnt\n\ninduction\n\nassume\n\nalready\n\norter path fre"
+  },
+  {
+    "text": "Perhaps, the equal but certainly w was not less than v.",
+    "start": 266.88,
+    "end": 270.24,
+    "ocr_text": "d(y)+ wiy.w)\nvertex to burn is v, via x WARD\n\na shorter path from y to w"
+  },
+  {
+    "text": "So, at a later stage if we go to w we know that we will take at least that much time to",
+    "start": 270.24,
+    "end": 275.04,
+    "ocr_text": "d(y)+ wiy.w)\nvertex to burn is v, via x WARD\n\na shorter path from y to w"
+  },
+  {
+    "text": "reach w and then we have to additionally call incur a cost of going from w to v.",
+    "start": 275.04,
+    "end": 280.24,
+    "ocr_text": "* By induction, as\npaths to all vert"
+  },
+  {
+    "text": "So, there is no way that a later path that we can discover by at y to w to v can be better",
+    "start": 280.24,
+    "end": 285.56,
+    "ocr_text": "* By induction, as\npaths to all vert"
+  },
+  {
+    "text": "than the correct path next.",
+    "start": 285.56,
+    "end": 287.48,
+    "ocr_text": "* By induction, as\npaths to all vert"
+  },
+  {
+    "text": "So, this reestablishes the invariant that the vertex we burn next is correctly solved.",
+    "start": 287.48,
+    "end": 293.16,
+    "ocr_text": "* By induction, as\npaths to all vert"
+  },
+  {
+    "text": "So, this is a way to show that Dykespa's greedy strategy actually solves this problem",
+    "start": 293.16,
+    "end": 300.16,
+    "ocr_text": "entified short\nburnt )"
+  },
+  {
+    "text": "correctly.",
+    "start": 300.16,
+    "end": 301.16,
+    "ocr_text": "entified short\nburnt )"
+  },
+  {
+    "text": "So, now having established that it is correct let us look at the complexity.",
+    "start": 301.16,
+    "end": 307.12,
+    "ocr_text": "entified short\nburnt )"
+  },
+  {
+    "text": "So, there are some obvious loops in this.",
+    "start": 307.12,
+    "end": 309.28,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "So, there is a first there is an ordered end loop of initializing the visited values",
+    "start": 309.28,
+    "end": 313.76,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "to false and the distances to infinity.",
+    "start": 313.76,
+    "end": 316.16,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "Now, there is another order end loop here and inside this order end loop there are",
+    "start": 316.16,
+    "end": 323.12,
+    "ocr_text": "// assume source is Ss\n\nen A"
+  },
+  {
+    "text": "two loops one is more obvious than the other.",
+    "start": 323.12,
+    "end": 325.44,
+    "ocr_text": "// assume source is Ss\n\nen A"
+  },
+  {
+    "text": "So, here once we have visited a vertex and new vertex then we have to go through all",
+    "start": 325.44,
+    "end": 331.16,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "its outgoing neighbors.",
+    "start": 331.16,
+    "end": 332.64,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "So, there is a scan of all edges which are going out of view.",
+    "start": 332.64,
+    "end": 337.04,
+    "ocr_text": "// assume source is Ss"
+  },
+  {
+    "text": "So, that is one loop.",
+    "start": 337.04,
+    "end": 338.88,
+    "ocr_text": "gf.\n\n// assume source is s\n\nOle’) t\n\nOt)"
+  },
+  {
+    "text": "But also there is a loop here which is kind of implicit which is before we visit a vertex",
+    "start": 338.88,
+    "end": 344.12,
+    "ocr_text": "gf.\n\n// assume source is s\n\nOle’) t\n\nOt)"
+  },
+  {
+    "text": "we have to choose it.",
+    "start": 344.12,
+    "end": 345.12,
+    "ocr_text": "gf.\n\n// assume source is s\n\nOle’) t\n\nOt)"
+  },
+  {
+    "text": "So, we have to go through all the unvisited vertices and pick the one whose distances",
+    "start": 345.12,
+    "end": 349.44,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "minimum.",
+    "start": 349.44,
+    "end": 350.44,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "So, in general we have seen that if we have a list or an array which is not in any particular",
+    "start": 350.44,
+    "end": 355.24,
+    "ocr_text": "// assume source is s"
+  },
+  {
+    "text": "order then to find the minimum we may have to scan the entire array.",
+    "start": 355.24,
+    "end": 358.04,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "So, this is implicitly an order end step.",
+    "start": 358.04,
+    "end": 361.52,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "So, this is an order end step and the time it takes here depends on how we represent",
+    "start": 361.52,
+    "end": 368.4,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "the edges.",
+    "start": 368.4,
+    "end": 369.4,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "So, the outer loop runs n times as we saw in each iteration we burn one vertex.",
+    "start": 369.4,
+    "end": 375.52,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "This requires an order end scan to find the minimum vertex to burn.",
+    "start": 375.52,
+    "end": 380.04,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "Here we burn the vertex we have to scan its neighbors to update the burn times of those",
+    "start": 380.04,
+    "end": 384.08,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "vertices.",
+    "start": 384.08,
+    "end": 385.08,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "Now, if we have an adjacency matrix as we have seen then if we are going to burn you",
+    "start": 385.08,
+    "end": 389.12,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "now then in order to find its neighbors we have to scan the row for you in the adjacency",
+    "start": 389.12,
+    "end": 393.6,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "matrix.",
+    "start": 393.6,
+    "end": 394.6,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "So, this will take order end step.",
+    "start": 394.6,
+    "end": 395.6,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "So, we have an outer order end and inside we have two order end things independent of",
+    "start": 395.6,
+    "end": 399.84,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "each other.",
+    "start": 399.84,
+    "end": 400.84,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "One is to find the minimum burn, unburnt vertex to burn next and second is to update all",
+    "start": 400.84,
+    "end": 405.8,
+    "ocr_text": "// assume source is Ss\n\ny\n\noe)"
+  },
+  {
+    "text": "its neighbors.",
+    "start": 405.8,
+    "end": 406.8,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, because we have this order end thing inside an order end loop overall it is order",
+    "start": 406.8,
+    "end": 411.12,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "end spot.",
+    "start": 411.12,
+    "end": 413.12,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, now one of the bottlenecks certainly is this adjacency matrix.",
+    "start": 413.12,
+    "end": 419.64,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, we have seen in BFS and DFS that if we move from an adjacency matrix to an adjacency",
+    "start": 419.64,
+    "end": 426.4,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "list scanning all the vertices of a particular all the neighbors of a particular vertex becomes",
+    "start": 426.4,
+    "end": 431.28,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "more efficient.",
+    "start": 431.28,
+    "end": 432.28,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, we can do the same thing here.",
+    "start": 432.28,
+    "end": 434.28,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, if we move from an adjacency matrix to an adjacency list representation certainly",
+    "start": 434.28,
+    "end": 439.32,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "the second order end loop within each iteration can be now counted as an overall order end",
+    "start": 439.32,
+    "end": 446.04,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "cost because across all the iterations we will explore every edge only once because",
+    "start": 446.04,
+    "end": 449.96,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "we will explore it when we burn its source vertex.",
+    "start": 449.96,
+    "end": 453.64,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, therefore, the second contribution of order end gets solved by using an adjacency",
+    "start": 453.64,
+    "end": 461.04,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "list.",
+    "start": 461.04,
+    "end": 462.04,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "Unfortunately, we still have the first order end step which is to find the minimum.",
+    "start": 462.04,
+    "end": 466.8,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, we have a list of burn times associated with the unburnt, unvisited vertices and we",
+    "start": 466.8,
+    "end": 472.64,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "have to find the minimum among them and this remains an order end step.",
+    "start": 472.64,
+    "end": 475.4,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, overall though we have moved to an adjacency list this alone does not help us because",
+    "start": 475.4,
+    "end": 479.64,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "we still have an order end step inside the big loop.",
+    "start": 479.64,
+    "end": 482.0,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, we are still at order end square.",
+    "start": 482.0,
+    "end": 484.6,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, active to get around this bottleneck we need to maintain the burn times in a more",
+    "start": 484.6,
+    "end": 491.08,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "sophisticated data structure.",
+    "start": 491.08,
+    "end": 492.84,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, it turns out that we need data structure in which we can of course find and remove",
+    "start": 492.84,
+    "end": 497.08,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "the minimum element quickly.",
+    "start": 497.08,
+    "end": 498.6,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "But once we have that we also need to be able to update the values quickly so that overall",
+    "start": 498.6,
+    "end": 504.88,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "both updating and extracting are roughly equally the same.",
+    "start": 504.88,
+    "end": 508.6,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "So, this can be done using a tree like structure in particular we will see in a later lecture",
+    "start": 508.6,
+    "end": 515.12,
+    "ocr_text": "* ca is im\n* lade Ir IN | e\nO(n > It"
+  },
+  {
+    "text": "that there is a nice data structure called a heap which precisely allows us to do these",
+    "start": 515.12,
+    "end": 519.68,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "two operations in log in time.",
+    "start": 519.68,
+    "end": 523.68,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "So, if you have n values then in log in time you can find and delete the minimum value and",
+    "start": 523.68,
+    "end": 528.52,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "we can insert a new value or update a value which is already in the heap.",
+    "start": 528.52,
+    "end": 533.32,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "All these operations take only log in time.",
+    "start": 533.32,
+    "end": 535.4,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "So, if this which we will see later if this can be done then what it says is that finding",
+    "start": 535.4,
+    "end": 541.8,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "the minimum burn time takes log in time.",
+    "start": 541.8,
+    "end": 544.8,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "Now, when we update the vertices which are adjacent to the current burn vertex overall",
+    "start": 545.04,
+    "end": 550.36,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "we do this O M times because there are O M edges but each update again takes over log in.",
+    "start": 550.36,
+    "end": 555.88,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "So, we have now two contributions to our complexity.",
+    "start": 555.88,
+    "end": 559.56,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "So, this comes from choosing the minimum vertex.",
+    "start": 559.56,
+    "end": 565.28,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "So, in order to extract the minimum vertex we do this n times and each time it causes",
+    "start": 565.28,
+    "end": 570.36,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "log in time and then in order to update the distances once we burn a vertex each time",
+    "start": 570.36,
+    "end": 576.08,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "it takes a log in time but we do this for each edge.",
+    "start": 576.08,
+    "end": 579.04,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "So, it is m log in.",
+    "start": 579.04,
+    "end": 580.04,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "So, we have n log in for choosing a vertex and this is for updating the distance.",
+    "start": 580.04,
+    "end": 588.0,
+    "ocr_text": "indi linimur 1 akes O'\n7 1 yt 1 1\n(n r r ((n+m\neee"
+  },
+  {
+    "text": "So, overall our algorithm becomes n plus m log in.",
+    "start": 588.0,
+    "end": 592.52,
+    "ocr_text": "pa alee\nAnaossr Mm if"
+  },
+  {
+    "text": "So, remember that in a graph n plus m is really if I is the size of the graph.",
+    "start": 592.52,
+    "end": 597.04,
+    "ocr_text": "pa alee\nAnaossr Mm if"
+  },
+  {
+    "text": "So, this is really an n log in algorithm as opposed to the nive O n square and we have",
+    "start": 597.04,
+    "end": 602.0,
+    "ocr_text": "ee\nnaossry Mn UY"
+  },
+  {
+    "text": "seen in sorting and other such problems that is a huge practical jump going from O n square",
+    "start": 602.0,
+    "end": 607.28,
+    "ocr_text": "ee\nnaossry Mn UY"
+  },
+  {
+    "text": "to n log in.",
+    "start": 607.28,
+    "end": 608.28,
+    "ocr_text": "ee\nnaossry Mn UY"
+  },
+  {
+    "text": "It is a huge jump in terms of the size of the problem we can hope to solve.",
+    "start": 608.28,
+    "end": 612.96,
+    "ocr_text": "ee\nnaossry Mn UY"
+  },
+  {
+    "text": "So, Dijkstra's algorithm makes a very crucial assumption which underlies the correctness",
+    "start": 612.96,
+    "end": 619.52,
+    "ocr_text": "vith negative weig"
+  },
+  {
+    "text": "of its greedy step and that is that there is no negative cost associated with an edge.",
+    "start": 619.52,
+    "end": 626.92,
+    "ocr_text": "vith negative weig"
+  },
+  {
+    "text": "Our argument was that if we choose v as the next neighbor to add to our word set then",
+    "start": 626.92,
+    "end": 633.56,
+    "ocr_text": "nega’\n\ns no longer valid\n\ngative weights"
+  },
+  {
+    "text": "we can never find a shorter path coming this way.",
+    "start": 633.56,
+    "end": 638.72,
+    "ocr_text": "nega’\n\ns no longer valid\n\ngative weights"
+  },
+  {
+    "text": "But obviously if we have negative edges then we could have a situation where I had say",
+    "start": 638.72,
+    "end": 644.16,
+    "ocr_text": "sights can be nege\n\n* Our correctness argument is no long alid\n\nburn is v, via x\n\n2r path later with negative"
+  },
+  {
+    "text": "a path of length 2 here and then I chose not to follow another path because maybe it",
+    "start": 644.16,
+    "end": 651.52,
+    "ocr_text": "sights can be nege\n\n* Our correctness argument is no long alid\n\nburn is v, via x\n\n2r path later with negative"
+  },
+  {
+    "text": "is of length 4 but if I come back from there maybe this has length minus 3.",
+    "start": 651.52,
+    "end": 659.12,
+    "ocr_text": "argument is no longer valid\n\npath later with negative"
+  },
+  {
+    "text": "So, if I come around this way then I incur a net cost of any plus 1 whereas if I go this",
+    "start": 659.12,
+    "end": 665.44,
+    "ocr_text": "* Our correctness argument is no longer valid"
+  },
+  {
+    "text": "way I get plus 2.",
+    "start": 665.44,
+    "end": 667.36,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "So, therefore, by locally looking for the nearest neighbor I do not necessarily find the shortest",
+    "start": 667.36,
+    "end": 672.2,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "distance.",
+    "start": 672.2,
+    "end": 673.2,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "So, now of course you might ask why you would want to put negative weights in the graph",
+    "start": 673.2,
+    "end": 679.88,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "at all.",
+    "start": 679.88,
+    "end": 680.88,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "Well remember the graphs are a very general model in there are many situations where you",
+    "start": 680.88,
+    "end": 683.96,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "can actually interpret negative weights in a sensible way.",
+    "start": 683.96,
+    "end": 686.76,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "So, supposing we are looking at say a taxi driver and we are looking at a graph as a list",
+    "start": 686.76,
+    "end": 691.52,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "of places where he picks up and drops off people.",
+    "start": 691.52,
+    "end": 694.8,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "Now, obviously there are segments where a first passenger is in the car and there are segments",
+    "start": 694.8,
+    "end": 699.2,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "where he may not have to be a way may not have a passenger he may have to just be returning",
+    "start": 699.2,
+    "end": 703.0,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "to a place to pick up.",
+    "start": 703.0,
+    "end": 704.0,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "For instance somebody a taxi driver operates from the airport might typically go back to",
+    "start": 704.0,
+    "end": 710.96,
+    "ocr_text": "from y to w to\n\npath later with negative"
+  },
+  {
+    "text": "the airport after every trip because he expects to find longer trips from there and within",
+    "start": 710.96,
+    "end": 715.4,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "the city.",
+    "start": 715.4,
+    "end": 716.4,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, there are segments where he travels empty there are segments where he has passengers.",
+    "start": 716.4,
+    "end": 720.6,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, some segments earn money some segments lose money.",
+    "start": 720.6,
+    "end": 723.48,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, there are some positive edges and there are some negative edges.",
+    "start": 723.48,
+    "end": 726.68,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "Another situation which is completely unrelated to anything we have seen so far you can think",
+    "start": 726.68,
+    "end": 730.08,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "of say chemicals chemical compounds and we can represent a graph saying how we can transform",
+    "start": 730.08,
+    "end": 735.6,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "one compound to another compound.",
+    "start": 735.6,
+    "end": 737.36,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "And here for instance the edge weight can represent the energy which is either released",
+    "start": 737.36,
+    "end": 741.96,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "or absorbed in this process.",
+    "start": 741.96,
+    "end": 743.76,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, again it could be positive or negative right.",
+    "start": 743.76,
+    "end": 746.2,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, there are many situations in which edge negative edge which actually makes sense.",
+    "start": 746.2,
+    "end": 750.56,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, what do we do here negative edge weights.",
+    "start": 750.56,
+    "end": 753.16,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, the first thing to notice is that if you have a negative cycle ok.",
+    "start": 753.16,
+    "end": 757.12,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, if I have a graph in which I have say a loop like this and all of the things add",
+    "start": 757.12,
+    "end": 763.12,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "up say minus 3 minus 2 and plus 1.",
+    "start": 763.12,
+    "end": 765.96,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "Then if I go around the cycle once right and come back then I will incur a total cost",
+    "start": 765.96,
+    "end": 772.12,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "of minus 4.",
+    "start": 772.12,
+    "end": 773.12,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, this means that if I had a path which started somewhere else came here and left the cycle",
+    "start": 773.12,
+    "end": 778.2,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "and went somewhere else.",
+    "start": 778.2,
+    "end": 779.2,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, supposing had a source and a target.",
+    "start": 779.2,
+    "end": 781.88,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "Then I can make the distance from the source to target arbitrarily small by going round",
+    "start": 781.88,
+    "end": 785.56,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "and round this loop any number of times.",
+    "start": 785.56,
+    "end": 787.36,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "At each time I go around the loop the cost reduces by minus by 4.",
+    "start": 787.36,
+    "end": 790.88,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, I keep adding minus 4 to my cost.",
+    "start": 790.88,
+    "end": 792.88,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, the cost can be as low as I want just depending on how many times I go around",
+    "start": 792.88,
+    "end": 796.4,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "the loop.",
+    "start": 796.4,
+    "end": 797.4,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, if I have negative cycles in the graph the question of a shortest path does not even",
+    "start": 797.4,
+    "end": 801.12,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "make sense.",
+    "start": 801.12,
+    "end": 802.12,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "I mean there is no notion of a shortest path because the quantity is not well defined.",
+    "start": 802.12,
+    "end": 806.28,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "But it turns out that if I rule out this I could have negative edges but not negative",
+    "start": 806.28,
+    "end": 810.6,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "cycles.",
+    "start": 810.6,
+    "end": 811.6,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, for instance here if instead of plus 1 ok.",
+    "start": 811.6,
+    "end": 814.48,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "I said then this was plus 7.",
+    "start": 814.48,
+    "end": 817.32,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "If I make this way plus 7 and going around this cycle will cost me plus 2.",
+    "start": 817.32,
+    "end": 821.52,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So, therefore it does not help me to go around the cycle because it only add to my cost.",
+    "start": 821.52,
+    "end": 825.56,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "So therefore, in a situation where I have no negative cycles but I do have negative edges",
+    "start": 825.56,
+    "end": 832.04,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "it still makes sense to talk of shortest paths.",
+    "start": 832.04,
+    "end": 835.6,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "And we will see later that there are other algorithms other than Daixpress algorithm which",
+    "start": 835.6,
+    "end": 839.8,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "can handle these.",
+    "start": 839.8,
+    "end": 840.8,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "In particular we will look at the Bellman Ford algorithm and we will also see that the",
+    "start": 840.8,
+    "end": 845.2,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "all-pass shortest path problem which generalizes the single source shortest path problem or",
+    "start": 845.2,
+    "end": 850.04,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "the Floyd-Warshal algorithm will also solve this thing regardless of whether the paths",
+    "start": 850.04,
+    "end": 853.76,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  },
+  {
+    "text": "are negative or the weights are negative or not provided there are no negative cycles.",
+    "start": 853.76,
+    "end": 858.08,
+    "ocr_text": "* Weights represent r\n* Sor y c"
+  }
+]

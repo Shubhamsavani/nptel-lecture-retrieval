@@ -1,0 +1,1724 @@
+[
+  {
+    "text": "And we will move on to the next module where we will talk about gradient descent. How many",
+    "start": 0.0,
+    "end": 17.24,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "if you have done gradient descent before? Almost all of you. So, what we want to do is find",
+    "start": 17.24,
+    "end": 23.52,
+    "ocr_text": "Module 3.4: Learning Parameters : Gradient Descent"
+  },
+  {
+    "text": "a more efficient and principled way of navigating the error surface. Is everyone with me in",
+    "start": 23.52,
+    "end": 29.4,
+    "ocr_text": "Module 3.4: Learning Parameters : Gradient Descent"
+  },
+  {
+    "text": "that? And the goal is to find a better way of doing this. So, let us start by setting up things,",
+    "start": 29.4,
+    "end": 38.52,
+    "ocr_text": "Now let us see if there is a more efficient and\nprincipled way of doing this"
+  },
+  {
+    "text": "we will define some notations and some parameters and so on and from there on we will try to come",
+    "start": 38.52,
+    "end": 43.52,
+    "ocr_text": "vector of parameters,\n\nsay, randomly initial-\n\n\\\n\nized\n\n> 0 = [w,d]"
+  },
+  {
+    "text": "to the algorithm. So, my parameters in this case were W comma B, what I am going to do is I",
+    "start": 43.52,
+    "end": 50.24,
+    "ocr_text": "vector of parameters,\n\nsay, randomly initial-\n\n\\\n\nized\n\n> 0 = [w,d]"
+  },
+  {
+    "text": "am going to put them into an array or a vector and call that vector as theta. So, theta is the",
+    "start": 50.24,
+    "end": 55.52,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\n\\\n\nized\n\n+ 0 = |w,b|"
+  },
+  {
+    "text": "vector of parameters and theta belongs to R R what? R 2 right, there are two parameters here.",
+    "start": 55.52,
+    "end": 64.16,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\n\\\n\nized\n\n— > 0 = [w, d]\n\nER, a"
+  },
+  {
+    "text": "So, it is a 2 dimensional vector. Now, what I want is again what I will do is I do not know what",
+    "start": 64.16,
+    "end": 71.56,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\n\\\n\nized\n\n— > 0 = [w, d]\n\nER, a"
+  },
+  {
+    "text": "the value of W comma B is. So, I started with a random guess. So, that is always going to be my",
+    "start": 71.56,
+    "end": 76.28,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\nNC, O= [w, b]\n\n—— Ad = (Aw, Ab\na\n\nchange in the\nvalues of w, b\n\nMitesh M. Kh"
+  },
+  {
+    "text": "starting point. I will always start with a random guess and from there on move on to good values.",
+    "start": 76.28,
+    "end": 80.96,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\nNC, O= [w, b]\n\n—— Ad = (Aw, Ab\na\n\nchange in the\nvalues of w, b\n\nMitesh M. Kh"
+  },
+  {
+    "text": "Now, once I have started with a random guess, I want you to tell me some changes that I can",
+    "start": 81.68,
+    "end": 86.68,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\nNC, O= [w, b]\n\n—— Ad = (Aw, Ab\na\n\nchange in the\nvalues of w, b\n\nMitesh M. Kh"
+  },
+  {
+    "text": "make to W and B. So, that I land up in better situations right, that means I land up in situations",
+    "start": 86.68,
+    "end": 92.12,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\n\\\n\nized\n— @= [w, b]\n\n—— Ad = (Aw, Ab\n\nchange in the\nvalues of w, b"
+  },
+  {
+    "text": "where the error is less. Is that fine? So, that change in W and B I am going to call it as",
+    "start": 92.12,
+    "end": 99.4,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\n\\\n\nized\n— @= [w, b]\n\n—— Ad = (Aw, Ab\n\nchange in the\nvalues of w, b"
+  },
+  {
+    "text": "delta W and delta B and that again is a vector which is storing these two values. So, this",
+    "start": 99.4,
+    "end": 106.04,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\nNO + 0 = [w,d]\n\n—— A@ = [Aw, Ab\n\nchange in the\nvalues of w, b\n\nMitesh M. Kh"
+  },
+  {
+    "text": "is the picture right, I want to take theta and I want to add a small change to it. So,",
+    "start": 106.04,
+    "end": 112.64,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\nNO + §= [w, b]\n\n——» Ad = [Aw, Ab\n(\n\nchange in the\nvalues of w, b\n\nAé"
+  },
+  {
+    "text": "this is my theta, this vector is actually theta right, this is the theta vector. I want",
+    "start": 112.64,
+    "end": 117.56,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\nNO + §= [w, b]\n\n——» Ad = [Aw, Ab\n(\n\nchange in the\nvalues of w, b\n\nAé"
+  },
+  {
+    "text": "to add a small change to it which is again a vector right, this is delta W comma delta",
+    "start": 117.56,
+    "end": 121.4,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\nNL + @= [w, b]\n\n—— Ad = (Aw, Ab\na\n\nchange in the\nvalues of w, b\n\nMitesh M. Kh"
+  },
+  {
+    "text": "B. So, such that I will get a new value for theta new right. So, theta new would be what",
+    "start": 121.4,
+    "end": 126.12,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\nNL + @= [w, b]\n\n—— Ad = (Aw, Ab\na\n\nchange in the\nvalues of w, b\n\nMitesh M. Kh"
+  },
+  {
+    "text": "actually, theta new is equal to W new comma B new right. Is that fine? That is what theta",
+    "start": 126.12,
+    "end": 135.68,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\\n“3 9= [w, db]\n_ > Ad = |Aw, Ab}\n(\nchange in the\nvalues of w, b O,, of ("
+  },
+  {
+    "text": "new means ok. Now, what has happened is actually when I have added delta theta to theta, I have",
+    "start": 135.68,
+    "end": 142.88,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\\n\\\n\n— > 0= |w, d]\n\n- > Ad = |Aw, Ab}\n\nf\n\nchange in the\nvalues of w, b\n\nAO\n\n“ We moved in the direc-\ntion of Ad"
+  },
+  {
+    "text": "moved in the direction of delta theta right, I have come from here to here ok. Now, I am",
+    "start": 142.88,
+    "end": 149.2,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\\n\\\n\n— > 0= |w, d]\n\n- > Ad = |Aw, Ab}\n\nf\n\nchange in the\nvalues of w, b\n\nAO\n\n“ We moved in the direc-\ntion of Ad"
+  },
+  {
+    "text": "going to be a bit conservative and I am going to say that while I am ok in moving in the",
+    "start": 149.2,
+    "end": 154.12,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\n“ We moved in the direc-\n/ tion of Ad\n\nized \\\n\\\n\n— > 0= |w, d]\n\n- + Ad = |Aw, Ab}\n\n(\nchange in the\nvalues of w, b"
+  },
+  {
+    "text": "direction of delta theta, I do not want to make a giant stride, what I will do is I will",
+    "start": 154.12,
+    "end": 158.96,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\n“ We moved in the direc-\n/ tion of Ad\n\nized \\\n\\\n\n— > 0= |w, d]\n\n- + Ad = |Aw, Ab}\n\n(\nchange in the\nvalues of w, b"
+  },
+  {
+    "text": "just move by a small quantity in that direction right. So, this delta theta is this large magnitude.",
+    "start": 158.96,
+    "end": 165.28,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\\n\\\n\n> 0= |w, d]\n\n_ > A@ = [Aw, Ad}\n/\n\nchange in the\n\nvalues of w, b\n\n”\n\nAO AO\n\n“ We moved in the direc-\ntion of Ad\n\nLet us.be a bit conservat-\nive: move only by a small\n\namount. 7)"
+  },
+  {
+    "text": "So, all I am saying is that I will not I will move in that direction, I am fine with that",
+    "start": 165.28,
+    "end": 169.38,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\\n\\\n\n> 0= |w, d]\n\n_ > Ad = |Aw, Ab}\n(\n\nchange in the\nvalues of w, b\n\n”?\n\nAQ AO\n\n“ We moved in the direc-\n\ntion of Ad\n\nLet us be a bit. conservat-\nive: move only by a small\n\namount. 7)"
+  },
+  {
+    "text": "ok, but I do not want to make a giant stride, I will just take a small stride in that direction",
+    "start": 169.38,
+    "end": 174.76,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\\n\\\n\n> 0= |w, d]\n\n_ > Ad = |Aw, Ab}\n(\n\nchange in the\nvalues of w, b\n\n”?\n\nAQ AO\n\n“ We moved in the direc-\n\ntion of Ad\n\nLet us be a bit. conservat-\nive: move only by a small\n\namount. 7)"
+  },
+  {
+    "text": "right. So, eta is a scalar which actually scales down delta theta ok. So, now, if I am going",
+    "start": 174.76,
+    "end": 179.8,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\\n\\\n\n> 0= |w, d]\n\n_ > Ad = |Aw, Ab}\n(\n\nchange in the\nvalues of w, b\n\n”?\n\nAQ AO\n\n“ We moved in the direc-\n\ntion of Ad\n\nLet us be a bit. conservat-\nive: move only by a small\n\namount. 7)"
+  },
+  {
+    "text": "to take only a small step in that direction, instead of this large change, I will just",
+    "start": 179.8,
+    "end": 184.36,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\\n\\\n\n— > 0= |w, d]\n\n_ + A@ = [Aw, Ad}\n(\n\nchange in the\nvalues of w, b\n\n(ny AQ) AO\n\n“ We moved in the direc-\ntion of Ad\n\nLet us be a bit conservat-\nive: move only by a small\n\namount. 7)"
+  },
+  {
+    "text": "get a smaller change theta new right. So, red the red vector is actually going to be the",
+    "start": 184.36,
+    "end": 191.08,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\\n\\\n\n— > 0= |w, d]\n\n_ + A@ = [Aw, Ad}\n(\n\nchange in the\nvalues of w, b\n\n(ny AQ) AO\n\n“ We moved in the direc-\ntion of Ad\n\nLet us be a bit conservat-\nive: move only by a small\n\namount. 7)"
+  },
+  {
+    "text": "movement which I make that is the new value of theta. So, theta new is equal to the original",
+    "start": 191.08,
+    "end": 196.64,
+    "ocr_text": "vector of pal amelers,\n\nsay, randomly initial-\nized \\\n\\\n\n— > 0 = |w, db]\n\n——+ Ad = [Aw, Ab]\n\n(\nchange in the\nvalues of w, b\n\n”?\n\nAd AO\n\n“ We moved in the direc-\ntion of Ad\n\nLet us be a bit. conservat-\nive: move only by a small\n\namount. 7)"
+  },
+  {
+    "text": "theta plus a small step in the direction of delta theta. So, everything is clear, you have",
+    "start": 196.64,
+    "end": 202.48,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\ aay ,\nLO _ - We moved in the direc-\n—> 0= |w,b] ae ‘\n/ tion of Ad\npo AD = (Aw, Ab] = ,\nf n AO AO Let us be a bit. conservat-\n\nchange in the\n\n. ive: move only by a small\nvalues of w, b\n\namount. 7)\n\nOnew =O+n- AO"
+  },
+  {
+    "text": "done, you have done with gradient design, what is missing? What is delta theta right? I am",
+    "start": 202.48,
+    "end": 207.6,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\n\nized \\ aay ,\nLO _ - We moved in the direc-\n—> 0= |w,b] ae ‘\n/ tion of Ad\npo AD = (Aw, Ab] = ,\nf n AO AO Let us be a bit. conservat-\n\nchange in the\n\n. ive: move only by a small\nvalues of w, b\n\namount. 7)\n\nOnew =O+n- AO"
+  },
+  {
+    "text": "telling you I want to move in a certain direction, but what is the right delta theta to use?",
+    "start": 207.6,
+    "end": 213.32,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\n1\nD\n\nWe moved in the direc-\n\n‘tion of A@\n\nNO + @= [w, b]\n\n——+ Ad = [Aw. Ab\n(\n\n. Let us be a bit conservat-\nchange in the .\n\nive: move only by a small\nvalues of w, b .\namount 7)\n\nOnew =O+n- AO ~— >\n\nQuestion: What is the right A@ to use\n?\n\nMitesh M. Kh"
+  },
+  {
+    "text": "How many if you know the answer to this? What is the answer? Move in the direction? Opposite",
+    "start": 213.32,
+    "end": 220.8,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\n1\nD\n\nWe moved in the direc-\n\n‘tion of A@\n\nNO + @= [w, b]\n\n——+ Ad = [Aw. Ab\n(\n\n. Let us be a bit conservat-\nchange in the .\n\nive: move only by a small\nvalues of w, b .\namount 7)\n\nOnew =O+n- AO ~— >\n\nQuestion: What is the right A@ to use\n?\n\nMitesh M. Kh"
+  },
+  {
+    "text": "to the gradient. Why? Where does that answer come from? Not the ML class focus. How many",
+    "start": 220.8,
+    "end": 226.24,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\n1\nD\n\n/ We moved in the direc-\n\n‘tion of Ad\n\nNO, d= [w, b]\n\n——+ Ad = [Aw, Ab\n(\n\nn- AO Ad\n\n. Let us be a bit conservat-\nchange in the .\n\nive: move only by a small\nvalues of w, b .\namount 7)\n\nOnew =O+n- AO ~———— >\n\nQuestion: What is the right A@ to use\n?\n\nMitesh M. Kh"
+  },
+  {
+    "text": "if you know why we need to move in the direction opposite to the gradient? Why? Ok, we will see.",
+    "start": 226.24,
+    "end": 231.12,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\n1\nD\n\n/ We moved in the direc-\n\n‘tion of Ad\n\nNO, d= [w, b]\n\n—— Ad = [Aw, Ab\n(\n\nn- AO AO\n\n. Let us be a bit conservat-\nchange in the .\n\nive: move only by a small\nvalues of w, b .\namount 7)\n\nOnew =O+n- AO ~——_ >\n\nQuestion: What is the right A@ to use\n?\n\naw\n\n| 2."
+  },
+  {
+    "text": "Ok, so that is the question that we need to answer. If I give you an answer to this",
+    "start": 231.12,
+    "end": 234.08,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\n1\nD\n\n/ We moved in the direc-\n\n‘tion of Ad\n\nNO, d= [w, b]\n\n—— Ad = [Aw, Ab\n(\n\nn- AO AO\n\n. Let us be a bit conservat-\nchange in the .\n\nive: move only by a small\nvalues of w, b .\namount 7)\n\nOnew =O+n- AO ~——_ >\n\nQuestion: What is the right A@ to use\n?\n\naw\n\n| 2."
+  },
+  {
+    "text": "question, then what is it I am doing? I am giving you a principled way such that you start",
+    "start": 234.08,
+    "end": 239.76,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\n1\nD\n\n/ We moved in the direc-\n\n‘tion of Ad\n\nNO, d= [w, b]\n\n—— Ad = [Aw, Ab\n(\n\nn- AO AO\n\n. Let us be a bit conservat-\nchange in the .\n\nive: move only by a small\nvalues of w, b .\namount 7)\n\nOnew =O+n- AO ~——_ >\n\nQuestion: What is the right A@ to use\n?\n\naw\n\n| 2."
+  },
+  {
+    "text": "from a random value of theta, move in certain direction, I will ensure that your loss has",
+    "start": 239.76,
+    "end": 245.16,
+    "ocr_text": "vector of parameters,\nsay, randomly initial-\nized\n\n1\nD\n\nWe moved in the direc-\n\n‘tion of A@\n\nNO + @= [w, b]\n\n——+ Ad = [Aw. Ab\n(\n\n. Let us be a bit conservat-\nchange in the .\n\nive: move only by a small\nvalues of w, b .\namount 7)\n\nOnrew = 9+: AO —— >\n\nQuestion: What is the right A@ to use\n?\n\nMitesh M. Kh"
+  },
+  {
+    "text": "decreased and then you have to keep doing this right. So, that is the setup and the answer",
+    "start": 245.16,
+    "end": 249.68,
+    "ocr_text": "vector of parameters,\nsay, randomly initiak £2 er rrr\n\nD\n\n/ We moved in the direc-\n\n‘tion of Ad\n\nized\nNO + 0 = [w,d]\n\nVa ——> A@ = [Aw, Ab]\n\nchange in the n Ad Ad Let us be a bit conservat-\nvalue of - 7 ive: move only by a small\n“— , amount 7)\nOnew =O +> AO. —— >\nQuestion: What is the right A@ to use\n?\n\nThe answer comes from ‘Taylor series\n\nMitesh M. Khapra Lectu"
+  },
+  {
+    "text": "to this comes from Taylor series. So, now what I am going to do is I am going to give",
+    "start": 249.68,
+    "end": 253.76,
+    "ocr_text": "vector of parameters,\nsay, randomly initiak £2 er rrr\n\nD\n\n/ We moved in the direc-\n\n‘tion of Ad\n\nized\nNO + 0 = [w,d]\n\nVa ——> A@ = [Aw, Ab]\n\nchange in the n Ad Ad Let us be a bit conservat-\nvalue of - 7 ive: move only by a small\n“— , amount 7)\nOnew =O +> AO. —— >\nQuestion: What is the right A@ to use\n?\n\nThe answer comes from ‘Taylor series\n\nMitesh M. Khapra Lectu"
+  },
+  {
+    "text": "you the right direction delta theta fine. And for ease of notation, I am going to call",
+    "start": 253.76,
+    "end": 261.76,
+    "ocr_text": "vector of parameters,\nsay, randomly initiak £2 er rrr\n\nD\n\n/ We moved in the direc-\n\n‘tion of Ad\n\nized\nNO + 0 = [w,d]\n\nVa ——> A@ = [Aw, Ab]\n\nchange in the n Ad Ad Let us be a bit conservat-\nvalue of - 7 ive: move only by a small\n“— , amount 7)\nOnew =O +> AO. —— >\nQuestion: What is the right A@ to use\n?\n\nThe answer comes from ‘Taylor series\n\nMitesh M. Khapra Lectu"
+  },
+  {
+    "text": "it as u. So, remember what this delta theta is? What is it? Change in w, change in b. So,",
+    "start": 261.84,
+    "end": 268.76,
+    "ocr_text": "For ci\n\n» of notation, let A@ = u, then from Taylor series, we have,"
+  },
+  {
+    "text": "it is a vector in r 2. Remember that? Ok, and it is going to call it as u. Now, this is",
+    "start": 271.64,
+    "end": 278.64,
+    "ocr_text": "For ease of notation, let Ad =u, then from Taylor series, we have, Ap - [Aw, Bb"
+  },
+  {
+    "text": "what Taylor series tells me. What it tells me is that if I am in a certain value of theta",
+    "start": 279.76,
+    "end": 286.76,
+    "ocr_text": "For ease of notation, let AO = u, then from Taylor series, we have,\n\ni\n\n7\n\n2 3 q\nL(0 + nu) = L(0) + «ul VL(B) + a ew VG O)ut Det ow...\n\n3 4!"
+  },
+  {
+    "text": "and if I want to change that value of beta, then what is going to be the new value of",
+    "start": 287.76,
+    "end": 293.76,
+    "ocr_text": "For ease of notation, let AO = u, then from Taylor series, we have,\n\nne 4\n7 ”\n3h a *\n\n2\nL(+ nu) = 20) + * uw VL) + a eu VP L(O)u +\n\nMitesh M. Kh"
+  },
+  {
+    "text": "the loss function or any function for that matter? And this is the formula for that.",
+    "start": 293.76,
+    "end": 300.76,
+    "ocr_text": "For ease of notation, let AO = u, then from Taylor series, we have,\n\nne 4\n7 ”\n3h a *\n\n2\nL(+ nu) = 20) + * uw VL) + a eu VP L(O)u +\n\nMitesh M. Kh"
+  },
+  {
+    "text": "Now, what is let us see what are some quantities here? What is this quantity? Scalar, vector, matrix,",
+    "start": 300.76,
+    "end": 307.76,
+    "ocr_text": "For ease of notation, let AO = u, then from Taylor series, we have,\n\n2 3 yA\n£0 + nu) = (0) + * wVL(0) + a ew? L(0)u+ Ty. + Ty,\n\n3! 4!"
+  },
+  {
+    "text": "scalar, this vector, we just did that right, it is a vector. What about this?",
+    "start": 308.76,
+    "end": 314.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 ip i\n\n! sul VL (O)u 4 kt\n\nLO + nu) = 2 (8) + yeu! V.L(0) + :\n\nP,\n\n2! 3I 4\""
+  },
+  {
+    "text": "What is this quantity actually? Cradient. Cradient. What is the gradient? What is the gradient?",
+    "start": 315.76,
+    "end": 321.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 3 4\nL(G + yu) = L(6) 4 yu VL(6) +a aul VL (O)u4 a a\n\nPs\n\n2! 3! 4!"
+  },
+  {
+    "text": "Now, let me how to use the gradient? I am asking you what is the gradient? You are giving",
+    "start": 327.76,
+    "end": 332.76,
+    "ocr_text": "For case of notation, let AO = u, then from Taylor series, we have,\n\n2 3 4\nL(0 + yu) = (6) + yaul VL(8) t i aul VL (O)u4 Ta, I 7 koe\n\n2! 3! 4!"
+  },
+  {
+    "text": "me absolutely correct and absolutely use this definitions. That is a very good answer.",
+    "start": 332.76,
+    "end": 337.76,
+    "ocr_text": "For case of notation, let AO = u, then from Taylor series, we have,\n\n2 3 4\nL(0 + yu) = (6) + yaul VL(8) t i aul VL (O)u4 Ta, I 7 koe\n\n2! 3! 4!"
+  },
+  {
+    "text": "So, now what I am going to do is I am going to digress a bit and I am going to tell you",
+    "start": 337.76,
+    "end": 343.76,
+    "ocr_text": "For ease of notation, let A? = u, then from ‘Taylor series, we have,\n\n3 4\nui 1\n\nme\nLO + Mu) = £0) +n «ul VL(0) + a xu VL (B)u +"
+  },
+  {
+    "text": "about derivatives, partial derivatives and gradients and then we will come back to this.",
+    "start": 343.76,
+    "end": 348.76,
+    "ocr_text": "For ease of notation, let A? = u, then from ‘Taylor series, we have,\n\n3 4\nui 1\n\nme\nLO + Mu) = £0) +n «ul VL(0) + a xu VL (B)u +"
+  },
+  {
+    "text": "So, now suppose you have a function L, this is L in my handwriting, this is the function",
+    "start": 348.76,
+    "end": 355.76,
+    "ocr_text": "For ease of notation, let A? = u, then from ‘Taylor series, we have,\n\n3 4\nn ”\n3h a *\n\nme\nLO + Mu) = £0) +n «ul VL(0) + a xu VL (B)u +\n\nMitesh M. Kh"
+  },
+  {
+    "text": "of w and say this function is w square. Now, what is the derivative of the function with",
+    "start": 356.76,
+    "end": 363.76,
+    "ocr_text": "For ease of notation, let A? = u, then from ‘Taylor series, we have,\n\n3 4\nn ”\n3h a *\n\n2\nLO+ mu) = £0) +n*uVL(0) +E ub V? L(O)ut\n\n- 2!\n\nMitesh M. Kh"
+  },
+  {
+    "text": "respect to w? Now suppose I have a function B square. Now, what is this quantity?",
+    "start": 363.76,
+    "end": 370.76,
+    "ocr_text": "For ease of notation, let A? = u, then from ‘Taylor series, we have,\n\n3 4\nn ”\n3h a *\n\n2\nLO+ mu) = £0) +n*uVL(0) +E ub V? L(O)ut\n\n- 2!\n\nMitesh M. Kh"
+  },
+  {
+    "text": "This is a partial derivative of the function with respect to w, this is the derivative and you know this is",
+    "start": 370.76,
+    "end": 374.76,
+    "ocr_text": "For ease of notation, let A? = u, then from ‘Taylor series, we have,\n\n3 4\nui 1)\n\nm2\nLO+ qu) = L(0) +n* ul V.L(0) + a ew VPL(O)u +\n\ndit)\n\ndw"
+  },
+  {
+    "text": "two w. Now suppose I have a function B square. Now, what is this quantity? This is a partial",
+    "start": 374.76,
+    "end": 385.76,
+    "ocr_text": "For ease of notation, let A? = u, then from ‘Taylor series, we have,\n\n3 4\nui 1)\n\nm2\nLO+ qu) = L(0) +n* ul V.L(0) + a ew VPL(O)u +\n\ndit)\n\ndw"
+  },
+  {
+    "text": "derivative of the function with respect to w, y partial because it is considering b as a constant",
+    "start": 388.76,
+    "end": 395.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 3\nLUO + mu) = £18) + yew VL) + Feu VL But Teh\n\n\\\n\n{(v) mm Ww P(w,5) Sage b>\nquite > Ll)\n\n“ =27W\n\ndw Ow"
+  },
+  {
+    "text": "and taking the derivative with respect to only one of the variables. This happens to be",
+    "start": 395.76,
+    "end": 402.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\nip it\n\n2\nT aul VL (O)u4 aw Ft\n\nL(G + yu) = L(6) 4 nau VL(0) {\n\n2! 3! a\n=L£(0)+n*wV £8) [n rs typically small, so yn, .. > 0)"
+  },
+  {
+    "text": "and what is this quantity? Oh sorry, so is w come up b, right? This is the partial derivative",
+    "start": 402.76,
+    "end": 416.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\nip it\n\n2\nT aul VL (O)u4 aw Ft\n\nL(G + yu) = L(6) 4 nau VL(0) {\n\n2! 3! a\n=L£(0)+n*wV £8) [n rs typically small, so yn, .. > 0)"
+  },
+  {
+    "text": "with respect to b. Now, can you tell me what is a gradient? The gradient is nothing but",
+    "start": 416.76,
+    "end": 423.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 3\nLO + yu) = -2(8) 4 yaul V¢(6) t = aul VL (Oud A tay\n\n2\n\nLW\n\ndw fo) wW\n\nab"
+  },
+  {
+    "text": "it is just these two partial derivatives taken together and put into a vector. Now suppose",
+    "start": 423.76,
+    "end": 430.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 3\nLO + yu) = -2(8) 4 yaul V¢(6) t = aul VL (Oud A tay\n\n2\n\nLW\n\ndw fo) wW\n\nab"
+  },
+  {
+    "text": "I had a function which depended on 100 variables. What would the gradient be? Size of the gradient",
+    "start": 438.32,
+    "end": 445.32,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 3\n7 oa y\nL aw VL (Oud !\n\n£8 ' i) = £(6) 4 yeu! V4) ey gt tg\n\nral &\n\nA a\ndw ow dL.)\n\nOb"
+  },
+  {
+    "text": "or 100? It would lie, it would be a 100 dimensional case. So, now can you tell me with this evidence",
+    "start": 445.32,
+    "end": 451.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\nLO + yu) = -2(8) 4 yaw! VLG) + = aw VL (Oud A ar\n\nA Su\ndw Ow a)\n\nOb"
+  },
+  {
+    "text": "in knowledge, but this primer, can you tell me what this is? This is a gradient vector",
+    "start": 452.16,
+    "end": 458.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\nLO + yu) = -2(8) 4 yaw! VLG) + = aw VL (Oud A ar\n\nA Su\ndw Ow a)\n\nOb"
+  },
+  {
+    "text": "which is right there in front of you in a red ink. This is what it is, right? Fine, everyone",
+    "start": 458.76,
+    "end": 467.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n————™\"\\ 8 3 4\nLO + yu) = -2(8) 4 Trae = aw VL (Oust _ kt rn Ke\n\nL() =U bus, b) = oh. be\nd\n\ndw ow das)\n\nOb"
+  },
+  {
+    "text": "okay with that. So, actually the right way to write this and probably we need to correct",
+    "start": 472.08,
+    "end": 475.8,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 3 4\n1) To2 oy ‘) ')\n3 oe V*L (Aut 3 * 0 t at\n\nL(G + iu) = (8) + 1% lve)\n\n2.\n\nA ‘ Su\ndw ow dL)\n\ndb _———"
+  },
+  {
+    "text": "in the slides would be theta. So, remember that theta is equal to w, b. So, this is the",
+    "start": 475.88,
+    "end": 482.88,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 3 4\n1) To op ‘) ‘)\n3 oe V°L(A)ut 3 eo t at\n\nL(G + mu) = (6) + 1% lve)\n\n2.\n\n1 (} = LW) ay b) = A b~ - ;\n\nin - oy\n\ndb ———"
+  },
+  {
+    "text": "derivative of L theta with respect to theta which is nothing but the collection of the partial",
+    "start": 485.56,
+    "end": 491.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n— i 2 3 4\nLO + yu) = -2(8) 4 yeulvco a aul VL (Out - at ‘ *\n\nL() = us Lvs, b) = = be - ; :\n\nA corey “wb\ndw ow dL.)\n\naL) ) = 2b é\ndb ——_———.\n\ni} oO"
+  },
+  {
+    "text": "derivatives with respect to the components of theta. Is that fine? So, everybody understands",
+    "start": 491.76,
+    "end": 497.04,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n— i 2 3 4\nLO + yu) = -2(8) 4 yeulvco a aul VL (Out - at ‘ *\n\nL() = us Lvs, b) = = be - ; :\n\nA corey “wb\ndw ow dL.)\n\naL) ) = 2b é\ndb ——_———.\n\ni} oO"
+  },
+  {
+    "text": "what is a derivative, partial derivative and gradient, okay? So, now the gradient is",
+    "start": 497.04,
+    "end": 502.04,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n— 2 3 4\nLO + yu) = -2(8) 4 pul a aw VL (Oud 7 at ‘ x\n\ndL (a,b)\n\ndw Ow\n\nAL) op SS\ndb ————"
+  },
+  {
+    "text": "a vector in this case. So, now what is this quantity? It is a? No, it is what is this?",
+    "start": 502.32,
+    "end": 509.32,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n— 2 3 4\nLO + yu) = -2(8) 4 pul a aw VL (Oud 7 at ‘ x\n\ndL (a,b)\n\ndw Ow\n\nAL) op SS\ndb ————"
+  },
+  {
+    "text": "The dot product between these two vectors, fine. Now one last thing and many more things",
+    "start": 515.12,
+    "end": 522.12,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\nf ) 1 i? Tore ip i\nLO + nu) = -L(6) + yaw VL(8) 4 3) * V°L(A)ut 3) t qi\n\n= £(6) + * ul VL(8) [n as typically small, so yin, .. > 0)"
+  },
+  {
+    "text": "actually. So, what is this? Square of the gradient. It is not the square of the gradient.",
+    "start": 522.28,
+    "end": 529.28,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\nf ) 1 i? Tore ip i\nLO + nu) = -L(6) + yaw VL(8) 4 3) * V°L(A)ut 3) t qi\n\n= £(6) + * ul VL(8) [n as typically small, so yin, .. > 0)"
+  },
+  {
+    "text": "What is this? Hacian fine, everyone knows the textbook. What is it? Can you tell me what",
+    "start": 532.04,
+    "end": 538.4,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 3 4\nL(G + nu) = £0) + yx ul VEO) 4 = aw VL (Out 7 At rn x\n\n= £0) +n*wV L£ (8) (n as typically small, so 7?.1°,.. > 0)"
+  },
+  {
+    "text": "does it? It is a scalar vector matrix matrix. What is the size of this matrix? 2 by 2. What",
+    "start": 538.4,
+    "end": 545.4,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\nf ) 1 i? Tore ip i\nL(A + yu) = L(6) + yew VL) + 3) * V°L(A)ut 31%\" t qi\n\n= £(6) + * ul VL(8) [n as typically small, so 7?.1°,.. > 0)"
+  },
+  {
+    "text": "are the elements of this matrix? Second order partial derivative, right? So, it is the",
+    "start": 545.4,
+    "end": 552.4,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\nf ) 1 i? Tore ip i\nL(A + yu) = L(6) + yew VL) + 3) * V°L(A)ut 31%\" t qi\n\n= £(6) + * ul VL(8) [n as typically small, so yn, .. > 0)"
+  },
+  {
+    "text": "gradient of the gradient, right? Is that fine? So, what does that mean? You had this gradient.",
+    "start": 554.8,
+    "end": 561.8,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\nf ) 1 i? Tore ip i\nL(A + yu) = L(6) + yew VL) + 3) * V°L(A)ut 31%\" t qi\n\n= £(6) + * ul VL(8) [n as typically small, so yn, .. > 0)"
+  },
+  {
+    "text": "This is the gradient. Now you want to take the gradient of this again with respect to",
+    "start": 562.04,
+    "end": 569.04,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n* + *\n3! 4!\n=L£(0)+n*wV L£ (8) [n rs typically small, so yin, .. > 0)\n\n2\nL(G + yu) = L(6) 4 nau VEL(@) + =\n\naw VL (Oud\n\nis"
+  },
+  {
+    "text": "W comma B, right? That is what this means. It is a gradient of the gradient, right?",
+    "start": 580.28,
+    "end": 587.28,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\nf ) 1 i? Toe ip i\nL(A + yu) = L(6) + yew VL) + 5) * VL (A)ut +\n\na ee\n\n= £0) +n*wV L£ (8) [n rs typically small, so yn, .. > 0)\n\ndL) _\n‘Ow\n\nVl sles\n\n“Ob"
+  },
+  {
+    "text": "So, what that means is, you will take the gradient of the first quantity again with respect",
+    "start": 588.28,
+    "end": 594.08,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\na re i ih\nau \\V L(A) { 31 «a. + q A.\n\n= (0) +nxul¥ L£ (8) [n 1s typically small, so mu, .. > 0]\n\n2\nL(O+ nu) = £(0) + yu! VEZ) 4 =\n\ndL) -\n“Ow\n\nNi sles\n\n“Ob\n\nLab"
+  },
+  {
+    "text": "to W. So, that would be dou square by dou W. What would this quantity be? What would this",
+    "start": 594.08,
+    "end": 601.08,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\na re i ih\nau \\V L(A) { 31 «a. + q A.\n\n= (0) +nxul¥ L£ (8) [n 1s typically small, so mu, .. > 0]\n\n2\nL(O+ nu) = £(0) + yu! VEZ) 4 =\n\ndL) -\n“Ow\n\nNi sles\n\n“Ob\n\nLab"
+  },
+  {
+    "text": "be? Is that fine? And you can fill in this quantity, right?",
+    "start": 604.4,
+    "end": 611.4,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n, i Ptr em ih\nL(A + yu) = L(6) + yew VL) + 3) * V2 (a) t 31% t a\n\n= £(8) +n ¥ulb VLG) (1 2s typically small, so 7?,1°,.. > 0]\n\nMLlai)\n“Ow\n\nNi des)\n\n“Ob\n\nLab"
+  },
+  {
+    "text": "So, now it is clear what the Hacian is? Is the derivative of the derivative and it would",
+    "start": 617.28,
+    "end": 621.44,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n, , ni 1° ho an) ie i\nL(A + yu) = L(6) + yew VL(8) + 3) * V2 a) t 31% t qi\n= £(8) + n¥ ub VL) (1 rs typically small, so n?.1° > 0]\nYL) 2\n7 dL(4)\n_— Ju\n\\f alle) S4d & b)\nob coer\n\nWb\n\ndbdu)"
+  },
+  {
+    "text": "be a matrix, okay? Is that clear to everyone? So, I have a habit of doing a lot of these",
+    "start": 621.44,
+    "end": 627.64,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n, , ni 1° ho an) ie i\nL(A + yu) = L(6) + yew VL(8) + 3) * V2 a) t 31% t qi\n= £(8) + n¥ ub VL) (1 rs typically small, so n?.1° > 0]\nYL) 2\n7 dL(4)\n_— Ju\n\\f alle) S4d & b)\nob coer\n\nWb\n\ndbdu)"
+  },
+  {
+    "text": "basic stuff. I know that the top 20 percent of the class gets really pissed off when I do",
+    "start": 627.64,
+    "end": 631.24,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n( ) 1 Wo poy ~ ) ip it\nL(A + yu) = -L(6) + yew VL(8) + > tu V2Z (oy 1 Ta i\n28) + * ul VL (8) [n as typically small, so n?.9,.. > 0]\n“dLbes) 7\n\ney SL,b) :\n\n= du —\n\n\\ dle) x2) sty ,\n\n“Db SLld) dLhod\n\ndb) Db\n\nGab"
+  },
+  {
+    "text": "this. But as a philosophy, I teach for the bottom 30 percent of the class. So, I do not",
+    "start": 631.24,
+    "end": 635.24,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n( ) 1 Wo poy ~ ) ip it\nL(A + yu) = -L(6) + yew VL(8) + > tu V2Z (oy 1 Ta i\n28) + * ul VL (8) [n as typically small, so n?.9,.. > 0]\n“dLbes) 7\n\ney SL,b) :\n\n= du —\n\n\\ dle) x2) sty ,\n\n“Db SLld) dLhod\n\ndb) Db\n\nGab"
+  },
+  {
+    "text": "mind that. And the other thing is I use slides. So, I do not write a lot of math. So, I can",
+    "start": 635.24,
+    "end": 640.24,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n( ) 1 Wo poy ~ ) ip it\nL(A + yu) = -L(6) + yew VL(8) + > tu V2Z (oy 1 Ta i\n28) + * ul VL (8) [n as typically small, so n?.9,.. > 0]\n“dLbes) 7\n\ney SL,b) :\n\n= du —\n\n\\ dle) x2) sty ,\n\n“Db SLld) dLhod\n\ndb) Db\n\nGab"
+  },
+  {
+    "text": "cover a lot of material despite doing all this basic stuff, right? So, I am going to",
+    "start": 640.24,
+    "end": 643.8,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n( ) 1 Wo poy ~ ) ip it\nL(A + yu) = -L(6) + yew VL(8) + > tu V2Z (oy 1 Ta i\n28) + * ul VL (8) [n as typically small, so n?.9,.. > 0]\n“dLbes) 7\n\ney SL,b) :\n\n= du —\n\n\\ dle) x2) sty ,\n\n“Db SLld) dLhod\n\ndb) Db\n\nGab"
+  },
+  {
+    "text": "stick to that. What I am trying to say is that write this in the feedback that you do",
+    "start": 643.8,
+    "end": 647.88,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n( ) 1 Wo poy ~ ) ip it\nL(A + yu) = -L(6) + yew VL(8) + > tu V2Z (oy 1 Ta i\n28) + * ul VL (8) [n as typically small, so n?.9,.. > 0]\n“dLbes) 7\n\ney SL,b) :\n\n= du —\n\n\\ dle) x2) sty ,\n\n“Db SLld) dLhod\n\ndb) Db\n\nGab"
+  },
+  {
+    "text": "not like this basic stuff, but it is just that I am going to ignore that feedback, okay?",
+    "start": 647.88,
+    "end": 651.4,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n( ) 1 Wo poy ~ ) ip it\nL(A + yu) = -L(6) + yew VL(8) + > tu V2Z (oy 1 Ta i\n28) + * ul VL (8) [n as typically small, so 1’. 7,.. > 0]\nYL) 7\n\noe SLlob) :\n\n= Ju —\n\n\\ dle» x2) \\Yr,\n\n“Db SLld) dLhod\n\ndb) Db\n\nGab"
+  },
+  {
+    "text": "I mean, it is just being honest, right? So, I like doing this because it just takes me",
+    "start": 651.4,
+    "end": 656.72,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n( ) 1 Wo poy ~ ) ip it\nL(A + yu) = -L(6) + yew VL(8) + > tu V2Z (oy 1 Ta i\n28) + * ul VL (8) [n as typically small, so 1’. 7,.. > 0]\nYL) 7\n\noe SLlob) :\n\n= Ju —\n\n\\ dle» x2) \\Yr,\n\n“Db SLld) dLhod\n\ndb) Db\n\nGab"
+  },
+  {
+    "text": "10 minutes to do this and for the rest of the class, I do not have to look at blank faces",
+    "start": 656.72,
+    "end": 660.44,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n( ) 1 Wo poy ~ ) ip it\nL(A + yu) = -L(6) + yew VL(8) + > tu V2Z (oy 1 Ta i\n28) + * ul VL (8) [n as typically small, so n?.9,.. > 0]\n“dLbes) 7\n\ney SL,b) :\n\n= du —\n\n\\ dle) x2) sty ,\n\n“Db SLld) dLhod\n\ndb) Db\n\nGab"
+  },
+  {
+    "text": "afterwards, right? So, it really helps me a lot, okay?",
+    "start": 660.44,
+    "end": 663.2,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n( ) 1 Wo poy ~ ) ip it\nL(A + yu) = -L(6) + yew VL(8) + > tu V2Z (oy 1 Ta i\n28) + * ul VL (8) [n as typically small, so n?.9,.. > 0]\n“dLbes) 7\n\ney SL,b) :\n\n= du —\n\n\\ dle) x2) sty ,\n\n“Db SLld) dLhod\n\ndb) Db\n\nGab"
+  },
+  {
+    "text": "Fine. So, is that all clear? All the quantities here are clear. So, now, so this is the gradient,",
+    "start": 663.2,
+    "end": 670.2,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n( ) 1 Wo poy ~ ) ip it\nL(A + yu) = -L(6) + yew VL(8) + > tu V2Z (oy 1 Ta i\n28) + * ul VL (8) [n as typically small, so n?.9,.. > 0]\n“dLbes) 7\n\ney SL,b) :\n\n= du —\n\n\\ dle) x2) sty ,\n\n“Db SLld) dLhod\n\ndb) Db\n\nGab"
+  },
+  {
+    "text": "this is the Haitian. And now, eta, remember what did we say about eta? It is a small quantity.",
+    "start": 670.2,
+    "end": 681.36,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n; , 1 1° ho an) ip i\nL(A + yu) = -L(6) + yew VL) + 3) * V2 A) t qi t a\nLO) 4+ n*ul'V L(A) [n is typically small, so 7?.1°,.. > 0)\n“dLlo.') 2\nTy p) Lio) _\n— Ju a\nnN gles x2) 77,1\naya Py. (5) O Chel\n\ndbow) “ab\n\nWb"
+  },
+  {
+    "text": "And what do we do with small quantities always in math? We ignore them, right? So, once",
+    "start": 681.36,
+    "end": 686.96,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor serics, we have,\n\n” ' @ Foe pio, 4 2 i\nL(A + yu) = (6) 4+ yeu 'VZ(8) 5) * ¥ L(A) t 31% t qi\n\n= £(8) + n¥ul VLA) [7 as typically small, so n,n, .. > 0]\n\ndLb.9) 3 Liss)\n_ Ww J i es\n“1 dle) ne\n‘| “AG, AL (5) Dyson)\n\ndbdw) ~ Ob"
+  },
+  {
+    "text": "we take their powers, we always ignore them. Whether it is correct or not, who cares? I mean,",
+    "start": 686.96,
+    "end": 691.6,
+    "ocr_text": "For ease of notation, let A@ = u, then from Taylor series, we have,\n\ni QD imap 0 3\nLO + yu) = (6) + yaw VL(8) + 3 tu V2 (a) { 31 ko Ft 4 A\nLO) + nx ub VLG) (1 is typically small, son.\" > 0]\noLle.s) SLi)\nOw\n— du a\n\\ sles x2) \\Y ,\nyb aL (u,b) O Lhd\nlal dbus"
+  },
+  {
+    "text": "someone has told that it is good to ignore, so we will ignore it, right? So, now all these",
+    "start": 691.6,
+    "end": 695.24,
+    "ocr_text": "For ease of notation, let A@ = u, then from Taylor series, we have,\n\ni QD imap 0 3\nLO + yu) = (6) + yaw VL(8) + 3 tu V2 (a) { 31 ko Ft 4 A\nLO) + nx ub VLG) (1 is typically small, son.\" > 0]\noLle.s) SLi)\nOw\n— du a\n\\ sles x2) \\Y ,\nyb aL (u,b) O Lhd\nlal dbus"
+  },
+  {
+    "text": "higher order terms we can ignore, right? That means, I will only consider this, fine?",
+    "start": 695.24,
+    "end": 701.0,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n' , 1 Ce ie\nLO + yu) = (6) + yaw VL(8) + 5) * V2 (a) t 31 t 4!\nL(8) +n ¥ul VL) [7 as typically small, son’. n,.. > 0\n“Yb. a\na DLS)\n— du a\n\\ f Ale» hb) ako\nYb A LW,5 OC Oe\n\nlal\n\ndbdw) Sb"
+  },
+  {
+    "text": "So, let us again look at what the setup is. The setup is that I have some value of theta,",
+    "start": 701.0,
+    "end": 709.92,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n' , 1 Ce ie\nLO + yu) = (6) + yaw VL(8) + 5) * V2 (a) t 31 t 4!\nL(8) +n ¥ul VL) [7 as typically small, son’. n,.. > 0\n“Yb. a\na DLS)\n— du a\n\\ f Ale» hb) ako\nYb A LW,5 OC Oe\n\nlal\n\ndbdw) Sb"
+  },
+  {
+    "text": "I want to move away from that value such that what do you say about this loss compared",
+    "start": 709.92,
+    "end": 720.48,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n' , 1 Ce ih\nLO + yu) = -2(8) + yaw VLG) 4 5) tu V2 a) t 31% t 4\n£(8) +n ¥ul VL) [7 is typically small, son. 9,.. > 0]\n“ye 2\nBa p) Liu)\nLf} ales ~ “7\n\nlal\n\ndbdw ~ ob"
+  },
+  {
+    "text": "to this loss? I will call this the new loss and I will call this the old loss. What is",
+    "start": 720.48,
+    "end": 727.92,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n' , ~ 1 OB iro). ? ih\n( £(6+ nu) = 28) }1 nau VLA) 4 > eu V2 a) t ar tn t ats\n= ¥(0) bnxulVL(8) [n as typically small, son. 9,.. > 0]\n“dLe.) 2\nao p) Liu)\n{| deo ps yy\n\nlal\n\ndbdw ~ Ob"
+  },
+  {
+    "text": "the relation between them? The new loss should be less than. So, if I or someone gives you",
+    "start": 727.92,
+    "end": 736.88,
+    "ocr_text": "For ease of notation, let A@ = u, then from Taylor series, we have,\n— —— ole\nL (8 + 1m) PLO} nau VLA) 4 aI\n\nae ) yp i\nxu V2 a) t 3 * 0 t ant\n\"= 98) + nx ub VL(8) [1 as typically small, so n?,7°,.. > 0]\n\n(\n\n“ SLs)\n__ , “Ow\n\\ gly) on\n\nyh LW)\n\n; dbdw\naby"
+  },
+  {
+    "text": "a U, okay? Someone gives you this U, okay? Then what does, what, when would you say it is",
+    "start": 736.88,
+    "end": 744.48,
+    "ocr_text": "For ease of notation, let AO = u, then from Taylor series, we have,\n. \" old\n\n[3 ~~) 3 4\nfh UI] 1)\n> tu iy? Ly 4 3 * 0 t a*\n\n“Mao OU A ; n+ w VE) (7 is typically small, so ?.7°,.. > 0]\n\n\\\n( L(64 Ka } yaw 'VZ(8) 4\n\n“as SLs) 7\noe lus i =\n\ndbdw ~ ae\n\nal"
+  },
+  {
+    "text": "a good U, if this condition holds? Everyone agrees with that, right? So, I have found a",
+    "start": 744.48,
+    "end": 754.44,
+    "ocr_text": "For ease of notation, let AO = u, then from Taylor series, we have,\n. \" old\n\n[3 ~~) 3 4\nfh UI] 1)\n> tu iy? Ly 4 3 * 0 t a*\n\n“Mao OU A ; n+ w VE) (7 is typically small, so ?.7°,.. > 0]\n\n\\\n( L(64 Ka } yaw 'VZ(8) 4\n\n“as SLs) 7\noe lus i =\n\ndbdw ~ ae\n\nal"
+  },
+  {
+    "text": "good direction to move in if this condition holds. Now, this condition actually implies",
+    "start": 754.44,
+    "end": 764.12,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n, , , 1 i? Tove iS i\nL(A + yu) = L(6) + yew VL(8) + 3) * VL (Aut 31% t a\n\n= £(0)+nxub VL(8) [) as typically small, so yin, .. > 0]\n\nNote that the move (77u) would be favorable only if,\n\nL(0+ nu) — (0) <0 [2.¢., af the new loss is less than the previous loss]"
+  },
+  {
+    "text": "that this condition should hold, right? This is L theta plus eta U, right? So, if I just",
+    "start": 764.12,
+    "end": 772.68,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n. , , 1 i? Proc yp it\nL(A + yu) = L(6) + yew VL) + 3) tu VL (Aju 3 t qi\n\n= £(0)4+nxub VL(0) [) as typically small, so yn, .. > 0]\n\nNote that the move (77w) would be favorable only if,\n\nL(0+ nu) — (0) <0 [2.e., af the new loss is less than the previous loss]"
+  },
+  {
+    "text": "do minus here, I get this, right? So, this quantity which should be less than equal to",
+    "start": 772.68,
+    "end": 777.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n. , , 1 i? Proc ip nt\nL(A + yu) = L(0) + yew VL) + 3) * VL (Aju a1 * t qi\nja (@ 4 = £(0)4+nxub VL(8) [) as typically small, so in, .. > 0)\n\nNote that the move (77u) would be favorable only if,\n\nL(0+ nu) — (0) <0 [7.e., af the new loss is less than the previous loss]\n\nThis implies,\n\nuh V L(A) <0"
+  },
+  {
+    "text": "0 implies that this quantity should be less than equal to 0 and remember eta is a positive",
+    "start": 777.76,
+    "end": 782.44,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 3 4\n\n0 + yu) = (0) + xu VL(0) 4 = au VL (O)u4 ql + _ x\nyc El 4 tu) = 28) #7 eu ‘V£(0) [) 2s typically small, so Pn, .. 0]\n\nNote ‘that the move (77u) would be favorable only if,\n\nL(0+ nu) — (0) <0 [2.e., af the new loss is less than the previous loss]\n\nThis implies,\n\nuh V L(A) <0"
+  },
+  {
+    "text": "constant, okay? Why can't it be negative? Yeah, why? Because you wanted to take a small",
+    "start": 782.44,
+    "end": 793.76,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\n2 3 4\n\n0 + yu) = (0) + xu VL(0) 4 = au VL (O)u4 ql + _ x\nyc El 4 tu) = 28) #7 eu ‘V£(0) [) 2s typically small, so Pn, .. 0]\n\nNote ‘that the move (77u) would be favorable only if,\n\nL(0+ nu) — (0) <0 [2.e., af the new loss is less than the previous loss]\n\nThis implies,\n\nuh V L(A) <0"
+  },
+  {
+    "text": "step in that direction. If you make it negative, we will do what? We will reverse the direction,",
+    "start": 793.76,
+    "end": 798.4,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\na tyu) = 2(0) + yew ViL(8) 4+ > tu VL (Out 31 kw 4! «\ndj El 4 fu) = 28) = Uw V£@) [) as typically small, so ”. , > 0\n\nNote ‘that the move (77u) would be favorable only if,\n\nL(A+ nu) — L(A) <0 [re., if the new loss is less than the previous loss|\n\n‘This implies,\n\nuh V L(A) <0"
+  },
+  {
+    "text": "we do not want that as of now, right? So, eta is that is for a positive quantity. So,",
+    "start": 798.4,
+    "end": 802.8,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\na tyu) = 2(0) + yew ViL(8) 4+ > tu VL (Out 31 at 4 «\ndj El 4 fu) = (8) = Uw V2@) [) as typically small, so ”. , > 0\n\nNote ‘that the move (77u) would be favorable only if,\n\nL(0+ nu) — L(A) <0 [re., if the new loss is less than the previous loss|\n\n‘This implies,\n\nuh V L(A) <0"
+  },
+  {
+    "text": "that means this quantity should be less than 0. Is it fine with everyone? Okay? Okay?",
+    "start": 802.8,
+    "end": 809.72,
+    "ocr_text": "For case of notation, let A@ = u, then from Taylor series, we have,\n\na tyu) = 2(0) + yew ViL(8) 4+ > tu VL (Out 31 at 4 «\ndj El 4 fu) = (8) = Uw V2@) [) as typically small, so ”. , > 0\n\nNote ‘that the move (77u) would be favorable only if,\n\nL(0+ nu) — L(A) <0 [re., if the new loss is less than the previous loss|\n\n‘This implies,\n\nuh V L(A) <0"
+  },
+  {
+    "text": "So, so far after all this story what we are left with is this condition should hold for",
+    "start": 809.72,
+    "end": 818.72,
+    "ocr_text": "Okay, so we have,\n\nul VL(0) <0\n\nBut, what is the range of ul VL(O) ?"
+  },
+  {
+    "text": "the U that I am trying to choose so that I can be sure that I have chosen the correct",
+    "start": 818.72,
+    "end": 824.16,
+    "ocr_text": "Okay, so we have,\n\nidvvio) <0\n\nBut, what is the range of ul VL(O) ?"
+  },
+  {
+    "text": "U, right? And the definition of correct U is that the loss at the previous step, so",
+    "start": 824.16,
+    "end": 830.2,
+    "ocr_text": "Okay, so we have,\n\nidvvio) <0\n\nBut, what is the range of ul VL(O) ?"
+  },
+  {
+    "text": "the loss at the new step should be less than the loss at the previous step. Is that fine?",
+    "start": 830.2,
+    "end": 835.36,
+    "ocr_text": "Okay, so we have,\n\nGhza0) <0\n\nBut, what is the range of ul VL(O) ?"
+  },
+  {
+    "text": "Okay? So, that is what we have arrived at. Now, what is the range of this quantity? That",
+    "start": 835.36,
+    "end": 839.48,
+    "ocr_text": "Okay, so we have,\n\nhea) <0\n\nBut, what is the range of ul VL(O) ?"
+  },
+  {
+    "text": "is why I asked you, what is this? This is a dot product, okay? I leave it at that. So,",
+    "start": 839.48,
+    "end": 846.84,
+    "ocr_text": "Okay, so we have,\n\nhea) <0\n\nBut, what is the range of ul VL(O) ?"
+  },
+  {
+    "text": "now you tell me what is the range of this? People from the ML class cannot answer. Did I",
+    "start": 846.84,
+    "end": 851.36,
+    "ocr_text": "Okay, so we have,\n\nBut, what is the range of ul V.L(0) ?"
+  },
+  {
+    "text": "cover this in the ML class? No. Okay, fine. What is the range of this? Not a very hard",
+    "start": 851.36,
+    "end": 860.36,
+    "ocr_text": "Okay, so we have,\n\nBut, what is the range of ul V.L(0) ?"
+  },
+  {
+    "text": "question. What is the minus? Plus or minus?",
+    "start": 860.36,
+    "end": 864.96,
+    "ocr_text": "Okay, so we have,"
+  },
+  {
+    "text": "What is the minus? Very good. How many of you understood that answer? He said plus or minus",
+    "start": 864.96,
+    "end": 871.52,
+    "ocr_text": "Okay, so we have,"
+  },
+  {
+    "text": "mod of U into mod of gradient, the gradient vector, right? Why is it so? Easy. Let beta",
+    "start": 871.52,
+    "end": 880.92,
+    "ocr_text": "Okay, so we have,"
+  },
+  {
+    "text": "be the angle between U T and this, between, sorry, it should not be U transpose, between",
+    "start": 880.92,
+    "end": 887.44,
+    "ocr_text": "Okay, so we have,\n\nul V.L(0) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see..."
+  },
+  {
+    "text": "U and the gradient. Then we know that this condition holds cos beta is given by this quantity",
+    "start": 887.44,
+    "end": 895.8,
+    "ocr_text": "Okay, so we have,\nuw VL(0) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 2 be the angle between u? and V-Y(6), then we know that,\n\nMitesh M. Kh"
+  },
+  {
+    "text": "and we know that cos beta lies between minus 1 and 1, okay? Now, if I just say that this",
+    "start": 895.8,
+    "end": 901.32,
+    "ocr_text": "Okay, so we have,\nul V.L(0) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nul VL(0)\n\n— 1 <cos(8) <1\n\n© ful [VL] ~"
+  },
+  {
+    "text": "quantity is equal to k, then I can just get this condition, okay? Now, let us see what",
+    "start": 901.32,
+    "end": 908.08,
+    "ocr_text": "Okay, so we have,\nul V.L(0) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nul VL(0)\n\n— 1 <cos(8) <1\n\n© ful [VL] ~"
+  },
+  {
+    "text": "I will be trying to do. We are trying to find a U such that this quantity is negative,",
+    "start": 908.08,
+    "end": 915.08,
+    "ocr_text": "Okay, so we have,\nul VL(0) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nu' VL(A) <1\n\n~1 <cos(8) = =\n<8) = TeV ZO ~\n\nmultiply throughout by k = |{u|| * ||V-2(0)||_\n\n—k<k*cos(8) =u’ VL(0) <k"
+  },
+  {
+    "text": "okay? Okay. We are trying to find a U such that this quantity is negative. Now, why is",
+    "start": 915.08,
+    "end": 922.36,
+    "ocr_text": "Okay, so we have,\nu' V.L(8) <0\n\nBut, what is the range of u!V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.7(8), then we know that,\n\nu'VZ(0)\n\n~1<cos(8) = = _\nVs eos) = TIT ZOI =\n\nmultiply throughout by k = ||u|] * ||V.Z(0)||\n\n—k<k*cos(8) =u VL(0) <k"
+  },
+  {
+    "text": "this top at negative? We would like to make it as negative it possible, right? Because",
+    "start": 922.36,
+    "end": 926.24,
+    "ocr_text": "Okay, so we have,\nu' V.L(8) <0\n\nBut, what is the range of u!V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.7(8), then we know that,\n\nu'VZ(0)\n\n~1<cos(8) = = _\nVs eos) = TIT ZOI =\n\nmultiply throughout by k = ||u|] * ||V.Z(0)||\n\n—k<k*cos(8) =u VL(0) <k"
+  },
+  {
+    "text": "the more the negative it is, the more will be the decrease in my loss function, right?",
+    "start": 926.24,
+    "end": 930.16,
+    "ocr_text": "Okay, so we have,\nu' V.L(8) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nu'VZ(0)\n\n~1<cos(8) = = _\nVs eos) = TIT ZOI =\n\nmultiply throughout by k = ||ul| * ||[V-2()||_\n\n—k<k*cos(8) =u VL(0) <k"
+  },
+  {
+    "text": "Because this quantity tells me, tells me how much my loss decreases. So, the more the",
+    "start": 930.16,
+    "end": 934.2,
+    "ocr_text": "Okay, so we have,\nu' V.L(8) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nu'VZ(0)\n\n~1<cos(8) = = _\nVs eos) = TIT ZOI =\n\nmultiply throughout by k = ||ul| * ||[V-2()||_\n\n—k<k*cos(8) =u VL(0) <k"
+  },
+  {
+    "text": "negative it is, the more the loss will decrease. So, let me make it as negative as possible.",
+    "start": 934.2,
+    "end": 939.0,
+    "ocr_text": "Okay, so we have,\nu' V.L(8) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nu'VZ(0)\n\n~1<cos(8) = = _\nVs eos) = TIT ZOI =\n\nmultiply throughout by k = ||ul| * ||[V-2()||_\n\n—k<k*cos(8) =u VL(0) <k"
+  },
+  {
+    "text": "Now, what is that value? When will that happen? When alpha is, you know the answer, you started",
+    "start": 939.0,
+    "end": 952.44,
+    "ocr_text": "Okay, so we have,\nu' V.L(8) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nu' V L(A) <1\n\n~1 <cos(8) = = _\nts eos) = TTIW ZO ~\n\nmultiply throughout by k = ||u|| * ||V.2(8)]|\n\n—k<k*cos(B) =u’ VL(0) <k"
+  },
+  {
+    "text": "with the answer. No. What is that one phrase which I have marked up? Move in the direction,",
+    "start": 952.44,
+    "end": 965.92,
+    "ocr_text": "Okay, so we have,\nu' V.L(8) <0\nBut, what is the range of u! Vv, £(0) ? Let us see....\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nul VL (0)\n—1 < cos(B) = ————__ < 1\n[lel] + [1V-2(4)||\nmultiply throughout by k = ||ul| * |[V-2()||\n\n>< k*cos(B) =u VL(0) <k"
+  },
+  {
+    "text": "okay? Now, think of that. What would happen when this is the most negative it can be?",
+    "start": 965.92,
+    "end": 976.6,
+    "ocr_text": "Okay, so we have,\nu' V.L(8) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nu' VL(A) <1\n\n~1 <cos(8) = += _\nts eos) = TIVO ~\n\nmultiply throughout by k = |lu|| * ||V-2(9)||_\n\n>< k*cos(B) =u VL(0) <k"
+  },
+  {
+    "text": "What would the angle be? 180 degrees. How many if you get that? Because when this is",
+    "start": 976.6,
+    "end": 982.2,
+    "ocr_text": "Okay, so we have,\n\nuw VL (0) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.Y(8), then we know that,\n\nu'VZ(0)\n\n~1<cos(B) = “= _\n<os(8) = TIVO =\n\nmultiply throughout by k = ||u|] * ||V.Z(0)||"
+  },
+  {
+    "text": "the most negative that means the cos beta is actually minus 1 and minus cos beta minus",
+    "start": 982.2,
+    "end": 987.16,
+    "ocr_text": "Okay, so we have,\n\nuw VL (0) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.Y(8), then we know that,\n\nu'VZ(0)\n\n~1<cos(B) = “= _\n<os(8) = TIVO =\n\nmultiply throughout by k = ||u|] * ||V.Z(0)||"
+  },
+  {
+    "text": "1 when the angle is 180 degrees. That means U should be such that it is at 180 degrees",
+    "start": 987.16,
+    "end": 996.24,
+    "ocr_text": "Okay, so we have,\nu' V.L(8) <0\n\nBut, what is the range of u! V.“(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nuw'V ZO)\n\n~1<cos(8) = ~~“ 7 _\nses) = TeV ZOl =\n\nmultiply throughout by k = ||ul| * |[V-2()||_\n\n—k<k*cos(8) =u’ VL(0) <k"
+  },
+  {
+    "text": "to the gradient. Hence repeat the phrase. Move in the direction opposite to the gradient.",
+    "start": 996.24,
+    "end": 1005.12,
+    "ocr_text": "Okay, so we have,\nu' V.L(8) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\nu' VL(A) <1\n\n~1<cos(8) = ~~“ 7 _\n1s (8) = Tae IVIO =\n\nmultiply throughout by k = ||u| * ||V-2(4)||_\n\n>< k*cos(B) =u VL(0) <k"
+  },
+  {
+    "text": "Is that fine? Everyone gets it now? Why you need to move in the direction opposite to",
+    "start": 1005.12,
+    "end": 1009.24,
+    "ocr_text": "Okay, so we have,\nul VL(0) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\n—1<cos(B) = ee) <1\n\n[lel] + [IV-2(4)]||\n\nmultiply throughout by k = ||u| * ||V.2(8)]|\n—k<k*cos(8) =u’ VL(0) <k\n\nThus, £(0 + qu) — £(0) =u? VL(0) = k * cos(B) will be m\ncos(B) = —1 i.e., when £ is 180°\n\nVw)"
+  },
+  {
+    "text": "the gradient? Okay? Fine. So, this is what the gradient descent rule is. You are at a",
+    "start": 1009.24,
+    "end": 1017.56,
+    "ocr_text": "Okay, so we have,\nul VL(0) <0\n\nBut, what is the range of u! V.Y(0) ? Let us see...\nLet 6 be the angle between u? and V.“(8), then we know that,\n\n—1<cos(B) = ee) <1\n\n[lel] + [IV-2(4)]||\n\nmultiply throughout by k = ||u| * ||V.2(8)]|\n—k<k*cos(8) =u’ VL(0) <k\n\nThus, £(0 + qu) — £(0) =u? VL(0) = k * cos(B) will be m\ncos(B) = —1 i.e., when £ is 180°\n\nVw)"
+  },
+  {
+    "text": "particular value of theta. You want to move to a new value of theta such that your new",
+    "start": 1017.56,
+    "end": 1022.56,
+    "ocr_text": "Gradient Descent Rule\n\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient"
+  },
+  {
+    "text": "loss is less than the current loss. What gradient descent tells you is move in a direction",
+    "start": 1022.56,
+    "end": 1028.04,
+    "ocr_text": "Gradient Descent Rule\n\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient"
+  },
+  {
+    "text": "opposite to the gradient. Okay? So, are you fine with this? Now, with gradients I have",
+    "start": 1028.04,
+    "end": 1035.72,
+    "ocr_text": "Gradient Descent Rule\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradient\n\nMitesh M. Kh"
+  },
+  {
+    "text": "come to scalars, but I will just explain what I have written here. So, this quantity is",
+    "start": 1035.72,
+    "end": 1042.76,
+    "ocr_text": "Gradient Descent Rule\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradient\n\nParameter Update Equations\n\nWiyl = We — NV\nbry = by — NVOy\nOL (w,b) OL (w,b)\nwhere, Vw, = ———— ,»Vb = ————.\nBREN: Ow atw=wib=b Ob atw=wi,b=b"
+  },
+  {
+    "text": "nothing but theta t plus 1. Right? Is equal to theta t. Right? And what is this? Right?",
+    "start": 1042.76,
+    "end": 1056.76,
+    "ocr_text": "Gradient Descent Rule\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradient\n\nParameter Update Equations\n\nWiyl = We — NV\nbry = by — NVOy\nOL (w,b) OL (w,b)\nwhere, Vw, = ———— ,»Vb = ————.\nBREN: Ow atw=wib=b Ob atw=wi,b=b"
+  },
+  {
+    "text": "So, the new theta is equal to the current theta minus y because we want to move in the direction",
+    "start": 1056.76,
+    "end": 1067.04,
+    "ocr_text": "Gradient Descent Rule\ne The direction u that we intend to move in should be at 180° w.r.t. the se\n\ne In other words, move in a direction opposite to the gradient\n\nParameter Update Equations ghie)\nSt\n\neS “wr \\=(wi] — ie\n& | bess Elbe We\n\nwhere, Vw, = 92(w, b) Vb = OL (w,b)\nOw atw=wjb=h ab atw=w,.b=b"
+  },
+  {
+    "text": "opposite. So, it is basically theta t plus 1 is equal to theta t plus theta into a negative",
+    "start": 1067.04,
+    "end": 1078.0,
+    "ocr_text": "Gradient Descent Rule\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradient\n\nParameter Update Equations ghio)\nSt\n\neS “wr \\=(wi] — ie\n| bes Fibe} Woe\n\nOL (w,b) OL (w,b)\nwhere, Vw, = ———— ,Vb = ————\nAR NESE Ow atw=wib=b Ob atw=wi,b=h\n\nMitesh M. Khapra Lecture 3"
+  },
+  {
+    "text": "direction. Right? The direction negative to the gradient. Hence you get that minus",
+    "start": 1078.0,
+    "end": 1082.28,
+    "ocr_text": "Gradient Descent Rule\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradient\n\nParameter Update Equations ghie)\nSt\n\neS “wr \\=(wi] — ie\n& | bes Pb} Woe\n\nOL (w,b) OL (w,b)\nwhere, Vw, = ——— ,Vb = ————.\nTODDS Ow atw=wib=be Ob atw=wi,b=h\n\n8, = & +nQVee\n\nt+\n\nMitesh M. Khapra Lecture 3"
+  },
+  {
+    "text": "y. Okay? So, is that clear? Now, what are these quantities? Let me just take that carefully.",
+    "start": 1082.28,
+    "end": 1089.4,
+    "ocr_text": "Gradient Descent Rule\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradient\n\nParameter Update Equations ghie)\nSt\n\neS “wr \\=(wi] — ie\n& | bes Pb} Woe\n\nOL (w,b) OL (w,b)\nwhere, Vw, = ——— ,Vb = ————.\nTODDS Ow atw=wib=be Ob atw=wi,b=h\n\n8, = & +nQVee\n\nt+\n\nMitesh M. Khapra Lecture 3"
+  },
+  {
+    "text": "So, this quantity is gradient of the loss function with respect to double sorry. The partial",
+    "start": 1089.4,
+    "end": 1095.56,
+    "ocr_text": "Gradient Descent Rule\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradient\n\nParameter Update Equations ghie)\nSL\n\neS “wr \\=|wi] — (ee\n| brs Fb} Woe\n\nOL (w,b) OL (w,b)\nwhere, Vw, = ——— ,Vb = ————.\nTODD) I Ow atw=wib=be Ob atw=wi,b=h\n\nA, = 0 +nCrke))\n\nMitesh M. Khapra Lecture 3"
+  },
+  {
+    "text": "derivative of the loss function with respect to w evaluated at w is equal to w t and b",
+    "start": 1095.56,
+    "end": 1101.4,
+    "ocr_text": "Gradient Descent Rule\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradient J\n\nParameter Update Equations ghe)\nSy r\n\neS “wr\\=(wi] — (Ce\n& | best Fie} moe\n\nOL (w,b) OL (w,b)\nwhere, Vw, = ——— ,Vb = ————\nCLES EL Ow atw=wib=be Ob atw=wi,b=h\n\n8 - 0, +nCree))\n\nMitesh M. Khapra Lecture 3"
+  },
+  {
+    "text": "equal to b t. What does that mean? So, remember when you are dealing with derivatives there",
+    "start": 1101.4,
+    "end": 1105.96,
+    "ocr_text": "Gradient Descent Rule\ne The direction u that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradient J\n\nParameter Update Equations ghe)\nSy r\n\neS “wr\\=(wi] — (Ce\n& | best Fie} moe\n\nOL (w,b) OL (w,b)\nwhere, Vw, = ——— ,Vb = ————\nCLES EL Ow atw=wib=be Ob atw=wi,b=h\n\n8 - 0, +nCree))\n\nMitesh M. Khapra Lecture 3"
+  },
+  {
+    "text": "is always a formula and then a value at a particular value. So, what is the derivative of x",
+    "start": 1105.96,
+    "end": 1112.0,
+    "ocr_text": "Gradient Descent Rule\ne The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\n@ In other words, move in a direction opposite to the gradicut\n\nParameter Update Eglauions spiel\n\n. | in \\= law Vw +\nOL.\n3 [ ra} 7) 7\n0. ( w,b) OL (aw, b)\nwhere, ieee) , Vb = ———\nOw atw=wr,b=b Ab atw=wrb= br\n\nA. - 0 +nEvee)"
+  },
+  {
+    "text": "square with respect to what does not matter? 2 x. Okay? So, the derivative of x square with",
+    "start": 1112.0,
+    "end": 1118.4,
+    "ocr_text": "Gradient Descent Rule\ne The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\n@ In other words, move in a direction opposite to the gradicut\n\nParameter Update Eglauions spiel\n\n. | in \\= law Vw +\nOL.\n3 [ ra} 7) 7\n0. ( w,b) OL (aw, b)\nwhere, ieee) , Vb = ———\nOw atw=wr,b=b Ab atw=wrb= br\n\nA. - 0 +nEvee)"
+  },
+  {
+    "text": "respect to x is 2 x. What is the value of this derivative at x equal to 1? 2. Right? So,",
+    "start": 1118.4,
+    "end": 1125.08,
+    "ocr_text": "Gradient Descent Rule\ne The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\n@ In other words, move in a direction opposite to the gradicut\n\nParameter Update Eglauions spiel\n\n. | in \\= law Vw +\nOL.\n3 [ ra} 7) 7\n0. ( w,b) OL (aw, b)\nwhere, ieee) , Vb = ———\nOw atw=wr,b=b Ab atw=wrb= br\n\nA. - 0 +nEvee))"
+  },
+  {
+    "text": "you see the difference. You have a formula which is 2 x. Now, you substitute a particular",
+    "start": 1125.08,
+    "end": 1129.16,
+    "ocr_text": "Gradient Descent Rule\ne The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\n@ In other words, move in a direction opposite to the gradicut\n\nParameter Update Eglauions spiel\n\n. | in \\= law Vw +\nOL.\n3 [ ra} 7) 7\n0. ( w,b) OL (aw, b)\nwhere, ieee) , Vb = ———\nOw atw=wr,b=b Ab atw=wrb= br\n\nA. - 0 +nEvee))"
+  },
+  {
+    "text": "value and you get a value at that particular value. Okay? So, that is what this means",
+    "start": 1129.16,
+    "end": 1133.64,
+    "ocr_text": "Gradient Descent Rule\ne The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\n@ In other words, move in a direction opposite to the gradicut\n\nParameter Update Eglauions spiel\n\n. | in \\= law Vw +\nOL.\n3 [ ra} 7) 7\n0. ( w,b) OL (aw, b)\nwhere, ieee) , Vb = ———\nOw atw=wr,b=b Ab atw=wrb= br\n\nA. - 0 +nEvee))"
+  },
+  {
+    "text": "because you are already at w t comma b t. Now, you can subtract a formula from here.",
+    "start": 1133.64,
+    "end": 1137.72,
+    "ocr_text": "Gradient Descent Rule\ne The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\n@ In other words, move in a direction opposite to the gradicut\n\nParameter Update Eglauions spiel\n\n. | in \\= law Vw +\nOL.\n3 [ ra} 7) 7\n0. ( w,b) OL (aw, b)\nwhere, ieee) , Vb = ———\nOw atw=wr,b=b Ab atw=wrb= br\n\nA. - 0 +nEvee))"
+  },
+  {
+    "text": "Right? You have to subtract a value. So, you know what the formula is. You plug in the",
+    "start": 1137.72,
+    "end": 1141.52,
+    "ocr_text": "Gradient Descent Rule\ne@ The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradicnt\n\nParameter Update = ions x 7\n\nes ( na: = (i\n)\nbe | L ra} 1] -\n\ner w,b) O.L (aw, b)\nwhere, View) ,Vvb = ———\n\nOw atw=wib=b Ob atw=u,b=b\n\n8, - 0, rnEVEG)\n\ntl"
+  },
+  {
+    "text": "values of w t comma b t, get that value and subtract it from your current W. Is that",
+    "start": 1141.52,
+    "end": 1147.12,
+    "ocr_text": "Gradient Descent Rule\ne@ The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradicnt\n\nParameter Update = ions x 7\n\nes ( na: = (i\n)\nbe | L ra} 1] -\n\ner w,b) O.L (aw, b)\nwhere, View) ,Vvb = ———\n\nOw atw=wib=b Ob atw=u,b=b\n\n8, - 0, rnEVEG)\n\ntl"
+  },
+  {
+    "text": "fine? Okay? So, every and completely understands what the gradient descent rule is. Okay?",
+    "start": 1147.12,
+    "end": 1152.6,
+    "ocr_text": "Gradient Descent Rule\ne The direction wu that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradicnt\n\nParameter Update —N\" ions x a\n\n: (wy i fi\n6 +\na bu} 1)\n2. ( w,b) OL (aw, b)\nwhere, ee) , Vb = ———\nOw atw = wb = br Ob atw=wrb= br\n\nB,. - 9, rnEVEG))"
+  },
+  {
+    "text": "Fine. Good. So, now we have a more principled way of moving in the w b plane. What do I mean",
+    "start": 1153.44,
+    "end": 1160.28,
+    "ocr_text": "Gradient Descent Rule\ne The direction wu that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradicnt\n\nParameter Update —N\" ions x a\n\n: (wy i fi\n6 +\na bu} 1)\n2. ( w,b) OL (aw, b)\nwhere, ee) , Vb = ———\nOw atw = wb = br Ob atw=wrb= br\n\nB,. - 9, rnEVEG))"
+  },
+  {
+    "text": "by that? Remember this was our w b plane. This was our error. This is something what our",
+    "start": 1160.28,
+    "end": 1168.52,
+    "ocr_text": "Gradient Descent Rule\ne The direction wu that we intend to move in should be at 180° w.r.t. the gradient\n\n@ In other words, move in a direction opposite to the gradicut\nParameter Update Equations\n\nWry = ur — NV we\nbey = by — Vy\nOL (w, b) O.L (aw, b)\nwhere, Vw, = ——— , Vb = ———\n\nOW atwsuwib=br Ob atw=uwib=b\n\nSo we now have a more principled way of moving in the w-b plane than our “gucss\nwork” algorithm\n\nMir"
+  },
+  {
+    "text": "error surface looked like. It was just flying carpet. I was randomly moving on the w b plane",
+    "start": 1168.52,
+    "end": 1173.92,
+    "ocr_text": "Gradient Descent Rule\ne The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradicnt\nParameter Update Equations\n\nWry = ur — NV wy\nbey = by — Vy\nOL (w,b) OL (aw, b)\nwhere, Vw, = —~—— , Vb = ———\n\nOw atw=wib=br Ob atw=uw,b=b\n\nSo we now have a more principled way of moving in the w-b plane than our “guess\nwork” algorithm ( a\na —————3,\n\nby\n\nea\n\nMir"
+  },
+  {
+    "text": "earlier. Right? And trying to guess what the error is or trying to compute the error and",
+    "start": 1173.92,
+    "end": 1178.44,
+    "ocr_text": "Gradient Descent Rule\ne The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradicnt\nParameter Update Equations\n\nWry = ur — NV wy\nbey = by — Vy\nOL (w,b) OL (aw, b)\nwhere, Vw, = —~—— , Vb = ———\n\nOw atw=wib=br Ob atw=uw,b=b\n\nSo we now have a more principled way of moving in the w-b plane than our “guess\nwork” algorithm ( a\na —————3,\n\nby\n\nea\n\nMir"
+  },
+  {
+    "text": "then settle for a particular value. Now, I have a more principled way of moving in the",
+    "start": 1178.44,
+    "end": 1183.2,
+    "ocr_text": "Gradient Descent Rule\ne The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradicnt\nParameter Update Mquations\n\nWr = wr — NV we\nbey = by — Vy\nO.L (aw, b) OL (w,b)\nwhere, Vw, = ——— , Vb = ———\n\nOW atwsurbsbr Ob atw=u,b=b\n\nSo we now have a more principled way of moving in the w-b plane than our “guess\nwork” algorithm a\n\nMit"
+  },
+  {
+    "text": "w b plane. I know what is the next step based on the current step. I just need to move",
+    "start": 1183.2,
+    "end": 1188.08,
+    "ocr_text": "Gradient Descent Rule\ne The direction uw that we intend to move in should be at 180° w.r.t. the gradient\n\ne In other words, move in a direction opposite to the gradicnt\nParameter Update Mquations\n\nWr = wr — NV we\nbey = by — Vy\nO.L (aw, b) OL (w,b)\nwhere, Vw, = ——— , Vb = ———\n\nOW atwsurbsbr Ob atw=u,b=b\n\nSo we now have a more principled way of moving in the w-b plane than our “guess\nwork” algorithm a\n\nMit"
+  },
+  {
+    "text": "in the direction opposite to the gradient. Okay? So, let us try to. So, this is what it",
+    "start": 1188.08,
+    "end": 1192.16,
+    "ocr_text": "Gradient Descent Rule\n\ne The direction uw that we intend to move in should be at 180° w.rt\n\nthe gradient\ne In other words, move in a direction opposite to the gradicnt\n\nParameter Update Mquations\n\nWr = wr — NV we\nbey = by — Vy\nO.L (aw, b)\n\nOL (w,b)\n= , Vb = ———\nOw at w= w1,b= br Ob\n\nwhere, Vw =\n\natw=wrb= br\n\nSo we now have a more principled way of moving in the w-b plane than our “guess\nwork” algorithm\n\nMit"
+  },
+  {
+    "text": "tells me for one step. But I need to keep doing this till what is that golden word? Convergence.",
+    "start": 1192.16,
+    "end": 1199.16,
+    "ocr_text": "Gradient Descent Rule\n\ne The direction uw that we intend to move in should be at 180° w.rt\n\nthe gradient\ne In other words, move in a direction opposite to the gradicnt\n\nParameter Update Mquations\n\nWr = wr — NV we\nbey = by — Vy\nO.L (aw, b)\n\nOL (w,b)\n= , Vb = ———\nOw at w= w1,b= br Ob\n\nwhere, Vw =\n\natw=wrb= br\n\nSo we now have a more principled way of moving in the w-b plane than our “guess\nwork” algorithm\n\nMit"
+  },
+  {
+    "text": "Right? I have to keep doing this till convergence. Okay? So, let us create an algorithm out of",
+    "start": 1199.16,
+    "end": 1203.4,
+    "ocr_text": "Gradient Descent Rule\n\ne The direction u that we intend to move in should be at 180° w.rt\n\nthe gradient\n@ In other words, move in a direction opposite to the gradicnt\n\nParameter Update Equations\n\nWer = wr — NV wy\nbey = by — Vy\nOL (w, b)\n\nOL (aw, b)\n= , Vb = ———\nOw atw=w1,b=b Ob\n\nwhere, Vw =\n\natw=wrb= br\n\nSo we now have a more principled way of moving in the w-b plame than our “gucss\nwork” algorithm\n\nMit"
+  },
+  {
+    "text": "this rule. I will start a time step 0. I will do this for some max iterations. Right?",
+    "start": 1203.4,
+    "end": 1208.88,
+    "ocr_text": "Gradient Descent Rule\n\ne The direction u that we intend to move in should be at 180° w.rt\n\nthe gradient\n@ In other words, move in a direction opposite to the gradicnt\n\nParameter Update Equations\n\nWer = wr — NV wy\nbey = by — Vy\nOL (w, b)\n\nOL (aw, b)\n= , Vb = ———\nOw atw=w1,b=b Ob\n\nwhere, Vw =\n\natw=wrb= br\n\nSo we now have a more principled way of moving in the w-b plame than our “gucss\nwork” algorithm\n\nMit"
+  },
+  {
+    "text": "Instead of saying till convergence, I will do it for some iterations. At every iteration,",
+    "start": 1208.88,
+    "end": 1213.8,
+    "ocr_text": "@ Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\n\nbe\nmas iterations — 1000;\nwhile ¢ < max_iterations do\nWey — we ~ Vw;\nbear & be — Vp:\n\nend"
+  },
+  {
+    "text": "I will this is how I will update my weights. I will take the current weights, subtract",
+    "start": 1213.8,
+    "end": 1218.32,
+    "ocr_text": "@ Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\n\nbe\nmas iterations — 1000;\nwhile ¢ < max_iterations do\nWey — we ~ Vw;\nbear & be — Vp:\n\nend"
+  },
+  {
+    "text": "the gradient from that and get the new state. I mean not subtract the gradient, subtract",
+    "start": 1218.32,
+    "end": 1222.72,
+    "ocr_text": "@ Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\n\nle\nmas iterations — 1000;\nwhile ¢ < max_iterations do\nwey — wr — Ve;\nbea < be NV de:\n\nend"
+  },
+  {
+    "text": "this quantity and get the new weights. So, now is everything clear? Is the gradient descent",
+    "start": 1222.72,
+    "end": 1228.08,
+    "ocr_text": "@ Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\n\nle\nmas iterations — 1000;\nwhile ¢ < max_iterations do\nwey — wr — Ve;\nbea < be NV de:\n\nend"
+  },
+  {
+    "text": "algorithm done? Can you do it for the toy network which I had? Is this something still",
+    "start": 1228.08,
+    "end": 1238.08,
+    "ocr_text": "@ Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\n\nbe\nmas iterations — 1000;\nwhile ¢ < max_iterations do\nWey — Wt 1V we;\nDear < bp — NV Oe\n\nend"
+  },
+  {
+    "text": "missing? It has fine. We will take a small value 0.0 minus something. I have still not",
+    "start": 1238.08,
+    "end": 1246.6,
+    "ocr_text": "@ Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\n\n(0;\nmas iterations — 1000;\nwhile ¢ < max_iterations do\nWey — Wt 1V we;\nDear < bp — NV Oe\n\nend"
+  },
+  {
+    "text": "told you what these are. I mean it is okay to write it. You know these are derivatives,",
+    "start": 1246.6,
+    "end": 1250.92,
+    "ocr_text": "e Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\n\nt<—0;\nmae ilerations — 1000;\nwhile ¢ < max_iterations do\nweer — we — Vw;\nbea < be nV be:\nend\n\ne@ Tosce this algorithm in practice let us first derive Vw and Vb for our toy neural\n\nnetwork"
+  },
+  {
+    "text": "but what is this actually? Okay? So, let us see that now. So, that is what we are going",
+    "start": 1250.92,
+    "end": 1254.76,
+    "ocr_text": "e Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\n\nt<—0;\nmae ilerations — 1000;\nwhile ¢ < max_iterations do\nweer — we — Vw;\nbea < be nV be:\nend\n\ne@ Tosce this algorithm in practice let us first derive Vw and Vb for our toy neural\n\nnetwork"
+  },
+  {
+    "text": "to see next. Okay? Oh, I am really going slow today. Do you guys need a break? You",
+    "start": 1254.76,
+    "end": 1263.76,
+    "ocr_text": "e Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\n\nt<—0;\nmae ilerations — 1000;\nwhile ¢ < max_iterations do\nweer — we — Vw;\nbea < be nV be:\nend\n\ne@ Tosce this algorithm in practice let us first derive Vw and Vb for our toy neural\n\nnetwork"
+  },
+  {
+    "text": "really in a hurry to wind up the lecture and go. Are you sure you do not need a break?",
+    "start": 1263.76,
+    "end": 1270.72,
+    "ocr_text": "e Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\nt<-0;\n\nmae ilerations — 1000;\n\nwhile ¢ < max_iterations do\n\nweer — we — Vw;\nbea < be VV de:\nend\n\ne To sce this algorithm in practice let us first derive Vw and Vb for our toy neural\n\nnetwork"
+  },
+  {
+    "text": "Okay? I do not know whether to be happy about it or sad about it. I will be happy. Okay?",
+    "start": 1270.72,
+    "end": 1276.88,
+    "ocr_text": "e Let us create an algorithm from this rule\n\nAlgorithm: gradient descent()\nt<-0;\n\nmae ilerations — 1000;\n\nwhile ¢ < max_iterations do\n\nweer — we — Vw;\nbea < be VV de:\nend\n\ne To sce this algorithm in practice let us first derive Vw and Vb for our toy neural\n\nnetwork"
+  },
+  {
+    "text": "I will assume that you are enjoying the lecture so much that you do not want a break. Okay?",
+    "start": 1276.88,
+    "end": 1281.6,
+    "ocr_text": "Let’s assume there is only 1 point to fit\n\nf(x) = L+e fi x+b) (x,y)\n\nos\n\n10\n£25.09)\noa |\n\not 405.02)"
+  },
+  {
+    "text": "So, now we want to find out where in the R quest is for this delta or sorry the partial",
+    "start": 1281.76,
+    "end": 1288.16,
+    "ocr_text": "Let’s assume there is only 1 point to fit\n\nf(x) = L+e fi x+b) (x,y)\n\nos\n\n10\n£25.09)\noa |\n\not 405.02)"
+  },
+  {
+    "text": "derivative with respect to W and partial derivative with respect to B. That is the thing which",
+    "start": 1288.16,
+    "end": 1292.36,
+    "ocr_text": "Let’s assume there is only 1 point to fit\n\nf(x) = L+e fi x+b) (x,y)\n\nos\n\n10\n£25.09)\noa |\n\not 405.02)"
+  },
+  {
+    "text": "we had plugged in the formula, but we do not know what that is. So, we need to find that out.",
+    "start": 1292.36,
+    "end": 1296.6,
+    "ocr_text": "Let’s assume there is only 1 point to fit\n\nf(x) = L+e fi x+b) (x,y)\n\nos\n\n10\n£25.09)\noa |\n\not 405.02)"
+  },
+  {
+    "text": "So, now for simplicity let us assume there is only 1 point to fit which is x comma y. So,",
+    "start": 1296.6,
+    "end": 1301.28,
+    "ocr_text": "Let’s assume there is only 1 point to fit\nei) 1\nf(x) = Lpen (wet) (x,y)\n\n25,09)\n\nos\n\n>06\n\noat\n\n02} 405.02)"
+  },
+  {
+    "text": "earlier we had this x1 y1 and x2 y2. Now, I am just assuming there is only 1 point which",
+    "start": 1301.28,
+    "end": 1307.24,
+    "ocr_text": "Let’s assume there is only 1 point to fit\nei) 1\nf(x) = Lpen (wet) (x,y)\n\n25,09)\n\nos\n\n>06\n\noat\n\n02} 405.02)"
+  },
+  {
+    "text": "is x comma y. So, now what is the loss function? Earlier I had this summation over i equal to",
+    "start": 1307.24,
+    "end": 1314.44,
+    "ocr_text": "Let’s assume there is only 1 point to fit\n\nf(r) = j te oF) (x,y)\n\n“| | L(w,b) = ; * (f(x) -y)?\n25.09)\n\n“| |\n\noo }"
+  },
+  {
+    "text": "1 to 2, but I have just 1 x comma y. So, I will just use that. Okay? This is what my loss",
+    "start": 1314.44,
+    "end": 1319.12,
+    "ocr_text": "Let’s assume there is only 1 point to fit\n\nf(r) = j te oF) (x,y)\n\n“| | L(w,b) = ; * (f(x) -y)?\n25.09)\n\n“| |\n\noo }"
+  },
+  {
+    "text": "function. And what are the quantities that I am interested in finding? One is this. The",
+    "start": 1319.12,
+    "end": 1324.28,
+    "ocr_text": "Let’s assume there is only 1 point to fit\n\nf(r) = j te oF) (x,y)\n\n* (f(a) —y)?\n\nL(w,b) =\n\nNile\n\n1\n\nos\n>06\n\noa\n\not 405.02)"
+  },
+  {
+    "text": "partial derivative of this loss function with respect to W. Okay? So, let us do this. Let",
+    "start": 1324.28,
+    "end": 1330.52,
+    "ocr_text": "Let’s assume there is only 1 point to fit\n\nf(r) = j te oF) (x,y)\n\n* (f(a) —y)?\n\nL(w,b) =\n\nNile\n\n1\n\nos\n>06\n\noa\n\not 405.02)"
+  },
+  {
+    "text": "us actually derive this. So, this is what it looks like. Now, you have to help me in",
+    "start": 1330.52,
+    "end": 1335.08,
+    "ocr_text": "~~ +e\n\n(Cw\n\n1\n\nx+-b)\n\ny = f(x)\n\n25.09)\n\n405.02)\n\nLet’s assume there is only 1 point to fit\n(x,y)\n\nL(w,b) = ; * (f(a) — yy?\n— AL(w,b) A 1 ee)"
+  },
+  {
+    "text": "deriving this. What will I do first? Tell me the next step? 2 into f of x minus y and",
+    "start": 1335.08,
+    "end": 1345.28,
+    "ocr_text": "1\n2\n\nVw = a [\n\nOw\n\n« (F(x) ~ y)\"]"
+  },
+  {
+    "text": "push the gradient inside. Push the derivative inside. Is that fine? Anyone who has a problem",
+    "start": 1345.28,
+    "end": 1351.88,
+    "ocr_text": "0 2\nVu= wd * (f(x) — y)\"]\n\n= bx 2« (fx) 9) «2 (F(@) -9)]\n\nOw\n\nMitesh M. Khapra Le"
+  },
+  {
+    "text": "with this? Okay? Next. Why is a constant? This is the true y remember. So, that is why",
+    "start": 1351.88,
+    "end": 1361.64,
+    "ocr_text": "0 2\nVu= wd * (f(x) — y)\"]\n\n= bx 2« (fx) 9) «2 (F(@) -9)]\n\nOw\n\nMitesh M. Khapra Le"
+  },
+  {
+    "text": "this is a constant. This is not the predicted y. Okay? Now, this quantity. What is f of x",
+    "start": 1361.64,
+    "end": 1367.84,
+    "ocr_text": "0 2\nVu = awd * (f(x) — y)\"]\n\n= 582+) v) + 5 (Fle) ~ wo\n= (fle) — 9) * 2 (F@))\n\nOw\n\nMitesh M. Khapra Le"
+  },
+  {
+    "text": "actually? Sigma it function. So, I will just write it. Now, this is the quantity that",
+    "start": 1367.84,
+    "end": 1375.24,
+    "ocr_text": "a) 2\n\n= Fee (Fo)—v)* 2 F@) —y)\n\n= (0) =) * (FC)\n\nOw"
+  },
+  {
+    "text": "I need the derivative for. So, I will just write it here. What is the next step? This",
+    "start": 1375.24,
+    "end": 1381.56,
+    "ocr_text": "al 2 a 7\n= 5ol5 te) - 9 jo (Teer)\n(e)\n«5, (F(2) — 9]\n\n2 (F(@))\n\n\"Fu\n= (F(2) —y)s yo =)\n\nOw"
+  },
+  {
+    "text": "is of the form 1 over x. So, what will it be? Minus 1 over x square and then you put the",
+    "start": 1381.56,
+    "end": 1386.72,
+    "ocr_text": "al 2 a 7\n= 5ol5 te) - 9 jo (Teer)\n(e)\n«5, (F(2) — 9]\n\n2 (F(@))\n\n\"Fu\n= (F(2) —y)s yo =)\n\nOw"
+  },
+  {
+    "text": "derivative inside. Is that fine? Now, the quantity inside is of the form e raised to",
+    "start": 1386.72,
+    "end": 1391.88,
+    "ocr_text": "01 2 (a) 1\nVw =< [5 *(f(0) - yl (ary)\n\n1 J 0 -l 0 war+b\n= 5 *2*(f(@) -— 9) * 5 (fe) —9)] = Gpewap au)\n\n(e) 1\n= (f(2) 9) * 5, (Gay)"
+  },
+  {
+    "text": "x. So, the derivative is e raised to x and you push it inside. Is this fine? So, this",
+    "start": 1391.88,
+    "end": 1399.72,
+    "ocr_text": "01 2 (a) 1\nVw =< [5 *(f(0) - yl (ary)\n\n1 J 0 -l 0 war+b\n= 5 *2*(f(@) -— 9) * 5 (fe) —9)] = Gpewap au)\n\n(e) 1\n= (f(2) 9) * 5, (Gay)"
+  },
+  {
+    "text": "onslai should come. Both these are coming together. Is that fine? Okay? Now, what is this",
+    "start": 1399.72,
+    "end": 1407.6,
+    "ocr_text": "al ; 5 ;\n2 =1 a :\n~ 2 ‘ : (wx+b)\n2 . 2 . (F(@) y) * Dw! (2) I — el +r e~ (watb))2 aw ))\n(a)\n—G@) 9) * 9,0 1 wath),\n(f(a) — y) * Dw ot ()) = eee «(el ))—(—(we +5)))\n(e) 1 e ) Ww\n—ees ,—(wa+b\n(f(x) — y) * ma + wer) 1 es (wa+b) _\n(1+ e (wrth) (1 +e (wrt))\n1 eo (wet)\n(1 + e~ (wrth) * (1 + e-(wr+b)) * (x)"
+  },
+  {
+    "text": "actually? F of x. F of x. What is this? This is actually 1 minus f of x. This take my",
+    "start": 1407.6,
+    "end": 1416.36,
+    "ocr_text": "Vu = Fel *( ~W'] Ow (5 4 e-(wr4 5)\n\n: . a i. 0 wa+b\n=5* [2* (f() —y) * Dw of) W1| = (1p on wntyyp a (wr+b)))\n(a) ;\n= = —(fla _ -1 7 —(wa+b)) 2 _—\n(F(x) —y) * FF (2)) = Ope x (en ) 5 (—(we + 6)))\n(a) 1\n= (F(@) ~ 9) * Ow (; +e arity) a * eW (wat?) x (—2)\n(1+ e-(wrtb)) (1 + e-(wetd)) “\n1 e~(wa+b)\n\nx(x) <\n\n*\n(1 + e7 “(watb)) (1 + e~(wr+b))\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "word for it for now. You can go home and work it out. So, this actually if you do 1 minus",
+    "start": 1416.36,
+    "end": 1421.2,
+    "ocr_text": "Vw=\n\n0\n\n5 1\nsols *( v)— 9)\" ome +e warm)\n1 . (2) -1 0 2\nbaal 4 4 (wa+b)\npt 2*(Fe)— 9 * 5,0) — Wl] = eam gel Onn\n(f(x) —y) * ~ (F(2)) a tg (ewe) 9 (_ (ye\nwe 1 (1 $ em (wrt) )2 *le au! (we + 8)))\n(f(x) * Ow (; +e mat) -l . e7 (wr+b) . (- r)\n(1 + e-(wrtd)) (1 + e~(wete)) .\n1 eo (wet)\n(+e #40) * (1 penwrrdy * (1) <—\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "this and do some tachiri, you will get to this quantity. So, what you get is a very simple",
+    "start": 1421.2,
+    "end": 1426.44,
+    "ocr_text": "Vw=\n\n0\n\n5 1\nsols *( v)— 9)\" ome +e warm)\n1 . (2) -1 0 2\nbaal 4 4 (wa+b)\npt 2*(Fe)— 9 * 5,0) — Wl] = eam gel Onn\n(f(x) —y) * ~ (F(2)) a tg (ewe) 9 (_ (ye\nwe 1 (1 $ em (wrt) )2 *le au! (we + 8)))\n(f(x) * Ow (; +e mat) -l . e7 (wr+b) . (- r)\n(1 + e-(wrtd)) (1 + e~(wete)) .\n1 eo (wet)\n(+e #40) * (1 penwrrdy * (1) <—\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "formula f of x into 1 minus f of x into x. I am going to substitute back here. So,",
+    "start": 1426.44,
+    "end": 1432.18,
+    "ocr_text": "Vu = Fel *( ~W'] Ow (5 4 e-(wr4 5)\n\n| . a -1 0 wa+b\n= #2 #92) —w) #50) Ol) = a le )\n_ yx tle -1 ora), O\n(f(x) — y) * ay It )) . = Gy ecwarinp *(¢ ( ) a (—(we + b)))\n= (f(@) 9) * 5 (Gant) 1 ent)\n( Le (wa+b)) * (1 +e (wa-+b)) * (-2)\n\n1 eo (wet)\n(pe werd) * (pf e—lwrsdy * (x)\n= f(x) * (= f(a)) *a\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "now I exactly know what the partial derivative of w is. Okay? Fine. So, there is only one",
+    "start": 1432.18,
+    "end": 1439.16,
+    "ocr_text": "Vu = Fel *( ~W'] Ow (5 4 e-(wr4 5)\n\n| . a -1 0 wa+b\n= #2 #92) —w) #50) Ol) = a le )\n_ yx tle -1 ora), O\n(f(x) — y) * ay It )) . = Gy ecwarinp *(¢ ( ) a (—(we + b)))\n= (f(@) 9) * 5 (Gant) 1 ent)\n( Le (wa+b)) * (1 +e (wa-+b)) * (-2)\n\n1 eo (wet)\n(pe werd) * (pf e—lwrsdy * (x)\n= f(x) * (= f(a)) *a\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "point. Then, this is what the partial derivative with respect to w is going to be of the loss",
+    "start": 1439.16,
+    "end": 1444.52,
+    "ocr_text": "So if there is only 1 point (x,y), we have,\n\nf(x) = +e ta +b)\n\n10\n25,09)\nos\n\n405.02)"
+  },
+  {
+    "text": "function. If there were two points, what would happen? If there were two points, my loss",
+    "start": 1444.52,
+    "end": 1450.4,
+    "ocr_text": "So if there is only 1 point (x,y), we have,\n\nf(x) = +e ta +b)\n\n10\n25,09)\nos\n\n405.02)"
+  },
+  {
+    "text": "function was this is a sum of two elements and I am taking some derivative of a sum.",
+    "start": 1450.4,
+    "end": 1458.28,
+    "ocr_text": "1\n\nSo if there is only | point (x,y), we have,\n\nIte\n| $5,089)\n\n403.02)"
+  },
+  {
+    "text": "I will get a sum of derivatives. So, how many if you will not cringe if I say this is",
+    "start": 1458.28,
+    "end": 1464.52,
+    "ocr_text": "‘ N\n\n. = Fs &/) ‘”\n79) v= Fle) > = Gs\nl ow\n\nSo if there is only | point (x,y), we have,\n\nV+\n\n#3,09)\n\naz 4.3.02)"
+  },
+  {
+    "text": "the answer? Anyone who has a problem with this? You get this? How many if you do not get",
+    "start": 1464.52,
+    "end": 1470.72,
+    "ocr_text": "‘ N\n\n. = Fs &/) ‘”\n79) v= Fle) > = Gs\nl ow\n\nSo if there is only | point (x,y), we have,\n\nV+\n\n#3,09)\n\naz 4.3.02)"
+  },
+  {
+    "text": "this? How many if you get this? Okay. Good. Fine. Now, can you do a similar thing for",
+    "start": 1470.72,
+    "end": 1478.2,
+    "ocr_text": "1\n\nJ) = Gea\n\nSo if there is only | point (x,y), we have,\n\nFor two points,\n\n#5,09)\n\nVw = SUF (ei) — ys) * Fler) «(1 f(ay)) #2\nt=]\n\noa 4.3.02)"
+  },
+  {
+    "text": "b? Can you tell me the answer without actually deriving it? Yeah, I can perfectly understand",
+    "start": 1478.2,
+    "end": 1488.8,
+    "ocr_text": "1\n\nV+\n\nSo if there is only | point (x,y), we have,\n\nFor two points,\n\n#5,09)\n\nVw = SUF (ei) — ys) * fle) «(1 f(a) #2\nt=1\n\naz 43.02)"
+  },
+  {
+    "text": "what you are saying. Yes, x would not be there. Right? Because this last x that you see",
+    "start": 1488.8,
+    "end": 1496.52,
+    "ocr_text": "1\n\nV+\n\nSo if there is only | point (x,y), we have,\n\nFor two points,\n\n#5,09)\n\nVw = SUF (ei) — ys) * fle) «(1 f(a) #2\nt=1\n\nv1 43.02)"
+  },
+  {
+    "text": "here came because w into x was there. But b, we are not multiplying x. So, what you will",
+    "start": 1496.52,
+    "end": 1501.0,
+    "ocr_text": "1\n\n; 1\nJ (x) The ey)\n\nSo if there is only | point (x,y), we have,\n\nFor two points,\n\n#5,09)\n\nVw = DoF (ei) — yi) * Flas) * (1 fai) +e\ni=1\n\naa 403.02)"
+  },
+  {
+    "text": "get is this. You can go home and check. Okay? So, now we have everything that we need.",
+    "start": 1501.0,
+    "end": 1509.92,
+    "ocr_text": "1\n\n; 1\nJ (x) The ey)\n\nSo if there is only | point (x,y), we have,\n\nFor two points,\n\n#5,09)\n\nVw = DoF (ei) — yi) * Flas) * (1 fai) +e\ni=1\n\naa 403.02)"
+  },
+  {
+    "text": "Now we actually have everything that we need. Okay? No more trick questions. So, now we",
+    "start": 1509.92,
+    "end": 1513.44,
+    "ocr_text": "Ff fa) y= f(x)\n1\n\nSo if there is only | point (x,y), we have,\n\nFor two points,\n\n5,09)\n\n“ Vw = DoF (ei) — yi) * Flas) * (1 fai) *\nt=]\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "will write code to do this. Okay? We will actually implement the code and see what happens.",
+    "start": 1513.44,
+    "end": 1517.36,
+    "ocr_text": "Ff fa) y= f(x)\n1\n\nSo if there is only | point (x,y), we have,\n\nFor two points,\n\n5,09)\n\n“ Vw = DoF (ei) — yi) * Flas) * (1 fai) *\nt=]\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So, these are the two data points that I had. 0.5, 0.2 and 2.5, 0.9. The first thing which",
+    "start": 1517.36,
+    "end": 1524.56,
+    "ocr_text": "Ff fa) y= f(x)\n1\n\nSo if there is only | point (x,y), we have,\n\nFor two points,\n\n5,09)\n\n“ Vw = DoF (ei) — yi) * Flas) * (1 fai) *\nt=]\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "I need is something which can implement the sigmoid function. So, this is 1 over 1 plus",
+    "start": 1524.56,
+    "end": 1529.48,
+    "ocr_text": "np. exp("
+  },
+  {
+    "text": "e raise to minus w x plus b. Is that fine? Okay? Now, I need something which can compute",
+    "start": 1529.48,
+    "end": 1535.84,
+    "ocr_text": "np. exp("
+  },
+  {
+    "text": "the error. So, this is summation of half into f of x minus y the whole square. I go",
+    "start": 1535.84,
+    "end": 1543.04,
+    "ocr_text": "np.exp(-(w*x + b)))\n\nx.y in zip (X.Y)\nTx ft(w,b.x)\n(tx y)"
+  },
+  {
+    "text": "over all the data points. Summation of half into f of x minus y the whole square. Is that",
+    "start": 1543.04,
+    "end": 1548.08,
+    "ocr_text": "np.exp(-(w*x + b)))\n\nx.y in zip (X.Y)\nTx ft(w,b.x)\n(tx y)"
+  },
+  {
+    "text": "fine? Now, what I will do is I will take this, try out a lot of values of w comma b and",
+    "start": 1548.08,
+    "end": 1553.6,
+    "ocr_text": "np-exp(-(w'x + b)))\n\nX,Y zip(X,Y)\nfx = f(w.b.x)"
+  },
+  {
+    "text": "plot the error surface. Okay? But this is only for illustration. In practice, I will not",
+    "start": 1553.6,
+    "end": 1557.4,
+    "ocr_text": "np-exp(-(w'x + b)))\n\nX,Y zip(X,Y)\nfx = f(w.b.x)"
+  },
+  {
+    "text": "do this. We just know that this error surface exists. I just want to verify that whatever",
+    "start": 1557.4,
+    "end": 1562.84,
+    "ocr_text": "Random search on error surface\n\nnp-exp(-(w'x + b)))\n\nom\n\nXY zip(X.¥) : 1.0\nfx = f(w.b.x)\n\n(tx - y) ess 5\n0.0\n6. -0.5\n64 5\nwo. —— -1.0\n\nbe in Sn ee > 4 6\n\n6 6 -4 4,\n\n0.08 016 024 032 040 048 056 064\n\nety\n\nMir\n\nerror"
+  },
+  {
+    "text": "algorithm I come up with does an efficient navigation of this error surface. That is what",
+    "start": 1562.84,
+    "end": 1567.84,
+    "ocr_text": "Random search on error surface\n\nnp-exp(-(w'x + b)))\n\nom\n\nXY zip(X.¥) : 1.0\nfx = f(w.b.x)\n\n(tx - y) ess 5\n0.0\n6. -0.5\n64 5\nwo. —— -1.0\n\nbe in Sn ee > 4 6\n\n6 6 -4 4,\n\n0.08 016 024 032 040 048 056 064\n\nety\n\nMir\n\nerror"
+  },
+  {
+    "text": "I want to verify. Okay? That is why I am plotting this. Okay? Next, I need a function which",
+    "start": 1567.84,
+    "end": 1572.92,
+    "ocr_text": "Random search on error surface\n\nnp-exp(-(w'x + b)))\n\nom\n\nXY zip(X.¥) : 1.0\nfx = f(w.b.x)\n\n(tx - y) ess 5\n0.0\n6. -0.5\n64 5\nwo. —— -1.0\n\nbe in Sn ee > 4 6\n\n6 6 -4 4,\n\n0.08 016 024 032 040 048 056 064\n\nety\n\nMir\n\nerror"
+  },
+  {
+    "text": "can compute grad of b. We just saw this on the previous slide. This is f of x minus",
+    "start": 1572.92,
+    "end": 1578.48,
+    "ocr_text": "Random search on error surface\n\nnp-exp(-(w'x + b)))\n\nom\n\nXY zip(X.¥) : 1.0\nfx = f(w.b.x)\n\n(tx - y) ess 5\n0.0\n6. -0.5\n64 5\nwo. —— -1.0\n\nbe in Sn ee > 4 6\n\n6 6 -4 4,\n\n0.08 016 024 032 040 048 056 064\n\nety\n\nMir\n\nerror"
+  },
+  {
+    "text": "y into f of x into 1 minus f of x. Right? Simple? Everyone is fine with this? Then I need",
+    "start": 1578.48,
+    "end": 1587.84,
+    "ocr_text": "Random search on error surface\n\nnp.exp(- (wx\n\ned\nxy zip(X,Y) : 10\nTx ft(w,b.x) . . 05\n=e 00\n~ ‘ -0.5\noa 5\nwy XN —- > 4 62°\n\n2\n6 6 -4 4,\n\n0.08 0.16 0.24 032 040 048 056 0.64\n\nety\n\nMir\n\nerror"
+  },
+  {
+    "text": "a function which can compute the grad with respect to w. Same thing except that I have",
+    "start": 1587.84,
+    "end": 1593.12,
+    "ocr_text": "Random search on error surface\n\nnp.exp(-(w'x\n\ncad\nx.y in zip(x.Y) : 1.0\nfx = f(w.b.x) 05\neos 0.0\n6. -0.5\n8a 5\nwy XN — > 4 62°\n\n2\n6 6 -4 %\n\ndef grad w( .\nfx = f(w,b,x)\n(fx\n\n0.08 0.16 0.24 032 040 048 056 0.64\n\nety\n\nMir\n\nerror"
+  },
+  {
+    "text": "this x at the n. So, I have all the ingredients in place. Now, what would I do? What is the",
+    "start": 1593.12,
+    "end": 1598.24,
+    "ocr_text": "Random search on error surface\n\nnp.exp(-(w'x\n\ncad\nx.y in zip(x.Y) : 1.0\nfx = f(w.b.x) 05\neos 0.0\n6. -0.5\n8a 5\nwy XN — > 4 62°\n\n2\n6 6 -4 %\n\ndef grad w( .\nfx = f(w,b,x)\n(fx\n\n0.08 0.16 0.24 032 040 048 056 0.64\n\nety\n\nMir\n\nerror"
+  },
+  {
+    "text": "next thing that I will write? The main loop. Right? I will write the main loop. Okay?",
+    "start": 1598.24,
+    "end": 1604.04,
+    "ocr_text": "Random search on error surface\n\nnp. exp(-(w'x\n\n-\nxY zip(X,Y) : 10\nf(w.b.x) ; 05\nnt 00\n-o9 -0.5\nwe. NL ——, 6?\n6 6 -4 % ?\n\ndef grad w( .\nfx — f(w,b,x)\n(fx\n\n0.08 0.16 0.24 032 040 048 056 0.64\n\nety\n\nMir\n\nerror"
+  },
+  {
+    "text": "So, this is what the main loop looks like. Looks like. I start with some random initialize",
+    "start": 1604.44,
+    "end": 1609.12,
+    "ocr_text": "Random search on error surface\n\nnp. exp(-(w'x\n\n-\nxY zip(X,Y) : 10\nf(w.b.x) ; 05\nnt 00\n-o9 -0.5\nwe. NL ——, 6?\n6 6 -4 % ?\n\ndef grad w( .\nfx — f(w,b,x)\n(fx\n\n0.08 0.16 0.24 032 040 048 056 0.64\n\nety\n\nMir\n\nerror"
+  },
+  {
+    "text": "for w comma b. Remember that our initial theta which is composed of w comma b is going",
+    "start": 1609.12,
+    "end": 1614.36,
+    "ocr_text": "def grad w( a\nf(w,b, x)\n\nfx\n\nXY\ntx\n\n(fx\n\nnp. exp(\n\nzip (X,Y)\nf(w,b.x)\n\ny)\n\ngradient_descent()\nb. eta.\n\ni\n\ndw,\n\nrai\ndb\nxy\ndw\n\nmax epochs\nnge(max epochs)\n\nip(X, ¥)\ngrad_w(w, b,\nb,\n\n(wex\n\nx, y)\nx, y)\n\nMit\n\nety\n\nRandom search on error surface\n\n“\n10\n0s\nsent 00\n-o9 -0.5\nw 2 ——. 6?\n6 6 -4 % ?\n\n0.08 016 024 032 040 048 056 064\n\nerror"
+  },
+  {
+    "text": "to be some random guess. So, I started with the random guess which is minus 2 comma 2.",
+    "start": 1614.36,
+    "end": 1618.92,
+    "ocr_text": "def grad w( a\nf(w,b, x)\n\nfx\n\nXY\ntx\n\n(fx\n\nnp. exp(\n\nzip (X,Y)\nf(w,b.x)\n\ny)\n\ngradient_descent()\nb. eta.\n\ni\n\ndw,\n\nrai\ndb\nxy\ndw\n\nmax epochs\nnge(max epochs)\n\nip(X, ¥)\ngrad_w(w, b,\nb,\n\n(wex\n\nx, y)\nx, y)\n\nMit\n\nety\n\nRandom search on error surface\n\n“\n10\n0s\nsent 00\n-o9 -0.5\nw 2 ——. 6?\n6 6 -4 % ?\n\n0.08 016 024 032 040 048 056 064\n\nerror"
+  },
+  {
+    "text": "I have chosen eta to be 1. That means I am not going to be conservative. I am going to",
+    "start": 1618.92,
+    "end": 1622.44,
+    "ocr_text": "Random search on error surface\n\nnp. exp(-(w'x\n\nea\nx.y in zip(X.Y) + 10\nfx = f(w.b.x) 05\nquasi 00\n6. -0.5\noa 5\nwy NE _.~ > 6 6°\n2\nw( 6-6 -4 %\nfx = f(w,b,x)\n(fx y)\ndo_aradient_descent()\nW. bd, etax max epochs\ni in range(max epochs)\ndw, db = 0, IL p : Ue mal\n0.08 0.16 024 032 040 048 056 064\n\nxy ip(X, ¥)\ndw += grad_w(w, b, x, y)\nb, x, y)\n\nety\n\nMit\n\nerror"
+  },
+  {
+    "text": "move in the direction of the gradient. Okay? If I had chosen it 0.01 or 0.001, I would",
+    "start": 1622.44,
+    "end": 1627.48,
+    "ocr_text": "Random search on error surface\n\nnp. exp(-(w'x\n\nea\nx.y in zip(X.Y) + 10\nfx = f(w.b.x) 05\nquasi 00\n6. -0.5\noa 5\nwy NE _.~ > 6 6°\n2\nw( 6-6 -4 %\nfx = f(w,b,x)\n(fx y)\ndo_aradient_descent()\nW. bd, etax max epochs\ni in range(max epochs)\ndw, db = 0, IL p : Ue mal\n0.08 0.16 024 032 040 048 056 064\n\nxy ip(X, ¥)\ndw += grad_w(w, b, x, y)\nb, x, y)\n\nety\n\nMit\n\nerror"
+  },
+  {
+    "text": "have been conservative. And I am going to run this till 1000 epochs which is my notion",
+    "start": 1627.48,
+    "end": 1633.76,
+    "ocr_text": "Random search on error surface\n\nnp-exp(- (wex\n\nom\nzip(X,Y) 10\nfx = f(w,b.x) 05\neee” 00\n6. -0.5\n8a °\n5 a -1.0\nwe2 NU a > 4 6\na 6 6 -4 4%)\nf(w,b, x)\n(fx y)\ndo gradient descent()\nw. b, eta, max epochs\ni range(max epochs)\ndw, db = 0, ME r ‘ i mM |\nxy ip(X, ¥) 0.08 016 0.24 0.32 040 048 056 064\n\ndw += grad_w(w, b, x, y)\nx, y)\n\nety\n\nMit\n\nerror"
+  },
+  {
+    "text": "of conversions. Okay? Now, in each epoch what I am doing is for every data point. So,",
+    "start": 1633.76,
+    "end": 1641.72,
+    "ocr_text": "Random search on error surface\n\nnp-exp(- (wex\n\nom\nzip(X,Y) 10\nfx = f(w,b.x) 05\neee” 00\n6. -0.5\n8a °\n5 a -1.0\nwe2 NU a > 4 6\na 6 6 -4 4%)\nf(w,b, x)\n(fx y)\ndo gradient descent()\nw. b, eta, max epochs\ni range(max epochs)\ndw, db = 0, ME r ‘ i mM |\nxy ip(X, ¥) 0.08 016 0.24 0.32 040 048 056 064\n\ndw += grad_w(w, b, x, y)\nx, y)\n\nety\n\nMit\n\nerror"
+  },
+  {
+    "text": "remember that this gradient with respect to w was a summation of i equal to 1 to 2 and",
+    "start": 1641.72,
+    "end": 1648.76,
+    "ocr_text": "Random search on error surface\n\nnp-exp(- (wex\n\nom\nzip(X,Y) 10\nfx = f(w,b.x) 05\neee” 00\n6. -0.5\n8a °\n5 a -1.0\nwe2 NU a > 4 6\na 6 6 -4 4%)\nf(w,b, x)\n(fx y)\ndo gradient descent()\na, max epochs\nrange (max epo\nxy ip(X, ¥) 0.08 016 0.24 0.32 040 048 056 064\n\n‘dw += grad_w(w, b, x, y)\nx, y)\n\nety\n\nMit\n\nerror"
+  },
+  {
+    "text": "that formula. Right? So, for each data point I am computing the grad adding it. So, that",
+    "start": 1648.76,
+    "end": 1656.4,
+    "ocr_text": "Random search on error surface\n\nnp_exp(- (wex\n\nx.y zip(x,Y) 10\nfx = f(w,b.x) 05\n\n(tx -y e\n\n00\n\ngrad_b(w,b,x,y) : 64s. -0.5\nf w\n\nerror\n\nfx f(w,b,x) A \\\n(fx ON 1.0\n2, > 4 6\nf grad w(w,b,x, 6-6 -4 %\nfx = f(w,b,x)\n(fx y) © fx\ndo_gradient_descent()\nWw, b, eta, max_epochs : . . NV\nrange(max epo\ndw, db — 0, <Jw * | . R . n Ls\nxy ip(X, ¥) (-! 0.08 0.16 0.24 032 040 048 056 0.64\n\ndw += grad_w(w, b, x, y)\ndb grad_b(w, b, x, y)\nw - eta © dw\nb - eta © db"
+  },
+  {
+    "text": "is the summation part. Similar thing I am doing for b. Once I have computed the gradient",
+    "start": 1656.4,
+    "end": 1662.4,
+    "ocr_text": "Random search on error surface\n\nnp_exp(- (wex\n\nx.y zip(x,Y) 10\nfx = f(w,b.x) 05\n\n(tx = 4\nsoos? 00\ngrad_b(w,b,x, 64s. -0.5\n\nfx =f (w,b,x) ~ 2) —\nf —— 1.0\nx \\\n(fx w 24 ——— 2 a 6\n\nerror\n\nft grad w(\n\nfx = f(w,b,x)\n(fx\n\ny) © fx\n\ndo_gradient_descent()\nw. b, eta, max epochs\nrange(max epo:\n\ndw,\n\nip(X, ¥)\ngrad_w(w, b, x, y)\nb, x, y)\n\n0.08 0.16 0.\n\n24 0.32 0.40 0.48 0.56 0.64"
+  },
+  {
+    "text": "which is the summation quantity, I am just moving in the direction of the gradient. Is",
+    "start": 1662.4,
+    "end": 1668.2,
+    "ocr_text": "Random search on error surface\n\nnp_exp(- (wex\n\nx.y zip(x,Y) 10\nfx = f(w,b.x) 05\n\n(tx = 4\nsoos? 00\ngrad_b(w,b,x, 64s. -0.5\n\nfx =f (w,b,x) ~ 2) —\nf —— 1.0\nx \\\n(fx w 24 ——— 2 a 6\n\nerror\n\nft grad w(\n\nfx = f(w,b,x)\n(fx\n\ny) © fx\n\ndo_gradient_descent()\nw. b, eta, max epochs\nrange(max epo:\n\ndw,\n\nip(X, ¥)\ngrad_w(w, b, x, y)\nb, x, y)\n\n0.08 0.16 0.\n\n24 0.32 0.40 0.48 0.56 0.64"
+  },
+  {
+    "text": "that fine? Everyone understands the code. It is simple Python code and it does exactly",
+    "start": 1668.2,
+    "end": 1672.08,
+    "ocr_text": "ft grad w(\n\nnp. exp(\n\nzip(x,Y)\nt(w.b.x)\n(tx\n\nxy\ntx\n\nf(w,b,x)\n(fx\n\nfx\n\nfx — f(w,b,x)\n\n(fx -y) © fx\ndo_gradient_descent()\nw, b, eta, max epochs\ni range(max epo:\n\ndw, db\n\nXY\n\ndw\n\nip(X, ¥)\ngrad_w(w, b, x,\nb, x,\n\n(wex\n\ny)\ny)\n\nRandom search on error surface\n\ned\n\n10\n\n05\n\nsess 00\n\n6. -0.5\n\neo 5\n45 Se\n\nwe. NL 2 4 6)?\n\n6 6 -4 4%)\n0.08 0.16 024 032 040 048 056 064\n\nerror"
+  },
+  {
+    "text": "what I had shown in the pseudo code. Okay? Now, let us execute this code and see what",
+    "start": 1672.08,
+    "end": 1677.48,
+    "ocr_text": "ft grad w(\n\nnp. exp(\n\nzip(x,Y)\nt(w.b.x)\n(tx\n\nxy\ntx\n\nf(w,b,x)\n(fx\n\nfx\n\nfx — f(w,b,x)\n\n(fx -y) © fx\ndo_gradient_descent()\nw, b, eta, max epochs\ni range(max epo:\n\ndw, db\n\nXY\n\ndw\n\nip(X, ¥)\ngrad_w(w, b, x,\nb, x,\n\n(wex\n\ny)\ny)\n\nRandom search on error surface\n\ned\n\n10\n\n05\n\nsess 00\n\n6. -0.5\n\neo 5\n45 Se\n\nwe. NL 2 4 6)?\n\n6 6 -4 4%)\n0.08 0.16 024 032 040 048 056 064\n\nerror"
+  },
+  {
+    "text": "happens. Okay? So, I will start with my random point which was minus 2 comma 2 and now",
+    "start": 1677.48,
+    "end": 1684.56,
+    "ocr_text": "Np .exp(- (wex\n\nXY zip(X,Y)\nfx = f(w,b.x)\n\ndef grad_b(w,b,x,y)\nfx f(w, b,x)\n\n(fx\n\ndef grad w(w,l »y)\nfx — f(w,b,x)\n(fx -y) © fx\n\ndef do_gradient_descent()\nw. b, eta, max epochs\ni range(max epochs)\ndw, db\nxy ip(X, Y)\ndw += grad_w(w, b,\ndb grad_b(w, b,\nw - eta * dw\n\nb eta © db\n\nGradient descent on the error surface\n\n1.0\n0S\n0.0\n\n-0.5\n\n-10\n6\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "I am going to actually run this code and keep plotting what happens on the figure. Okay?",
+    "start": 1684.56,
+    "end": 1689.96,
+    "ocr_text": "Np .exp(- (wex\n\nXY zip(X,Y)\nfx = f(w,b.x)\n\ndef grad_b(w,b,x,y)\nfx f(w, b,x)\n\n(fx\n\ndef grad w(w,l »y)\nfx — f(w,b,x)\n(fx -y) © fx\n\ndef do_gradient_descent()\nw. b, eta, max epochs\ni range(max epochs)\ndw, db\nxy ip(X, Y)\ndw += grad_w(w, b,\ndb grad_b(w, b,\nw - eta * dw\n\nb eta © db\n\nGradient descent on the error surface\n\n1.0\n0S\n0.0\n\n-0.5\n\n-10\n6\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "So, just pay attention. Fine? So, now here is how the code is running. See what is happening?",
+    "start": 1689.96,
+    "end": 1700.28,
+    "ocr_text": "Gradient descent on the error surface\n\nb)))\n-_\n\nnp-exp(- (wex\n\n1.0\n\n0.5\n\nzip(X,Y) :\nfx = f(w,b.x) aga\n0.0\n6 ' -0.5\n1.0\n— 6\n\n2\n~ 2\n46 6 4 2 %\nf(w,b, x)\n(fx y)\nf do qradient_descent()\nw, Db, eta, max epochs\ni range(max epochs) ~ 008 016\ndw, db 0.08 0.16\nxy ip(X, ¥)\ndw += grad_w(w, b, x, y)\nb, x, y)\naw\n\npeeilty,\n\nr4\n\nerror"
+  },
+  {
+    "text": "What is happening actually? So, at every point I am changing my w. So, that I am moving",
+    "start": 1700.28,
+    "end": 1706.32,
+    "ocr_text": "np-exp(-(w*x + b)))\n\nXY zip (X,Y)\nfx = f(w,b.x)\n\ngrad_b(w, b,x,\nfx = f(w,b,x)\n(fx\n\nf grad w( a\nfx — f(w,b,x)\n(fx y) © fx\n\ndo_gradient_descent()\nWw, Db, eta, max epochs\ni range(max epochs)\ndw, db\nx ip(X, ¥)\ndw «= grad_w(w, b, x, y)\ndb x, y)\nw\n\nb\n\nGradient descent on the error surface\n\n=\n\nxt\n\n“6a <>\nwd, __ ——\n\n1.0\n0S\n0.0\n\n-0.5\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "in the direction of the gradient. I keep doing that. As I keep doing that, my error keeps",
+    "start": 1706.32,
+    "end": 1711.56,
+    "ocr_text": "np-exp(-(w*x + b)))\n\nx,y zip(x,Y)\nfx = f(w.b.x)\n\ntf grad w(\n\nfx — f(w,b,x)\n(fx y)\n\ndo_gradient_descent()\nw, Db, eta, max epochs\n1 range(max epochs)\ndw, db\nip(X, ¥)\ngrad ww, b, x, y)\n» y)\n\nGradient descent on the error surface\n\n1.0\n0S\n0.0\n\n-0.5\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "decreasing. Why? Because that is exactly what we got from Taylor series. If we do this,",
+    "start": 1711.56,
+    "end": 1717.12,
+    "ocr_text": "np-exp(-(w*x + b)))\n\nx,y zip(x,Y)\nfx = f(w.b.x)\n\ntf grad w(\n\nfx — f(w,b,x)\n(fx y)\n\ndo_gradient_descent()\nw, Db, eta, max epochs\n1 range(max epochs)\ndw, db\nip(X, ¥)\ngrad ww, b, x, y)\n» y)\n\nGradient descent on the error surface\n\n1.0\n0S\n0.0\n\n-0.5\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "the error is bound to decrease. Right? And then we keep doing this and after a few iterations,",
+    "start": 1717.12,
+    "end": 1723.32,
+    "ocr_text": "xy\n\nnp-exp(-(w*x + b)))\n\nzip(x,Y)\n\nfx = f(w,b.x)\n\ngrad_b(w,\nfx f(w,b,\n(fx\n\nft grad w(\n\nfx - f(w,b,\n\n(fx\n\n))\n\nx)\n\nDM) te\n\ndo_gradient_descent()\n\nW, bd, eta,\n\nmax epochs\n\ni range(max epochs)\n\ndw, db\n\nip(X, ¥)\ngrad_w(w, b, x, y)\nx, y)\n\nGradient descent on the error surface\n\n1.0\n0S\n0.0\n\n-0.5\n\n1.0\n6\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "we will actually reach almost the value which is the zero error. Right? And this same thing",
+    "start": 1723.32,
+    "end": 1728.68,
+    "ocr_text": "xy\n\nnp-exp(-(w*x + b)))\n\nzip(x,Y)\n\nfx = f(w,b.x)\n\ngrad_b(w,\nfx f(w,b,\n(fx\n\nft grad w(\n\nfx - f(w,b,\n\n(fx\n\n))\n\nx)\n\nDM) te\n\ndo_gradient_descent()\n\nW, bd, eta,\n\nmax epochs\n\ni range(max epochs)\n\ndw, db\n\nip(X, ¥)\ngrad_w(w, b, x, y)\nx, y)\n\nGradient descent on the error surface\n\n1.0\n0S\n0.0\n\n-0.5\n\n1.0\n6\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "would happen if you start from anywhere else, it will keep moving in a principled way and",
+    "start": 1728.68,
+    "end": 1733.72,
+    "ocr_text": "np-exp(-(w*x + b)))\n\nXY zip (X,Y)\nfx = f(w,b.x)\n\ngrad_b(w, b,x,\nfx = f(w,b,x)\n(fx\n\nf grad w( A\nfx = f(w,b,x)\n(fx y) © fx\n\ndo_gradient_descent()\nWw, Db, eta, max epochs\ni range(max epochs)\ndw, db\nx ip(X, ¥)\ndw «= grad_w(w, b, x, y)\ndb x, y)\nw\n\nb\n\nGradient descent on the error surface\n\n—\n\neo\noN => —\nwy» . a 4\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "reach the low error configuration. Right? Now, some of you would say that maybe this was",
+    "start": 1733.72,
+    "end": 1738.08,
+    "ocr_text": "np-exp(-(w*x + b)))\n\nXY zip (X,Y)\nfx = f(w,b.x)\n\ngrad_b(w, b,x,\nfx = f(w,b,x)\n(fx\n\nf grad w( A\nfx = f(w,b,x)\n(fx y) © fx\n\ndo_gradient_descent()\nWw, Db, eta, max epochs\ni range(max epochs)\ndw, db\nx ip(X, ¥)\ndw «= grad_w(w, b, x, y)\ndb x, y)\nw\n\nb\n\nGradient descent on the error surface\n\n—\n\neo\noN => —\nwy» . a 4\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "the shortest path. Right? It could have just rolled over from there. But that is not a",
+    "start": 1738.08,
+    "end": 1742.32,
+    "ocr_text": "x.y\n\nnp-exp(-(w*x + b)))\n\nzip(X,Y)\n\nfx = f(w,b.x)\n\ndef grad_b(w,\nfx f(w,b,\n(fx\n\ndef grad w(\n\nfx — f(w,b,\n\n(fx\n\n“yd\nx)\ny) © fx\n\ndo_gradient_descent()\n\nWwW, b, eta,\n\nmax epochs\n\ni range(max epochs)\n\ndw, db\n\nxy ip(X, Y)\n\ndw\n\ngrad_w(w, b, x, y)\nb, x, y)\n\nGradient descent on the error surface\n\n-\n1.0\n0.5\n0.0\n6 ~~ -0.5\n_———— 1.0\n0) rv 1\n6 6 -4 -2 %\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "principled way of doing that. Right? The principled way of doing it is to move in the direction",
+    "start": 1742.32,
+    "end": 1745.88,
+    "ocr_text": "x.y\n\nnp-exp(-(w*x + b)))\n\nzip(X,Y)\n\nfx = f(w,b.x)\n\ndef grad_b(w,\nfx f(w,b,\n(fx\n\ndef grad w(\n\nfx — f(w,b,\n\n(fx\n\n“yd\nx)\ny) © fx\n\ndo_gradient_descent()\n\nWwW, b, eta,\n\nmax epochs\n\ni range(max epochs)\n\ndw, db\n\nxy ip(X, Y)\n\ndw\n\ngrad_w(w, b, x, y)\nb, x, y)\n\nGradient descent on the error surface\n\n-\n1.0\n0.5\n0.0\n6 ~~ -0.5\n_———— 1.0\n0) rv 1\n6 6 -4 -2 %\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "of the gradient. You might take a longer route, but reach your destination. Taking shortcuts",
+    "start": 1745.88,
+    "end": 1752.4,
+    "ocr_text": "np-exp(-(w'x + b)))\n\nx.y zip(\nfx = f(w,b.x)\n\ngrad w(w,b,x,\nfx — f(w,b,x)\n(fx y) © fx\n\nf do_qradient_descent()\nw. b, eta, max epochs\ni range(max epochs)\ndw, db\nxy ip(X, ¥)\ndw += grad_w(w, b,\ndb grad_b(w, b,\nw- eta © dw\n\nb - eta © db\n\nGradient descent on the error surface\n\n_\n\nx 10\n\na 05\n\nasa 0.0\n\n-6.\\ ~~ -0.5\n\n\\\n\n— 1.0\n\nwo, 2 4 67\n6 6 -4 -2 %\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "is always risky in life as well as here. Right? So, so, don't please, this is an advice",
+    "start": 1752.4,
+    "end": 1757.2,
+    "ocr_text": "np-exp(-(w'x + b)))\n\nx.y zip(\nfx = f(w,b.x)\n\ngrad w(w,b,x,\nfx — f(w,b,x)\n(fx y) © fx\n\nf do_qradient_descent()\nw. b, eta, max epochs\ni range(max epochs)\ndw, db\nxy ip(X, ¥)\ndw += grad_w(w, b,\ndb grad_b(w, b,\nw- eta © dw\n\nb - eta © db\n\nGradient descent on the error surface\n\n_\n\nx 10\n\na 05\n\nasa 0.0\n\n-6.\\ ~~ -0.5\n\n\\\n\n— 1.0\n\nwo, 2 4 67\n6 6 -4 -2 %\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "for your assignments and so on. Right? So, yeah. So, this is the more principled way and",
+    "start": 1757.2,
+    "end": 1762.36,
+    "ocr_text": "np. exp(\n\ndef grad w(w,b,x,\nfx = f(w,b,x)\n(fx y) © fx\n\ndef do_aradient_descent()\nw, Db, eta, max epochs\ni range(max epochs)\ndw, db\nx ip(X, ¥)\n\ndw += grad_w(w, b,\nb,\n\n(w\n\nx\n\ny)\ny)\n\nGradient descent on the error surface\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "we will reach this iteration. Right? So, that is what is happening here. So, we actually",
+    "start": 1762.36,
+    "end": 1766.36,
+    "ocr_text": "np. exp(\n\ndef grad w(w,b,x,\nfx = f(w,b,x)\n(fx y) © fx\n\ndef do_aradient_descent()\nw, Db, eta, max epochs\ni range(max epochs)\ndw, db\nx ip(X, ¥)\n\ndw += grad_w(w, b,\nb,\n\n(w\n\nx\n\ny)\ny)\n\nGradient descent on the error surface\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "derived everything that we needed and this is all you need to write for gradient descent",
+    "start": 1766.36,
+    "end": 1770.76,
+    "ocr_text": "peril,\n\nr 4\n\nnp.exp(\n\nXY zip(X,Y)\nfx = f(w,b.x)\n\ngrad_b(w,b,x,y)\nf(w,b,x)\n(fx - y)\n\nf grad w(w,b, x,y)\n\nfx = f(w,b,x)\n(fx y) © fx\n\nf do_aradient_descent()\nw. b, eta, max epochs\n1 range(max epochs)\ndw, db = 0,\nxy p(X, ¥)\ndw += grad_w(w, b, x, y)\nb, x, y)\n\nGradient descent on the error surface\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "for this toy example that you had. Now, answer this question. Now, suppose I had 100 such",
+    "start": 1770.76,
+    "end": 1777.16,
+    "ocr_text": "peril,\n\nr 4\n\nnp.exp(\n\nXY zip(X,Y)\nfx = f(w,b.x)\n\ngrad_b(w,b,x,y)\nf(w,b,x)\n(fx - y)\n\nf grad w(w,b, x,y)\n\nfx = f(w,b,x)\n(fx y) © fx\n\nf do_aradient_descent()\nw. b, eta, max epochs\n1 range(max epochs)\ndw, db = 0,\nxy p(X, ¥)\ndw += grad_w(w, b, x, y)\nb, x, y)\n\nGradient descent on the error surface\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "variables. Instead of W, B, I had 100 such variables. What would happen? We will not",
+    "start": 1777.16,
+    "end": 1787.36,
+    "ocr_text": "periley,\n\nN\n\nnp.exp(\n\nXY zip(X,Y)\nfx = f(w,b.x)\n\nf grad w(\n\nfx = f(w,b,x)\n(fx y)\n\nf do_qradient_descent()\n\nw. b, eta, max epochs\ni range(max epochs)\ndw, db = 0,\nxy p(X, ¥)\ndw s= grad_w(w, b, x, y)\nb, x, y)\n\nGradient descent on the error surface\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "try to visualize it in terms of the code. I will just need to have these functions for",
+    "start": 1787.36,
+    "end": 1797.28,
+    "ocr_text": "np.exp(\n\nXY zip(X,Y)\nfx = f(w,b.x)\n\nf grad w(\n\nfx = f(w,b,x)\n(fx y)\n\nf do_qradient_de nt()\nw. b, eta, max epochs\nil range(max epochs)\ndw, db\nxy p(X, ¥)\ndw += grad_w(w, b, x, y)\nb, x, y)\n\nGradient descent on the error surface\n\n-\n\n10\n\n0.5\n\n0.0\n\n6. > -0.5\n\n: ——— -1.0\n\noo 2 4 ‘\n6 6 -4 -2 %\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "all of those. Right? I will have to calculate it by hand, but still doable. It is just a",
+    "start": 1797.28,
+    "end": 1801.0,
+    "ocr_text": "Gradient descent on the error surface\n\nb)))\nFe\n\nnp. exp(-(w'x\n\nXY zip (X,Y)\nfx = f(w.b.x)\n\nerror\n\nN\nw0, Se 4\n4 4% 2\n6 6 4 ~2\nf grad w(\nfx = ftw,\n(fx\nf do gradient_descent()\nw, b, eta, max epochs\n0.08 0.16\n\ni in range(max epochs)\ndw, db\nmy rip(X, Y)\ndw += grad_w(w, b, x, y)\ndb"
+  },
+  {
+    "text": "lot of tedious work. Of course, later on we will see a more refined way of doing this,",
+    "start": 1801.0,
+    "end": 1805.6,
+    "ocr_text": "Gradient descent on the error surface\n\nb)))\nFe\n\nnp. exp(-(w'x\n\nXY zip (X,Y)\nfx = f(w.b.x)\n\nerror\n\nN\nw0, Se 4\n4 4% 2\n6 6 4 ~2\nf grad w(\nfx = ftw,\n(fx\nf do gradient_descent()\nw, b, eta, max epochs\n0.08 0.16\n\ni in range(max epochs)\ndw, db\nmy rip(X, Y)\ndw += grad_w(w, b, x, y)\ndb"
+  },
+  {
+    "text": "where we can do a lot of these computations at one go. Right? So, we can directly start",
+    "start": 1805.6,
+    "end": 1809.4,
+    "ocr_text": "Gradient descent on the error surface\n\nnp.exp(-(w°x + b)))\n-\n1.0\nXY zip (X,Y) 0.5\nfx = f(w.b.x)\n0.0\na ~~ , -0.!\n—— 1.0\n, 2 4 67\n6 6 -4 -2 %\nr grad w(\nfx = -f(w,t\n(fx\nf do gradient_descent()\nw. b, eta, max epochs\ni range(max epochs) ~ 0.08 0.16\ndw, db 0.08 0.16\nxy zip(X, Y)\ndw s= grad_w(w, b, x, y)\ndb\n> Aol\n\nerror"
+  },
+  {
+    "text": "operating in vectors as opposed to scalars here. Right? I am treating W and B separately",
+    "start": 1809.4,
+    "end": 1814.52,
+    "ocr_text": "Gradient descent on the error surface\n\nnp.exp(-(w°x + b)))\n-\n1.0\nXY zip (X,Y) 0.5\nfx = f(w.b.x)\n0.0\na ~~ , -0.!\n—— 1.0\n, 2 4 67\n6 6 -4 -2 %\nr grad w(\nfx = -f(w,t\n(fx\nf do gradient_descent()\nw. b, eta, max epochs\ni range(max epochs) ~ 0.08 0.16\ndw, db 0.08 0.16\nxy zip(X, Y)\ndw s= grad_w(w, b, x, y)\ndb\n> Aol\n\nerror"
+  },
+  {
+    "text": "here. I could have actually had a function which tells me grad of theta directly. Right?",
+    "start": 1814.52,
+    "end": 1819.92,
+    "ocr_text": "Gradient descent on the error surface\n\nnp.exp(-(w°x + b)))\n-\n1.0\nXY zip (X,Y) 0.5\nfx = f(w.b.x)\n0.0\na ~~ , -0.!\n—— 1.0\n, 2 4 67\n6 6 -4 -2 %\nr grad w(\nfx = -f(w,t\n(fx\nf do gradient_descent()\nw. b, eta, max epochs\ni range(max epochs) ~ 0.08 0.16\ndw, db 0.08 0.16\nxy zip(X, Y)\ndw s= grad_w(w, b, x, y)\ndb\n> Aol\n\nerror"
+  },
+  {
+    "text": "And later on we will see something like this. Okay? But for now, the code is still running",
+    "start": 1819.92,
+    "end": 1824.92,
+    "ocr_text": "np. exp(-(w\n\nXY zip (X,Y)\nfx = f(w.b.x)\n\nf(w, b,x)\n(fx y)\n\nf do qradient_descent()\nw. b, eta, max epochs\nil range(max epochs)\ndw, db\nxy zip(X, ¥)\ndw += grad_w(w, b, x, y)\ndb\n\nGradient descent on the error surface\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "here. Now, it suffices. So, later on we will see gradient descent in more detail in the",
+    "start": 1824.92,
+    "end": 1829.32,
+    "ocr_text": "np. exp(-(w\n\nXY zip (X,Y)\nfx = f(w.b.x)\n\nf(w, b,x)\n(fx y)\n\nf do qradient_descent()\nw. b, eta, max epochs\nil range(max epochs)\ndw, db\nxy zip(X, ¥)\ndw += grad_w(w, b, x, y)\ndb\n\nGradient descent on the error surface\n\n0.08 0.16\n\nerror"
+  },
+  {
+    "text": "course. And we will also see a lot of variance of gradient descent. But for now, it suffices",
+    "start": 1829.32,
+    "end": 1833.8,
+    "ocr_text": "@ Later on in the course we will look at gradient descent in much more detail and\n\ndis sits variants"
+  },
+  {
+    "text": "that we have an algorithm which can learn the parameters of a sigma and 0. Right? So, just",
+    "start": 1833.8,
+    "end": 1838.56,
+    "ocr_text": "@ Later on in the course we will look at gradient descent in much more detail and\n\ndis sits variants"
+  },
+  {
+    "text": "as we had the perceptron learning algorithm, we have the gradient descent learning algorithm",
+    "start": 1838.56,
+    "end": 1842.84,
+    "ocr_text": "@ Later on in the course we will look at gradient descent in much more detail and\n\ndis its variants\n\n5\n\ne For the time being it suffices to know that we have an algorithm for learning\n\nthe parameters of a sigmoid neuron"
+  },
+  {
+    "text": "which can help us learn the parameters of the sigma and 0.0 starting from random values.",
+    "start": 1842.84,
+    "end": 1847.8,
+    "ocr_text": "@ Later on in the course we will look at gradient descent in much more detail and\n\ndis its variants\n\n5\n\ne For the time being it suffices to know that we have an algorithm for learning\n\nthe parameters of a sigmoid neuron"
+  },
+  {
+    "text": "And it gives a principle approach for doing that.",
+    "start": 1847.8,
+    "end": 1849.84,
+    "ocr_text": "@ Later on in the course we will look at gradient descent in much more detail and\n\ndis its variants\n\n5\n\ne For the time being it suffices to know that we have an algorithm for learning\n\nthe parameters of a sigmoid neuron"
+  }
+]

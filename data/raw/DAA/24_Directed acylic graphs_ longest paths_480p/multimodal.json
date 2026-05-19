@@ -1,0 +1,1196 @@
+[
+  {
+    "text": "So, let us continue to look at DAGs and in this section we will look at a different problem",
+    "start": 0.0,
+    "end": 5.12,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "called identifying the longest path in a DAG.",
+    "start": 5.12,
+    "end": 8.56,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, recall that a directed acyclic graph is just a directed graph in which there is no",
+    "start": 8.56,
+    "end": 14.08,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "directed paths from any vertex back to itself.",
+    "start": 14.08,
+    "end": 16.76,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, it is directed and it is acyclic.",
+    "start": 16.76,
+    "end": 20.8,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "Any directed acyclic graph can be topologically ordered.",
+    "start": 20.8,
+    "end": 24.4,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "If we think of the vertices as being 1 to n, we can write out 1 to n in a sequence in",
+    "start": 24.4,
+    "end": 28.88,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "such a way that for every pair jk which is an edge, if jk is an edge in my graph, then",
+    "start": 28.88,
+    "end": 34.8,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "j will appear before k in the sequence.",
+    "start": 34.8,
+    "end": 36.76,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, if we think of these as tasks with dependencies, it means that I can do the task in such a way",
+    "start": 36.76,
+    "end": 42.84,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "that before I do k, I would have finished its dependent task j, right.",
+    "start": 42.84,
+    "end": 46.92,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 7\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nDAGs: Longest paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, this is called a topological sorting.",
+    "start": 46.92,
+    "end": 50.64,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "So, let us look at a different question about DAGs.",
+    "start": 50.64,
+    "end": 54.76,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "So, supposing we have this DAG and we imagine that the vertices represent courses and the",
+    "start": 55.0,
+    "end": 60.48,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "edges are prerequisites.",
+    "start": 60.48,
+    "end": 61.96,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "Now, these are courses that we have to do to maybe complete a degree.",
+    "start": 61.96,
+    "end": 66.04,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "Every course requires a semester, but we can do more than one course in a semester.",
+    "start": 66.04,
+    "end": 70.16,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "So, the question is, what is the minimum number of semesters that I need to complete this",
+    "start": 70.16,
+    "end": 75.32,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "program consisting of these 8 courses with these prerequisites?",
+    "start": 75.32,
+    "end": 79.64,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "So, clearly I can start by doing courses 1 and 2 in this first semester because they",
+    "start": 79.64,
+    "end": 84.36,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "have no prerequisites.",
+    "start": 84.36,
+    "end": 85.36,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "So, they can be done immediately.",
+    "start": 85.36,
+    "end": 87.28,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "Now, having done 1 and 2, I can do 3 because 3 has only depends on 1 and 2.",
+    "start": 87.28,
+    "end": 93.68,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "Similarly, I can do 4 and 5 because they depend only on 1.",
+    "start": 93.68,
+    "end": 97.08,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "Now, 8 depends on 1 and 2.",
+    "start": 97.08,
+    "end": 98.92,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "I need the material or at least depends on 2.",
+    "start": 98.92,
+    "end": 101.44,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "I need to have done 2 to do 8, but I still cannot do 8 because it also requires 5, 4 and",
+    "start": 101.44,
+    "end": 108.64,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "7.",
+    "start": 108.64,
+    "end": 109.64,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "So, at this point, the only courses which are available are 3, 4 and 5.",
+    "start": 109.64,
+    "end": 113.2,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "So, in my second semester, I can do 3, 4 and 5.",
+    "start": 113.2,
+    "end": 116.64,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "Now the only course for which all prerequisites are satisfied is 6 because 7 requires 6 which",
+    "start": 116.64,
+    "end": 121.2,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "is not been done and 8 requires 7 which is not been done.",
+    "start": 121.2,
+    "end": 123.92,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "So, in the third semester, I am stuck with doing only 1 course namely 6.",
+    "start": 123.92,
+    "end": 127.28,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "In this fourth semester, I can do 7 and finally, after 5 semesters, I can complete these",
+    "start": 127.28,
+    "end": 132.72,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "requirements.",
+    "start": 132.72,
+    "end": 133.72,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "So, in general, we can ask this question.",
+    "start": 133.72,
+    "end": 136.4,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "If I think of these as a diagram as representing courses, what is the minimum number of semesters?",
+    "start": 136.4,
+    "end": 141.92,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "Now this problem corresponds to asking for the longest path in the diagram.",
+    "start": 142.32,
+    "end": 148.08,
+    "ocr_text": "IML"
+  },
+  {
+    "text": "What we are saying is that it takes 5 semesters to complete 8 because there is a chain of",
+    "start": 148.08,
+    "end": 152.76,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "dependencies where 8 depends on 7.",
+    "start": 152.76,
+    "end": 156.76,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "7 depends on 6.",
+    "start": 156.76,
+    "end": 158.8,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "6 depends on say 3 or 4 it does not matter which one we choose and 3 depends on 1 and this",
+    "start": 158.8,
+    "end": 164.32,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "chain forces us to spend 4 semesters because there is a chain of length 4, 4 semesters before",
+    "start": 164.32,
+    "end": 169.72,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "I can do 8.",
+    "start": 169.72,
+    "end": 170.72,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "Notice that it is not the shortest chain because there are shorter chains for example, 8 to",
+    "start": 170.72,
+    "end": 175.2,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "2 takes us back to overtakes which has an degree 0 but this does not help us because after",
+    "start": 175.2,
+    "end": 179.6,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "2 I cannot do it.",
+    "start": 179.6,
+    "end": 180.6,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "So, I must wait for everything that has to happen before 8 in order to get the job done.",
+    "start": 180.6,
+    "end": 185.8,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "So unlike other problems where we might be looking at shortest paths here we are actually",
+    "start": 185.8,
+    "end": 189.8,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "interested in the longest path.",
+    "start": 189.8,
+    "end": 192.0,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "So, we can set up this problem as follows.",
+    "start": 192.0,
+    "end": 195.84,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "So we can say that for any vertex which has an degree 0 the longest path to that vertex",
+    "start": 196.16,
+    "end": 201.04,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "is of length 0 because I can do it immediately.",
+    "start": 201.04,
+    "end": 204.4,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "And on the other hand if I have a vertex whose it degree is not 0 then it has some incoming",
+    "start": 204.4,
+    "end": 211.32,
+    "ocr_text": "alent to 1aiIng longes atn in\ne(j) = 0, longest_path_to(j )\n), longest_path_to!\n\nlongest_path_to(j) } among"
+  },
+  {
+    "text": "edges so I have a vertex k.",
+    "start": 211.32,
+    "end": 214.64,
+    "ocr_text": "f indegree 0, longest_path_to(j) = 0\n), longest_path_to\n\nmax{ longest_path_to(j) } among al"
+  },
+  {
+    "text": "So, I must wait for all of these to finish and then do it.",
+    "start": 214.64,
+    "end": 218.68,
+    "ocr_text": "f indegree 0, longest_path_to(j) = 0\n), longest_path_to\n\nmax{ longest_path_to(j) } among al"
+  },
+  {
+    "text": "So if I take all of these I have to take among all of these I have to take the maximum length",
+    "start": 218.84,
+    "end": 225.68,
+    "ocr_text": "f indegree 0, longest_path_to(j) = 0\nfi r 0, longest_path_to!\n\n1 + max{ longest_path_to(j) } among al"
+  },
+  {
+    "text": "because that will be the last thing to finish and after that I have to do plus 1 to account",
+    "start": 225.68,
+    "end": 231.0,
+    "ocr_text": "f indegree(j) = 0, longest_path_to(j )\nfi =} 0, longest_path_to\n\nlongest_path_to(j) } amor\n\n1c j ne ours j of k"
+  },
+  {
+    "text": "for k.",
+    "start": 231.0,
+    "end": 232.0,
+    "ocr_text": "f indegree(j) = 0, longest_path_to(j )\nfi =} 0, longest_path_to\n\nlongest_path_to(j) } amor\n\n1c j ne ours j of k"
+  },
+  {
+    "text": "So if the degree is not 0 then the longest path to k has length 1 plus the maximum of the",
+    "start": 232.0,
+    "end": 237.76,
+    "ocr_text": "f indegree(j) = 0, longest_path_to(j )\nfi =} 0, longest_path_to\n\nlongest_path_to(j) } amor\n\n1c j ne ours j of k"
+  },
+  {
+    "text": "longest path to all its incoming layers.",
+    "start": 237.76,
+    "end": 242.0,
+    "ocr_text": "nt t ding longes ath in the D,\n\n= 0, longest_path_to(j) = 0\nfi yree ), longest_path_to\nax{ longest_path_to(j) } among a"
+  },
+  {
+    "text": "So therefore in order to compute the longest path to k I need to compute the longest",
+    "start": 242.0,
+    "end": 248.08,
+    "ocr_text": "nt t ding longes ath in the D,\n\n= 0, longest_path_to(j) = 0\nfi yree ), longest_path_to\nax{ longest_path_to(j) } among a"
+  },
+  {
+    "text": "path to all its incoming neighbors.",
+    "start": 248.08,
+    "end": 251.12,
+    "ocr_text": ">ompute longest_path_to(l\n\nd longest_path_to‘ Ul ir ning"
+  },
+  {
+    "text": "Now if we have arranged the vertices in topological order and we compute the longest path in that",
+    "start": 251.12,
+    "end": 257.72,
+    "ocr_text": ">ompute longest_path_to(l\n\nd longest_path_to‘ Ul ir ning"
+  },
+  {
+    "text": "sequence then when we get to k every incoming neighbor j will be on its left.",
+    "start": 257.72,
+    "end": 263.76,
+    "ocr_text": "To compute longest_path_tot\n\n» Need longest_path_to) r all inc\n\n= fe) e longest_path_to("
+  },
+  {
+    "text": "Hence we would have already computed its longest path so we would be able to take the",
+    "start": 263.76,
+    "end": 268.88,
+    "ocr_text": "To compute longest_path_tot\n\n» Need longest_path_to) r all inc\n\n= fe) e longest_path_to("
+  },
+  {
+    "text": "maximum of all of those and add one.",
+    "start": 268.88,
+    "end": 271.24,
+    "ocr_text": "* To compute longest_path_to(k)\n\nlongest_path_to! ral ir\n\ntenc {o} longest_path_to top: Ce"
+  },
+  {
+    "text": "So by sorting this vertices in topological order I can then compute the longest path",
+    "start": 271.24,
+    "end": 276.2,
+    "ocr_text": "* To compute longest_path_to(k)\n\nlongest_path_to! ral ir\n\ntenc {o} longest_path_to top: Ce"
+  },
+  {
+    "text": "in the same order with the guarantee that when I want to compute the longest path to",
+    "start": 276.2,
+    "end": 279.96,
+    "ocr_text": "* To com e longest_path_to(k\n\nd longest_path_to(j) for all ir ning"
+  },
+  {
+    "text": "a given vertex I have all the information available needed to do that namely all the",
+    "start": 279.96,
+    "end": 284.4,
+    "ocr_text": "* To com e longest_path_to(k\n\nd longest_path_to(j) for all ir ning"
+  },
+  {
+    "text": "longest paths for its incoming neighbors.",
+    "start": 284.4,
+    "end": 291.68,
+    "ocr_text": "* To com e longest_path_to(k\n\nd longest_path_to(j) for all ir ning"
+  },
+  {
+    "text": "So if I do it naively then I will write out my vertices in some topological order and",
+    "start": 291.68,
+    "end": 302.72,
+    "ocr_text": "or t ht, ¢ p longest_path_to!\n\nmax{ longest_path_to(i)) 1g"
+  },
+  {
+    "text": "now when I come to this vertex and I want to compute this longest path I will look at",
+    "start": 302.72,
+    "end": 307.0,
+    "ocr_text": "Bite «\nL a topological orderi\nIlr Te fe) 2: Dre his\n\nft to right, compute longest_path_to!\nmax{ longest_path_to(i)) }"
+  },
+  {
+    "text": "in my graph all the incoming edges and they will all be from vertices which appear before",
+    "start": 307.0,
+    "end": 311.92,
+    "ocr_text": "Fro t to right, compute longest_path_to|\n\nmax{ longest_path_to(i))"
+  },
+  {
+    "text": "so I can take the value here the value here the value here and then take its maximum",
+    "start": 311.92,
+    "end": 316.2,
+    "ocr_text": "Fro t to right, compute longest_path_to|\n\nmax{ longest_path_to(i))"
+  },
+  {
+    "text": "and then add one.",
+    "start": 316.2,
+    "end": 318.28,
+    "ocr_text": "e longest_path_to!\n\nlongest_path_to(i)) ong"
+  },
+  {
+    "text": "So actually we will see that you don't need to do this backwards you can actually do it",
+    "start": 318.28,
+    "end": 322.44,
+    "ocr_text": "e longest_path_to!\n\nlongest_path_to(i)) ong"
+  },
+  {
+    "text": "forward so we can actually incrementally compute the value at ik as we are going forwards",
+    "start": 322.44,
+    "end": 327.36,
+    "ocr_text": "e longest_path_to!\n\nlongest_path_to(i)) ong"
+  },
+  {
+    "text": "because going backwards requires to scan this list and look for all the incoming neighbors.",
+    "start": 327.36,
+    "end": 333.0,
+    "ocr_text": "t to right, c: yute longest_path_to(ix)\n\nnax{ longest_path_to(i))"
+  },
+  {
+    "text": "So we will kind of implicitly do this longest path calculation along with topological",
+    "start": 333.0,
+    "end": 337.28,
+    "ocr_text": "t to right, c: yute longest_path_to(ix)\n\nnax{ longest_path_to(i))"
+  },
+  {
+    "text": "sort side by side as we will see in the next example.",
+    "start": 337.28,
+    "end": 343.48,
+    "ocr_text": "yht, © Ite longest_path_to|\nmax{ longest_path_to(i))"
+  },
+  {
+    "text": "So here is an example in which we are going to compute the longest path as we are computing",
+    "start": 343.48,
+    "end": 348.88,
+    "ocr_text": "yht, © Ite longest_path_to|\nmax{ longest_path_to(i))"
+  },
+  {
+    "text": "the topological order.",
+    "start": 348.88,
+    "end": 350.92,
+    "ocr_text": "Cys\n\n8% ~,\nD> &,\n\n& ¢ ot\n365\n\nA oa]"
+  },
+  {
+    "text": "So as before the red numbers against the vertices are used for topological sort and they denote",
+    "start": 350.92,
+    "end": 356.64,
+    "ocr_text": "Cys\n\n8% ~,\nD> &,\n\n& ¢ ot\n365\n\nA oa]"
+  },
+  {
+    "text": "the indices.",
+    "start": 356.64,
+    "end": 357.64,
+    "ocr_text": "eee\nLongest"
+  },
+  {
+    "text": "So the initial indices are given by the initial edges in our graph and what we do is we",
+    "start": 357.64,
+    "end": 363.72,
+    "ocr_text": "eee\nLongest"
+  },
+  {
+    "text": "compute the longest path incrementally by starting by assuming that the longest path",
+    "start": 363.72,
+    "end": 367.8,
+    "ocr_text": "eee\nLongest"
+  },
+  {
+    "text": "to every vertex is actually 0.",
+    "start": 367.8,
+    "end": 371.0,
+    "ocr_text": "eee\nLongest"
+  },
+  {
+    "text": "Now when we enumerate a vertex and topological sort what we did earlier was to update the",
+    "start": 371.0,
+    "end": 377.36,
+    "ocr_text": "eee\nLongest"
+  },
+  {
+    "text": "indices.",
+    "start": 377.36,
+    "end": 378.36,
+    "ocr_text": "Indegree\nieacet pat\n\nKOE :\n\nee — ! 7\n\n2 Le N\n4 ! |"
+  },
+  {
+    "text": "So this is something that we already did.",
+    "start": 378.36,
+    "end": 380.56,
+    "ocr_text": "Indegree\nieacet pat\n\nKOE :\n\nee — ! 7\n\n2 Le N\n4 ! |"
+  },
+  {
+    "text": "But now the additional thing that we do is we say that well if the vertex 1 had to be",
+    "start": 380.56,
+    "end": 385.72,
+    "ocr_text": "Indegree\nieacet pat\n\nKOE :\n\nee — ! 7\n\n2 Le N\n4 ! |"
+  },
+  {
+    "text": "enumerated before 3, 4 and 5 then among the values that I know for the incoming edges",
+    "start": 385.72,
+    "end": 391.68,
+    "ocr_text": "Indegree\nieacet pat\n\nKOE :\n\nee — ! 7\n\n2 Le N\n4 ! |"
+  },
+  {
+    "text": "of 3, 4 and 5 0 was the maximum length.",
+    "start": 391.68,
+    "end": 395.68,
+    "ocr_text": "Indegree\nieacet pat\n\nKOE :\n\nee — ! 7\n\n2 Le N\n4 ! |"
+  },
+  {
+    "text": "So I must do 1 plus that.",
+    "start": 395.68,
+    "end": 397.0,
+    "ocr_text": "Indegree\nLongest Path"
+  },
+  {
+    "text": "So these paths are at least of length 1.",
+    "start": 397.0,
+    "end": 399.56,
+    "ocr_text": "Indegree\nLongest Path"
+  },
+  {
+    "text": "So the longest path to 3, 4 and 5 is at least 1.",
+    "start": 399.56,
+    "end": 403.72,
+    "ocr_text": "Indegree\nLongest Path"
+  },
+  {
+    "text": "Now if I enumerate vertex 4 then its longest path is at least 1.",
+    "start": 403.72,
+    "end": 410.76,
+    "ocr_text": "Indegree\nLongest Path"
+  },
+  {
+    "text": "So therefore the longest path to 6 must be at least 1 plus 1.",
+    "start": 410.76,
+    "end": 414.72,
+    "ocr_text": "Indegree\n\nLongest Path yi .\nOe sn\n\n10 & |\n\n\\"
+  },
+  {
+    "text": "Similarly the longest path to 8 must be at least 1 plus 1.",
+    "start": 414.72,
+    "end": 418.56,
+    "ocr_text": "Indegree\n\nLongest Path yi .\nOe sn\n\n10 & |\n\n\\"
+  },
+  {
+    "text": "And of course the integrals will also reduce as before.",
+    "start": 418.56,
+    "end": 421.16,
+    "ocr_text": "Indegree\nLongest Pat! 10\n\n—\n\n1,0\n\neae Nis\n\n0"
+  },
+  {
+    "text": "So the integrals of 6 goes down to 1, the integrals of 8 goes down to 3.",
+    "start": 421.16,
+    "end": 424.64,
+    "ocr_text": "Indegree\nLongest Pat! 10\n\n—\n\n1,0\n\neae Nis\n\n0"
+  },
+  {
+    "text": "But the longest path to 6 is now the longest path to 4 plus 1.",
+    "start": 424.64,
+    "end": 428.52,
+    "ocr_text": "Indegree\nLongest Pat! 10\n\n—\n\n1,0\n\neae Nis\n\n0"
+  },
+  {
+    "text": "So it is 2 and same rate.",
+    "start": 428.52,
+    "end": 431.24,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "Now supposing I enumerate vertex 2.",
+    "start": 431.24,
+    "end": 435.4,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "Now 2 will again say that the longest path because of 2 the longest path to 3 is 1 but",
+    "start": 435.4,
+    "end": 440.88,
+    "ocr_text": "Indegree\n\nLor"
+  },
+  {
+    "text": "it is already 1 so we do not change it.",
+    "start": 440.88,
+    "end": 443.16,
+    "ocr_text": "Indegree\n\nLor"
+  },
+  {
+    "text": "This will say because of 2 the longest path to 8 is at least 1 but we know it is at",
+    "start": 443.16,
+    "end": 446.64,
+    "ocr_text": "Indegree\n\nLor"
+  },
+  {
+    "text": "least 2 so again we do not change it.",
+    "start": 446.64,
+    "end": 448.2,
+    "ocr_text": "Indegree\n\nLor"
+  },
+  {
+    "text": "So when we delete a node then we take basically the current value of the longest path for",
+    "start": 448.2,
+    "end": 454.72,
+    "ocr_text": "Indegree\n\nLor"
+  },
+  {
+    "text": "its outgoing thing plus 1 or the current value of the deleted node plus 1 and what is",
+    "start": 454.72,
+    "end": 459.8,
+    "ocr_text": "Indegree\n\nLor"
+  },
+  {
+    "text": "already known about that node and we keep the maximum.",
+    "start": 459.8,
+    "end": 462.4,
+    "ocr_text": "Indegree\n\nLongest Path 00\n1 ° pi cee \\\neee al\n\nN\nN"
+  },
+  {
+    "text": "So in this case this one will become 0.",
+    "start": 462.4,
+    "end": 465.72,
+    "ocr_text": "Indegree\n\nLongest Path 00\n1 ° pi cee \\\neee al\n\nN\nN"
+  },
+  {
+    "text": "This 3 will become 2 but here there is no change and here there is no change.",
+    "start": 465.72,
+    "end": 472.64,
+    "ocr_text": "Indegree\n\nLongest Path 00\n1 ° pi cee \\\neee al\n\nN\nN"
+  },
+  {
+    "text": "Now likewise when I remove this 5 this 2 will become 1 but because 1 plus 1 is 2 and",
+    "start": 472.64,
+    "end": 479.16,
+    "ocr_text": "Indegree\n\nLongest Path 00\n1 ° pi cee \\\neee al\n\nN\nN"
+  },
+  {
+    "text": "we already know that 8 has a longest path of at least 2 we do not make any change in",
+    "start": 479.16,
+    "end": 484.64,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "the 2.",
+    "start": 484.64,
+    "end": 486.56,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "Now when we go to 3, 3 says it has a longest path of 1.",
+    "start": 486.56,
+    "end": 492.24,
+    "ocr_text": "Indegree\n\nLongest Path"
+  },
+  {
+    "text": "So therefore because of 3 the longest path to 6 is at least 2 but we already know it is",
+    "start": 492.24,
+    "end": 496.16,
+    "ocr_text": "Indegree\n\nLongest Path"
+  },
+  {
+    "text": "2 so again there is no change.",
+    "start": 496.16,
+    "end": 498.96,
+    "ocr_text": "Indegree\n\nongest Path"
+  },
+  {
+    "text": "Now we shall do something interesting.",
+    "start": 498.96,
+    "end": 500.52,
+    "ocr_text": "Indegree\n\nongest Path"
+  },
+  {
+    "text": "So we say that 6 has a longest path of 2.",
+    "start": 500.52,
+    "end": 503.44,
+    "ocr_text": "Indegree\n\nongest Path"
+  },
+  {
+    "text": "So far I believe it has a longest path of 0 but through 6 it has a longer path so",
+    "start": 503.44,
+    "end": 508.64,
+    "ocr_text": "Indegree\n\nongest Path"
+  },
+  {
+    "text": "the path to 7 must now be updated from 0 to 3.",
+    "start": 508.64,
+    "end": 515.96,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "And now because of this when we go from 7 to 8 the longest path for 8 must be updated",
+    "start": 515.96,
+    "end": 522.68,
+    "ocr_text": "Indegree\n\nLongest Path"
+  },
+  {
+    "text": "from 2 to 4.",
+    "start": 522.68,
+    "end": 526.52,
+    "ocr_text": "Indegree\n\nLongest Path"
+  },
+  {
+    "text": "And now finally this is my last vertex so I just enumerated and I computed long this",
+    "start": 526.52,
+    "end": 531.6,
+    "ocr_text": "Indegree\nLongest Patt"
+  },
+  {
+    "text": "path as 4.",
+    "start": 531.6,
+    "end": 532.88,
+    "ocr_text": "Indegree\nLongest Patt"
+  },
+  {
+    "text": "So what this has said is the longest path is 4 now we said that we done in 5 semesters",
+    "start": 532.88,
+    "end": 536.96,
+    "ocr_text": "Indegree\nLongest Patt"
+  },
+  {
+    "text": "the same example which basically means that in the first semester all those who longest",
+    "start": 536.96,
+    "end": 541.0,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "path is 0 the second semester all those who longest path is 1 and so we have the same",
+    "start": 541.0,
+    "end": 545.6,
+    "ocr_text": "Indegree"
+  },
+  {
+    "text": "sequence you had before so we initially do 1 and 2 in the first semester.",
+    "start": 545.6,
+    "end": 549.92,
+    "ocr_text": "Indegree\n\nLongest Path"
+  },
+  {
+    "text": "Then we do 3, 4 and 5 in the second semester.",
+    "start": 549.92,
+    "end": 552.48,
+    "ocr_text": "Indegree\n\nLongest Path"
+  },
+  {
+    "text": "Then we do 6 in the third semester 7 in the fourth semester and 8 in the fifth semester.",
+    "start": 552.48,
+    "end": 557.56,
+    "ocr_text": "Indegree\n\nLongest Path"
+  },
+  {
+    "text": "So this is exactly the solution that we obtained informally on our initial example.",
+    "start": 557.56,
+    "end": 564.44,
+    "ocr_text": "Indegree\nLongest Path"
+  },
+  {
+    "text": "So the pseudo code for longest path as we saw it is very similar to what we did for",
+    "start": 564.44,
+    "end": 568.24,
+    "ocr_text": "Indegree\nLongest Path"
+  },
+  {
+    "text": "the topological sort we just have to keep track of this extra longest path value.",
+    "start": 568.24,
+    "end": 572.84,
+    "ocr_text": "LPTLi] = 0\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "So when we initialize the indegree we also initialize the longest path to I to be 0 for",
+    "start": 572.84,
+    "end": 577.84,
+    "ocr_text": "LPTLi] = 0\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "every vertex.",
+    "start": 577.84,
+    "end": 579.32,
+    "ocr_text": "°\n\n\\\n\nLPT[i] =\n\nLPT[k] = maxCLPTLK], 1 + LPT[j])"
+  },
+  {
+    "text": "So this we are doing again first the adjacency list version.",
+    "start": 579.32,
+    "end": 582.32,
+    "ocr_text": "°\n\n\\\n\nLPT[i] =\n\nLPT[k] = maxCLPTLK], 1 + LPT[j])"
+  },
+  {
+    "text": "So we do n square work for each vertex we compute the indegree by looking at the column",
+    "start": 582.32,
+    "end": 588.8,
+    "ocr_text": "°\n\n\\\n\nLPT[i] =\n\nLPT[k] = maxCLPTLK], 1 + LPT[j])"
+  },
+  {
+    "text": "of the adjacency matrix with entry, column entry I.",
+    "start": 588.8,
+    "end": 592.92,
+    "ocr_text": "LPTLi] = @\n\nLPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "But we also update we initialize longest path to each I as 0.",
+    "start": 592.92,
+    "end": 597.12,
+    "ocr_text": "LPTLi] = @\n\nLPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "Now when we are doing this enumeration as before we choose any vertex with the indegree",
+    "start": 597.12,
+    "end": 602.6,
+    "ocr_text": "LPTCi] = @\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "0 we enumerate it and we update the indegree of this vertex to minus 1 so it is no longer",
+    "start": 602.6,
+    "end": 607.4,
+    "ocr_text": "LPTCi] = @\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "in contention for being chosen again.",
+    "start": 607.4,
+    "end": 610.12,
+    "ocr_text": "LPTCi] = @\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "Now for all its outgoing neighbors we update the indegree and we also update the longest",
+    "start": 610.12,
+    "end": 615.28,
+    "ocr_text": "LPTCi] = @\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "path.",
+    "start": 615.28,
+    "end": 616.28,
+    "ocr_text": "LPT[k] = maxC(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "So we take the longest path that we already know to that neighbor L p t of k and we take",
+    "start": 616.28,
+    "end": 620.76,
+    "ocr_text": "LPT[k] = maxC(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "1 plus the longest path for this node and whichever is larger we replace that back and",
+    "start": 620.76,
+    "end": 625.84,
+    "ocr_text": "LPT[k] = maxC(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "in p t of k.",
+    "start": 625.84,
+    "end": 626.84,
+    "ocr_text": "LPT[k} = maxCLPTLK], 1 + LPT[j])"
+  },
+  {
+    "text": "So it is a very simple variation of the basic topological ordering thing which allows us",
+    "start": 626.84,
+    "end": 631.52,
+    "ocr_text": "LPT[k} = maxCLPTLK], 1 + LPT[j])"
+  },
+  {
+    "text": "to also compute the longest path.",
+    "start": 631.52,
+    "end": 635.76,
+    "ocr_text": "LPT[k} = maxCLPTLK], 1 + LPT[j])"
+  },
+  {
+    "text": "So this has complexity order n square for the same reason that we had found that topological",
+    "start": 635.76,
+    "end": 642.36,
+    "ocr_text": "LPT[k} = maxCLPTLK], 1 + LPT[j])"
+  },
+  {
+    "text": "sort with adjacency matrix as order n square because we have these nested loops in order",
+    "start": 642.36,
+    "end": 646.76,
+    "ocr_text": "LPT[k} = maxCLPTLK], 1 + LPT[j])"
+  },
+  {
+    "text": "to scan all the neighbors.",
+    "start": 646.76,
+    "end": 649.08,
+    "ocr_text": "1 //Edges are in adjacency lis\n\nLPT[i] = @\n\n//proportional to outdegree(i)\n\nportional to outdegree(j)\n\nLPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "So as before we can update this whole thing using a adjacency list and a queue to make it",
+    "start": 649.08,
+    "end": 654.24,
+    "ocr_text": "1 //Edges are in adjacency lis\n\nLPT[i] = @\n\n//proportional to outdegree(i)\n\nportional to outdegree(j)\n\nLPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "a linear dem algorithm.",
+    "start": 654.24,
+    "end": 656.56,
+    "ocr_text": "1 //Edges are in adjacency lis\n\nLPT[i] = @\n\n//proportional to outdegree(i)\n\nportional to outdegree(j)\n\nLPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "So if you go back and look at the topological ordering algorithm you will find that the",
+    "start": 656.56,
+    "end": 661.8,
+    "ocr_text": "1 //Edges are in adjacency lis\n\nLPT[i] = @\n\n//proportional to outdegree(i)\n\nportional to outdegree(j)\n\nLPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "same changes are required to make it additionally compute the longest path.",
+    "start": 661.8,
+    "end": 665.44,
+    "ocr_text": "1 //Edges are in adjacency lis\n\nLPT[i] = @\n\n//proportional to outdegree(i)\n\nportional to outdegree(j)\n\nLPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "So what we do is initializing is again the same we do it for every vertex so this is",
+    "start": 665.44,
+    "end": 669.64,
+    "ocr_text": "//€dges are in adjacency list\n\nLPT[i] = @\n\n//proportional to outdegreeCi)\n\n//proportional to outdegree(j)\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "an order n step.",
+    "start": 669.64,
+    "end": 672.4,
+    "ocr_text": "//€dges are in adjacency list\n\nLPT[i] = @\n\n//proportional to outdegreeCi)\n\n//proportional to outdegree(j)\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "We initialize both the indegree and the longest path.",
+    "start": 672.4,
+    "end": 675.2,
+    "ocr_text": "//€dges are in adjacency list\n\nLPT[i] = @\n\n//proportional to outdegreeCi)\n\n//proportional to outdegree(j)\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "Then we go through all the adjacency list and together this is an order m step to compute",
+    "start": 675.2,
+    "end": 680.32,
+    "ocr_text": "//Edges are in adjacency list\n\np(n) for i = 1 ton LPT[i] = @\n\n7 //proportional to outdegree(i)\nOm\n\n//proportional to outdegree(j)\n\nLPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "the initial indegrees and now we have an order n step in order to set up this queue where",
+    "start": 680.32,
+    "end": 687.0,
+    "ocr_text": "//Edges are in adjacency list\n\np(n) for i = 1 ton LPT[i] = @\n\n7 //proportional to outdegree(i)\nOm\n\n//proportional to outdegree(j)\n\nLPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "we will process the topological ordering and then we do an outer loop of order n.",
+    "start": 687.0,
+    "end": 695.08,
+    "ocr_text": "//Edges are in adjacency list\n\ntla) for i=iton : LPT[i] = 0\n\n) //proportional to outdegreeCi)\nOm\n\n//proportional to outdegree(j)\n\nLPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "So this is an order n loop because everything is going to go into the queue once and come",
+    "start": 695.08,
+    "end": 698.44,
+    "ocr_text": "//€dges are in adjacency list\n\nLPT[i] = @\n\n‘) //proportional to outdegreeCi)\nOm\n\n/\n\nproportional to outdegree(j)\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "out.",
+    "start": 698.44,
+    "end": 699.44,
+    "ocr_text": "//€dges are in adjacency list\n\nLPT[i] = @\n\n‘) //proportional to outdegreeCi)\nOm\n\n/\n\nproportional to outdegree(j)\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "So we are going to remove from the queue n times and now because we are scanning the list",
+    "start": 699.44,
+    "end": 706.12,
+    "ocr_text": "//€dges are in adjacency list\n\nLPT[i] = @\n\n‘) //proportional to outdegreeCi)\nOm\n\n/\n\nproportional to outdegree(j)\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "across all the n iterations we are going to process each edge once.",
+    "start": 706.12,
+    "end": 709.96,
+    "ocr_text": "//Bdges are in adjacency list\n\ntla) LPT[i] = 0\nol ‘) //proportional to outdegree(i)\nm\n\nO(n)\nOf)\n\n//proportional to outdegree(j)\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "So the total work done in this loop is going to be order m.",
+    "start": 709.96,
+    "end": 715.56,
+    "ocr_text": "//Bdges are in adjacency list\n\ntla) LPT[i] = 0\nol ‘) //proportional to outdegree(i)\nm\n\nO(n)\nOf)\n\n//proportional to outdegree(j)\n\nLPT[k] = max(LPT[k], 1 + LPT[j])"
+  },
+  {
+    "text": "So we do exactly as before we update the indegree.",
+    "start": 715.56,
+    "end": 718.64,
+    "ocr_text": "//Edges are in adjacency list\n\np (n) LPT[i] = @\n{ //pre tional to outdegree(i)\n) Ce) propor’ g\n\nO(n)\nOf)\n\n//proportional to outdegree(j)\n\nom) LPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "We update the longest path to k is the maximum of the current value plus and one plus the",
+    "start": 718.64,
+    "end": 723.72,
+    "ocr_text": "//Edges are in adjacency list\n\np (n) LPT[i] = @\n{ //pre tional to outdegree(i)\n) Ce) propor’ g\n\nO(n)\nOf)\n\n//proportional to outdegree(j)\n\nom) LPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "value of the current node and if we do find that the k has now become a vertex with",
+    "start": 723.72,
+    "end": 729.08,
+    "ocr_text": "//Edges are in adjacency list\n\np (n) LPT[i] = @\n{ //pre tional to outdegree(i)\n) Ce) propor’ g\n\nO(n)\nOf)\n\n//proportional to outdegree(j)\n\nom) LPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "indegree 0 we add it to the queue.",
+    "start": 729.08,
+    "end": 735.44,
+    "ocr_text": "//Edges are in adjacency list\n\nLPT[i] = 0\n//proportional to outdegreeCi)\nO(m)\n\nO(n)\nOf)\n\n/\n\nproportional to outdegree(j)\n\noc] LPT[k] = maxCLPT[k], 1 + LPT[3])"
+  },
+  {
+    "text": "So digs are very useful because there are many situations where we want to model dependencies",
+    "start": 735.44,
+    "end": 740.36,
+    "ocr_text": "* Note: J tt I"
+  },
+  {
+    "text": "between various objects and topological ordering is a canonical algorithm to list out vertices",
+    "start": 740.36,
+    "end": 748.16,
+    "ocr_text": "* Note: J tt I"
+  },
+  {
+    "text": "without violating dependencies.",
+    "start": 748.16,
+    "end": 751.52,
+    "ocr_text": "* Note: C ) tt ie} tt hr"
+  },
+  {
+    "text": "What we have seen today is that we can compute the longest path in a dag and the longest",
+    "start": 751.52,
+    "end": 758.28,
+    "ocr_text": "* Note: C ) tt ie} tt hr"
+  },
+  {
+    "text": "path in a dag in some sense if we can list out vertices and groups, the longest path",
+    "start": 758.28,
+    "end": 763.64,
+    "ocr_text": "* Note: C ) tt ie} tt hr"
+  },
+  {
+    "text": "in a dag represents the minimum number of steps in order to enumerate all the vertices.",
+    "start": 763.64,
+    "end": 767.6,
+    "ocr_text": "* Note: C ) tt ie} tt hno"
+  },
+  {
+    "text": "So if we are going to courses and groups then if we want to bunch it and do things which",
+    "start": 767.6,
+    "end": 771.96,
+    "ocr_text": "* Note: C ) tt ie} tt hno"
+  },
+  {
+    "text": "are at the same level at one time then the minimum number of steps we need the minimum",
+    "start": 771.96,
+    "end": 776.48,
+    "ocr_text": "* Note: C ) tt ie} tt hno"
+  },
+  {
+    "text": "number of semesters to complete a set of courses or the minimum number of days to complete a",
+    "start": 776.48,
+    "end": 780.28,
+    "ocr_text": "* Note: C ing tt ie} tt hno"
+  },
+  {
+    "text": "set of tasks is given by the longest path.",
+    "start": 780.28,
+    "end": 784.96,
+    "ocr_text": "* Note: C ing tt ie} tt hno"
+  },
+  {
+    "text": "Now it is important that we have been able to find an efficient linear time algorithm",
+    "start": 784.96,
+    "end": 789.6,
+    "ocr_text": "* Note: C ing tt ie} tt hno"
+  },
+  {
+    "text": "for longest path only because we restricted our retention to dags.",
+    "start": 789.6,
+    "end": 793.96,
+    "ocr_text": "* Note: C ing tt ie} tt hno"
+  },
+  {
+    "text": "If we look at arbitrary graphs which are not necessarily dags and we want to find longest",
+    "start": 793.96,
+    "end": 798.68,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "paths of course if we have loops there is a longest path will be undefined because we",
+    "start": 798.68,
+    "end": 802.6,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "can go around and around a loop.",
+    "start": 802.6,
+    "end": 803.92,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "So if we define a longest path to be one in which we have a sequence of vertices with",
+    "start": 803.92,
+    "end": 808.52,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "no duplicates.",
+    "start": 808.52,
+    "end": 809.72,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "So the length is at most 10.",
+    "start": 809.72,
+    "end": 812.72,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "Then an arbitrary graph this is a very challenging problem and there is no no efficient algorithm.",
+    "start": 812.72,
+    "end": 817.48,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "In fact it is part of a group of highly intractable problems which are all equivalent to each",
+    "start": 817.48,
+    "end": 821.64,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "other and all believe to be very hard.",
+    "start": 821.64,
+    "end": 823.84,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "So dags are a very significant subclass of graphs which have many practical applications",
+    "start": 823.84,
+    "end": 830.64,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "and which admit efficient solutions for very important problems which are not in general",
+    "start": 830.64,
+    "end": 834.8,
+    "ocr_text": "* Note: C } ( pat"
+  },
+  {
+    "text": "solvable easily on the full class of graphs.",
+    "start": 834.8,
+    "end": 841.8,
+    "ocr_text": "* Note: C } ( pat"
+  }
+]

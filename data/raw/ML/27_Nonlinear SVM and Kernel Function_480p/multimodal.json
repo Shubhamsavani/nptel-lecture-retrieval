@@ -1,0 +1,1040 @@
+[
+  {
+    "text": "Good morning. Now, we look at today we will look at non-linear SVM and kernel functions",
+    "start": 0.0,
+    "end": 26.24,
+    "ocr_text": "chi\n\nearning"
+  },
+  {
+    "text": "in order to work with non-linear SVM. In the last class we have looked at linear SVM",
+    "start": 26.24,
+    "end": 52.76,
+    "ocr_text": "chi\n\nearning"
+  },
+  {
+    "text": "and we have also seen how to deal with noise in linear SVM. So, we can when the data sets",
+    "start": 52.76,
+    "end": 60.84,
+    "ocr_text": "bin"
+  },
+  {
+    "text": "are actually linearly separable, but there is some amount of noise in the boundary. We can",
+    "start": 60.84,
+    "end": 66.64,
+    "ocr_text": "bin"
+  },
+  {
+    "text": "approximate by a linear decision surface and allow soft margin by incorporating the slack",
+    "start": 66.64,
+    "end": 73.84,
+    "ocr_text": "bin"
+  },
+  {
+    "text": "variables. But what if the data set is truly non-linearly separable.",
+    "start": 73.84,
+    "end": 80.08,
+    "ocr_text": "bin"
+  },
+  {
+    "text": "So, what we can do is that we can use suppose x is our input attributes or input features.",
+    "start": 80.64,
+    "end": 90.08,
+    "ocr_text": "bin"
+  },
+  {
+    "text": "We can use a mapping to map x to phi x right. The original feature space or original attribute",
+    "start": 90.08,
+    "end": 101.32,
+    "ocr_text": "SUM and Kern tances\n_ ee"
+  },
+  {
+    "text": "space we can transform into a new feature space and in some cases it is possible that the",
+    "start": 101.32,
+    "end": 109.6,
+    "ocr_text": "SUM and Kern tances\n_ ee"
+  },
+  {
+    "text": "training points are linearly separable in the transformed feature space. So, usually we will be",
+    "start": 109.6,
+    "end": 117.8,
+    "ocr_text": "SUM and Kern tances\n_ ee"
+  },
+  {
+    "text": "mapping data to a higher dimensional feature space. And in some cases it is found that when you",
+    "start": 117.8,
+    "end": 133.2,
+    "ocr_text": "SUM and Kern tances\n_ ee"
+  },
+  {
+    "text": "map the data into an appropriate higher dimensional feature space in some case the dimension",
+    "start": 133.2,
+    "end": 139.84,
+    "ocr_text": "IM awd Kerak fan cbenas\n_\n\nx = 609\nMap > igh tim foltan s"
+  },
+  {
+    "text": "may be even infinite the points become linearly separable. Now, if we do use a big set of features,",
+    "start": 139.92,
+    "end": 150.16,
+    "ocr_text": "a\n\na\na\n\nh\nUA\n. of\nmn\n=\n“i\n\nZ\n\n4 CL"
+  },
+  {
+    "text": "then what about computational costs. We have seen earlier that while solving the SVM we need to find sigma",
+    "start": 150.16,
+    "end": 168.16,
+    "ocr_text": "Ds 2 eo\nMap te High lim fadinn space"
+  },
+  {
+    "text": "alpha j, alpha j, y i, y j, x i dot x j. So, we need to find the pair wise. So, if there are M",
+    "start": 169.84,
+    "end": 185.92,
+    "ocr_text": "M and KRerne tancaaws\n\nMop a hich him Pealirn space"
+  },
+  {
+    "text": "training examples we need to do M square computations like this and each time we need to find a dot",
+    "start": 185.92,
+    "end": 193.6,
+    "ocr_text": "fin\nM and Ke\nOnlnea \\\n\nabuse NN\n\nPs pa > ; .\n? Mop & igh dim Paltian\nGara pudodionet (S\n\nCid"
+  },
+  {
+    "text": "product of x i dot x j. Now, if these vectors have dimensionality d then finding the dot product takes",
+    "start": 193.6,
+    "end": 204.48,
+    "ocr_text": "fin\nM and Ke\nOnlnea \\\n\nabuse NN\n\nPs pa > ; .\n? Mop & igh dim Paltian\nGara pudodionet (S\n\nCid"
+  },
+  {
+    "text": "computation time O d square. So, total M square times d square time is taken. Now, if we transform it to a",
+    "start": 204.48,
+    "end": 214.16,
+    "ocr_text": "lovelinean SUM and Kern fancbaewes\n\nMop & Pig dim Polina space\n\nComputodiarel Casts ? j"
+  },
+  {
+    "text": "higher dimensional space this x i x j will become phi x i dot phi x j. And if this dimensionality d is much",
+    "start": 214.16,
+    "end": 228.08,
+    "ocr_text": "M and Kern fanctromes\n\nMop Br hig olim Palin space\nCornpitodionel Costa ?\n\no .»"
+  },
+  {
+    "text": "greater than small d, then this time taken will be O capital D square which will be quite large.",
+    "start": 228.08,
+    "end": 235.44,
+    "ocr_text": "ren M and Kerad antes\nrr\n\nMop 2 hig lim fealenn Space\n\nComputadianat Costs 2 ‘\n= F DSSS."
+  },
+  {
+    "text": "So, normally if we transform these features to a higher dimensional feature space it will lead to",
+    "start": 235.44,
+    "end": 243.28,
+    "ocr_text": "Cis\nA —\n\n60\n(a fz ~ Y space\nViop 1 Ww¢q\n\nTM: totione! lasts 2 DSL\nG iS\n\n. ho, 4 y bt) bm)"
+  },
+  {
+    "text": "higher computational cost. But we will see that by using kernel function",
+    "start": 243.52,
+    "end": 249.44,
+    "ocr_text": "Cis\nA —\n\n60\n(a fz ~ Y space\nViop 1 Ww¢q\n\nTM: totione! lasts 2 DSL\nG iS\n\n. ho, 4 y bt) bm)"
+  },
+  {
+    "text": "we can achieve this transformation without any major implication on computational cost.",
+    "start": 254.24,
+    "end": 262.56,
+    "ocr_text": "x — 669\nMap hig dim falar space\n\nsmputodionc! Ost 2\n: Ds\n\nM05 4 4 BE) 46)"
+  },
+  {
+    "text": "So, first let us see why we would be able to convert to a different feature space where the",
+    "start": 263.44,
+    "end": 273.52,
+    "ocr_text": "crad fancbemy\n—\n\nNp : high alm falta space\n\norn bse l st?\n\n2ha5 Hy Pls) 66)\nDs ae)"
+  },
+  {
+    "text": "points are linearly separable. Let us look at the first picture here. We have the black points",
+    "start": 273.52,
+    "end": 280.72,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(x)"
+  },
+  {
+    "text": "in a circle and the red points outside the circle. Now, these points in the x 1 x 2 with x 1 x 2",
+    "start": 280.72,
+    "end": 289.68,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(x)"
+  },
+  {
+    "text": "dimensions they are not separable by a linear classifier. However, if we go to a different feature",
+    "start": 289.68,
+    "end": 296.88,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(x)"
+  },
+  {
+    "text": "space where the axis are x 1 square and x 2 square we can plot this black and red points here",
+    "start": 296.88,
+    "end": 304.48,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(&)"
+  },
+  {
+    "text": "again. And in this case we find that they can be separated linearly in the transformed feature",
+    "start": 304.48,
+    "end": 311.76,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(&)"
+  },
+  {
+    "text": "space x 1 square x 2 square. A simpler example let us look at these points",
+    "start": 311.76,
+    "end": 319.04,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(x)"
+  },
+  {
+    "text": "when there is a single feature x 1. We have this red points at the black points and clearly they",
+    "start": 320.72,
+    "end": 327.04,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\n@O:x — d(x)"
+  },
+  {
+    "text": "are not linearly separable. Now, we may convert this to a point x 1 square and these points may",
+    "start": 327.04,
+    "end": 336.8,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\n@O:x — d(x)"
+  },
+  {
+    "text": "become linearly separable. Suppose, this is the origin. So, this is the origin and these are the",
+    "start": 336.96,
+    "end": 342.72,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(x)"
+  },
+  {
+    "text": "points are those points which are you know let us say this is point 3 and this is minus 3",
+    "start": 342.72,
+    "end": 348.64,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(x)"
+  },
+  {
+    "text": "those are within minus 3 and plus 3 are linearly separable. Now, when we transform this to this",
+    "start": 349.2,
+    "end": 355.12,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(x)"
+  },
+  {
+    "text": "space then these points will lie between 0 and 9 and these points beyond 9. So, they will become",
+    "start": 355.12,
+    "end": 362.96,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(x)"
+  },
+  {
+    "text": "linearly separable. So, it is possible as we saw in this picture that in certain cases when",
+    "start": 362.96,
+    "end": 370.56,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(x)"
+  },
+  {
+    "text": "you convert the feature space to an appropriate high dimensional feature space the points may",
+    "start": 370.56,
+    "end": 377.76,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n, —- <\n\nO:x — d(&)"
+  },
+  {
+    "text": "become linearly separable. Here is one more example here we have these red and blue points",
+    "start": 377.76,
+    "end": 384.96,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\nThis slide is from www. iro.umontreal.ca/~pift6080/documents/papers/svm_tutorial.ppt"
+  },
+  {
+    "text": "after transformation we have we transform it. So, originally we have two features. Now,",
+    "start": 384.96,
+    "end": 391.44,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\nThis slide is from www. iro.umontreal.ca/~pift6080/documents/papers/svm_tutorial.ppt"
+  },
+  {
+    "text": "we have three features and with these three features we are able to separate these points in the",
+    "start": 391.44,
+    "end": 397.92,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\n°e 2. e\ne\na a e .°\na \\\na\ne he\ne le\ne aa .\ne\n\nThis slide is from www. iro.umontreal.ca/~pift6080/documents/papers/svm_tutorial.ppt"
+  },
+  {
+    "text": "new feature space. So, this brings us so, this is one aspect that points which are not separable",
+    "start": 397.92,
+    "end": 409.68,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\nThis slide is from www. iro.umontreal.ca/~pift6080/documents/papers/svm_tutorial.ppt"
+  },
+  {
+    "text": "linearly in up in the original feature space may become separable in the non-linear feature space.",
+    "start": 410.48,
+    "end": 419.44,
+    "ocr_text": "Non-linear SVMs: Feature Space\n\nThis slide is from www. iro.umontreal.ca/~pift6080/documents/papers/svm_tutorial.ppt"
+  },
+  {
+    "text": "The second thing that we will look at is there are certain cases certain types of feature",
+    "start": 419.52,
+    "end": 427.12,
+    "ocr_text": "i)"
+  },
+  {
+    "text": "transformations where after transformation the SVM can be solved efficiently. This brings us to",
+    "start": 427.12,
+    "end": 435.76,
+    "ocr_text": "i)"
+  },
+  {
+    "text": "the notion of kernel function or kernels. Now, we have originally suppose two points xA",
+    "start": 435.76,
+    "end": 449.2,
+    "ocr_text": "Norelinear SUM anc Kero fancbrerne\nSo ——"
+  },
+  {
+    "text": "and xB and by using this transformation phi they now become the new features become new inputs become",
+    "start": 449.36,
+    "end": 458.32,
+    "ocr_text": "Norelinear SUM anc Kero fancbrerne\nSo ——"
+  },
+  {
+    "text": "phi xA and phi xB. Now, as we saw in the solution of SVM we need to find xA dot xB and when we use",
+    "start": 458.32,
+    "end": 472.24,
+    "ocr_text": "Kern\n\nPron M aud Kernd fncbows\nTT\n\nXa Xb\n\nbbe) by"
+  },
+  {
+    "text": "these phi we will have to solve phi xA dot phi xB.",
+    "start": 473.12,
+    "end": 478.0,
+    "ocr_text": "l finery\nA Kerad F\n\n\\ awd f\n\nM4 A\n\nb x = 6\n\nCoen Xo\n\n(x) , yy"
+  },
+  {
+    "text": "Now, there are certain phi's there are certain phi's not for all functions. So, that corresponding",
+    "start": 482.8,
+    "end": 490.8,
+    "ocr_text": "l finery\nA Kerad F\n\n\\ awd f\n\nM4 A\n\nb x = 6\n\nCoen Xo\n\n(x) , yy"
+  },
+  {
+    "text": "to them we have something like this that phi xA dot phi xB is a function of xA and xB",
+    "start": 490.96,
+    "end": 503.44,
+    "ocr_text": "S iM\nL Ke\nernad in\naay\n\nCrane. a”\ni ee\n2 a6 |\nroe"
+  },
+  {
+    "text": "and this function of xA and xB in certain cases can be computed without expanding phi xA and phi",
+    "start": 504.64,
+    "end": 513.92,
+    "ocr_text": "M and Kerat frowns\n\nb x = 60¢\n“Cpanel Xa Xb a\n— ps) hes). 4)\n\n(«).6¢\nWi\n\nra"
+  },
+  {
+    "text": "xB. So, this particular function k xA xB is a function of xA xB and the value of this is same as",
+    "start": 514.08,
+    "end": 524.08,
+    "ocr_text": "La. Xp\n\nPA). bo\n\n7"
+  },
+  {
+    "text": "the dot product of phi xA and phi xB, but this function may be easy to compute and more specifically",
+    "start": 524.08,
+    "end": 532.56,
+    "ocr_text": "Se\n\n‘\n4\n\new\n\n; nds NON\n\nKernel Xa *\n\npbs 66+)\n\nk (ea, = P66.)\n\nhes) $0)"
+  },
+  {
+    "text": "we may be able to compute this function without expanding this phi's individual phi's.",
+    "start": 532.56,
+    "end": 538.48,
+    "ocr_text": "Kernd fancbems\nM aud f\nnN ae\nI\n\nKernel via) oe) #6)-4+)"
+  },
+  {
+    "text": "So, such functions are called kernel function. So, if you use kernel functions we can use the",
+    "start": 539.12,
+    "end": 545.44,
+    "ocr_text": "2 Xb"
+  },
+  {
+    "text": "kernel to do the work. So, in the solution of SVM where we have to find phi xA dot phi xB",
+    "start": 545.44,
+    "end": 551.76,
+    "ocr_text": "db 7% es)\n\nXo Xb 1S ee\noO\nK (es, x,) ae Pg\n\n/"
+  },
+  {
+    "text": "normally we will for every example we will expand phi xA expand phi xB take the dot product,",
+    "start": 551.76,
+    "end": 558.56,
+    "ocr_text": "db 7% es)\n\nXo Xb 1S ee\noO\nK (es, x,) ae Pg\n\n/"
+  },
+  {
+    "text": "but for kernel functions we can simply use this function k xA xB.",
+    "start": 558.64,
+    "end": 565.68,
+    "ocr_text": "D % =p C)\nCreal. Xo %b Ya. %1,\nhe) 66s) 2). 6)\nxa, x,) a AC). 6G)\n\nSs"
+  },
+  {
+    "text": "So, for certain phi's there is a simple operation k by which we can find this dot product of phi",
+    "start": 567.52,
+    "end": 574.88,
+    "ocr_text": "D % =p C)\nCreal. Xo %b Ya. %1,\nhe) 66s) 2). 6)\nxa, x,) a AC). 6G)\n\nSs"
+  },
+  {
+    "text": "in simple time. So, this is called the kernel trick and when we apply the kernel trick",
+    "start": 574.88,
+    "end": 582.24,
+    "ocr_text": "D % =p C)\nCreal. Xo %b Ya. %1,\nhe) 66s) 2). 6)\nxa, x,) a AC). 6G)\n\nSs"
+  },
+  {
+    "text": "as we saw that when we use an SVM to classify a test point x we apply w dot phi x plus B which is",
+    "start": 582.72,
+    "end": 589.72,
+    "ocr_text": "Nonlinear SVMs: The Kernel Trick\n\nECD =w' Ax) +b = >) a A(%,)\" dC) +b\n\nieSV"
+  },
+  {
+    "text": "equal to alpha i phi xI dot phi x plus B where i corresponds to the support vectors for which alpha i is non-zero.",
+    "start": 595.92,
+    "end": 603.92,
+    "ocr_text": "Nonlinear SVMs: The Kernel Trick\n\nEQ) = wd) +b = S) aA, dC) +b\nissv"
+  },
+  {
+    "text": "Now, if we are using the kernel trick this phi xI dot phi x which we have to compute can be",
+    "start": 603.92,
+    "end": 612.16,
+    "ocr_text": "Nonlinear SVMs: The Kernel Trick\n\nEQ) = wd) +b = S) aA, dC) +b\nissv"
+  },
+  {
+    "text": "computed as kernel function of xI and x. So, we have seen that in the formulation of SVM and",
+    "start": 612.16,
+    "end": 622.48,
+    "ocr_text": "Nonlinear SVMs: The Kernel Trick\n\n=w' b= a\nEO =w gs) + par Zoo) a\n\nb\n\nar"
+  },
+  {
+    "text": "the solution of the dual problem the dot product we are using the feature vectors both",
+    "start": 622.48,
+    "end": 629.92,
+    "ocr_text": "Nonlinear SVMs: The Kernel Trick\n\nWith this mapping, our discriminant function is now:\n\ngO) =w d@)+b= >> alos, Y¥ dCOH 6\n\nisv\nWe only use the dot product of feature vectors in both\nthe training and test.\nA kernel function is defined as a function that\ncorresponds to a dot product of two feature vectors in\nsome expanded feature space:\nK Xa, Xp) = $a). b(Xd)"
+  },
+  {
+    "text": "you are in training as well as test only as the dot product or scalar product.",
+    "start": 629.92,
+    "end": 635.36,
+    "ocr_text": "Nonlinear SVMs: The Kernel Trick\n\nWith this mapping, our discriminant function is now:\n\nBX) =w' d@)+b= >) abs, Y¥ dCOH 6\n\nissv\nWe only use the dot product of feature vectors in both\nthe training and test.\nA kernel! function is defined as a function that\ncorresponds to a dot product of two feature vectors in\nsome expanded feature space:\nK a, Xp) = $a). P(Xd)"
+  },
+  {
+    "text": "And we have also seen that a kernel function is a function which corresponds to the dot product",
+    "start": 636.24,
+    "end": 642.4,
+    "ocr_text": "Nonlinear SVMs: The Kernel Trick\n\nWith this mapping, our discriminant function is now:\n\nBX) =w' d(x) +b = > a|d(x,)\" db\n\niv\nWe only use the dot product of feature vectors in both\nthe training and test.\nA kernel function is defined as a function that\ncorresponds to a dot product of two feature vectors in\nsome expanded feature space:\nK (a, Xp) = $a). Pd)"
+  },
+  {
+    "text": "of two feature vectors in some expanded feature space. So, if you are using the kernel function",
+    "start": 642.4,
+    "end": 648.8,
+    "ocr_text": "Nonlinear SVMs: The Kernel Trick\n\nWith this mapping, our discriminant function is now:\n\nBX) =w' d(x) +b = > a|d(x,)\" db\n\niv\nWe only use the dot product of feature vectors in both\nthe training and test.\nA kernel function is defined as a function that\ncorresponds to a dot product of two feature vectors in\nsome expanded feature space:\nK (a, Xp) = $a). Pd)"
+  },
+  {
+    "text": "what we can do is that instead of phi xI dot phi x we can have k xI x and this will make the",
+    "start": 648.8,
+    "end": 657.36,
+    "ocr_text": "Nonlinear SVMs: The Kernel Trick\n\nWith this mapping, our discriminant function is now:\n\ngO =w d@)+b=>> abs, Y¥ dCOH 6\n\nissv\nWe only use the dot product of feature vectors in both\nthe training and test.\nA kernel! function is defined as a function that\ncorresponds to a dot product of two feature vectors in\nsome expanded feature space:\nK (Xa, Xp) = $a). P(X)"
+  },
+  {
+    "text": "computation simpler. So, this k xI x may be inexpensive to compute even if phi x may be",
+    "start": 657.36,
+    "end": 665.2,
+    "ocr_text": "The kernel trick\n\nKa, Xp) = P&a)- bd)\nOften K (xg, xp) may be very inexpensive to compute even if\n(qa) may be extremely high dimensional."
+  },
+  {
+    "text": "extremely high dimensional. Let us now look at an example of a kernel function.",
+    "start": 665.2,
+    "end": 671.44,
+    "ocr_text": "Kernel Example\n\n2-dimensional vectors X = [x,x2]\nlet K(x;,x,;) = (1 + x;.x,)?\nWe need to show that K(x;,x;) = (xi). P(@x;)\n\nK(x),)) = (1 + xj),\n=1+ Xj?Xj12 + 2 XixXj1 Xi2Xj2t Xi2?Xj27 + 2X )1%)j1 + 2Xj2Xj2\n= [1 xj17 V2 XjqXi2 Xj2* V2Xjq V2Xj2)-[1 Xj? V2 Xj2%j2_ Xj2* V2Xj1 V2Xj2)\n= (x). b(x)),\nwhere (x) = [1 x? V2 x,xX x2? V2x, V2x3]"
+  },
+  {
+    "text": "So, let us assume a two dimensional vector x which has two components x1 and x1 and x2 are the",
+    "start": 672.4,
+    "end": 681.92,
+    "ocr_text": "Kernel Example\n\n2-dimensional vectors X = [x,x2]\nlet K(x;,x,;) = (1 + x;.x,)?\nWe need to show that K(x;,x;) = (xi). P(@x;)\n\nK(x),)) = (1 + xj),\n=1+ Xj?Xj12 + 2 XixXj1 Xi2Xj2t Xi2?Xj27 + 2X )1%)j1 + 2Xj2Xj2\n= [1 xj17 V2 XjqXi2 Xj2* V2Xjq V2Xj2)-[1 Xj? V2 Xj2%j2_ Xj2* V2Xj1 V2Xj2)\n= (x). b(x)),\nwhere (x) = [1 x? V2 x,xX x2? V2x, V2x3]"
+  },
+  {
+    "text": "two attributes of this vector x. Now, let us say k of xI xj.",
+    "start": 681.92,
+    "end": 704.32,
+    "ocr_text": "Kernel Example\n\n2-dimensional vectors X = [x,x2]\nlet K(x;,xj) = (1 + xj. x,)?\nWe need to show that K (xi, xj) = p(x). yj)\n\nK(x;.%)) = (1 + x95),\n=1+ Xig?Xjx? + 2 XixXj1 Xi2Xj2t Xi2?Xj2? + 2X )1%)j1 + 2Xi2Xj2\n= [DL Xjq7 V2 Xi2Xi2_ Xin? V2Xjq V2%iq)-[L jx? V2 XjxXjo_ Xjo? V2AXjq V2Xja)\n= (x). (<),\n\nwhere (x) = [1 x? V2 x,xX> Xz? V2x, V2x3]"
+  },
+  {
+    "text": "Let us take k xI xj equal to 1 plus xI dot xj whole square. So, k of xI xj xI xj are two vectors",
+    "start": 704.4,
+    "end": 724.32,
+    "ocr_text": "K(\n\nrelinear SUM and Kerak tances\nrr\n\n%"
+  },
+  {
+    "text": "corresponding to the attributes in the original attribute space k xI xj is equal to now this is the",
+    "start": 725.04,
+    "end": 732.96,
+    "ocr_text": "UM and Kernd farce\nSe\n\nX= }e xe|\nK(X %) = = (i+ nke"
+  },
+  {
+    "text": "kernel function which is 1 plus xI dot xj whole square. Now, this function is easy to compute",
+    "start": 732.96,
+    "end": 740.56,
+    "ocr_text": "UM and Kernd farce\nSe\n\nX= }e xe|\nK(X %) = = (i+ nke"
+  },
+  {
+    "text": "in order to compute this function you take the dot product of the original attribute space add one",
+    "start": 740.56,
+    "end": 746.16,
+    "ocr_text": "Gow"
+  },
+  {
+    "text": "and take the square. Now, we will show that this k xI xj corresponds to a kernel function.",
+    "start": 746.16,
+    "end": 753.6,
+    "ocr_text": "Gow"
+  },
+  {
+    "text": "Now, we can expand k xI xj to 1 plus xI xj whole square. So, xI has two components xI 1 xI 2",
+    "start": 754.4,
+    "end": 769.76,
+    "ocr_text": "Norelinear SUM and Keraet fan\nOnes A"
+  },
+  {
+    "text": "similarly xI has two component xj1 xj2. Now, we can expand this function as 1 plus",
+    "start": 770.48,
+    "end": 781.6,
+    "ocr_text": "rea SUI M and Kerad fncews\n\naiid ee fi\n\nBY De\n' aes 4"
+  },
+  {
+    "text": "xI 1 square xj1 square plus 2 times xI 1 xj1 xj2 xI 2 xj2 plus we have xI 2 square",
+    "start": 781.6,
+    "end": 809.84,
+    "ocr_text": "SUM and Kerat fancbows\n\nes\n\nX= aid — aa Hr |\nKO %, X)) = (4 coe DG: Mal\n\neit\n\n3 \"Or eae\n> ———"
+  },
+  {
+    "text": "xj2 square plus 2 xI 1 xj1 plus 2 times xI 2 xj2. Now, this algebraic expression can be",
+    "start": 810.16,
+    "end": 836.8,
+    "ocr_text": "M aud Kerad finbows\n\npie\n\nX= Pa x a x\n\nKC %, x) = (14 Koy Mi 421\n\naie\naie iy + 2x” Gsm"
+  },
+  {
+    "text": "rewritten as the product of 1 plus xI 1 square rather it can be rewritten as the dot product of two",
+    "start": 836.8,
+    "end": 851.6,
+    "ocr_text": "( von SUM ¢ wh Kerad fan bons\nX- ae 5 a wel\n\na\nI+ are oe, a\n\nTi) 2\n\n2\n2 8% + Cam a\n| a"
+  },
+  {
+    "text": "vectors which you can easily verify 1 xI 1 square root 2 xI 1 xI 2 and xI 2 square",
+    "start": 851.6,
+    "end": 870.16,
+    "ocr_text": "and Kernd finches\n\n_———$—<$—\n\nX= |x, xe | ia Hal\n\n2k\nNae 2, gS, += 2K %, 5 Cea\n\naj\n\npry 4%) + 2x5\n\ncs\n\nXo"
+  },
+  {
+    "text": "and root 2 xI 1 root 2 xI 2 dot product with let me write in the line below 1.",
+    "start": 870.16,
+    "end": 887.52,
+    "ocr_text": "new M and Kerad fnew\n\n———$—<$\n\nX= Pe xl YG a\n\nKO X:, x) = (4 Kok [Ki Xia\n\ncL Z0GeG), Kp Xj oS is hae\n\nee\na G Zi ar ZXi2X% 4\n\nwae HAC e"
+  },
+  {
+    "text": "The next component is xj1 square next component is root over xj1 xj2 then xj2 square",
+    "start": 887.6,
+    "end": 904.64,
+    "ocr_text": "SUM and Kara ancbens\ni .\nXe aor a [a 21\n\n= |Feanea ee %e + Ge y=\n\neli} 12 Me\n\n= = oA.\nae fut cia 7am\n\n: au: in Linx Ao Xa 2%, pe"
+  },
+  {
+    "text": "then next component is root over 2 xj1 root over 2 xj2. So, each of this is 3 4 5 6 each of this is a",
+    "start": 905.2,
+    "end": 918.0,
+    "ocr_text": "X= Pe wel Pe\n\n(x, Be = (14 Kok ss 41\neee TI f y Xo ee Hee\n“by pe Bo 2"
+  },
+  {
+    "text": "6 dimensional vector. So, this expression can be written as a dot product of these two vectors",
+    "start": 918.72,
+    "end": 925.84,
+    "ocr_text": "Ziel"
+  },
+  {
+    "text": "and you can easily verify by expanding this. So, k xI xj which is 1 plus xI dot xj whole square",
+    "start": 925.84,
+    "end": 934.4,
+    "ocr_text": "SUM and Kerak fanboy\n\n=\n\na pee 2 hs oe\n§ 2% as ee . =\n\nTi) Bo\n\nabi A224, %, Cine 25 2%, ke.\n2D.\nbax le 7 ee Pe]"
+  },
+  {
+    "text": "can be written as a dot product of these two vectors. So, we can write that k x1 x2",
+    "start": 934.8,
+    "end": 946.08,
+    "ocr_text": "SUM and Kerak fanboy\n\n=\n\na pee 2 hs oe\n§ 2% as ee . =\n\nTi) Bo\n\nabi A224, %, Cine 25 2%, ke.\n2D.\nbax le 7 ee Pe]"
+  },
+  {
+    "text": "equal to 1 plus xI dot xj whole square instead of 1 2 let me write xI xj k xI xj equal to 1 plus xI xj whole square",
+    "start": 946.24,
+    "end": 974.4,
+    "ocr_text": "M and Kerad fancews\n\nKy, = Gens, 421\n\n| pet ( 7 -\niT MBG, + 2X hy hig G2 EME “iz\n“Bi %y, te Zags Xo\n\n2 Lis Xi) oe 2%, Rol.\nr P%%o x2 bY P|"
+  },
+  {
+    "text": "equal to dot product of this and this can be written as phi of xI dot phi of xj.",
+    "start": 974.88,
+    "end": 984.08,
+    "ocr_text": "aud Kernd fanboy\n\n_\n\nK (x, @= = fe XX . eX, A |\n\n, Fi a + SH hy us = ira\n\n' + 2% mee .\nBe 0%. AE pa, pal.\n= bux Bip ice hee, Pel"
+  },
+  {
+    "text": "So, if we transform the xI to this new space where phi xI transforms to 1 xI 1 square root 2 xI 1",
+    "start": 986.64,
+    "end": 998.48,
+    "ocr_text": "lincan SUM aud Kerad fiancee\nar EY\n\nX= |e wel a _\nK 5%) = (I+ xX) JX: Ain |\n= +. Xi % ue 2 7G ee = a=\n\n-\ni\n\nca vy eas =P LOGS 2S Ee\n\n= [I Lane Aire Xs (2,\na\n\nLl a> bax, r="
+  },
+  {
+    "text": "xI 2 xI 2 square root 2 xI 1 root 2 xI 2 instead of the original vector which is xI 1 xI 2",
+    "start": 998.48,
+    "end": 1007.12,
+    "ocr_text": "UM and Kerack fanboy\n\nfet 3\n\nX= |x rel\n\nKine = (4 XX,\n\n= |+ Ki, “%, mee %ot\n+z 7% + ee\n\n=f ne Gea\nLl a> bam X:\n#0) hey\n\na x2 |\nJ ey 4, Xa |\n\nce\nB="
+  },
+  {
+    "text": "then the dot product in this space is equal to k xI xj equal to 1 plus xI dot xj whole square.",
+    "start": 1007.92,
+    "end": 1016.64,
+    "ocr_text": "X= [er rel\ndail (Le Gx\n\n= 4 1G, 270%.\n\nae is%y ap 2 3G «\n\noi\nia ae Xi ‘ame lan\n\ndL Kernd fancbowsy\n\nre - x24\nJ eee] Xi, Xa |\n\n\"= ae\n- = ZL"
+  },
+  {
+    "text": "So, corresponding to this transformation phi the kernel function can be very easily computed",
+    "start": 1016.64,
+    "end": 1022.64,
+    "ocr_text": "x=) Xe\nK ie (id XX,\n\n= |+ kK “Kj Hin a=\n= |\n\n_\n+4 Xi Uy + Zags ya\n\n= (ae eee\n\nL funcBan a\n\ner. Hr 4\n\npe zl\n4x2 aes"
+  },
+  {
+    "text": "like this without expanding this particular features. So, this is an example of a kernel function.",
+    "start": 1023.12,
+    "end": 1032.56,
+    "ocr_text": "x=) Xe\nK ie (id XX,\n\n= |+ kK “Kj Hin a=\n= |\n\n_\n+4 Xi Uy + Zags ya\n\n= (ae eee\n\nL funcBan a\n\ner. Hr 4\n\npe zl\n4x2 aes"
+  },
+  {
+    "text": "There are many other commonly used kernel functions some of them we can see in the this slide.",
+    "start": 1033.2,
+    "end": 1041.44,
+    "ocr_text": "ae\n\na 2,\nXie Xia te Gis Bx\n\nPS"
+  },
+  {
+    "text": "So, the linear SVM corresponds to linear kernel where phi xI equal to xI phi xj equal to xj",
+    "start": 1043.68,
+    "end": 1052.32,
+    "ocr_text": "R= /% Xe SS\n2 =\nK.0%,%) = (4 xX) | _. aa\n\n2 ez\nWee > ee\n\n= ae Te\nag x ti, %)\n= (FE aes"
+  },
+  {
+    "text": "that is the identity mapping. So, k of xI xj equal to xI dot xj for linear kernel.",
+    "start": 1052.32,
+    "end": 1059.36,
+    "ocr_text": "Commonly-used kernel functions\n\n* Linear kernel: K(x;,x;) = x;-x;\n* Polynomial of power p:\nK (xi, xj) = (1 + xj-25)?\n* Gaussian (radial-basis function):\n2\nxix y\n\nK(x) = eae\n\n*¢ Sigmoid\nK (xi, x) = tanh(fox};. x; + fi)\n\nIn general, functions that satisfy Wercer’s condition can\nbe kernel functions."
+  },
+  {
+    "text": "For general polynomial kernel k xI xj is 1 plus xI dot xj to the power p. We saw the example",
+    "start": 1060.56,
+    "end": 1070.4,
+    "ocr_text": "Commonly-used kernel functions\n\n¢ Linear kernel: K (xi, x;) = Xj. x]\n* Polynomial of power p:\nK (xi, xj) = (Gh sr aaa\n* Gaussian (radial-basis function):\n2\nxix y\nK (xi xj) = et oft\n° Sigmoid\nK (xi, xj) = tanh(fox;. x; + fi)\nIn general, functions that satisfy Wercer’s condition can\nbe kernel functions."
+  },
+  {
+    "text": "where of quadratic kernel where k xI xj is 1 plus xI xj whole square, but this can be",
+    "start": 1070.4,
+    "end": 1079.52,
+    "ocr_text": "Commonly-used kernel functions\n\n* Linear kernel: K(x;, xj) = x;-x;\n* Polynomial of power p:\nK (xi, xj) = (1 + 4-25)?\n*¢ Gaussian (radial-basis function):\n2\nxix y\nK (0%) = oll wll\n* Sigmoid\nK (xi, xj) = tanh(fox;. x; + fi)\nIn general, functions that satisfy Wercer’s condition can\nbe kernel functions."
+  },
+  {
+    "text": "generalized to polynomial kernel where we have 1 plus xI xj to the power p. This is the polynomial",
+    "start": 1079.52,
+    "end": 1087.84,
+    "ocr_text": "Commonly-used kernel functions\n\n* Linear kernel: K(x;,x;) = x;-x;\n* Polynomial of power p:\nK (xi, xj) = (1 + 4-25)?\n* Gaussian (radial-basis function):\n2\nxix y\nK(x0%) = ol all\n* Sigmoid\nK (xi, xj) = tanh(fox};. x; + fi)\nIn general, functions that satisfy Wercer’s condition can\nbe kernel functions."
+  },
+  {
+    "text": "kernel of power p. Then we have the Gaussian kernel or the kernel corresponding to the radial",
+    "start": 1087.84,
+    "end": 1095.04,
+    "ocr_text": "K (x, h) e : XX)"
+  },
+  {
+    "text": "basis function where we have k xI comma xj equal to exponential of minus xI minus xj",
+    "start": 1095.04,
+    "end": 1112.08,
+    "ocr_text": "rely M aud Kern fiance\n\nWe [1 x p\nK Os = (ae)"
+  },
+  {
+    "text": "whole square by 2 times sigma square. So, this is the Gaussian kernel. Another popular kernel is the",
+    "start": 1112.08,
+    "end": 1127.44,
+    "ocr_text": "K (5%) = (lt ¥%)\n\nK u * gea[—"
+  },
+  {
+    "text": "sigmoid kernel which is given by k xI xj equal to tan hyperbolic of parameter beta 0 xI dot xj",
+    "start": 1127.6,
+    "end": 1148.56,
+    "ocr_text": "ie = ie i ar\n\n- (4, X= xp —\n\nee ll\n\n232"
+  },
+  {
+    "text": "plus beta 1. So, these are some examples of kernel functions which are quite popular.",
+    "start": 1149.12,
+    "end": 1160.64,
+    "ocr_text": "NS [% Xe p\nK, 0, 3K) = (+ xX) od\ni xp — Il ~ yall\n\n232"
+  },
+  {
+    "text": "There can be kernel functions. So, kernel function measures some similarity between instances",
+    "start": 1160.64,
+    "end": 1167.28,
+    "ocr_text": "rN\n\n/ \\\n\n(I+\n\nX\n\n= 6g\nxX)"
+  },
+  {
+    "text": "xI and xj. And this kernel functions, you know, we can have define many types of kernel functions",
+    "start": 1167.28,
+    "end": 1175.04,
+    "ocr_text": "rN\n\n/ \\\n\n(I+\n\nX\n\n= 6g\nxX)"
+  },
+  {
+    "text": "depending on the domain and certain notions of similarity. For example, you can kernel functions",
+    "start": 1175.28,
+    "end": 1181.28,
+    "ocr_text": "Kernk fancies\niM Wa Ne\n————_—_\n\n= }% Xe\\\n\nA fa\nK0% 5%) = (lt XX)\n| ;"
+  },
+  {
+    "text": "on strings, you can use kernel function for text classification based on the similarity of the",
+    "start": 1181.28,
+    "end": 1187.04,
+    "ocr_text": "Kernk fancies\niM Wa Ne\n————_—_\n\n= }% Xe\\\n\nA fa\nK0% 5%) = (lt XX)\n| ;"
+  },
+  {
+    "text": "words in the text and so on. So, in general functions that qualifies kernel functions satisfy",
+    "start": 1187.04,
+    "end": 1196.08,
+    "ocr_text": "Kernk fancies\niM Wa Ne\n————_—_\n\n= }% Xe\\\n\nA fa\nK0% 5%) = (lt XX)\n| ;"
+  },
+  {
+    "text": "mercer's condition. Those functions that satisfy mercer's condition are called kernel functions.",
+    "start": 1196.08,
+    "end": 1202.08,
+    "ocr_text": "A= |i Xz\\ p |\nKO 54) = (it 4X)\n\\\\ %—6Gll\n232"
+  },
+  {
+    "text": "We will not go into a lot of detail here, but we can say that kernel functions are some",
+    "start": 1202.72,
+    "end": 1209.68,
+    "ocr_text": "A= |i Xz\\ p |\nKO 54) = (it 4X)\n\\\\ %—6Gll\n232"
+  },
+  {
+    "text": "similarity measures and these similarity is usually symmetric that is k xI xj is equal to k xj",
+    "start": 1209.68,
+    "end": 1217.68,
+    "ocr_text": "Kernel Functions\n\nKernel function can be thought of as a similarity measure\nbetween the input objects\nNot all similarity measure can be used as kernel function.\n\nMercer's condition states that any positive semi-definite\nkernel K(x, y), i.e.\n\n> K(%j, xj) cic; = O\nuj\n\ncan be expressed as a dot product in a high dimensional\nspace."
+  },
+  {
+    "text": "xI. But all similarities are not kernel functions. Mercer's condition states that if you can write",
+    "start": 1217.68,
+    "end": 1227.04,
+    "ocr_text": "Kernel Functions\n\nKernel function can be thought of as a similarity measure\nbetween the input objects\nNot all similarity measure can be used as kernel function.\n\nMercer's condition states that any positive semi-definite\nkernel K(x, y), i.e.\n\n> K(%j, xj) cic; = O\nuj\n\ncan be expressed as a dot product in a high dimensional\nspace."
+  },
+  {
+    "text": "the similarities between the points as a matrix and this matrix is symmetric positive semi-definite,",
+    "start": 1227.04,
+    "end": 1235.76,
+    "ocr_text": "Kernel Functions\n\nKernel function can be thought of as a similarity measure\nbetween the input objects\nNot all similarity measure can be used as kernel function.\n\nMercer's condition states that any positive semi-definite\nkernel K(x, y), i.e.\n\n> K(x}, xj) cic; = O\nuj\n\ncan be expressed as a dot product in a high dimensional\nspace."
+  },
+  {
+    "text": "then a kernel function will exist. Or in general mercer's condition states that any positive",
+    "start": 1235.76,
+    "end": 1243.36,
+    "ocr_text": "Kernel Functions\n\nKernel function can be thought of as a similarity measure\nbetween the input objects\nNot all similarity measure can be used as kernel function.\n\nMercer's condition states that any positive semi-definite\nkernel K(x, y), i.e.\n\n> K(x}, xj) cic; = O\nuj\n\ncan be expressed as a dot product in a high dimensional\nspace."
+  },
+  {
+    "text": "semi-definite kernel k xy for which sigma over ij k of x i xj times c i cj is greater than equal",
+    "start": 1243.36,
+    "end": 1254.56,
+    "ocr_text": "Kernel Functions\n\nKernel function can be thought of as a similarity measure\nbetween the input objects\nNot all similarity measure can be used as kernel function.\n\nMercer's condition states that any positive semi-definite\nkernel K(x, y), i.e.\n\n> K(x}, xj) cic; = O\nuj\n\ncan be expressed as a dot product in a high dimensional\nspace."
+  },
+  {
+    "text": "to 0. For any real number c i cj, they can be considered as kernel function because such functions",
+    "start": 1254.56,
+    "end": 1263.36,
+    "ocr_text": "Kernel Functions\n\nKernel function can be thought of as a similarity measure\nbetween the input objects\nNot all similarity measure can be used as kernel function.\n\nMercer's condition states that any positive semi-definite\nkernel K(x, y), i.e.\n\n> K(x}, xj) cic; = O\nuj\n\ncan be expressed as a dot product in a high dimensional\nspace."
+  },
+  {
+    "text": "can be expressed as a dot product in high dimensional space. We will not go into details of this,",
+    "start": 1263.36,
+    "end": 1271.36,
+    "ocr_text": "Kernel Functions\n\nKernel function can be thought of as a similarity measure\nbetween the input objects\nNot all similarity measure can be used as kernel function.\n\nMercer's condition states that any positive semi-definite\nkernel K(x, y), i.e.\n\n» K(X}, xj) cic; = O\nuj\n\ncan be expressed as a dot product in a high dimensional\nspace."
+  },
+  {
+    "text": "but this gives us a general characterization of kernel functions and we can also compose",
+    "start": 1271.36,
+    "end": 1278.64,
+    "ocr_text": "Kernel Functions\n\nKernel function can be thought of as a similarity measure\nbetween the input objects\nNot all similarity measure can be used as kernel function.\n\nMercer's condition states that any positive semi-definite\nkernel K(x, y), i.e.\n\n> K(x}, xj) cic; = O\nuj\n\ncan be expressed as a dot product in a high dimensional\nspace."
+  },
+  {
+    "text": "more than one kernel function to get new kernel function, but we will not make further discussion",
+    "start": 1279.12,
+    "end": 1287.36,
+    "ocr_text": "P ft R= 1K\neX fee ;\nBx wll"
+  },
+  {
+    "text": "into this. What I will show you is certain cases where the decision surface is linear or non-linear",
+    "start": 1287.36,
+    "end": 1297.76,
+    "ocr_text": "2”4 order polynomial\n\nE\n4‘ order polynomial"
+  },
+  {
+    "text": "and the kernel functions which are appropriate in those cases. If you look at this picture,",
+    "start": 1297.76,
+    "end": 1304.32,
+    "ocr_text": "4th order polynomial 8\" order polynomial"
+  },
+  {
+    "text": "for this case linear kernel with noise will be quite appropriate. Whereas in this case,",
+    "start": 1304.72,
+    "end": 1311.72,
+    "ocr_text": "4th order polynomial 8\" order polynomial"
+  },
+  {
+    "text": "the decision surface is actually do not have a good linear decision surface. You have a quadratic",
+    "start": 1311.72,
+    "end": 1318.72,
+    "ocr_text": "2”4 order polynomial\n\nF\n4‘ order polynomial"
+  },
+  {
+    "text": "decision surface and the second order polynomial, a quadratic kernel will be appropriate. In this",
+    "start": 1318.72,
+    "end": 1324.96,
+    "ocr_text": "2\"¢ order\n\npolynomial\n\nast H\n\n4*” order polynomial 8\" order polynomial"
+  },
+  {
+    "text": "case, you have a fourth order polynomial which gives a good decision surface. Here, a eighth",
+    "start": 1324.96,
+    "end": 1329.76,
+    "ocr_text": "2\"¢ order\n\npolynomial\n\nast H\n\n4*” order polynomial 8\" order polynomial"
+  },
+  {
+    "text": "order polynomial and these examples can be used with kernels of order 8 polynomial, order 4",
+    "start": 1329.76,
+    "end": 1340.56,
+    "ocr_text": "2\"¢ order\n\npolynomial\n\nast h\n\n4‘ order polynomial 8\" order polynomial"
+  },
+  {
+    "text": "polynomial and so on. This picture shows points is red and blue are the two classes and they are",
+    "start": 1340.56,
+    "end": 1350.8,
+    "ocr_text": "2”4¢ order polynomial\n\nEB 3 EB re\n\n4*® order polynomial 8\" order polynomial"
+  },
+  {
+    "text": "not separable by linear kernel. However, you can use Gaussian kernels to separate them. Gaussian",
+    "start": 1350.8,
+    "end": 1357.68,
+    "ocr_text": "2”4¢ order polynomial\n\nEB 3 EB re\n\n4*® order polynomial 8\" order polynomial"
+  },
+  {
+    "text": "or RBF kernels can be used to separate points where these points can lie within a Gaussian of each",
+    "start": 1358.0,
+    "end": 1369.76,
+    "ocr_text": "2”4¢ order polynomial\n\nEB 3 EB re\n\n4*® order polynomial 8\" order polynomial"
+  },
+  {
+    "text": "other. So, here Gaussian kernels will be appropriate. Now, let us see that once we have this kernel",
+    "start": 1369.76,
+    "end": 1378.56,
+    "ocr_text": "Nonlinear SVM: Optimization\n\n= Formulation: (Lagrangian Dual Problem)\n\nmaximize be, -$> Yaa, Viv, K(x,.X;)\n\n= ja\n\nsuch that 0sa,<C\nn\nDay; =0\ni=l\n= The solution of the discriminant function is\n\ng@) = > aK (xi,xj) +b\n\niesv"
+  },
+  {
+    "text": "function, how we can solve the SVM. So, the formulation is very similar. We have phi x i and phi x",
+    "start": 1378.56,
+    "end": 1388.32,
+    "ocr_text": "Nonlinear SVM: Optimization\n\n= Formulation: (Lagrangian Dual Problem)\n\nmaximize be, -$> Yaa, Viv, K(x,.X;)\n\n= ja\n\nsuch that 0sa,<C\nn\nDay; =0\ni=l\n= The solution of the discriminant function is\n\ng@) = > aK (xi,xj) +b\n\niesv"
+  },
+  {
+    "text": "j. So, it amounts to maximizing in the dual formulation. The solution will amount to maximizing",
+    "start": 1388.32,
+    "end": 1396.4,
+    "ocr_text": "Nonlinear SVM: Optimization\n\n= Formulation: (Lagrangian Dual Problem)\n\ned de, -$> Yaa, VV, K(Xx,.X,)\n\nial j=!\n\nsuch that 0<a,<C\nn\nDay; =0\ni=l\n= The solution of the discriminant function is\n\ng@) = > aK (xi,xj) +b\n\niesv"
+  },
+  {
+    "text": "sigma alpha i minus half summation over i j alpha i alpha j y i y j phi x i dot phi x j which",
+    "start": 1396.4,
+    "end": 1405.52,
+    "ocr_text": "Nonlinear SVM: Optimization\n\n= Formulation: (Lagrangian Dual Problem)\n\nmaximize de, -$ > Yaa, VY ,KCx,.X;)\n&\n\nil j=l\n\nsuch that 0<a,<C\nn\nDay; =0\ni=l\n= The solution of the discriminant function is\n\ng@) = > aK (xi,xj) +b\n\niesv"
+  },
+  {
+    "text": "can be written as k of x i x j. And the conditions are same alpha i lies between 0 and c sigma alpha",
+    "start": 1405.52,
+    "end": 1413.92,
+    "ocr_text": "Nonlinear SVM: Optimization\n\n= Formulation: (Lagrangian Dual Problem)\n\nmaximize de, -5 > dae, VY, K(x,.X;)\n\n71 j=l\nsuch that 0<a,<C\nno.\nDay; =0\ni=l\n= The solution of the discriminant function is\n\ng@) = > aK (xi,xj) +b\n\niesv"
+  },
+  {
+    "text": "i y i equal to 0. And after you have solved for these alpha's, you get a solution and when you",
+    "start": 1413.92,
+    "end": 1422.32,
+    "ocr_text": "Nonlinear SVM: Optimization\n\n= Formulation: (Lagrangian Dual Problem)\n\nmaximize de, -5 > dae, VY, K(x,.X;)\n\n71 j=l\nsuch that 0<a,<C\nno.\nDay; =0\ni=l\n= The solution of the discriminant function is\n\ng@) = > aK (xi,xj) +b\n\niesv"
+  },
+  {
+    "text": "get a test point x, the classification of the test point can be found by g x equal to sigma i",
+    "start": 1422.32,
+    "end": 1432.4,
+    "ocr_text": "Nonlinear SVM: Optimization\n\n= Formulation: (Lagrangian Dual Problem)\n\nmaximize de, -S > Yaa, VY, K(Cx,.X,;)\n\n= ja\n\nsuch that 0<a,<C\nn\nDay =0\ni=l\n= The solution of the discriminant function is\n\ng@) = > aK (xi,xj) +b\n\niesv"
+  },
+  {
+    "text": "ranges over the support vectors alpha i phi x i dot x plus b which becomes k of x i x plus b.",
+    "start": 1432.4,
+    "end": 1442.0,
+    "ocr_text": "Nonlinear SVM: Optimization\n\n= Formulation: (Lagrangian Dual Problem)\n\nmaximize de, -$> Yaa, VY, KCx,.X,)\n\nI j=!\n\nsuch that 0sa,<C\nn\nDay; =0\ni=l\n= The solution of the discriminant function is\n\ng@) = > aK (xi,xj) +b\n\niesv"
+  },
+  {
+    "text": "So, for all points k of x i x plus b can be used to get the solution. And if k is easy to compute,",
+    "start": 1442.0,
+    "end": 1451.92,
+    "ocr_text": "Nonlinear SVM: Optimization\n\n= Formulation: (Lagrangian Dual Problem)\n\nmaximize be, -S > Yaa, VY, K(C,.x;)\n\n= ja\n\nsuch that 0sa,<C\nn\nDay; =0\ni=l\n= The solution of the discriminant function is\n\ng@) = > ek (xing) +b\n\niesv"
+  },
+  {
+    "text": "then the solution computation cost of solution in the training phase as well as the testing phase",
+    "start": 1451.92,
+    "end": 1460.08,
+    "ocr_text": "Nonlinear SVM: Optimization\n\n= Formulation: (Lagrangian Dual Problem)\n\nmaximize be, -$> Yaa, VY ,KC,.X,;)\n\n=a ja\n\nsuch that 0<a,<C\nn\nDay; =0\n=\n\n= The solution of the discriminant function is\n\nge) = > aK (xi,xj) +b\n\niesv"
+  },
+  {
+    "text": "is not much different from the linear SVM. So, support vector machine in conclusion we can say,",
+    "start": 1460.16,
+    "end": 1469.28,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCA in\nthe original space."
+  },
+  {
+    "text": "they perform, they have been found to perform quite well in practice. But in certain cases,",
+    "start": 1469.28,
+    "end": 1477.36,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCA in\nthe original space."
+  },
+  {
+    "text": "if an appropriate kernel function exists, however, the user can has to choose the appropriate",
+    "start": 1477.36,
+    "end": 1485.6,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCA in\nthe original space."
+  },
+  {
+    "text": "kernel function. If an appropriate kernel function exists to map the original attribute space to",
+    "start": 1485.6,
+    "end": 1493.12,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCAin\nthe original space."
+  },
+  {
+    "text": "a new feature space where the points are linearly separable, then the support vector machine works well.",
+    "start": 1493.12,
+    "end": 1499.68,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCAin\nthe original space."
+  },
+  {
+    "text": "But the user has to define the appropriate kernel, they can be expensive in time and space for",
+    "start": 1499.68,
+    "end": 1507.2,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCAin\nthe original space."
+  },
+  {
+    "text": "big datasets. But because in the solution, you look at the pairwise training examples.",
+    "start": 1507.28,
+    "end": 1516.16,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCA in\nthe original space."
+  },
+  {
+    "text": "But the computation of maximum margin hyperplane depends on the square of the number of training",
+    "start": 1517.12,
+    "end": 1523.84,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCA in\nthe original space."
+  },
+  {
+    "text": "cases. Secondly, for the solution, we need to store all the support vectors. If the number of",
+    "start": 1523.84,
+    "end": 1530.72,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCA in\nthe original space."
+  },
+  {
+    "text": "support vectors is large, then also solution time will increase. The solution time depends on the",
+    "start": 1530.72,
+    "end": 1536.64,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCAin\nthe original space."
+  },
+  {
+    "text": "number of support vectors and number of training examples. The kernel trick can also be used to do",
+    "start": 1536.64,
+    "end": 1544.32,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCA in\nthe original space."
+  },
+  {
+    "text": "principal component analysis in a higher dimensional space. We have already talked about principal",
+    "start": 1544.32,
+    "end": 1549.92,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCA in\nthe original space."
+  },
+  {
+    "text": "component analysis, where we take the features and reduce it. But we could do PCA in a higher",
+    "start": 1549.92,
+    "end": 1557.76,
+    "ocr_text": "Performance\n\nSupport Vector Machines work very well in practice.\n— The user must choose the kernel function and its\nparameters\nThey can be expensive in time and space for big datasets\n— The computation of the maximum-margin hyper-plane\ndepends on the square of the number of training cases.\n— We need to store all the support vectors.\nThe kernel trick can also be used to do PCA in a much higher-\ndimensional space, thus giving a non-linear version of PCA in\nthe original space."
+  },
+  {
+    "text": "dimensional space using kernel functions, but we will not talk about this today. We will just",
+    "start": 1557.76,
+    "end": 1564.08,
+    "ocr_text": "N=] ke Xe\n\nK (y, 4%) = (une\nfe? 74 (I +.%,X;)\n\nKb, x)= a all\ny 2 3+\n\nK (x.x)"
+  },
+  {
+    "text": "conclude by seeing, you know, the support vector classifier that we have seen is used primarily",
+    "start": 1564.08,
+    "end": 1572.0,
+    "ocr_text": "N=] ke Xe\n\nK (y, 4%) = (une\nfe? 74 (I +.%,X;)\n\nKb, x)= a all\ny 2 3+\n\nK (x.x)"
+  },
+  {
+    "text": "for classifying two classes, separating two classes. What if you have multi classes? So,",
+    "start": 1572.0,
+    "end": 1578.96,
+    "ocr_text": "Multi-class classification\n\nSVMs can only handle two-class outputs\n\nLearn N SVM’s\n\n— SVM 1 learns Class1 vs REST\n\n— SVM 2 learns Class2 vs REST\n\n— SVM.N learns ClassN vs REST\n\nThen to predict the output for a new input, just\npredict with each SVM and find out which one puts\nthe prediction the furthest into the positive region."
+  },
+  {
+    "text": "there is the support vector machine by itself only looks at two classes, but we can use a",
+    "start": 1578.96,
+    "end": 1586.4,
+    "ocr_text": "“oxy I\n\nnae\nOG, x\nNx ell\n\nK -"
+  },
+  {
+    "text": "combination of SVMs to deal with multiple classes. Suppose you have n classes and you can",
+    "start": 1586.4,
+    "end": 1593.68,
+    "ocr_text": ": CoM\n\nia 1%, Xe\\\n\nK (5%) = (lt xX)\n\nKb 2) yon ws eel"
+  },
+  {
+    "text": "learn n support vector machine. Suppose SVM1 learns to classify class 1 versus the rest. SVM2",
+    "start": 1594.64,
+    "end": 1605.12,
+    "ocr_text": ": CoM\n\nia 1%, Xe\\\n\nK (5%) = (lt xX)\n\nKb 2) yon ws eel"
+  },
+  {
+    "text": "to separate class 2 versus rest. SVMn to separate class n versus rest. So, we develop n different",
+    "start": 1606.0,
+    "end": 1615.6,
+    "ocr_text": "Multi-class classification\n\nSVMs can only handle two-class outputs\n\nLearn N SVM’s\n\n— SVM 1 learns Class1 vs REST\n\n— SVM 2 learns Class2 vs REST\n\n— SVM.N learns ClassN vs REST\n\nThen to predict the output for a new input, just\npredict with each SVM and find out which one puts\nthe prediction the furthest into the positive region."
+  },
+  {
+    "text": "support vector classifiers. Now, to predict output for a new test point, we will apply all the",
+    "start": 1615.6,
+    "end": 1623.68,
+    "ocr_text": "Multi-class classification\n\nSVMs can only handle two-class outputs\n\nLearn N SVM’s\n\n— SVM 1 learns Class1 vs REST\n\n— SVM 2 learns Class2 vs REST\n\n— SVM.N learns ClassN vs REST\n\nThen to predict the output for a new input, just\npredict with each SVM and find out which one puts\nthe prediction the furthest into the positive region."
+  },
+  {
+    "text": "support vector machines SVM1, SVM2, SVMn. And then, we will find out which one of the SVMs",
+    "start": 1623.68,
+    "end": 1632.96,
+    "ocr_text": "Multi-class classification\n\nSVMs can only handle two-class outputs\n\nLearn N SVM’s\n\n— SVM 1 learns Class1 vs REST\n\n— SVM 2 learns Class2 vs REST\n\n— SVM.N learns ClassN vs REST\n\nThen to predict the output for a new input, just\npredict with each SVM and find out which one puts\nthe prediction the furthest into the positive region."
+  },
+  {
+    "text": "gave the prediction with the highest confidence. So, highest confidence is we find wi x i,",
+    "start": 1633.76,
+    "end": 1641.6,
+    "ocr_text": "Multi-class classification\n\nSVMs can only handle two-class outputs\n\nLearn N SVM’s\n\n— SVM 1 learns Class1 vs REST\n\n— SVM 2 learns Class2 vs REST\n\n— SVM.N learns ClassN vs REST\n\nThen to predict the output for a new input, just\npredict with each SVM and find out which one puts\nthe prediction the furthest into the positive region."
+  },
+  {
+    "text": "wi x i plus b and that should be greater than times wi i that should be greater than equal to",
+    "start": 1641.6,
+    "end": 1649.36,
+    "ocr_text": "Multi-class classification\n\nSVMs can only handle two-class outputs\n\nLearn N SVM’s\n\n— SVM 1 learns Classi vs REST\n\n— SVM 2 learns Class2 vs REST\n\n— SVM.N learns ClassN vs REST\n\nThen to predict the output for a new input, just\npredict with each SVM and find out which one puts\nthe prediction the furthest into the positive region."
+  },
+  {
+    "text": "1 minus wi i. The bigger the value is higher the confidence because further it lies from the margin.",
+    "start": 1649.36,
+    "end": 1656.96,
+    "ocr_text": "=\n\nKO; A) = es Xj xl\n\nK,@i, = expl - os)\n\nK y;) = 14"
+  },
+  {
+    "text": "So, we can choose out of this n outputs the one for which the point is for this for the margin.",
+    "start": 1656.96,
+    "end": 1667.04,
+    "ocr_text": "Multi-class classification\n\nSVMs can only handle two-class outputs\n\nLearn N SVM’s\n\n— SVM 1 learns Classi vs REST\n\n— SVM 2 learns Class2 vs REST\n\n— SVM.N learns ClassN vs REST\n\nThen to predict the output for a new input, just\npredict with each SVM and find out which one puts\nthe prediction the furthest into the positive region."
+  },
+  {
+    "text": "And we can take that positive classification corresponding to that class.",
+    "start": 1667.04,
+    "end": 1671.36,
+    "ocr_text": "Multi-class classification\n\nSVMs can only handle two-class outputs\n\nLearn N SVM’s\n\n— SVM 1 learns Classi vs REST\n\n— SVM 2 learns Class2 vs REST\n\n— SVM.N learns ClassN vs REST\n\nThen to predict the output for a new input, just\npredict with each SVM and find out which one puts\nthe prediction the furthest into the positive region."
+  },
+  {
+    "text": "With this, we come to the end of kernel SVM. Thank you.",
+    "start": 1671.36,
+    "end": 1677.36,
+    "ocr_text": "Multi-class classification\n\nSVMs can only handle two-class outputs\n\nLearn N SVM’s\n\n— SVM 1 learns Classi vs REST\n\n— SVM 2 learns Class2 vs REST\n\n— SVM.N learns ClassN vs REST\n\nThen to predict the output for a new input, just\npredict with each SVM and find out which one puts\nthe prediction the furthest into the positive region."
+  }
+]

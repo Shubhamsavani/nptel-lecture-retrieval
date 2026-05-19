@@ -1,0 +1,1718 @@
+[
+  {
+    "text": "Welcome back to the course on Computer Networks and Internet Protocol. So, in the last",
+    "start": 0.0,
+    "end": 20.48,
+    "ocr_text": "PROF. SANDIP.CHAKRABORTY\n\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\nINDIAN INSTITUTE OF TECHNOLOGY, KHARAGPUR"
+  },
+  {
+    "text": "classes we have looked into various services in transport layer of the protocol stack",
+    "start": 20.48,
+    "end": 26.28,
+    "ocr_text": "IITKHARAGPUR IPTEL ONLINE\n\nERTIFICATION COURSES.\n\nCOMPUTER NETWORKS AND\nINTERNET PROTOCOLS\n\nSOUMYA K GHOSH SANDIP CHAKRABORTY\nCOMPUTER SCIENCE AND ENGINEERING, COMPUTER SCIENCE AND ENGINEERING,\nIIT KHARAGPUR IIT KHARAGPUR"
+  },
+  {
+    "text": "and we have looked into in details the connection establishment and the connection termination",
+    "start": 26.28,
+    "end": 31.8,
+    "ocr_text": "IITKHARAGPUR IPTEL ONLINE\n\nERTIFICATION COURSES.\n\nCOMPUTER NETWORKS AND\nINTERNET PROTOCOLS\n\nSOUMYA K GHOSH SANDIP CHAKRABORTY\nCOMPUTER SCIENCE AND ENGINEERING, COMPUTER SCIENCE AND ENGINEERING,\nIIT KHARAGPUR IIT KHARAGPUR"
+  },
+  {
+    "text": "procedure. So, today we look into the second services which is the flow control and",
+    "start": 31.8,
+    "end": 38.6,
+    "ocr_text": "IITKHARAGPUR IPTEL ONLINE\n\nERTIFICATION COURSES.\n\nCOMPUTER NETWORKS AND\nINTERNET PROTOCOLS\n\nSOUMYA K GHOSH SANDIP CHAKRABORTY\nCOMPUTER SCIENCE AND ENGINEERING, COMPUTER SCIENCE AND ENGINEERING,\nIIT KHARAGPUR IIT KHARAGPUR"
+  },
+  {
+    "text": "the reliability in transport layer. So, the flow control and reliability ensures that",
+    "start": 38.6,
+    "end": 45.32,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\nTransport ——————— Transport\n\nNetwork Network Network\nData Link Data Link Data Link |_ Data Link | Data Link\nPhysical Physical Physical | Physical Physical\n\ni 9e_ A Te\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "whenever you have established certain end to end connection between the two remote host.",
+    "start": 45.32,
+    "end": 50.28,
+    "ocr_text": "Transport Layer - lV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\nTransport ss Transport\n\nNetwork Network Network\nData Link Data Link Datalink | | Datalink | | Data Link\nPhysical Physical Physical | Physical | Physical\n\nom [2\nPeete G|\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, on top of that connection now you need to send a sequence of data bits. So, in transport",
+    "start": 50.36,
+    "end": 56.28,
+    "ocr_text": "Transport Layer - lV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\nTransport ss Transport\n\nNetwork Network Network\nData Link Data Link Datalink | | Datalink | | Data Link\nPhysical Physical Physical | Physical | Physical\n\nom [2\nPeete G|\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "layer in specific kind of protocol you send it in the form of sequence of bytes. On the other",
+    "start": 56.28,
+    "end": 61.64,
+    "ocr_text": "Transport Layer - lV (Reliability & Flow Control)\n\nApplication Figw Control & Reliable Data Delivery | Application\nTransport _—_——— => Transport\n\nNetwork Network Network\nData Link Data Link Data Link |_ Data Link | Data Link\nPhysical Physical Physical | Physical | Physical\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "hand in certain version of transport protocols the data is transmitted in the form of sequence",
+    "start": 61.64,
+    "end": 67.0,
+    "ocr_text": "Transport Layer - lV (Reliability & Flow Control)\n\nApplication Figw Control & Reliable Data Delivery | Application\nTransport _—_——— => Transport\n\nNetwork Network Network\nData Link Data Link Data Link |_ Data Link | Data Link\nPhysical Physical Physical | Physical | Physical\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "of packets or sequence of segments. So, in this end to end connection which is being established",
+    "start": 67.0,
+    "end": 75.08,
+    "ocr_text": "Transport Layer - lV (Reliability & Flow Control)\n\nApplication Figw Control & Reliable Data Delivery | Application\nTransport _—_——— => Transport\n\nNetwork Network Network\nData Link Data Link Data Link |_ Data Link | Data Link\nPhysical Physical Physical | Physical | Physical\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "to end of the devices the two end devices here our objective is the first objective is that",
+    "start": 75.88,
+    "end": 83.64,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "the sender should not send more data compared to what the receiver can receive. So, this particular",
+    "start": 83.64,
+    "end": 89.48,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "methodology or this particular philosophy we call it as a flow control algorithm. So, the flow",
+    "start": 89.48,
+    "end": 94.04,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "control algorithm ensures that the sender is always aware about what the receiver can receive",
+    "start": 94.04,
+    "end": 99.96,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "or how much data the receiver can receive and accordingly the sender adjusted its rate of",
+    "start": 100.12,
+    "end": 106.28,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "transmission such that it does not overshoot the rate at which the receiver can receive.",
+    "start": 106.28,
+    "end": 112.04,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "At the same time as we have discussed earlier that the lower layer of the protocol stack",
+    "start": 112.04,
+    "end": 117.08,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "is kind of unreliable. So, whenever the network layer forwards packets or forwards data to",
+    "start": 117.72,
+    "end": 124.6,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "remote host the network layer does not ensure that there is a kind of guarantee or assurance that",
+    "start": 125.08,
+    "end": 133.96,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "your data will be delivered at the other end. So, it makes a best try to deliver your data",
+    "start": 133.96,
+    "end": 138.36,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "based on your destination address and finding out the intermediate hops to which the packet need",
+    "start": 139.0,
+    "end": 145.08,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "to be delivered. But on the other hand this network layer it does not bother about that how much",
+    "start": 145.08,
+    "end": 152.52,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "data need to be pushed to the network or how much data need to be transferred. And as a result",
+    "start": 152.6,
+    "end": 157.4,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "what happens in a packet switching network that I described in the last class that the intermediate",
+    "start": 157.4,
+    "end": 163.24,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "buffers are the intermediate network devices to rack the routers they may get filled up and you may",
+    "start": 163.24,
+    "end": 168.92,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "experience a buffer overflow from those intermediate routers. And because of that whenever you are",
+    "start": 168.92,
+    "end": 175.4,
+    "ocr_text": "Transport Layer - IV (Reliability & Flow Control)\n\nApplication’ Figw Control & Reliable Data Delivery | Application\napt —_—_—_—_—_—_—_—_—_—_—_—_———_$- transport\nNetwork Network Network\nData Link Data Link Data Link [ Data Link | Data Link\nPhysical Physical Physical |_ Physical Physical\n\nre Fy le"
+  },
+  {
+    "text": "delivering a data through this network layer using the IP delivery method there is always a",
+    "start": 175.4,
+    "end": 181.16,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "possibility that a considerable number of data frames or data segments they are getting dropped",
+    "start": 181.16,
+    "end": 189.8,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "from the network layer. Now the task of the transport layer is to consider that to find out",
+    "start": 190.36,
+    "end": 198.44,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "or to send swedder certain data has been transferred correctly at the other end or not.",
+    "start": 198.44,
+    "end": 204.04,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "And if it is not transferred at the other end correctly then apply this reliability mechanism",
+    "start": 204.12,
+    "end": 211.4,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "to ensure that every message which is sent by the application layer that is getting delivered",
+    "start": 211.4,
+    "end": 217.88,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "at the other end eventually. So, the broad idea is that you send the channel you send the media",
+    "start": 217.88,
+    "end": 224.28,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "to find out whether the data is being transmitted correctly or not. If the data is not being",
+    "start": 224.28,
+    "end": 230.84,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "transmitted correctly that means, the order in this not able to receive the data if you are",
+    "start": 230.84,
+    "end": 235.16,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "able to find it out then retransmit the data to make sure that eventually the data is received",
+    "start": 235.16,
+    "end": 242.28,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "by the order in receiver. Now in a typical transport layer this flow control and reliability",
+    "start": 242.28,
+    "end": 247.64,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "are implemented together. So, we look into the different mechanism through which we implement",
+    "start": 247.64,
+    "end": 252.84,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "the flow control under reliability algorithms over the transport layer of a TCPIP protocol stack.",
+    "start": 252.84,
+    "end": 259.32,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, let us proceed with the detail mechanism of that one. So, this is the broad idea of",
+    "start": 259.32,
+    "end": 265.56,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "ensuring reliability. So, as I have mentioned that your network layer provides you an",
+    "start": 266.2,
+    "end": 272.52,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "unreliable channel. So, the network layer does not guarantee that the packet that it is trying",
+    "start": 272.52,
+    "end": 278.28,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "to deliver at the other end it will be eventually transmitted. So, there is always a possibility of",
+    "start": 278.28,
+    "end": 284.2,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\neo 8 e a\n\n(Gersieg >)\nsorsaten es) =)\n\nTeanspor a\ntayer\n\nNetwork\nTayer\n\n‘Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "buffer overflow from the intermediate routers because of which there is a possibility of",
+    "start": 284.2,
+    "end": 289.16,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\neo 8 e a\n\n(Gersieg >)\nsorsaten es) =)\n\nTeanspor a\ntayer\n\nNetwork\nTayer\n\n‘Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "data loss. Now, we are having some hypothetical function or hypothetical method which is",
+    "start": 289.8,
+    "end": 296.36,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "through which we are making a interaction among different layers to make you understand about",
+    "start": 297.16,
+    "end": 302.52,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\neo 8 LS a\n\n(=) ae)\nsoniagn Ges) Gas)\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "entire procedure. Now, if you just think about from the application perspective the application",
+    "start": 303.16,
+    "end": 309.32,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\neo 8 LS a\n\n(=) ae)\nsoniagn Ges) Gas)\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "always once or the application always try to have a methanol as it through which you will be able",
+    "start": 309.32,
+    "end": 316.52,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nfenton (Geees )\n\n1 Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "to ensure reliability. So, that means, the application always once that if a sender is or a sending",
+    "start": 316.6,
+    "end": 325.08,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\na a\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "processes sending certain message or certain data that data will be eventually received by the",
+    "start": 325.08,
+    "end": 331.32,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\n1 Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "receiver. So, the receiver will receive all the messages. So, you can just think of an application",
+    "start": 331.32,
+    "end": 335.56,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\n1 Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "like a file transfer. So, the entire large file is divided into multiple chunks and then the",
+    "start": 335.56,
+    "end": 340.6,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\n1 Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "sender process is sending the data bits for that file. Now, at the receiver end you need to ensure",
+    "start": 340.6,
+    "end": 346.44,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\n1 Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "that all the data that is sent by the sender that is received eventually otherwise you will not",
+    "start": 346.44,
+    "end": 351.88,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\n1 Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "be able to reconstruct the entire file. So, that is why from the application perspective reliability",
+    "start": 351.88,
+    "end": 357.88,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\n1 Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "is utmost importance for many of the application, but as I have mentioned earlier there there exist",
+    "start": 357.88,
+    "end": 363.88,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\n1 Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "a certain group of applications where reliability is not that much important rather",
+    "start": 363.88,
+    "end": 369.24,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\n1 Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "delivering the data or delivering the messages more important within a predefined timeout duration.",
+    "start": 369.72,
+    "end": 375.48,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "And in that case you use UDP type of protocol where reliability is not a concern or reliability is not",
+    "start": 375.48,
+    "end": 381.32,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "used, but for the application for the set of applications when reliability is a concern",
+    "start": 381.32,
+    "end": 385.8,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "during that time the application always expects that the data or the messages that is transferred",
+    "start": 386.44,
+    "end": 391.0,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "from the application they will be eventually received at the receiver site. Now, the application",
+    "start": 391.0,
+    "end": 396.76,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "here expects a reliable channel. So, the question comes that your network layer is unreliable.",
+    "start": 396.92,
+    "end": 402.12,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, on this unreliable channel how can you express or how can you write a methodology to ensure",
+    "start": 402.84,
+    "end": 410.04,
+    "ocr_text": "1 Provided service Service implementation\n\nSource: Computer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "reliability. So, the idea is there that at the transport layer you have this reliable data transfer",
+    "start": 410.04,
+    "end": 415.72,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nso”\n\ncy"
+  },
+  {
+    "text": "protocol at the sender site and the receiver site. So, this sending process at the network layer",
+    "start": 415.72,
+    "end": 425.64,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "it is unreliable sent, you did it is send that express the unreliable way of sending the data",
+    "start": 425.64,
+    "end": 433.4,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "on top of that you are implementing this reliability mechanism which is ensuring that reliable",
+    "start": 433.4,
+    "end": 439.08,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "data send on top of the transport layer. So, whenever you are making a interfacing between",
+    "start": 439.88,
+    "end": 445.32,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "the network layer and the transport layer there you have this unreliable data sent and",
+    "start": 445.32,
+    "end": 450.6,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "at the interface of transport layer and the application layer you have the interface of",
+    "start": 451.32,
+    "end": 456.76,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "reliable data send. Now, at the other end it receives the data in a reliable way because of this",
+    "start": 456.76,
+    "end": 463.16,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "reliable data send mechanism which is there and this reliable data transfer protocol at the",
+    "start": 463.16,
+    "end": 469.16,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "receiver site eventually it will receive the message and it will deliver the data to the application",
+    "start": 469.16,
+    "end": 474.04,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\n‘Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "layer. So, that way the application layer will always expect a reliable delivery of the messages",
+    "start": 474.04,
+    "end": 480.36,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\n‘Provided service Service implementation\n\nomputer Networks, Kurose, Ross\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "and here we will see that in the transport layer how can you implement this two mechanism",
+    "start": 480.36,
+    "end": 485.32,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "at the sender site and at the receiver site which will help you to ensure reliability in the system.",
+    "start": 485.32,
+    "end": 491.24,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nsoa”\n\ncy"
+  },
+  {
+    "text": "So, let us look into this process in details. So, as I discussed earlier during the discussion of",
+    "start": 492.12,
+    "end": 502.44,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nsoa”\n\ncy"
+  },
+  {
+    "text": "different layer of the TCP IIT protocol stack that certain services are implemented in multiple",
+    "start": 502.44,
+    "end": 508.52,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nsoa”\n\ncy"
+  },
+  {
+    "text": "layers of the protocol stack. So, this flow control and error control these are the two",
+    "start": 508.6,
+    "end": 513.64,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nsoa”\n\ncy"
+  },
+  {
+    "text": "mechanism which are implemented both at the transport layer and the data link layer. So,",
+    "start": 513.64,
+    "end": 517.72,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nsoa”\n\ncy"
+  },
+  {
+    "text": "the question comes that why do we need to implement flow control at the transport layer as well",
+    "start": 517.72,
+    "end": 523.16,
+    "ocr_text": "Ensure Reliability at the Transport Layer\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nsoa”\n\ncy"
+  },
+  {
+    "text": "as the data link layer. So, if you just ask the question in this way that let us assume that I",
+    "start": 523.16,
+    "end": 532.68,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n' NPTELOI\n\nNN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> oS"
+  },
+  {
+    "text": "have my flow control algorithm in the data link layer which is being implemented do I need to have",
+    "start": 532.76,
+    "end": 539.64,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n' NPTELOI\n\nNN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> oS"
+  },
+  {
+    "text": "the flow control algorithm at the transport layer itself. So, let us look into one example where",
+    "start": 539.64,
+    "end": 544.84,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n' NPTELOI\n\nNN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> oS"
+  },
+  {
+    "text": "you have this flow control algorithm at the data link layer. So, the data link layer ensures",
+    "start": 545.32,
+    "end": 550.6,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n' NPTELOI\n\nNN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> oS"
+  },
+  {
+    "text": "this hop by hop flow control algorithm. So, as we have learned already that your data link",
+    "start": 550.6,
+    "end": 556.92,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n' NPTELOI\n\nNN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> oS"
+  },
+  {
+    "text": "layer protocol it ensures the hop by hop principles the hop by hop transmission of data whereas,",
+    "start": 557.08,
+    "end": 565.4,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\n+> so ="
+  },
+  {
+    "text": "the transport layer it ensures the complete end to end delivery of the data. Now, whenever we",
+    "start": 565.4,
+    "end": 570.2,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\n53 os"
+  },
+  {
+    "text": "are saying that the flow control algorithm is implemented at the data link layer it is like",
+    "start": 570.2,
+    "end": 574.92,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\n53 os"
+  },
+  {
+    "text": "that this hop by hop flow controls are implemented. So, if you think about this as the intermediate",
+    "start": 574.92,
+    "end": 580.04,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\n53 os"
+  },
+  {
+    "text": "routers R1, R2 and R3 and this is the source and this is the final destination. So, this",
+    "start": 580.04,
+    "end": 585.96,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve\nperformance\n\neR\n\n*) NPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\n4s\" \"oa aa"
+  },
+  {
+    "text": "flow control algorithm at the data link layer it ensures that you have flow control mechanism",
+    "start": 586.52,
+    "end": 591.24,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve ?\nperformance\n\nSs\n\n°): NPTEL ONLINE\nIIT KHARAGPt CERTIFICATION COURSES\n\nsso a"
+  },
+  {
+    "text": "between S and R1, R1 and R2, between R2 and R3 and between R3 and D. Now, so, this hop by hop",
+    "start": 591.24,
+    "end": 599.72,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve ?\nperformance\n\nSs\n\n°): NPTEL ONLINE\nIIT KHARAGPt CERTIFICATION COURSES\n\nsso a"
+  },
+  {
+    "text": "control algorithms are there. Now, the question comes if I have this hop by hop flow control algorithm",
+    "start": 599.72,
+    "end": 605.16,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve as\nperformance\n\nNPTEL OI\n\n{ INLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n4"
+  },
+  {
+    "text": "do I still need to have a flow control algorithm at the transport layer. Now, just think of a scenario",
+    "start": 605.16,
+    "end": 612.12,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve as\nperformance\n\nNPTEL OI\n\n{ INLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n4"
+  },
+  {
+    "text": "that well this link from S to R1 it is 10 MBPS the link from R1 to R2 it is 5 MBPS the links from R2",
+    "start": 612.2,
+    "end": 621.56,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n- Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link ayer improve Ps\nperformance Se\n\nBes Qs\n\n'. NPTELONLI\n\n{ INE\nIIT KHARAGPUR CERTIFICATION COURSES.\n> oa"
+  },
+  {
+    "text": "to R3 it is 3 MBPS and the link from R3 to this D this is 1 MBPS. Now, what happens here that whenever",
+    "start": 621.56,
+    "end": 630.44,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n- Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link ayer improve Ps\nperformance Se\n\nBes Qs\n\n'. NPTELONLI\n\n{ INE\nIIT KHARAGPUR CERTIFICATION COURSES.\n> oa"
+  },
+  {
+    "text": "you are implementing this hop by hop flow control at the data link layer then from S to R1 the S",
+    "start": 630.44,
+    "end": 637.24,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n* Flow control and error control at the data link layer improve dv?\n\nperformance 5 \\° 4 =\nGE” OS\n\nNPTEL OI\n\n(st INLINE\nIITKHARAGPUR CERTIFICATION COURSES\n4"
+  },
+  {
+    "text": "finds out that well I can send the data at a data of 10 MBPS. So, it sends the data at a",
+    "start": 637.24,
+    "end": 642.28,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n* Flow control and error control at the data link layer improve 2\n\nperformance Sy 4 =\nGE” Ms\n\n'- NPTELONLI\n\nINE\nIIT KHARAGPUR CERTIFICATION COURSES.\n5S oa"
+  },
+  {
+    "text": "data of 10 MBPS. But then R1 finds out that it will not be able to send the data to R2 at a",
+    "start": 642.28,
+    "end": 647.72,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n* Flow control and error control at the data link layer improve 2\n\nperformance Sy 4 =\nGE” Ms\n\n'- NPTELONLI\n\nINE\nIIT KHARAGPUR CERTIFICATION COURSES.\n5S oa"
+  },
+  {
+    "text": "data of 10 MBPS although it is receiving the data at a data of 10 MBPS. But it requires 5 MBPS",
+    "start": 647.72,
+    "end": 653.56,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n* Flow control and error control at the data link layer improve 2?\n\nperformance s\\0 4 =\nGE” Ms\n\nNPTEL OI\n\n& INLINE\nIITKHARAGPUR CERTIFICATION COURSES\n5"
+  },
+  {
+    "text": "of transmission. Similarly, R2 it finds out that it will not be able to send data at a data 5 MBPS",
+    "start": 653.56,
+    "end": 659.72,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n* Flow control and error control at the data link layer improve 2?\n\nperformance s\\0 4 =\nGE” Ms\n\nNPTEL OI\n\n& INLINE\nIITKHARAGPUR CERTIFICATION COURSES\n5"
+  },
+  {
+    "text": "rather it need to send the data at 3 MBPS and finally, from R3 to D it can only send the data",
+    "start": 659.72,
+    "end": 665.48,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n* Flow control and error control at the data link layer improve 2\n\nperformance 5 \\° 4 =\nGE” Ms\n\nNPTEL ONLI\n\n& INE\nIITKHARAGPUR CERTIFICATION COURSES\n5"
+  },
+  {
+    "text": "of 1 MBPS. Now, if S does not know that this entire so, if you look into the effective rate of",
+    "start": 665.96,
+    "end": 674.44,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve 2\n\nperformance 5 \\° 4\n\nes CY\n\nNPTEL ONLI\n\n& INE\nIIT KHARAGPUR CERTIFICATION COURSES\n5"
+  },
+  {
+    "text": "this entire end to end power. So, this effective rate of this entire end to end power will be equal to",
+    "start": 674.44,
+    "end": 680.92,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve 2\n\nperformance 5 \\° 4\n\nes CY\n\nNPTEL ONLI\n\n& INE\nIIT KHARAGPUR CERTIFICATION COURSES\n5"
+  },
+  {
+    "text": "1 MBPS. Now, if S does not get this information S will try to push the data at a data of 10 MBPS",
+    "start": 680.92,
+    "end": 689.64,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve i?\n\nperformance 5 \\° 4\n\n‘ NPTELOI\n\n+ INLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n@ 9 \\olfa era)"
+  },
+  {
+    "text": "and what will happen that R1 will not be able to deliver the data to R2 and so on. So,",
+    "start": 689.72,
+    "end": 695.72,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve ?\n\nperformance Sy 4\n\n'- NPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES 3\n2 +See Petes wears"
+  },
+  {
+    "text": "that way that additional data which is coming to R1. So, R1 is receiving the data at a data of 10 MBPS",
+    "start": 695.72,
+    "end": 702.2,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve ?\n\nperformance Sy 4\n\n'- NPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES 3\n2 +See Petes wears"
+  },
+  {
+    "text": "but it is only able to deliver the data at a data of 5 MBPS. So, that as a result this additional",
+    "start": 702.2,
+    "end": 708.52,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve ?\n\nperformance Sy 4\n\n'- NPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES 3\n2 +See Petes wears"
+  },
+  {
+    "text": "data that it is receiving it will get on filling up the buffer space which is available at R1.",
+    "start": 708.52,
+    "end": 714.2,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve ?\n\nperformance Sy 4\n\n'- NPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES 3\n2 +See Petes wears"
+  },
+  {
+    "text": "And eventually what will happen that eventually you will experience the data loss from the buffer",
+    "start": 714.2,
+    "end": 718.92,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve ?\n\nperformance Sy 4\n\n'- NPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES 3\n2 +See Petes wears"
+  },
+  {
+    "text": "due to buffer overflow. So, there will be a huge amount of data loss because source is transmitting",
+    "start": 719.0,
+    "end": 723.72,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve ?\n\nperformance Sy 4\n\n'- NPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES 3\n2 +See Petes wears"
+  },
+  {
+    "text": "data at a data of 10 MBPS but the receiver the other end receiver is only able to receive data",
+    "start": 723.72,
+    "end": 728.76,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve ?\n\nperformance Sy 4\n\n'- NPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES 3\n2 +See Petes wears"
+  },
+  {
+    "text": "at a data of 1 MBPS. And as a result this 9 MBPS of data that will get accumulated over the",
+    "start": 728.76,
+    "end": 735.48,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve ?\n\nperformance Sy 4\n\n'- NPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES 3\n2 +See Petes wears"
+  },
+  {
+    "text": "different layers of buffers at different intermediate routers and after sometime it will experience",
+    "start": 735.48,
+    "end": 741.24,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n- Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve\nperformance\n\n‘ NPTEL OI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\nso os"
+  },
+  {
+    "text": "a drop of data from those intermediate buffers. And this is the reason that we are not able to",
+    "start": 741.24,
+    "end": 747.08,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n- Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve\nperformance\n\n‘ NPTEL OI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\nso os"
+  },
+  {
+    "text": "implement if we implement this flow control algorithm only at the data link layer for",
+    "start": 748.04,
+    "end": 752.44,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n- Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve\nperformance\n\n‘ NPTEL OI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\nso os"
+  },
+  {
+    "text": "hub by hub flow control it is not sufficient we have to implement it at the transport layer.",
+    "start": 752.44,
+    "end": 757.24,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n- Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve\nperformance\n\n‘ NPTEL OI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\nso os"
+  },
+  {
+    "text": "Now, let us look into the other way round like you have this end to end flow control algorithm",
+    "start": 757.24,
+    "end": 762.44,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n- Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve\nperformance\n\n‘ NPTEL OI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\nso os"
+  },
+  {
+    "text": "and in that case still we did still we require that this flow control algorithm at data link",
+    "start": 763.32,
+    "end": 772.04,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n- Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve\nperformance\n\n‘ NPTEL OI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\nso os"
+  },
+  {
+    "text": "now in transport layer what happens that you are only ensuring the end to end data delivery or",
+    "start": 773.0,
+    "end": 779.88,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n- Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve\nperformance\n\n‘ NPTEL OI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\nso os"
+  },
+  {
+    "text": "end to end flow control algorithm. So, you have one router with which your source is getting",
+    "start": 779.88,
+    "end": 787.24,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n- Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n¢ Flow control and error control at the data link layer improve\nperformance\n\n‘ NPTEL OI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\nso os"
+  },
+  {
+    "text": "connected then you have this intermediate network then another router and then your destination",
+    "start": 787.24,
+    "end": 793.88,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\n\nrf\nperformance 0, a\n\n‘. NPTELOI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "which is there and you are only ensuring the flow control among this two end host and just",
+    "start": 793.88,
+    "end": 799.88,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\n\nrf\nperformance 0, a\n\n‘. NPTELOI\n\n{ INLINE\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "think about the earlier example that you are sending data at a rate of 1 MBPS.",
+    "start": 799.96,
+    "end": 805.48,
+    "ocr_text": "Error Control and Flow Control\n\n¢ These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\n* Flow control and error control at the d nk layer improve\n\nperformance oe a\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n5"
+  },
+  {
+    "text": "Now, you just think of two intermediate routers here in the network.",
+    "start": 805.48,
+    "end": 809.8,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n5"
+  },
+  {
+    "text": "Now, this router has multiple incoming ports. So, it is just like a road network that you are",
+    "start": 811.4,
+    "end": 817.72,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n5"
+  },
+  {
+    "text": "getting data from multiple parts altogether. So, you are getting data from this link you are",
+    "start": 817.72,
+    "end": 824.84,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n5"
+  },
+  {
+    "text": "getting data from this link you are getting data from this link and so on. So, that way",
+    "start": 824.92,
+    "end": 829.64,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti: A)\n\nperformance & B®\nZA\n\n©! NPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES i\nSola wl a ee Ae"
+  },
+  {
+    "text": "it may happen that this link is pushing data at a rate of 1 MBPS but this individual links may",
+    "start": 830.2,
+    "end": 837.0,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti: A)\n\nperformance & B®\nZA\n\n©! NPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES i\nSola wl a ee Ae"
+  },
+  {
+    "text": "push data at a rate of 2 MBPS and say this link is pushing data at a rate of 5 MBPS.",
+    "start": 837.0,
+    "end": 843.4,
+    "ocr_text": "ontrol and Flow C\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nFlow control and error control at the d\nperformance\n\n* 1: NPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\nS's eT"
+  },
+  {
+    "text": "But this outgoing link it only has a speed of say 3 MBPS.",
+    "start": 845.8,
+    "end": 850.36,
+    "ocr_text": "ontrol and Flow C\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nFlow control and error control at the d\n\nnk layer improve\nperformance R\n\nns\n\n© NPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nSoieae hari eer eans#ers"
+  },
+  {
+    "text": "In that case because this multiple incoming link are getting converged in a intermediate router",
+    "start": 850.52,
+    "end": 857.48,
+    "ocr_text": "ontrol and Flow C\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nFlow control and error control at the d\n\nnk layer improve\nperformance R\n\nns\n\n© NPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nSoieae hari eer eans#ers"
+  },
+  {
+    "text": "it may happen that the total incoming rate which is being there from multiple others incoming",
+    "start": 858.04,
+    "end": 863.64,
+    "ocr_text": "ontrol and Flow C\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nFlow control and error control at the d\n\nnk layer improve\nperformance R\n\nns\n\n© NPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nSoieae hari eer eans#ers"
+  },
+  {
+    "text": "links that is exceeding the total outgoing capacity that the router has. And because of that",
+    "start": 863.64,
+    "end": 869.56,
+    "ocr_text": "ontrol and Flow C\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nFlow control and error control at the d\n\nnk layer improve\nperformance R\n\nns\n\n© NPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nSoieae hari eer eans#ers"
+  },
+  {
+    "text": "this end to end flow control algorithm it may perform poorly in this kind of scenarios. So,",
+    "start": 870.28,
+    "end": 877.0,
+    "ocr_text": "ontrol and Flow C\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nFlow control and error control at the d\n\nnk layer improve\nperformance R\n\nns\n\n© NPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nSoieae hari eer eans#ers"
+  },
+  {
+    "text": "that is why to make it control to have a control you need the hub by hub flow control mechanism",
+    "start": 877.0,
+    "end": 884.68,
+    "ocr_text": "ontrol and Flow C\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nFlow control and error control at the d\n\nnk layer improve\nperformance R\n\nns\n\n© NPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nSoieae hari eer eans#ers"
+  },
+  {
+    "text": "in the network. But here you will see by applying this hub by hub flow control algorithm in the",
+    "start": 884.68,
+    "end": 890.28,
+    "ocr_text": "ontrol and Flow C\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nFlow control and error control at the d\n\nnk layer improve\nperformance R\n\nns\n\n© NPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nSoieae hari eer eans#ers"
+  },
+  {
+    "text": "network. So, what your task could be your task could be to reduce the incoming rate at every",
+    "start": 890.28,
+    "end": 898.04,
+    "ocr_text": "ontrol and Flow C\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nFlow control and error control at the d\n\nnk layer improve\nperformance R\n\nns\n\n© NPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nSoieae hari eer eans#ers"
+  },
+  {
+    "text": "individual hub such that intermediate routers is experience less congestion less amount of congestion.",
+    "start": 898.04,
+    "end": 905.16,
+    "ocr_text": "ontrol and Flow C\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essenti:\n\nFlow control and error control at the d\n\nnk layer improve\nperformance R\n\nns\n\n© NPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nSoieae hari eer eans#ers"
+  },
+  {
+    "text": "So, by doing that you are effectively improving the performance of the system. But remember that",
+    "start": 905.24,
+    "end": 911.08,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "by even after implementing the hub by hub flow control it may not be possible to",
+    "start": 911.08,
+    "end": 915.72,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "possible to ensure complete reliability that complete elimination of data loss because you",
+    "start": 917.16,
+    "end": 923.4,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "are receiving data from multiple hops and everywhere there is a kind of estimation going on that",
+    "start": 923.4,
+    "end": 928.76,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "what should be the ideal rate at which the one end should send the data at the other end.",
+    "start": 928.76,
+    "end": 933.64,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "And this estimation takes time sometimes. So, before the system moves to the convergence there",
+    "start": 933.64,
+    "end": 939.16,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "is always a possibility of having a significant amount of data loss. So, you will not be able to",
+    "start": 939.16,
+    "end": 944.28,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "completely eliminate the data loss by applying this hub by hub flow control mechanism. But certainly",
+    "start": 944.28,
+    "end": 950.2,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "you can improve the performance. And that is the reason we say that flow control mechanism the",
+    "start": 950.2,
+    "end": 956.44,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "error control we will discuss later on. The flow control and this error control mechanism at",
+    "start": 956.44,
+    "end": 961.0,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "the transport layer they are essential whereas, the flow control and the error control mechanism",
+    "start": 961.08,
+    "end": 965.8,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n* Flow control and error control at the data link layer improve\nperformance\n\n‘. NPTELOI\n\n{ NN\nIIT KHARAGPI CERTIFICATION COURSES.\ns> os"
+  },
+  {
+    "text": "and the data link layer they improve the performance of your protocol.",
+    "start": 965.8,
+    "end": 969.24,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n+ Flow control and error control at the data link layer improve\nperformance\n\nNPTEL OI\n\nINLINE\nIIT KHARAGPI CERTIFICATION COURSES.\n+> so ="
+  },
+  {
+    "text": "Now, let us look into different type of flow control algorithms and before going to that",
+    "start": 971.0,
+    "end": 977.48,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n+ Flow control and error control at the data link layer improve\nperformance\n\nNPTEL OI\n\nINLINE\nIIT KHARAGPI CERTIFICATION COURSES.\n+> so ="
+  },
+  {
+    "text": "why we do why do we require this different kind of end to end protocols in the network.",
+    "start": 977.48,
+    "end": 984.36,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n+ Flow control and error control at the data link layer improve\nperformance\n\nNPTEL OI\n\nINLINE\nIIT KHARAGPI CERTIFICATION COURSES.\n+> so ="
+  },
+  {
+    "text": "So, for that I suggest all of you to read through this particular paper which was",
+    "start": 984.36,
+    "end": 989.56,
+    "ocr_text": "Error Control and Flow Control\n\n* These features are used in both Data Link Layer and Transport Layer\n-Why?\n\n¢ Flow control and error control at the transport layer are essential\n\n+ Flow control and error control at the data link layer improve\nperformance\n\nNPTEL OI\n\nINLINE\nIIT KHARAGPI CERTIFICATION COURSES.\n+> so ="
+  },
+  {
+    "text": "which was published by Solzger, Reed and Clark. So, it is a fundamental paper in computer networking",
+    "start": 990.36,
+    "end": 997.16,
+    "ocr_text": "eresting Read\n\nEND-TO-END ARGUMENTS IN SYSTEM DESIGN\nJ.H. Saltzer, D.P. Reed and D.D. Clark*\nM.L.T. Laboratory for Computer Science\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "that talks about that why do you require this kind of end to end protocols in the internet",
+    "start": 997.16,
+    "end": 1002.28,
+    "ocr_text": "eresting Read\n\nEND-TO-END ARGUMENTS IN SYSTEM DESIGN\nJ.H. Saltzer, D.P. Reed and D.D. Clark*\nM.L.T. Laboratory for Computer Science\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "when there is this hub by hub protocols already existing. So, I suggest all of you to read",
+    "start": 1002.28,
+    "end": 1007.4,
+    "ocr_text": "eresting Read\n\nEND-TO-END ARGUMENTS IN SYSTEM DESIGN\nJ.H. Saltzer, D.P. Reed and D.D. Clark*\nM.L.T. Laboratory for Computer Science\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "this particular paper to get more details about the principles which are adopted in the",
+    "start": 1007.4,
+    "end": 1013.16,
+    "ocr_text": "eresting Read\n\nEND-TO-END ARGUMENTS IN SYSTEM DESIGN\nJ.H. Saltzer, D.P. Reed and D.D. Clark*\nM.L.T. Laboratory for Computer Science\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "TCP IP protocol stack to implement this kind of end to end protocols over the internet.",
+    "start": 1013.16,
+    "end": 1018.44,
+    "ocr_text": "An Interesting Read\n\nEND-TO-END ARGUMENTS IN SYSTEM DESIGN\nJ.H. Saltzer, D.P. Reed and D.D. Clark*\nM.I.T. Laboratory for Computer Science\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "Now, let us look into this flow control algorithms. So, the simplest flow control algorithm that we",
+    "start": 1019.56,
+    "end": 1024.92,
+    "ocr_text": "An Interesting Read\n\nEND-TO-END ARGUMENTS IN SYSTEM DESIGN\nJ.H. Saltzer, D.P. Reed and D.D. Clark*\nM.I.T. Laboratory for Computer Science\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "have we call it as a stop and wait flow control algorithms. So, the stop and wait flow control algorithm",
+    "start": 1024.92,
+    "end": 1030.12,
+    "ocr_text": "An Interesting Read\n\nEND-TO-END ARGUMENTS IN SYSTEM DESIGN\nJ.H. Saltzer, D.P. Reed and D.D. Clark*\nM.I.T. Laboratory for Computer Science\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "in a error tree channel works as follows the protocol is pretty simple that you send the frame or",
+    "start": 1030.12,
+    "end": 1035.4,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nIITKHARAGPUR\n\nSender Receiver\nA 8\n\nRequest —> |\n\nki [> Arrival\nArrival —\n\nRequest —>| Fane\n\nr |—> arrival\nArrival\n\ny\n\nY\nTime Time\n\nNPTEL ONLINE\nCERTIFICATION COURS!"
+  },
+  {
+    "text": "you send the packet and then you wait for its acknowledgement. So, once the receiver receives",
+    "start": 1035.4,
+    "end": 1040.68,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\nA B\nRequest —> |\n\n[> Arrival\n\nArrival\n\nRequest —>[ Frame |\n\nr |—> arrival\nArrival\n\nY\n\nY\nTime Time\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\nso\n\ncy"
+  },
+  {
+    "text": "this frame it sends back an acknowledgement and the sender it waits for the acknowledgement",
+    "start": 1040.76,
+    "end": 1045.8,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\nA B\nRequest —> |\n\n[> Arrival\n\nArrival\n\nRequest —>[ Frame |\n\nr |—> arrival\nArrival\n\nY\n\nY\nTime Time\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n\nso\n\ncy"
+  },
+  {
+    "text": "before sending the next frame or the next packet. So, once you are receiving this acknowledgement",
+    "start": 1045.8,
+    "end": 1050.04,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\nArrival\nArtval ra\nRequest —>| Frame\n' Arrival\nArival\n\nY\n\nTime\n\n3<--\n\nTi\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nso\n\nCy"
+  },
+  {
+    "text": "then you only send the next frame. So, that way every frame has an acknowledgement as a",
+    "start": 1050.04,
+    "end": 1054.92,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\nArrival\nArtval ra\nRequest —>| Frame\n' Arrival\nArival\n\nY\n\nTime\n\n3<--\n\nTi\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nso\n\nCy"
+  },
+  {
+    "text": "certificate and only when you receive the acknowledgement you transmit the next frame.",
+    "start": 1054.92,
+    "end": 1059.8,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\nArrival\nArtval ra\nRequest —>| Frame\n' Arrival\nArival\n\nY\n\nTime\n\n3<--\n\nTi\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nso\n\nCy"
+  },
+  {
+    "text": "Now, if it is a error tree channel it is always guaranteed that eventually the receiver will",
+    "start": 1059.8,
+    "end": 1065.48,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\nArrival\nArtval ra\nRequest —>| Frame\n' Arrival\nArival\n\nY\n\nTime\n\n3<--\n\nTi\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nso\n\nCy"
+  },
+  {
+    "text": "receive the frame and it will be able to send you back the acknowledgement and the sender will",
+    "start": 1065.48,
+    "end": 1070.6,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\nArrival\nArtval ra\nRequest —>| Frame\n' Arrival\nArival\n\nY\n\nTime\n\n3<--\n\nTi\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nso\n\nCy"
+  },
+  {
+    "text": "eventually receive the acknowledgement because it is a error tree channel and there is no loss.",
+    "start": 1070.6,
+    "end": 1075.4,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\nArrival\nArtval ra\nRequest —>| Frame\n' Arrival\nArival\n\nY\n\nTime\n\n3<--\n\nTi\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nso\n\nCy"
+  },
+  {
+    "text": "So, once you are receiving the acknowledgement you are sure that the receiver has received this",
+    "start": 1076.04,
+    "end": 1080.76,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\n\\ Arrival\nArival rr\nRequest —>| Frame\nr Arrival\nArrival\n\nY\n\nY\nTime Time\n\nNPTEL ONLINE\n\nIIT KHARAGPUR, CERTIFICATION COURSES\noly\n\ncy"
+  },
+  {
+    "text": "particular frame and so, you transmit the next frame. So, that is the broad idea of this stop",
+    "start": 1080.76,
+    "end": 1087.4,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\n\\ Arrival\nArival rr\nRequest —>| Frame\nr Arrival\nArrival\n\nY\n\nY\nTime Time\n\nNPTEL ONLINE\n\nIIT KHARAGPUR, CERTIFICATION COURSES\noly\n\ncy"
+  },
+  {
+    "text": "and wait the protocol. So, you stop sending transmission such sending the next frame after sending",
+    "start": 1087.4,
+    "end": 1094.76,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\n\\ Arrival\nArival rr\nRequest —>| Frame\nr Arrival\nArrival\n\nY\n\nY\nTime Time\n\nNPTEL ONLINE\n\nIIT KHARAGPUR, CERTIFICATION COURSES\noly\n\ncy"
+  },
+  {
+    "text": "one frame then wait for the acknowledgement. When you have received the wait then you send the",
+    "start": 1094.84,
+    "end": 1098.76,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\n\\ Arrival\nArival rr\nRequest —>| Frame\nr Arrival\nArrival\n\nY\n\nY\nTime Time\n\nNPTEL ONLINE\n\nIIT KHARAGPUR, CERTIFICATION COURSES\noly\n\ncy"
+  },
+  {
+    "text": "next frame. Now, let us look into this flow control algorithm in a noisy channel the same stop and",
+    "start": 1098.76,
+    "end": 1105.16,
+    "ocr_text": "Flow C | Algorithms\n\n* Stop and Wait Flow Control (Error Free Channel):\n\nSender Receiver\n\nA 8\n\nRequest —>[ Frame\n\\ Arrival\nArival rr\nRequest —>| Frame\nr Arrival\nArrival\n\nY\n\nY\nTime Time\n\nNPTEL ONLINE\n\nIIT KHARAGPUR, CERTIFICATION COURSES\noly\n\ncy"
+  },
+  {
+    "text": "wait protocol. So, here we use the concept of sequence numbers to individually identify each",
+    "start": 1105.16,
+    "end": 1111.88,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\nsequence number in Stop and Wait?\n\nTime\n\nACK 0 lost\nArcee _.| B discards\nduplicate frame\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "frame and the corresponding acknowledgement. So, every frame is associated with one sequence",
+    "start": 1111.88,
+    "end": 1118.2,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\nsequence number in Stop and Wait?\n\nTime\n\nACK 0 lost\nArcee _.| B discards\nduplicate frame\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "number. So, if you look into this example this frame 0 is associated with sequence number.",
+    "start": 1118.68,
+    "end": 1124.68,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n« What can be a maximum size of the\nsequence number in Stop and Wait?\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nACK 0 lost\n\nA retransmits\n\nTime\n\n|\n\nB discards\nduplicate frame\n\nso"
+  },
+  {
+    "text": "So, this 0 is the sequence number for this frame and then we are getting an acknowledgement.",
+    "start": 1124.68,
+    "end": 1129.48,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n« What can be a maximum size of the\nsequence number in Stop and Wait?\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nACK 0 lost\n\nA retransmits\n\nTime\n\n|\n\nB discards\nduplicate frame\n\nso"
+  },
+  {
+    "text": "So, this acknowledgement mechanism it is sending acknowledgement one it is sending acknowledgement",
+    "start": 1129.48,
+    "end": 1134.6,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\nsequence number in Stop and Wait?\n\nTime\n\nACK 0 lost\nA retrans\n\nAutomatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\ns'> \"oa\"\n\ncy"
+  },
+  {
+    "text": "one means that B has correctly received frame 0 and then it is expecting for frame one. So,",
+    "start": 1134.6,
+    "end": 1140.76,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\nsequence number in Stop and Wait?\n\nTime\n\nACK 0 lost\nA retrans\n\nAutomatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\ns'> \"oa\"\n\ncy"
+  },
+  {
+    "text": "then you send the frame one. So, once you have B has received frame one then it sends",
+    "start": 1140.76,
+    "end": 1145.48,
+    "ocr_text": "Flow Control Algorithms\n\nA B\n\nStop and Wait (Noisy Channel):\n\nUse sequence numbers to individually\n\nidentify each frame and the\n\ncorresponding acknowledgement -\nWhat can be a maximum size of the 9\" | —\nsequence number in Stop and Wait?\n\nACK 0 lost:\nAA retransmits\n\nAutomatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "acknowledgement 0 that means B has received frame one and it is waiting for the acknowledgement",
+    "start": 1145.56,
+    "end": 1150.28,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement 7\nWhat can be a maximum size of the 9 *\"\"\"\"*\nsequence number in Stop and Wait?\n\nTime\n\nACK 0 lost:\nAA retransmits\n\nAutomatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "0. So, that way in a noisy channel the first reason is the first principle is that you separate",
+    "start": 1150.28,
+    "end": 1156.92,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement 7\nWhat can be a maximum size of the 9 *\"\"\"\"*\nsequence number in Stop and Wait?\n\nTime\n\nACK 0 lost:\nAA retransmits\n\nAutomatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "out every frame with by using the corresponding sequence number which will be uniquely identified",
+    "start": 1156.92,
+    "end": 1163.88,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement 7\nWhat can be a maximum size of the 9 *\"\"\"\"*\nsequence number in Stop and Wait?\n\nTime\n\nACK 0 lost:\nAA retransmits\n\nAutomatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "every frame in the channel. Now, because it is a noisy channel there is a possibility of having",
+    "start": 1163.88,
+    "end": 1169.8,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\nsequence number in Stop and Wait?\n\nTime\n\n_.| B discards\nduplicate frame\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n5\" \"oa\""
+  },
+  {
+    "text": "a frame loss because this frame is being lost from the network. So, if there is a frame loss",
+    "start": 1169.8,
+    "end": 1175.32,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\nsequence number in Stop and Wait?\n\nTime\n\n_.| B discards\nduplicate frame\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n5\" \"oa\""
+  },
+  {
+    "text": "so B will not send back any acknowledgement. So, you wait for a timeout value. So, A will wait",
+    "start": 1175.48,
+    "end": 1180.6,
+    "ocr_text": "Flow Control Algorithms\n\nStop and Wait (Noisy Channel):\n\nUse sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\nWhat can be a maximum size of the\nsequence number in Stop and Wait?\n\nAutomatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIIT KHARAGPI CERTIFICATION COURSES\ns> oS\n\nFrame lost: 4\nA retransmit\n\nACK 0 lost:\nA retransmits\n\nTime"
+  },
+  {
+    "text": "for a timeout value and once this timeout expires then A will retransmit the frame.",
+    "start": 1180.6,
+    "end": 1186.44,
+    "ocr_text": "Flow Control Algorithms\n\nStop and Wait (Noisy Channel):\n\nUse sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\nWhat can be a maximum size of the\nsequence number in Stop and Wait?\n\nAutomatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIIT KHARAGPI CERTIFICATION COURSES\ns> oS\n\nFrame lost: 4\nA retransmit\n\nACK 0 lost:\nA retransmits\n\nTime"
+  },
+  {
+    "text": "Now, one interesting question here is that what can be the maximum size of the sequence number",
+    "start": 1186.44,
+    "end": 1191.24,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nACK 0 lost:\n\nA retransmits\n\n|\n\nTime\n\n‘frame\n\n4s\" \"oa\""
+  },
+  {
+    "text": "in stop and wait. So, in stop and wait you can see that at one instance of time only one",
+    "start": 1191.24,
+    "end": 1196.44,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nACK 0 lost:\n\nA retransmits\n\n|\n\nTime\n\n‘frame\n\n4s\" \"oa\""
+  },
+  {
+    "text": "frame can be outstanding in the network. So, whenever you have sent frame 0 unless you are",
+    "start": 1196.44,
+    "end": 1201.16,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nACK 0 lost:\n\nA retransmits\n\n|\n\nTime\n\n‘frame\n\n4s\" \"oa\""
+  },
+  {
+    "text": "getting the acknowledgement from that frame you will not send the next frame. So, that is why",
+    "start": 1201.24,
+    "end": 1205.56,
+    "ocr_text": "Flow Control Algorithms\n\nA B\n* Stop and Wait (Noisy Channel): |\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee ___\n\nTime\n\n_.| B discards\nduplicate frame\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\na oe"
+  },
+  {
+    "text": "two bit sequence number will be sufficient and because of this reason you can see from",
+    "start": 1205.56,
+    "end": 1210.04,
+    "ocr_text": "Flow Control Algorithms\n\nA B\n* Stop and Wait (Noisy Channel): |\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee ___\n\nTime\n\n_.| B discards\nduplicate frame\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\na oe"
+  },
+  {
+    "text": "this diagram that every frame is associated with one sequence number and the sequence numbers",
+    "start": 1210.04,
+    "end": 1215.24,
+    "ocr_text": "Flow Control Algorithms\n\nA B\n* Stop and Wait (Noisy Channel): |\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee ___\n\nTime\n\n_.| B discards\nduplicate frame\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\na oe"
+  },
+  {
+    "text": "are 0's and 1's. So, repeated 0's and 1's. So, that means whenever you have sent frame 0",
+    "start": 1215.24,
+    "end": 1219.88,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nACK 0 lost:\nA retrans\n\nTime\n\n|\n\n_.} B discards\nduplicate frame\n\ns'> \"a\"\n\ncy"
+  },
+  {
+    "text": "unless you are getting this acknowledgement with the expected frame 1 you will not send frame 1.",
+    "start": 1219.88,
+    "end": 1224.52,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nACK 0 lost:\nA retrans\n\nTime\n\n|\n\n_.} B discards\nduplicate frame\n\ns'> \"a\"\n\ncy"
+  },
+  {
+    "text": "So, you can always be sure by looking at the acknowledgement that which for which frame",
+    "start": 1224.52,
+    "end": 1230.6,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\nACK 0 lost:\nA retrans\n\nTime\n\n|\n\n_.} B discards\nduplicate frame\n\ns'> \"a\"\n\ncy"
+  },
+  {
+    "text": "this acknowledgement corresponds to. If you are getting an acknowledgement to one that means",
+    "start": 1231.24,
+    "end": 1235.4,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n* What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee ____\n\nTime\n\nACK 0 lost:\nA retrans\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\nso\""
+  },
+  {
+    "text": "you have correctly received frame 0 and you are expecting from for frame 1.",
+    "start": 1235.4,
+    "end": 1240.28,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n* What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee ____\n\nTime\n\nACK 0 lost:\nA retrans\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\nso\""
+  },
+  {
+    "text": "So, that is the reason that we use two bit sequence number for this flow control algorithm",
+    "start": 1241.24,
+    "end": 1247.96,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n* What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nTime\n\n|\n\nB discards\n\n=| duplicate frame\n\n5\" \"a\""
+  },
+  {
+    "text": "using stop and wait and this kind of algorithm where we are utilizing the concept of sequence number",
+    "start": 1247.96,
+    "end": 1254.04,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n* What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nTime\n\n|\n\nB discards\n\n=| duplicate frame\n\n5\" \"a\""
+  },
+  {
+    "text": "applying flow control algorithm in case of a noisy channel and you can see that by applying",
+    "start": 1255.0,
+    "end": 1262.36,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n* What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nTime\n\n|\n\nB discards\n\n=| duplicate frame\n\n5\" \"a\""
+  },
+  {
+    "text": "this flow control algorithm in a noisy channel we are also ensuring reliability in the system.",
+    "start": 1262.36,
+    "end": 1266.84,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n* What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nTime\n\n|\n\nB discards\n\n=| duplicate frame\n\n5\" \"a\""
+  },
+  {
+    "text": "So, we are also ensuring that the receiver receives all the frames correctly. So,",
+    "start": 1266.84,
+    "end": 1270.68,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\na\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nTime\n\n|\n\nACK 0 lost\nA retrans _,| b aiscards\nduplicate frame\n\n5\" \"oa\""
+  },
+  {
+    "text": "if there are if a timeout occurs then you retransmit that frame again so that this frame 0",
+    "start": 1270.68,
+    "end": 1275.96,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\na\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nTime\n\n|\n\nACK 0 lost\nA retrans _,| b aiscards\nduplicate frame\n\n5\" \"oa\""
+  },
+  {
+    "text": "eventually receives by the receiver b. So, that way you are also ensuring reliability in the",
+    "start": 1275.96,
+    "end": 1281.72,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\na\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nTime\n\n|\n\nACK 0 lost\nA retrans _,| b aiscards\nduplicate frame\n\n5\" \"oa\""
+  },
+  {
+    "text": "system and this flow control and reliability algorithm altogether we call it as a automated",
+    "start": 1281.72,
+    "end": 1286.68,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\na\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n\nTime\n\n|\n\nACK 0 lost\nA retrans _,| b aiscards\nduplicate frame\n\n5\" \"oa\""
+  },
+  {
+    "text": "repeat request or ARQ algorithms. So, now on what we look into this ARQ algorithms in details",
+    "start": 1286.68,
+    "end": 1292.6,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n* What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee ___\n\nTime\n\n+ Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "the different versions or the different variants of ARQ algorithms.",
+    "start": 1292.6,
+    "end": 1296.36,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n* What can be a maximum size of the\n\nsequence number in Stop and Wait?\n\nee ___\n\nTime\n\n+ Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "Well, so this is a kind of sender side implementation of this stop and wait ARQ algorithm in the form",
+    "start": 1298.6,
+    "end": 1307.56,
+    "ocr_text": "Flow Control Algorithms\n\n* Stop and Wait (Noisy Channel):\n\n« Use sequence numbers to individually\nidentify each frame and the\ncorresponding acknowledgement\n\n+ What can be a maximum size of the\nsequence number in Stop and Wait?\n\n_,| B discards\nduplicate frame\n\n* Automatic Repeat Request (ARQ)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "of a state transition diagram. So, here the thing is that this you can think of the initial state.",
+    "start": 1307.56,
+    "end": 1314.44,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nwait for\ncall from\n‘above\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, the initial state talks about that you wait for call 0 from above that means you are waiting",
+    "start": 1314.44,
+    "end": 1320.92,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nwait for\ncall from\n‘above\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "for frame 0 initially. So, the event which is there it is in the sender side. So, you are",
+    "start": 1320.92,
+    "end": 1329.08,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nS's \"a were eas#er.s"
+  },
+  {
+    "text": "you are from the application layer you are sending a reliable data delivery. Now, once this",
+    "start": 1329.08,
+    "end": 1337.48,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\n15> so ="
+  },
+  {
+    "text": "things happen. So, at the transport layer side you are making a call to reliable data delivery",
+    "start": 1338.44,
+    "end": 1344.76,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\nois rere eas rer+y"
+  },
+  {
+    "text": "to send with this data. Now, how it ensures the reliable data delivery. So, you need to map",
+    "start": 1344.76,
+    "end": 1350.44,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\nois rere eas rer+y"
+  },
+  {
+    "text": "this R D T to the corresponding U D T call because if you remember that earlier we have seen that",
+    "start": 1350.44,
+    "end": 1355.32,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nSols ere sas#er.s"
+  },
+  {
+    "text": "at the network layer the calls are unreliable calls like this U D T calls. So, for that what you",
+    "start": 1355.96,
+    "end": 1361.88,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nSols ere sas#er.s"
+  },
+  {
+    "text": "are doing that you are appending one sequence number with this packet you are providing the data",
+    "start": 1361.88,
+    "end": 1368.52,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "and some checks some checks some we will discuss later on to ensure the error free transmission",
+    "start": 1368.52,
+    "end": 1374.12,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "of the data. Then you are sending the data over unreliable channel and starting the timer.",
+    "start": 1374.12,
+    "end": 1379.96,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "Now, whenever you are waiting for the acknowledgement 0 you are moving to the state that you have sent",
+    "start": 1380.52,
+    "end": 1385.96,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n5 5a” ere ens#er.s"
+  },
+  {
+    "text": "the packet 0. So, you are waiting for the corresponding acknowledgement. So, here once you are",
+    "start": 1386.68,
+    "end": 1392.2,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nwait for\nall from\n‘above\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n55a” Pere eas #er.s"
+  },
+  {
+    "text": "receiving a packet and if you are finding out that the packet is corrupted and in that case you",
+    "start": 1392.2,
+    "end": 1398.84,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nwait for\nall from\n‘above\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n55a” Pere eas #er.s"
+  },
+  {
+    "text": "are in the same loop you again wait for an acknowledgement. If a timeout occurs then again you send",
+    "start": 1398.84,
+    "end": 1405.08,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nwait for\nAKT\n\nvs\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\noy ek ee"
+  },
+  {
+    "text": "the packet you retransmit the packet through this U D T send mechanism you retransmit the packet",
+    "start": 1405.08,
+    "end": 1411.24,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n» FG) a | i ollie A A"
+  },
+  {
+    "text": "and start the timer again and then once you are receiving the acknowledgement then you move to",
+    "start": 1411.24,
+    "end": 1417.16,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\n» FG) a | i ollie A A"
+  },
+  {
+    "text": "this state that wait for call 1 because you have received that acknowledgement now you want to send",
+    "start": 1417.16,
+    "end": 1422.28,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\ney wait for\ni tor\naeren “nee, > =\nwait for\n\nWait for\naxe\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\ns> oS"
+  },
+  {
+    "text": "the next frame that is frame 1. So, in that case you have received the packet from the upper layer",
+    "start": 1422.28,
+    "end": 1428.76,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\ney wait for\ni tor\naeren “nee, > =\nwait for\n\nWait for\naxe\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\ns> oS"
+  },
+  {
+    "text": "and once you have received that packet and that packet is not a corrupted packet and it is",
+    "start": 1429.32,
+    "end": 1436.76,
+    "ocr_text": "d Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURS!"
+  },
+  {
+    "text": "the acknowledgement corresponds to frame 0. So, you are moving to this state once you are in this",
+    "start": 1436.84,
+    "end": 1442.04,
+    "ocr_text": "d Wait ARQ - Sender Implementation\n\nwait for\n\n=\n\nwait for\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "state in that case you are waiting for receiving the packet from the upper layer. So, once you have",
+    "start": 1442.04,
+    "end": 1448.68,
+    "ocr_text": "d Wait ARQ - Sender Implementation\n\nwait for\n\n=\n\nwait for\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "received the packet from the upper layer then you make this send call with the data with this",
+    "start": 1448.68,
+    "end": 1455.08,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nas\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nsa \"oa"
+  },
+  {
+    "text": "frame 0 and the same process gets repeated that you append this sequence number sequence number 1",
+    "start": 1455.08,
+    "end": 1460.36,
+    "ocr_text": "d Wait ARQ - Sender Implementation\n\nWait for\nall from\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nci y | ah olin Me Aad"
+  },
+  {
+    "text": "along with the data and the corresponding section and then send the packet through the",
+    "start": 1461.24,
+    "end": 1465.24,
+    "ocr_text": "d Wait ARQ - Sender Implementation\n\nWait for\nall from\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\nci y | ah olin Me Aad"
+  },
+  {
+    "text": "unreliable channel and you move from waiting for that corresponding acknowledgement and the same",
+    "start": 1465.72,
+    "end": 1470.52,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nly | a i ollie a Aa"
+  },
+  {
+    "text": "process gets repeated that if you are receiving the data and the packet is corrupted you are in",
+    "start": 1470.52,
+    "end": 1475.8,
+    "ocr_text": "Stop and Wait ARQ - Sender Implementation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nly | a i ollie a Aa"
+  },
+  {
+    "text": "this loop if a timeout occurs then you transmit the packet again and start the timer again and then",
+    "start": 1475.8,
+    "end": 1483.16,
+    "ocr_text": "d Wait ARQ - Sender Implementation\n\nas\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\ncy | ole Me Aad"
+  },
+  {
+    "text": "whenever you are receiving the acknowledgement that means you are receiving a non-corrupted packet",
+    "start": 1483.16,
+    "end": 1487.64,
+    "ocr_text": "d Wait ARQ - Sender Implementation\n\nas\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES\ncy | ole Me Aad"
+  },
+  {
+    "text": "and you have received the acknowledgement corresponds to frame 1 then you stop the timer and wait",
+    "start": 1487.64,
+    "end": 1494.28,
+    "ocr_text": "d Wait ARQ - Sender Implementation\n\nus\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nsa a”\n\ncy"
+  },
+  {
+    "text": "for this frame 0. So, that way you send this frames one after another frame 0s and frame 1s one",
+    "start": 1494.36,
+    "end": 1501.88,
+    "ocr_text": "d Wait ARQ - Sender Implementation\n\nus\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nsa a”\n\ncy"
+  },
+  {
+    "text": "after another and you move through this state transition diagram to send the packets one after",
+    "start": 1501.88,
+    "end": 1508.68,
+    "ocr_text": "d Wait ARQ - Sender Implementation\n\nus\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\nIIT KHARAGPUR CERTIFICATION COURSES\nsa a”\n\ncy"
+  },
+  {
+    "text": "another and ensure proper flow control along with the reliability in the system.",
+    "start": 1508.68,
+    "end": 1513.96,
+    "ocr_text": "Problem with Stop and Wait\n\nEvery packet needs to wait for the acknowledgement of the previous packet.\n\nFor bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\nApossible solution: Piggyback data and acknowledgement from both the\ndirections\n\nReduce resource waste based on sliding window protocols (a pipelined\nprotocol) 2\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\n| a ee ee Aa"
+  },
+  {
+    "text": "Well, so let us look into the problems which are associated with this top and width type of",
+    "start": 1516.36,
+    "end": 1523.16,
+    "ocr_text": "Problem with Stop and Wait\n\nEvery packet needs to wait for the acknowledgement of the previous packet.\n\nFor bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\nApossible solution: Piggyback data and acknowledgement from both the\ndirections\n\nReduce resource waste based on sliding window protocols (a pipelined\nprotocol) 2\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\n| a ee ee Aa"
+  },
+  {
+    "text": "flow control or ARQ algorithm. In stop and wait ARQ first of all every packet needs to wait",
+    "start": 1524.6,
+    "end": 1530.92,
+    "ocr_text": "Problem with Stop and Wait\n\nEvery packet needs to wait for the acknowledgement of the previous packet.\n\nFor bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\nApossible solution: Piggyback data and acknowledgement from both the\ndirections\n\nReduce resource waste based on sliding window protocols (a pipelined\nprotocol) 2\n\nNPTEL ONLINE\nIITKHARAGPUR CERTIFICATION COURSES\n\n| a ee ee Aa"
+  },
+  {
+    "text": "for the acknowledgement of the previous packet. So, until you are receiving the acknowledgement",
+    "start": 1530.92,
+    "end": 1534.36,
+    "ocr_text": "Problem with Stop and Wait\n\nEvery packet needs to wait for the acknowledgement of the previous packet.\n\nFor bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\nApossible solution: Piggyback data and acknowledgement from both the\ndirections\n\nReduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES -\nPete esl #er"
+  },
+  {
+    "text": "for the previous packet you will not be able to send the next packet. Now, for if you think about",
+    "start": 1534.36,
+    "end": 1539.8,
+    "ocr_text": "Problem with Stop and Wait\n\nEvery packet needs to wait for the acknowledgement of the previous packet.\n\nFor bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\nApossible solution: Piggyback data and acknowledgement from both the\ndirections\n\nReduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES -\nPete esl #er"
+  },
+  {
+    "text": "bidirectional connections for bidirectional connection you can use two instances of stop and wait",
+    "start": 1539.8,
+    "end": 1546.36,
+    "ocr_text": "Problem with Stop and Wait\n\nEvery packet needs to wait for the acknowledgement of the previous packet.\n\nFor bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\nApossible solution: Piggyback data and acknowledgement from both the\ndirections\n\nReduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES -\nPete esl #er"
+  },
+  {
+    "text": "one instances of stop and wait will ensure one instances of stop and wait will ensure",
+    "start": 1546.44,
+    "end": 1553.64,
+    "ocr_text": "Problem with Stop and Wait\n\nEvery packet needs to wait for the acknowledgement of the previous packet.\n\nFor bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\nApossible solution: Piggyback data and acknowledgement from both the\ndirections\n\nReduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES -\nPete esl #er"
+  },
+  {
+    "text": "transferring of data from A to B and another instances of stop and wait will ensure transferring",
+    "start": 1554.28,
+    "end": 1559.96,
+    "ocr_text": "Problem with Stop and Wait\n\nEvery packet needs to wait for the acknowledgement of the previous packet.\n\nFor bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\nApossible solution: Piggyback data and acknowledgement from both the\ndirections\n\nReduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES -\nPete esl #er"
+  },
+  {
+    "text": "data from B to A, but this will again result in a significant waste of network resources that",
+    "start": 1559.96,
+    "end": 1567.72,
+    "ocr_text": "Problem with Stop and Wait\n\nEvery packet needs to wait for the acknowledgement of the previous packet.\n\nFor bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\nApossible solution: Piggyback data and acknowledgement from both the\ndirections\n\nReduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES -\nPete esl #er"
+  },
+  {
+    "text": "for both the site you have to wait for the acknowledgement. So, one possible solution to solve",
+    "start": 1568.36,
+    "end": 1573.56,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acknowledgement from both the\ndirections ELI\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nSola Hh VTE Cater %"
+  },
+  {
+    "text": "this particular problem is that you can piggyback data and acknowledgement from road",
+    "start": 1573.64,
+    "end": 1578.12,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acknowledgement from both the\ndirections ELI\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nSola Hh VTE Cater %"
+  },
+  {
+    "text": "the direction, but even if you are piggybacking data and acknowledgement for both the direction.",
+    "start": 1578.12,
+    "end": 1582.44,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acknowledgement from both the\ndirections ELI\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nSola Hh VTE Cater %"
+  },
+  {
+    "text": "So, piggybacking here means that whenever you are sending a data frame along with the data frame",
+    "start": 1582.44,
+    "end": 1587.96,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acknowledgement from both the\ndirections ELI\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nSola Hh VTE Cater %"
+  },
+  {
+    "text": "you also add sub the acknowledgement. So, this data is say this is going for sequence one",
+    "start": 1587.96,
+    "end": 1595.08,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acknowledgement from both the\ndirections ELI\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nSola Hh VTE Cater %"
+  },
+  {
+    "text": "and along with the data with sequence one you send the acknowledgement for the previous one",
+    "start": 1595.08,
+    "end": 1600.28,
+    "ocr_text": "Problem with Stop and Wait\n\n* Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n* Apossible solution: Piggyback data and acknowledgement from both the\ndirections\nEL Eas)\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nso"
+  },
+  {
+    "text": "which is coming from B to A. So, it is like that say this is B and this is A from B to A you",
+    "start": 1600.28,
+    "end": 1606.84,
+    "ocr_text": "Problem with Stop and Wait\n\n* Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n* Apossible solution: Piggyback data and acknowledgement from both the\ndirections\nEL Eas)\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nso"
+  },
+  {
+    "text": "are sending one data packet for B to A whenever you are sending a data packet say A has earlier",
+    "start": 1606.84,
+    "end": 1612.52,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acrgowledgespent from both the\ndirections\nPsi (oan eee?)\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nso ST"
+  },
+  {
+    "text": "sent a packet to B you are sending the acknowledgement along with whenever you are sending the data packet to A.",
+    "start": 1612.52,
+    "end": 1619.48,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acrgowledgespent from both the\ndirections\nPsi (oan eee?)\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\nso ST"
+  },
+  {
+    "text": "So, although this piggybacking mechanism is more efficient compared to this using these two",
+    "start": 1620.28,
+    "end": 1629.32,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acrpowledgergent from both the\ndirections oe\nKG (oan eee?)\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\nso rT"
+  },
+  {
+    "text": "instances of stop and wait, but still it is wasting a huge amount of resource because for all",
+    "start": 1629.32,
+    "end": 1634.36,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acrpowledgergent from both the\ndirections oe\nKG (oan eee?)\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\nso rT"
+  },
+  {
+    "text": "packets you need to wait for the acknowledgement. So, you will not be able to parallely transmit",
+    "start": 1634.36,
+    "end": 1639.08,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acrpowledgergent from both the\ndirections oe\nKG (oan eee?)\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\nso rT"
+  },
+  {
+    "text": "the packets in the network. So, to solve this problem we use a class of flow control algorithms",
+    "start": 1639.08,
+    "end": 1647.8,
+    "ocr_text": "Problem with Stop and Wait\n\n+ Every packet needs to wait for the acknowledgement of the previous packet.\n\n+ For bidirectional connections — use two instances of the stop and wait protocol at\nboth directions — further waste of resources\n\n+ Apossible solution: Piggyback data and acrpowledgergent from both the\ndirections oe\nKG (oan eee?)\n\n+ Reduce resource waste based on sliding window protocols (a pipelined\nprotocol)\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\nso rT"
+  },
+  {
+    "text": "which we call as the sliding window protocols. So, the sliding window protocols are a pipeline",
+    "start": 1647.8,
+    "end": 1653.16,
+    "ocr_text": "id Wait versus Sliding Window (Pipelined)\n\nData packet Data packets\n—-\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "protocol where you can send multiple frames or multiple packets altogether without waiting",
+    "start": 1653.16,
+    "end": 1659.08,
+    "ocr_text": "id Wait versus Sliding Window (Pipelined)\n\nData packet Data packets\n—-\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "for the corresponding acknowledgement. So, you can send multiple frames and all the frames can go",
+    "start": 1659.16,
+    "end": 1665.16,
+    "ocr_text": "id Wait versus Sliding Window (Pipelined)\n\nData packet Data packets\n—-\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "in a pipeline doing. So, a broad idea of this sliding window protocol is something like this",
+    "start": 1665.16,
+    "end": 1671.4,
+    "ocr_text": "id Wait versus Sliding Window (Pipelined)\n\nData packet Data packets\n—-\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "if you look into the stop and wait protocol. So, the stop and wait protocol you are sending",
+    "start": 1671.4,
+    "end": 1675.64,
+    "ocr_text": "id Wait versus Sliding Window (Pipelined)\n\nData packet Data packets\n—-\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "only one data packet. So, only one data packet is can be outstanding in the network. So, once this",
+    "start": 1675.64,
+    "end": 1681.56,
+    "ocr_text": "Sto\n\nid Wait versus Sliding Window (Pipelined)\n\nData packets\n\nACK packets\n\na\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\"eo"
+  },
+  {
+    "text": "data packet is received by this receiver then this receiver sends back the act and once you are",
+    "start": 1681.56,
+    "end": 1686.68,
+    "ocr_text": "Sto\n\nid Wait versus Sliding Window (Pipelined)\n\nData packets\n\nACK packets\n\na\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES\n\"eo"
+  },
+  {
+    "text": "receiving that act at the sender then only you will be able to send the next data packet.",
+    "start": 1686.68,
+    "end": 1691.32,
+    "ocr_text": "Stop and Wait versus Sliding Window (Pipelined)\n\nData packets\n\n4 — 7h\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n> Pere eae."
+  },
+  {
+    "text": "In case of my pipeline protocol or the sliding window protocol what we do that we can send a",
+    "start": 1691.32,
+    "end": 1697.64,
+    "ocr_text": "Stop and Wait versus Sliding Window (Pipelined)\n\nData packets\n\n4 — 7h\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIITKHARAGPUR CERTIFICATION COURSES\n> Pere eae."
+  },
+  {
+    "text": "sequence of packets and parallely we can receive the sequence of acknowledgement. So, that way",
+    "start": 1697.64,
+    "end": 1703.64,
+    "ocr_text": "Sto\n\nam eh tn he.\n-irhenml\n— QQ 4\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "we will be able to use this pipeline concept over the network where you could be able to send",
+    "start": 1703.64,
+    "end": 1709.08,
+    "ocr_text": "Sto\n\nam eh tn he.\n-irhenml\n— QQ 4\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "a sequence of packets altogether and parallely you can receive a sequence of acknowledgement.",
+    "start": 1709.08,
+    "end": 1715.32,
+    "ocr_text": "Sto\n\nam eh tn he.\n-irhenml\n— QQ 4\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, that way you will be able to utilize the network resource more efficiently because",
+    "start": 1715.32,
+    "end": 1720.28,
+    "ocr_text": "Sto\n\nam eh tn he.\n-irhenml\n— QQ 4\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "nowadays now with this particular approach of sliding window protocol you will be ensuring",
+    "start": 1720.28,
+    "end": 1726.92,
+    "ocr_text": "Sto\n\nam eh tn he.\n-irhenml\n— QQ 4\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "that more number of packets can be pushed to the network if the network has that much of capacity",
+    "start": 1726.92,
+    "end": 1732.76,
+    "ocr_text": "Sto\n\nam eh tn he.\n-irhenml\n— QQ 4\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "and parallely you will be able to receive the acknowledgement and you will be able to adjust",
+    "start": 1732.76,
+    "end": 1737.64,
+    "ocr_text": "Sto\n\nam eh tn he.\n-irhenml\n— QQ 4\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "your transmission rate accordingly. So, that you can receive the packets correctly at the",
+    "start": 1737.64,
+    "end": 1743.16,
+    "ocr_text": "Sto\n\nam eh tn he.\n-irhenml\n— QQ 4\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "other end. So, this is the broad idea of the sliding window protocol and in the next class",
+    "start": 1743.96,
+    "end": 1749.08,
+    "ocr_text": "Sto\n\nam eh tn he.\n-irhenml\n— QQ 4\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "we will look into the sliding window protocol synthitants. So, thank you all for attending the class.",
+    "start": 1749.08,
+    "end": 1760.28,
+    "ocr_text": "Sto\n\nam eh tn he.\n-irhenml\n— QQ 4\n\na. A stop-and-wait protocol in operation b. A pipelined protocol in operation\n\nSource: Computer Networks,\nKurose, Ross\n\nNPTEL ONLINE\n\nIIT KHARAGPUR CERTIFICATION COURSES"
+  }
+]

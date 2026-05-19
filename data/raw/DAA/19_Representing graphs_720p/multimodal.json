@@ -1,0 +1,908 @@
+[
+  {
+    "text": "So, we have seen that graphs are very useful mathematical structures for modeling problems.",
+    "start": 0.0,
+    "end": 6.72,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nRepresenting graphs\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "But when we write an algorithm to solve a graph theoretic problem, we need a way to represent",
+    "start": 6.72,
+    "end": 11.32,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nRepresenting graphs\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "and manipulate the graph in our algorithm.",
+    "start": 11.32,
+    "end": 13.32,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nRepresenting graphs\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, we will look at that in this lecture.",
+    "start": 13.32,
+    "end": 15.92,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nRepresenting graphs\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, recall that a graph is a set of vertices or nodes v connected by a set of edges e. We",
+    "start": 15.92,
+    "end": 24.28,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nRepresenting graphs\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "can have two types of edges, undirected edges and directed edges.",
+    "start": 24.28,
+    "end": 28.72,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 3, Module 2\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nRepresenting graphs\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "An undirected edge is drawn as just a line between two vertices and it represents the fact",
+    "start": 28.72,
+    "end": 35.64,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "that v and v prime are connected.",
+    "start": 35.64,
+    "end": 37.12,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "It does not matter whether we call this edge v comma v prime or v prime comma v, there",
+    "start": 37.12,
+    "end": 40.96,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "is only one edge.",
+    "start": 40.96,
+    "end": 42.44,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "On the other hand, in a directed graph, we actually associate a direction with an edge.",
+    "start": 42.44,
+    "end": 46.8,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "So, we could draw an edge from v to v prime and this we would write in our edge set as",
+    "start": 46.8,
+    "end": 53.0,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "a pair v comma v prime saying that the start vertex is v and the end of the edge is v prime.",
+    "start": 53.0,
+    "end": 58.32,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "And this is not the same as having an edge from v prime to v which will be written as v",
+    "start": 58.32,
+    "end": 63.84,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "prime comma v.",
+    "start": 63.84,
+    "end": 64.84,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "So, directed graphs, the order of the vertices when we mentioned the edge matters.",
+    "start": 64.84,
+    "end": 71.04,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "An undirected graph is just a pair of vertices.",
+    "start": 71.04,
+    "end": 73.64,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "It does not matter whether we think of it as v to v prime or v prime to v. It is just a",
+    "start": 73.64,
+    "end": 77.0,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "connection between these two pairs of vertices.",
+    "start": 77.0,
+    "end": 79.72,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "So, we saw two typical problems involving finding a root which can be represented for both",
+    "start": 79.72,
+    "end": 86.04,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "undirected and directed graphs.",
+    "start": 86.04,
+    "end": 87.64,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "So, in a directed graph, we were looking for a path from v 0 to v 5 such that each pair",
+    "start": 87.64,
+    "end": 93.2,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "v 0 v 1 v 1 v 2 etcetera, these are directed edges in our graph.",
+    "start": 93.2,
+    "end": 97.08,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "At the same time, we can make the same graph undirected and again we are looking for a path",
+    "start": 97.08,
+    "end": 102.24,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "where we started v 0 and every adjacent pair v 0 to v 1 v 1 v 2 is an edge such that we",
+    "start": 102.24,
+    "end": 108.4,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "finally end up in the target vertex v 5.",
+    "start": 108.4,
+    "end": 112.16,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "So, the problem that we have abstractly let us stick to undirected graphs is that we",
+    "start": 113.16,
+    "end": 118.12,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "are given for this at this point an undirected graph and we are given a source vertex v s",
+    "start": 118.12,
+    "end": 123.48,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "and a target vertex v t and we are asked whether there is a way to go from v s to v t in",
+    "start": 123.48,
+    "end": 128.44,
+    "ocr_text": "o—__—»"
+  },
+  {
+    "text": "this graph.",
+    "start": 128.44,
+    "end": 129.44,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "Now, what we did in the previous graph and what we can do as human beings is to take",
+    "start": 129.44,
+    "end": 133.8,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "a look at the graph and see we can visually identify such a path just see v s and v t",
+    "start": 133.8,
+    "end": 139.52,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "are connected. But when we write an algorithm to manipulate a graph, how do we get the algorithm",
+    "start": 139.52,
+    "end": 145.36,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "to look at the picture. So, for us a graph is a picture and we can easily look at the",
+    "start": 145.36,
+    "end": 149.76,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "picture if the graph is not very complicated and try to understand the situation, but how",
+    "start": 149.76,
+    "end": 154.36,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "do we make this picture available to an algorithm? We need a way to represent this picture",
+    "start": 154.36,
+    "end": 159.08,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "that give the graph as input to our algorithm.",
+    "start": 159.08,
+    "end": 162.6,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "So, let us make some assumptions. In any graph that we consider, there will only be a",
+    "start": 162.6,
+    "end": 169.12,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "finite set of vertices. So, if there are n vertices to simplify life, let us just name",
+    "start": 169.12,
+    "end": 174.68,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "these vertices 1, 2 up to n. So, our vertices are always going to be 1, 2, 3, 4 up to n.",
+    "start": 174.68,
+    "end": 181.12,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "So, therefore, now an edge is a pair of numbers i, j. So, the first representation we can have",
+    "start": 181.12,
+    "end": 189.88,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "is to just record which pairs i and j are connected. So, this is called an adjacency matrix.",
+    "start": 189.88,
+    "end": 195.92,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "We say in this matrix a i j is 1 if and only if i j is an edge. So, when we write such a",
+    "start": 195.92,
+    "end": 203.6,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "matrix, then if we take a graph like we had before, we would now rename the vertices 1,",
+    "start": 203.6,
+    "end": 209.6,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "2, 3 up to 10 because there are actually 10 vertices in this graph. And then we would",
+    "start": 209.6,
+    "end": 213.76,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "write this matrix which says for instance there is an edge from 1 to 3 and therefore, the",
+    "start": 213.76,
+    "end": 218.32,
+    "ocr_text": "11 12/3) 4] 5] 617) 8] 9/10)\n\n1 [© [09] ~ [o> Jon] [oo ro =|"
+  },
+  {
+    "text": "entry a 1 3 is 1. There is no edge from 1 to 5 and therefore, the entry a 1 5 is 0. So,",
+    "start": 218.32,
+    "end": 227.84,
+    "ocr_text": "REORIaMMGRE\n\n1 [© [09] ~ [o> on) [oa ro =|"
+  },
+  {
+    "text": "in this way for every edge that we find in the graph, say for example, a 4 5, we will find",
+    "start": 227.84,
+    "end": 233.48,
+    "ocr_text": "HIRO RORRnnE\n\n5 [© [oo] ~ [o> on) [oo ro |"
+  },
+  {
+    "text": "an entry in the graph which says a 4 5 is 1. Now, remember that this is undirected. So,",
+    "start": 233.48,
+    "end": 238.0,
+    "ocr_text": "HIRO RORRnnE\n\n5 [© [oo] ~ [o> on) [oo ro |"
+  },
+  {
+    "text": "if there is an edge 5 4 5, there is also an edge 5 4 and so we will see that actually there",
+    "start": 238.0,
+    "end": 243.56,
+    "ocr_text": "EO RORMnGE\n\n1 [© [09] ~ [o> [on] [oo ro =|"
+  },
+  {
+    "text": "is a matching edge 5 4. So, this graph is actually this matrix will actually be symmetric across",
+    "start": 243.56,
+    "end": 249.88,
+    "ocr_text": "EO RORMnGE\n\n1 [© [09] ~ [o> [on] [oo ro =|"
+  },
+  {
+    "text": "this diagonal. So, if I see a 1 above the line, I will see a 1 below the line because 8 9 is the",
+    "start": 249.88,
+    "end": 254.36,
+    "ocr_text": "}1|2/3)4'5|6|7| 8) 9]10]\n\nOr\n\nM\n\n3 [© >] ~ Jo Jor [a [oo |19)"
+  },
+  {
+    "text": "same as 9 8 as far as a undirected adjacent. So, this is an adjacency matrix. So, now what",
+    "start": 254.36,
+    "end": 261.8,
+    "ocr_text": "}1|2/3)4'5|6|7| 8) 9]10]\n\nOr\n\nM\n\n3 [© >] ~ Jo Jor [a [oo |19)"
+  },
+  {
+    "text": "can we do with an adjacency matrix? Well, one thing we can do for example is find all the neighbors",
+    "start": 261.8,
+    "end": 267.48,
+    "ocr_text": "1 12/3) 4]5]6|7) 8) 9/10)\n\n1S [© [09] ~ [o> [on] [oo ro =|"
+  },
+  {
+    "text": "of a vertex. Supposing we want the neighbors of a vertex i, then we want to look at the rho i",
+    "start": 267.48,
+    "end": 273.32,
+    "ocr_text": "11 12/3) 4]5]6|7/ 8) 9/10)\n\n1S [© |] ~ [o> om [oo ro |"
+  },
+  {
+    "text": "and look at all the entries 1 in that row. For example, we want to look at the neighbors of",
+    "start": 273.4,
+    "end": 278.28,
+    "ocr_text": "11 12/3) 4]5]6|7/ 8) 9/10)\n\n1S [© |] ~ [o> om [oo ro |"
+  },
+  {
+    "text": "vertex 4, we look at the rho 4, then 4 the entry 4 comma 1 indicates whether or not 4 1 is an edge.",
+    "start": 278.28,
+    "end": 284.68,
+    "ocr_text": "[120345617 8 9/10)\n\n1 [© [0] ~ [o> [or] [oo [ro =|"
+  },
+  {
+    "text": "It is so we get 1 as a vertex and we walk further and then the next one is at 4 comma 5. So,",
+    "start": 284.68,
+    "end": 291.64,
+    "ocr_text": "[120345617 8 9/10)\n\n1 [© [0] ~ [o> [or] [oo [ro =|"
+  },
+  {
+    "text": "5 is a neighbor and then the next one is an 8 so 8 is a neighbor. So, in order to find the",
+    "start": 291.64,
+    "end": 298.6,
+    "ocr_text": "1S [© [09] ~ [o> [or] [oo ro ||"
+  },
+  {
+    "text": "neighbors of a vertex i, we go to the rho labeled i and we scan the row from left to right",
+    "start": 298.6,
+    "end": 303.88,
+    "ocr_text": "1 12/3] 4] 5] 617) 8] 9/10)\n\n1 [© [oo] ~ [o> [or] » [oo [ro =|"
+  },
+  {
+    "text": "and each one that we find the corresponding column is a neighbor.",
+    "start": 303.88,
+    "end": 306.76,
+    "ocr_text": "1 12/3] 4] 5] 617) 8] 9/10)\n\n1 [© [oo] ~ [o> [or] » [oo [ro =|"
+  },
+  {
+    "text": "Now, how do we find a path where we can now look at neighbors and the neighbors of neighbors and so on.",
+    "start": 310.12,
+    "end": 316.2,
+    "ocr_text": "1 12/3) 4] 5]6|7) 8) 9/10)\n\n1 [© [09] ~ [o> [on] [oo ro ||"
+  },
+  {
+    "text": "So, we start with the source vertex in the in our problem if we look at the numbering that we gave",
+    "start": 316.2,
+    "end": 321.72,
+    "ocr_text": "1 12/3] 4] 5]6|7) 8] 9/10)\n\n1S [© [oo] ~ [o> or) [co [ro =|"
+  },
+  {
+    "text": "new daily corresponding to the vertex labeled 1 and Trivandrum was a labeled vertex labeled 10",
+    "start": 322.6,
+    "end": 328.28,
+    "ocr_text": "1 12/3] 4] 5]6|7) 8] 9/10)\n\n1S [© [oo] ~ [o> or) [co [ro =|"
+  },
+  {
+    "text": "and we wanted to know whether we can get from vertex 1 new daily to vertex 10 to the",
+    "start": 328.28,
+    "end": 332.2,
+    "ocr_text": "1 12/3) 4]5]6|7/ 8) 9/10)\n\n1 [© [09] ~ [o> on) [oo [ro =|"
+  },
+  {
+    "text": "Vandrum. So, what we do is we start at vertex 1 and we know how to find the neighbors of 1.",
+    "start": 332.2,
+    "end": 337.24,
+    "ocr_text": "1 12/3) 4]5]6|7/ 8) 9/10)\n\n1 [© [09] ~ [o> on) [oo [ro =|"
+  },
+  {
+    "text": "So, we will say that every vertex any neighbor of 1 can be reached from 1 by 1.",
+    "start": 337.24,
+    "end": 341.72,
+    "ocr_text": "1 12/3] 4] 5] 617) 8] 9/10)\n\n1 [© [oo] ~ [o> on) [oo ro =|"
+  },
+  {
+    "text": "So, we start with the vertex 1 which we have already started. We can reach because we start",
+    "start": 342.52,
+    "end": 347.32,
+    "ocr_text": "1 12/3] 4] 5] 617) 8] 9/10)\n\n1 [© [oo] ~ [o> on) [oo ro =|"
+  },
+  {
+    "text": "there. Now, we scan its neighbors and then we find that there are these 3 neighbors 2, 3 and 4.",
+    "start": 347.32,
+    "end": 353.0,
+    "ocr_text": "ee ="
+  },
+  {
+    "text": "So, therefore, now we can conclude that if we start at 1 we can definitely reach 2, 3 and 4.",
+    "start": 353.96,
+    "end": 358.28,
+    "ocr_text": "ee ="
+  },
+  {
+    "text": "So, let us color these rows also 3. So, now we have indicated that in one step from 1 we can reach",
+    "start": 358.28,
+    "end": 364.44,
+    "ocr_text": "1 /2)3/4)5|6|7/8] 9/10\n\n5 0 | |~ > >"
+  },
+  {
+    "text": "2, 3 and 4. Now, anything that we can reach from 2, 3 and 4 can also be reached from 1. So,",
+    "start": 364.44,
+    "end": 369.48,
+    "ocr_text": "1 /2)3/4)5|6|7/8] 9/10\n\n5 0 | |~ > >"
+  },
+  {
+    "text": "we now focus 1 by 1 to the neighbors that we have explored and look at their neighbors.",
+    "start": 369.48,
+    "end": 374.68,
+    "ocr_text": "1 )2/3]4/5|6] 7/8] 9]10)\n\n5 [0 | |~ > | Be"
+  },
+  {
+    "text": "So, we move down to the neighbors of 2. So, 2 has only 2 neighbors 1 and 3 and it turns out that",
+    "start": 374.76,
+    "end": 384.04,
+    "ocr_text": "1 )2/3]4/5|6] 7/8] 9]10)\n\n5 [0 | |~ > | Be"
+  },
+  {
+    "text": "both 1 and 3 have already been marked as being reachable from 1. So, we do nothing about this.",
+    "start": 384.04,
+    "end": 389.88,
+    "ocr_text": "1 12/3) 4]5|6|7) 8) 9/10)\n\n5 0 | |~ > > Be"
+  },
+  {
+    "text": "So, 2 the cities reachable from 2 do not add any information to our problem. So, we move on to 3.",
+    "start": 389.88,
+    "end": 395.96,
+    "ocr_text": "1 12/3] 4] 5]6|7) 8] 9/10)\n\nG)\n©\n\n5 0 | |~ > >"
+  },
+  {
+    "text": "Likewise, 3 can reach 1 and 2 both of which have already been listed as visited or which can be",
+    "start": 396.84,
+    "end": 403.8,
+    "ocr_text": "1 12/3) 4] 5]6|7) 8) 9/10)\nF\n\ne\nS\n\n3 [© |=] ~ [oo"
+  },
+  {
+    "text": "reached from 1. So, we can again skip over to 4 because 3 has nothing new to tell us.",
+    "start": 403.8,
+    "end": 408.52,
+    "ocr_text": "1 12/3) 4] 5]6|7) 8) 9/10)\nF\n\ne\nS\n\n3 [© |=] ~ [oo"
+  },
+  {
+    "text": "Now, when we reach vertex 4 it has something new to tell us because now from 4 it says you can reach",
+    "start": 409.4,
+    "end": 414.6,
+    "ocr_text": "1 12/3] 4] 5] 617) 8] 9/10)\n\n5 © | |~ > | Be"
+  },
+  {
+    "text": "1 of course, which we know, but we can also reach 5 and 8. So, now we will now,",
+    "start": 414.6,
+    "end": 420.92,
+    "ocr_text": "1 12/3] 4] 5] 617) 8] 9/10)\n\n5 © | |~ > | Be"
+  },
+  {
+    "text": "in our representation we will indicate that 5 and 8 are colored green to indicate that these are",
+    "start": 420.92,
+    "end": 425.8,
+    "ocr_text": "1 12/3) 4]5|6|7) 8] 9/10)\n\n©\n‘S)\n\nG)\n\nFAEIEIBIGIE = |» » -"
+  },
+  {
+    "text": "also reachable from 1 by an indirect path. I can go from 1 to 4 and then from 4 to 5 and 8.",
+    "start": 425.8,
+    "end": 431.24,
+    "ocr_text": "1 12/3) 4] 5]6|7) 8) 9/10)\n\nEMG RIGo|= [> » ="
+  },
+  {
+    "text": "So, I have already processed 1, 2, 3 and 4. So, the next I look at vertex 5 to see 5 can give us any",
+    "start": 431.88,
+    "end": 437.64,
+    "ocr_text": "1 12/3) 4] 5]6|7) 8) 9/10)\n\nEMG RIGo|= [> » ="
+  },
+  {
+    "text": "new neighbor. So, we look at 5 right and now 5 has a neighbor we have already seen 4, but it has",
+    "start": 437.64,
+    "end": 445.0,
+    "ocr_text": "1 12/3) 4]5]6|7) 8] 9/10)\n\n> RIG = ow -"
+  },
+  {
+    "text": "a new neighbor 6 and another new neighbor 7. So, if I process 5 I get 6 and 7. Now, I can look at",
+    "start": 445.0,
+    "end": 451.96,
+    "ocr_text": "1 12/3) 4]5]6|7) 8] 9/10)\n\n> RIG = ow -"
+  },
+  {
+    "text": "any of 6 7 or 8. So, let us look at 8 ok. So, 8 has neighbors 4 which I have already seen 6 which",
+    "start": 451.96,
+    "end": 460.76,
+    "ocr_text": "1 12/3] 4] 5]6|7) 8] 9/10)\n\nEIRJ = s olala en a"
+  },
+  {
+    "text": "I have already seen, but it has a new neighbor 9 which I have not seen. So, I add 9 to the list of",
+    "start": 460.76,
+    "end": 466.36,
+    "ocr_text": "1 12/3] 4] 5|6|7) 8] 9/10)\n\nEIRo Noon wna"
+  },
+  {
+    "text": "neighbors which can be reached eventually from 1. And now, if I look at 6 I find that 6 can reach",
+    "start": 466.36,
+    "end": 473.96,
+    "ocr_text": "1 12/3) 4]5|6|7) 8] 9/10)\n\nlS Kine"
+  },
+  {
+    "text": "5, 7, 8 and 9 all of which are already known to be neighbors of reachable from 1. So, I do not have",
+    "start": 474.76,
+    "end": 482.52,
+    "ocr_text": "1 12/3) 4]5|6|7) 8] 9/10)\n\nlS Kine"
+  },
+  {
+    "text": "any new information likewise when I go to 7 I can reach 5 and 6 which I already know are reachable.",
+    "start": 482.52,
+    "end": 489.32,
+    "ocr_text": "1 12/3] 4]5]6|7) 8] 9/10)\n\nOIG)\n\nEle enlolna wna"
+  },
+  {
+    "text": "So, there is no new information and finally, the vertex which I have not yet examined is 9.",
+    "start": 489.32,
+    "end": 494.52,
+    "ocr_text": "1 12/3) 4]5|6|7) 8] 9/10)\n\n(GN)\n\nEe aN Jona wna"
+  },
+  {
+    "text": "So, from 9 I can reach 6 which I know 8 which I know and there is a new vertex 10. So, I can reach",
+    "start": 494.52,
+    "end": 501.08,
+    "ocr_text": "1 12/3) 4]5|6|7) 8] 9/10)\n\n(GN)\n\nEe aN Jona wna"
+  },
+  {
+    "text": "10 from 9. So, I mark 10 and once I mark 10 my problem is solved. I have found that there is a way",
+    "start": 501.08,
+    "end": 506.44,
+    "ocr_text": "1 12/3) 4]5]6|7) 8) 9/10)\n\nMoto\n\nElolonaaanaona"
+  },
+  {
+    "text": "to go from 1 to 10 by systematically expanding the set of neighbors I can reach one level at a time.",
+    "start": 506.44,
+    "end": 512.36,
+    "ocr_text": "1 /2/3) 4] 5|6|7) 8] 9/10)\n\nOlOANOAKRWNDY =\n\n=\nOo"
+  },
+  {
+    "text": "So, this gives us an algorithm we will make this algorithm more precise as we go along.",
+    "start": 512.36,
+    "end": 516.6,
+    "ocr_text": "1 /2/3) 4] 5|6|7) 8] 9/10)\n\nOlOANOAKRWNDY =\n\n=\nOo"
+  },
+  {
+    "text": "But you can see that using this representation as an adjacency matrix we can take this matrix",
+    "start": 516.6,
+    "end": 522.6,
+    "ocr_text": "1 12/3] 4]5]6|7) 8] 9/10)\n\nOVOANOAKRWNMY =\n\n=\nOo"
+  },
+  {
+    "text": "and use it to actually explore the problem that we have at hand and make it into a sign of a",
+    "start": 522.6,
+    "end": 527.32,
+    "ocr_text": "1 12/3] 4]5]6|7) 8] 9/10)\n\nOVOANOAKRWNMY =\n\n=\nOo"
+  },
+  {
+    "text": "reasonable procedure which we can execute effectively.",
+    "start": 528.28,
+    "end": 530.68,
+    "ocr_text": "[1 23/4) 5/6 |7 8/9/10)\n\nOIOANOAKRWNY =\n\n=\no"
+  },
+  {
+    "text": "So, to make this algorithm more precise we need to make this algorithm more systematic.",
+    "start": 534.12,
+    "end": 539.32,
+    "ocr_text": "[1 23/4) 5/6 |7 8/9/10)\n\nOIOANOAKRWNY =\n\n=\no"
+  },
+  {
+    "text": "We have to keep track of the vertices which have been visited so that we do not keep",
+    "start": 539.32,
+    "end": 544.04,
+    "ocr_text": "[1 23/4) 5/6 |7 8/9/10)\n\nOIOANOAKRWNY =\n\n=\no"
+  },
+  {
+    "text": "exploring the same vertex again. So, we want to do not want to keep going around in circles",
+    "start": 544.04,
+    "end": 549.0,
+    "ocr_text": "[1 23/4) 5/6 |7 8/9/10)\n\nOIOANOAKRWNY =\n\n=\no"
+  },
+  {
+    "text": "and doing the same problem again and again. So, it will turn out that there are two fundamental",
+    "start": 549.0,
+    "end": 553.0,
+    "ocr_text": "[1 23/4) 5/6 |7 8/9/10)\n\nOIOANOAKRWNY =\n\n=\no"
+  },
+  {
+    "text": "strategies to solve this particular problem which is one of the most basic problems in graph which",
+    "start": 553.0,
+    "end": 556.92,
+    "ocr_text": "[1 23/4) 5/6 |7 8/9/10)\n\nOIOANOAKRWNY =\n\n=\no"
+  },
+  {
+    "text": "is to find out what is connected to what. So, the strategy that we executed is what is called",
+    "start": 556.92,
+    "end": 561.8,
+    "ocr_text": "[1 23/4) 5/6 |7 8/9/10)\n\nOIOANOAKRWNY =\n\n=\no"
+  },
+  {
+    "text": "breadth first that is we first explore all the neighbors of the starting vertex and all the",
+    "start": 561.8,
+    "end": 566.44,
+    "ocr_text": "[1 23/4) 5/6 |7 8/9/10)\n\nOIOANOAKRWNY =\n\n=\no"
+  },
+  {
+    "text": "neighbors of these things which are one step away all the neighbors of things which are two steps",
+    "start": 566.44,
+    "end": 570.12,
+    "ocr_text": "[123145 /6)7 8/9/10)\n\n3\n1S [© |] ~ [o> [on] [oo [ro =|"
+  },
+  {
+    "text": "the other strategies to go as far as possible in one direction. So, you pick one neighbor of",
+    "start": 571.08,
+    "end": 575.16,
+    "ocr_text": "[123145 /6)7 8/9/10)\n\n3\n1S [© |] ~ [o> [on] [oo [ro =|"
+  },
+  {
+    "text": "the starting vertex and you pick one neighbor of the new vertex and you pick one neighbor of that",
+    "start": 575.16,
+    "end": 578.6,
+    "ocr_text": "[123145 /6)7 8/9/10)\n\n3\n1S [© |] ~ [o> [on] [oo [ro =|"
+  },
+  {
+    "text": "new vertex and so on until you cannot find any new vertices then you go back and explore another",
+    "start": 578.6,
+    "end": 583.48,
+    "ocr_text": "[123145 /6)7 8/9/10)\n\n3\n1S [© |] ~ [o> [on] [oo [ro =|"
+  },
+  {
+    "text": "neighbor of a previous vertex and so on and this is called depth first. So, we will see these",
+    "start": 583.48,
+    "end": 587.4,
+    "ocr_text": "[123145 /6)7 8/9/10)\n\n3\n1S [© |] ~ [o> [on] [oo [ro =|"
+  },
+  {
+    "text": "algorithms in detail in a later lecture. So, one of the things that you can observe is that",
+    "start": 587.4,
+    "end": 595.56,
+    "ocr_text": "[123145 /6)7 8/9/10)\n\n3\n1S [© |] ~ [o> [on] [oo [ro =|"
+  },
+  {
+    "text": "most of the entries in this matrix are actually 0. So, remember that if we have n vertices this",
+    "start": 595.64,
+    "end": 603.0,
+    "ocr_text": "[123145 /6)7 8/9/10)\n\n3\n1S [© |] ~ [o> [on] [oo [ro =|"
+  },
+  {
+    "text": "matrix is size n square because I have n rows and n columns. Now, if you count the number of edges",
+    "start": 603.0,
+    "end": 610.52,
+    "ocr_text": "[123145 /6)7 8/9/10)\n\n3\n1S [© |] ~ [o> [on] [oo [ro =|"
+  },
+  {
+    "text": "in a directed in a undirected graph then each pair of vertices can be an edge we normally",
+    "start": 611.08,
+    "end": 616.84,
+    "ocr_text": "1 12/3) 4]5]6|7) 8] 9/10)\n\n1S [© [09] ~ [o> on) [oo ro |"
+  },
+  {
+    "text": "disallow self loops we normally do not consider edges from i to i for a vertex i and the number of",
+    "start": 616.84,
+    "end": 623.56,
+    "ocr_text": "Aah 2 )3 4151617181910\n\n3\n1S [© [0] ~ [o> on) [oo [ro =|"
+  },
+  {
+    "text": "different pairs is n choose 2 these are how many ways you can pick 2 vertices. So, we pick all the",
+    "start": 623.56,
+    "end": 631.8,
+    "ocr_text": "Aah 2 )3 4151617181910\n\n3\n1S [© [0] ~ [o> on) [oo [ro =|"
+  },
+  {
+    "text": "pairs then it is n into n minus 1 by 2. So, this is a basic combinatorial path. So, we could have",
+    "start": 631.8,
+    "end": 638.2,
+    "ocr_text": "[1234/5617 8/9/10)\n\n3\n1S [© [0] ~ [o> [on] [oo ro ||"
+  },
+  {
+    "text": "about n squared edges no more and if we have about n squared edges then many of these entries in",
+    "start": 638.2,
+    "end": 645.4,
+    "ocr_text": "nany 0%: }1/2/3/4/5/6)7/8 9 10]\n\n1S [© |] ~ [oon] [oo =|"
+  },
+  {
+    "text": "this matrix will be one but in most situations the number of edges is much less than n squared. So,",
+    "start": 645.4,
+    "end": 651.08,
+    "ocr_text": "1 12/3) 4] 5]6|7/ 8] 9/10)\n\n1S [© [oo] ~ [o> Jon] [oa ro] |"
+  },
+  {
+    "text": "this is a wasteful representation in some sense because we are recording a lot of zeros in order to",
+    "start": 651.16,
+    "end": 656.04,
+    "ocr_text": "1 12/3) 4] 5]6|7/ 8] 9/10)\n\n1S [© [oo] ~ [o> Jon] [oa ro] |"
+  },
+  {
+    "text": "capture the positive information which is in the ones right and also remember that these ones are",
+    "start": 656.04,
+    "end": 661.72,
+    "ocr_text": "nany 0 11/23 4/5/6/7)8 9/10\n\n2]\n\nI\n1S [© |] ~ [o> [on] [oo ro =|"
+  },
+  {
+    "text": "symmetric. So, for every one above the line I have so, if I draw this diagonal but every one",
+    "start": 661.72,
+    "end": 667.16,
+    "ocr_text": "nany 0 11/23 4/5/6/7)8 9/10\n\n2]\n\nI\n1S [© |] ~ [o> [on] [oo ro =|"
+  },
+  {
+    "text": "above the diagonal I have a symmetric one below the diagonal. So, actually half of this matrix",
+    "start": 667.16,
+    "end": 671.48,
+    "ocr_text": "nany 0 11/23 4/5/6/7)8 9/10\n\n2]\n\nI\n1S [© |] ~ [o> [on] [oo ro =|"
+  },
+  {
+    "text": "is useless if I just know this top half it is enough and in this top half I will have mostly",
+    "start": 671.48,
+    "end": 675.96,
+    "ocr_text": "nany 0 11/23 4/5/6/7)8 9/10\n\n2]\n\nI\n1S [© |] ~ [o> [on] [oo ro =|"
+  },
+  {
+    "text": "so, we can think of another representation where we only keep the relevant information at hand.",
+    "start": 676.76,
+    "end": 681.48,
+    "ocr_text": "Dm\n\n*"
+  },
+  {
+    "text": "So, this is what is called an adjacency list. So, what we do in an adjacency list is that we",
+    "start": 683.4,
+    "end": 688.6,
+    "ocr_text": "Dm\n\n*"
+  },
+  {
+    "text": "explicitly maintain for every vertex the list of its neighbors. So, we say that one is connected",
+    "start": 688.6,
+    "end": 694.2,
+    "ocr_text": "Dm\n\n*"
+  },
+  {
+    "text": "to 2, 3 and 4. So, we say that the list connected to 1 is 2, 3, 4 similarly 2 is connected to 1 and 3.",
+    "start": 694.2,
+    "end": 700.36,
+    "ocr_text": "Dm\n\n*"
+  },
+  {
+    "text": "So, we have the list connected to 2 is 1 and 3. So, this is a node and these are the neighbors.",
+    "start": 700.44,
+    "end": 706.84,
+    "ocr_text": "Dm\n\n*"
+  },
+  {
+    "text": "So, now in this representation whenever I have a node I just go to the entry for that node and",
+    "start": 709.48,
+    "end": 714.12,
+    "ocr_text": "ats"
+  },
+  {
+    "text": "I look up the list and I can scan its neighbors and I can get it in time proportional to the number",
+    "start": 714.12,
+    "end": 718.68,
+    "ocr_text": "ats"
+  },
+  {
+    "text": "of neighbors of that node. So, there is an advantage that I do not have any useless information",
+    "start": 718.68,
+    "end": 723.08,
+    "ocr_text": "ats"
+  },
+  {
+    "text": "because I am not storing all the zeros of the adjacency matrix here I am not keeping the",
+    "start": 723.08,
+    "end": 727.32,
+    "ocr_text": "ats"
+  },
+  {
+    "text": "non information which vertices are not connected. So, these 2 representations have their",
+    "start": 727.32,
+    "end": 733.56,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "advantages and disadvantages. In an adjacency matrix we need much more space than an adjacency list,",
+    "start": 733.56,
+    "end": 742.12,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "but some questions are easier to answer than an adjacency matrix than an adjacency list.",
+    "start": 742.76,
+    "end": 747.88,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "If we want to know whether vertex j is a neighbor of vertex i we just have to probe one entry",
+    "start": 748.52,
+    "end": 753.32,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "in the matrix we just check if a ij is 1. On the other hand in an adjacency list if we want to",
+    "start": 753.4,
+    "end": 759.16,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "find out j is a neighbor of i we need to go to the entry for i and scan the entire list.",
+    "start": 759.16,
+    "end": 764.6,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "So, this is similar to the original discussion we had at the beginning of the sorting module",
+    "start": 764.6,
+    "end": 768.6,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "on the different between matrices and this. So, here we can probe this entry a ij in unit time",
+    "start": 768.6,
+    "end": 774.68,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "whereas, we need time proportional to the number of neighbors of i to find out whether j is a neighbor",
+    "start": 774.68,
+    "end": 779.72,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "of i in an adjacency list. On the other hand if we want to actually find all the neighbors of i",
+    "start": 779.72,
+    "end": 785.32,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "then regardless of how many neighbors are needed in an adjacency matrix we have to scan the entire",
+    "start": 786.2,
+    "end": 791.08,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "row. So, if there are n vertices in the graph then even if a node has only 2 or 3 neighbors we will",
+    "start": 791.08,
+    "end": 797.0,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "have to look at all n entries in the row to determine which of these n entries are the actual",
+    "start": 797.0,
+    "end": 802.44,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "neighbors. On the other hand in an adjacency list as we have seen we record exactly those",
+    "start": 802.44,
+    "end": 808.36,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "vertices and neighbors. So, the time to scan the neighbors is directly proportional to the neighbors.",
+    "start": 808.36,
+    "end": 813.08,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "So, if each vertex has only a small number of neighbors then an adjacency list will quickly",
+    "start": 813.08,
+    "end": 817.0,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "give us those neighbors whereas, adjacency matrix will require us to scan order n entries to find",
+    "start": 817.0,
+    "end": 822.12,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  },
+  {
+    "text": "out that small number.",
+    "start": 822.12,
+    "end": 850.84,
+    "ocr_text": "4\n\n3\n«BEESESSERE\n\nx 2\nWy"
+  }
+]

@@ -1,0 +1,1436 @@
+[
+  {
+    "text": "Hello, in the previous video we had seen an introduction to critical sections. We had seen",
+    "start": 0.0,
+    "end": 23.32,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "that in order to solve the critical section problem, there were three requirements. First",
+    "start": 23.32,
+    "end": 28.82,
+    "ocr_text": "nl"
+  },
+  {
+    "text": "is mutual exclusion, second progress and third bounded weight. In this video, we will see some",
+    "start": 28.82,
+    "end": 38.66,
+    "ocr_text": "nl"
+  },
+  {
+    "text": "software solutions for the critical section problem. So, let us start with the most simple solution",
+    "start": 38.66,
+    "end": 45.82,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "that is by disabling interrupts. So, this solution is only applicable for single core systems.",
+    "start": 45.82,
+    "end": 53.74,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "With multi core systems, essentially because of the advanced programmable interrupt controllers",
+    "start": 53.74,
+    "end": 60.54,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "present in the systems, interrupts are routed to several processors. Therefore, this solution",
+    "start": 60.54,
+    "end": 67.9,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "will not work on multi core systems. On the other hand, for single core processors or single",
+    "start": 67.9,
+    "end": 76.82,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "core systems, disabling interrupts will work. Essentially, we have seen that if interrupts",
+    "start": 76.82,
+    "end": 83.14,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "are disabled, then it would prevent context switching and preventing context switching would",
+    "start": 83.14,
+    "end": 89.74,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "mean that the critical section would be not preempted during its execution. Let us look",
+    "start": 89.74,
+    "end": 97.22,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable joterrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "at how interrupts can be used to solve the critical section problem. So, we have the two",
+    "start": 97.22,
+    "end": 104.3,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "processes, process 1 and process 2 and they have this critical section which is shown in red.",
+    "start": 104.3,
+    "end": 109.82,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "In this critical section, both processes access or modify the same shared data. In order to",
+    "start": 109.82,
+    "end": 118.7,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable intereupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "ensure that the critical section problem is solved and that both processes do not end up in the",
+    "start": 118.7,
+    "end": 125.74,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "critical section at the same time, we disable interrupts before entering into the critical section.",
+    "start": 125.74,
+    "end": 132.22,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "While on the other hand, while leaving the critical section, the interrupts are enabled again.",
+    "start": 132.62,
+    "end": 139.42,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "Disabling interrupts as we have seen will prevent the process from getting preempted at the end",
+    "start": 139.42,
+    "end": 146.78,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\n\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "of its time slice. Essentially, there would not be a timer interrupt that would occur, which would",
+    "start": 146.78,
+    "end": 152.3,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "prevent process 1 from preempting. Therefore, we see that this is a very simple solution and process 1",
+    "start": 152.3,
+    "end": 161.26,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "will continue to execute without any other interrupts occurring as a result of the disabling of",
+    "start": 161.74,
+    "end": 168.3,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "interrupts. Similarly, when process 2 enters into this critical section, it disables interrupts",
+    "start": 168.3,
+    "end": 174.54,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disab'e interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "and on leaving the critical section, it enables interrupts again. So, this application of",
+    "start": 174.54,
+    "end": 181.1,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disab'e interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "disabling and enabling interrupts is similar to the locking mechanism before entering the critical",
+    "start": 181.98,
+    "end": 189.58,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n— User processes generally cannot disable interrupts\nNot suited for multicore systems"
+  },
+  {
+    "text": "section and the unlocking mechanism at the exit of the critical section. The locking will ensure that",
+    "start": 190.3,
+    "end": 196.94,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "only one process enters or executes in the critical section at a given time. While the unlocking",
+    "start": 196.94,
+    "end": 203.98,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical sectiori critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "mechanism that is when interrupts are enabled would then allow other processes the chance to enter",
+    "start": 205.74,
+    "end": 212.7,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\n\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "or execute in the critical section. So, this method of solving the critical section problem",
+    "start": 213.34,
+    "end": 221.9,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\n\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "is simple. It just requires a single instruction in order to disable or enable interrupts.",
+    "start": 221.9,
+    "end": 228.86,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "Thus preventing context switches from happening. However, the limitations of using interrupts",
+    "start": 230.3,
+    "end": 236.38,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "is that it requires a higher privileged level. So, normal application programs which run in",
+    "start": 236.38,
+    "end": 244.78,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n— When interrupts are disabled, context switches won’ t happen\n\nRequires privileges\n— User processes generally cannot disable interrupts\nNot suited for multicore systems"
+  },
+  {
+    "text": "user space will not be able to disable and enable interrupts in such a way.",
+    "start": 244.78,
+    "end": 248.78,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n— When interrupts are disabled, context switches won’ t happen\n\nRequires privileges\n— User processes generally cannot disable interrupts\nNot suited for multicore systems"
+  },
+  {
+    "text": "Therefore, this solution is only applicable for code that runs in the kernel. So, it is only",
+    "start": 249.5,
+    "end": 257.98,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "the kernel or the operating system that is allowed to disable interrupts and enable interrupts again.",
+    "start": 257.98,
+    "end": 264.62,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "Therefore, this solution is only applicable for operating system code.",
+    "start": 265.26,
+    "end": 269.34,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "And as we have seen before, this disabling and enabling interrupts is not suited for",
+    "start": 270.54,
+    "end": 277.58,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "multi-core systems. Essentially, because when interrupts are disabled on a multi-core system,",
+    "start": 277.58,
+    "end": 284.46,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "it would mean that interrupts corresponding to that core alone is disabled.",
+    "start": 284.46,
+    "end": 290.86,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "On the other hand, interrupts are still allowed on the other course which are running.",
+    "start": 291.5,
+    "end": 296.62,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "Thus on a multi-core system, when disabled interrupts are is invoked,",
+    "start": 297.26,
+    "end": 301.58,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section’ critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "all interrupts to only that core or that core in the processor is disabled.",
+    "start": 302.94,
+    "end": 308.22,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section’ critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "Other processors such as a processor which is running this process too will not be",
+    "start": 309.26,
+    "end": 315.02,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2 |\n\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\n\nenable interrupts () enable interrupts () |\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "affected by the disabling of interrupts. Therefore, this solution is not suited for multi-core systems.",
+    "start": 315.82,
+    "end": 322.3,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "So, what we will do next is we will try to actually build our own solution for the critical",
+    "start": 323.66,
+    "end": 330.22,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "section problem. So, we will start with a very simple solution. We will see its drawbacks and then",
+    "start": 330.22,
+    "end": 336.62,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "we will gradually modify that particular solution until we reach a point where we have solved the",
+    "start": 336.62,
+    "end": 342.54,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "critical section problem. So, let us look at this. So, let us start with our first attempt.",
+    "start": 342.54,
+    "end": 348.14,
+    "ocr_text": "Using Interrupts\n\nProcess 1 Process 2\nwhile(1){ while(1){\ndisable interrupts () disable interrupts ()\ncritical section critical section\nenable interrupts () enable interrupts ()\n\nSimple\n\n— When interrupts are disabled, context switches won’ t happen\nRequires privileges\n\n— User processes generally cannot disable interrupts\n\nNot suited for multicore systems"
+  },
+  {
+    "text": "So, let us say we have this critical section in process 1 and this critical section in process 2",
+    "start": 348.86,
+    "end": 355.18,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\nProcess 1 int fume; Process 2\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 proce"
+  },
+  {
+    "text": "and both these critical sections are manipulating the same data.",
+    "start": 355.18,
+    "end": 359.18,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critigal section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "In addition to this shared data, we also define an other shared data known as turn and set this",
+    "start": 360.86,
+    "end": 370.38,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critigal section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "value of turn to 1. So, what happens? We look into more detail. So, when process 1 begins to execute,",
+    "start": 370.38,
+    "end": 376.94,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "it sees that turn equal to 1. Therefore, this while loop immediately exits and the critical section",
+    "start": 377.74,
+    "end": 385.58,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 process2 Dprocess1 >"
+  },
+  {
+    "text": "gets executed. Now, during the time when process 1 is in the critical section,",
+    "start": 386.3,
+    "end": 391.26,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "when process 2 arrives at this particular point, it sees that turn equal to 1 and therefore,",
+    "start": 391.9,
+    "end": 398.7,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "it will continue to loop in this particular while loop. The only time that it is capable of",
+    "start": 398.7,
+    "end": 406.46,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "exiting from this while loop is when the first process sets turn to 2. So, when the value of turn",
+    "start": 406.46,
+    "end": 413.42,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; // unlock turn = 1; // unlock\n\n* Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "is set to 2 and remember that turn is a shared variable. Therefore, this while loop in process 2",
+    "start": 413.42,
+    "end": 420.22,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; // unlock turn = 1; // unlock\n\n* Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "will terminate and process 2 will then enter into the critical section. At the exit of the critical",
+    "start": 421.1,
+    "end": 427.66,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn ==/4); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n* Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "section, process 2 will set the value of turn to 1. So, setting the value of turn to 1 would mean",
+    "start": 427.66,
+    "end": 435.1,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn =.1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "that process 1 can then enter into the critical section. So, essentially when we look at the",
+    "start": 435.1,
+    "end": 441.82,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "locking and unlocking mechanism to solve this critical section problem, we see that this while loop",
+    "start": 441.82,
+    "end": 448.06,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "present over here is the locking mechanism, while the unlocking mechanism is the third line,",
+    "start": 448.06,
+    "end": 453.34,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 ae: Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 >process2 process? proce"
+  },
+  {
+    "text": "that is setting the value of turn to 2. The second observation that we make is that this",
+    "start": 453.34,
+    "end": 461.1,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 ae: Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 >process2 process? proce"
+  },
+  {
+    "text": "algorithm or this solution for the critical section problem requires that process 1 executes",
+    "start": 462.54,
+    "end": 468.62,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 ae: Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 >process2 Pprocess1 proce"
+  },
+  {
+    "text": "into the critical section and then because turn is set to 2 over here, after process 1 completes",
+    "start": 469.1,
+    "end": 477.42,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; // unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n\nBusy waiting — waste of power and time\n\nNeeds to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "its critical section execution process 2 should execute. So, once process 2 completes its execution,",
+    "start": 477.5,
+    "end": 484.78,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical Section\nturn = 2; //unlock turn = 1; // unlock\n\n* Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 >p"
+  },
+  {
+    "text": "process 1 will execute and so on. So, essentially there is an alternating behavior for the critical",
+    "start": 484.78,
+    "end": 492.22,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical Section\nturn = 2; //unlock turn = 1; // unlock\n\n* Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 >p"
+  },
+  {
+    "text": "section. First process 1 needs to execute the critical section because the value of turn is equal",
+    "start": 492.22,
+    "end": 498.86,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Musee Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section éritical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n\nBusy waiting — waste of power and time\n\nNeeds to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pproc"
+  },
+  {
+    "text": "to 1. Then when it completes, it sets turn to 2. So, process 2 will execute and process 2 will",
+    "start": 498.86,
+    "end": 506.86,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 >Dprocess"
+  },
+  {
+    "text": "set the value of turn to 1 at the end of its critical section, which will result in process 1",
+    "start": 506.86,
+    "end": 513.66,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "executing in the critical section and so on. So, we see that there is an alternating behavior",
+    "start": 513.66,
+    "end": 518.7,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "between process 1 and process 2. Quite naturally because the value of turn is shared between both",
+    "start": 518.7,
+    "end": 526.86,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 UE Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n« Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Dp"
+  },
+  {
+    "text": "the processes and as we have seen, only one process could satisfy this while condition and break",
+    "start": 526.86,
+    "end": 536.46,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n* Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Pprocess1 Pproce:s"
+  },
+  {
+    "text": "out from this while loop. Therefore, exactly one process would enter into the critical section",
+    "start": 536.46,
+    "end": 542.54,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 ae: Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 >process2 process1 >pro"
+  },
+  {
+    "text": "at a given time. Therefore, this solution achieves mutual exclusion.",
+    "start": 542.54,
+    "end": 549.26,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 ae: Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 >process2 process1 >pro"
+  },
+  {
+    "text": "However, there are two limitations of the solution. One is the busy waiting. So, while process 1 is",
+    "start": 550.86,
+    "end": 558.46,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\n\nturn = 1; // unlock\n\nturn = 2; //unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 >process2 process >,"
+  },
+  {
+    "text": "executing in this critical section, process 2 would endlessly execute in this particular while loop.",
+    "start": 558.46,
+    "end": 565.34,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess:"
+  },
+  {
+    "text": "Note that process 2 is in the ready state or the running state. It is not in the blocked state",
+    "start": 565.34,
+    "end": 572.78,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(tusn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pproces:"
+  },
+  {
+    "text": "and therefore, it would consume power as well as time because it needs to execute in the CPU",
+    "start": 572.78,
+    "end": 579.34,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(tusn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pproces:"
+  },
+  {
+    "text": "periodically in order that this value of turn is checked. Another limitation as we have seen before,",
+    "start": 579.98,
+    "end": 587.42,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); I} lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "it is that this solution for the critical section problem requires that process 1 and process 2",
+    "start": 587.42,
+    "end": 597.1,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "alternates its axis into the critical section. So, what it means is that first process 1 should",
+    "start": 597.1,
+    "end": 606.22,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pp! 20%"
+  },
+  {
+    "text": "execute then process 2, process 1, process 2 and so on. So, this creates a problem especially with",
+    "start": 606.22,
+    "end": 612.14,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocessz"
+  },
+  {
+    "text": "progress requirement of the critical section solution. So, the progress requirement condition",
+    "start": 612.7,
+    "end": 620.62,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocessz"
+  },
+  {
+    "text": "stated that if no process is in the critical section and a process requests for the critical section,",
+    "start": 620.62,
+    "end": 629.34,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n* Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 Dprocess2 Dprocess1 Pprocess2"
+  },
+  {
+    "text": "then it should be offered the lock essentially it should be able to execute in the critical section.",
+    "start": 629.34,
+    "end": 634.3,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = *: // unlock\n\n* Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Pprocess1 Pprocess2"
+  },
+  {
+    "text": "We see that this solution will not satisfy the progress requirement. For instance, let us say that",
+    "start": 634.46,
+    "end": 644.46,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = *: // unlock\n\n* Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Pprocess1 Pprocess2"
+  },
+  {
+    "text": "process 2 begins to execute before process 1. So, process 2 comes here and it executes this while",
+    "start": 645.1,
+    "end": 655.18,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 oA Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n¢ Needs to alternate execution in critical section\nprocess1 >process2 process1 >pro"
+  },
+  {
+    "text": "turn equal to 1 and we see that since process 1 has not yet started. So, if the progress condition",
+    "start": 655.18,
+    "end": 661.9,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Pprocess1 Pproc:"
+  },
+  {
+    "text": "needs to be met, so process 2 should enter into the critical section, but this is not so.",
+    "start": 661.9,
+    "end": 668.06,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n¢ Busy waiting — waste of power and time\n\n* Needs to alternate execution in critical section\nprocess1 Dprocess2 Pprocess1 Pproc:"
+  },
+  {
+    "text": "Therefore, this is not a good solution for the critical section problem.",
+    "start": 669.1,
+    "end": 674.14,
+    "ocr_text": "Software Solution (Attempt 1)\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢ Achieves mutual exclusion\n\nBusy waiting — waste of power and time\n\nNeeds to alternate execution in critical section\nprocess1 Dprocess2 Pprocess1 Pproc:"
+  },
+  {
+    "text": "The main drawback or the main problem with our first attempt to solve the critical section problem",
+    "start": 675.42,
+    "end": 681.02,
+    "ocr_text": "Problem with Attempt 1\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n* Had acommon turn flag that was modified by\nboth processes\n¢ This required processes to alternate.\n\n* Possible Solution : Have two flags — one for each\nprocess"
+  },
+  {
+    "text": "was that it used a common turn flag that was modified by both processes. So, this turn flag",
+    "start": 681.02,
+    "end": 687.34,
+    "ocr_text": "Problem with Attempt 1\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n* Had acommon turn flag that was modified by\nboth processes\n¢ This required processes to alternate.\n\n* Possible Solution : Have two flags — one for each\nprocess"
+  },
+  {
+    "text": "was set to 2 in process 1 and set to 1 in process 2 and this forced the 2 processes to alternate",
+    "start": 688.3,
+    "end": 698.7,
+    "ocr_text": "Problem with Attempt 1\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n¢* Had acommon turn flag that was modified by\nboth processes\n¢ This required processes to alternate.\n\n* Possible Solution : Have two flags — one for each\nprocess"
+  },
+  {
+    "text": "execution in the critical section. So, one possible solution for this or one possible thing we could",
+    "start": 698.7,
+    "end": 706.3,
+    "ocr_text": "Problem with Attempt 1\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n* Had a common turn flag that was modified by\nboth processes\n¢ This required processes to alternate.\n\n* Possible Solution : Have two flags — one for each\nprocess"
+  },
+  {
+    "text": "actually make better in our second attempt is to not have a single shared flag. Instead, we will have",
+    "start": 706.3,
+    "end": 713.74,
+    "ocr_text": "Problem with Attempt 1\n\nShared\n\nint turn=1;\nProcess 1 ME Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n* Had acommon turn flag that was modified by\nboth processes\n* This required processes to alternate.\n\n* Possible Solution : Have two flags — one for each\nprocess"
+  },
+  {
+    "text": "2 flags 1 for each process. So, let us see the second attempt to solve the critical section problem.",
+    "start": 713.74,
+    "end": 721.34,
+    "ocr_text": "Problem with Attempt 1\n\nShared\n\nint turn=1;\nProcess 1 ME Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n* Had acommon turn flag that was modified by\nboth processes\n* This required processes to alternate.\n\n* Possible Solution : Have two flags — one for each\nprocess"
+  },
+  {
+    "text": "So, this is the second attempt. So, unlike the previous attempt, we now have 2 flags present.",
+    "start": 723.34,
+    "end": 733.02,
+    "ocr_text": "Problem with Attempt 1\n\nShared\n\nint turn=1;\nProcess 1 Process 2\n\nwhile(1){ while(1){\nwhile(turn == 2); // lock while(turn == 1); // lock\ncritical section critical section\nturn = 2; //unlock turn = 1; // unlock\n\n* Had acommon turn flag that was modified by\nboth processes\n¢ This required processes to alternate.\n\n* Possible Solution : Have two flags — one for each\nprocess"
+  },
+  {
+    "text": "These 2 flags are also shared among the 2 processes. That means that this flag p 2 inside",
+    "start": 733.9,
+    "end": 741.42,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "can be accessed from both process 1 as well as process 2. However, it is process 2 which actually",
+    "start": 742.22,
+    "end": 750.86,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "changes or modifies this flag. So, process 2 changes from false to true or true to false.",
+    "start": 750.86,
+    "end": 756.46,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "While process 1 only reads the status of this flag, it only determines whether the flag",
+    "start": 757.66,
+    "end": 767.34,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True} p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "is a true or a false. Similarly, the second flag is p 1 inside. Now, these flags p 2 inside",
+    "start": 767.34,
+    "end": 774.86,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "and p 1 inside are used during the locking and unlocking of the critical section.",
+    "start": 774.86,
+    "end": 779.9,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "Essentially, before process 1 enters into the critical section, it does 2 things. First,",
+    "start": 780.62,
+    "end": 789.1,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "it needs to check that the second process that is p 2 is not inside the critical section.",
+    "start": 789.1,
+    "end": 797.26,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_insiae = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "And this happens when p 2 underscore inside is equal to false. So, if p 2 underscore inside is true,",
+    "start": 798.22,
+    "end": 807.26,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "it would mean that the second process is executing in the critical section. Then,",
+    "start": 807.26,
+    "end": 812.06,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_insiite = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "it sets its own flag that is p 1 underscore inside to true and executes in the critical section.",
+    "start": 812.38,
+    "end": 819.5,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_insiite = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "While at the exit of the critical section, it sets p 1 underscore inside to false.",
+    "start": 820.14,
+    "end": 825.42,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "Similarly, process 2 would first execute this while loop until p 1 underscore inside inside",
+    "start": 826.7,
+    "end": 836.94,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_in&ide = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "is false. So, a value of p 1 underscore inside is false would mean that",
+    "start": 837.02,
+    "end": 843.42,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "it process p 1 as exit it from the critical section and is no longer in the critical section.",
+    "start": 845.42,
+    "end": 851.98,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "And after it obtains such a condition, the while loop is completed. And execution comes over",
+    "start": 852.78,
+    "end": 861.5,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "here where process 2 sets p 2 underscore inside equal to true indicating that it is inside the",
+    "start": 861.5,
+    "end": 868.06,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\n\np2_inside = False;\n\np1_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "critical section. And at the end of the critical section just before exiting, it sets that p 2 underscore",
+    "start": 868.06,
+    "end": 877.34,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "inside equal to false. Now, this second solution does not require that the two processes alternate",
+    "start": 877.34,
+    "end": 887.58,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "execution in the critical section. So, for instance, since the initial values of p 1 inside",
+    "start": 887.58,
+    "end": 894.14,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "and p 2 inside are false, suppose process 2 executes first. So, it sees p 1 underscore inside",
+    "start": 894.14,
+    "end": 901.42,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "equal to false. So, it breaks from this loop and enters into the critical section. Similarly,",
+    "start": 902.54,
+    "end": 908.62,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "if process 1 does not start executing, it will keep entering into the critical section without",
+    "start": 909.5,
+    "end": 915.18,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); \\while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "requiring process 1 to execute. However, the problem with this particular solution is that it",
+    "start": 915.18,
+    "end": 921.98,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "does not guarantee mutual exclusion rather under some circumstances, it is possible that process",
+    "start": 921.98,
+    "end": 929.26,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "1 as well as process 2 is present in the critical section at the same instant of time.",
+    "start": 929.26,
+    "end": 936.3,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; * p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n¢ Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "So, let us see when this mutual exclusion does not hold for our second attempt.",
+    "start": 937.02,
+    "end": 942.86,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "This particular table here shows the execution of various statements in the CPU with respect to time.",
+    "start": 943.82,
+    "end": 952.22,
+    "ocr_text": "Software Solution (Attempt 2)\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* Need not alternate execution in critical section\n* Does not guarantee mutual exclusion"
+  },
+  {
+    "text": "That means that this particular while loop executes and while since it is in blue color,",
+    "start": 952.22,
+    "end": 960.22,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2 inside\n\nwhile(p2_inside == True); False False\ncontext switch\no\n£ while(p1_inside True) False False\np2_inside = True False True\n[ context switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "it means that it corresponds to the process 1. Then while p 1 underscore inside equal to true and",
+    "start": 960.22,
+    "end": 968.54,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2insice\n\nwhile(p2_inside == True); False False\n* context switch\no 4\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "p 2 underscore inside equal to true. So, this is in the green color. So, it corresponds to process 2",
+    "start": 968.62,
+    "end": 973.18,
+    "ocr_text": "Attempt 2: No mutual exclusion\n\nwhile(p2_inside == True); False False\ncontext switch\no , =\n£ while(p1_inside True) False False\np2_inside = True False True\n* context switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "and p 1 underscore and p 1 underscore inside equal to true again corresponds to process 1.",
+    "start": 973.74,
+    "end": 980.54,
+    "ocr_text": "Attempt 2: No mutual exclusion\n\nwhile(p2_inside == True); False False\ncontext switch\no , =\n£ while(p1_inside True) False False\np2_inside = True False True\n* context switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "So, this is how the CPU would execute instructions corresponding to the two processes.",
+    "start": 981.5,
+    "end": 988.86,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2 inside\n\nwhile(p2_inside == True); False False\ncontext switch\no\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "And we have like several context which is that occur during the execution.",
+    "start": 989.58,
+    "end": 994.62,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2 inside\n\nwhile(p2_inside == True); False False\ncontext switch\no 4\n£ while(p1_inside True); False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "And these are the status of the various flags as the execution progresses.",
+    "start": 994.94,
+    "end": 1000.3,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2 inside\n\nwhile(p2_inside == True); False False\ncontext switch\no 4\n£ while(p1_inside True); False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "So, let us start with process 1. We have initially said that p 1 underscore inside and p 2",
+    "start": 1001.5,
+    "end": 1008.78,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2. inside\n\nwhile(p2_inside == True); False False\ncontext switch\na 4\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "underscore inside is both false indicating that both processes are not in the critical section.",
+    "start": 1008.78,
+    "end": 1014.14,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2 inside\n\nwhile(p2_inside == True); False False\ncontext switch\no\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\n\np2_inside = False;\n\np1_inside = False;"
+  },
+  {
+    "text": "Therefore, this particular while loop will complete essentially because p 2 inside is false.",
+    "start": 1014.78,
+    "end": 1020.54,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2 inside\n\nwhile(p2_inside == True); False False\ncontext switch\no\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\n\np2_inside = False;\n\np1_inside = False;"
+  },
+  {
+    "text": "Now, suppose there is a context which that occurs resulting in process p 2 which executes.",
+    "start": 1021.1,
+    "end": 1028.46,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2 inside\n\nwhile(p2_inside == True); False False\ncontext switch mn\no\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "So, it will also execute these statements while p 1 underscore inside is false. So, the while loop",
+    "start": 1028.46,
+    "end": 1034.54,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu | ptinside |p2_ inside\n\nwhile(p2_inside == True); False False\n\ncontext switch\n\ntime\n\nwhile(p1_inside rue) False False\n\n)\np2_inside = True False True\n\ncontext switch\n\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "will break and then it sets p 2 underscore inside equal to true. Now, immediately after setting",
+    "start": 1034.54,
+    "end": 1041.26,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu | ptinside |p2_ inside\n\nwhile(p2_inside == True); False False\n\ncontext switch\n\ntime\n\nwhile(p1_inside rue) False False\n\n)\np2_inside = True False True\n\ncontext switch\n\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "this, suppose there is a context which that occurs and process p 1 will continue to execute.",
+    "start": 1041.26,
+    "end": 1047.66,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2 inside\n\nwhile(p2_inside == True); False False\ncontext switch\no 1\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True), while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "And it sets p 1 underscore inside equal to true essentially due to the context which",
+    "start": 1048.62,
+    "end": 1054.78,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2inside\n\nwhile(p2_inside == True); False False\ncontext switch\no\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "it will continue to execute from where it has stopped that is it has stopped just soon after",
+    "start": 1054.78,
+    "end": 1060.38,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2inside\n\nwhile(p2_inside == True); False False\ncontext switch\no\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "completion of the while loop. And then it continues with the next instruction over here that is",
+    "start": 1060.38,
+    "end": 1066.86,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu pt inside | p2 inside\n\nwhile(p2_inside == True); False False\n: context switch\no\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "setting of p 1 inside equal to true. So, here we see we have a state where p 2 underscore inside",
+    "start": 1066.86,
+    "end": 1074.62,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu | ptinside | p2_ inside\n\nwhile(p2_inside == True); False False\ncontext switch\no 1\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "equal to true indicating that p 2 is in the critical section as well as p 1 underscore inside",
+    "start": 1074.62,
+    "end": 1080.54,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu | ptinside | p2_ inside\n\nwhile(p2_inside == True); False False\ncontext switch\no 1\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "equal to true indicating that p 1 is also in the critical section. Therefore, we have not able",
+    "start": 1080.54,
+    "end": 1088.86,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu pt inside | p2 inside\n\nwhile(p2_inside == True); False False\ncontext switch\no\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "to achieve mutual exclusion. So, the main problem with this second attempt to solve the critical",
+    "start": 1089.5,
+    "end": 1096.7,
+    "ocr_text": "Attempt 2: No mutual exclusion\ncpu ptinside | p2 inside\n\nwhile(p2_inside == True); False False\ncontext switch\no\n£ while(p1_inside True) False False\np2_inside = True False True\ncontext switch\np1_inside = True; True True\n\nBoth p1 and p2 can enter into the critical section at the same time\n\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;"
+  },
+  {
+    "text": "section problem was that we had two flags p 1 inside and p 2 inside. However, they were set",
+    "start": 1096.7,
+    "end": 1105.82,
+    "ocr_text": "Problem with Attempt 2\n\nshared\n\np2_inside = False, p1_inside = False Process 2\n\nProcess 1\nwhile(1){ | while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* The flag (p1_inside, p2_inside), is set after we\nbreak from the while loop."
+  },
+  {
+    "text": "after we break from the while loop that is only after this particular while loop completes execution",
+    "start": 1105.82,
+    "end": 1112.62,
+    "ocr_text": "Problem with Attempt 2\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* The flag (p1_inside, p2_inside), is set after we\nbreak from the while loop."
+  },
+  {
+    "text": "and breaks from this only then are we setting p 1 underscore inside to true and p 2 underscore",
+    "start": 1112.62,
+    "end": 1120.22,
+    "ocr_text": "Problem with Attempt 2\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* The flag (p1_inside, p2_inside), is set after we\nbreak from the while loop."
+  },
+  {
+    "text": "inside equal to true essentially what this means is that p 1 underscore inside and p 2 underscore",
+    "start": 1120.22,
+    "end": 1127.66,
+    "ocr_text": "Problem with Attempt 2\n\nshared\n\np2_inside = False, p1_inside = False Process 2\n\nProcess 1\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n}\n\n* The flag (p1_inside, p2_inside), is set after we\nbreak from the while loop."
+  },
+  {
+    "text": "inside are set to true only within the critical section and this is what created the problem.",
+    "start": 1127.66,
+    "end": 1134.38,
+    "ocr_text": "Problem with Attempt 2\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\npfl_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* The flag (p1_inside, p2_inside), is set after we\nbreak from the while loop."
+  },
+  {
+    "text": "So, let us see if we can actually change these ordering a bit. So, we will start with the third",
+    "start": 1135.58,
+    "end": 1142.22,
+    "ocr_text": "Problem with Attempt 2\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* The flag (p1_inside, p2_inside), is set after we\nbreak from the while loop."
+  },
+  {
+    "text": "attempt that is the third attempt for solving the critical section problem and what we will do",
+    "start": 1142.22,
+    "end": 1149.98,
+    "ocr_text": "Problem with Attempt 2\n\nshared\np2_inside = False, p1_inside = False\n\nProcess 1 Process 2\nwhile(1){ while(1){\nwhile(p2_inside == True); while(p1_inside == True);\np1_inside = True; p2_inside = True;\ncritical section critical section\np1_inside = False; p2_inside = False;\n\n* The flag (p1_inside, p2_inside), is set after we\nbreak from the while loop."
+  },
+  {
+    "text": "is just a simple change. So, we will have these two flags instead of p 1 underscore inside we",
+    "start": 1149.98,
+    "end": 1156.06,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "will have now p 1 wants to enter into the critical section and p 2 wants to enter into the critical",
+    "start": 1156.06,
+    "end": 1162.94,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "section essentially each of these flags are set to true when the corresponding process wants to enter",
+    "start": 1162.94,
+    "end": 1172.06,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "into the critical section. So, the the the minor change we do over here with respect to the",
+    "start": 1172.06,
+    "end": 1178.46,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 = Process 2\nwhile(1){ ; while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n¢ Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "second attempt is that process one first shows its intention to enter into the critical section",
+    "start": 1178.54,
+    "end": 1184.7,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 = Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n¢ Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "by setting p 1 underscore wants to enter to true and only then will it try to determine",
+    "start": 1184.7,
+    "end": 1191.9,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 = Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n¢ Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "if process p 2 is in the critical section or not. So, essentially it sets p 1 underscore wants to",
+    "start": 1192.86,
+    "end": 1201.34,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "enter to true and then it would execute in this while loop until p 2 wants to enter is false.",
+    "start": 1201.34,
+    "end": 1210.3,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(b2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n¢ Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "So, when p 2 wants to enter becomes false indicating that the second process has completed execution",
+    "start": 1211.42,
+    "end": 1219.5,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section — | critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "in the critical section then process one will enter into the critical section.",
+    "start": 1220.54,
+    "end": 1225.1,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "At the end after the critical section has completed execution p 1 sets the flag p 1 wants to enter",
+    "start": 1226.06,
+    "end": 1234.3,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "to false. So, this setting of false will allow process two to enter into the critical section.",
+    "start": 1234.3,
+    "end": 1243.66,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "Note that the only difference of this corresponding to our previous attempt was that we move the flag",
+    "start": 1244.46,
+    "end": 1251.98,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1._wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n¢ Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "from inside the critical section that is after the while loop to before the while loop.",
+    "start": 1252.06,
+    "end": 1257.42,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n¢ Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "So, what we see is that this particular solution achieves mutual exclusion. So, unlike the previous",
+    "start": 1258.14,
+    "end": 1264.94,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "attempt where we obtained a condition where mutual exclusion was not achieved and we had two",
+    "start": 1264.94,
+    "end": 1271.66,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "processes in the critical section at the same time. In this solution the mutual exclusion is",
+    "start": 1271.66,
+    "end": 1279.26,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "achieved essentially it is guaranteed that when process one is in the critical section,",
+    "start": 1279.26,
+    "end": 1286.06,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "process two is not in the critical section and vice versa. So, what is not guaranteed is progress.",
+    "start": 1286.06,
+    "end": 1293.26,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "Essentially we could obtain a state where both processes are endlessly waiting or endlessly",
+    "start": 1293.98,
+    "end": 1305.58,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "executing in this while loop and we will see how this thing occurs. So, such a state is known as",
+    "start": 1305.58,
+    "end": 1312.46,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "a deadlocked state. So, let us see the deadlock situation in this particular case. So, let us look",
+    "start": 1312.46,
+    "end": 1320.7,
+    "ocr_text": "Software Solution (Attempt 3)\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Achieves mutual exclusion\n* Does not achieve progress (could deadlock)"
+  },
+  {
+    "text": "in this table which shows how the CPU executes instructions with respect to time and also this",
+    "start": 1320.7,
+    "end": 1326.46,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\noO\n£ context switch\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noo while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other }\nthis is a deadlock"
+  },
+  {
+    "text": "table shows the various values of the flags which are present. So, let us start with process one",
+    "start": 1326.46,
+    "end": 1333.82,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\no\ncontext switch\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noe while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other’ }\nthis is a deadlock"
+  },
+  {
+    "text": "executing and the CPU executes this particular statement and it sets the value of P 1 wants to enter",
+    "start": 1333.82,
+    "end": 1341.26,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\no\ncontext switch\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noe while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other’ }\nthis is a deadlock"
+  },
+  {
+    "text": "to true. Then there is a context which which results in process two executing which sets the flag P",
+    "start": 1341.26,
+    "end": 1350.86,
+    "ocr_text": "jme\n\nAttempt 3: Endless Wait\n\np1_wants_to_enter = True False False\nW\n\ncontext switch\n\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\n; oe while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other }\n\nthis is a deadlock"
+  },
+  {
+    "text": "2 wants to enter to true. Now, you see that both processes have set their respective flags to true.",
+    "start": 1350.86,
+    "end": 1358.86,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\no\n£ context switch\np2_wants_to_enter = True False False\nft\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noe while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other }\nthis is a deadlock"
+  },
+  {
+    "text": "Now, when both processes enter into this while loop, we see that in both cases process one as",
+    "start": 1359.5,
+    "end": 1366.78,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\no\n£ context switch\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noe while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other\nthis is a deadlock\n\n~"
+  },
+  {
+    "text": "process and as well as process two, this flag is set to true. We indicating that both processes will",
+    "start": 1366.78,
+    "end": 1376.54,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\no\nis context switch\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noo while(p1, wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other’ }\nthis is a deadlock"
+  },
+  {
+    "text": "continue to execute this while loop endlessly. Essentially process one is waiting for process two",
+    "start": 1376.54,
+    "end": 1386.3,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\no\n= context switch\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noe while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other }\nthis is a deadlock"
+  },
+  {
+    "text": "to set its flag to false while process two is waiting or is waiting for process one to set its flag",
+    "start": 1386.94,
+    "end": 1397.5,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\no\n£ context switch\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noe while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\n\n&\n\nEndless wait\nEach process is waiting for the other\nthis is a deadlock\n\n~"
+  },
+  {
+    "text": "to false. So, essentially we have reached a state which where each process is waiting for the other",
+    "start": 1397.5,
+    "end": 1405.9,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\no\n= context switch\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noe while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other }\nthis is a deadlock"
+  },
+  {
+    "text": "process to do something. So, this is what is known as a deadlocked situation and it could lead to",
+    "start": 1405.9,
+    "end": 1413.98,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\no\n£ context switch\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noe while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other’ }\nthis is a deadlock"
+  },
+  {
+    "text": "considerable amounts of problem in operating systems. So, to give a more clearer view of what",
+    "start": 1413.98,
+    "end": 1421.34,
+    "ocr_text": "Attempt 3: Endless Wait\n\np1_wants_to_enter = True False False\no\n£ context switch\np2_wants_to_enter = True False False\n_ ; ; while(1){\nhere is a tie!!! p2_wants_to_enter = True\noe while(p1_wants_to_enter = True);\nBoth p1 and p2 will loop infinitely critical section\n\np2_wants_to_enter = False\nEndless wait\n\nEach process is waiting for the other’ }\nthis is a deadlock"
+  },
+  {
+    "text": "a deadlock is, we have this particular figure here where we have process one and process two present",
+    "start": 1421.34,
+    "end": 1427.42,
+    "ocr_text": "Deadlock\ncpu pt_inside | p2_inside\n\np1_wants_to_enter = True False False\n\né context switch\n& p2_wants_to_enter = True False False\nP2_wants_to_enter\nThere is a tie!!! Wai -\niti\nfor rate /\nBoth p1 and p2 will loop infinitely [Pensa]\nProcess 2\n; }\nProgress not achieved y\nWaiting\n\nEach process is waiting for the other\nthis is a deadlock\n\n<— for FALSE\n\nP1_wants_to_enter"
+  },
+  {
+    "text": "here. Now, process one is in the while loop and it is looping continuously waiting for process",
+    "start": 1427.42,
+    "end": 1434.46,
+    "ocr_text": "Deadlock\ncpu ptinside | p2inside\n\np1_wants_to_enter = True False False\n\ncontext switch\n\njme\n\n)2_wants_to_enter = True False False\n\nP2_wants_to_enter\n\nThere is a tie!!!\nWaiting\nfor 2 ©\n\nBoth p1 and p2 will loop infinitely\n\nProcess 2\nProgress not achieved y)\nEach process is waiting for the other gs renee\n\nthis is a deadlock\nP1_wants_to_enter"
+  },
+  {
+    "text": "two to set this flag P 2 wants to enter to false. Similarly, process two is waiting in the while loop",
+    "start": 1435.18,
+    "end": 1443.66,
+    "ocr_text": "Deadlock\ncpu ptinside | p2inside\n\np1_wants_to_enter = True False False\nro context switch\n& p2_wants_to_enter = True False False\nP2_wants_to_enter\nThere is a tie!!! >\nWaiting\nfor FALSE\nBoth p1 and p2 will loop infinitely\nProoése 2\nProgress not achieved a\nEach process is waiting for the other eae re\n\nthis is a deadlock\nP1_wants_to_enter"
+  },
+  {
+    "text": "or looping continuously and waiting for this flag P 1 wants to enter to be set to false.",
+    "start": 1443.66,
+    "end": 1449.98,
+    "ocr_text": "Deadlock\ncpu ptinside | p2inside\n\np1_wants_to_enter = True False False\nro context switch\n& p2_wants_to_enter = True False False\nP2_wants_to_enter\nThere is a tie!!! >\nWaiting\nfor FALSE\nBoth p1 and p2 will loop infinitely\nProoése 2\nProgress not achieved a\nEach process is waiting for the other eae re\n\nthis is a deadlock\nP1_wants_to_enter"
+  },
+  {
+    "text": "However, the problem here is that process one needs to change the value of this flag",
+    "start": 1451.18,
+    "end": 1460.62,
+    "ocr_text": "Deadlock\ncpu pt_inside | p2_inside\n\np1_wants_to_enter = True False False\nri context switch\n& p2_wants_to_enter = True False False\n\nP2_wants_to_enter\n\nThere is a tie!!! >\nBoth p1 and p2 will loop infinitely ay a a\nrocess\nProgress not achieved yi\nWaiting\n\nEach process is waiting for the other ae ESE\nthis is a deadlock\nP1_wants_to_enter"
+  },
+  {
+    "text": "because this flag can be only changed by process one. Similarly, process two needs to change the",
+    "start": 1460.86,
+    "end": 1466.7,
+    "ocr_text": "Deadlock\ncpu pt_inside | p2_inside\n\np1_wants_to_enter = True False False\nctl context switch\n& )2_wants_to_enter = True False False\n\nP2_wants_to_enter\n\nThere is a tie!!!\nWaiting\nfor FALSE assign\n\nBoth p1 and p2 will loop infinitely\n\nProcess 2\nProgress not achieved ]\nEach process is waiting for the other el a tee\n\nthis is a deadlock\nP1lqwants_to_enter"
+  },
+  {
+    "text": "value of this flag since this flag can be only changed by process two and therefore, we see that",
+    "start": 1466.7,
+    "end": 1474.22,
+    "ocr_text": "Deadlock\ncpu pt_inside | p2_inside\n\np1_wants_to_enter = True False False\ntl context switch\n& | )2_wants_to_enter = True False False\n\nP2_wants_to_enter\n\nThere is a tie!!! >\nWaiting \\\nfor FALSE assign\nBoth p1 and p2 will loop infinitely =i m\nProcess 2 —\n\nProgress not achieved assign y\nEach process is waiting for the other ecEiee\n\nthis is a deadlock\nP1_wants_to_enter"
+  },
+  {
+    "text": "there is a time process one is waiting for process two to to change the value of its flag.",
+    "start": 1474.22,
+    "end": 1483.02,
+    "ocr_text": "Deadlock\ncpu pt_inside | p2_inside\n\np1_wants_to_enter = True False False\ntl context switch\n& | )2_wants_to_enter = True False False\n\nP2_wants_to_enter\n\nThere is a tie!!! >\nWaiting \\\nfor FALSE assign\nBoth p1 and p2 will loop infinitely =i m\nProcess 2 —\n\nProgress not achieved assign y\nEach process is waiting for the other ecEiee\n\nthis is a deadlock\nP1_wants_to_enter"
+  },
+  {
+    "text": "However, process two cannot change the value of its flag because it is waiting for process one",
+    "start": 1483.58,
+    "end": 1489.9,
+    "ocr_text": "Deadlock\ncpu pt_inside | p2_inside\n\np1_wants_to_enter = True False False\né context switch\n& p2_wants_to_enter = True False False\ni . ees P2_wants_to_enter\nhere is a tie!!! Waiting > ts \\\nfor ratse assign\nBoth p1 and p2 will loop infinitely\nProgress not achieved an )\nEach process is waiting for the other a neeitee\n\nthis is a deadlock\nP1_wants_to_enter"
+  },
+  {
+    "text": "to change the value of the flag. So, we get some kind of a cycle present over here. So,",
+    "start": 1489.9,
+    "end": 1495.42,
+    "ocr_text": "Deadlock\ncpu pt_inside | p2_inside\n\np1_wants_to_enter = True False False\né context switch\n& p2_wants_to_enter = True False False\ni . ees P2_wants_to_enter\nhere is a tie!!! Waiting > s\nfor ratse assign\nBoth p1 and p2 will loop infinitely\nProgress not achieved an )\nEach process is waiting for the other a eee\n\nthis is a deadlock\nP1_wanis_to_enter"
+  },
+  {
+    "text": "this cycle will result in both process one and process two waiting for each other for an endless",
+    "start": 1495.42,
+    "end": 1501.98,
+    "ocr_text": "Deadlock\ncpu pt_inside | p2_inside\n\np1_wants_to_enter = True False False\n\ncontext switch\n\njme\n\n2_wants_to_enter = True False False\n\nP2_wants_to_enter\n\nThere is a tie!!! >\nWaiting\nfor FALSE assign\n\nBoth p1 and p2 will loop infinitely 5 5\nrocess\n\nProgress not achieved Ree y)\nEach process is waiting for the other of Wating\n\napa <- for FALSE\nthis is a deadlock\n\nP1_wants_to_enter"
+  },
+  {
+    "text": "amount of time. So, this is known as a deadlock. So, in a later video, we will look more into details",
+    "start": 1502.62,
+    "end": 1509.98,
+    "ocr_text": "Deadlock\ncpu pt_inside | p2_inside\n\np1_wants_to_enter = True False False\n\ncontext switch\n\njme\n\n2_wants_to_enter = True False False\n\nP2_wants_to_enter\n\nThere is a tie!!! >\nWaiting\nfor FALSE assign\n\nBoth p1 and p2 will loop infinitely 5 5\nrocess\n\nProgress not achieved Ree y)\nEach process is waiting for the other of Wating\n\napa <- for FALSE\nthis is a deadlock\n\nP1_wants_to_enter"
+  },
+  {
+    "text": "about how deadlocks are cost and how they can be prevented and avoided.",
+    "start": 1509.98,
+    "end": 1514.62,
+    "ocr_text": "Deadlock\ncpu pt_inside | p2_inside\n\np1_wants_to_enter = True False False\nctl context switch\n& )2_wants_to_enter = True False False\n\nP2_wants_to_enter\n\nThere is a tie!!!\nWaiting\nfor FALSE assign\n\nBoth p1 and p2 will loop infinitely\n\nProcess 2\nProgress not achieved — ]\nEach process is waiting for the other b a eae\n\nthis is a deadlock\nP1_wants_to_enter"
+  },
+  {
+    "text": "So, let us see what the problem was with the third attempt. Essentially, we had the process",
+    "start": 1516.14,
+    "end": 1522.38,
+    "ocr_text": "Problem with Attempt 3\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1,wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Deadlock\nHave a way to break the deadlock"
+  },
+  {
+    "text": "setting its flag and waiting for the other processes flag to be set to false.",
+    "start": 1522.38,
+    "end": 1527.5,
+    "ocr_text": "Problem with Attempt 3\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1,wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Deadlock\nHave a way to break the deadlock"
+  },
+  {
+    "text": "And we have seen that because both processes may enter into the while loop and wait for each other,",
+    "start": 1528.3,
+    "end": 1535.82,
+    "ocr_text": "Problem with Attempt 3\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n+ Deadlock\nHave a way to break the deadlock"
+  },
+  {
+    "text": "we would have a deadlock situation. Now, the next big best thing to do is whenever we have such a",
+    "start": 1536.7,
+    "end": 1544.22,
+    "ocr_text": "Problem with Attempt 3\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Deadlock\nHave a way to break the deadlock"
+  },
+  {
+    "text": "deadlock situation, we need to find a way to actually come out of the deadlock situation.",
+    "start": 1544.22,
+    "end": 1548.86,
+    "ocr_text": "Problem with Attempt 3\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n* Deadlock\nHave a way to break the deadlock"
+  },
+  {
+    "text": "Essentially, we need to ensure that one and exactly one of these two processes will break",
+    "start": 1548.86,
+    "end": 1556.14,
+    "ocr_text": "Problem with Attempt 3\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1, _wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n+ Deadlock\nHave a way to break the deadlock"
+  },
+  {
+    "text": "from the while loop and enter into the critical section. So, this solution was made by",
+    "start": 1556.14,
+    "end": 1562.94,
+    "ocr_text": "Problem with Attempt 3\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n+ Deadlock\nHave a way to break the deadlock"
+  },
+  {
+    "text": "Peterson in and is what is known as a Peterson's solution and essentially has another variable known",
+    "start": 1563.98,
+    "end": 1571.98,
+    "ocr_text": "Problem with Attempt 3\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter\n\nProcess 1 Process 2\nwhile(1){ while(1){\np1_wants_to_enter = True p2_wants_to_enter = True\nwhile(p2_wants_to_enter = True); while(p1_wants_to_enter = True);\ncritical section critical section\np1_wants_to_enter = False p2_wants_to_enter = False\n\n+ Deadlock\nHave a way to break the deadlock"
+  },
+  {
+    "text": "as favored. So, this is a globally defined variable which is shared among the two processes.",
+    "start": 1571.98,
+    "end": 1577.02,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\n\nProcess 1\nwhile(1){\n\n/ p1_wants_to_enter = True\n| favored = 2\npw\n' while (p2_wants_to_enter AND\np favored = 2);\ncritical section\n\np1_wants_to_enter = False\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nthe second process wants to enter. favor\nit. (be nice !!!)\n\nfavored is used to break the tie when\nboth p1 and p2 want to enter the critical\nsection.\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process"
+  },
+  {
+    "text": "Essentially, what the favored variable does is that whenever deadlock situation occurs,",
+    "start": 1577.74,
+    "end": 1586.38,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 1\nwhile(1){\n\nthe second process wants to enter. favor\n\nrp ts_t ter = Ti . Ff;\n‘ p1_wants_to_enter = True it. (be nice !!!)\n\n| favored = 2\n\nH while (p2_wants_to_enter AND favored is used to break the tie when\nb favored = 2); both p1 and p2 want to enter the critical\ncritical section section.\n\np1_wants_to_enter = False\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process"
+  },
+  {
+    "text": "it favors one of the processes and that process would then enter into the critical section.",
+    "start": 1586.38,
+    "end": 1592.06,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 1\nwhile(1){\n\nthe second process wants to enter. favor\n\nrp ts_t ter = Ti . f\n‘p1_wants_to_enter = True it. (be nice !!!)\n\n| favored = 2\n\nwhile (p2_wants_to_enter AND favored is used to break the tie when\nfavored = 2); both p1 and p2 want to enter the critical\ncritical section section.\n\np1_wants_to_enter = False\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process"
+  },
+  {
+    "text": "While the other process will continue to wait until the second process sets the its flag to false.",
+    "start": 1592.06,
+    "end": 1600.3,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 1\nwhile(1){\n\nthe second process wants to enter. favor\n\nrp ts_t ter = Ti . f\n‘p1_wants_to_enter = True it. (be nice !!!)\n\n| favored = 2\n\nwhile (p2_wants_to_enter AND favored is used to break the tie when\nfavored = 2); both p1 and p2 want to enter the critical\ncritical section section.\n\np1_wants_to_enter = False\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process"
+  },
+  {
+    "text": "So, essentially Peterson's solution sets the value of favor to the other process.",
+    "start": 1601.26,
+    "end": 1606.3,
+    "ocr_text": "Peterson’\n\ns Solution\n\nglobally defined\n\nProcess 1\nwhile(1){\np1_wants_to_enter = True\n| favored = 2\n\n' while (p2_wants_to_enter AND\n' favored = 2);\ncritical section\np1_wants_to_enter = False\n)\n\nBreak the deadlock wit\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nthe second process wants to enter. favor\nit. (be nice !!!)\n\nfavored is used to break the tie when\nboth p1 and p2 want to enter the critical\nsection.\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nh a ‘favored’ process"
+  },
+  {
+    "text": "So, that it favors the other process to enter into the critical section. Now,",
+    "start": 1606.3,
+    "end": 1611.26,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\n\n2_wants_to_enter, p1_wants_to_enter, favored\nProcess 1 pes — ae —\n\nwhile(1){\n‘ p1_wants_to_enter = True\n| favored = 2\n\nthe second process wants to enter. favor\nit. (he nice !!!)\n\nH while (p2_wants_to_enter AND favored is used to break the tie when\n‘ favored = 2); both p1 and p2 want to enter the critical\ncritical section section.\n\np1_wants_to_enter = False\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process"
+  },
+  {
+    "text": "favored it is used to break the tie when both P 1 and P 2 want to enter into the critical section.",
+    "start": 1611.26,
+    "end": 1617.66,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\n\n2_wants_to_enter, p1_wants_to_enter, favored\nProcess 1 pes — ae —\n\nwhile(1){\n‘ p1_wants_to_enter = True\n| favored = 2\n\nthe second process wants to enter. favor\nit. (he nice !!!)\n\nH while (p2_wants_to_enter AND favored is used to break the tie when\n‘ favored = 2); both p1 and p2 want to enter the critical\ncritical section section.\n\np1_wants_to_enter = False\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process"
+  },
+  {
+    "text": "That is when both P 1 and P 2 are waiting in this while loop or other are executing in this while loop.",
+    "start": 1617.66,
+    "end": 1624.7,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 1\nwhile(1){\n\nthe second process wants to enter. favor\n\nrp ts_t iter = Ti . f\n‘ p1_wants_to_enter = True it. (be nice !!!)\n\n| favored = 2\n\nwhile (p2_wants_to_enter AND favored is used to break the tie when\nb favored = 2); both p1 and p2 want to enter the critical\ncritical section section.\n\np1_wants_to_enter = False\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process"
+  },
+  {
+    "text": "The reason this particular solution works is that out of the two processes, there is exactly two",
+    "start": 1625.5,
+    "end": 1633.42,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 1\nwhile(1){\n\nthe second process wants to enter. favor\n\nrp ts_t iter = Ti . f\n‘ p1_wants_to_enter = True it. (be nice !!!)\n\n| favored = 2\n\n1 while (p2_wants_to_enter AND favored is used to break the tie when\nb favored = 2); both p1 and p2 want to enter the critical\ncritical section section.\n\np1_wants_to_enter = False\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process"
+  },
+  {
+    "text": "values that the that favored can take. It can take only one or two and therefore, only one of",
+    "start": 1633.42,
+    "end": 1642.38,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 1\nwhile(1){\n\nthe second process wants to enter. favor\n\nrp ts_t iter = Ti . f\n‘ p1_wants_to_enter = True it. (be nice !!!)\n\n| favored = 2\n\n1 while (p2_wants_to_enter AND favored is used to break the tie when\nb favored = 2); both p1 and p2 want to enter the critical\ncritical section section.\n\np1_wants_to_enter = False\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process"
+  },
+  {
+    "text": "these while loops will actually break or complete execution. So, let us see this in more detail.",
+    "start": 1642.38,
+    "end": 1651.34,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 1\nwhile(1){\n\nthe second process wants to enter. favor\n\nrp ts_t ter = Ti . f\n‘p1_wants_to_enter = True it. (be nice !!!)\n\n| favored = 2\n\nwhile (p2_wants_to_enter AND favored is used to break the tie when\nfavored = 2); both p1 and p2 want to enter the critical\ncritical section section.\n\np1_wants_to_enter = False\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process"
+  },
+  {
+    "text": "So, we have seen the two processes P 1 and P 2 and everything is as the third attempt that we want",
+    "start": 1651.34,
+    "end": 1658.86,
+    "ocr_text": "Peterson’ s Solution\n\nglobally defined\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 1\nwhile(1){\n\nthe second process wants to enter. favor\n\nrp ts_t ter = Ti . :\n‘p1_wants_to_enter = True it. (be nice !!!)\n\n| favored = 2\n\nwhile (p2_wants_to_enter AND favored is used to break the tie when\nfavored = 2); both p1 and p2 want to enter the critical\ncritical section section.\n\np1_wants_to_enter = False\n\nfavored can take only two values : 1 or 2\n\n(* the process which sets favored last\nlooses the tie *)\n\nBreak the deadlock with a ‘favored’ process\n;"
+  },
+  {
+    "text": "P 1 wants to enter set to true and then there is a while loop and then the critical section and",
+    "start": 1659.34,
+    "end": 1664.3,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2 :\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "then P 1 wants to enter set to false. Now, we also have a favored added here in the Peterson",
+    "start": 1664.3,
+    "end": 1670.3,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2 :\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "solution and this favored is set to two over here and favored is set to one in the second process.",
+    "start": 1670.3,
+    "end": 1677.34,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "So, in all other cases, this particular Peterson solution behaves like our third attempt to create",
+    "start": 1678.14,
+    "end": 1687.58,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "the critical section solution. However, the only difference comes when both processes enter into",
+    "start": 1688.86,
+    "end": 1702.06,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\npi1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter =!lFalse\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){ |\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "this while loop at the same time. In such a case, the value of favored will determine which of",
+    "start": 1702.06,
+    "end": 1708.94,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "the two processes enter into the critical section. So, let us say process 2 is favored and it enters",
+    "start": 1708.94,
+    "end": 1716.94,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2* wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "into the critical section and at the end of its critical section, it sets P 2 wants to enter to false.",
+    "start": 1716.94,
+    "end": 1723.26,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "So, remember that during this entire period, P 1 is still waiting or still executing in the while",
+    "start": 1724.3,
+    "end": 1732.62,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "loop. Now, when process 2 sets its flag to false, it immediately causes this while loop to break.",
+    "start": 1732.62,
+    "end": 1743.34,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "As a result, process 1 will enter into the critical section. So, you see that only when process 2",
+    "start": 1743.42,
+    "end": 1750.22,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "exits from the critical section, only then will process 1 enter into the critical section,",
+    "start": 1750.22,
+    "end": 1756.22,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "thus achieving mutual exclusion. Also, we have seen that the bounded weight issue",
+    "start": 1756.22,
+    "end": 1763.18,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "is solved and as well as the progress thing is solved. The Peterson solution works very",
+    "start": 1764.46,
+    "end": 1770.3,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "efficiently for two processes. In the next video, we will see the bakery algorithm which is used",
+    "start": 1770.3,
+    "end": 1777.9,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "to solve the critical section problem when there are multiple processes in the system.",
+    "start": 1777.9,
+    "end": 1783.98,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "So, the bakery algorithm solves the critical section problem when the number of processes is",
+    "start": 1783.98,
+    "end": 1790.06,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  },
+  {
+    "text": "greater than 2. Thank you.",
+    "start": 1790.06,
+    "end": 1797.66,
+    "ocr_text": "Process 1\n\nPeterson’ s Solution\n\nglobally defined\n\nwhile(1){\n\np1_wants_to_enter = True\nfavored = 2\n\nwhile (p2_wants_to_enter AND\nfavored = 2);\n\ncritical section\n\np1_wants_to_enter = False\n\n.\n\np2_wants_to_enter, p1_wants_to_enter, favored\n\nProcess 2\nwhile(1){\np2_wants_to_enter = True\nfavored = 1\n\nwhile (p1_wants_to_enter AND\nfavored = 1);\n\ncritical section\n\np2_wants_to_enter = False\n\nDeadlock broken because favored can only be 1 or 2.\n— Therefore, tie is broken. Only one process will enter the critical section\nSolves Critical Section problem for two processes"
+  }
+]

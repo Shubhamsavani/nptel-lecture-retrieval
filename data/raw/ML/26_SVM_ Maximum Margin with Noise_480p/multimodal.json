@@ -1,0 +1,704 @@
+[
+  {
+    "text": "Good morning. Today we will continue our lecture on Support Vector Machine. In the last",
+    "start": 0.0,
+    "end": 23.98,
+    "ocr_text": "LANE QL"
+  },
+  {
+    "text": "class we saw how to do work on linearly separable data set. Now in many cases there will be noise",
+    "start": 23.98,
+    "end": 32.9,
+    "ocr_text": "LANE QL"
+  },
+  {
+    "text": "in the data so that a linear decision surface cannot separate the positive and negative",
+    "start": 32.9,
+    "end": 40.06,
+    "ocr_text": "LANE QL"
+  },
+  {
+    "text": "points. We will see how support vector machine can deal with it. So if we look at the linear",
+    "start": 40.06,
+    "end": 46.82,
+    "ocr_text": "LANE QL"
+  },
+  {
+    "text": "SBM formulation that we did in the last class we had this optimization function which required",
+    "start": 46.82,
+    "end": 62.94,
+    "ocr_text": "LANE QL"
+  },
+  {
+    "text": "us to find the weight vectors W and B such that the margin width is maximized. So the margin",
+    "start": 62.94,
+    "end": 76.42,
+    "ocr_text": "Linear SUM formulae\n=\n\nWw ankdb sch A"
+  },
+  {
+    "text": "can be written like this 2 by W. So this is maximized subject to M constraints corresponding",
+    "start": 76.42,
+    "end": 89.78,
+    "ocr_text": "Linear M forinladeon"
+  },
+  {
+    "text": "to each training instance. So for each training point for each training point I equal to 1 to",
+    "start": 89.78,
+    "end": 105.14,
+    "ocr_text": "Linear M forinladeon"
+  },
+  {
+    "text": "M we had y i W x i plus B is y i times W x i plus B is greater than equal to 1. This can",
+    "start": 105.14,
+    "end": 125.26,
+    "ocr_text": "LiVe@\n\nFind W anh b sich thor\nsw maximized\n| w]"
+  },
+  {
+    "text": "also be written as instead of maximizing 2 by W we can maximize its reciprocall that is half W.",
+    "start": 125.26,
+    "end": 138.22,
+    "ocr_text": "5 Jaf\nyy oa\ntind\n\nmaxi zed\nwe Is\n\n(aa .\nCNG ows pa\n\nWX EB) ("
+  },
+  {
+    "text": "So W is actually root over W dot W so we can minimize this rather we can minimize W dot W.",
+    "start": 138.22,
+    "end": 158.34,
+    "ocr_text": "Linear V M forimulation\n7 eee\nFind W anh b sich tho&\n\n+ wll\n\nFad Toining pete"
+  },
+  {
+    "text": "So we can look upon it as a minimization problem subject to M constraints corresponding to the M",
+    "start": 158.34,
+    "end": 174.82,
+    "ocr_text": "Linear\nFind W anh 6b sich 4hoF\n} Is mana reed\n\nOE jz\n\nvx ADB"
+  },
+  {
+    "text": "training examples. Now this particular formulation enables us to deal with only those training",
+    "start": 174.82,
+    "end": 183.74,
+    "ocr_text": "Find Ww ankdb sich thot"
+  },
+  {
+    "text": "instances which are linearly separable but it may be that the data is not linearly separable.",
+    "start": 183.74,
+    "end": 192.3,
+    "ocr_text": "Find Ww ankdb sich thot"
+  },
+  {
+    "text": "If you look at this slide we see that we have 2 classes, blue and red and this data cannot be",
+    "start": 192.3,
+    "end": 201.42,
+    "ocr_text": "Limitations of previous SVM\nformulation\n\n8S ceen F * What if the data is\n——— a not linearly\nseparable?\n\n* Or noisy data\npoints?\n\nSs 2's as\n\nExtend the definition of maximum margin to allow\nnon-separating planes."
+  },
+  {
+    "text": "linearly separable. There could be a non-linear decision surface which separates the data or in",
+    "start": 201.42,
+    "end": 208.9,
+    "ocr_text": "Limitations of previous SVM\nformulation\n\n8S ceen F * What if the data is\n——— a not linearly\nseparable?\n\n* Or noisy data\npoints?\n\nSs 2's as\n\nExtend the definition of maximum margin to allow\nnon-separating planes."
+  },
+  {
+    "text": "this case it may be that the data points are noisy so that there is no clear separation of the",
+    "start": 208.9,
+    "end": 215.98,
+    "ocr_text": "Limitations of previous SVM\nformulation\n\nocean 7 * What if the data is\n‘i = not linearly\nseparable?\n\n* Or noisy data\npoints?\n\na\n\nExtend the definition of maximum margin to allow\nnon-separating planes."
+  },
+  {
+    "text": "points. So what we will like to do is we will like to extend the definition of maximum margin so",
+    "start": 215.98,
+    "end": 223.38,
+    "ocr_text": "Limitations of previous SVM\nformulation\n\nocean : * What if the data is\n‘s—« ie not linearly\nseparable?\n\n* Or noisy data\npoints?\n\na\n\nExtend the definition of maximum margin to allow\nnon-separating planes."
+  },
+  {
+    "text": "that we can allow this non separable points. Now we have to now redefine our objective function.",
+    "start": 223.38,
+    "end": 232.1,
+    "ocr_text": "Limitations of previous SVM\nformulation\n\nocean : * What if the data is\n‘s—« ie not linearly\nseparable?\n\n* Or noisy data\npoints?\n\na\n\nExtend the definition of maximum margin to allow\nnon-separating planes."
+  },
+  {
+    "text": "Earlier we were trying to minimize W dot W this is no longer sufficient so we have to be able to",
+    "start": 232.1,
+    "end": 242.18,
+    "ocr_text": "Limitations of previous SVM\nformulation\n\nocean z * What if the data is\ni ao not linearly\nseparable?\n\n* Or noisy data\npoints?\n\na a\n\nExtend the definition of maximum margin to allow\nnon-separating planes."
+  },
+  {
+    "text": "have a decision surface which makes some errors. So if we have the points these are the red points",
+    "start": 242.18,
+    "end": 252.66,
+    "ocr_text": "Linear SUM formuadaarn\n————e\nfind W ankd sich thee\n\n[Wih= WW ts ninimeede\n\nfor Eade Poining poik\n\nJ\nJ\n1(W % 4b) >."
+  },
+  {
+    "text": "and these are the blue points we want to be allowed to make a decision surface which does not",
+    "start": 252.66,
+    "end": 266.7,
+    "ocr_text": "Linear SUM formuadaarn\n————e\nfind W ankd sich thee\n\n[Wih= WW ts ninimeede\n\nfor Eade Poining poik\n\nJ\nJ\n1(W % 4b) >."
+  },
+  {
+    "text": "clearly separate the positive or negative points so that there is some error in this but if we",
+    "start": 266.7,
+    "end": 275.02,
+    "ocr_text": "$$ Se\nfind W anh b sch thee\n| wi = WW W/ Is rind eee 7\nning pow eo 4\n\nri (w x 4 b)"
+  },
+  {
+    "text": "have this error we cannot deal with these constraints that we have looked at. So we have to make",
+    "start": 275.02,
+    "end": 284.3,
+    "ocr_text": "Se\nfind W ankb sch tho&\n\nee WeW fs niniewee de : a\nor — gr Oning po “= a\n\nWb >"
+  },
+  {
+    "text": "some changes. So first of all we have to make changes to our optimization function. So one way",
+    "start": 284.3,
+    "end": 292.98,
+    "ocr_text": "Se\nfind W ankb sch tho&\n\nee WeW fs niniewee de : a\nor — gr Oning po “= a\n\nWb >"
+  },
+  {
+    "text": "of looking at it is we want a decision surface which looks at two things one is maximizing the",
+    "start": 292.98,
+    "end": 301.98,
+    "ocr_text": "SUM erimuladion\n\nank b- sich tle\n\nIS minieeede"
+  },
+  {
+    "text": "margin which corresponds to minimizing W dot W. Secondly we may say we want to reduce the number",
+    "start": 301.98,
+    "end": 311.62,
+    "ocr_text": "ae\nW ankb sich tho"
+  },
+  {
+    "text": "of misclassifications that is we want to minimize the misclassified training points or minimize",
+    "start": 311.62,
+    "end": 319.98,
+    "ocr_text": "St ch\n\nPin\n\\ WI 2 WIS minireede ‘\n\nChae\n\nEe =\nxc\n\n9} NEN pak 52\n\na tb) 2"
+  },
+  {
+    "text": "the training error. So we may be tempted to write this objective function as W dot W plus",
+    "start": 319.98,
+    "end": 330.9,
+    "ocr_text": "$$\n\nSICh 1h3&\n\n\\ Wi] = W. [S minimice ve hs\na. —— -\nOF Reg pO le"
+  },
+  {
+    "text": "number of training errors and maybe we can use a parameter C to control how much importance we",
+    "start": 330.9,
+    "end": 345.78,
+    "ocr_text": "ae\nfind W ank b sich tlo&\n\n‘ ocr -f>\nFor Fodk train gos f) Te\n\n‘_"
+  },
+  {
+    "text": "give to this pattern this part. The problem with this formulation is that it is no longer a",
+    "start": 345.78,
+    "end": 353.1,
+    "ocr_text": "tind W Gnkb sich tleh\n\nee aS? C # trovins\n\nLV Por. ,\nPU vi ng pw ~ :\n\nWA D>"
+  },
+  {
+    "text": "quadratic objective function so that we cannot use a QP solver to solve this optimization problem.",
+    "start": 353.1,
+    "end": 360.7,
+    "ocr_text": "tind W Gnkb sich tleh\n\nee aS? C # trovins\n\nLV Por. ,\nPU vi ng pw ~ :\n\nWA D>"
+  },
+  {
+    "text": "So we have to look for an alternative formulation. In the alternative formulation that we look at we",
+    "start": 360.7,
+    "end": 369.66,
+    "ocr_text": "Se\n\nW ankdb sich 4ho&\n\nWe W + ( # troining ‘\n\n. error, i\""
+  },
+  {
+    "text": "do the following we assume that you know given some points we are able to define a margin and",
+    "start": 369.66,
+    "end": 378.42,
+    "ocr_text": "W ankb sch thoF\n\nil, W De Ff training ;\n\nerror,"
+  },
+  {
+    "text": "then we try to let me just redraw this. Suppose this is my decision surface and this is a margin",
+    "start": 378.42,
+    "end": 394.46,
+    "ocr_text": "Linear SUM {oriula dion\nSSS\nfind W ankb sich tho\nWe W + (, Hf training ‘\n\nerror :\n\nfor Eada Poining pak\n\ndi (w x +b)> {"
+  },
+  {
+    "text": "that we are looking for and these blue points may be here may be here whereas the red point may be",
+    "start": 394.46,
+    "end": 409.22,
+    "ocr_text": "ee\nfind W Gnd b sich tho&\n\nerror,"
+  },
+  {
+    "text": "here may be here. So we can see that these points we have an error so this point the blue",
+    "start": 409.22,
+    "end": 419.86,
+    "ocr_text": "ea\nfind W anh b sich tho\nWe W + C H: troimine '\n\nCGine\n\nfor adn PWOWing pw\n\n(Wx 4b) > (."
+  },
+  {
+    "text": "points ideally should be on this side of the margin. So we can see that this blue point and",
+    "start": 419.86,
+    "end": 427.46,
+    "ocr_text": "Linear SUM formu bo dion\n\ns ———— -\nfind W ank b sich thoh\nWW t Fptrone ‘\nerrer 1.\nfor Fad. troiwing peink >\n\n1 (4b) >."
+  },
+  {
+    "text": "this blue point are in error whereas this red point should be ideally on this side of the",
+    "start": 427.46,
+    "end": 433.58,
+    "ocr_text": "WW - C Hf training\n\nors\n\nOne oi)\nbok training\n\ndi (w X oh"
+  },
+  {
+    "text": "margin so these red points are in error. Corresponding to each of the points which are not correctly",
+    "start": 433.58,
+    "end": 442.74,
+    "ocr_text": "WW - C Hf training\n\nors\n\nOne oi)\nbok training\n\ndi (w X oh"
+  },
+  {
+    "text": "classified as zooming a particular decision surface and the corresponding margin for each such",
+    "start": 442.74,
+    "end": 450.06,
+    "ocr_text": "Se\n\nW ankb sich tho\n\nWh WAC A dros’\n\nerror."
+  },
+  {
+    "text": "point we can give a penalty and the penalty can be given proportional to the how far it is from",
+    "start": 450.06,
+    "end": 458.3,
+    "ocr_text": "Linear SUM formulation\n\nfind W Onk b stock tho\n\na aa *\nfor Eade oining pk"
+  },
+  {
+    "text": "its correct position that is if we take this blue point what is the minimum amount by which",
+    "start": 458.3,
+    "end": 464.66,
+    "ocr_text": "W\n\nZod\n\nd('\n\nonk b sich {ho®\n\nWw, We 5 H. drouins\n\nerror,\n\nal"
+  },
+  {
+    "text": "I have to move this point so that it is correctly classified. So this can be obtained by dropping",
+    "start": 464.66,
+    "end": 470.82,
+    "ocr_text": "W\n\nZod\n\nd('\n\nonk b sich {ho®\n\nWw, We 5 H. drouins\n\nerror,\n\nal"
+  },
+  {
+    "text": "a perpendicular from this point to this margin. Similarly for this blue point for this red point",
+    "start": 470.82,
+    "end": 477.38,
+    "ocr_text": "Linear SUM {ormba tor\n\n_ SS  ———————\nfind W Gnk b sick thoE\n\noaicee 71) a L\nfor Fad. training paint"
+  },
+  {
+    "text": "we have to move in this direction to get it correctly classified and for this we have to move",
+    "start": 477.38,
+    "end": 483.98,
+    "ocr_text": "year SVM formulation\n\n- ee\nfind W anh b sich {lo\n\nWW + C,H trosning\nha err\nfor Eada Taining paw\n\nk(x 4b) > ("
+  },
+  {
+    "text": "it like this. So what we will do is that with every misclassified point we will associate an",
+    "start": 483.98,
+    "end": 494.06,
+    "ocr_text": "year SVM formulation\n\n- ee\nfind W anh b sich {lo\n\nWW + C,H trosning\nha err\nfor Eada Taining paw\n\nk(x 4b) > ("
+  },
+  {
+    "text": "error or a penalty which is the slack variable. Suppose this is the point 1 so we can associate",
+    "start": 494.06,
+    "end": 502.06,
+    "ocr_text": "Linear SUM formulation\n\n= /iin-_,_,\nFind W and b sch tho\nWwW (, en\n\nerr\nFor EG da Poining pak\n\ndi (w XG +b)> i\n\nk\n9"
+  },
+  {
+    "text": "xi 1 corresponding to this point xi 2 corresponding to this point xi 3 corresponding to this point",
+    "start": 502.06,
+    "end": 510.54,
+    "ocr_text": "Linear SUM formulation\n\n= /iin-_,_,\nFind W and b sch tho\nWwW (, en\n\nerr\nFor EG da Poining pak\n\ndi (w XG +b)> i\n\nk\n9"
+  },
+  {
+    "text": "xi 4 corresponding to this point. So these are the penalty that we are associating with the",
+    "start": 510.54,
+    "end": 516.62,
+    "ocr_text": "Linear SUM formation\n- —_\nfind W Gnk b sick thoE\n\nLrVror-\nfor Eade Taining pw"
+  },
+  {
+    "text": "points which are in the wrong position. The xi values associated with the other points will",
+    "start": 516.62,
+    "end": 522.46,
+    "ocr_text": "error."
+  },
+  {
+    "text": "be equal to 0. Now we can rewrite our objective function as w dot w plus c times the sum of these penalty",
+    "start": 522.46,
+    "end": 537.14,
+    "ocr_text": "error."
+  },
+  {
+    "text": "functions. So we can write c times sigma xi k so k equal to 1 to m where m is the number of",
+    "start": 537.14,
+    "end": 547.46,
+    "ocr_text": "Linear VM formulate on\nSSS\n\nfind W anh b sich tlo®\nwWwWwtl ®\n\nFor Eoodk tron, WA\n\na: {w xX"
+  },
+  {
+    "text": "training examples. So if you look at the slides here we can rewrite our formulation as minimizing",
+    "start": 547.46,
+    "end": 562.22,
+    "ocr_text": "W ankddb- sick AY oS\n\nW, uv +( Ss\n\nGdn 4 WOU Wing A:\n\n¥ (ux\n\nNOE)"
+  },
+  {
+    "text": "w dot w which corresponds to making the margin looking at the size of the margin plus c times",
+    "start": 562.22,
+    "end": 571.26,
+    "ocr_text": "Objective to be minimized\n\n¢ Minimize\nw.w\n+ C(distance of error points to their\ncorrect zones)\n\n¢ Add slack variables €;\n\nFigure from http://docs.opencv.org/2.4/doc/tutorials/ml/non_linear_svms/"
+  },
+  {
+    "text": "distance of error points to their correct zones and we achieve it by adding slack variable xi i.",
+    "start": 571.82,
+    "end": 579.62,
+    "ocr_text": "Objective to be minimized\n\n¢ Minimize\nw.w\n+ C(distance of error points to their\ncorrect zones)\n\n¢ Add slack variables €;\n\nFigure from http://docs.opencv.org/2.4/doc/tutorials/ml/non_linear_svms/"
+  },
+  {
+    "text": "So for each point which is misclassified we find its shorter distance to the correct zone and",
+    "start": 579.62,
+    "end": 587.5,
+    "ocr_text": "Objective to be minimized\n\n¢ Minimize\nw.w\n+ C(distance of error points to their\ncorrect zones)\n\n¢ Add slack variables €;\n\nFigure from http://docs.opencv.org/2.4/doc/tutorials/ml/non_linear_svms/"
+  },
+  {
+    "text": "this corresponds to the xi for that variable for the other variables which are correctly classified",
+    "start": 587.5,
+    "end": 593.74,
+    "ocr_text": "Objective to be minimized\n\n¢ Minimize\nw.w\n+ C(distance of error points to their\ncorrect zones)\n\n¢ Add slack variables €;\n\nFigure from http://docs.opencv.org/2.4/doc/tutorials/ml/non_linear_svms/"
+  },
+  {
+    "text": "by this particular decision surface xi values are equal to 0. Now let us look at this slide.",
+    "start": 593.74,
+    "end": 600.3,
+    "ocr_text": "Objective to be minimized\n\n¢ Minimize\nw.w\n+ C(distance of error points to their\ncorrect zones)\n\n¢ Add slack variables €;\n\nFigure from http://docs.opencv.org/2.4/doc/tutorials/ml/non_linear_svms/"
+  },
+  {
+    "text": "So we have this is our decision surface whose equation is given by w x plus b equal to 0 and upon",
+    "start": 600.3,
+    "end": 609.86,
+    "ocr_text": "Maximum Margin with Noise\n\nMinimize\n\nm\nw.w+C > &\nk=1\n\nm_constraints\nw.x,+b>1—€& ify, =1\nw.x,+bs—-1+ & ify, =—1\n\nCcontrols the relative\n\nimportance of maximizing\nthe margin and fitting the\ntraining data. Yew. x, + Bb) => 1 — ER, k=1,....m\n\nControls overfitting. =, = 0, k=1,....m"
+  },
+  {
+    "text": "normalization there are two these are the two margin lines w x plus b equal to plus 1 and w x",
+    "start": 609.86,
+    "end": 618.34,
+    "ocr_text": "Maximum Margin with Noise\n\nC controls the relative\nimportance of maximizing\nthe margin and fitting the\ntraining data.\n\nControls overfitting.\n\nMinimize\n\nm\nw.w+C > &\nk=1\n\nm_constraints\nW.x,+b>1—€, ify, =1\nWit, os le eit vy, — —i\n\nYew. x, + b) => 1 — E,, k=1,....m\n&, => 0, k=1,..,.m"
+  },
+  {
+    "text": "plus b equal to minus 1 and here at the three points which are wrong three of the points which",
+    "start": 618.34,
+    "end": 626.38,
+    "ocr_text": "Maximum Margin with Noise\n\nC controls the relative\nimportance of maximizing\nthe margin and fitting the\ntraining data.\n\nControls overfitting.\n\nMinimize\n\nm\nw.w+C > &\nk=1\n\nm_constraints\nW.x,+bE>1—€ ify, =1\nWit os ie Sify, — —2\n\nYn (w.x, + b) => 1 — Ex, k=1,....m\n&, = 0, k=1,..,.m"
+  },
+  {
+    "text": "are wrongly classified and corresponding to each of them we have the variable xi 1 xi 2 xi 3.",
+    "start": 626.38,
+    "end": 632.38,
+    "ocr_text": "Maximum Margin with Noise\n\nC controls the relative\nimportance of maximizing\nthe margin and fitting the\ntraining data.\n\nControls overfitting.\n\nMinimize\n\nm\nw.w+C > &\nk=1\n\nm_constraints\nW.x,+bE>1—€ ify, =1\nw.x, +b S—-1+ & ify, =—1\n\nYn (w.x, + b) => 1 — Ex, k=1,....m\n&, = 0, k=1,..,.m"
+  },
+  {
+    "text": "The margin width is given by 2 by root over w dot w which we want to maximize and which corresponds",
+    "start": 632.38,
+    "end": 641.1,
+    "ocr_text": "Maximum Margin with Noise\n\nC controls the relative\nimportance of maximizing\nthe margin and fitting the\ntraining data.\n\nControls overfitting.\n\nMinimize\n\nm\nw.w+C > &\nk=1\n\nm_constraints\nW.x,+bE>1—€ ify, =1\nw.x, +b S—-1+ & ify, =—1\n\nYn (w.x, + b) => 1 — Ex, k=1,....m\n&, = 0, k=1,..,.m"
+  },
+  {
+    "text": "to minimizing w dot w adding the penalty due to these slack variables we get the minimization",
+    "start": 641.1,
+    "end": 649.22,
+    "ocr_text": "Maximum Margin with Noise\n\nC controls the relative\nimportance of maximizing\nthe margin and fitting the\ntraining data.\n\nControls overfitting.\n\nMinimize\n\nm\nw.w+C > &\nk=1\n\nm_constraints\nw.x,+b>1—& ify, =1\nW.xre OS —1 + &. ify. — —i\n\nYe (w.x, + b) => 1 — Ex, k=1,....m\n=, =0, k=1,...m"
+  },
+  {
+    "text": "function to be w dot w plus c times sigma k equal to 1 to m xi k. So this is what we want to",
+    "start": 649.22,
+    "end": 659.06,
+    "ocr_text": "Maximum Margin with Noise\n\nC controls the relative\nimportance of maximizing\nthe margin and fitting the\ntraining data.\n\nControls overfitting.\n\nMinimize\n\nw.w+C ex\n=1\nm_constraints\n\nw.x,+b>1—& ify, =1\nWit, os lt oe ify, ——t\n\nYew. x, + b) => 1 — Ey, k=1,....m\n\n=x = 0,\n\nk=1,...m"
+  },
+  {
+    "text": "minimize. Earlier the constraints that we had is y i w dot x i plus b greater than equal to 1.",
+    "start": 659.06,
+    "end": 669.5,
+    "ocr_text": "Maximum Margin with Noise\n\nMinimize\n\nm\nw.w+C > &\ntp k=l\nm_constraints\nw.x,+be>1—& ify, =1\nWit os le of vy, — —o\n\nCcontrols the relative\n\nimportance of maximizing\nthe margin and fitting the\ntraining data. Yew. x, + b) > 1 — &, k=1,....m\n\nControls overfitting. &, = 0, k=1,....m"
+  },
+  {
+    "text": "Now you see that this constraint will no longer hold for those points which are in the wrong zones.",
+    "start": 669.5,
+    "end": 676.98,
+    "ocr_text": "w SVM {6 muta don\n\nie\nwow + 2g\n—— bey &\n\ny (wx oem"
+  },
+  {
+    "text": "So we can rewrite this constraint as y k y i w x i plus b greater than equal to 1 minus xi k",
+    "start": 676.98,
+    "end": 687.7,
+    "ocr_text": "SUM {orinla dior\n_ —__\nfind W G@nhb sick tho\nWw\nWt ls aed\n—— [Ee\nFor Ean - r= pak\n=+b)>4"
+  },
+  {
+    "text": "right for i equal to 1 to m actually for the blue points which are wrongly classified we can",
+    "start": 687.7,
+    "end": 701.18,
+    "ocr_text": "ar SVM formulation\n\nC\n\nanh b sich tho\nWw\n\nweWw + 0 25\n\n~~ (ey &\n\nbub) > (8)"
+  },
+  {
+    "text": "write w dot x i plus b greater than equal to 1 minus xi k and for the red points we can write",
+    "start": 701.18,
+    "end": 709.26,
+    "ocr_text": "Linear SUM {ormu Lahr\n\na _L_ _ | iia\ntnd W G@nhk b sich thee\n\n= Boe EO dn Woining pak\n\n~ oA (Y 4b) B (eg\n74 ’ 4 c= Ih ie :)\n29"
+  },
+  {
+    "text": "w x i plus b less than equal to minus 1 plus xi k and we can write it together as y i in",
+    "start": 709.26,
+    "end": 718.3,
+    "ocr_text": "Linear SUM {ormu Lahr\n\na _L_ _ | iia\ntnd W G@nhk b sich thee\n\n= Boe EO dn Woining pak\n\n~ oA (Y 4b) B (eg\n74 ’ 4 c= Ih ie :)\n29"
+  },
+  {
+    "text": "to w x i plus b greater than equal to 1 minus xi k for i equal to 1 to m. So this is the formulation",
+    "start": 718.3,
+    "end": 726.58,
+    "ocr_text": "Linear SUM {ormu Lahr\n\na _L_ _ | iia\ntnd W G@nhk b sich thee\n\n= Boe EO dn Woining pak\n\n~ oA (Y 4b) B (eg\n74 ’ 4 c= Ih ie :)\n29"
+  },
+  {
+    "text": "of the of the maximum margin classified when we wish to handle noise. Now in order to solve this",
+    "start": 726.98,
+    "end": 735.06,
+    "ocr_text": "W ankb sich the"
+  },
+  {
+    "text": "equation we can find the Lagrangian of this quantity. So the Lagrangian with parameters w b xi alpha",
+    "start": 735.06,
+    "end": 744.5,
+    "ocr_text": "Lagrangian\n\nLW, b,é,a@, B)\n\n= Fww bey 6\n\n+> arbi w+b)—14+ 6] - > a\n\na;’s and B;’s are Lagrange multipliers (= O)."
+  },
+  {
+    "text": "beta and we get it as half w dot w plus c sigma xi i plus sigma equal to 1 to m alpha i y i into",
+    "start": 744.5,
+    "end": 757.78,
+    "ocr_text": "Lagrangian\n\nLW, b,é,a@, B)\n\n= Fww bey 6\n\n+> arbi w+b)—14+ 6] - > a\n\na;’s and B;’s are Lagrange multipliers (= O)."
+  },
+  {
+    "text": "x dot w plus b minus 1 plus xi i minus sigma equal to 1 to m beta i xi. So actually there is another",
+    "start": 757.78,
+    "end": 766.9,
+    "ocr_text": "Lagrangian\n\nLW, b,€é,a@, B)\n\n= Fww bey 6\n\n+> arbi w+b)—14+ 61] - > a\n\na;’s and B;’s are Lagrange multipliers (= O)."
+  },
+  {
+    "text": "set of constraints in this case we have a set of M non-linear constraints and we also have M",
+    "start": 766.9,
+    "end": 774.82,
+    "ocr_text": "Linear SUM formulation\nWW 2S\n——— eyes\n| BN training pete\nJ, (wl x. +b)> (-§))\n\ns\nRe lhe."
+  },
+  {
+    "text": "constraints xi i greater than equal to 0 for i equal to 1 to m. So we have two M constraints",
+    "start": 775.46,
+    "end": 787.06,
+    "ocr_text": "Linear SUM {6 Muka Ad\n= i\ntind W Gnk db sick tho&\nWw\nmW+l, 28\n&\n\nor _ Oining aa\n\new x +E)2 (I>"
+  },
+  {
+    "text": "M constraints of this type and M constraints of this type and therefore in the slide we can see",
+    "start": 787.86,
+    "end": 795.3,
+    "ocr_text": "VIN erika dion\n\nFined W ank b sick thot\nave"
+  },
+  {
+    "text": "the Lagrangian of this quantity as half w dot w plus c sigma xi i plus please look at the slide",
+    "start": 795.38,
+    "end": 805.3,
+    "ocr_text": "VIN erika dion\n\nFined W ank b sick thot\nave"
+  },
+  {
+    "text": "as sigma i equal to 1 to m alpha i times y i x dot w plus b minus 1 plus xi i minus i equal to",
+    "start": 806.02,
+    "end": 814.98,
+    "ocr_text": "Lagrangian\n\nLW, b,é,a@, B)\n\n= Fww bey 6\n\n+ Daince w+b)—14+ 6] - > a\n\na;’s and B;’s are Lagrange multipliers (= O)."
+  },
+  {
+    "text": "1 to m beta i xi i alpha i's and beta i's are the Lagrangian multiplies and they are greater than",
+    "start": 814.98,
+    "end": 822.34,
+    "ocr_text": "Lagrangian\n\nLW, b,é,a@, B)\n\n= Fww bey 6\n\n+ Daince w+b)—14+ 6] - > a\n\na;’s and B;’s are Lagrange multipliers (= O)."
+  },
+  {
+    "text": "equal to 0. Now given this Lagrangian we can look at the dual formulation corresponding to this",
+    "start": 822.34,
+    "end": 831.62,
+    "ocr_text": "Lagrangian\n\nLW, b,é,a@, B)\n\n= Fww bey 6\n\n+> arbi w+b)—14+ 6] - > a\n\n&\n\na;’s and B;’s are Lagrange multipliers (= O)."
+  },
+  {
+    "text": "formulation. So in the linear SVM we wanted to find alpha 1 alpha 2 alpha m such that this quantity",
+    "start": 831.62,
+    "end": 844.26,
+    "ocr_text": "Dual Formulation\nFind @1,@2,...,@m S.t.\n\nmax, (a) = a, 5 >) e1e4,979,TX,)\noe\n\n=\nLinear SVM Noise Accounted\n\nst 0<a,<C,\n\nist. @,20, i\n\nSay =o. Day =0.\n‘a\n\nta"
+  },
+  {
+    "text": "sigma alpha i minus half alpha i alpha j y i y j x i dot x j is maximized and such that the",
+    "start": 844.26,
+    "end": 855.22,
+    "ocr_text": "Dual Formulation\nFind @1,@2,...,@m S.t.\n\nGm m\nmax, (a) =, 5 >) e1e4,97.7, TX)\n\n=i ia\nLinear SVM Noise Accounted\n\nst. 0<a,<C,\n\nist. @ 20, i\n\nya,y, =0. a9, = 0.\n\n‘1"
+  },
+  {
+    "text": "constraints where alpha i greater than equal to 0 for i equal to 1 to m and sigma equal to 1 to",
+    "start": 855.22,
+    "end": 862.1,
+    "ocr_text": "Dual Formulation\nFind @1,@2,...,@m S.t.\n\nm 1\nmax, Ja) = 3) @, — 5 D1 @,2,¥,9, X,)\n\n= int\nLinear SVM Noise Accounted\n\nst. O0<a,<C,\n\nst. @,20, i\n\nya,y, =0. a9; = 0.\n\nta\n&"
+  },
+  {
+    "text": "m alpha i y i equal to 0. In the case of noisy SVM this quantity remains the same but the constraints",
+    "start": 862.1,
+    "end": 873.62,
+    "ocr_text": "Dual Formulation\nFind @1,@2,...,@m S.t.\n\nm 1\nmax, Ja) = 3) @, — 5 D1 @,2,¥,9, X,)\n\n= int\nLinear SVM Noise Accounted\n\nst. O0<a,<C,\n\nst. @,20, i\n\nya,y, =0. a9; = 0.\n\nta\n&"
+  },
+  {
+    "text": "change. So earlier we had alpha i greater than equal to 0 we have now alpha i is between 0 and c",
+    "start": 873.62,
+    "end": 881.7,
+    "ocr_text": "Dual Formulation\n\nFind @1,@2,...,@m S.t.\n\n=\n\nmax, (a) =, 5 >) e104, TX,)\n,\n\nLinear SVM Noise Accounted\n\nEu, OB G7 BCS\n\nist. @,20, i\n\nya,y, =0. a9; = 0.\n\nta"
+  },
+  {
+    "text": "for i equal to 1 to m the second constraint remains the same. So the dual formulation of this",
+    "start": 882.5,
+    "end": 889.46,
+    "ocr_text": "Dual Formulation\nFind @1,@2,...,@m S.t.\n=Sie,-Li$ a\nwa ME ee 5 Ee)\n\nLinear SVM Noise Accounted\n\nist. @, 20, i\n\nya,y, =0. a9; = 0.\n\nEi, O27, BCS\n~\n\ntt"
+  },
+  {
+    "text": "noise accounted SVM this constraint is changing alpha i is now lying between 0 and c the rest of",
+    "start": 889.46,
+    "end": 899.38,
+    "ocr_text": "Dual Formulation\nFind @1,@2,...,@m S.t.\n\nmax, (a) =, 5 9) a104,97.7, TX)\n\n=i ia\nLinear SVM Noise Accounted\n\nst. 0<a,<C,\n\nist. @, 20, i\n\nOn\nYa, = 0. a9, = 0.\n\nta"
+  },
+  {
+    "text": "the formulation is the same. Now given this dual formulation we can find the solution to the",
+    "start": 899.7,
+    "end": 908.18,
+    "ocr_text": "Dual Formulation\nFind @1,@2,...,@m S.t.\n\nmax, (a) = a, 5 >) e1e4,97.9,TX,)\noe\n\n=\nLinear SVM Noise Accounted\n\nst. O0<a,<C,\n\nist. @,20, i\n\nya,y, =0. a9, = 0.\n\ntt"
+  },
+  {
+    "text": "classifier. So this is called noisy linear SVM or most commonly this is called soft SVM",
+    "start": 908.82,
+    "end": 917.54,
+    "ocr_text": "Dual Formulation\nFind @1,@2,...,@m S.t.\n\nmax, (a) =, 5 >) arc, TX,)\n\n= iva\nLinear SVM Noise Accounted\n\nst. O0<a,<C,\n\nist. @ 20, i\n\nSay =o. Day =0.\n=\n\nta"
+  },
+  {
+    "text": "because we do not have a hard classifier or a hard decision surface that clearly separates the",
+    "start": 920.1,
+    "end": 927.94,
+    "ocr_text": "KD Sha\n\nWw, uw +0 5S.\n\nre iu\ndi a Dal ES\n\n——-\n="
+  },
+  {
+    "text": "positive and the negative points and the solution of this soft margin classification",
+    "start": 927.94,
+    "end": 935.62,
+    "ocr_text": "KD Sha\n\nWw, uw +0 5S.\n\nre iu\ndi a Dal ES\n\n——-\n="
+  },
+  {
+    "text": "will be similar to the solution that we got earlier. For example those data points whose",
+    "start": 937.86,
+    "end": 945.22,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™.\nw= > Bivirt\nt=1\nm\n\nb= — &) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= > BiVixi-x +b\ni=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "which have non zero corresponding Lagrange multipliers alpha i they will be the support vectors",
+    "start": 946.18,
+    "end": 952.5,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™\nw= > BiVixXi\nt=1\nm\n\nb=yxnA — &&) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= > BiVixi-x +b\ni=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "and as you can see the support vectors will be those points which lie at the margin as well as",
+    "start": 952.58,
+    "end": 959.46,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™\nw= > BiVixXi\nt=1\nm\n\nb=yxnA — &&) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= > BiVixi-x +b\ni=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "those points which lie in the incorrect zone and the solution to the dual problem is given by",
+    "start": 959.46,
+    "end": 966.26,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™.\nw= > Vix\ni=1\nm\n\nb=yx~A — &&) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= D axex ar ID\nt=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "w equal to sigma i equal to 1 to m alpha i y i x i alpha i is non zero only for those",
+    "start": 966.74,
+    "end": 976.66,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™\nw= > BiVixXi\nt=1\nm\n\nb=yxnA — &&) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= > BiVixi-x +b\ni=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "points which are support vectors and once we find the values of alpha i we can find the value of",
+    "start": 977.62,
+    "end": 984.42,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™.\nw= > Bivirt\nt=1\nm\n\nb= — &) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= > BiVixi-x +b\ni=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "b from any one of those points. So b equal to y k into 1 minus i k minus sigma alpha i y i x i x k.",
+    "start": 984.42,
+    "end": 992.74,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™.\nw= > Bivirt\nt=1\nm\n\nb= — &) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= > BiVixi-x +b\ni=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "So for any of this k we can find b after we have found the alpha is for classification.",
+    "start": 993.94,
+    "end": 1000.74,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™\nw= > BiVixXi\nt=1\nm\n\nb= yr — sk) — D @ivixixk\ni=1 &\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= > BiVixi-x +b\ni=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "Now once we have found the solution of this equation we can use it for classification.",
+    "start": 1000.82,
+    "end": 1006.1,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™.\nw= > Vix\nt=1\nm\n\nb= yn — &) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nsa f@)= > BiVixi-x +b\ni=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "For classification again we use the similar formula f x equal to sigma i equal to 1 to m alpha i y i",
+    "start": 1006.1,
+    "end": 1014.1,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™.\nw= > Bivirt\nt=1\nm\n\nb=yxnA — &&) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@) = > BiVixi-x +b\nimi\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "x i dot x j x plus b. So x is the test point and i corresponds to you know i will be",
+    "start": 1014.1,
+    "end": 1023.14,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™.\nw= > Bivirt\nt=1\nm\n\nb=yxnA — &&) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@) = > BiVixi-x +b\nimi\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "come to those points for which alpha is non zero which are exactly the support vectors.",
+    "start": 1023.14,
+    "end": 1027.7,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™\nw= > BiVixXi\nt=1\nm\n\nb=yxnA — &&) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= > BiVixi-X +b\nf=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "So again we see that in order to find the classification of a point we actually do not need to compute",
+    "start": 1028.26,
+    "end": 1035.86,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™.\nw= > Vix\nt=1\nm\n\nb=yxnA — &&) — > BiViXiXk\ni=1\n\nfor any ks.t.a, >0\nFor classification,\n\nm\nf@)= > @iVixi-x +b\ni=1\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "w explicitly but we can just apply this formula and in this formula we need to find the dot",
+    "start": 1035.86,
+    "end": 1044.18,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™\nw= > Bivixt\ni=1\nm\n\nb=yxnA — &) — » BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= D aiaex ar iD\ni=1 &\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "product of the test point with the x value of those points which are support vectors and",
+    "start": 1044.18,
+    "end": 1051.78,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™\nw= > Bivixt\ni=1\nm\n\nb=yxnA — &) — » BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= D aiaex ar iD\ni=1 &\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "multiply by the corresponding alpha i y i value sum it up and add b to this.",
+    "start": 1051.78,
+    "end": 1057.14,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™.\nw= > Vix\ni=1\nm\n\nb=yx~A — &&) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= D aixex ar ID\nt=\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "So the formulation is pretty straightforward and quite simple and easy to apply.",
+    "start": 1058.82,
+    "end": 1065.06,
+    "ocr_text": "Solution to Soft Margin Classification\n\nx; with non-zero @; will be support vectors.\n* Solution to the dual problem is:\n\n™.\nw= > Vix\ni=1\nm\n\nb=yx~A — &&) — > BiViXiXk\ni=1\n\nfor any k s.t.a, >0\nFor classification,\n\nm\nf@)= D aixex ar ID\nt=\n\n(no need to compute w explicitly)"
+  },
+  {
+    "text": "So this is how we deal with soft classification or soft SVM. However if the decision surface",
+    "start": 1066.34,
+    "end": 1076.5,
+    "ocr_text": "ae\n\nuch\n\n+ 3S,"
+  },
+  {
+    "text": "so we are able to account for noise and come up with classifiers which do not exactly separate",
+    "start": 1076.5,
+    "end": 1083.62,
+    "ocr_text": "ae\n\nuch\n\n+ 3S,"
+  },
+  {
+    "text": "the positive and negative points. However the classifier decision surface is still linear",
+    "start": 1083.62,
+    "end": 1090.18,
+    "ocr_text": "ae\n\nuch\n\n+ 3S,"
+  },
+  {
+    "text": "and cannot handle those cases where the decision surface is actually non-linear. How to handle",
+    "start": 1090.18,
+    "end": 1096.18,
+    "ocr_text": "ae\n\nuch\n\n+ 3S,"
+  },
+  {
+    "text": "that in some cases we will see in the next class. Thank you.",
+    "start": 1096.18,
+    "end": 1108.58,
+    "ocr_text": "ae\n\nuch\n\n+ 3S,"
+  }
+]

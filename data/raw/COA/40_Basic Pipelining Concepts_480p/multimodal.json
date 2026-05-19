@@ -1,0 +1,1634 @@
+[
+  {
+    "text": "So, we have seen so far what is a pipeline, how a pipeline works. Now, in this lecture",
+    "start": 0.0,
+    "end": 24.24,
+    "ocr_text": "Lecture 41: PIPELINE SCHEDULING\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "we shall be talking about pipeline scheduling which means how we can feed the inputs to a pipeline",
+    "start": 24.24,
+    "end": 32.4,
+    "ocr_text": "Lecture 41: PIPELINE SCHEDULING\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "such that no conflict or so called collision occurs in anyone of the stages.",
+    "start": 33.2,
+    "end": 40.48,
+    "ocr_text": "Lecture 41: PIPELINE SCHEDULING\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "Now, for a linear pipeline where the stages are connected as a linear chain,",
+    "start": 41.44,
+    "end": 46.32,
+    "ocr_text": "Lecture 41: PIPELINE SCHEDULING\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "this problem does not arises because we can potentially apply one new set of inputs every clock",
+    "start": 47.28,
+    "end": 53.36,
+    "ocr_text": "Lecture 41: PIPELINE SCHEDULING\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "cycle. But if there are feed forward and feedback connections in a pipeline in general for a",
+    "start": 53.36,
+    "end": 60.24,
+    "ocr_text": "Lecture 41: PIPELINE SCHEDULING\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "non-linear case, then the calculation of the schedule is not so easy or trivial. So, here we shall",
+    "start": 60.24,
+    "end": 70.0,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nUT KHARAGPUR CtirineaniOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "be basically talking about that pipeline scheduling. So, we take the same example of a non-linear",
+    "start": 70.0,
+    "end": 78.96,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nUT KHARAGPUR CtirineaniOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "pipeline we saw earlier. So, this is a simple enough example which you can illustrate.",
+    "start": 78.96,
+    "end": 84.72,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nUT KHARAGPUR CtirineaniOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "There are three stages S 1, S 2, S 3. Well, here we are not showing the interstage latches",
+    "start": 85.36,
+    "end": 91.44,
+    "ocr_text": "Two operations X and ¥\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nITKHARAGPUR CtitrincaniOn courses"
+  },
+  {
+    "text": "which are also there, but this is only for illustration. This arrow shows how the data flows",
+    "start": 92.08,
+    "end": 99.6,
+    "ocr_text": "Two operations X and ¥\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nITKHARAGPUR CtitrincaniOn courses"
+  },
+  {
+    "text": "from one stage to the other. And here we are assuming that not only the pipeline is non-linear",
+    "start": 99.6,
+    "end": 107.28,
+    "ocr_text": "Two operations X and ¥\n+ X:8 time steps to complete\n\n+ ¥:6ti = to complete\n\nITKHARAGPUR Ctitrin@aniOn courses"
+  },
+  {
+    "text": "in the sense that there can be data flow say from S 3 to S 1, S 1 to S 3 and so on,",
+    "start": 107.28,
+    "end": 113.04,
+    "ocr_text": "Tee\n\nTwo operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6 ti 5 to complete\n\nUT KHARAGPUR Ctitrin@aniOn courses Teena"
+  },
+  {
+    "text": "but it is a multi-function pipeline which means we have this same pipeline which can either compute",
+    "start": 113.84,
+    "end": 121.2,
+    "ocr_text": "Tee\n\nTwo operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6 ti 5 to complete\n\nUT KHARAGPUR Ctitrin@aniOn courses Teena"
+  },
+  {
+    "text": "a function x or compute a function y. Well, you see you can take an analogy for an arithmetic",
+    "start": 121.2,
+    "end": 127.92,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nNPTEL ONLINE NATIONAL\nMT KHARAGPUR CiitrineaTiOn courses Teena"
+  },
+  {
+    "text": "pipeline where you can have a general pipeline where both multiplication and addition can be carried",
+    "start": 127.92,
+    "end": 134.16,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nNPTEL ONLINE NATIONAL\nMT KHARAGPUR CiitrineaTiOn courses Teena"
+  },
+  {
+    "text": "out. But of course, all of the stages will not be used for the two cases. We can selectively use",
+    "start": 135.12,
+    "end": 141.36,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nNPTEL ONLINE NATIONAL\nMT KHARAGPUR CiitrineaTiOn courses Teena"
+  },
+  {
+    "text": "some cases. So, these stages may be some of the stages will be using for more than one clock cycles",
+    "start": 141.36,
+    "end": 148.24,
+    "ocr_text": "Two operations X and ¥\n+ X: 8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nNPTEL ONLINE\nNTKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "and so on. Fine. So, the operation x which is represented by this reservation table,",
+    "start": 148.24,
+    "end": 157.6,
+    "ocr_text": "Two operations X and ¥\n+ X: 8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nNPTEL ONLINE\nNTKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "this requires 8 cycles to complete and this is the sequence of stage occupancy.",
+    "start": 158.56,
+    "end": 164.8,
+    "ocr_text": "Two operations X and ¥\n+ X: 8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nNPTEL ONLINE\nNTKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "First the input data goes to S 1, then to S 2, then to S 3, then again to S 2. So, you see S 3 to",
+    "start": 165.44,
+    "end": 172.64,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nMT KHARAGPUR CtitrineaniOn courses Teenwoe"
+  },
+  {
+    "text": "S 2 there is a connection. From S 2 again to S 3, S 3 to S 1, you see S 3 to S 1 also there is",
+    "start": 172.64,
+    "end": 179.6,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nMT KHARAGPUR CtitrineaniOn courses Teenwoe"
+  },
+  {
+    "text": "a connection. Then S 1 to S 3 escape, there is a feed forward connection like this and finally,",
+    "start": 179.6,
+    "end": 186.8,
+    "ocr_text": "Two operations X and ¥\n\n+ X: 8 time steps to complete\n\n+ ¥:6 ti s to complete\n\nNPTEL ONLINE NATIONAL\nMT KHARAGPUR Ctitrin@aniOn courses Teenwoe"
+  },
+  {
+    "text": "S 3 again to S 1, then it finishes. So, from S 1, it finishes and it goes out.",
+    "start": 186.8,
+    "end": 192.32,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti s to complete\n\nMT KHARAGPUR CiitrineaniOn courses Teena"
+  },
+  {
+    "text": "Similarly, for the function y, it again starts with S 1, it goes to S 3, S 2, S 3, S 1 and finally,",
+    "start": 193.44,
+    "end": 202.48,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti s to complete\n\nMT KHARAGPUR CiitrineaniOn courses Teena"
+  },
+  {
+    "text": "S 3, while it finishes. So, from S 3 it exits. So, x will exit from here, y will exit from here.",
+    "start": 202.48,
+    "end": 208.88,
+    "ocr_text": "a A\n\nTwo operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR Ctirin@aniOn courses Teenwoe"
+  },
+  {
+    "text": "So, with the help of this example, let us explain how scheduling of this pipeline can take place.",
+    "start": 209.2,
+    "end": 217.52,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti s to complete\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CtitrineaniOn courses Teenwo"
+  },
+  {
+    "text": "Scheduling actually means you can say that means if you are not careful enough when you are applying",
+    "start": 217.52,
+    "end": 223.04,
+    "ocr_text": "ce\n\nTwo operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti s to complete\n\nMT KHARAGPUR Ctitrin@aniOn courses Teenwoe"
+  },
+  {
+    "text": "the consecutive inputs. Say the first input which during computation may be in S 2, the second",
+    "start": 223.04,
+    "end": 230.08,
+    "ocr_text": "ce\n\nTwo operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti s to complete\n\nMT KHARAGPUR Ctitrin@aniOn courses Teenwoe"
+  },
+  {
+    "text": "input is also trying to go into S 2 at the same time. So, it cannot happen that way. So,",
+    "start": 230.08,
+    "end": 235.36,
+    "ocr_text": "Two operations X and ¥\n\n+ X:8 time steps to complete\n\n+ ¥:6ti 5 to complete\n\nNPTEL ONLINE NATIONAL\nMT KHARAGPUR CtitrincaniOn courses Teenwoe"
+  },
+  {
+    "text": "so, one of them has to wait. Fine. So, we shall be doing something called latency analysis.",
+    "start": 235.44,
+    "end": 244.56,
+    "ocr_text": "4\n\n+ Latency Analysis:\n= The number of time units between two initiations of a pipelir\nlatency between them.\n\nThe latencies that can cau:\n\nIT KHARAGPUR\n\nere OnLine NATIONAL\nCERTIFICATION COURSES TECHNOL 2"
+  },
+  {
+    "text": "Latency is actually the delay between two successive data inputs or initiations it is called",
+    "start": 245.6,
+    "end": 253.36,
+    "ocr_text": "4\n\n+ Latency Analysis:\n= The number of time units between two initiations of a pipelir\nlatency between them.\n\nThe latencies that can cau:\n\nIT KHARAGPUR\n\nere OnLine NATIONAL\nCERTIFICATION COURSES TECHNOL 2"
+  },
+  {
+    "text": "that are fed to the pipeline. So, our objective is to calculate the latency value or the sequence",
+    "start": 254.16,
+    "end": 262.16,
+    "ocr_text": "4\n\n+ Latency Analysis:\n= The number of time units between two initiations of a pipelir\nlatency between them.\n\nThe latencies that can cau:\n\nIT KHARAGPUR\n\nere OnLine NATIONAL\nCERTIFICATION COURSES TECHNOL 2"
+  },
+  {
+    "text": "of latency values which will not result in a collision in any of the stages.",
+    "start": 262.16,
+    "end": 268.24,
+    "ocr_text": "4\n\nLatency Analysis:\n= The number of time units een two initiations of a pipelin alled the\nlatency between them.\n\nThe latencies that can cause colli called forbidden latencie\n\nCs"
+  },
+  {
+    "text": "So, latency as I said it is basically defined as the number of time units or clock cycles",
+    "start": 271.92,
+    "end": 279.76,
+    "ocr_text": "4\n\nLatency Analysis:\n= The number of time units een two initiations of a pipelin alled the\nlatency between them.\n\nThe latencies that can cause colli called forbidden latencie\n\nCs"
+  },
+  {
+    "text": "between two successive initiations. Two inputs applied to the pipeline, what is the minimum number",
+    "start": 280.4,
+    "end": 288.16,
+    "ocr_text": "4\n\nLatency Analysis:\n= The number of time units een two initiations of a pipelin alled the\nlatency between them.\n\nThe latencies that can cause colli called forbidden latencie\n\nCs"
+  },
+  {
+    "text": "time steps we need to give between them. And as I said if we are not careful enough,",
+    "start": 288.88,
+    "end": 297.12,
+    "ocr_text": "Latency Analysis:\n\n= The number of time units between two initiations of a pipe! called the\n\nThe latencies that can cause colli called forbidden latencie"
+  },
+  {
+    "text": "then two or more initiations may be trying to use the same stage at the same time which results",
+    "start": 297.76,
+    "end": 306.16,
+    "ocr_text": "4\n\n+ Latency Analysis:\n\n— The number of time units een two initiations of a pipel alled the\nlatency between them.\n\nThe latencies that can cause colli called forbidden latencie"
+  },
+  {
+    "text": "in a collision. Some of the latencies will definitely result in a collision and such latencies are",
+    "start": 306.16,
+    "end": 313.92,
+    "ocr_text": "Latency Analysis:\n\n= The number of time units between two initiations of a pipe! alled the\n\nThe latencies that can cause colli called forbidden latencie"
+  },
+  {
+    "text": "referred to as forbidden latencies. We cannot use those latencies. So, how we can estimate the",
+    "start": 313.92,
+    "end": 321.04,
+    "ocr_text": "Latency Analysis:\n\n= The number of time units between two initiations of a pipe! alled the\n\nThe latencies that can cause colli called forbidden latencie"
+  },
+  {
+    "text": "forbidden latencies? We can simply calculate the distance between two check marks in the rows of",
+    "start": 321.04,
+    "end": 328.0,
+    "ocr_text": "4\n\nLatency Analysis:\n= The number of time units een two initiations called the\nlatency between them.\n\nThe latencies that can cause colli called forbidden latencie\n\nIT KHARAGPUR CtitrineaTiOn couRses Teena"
+  },
+  {
+    "text": "the reservation table. Let us take an example. Let us see the first example the reservation table",
+    "start": 328.0,
+    "end": 335.28,
+    "ocr_text": "4\n\n+ Latency Analysis:\n= The number of time units 0 initiations of a pipelir alled the\nlatency between them.\n\nThe latencies that can cause colli © called forbidden laten\n\niriouanacrun REE counses | me"
+  },
+  {
+    "text": "for x. So, you see here there are so many check marks. There are check marks at a gap of two,",
+    "start": 335.36,
+    "end": 343.28,
+    "ocr_text": "+ Latency Analysis:\n\n= The number of time units alled the\nlatency between them.\n\nThe latencies that can cause colli called forbidden latencie\n\nmavercrun | LEBHcouses | SYNE\n\nape"
+  },
+  {
+    "text": "there are check marks at a gap of four this and this, there are check marks at a gap of five",
+    "start": 344.16,
+    "end": 350.0,
+    "ocr_text": "+ Latency Analysis:\n\n= The number of time units alled the\nlatency between them.\n\nThe latencies that can cause colli called forbidden latencie\n\nmavercrun | LEBHcouses | SYNE\n\nape"
+  },
+  {
+    "text": "and this one and this one gap of seven. So, these are all forbidden latencies,",
+    "start": 350.64,
+    "end": 356.24,
+    "ocr_text": "+ Latency Analysis:\n— The number of time units\n\neen two initiations of a pipeline is called the\n\nThe latencies that can cause colli called forbidden latencie"
+  },
+  {
+    "text": "distance between any two pairs of check marks. So, for this reservation table the forbidden",
+    "start": 357.36,
+    "end": 364.32,
+    "ocr_text": "+ Latency Analysis:\n= The number of time units between two initiations of a pipeline is called the\nlatency between them.\n\nThe latencies that can cause colli called forbidden latencie\n\nome"
+  },
+  {
+    "text": "latencies are two, four, five and seven. Similarly, for the other functionality this y function,",
+    "start": 364.4,
+    "end": 373.92,
+    "ocr_text": "+ Latency Analysis:\n= The number of time units between two initiations of a pipeline is called the\nlatency between them.\n\nThe latencies that can cause colli called forbidden latencie\n\nome"
+  },
+  {
+    "text": "here you can see two and four, here also it is four. So, here the forbidden latencies are only two",
+    "start": 374.56,
+    "end": 381.52,
+    "ocr_text": "4\n\nLatency Analysis:\n= The number of time units een two initiations of a pipeline is called the\nlatency between them.\n\nThe latencies that can cause colli called forbidden latencie\n\nIT RHARAGPUR Ctitrin@aniOn courses"
+  },
+  {
+    "text": "and four. So, this is the first step in our analysis to list or enumerate the forbidden latencies.",
+    "start": 381.52,
+    "end": 390.08,
+    "ocr_text": "‘ee\n\nLatency Anal\n\nThe latencie:\n\neS 99 eee\n\nCtirrinicaniOn courses\n\nled the\n\ntthe\n\nTeenwoe"
+  },
+  {
+    "text": "Now, a latency sequence is defined as a sequence of permissible non forbidden latencies which do",
+    "start": 390.8,
+    "end": 401.36,
+    "ocr_text": "Latency Analys'\n= The numt time units between t . a Inc is called the\nThe latencies that can cause collision are called forbidden latencie\n\nGe"
+  },
+  {
+    "text": "not result in a collision. See, latency sequence is like this, latency as I said it is the gap",
+    "start": 401.36,
+    "end": 408.48,
+    "ocr_text": "4\n\nAk nce of permissible non-forbidden latencies between\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\nITKHARAGPUR CtitrineaTiON couRses"
+  },
+  {
+    "text": "between two successive data I am applying. So, I can say that I am using a latency sequence of",
+    "start": 409.2,
+    "end": 416.0,
+    "ocr_text": "4\n\nAk nce of permissible non-forbidden latencies between\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\nITKHARAGPUR CtitrineaTiON couRses"
+  },
+  {
+    "text": "one, two, one which means between the first and second inputs I give a gap of one,",
+    "start": 416.0,
+    "end": 423.76,
+    "ocr_text": "4\n\nAk nce of permissible non-forbidden latencies between\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\nITKHARAGPUR CtitrineaTiON couRses"
+  },
+  {
+    "text": "between second and third input I give a gap of two, between third and fourth input I again give",
+    "start": 424.56,
+    "end": 430.0,
+    "ocr_text": "4\n\nAk nce of permissible non-forbidden latencies between\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\nITKHARAGPUR CtitrineaTiON couRses"
+  },
+  {
+    "text": "a gap of one. So, I say that I am using a latency sequence of one, two and one.",
+    "start": 430.0,
+    "end": 435.2,
+    "ocr_text": "4\n\n— Alatency cycle is a latency sequence that repeats the same subsequence"
+  },
+  {
+    "text": "This means this sequence can be any arbitrary delay gaps that you can specify and",
+    "start": 437.04,
+    "end": 443.04,
+    "ocr_text": "4\n\n— Alatency cycle is a latency sequence that repeats the same subsequence"
+  },
+  {
+    "text": "if this sequence repeats in time then we call it is a latency cycle.",
+    "start": 443.36,
+    "end": 450.72,
+    "ocr_text": "4\n\n— Alatency cycle is a latency sequence that repeats the same subsequence"
+  },
+  {
+    "text": "Latency cycle is nothing but a latency sequence where the same sequence is repeated.",
+    "start": 451.52,
+    "end": 457.36,
+    "ocr_text": "4\n\n— Alatency cycle is a latency sequence that repeats the same subsequence"
+  },
+  {
+    "text": "Like let us take an example, suppose we use a latency sequence like this one, three,",
+    "start": 458.0,
+    "end": 464.08,
+    "ocr_text": "4\n\n— Alatency cycle is a latency sequence that repeats the same subsequence"
+  },
+  {
+    "text": "one, three, one, three and this repeats indefinitely. So, we can say or we can write in a compact notation",
+    "start": 464.08,
+    "end": 472.72,
+    "ocr_text": "4\n\n— Alatency cycle is a latency sequence that repeats the same subsequence"
+  },
+  {
+    "text": "that it is a latency cycle one, three. This one, three will be repeating indefinitely.",
+    "start": 473.12,
+    "end": 478.16,
+    "ocr_text": "13,1353 1,3,"
+  },
+  {
+    "text": "Similarly, if I have a case for the same latency two, two, two, two, two, two is to be used,",
+    "start": 479.6,
+    "end": 485.68,
+    "ocr_text": "Fsieef]"
+  },
+  {
+    "text": "then I can write it as a latency cycle containing a single latency two.",
+    "start": 485.68,
+    "end": 490.56,
+    "ocr_text": "yy Ds By Oy Py,\n\n(>"
+  },
+  {
+    "text": "So, talking about the two function the first function we have already seen that the forbidden",
+    "start": 496.08,
+    "end": 501.92,
+    "ocr_text": "4\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\n:"
+  },
+  {
+    "text": "latencies are two, four, five and seven. Well here we are just listing some of the forbidden",
+    "start": 501.92,
+    "end": 509.44,
+    "ocr_text": "4\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\n:"
+  },
+  {
+    "text": "latency cycles or the some of the latency cycles which can which you can use the possible ones,",
+    "start": 509.44,
+    "end": 515.76,
+    "ocr_text": "4\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\nogee"
+  },
+  {
+    "text": "but how to get this we shall be showing shortly. Let us say here one of the possible latency cycles",
+    "start": 515.76,
+    "end": 523.52,
+    "ocr_text": "A latency cycle is a latency sequence that repeat:\n\nITKHARAGPUR CtitrineaTiOn courses\n\n5 the\n\n4"
+  },
+  {
+    "text": "which do not result in collisions is 1 and 8. So, 1, 8, 1, 8 like that you proceed.",
+    "start": 523.52,
+    "end": 529.04,
+    "ocr_text": "A latency cycle is a latency sequence that repeat:\n\nITKHARAGPUR CtitrineaTiOn courses\n\n5 the\n\n4"
+  },
+  {
+    "text": "This will result in an average latency of 4.5 because 1 plus 8 is 9 divided by 2.",
+    "start": 529.76,
+    "end": 534.96,
+    "ocr_text": "4\n\nAlatency cycle is a latency sequence that repeats the same subsequence\n\nrWanaceuR REAHEHK courses | para ¢\n\nSop"
+  },
+  {
+    "text": "If it is a 3, 3, 3 like this, 3 here average latency is 3 because 3 is a non-verbidant",
+    "start": 536.08,
+    "end": 543.28,
+    "ocr_text": "4\n\nA latency cycle is a latency sequence that repeats the same subsequence"
+  },
+  {
+    "text": "latency and multiples of 3 is are also not there, 6, 9 these are not there.",
+    "start": 543.28,
+    "end": 547.44,
+    "ocr_text": "4\n\nA latency cycle is a latency sequence that repeats the same subsequence"
+  },
+  {
+    "text": "Similarly, 6 is also a feasible latency cycle 6, 6, 6 average of 6. So, in this case the minimum",
+    "start": 548.24,
+    "end": 556.56,
+    "ocr_text": "4\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\niriouanacun TEE counses | me"
+  },
+  {
+    "text": "latency is resulting for the second case. Similarly, for the function y what the forbidden latencies",
+    "start": 557.36,
+    "end": 565.36,
+    "ocr_text": "4\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\nmmanaceuR SEAHEHKcounses | a 7"
+  },
+  {
+    "text": "are two and five we have several alternatives. Well we can use one five one five this kind of a",
+    "start": 565.36,
+    "end": 570.56,
+    "ocr_text": "4\n\nA latency cycle is a latency sequ that repeats the same subsequence\n\nQ) 33, (average latency = 3.0)\n\nIT KHARAGPUR CtitrineaTiOn couRses Teena £."
+  },
+  {
+    "text": "cycle because one is not forbidden five is also not forbidden. This results in an average of 3.",
+    "start": 570.56,
+    "end": 576.48,
+    "ocr_text": "4\n\nA latency cycle is a latency sequ that repeats the same subsequence\n\nQ) 33, (average latency = 3.0)\n\nIT KHARAGPUR CtitrineaTiOn couRses Teena £."
+  },
+  {
+    "text": "We can use 3, 3, 3 this also results in an average of 3. Also we can use 35, 35,",
+    "start": 577.28,
+    "end": 582.8,
+    "ocr_text": "4\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\nA"
+  },
+  {
+    "text": "alternating for this average will be 4. Now, the cycles where there is no change the same",
+    "start": 583.12,
+    "end": 591.6,
+    "ocr_text": "4\n\nA latency cycle is a latency sequence that repeats the same subsequence\n\nA"
+  },
+  {
+    "text": "latency have to be used these are referred to as constant cycles like here 3, 6 and here 3.",
+    "start": 591.6,
+    "end": 598.4,
+    "ocr_text": "Alatency cycle is a latency sequence that repeats the same subsequence\n\nNT KHARAGPUR CtitrintcaniOn courses Teenwoe"
+  },
+  {
+    "text": "These are examples of constant cycles. Now, our objective is to do something called collision",
+    "start": 598.8,
+    "end": 608.64,
+    "ocr_text": "Ak nce of permissible non-forbidden lat\n\nAlatency cycle is\n\na latency sequence that r¢\n\nJats the same subsequence\n\nney = 3.0) 2) 23\n\nITKHARAGPUR CtitrincaniOn courses"
+  },
+  {
+    "text": "free scheduling. How to schedule the pipeline how to determine the latencies dynamically? See",
+    "start": 608.96,
+    "end": 615.12,
+    "ocr_text": "Ak nce of permissible non-forbidden lat\n\nAlatency cycle is\n\na latency sequence that r¢\n\nJats the same subsequence\n\nney = 3.0) 2) 23\n\nITKHARAGPUR CtitrincaniOn courses"
+  },
+  {
+    "text": "dynamical means when the data comes means we should be able to automatically find out whether",
+    "start": 615.12,
+    "end": 620.88,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the shortest averag. ney between initi without causing\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency i\nThe permissible latencies p will 1spsm4\n\nThe collision vector is an m-bit binary vector C= (Gry Cons whe\n\nGm is always 1"
+  },
+  {
+    "text": "we can feed the next data or not that is called scheduling we shall be looking into this scheduling",
+    "start": 620.88,
+    "end": 628.4,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the shortest averag. ney between initi without causing\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency i\nThe permissible latencies p will 1spsm4\n\nThe collision vector is an m-bit binary vector C= (Gry Cons whe\n\nGm is always 1"
+  },
+  {
+    "text": "such that there is no collision. Well of course, the main objective is to obtain the shortest",
+    "start": 628.4,
+    "end": 634.56,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the shortest averag. ney between initi without causing\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency i\nThe permissible latencies p will 1spsm4\n\nThe collision vector is an m-bit binary vector C= (Gry Cons whe\n\nGm is always 1"
+  },
+  {
+    "text": "average latency. Well we start by defining a data structure or a vector you can call called",
+    "start": 634.72,
+    "end": 644.72,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the shortest averag. ney between initi without causing\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency i\nThe permissible latencies p will 1spsm4\n\nThe collision vector is an m-bit binary vector C= (Gry Cons whe\n\nGm is always 1"
+  },
+  {
+    "text": "collision vector it is a bid vector. Collision vector is defined as follows if there are n number of",
+    "start": 644.72,
+    "end": 654.08,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the shortest averag ney between initi without ¢\n\ndefine a collision vector\n\nusing\n\nIf the reservation table has n columns, the maximum forbidden latency i\n\nThe permissible latencies p will 1<psm-4\nThe collision vector is an m-bit binary vector C= (C,\n\nGm is always 1\n\nwhe\n\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "columns in the collision in the reservation table then you see it is like this if you have a",
+    "start": 654.08,
+    "end": 661.44,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\nObtain the shortest averag. ney between initi without ¢\ndefine a collision vector\nIf the reservation table has 7 columns, the maximum forbidden latency is m\nThe permissible latencies p will satisfy: 1 <p <m-1\nThe collision vector is an m-bit binary vector C= (Cry Cons where ,\n\nGm is always 1"
+  },
+  {
+    "text": "reservation table there are rows there are many columns let us say there are n number of columns",
+    "start": 661.44,
+    "end": 671.36,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\nObtain the shortest averag. ney between initi without causing\ndefine a collision vector\nIf the reservation table has 7 column:\n\nthe maximum forbidden latency is m\nThe permissible latencies p will\n\nGm is always 1\n\nThe collision vector is an/m-bit where C,"
+  },
+  {
+    "text": "right. So, in the worst case there can be a check mark here and check mark here which will result",
+    "start": 671.36,
+    "end": 678.4,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\nObtain the shortest averag. ney between initi without causing\ndefine a collision vector\nIf the reservation table has 7 column:\n\nthe maximum forbidden latency is m\nThe permissible latencies p will\n\nGm is always 1\n\nThe collision vector is an/m-bit where C,"
+  },
+  {
+    "text": "in a forbidden latency of n minus 1 gap of n minus 1 this can be the maximum forbidden latency",
+    "start": 678.4,
+    "end": 686.08,
+    "ocr_text": "Ce ee ee a Ae\n\njon Free Scheduling\n\nMain objective\nObtain the shortest average latency between initi without causing\ndefine a collision vector\nIf the reservation table has n columns, the maximum forbidden latency is m\nThe permissible latencies p will satisfy: 1 <p < 1-1\nThe collision vector is an m-bit binary vector C= (Cry Cons whe\n\nGm ts always 1"
+  },
+  {
+    "text": "right. So, here we have mentioned the same thing the maximum forbidden latency m cannot be greater",
+    "start": 686.56,
+    "end": 696.88,
+    "ocr_text": "Ce ee ee a Ae\n\njon Free Scheduling\n\nMain objective\nObtain the shortest average latency between initi without causing\ndefine a collision vector\nIf the reservation table has n columns, the maximum forbidden latency is m\nThe permissible latencies p will satisfy: 1 <p < 1-1\nThe collision vector is an m-bit binary vector C= (Cry Cons whe\n\nGm ts always 1"
+  },
+  {
+    "text": "than n minus 1 it can be maximum n minus 1 and the permissible latencies that we shall be using",
+    "start": 696.88,
+    "end": 703.68,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the short\n\ndefine a collision vector\nIf the reservation table has 7 columns, the maximum forbidden latency i\n\nThe permissible latencies p will\n\nfy: 1sp smi\nThe collision vector is an m-bit binary vector C= (C,\n\nGm is always 1\n\nwhere C, = 1if\n\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "for scheduling this obviously has to be less than or equal to m minus 1 because more than m does not",
+    "start": 703.68,
+    "end": 708.96,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the short\n\ndefine a collision vector\nIf the reservation table has 7 columns, the maximum forbidden latency i\n\nThe permissible latencies p will\n\nfy: 1sp smi\nThe collision vector is an m-bit binary vector C= (C,\n\nGm is always 1\n\nwhere C, = 1if\n\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "make sense because effectively if there are 5 stage in the pipeline and m saying that I have to",
+    "start": 708.96,
+    "end": 715.76,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the shortest averag. ney between initi without causing\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency is m\nThe permissible latencies p will satisfy: 1< p< m-1\n\nThe collision vector is an m-bit binary vector C= (Cry Cons where C,\n\nGm is always 1"
+  },
+  {
+    "text": "give a gap of 6 then there is no use in having the pipeline anyway I will be waiting for 6 time",
+    "start": 715.76,
+    "end": 721.6,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the shortest averag. ney between initi without causing\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency is m\nThe permissible latencies p will satisfy: 1< p< m-1\n\nThe collision vector is an m-bit binary vector C= (Cry Cons where C,\n\nGm is always 1"
+  },
+  {
+    "text": "cycles to feed the next data. So, that is not a good way of scheduling. So, we will say that the",
+    "start": 721.6,
+    "end": 728.64,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\nObtain the shortest average latency between initi without ¢\n\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency is m\n\nThe permissible latencies p will sgtisfy: 1 <p <e-1\n\nThe collision vector is an m-bit binary vector C = (C, where C, = 1if\n\nGm ls always 1\n\nNT KHARAGPUR CtitrineaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "permissible latencies P will be satisfying this inequality maximum forbidden latencies m minus 1",
+    "start": 728.64,
+    "end": 736.08,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\nObtain the shortest average latency between initi without ¢\n\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency is m\n\nThe permissible latencies p will sgtisfy: 1 <p <e-1\n\nThe collision vector is an m-bit binary vector C = (C, where C, = 1if\n\nGm ls always 1\n\nNT KHARAGPUR CtitrineaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "and minimum is of course, 1. Now, we define the collision vector as an m bit vector where m is this",
+    "start": 736.08,
+    "end": 743.92,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\nObtain the shortest averag: ney between initi without ¢\ndefine a collision vector\nIf the reservation table has n columns, the maximum forbidden latency is m\nThe permissible latencies p will satisfy: 1 <p <m-1\n\nThe collision vector is,an m-bit binary vector C= (Gry Cons where C,\n\nGm is always 1\n\nITKHARAGPUR Ctitrin@aniOn courses"
+  },
+  {
+    "text": "maximum forbidden latency right C 1 C 2 to C m where a particular bit is 1 if latency i causes",
+    "start": 744.0,
+    "end": 756.08,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\nObtain the shortest averag: ney between initi without ¢\ndefine a collision vector\nIf the reservation table has n columns, the maximum forbidden latency is m\nThe permissible latencies p will satisfy: 1 <p <m-1\n\nThe collision vector is,an m-bit binary vector C= (Gry Cons where C,\n\nGm is always 1\n\nITKHARAGPUR Ctitrin@aniOn courses"
+  },
+  {
+    "text": "a collision and that bit is 0 if the latency i does not cause a collision and because m is the",
+    "start": 756.08,
+    "end": 763.52,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the shortest average latency between initi without causing\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency is m\nThe permissible latencies p will 1<psm-1.\n\nThe collision vector is an m-bit binary vector C= (C, whe\n\nGm is always 1"
+  },
+  {
+    "text": "maximum forbidden latency by definition C m is always 1 because m is the maximum forbidden",
+    "start": 763.52,
+    "end": 770.72,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the shortest average latency between initi without causing\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency is m\nThe permissible latencies p will 1<psm-1.\n\nThe collision vector is an m-bit binary vector C= (C, whe\n\nGm is always 1"
+  },
+  {
+    "text": "latencies. So, this bit has to be 1 right. So, for the 2 functions you see C x the forbidden",
+    "start": 770.8,
+    "end": 779.28,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\nObtain the shortest averag. ney between initi without causing\ndefine a collision vector\nIf the reservation table has n columns, the maximum forbidden latency is m\nThe permissible latencies p will 1<psm-1\nThe collision vector is an m-bit binary vector C= (Gy, Gon where C,\n\nGm is always 1\n\n*$"
+  },
+  {
+    "text": "latencies were 2 4 5 and 7 just count 1 2 3 4 5 6 and 7 2 4 5 and 7 and function y from the",
+    "start": 779.28,
+    "end": 791.76,
+    "ocr_text": "Collision Free Scheduling\n\nMain objective\nObtain the shortest average latency between initiations without causing\nWe define a collision vector\nIf the reservation table has n columns, the maximum forbidden latency is m\n= The permissible latencies p will satisfy: 1 <p <m-1\n= The collision vector is an m-bit binary vector C= (C, J), where C,\n\nGm is always 1 F\n\nCtitrincaTiOn courses"
+  },
+  {
+    "text": "right side again 2 and 4 these are the forbidden latencies. So, the collision vector for the 2 cases",
+    "start": 791.76,
+    "end": 798.24,
+    "ocr_text": "jon Free Scheduling\n\nMain objective\n\nObtain the shortest average latency between initi without causing\ndefine a collision vector\n\nIf the reservation table has n columns, the maximum forbidden latency i\nThe permissible latencies p will satisfy: 1 <p <m-1\n\nThe collision vector is an m-bit binary vector C= (C,\n\nGm is always 1\n\n2"
+  },
+  {
+    "text": "are defined like this. Now, from the collision vector we construct a state diagram where we define",
+    "start": 798.24,
+    "end": 810.8,
+    "ocr_text": "4g\n\nCollision Free Scheduling\n\nMain objective\nObtain the shortest average latency between initiations without «\ndefine a collision vector\nIf the reservation table has n columns, the maximum forbidden latency i\n\nThe permissible latencies p will satisfy: 1 <p <mm-1\n\nThe collision vector is an m-bit binary vector C= (C,\n\nGm ls always 1 F\n\nNT KHARAGPUR CtitrincaTiOn courses Teena"
+  },
+  {
+    "text": "the states as the status of collisions at a particular point in time that means, which which",
+    "start": 810.8,
+    "end": 818.8,
+    "ocr_text": "4\n\nFrom the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t+p Is ob present state p-bits to the\nright and OR-ing with the initi n vector ¢\n\nLy x)"
+  },
+  {
+    "text": "time gap solitances can result in a collision at that point in time that is one state and the",
+    "start": 818.8,
+    "end": 826.32,
+    "ocr_text": "4\n\nFrom the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t+p Is ob present state p-bits to the\nright and OR-ing with the initi n vector ¢\n\nLy x)"
+  },
+  {
+    "text": "state transition diagram can contain multiple states you can go from one state to the other right.",
+    "start": 826.32,
+    "end": 832.48,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\nThe next stiite at time t¢p Is ob ent state p-bits to the\nright and OR-ing n vector ¢"
+  },
+  {
+    "text": "And the initial state is the collision vector and from the collision vector from any state",
+    "start": 834.08,
+    "end": 842.88,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\nThe next stiite at time t¢p Is ob ent state p-bits to the\nright and OR-ing n vector ¢"
+  },
+  {
+    "text": "you can move to some other state by by advancing the time by some number p. Suppose you are",
+    "start": 842.88,
+    "end": 852.24,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\nThe next stiite at time t¢p Is ob ent state p-bits to the\nright and OR-ing n vector ¢"
+  },
+  {
+    "text": "currently in time t this state. So, if you advance the time by p what you do so,",
+    "start": 852.24,
+    "end": 859.76,
+    "ocr_text": "a\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢"
+  },
+  {
+    "text": "whatever is the present state you shift it right by p positions. See what is the meaning?",
+    "start": 859.76,
+    "end": 866.8,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\nThe next state at time t+p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢"
+  },
+  {
+    "text": "Suppose I am in a present state where my bits are something like this.",
+    "start": 867.52,
+    "end": 872.96,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\nThe next state at time t+p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢"
+  },
+  {
+    "text": "So, which means that from time 1 1 2 3 4 5 6 7 8 and 9 3 7 and 9 these are my forbidden times",
+    "start": 873.2,
+    "end": 891.52,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\nThe next state at time t+p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢"
+  },
+  {
+    "text": "where I where I cannot feed the next input these are forbidden latencies. But now say if I advance",
+    "start": 891.52,
+    "end": 899.76,
+    "ocr_text": "=| a\nOly\na\n\nOs\ni9)\n\nfo)"
+  },
+  {
+    "text": "my time by 2 steps then whatever was 3 now after 2 steps this will become 1 7 will become 5",
+    "start": 899.76,
+    "end": 907.6,
+    "ocr_text": "=| a\nOly\na\n\nOs\ni9)\n\nfo)"
+  },
+  {
+    "text": "9 will become 7. So, actually we are shifting this right by 2 positions. So, this 1 will come here",
+    "start": 907.6,
+    "end": 913.84,
+    "ocr_text": "=| a\nOly\na\n\nOs\ni9)\n\nfo)"
+  },
+  {
+    "text": "this 0 0 0 1 0 1 and 2 0s will be shifted in this will be my new status after time 2.",
+    "start": 913.84,
+    "end": 925.84,
+    "ocr_text": "=| a\nOly\na\n\nOs\ni9)\n\nfo)"
+  },
+  {
+    "text": "Now, the collisions will occur at time 1 2 3 4 5 and 7 right this is the idea.",
+    "start": 925.92,
+    "end": 933.28,
+    "ocr_text": "oO |\n\n| ©®\n\nie)"
+  },
+  {
+    "text": "So, the next state is obtained by shifting it right and of course, the initial collision vector",
+    "start": 935.92,
+    "end": 941.36,
+    "ocr_text": "4\n\nFrom the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢\n\n2"
+  },
+  {
+    "text": "which was there that lists the forbidden latencies. So, the latencies which are forbidden will always",
+    "start": 941.36,
+    "end": 948.56,
+    "ocr_text": "4\n\nFrom the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢\n\n2"
+  },
+  {
+    "text": "remain forbidden. So, whatever you obtain by right shifting you will have to do a bit by bit",
+    "start": 948.56,
+    "end": 954.64,
+    "ocr_text": "4\n\nFrom the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢\n\n2"
+  },
+  {
+    "text": "logical or with the initial collision vector also. So, that wherever there was a 1 in the initial",
+    "start": 954.72,
+    "end": 960.72,
+    "ocr_text": "4\n\nFrom the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢\n\n2"
+  },
+  {
+    "text": "collision vector it will remain a 1 in all the states because those will always be forbidden you",
+    "start": 960.72,
+    "end": 967.6,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time f4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢\n\nFunction X\ncv: (10f1010)\n1011010"
+  },
+  {
+    "text": "cannot use that that let in see at any pointing time ok. So, let us take an example that same",
+    "start": 967.6,
+    "end": 976.0,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time f4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢\n\nFunction X\ncv: (10f1010)\n1011010"
+  },
+  {
+    "text": "example this is the state diagram for function x let us see how we have obtained this.",
+    "start": 976.0,
+    "end": 982.24,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time f4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢\n\nFunction X\ncv: (10f1010)\n1011010"
+  },
+  {
+    "text": "So, we have said that for this function the collision vector was this it indicates",
+    "start": 983.52,
+    "end": 989.84,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time f4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢\n\nFunction X\ncv: (10f1010)\n1011010"
+  },
+  {
+    "text": "the forbidden latencies of 2 4 5 and 7. So, this will be my initial state.",
+    "start": 992.24,
+    "end": 998.08,
+    "ocr_text": "4\n\nmavercron | UE couses | HY NUR ¢"
+  },
+  {
+    "text": "Now, from my initial state I can advance my time only by that amount where I have 0s which are",
+    "start": 998.48,
+    "end": 1007.84,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t+p Is ob ent state p-bits to the\nright and OR-ing n vector ¢\n\nFunction X\ncv: (1011010)\n\nce"
+  },
+  {
+    "text": "not forbidden which means time 1 3 or 6 or 8 or more. If I advance it by 1 you see my collision",
+    "start": 1007.84,
+    "end": 1019.44,
+    "ocr_text": "a"
+  },
+  {
+    "text": "vector was 1 0 1 1 0 1 0 1 1 0 1 0 1 0 1 0. Now, if I advance it by time 1 so, I will be doing",
+    "start": 1019.44,
+    "end": 1030.08,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t¢p Is ob © ent state p-bits to the\nright and OR-ing with the initial\nFunction X\ncv: (1011010)\n1011010\n\nMTP KHARAGPUR Ctirrin@aTiOn courses Teenwoe ¢"
+  },
+  {
+    "text": "a right shift 1 0 1 1 0 1 and a 0 will coming then you do a bit by bit or 1 1 1 1 all will be 1",
+    "start": 1030.08,
+    "end": 1040.56,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t¢p Is ob © ent state p-bits to the\nright and OR-ing with the initial\nFunction X\ncv: (1011010)\n1011010\n\nMTP KHARAGPUR Ctirrin@aTiOn courses Teenwoe ¢"
+  },
+  {
+    "text": "right. Similarly, suppose I use 1 2 3 I use p equal to 3 then I shifted by 3 positions 2 3.",
+    "start": 1040.88,
+    "end": 1056.08,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t¢p Is ob © ent state p-bits to the\nright and OR-ing with the initial\nFunction X\ncv: (1011010)\n1011010\n\nMTP KHARAGPUR Ctirrin@aTiOn courses Teenwoe ¢"
+  },
+  {
+    "text": "So, it will be 1 0 1 1 and there will be 3 0s coming in. So, again do a bit by bit or 1 1 0 1 1 0 1",
+    "start": 1056.08,
+    "end": 1068.0,
+    "ocr_text": "4"
+  },
+  {
+    "text": "this will be my new state right in this way you can calculate for all.",
+    "start": 1068.24,
+    "end": 1072.48,
+    "ocr_text": "4"
+  },
+  {
+    "text": "So, from this initial state which represents the collision vector if I go or advance time by 1",
+    "start": 1075.04,
+    "end": 1082.96,
+    "ocr_text": "4"
+  },
+  {
+    "text": "I go to this state just like I calculated if I advance it by 3 I go to this state.",
+    "start": 1082.96,
+    "end": 1088.48,
+    "ocr_text": "4"
+  },
+  {
+    "text": "If I advance by 6 this you can check you will also arrive at the same vector.",
+    "start": 1089.2,
+    "end": 1094.48,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢"
+  },
+  {
+    "text": "But if I advance it by 8 that means, if you shifted by 8 everything will become 0 0 or with the",
+    "start": 1094.8,
+    "end": 1101.92,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢"
+  },
+  {
+    "text": "initial vector will be the initial vector itself. Similarly, from here there are no 0s so,",
+    "start": 1101.92,
+    "end": 1108.16,
+    "ocr_text": "4"
+  },
+  {
+    "text": "you can only have 8 or more shifted by 8 positions or will be 0s or with this you get back this.",
+    "start": 1108.16,
+    "end": 1115.12,
+    "ocr_text": "4"
+  },
+  {
+    "text": "So, this will be an arrow back and from here you see 1 0 1 1 0 1 1 1 0 1 1 1 1 1 1 1 1 1 1. So,",
+    "start": 1115.12,
+    "end": 1126.72,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t+p Is ob ent state p-bits to the\nright and OR-ing\n\nFunction X\ncv: (1011010)\n\n1011010\n\nEEEEEE!\n\ni’"
+  },
+  {
+    "text": "here you have 3 and 6. So, if you shift by 3 1 2 3 it will be 1 0 1 1 and 3 0s 1 1 1 1 1 and 3 0s",
+    "start": 1126.72,
+    "end": 1138.08,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying\nthe permissible state transitions among successive initiations.\nThe next state at time t+p Is ob ent state p-bits to the\nright and OR-ing\n\nFunction X\ncv: (1011010)\n\n1011010\n\nEEEEEE!\n\ni’"
+  },
+  {
+    "text": "1 1 0 1 1 0 1. So, you are in the same state. Similarly, if you shifted by 6 positions 1 2 3 4 5 6.",
+    "start": 1138.64,
+    "end": 1152.48,
+    "ocr_text": "o\\\\\\=\n9 0j°o\nLAG)\n=\n=>\n6 —\\-\n° \\—\no -\\-"
+  },
+  {
+    "text": "So, this 1 will come here and all rest are 0s. If you do or again it will remain the same",
+    "start": 1152.48,
+    "end": 1159.92,
+    "ocr_text": "°"
+  },
+  {
+    "text": "same state. So, you see from here 3 and 6 are resulting in a self loop that will remain in the same",
+    "start": 1160.48,
+    "end": 1170.88,
+    "ocr_text": "1011019\n\n°\n\n°\n\n>\n°"
+  },
+  {
+    "text": "state. Similarly, for the other function where the collision vector is 1 0 1 0 2 and 4 are the",
+    "start": 1170.88,
+    "end": 1180.88,
+    "ocr_text": "4"
+  },
+  {
+    "text": "forbidden lattices. So, from here you can advance time either by 1, shift right 1 position or",
+    "start": 1182.0,
+    "end": 1188.4,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\n\nthe permissible state transitions among successive initiations.\n\nate p-bits to the\n\nshifting the present\n\ntate at time t+p Is obtained by\n\nThe next\nith the initial collision vector ¢\n\nright and OR-ing\n\nFunction X | Function Y\ncv: (1011010) €v: (2020)\n\n1011010\n\nNPTEL ONLINE\nTeena\n\nCtitrineaniOn courses"
+  },
+  {
+    "text": "all will be 1s or shift right by 3 positions and all last bit will become 1 and once you are here 1",
+    "start": 1188.4,
+    "end": 1197.04,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\nThe next state at time t4p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢\n\n| Function xX | Function Y\ncv: (1011010) €v: (1010)\n\n1011010\n\nMT KHARAGPUR Ctitrin@aniOn courses Teena"
+  },
+  {
+    "text": "2 3 3 is only the permissible shifted by 3 or it same state will remain. Of course, 5 plus will",
+    "start": 1197.04,
+    "end": 1204.48,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\n\nshifting the present\n\ntate at time t+p is obtained by ate p-bits to the\n\nThe next\n\nFight and OR-ing with the initial collis\n\n| Function X | Function Y\ncv: (1011010) Vv: (1010)\n1011010\n\nEEEUEE!\n\nNPTEL ONLINE\nTeenwoe\n\nCtitrineaTiOn courses\n\nITKHARAGPUR"
+  },
+  {
+    "text": "bring it back to the origin here or say 8 plus will bring it back. Here also there are no 0s.",
+    "start": 1204.48,
+    "end": 1210.72,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\n\nshifting the present\n\ntate at time t+p is obtained by ate p-bits to the\n\nThe next\n\nFight and OR-ing with the initial collis\n\n| Function X | Function Y\ncv: (1011010) Vv: (1010)\n1011010\n\nEEEUEE!\n\nNPTEL ONLINE\nTeenwoe\n\nCtitrineaTiOn courses\n\nITKHARAGPUR"
+  },
+  {
+    "text": "So, only 5 plus it will bring it back. So, from here you will have to look at cycles.",
+    "start": 1210.72,
+    "end": 1217.68,
+    "ocr_text": "J\n\nS\nwot"
+  },
+  {
+    "text": "See for example, in this diagram the cycles are 3 is a cycle 6 is a cycle 1 8 1 8 is a cycle",
+    "start": 1220.56,
+    "end": 1230.16,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\nThe next state at time f+p Is obtained by shifting the present state p-bits to the\nright and OR-ing with the initial collision vector ¢\n\nFunction X | Function Y\ncv: (1011010) vy: (1010)\n\n1011010\n\nMT KHARAGPUR Ctitrin@aniOn courses Teena"
+  },
+  {
+    "text": "simple 8 is a cycle and here 3 is a cycle 1 5 is a cycle only 5 is a cycle.",
+    "start": 1230.96,
+    "end": 1240.32,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\n\nshifting the present\n\ntate at time t+p Is obtained by ate p-bits to the\n\nThe next\ncollision vector ¢\n\nCtitrinieaniOn courses"
+  },
+  {
+    "text": "Therefore, the other cycle 3 5 3 8 6 8 are also cycles. So, from the state diagram we can",
+    "start": 1240.32,
+    "end": 1250.16,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\n\nthe permissible state transitions among successive initiations.\n\nate p-bits to the\n\nshifting the present\n\nThe next state at time t+p Is obtained by\nright and OR-ing with the initial collision vector ¢\n\n| Function xX | Function Y\ncv: (1011010) Cv: (1010)\n\n1011010\n\nNPTEL ONLINE NATIONAL\nTeena\n\nCtirrineaniOn courses"
+  },
+  {
+    "text": "determine the latency cycles such that the minimum average latency is minimized.",
+    "start": 1250.16,
+    "end": 1255.52,
+    "ocr_text": "4\n\n+ From the state diagram, we can determine latency\nminimum average latency (MAL).\nIna simple cycle, a state appears only once\n— Some of the simple cycles are greedy cycles, which are formed only using,\noutgoing edges with minimum latencies.\n\nwe"
+  },
+  {
+    "text": "So, when we talk about a simple cycle a state appears only once. This is of course, the kind of",
+    "start": 1257.6,
+    "end": 1264.4,
+    "ocr_text": "4\n\n+ Fromthe an determine latency\nminimum average latency (IMAL).\nIna simple cycle, a state appears only once\n= some of the simp! are greédy cycles, which are formed only using,\ndges with minimum latencies,\n\nEa"
+  },
+  {
+    "text": "cycle that you want because we do not want a cycle like this where I am telling 3 3 8 3 3 8",
+    "start": 1264.4,
+    "end": 1273.44,
+    "ocr_text": "4\n\n+ Fromthe an determine latency\nminimum average latency (IMAL).\nIna simple cycle, a state appears only once\n= some of the simp! are greédy cycles, which are formed only using,\ndges with minimum latencies,\n\nEa"
+  },
+  {
+    "text": "3 is appearing twice that I shall not be considering as a feasible cycle.",
+    "start": 1273.44,
+    "end": 1277.44,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\n\nthe permissible state transitions among successive initiations.\n\nate p-bits to the\n\nshifting the present\n\ntate at time t+p Is obtained by\n\nThe next\n\nright and OR-ing with the initial collis\n\n| Function x Function Y\ncv: (1011010) €v: (1010)\n\n1011010 ]\n\nMT KHARAGPUR CtitrineaniOn courses Teena"
+  },
+  {
+    "text": "I shall only be considering simple cycles and greedy cycles are those where from every state",
+    "start": 1278.64,
+    "end": 1285.6,
+    "ocr_text": "4a\n\n+ From the state diagram, we can determine latency\nminimum average latency (MAL).\nIna simple cycle, a state appears only once\n— Some of the Simple cycles are greedy cycles, which are formed only using,\noutgoing edges with minimum latencies.\n\nwe"
+  },
+  {
+    "text": "we shall only be taking the outgoing edges with minimum level like in the previous example if I",
+    "start": 1285.6,
+    "end": 1293.84,
+    "ocr_text": "a\n\n+ From the state diagram, we can determine latency\nminimum average latency (IMAL).\nIna simple cycle, a state appears only once\n— Some of the simple cycles are greedy cycles, which are formed only using,\noutgoing edges with minimum latencies.\n\niriouanacun TEE counses | =\n\n~~"
+  },
+  {
+    "text": "am here the outgoing minimum is 1. So, I will have to go 1 here there is only this is one greedy",
+    "start": 1294.4,
+    "end": 1301.52,
+    "ocr_text": "a\n\n+ From the state diagram, we can determine latency\nminimum average latency (IMAL).\nIna simple cycle, a state appears only once\n— Some of the simple cycles are greedy cycles, which are formed only using,\noutgoing edges with minimum latencies.\n\niriouanacun TEE counses | =\n\n~~"
+  },
+  {
+    "text": "cycle and if I am here 3 is my minimum outgoing. So, this is my only greedy cycle.",
+    "start": 1301.52,
+    "end": 1308.64,
+    "ocr_text": "4\n\nev (1011010) runetieny"
+  },
+  {
+    "text": "From here again 1 and 5 is greedy cycle from this state 3 is a greedy cycle.",
+    "start": 1309.84,
+    "end": 1315.04,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\n\nshifting the present\n\ntate at time t+p Is obtained by ate p-bits to the\n\nThe next\n\nNT KHARAGPUR"
+  },
+  {
+    "text": "So, these are the simple cycles for function x all possible simple cycles where",
+    "start": 1315.84,
+    "end": 1323.44,
+    "ocr_text": "4\n\nFrom the state diagram, we can determine latency\nminimum average latency (MAL).\n\nme of the simple cycles are greedy cycles, which are formed only using\ndges with minimum latencies.\n\n(6), (8). (2.8), (3,"
+  },
+  {
+    "text": "the numbers are not repeated out of them there are 2 greedy cycles.",
+    "start": 1325.44,
+    "end": 1328.96,
+    "ocr_text": "4\n\n+ From the state diagram, we can determine latency\n\nminimum average latency (IMAL).\nIna simple cycle, a state appears only once\n\n= some of the simple cycles are greedy cycles, which are formed only using,\n\noutgoing edges with minimum latencies.\n\n+ simple cycles: (3), (6), (8), (2,8), B\n\n+ Greedy cycles: (3), (2\n\nIT RHARAGPUR CtitrincaniOn couRses"
+  },
+  {
+    "text": "Similarly, for the function y there are 4 simple cycles and 2 greedy cycles.",
+    "start": 1330.88,
+    "end": 1335.68,
+    "ocr_text": "4\n\n+ From the state diagram, we can determine latency\n\nminimum average latency (IMAL).\nIna simple cycle, a state appears only once\n\n= some of the simple cycles are greedy cycles, which are formed only using,\n\noutgoing edges with minimum latencies.\n\n+ simple cycles: (3), (6), (8), (2,8), B\n\n+ Greedy cycles: (3), (2\n\nIT RHARAGPUR CtitrincaniOn couRses"
+  },
+  {
+    "text": "And for both the cases if you only look at the greedy cycles the minimum average latency or",
+    "start": 1337.92,
+    "end": 1344.24,
+    "ocr_text": "4\n\n+ From the state diagram, we can determine latency\nminimum average latency (MAL).\nIna simple cycle, a state appears only once\n— Some of the simple cycles are greedy cycles, which are formed only using,\noutgoing edges with minimum latencies.\n\nFunction ¥:\n\nFunction X\n(3), (6), (8), (12 + Simple cycles: (3), (5), (2,5), (3.5\n\n+ simple cycle\n+ Greedy cycles: (3), (1\n\nGreedy cycles: (3), (1\nMAL = 3 for both x 3\n\nITKHARAGPUR Ctitrin@aniOn courses"
+  },
+  {
+    "text": "ML is 3 in both cases in both the cases 3 3 and 1 5 average is also 3.",
+    "start": 1344.24,
+    "end": 1349.84,
+    "ocr_text": "4\n\n+ From the state diagram, we can determine latency\nminimum average latency (MAL).\nIna simple cycle, a state appears only once\n— Some of the simple cycles are greedy cycles, which are formed only using,\noutgoing edges with minimum latencies.\n\nFunction ¥:\n\nFunction X\n(3), (6), (8), (12 + Simple cycles: (3), (5), (2,5), (3.5\n\n+ simple cycle\n+ Greedy cycles: (3), (1\n\nGreedy cycles: (3), (1\nMAL = 3 for both x 3\n\nITKHARAGPUR Ctitrin@aniOn courses"
+  },
+  {
+    "text": "Now, the scheduling algorithm looks or goes as follows.",
+    "start": 1352.4,
+    "end": 1357.2,
+    "ocr_text": "4\n\n+ From the state diagram, we can determine latency\n\nminimum average latency (IMAL).\n\n= some of the simple cycles are greedy cycles, which are formed only using,\n\noutgoing edges with minimum latencies.\n\nFunction ¥:\n\nin yeles: (3), (5), (2,5), (3.5\n\nSimple cycles: (3), (6), (8), (2.8), (3,\n@),2.5)\n\nGreedy cycles: (3), (2\nMAL = 3 for both X and Y\n\nITKHARAGPUR CtitrincariOn courses"
+  },
+  {
+    "text": "Suppose I want to build a control circuit which will automatically tell me that whether it is",
+    "start": 1357.92,
+    "end": 1364.0,
+    "ocr_text": "The Scheduling Algorithm\n\n1) then\n\nR= ROR CVin //Lorical OR with original CV\n\nITKHARAGPUR CtitrineaTiOn courses"
+  },
+  {
+    "text": "safe to feed the next data or not. So, load collision vector in a ship register.",
+    "start": 1364.0,
+    "end": 1370.4,
+    "ocr_text": "The Scheduling Algorithm\n\n1) then\n\nR= ROR CVin //Lorical OR with original CV\n\nITKHARAGPUR CtitrineaTiOn courses"
+  },
+  {
+    "text": "So, this is my original collision vector and well ship register is initialized to 0 I initially",
+    "start": 1370.8,
+    "end": 1380.0,
+    "ocr_text": "The Scheduling Algorithm\n(CVn\n) then\n\nITKHARAGPUR CtitrineaTiON courses"
+  },
+  {
+    "text": "load it 0 or of this. So, I load my collision vector in the ship register initial.",
+    "start": 1380.0,
+    "end": 1385.68,
+    "ocr_text": "The Scheduling Algori\n\n1ad collision vector (CV) in a shift regi\n1) then\n\nITKHARAGPUR Ctitrin@atiOn courses"
+  },
+  {
+    "text": "So, load CV in the ship register. Now, at every point in time I do a right shift where I feed a",
+    "start": 1386.32,
+    "end": 1393.28,
+    "ocr_text": "ITKHARAGPUR Ctitrint@atiOn courses"
+  },
+  {
+    "text": "0 and I check whether a 0 is coming out or a 1 is coming out. So, if a 1 is coming out which",
+    "start": 1393.28,
+    "end": 1400.16,
+    "ocr_text": "ITKHARAGPUR Ctitrint@atiOn courses"
+  },
+  {
+    "text": "means that next time instant is forbidden you cannot feed a data at that time.",
+    "start": 1400.16,
+    "end": 1406.64,
+    "ocr_text": "The Scheduling Algorithm\n\n1) then\n\nR= ROR CVing //Lorical OR with original CV\n\nIT KHARAGPUR Ctitrin@atiOn courses Teenwoe"
+  },
+  {
+    "text": "So, if the LSB is 1 last bit that is coming out is 1 then do not initiate an operation simply",
+    "start": 1407.44,
+    "end": 1414.32,
+    "ocr_text": "The Scheduling Algori\n\nHf (LSB of Ris 1) then\n\nShift Reg!\n\nMT KHARAGPUR Ctitrini@aTiOn courses Teenwoe"
+  },
+  {
+    "text": "ship the register by 1 bit with 0 insertion and in the next iteration next clock cycle again check",
+    "start": 1414.32,
+    "end": 1422.64,
+    "ocr_text": "The Scheduling Algori\n\nHf (LSB of Ris 1) then\n\nShift Reg!\n\nMT KHARAGPUR Ctitrini@aTiOn courses Teenwoe"
+  },
+  {
+    "text": "it. Whether in the next clock you are allowed to feed or not right. But if you find that it is a 0",
+    "start": 1422.64,
+    "end": 1429.68,
+    "ocr_text": "The Scheduling Algori\n\njad collision vector (CV) in a shift register R.\n1) then\n\nITKHARAGPUR CiitrineaTiON couRses\n\nTecnwoe"
+  },
+  {
+    "text": "what does that mean with respect to the state diagram that here 0 means you are going to the next",
+    "start": 1430.24,
+    "end": 1438.88,
+    "ocr_text": "The Scheduling Algori\n\n1) then,\n\nITKHARAGPUR Ctitrin@atiOn courses"
+  },
+  {
+    "text": "state. Next state means you have to shift right and or with the collision vector right to get",
+    "start": 1438.88,
+    "end": 1444.56,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\n\nshifting the present\n\ntate at time t+p is obtained by ate p-bits to the\n\nThe next\n\nright and OR-ing with the initial collis\n\n| Function x | Function Y\ncv: (1011010) cv: (1010)\n1011010\n\nNPTEL ONLINE NATIONAL\nCtitrineaniOn courses Teenwoe\n\nITKHARAGPUR"
+  },
+  {
+    "text": "the new state. So, the same thing we are doing here. Here you see. So, we initiate an operation",
+    "start": 1444.56,
+    "end": 1453.12,
+    "ocr_text": "4\n\n+ From the collision vector (CV), we can construct a state diagram specifying,\nthe permissible state transitions among successive initiations.\n\nshifting the present\n\ntate at time t+p is obtained by ate p-bits to the\n\nThe next\n\nright and OR-ing with the initial collis\n\n| Function x | Function Y\ncv: (1011010) cv: (1010)\n1011010\n\nNPTEL ONLINE NATIONAL\nCtitrineaniOn courses Teenwoe\n\nITKHARAGPUR"
+  },
+  {
+    "text": "if the bit is 0 initial operation then we shift it right and then we or it with the collision",
+    "start": 1453.12,
+    "end": 1458.96,
+    "ocr_text": "The Scheduling Algori\n\n1) then,\n\nR= RORCY, //Lorical OR with original CV\n\nNTKHARAGPUR Ctitrin@aTiOn courses"
+  },
+  {
+    "text": "vector whatever is the shifted value we or it with the collision vector and load it back into",
+    "start": 1458.96,
+    "end": 1464.56,
+    "ocr_text": "The Scheduling Algorithm\n\n1) then\n\nITKHARAGPUR CtitrincatiOn courses"
+  },
+  {
+    "text": "the shift register and this process we repeat. So, if you just think so whatever we are doing here",
+    "start": 1464.56,
+    "end": 1471.84,
+    "ocr_text": "The Scheduling Algorithm\n\n1) then\n\nITKHARAGPUR CtitrincatiOn courses"
+  },
+  {
+    "text": "is exactly the process by which we are computing the state diagram. So, at every step we are trying",
+    "start": 1471.84,
+    "end": 1479.12,
+    "ocr_text": "The Scheduling Algori\n\n1) then\n\nITKHARAGPUR Ctitrin@aTiOn courses\n\nTeenwoe"
+  },
+  {
+    "text": "to shifted by a position by a number of bits which is allowed that means 0. So, we go on shifting",
+    "start": 1479.12,
+    "end": 1485.44,
+    "ocr_text": "The Scheduling Algori\n\n1) then\n\nITKHARAGPUR Ctitrin@aTiOn courses\n\nTeenwoe"
+  },
+  {
+    "text": "till the next 0 comes then we or it with the collision vector that will be my new step",
+    "start": 1485.44,
+    "end": 1491.12,
+    "ocr_text": "The Scheduling Algori\n\n1) then\n\nITKHARAGPUR Ctitrin@aTiOn courses\n\nTeenwoe"
+  },
+  {
+    "text": "and we always move when you get the first 0 that means we are looking only for greedy cycles.",
+    "start": 1491.84,
+    "end": 1500.4,
+    "ocr_text": "The Scheduling Algori\n\n1) then\n\nITKHARAGPUR Ctitrin@aTiOn courses\n\nTeenwoe"
+  },
+  {
+    "text": "From every state we are moving out following the smallest or the least value of the cycle right.",
+    "start": 1501.28,
+    "end": 1509.04,
+    "ocr_text": "Optimizing a Pipeline Schedule\n\nWe can insert non-compute (dummy) delay stages into the original pipeline.\ns will modify the reservation table, resulting in a new collision vector.\n\nibly a shorter MAL.\n\nITKHARAGPUR CiirineaniOn courses"
+  },
+  {
+    "text": "Fine now there are ways to optimize a pipeline schedule. Now, I am showing you one method with the",
+    "start": 1509.36,
+    "end": 1521.76,
+    "ocr_text": "Optimizing a Pipeline Schedule\n\nWe can insert non-compute (dummy) delay stages into the original pipeline.\ns will modify the reservation table, resulting in a new collision vector.\n\nibly a shorter MAL.\n\nITKHARAGPUR CiirineaniOn courses"
+  },
+  {
+    "text": "help of an example. Suppose we have a non-linear pipeline like this where the reservation table is",
+    "start": 1521.76,
+    "end": 1529.68,
+    "ocr_text": "Optimizing a Pipeline Schedule\n\nWe can insert non-compute (dummy) delay stages into the original pipeline.\ns will modify the reservation table, resulting in a new collision vector.\n\nibly a shorter MAL.\n\nITKHARAGPUR CiirineaniOn courses"
+  },
+  {
+    "text": "as follows where you see in some of the time steps like 4 two of the stages are simultaneously used",
+    "start": 1529.68,
+    "end": 1537.04,
+    "ocr_text": "Optimizing a Pipeline Schedule\n\nWe can insert non-compute (dummy) delay stages into the original pipeline.\ns will modify the reservation table, resulting in a new collision vector\n\nibly a shorter MAL.\n\nITKHARAGPUR Ctitrin@aTiOn courses"
+  },
+  {
+    "text": "and here the forbidden latencies are 1, 2 and 4. So, 1 0 1 1. So, the state diagram will be very",
+    "start": 1537.76,
+    "end": 1549.52,
+    "ocr_text": "Optimizing a Pipeline Schedule\n\nWe can insert non-compute (dummy) delay stages into the original pipeline.\ns will modify the reservation table, resulting in a new collision vector\n\nibly a shorter MAL.\n\nITKHARAGPUR Ctitrin@aniOn courses"
+  },
+  {
+    "text": "simple you can either shifted by 3 or 5 or more. Obviously, 3 is a minimum average latency.",
+    "start": 1549.52,
+    "end": 1557.04,
+    "ocr_text": "Optimizing a Pipeline Schedule\n\nWe can insert non-compute (dummy) delay stages into the original pipeline.\ns will modify the reservation table, resulting in a new collision vector\n\nibly a shorter MAL.\n\nITKHARAGPUR CetrineatiOn courses"
+  },
+  {
+    "text": "Now, what we are exploring here is that ok can we insert some delay elements in the pipeline",
+    "start": 1557.76,
+    "end": 1564.4,
+    "ocr_text": "Optimizing a Pipeline Schedule\n\nWe can insert non-compute (dummy) delay stages into the original pipeline.\nThis will modify the reservation table, resulting in a new collision vector\n\nibly a shorter MAL.\n\nMT KHARAGPUR Ciitrin@atiOn courses Teena"
+  },
+  {
+    "text": "some dummy stages which do not compute anything just eat up some clock cycles.",
+    "start": 1565.2,
+    "end": 1571.04,
+    "ocr_text": "Optimizing a Pipeline Schedule\n\nWe can insert non-compute (dummy) delay stages into the original pipeline.\ns will modify the reservation table, resulting in a new collision vector\n\nibly a shorter MAL.\n\nIT KHARAGPUR CtitrincaTiOn courses Teenwoe"
+  },
+  {
+    "text": "So, you may say that well if you insert dummy stages which do nothing simply eat up some cycles",
+    "start": 1572.0,
+    "end": 1579.12,
+    "ocr_text": "Optimizing a Pipeline Schedule\n\nWe can insert non-compute (dummy) delay stages into the original pipeline.\ns will modify the reservation table, resulting in a new collision vector\n\nibly a shorter MAL.\n\nIT KHARAGPUR CtitrincaTiOn courses Teenwoe"
+  },
+  {
+    "text": "then my time will be increasing. Well your time may be increasing for a single computation",
+    "start": 1579.12,
+    "end": 1585.04,
+    "ocr_text": "Optimizing a Pipeline Schedule\n\nWe can insert non-compute (dummy) delay stages into the original pipeline.\ns will modify the reservation table, resulting in a new collision vector\n\nibly a shorter MAL.\n\nIT KHARAGPUR CtitrincaTiOn courses Teenwoe"
+  },
+  {
+    "text": "but when you are feeding many data one after the other earlier there are lot of collisions.",
+    "start": 1585.6,
+    "end": 1590.96,
+    "ocr_text": "4a\n\nOptimizing a Pipeline Schedule\n\ncan insert non-compute (dummy) delay stages into the nal pipeline.\nThis will modify the reservation table, resulting in a new collision vector\n\nPossibly a shorter MAL.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR Ctitrin@aniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "But if you insert those delays maybe the number of collisions will become less that is the idea.",
+    "start": 1591.68,
+    "end": 1597.92,
+    "ocr_text": "4a\n\nOptimizing a Pipeline Schedule\n\ncan insert non-compute (dummy) delay stages into the nal pipeline.\nThis will modify the reservation table, resulting in a new collision vector\n\nPossibly a shorter MAL.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR Ctitrin@aniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "So, for this example suppose I insert delays like this this was my original pipeline I insert delays",
+    "start": 1599.52,
+    "end": 1606.64,
+    "ocr_text": "4a\n\nOptimizing a Pipeline Schedule\n\ncan insert non-compute (dummy) delay stages into the nal pipeline.\nThis will modify the reservation table, resulting in a new collision vector\n\nPossibly a shorter MAL.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR Ctitrin@aniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "in 2 of the branches 1 delay here 1 delay here that means, while going from s 3 to s 1 I put a delay",
+    "start": 1606.64,
+    "end": 1614.96,
+    "ocr_text": "Ciitrin@atiOn courses"
+  },
+  {
+    "text": "and s 3 to s 1 I mean s 3 to s 3 and s 3 to s 1 also I put a delay.",
+    "start": 1615.04,
+    "end": 1620.72,
+    "ocr_text": "MAL = 2 (for the greedy cycle (1,3))\n\nIT KHARAGPUR CiitrincaTiOn courses Teena"
+  },
+  {
+    "text": "So, earlier my reservation table was this now in the reservation table there will be 2 additional",
+    "start": 1621.52,
+    "end": 1626.96,
+    "ocr_text": "MAL = 2 (for the greedy cycle (1,3))\n\nIT KHARAGPUR CiitrincaTiOn courses Teena"
+  },
+  {
+    "text": "dummy stages introduced and because of the delay some of the check marks will get shifted.",
+    "start": 1626.96,
+    "end": 1632.96,
+    "ocr_text": "a ONG\n10031 froooaa\n> a <\n\nedy cycle (1,3))\n\nMT KHARAGPUR Ctitrin@aniOn courses Teennoe"
+  },
+  {
+    "text": "This will get shifted here this check mark will get shifted here and",
+    "start": 1633.84,
+    "end": 1638.24,
+    "ocr_text": "a ONG\n10031 froooaa\n> a <\n\nedy cycle (1,3))\n\nMT KHARAGPUR Ctitrin@aniOn courses Teennoe"
+  },
+  {
+    "text": "it is a here after s 3 you first go to d 1 you are going to d 1 then you are going back to s 3",
+    "start": 1638.24,
+    "end": 1646.0,
+    "ocr_text": "edy cycle (1,3))\n\nmaanacron | LEH couses | SPRUNG\n3\n\nGs"
+  },
+  {
+    "text": "earlier you are directly going to s 3. Similarly, for this from s 3 you are going to d 2",
+    "start": 1646.0,
+    "end": 1652.72,
+    "ocr_text": "Suppo:\nelement\n= Thi\n\na ONG\n10031 froooaa\n; go <\n\nedy cycle (1,3))\n\nITKHARAGPUR Ctitrin@aTiOn courses\n\nTeenwoe"
+  },
+  {
+    "text": "this was s 3 from d 2 then you are going to s 1.",
+    "start": 1654.56,
+    "end": 1657.76,
+    "ocr_text": "Suppo:\nelement\n= Thi\n\na ONG\n10031 froooaa\n; go <\n\nedy cycle (1,3))\n\nITKHARAGPUR Ctitrin@aTiOn courses\n\nTeenwoe"
+  },
+  {
+    "text": "Now, for this one again it is a slightly more complex here the latency the forbidden ones are 2",
+    "start": 1659.6,
+    "end": 1666.8,
+    "ocr_text": "SEONG\n10011 froooaa\n\nedy cycle (1,3))\n\nITKHARAGPUR Ctitrin@aTiOn courses"
+  },
+  {
+    "text": "and 1 2 3 4 5 6. So, 2 and 6. So, if you just compute this state transition diagram in a similar way",
+    "start": 1666.88,
+    "end": 1674.8,
+    "ocr_text": "edy cycle (1,3))\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR Ciitrin@aTiON couRses Teenwoe"
+  },
+  {
+    "text": "you can check this this is the state transition diagram which is obtained and if you compute the",
+    "start": 1674.8,
+    "end": 1680.4,
+    "ocr_text": "edy cycle (1,3))\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR Ciitrin@aTiON couRses Teenwoe"
+  },
+  {
+    "text": "greedy cycles in this case this will be the best cycle 1 and 3 1 3 1 3 1 3 1 3 which will be",
+    "start": 1680.4,
+    "end": 1688.64,
+    "ocr_text": "edy cycle (1,3))\n\nNPTEL ONLINE NATIONAL\nMT KHARAGPUR CtitrincaTiOn courses Teenwoe"
+  },
+  {
+    "text": "resulting in an average of 2. Earlier it was 3 now by inserting the delays we have",
+    "start": 1688.72,
+    "end": 1696.16,
+    "ocr_text": "Suppo:\nelement\n\nedy cycle (1,3))\n\nITKHARAGPUR Ctitrin@aTiON courses\n\nTeenwoe"
+  },
+  {
+    "text": "achieved an average of 2. So, by inserting this kind of dummy delay stages the performance of",
+    "start": 1696.88,
+    "end": 1706.32,
+    "ocr_text": "edy cycle (1,3))\n\nIT RHARAGPUR Ctitrin@aTiOn courses"
+  },
+  {
+    "text": "a non-linear pipeline can be improved this is something you have to keep in mind.",
+    "start": 1706.32,
+    "end": 1710.32,
+    "ocr_text": "edy cycle (1,3))\n\nIT RHARAGPUR Ctitrin@aTiOn courses"
+  },
+  {
+    "text": "Now, let us work out couple of example let me work out one of them and one of them I",
+    "start": 1712.96,
+    "end": 1718.4,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "will leave as an exercise for you. Let us take this smaller one. So, here we have a reservation table",
+    "start": 1718.4,
+    "end": 1725.2,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "where there are 3 stages s 1 s 2 and s 3 and there are",
+    "start": 1730.24,
+    "end": 1737.52,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "4 time steps which are required for a computation. This is a very simple example where my only",
+    "start": 1737.68,
+    "end": 1750.96,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "forbidden latency is how much 1 2 3 nothing else. So, my collision vector will be 3 2 1 this will",
+    "start": 1750.96,
+    "end": 1762.32,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "be my collision vector. So, if I draw this state transition diagram now this will be my initial state",
+    "start": 1762.32,
+    "end": 1770.16,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "now I can shift it by either 1 or 2 1 is possible 2 is possible. So, if I shift it by 1 what will",
+    "start": 1771.12,
+    "end": 1778.56,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "happen I will shift it right by 1 position it will be 0 1 0 I or it with the original collision",
+    "start": 1778.56,
+    "end": 1784.56,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "vector I get 1 1 0. So, my new state will be 1 1 0 if I shift it by 2 positions it will be 0 0 1",
+    "start": 1784.64,
+    "end": 1794.4,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "again if I or it with the original collision vector I get 1 0 1.",
+    "start": 1795.84,
+    "end": 1799.84,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "Now, once you are here the only 0 is here 1 if you shift it by 1 position",
+    "start": 1806.08,
+    "end": 1812.0,
+    "ocr_text": "Exercise 1\n\nthe following reservation table\npat are the forbidden latenci«\nthe state transition diagram\nall the simple cycles and greedy cycl\n‘mine the optimal constant latency cycle,\nDetermine the pipeline throughput, f\n\nNTKHARAGPUR CtitrineatiOn courses\n\nand the\n\na\n\nMAL.\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "it will become 0 1 1 and or it with original it will become 1 1 1. So, if you shift it by 1 you",
+    "start": 1812.16,
+    "end": 1822.16,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "land up in another state 1 1 1 and here 2 is the only forbidden if you shift it by 2 positions",
+    "start": 1822.64,
+    "end": 1830.48,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "it will be 0 0 1 or with 1 0 0 it will remain in 1 0 1. So, if you have 2 it will remain here.",
+    "start": 1830.48,
+    "end": 1839.28,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "So, this is complete for the 0's now for the ones for the other ones it will be 4 or more from any",
+    "start": 1839.52,
+    "end": 1849.2,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "state if it is 4 or more you go back to the initial state. Here also 4 or more from here also",
+    "start": 1849.2,
+    "end": 1860.96,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "4 or more. So, if you analyze this state transition diagram we will see that your",
+    "start": 1861.92,
+    "end": 1868.08,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "minimum cycle is this 2. So, minimum average latency will be 2 right. So, like this given any",
+    "start": 1869.2,
+    "end": 1881.84,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "reservation table you can first calculate your state transition diagram then from here you have to",
+    "start": 1881.84,
+    "end": 1888.08,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "find the cycle that results in minimum average latency that will be your minimum right fine.",
+    "start": 1888.08,
+    "end": 1896.4,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "Let us work out another example this directly do not relate to instruction scheduling but",
+    "start": 1897.28,
+    "end": 1903.76,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "a problem of pipelining. Let us say what this statement it says non pipeline processor X",
+    "start": 1904.48,
+    "end": 1912.4,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nITKHARAGPUR CtitrineaniOn courses"
+  },
+  {
+    "text": "what is this no pipelining has a clock frequency of 250 megahertz and a CPI of 4 because there is",
+    "start": 1913.2,
+    "end": 1920.16,
+    "ocr_text": "4\n\nExercise 2\n\nAnon- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How: to latch delay and clock\n\nskew, the clock rate of Y is only 200 MHz\n\nwhat will be the speedup of p: ompared to processor x?\n\njarticular program\n\nTECHNOLOGY, MEGHALAYA\n\nCtitrin@aTiOn courses"
+  },
+  {
+    "text": "no pipelining it takes 4 clock cycles to to execute every instruction. There is an improved",
+    "start": 1920.16,
+    "end": 1928.64,
+    "ocr_text": "4\n\nExercise 2\n\nAnon- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\n5-stage linear instruction pipeline. How:\n\nskew, the clock rate of Y is only 200 MHz\n\nto latch delay and clock\n\nwhat will be the speedup of p: Y as compared to processor x?\n\narticular program\n\nTECHNOLOGY, MECHALAYA\n\nITKHARAGPUR QtitrintcaniOn courses"
+  },
+  {
+    "text": "version Y which is having a 5 stage linear pipeline but because of the latch delays and other",
+    "start": 1928.64,
+    "end": 1935.68,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\n\nskew, the clock rate of Y is only 200 MHz.\n\nwhat will be the speedup of ps Y as compared to processor x?\n\njarticular program\n\nTECHNOLOGY, MECHALAYA\n\nITKHARAGPUR Ciitrin@aniOn courses"
+  },
+  {
+    "text": "overheads the clock frequency is reducing to 200 megahertz. Now, the 2 things it is asked that",
+    "start": 1935.68,
+    "end": 1942.64,
+    "ocr_text": "4\n\nExercise 2\n\nAnon- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nr instruction pipeline. How: to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\nJarticular program\n\nTECHNOLOGY, MECHALAYA\n\nITKHARAGPUR Ciitrin@aniOn courses"
+  },
+  {
+    "text": "if I am running 5000 instructions on both the processors what will be the speed up.",
+    "start": 1942.64,
+    "end": 1948.08,
+    "ocr_text": "4\n\nExercise 2\n\nAnon- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nr instruction pipeline. How: to latch delay and clock\nskew, the clock rate of Y is only 200 MHz\n\ning of 5000 instructions, ed on both proces:\n\nwhat will be the speedup of ps Y as compared to processor x?\n\nJarticular program\n\nTECHNOLOGY, MECHALAYA\n\nITKHARAGPUR Ciitrin@aniOn courses"
+  },
+  {
+    "text": "So, how fast will Y be with respect to X and secondly what will be the MIPS rating of the 2 processors?",
+    "start": 1948.08,
+    "end": 1955.68,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz.\nwhat will be the speedup of processor ¥ as compared to processor X?\n\njarticular program"
+  },
+  {
+    "text": "Let us work out for the processor X let us calculate the execution time.",
+    "start": 1956.4,
+    "end": 1964.0,
+    "ocr_text": "4\n\nExercise 2\n\nA non- pipelined processor X has a clock frequency of 250 MHz and an\naverage CPI of 4. Processor Y, an improved version of X, is designed with a\nlinear instruction pipeline. How to latch delay and clock\nskew, the clock rate of Y is only 200 MHz.\nwhat will be the speedup of processor ¥ as compared to processor X?\n\njarticular program"
+  },
+  {
+    "text": "So, you recall execution time is given by the instruction count multiplied by the cycles for",
+    "start": 1965.12,
+    "end": 1972.48,
+    "ocr_text": "ep eS BEC ear"
+  },
+  {
+    "text": "instruction multiplied by the clock cycle time. So, for the first processor execution time let us",
+    "start": 1972.48,
+    "end": 1981.04,
+    "ocr_text": "ep eS BEC ear"
+  },
+  {
+    "text": "call it X t of X will be there are 5000 instructions CPI is 4 it is running at 250 megahertz clock.",
+    "start": 1981.04,
+    "end": 1993.36,
+    "ocr_text": "ep eS BEC ear"
+  },
+  {
+    "text": "So, it will be 1 by 250 mega this many microseconds. So, if you just calculate this this comes to 80 microseconds.",
+    "start": 1993.36,
+    "end": 2005.04,
+    "ocr_text": "se RS BEHCRES Ce"
+  },
+  {
+    "text": "Similarly, the execution time of the pipeline processor will again instruction count is 5000.",
+    "start": 2005.52,
+    "end": 2013.2,
+    "ocr_text": "we PS BEC eee\n\nTx =\n\n5000 x4 X Zs0r sae, = ee"
+  },
+  {
+    "text": "Now, for a pipelining in the ideal case CPI is 1 because in every cycle you can feed a new",
+    "start": 2014.0,
+    "end": 2020.64,
+    "ocr_text": "we PS BEC eee\n\nTx =\n\n5000 x4 X Zs0r sae, = ee"
+  },
+  {
+    "text": "instruction and one instruction will be completing every clock cycle and now your clock cycle has",
+    "start": 2021.68,
+    "end": 2027.12,
+    "ocr_text": "Xe “T= rc x cpr x CCT\n\nMeee\n\nxy?\n\n5000 x4 X Json msec = BOA#C\n\n5000 KX |"
+  },
+  {
+    "text": "slowed down it is 200 megahertz. So, it is 200 mega. So, if you just calculate this comes to",
+    "start": 2027.12,
+    "end": 2036.24,
+    "ocr_text": "pore TeGuvEGrE RIECTs\nhsec = BOARC\n\n5000 x4 X 250m\n\nTx =\n\nXTy\n\nmd\n\n5000 X |!"
+  },
+  {
+    "text": "25 microseconds. So, the first answer the speed up of course, your Y is faster than X.",
+    "start": 2036.8,
+    "end": 2048.72,
+    "ocr_text": "ey RS Be CRE ca\n\nWee\n\nFo Asc\n25 Hee\n\nBao Glix econ Kalaall\ngo00 x | K oon ae\n\nXTy ="
+  },
+  {
+    "text": "So, the execution time of X divide by the execution time of Y 80 by 25 it is about 3.2.",
+    "start": 2048.8,
+    "end": 2059.52,
+    "ocr_text": "ie + (elpe i iCGNq\n5000 x4 X 250M usec\n\n5000 x | X soon He\n\ngo Asee\n\n2s Hee"
+  },
+  {
+    "text": "Now, second part of the problem concerns the MIPS rating. So, again for the machine X",
+    "start": 2061.12,
+    "end": 2069.92,
+    "ocr_text": "WPS EEE OB ccT\n\nNim = 9OV x4 X 250M\n\nMsec\n\neto sooo x | & zoon Me\n\nSpeedup =\n\neo Ase\n\n2s Hee"
+  },
+  {
+    "text": "you see for executing 5000 instruction you require 80 microseconds. So, you can say that in 80 microseconds",
+    "start": 2070.48,
+    "end": 2080.64,
+    "ocr_text": "We ors rc x CPE x CCT\n5000 x4 X Zsom fsec = %OA#C\n\nWie\nu =\nii6) = sooo x | & Soon Mo 2s msec\n| tes SS\nguip 2 ame ees 32"
+  },
+  {
+    "text": "you are able to execute 5000 instructions. Therefore, in one second how many you can execute?",
+    "start": 2081.68,
+    "end": 2092.72,
+    "ocr_text": "% yr= rc x CPE * com\nRie = SOM x4 xX stom MCE = go Ast\nXTy = sooo xX ! * Som R= AGE\n| es\nSpeedup = XTy =e e 32\n\nx FO Mp"
+  },
+  {
+    "text": "This is your MIPS million instructions per second. This is 5000 by 80 microse there. So,",
+    "start": 2093.68,
+    "end": 2101.2,
+    "ocr_text": "x ela Be GE CEE\n\nXTy = 5000 x4 X Som &\n=. 2s Mee\n\neae go00 x | X zoor Me\nXG <\nSpecie = Xs B82\n\n% go nsec\n1"
+  },
+  {
+    "text": "microse to 10 to the minus 6 when it goes up it will be 10 to the power 6 it will be mega million",
+    "start": 2101.2,
+    "end": 2107.52,
+    "ocr_text": "IC x CPI x CCT\n\nears\nXT, = 5000 * 4 % sso eo) we go Ase\nig) = 5000 X | K Soon 25 Mec\nspeedup = ee S232\ns 30 Asc _ 5000 insts\n5000\n\n| 24"
+  },
+  {
+    "text": "instructions per second. So, this comes to 62.5 million instructions per second.",
+    "start": 2107.52,
+    "end": 2114.56,
+    "ocr_text": "Cer\n\nSs oa aU casa Cltis\nAT, = 5000 *4 * see = Lat\nig 2 Ot 1% zon ME tt\n\n| aes\nspeedup = XTy 25 ana\n\nx go Ase’\n\nsec"
+  },
+  {
+    "text": "Similarly, for Y it is 25. So, 25 microseconds is required to execute 5000 instructions.",
+    "start": 2114.8,
+    "end": 2126.32,
+    "ocr_text": "Cer\n\nSs oa aU casa Cltis\nAT, = 5000 *4 * see = Lat\nig 2 Ot 1% zon ME tt\n\n| aes\nspeedup = XTy 25 ana\n\nx go Ase’\n\nsec"
+  },
+  {
+    "text": "Therefore, in one second you can execute 5000 by 25 again there is micro. So, this many million",
+    "start": 2128.16,
+    "end": 2137.44,
+    "ocr_text": "Veer Seer mitca\n\nx\n1\n\nAT, = 5000 ¥4 * Sea Pe oan\n\nson Ls eon 73a\n\n; xD 2\nSpeedup = aa S ee"
+  },
+  {
+    "text": "instructions per second. This gives 200 microseconds and here it was 62.5 microseconds.",
+    "start": 2137.44,
+    "end": 2147.68,
+    "ocr_text": "Cer\n\nwar = 1E@p-CiAE iS\n5000 x4 X som oe eae\n\nny\n\nXTx\n\nXTy * sooo X | * oon ME ac\na eee a2\n\ngo Mee GAO SANE\n\nle Be Ne = Ge\n\nage = 5000 ists\n\n5002 yr?\n\n— 25"
+  },
+  {
+    "text": "So, you can see that the microseconds rating for the pipeline processor is significantly higher which",
+    "start": 2148.72,
+    "end": 2154.64,
+    "ocr_text": "y\n\ncer\n\nvee EEN CRS\n\n1\nXTx = 5000 X4¥ X 250M 7 Cl\nXTy = 207 E™ yanieel) 2 oe\ni es BSD\nSpeesup = XTy > 25 aa\ngo Ase p= AEE) Pe\n| sec Yama BO ON ae 4 ad\ncome Mrps = 625%\nWise == BLE ‘cal\n5002 yr75 = Sd\n\n25"
+  },
+  {
+    "text": "is very typical. So, with this we come to the end of this lecture. Now, in this lecture we talked",
+    "start": 2154.64,
+    "end": 2165.68,
+    "ocr_text": "y\n\ncer\n\nvee EEN CRS\n\n1\nXTx = 5000 X4¥ X 250M 7 Cl\nXTy = 207 E™ yanieel) 2 oe\ni es BSD\nSpeesup = XTy > 25 aa\ngo Ase p= AEE) Pe\n| sec Yama BO ON ae 4 ad\ncome Mrps = 625%\nWise == BLE ‘cal\n5002 yr75 = Sd\n\n25"
+  },
+  {
+    "text": "about the various ways in which we can calculate the permissible latencies in a general pipeline.",
+    "start": 2166.64,
+    "end": 2172.32,
+    "ocr_text": "ok A\n\nEND OF LECTURE 41\n\nIT KHARAGPUR CtitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "You see normally if it is just a linear pipeline all these calculations will not come into the",
+    "start": 2172.96,
+    "end": 2177.76,
+    "ocr_text": "ok A\n\nEND OF LECTURE 41\n\nIT KHARAGPUR CtitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "picture. But if it is a more complicated scenario complicated kind of a pipeline non-linear",
+    "start": 2177.76,
+    "end": 2183.84,
+    "ocr_text": "ok A\n\nEND OF LECTURE 41\n\nIT KHARAGPUR CtitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "properties feed forward and feed back connections then this latency calculation and",
+    "start": 2183.84,
+    "end": 2190.64,
+    "ocr_text": "ok A\n\nEND OF LECTURE 41\n\nIT KHARAGPUR CtitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "latency analysis becomes important. Thank you.",
+    "start": 2190.64,
+    "end": 2200.64,
+    "ocr_text": "ok A\n\nEND OF LECTURE 41\n\nIT KHARAGPUR CtitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  }
+]

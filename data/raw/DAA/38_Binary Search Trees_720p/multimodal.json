@@ -1,0 +1,2966 @@
+[
+  {
+    "text": "So, we now look at another data structure called a search tree.",
+    "start": 0.0,
+    "end": 4.4,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 6, Module 1\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nSearch trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, to motivate search trees, let's consider the following example.",
+    "start": 4.4,
+    "end": 10.4,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 6, Module 1\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nSearch trees\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, supposing you are an air traffic controller and you are controlling access to a single",
+    "start": 10.4,
+    "end": 15.08,
+    "ocr_text": "*"
+  },
+  {
+    "text": "runway where flights have to land and take off.",
+    "start": 15.08,
+    "end": 18.24,
+    "ocr_text": "*"
+  },
+  {
+    "text": "So, the air traffic control tower receives requests from the aircraft about their expected",
+    "start": 18.24,
+    "end": 24.04,
+    "ocr_text": "*"
+  },
+  {
+    "text": "arrival and departure times and these requests come at random time.",
+    "start": 24.04,
+    "end": 29.36,
+    "ocr_text": "*"
+  },
+  {
+    "text": "So, it's not that they come in the order of the time of the actual event.",
+    "start": 29.36,
+    "end": 34.48,
+    "ocr_text": "*"
+  },
+  {
+    "text": "So, we might first get a request for a landing in Chennai at 1623 and later on we might get",
+    "start": 34.48,
+    "end": 39.92,
+    "ocr_text": "*"
+  },
+  {
+    "text": "a request for a takeoff at 1612 which is actually earlier and then we might get another",
+    "start": 39.92,
+    "end": 44.68,
+    "ocr_text": "*"
+  },
+  {
+    "text": "arrival information at 1655 and then another earlier arrival information at 1618 and the",
+    "start": 44.68,
+    "end": 51.84,
+    "ocr_text": "*"
+  },
+  {
+    "text": "strategy that the control tower is supposed to follow is to give priority to the flight",
+    "start": 51.84,
+    "end": 57.04,
+    "ocr_text": "*"
+  },
+  {
+    "text": "with the earliest usage time.",
+    "start": 57.04,
+    "end": 59.64,
+    "ocr_text": "joa\n(a"
+  },
+  {
+    "text": "So, this is a priority queue.",
+    "start": 59.64,
+    "end": 63.52,
+    "ocr_text": "joa\n(a"
+  },
+  {
+    "text": "Each request goes into the queue but it has a priority depending on the expected time",
+    "start": 63.52,
+    "end": 67.72,
+    "ocr_text": "joa\n(a"
+  },
+  {
+    "text": "that it is going to take place.",
+    "start": 67.72,
+    "end": 69.24,
+    "ocr_text": "ieee"
+  },
+  {
+    "text": "So, we could give a min heap representation and if we take these six requests in the order",
+    "start": 69.24,
+    "end": 75.8,
+    "ocr_text": "ieee"
+  },
+  {
+    "text": "that they come and we insert them into the min heap, then we will get the min heap that",
+    "start": 75.8,
+    "end": 79.64,
+    "ocr_text": "es"
+  },
+  {
+    "text": "we see on the right hand side.",
+    "start": 79.64,
+    "end": 81.24,
+    "ocr_text": "es"
+  },
+  {
+    "text": "And so, in this because 1612 happens to be the earliest event among these six, it will",
+    "start": 81.96,
+    "end": 88.8,
+    "ocr_text": "es"
+  },
+  {
+    "text": "automatically float up to the root and so it will be available to us as the next event",
+    "start": 88.8,
+    "end": 94.0,
+    "ocr_text": "es"
+  },
+  {
+    "text": "to process and then maybe two minutes before that event happens, we can send a signal",
+    "start": 94.0,
+    "end": 98.48,
+    "ocr_text": "es"
+  },
+  {
+    "text": "to the flight giving it clearance to takeoff.",
+    "start": 98.48,
+    "end": 102.24,
+    "ocr_text": "ee"
+  },
+  {
+    "text": "So, suppose we have an extra requirement on this.",
+    "start": 102.24,
+    "end": 107.88,
+    "ocr_text": "ee"
+  },
+  {
+    "text": "Not only do we want to give priority to the earliest event to happen, but we also want",
+    "start": 107.88,
+    "end": 113.08,
+    "ocr_text": "ee"
+  },
+  {
+    "text": "to impose some minimum separation of planes to avoid any possibility of collisions on the",
+    "start": 113.08,
+    "end": 117.6,
+    "ocr_text": "ee"
+  },
+  {
+    "text": "runway.",
+    "start": 117.6,
+    "end": 118.6,
+    "ocr_text": "(eee:"
+  },
+  {
+    "text": "So, we say that two planes accessing the runway must be a minimum of three minutes apart.",
+    "start": 118.6,
+    "end": 124.12,
+    "ocr_text": "(eee:"
+  },
+  {
+    "text": "Now, in this example, we can see that the rule is violated by the two events at 1653",
+    "start": 124.12,
+    "end": 131.44,
+    "ocr_text": "(eee:"
+  },
+  {
+    "text": "and 1655.",
+    "start": 131.44,
+    "end": 133.12,
+    "ocr_text": "(eee:"
+  },
+  {
+    "text": "So, what happens is that we should when we insert or we accept the request for 1655,",
+    "start": 133.84,
+    "end": 139.2,
+    "ocr_text": "(eee:"
+  },
+  {
+    "text": "assuming it came after 1653, at this point, we should check that it is, whether it is",
+    "start": 139.2,
+    "end": 144.88,
+    "ocr_text": "a\neet"
+  },
+  {
+    "text": "at least three minutes apart from all the current pending requests.",
+    "start": 144.88,
+    "end": 147.72,
+    "ocr_text": "a\neet"
+  },
+  {
+    "text": "If not, we should send a message to the pilot saying 1655 is not possible.",
+    "start": 147.72,
+    "end": 152.24,
+    "ocr_text": "a\neet"
+  },
+  {
+    "text": "You must move your takeoff or landing to 1656 or later.",
+    "start": 152.24,
+    "end": 156.92,
+    "ocr_text": "a\neet"
+  },
+  {
+    "text": "Now, unfortunately, in the heap data structure, there is no easy way to do this.",
+    "start": 156.92,
+    "end": 161.12,
+    "ocr_text": "a\neet"
+  },
+  {
+    "text": "So, when 1655 is added to the heap, we have to scan it against all the elements in the",
+    "start": 161.12,
+    "end": 166.2,
+    "ocr_text": "aos\nee ok"
+  },
+  {
+    "text": "heap in order to find out whether it is within three minutes of any of them.",
+    "start": 166.2,
+    "end": 169.44,
+    "ocr_text": "aos\nee ok"
+  },
+  {
+    "text": "So, this would be a linear scan.",
+    "start": 169.44,
+    "end": 171.24,
+    "ocr_text": "aos\nee ok"
+  },
+  {
+    "text": "So, all other operations in certain delete on the heap were logarithmic, but this, if",
+    "start": 171.24,
+    "end": 176.44,
+    "ocr_text": "aos\nee ok"
+  },
+  {
+    "text": "we want to impose this constraint that no two elements in the heap are within three minutes",
+    "start": 176.44,
+    "end": 180.72,
+    "ocr_text": "aos\nee ok"
+  },
+  {
+    "text": "of each other, then we would add an extra linear time cost to every insert and this would",
+    "start": 180.72,
+    "end": 187.04,
+    "ocr_text": "(ota\neae,"
+  },
+  {
+    "text": "then make a heap unviable for this kind of data.",
+    "start": 187.04,
+    "end": 191.84,
+    "ocr_text": "(ota\neae,"
+  },
+  {
+    "text": "So, one way to compute this kind of requirement is to be able to check the predecessor and",
+    "start": 191.84,
+    "end": 200.16,
+    "ocr_text": "(ota\neae,"
+  },
+  {
+    "text": "the successor.",
+    "start": 200.16,
+    "end": 201.16,
+    "ocr_text": "Les\nee,"
+  },
+  {
+    "text": "In other words, given the list of values that we have, for any value, can we quickly compute",
+    "start": 201.16,
+    "end": 207.8,
+    "ocr_text": "Les\nee,"
+  },
+  {
+    "text": "what is the previous in terms of the nearest smaller value and the next successor, what",
+    "start": 207.8,
+    "end": 213.92,
+    "ocr_text": "(Ix\nleet"
+  },
+  {
+    "text": "is the nearest bigger value?",
+    "start": 213.92,
+    "end": 215.92,
+    "ocr_text": "(Ix\nleet"
+  },
+  {
+    "text": "So, if you look at 1618 for example, then the next smaller value is here.",
+    "start": 215.92,
+    "end": 220.84,
+    "ocr_text": "(Ix\nleet"
+  },
+  {
+    "text": "So, this is the predecessor, 1612 and the next bigger value is here.",
+    "start": 220.84,
+    "end": 225.76,
+    "ocr_text": "(Ix\nleet"
+  },
+  {
+    "text": "So, this is the successor.",
+    "start": 225.76,
+    "end": 227.56,
+    "ocr_text": "@)=\n\n7\n\nve\nNan\nOe"
+  },
+  {
+    "text": "Now, this happens to be, it looks like there is some nice relationship within the heap",
+    "start": 227.56,
+    "end": 232.2,
+    "ocr_text": "@)=\n\n7\n\nve\nNan\nOe"
+  },
+  {
+    "text": "in terms of the tree structure between predecessor and successor, but if you look at a different",
+    "start": 232.2,
+    "end": 236.24,
+    "ocr_text": "@)=\n\n7\n\nve\nNan\nOe"
+  },
+  {
+    "text": "value for example, 1653, then we will find that the predecessor lies in a different branch",
+    "start": 236.24,
+    "end": 241.88,
+    "ocr_text": "@)=\n\n7\n\nve\nNan\nOe"
+  },
+  {
+    "text": "of the tree and the successor lies in the same branch.",
+    "start": 241.88,
+    "end": 244.68,
+    "ocr_text": "@)=\n\n7\n\nve\nNan\nOe"
+  },
+  {
+    "text": "So, there is no direct relationship between the tree structure of the heap and the predecessor",
+    "start": 244.68,
+    "end": 249.8,
+    "ocr_text": "@)=\n\n7\n\nve\nNan\nOe"
+  },
+  {
+    "text": "and the successor relation that we need.",
+    "start": 249.8,
+    "end": 252.16,
+    "ocr_text": "3\nOey\n\noe\n\nWe\nN@\n\neae\nte\nz Che"
+  },
+  {
+    "text": "However, the important thing to note is if we could compute predecessor and successor,",
+    "start": 252.16,
+    "end": 257.4,
+    "ocr_text": "3\nOey\n\noe\n\nWe\nN@\n\neae\nte\nz Che"
+  },
+  {
+    "text": "then we can solve this problem because once we look at the successor or the predecessor",
+    "start": 257.4,
+    "end": 260.92,
+    "ocr_text": "os\n/4"
+  },
+  {
+    "text": "and we find something which is within three minutes, then we can flag a warning and signal",
+    "start": 260.92,
+    "end": 265.6,
+    "ocr_text": "os\n/4"
+  },
+  {
+    "text": "to that aircraft that that request is not tenable.",
+    "start": 265.6,
+    "end": 270.16,
+    "ocr_text": "os\n/4"
+  },
+  {
+    "text": "So, if you want to maintain this information, let us try and look at the different data structures",
+    "start": 271.16,
+    "end": 277.16,
+    "ocr_text": "os\n/4"
+  },
+  {
+    "text": "we have seen so far.",
+    "start": 277.16,
+    "end": 278.68,
+    "ocr_text": "os\n/4"
+  },
+  {
+    "text": "So, we have unsorted arrays, sorted arrays and minheads.",
+    "start": 278.68,
+    "end": 282.64,
+    "ocr_text": "os\n/4"
+  },
+  {
+    "text": "Now, in this particular structure, we are not going to look at directly a delete min or",
+    "start": 282.64,
+    "end": 290.16,
+    "ocr_text": "os\n/4"
+  },
+  {
+    "text": "a delete max, but two separate operations, one which checks the minimum and maximum and",
+    "start": 290.16,
+    "end": 295.12,
+    "ocr_text": "H 2"
+  },
+  {
+    "text": "one which deletes an element arbitrarily.",
+    "start": 295.12,
+    "end": 297.48,
+    "ocr_text": "H 2"
+  },
+  {
+    "text": "So, for min and max as far as min and max go, then it is clear that the best data structure",
+    "start": 297.96,
+    "end": 304.48,
+    "ocr_text": "H 2"
+  },
+  {
+    "text": "is sorted array because these values are at the extreme ends of the array.",
+    "start": 304.48,
+    "end": 308.96,
+    "ocr_text": "H 2"
+  },
+  {
+    "text": "The worst is an unsorted array because there could be anywhere and both require linear",
+    "start": 308.96,
+    "end": 312.8,
+    "ocr_text": "H 2"
+  },
+  {
+    "text": "time.",
+    "start": 312.8,
+    "end": 313.8,
+    "ocr_text": "H 2"
+  },
+  {
+    "text": "And then depending on whether we have a min heap or the max heap, one of them is good and",
+    "start": 313.8,
+    "end": 318.2,
+    "ocr_text": "H 2"
+  },
+  {
+    "text": "the other one is bad.",
+    "start": 318.2,
+    "end": 319.2,
+    "ocr_text": "v ."
+  },
+  {
+    "text": "So, in a min heap, we can find the minimum with the root, the maximum could be anywhere.",
+    "start": 319.2,
+    "end": 323.16,
+    "ocr_text": "v ."
+  },
+  {
+    "text": "So, if you look at the next set of operation, this is insert and delete.",
+    "start": 323.16,
+    "end": 330.16,
+    "ocr_text": "v ."
+  },
+  {
+    "text": "Now, here it turns out that an unsorted array is good for insert because we can just tick",
+    "start": 330.16,
+    "end": 339.92,
+    "ocr_text": "4\n\nVS"
+  },
+  {
+    "text": "it in at the end.",
+    "start": 339.92,
+    "end": 340.92,
+    "ocr_text": "Unsorted array Sorted array Min Heap\nae 7"
+  },
+  {
+    "text": "For delete, we have to go through the array and look for the value and remove it.",
+    "start": 340.92,
+    "end": 345.16,
+    "ocr_text": "Unsorted array Sorted array Min Heap\nae 7"
+  },
+  {
+    "text": "So, it will take linear time.",
+    "start": 345.16,
+    "end": 347.16,
+    "ocr_text": "Unsorted array Sorted array Min Heap\nae 7"
+  },
+  {
+    "text": "In a sorted array, both will be slow because we have to either insert in the correct position",
+    "start": 347.16,
+    "end": 352.72,
+    "ocr_text": "Unsorted array Sorted array Min Heap\nae 7"
+  },
+  {
+    "text": "like an insertion sort or when we delete, we have to compress the array which will take",
+    "start": 352.72,
+    "end": 356.44,
+    "ocr_text": "Unsorted array Sorted array Min Heap\nae 7"
+  },
+  {
+    "text": "linear time.",
+    "start": 356.44,
+    "end": 357.84,
+    "ocr_text": "Unsorted array Sorted array Min Heap\nae 7"
+  },
+  {
+    "text": "Now, we know that in a min heap, insert is logarithmic.",
+    "start": 357.84,
+    "end": 364.24,
+    "ocr_text": "Unsorted array Sorted array Min Heap\nae 7"
+  },
+  {
+    "text": "Delete is also logarithmic even though this is not delete min.",
+    "start": 364.24,
+    "end": 367.64,
+    "ocr_text": "\\(n) * |\n\n|\n\nos =. |\nvpdake bo min-| dalek:"
+  },
+  {
+    "text": "So, this can be broken up as two steps.",
+    "start": 367.64,
+    "end": 372.4,
+    "ocr_text": "\\(n) * |\n\n|\n\nos =. |\nvpdake bo min-| dalek:"
+  },
+  {
+    "text": "So, update to the current minimum overall minus 1 and then delete min.",
+    "start": 372.4,
+    "end": 379.8,
+    "ocr_text": "\\(n) * |\n\n|\n\nos =. |\nvpdake bo min-| dalek:"
+  },
+  {
+    "text": "So, you can take the current value that you want to delete, reset its value so that",
+    "start": 380.8,
+    "end": 385.32,
+    "ocr_text": "\\(n) * |\n\n|\n\nos =. |\nvpdake bo min-| dalek:"
+  },
+  {
+    "text": "it becomes the minimum in which case as we saw when you update to a smaller value, it",
+    "start": 385.32,
+    "end": 389.04,
+    "ocr_text": "( ) w%\nupdake ho mal duleke_m ww."
+  },
+  {
+    "text": "will propagate up to the root.",
+    "start": 389.04,
+    "end": 391.4,
+    "ocr_text": "( ) w%\nupdake ho mal duleke_m ww."
+  },
+  {
+    "text": "And then if you do a delete min, that value will disappear and so you would effectively",
+    "start": 391.4,
+    "end": 394.88,
+    "ocr_text": "( ) w%\nupdake ho mal duleke_m ww."
+  },
+  {
+    "text": "in two steps of log n each, we would have deleted it.",
+    "start": 394.88,
+    "end": 397.64,
+    "ocr_text": "( ) w%\nupdake ho mal duleke_m ww."
+  },
+  {
+    "text": "So, overall it is log n.",
+    "start": 397.64,
+    "end": 399.84,
+    "ocr_text": "¢ w\n\nony one\n\n%\n\nupdake bo min-l | daleke_m we"
+  },
+  {
+    "text": "And now as we just said, predecessor and successor in a sorted list, they are adjacent.",
+    "start": 399.84,
+    "end": 405.28,
+    "ocr_text": "¢ w\n\nony one\n\n%\n\nupdake bo min-l | daleke_m we"
+  },
+  {
+    "text": "So, these are both constant operations.",
+    "start": 405.28,
+    "end": 408.12,
+    "ocr_text": "ony ood\n\nv\n1) 4%\n\nupdake h min-l daleke_mwn"
+  },
+  {
+    "text": "On the other hand, in an unsorted list, we have to look through the whole array and",
+    "start": 408.12,
+    "end": 411.84,
+    "ocr_text": "ony ood\n\nv\n1) 4%\n\nupdake h min-l daleke_mwn"
+  },
+  {
+    "text": "we also said in a heap, we have to scan because there is no particular order in which the",
+    "start": 411.84,
+    "end": 415.36,
+    "ocr_text": "ony ood\n\nv\n1) 4%\n\nupdake h min-l daleke_mwn"
+  },
+  {
+    "text": "adjacent elements are stored in the heap.",
+    "start": 415.36,
+    "end": 418.32,
+    "ocr_text": "Fin"
+  },
+  {
+    "text": "So, what we are going to look at today are binary search trees.",
+    "start": 418.32,
+    "end": 423.36,
+    "ocr_text": "Fin"
+  },
+  {
+    "text": "And in a binary search tree, we are going to argue that all of these operations are actually",
+    "start": 423.36,
+    "end": 428.28,
+    "ocr_text": "Fin"
+  },
+  {
+    "text": "logarithmic provided we maintain the binary search tree with a good structure.",
+    "start": 428.28,
+    "end": 433.4,
+    "ocr_text": "Fin"
+  },
+  {
+    "text": "And also we will look at an operation called find which searches for a value.",
+    "start": 433.4,
+    "end": 437.88,
+    "ocr_text": "Fin"
+  },
+  {
+    "text": "And this will also be logarithmic.",
+    "start": 437.88,
+    "end": 438.88,
+    "ocr_text": "Fi\n\nZs"
+  },
+  {
+    "text": "So, we will simultaneously be able to optimize all these seven operations in a binary search",
+    "start": 438.88,
+    "end": 444.24,
+    "ocr_text": "Fi\n\nZs"
+  },
+  {
+    "text": "tree.",
+    "start": 444.24,
+    "end": 447.24,
+    "ocr_text": "Fi\n\nZs"
+  },
+  {
+    "text": "So, binary tree is just a tree with a root in which every node has either one to three",
+    "start": 447.24,
+    "end": 454.24,
+    "ocr_text": "ces\nee"
+  },
+  {
+    "text": "children.",
+    "start": 454.24,
+    "end": 455.24,
+    "ocr_text": "ces\nee"
+  },
+  {
+    "text": "A heap was a very special kind of binary tree which we filled up top to bottom left",
+    "start": 455.24,
+    "end": 459.04,
+    "ocr_text": "ces\nee"
+  },
+  {
+    "text": "to right.",
+    "start": 459.04,
+    "end": 460.04,
+    "ocr_text": "ces\nee"
+  },
+  {
+    "text": "But in general, a binary tree has no constraint.",
+    "start": 460.04,
+    "end": 462.36,
+    "ocr_text": "ces\nee"
+  },
+  {
+    "text": "So, we have values at each node and we will assume that not only do we have a way to go",
+    "start": 463.08,
+    "end": 468.72,
+    "ocr_text": "ces\nee"
+  },
+  {
+    "text": "from the parent to the child, but we also have a way to go from the child to the parent.",
+    "start": 468.72,
+    "end": 474.12,
+    "ocr_text": "ces\nee"
+  },
+  {
+    "text": "So, every node we are going to assume will have a link to its parent, left child and",
+    "start": 474.12,
+    "end": 479.96,
+    "ocr_text": "ces\nee"
+  },
+  {
+    "text": "right child.",
+    "start": 479.96,
+    "end": 480.96,
+    "ocr_text": "root\n\nees\n\nleft right\nchild _ child\n\nleaf"
+  },
+  {
+    "text": "Of course, these links may be missing.",
+    "start": 480.96,
+    "end": 482.96,
+    "ocr_text": "root\n\nees\n\nleft right\nchild _ child\n\nleaf"
+  },
+  {
+    "text": "But if they are there, then they will all three.",
+    "start": 482.96,
+    "end": 485.04,
+    "ocr_text": "root\n\nees\n\nleft right\nchild _ child\n\nleaf"
+  },
+  {
+    "text": "So, we can point up the tree and to the two nodes below it on down the tree.",
+    "start": 485.04,
+    "end": 489.56,
+    "ocr_text": "root\n\nees\n\nleft right\nchild _ child\n\nleaf"
+  },
+  {
+    "text": "So, just in terms of terminology, the root is the topmost node has no parent.",
+    "start": 490.56,
+    "end": 497.2,
+    "ocr_text": "root\n\nees\n\nleft right\nchild _ child\n\nleaf"
+  },
+  {
+    "text": "The leaf is any node which has no children.",
+    "start": 497.2,
+    "end": 500.0,
+    "ocr_text": "root\n\nees\n\nleft right\nchild _ child\n\nleaf"
+  },
+  {
+    "text": "And at any given point, if we look at a node, then it is the parent of its left child",
+    "start": 500.0,
+    "end": 505.16,
+    "ocr_text": "root\n\nees\n\nleft right\nchild _ child\n\nleaf"
+  },
+  {
+    "text": "and its right child.",
+    "start": 505.16,
+    "end": 507.6,
+    "ocr_text": "root\n\nees\n\nleft right\nchild _ child\n\nleaf"
+  },
+  {
+    "text": "So, now we take a binary tree and we further impose a constraint on the values.",
+    "start": 507.6,
+    "end": 515.2,
+    "ocr_text": "root\n\nees\n\nleft right\nchild _ child\n\nleaf"
+  },
+  {
+    "text": "So, remember like in a heap, we first had a structural condition that a tree is filled",
+    "start": 515.2,
+    "end": 519.68,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "top to bottom left right.",
+    "start": 519.68,
+    "end": 520.68,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "And then we said there is a heap property which says max heap or min heap.",
+    "start": 520.68,
+    "end": 524.64,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "Either a node is bigger than its two children or it is smaller than its two children.",
+    "start": 524.64,
+    "end": 528.08,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "So, there were a property on the structure and there was a property on the values and",
+    "start": 528.08,
+    "end": 532.52,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "how they are arranged with respect to each other.",
+    "start": 532.52,
+    "end": 534.52,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "So, in a binary search tree, the binary tree could have an arbitrary structure, but the",
+    "start": 534.52,
+    "end": 539.76,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "values are arranged in a specific way.",
+    "start": 539.76,
+    "end": 542.24,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "So, for each node with a value v, all the nodes below v smaller than v are in the left",
+    "start": 542.48,
+    "end": 549.96,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "subtree and all the values are bigger than v are the right subtree.",
+    "start": 549.96,
+    "end": 553.56,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "And we typically we will assume that there are no duplicate values.",
+    "start": 553.56,
+    "end": 557.32,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "So, for example, here if we look at a root node 5, then the left subtree of 5 contains",
+    "start": 557.32,
+    "end": 563.04,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "values 1, 2, 4 which are all the nodes in this tree smaller than 5 and the right subtree",
+    "start": 563.04,
+    "end": 567.16,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "contains 8 and 9.",
+    "start": 567.16,
+    "end": 569.08,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "Now, this is a property that is recursively satisfied throughout the tree.",
+    "start": 569.08,
+    "end": 572.92,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "So, if you look at the node 2 for example, its left child, left subtree is just the single",
+    "start": 572.92,
+    "end": 577.72,
+    "ocr_text": "a is\nee es"
+  },
+  {
+    "text": "node 1 which is this value smaller than 1 in the tree rooted at 2 and its right subtree",
+    "start": 577.72,
+    "end": 582.84,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "is the value 4 which is the right, it is a bigger than 2, the only value bigger than 2",
+    "start": 582.84,
+    "end": 587.8,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "in the subtree.",
+    "start": 587.8,
+    "end": 588.8,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "Likewise, if we look at 8 and there is only one value other than 8 in the subtree starting",
+    "start": 588.8,
+    "end": 594.0,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "at 8, that is the value 9 and since it is bigger, it is in the right subtree and we have",
+    "start": 594.0,
+    "end": 597.72,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "the left subtree empty.",
+    "start": 597.72,
+    "end": 598.72,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "So, we can have these kind of gaps unlike in heaps, we can have a gap but we have this",
+    "start": 598.72,
+    "end": 604.44,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "uniform property that at any node in the subtree all the values smaller than the node",
+    "start": 604.44,
+    "end": 609.28,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "are on the left and all the values bigger are on the right.",
+    "start": 609.28,
+    "end": 613.52,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "So, typically we would implement this as a linked structure where we have each node with",
+    "start": 613.52,
+    "end": 620.64,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "3 fields other than the value.",
+    "start": 620.64,
+    "end": 623.8,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "So, we have a pointer to the parent, a pointer to the left child and a pointer to the right",
+    "start": 624.2,
+    "end": 628.72,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "child.",
+    "start": 628.72,
+    "end": 630.72,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "So, the first thing that we can do with a binary search tree is to list out its values",
+    "start": 630.72,
+    "end": 639.0,
+    "ocr_text": "value parent left right"
+  },
+  {
+    "text": "in sorted order.",
+    "start": 639.0,
+    "end": 640.6,
+    "ocr_text": "a\noes"
+  },
+  {
+    "text": "This is called an in order traversal.",
+    "start": 640.6,
+    "end": 642.6,
+    "ocr_text": "a\noes"
+  },
+  {
+    "text": "So, in in order traversal is the recursive traversal, it is a way of walking through",
+    "start": 642.6,
+    "end": 647.0,
+    "ocr_text": "a\noes"
+  },
+  {
+    "text": "the tree so that we first walk through the left subtree, then the current node and then",
+    "start": 647.0,
+    "end": 652.4,
+    "ocr_text": "oe\nLe"
+  },
+  {
+    "text": "the right subtree.",
+    "start": 652.4,
+    "end": 653.4,
+    "ocr_text": "oe\nLe"
+  },
+  {
+    "text": "For example, if we perform an in order traversal here, we start at the root and then we have",
+    "start": 653.4,
+    "end": 659.68,
+    "ocr_text": "oe\nLe"
+  },
+  {
+    "text": "to first walk down the left subtree.",
+    "start": 659.68,
+    "end": 661.24,
+    "ocr_text": "AX\nes"
+  },
+  {
+    "text": "So, we walk to this left child and then once again we must walk down to the left subtree.",
+    "start": 661.24,
+    "end": 665.76,
+    "ocr_text": "AX\nes"
+  },
+  {
+    "text": "So, we walk to the left child and now there are no left child.",
+    "start": 665.76,
+    "end": 669.0,
+    "ocr_text": "eS\nEe"
+  },
+  {
+    "text": "So, now we will print out one and move back up because there is no right child.",
+    "start": 669.0,
+    "end": 673.4,
+    "ocr_text": "eS\nEe"
+  },
+  {
+    "text": "Now we print out two and go down to the right subtree and now again because four has no",
+    "start": 673.4,
+    "end": 678.8,
+    "ocr_text": "eS\nEe"
+  },
+  {
+    "text": "left or right subtree, we will print it out and go back up and since we have already",
+    "start": 678.8,
+    "end": 682.68,
+    "ocr_text": "eS\nEe\nj"
+  },
+  {
+    "text": "finished two, we will end up at the root.",
+    "start": 682.68,
+    "end": 684.72,
+    "ocr_text": "eS\nEe\nj"
+  },
+  {
+    "text": "Now, we will print out five, move to the right subtree.",
+    "start": 684.72,
+    "end": 687.72,
+    "ocr_text": "eS\nEe\nj"
+  },
+  {
+    "text": "Then because there is no left subtree, we will print eight and go to the right subtree",
+    "start": 687.72,
+    "end": 692.08,
+    "ocr_text": "ee\n(oe"
+  },
+  {
+    "text": "and finally, we will print nine.",
+    "start": 692.08,
+    "end": 694.08,
+    "ocr_text": "ee\n(oe"
+  },
+  {
+    "text": "So, it is easy to see that because of this property, we know that everything to the left",
+    "start": 694.08,
+    "end": 698.56,
+    "ocr_text": "ee\n(oe"
+  },
+  {
+    "text": "is smaller than the value and everything to the right is bigger than the value.",
+    "start": 698.56,
+    "end": 701.88,
+    "ocr_text": "eX\nie."
+  },
+  {
+    "text": "So, this is like a recursive, I mean this is very similar to the partitioning of quick",
+    "start": 701.88,
+    "end": 706.0,
+    "ocr_text": "eX\nie."
+  },
+  {
+    "text": "sort in a sense.",
+    "start": 706.0,
+    "end": 707.0,
+    "ocr_text": "=\nies"
+  },
+  {
+    "text": "So, we have already partitioned the values so the smaller values are to the left.",
+    "start": 707.24,
+    "end": 710.44,
+    "ocr_text": "=\nies"
+  },
+  {
+    "text": "So, there are bigger values to the right and if we recursively follow this partitioning",
+    "start": 710.44,
+    "end": 714.4,
+    "ocr_text": "=\nies"
+  },
+  {
+    "text": "to list out, we will obviously get the values in sorted out.",
+    "start": 714.4,
+    "end": 718.64,
+    "ocr_text": "=\nies"
+  },
+  {
+    "text": "So, now searching for a tree value in a binary search tree is very much like binary search.",
+    "start": 718.64,
+    "end": 727.04,
+    "ocr_text": "=\nies"
+  },
+  {
+    "text": "Remember in binary search, you have an array and then you start at the midpoint and then",
+    "start": 727.04,
+    "end": 733.72,
+    "ocr_text": "e— |l~- >\nwy"
+  },
+  {
+    "text": "if you find it, you say yes.",
+    "start": 733.72,
+    "end": 735.96,
+    "ocr_text": "e— |l~- >\nwy"
+  },
+  {
+    "text": "Otherwise, if it is smaller, you go into the left.",
+    "start": 735.96,
+    "end": 738.56,
+    "ocr_text": "e— |l~- >\nwy"
+  },
+  {
+    "text": "Otherwise, or if it is bigger, you look at the right.",
+    "start": 738.56,
+    "end": 740.96,
+    "ocr_text": "e— |l~- >\nwy"
+  },
+  {
+    "text": "So, we have a very similar thing.",
+    "start": 740.96,
+    "end": 742.64,
+    "ocr_text": "e— |l~- >\nwy"
+  },
+  {
+    "text": "So, we want to find a value v in a tree.",
+    "start": 742.64,
+    "end": 745.32,
+    "ocr_text": "e— |l~- >\nwy"
+  },
+  {
+    "text": "If the tree is empty, of course, we say that it is not there.",
+    "start": 745.32,
+    "end": 748.36,
+    "ocr_text": "e— |l~- >\nwy"
+  },
+  {
+    "text": "So, we return false.",
+    "start": 748.36,
+    "end": 750.44,
+    "ocr_text": "e— |l~- >\nwy"
+  },
+  {
+    "text": "If the current node has the value, then we have found it and we return true.",
+    "start": 750.44,
+    "end": 755.12,
+    "ocr_text": "— Ye"
+  },
+  {
+    "text": "On the other hand, if you have not found it, then since we have a tree, we look to see",
+    "start": 755.12,
+    "end": 762.56,
+    "ocr_text": "— Ye"
+  },
+  {
+    "text": "whether the value is smaller than the current value.",
+    "start": 762.56,
+    "end": 765.08,
+    "ocr_text": "— Ye"
+  },
+  {
+    "text": "If it is smaller, then we recursively search in the left and return whatever we find there.",
+    "start": 765.08,
+    "end": 769.52,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "If it is found there, we say true.",
+    "start": 769.52,
+    "end": 770.52,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "If it is not found there, we say it is not in the tree.",
+    "start": 770.52,
+    "end": 772.96,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "Otherwise, we research recursively in the right.",
+    "start": 772.96,
+    "end": 774.96,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "So, this is very similar to binary search.",
+    "start": 774.96,
+    "end": 777.88,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "Now, like binary search, you can do an iterative version of this.",
+    "start": 777.88,
+    "end": 781.6,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "So, you start at the root and then so long as it is not near, you trace down the path.",
+    "start": 781.6,
+    "end": 786.24,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "So, if the current value is v, you return true.",
+    "start": 786.24,
+    "end": 788.44,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "Otherwise, you walk down to the left or you walk through, you start at the root and you",
+    "start": 788.44,
+    "end": 792.0,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "kind of trace the path depending on the values that you find.",
+    "start": 792.0,
+    "end": 794.72,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "And then when you reach a node, you say yes.",
+    "start": 794.72,
+    "end": 797.16,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "On the other hand, if you reach a point where you cannot go any further, then if you run",
+    "start": 797.16,
+    "end": 802.56,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "out of nodes, if you come all the way down and then you say there is no extension where",
+    "start": 802.56,
+    "end": 807.2,
+    "ocr_text": "i coe,"
+  },
+  {
+    "text": "I can find it, then you will say false.",
+    "start": 807.2,
+    "end": 809.4,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "So, this is the simple recursive and iterative versions of find.",
+    "start": 809.4,
+    "end": 815.16,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "So, the next two operations that we wanted to do were finding the minimum and the maximum.",
+    "start": 815.16,
+    "end": 821.76,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "So, the minimum node in the tree is the leftmost node.",
+    "start": 822.4,
+    "end": 825.96,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "In other words, it is a node that you reach if you go as far as you can following only",
+    "start": 825.96,
+    "end": 831.68,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "left edges.",
+    "start": 831.68,
+    "end": 832.68,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "So, in this case, from 5 if I go left, I go to 3, from 3 if I go left, I go to 1.",
+    "start": 832.68,
+    "end": 837.92,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "And then I cannot go left.",
+    "start": 837.92,
+    "end": 838.92,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "There is something below one.",
+    "start": 838.92,
+    "end": 839.92,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "It is on the right.",
+    "start": 839.92,
+    "end": 840.92,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "But nevertheless, in Saqqa and go left, one must be the minimum element of the tree.",
+    "start": 840.92,
+    "end": 844.92,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "Because everything that is smaller than something will be to its left.",
+    "start": 844.92,
+    "end": 847.24,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "So, if I cannot go left, there is nothing smaller than one.",
+    "start": 847.24,
+    "end": 849.8,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "So, this is the reason why the leftmost value in the tree will be the minimum.",
+    "start": 849.8,
+    "end": 854.6,
+    "ocr_text": "yon\n\n\\\n\nSS"
+  },
+  {
+    "text": "Right.",
+    "start": 854.6,
+    "end": 855.6,
+    "ocr_text": "Ye\nEke gh\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, we can easily find it recursively.",
+    "start": 855.6,
+    "end": 857.4,
+    "ocr_text": "Ye\nEke gh\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "Now, we will typically use this assuming the tree is not empty.",
+    "start": 857.4,
+    "end": 861.96,
+    "ocr_text": "Ye\nEke gh\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "It simplifies a little bit of coding.",
+    "start": 861.96,
+    "end": 864.08,
+    "ocr_text": "Ye\nEke gh\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, assuming the tree is not empty, we do not have to check any special condition and",
+    "start": 864.08,
+    "end": 867.72,
+    "ocr_text": "Ye\nEke gh\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "give any error when it is not empty, when it is empty.",
+    "start": 867.72,
+    "end": 870.64,
+    "ocr_text": "Ye\nAe ak\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, we assume it is not empty.",
+    "start": 870.64,
+    "end": 872.64,
+    "ocr_text": "Ye\nAe ak\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, if we can go left, we can.",
+    "start": 872.64,
+    "end": 875.88,
+    "ocr_text": "Ye\nAe ak\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "We do.",
+    "start": 875.88,
+    "end": 876.88,
+    "ocr_text": "Le\neg\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "If the T dot left is nil, then this is the minimum value and we return it.",
+    "start": 876.88,
+    "end": 881.44,
+    "ocr_text": "Le\neg\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "Otherwise, we recursively search for the minimum value on our left.",
+    "start": 881.44,
+    "end": 885.28,
+    "ocr_text": "Le\neg\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "And again, there is a very simple iterative version.",
+    "start": 885.28,
+    "end": 888.44,
+    "ocr_text": "VEN\neos\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "We start at the current thing and we keep going left as long as we can, so long as we",
+    "start": 888.44,
+    "end": 891.96,
+    "ocr_text": "VEN\neos\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "do not hit nil.",
+    "start": 891.96,
+    "end": 893.36,
+    "ocr_text": "VEN\neos\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "And when we reach this point where T dot left is nil, we come out of the slope and we return",
+    "start": 893.36,
+    "end": 897.16,
+    "ocr_text": "VEN\neos\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "the value at this point.",
+    "start": 897.16,
+    "end": 898.48,
+    "ocr_text": "Vix\nPee\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "Right.",
+    "start": 898.48,
+    "end": 899.48,
+    "ocr_text": "Vix\nPee\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, here for instance, we would start with 5, T dot left is 3, T dot left is 1, T dot left",
+    "start": 899.48,
+    "end": 904.04,
+    "ocr_text": "Vix\nPee\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "is nil.",
+    "start": 904.04,
+    "end": 905.04,
+    "ocr_text": "Vix\nPee\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, this at this point, we stop.",
+    "start": 905.04,
+    "end": 906.56,
+    "ocr_text": "es.\nPee)\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, T is pointing to 1.",
+    "start": 906.56,
+    "end": 908.04,
+    "ocr_text": "es.\nPee)\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, therefore, T dot value is 1 and this is the value we return.",
+    "start": 908.04,
+    "end": 910.88,
+    "ocr_text": "es.\nPee)\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, we can find the minimum.",
+    "start": 910.88,
+    "end": 913.08,
+    "ocr_text": "es.\nPee)\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, symmetrically, the maximum is the rightmost value in the tree.",
+    "start": 913.08,
+    "end": 917.76,
+    "ocr_text": "es.\nPee)\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "As you go right, you go bigger.",
+    "start": 917.76,
+    "end": 918.76,
+    "ocr_text": "es.\nPee)\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "If you cannot go right anymore, there is nothing which is bigger than that node.",
+    "start": 918.76,
+    "end": 921.96,
+    "ocr_text": "es.\nPee)\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, here from 5, we can go to 7 to 9 and 9 is the biggest value because the next node",
+    "start": 921.96,
+    "end": 926.6,
+    "ocr_text": "es.\nPee)\n\\\n\n# Assume t is not empty"
+  },
+  {
+    "text": "which although it is below 9 in the tree, it is to the left and therefore smaller than",
+    "start": 926.6,
+    "end": 930.28,
+    "ocr_text": "Loon\n(oe)\nx. VA\n\n# Assume t is not empty"
+  },
+  {
+    "text": "9.",
+    "start": 930.28,
+    "end": 931.28,
+    "ocr_text": "Loon\n(oe)\nx. VA\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, we have a symmetric recursive solution, max value.",
+    "start": 931.28,
+    "end": 934.68,
+    "ocr_text": "Loon\n(oe)\nx. VA\n\n# Assume t is not empty"
+  },
+  {
+    "text": "We check the right.",
+    "start": 934.68,
+    "end": 935.68,
+    "ocr_text": "Loon\n(oe)\nx. VA\n\n# Assume t is not empty"
+  },
+  {
+    "text": "If the right is nil, then we are at the maximum and we return the value.",
+    "start": 935.68,
+    "end": 939.88,
+    "ocr_text": "Loon\n(oe)\nx. VA\n\n# Assume t is not empty"
+  },
+  {
+    "text": "If the right is not nil, then we recursively search the right for the maximum.",
+    "start": 939.88,
+    "end": 945.24,
+    "ocr_text": "Loon\n(oe)\nx. VA\n\n# Assume t is not empty"
+  },
+  {
+    "text": "And again, an iterative version of the same.",
+    "start": 945.24,
+    "end": 947.28,
+    "ocr_text": "Vaan\nete oN\n. 4\n\n# Assume t is not empty"
+  },
+  {
+    "text": "We just follow chase pointers to the right.",
+    "start": 947.28,
+    "end": 949.68,
+    "ocr_text": "Vaan\nete oN\n. 4\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, so long as T dot right is not nil, we move from T to T dot right.",
+    "start": 949.68,
+    "end": 954.44,
+    "ocr_text": "Vaan\nete oN\n. 4\n\n# Assume t is not empty"
+  },
+  {
+    "text": "And when we can't move anymore, we are at the maximum value.",
+    "start": 954.44,
+    "end": 957.24,
+    "ocr_text": "Vaan\nete oN\n. 4\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, we return that value.",
+    "start": 957.24,
+    "end": 959.48,
+    "ocr_text": "a~\nae,\nN 4\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, at this point, we have done find, minimum and maximum in a search tree.",
+    "start": 960.48,
+    "end": 969.08,
+    "ocr_text": "a~\nae,\nN 4\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, these three operations we have done.",
+    "start": 969.08,
+    "end": 973.0,
+    "ocr_text": "ie!\nMatus\nMaret\n\nAN\n(ee,\nS VA\n\n# Assume t is not empty"
+  },
+  {
+    "text": "Now if you remember, we have to do predecessor and successor.",
+    "start": 973.0,
+    "end": 978.72,
+    "ocr_text": "ie!\nMatus\nMaret\n\nAN\n(ee,\nS VA\n\n# Assume t is not empty"
+  },
+  {
+    "text": "So, let's first look at successor.",
+    "start": 978.72,
+    "end": 983.04,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, recall that the successor of x in the list is supposed to be the next value, the next",
+    "start": 983.04,
+    "end": 988.72,
+    "ocr_text": "os"
+  },
+  {
+    "text": "smallest value after x in the list.",
+    "start": 988.72,
+    "end": 991.12,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, if we printed it out in sorted order, it will be the value that would appear to the",
+    "start": 991.12,
+    "end": 995.24,
+    "ocr_text": "os"
+  },
+  {
+    "text": "right of x.",
+    "start": 995.24,
+    "end": 997.24,
+    "ocr_text": "os"
+  },
+  {
+    "text": "And in order of the in order traversal of a tree prints out the values in sorted order.",
+    "start": 997.24,
+    "end": 1001.84,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, it was effectively what in order would print immediately after x.",
+    "start": 1001.84,
+    "end": 1006.04,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, we know that the way that in order works, it prints the left subtree, then it prints",
+    "start": 1006.04,
+    "end": 1011.24,
+    "ocr_text": "os"
+  },
+  {
+    "text": "x, then it prints the right subtree.",
+    "start": 1011.24,
+    "end": 1013.64,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, if we want to one that comes immediately after x, it will be the first value here,",
+    "start": 1014.2,
+    "end": 1018.88,
+    "ocr_text": "os"
+  },
+  {
+    "text": "so the smallest value in the right subtree.",
+    "start": 1018.88,
+    "end": 1022.12,
+    "ocr_text": "os"
+  },
+  {
+    "text": "In other words, the minimum of the right subtree and we already know how to compute the minimum",
+    "start": 1022.12,
+    "end": 1026.68,
+    "ocr_text": "os"
+  },
+  {
+    "text": "of a tree.",
+    "start": 1026.68,
+    "end": 1028.8,
+    "ocr_text": "os"
+  },
+  {
+    "text": "But there could be a possibility that we want the successor of a value which doesn't have",
+    "start": 1028.8,
+    "end": 1032.36,
+    "ocr_text": "os"
+  },
+  {
+    "text": "a right subtree, then what do we do?",
+    "start": 1032.36,
+    "end": 1035.04,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, the first observation is that if the value has no right subtree, then it must be the",
+    "start": 1035.04,
+    "end": 1040.52,
+    "ocr_text": "os"
+  },
+  {
+    "text": "maximum of the subtree to which it belongs.",
+    "start": 1040.52,
+    "end": 1043.24,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, in this case, if we look at the value x, it has no right subtree, so it is the maximum",
+    "start": 1043.24,
+    "end": 1047.56,
+    "ocr_text": "os"
+  },
+  {
+    "text": "of some subtree.",
+    "start": 1047.56,
+    "end": 1048.56,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, we have to first identify the subtree.",
+    "start": 1048.56,
+    "end": 1051.04,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, how do we identify the subtree?",
+    "start": 1051.04,
+    "end": 1053.16,
+    "ocr_text": "os"
+  },
+  {
+    "text": "Well, we walk up and find out how the subtree is connected.",
+    "start": 1053.16,
+    "end": 1057.24,
+    "ocr_text": "os"
+  },
+  {
+    "text": "Right?",
+    "start": 1057.24,
+    "end": 1058.24,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, we get to x by following a sequence of right pointers.",
+    "start": 1058.24,
+    "end": 1060.24,
+    "ocr_text": "os"
+  },
+  {
+    "text": "So, we follow those right pointers backwards and when we follow a left pointer, we know",
+    "start": 1060.24,
+    "end": 1064.16,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "that we have come out of the subtree.",
+    "start": 1064.16,
+    "end": 1065.92,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "So, therefore, that node must be the root of the subtree below which this is the left",
+    "start": 1066.16,
+    "end": 1071.44,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "subtree, therefore, that is the next value.",
+    "start": 1071.44,
+    "end": 1073.64,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "So, this entire red block subtree will be printed out in sorted order, ending with x.",
+    "start": 1073.64,
+    "end": 1080.08,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "After this, the root will be printed first, which is this node which we have labeled",
+    "start": 1080.08,
+    "end": 1083.88,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "as UCC successor for successor.",
+    "start": 1083.88,
+    "end": 1085.64,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "So, therefore, that is the node that we want to designate the successor x.",
+    "start": 1085.64,
+    "end": 1090.52,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "Right?",
+    "start": 1090.52,
+    "end": 1092.52,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "So, here is a simple pseudo code for this.",
+    "start": 1093.52,
+    "end": 1097.08,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "So, we want to find the successor of a node T. Now, if this node has a right pointer,",
+    "start": 1097.08,
+    "end": 1103.36,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "then we just return the minimum value of the right subtree.",
+    "start": 1103.36,
+    "end": 1107.68,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "On the other hand, if it does not have a right, then we need to go up and find the first",
+    "start": 1107.68,
+    "end": 1111.88,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "place where the path turns right.",
+    "start": 1111.88,
+    "end": 1113.88,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "So, we start with T and then we compute its parent, which we call y.",
+    "start": 1113.88,
+    "end": 1120.12,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "Now, so long as this direction is right, we keep moving up.",
+    "start": 1120.12,
+    "end": 1122.92,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "So, we go to one more parent and we move T up.",
+    "start": 1122.92,
+    "end": 1127.0,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "So, that is what is happening in this loop here.",
+    "start": 1127.0,
+    "end": 1129.52,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "So, we move T and y up and then at some point, we move T and y will go this way.",
+    "start": 1129.52,
+    "end": 1134.48,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "So, we will be y dot left and therefore, this now, this y is the successor of this original",
+    "start": 1134.48,
+    "end": 1142.92,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "node T.",
+    "start": 1142.92,
+    "end": 1144.92,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "And then there is one special case where we reach the top and we do not ever turn",
+    "start": 1144.92,
+    "end": 1149.12,
+    "ocr_text": "Vee eC\n\nANG\n1s"
+  },
+  {
+    "text": "right and that is the case where we actually was started from the maximum value overall",
+    "start": 1149.12,
+    "end": 1153.28,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "in the tree, in which case we reach nil and it has no successor, so we will just return",
+    "start": 1153.28,
+    "end": 1157.0,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "it.",
+    "start": 1157.0,
+    "end": 1158.0,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, let us look at this particular thing.",
+    "start": 1158.0,
+    "end": 1160.36,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, for three, for instance, the right subtree exists four and the smallest value there",
+    "start": 1160.36,
+    "end": 1164.76,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "is four.",
+    "start": 1164.76,
+    "end": 1165.76,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "Therefore, that is the successor.",
+    "start": 1165.76,
+    "end": 1166.76,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "For one, the smallest value is two.",
+    "start": 1166.76,
+    "end": 1168.36,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, that is the successor.",
+    "start": 1168.36,
+    "end": 1170.52,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "For seven, the minimum value in this subtree is eight.",
+    "start": 1170.52,
+    "end": 1174.6,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, eight is the successor of seven.",
+    "start": 1174.6,
+    "end": 1176.44,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, these all come out of the basic case where you have a right subtree.",
+    "start": 1176.76,
+    "end": 1180.44,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "On the other hand, if you do not have a right subtree, then for instance, you started two,",
+    "start": 1180.44,
+    "end": 1187.84,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "then you walk up and then the where you turn right, you find that three is the successor.",
+    "start": 1187.84,
+    "end": 1191.96,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "Or from four, you walk up and you return right, you find that five is successor.",
+    "start": 1191.96,
+    "end": 1196.32,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "Similarly, for I-8, you immediately turn right, so nine is successor.",
+    "start": 1196.32,
+    "end": 1200.24,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "And finally, for nine, you will come and you will reach this nil case.",
+    "start": 1200.24,
+    "end": 1202.92,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, nine will say that there is no successor because it is the largest possible value.",
+    "start": 1203.16,
+    "end": 1207.08,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, the situation for the predecessor is symmetric.",
+    "start": 1210.2,
+    "end": 1212.84,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, if we have a left subtree, then the predecessor is the maximum value in this.",
+    "start": 1212.84,
+    "end": 1218.32,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, we go down left and then we go all the way right.",
+    "start": 1218.32,
+    "end": 1221.04,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "And if we don't have a left subtree, then it means that this is already the minimum value",
+    "start": 1222.24,
+    "end": 1229.08,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "in each subtree.",
+    "start": 1229.08,
+    "end": 1229.76,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, we walk back up following these sequence of left pointers until we turn the other way",
+    "start": 1229.76,
+    "end": 1235.92,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "and then this node where we turn is the predecessor of this.",
+    "start": 1235.92,
+    "end": 1239.68,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, for example, if we look at these values which have left subtree, so for five, we go",
+    "start": 1239.68,
+    "end": 1245.24,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "down the left subtree and we find the rightmost value which is four.",
+    "start": 1245.24,
+    "end": 1248.52,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, four is the predecessor of five, likewise two is the predecessor of three and eight is",
+    "start": 1248.52,
+    "end": 1253.72,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "the predecessor of nine.",
+    "start": 1253.72,
+    "end": 1255.72,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "Now, we have these other values for which we can't go left.",
+    "start": 1256.52,
+    "end": 1259.08,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "For example, we can't go left at two, we can't go left at four, we can't go left at seven,",
+    "start": 1259.08,
+    "end": 1264.6,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "we can't go left at eight.",
+    "start": 1264.6,
+    "end": 1266.8,
+    "ocr_text": "| 3 LS\n\nANG\nar"
+  },
+  {
+    "text": "So, what do we do?",
+    "start": 1266.8,
+    "end": 1268.0,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "In these cases, we started two, the example and then we try to go up and where we turn",
+    "start": 1268.0,
+    "end": 1274.44,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "right, there we find.",
+    "start": 1276.12,
+    "end": 1277.84,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, we come here and we find that one is the predecessor.",
+    "start": 1278.4,
+    "end": 1286.4,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "Similarly, from four, we go and so a goal is to go right and then where we turn left,",
+    "start": 1286.4,
+    "end": 1292.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "we find the predecessor.",
+    "start": 1292.24,
+    "end": 1293.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, we immediately turn left at these three nodes and then eight, we go right and where",
+    "start": 1293.24,
+    "end": 1299.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "we turn left, we find the predecessor.",
+    "start": 1299.24,
+    "end": 1301.4,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, this is how the predecessor works, is exactly symmetric to the successor function.",
+    "start": 1301.4,
+    "end": 1306.0,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "Now, let's see how to insert a value.",
+    "start": 1308.4,
+    "end": 1310.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "Inserting a value in a search tree is fairly straightforward.",
+    "start": 1310.24,
+    "end": 1312.64,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "There is only one place because remember that the tree is listed in order, will give us",
+    "start": 1312.64,
+    "end": 1318.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "a sorted list.",
+    "start": 1318.24,
+    "end": 1319.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, now, after adding this value, it must again give us a sorted list.",
+    "start": 1319.24,
+    "end": 1322.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, it is like saying that there is only one place to insert a value in a sorted list.",
+    "start": 1322.24,
+    "end": 1326.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, it's like insertion in a sorted list, except we have to find the correct place in",
+    "start": 1326.24,
+    "end": 1330.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "the tree to hang it so that when we do this in order traversal, it would be in the correct",
+    "start": 1330.24,
+    "end": 1335.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "order when we list it out.",
+    "start": 1335.24,
+    "end": 1337.04,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "And it turns out that basically we have to find out where it should be by searching for",
+    "start": 1337.04,
+    "end": 1340.64,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "it.",
+    "start": 1340.64,
+    "end": 1341.64,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "And if it is not present, we added where the search phase.",
+    "start": 1341.64,
+    "end": 1344.64,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, for instance, if we want to insert 21, then we will walk down the tree and we will",
+    "start": 1344.64,
+    "end": 1350.14,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "look for the place where we should find 21.",
+    "start": 1350.14,
+    "end": 1352.44,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, it's smaller than 52, we go left, smaller than 37, we go left, smaller than bigger than",
+    "start": 1352.44,
+    "end": 1357.04,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "16, we go right.",
+    "start": 1357.04,
+    "end": 1358.24,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "And then we find that at 28, there is no value of 21 because there is no left.",
+    "start": 1358.24,
+    "end": 1362.44,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, since it should be to the left of 28, we added that.",
+    "start": 1362.44,
+    "end": 1366.44,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "Now, for instance, if we want to insert 65, then we will go right from 52.",
+    "start": 1367.44,
+    "end": 1373.84,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "And now at 74, we will look to left, that there is nothing to the left.",
+    "start": 1373.84,
+    "end": 1377.44,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, we will insert this.",
+    "start": 1377.44,
+    "end": 1378.44,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "So, it can happen at any position in the tree, it doesn't have to be at a leaf node.",
+    "start": 1378.44,
+    "end": 1382.44,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "Like at 28, 28 was already a leaf and we inserted 21 below it.",
+    "start": 1382.44,
+    "end": 1386.44,
+    "ocr_text": "eS\nBoas\n\nBS vA"
+  },
+  {
+    "text": "But 74 had a right child, but we inserted something to its left because the left child was missing.",
+    "start": 1386.44,
+    "end": 1391.44,
+    "ocr_text": "eS\nde.\n\nSS Z"
+  },
+  {
+    "text": "Now, it could be that we tried to insert a value that's already there.",
+    "start": 1391.44,
+    "end": 1395.44,
+    "ocr_text": "eS\nde.\n\nSS Z"
+  },
+  {
+    "text": "For instance, we might want to insert 91.",
+    "start": 1395.44,
+    "end": 1398.44,
+    "ocr_text": "vax\nee\n\n. oe"
+  },
+  {
+    "text": "So, we look for 91 and we find it.",
+    "start": 1398.44,
+    "end": 1400.44,
+    "ocr_text": "vax\nee\n\n. oe"
+  },
+  {
+    "text": "So, we will interpret the insertion of 91 as something which does not disturb the tree.",
+    "start": 1400.44,
+    "end": 1405.44,
+    "ocr_text": "vax\nee\n\n. oe"
+  },
+  {
+    "text": "Because we really said we don't want to have duplicate values.",
+    "start": 1405.44,
+    "end": 1409.44,
+    "ocr_text": "nas\naS\n\n\\ a"
+  },
+  {
+    "text": "So, when we insert, we try to find if the find fails, we insert.",
+    "start": 1409.44,
+    "end": 1412.44,
+    "ocr_text": "nas\naS\n\n\\ a"
+  },
+  {
+    "text": "If the find succeeds, we do nothing.",
+    "start": 1412.44,
+    "end": 1416.44,
+    "ocr_text": "nas\naS\n\n\\ a"
+  },
+  {
+    "text": "So, there is a very simple recursive way to do this.",
+    "start": 1416.44,
+    "end": 1419.44,
+    "ocr_text": "# Node(v) : isolated node, value v\n\n# Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "So, first of all, we have a special case which says that the tree is empty.",
+    "start": 1419.44,
+    "end": 1423.44,
+    "ocr_text": "# Node(v) : isolated node, value v\n\n# Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "Then, we just create a new node and point to that node.",
+    "start": 1423.44,
+    "end": 1427.44,
+    "ocr_text": "# Node(v) : isolated node, value v\n\n# Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "So, this is an isolated node which has only a value v, parent, left and right will all be null.",
+    "start": 1427.44,
+    "end": 1432.44,
+    "ocr_text": "] # Node(v) : isolated node, value v\n\n# Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "On the other hand, if we find it, then we do nothing.",
+    "start": 1432.44,
+    "end": 1436.44,
+    "ocr_text": "] # Node(v) : isolated node, value v\n\n# Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "Now, we have not found it.",
+    "start": 1436.44,
+    "end": 1438.44,
+    "ocr_text": "] : # Node(v) : isolated node, value v\n\n# Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "So, now, if the value is smaller than the value of the current node",
+    "start": 1438.44,
+    "end": 1441.44,
+    "ocr_text": "] : # Node(v) : isolated node, value v\n\n# Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "and if we have no left child, then we actually insert.",
+    "start": 1441.44,
+    "end": 1447.44,
+    "ocr_text": "] : # Node(v) : isolated node, value v\n\n# Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "If we have to go left and we can't go left, then we create a new node to our left.",
+    "start": 1447.44,
+    "end": 1452.44,
+    "ocr_text": "] # Node(v) : isolated node, value v\n\nes : # Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "And we make that node point here by its parent.",
+    "start": 1452.44,
+    "end": 1455.44,
+    "ocr_text": "] # Node(v) : isolated node, value v\n\nes : # Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "So, we create a new node here and we say that its parent is ourselves.",
+    "start": 1455.44,
+    "end": 1459.44,
+    "ocr_text": "] # Node(v) : isolated node, value v\n\nl| YP\nes # Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "So, t dot left dot parent is t.",
+    "start": 1459.44,
+    "end": 1461.44,
+    "ocr_text": "] # Node(v) : isolated node, value v\n\nl| YP\nes # Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "Otherwise, we just recursively insert to our left.",
+    "start": 1461.44,
+    "end": 1466.44,
+    "ocr_text": "] # Node(v) : isolated node, value v\n\nl| YP\nes # Add a left child with value v\n\n# Recursively insert in left subtree\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "So, if we do have a left, we recursively insert.",
+    "start": 1466.44,
+    "end": 1468.44,
+    "ocr_text": "| # Node(v) : isolated node, value v\n\nI ve\neX # Add a left child with value v\n\n#°Recursively insert in left subtree\n\n|\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "If we don't have a left, then we create a node with v.",
+    "start": 1468.44,
+    "end": 1471.44,
+    "ocr_text": "| # Node(v) : isolated node, value v\n\nI ve\neX # Add a left child with value v\n\n#°Recursively insert in left subtree\n\n|\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "This is the actual insert operation.",
+    "start": 1471.44,
+    "end": 1473.44,
+    "ocr_text": "| # Node(v) : isolated node, value v\n\nI ve\neX # Add a left child with value v\n\n#°Recursively insert in left subtree\n\n|\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "And we make it point to us through the parent.",
+    "start": 1473.44,
+    "end": 1476.44,
+    "ocr_text": "| # Node(v) : isolated node, value v\n\nI ve\neX # Add a left child with value v\n\n#°Recursively insert in left subtree\n\n|\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "Likewise, if we do want to go right and there is no right, we insert it to the right.",
+    "start": 1476.44,
+    "end": 1481.44,
+    "ocr_text": "] # Node(v) : isolated node, value v\n\nes # Add a left child with value v\n\n# Recursively insert in left subtree\n\n|\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "And we make it point to ourselves through its parent.",
+    "start": 1482.44,
+    "end": 1485.44,
+    "ocr_text": "] # Node(v) : isolated node, value v\n\nes # Add a left child with value v\n\n# Recursively insert in left subtree\n\n|\n\n# Add a right child with value v\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "Otherwise, we recursively insert to the right.",
+    "start": 1485.44,
+    "end": 1487.44,
+    "ocr_text": "| # Node(v) : isolated node, value v\n\nI 2\n\nery # Add a left child with value v\n# Recursively insert in left subtree\n>\n# Add a right child with value v\n3)\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "So, insert is a very straightforward function.",
+    "start": 1487.44,
+    "end": 1490.44,
+    "ocr_text": "| # Node(v) : isolated node, value v\n\nI 2\n\nery # Add a left child with value v\n# Recursively insert in left subtree\n>\n# Add a right child with value v\n3)\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "So, how do we delete a node?",
+    "start": 1493.44,
+    "end": 1495.44,
+    "ocr_text": "| # Node(v) : isolated node, value v\n\nI 2\n\nery # Add a left child with value v\n# Recursively insert in left subtree\n>\n# Add a right child with value v\n3)\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "So, the delete says that we are given a value v.",
+    "start": 1495.44,
+    "end": 1499.44,
+    "ocr_text": "| # Node(v) : isolated node, value v\n\nI 2\n\nery # Add a left child with value v\n# Recursively insert in left subtree\n>\n# Add a right child with value v\n3)\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "If we find v in the tree, we must delete the node containing v.",
+    "start": 1499.44,
+    "end": 1503.44,
+    "ocr_text": "| # Node(v) : isolated node, value v\n\nI 2\n\nery # Add a left child with value v\n# Recursively insert in left subtree\n>\n# Add a right child with value v\n3)\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "So, the basic case that is very simple to handle is when the node is a leaf node.",
+    "start": 1504.44,
+    "end": 1509.44,
+    "ocr_text": "| # Node(v) : isolated node, value v\n\nI 2\n\nery # Add a left child with value v\n# Recursively insert in left subtree\n>\n# Add a right child with value v\n3)\n\n# Recursively insert in right subtree"
+  },
+  {
+    "text": "Because then we can just delete it and then it just falls off the tree at the bottom.",
+    "start": 1509.44,
+    "end": 1513.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, for instance, if we want to delete 65, then we will search for 65,",
+    "start": 1513.44,
+    "end": 1517.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "find it by the usual mechanism of following the left and right paths.",
+    "start": 1517.44,
+    "end": 1521.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "And then since it is a leaf node, we can just remove this node from the tree and nothing happens.",
+    "start": 1521.44,
+    "end": 1525.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "It remains a valid search.",
+    "start": 1525.44,
+    "end": 1527.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "Now, sometimes the deleted node might have only one chart.",
+    "start": 1529.44,
+    "end": 1531.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "For instance, supposing we delete 74.",
+    "start": 1531.44,
+    "end": 1534.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, we come down to 74.",
+    "start": 1534.44,
+    "end": 1535.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "Now, we want to delete this node, but it has a right chart.",
+    "start": 1535.44,
+    "end": 1538.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, we can just kind of pretend that this link goes directly through this 291.",
+    "start": 1538.44,
+    "end": 1544.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, we just eliminate the node in between and we directly connect 52 to the successor of the node that is going to be deleted.",
+    "start": 1544.44,
+    "end": 1552.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, if there is only one child, then there is no problem.",
+    "start": 1552.44,
+    "end": 1556.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "Now, what if the deleted node has two children?",
+    "start": 1556.44,
+    "end": 1560.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, supposing we want to delete the node, we want to delete the node.",
+    "start": 1560.44,
+    "end": 1564.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "It has two deleted node as two children.",
+    "start": 1564.44,
+    "end": 1566.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, supposing we want to delete 37, that is this one.",
+    "start": 1566.44,
+    "end": 1570.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, we identify 37.",
+    "start": 1570.44,
+    "end": 1572.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "Now, 37 must go, but we cannot arbitrarily restructure the tree because we will have two children and we don't know what to do with it.",
+    "start": 1572.44,
+    "end": 1578.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, now, one strategy that works is to make a hole there to remove the 37 and replace it by either its predecessor or successor.",
+    "start": 1578.44,
+    "end": 1592.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, supposing we identify its predecessor, but predecessor remember will be the biggest node, the maximum in its left-septice.",
+    "start": 1592.44,
+    "end": 1599.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, here it will be 28.",
+    "start": 1599.44,
+    "end": 1601.44,
+    "ocr_text": "Les\nae\n\nS me"
+  },
+  {
+    "text": "So, what we will do is we will copy the 28 to this node which is to be deleted.",
+    "start": 1601.44,
+    "end": 1605.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, 37, the node has not been deleted.",
+    "start": 1605.44,
+    "end": 1607.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "Its value has been replaced by 28.",
+    "start": 1607.44,
+    "end": 1609.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "Now, why is this a valid value?",
+    "start": 1609.44,
+    "end": 1610.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "Because we want to preserve the sorted thing.",
+    "start": 1610.44,
+    "end": 1613.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, if we have some list of sorted values and I delete something here, then what happens is that everything is to the right of the node.",
+    "start": 1613.44,
+    "end": 1621.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, the right of the predecessor.",
+    "start": 1621.44,
+    "end": 1622.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, I basically move the predecessor to this point and I have preserved the order between these elements in the sorted.",
+    "start": 1622.44,
+    "end": 1628.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, moving the predecessor here, I guarantee that anything that is to the right remains bigger than this node.",
+    "start": 1628.44,
+    "end": 1633.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "And everything to the left remains smaller than this node because it was the biggest value in this.",
+    "start": 1633.44,
+    "end": 1637.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "Now, of course, I have two copies of 28 so I must remove the 28.",
+    "start": 1637.44,
+    "end": 1641.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, then I will focus on the left subtree and I delete this predecessor value.",
+    "start": 1641.44,
+    "end": 1646.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "But the good thing about the predecessor value is that it is the right most value.",
+    "start": 1646.44,
+    "end": 1650.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "Right most value means either it is a leaf or it has only one left check.",
+    "start": 1650.44,
+    "end": 1654.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, we are back in the simpler case one of these two cases.",
+    "start": 1654.44,
+    "end": 1657.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, we can just delete the predecessor of V using one of these two cases.",
+    "start": 1657.44,
+    "end": 1661.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "Either it is going to be a leaf, it just falls off or I am going to promote this 21.",
+    "start": 1661.44,
+    "end": 1665.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, in this case the 21 will get promoted.",
+    "start": 1665.44,
+    "end": 1668.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, deleting in general consists of moving the predecessor to the current value",
+    "start": 1668.44,
+    "end": 1673.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "and then deleting the predecessor from the left subtree.",
+    "start": 1673.44,
+    "end": 1676.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, it is along the piece of code because we have these many cases.",
+    "start": 1679.44,
+    "end": 1683.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, first of all if it is an entry tree we do have nothing to be can't delete.",
+    "start": 1683.44,
+    "end": 1686.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "If on the other hand that value or the current node is not V.",
+    "start": 1686.44,
+    "end": 1690.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, if it is strictly less than, then if there is something to the left we delete from there.",
+    "start": 1690.44,
+    "end": 1695.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "If it is strictly greater than if there is something to the right we delete from there.",
+    "start": 1695.44,
+    "end": 1698.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, these are the two recursive cases.",
+    "start": 1698.44,
+    "end": 1700.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, if it is not strictly less than and not strictly greater than it must be equal and we have to do some real delete.",
+    "start": 1701.44,
+    "end": 1706.44,
+    "ocr_text": "# Recursive cases, t.value != v"
+  },
+  {
+    "text": "So, now we have these three cases.",
+    "start": 1706.44,
+    "end": 1708.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\n# Delete Leaf"
+  },
+  {
+    "text": "So, the first case actually breaks up in two cases.",
+    "start": 1708.44,
+    "end": 1710.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\n# Delete Leaf"
+  },
+  {
+    "text": "If it is a leaf it could be a leaf because it is the root right the root and it is only one node.",
+    "start": 1710.44,
+    "end": 1716.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\n# Delete Leaf"
+  },
+  {
+    "text": "So, we will read that slightly differently.",
+    "start": 1716.44,
+    "end": 1718.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\n# Delete Leaf"
+  },
+  {
+    "text": "So, we will say that if it has no parent that is it is the root then deleting the value actually makes it tree empty.",
+    "start": 1718.44,
+    "end": 1725.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\n# Delete Leaf"
+  },
+  {
+    "text": "So, we just reset T to be the empty tree nil and we return.",
+    "start": 1726.44,
+    "end": 1729.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\n# Delete Leaf"
+  },
+  {
+    "text": "If on the other hand it has a it is a leaf node it has no children right.",
+    "start": 1729.44,
+    "end": 1737.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\n# Delete Leaf"
+  },
+  {
+    "text": "Then what we do is we try to delete it by just setting the parent's value to be nil.",
+    "start": 1737.44,
+    "end": 1745.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\n# Delete Leaf"
+  },
+  {
+    "text": "So, supposing I come here right and this is my leaf node and I want to delete this.",
+    "start": 1745.44,
+    "end": 1750.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\n# Delete Leaf"
+  },
+  {
+    "text": "Then look up and then I basically set the right pointer of this to be nil which essentially kills off this link and says that there is no right pointer.",
+    "start": 1750.44,
+    "end": 1759.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\n# Delete Leaf"
+  },
+  {
+    "text": "So, if the current node is the left child of its parent I said the left child of the parent to nil.",
+    "start": 1759.44,
+    "end": 1764.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\nNie\n\n# Delete Leaf"
+  },
+  {
+    "text": "Otherwise it is the right child of the parent.",
+    "start": 1764.44,
+    "end": 1766.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\nNie\n\n# Delete Leaf"
+  },
+  {
+    "text": "So, this of course creates some garbage because this node is now inaccessible from the tree.",
+    "start": 1766.44,
+    "end": 1773.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\nNie\n\n# Delete Leaf\n\ni"
+  },
+  {
+    "text": "But we assume that this will be recovered and we do not have to worry about it.",
+    "start": 1773.44,
+    "end": 1776.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\nNie\n\n# Delete Leaf\n\ni"
+  },
+  {
+    "text": "If you are doing this in a language like C then you have to be careful to restore this back to the free space.",
+    "start": 1776.44,
+    "end": 1781.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\nNie\n\n# Delete Leaf\n\nt\n\nSpee’"
+  },
+  {
+    "text": "But in other languages which have garbage collection this will just automatically be restored when garbage collection takes over.",
+    "start": 1781.44,
+    "end": 1786.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\nNie\n\n# Delete Leaf\n\nt\n\nSpee’"
+  },
+  {
+    "text": "But the point is that we are just simply removing it by resetting our parent's pointer to be nil.",
+    "start": 1786.44,
+    "end": 1791.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\nNie\n\n# Delete Leaf\n\nSpee’"
+  },
+  {
+    "text": "So, this is the leaf case.",
+    "start": 1791.44,
+    "end": 1794.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\nNie\n\n# Delete Leaf\n\nSpee’"
+  },
+  {
+    "text": "So, having considered the leaf case now let us consider the case by delete a node with only one check.",
+    "start": 1794.44,
+    "end": 1801.44,
+    "ocr_text": "# t.value == v, delete here\n\n# Delete root\n\nNie\n\n# Delete Leaf\n\nSpee’"
+  },
+  {
+    "text": "So, the first case we will look at is when we are trying to delete a node which has only a left subtly.",
+    "start": 1801.44,
+    "end": 1807.44,
+    "ocr_text": "# Delete node with one child\n# Only left child"
+  },
+  {
+    "text": "So, left is not nil, right is nil.",
+    "start": 1807.44,
+    "end": 1810.44,
+    "ocr_text": "# Delete node with one child\n# Only Left child"
+  },
+  {
+    "text": "So, what we do first of all is we look at this immediate left successor.",
+    "start": 1810.44,
+    "end": 1814.44,
+    "ocr_text": "# Delete node with one child\n# Only Left child"
+  },
+  {
+    "text": "So, this has a parent somewhere above it.",
+    "start": 1814.44,
+    "end": 1816.44,
+    "ocr_text": "# Delete node with one child\n# Only Left child"
+  },
+  {
+    "text": "So, we first make this left child point directly to the parent.",
+    "start": 1816.44,
+    "end": 1821.44,
+    "ocr_text": "# Delete node with one child\n# Only left child"
+  },
+  {
+    "text": "So, t.left.parent is t.parent.",
+    "start": 1821.44,
+    "end": 1825.44,
+    "ocr_text": "# Delete node with one child\n# Only left child"
+  },
+  {
+    "text": "Then we look up and we decide whether this is a left parent or left child or a right child of which parent.",
+    "start": 1825.44,
+    "end": 1832.44,
+    "ocr_text": "# Delete node with one child\n# Only left child"
+  },
+  {
+    "text": "So, supposing the node we have is sitting to the left of its parent if t.parent.left is t.",
+    "start": 1832.44,
+    "end": 1840.44,
+    "ocr_text": "# Delete node with one child\n# Only left child"
+  },
+  {
+    "text": "Then what we do is we make this point directly.",
+    "start": 1840.44,
+    "end": 1849.44,
+    "ocr_text": "# Delete node with one child\n# Only left child"
+  },
+  {
+    "text": "Now, the other hand if it was not like this but it was the other way.",
+    "start": 1849.44,
+    "end": 1856.44,
+    "ocr_text": "# Delete node with one child\n# Only left child"
+  },
+  {
+    "text": "So, if this happened to be a right child of its parent then we say that t.parent the right child should now point directly here.",
+    "start": 1856.44,
+    "end": 1864.44,
+    "ocr_text": "oO. +\n\n# Delete node with one child y)\n\ner\n# Only left child"
+  },
+  {
+    "text": "The right child of the parent is now my left child.",
+    "start": 1864.44,
+    "end": 1867.44,
+    "ocr_text": "oO. +\n\n# Delete node with one child y)\n\ner\n# Only left child"
+  },
+  {
+    "text": "So, this is a way to splice out or remove this thing and promote the child the only child up.",
+    "start": 1867.44,
+    "end": 1873.44,
+    "ocr_text": "fs) a\n\n# Delete node with one child ) 3]\n\ner\n\n# Only left child"
+  },
+  {
+    "text": "We do a symmetrical thing if it is only the right child.",
+    "start": 1873.44,
+    "end": 1877.44,
+    "ocr_text": "fs) a\n\n# Delete node with one child ) 3]\n\ner\n\n# Only left child"
+  },
+  {
+    "text": "So, we first take the right child and then we reset its parent to be your own parent.",
+    "start": 1878.44,
+    "end": 1892.44,
+    "ocr_text": "# Delete node with one child\n\n# Only right child"
+  },
+  {
+    "text": "And then after that depending on the case we either make this point like this or this point like this.",
+    "start": 1892.44,
+    "end": 1897.44,
+    "ocr_text": "# Delete node with one child NS\n\ni]\n\n# Only right child"
+  },
+  {
+    "text": "So, either t.parent left is t.right t.parent right is t.right.",
+    "start": 1897.44,
+    "end": 1902.44,
+    "ocr_text": "# Delete node with one child ay\n\n# Only right child"
+  },
+  {
+    "text": "So, if we have only one child we just remove the node effectively from the tree.",
+    "start": 1902.44,
+    "end": 1906.44,
+    "ocr_text": "# Delete node with one child ay\n\n# Only right child"
+  },
+  {
+    "text": "And finally, if we have a node with two children what we do is we first compute the predecessor of v.",
+    "start": 1906.44,
+    "end": 1914.44,
+    "ocr_text": "# Delete node with two children\n\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child"
+  },
+  {
+    "text": "And then we set the current nodes value to be the predecessor value.",
+    "start": 1914.44,
+    "end": 1918.44,
+    "ocr_text": "# Delete node with two children\n\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child"
+  },
+  {
+    "text": "And now we know that this value is duplicate so we go to the left child and delete it.",
+    "start": 1918.44,
+    "end": 1923.44,
+    "ocr_text": "# Delete node with two children\n\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child"
+  },
+  {
+    "text": "Now remember that when we delete it here the left child we are deleting what we know is the maximum value.",
+    "start": 1923.44,
+    "end": 1928.44,
+    "ocr_text": "# Delete node with two children\n\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child"
+  },
+  {
+    "text": "So, therefore it will have either node children it will be a leaf or it will have a single child.",
+    "start": 1928.44,
+    "end": 1932.44,
+    "ocr_text": "# Delete node with two children\n\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child"
+  },
+  {
+    "text": "So, it won't come back to this case it will just stop at the earlier two cases and it will get successfully deleted.",
+    "start": 1932.44,
+    "end": 1938.44,
+    "ocr_text": "# Delete node with two children\n\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child"
+  },
+  {
+    "text": "So, there is no problem which is calling delete again.",
+    "start": 1938.44,
+    "end": 1941.44,
+    "ocr_text": "# Delete node with two children\n\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child"
+  },
+  {
+    "text": "So, all these operations that we have described now walk down to a single path.",
+    "start": 1941.44,
+    "end": 1947.44,
+    "ocr_text": "# Delete node with two children\n\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child"
+  },
+  {
+    "text": "So, therefore the worst case complexity of any one of these operations is the height of the current given tree.",
+    "start": 1947.44,
+    "end": 1953.44,
+    "ocr_text": "# Delete node with two children\n\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child"
+  },
+  {
+    "text": "And if we have maintained some kind of a balanced tree like a heap we saw then the height is logarithmic in the size.",
+    "start": 1954.44,
+    "end": 1961.44,
+    "ocr_text": "# Delete node with two children\n\n# Copy pred(v) into current node\n\n# Delete pv from left subtree\n# — pv either leaf or has single child"
+  },
+  {
+    "text": "So, if we have n nodes the height is order log n.",
+    "start": 1961.44,
+    "end": 1964.44,
+    "ocr_text": "Sorted array Search tree"
+  },
+  {
+    "text": "So, we will see in the next lecture how to maintain the balance but assuming that we maintain the balance we have succeeded in what we achieved what we wanted to achieve which is we wanted all these seven operations to be simultaneously efficient.",
+    "start": 1964.44,
+    "end": 1975.44,
+    "ocr_text": "Sorted array Search tree"
+  },
+  {
+    "text": "And they are all now log in time because each of them can be achieved in one traversal up or down a path in the tree.",
+    "start": 1975.44,
+    "end": 1984.44,
+    "ocr_text": "Sorted array Search tree"
+  }
+]

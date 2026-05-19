@@ -1,0 +1,1448 @@
+[
+  {
+    "text": "So, we will go to the next module where we wanted to look at two more architectures for",
+    "start": 0.0,
+    "end": 18.16,
+    "ocr_text": "NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "image classification. These are Google Net and ResNet. So, here is a question, right.",
+    "start": 18.16,
+    "end": 25.08,
+    "ocr_text": "Image Classification continued\n(GoogLeNet and ResNet)\n\nMitesh M. Khapra cs"
+  },
+  {
+    "text": "So, consider the output at a certain layer of a convolutional neural network. So, you have",
+    "start": 25.08,
+    "end": 28.96,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\nKhapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "this layer after layer of convolutions and max pooling and so on and you are at somewhere",
+    "start": 28.96,
+    "end": 33.76,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\nKhapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "in the middle and this is what your volume looks like. This is what your output volume looks",
+    "start": 33.76,
+    "end": 37.6,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\nKhapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "like. Now, after that you could apply a max pooling layer, you could apply a 1 cross 1",
+    "start": 37.6,
+    "end": 45.4,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\nMitesh M. Khapra 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "convolution, you could apply a 3 cross 3 convolution or you could apply a 5 cross 5 convolution,",
+    "start": 45.4,
+    "end": 49.6,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\ne After this layer we could apply a max-\npooling layer\n\ne Oral x | convolution\n\ne Ora 3 x 3 convolution\n\ne Ora5 x 5 convolution\n\nAe\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "right. And so far we saw that all these architectures they do one of these things. They either",
+    "start": 49.6,
+    "end": 54.44,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\ne After this layer we could apply a max-\npooling layer\n\ne Oral x | convolution\n\ne Ora 3 x 3 convolution\n\ne Ora5 x 5 convolution\n\nAe\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "do a max pooling or they do a 3 cross 3 convolution or they do a 5 cross 5 convolution or",
+    "start": 54.44,
+    "end": 59.48,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\ne After this layer we could apply a max-\npooling layer\n\ne Oral x | convolution\n\ne Ora 3 x 3 convolution\n\ne Ora5 x 5 convolution\n\nAe\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "a 7 cross 7 11 cross 11, right. Any convolution, but they are all uniform. They are all either",
+    "start": 59.48,
+    "end": 64.16,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\ne After this layer we could apply a max-\npooling layer\n\ne Oral x | convolution\n\ne Ora3 x 3 convolution\n\ne Ora 5 x 5 convolution\n\nMitesh M. Kh"
+  },
+  {
+    "text": "3 cross 3, all either 5 cross 5, all either 7 cross 7, right. So, why choose between",
+    "start": 64.16,
+    "end": 69.16,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\ne After this layer we could apply a max-\npooling layer\n\ne Oral x | convolution\n\ne Ora3 x 3 convolution\n\ne Ora 5 x 5 convolution\n\nMitesh M. Kh"
+  },
+  {
+    "text": "these options? Why not do all of this at every layer? Do you get the question that I am",
+    "start": 69.16,
+    "end": 75.8,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\ne After this layer we could apply a max-\npooling layer\n\ne Oral x | convolution\n\ne Or a3 x 3 convolution\n\ne Ora 5 x 5 convolution\n\ne Question: Why choose between\n\nthese options (convolution, maxpool-\ning, filter sizes)?\n\nMitesh M. Kha 87015 (Deep ning) ; Leeture 11"
+  },
+  {
+    "text": "trying to ask, right. So, so far what you are doing is that you have this volume, this",
+    "start": 75.8,
+    "end": 81.48,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\ne After this layer we could apply a max-\npooling layer\n\ne Oral x | convolution\n\ne Ora3 x 3 convolution\n\ne Ora5 x 5 convolution\n\ne Question: Why choose between\n\nthese options (convolution, maxpool-\ning, filter sizes)?\n\nMitesh M. Khapra ‘$7015 (Deep"
+  },
+  {
+    "text": "1 cross volume at a certain layer of the convolutional neural network. And after that you",
+    "start": 81.48,
+    "end": 85.96,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\ne After this layer we could apply a max-\npooling layer\n\ne Oral x | convolution\n\ne Ora3 x 3 convolution\n\ne Ora5 x 5 convolution\n\ne Question: Why choose between\n\nthese options (convolution, maxpool-\ning, filter sizes)?\n\nMitesh M. Khapra ‘$7015 (Deep"
+  },
+  {
+    "text": "are either using all 3 cross 3 filters. So, you are using 256 3 cross 3 filters or 5 1",
+    "start": 85.96,
+    "end": 90.76,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\ne After this layer we could apply a max-\npooling layer\ne Oral x | convolution\ne Ora 3 x 3 convolution\n\" e Ora5 x 5 convolution\n\ne Question: Why choose between\nthese options (convolution, maxpool-\ning, filter sizes)?\n\nHt i\n\nMitesh M. Khapra 15 (Deep Leeture 11"
+  },
+  {
+    "text": "to 3 cross 3 filters or using 7 cross 7 or using 5 cross 5. You are never using a mix",
+    "start": 90.76,
+    "end": 96.24,
+    "ocr_text": "e Consider the output at a certain layer\nof a convolutional neural network\n\ne After this layer we could apply a max-\npooling layer\ne Oral x | convolution\ne Ora 3 x 3 convolution\n\" e Ora5 x 5 convolution\n\ne Question: Why choose between\nthese options (convolution, maxpool-\ning, filter sizes)?\n\nHt i\n\nMitesh M. Khapra 15 (Deep Leeture 11"
+  },
+  {
+    "text": "of all these, right. So, why not use a mix of all these? Why not why take a decision on",
+    "start": 96.24,
+    "end": 101.48,
+    "ocr_text": "e Consider the output at a certain layer\n\nof a convolutional neural network\n\ne After this layer we could apply a max-\n\npooling layer\n\ne Oral x | convolution\ne Ora 3 x 3 convolution\ne Ora 5 x 5 convolution\n\ne Question: Why choose between\n\nthese options (convolution, maxpool-\ning, filter sizes)?\n\n15 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "that I only want 3 cross 3? Because it is possible that you want to capture interactions",
+    "start": 101.48,
+    "end": 106.52,
+    "ocr_text": "e Consider the output at a certain layer\n\nof a convolutional neural network\n\ne After this layer we could apply a max-\n\npooling layer\n\ne Oral x | convolution\ne Ora 3 x 3 convolution\ne Ora 5 x 5 convolution\n\ne Question: Why choose between\n\nthese options (convolution, maxpool-\ning, filter sizes)?\n\n15 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "at different levels. So, you should have varied size filters at every layer. So, how",
+    "start": 106.52,
+    "end": 110.92,
+    "ocr_text": "Mitesh\n\nM. KI\n\ne Consider the output at a certain layer\n\nof a convolutional neural network\n\ne After this layer we could apply a max-\n\npooling layer\n\ne Oral x 1 convolution\ne Ora 3 x 3 convolution\ne Ora5 x 5 convolution\n\ne Question: Why choose between\n\nthese options (convolution, maxpool-\ning, filter sizes)?\n\n15 (Deep"
+  },
+  {
+    "text": "many if you get the question and the intuition that I am trying to ask? So, the idea here",
+    "start": 110.92,
+    "end": 117.16,
+    "ocr_text": "Mitesh\n\nM. KI\n\ne Consider the output at a certain layer\n\nof a convolutional neural network\n\ne After this layer we could apply a max-\n\npooling layer\n\ne Oral x 1 convolution\ne Ora 3 x 3 convolution\ne Ora5 x 5 convolution\n\ne Question: Why choose between\n\nthese options (convolution, maxpool-\ning, filter sizes)?\n\n15 (Deep"
+  },
+  {
+    "text": "in Google net or in the inception net is that why not apply all of them at the same time",
+    "start": 117.16,
+    "end": 122.8,
+    "ocr_text": "Consider the output at a certain layer\nof a convolutional neural network\n\nAfter this layer we could apply a max-\npooling layer\n\nOr a 1 x 1 convolution\n\nOr a3 x 3 convolution\n\nOr a5 x 5 convolution\n\nQuestion: Why choose between\nthese options (convolution, maxpool-\ning, filter sizes)?\n\nIdea: Why not apply all of them at:\n\nthe same time and then concatenate\nthe feature maps?\n\n(Deep"
+  },
+  {
+    "text": "and then concatenate the feature maps, right. So, I will also do max pooling. I will also",
+    "start": 122.8,
+    "end": 127.28,
+    "ocr_text": "Consider the output at a certain layer\nof a convolutional neural network\n\nAfter this layer we could apply a max-\npooling layer\n\nOr a 1 x 1 convolution\n\nOr a3 x 3 convolution\n\nOr a5 x 5 convolution\n\nQuestion: Why choose between\nthese options (convolution, maxpool-\ning, filter sizes)?\n\nIdea: Why not apply all of them at:\n\nthe same time and then concatenate\nthe feature maps?\n\n(Deep"
+  },
+  {
+    "text": "do 3 cross 3 feature maps. I will also create 5 cross 5, 11 cross 11 and then just concatenate",
+    "start": 127.28,
+    "end": 132.48,
+    "ocr_text": "Consider the output at a certain layer\nof a convolutional neural network\n\nAfter this layer we could apply a max-\npooling layer\n\nOr a1 x 1 convolution\n\nOr a 3 x 3 convolution\n\nOr a 5 x 5 convolution\n\nQuestion: Why choose between\nthese options (convolution, maxpool-\ning, filter sizes)?\n\nIdea: Why not apply all of them at:\nthe same time and then concatenate\nthe feature maps?\n\n(Deep"
+  },
+  {
+    "text": "all of these together. So, let us see how to do that, right.",
+    "start": 132.48,
+    "end": 136.12,
+    "ocr_text": "Consider the output at a certain layer\nof a convolutional neural network\n\nAfter this layer we could apply a max-\npooling layer\n\nOr a1 x 1 convolution\n\nOr a 3 x 3 convolution\n\nOr a 5 x 5 convolution\n\nQuestion: Why choose between\nthese options (convolution, maxpool-\ning, filter sizes)?\n\nIdea: Why not apply all of them at:\nthe same time and then concatenate\nthe feature maps?\n\n(Deep"
+  },
+  {
+    "text": "Now, one problem with this naive idea is that it could result in a large number of computations.",
+    "start": 137.12,
+    "end": 142.64,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nMitesh M. Khapra 15 (Deep Leeture 11"
+  },
+  {
+    "text": "So, let us see what I mean by that. So, suppose the padding is 0, the stride is 1, then if",
+    "start": 142.64,
+    "end": 150.08,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nMitesh M. Khapra 15 (Deep Leeture 11"
+  },
+  {
+    "text": "you have a w cross h cross d input as the volume and if you have an f cross f cross d filter,",
+    "start": 150.08,
+    "end": 159.08,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S=1 then convolving a\nW x H x D input with a F x Fx D\nfilter results in a (W — F + 1)(H —\nF +1) sized output\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "then the output would be of this size. We all agree with this, this is the formula that",
+    "start": 159.08,
+    "end": 163.8,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S$ = 1 then convolving a\nW x H x D input with@’F x F x\n\nT results ina (W — F + 1)(H —\n\nF +1) sized output\n\nh M. Khapra"
+  },
+  {
+    "text": "we have been looking at. So, this is the size of the output volume. Now, every entry in",
+    "start": 163.8,
+    "end": 169.96,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S$ = 1 then convolving a\nW x H x D input with@’F x F x\n\nT results ina (W — F + 1)(H —\n\nF +1) sized output\n\nh M. Khapra"
+  },
+  {
+    "text": "this output volume requires how many computations to get a single entry in this output volume,",
+    "start": 169.96,
+    "end": 177.64,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n° If 2 =O & S = 1 then convolving a\nW x H x D input with@’F x F x\nT results ina (W — F + 1)(H —\nF +1) sized output\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "how many computations do I have to do? f cross f cross d. So, how do I get a single",
+    "start": 177.64,
+    "end": 183.68,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\no If 2 = -&S = 1 then convolving a\n\nW x H x D input with@’F x F x\n\nesults in a (W — F + 1)(H —\n\nF +1) sized output\n\nh M. Khapra ©S7015 (Deep Learning"
+  },
+  {
+    "text": "value? I apply a convolution at that value and then I do those many computations and",
+    "start": 183.68,
+    "end": 189.08,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\no If 2 = -&S = 1 then convolving a\n\nW x H x D input with@’F x F x\n\nesults in a (W — F + 1)(H —\n\nF +1) sized output\n\nh M. Khapra ©S7015 (Deep Learning"
+  },
+  {
+    "text": "here the number of computations is that I am going over this block of f cross f cross",
+    "start": 189.16,
+    "end": 193.72,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S$ = 1 then convolving a\n\nW x H x D input with@’F x F x\n\nesults in a (W — F + 1)(H —\n\nF +1) sized output\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "d doing a weighted multiplication and then adding them up, right. So, you need that many",
+    "start": 193.72,
+    "end": 198.08,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S$ = 1 then convolving a\n\nW x H x D input with@’F x F x\n\nesults in a (W — F + 1)(H —\n\nF +1) sized output\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "computations, everyone is clear with this, okay. So, each element of the output requires",
+    "start": 198.08,
+    "end": 204.32,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S$ = 1 then convolving a\n\nW x H x D input with@’F x F x\n\nesults in a (W — F + 1)(H —\n\nF +1) sized output"
+  },
+  {
+    "text": "these many computations and we have so many elements in the output, right. So, you are",
+    "start": 204.32,
+    "end": 210.2,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S$ = 1 then convolving a\n\nW x H x D input with@’F x F x\n\nesults in a (W — F + 1)(H —\n\nF +1) sized output"
+  },
+  {
+    "text": "doing really those many number of computations, right. So, can we do something to reduce the number",
+    "start": 210.2,
+    "end": 215.4,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S=1 then convolving a\nW x H x D input with a F x Fx D\nfilter results in a (W — F + 1)(H —\nF +1) sized output\n\ne Each element of the output requires\nO(F x F x D) computations\n\ne Can we reduce the number of compu-\ntations?\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "of computations, right. So, that is the key idea that we need to focus on. So, all of",
+    "start": 215.4,
+    "end": 219.8,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S=1 then convolving a\nW x H x D input with a F x Fx D\nfilter results in a (W — F + 1)(H —\nF +1) sized output\n\ne Each element of the output requires\nO(F x F x D) computations\n\ne Can we reduce the number of compu-\ntations?\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "this by the idea that doing this multi granular or multi sized filters is a good idea because",
+    "start": 219.8,
+    "end": 226.4,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S=1 then convolving a\nW x H x D input with a F x Fx D\nfilter results in a (W — F + 1)(H —\nF +1) sized output\n\ne Each element of the output requires\nO(F x F x D) computations\n\ne Can we reduce the number of compu-\ntations?\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "you are capturing interactions at different layer, but I showed you that this is a problem",
+    "start": 226.4,
+    "end": 229.84,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S=1 then convolving a\nW x H x D input with a F x Fx D\nfilter results in a (W — F + 1)(H —\nF +1) sized output\n\ne Each element of the output requires\nO(F x F x D) computations\n\ne Can we reduce the number of compu-\ntations?\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "with this, you could just apply multiple filters. So, let us see what we do. So, what we",
+    "start": 229.84,
+    "end": 234.52,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S=1 then convolving a\nW x H x D input with a F x Fx D\nfilter results in a (W — F + 1)(H —\nF +1) sized output\n\ne Each element of the output requires\nO(F x F x D) computations\n\ne Can we reduce the number of compu-\ntations?\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "do is 1 cross 1 convolution. What is the 1 cross 1 convolution do? What does it make",
+    "start": 234.52,
+    "end": 241.52,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S=1 then convolving a\nW x H x D input with a F x Fx D\nfilter results in a (W — F + 1)(H —\nF +1) sized output\n\ne Each element of the output requires\nO(F x F x D) computations\n\ne Can we reduce the number of compu-\ntations?\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "sense? How does the 1 cross 1 convolution make sense? You have a pixel, I fit a 1 cross",
+    "start": 241.52,
+    "end": 248.52,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "1 convolution on that, what will I get? I will get back the pixel. Along the depth, right.",
+    "start": 248.52,
+    "end": 255.4,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\nMitesh M. Khapra 115 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "So, remember it is not 1 cross 1, it is 1 cross 1 cross depth, right. So, what does a 1",
+    "start": 255.4,
+    "end": 260.64,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\nMitesh M. Khapra G (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "cross 1 convolution do? It actually aggregates along the depth. So, this is what my 1 cross",
+    "start": 260.64,
+    "end": 264.96,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\nMitesh M. Khapra G (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "1 convolution looks like, it is 1 cross 1 cross d. So, I just fit that block on that pixel",
+    "start": 264.96,
+    "end": 269.96,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\nMitesh M. Khapra G (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "and do everything along the depth and get a single value, right. So, from a 3D output",
+    "start": 269.96,
+    "end": 276.4,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\ne@ Huh?? What does a 1x 1 convolution\n\nn H do ?\n\ne It aggregates along the depth\n\nw w\n\nMitesh M. Khapra 115 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "using a 1 cross 1 convolution, I can go to a 2 cross 2D feature map. Everyone gets this.",
+    "start": 276.4,
+    "end": 283.76,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\ne@ Huh?? What does a 1x 1 convolution\n\nn H do ?\n\ne It aggregates along the depth\n\nw w\n\nMitesh M. Khapra 7015 (Deep Learn’ eeture 11"
+  },
+  {
+    "text": "Now I could use several of these 1 cross 1 operations, 1 cross 1 convolutions. In fact,",
+    "start": 283.76,
+    "end": 289.52,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\ne@ Huh?? What does a 1x 1 convolution\n\nn H do ?\n\ne It aggregates along the depth\n\nw w\n\nMitesh M. Khapra 7015 (Deep Learn’ eeture 11"
+  },
+  {
+    "text": "I could use d1 of these such that d1 is less than d. So, what effectively happens? The",
+    "start": 289.52,
+    "end": 295.32,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\ne@ Huh?? What does a 1x 1 convolution\n\nn H do ?\n\ne It aggregates along the depth\n\ne@ So convolving a Dx W x H input with\nD, 1x1 (Di < D) filters will result in\na D, x W x H output (S = 1, P =0)\n\nw w\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "depth of the output reduces. So, I take a certain output volume whose original depth was",
+    "start": 295.32,
+    "end": 301.0,
+    "ocr_text": "Mitesh M. Khapra\n\nYes, by using 1 x 1 convolutions\nHuh?? What does a 1 x 1 convolution\ndo ?\n\nIt aggregates along the depth\n\nSo convolving a Dx W x Hf input with\nD, 1x1 (D, < D) filters will result in\na D, x W x H output (S = 1, P =0)\n\n: Leeture 11"
+  },
+  {
+    "text": "d. Now, I take d1 1 cross 1 convolutions, right. So, I get an output whose depth is smaller",
+    "start": 301.0,
+    "end": 310.28,
+    "ocr_text": "Mitesh M. Khapra\n\nYes, by using 1 x 1 convolutions\nHuh?? What does a 1 x 1 convolution\ndo ?\n\nIt aggregates along the depth\n\nSo convolving a Dx W x Hf input with\nD, 1x1 (D, < D) filters will result in\na D, x W x H output (S = 1, P =0)\n\n: Leeture 11"
+  },
+  {
+    "text": "than the depth of the original output. Is that fine? Everyone gets this. And you see how",
+    "start": 310.28,
+    "end": 315.36,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\nHuh?? What does a 1x 1 convolution\n\nn tH do ?\n\nIt aggregates along the depth\n\nSo convolving a Dx W x H input with\nD, 1x1 (D, < D) filters will result in\na D, x W x H output (S = 1, P =0)\n\nMitesh M. Khapra ©7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "this will save computations, right. Because remember that this was f cross f cross d and",
+    "start": 315.36,
+    "end": 322.56,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S=1 then convolving a\nW x H x D input with a F x Fx D\nfilter results in a (W — F + 1)(H —\nF +1) sized output\n\ne Each element of the output requires\n\nO(F x F x D) computations\n\nCan we reduce the number of compu-\n\ntations?\n\nMitesh M. Khapra 87015 (Deep Learning"
+  },
+  {
+    "text": "now I have reduced d to d1. So, it is going to reduce the number of computations. So,",
+    "start": 322.56,
+    "end": 326.92,
+    "ocr_text": "o@ Well this naive idea could result in a\nlarge number of computations\n\nelf P=0& S=1 then convolving a\nW x H x D input with a F x Fx D\nfilter results in a (W — F + 1)(H —\nF +1) sized output\n\ne Each element of the output requires\n\nO(F x F x D) computations\n\nCan we reduce the number of compu-\n\ntations?\n\nMitesh M. Khapra 87015 (Deep Learning"
+  },
+  {
+    "text": "that is what the idea is. You reduce it from f cross f cross d to f cross f cross d1,",
+    "start": 326.92,
+    "end": 331.92,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\ne@ Huh?? What does a 1x 1 convolution\n\nn H do ?\n\ne It aggregates along the depth\ne@ So convolving a Dx W x H input with\nD, 1x1 (Di < D) filters will result in\na D, x W x H output (S = 1, P =0)\nelf D,; < D then this effectively re-\ni. ¥ duces the dimension of the input and\nhence the computations\n@ Specifically instead of OF x F x D)\nm we will need O(F x F x D,) compu-\ntations\n\n1M. Khapra 7015 (Deep Learn"
+  },
+  {
+    "text": "right. So, that is this particular network or this paper introduced the idea of this 1",
+    "start": 331.92,
+    "end": 336.4,
+    "ocr_text": "e Yes, by using 1 x 1 convolutions\n\ne@ Huh?? What does a 1x 1 convolution\n\nn H do ?\n\ne It aggregates along the depth\ne@ So convolving a Dx W x H input with\nD, 1x1 (Di < D) filters will result in\na D, x W x H output (S = 1, P =0)\nelf D,; < D then this effectively re-\ni. ¥ duces the dimension of the input and\nhence the computations\n@ Specifically instead of OF x F x D)\nm we will need O(F x F x D,) compu-\ntations\n\n1M. Khapra 7015 (Deep Learn"
+  },
+  {
+    "text": "cross 1, actually it did not introduce it, used it, but it made it popular probably.",
+    "start": 336.4,
+    "end": 340.8,
+    "ocr_text": "1M. Khapra\n\nYes, by using 1 x 1 convolutions\n\nHuh?? What does a 1 x 1 convolution\n\ndo ?\n\nIt aggregates along the depth\n\nSo convolving a Dx W x H input with\nD, 1x1 (Di < D) filters will result in\na D, x W x H output (S = 1,P =0)\nIf D,; < D then this effectively re-\nduces the dimension of the input and\nhence the computations\n\nSpecifically instead of OF x F x D) |\n\nwe will need O(F x F x D)) compu-\n\ntations"
+  },
+  {
+    "text": "Now, once you have done this, so this is how I am going to proceed now. I have a certain",
+    "start": 340.8,
+    "end": 345.64,
+    "ocr_text": "1M. Khapra\n\nYes, by using 1 x 1 convolutions\n\nHuh?? What does a 1 x 1 convolution\n\ndo ?\n\nIt aggregates along the depth\n\nSo convolving a Dx W x H input with\nD, 1x1 (Di < D) filters will result in\na D, x W x H output (S = 1,P =0)\nIf D,; < D then this effectively re-\nduces the dimension of the input and\nhence the computations\n\nSpecifically instead of OF x F x D) |\n\nwe will need O(F x F x D)) compu-\n\ntations"
+  },
+  {
+    "text": "volume. I have applied 1 cross 1 convolutions to it, using that I have reduced the number",
+    "start": 345.64,
+    "end": 351.52,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\nKhapra ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "of dimensions. Now, I am going to apply 3 cross 3 convolutions as well as apply 5 cross",
+    "start": 351.52,
+    "end": 356.64,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\nKhapra ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "5 convolutions on top of that, right. That is the motivation that I had started with",
+    "start": 356.64,
+    "end": 361.04,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\n1M. Khapra ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "that I want to apply kernels of multiple granularity. Now, can you think of some refinement",
+    "start": 361.04,
+    "end": 366.28,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\n1M. Khapra ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "to this? You see this branching over here. Why use the same 1 cross 1 convolutions before",
+    "start": 366.28,
+    "end": 373.68,
+    "ocr_text": "e But we might want to use different:\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\nMitesh M. Khapra 015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "feeding to 3 cross 3 as well as 5 cross 5? I could use a difference set of 1 cross 1",
+    "start": 373.68,
+    "end": 378.2,
+    "ocr_text": "e But we might want to use different:\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\nMitesh M. Khapra 015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "convolutions and feed it to a 5 cross 5 and use a difference set of 1 cross 1 convolutions",
+    "start": 378.28,
+    "end": 382.68,
+    "ocr_text": "e But we might want to use different:\ndimensionality reductions before the\n\nA 3x3 and 5 x 5 filters\n= . e@ So we can use D; and Dy | x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\n|| respectively\n\n5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "and feed it to 3 cross 3. Is that fine? What is the problem with this?",
+    "start": 382.68,
+    "end": 386.48,
+    "ocr_text": "e But we might want to use different:\ndimensionality reductions before the\n\nA 3x3 and 5 x 5 filters\n= . e@ So we can use D; and Dy | x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\n|| respectively\n\n5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "3 cross 1. Again, increasing the number of computations, right. But they found out that",
+    "start": 386.48,
+    "end": 390.56,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\ne So we can use D; and Dy 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\n\nrespectively\n\nMitesh M. Khapra $7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "the trade off between this is fine. Even if you are doing more 1 cross 1 operations, it",
+    "start": 390.56,
+    "end": 395.32,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\ne So we can use D; and Dy 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\n\nrespectively\n\nMitesh M. Khapra $7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "still is, the number of computations are still manageable, okay. And then you could also",
+    "start": 395.32,
+    "end": 400.84,
+    "ocr_text": "e But we might want to use different:\ndimensionality reductions before the\n\nA 3x3 and 5 x 5 filters\n= . e@ So we can use D; and Dy 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\n| respectively\n\nMitesh M. Kh 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "do a max pooling because if you are choosing between these things, right. 5 cross 5, 3 cross",
+    "start": 400.84,
+    "end": 407.32,
+    "ocr_text": "e But we might want to use different:\ndimensionality reductions before the\n\nA 3x3 and 5 x 5 filters\n= . e@ So we can use D; and Dy 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\n| respectively\n\nMitesh M. Kh 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "3, 7 cross 7 and max pooling. So, we will do all of these in parallel and we will also",
+    "start": 407.32,
+    "end": 412.64,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3.x 3 and 5 x 5 filters\n\ne So we can use D; and Dy 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\ne We can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "do some 1 cross 1 convolutions. So, how many different types of operations we have done?",
+    "start": 412.64,
+    "end": 416.76,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3.x 3 and 5 x 5 filters\n\ne So we can use D; and Dy 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\ne We can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "We have done 1 cross 1, 3 cross 3, 5 cross 5 and max pooling followed by 1 cross 1 convolutions.",
+    "start": 416.76,
+    "end": 422.96,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\ne So we can use Dy and Dg 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\ne We can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\ne And a new set of 1 x 1 convolutions\n\nMitesh M. Kh 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "Now all of these outputs that we have got, we have got a bunch of feature maps now.",
+    "start": 422.96,
+    "end": 427.0,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\ne So we can use Dy and Dg 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\ne We can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\ne And a new set of 1 x 1 convolutions\n\nMitesh M. Kh 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "This is one set of feature maps. This is another feature maps. This is another and this",
+    "start": 427.0,
+    "end": 430.68,
+    "ocr_text": "Mite\n\n1M. Kh\n\nBut we might want to use different:\ndimensionality reductions before the\n3x 3 and 5 x 5 filters\n\nSo we can use D; and Dy 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\n\nning) ; Leeture 11"
+  },
+  {
+    "text": "is another. All of these 4, we are going to concat together to get a single output",
+    "start": 430.68,
+    "end": 435.68,
+    "ocr_text": "Mite\n\n1M. Kh\n\nBut we might want to use different:\ndimensionality reductions before the\n3x 3 and 5 x 5 filters\n\nSo we can use D; and Dy 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\n\nning) ; Leeture 11"
+  },
+  {
+    "text": "volume. Do you see what is happening, right. It is all very mechanical. There is nothing",
+    "start": 435.68,
+    "end": 440.52,
+    "ocr_text": "But we might want to use different\ndimensionality reductions before the\n3x 3 and 5 x 5 filters\n\nSo we can use D; and Dog 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\n\nAnd finally we concatenate all these\nlayers\n\nning) ; Leeture 11"
+  },
+  {
+    "text": "really profound about what is being done. The only 2 profound ideas are 1 is apply multiple",
+    "start": 440.52,
+    "end": 446.52,
+    "ocr_text": "But we might want to use different\ndimensionality reductions before the\n3x 3 and 5 x 5 filters\n\nSo we can use D; and Dog 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\n\nAnd finally we concatenate all these\nlayers\n\nning) ; Leeture 11"
+  },
+  {
+    "text": "kernels of different sizes and the other is to use 1 cross 1 convolutions to make the",
+    "start": 446.52,
+    "end": 450.92,
+    "ocr_text": "e But we might want to use different:\ndimensionality reductions before the\n3 x 3 and 5 x 5 filters\n\nFilter\n\ne So we can use D; and Dg 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\n\nrespectively\n\ne We can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\ne And a new set of 1 x 1 convolutions\n\ne And finally we concatenate all these\nlayers\n\nMitesh M. Khapra 'S7015 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "whole computation manageable. That these are the only 2 main ideas. The rest of it is",
+    "start": 450.92,
+    "end": 454.76,
+    "ocr_text": "e But we might want to use different:\ndimensionality reductions before the\n3 x 3 and 5 x 5 filters\n\nFilter\n\ne So we can use D; and Dg 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\n\nrespectively\n\ne We can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\ne And a new set of 1 x 1 convolutions\n\ne And finally we concatenate all these\nlayers\n\nMitesh M. Khapra 'S7015 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "not very different from what we have been doing. How many if you get this operation completely?",
+    "start": 454.76,
+    "end": 459.04,
+    "ocr_text": "e But we might want to use different:\ndimensionality reductions before the\n3 x 3 and 5 x 5 filters\n\nFilter\n\ne So we can use D; and Dg 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\n\nrespectively\n\ne We can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\ne And a new set of 1 x 1 convolutions\n\ne And finally we concatenate all these\nlayers\n\nMitesh M. Khapra 'S7015 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "So, this block is called the inception module. This entire thing is called an inception",
+    "start": 459.76,
+    "end": 465.76,
+    "ocr_text": "e But we might want to use different\ndimensionality reductions before the\n3x 3 and 5 x 5 filters\n\ne So we can use Dy and Dg 1 x | fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\ne We can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\ne And a new set of 1 x 1 convolutions\n\ne And finally we concatenate all these\nlayers\n\n{. Khapra 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "module. So, in subsequent slides when I put an inception module, then you know that these",
+    "start": 465.76,
+    "end": 470.16,
+    "ocr_text": "But we might want to use different\ndimensionality reductions before the\n3.x 3 and 5 x 5 filters\n\nSo we can use D; and Dy 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\nAnd finally we concatenate all these\nlayers\n\nThis is called the Inception module\n\nLeeture 11"
+  },
+  {
+    "text": "parallel operations are happening. So, far whenever we had seen a convolutional neural",
+    "start": 470.16,
+    "end": 475.04,
+    "ocr_text": "But we might want to use different\ndimensionality reductions before the\n3.x 3 and 5 x 5 filters\n\nSo we can use D; and Dy 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\nAnd finally we concatenate all these\nlayers\n\nThis is called the Inception module\n\nLeeture 11"
+  },
+  {
+    "text": "network, it was all serial. So, you started with one operation, then another operation,",
+    "start": 475.04,
+    "end": 479.36,
+    "ocr_text": "a\nLe\n\nBut we might want to use different\ndimensionality reductions before the\n3 x 3 and 5 x 5 filters\n\nSo we can use D; and Dy 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\nAnd finally we concatenate all these\nlayers\n\nThis is called the Inception module\n\n5 (Deep ning) ; Leeture 11"
+  },
+  {
+    "text": "then another operation and so on. Now you have an output or an input volume. You apply",
+    "start": 479.36,
+    "end": 483.52,
+    "ocr_text": "a\nLe\n\nBut we might want to use different\ndimensionality reductions before the\n3 x 3 and 5 x 5 filters\n\nSo we can use D; and Dy 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\nAnd finally we concatenate all these\nlayers\n\nThis is called the Inception module\n\n5 (Deep ning) ; Leeture 11"
+  },
+  {
+    "text": "multiple operations in parallel and get one single output. So, it is a parallel serial",
+    "start": 483.52,
+    "end": 488.52,
+    "ocr_text": "a\nLe\n\nBut we might want to use different\ndimensionality reductions before the\n3 x 3 and 5 x 5 filters\n\nSo we can use D; and Dy 1 x I fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\nAnd finally we concatenate all these\nlayers\n\nThis is called the Inception module\n\n5 (Deep ning) ; Leeture 11"
+  },
+  {
+    "text": "combination. So, you will now see the full Google net architecture. So, his question was",
+    "start": 488.52,
+    "end": 494.12,
+    "ocr_text": "Filter\n\ne But we might want to use different\n\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\ne So we can use Dy and Dy 1 x 1 fil-\n\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\neo We can then add the maxpooling\n\nlayer followed by dimensionality re-\nduction\n\ne And a new set of 1 x 1 convolutions\n\ne And finally we concatenate all these\n\nlayers\n\ne This is called the Inception module\n\ne We will now see GoogLeNet which\n\ncontains many such inception mod-\nules\n\n15 (Deep"
+  },
+  {
+    "text": "basically 3 cross 3 would result in a different sized feature map, right. Because of and 5 cross 5",
+    "start": 494.12,
+    "end": 501.0,
+    "ocr_text": "Filter\n\ne But we might want to use different\n\ndimensionality reductions before the\n3x3 and 5 x 5 filters\n\ne So we can use Dy and Dy 1 x 1 fil-\n\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\neo We can then add the maxpooling\n\nlayer followed by dimensionality re-\nduction\n\ne And a new set of 1 x 1 convolutions\n\ne And finally we concatenate all these\n\nlayers\n\ne This is called the Inception module\n\ne We will now see GoogLeNet which\n\ncontains many such inception mod-\nules\n\n15 (Deep"
+  },
+  {
+    "text": "would result in a different size feature map. So, you will use appropriate padding so that",
+    "start": 501.0,
+    "end": 504.2,
+    "ocr_text": "Filter\n\n)\n\nBut we might want to use different\ndimensionality reductions before the\n3x 3 and 5 x 5 filters\n\nSo we can use D; and Dy 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\nAnd finally we concatenate all these\nlayers\n\nThis is called the Inception module\nWe will now see GoogLeNet which\ncontains many such inception mod-\nules\n\n15 (Deep"
+  },
+  {
+    "text": "all of this becomes equal. So, this is how Google net looks like. So, you have the input again",
+    "start": 504.2,
+    "end": 511.96,
+    "ocr_text": "Filter\n\n)\n\nBut we might want to use different\ndimensionality reductions before the\n3x 3 and 5 x 5 filters\n\nSo we can use D; and Dy 1 x 1 fil-\nters before the 3 x 3 and 5 x 5 filters\nrespectively\n\nWe can then add the maxpooling\nlayer followed by dimensionality re-\nduction\n\nAnd a new set of 1 x 1 convolutions\nAnd finally we concatenate all these\nlayers\n\nThis is called the Inception module\nWe will now see GoogLeNet which\ncontains many such inception mod-\nules\n\n15 (Deep"
+  },
+  {
+    "text": "RGB and same 227 cross 227 or 229 cross 229. Then you apply a convolution layer followed by a",
+    "start": 512.12,
+    "end": 520.28,
+    "ocr_text": "Mitesh M. Khapra 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "max pooling layer convolution max pooling. Then you have this inception module with a very specific",
+    "start": 520.28,
+    "end": 526.92,
+    "ocr_text": "Khapra ©7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "configuration. So, they have 96 1 cross 1 convolutions before feeding to 128 3 cross 3 convolutions.",
+    "start": 526.92,
+    "end": 534.68,
+    "ocr_text": "Khapra ©S7015 (Dee"
+  },
+  {
+    "text": "16 1 cross 1 convolutions before feeding to 32 5 cross 5 convolutions and so on. And so on.",
+    "start": 535.32,
+    "end": 540.6,
+    "ocr_text": "Mitesh M. Khapra ©S7015 (Dee"
+  },
+  {
+    "text": "I do not really see much point in going into the details of these numbers. This hardly any",
+    "start": 540.6,
+    "end": 545.08,
+    "ocr_text": "Mitesh M. Khapra ©S7015 (Dee"
+  },
+  {
+    "text": "intuition behind them. I again guess that it is you try a bunch of things and this is the one",
+    "start": 545.08,
+    "end": 549.64,
+    "ocr_text": "ie iN NNN\nHy Nal\n\nh M. Khapra CS7015 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "which probably gave the best output. So, the key idea is that of course, you have this inception",
+    "start": 549.64,
+    "end": 554.76,
+    "ocr_text": "ie iN NNN\nHy Nal\n\nh M. Khapra CS7015 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "module which is a parallel module which does a lot of operations in parallel. This is again",
+    "start": 554.76,
+    "end": 559.88,
+    "ocr_text": "ie iN NNN\nHy Nal\n\nh M. Khapra CS7015 (Deep Learni Leeture 11"
+  },
+  {
+    "text": "followed by another inception module which has a different configuration followed by max pooling.",
+    "start": 559.88,
+    "end": 565.8,
+    "ocr_text": "Mitesh M. Khapra"
+  },
+  {
+    "text": "Then again a few inception modules. In fact, 5 of them again max pooling then inception",
+    "start": 566.68,
+    "end": 573.24,
+    "ocr_text": "Mitesh M. Khapra ¢ ) (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "inception and this is the other interesting idea that they came up with.",
+    "start": 573.24,
+    "end": 577.8,
+    "ocr_text": "Mitesh M. Khapra ¢ ) (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "So, at this point remember in VGG net at the final layer you had an output of size 512 cross 7",
+    "start": 579.56,
+    "end": 586.92,
+    "ocr_text": "Mitesh M. Khapra 7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "cross 7 right. And we said that this was a problem. How many if you remember this? Why was this a",
+    "start": 586.92,
+    "end": 593.0,
+    "ocr_text": "Mitesh M. Khapra ‘015 (Deep ning) : Leeture"
+  },
+  {
+    "text": "problem? Because I need to connect this to a fully connected layer right and that fully connected",
+    "start": 593.0,
+    "end": 598.76,
+    "ocr_text": "Mitesh M. Khapra ‘015 (Deep ning) : Leeture"
+  },
+  {
+    "text": "layer was of size 4096 right. So, what they said is that what you could do is instead of taking 512",
+    "start": 598.76,
+    "end": 606.36,
+    "ocr_text": "Mitesh M. Khapra G"
+  },
+  {
+    "text": "cross 7 cross 7 for each of these 512 feature maps that you have take this 7 cross 7 and just do",
+    "start": 606.36,
+    "end": 613.48,
+    "ocr_text": "Mitesh M. Khapra ©S7015 (Deep"
+  },
+  {
+    "text": "an average pooling from there. What does what do I mean by that? Take these 7 cross 7 values",
+    "start": 613.48,
+    "end": 620.68,
+    "ocr_text": "Mitesh M. Khapra ©S7015 (Deep"
+  },
+  {
+    "text": "take an average of that. So, now instead of 512 cross 7 cross 7 how many values will you end up with",
+    "start": 620.76,
+    "end": 626.12,
+    "ocr_text": "Mitesh M. Khapra ©7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "just 512 and in their case instead of 1024 cross 7 cross 7 you will just end up with 1024 values",
+    "start": 626.84,
+    "end": 633.0,
+    "ocr_text": "Mitesh M. Khapra 7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "right. So, instead of looking at these dense connections with every pixel in the output volume",
+    "start": 633.0,
+    "end": 638.12,
+    "ocr_text": "Mitesh M. Khapra 7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "just take the average of those pixels and then do a dense connection from there. So, from this",
+    "start": 638.12,
+    "end": 642.36,
+    "ocr_text": "{. Khapra 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "volume you just go to a vector of size 1024 which is exactly this vector shown here and from there",
+    "start": 642.36,
+    "end": 648.28,
+    "ocr_text": "{. Khapra 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "on life becomes easier right because you have done of 50 percent reduction or sorry 50 times",
+    "start": 648.28,
+    "end": 652.76,
+    "ocr_text": "{. Khapra 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "reduction in the volume. This was 1024 cross 49 now you just have 1024 cross 1. So, you have a 49",
+    "start": 652.76,
+    "end": 660.12,
+    "ocr_text": "{. Khapra 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "times reduction in the size and that is a huge parameter reduction and that actually worked very",
+    "start": 660.12,
+    "end": 665.64,
+    "ocr_text": "{. Khapra 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "well in practice. Therefore, I had these dropouts and other things and then you have your fully",
+    "start": 665.64,
+    "end": 671.56,
+    "ocr_text": "e Important Trick: Got rid of the\nfully connected layer\n\nMitesh M. Khapra CS7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "connected layers and finally, the softmax layer at the output to predict one of the 1000 classes right.",
+    "start": 671.56,
+    "end": 676.76,
+    "ocr_text": "e Important Trick: Got rid of the\nfully connected layer\n\nMitesh M. Khapra CS7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "So, this is the full structure of Google net or inception net with multiple inception modules right.",
+    "start": 676.76,
+    "end": 683.8,
+    "ocr_text": "da 4h 0 de = 4d = de\n2 oz favxpool— dropout(4u%\n51 eas ee 1 Inception caption 000\n\nho M. Khapre ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "So, just remember that key takeaways are 3, 1 is have filters at multiple granularity applied",
+    "start": 683.8,
+    "end": 691.4,
+    "ocr_text": "da 4h 0 de = 4d = de\n2 oz favxpool— dropout(4u%\n51 eas ee 1 Inception caption 000\n\nho M. Khapre ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "in parallel. The other is use 1 cross 1 convolutions to reduce the number of computations and the",
+    "start": 691.4,
+    "end": 697.24,
+    "ocr_text": "da | 4b | de = 4d = 5a :\n$32 favxpool— dropout(4u%\now os Tinga lib ton\n\nMitesh M. Khapr ©S$7015 (Deep Li ) : Leeture 11"
+  },
+  {
+    "text": "final one is to use this average pooling to make sure that you do not have this blow up of parameters",
+    "start": 697.24,
+    "end": 702.52,
+    "ocr_text": "$32 oz favxpool— dropout(4u%\n\n©S7015 (Deep Li Leeture 11"
+  },
+  {
+    "text": "at the output. So, these are the 3 main ideas that you need to do right. So, this is exactly what I",
+    "start": 702.52,
+    "end": 708.44,
+    "ocr_text": "$32 oz favxpool— dropout(4u%\n\n©S7015 (Deep Li Leeture 11"
+  },
+  {
+    "text": "explained. So, instead of having this nasty looking connection which would have been 5016 cross",
+    "start": 708.44,
+    "end": 715.88,
+    "ocr_text": "1000 e Important Trick: Got rid of the\nfully connected layer\n\ne Notice that output of the last layer is\n7 x 7 x 1024 dimensional\n\n“I\n\nx 1024\n\nx\n\nx\n\nflatien e What if we were to add a fully con-\nnected layer with 1000 nodes (for\n7 1000 classes) on top of this\n1024\n\n1M. Khapra 7015 (Deep Learning) : Leet"
+  },
+  {
+    "text": "1000, we just take the average from this grid and just get a 1024 dimensional vector which results",
+    "start": 715.88,
+    "end": 722.52,
+    "ocr_text": "W e€ Ri0!76x 1000\n\n\\7x 7x 1024\n\nflatten\n\n7\n\n1\n\n1024\n\n1M. Khapra\n\nImportant Trick: Got rid of the\nfully connected layer\n\nNotice that output of the last layer is\n7x 7 x 1024 dimensional\n\nWhat if we were to add a fully con-\nnected layer with 1000 nodes (for\n1000 classes) on top of this\n\nWe would have 7 x 7 x 1024 x 1000 =\n49M parameters\n\nInstead they use an average pooling of\nsize 7 x 7 on each of the 1024 feature\nmaps\n\nThis results in a 1024 dimensional\noutput\n\n7015 (Deep Learning"
+  },
+  {
+    "text": "in a much smaller weight matrix at the output everyone gets this. So, this is fine. So, this has 12",
+    "start": 722.52,
+    "end": 729.48,
+    "ocr_text": "W e€ Ri0!76x 1000\n\n\\7x 7x 1024\n\nflatten\n\n7\n\n1\n\n1024\n\n1M. Khapra\n\nImportant Trick: Got rid of the\nfully connected layer\n\nNotice that output of the last layer is\n7x 7 x 1024 dimensional\n\nWhat if we were to add a fully con-\nnected layer with 1000 nodes (for\n1000 classes) on top of this\n\nWe would have 7 x 7 x 1024 x 1000 =\n49M parameters\n\nInstead they use an average pooling of\nsize 7 x 7 on each of the 1024 feature\nmaps\n\nThis results in a 1024 dimensional\noutput\n\n7015 (Deep Learning"
+  },
+  {
+    "text": "times less parameters than Alex net it has 2 times more computations right. So, that is what I",
+    "start": 729.48,
+    "end": 735.64,
+    "ocr_text": "e 12x less parameters than AlexNet\n\n1024\n\nTi 1\n\n1024\n\n015 (Deep ning) ; Leeture 11\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "meant by the trade off. So, the number of parameters has reduced significantly of course, a large",
+    "start": 735.64,
+    "end": 741.24,
+    "ocr_text": "e@ 12x less parameters than AlexNet\n\ne@ 2X more computations\n\npick average\n\n12\n\n1024\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "amount of this savings happened in the fully connected layer. It is not the ingenuity in the",
+    "start": 741.24,
+    "end": 746.84,
+    "ocr_text": "e@ 12x less parameters than AlexNet\n\ne@ 2X more computations\n\npick average\n\n12\n\n1024\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "inception module which led to the fewer number of parameters that actually leads to more number",
+    "start": 746.84,
+    "end": 750.28,
+    "ocr_text": "e 12x less parameters than AlexNet\n\ne@ 2X more computations\n\nEE 12\n\niil\nHan /1024\n\nMitesh M. Khapra ‘015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "of parameters right. But the reason they could afford more number of parameters in the convolution",
+    "start": 750.28,
+    "end": 754.6,
+    "ocr_text": "e 12x less parameters than AlexNet\n\ne@ 2X more computations\n\nEE 12\n\niil\nHan /1024\n\nMitesh M. Khapra ‘015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "is because they reduced a lot of parameters in the fully connected layer. They get that. So,",
+    "start": 755.56,
+    "end": 760.28,
+    "ocr_text": "1000 e@ 12x less parameters than AlexNet.\n\ne@ 2X more computations\n\n1024\n\npick average\n\n12\n\n1024\n\nMitesh M. Khapra ©$7015 (Deep Learn Leeture 11"
+  },
+  {
+    "text": "they did this trade off and it has 2 times more computations than Alex net, but it is still",
+    "start": 760.28,
+    "end": 765.72,
+    "ocr_text": "1000 e@ 12x less parameters than AlexNet.\n\ne@ 2X more computations\n\n1024\n\npick average\n\n12\n\n1024\n\nMitesh M. Khapra ©$7015 (Deep Learn Leeture 11"
+  },
+  {
+    "text": "acceptable because you see that there are many many layers as compared to Alex net right. So,",
+    "start": 765.72,
+    "end": 769.4,
+    "ocr_text": "1000 e Important Trick: Got rid of the\nfully connected layer\n\nx 7x 1024 e Notice that output of the last layer is\n7x 7 x 1024 dimensional\n\n_\n“I\n\nflatien e What if we were to add a fully con-\nnected layer with 1000 nodes (for\n\n7 1000 classes) on top of this\n\n7 pick average @ We would have 7 x 7 x 1024 x 1000 =\nHh EE 102: 49M parameters\n\n1024\n\ne Instead they use an average pooling of\n7 size 7 x 7 on each of the 1024 feature\nmaps\n\ne This results in a 1024\noutput\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "let us actually count the number of layers that we had here. So, 1234, 567, 899, 1011, 1213, 14",
+    "start": 769.4,
+    "end": 776.28,
+    "ocr_text": "1000 e Important Trick: Got rid of the\nfully connected layer\n\nx 7x 1024 e Notice that output of the last layer is\n7x 7 x 1024 dimensional\n\n_\n“I\n\nflatien e What if we were to add a fully con-\nnected layer with 1000 nodes (for\n\n7 1000 classes) on top of this\n\n7 pick average @ We would have 7 x 7 x 1024 x 1000 =\nHh EE 102: 49M parameters\n\n1024\n\ne Instead they use an average pooling of\n7 size 7 x 7 on each of the 1024 feature\nmaps\n\ne This results in a 1024\noutput\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "right. So, there is 14 layers and each of these inception modules is again like a split layer right.",
+    "start": 776.28,
+    "end": 782.04,
+    "ocr_text": "da 4b 5a\n22 favxpool dropout (4u%\n\nMitesh M. Khapr ©7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "It has this parallel components there. So, having 2 times more computations was still an acceptable",
+    "start": 782.04,
+    "end": 787.24,
+    "ocr_text": "da 4b 5a\n22 favxpool dropout (4u%\n\nMitesh M. Khapr ©7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "trade off and it of course, led to much better accuracy as compared to Alex net or ZF net or VG",
+    "start": 787.24,
+    "end": 794.12,
+    "ocr_text": "e 12x less parameters than AlexNet\n\ne 2X more computations\n\npick average\n\n12\n\n1024\n\nMitesh M. Khapra ‘015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "Smeb right that we had seen in the original train graph ok. So, now we will go on to the last",
+    "start": 794.12,
+    "end": 799.32,
+    "ocr_text": "e 12x less parameters than AlexNet\n\ne 2X more computations\n\npick average\n\n12\n\n1024\n\nMitesh M. Khapra ‘015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "architecture that we will discuss for image classification which is ResNet. So, here is the idea",
+    "start": 799.32,
+    "end": 806.04,
+    "ocr_text": "@ GoogLeNet\n@ ResNet |"
+  },
+  {
+    "text": "behind ResNet or here is the motivation right. Now, suppose we have been able to train a shallow",
+    "start": 806.04,
+    "end": 811.56,
+    "ocr_text": "—_ e@ Suppose we have been able to train a\n38 conv, 256 |\n\nshallow neural network well\n38 conv, 255 |\n\n33 env, 56\n\n338 conv, S12\n3:3 conv, 512\n\n338 conv, S12\n\n338 conv, 512\n\nKhapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "neural network well. Now, again my definitions of shallow are relative this is by no means shallow",
+    "start": 811.56,
+    "end": 816.92,
+    "ocr_text": "—_ e@ Suppose we have been able to train a\n38 conv, 256 |\n\nshallow neural network well\n38 conv, 255 |\n\n33 env, 56\n\n338 conv, S12\n3:3 conv, 512\n\n338 conv, S12\n\n338 conv, 512\n\nKhapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "there are many layers here right. So, you have some 8 layers here. Now, if I have been able to do",
+    "start": 816.92,
+    "end": 824.52,
+    "ocr_text": "x e@ Suppose we have been able to train a\n38 conv, 256 |\n\nshallow neural network well\n38 con, 255 |\n3G wnv, 56\n\n33 env, 56\n\n338 conv, S12\n3:3 conv, 512\n\n3:8 conv, S12\n\n338 conv, 512\n\nKhapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "this properly that means what I mean by that is that using this network at least I was able to",
+    "start": 824.52,
+    "end": 829.96,
+    "ocr_text": "x e@ Suppose we have been able to train a\n38 conv, 256 |\n\nshallow neural network well\n38 con, 255 |\n3G wnv, 56\n\n33 env, 56\n\n338 conv, S12\n3:3 conv, 512\n\n3:8 conv, S12\n\n338 conv, 512\n\nKhapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "reduce the training error to 0 or close to 0 some acceptable value and I was able to get some",
+    "start": 829.96,
+    "end": 835.24,
+    "ocr_text": "y e@ Suppose we have been able to train a\n38 conv, 256 |\n\n— shallow neural network well\n38 cov, 255 |\n3G wnv, 56\n\n33 conv, 56\n\n338 conv, S12\n333 conv, 512\n\n3d conv, 512\n\n338 conv, 512\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "reasonable generalization performance that means, on the test set I was able to get some",
+    "start": 835.24,
+    "end": 838.36,
+    "ocr_text": "y e@ Suppose we have been able to train a\n30 cow, 256 |\n\nshallow neural network well\n38 cow, 255 |\n3G wmv, 56\n\n33 wav, 56\n\n38 conv, 512\n¥\n3x3 conv, S12\n=—*\n3dconv,512 |\n\n338 conv, 512\n\nMitesh M. Khapra ‘015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "reasonable accuracy that is what I mean by I was able to make this network work well.",
+    "start": 838.36,
+    "end": 842.68,
+    "ocr_text": "y e@ Suppose we have been able to train a\n30 cow, 256 |\n\nshallow neural network well\n38 cow, 255 |\n3G wmv, 56\n\n33 wav, 56\n\n38 conv, 512\n¥\n3x3 conv, S12\n=—*\n3dconv,512 |\n\n338 conv, 512\n\nMitesh M. Khapra ‘015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "Now, suppose I add a few layers to this network and I have carefully added some layers in between",
+    "start": 843.56,
+    "end": 849.48,
+    "ocr_text": "y e@ Suppose we have been able to train a\n30 cow, 256 |\n\nshallow neural network well\n38 cow, 255 |\n3G wmv, 56\n\n33 wav, 56\n\n38 conv, 512\n¥\n3x3 conv, S12\n=—*\n3dconv,512 |\n\n338 conv, 512\n\nMitesh M. Khapra ‘015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "here and in between here or over there right. Now, intuitively I could argue that if the shallow",
+    "start": 849.48,
+    "end": 858.52,
+    "ocr_text": "Tews] ieee) e@ Suppose we have been able to train a\n38 cow 256] sac shallow neural network well\n¥ , ¥\nBom Be Eas e Now suppose we construct a deeper\n[38 wav, 256 network which has few more layers (in\norange)\npool, /2\n¥\n3:8 conv, 512 33 om, 128\nJ\n3x3 conv, S12 3Ganv,28 |\n__ 3:8 con, 512 33 conv, 128\n3:8 conv, 512 2G wavy, 128\n3G env, 128\n__ 3:6 conv, 128\n33 cots ]\n\n1M. Khapra 'S7015 (Deep Learning) : 1"
+  },
+  {
+    "text": "network was working well right then for the deep network there is exist at least one solution",
+    "start": 858.52,
+    "end": 865.56,
+    "ocr_text": "e@ Suppose we have been able to train a\n\nshallow neural network well\n\ne@ Now suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nMitesh M. Khapra 015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "which can directly come from the shallow network. Can you tell me what that solution is?",
+    "start": 866.28,
+    "end": 869.72,
+    "ocr_text": "e Suppose we have been able to train a\nshallow neural network well\n\ne@ Now suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nil\n\n1M. Khapra ‘$7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "I want all of you to kind of digest that idea. What the deep network could have done is I know",
+    "start": 870.6,
+    "end": 876.68,
+    "ocr_text": "e Suppose we have been able to train a\nshallow neural network well\n\ne@ Now suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nil\n\n1M. Khapra ‘$7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "that this shallow network works why not I just behave like that and I learnt these parameters",
+    "start": 876.68,
+    "end": 882.12,
+    "ocr_text": "eee a ____a\"\n\nGa conv, 356 maw e Suppose we have been able to train a\n= wala TE) shallow neural network well\n[(aaew, 56) ia conv, e Now suppose we construct a deeper\n33 env, 56 338 conv, 64 network which has few more layers (in\nxd conv, 64 orange)\n3:3 conv, 64\npool, /2 BG cony 128, /2\n3:8 conv, 512 33 om, 128\n3x3 conv, 512 was 128\n33 conv, S12 33a conv, 128\n3:8 conv, 512 3G @nv, 128\n\n1M. Khapra ‘$7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "in such a way that I just end up copying from here to here. How many if you get this right.",
+    "start": 882.12,
+    "end": 887.16,
+    "ocr_text": "eee a ____a\"\n\nGa conv, 356 maw e Suppose we have been able to train a\n= wala TE) shallow neural network well\n[(aaew, 56) ia conv, e Now suppose we construct a deeper\n33 env, 56 338 conv, 64 network which has few more layers (in\nxd conv, 64 orange)\n3:3 conv, 64\npool, /2 BG cony 128, /2\n3:8 conv, 512 33 om, 128\n3x3 conv, 512 was 128\n33 conv, S12 33a conv, 128\n3:8 conv, 512 3G @nv, 128\n\n1M. Khapra ‘$7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "So, there is a case for the deep network to do at least as well as the shallow network",
+    "start": 887.16,
+    "end": 892.36,
+    "ocr_text": "e@ Suppose we have been able to train a\n\nshallow neural network well\n\ne@ Now suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "and it could do the same thing at this point or if you get this idea right. So, in other words",
+    "start": 892.44,
+    "end": 897.96,
+    "ocr_text": "e@ Suppose we have been able to train a\n\nshallow neural network well\n\ne@ Now suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "the solution space of the deep network or rather the solution space of the shallow network",
+    "start": 899.56,
+    "end": 904.6,
+    "ocr_text": "¥. ¥.\n\n3:8 conv, 256 3:8 conv, 64\n3:6 conv, 256 3:8 conv, 64\n3a wav, m6 33 conv, 64\n33 cow. 56 3 con, A\n33 a\n3x3 conv, 64\n\npool, /2 2Gcony 128,/2\n33 ay sR 33 ow, 128\n__ 3x3 conv, 512 ae 128\n3:8 conv, 512 33 conv, 128\n3:8 conv, 512 2G wav, 128\n3d env, 28\n3:8 conv, 128\n3:8 conv, 128\n\nSuppose we have been able to train a\nshallow neural network well\n\nNow suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nIntuitively, if the shallow network\nworks well then the deep network\nshould also work well by simply learn-\ning to compute identity functions in\nthe new layers\n\nEssentially, the solution space of a\nshallow neural network is a subset of\n\nthe solution space of a deep neural\nnetwork"
+  },
+  {
+    "text": "is actually a subset of the solution space of the deep network. There was one solution for the",
+    "start": 904.6,
+    "end": 909.0,
+    "ocr_text": "¥. ¥.\n\n3:8 conv, 256 3:8 conv, 64\n3:6 conv, 256 3:8 conv, 64\n3a wav, m6 33 conv, 64\n33 cow. 56 3 con, A\n33 a\n3x3 conv, 64\n\npool, /2 2Gcony 128,/2\n33 ay sR 33 ow, 128\n__ 3x3 conv, 512 ae 128\n3:8 conv, 512 33 conv, 128\n3:8 conv, 512 2G wav, 128\n3d env, 28\n3:8 conv, 128\n3:8 conv, 128\n\nSuppose we have been able to train a\nshallow neural network well\n\nNow suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nIntuitively, if the shallow network\nworks well then the deep network\nshould also work well by simply learn-\ning to compute identity functions in\nthe new layers\n\nEssentially, the solution space of a\nshallow neural network is a subset of\n\nthe solution space of a deep neural\nnetwork"
+  },
+  {
+    "text": "shallow network which could have been used as it is for the deep network. Of course, for the deep",
+    "start": 909.0,
+    "end": 912.68,
+    "ocr_text": "x y\n3:6 conv, 256 3:8 conv, 64\n3:8 conv, 256 3:8 conv, 64\n3G conv, 56 3:3 conv, 64\n33 anv, 56 336 conv, 64\n___ 3G conv, 64\n3x3 conv, 64\n\npool, /2 BG cony 128, /2\n38 + sR 3G ow, 28\n3x3 conv, 512 ae 128\n3:3 conv, S12 33 ony, 128\n3:8 conv, 512 2G wavy, 128\n30 env, 28\n3:6 conv, 128\n3x3 conv, 128\n\nSuppose we have been able to train a\nshallow neural network well\n\nNow suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nIntuitively, if the shallow network\nworks well then the deep network\nsimply learn-\ning to compute identity functions in\n\nshould also work well by\n\nthe new layers\n\nEssentially, the solution space of a\nshallow neural network is a subset of\n\nthe solution space of a deep neural\nnetwork"
+  },
+  {
+    "text": "network there are several other solutions because instead of the identity here you could learn",
+    "start": 912.68,
+    "end": 915.88,
+    "ocr_text": "x y\n3:6 conv, 256 3:8 conv, 64\n3:8 conv, 256 3:8 conv, 64\n3G conv, 56 3:3 conv, 64\n33 anv, 56 336 conv, 64\n___ 3G conv, 64\n3x3 conv, 64\n\npool, /2 BG cony 128, /2\n38 + sR 3G ow, 28\n3x3 conv, 512 ae 128\n3:3 conv, S12 33 ony, 128\n3:8 conv, 512 2G wavy, 128\n30 env, 28\n3:6 conv, 128\n3x3 conv, 128\n\nSuppose we have been able to train a\nshallow neural network well\n\nNow suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nIntuitively, if the shallow network\nworks well then the deep network\nsimply learn-\ning to compute identity functions in\n\nshould also work well by\n\nthe new layers\n\nEssentially, the solution space of a\nshallow neural network is a subset of\n\nthe solution space of a deep neural\nnetwork"
+  },
+  {
+    "text": "different things there but at least that one solution exists. So, I should at least if I use this",
+    "start": 915.88,
+    "end": 921.08,
+    "ocr_text": "x\n33 conv, 256\n336 conv, 256\n\n30 env, 56\n\n33 conv, 56\n\n338 conv, S12\n333 conv, S12\n338 conv, S12\n\n338 conv, 512\n\nSuppose we have been able to train a\nshallow neural network well\n\nNow suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nIntuitively, if the shallow network\nworks well then the deep network\nshould also work well by simply learn-\ning to compute identity functions in\n\nthe new layers\n\nEssentially, the solution space of a\nshallow neural network is a subset of\nthe solution space of a deep neural\nnetwork"
+  },
+  {
+    "text": "in practice I should expect that this would work as well as the shallow network.",
+    "start": 921.08,
+    "end": 926.76,
+    "ocr_text": "x\n33 conv, 256\n336 conv, 256\n\n30 env, 56\n\n33 conv, 56\n\n338 conv, S12\n333 conv, S12\n338 conv, S12\n\n338 conv, 512\n\nSuppose we have been able to train a\nshallow neural network well\n\nNow suppose we construct a deeper\nnetwork which has few more layers (in\norange)\n\nIntuitively, if the shallow network\nworks well then the deep network\nshould also work well by simply learn-\ning to compute identity functions in\n\nthe new layers\n\nEssentially, the solution space of a\nshallow neural network is a subset of\nthe solution space of a deep neural\nnetwork"
+  },
+  {
+    "text": "Is that argument fine with everyone? Yeah. Obviously only one. Yeah of course. Yeah. Yeah I mean so",
+    "start": 926.76,
+    "end": 933.16,
+    "ocr_text": "wea 36) a) e@ Suppose we have been able to train a\nTews] ioe) shallow neural network well\nRa enw, 256 iene) e Now suppose we construct a deeper\n3a wav 56 network which has few more layers (in\norange)\ne Intuitively, if the shallow network\nwy” C works well then the deep network\nEE should also work well by simply learn-\nSS 3 ing to compute identity functions in\ni) a the new layers\n3:8 conv, 512 3G @nv, 128\n\ne Essentially, the solution space of a\n\nBS conv, 128 shallow neural network is a subset of\n3:8 con, 128 the solution space of a\n3:8 conv, 128\n\nnetwork\n\nWA W\n\n1M. Khapra ‘015 (Deep Learning) : I"
+  },
+  {
+    "text": "it those arbitrary things would not work but here what they are at least for the explanation",
+    "start": 933.16,
+    "end": 937.56,
+    "ocr_text": "wea 36) a) e@ Suppose we have been able to train a\nTews] ioe) shallow neural network well\nRa enw, 256 iene) e Now suppose we construct a deeper\n3a wav 56 network which has few more layers (in\norange)\ne Intuitively, if the shallow network\nwy” C works well then the deep network\nEE should also work well by simply learn-\nSS 3 ing to compute identity functions in\ni) a the new layers\n3:8 conv, 512 3G @nv, 128\n\ne Essentially, the solution space of a\n\nBS conv, 128 shallow neural network is a subset of\n3:8 con, 128 the solution space of a\n3:8 conv, 128\n\nnetwork\n\nWA W\n\n1M. Khapra ‘015 (Deep Learning) : I"
+  },
+  {
+    "text": "intuition right. You are using some reasonable things right you are just trying to make it",
+    "start": 937.56,
+    "end": 940.6,
+    "ocr_text": "e@ Suppose we have been able to train a\n\nTe conv 256 ]\nTaco 356) shallow neural network well\n3a wow, 56 e Now suppose we construct a deeper\n[33 wow, 256 network which has few more layers (in\norange)\ne Intuitively, if the shallow network\nns works well then the deep network\nowe should also work well by simply learn-\nSS ing to compute identity functions in\nTE) the new layers\n2erons2 e Essentially, the solution space of a\nshallow neural network is a subset of\nthe solution space of a ~ :\nnetwork\n\n1M. Khapra 'S7015 (Deep Learning) : T"
+  },
+  {
+    "text": "compatible with whatever you have. So, the argument is valid right. So, I cannot expect that",
+    "start": 940.6,
+    "end": 944.92,
+    "ocr_text": "e@ Suppose we have been able to train a\n\nTe conv 256 ]\nTaco 356) shallow neural network well\n3a wow, 56 e Now suppose we construct a deeper\n[33 wow, 256 network which has few more layers (in\norange)\ne Intuitively, if the shallow network\nns works well then the deep network\nowe should also work well by simply learn-\nSS ing to compute identity functions in\nTE) the new layers\n2erons2 e Essentially, the solution space of a\nshallow neural network is a subset of\nthe solution space of a ~ :\nnetwork\n\n1M. Khapra 'S7015 (Deep Learning) : T"
+  },
+  {
+    "text": "I had a volume whose depth was 128 and then I suddenly decide to use only one filter in the",
+    "start": 945.24,
+    "end": 950.92,
+    "ocr_text": "iweaw ise] mane e@ Suppose we have been able to train a\ntac] ae shallow neural network well\nBa wmv 6 e Now suppose we construct a deeper\nBaw 56 | network which has few more layers (in\norange)\ne Intuitively, if the shallow network\nie + works well then the deep network\n<2) ee em ze , should also work well by simply learn-\nae eens ing to compute identity functions in\nBs come, 512 [3 conw, 128] the new layers\ndeg 5a pom 28 e Essentially, the solution space of a\nont shallow neural network is a subset of\na a the solution space of a ,\nwere network\n\n1M. Khapra $7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "next layer right. That means I have compressed everything and now I expected to be able to",
+    "start": 950.92,
+    "end": 956.12,
+    "ocr_text": "iweaw ise] mane e@ Suppose we have been able to train a\ntac] ae shallow neural network well\nBa wmv 6 e Now suppose we construct a deeper\nBaw 56 | network which has few more layers (in\norange)\ne Intuitively, if the shallow network\nie + works well then the deep network\n<2) ee em ze , should also work well by simply learn-\nae eens ing to compute identity functions in\nBs come, 512 [3 conw, 128] the new layers\ndeg 5a pom 28 e Essentially, the solution space of a\nont shallow neural network is a subset of\na a the solution space of a ,\nwere network\n\n1M. Khapra $7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "recover from there that is not going to happen right. So, that is a fair argument but the argument",
+    "start": 956.12,
+    "end": 960.68,
+    "ocr_text": "iweaw 36) Ta) e@ Suppose we have been able to train a\nTaco 356) aT shallow neural network well\n3a wow, 56 e Now suppose we construct a deeper\n3a wav 56 network which has few more layers (in\norange)\ne Intuitively, if the shallow network\n\nny” works well then the deep network\non should also work well by simply learn-\n| ing to compute identity functions in\nhE) the new layers\n3:8 conv, 512\n\ne Essentially, the solution space of a\nshallow neural network is a subset of\nthe solution space of a ~ -\nnetwork\n\n1M. Khapra $7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "which I was trying to make or at least for the illustration purposes that if you do reasonable",
+    "start": 960.68,
+    "end": 964.44,
+    "ocr_text": "iweaw 36) Ta) e@ Suppose we have been able to train a\nTaco 356) aT shallow neural network well\n3a wow, 56 e Now suppose we construct a deeper\n3a wav 56 network which has few more layers (in\norange)\ne Intuitively, if the shallow network\n\nny” works well then the deep network\non should also work well by simply learn-\n| ing to compute identity functions in\nhE) the new layers\n3:8 conv, 512\n\ne Essentially, the solution space of a\nshallow neural network is a subset of\nthe solution space of a ~ -\nnetwork\n\n1M. Khapra $7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "things and that is what people were trying out right these are these this is the exact",
+    "start": 964.44,
+    "end": 967.88,
+    "ocr_text": "iweaw 36) Ta) e@ Suppose we have been able to train a\nTaco 356) aT shallow neural network well\n3a wow, 56 e Now suppose we construct a deeper\n3a wav 56 network which has few more layers (in\norange)\ne Intuitively, if the shallow network\n\nny” works well then the deep network\non should also work well by simply learn-\n| ing to compute identity functions in\nhE) the new layers\n3:8 conv, 512\n\ne Essentially, the solution space of a\nshallow neural network is a subset of\nthe solution space of a ~ -\nnetwork\n\n1M. Khapra $7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "network that someone was trying out and this did not work well and I will tell you what it is.",
+    "start": 967.88,
+    "end": 972.44,
+    "ocr_text": "e Suppose we have been able to train a\n\n38 ae ]\nTew 6] shallow neural network well\n33 wmv, 56 e Now suppose we construct a deeper\n33 wav, 256 network which has few more layers (in\norange)\ne Intuitively, if the shallow network\nny” works well then the deep network\neen should also work well by simply learn-\nea ing to compute identity functions in\none the new layers\n2eeons2 e Essentially, the solution space of a\nshallow neural network is a subset of\nthe solution space of a ~ r\nnetwork\n\nMitesh M. Khapra 115 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "So, do you get his doubt and my clarification on that is that thing okay.",
+    "start": 972.44,
+    "end": 975.8,
+    "ocr_text": "e Suppose we have been able to train a\n\n38 ae ]\nTew 6] shallow neural network well\n33 wmv, 56 e Now suppose we construct a deeper\n33 wav, 256 network which has few more layers (in\norange)\ne Intuitively, if the shallow network\nny” works well then the deep network\neen should also work well by simply learn-\nea ing to compute identity functions in\none the new layers\n2eeons2 e Essentially, the solution space of a\nshallow neural network is a subset of\nthe solution space of a ~ r\nnetwork\n\nMitesh M. Khapra 115 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "So, this is what was happening in practice right. So, you have a 20-layer network or 32-layer",
+    "start": 976.36,
+    "end": 982.36,
+    "ocr_text": "error (%)\n\nCIFAR-10 plain nets\n\n56-layer\nx 44-layer\n\n32-layer\n20-layer\n\nsolid: test\n\n2 3 4 s 6 dashed: train\n\niter. (Let)\n\nMitesh M. Khapra\n\ne But in practice it is observed that this\ndoesn’t happen\n\n‘015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "network or 44-layer network and a 56-layer network and you see that the training error of",
+    "start": 982.36,
+    "end": 988.2,
+    "ocr_text": "error (%)\n\nCIFAR-10 plain nets\n\n56-layer\nx 44-layer\n\n32-layer\n20-layer\n\nsolid: test\n\n2 3 4 s 6 dashed: train\n\niter. (Let)\n\nMitesh M. Khapra\n\ne But in practice it is observed that this\ndoesn’t happen\n\n‘015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "deeper networks is much higher than the training error of the shallow networks.",
+    "start": 988.2,
+    "end": 991.88,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\n\nCIFAR-10 plain nets\n6-layer\n\n5\n< 44-layer\n\n32-layer\n20-layer\n\nsolid: test\n\n2 3 4 s 6 dashed: train\niter. (1e4)\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "That means this argument which I was trying to make that the deep network should at least do",
+    "start": 992.36,
+    "end": 996.12,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\n\nCIFAR-10 plain nets\n6-layer\n\n5\n< 44-layer\n\n32-layer\n20-layer\n\nsolid: test\n\n2 3 4 s 6 dashed: train\niter. (1e4)\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "as well as the shallow network was not working well in practice right. And it is if you think about",
+    "start": 996.12,
+    "end": 1002.84,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\n\nCIFAR-10 plain nets\n6-layer\n\n5\nof 44-layer\n\n32-layer\n20-layer\n\nsolid: test\n\n2 3 4 5 6 dashed: train\niter. (1e4)\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "it it is not very surprising because this argument hinged on the fact that it should be able to",
+    "start": 1003.0,
+    "end": 1009.48,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\n\nCIFAR-10 plain nets\n6-layer\n\n5\nof 44-layer\n\n32-layer\n20-layer\n\nsolid: test\n\n2 3 4 5 6 dashed: train\niter. (1e4)\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "learn this identity mapping but this identity mapping is one of many many many many solutions right.",
+    "start": 1009.48,
+    "end": 1015.4,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\ne Notice that the deep layers have a\nCIFAR-10 plain nets higher crror rate on the test set\n\n56-layer\nx 44-layer\n-8 32-layer\n20-layer\n\nsolid: test\n\n3 4 s 6 dashed: train\niter. (et)\n\nMitesh M. Khapra CS7015 (Deep Leeture 11"
+  },
+  {
+    "text": "So, for it to be able to narrow down on that solution it is easy for you and me to think about it",
+    "start": 1015.4,
+    "end": 1019.56,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\ne Notice that the deep layers have a\nCIFAR-10 plain nets higher crror rate on the test set\n\n56-layer\n. aa-iayer\n, i 32-layer\n20-layer\n\nsolid: test\n\n3 4 5 6 dashed: train\niter. (le)\n\nMitesh M. Khapra ©S7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "but for the network it does not have this intuition right that I can just copy it from there to",
+    "start": 1019.56,
+    "end": 1024.84,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\ne Notice that the deep layers have a\nCIFAR-10 plain nets higher crror rate on the test set\n\n56-layer\n. aa-iayer\n, i 32-layer\n20-layer\n\nsolid: test\n\n3 4 5 6 dashed: train\niter. (le)\n\nMitesh M. Khapra ©S7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "here. Do you get that the solution space is really really large and it is like finding that",
+    "start": 1024.84,
+    "end": 1029.8,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\ne Notice that the deep layers have a\nCIFAR-10 plain nets higher crror rate on the test set\n\n56-layer\n. aa-iayer\n, i 32-layer\n20-layer\n\nsolid: test\n\n3 4 5 6 dashed: train\niter. (le)\n\nMitesh M. Khapra ©S7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "needle in a haystack right. You have these many many solutions possible and I am trying you to",
+    "start": 1029.8,
+    "end": 1033.96,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\ne Notice that the deep layers have a\nCIFAR-10 plain nets higher error rate on the test set\n\n56-layer\nx 44-layer\n3 32-layer\n20-layer\n\nsolid: test\n\n2 3 4 s 6 dashed: train\niter, (et)\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "arrive at a solution where you end up with the identity solution that is clear and it is not so",
+    "start": 1033.96,
+    "end": 1038.04,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\ne Notice that the deep layers have a\nCIFAR-10 plain nets higher error rate on the test set\n\n56-layer\nx 44-layer\n3 32-layer\n20-layer\n\nsolid: test\n\n2 3 4 s 6 dashed: train\niter, (et)\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "easy for the network to do that everyone gets this how many if you get this idea okay.",
+    "start": 1038.04,
+    "end": 1042.28,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\ne Notice that the deep layers have a\nCIFAR-10 plain nets higher error rate on the test set\n\n56-layer\nxv 44-layer\n7# 32-layer\n20-layer\n\nsolid: test\n\n2 3 4 s 6 dashed: train\niter. (ed)\n\nMitesh M. Khapra ©S7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "So, why not explicitly try to do something of this sort where the network can actually learn some",
+    "start": 1044.76,
+    "end": 1051.72,
+    "ocr_text": "e But in practice it is observed that this\ndoesn’t happen\ne Notice that the deep layers have a\nCIFAR-10 plain nets higher error rate on the test set\n\n56-layer\nxv 44-layer\n7# 32-layer\n20-layer\n\nsolid: test\n\n2 3 4 s 6 dashed: train\niter. (ed)\n\nMitesh M. Khapra ©S7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "kind of an identity function. So, now consider any two layers you know by stack layers I mean this",
+    "start": 1051.72,
+    "end": 1057.56,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\nrely\n\nMitesh M. Khapra 015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "is a convolution layer and followed by a convolution layer right. So, these are two convolution layers",
+    "start": 1057.56,
+    "end": 1061.4,
+    "ocr_text": "e@ Consider any two stacked layers in a\nCNN\n\nl\n4\n\nMitesh M. Khapra E 5 (Deep Learn Leeture 11"
+  },
+  {
+    "text": "back to back. So, from I what do I actually end up doing here I had a certain input x and I am",
+    "start": 1061.4,
+    "end": 1067.72,
+    "ocr_text": "e@ Consider any two stacked layers in a\nCNN\n\nl\n4\n\nMitesh M. Khapra E 5 (Deep Learn Leeture 11"
+  },
+  {
+    "text": "learning some transformation of x through these convolution layers right. I am trying to learn x",
+    "start": 1067.72,
+    "end": 1073.96,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\n{. Khapra 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "and then I sorry I was given x I am passing it to convolution layers I will learn some transformation",
+    "start": 1073.96,
+    "end": 1078.36,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\n{. Khapra 5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "of x and my argument was that if it could learn to directly copy x here the deep network should at",
+    "start": 1078.36,
+    "end": 1087.08,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\nMitesh M. Khapra ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "least work as well as the shallow network. So, why not I explicitly ensure this. So, why",
+    "start": 1087.08,
+    "end": 1092.84,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\nf. Khapra ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "not I do this that in addition to these connections I also explicitly connect x to the output",
+    "start": 1092.84,
+    "end": 1099.16,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\nf. Khapra ©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "you get this. So, now what I am trying to do this is h x is equal to f of x which is the",
+    "start": 1100.84,
+    "end": 1105.96,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\ne The two layers are essentially\n\nrelu\nlearning some function of the input\nvalu e@ What if we enable it to learn only a\nH(x) residual function of the input?\n2\n\nIdentity\n\nF(x)\n\nMitesh M. Khapra ©S7015 (Deep Learn"
+  },
+  {
+    "text": "transformation that I learned for x and in addition I also add x. So, what am I doing I am explicitly",
+    "start": 1105.96,
+    "end": 1112.52,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\ne The two layers are essentially\n\nrelu\nlearning some function of the input\nvalu e@ What if we enable it to learn only a\nH(z) residual function of the input?\nx\n\n| Identity\n\nMitesh M. Kh 7 Leeture 11"
+  },
+  {
+    "text": "feeding at the identity function right. How many if you get the intuition for this. So, what I am",
+    "start": 1112.52,
+    "end": 1118.6,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\ne The two layers are essentially\n\nrelu\nlearning some function of the input\nvalu e@ What if we enable it to learn only a\nH(z) residual function of the input?\nx\n\n| Identity\n\nMitesh M. Kh 7 Leeture 11"
+  },
+  {
+    "text": "trying to do is I have a sense that if I could have transferred this x as it is across layers",
+    "start": 1118.6,
+    "end": 1126.36,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\ne The two layers are essentially\nlearning some function of the input\n\ne@ What if we enable it to learn only a\nresidual function of the input?\n\nIdentity\n\nMitesh M. Kh ning) : Leeture 11"
+  },
+  {
+    "text": "then there is a chance that I should be able to do as well as the shallow network right.",
+    "start": 1126.36,
+    "end": 1130.44,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\ne The two layers are essentially\nIcarning some function of the input\n\ne@ What if we enable it to learn only a\nresidual function of the input?\n\nIdentity\n\nMitesh M. Khapra ©$7015 (Deep Learn"
+  },
+  {
+    "text": "So, now I am going to explicitly ensure that that you learn these transformations but I will also",
+    "start": 1130.44,
+    "end": 1135.0,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\ne The two layers are essentially\nIcarning some function of the input\n\ne@ What if we enable it to learn only a\nresidual function of the input?\n\nIdentity\n\nMitesh M. Khapra ©$7015 (Deep Learn"
+  },
+  {
+    "text": "feed you x at every stage at a reasonable time right. So, these are known as skip connections.",
+    "start": 1135.0,
+    "end": 1140.76,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\ne The two layers are essentially\nIcarning some function of the input\n\ne@ What if we enable it to learn only a\nresidual function of the input?\n\nIdentity\n\nMitesh M. Khapra ©$7015 (Deep Learn"
+  },
+  {
+    "text": "So, after every two layers I will feedback the x or you could try after every three layers I",
+    "start": 1140.76,
+    "end": 1144.52,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\ne The two layers are essentially\n\nrelu\nlearning some function of the input\nelu e@ What if we enable it to learn only a\nH(x) residual function of the input?\n\n| Identity\n\nMitesh M. Khapra ©S7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "will feedback the x. So, I am trying to maintain the original copy of x after every interval",
+    "start": 1144.52,
+    "end": 1149.72,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\ne The two layers are essentially\n\nrelu\nlearning some function of the input\nelu e@ What if we enable it to learn only a\nH(x) residual function of the input?\n\n| Identity\n\nMitesh M. Khapra ©S7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "okay fine. So, why would this help. So, this follows back from our argument and that is the same",
+    "start": 1149.72,
+    "end": 1155.96,
+    "ocr_text": "e Consider any two stacked layers in a\nCNN\n\ne The two layers are essentially\nIcarning some function of the input\n\ne@ What if we enable it to learn only a\nresidual function of the input?\n\nIdentity\n\nMitesh M. Khapra ©7015 (Deep Learn’"
+  },
+  {
+    "text": "thing which I said before. So, using this idea of using these skip connections these authors",
+    "start": 1155.96,
+    "end": 1163.8,
+    "ocr_text": "18 place in all five main tracks\ne ImageNet Classification: “Ultra-\ndeep” 152-layer nets\n\nResNet, 152 layers\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "were able to train a really deep network of 152 layers right. And this gave on multiple vision",
+    "start": 1163.8,
+    "end": 1174.28,
+    "ocr_text": "18 place in all five main tracks\ne ImageNet Classification: “Ultra-\ndeep” 152-layer nets\n\nResNet, 152 layers\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "challenges right one being image net it gave 16 percent better results than the best network and",
+    "start": 1174.28,
+    "end": 1178.84,
+    "ocr_text": "HW\n\n18 place in all five main tracks\ne ImageNet Classification: “Ultra-\ndeep” 152-layer nets\n\nELE EL\n\nbe\n\n=\n=>\n=\n=\n=\n\nJ\n\nResNet, 152 layers\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "this is the one which reads that near human performance. Then image net localization is another",
+    "start": 1178.84,
+    "end": 1184.2,
+    "ocr_text": "18 place in all five main tracks\ne ImageNet Classification: “Ultra-\ndeep” 152-layer nets\noe ImageNet Detection: 16% better\nthan the 2nd best system\n\nFOUL LLU\n\nPU UUs SUSU\n\nResNet, 152 layers\n\nMitesh M. Khapra CS7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "challenge where you need to localize the object. So, there they gave 27 percent better than the",
+    "start": 1184.2,
+    "end": 1188.52,
+    "ocr_text": "18 place in all five main tracks\ne ImageNet Classification: “Ultra-\ndeep” 152-layer nets\noe ImageNet Detection: 16% better\nthan the 2nd best system\n\nFOUL LLU\n\nPU UUs SUSU\n\nResNet, 152 layers\n\nMitesh M. Khapra CS7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "best results. And there is these bunch of other vision task detection segmentation and all of them",
+    "start": 1188.52,
+    "end": 1193.08,
+    "ocr_text": "18 place in all five main tracks\n\ne ImageNet Classification: “Ultra-\ndeep” 152-layer nets\n\ni\n\ne ImageNet Detection: 16% better\nthan the 2nd best system\n\ne ImageNet Localization: 27% bet-\nter than the 2nd best system\n\ne COCO Detection: 11% better than\nthe 2nd best system\n\nMULLS ULL LU\n\nResNet, 152 layers\n\nMitesh M. Khapra GS7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "this significantly outperform the best system using a very very deep network. Of course, the",
+    "start": 1193.8,
+    "end": 1199.96,
+    "ocr_text": "18 place in all five main tracks\n\ne ImageNet Classification: “Ultra-\ndeep” 152-layer nets\n\ni\n\ne ImageNet Detection: 16% better\nthan the 2nd best system\n\ne ImageNet Localization: 27% bet-\nter than the 2nd best system\n\ne COCO Detection: 11% better than\nthe 2nd best system\n\nMULLS ULL LU\n\nResNet, 152 layers\n\nMitesh M. Khapra GS7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "downside is that you have a very very deep network it will take its own time to train and so on",
+    "start": 1199.96,
+    "end": 1204.36,
+    "ocr_text": "18 place in all five main tracks\n\ne ImageNet Classification: “Ultra-\ndeep” 152-layer nets\n\ne ImageNet Detection: 16% better\nthan the 2nd best system\n\ne ImageNet Localization: 27% bet-\nter than the 2nd best system\n\ne COCO Detection: 11% better than\nthe 2nd best system\n\ne COCO Segmentation: 12% better\nthan the 2nd best system\n\nResNet, 152 layers\n\nMitesh M. Khapra GS7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "but of course, if you are a Microsoft or Google you can afford to do that. So, that is the current",
+    "start": 1204.36,
+    "end": 1209.96,
+    "ocr_text": "18 place in all five main tracks\n\ne ImageNet Classification: “Ultra-\ndeep” 152-layer nets\n\ne ImageNet Detection: 16% better\nthan the 2nd best system\n\ne ImageNet Localization: 27% bet-\nter than the 2nd best system\n\ne COCO Detection: 11% better than\nthe 2nd best system\n\ne COCO Segmentation: 12% better\nthan the 2nd best system\n\nResNet, 152 layers\n\nMitesh M. Khapra GS7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "theme right I mean the one with the largest computational resources wins everything.",
+    "start": 1209.96,
+    "end": 1215.0,
+    "ocr_text": "Bag of tricks\n\ne Batch Normalizaton after every\nCONV layer\n\nDU)\n\nui\n\nBU UUs UkU OULU\n\nResNet, 152 layers\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "So, and they also had other some other bag of tricks which is not I mean it is not very",
+    "start": 1215.0,
+    "end": 1222.2,
+    "ocr_text": "Bag of tricks\n\ne Batch Normalizaton after every\nCONV layer\n\nDU)\n\nui\n\nBU UUs UkU OULU\n\nResNet, 152 layers\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "difficult to understand. So, they used batch normalization every after every conversation layer",
+    "start": 1222.2,
+    "end": 1226.28,
+    "ocr_text": "Bag of tricks\ne Batch Normalizaton after every\nCONV layer\n\nPU UU Ua OU OULU LULL Uy\n\nResNet, 152 layers\n\nMitesh M. Khapra ©S7015 (Deep ning) : Leeture 11"
+  },
+  {
+    "text": "I would have batch normalization ever in your life. They used Xavier by two initialization",
+    "start": 1226.28,
+    "end": 1233.64,
+    "ocr_text": "Bag of tricks\n\ne Batch Normalizaton after every\nCONV layer\n\ne Xavier/2 initialization from [He et al]\n\nPU UUs OULU ULUL Ly\n\nResNet, 152 layers\n\nMitesh M. Khapra GS7015 (Decp Learning) : Lecture 11"
+  },
+  {
+    "text": "ever heard of that. Xavier by two was the same as he initialization right. Then they used SGD",
+    "start": 1233.64,
+    "end": 1242.36,
+    "ocr_text": "Bag of tricks\n\ne Batch Normalizaton after every\nCONV layer\n\ne Xavier/2 initialization from [He et al]\n\nPU UUs OULU ULUL Ly\n\nResNet, 152 layers\n\nMitesh M. Khapra GS7015 (Decp Learning) : Lecture 11"
+  },
+  {
+    "text": "not any of the fancy add-em or add-agrad or anything with a momentum of point 9.",
+    "start": 1242.36,
+    "end": 1246.44,
+    "ocr_text": "i\n\nBag of tricks\n\ne Batch Normalizaton after every\nCONV layer\n\ne Xavier/2 initialization from [He et all]\n\nResNet, 152 layers\n\nMitesh M. Khapra 5 (Decp Learning) : Lecture 11"
+  },
+  {
+    "text": "Learning rate was set to point 1 and divided by 10 whenever the validation error plateaus",
+    "start": 1247.4,
+    "end": 1252.04,
+    "ocr_text": "ALE EEE\n\nResNet, 152 layers\n\nMitesh M. Khapra\n\nBag of tricks\n\ne Batch Normalizaton after every\nCONV layer\n\nXavier/2 initialization from [He et al]\nSGD + Momentum(0.9)\n\nLearning rate:0.1, divided by 10 when\nvalidation error plateaus\n\n©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "the mini batch size was 256. They used a weight dk of 1 HD what is weight dk?",
+    "start": 1253.08,
+    "end": 1257.88,
+    "ocr_text": "ALE EEE\n\nResNet, 152 layers\n\nMitesh M. Khapra\n\nBag of tricks\n\ne Batch Normalizaton after every\nCONV layer\n\nXavier/2 initialization from [He et al]\nSGD + Momentum(0.9)\n\nLearning rate:0.1, divided by 10 when\nvalidation error plateaus\n\n©$7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "Weight dk is in the context of which regularization L2 and what does this mean weight dk of 1",
+    "start": 1258.6,
+    "end": 1263.64,
+    "ocr_text": "ResNet\n\nATAU\n\nPU UU UA LSS\n\n, 152 layers\n\nMitesh M. Khapra\n\nBag of tricks\n\nBatch Normalizaton after every\nCONV layer\n\nXavier/2 initialization from [He et all]\nSGD + Momentum(0.9)\n\nLearning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nMini-batch size 256\n\nWeight decay of le-5\n\nCS7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "e raised to minus 5? The lambda was set to 1 e raised to minus 5. All of you remember these things",
+    "start": 1263.64,
+    "end": 1268.92,
+    "ocr_text": "ResNet\n\nATAU\n\nPU UU UA LSS\n\n, 152 layers\n\nMitesh M. Khapra\n\nBag of tricks\n\nBatch Normalizaton after every\nCONV layer\n\nXavier/2 initialization from [He et all]\nSGD + Momentum(0.9)\n\nLearning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nMini-batch size 256\n\nWeight decay of le-5\n\nCS7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "we did it in some previous course in some previous life and no dropout was used right.",
+    "start": 1269.0,
+    "end": 1275.24,
+    "ocr_text": "PU UUs OU OULU ULUL Ly\n\nResNet, 152 layers\n\nMitesh M. Khapra\n\nBag of tricks\n\nBatch Normalizaton after every\nCONV layer\n\nXavier/2 initialization from [He et all]\nSGD + Momentum(0.9)\n\nLearning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nMini-batch size 256\n\nWeight decay of le-5\n\n=\n\n7015 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "So, since I have this here I will just say something more on this. So, when you are reading papers",
+    "start": 1275.24,
+    "end": 1280.52,
+    "ocr_text": "Bag of tricks\n\ne Batch Normalizaton after every\nCONV layer\n\ne Xavier/2 initialization from [He et al]\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\n\nvalidation error plateaus\ne Mini-batch size 256\ne@ Weight decay of le-5\n\ne@ No dropout used\n\nMe USUI OSU\n\nResNet, 152 layers\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "on deep learning right focus on the experimental section where all these hyper parameters are",
+    "start": 1280.52,
+    "end": 1285.4,
+    "ocr_text": "Bag of tricks\n\ne Batch Normalizaton after every\nCONV layer\n\ne Xavier/2 initialization from [He et al]\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\n\nvalidation error plateaus\ne Mini-batch size 256\ne@ Weight decay of le-5\n\ne@ No dropout used\n\nMe USUI OSU\n\nResNet, 152 layers\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "described. So, these are known as the hyper parameters these are not related to the parameters",
+    "start": 1285.4,
+    "end": 1289.96,
+    "ocr_text": "LET LETT NE\n\nResNet, 152 layers\n\nMitesh M. Khapra\n\nBatch\n\nMini-batch size 256\n\nNo dropout used\n\nNormalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nWeight decay of le-5\n\nCS7015 (Deep Learning)\n\nLeeture 11"
+  },
+  {
+    "text": "of the model these are related to hyper parameters what is what the batch size is whether you used",
+    "start": 1289.96,
+    "end": 1294.68,
+    "ocr_text": "LET LETT NE\n\nResNet, 152 layers\n\nMitesh M. Khapra\n\nBatch\n\nMini-batch size 256\n\nNo dropout used\n\nNormalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nWeight decay of le-5\n\nCS7015 (Deep Learning)\n\nLeeture 11"
+  },
+  {
+    "text": "L2 regularization what was the learning rate what was the optimization and so on.",
+    "start": 1294.68,
+    "end": 1298.52,
+    "ocr_text": "LET LETT NE\n\nResNet, 152 layers\n\nMitesh M. Khapra\n\nBatch\n\nMini-batch size 256\n\nNo dropout used\n\nNormalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nWeight decay of le-5\n\nCS7015 (Deep Learning)\n\nLeeture 11"
+  },
+  {
+    "text": "So, turns out in many cases if you do not stick to this you will not be able to reproduce the",
+    "start": 1298.52,
+    "end": 1303.56,
+    "ocr_text": "Batch Normalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al]\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nMini-batch size 256\n\nafter every\n\nWeight decay of le-5\n\nNo dropout used\n\nCEE\n\nResNet, 152 layers\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "results of the paper right. So, you might be wondering the ok this network I understand this is",
+    "start": 1303.56,
+    "end": 1307.4,
+    "ocr_text": "Batch Normalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al]\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nMini-batch size 256\n\nafter every\n\nWeight decay of le-5\n\nNo dropout used\n\nCEE\n\nResNet, 152 layers\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "just 152 layers and I can just keep adding skip connections I can easily code this up.",
+    "start": 1307.4,
+    "end": 1311.72,
+    "ocr_text": "DU)\n\n=\n\nHt\n\nCEE EE\n\nResNet, 152 layers\n\nMitesh M. Khapra\n\nBatch Normalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al]\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nafter every\n\nMini-batch size 256\n\nWeight decay of le-5\n\nNo dropout used\n\n5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "But I am not getting the same results as the original authors of the paper. So, this is where you",
+    "start": 1311.72,
+    "end": 1315.32,
+    "ocr_text": "DU)\n\n=\n\nHt\n\nCEE EE\n\nResNet, 152 layers\n\nMitesh M. Khapra\n\nBatch Normalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al]\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nafter every\n\nMini-batch size 256\n\nWeight decay of le-5\n\nNo dropout used\n\n5 (Deep Learning) : Lecture 11"
+  },
+  {
+    "text": "need to dig up then right you need to look at the experimental section where most good authors",
+    "start": 1315.32,
+    "end": 1320.28,
+    "ocr_text": "Batch Normalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al]\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nafter every\n\nMini-batch size 256\n\nWeight decay of le-5\n\nNo dropout used\n\n=\n=\n=\n=\n=\n=\n=\n>\n=\nx\n=\nFY\n=\n\nResNet, 152 layers\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "provide these details of how they have trained the network how many epochs that they use what",
+    "start": 1320.28,
+    "end": 1325.16,
+    "ocr_text": "Batch Normalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al]\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nafter every\n\nMini-batch size 256\n\nWeight decay of le-5\n\nNo dropout used\n\n=\n=\n=\n=\n=\n=\n=\n>\n=\nx\n=\nFY\n=\n\nResNet, 152 layers\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "was the patient set and all that. If you follow those the chances of reproducing are much much higher",
+    "start": 1325.16,
+    "end": 1330.44,
+    "ocr_text": "PT UU Ua OULU UL ULE Ly\n\nResNet, 152 layers\n\n1M. Khapra\n\nBatch Normalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al]\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nafter every\n\nMini-batch size 256\n\nWeight decay of le-5\n\nNo dropout used\n\n©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "still not guaranteed but definitely much higher ok. So, that is where we end the lecture on",
+    "start": 1330.44,
+    "end": 1335.72,
+    "ocr_text": "PT UU Ua OULU UL ULE Ly\n\nResNet, 152 layers\n\n1M. Khapra\n\nBatch Normalizaton\nCONV layer\n\ne Xavier/2 initialization from [He et al]\ne SGD + Momentum(0.9)\n\ne Learning rate:0.1, divided by 10 when\nvalidation error plateaus\n\nafter every\n\nMini-batch size 256\n\nWeight decay of le-5\n\nNo dropout used\n\n©S7015 (Deep Learning) : Leeture 11"
+  },
+  {
+    "text": "convolutional neural networks and image net classification.",
+    "start": 1335.72,
+    "end": 1345.72,
+    "ocr_text": "ccceqttan Hewes i ™ —\nOnline Editing and Post Production"
+  }
+]

@@ -1,0 +1,1544 @@
+[
+  {
+    "text": "So, in this course we have so far seen various aspects of computer organization and architecture.",
+    "start": 0.0,
+    "end": 26.04,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "So, if we recall we looked at the instruction set architecture of typical processors. So, as a",
+    "start": 26.36,
+    "end": 32.84,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "case study we looked at the MIPS 32 processor, then we looked at the design of the data path",
+    "start": 32.84,
+    "end": 40.48,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "and how we can design the control unit of a typical processor or machine, then we looked",
+    "start": 40.48,
+    "end": 49.0,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "at various aspects of memory system design. Now, today starting from this lecture we shall be",
+    "start": 49.0,
+    "end": 57.8,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "discussing various aspects of designing the arithmetic logic unit of a computer system.",
+    "start": 57.8,
+    "end": 67.04,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "So, as you know a computer system essentially is meant to do some computation and in that sense",
+    "start": 67.04,
+    "end": 74.72,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "the a-lew or the arithmetic logic unit forms the basic heart of the system. So, we shall be",
+    "start": 74.72,
+    "end": 82.2,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "starting by looking at how we can design the different kinds of circuits for implementing",
+    "start": 82.2,
+    "end": 88.4,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "addition, multiplication, division etcetera. So, the topic of our lecture today is design of",
+    "start": 88.4,
+    "end": 96.48,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "adults. So, as you know that computers are built using tiny electronic switches, the switches",
+    "start": 96.48,
+    "end": 107.72,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n- Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?"
+  },
+  {
+    "text": "are typically in the form of MOS transistors. Now, the way this MOS transistors work in a digital",
+    "start": 107.72,
+    "end": 116.56,
+    "ocr_text": "Introduction\n\nComputers are built using tiny electronic switches.\n\n— Typically made up of MOS transistors.\n\n— The state of the switches are typically expressed in binary (ON/OFF).\nTo design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\n\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\nHow to implement them efficiently in hardware?\n\n>.\nye"
+  },
+  {
+    "text": "circuit or digital system is that they can be turned on or off, they can be in one of two states.",
+    "start": 116.56,
+    "end": 124.24,
+    "ocr_text": "Introduction\n\nComputers are built using tiny electronic switches.\n\n— Typically made up of MOS transistors.\n\n— The state of the switches are typically expressed in binary (ON/OFF).\nTo design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\n\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\nHow to implement them efficiently in hardware?\n\n>.\nye"
+  },
+  {
+    "text": "So, quite naturally such a system can be used to implement or model a binary number system,",
+    "start": 124.24,
+    "end": 133.68,
+    "ocr_text": "Introduction\n\nComputers are built using tiny electronic switches.\n\n— Typically made up of MOS transistors.\n\n— The state of the switches are typically expressed in binary (ON/OFF).\nTo design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\n\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\nHow to implement them efficiently in hardware?\n\n>.\nye"
+  },
+  {
+    "text": "where the state of the switch can be mapped to a binary digit 0 or 1. So, the essential idea here",
+    "start": 133.68,
+    "end": 145.48,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n— Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers .\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nNT HHARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY. MEGHALAYA\n\nINPTEL ONLINE Eee"
+  },
+  {
+    "text": "is that when you are talking about designing arithmetic circuits, we need to work with binary",
+    "start": 145.48,
+    "end": 152.68,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n— Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers .\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nNT HHARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY. MEGHALAYA\n\nINPTEL ONLINE Eee"
+  },
+  {
+    "text": "numbers. Although in practice we are more familiar with the decimal number system, the way we work,",
+    "start": 152.72,
+    "end": 159.0,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n— Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers .\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nNT HHARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY. MEGHALAYA\n\nINPTEL ONLINE Eee"
+  },
+  {
+    "text": "we calculate on paper, but here with respect to computers we need to work with binary numbers.",
+    "start": 159.0,
+    "end": 168.12,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n— Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers .\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nNT HHARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY. MEGHALAYA\n\nINPTEL ONLINE Eee"
+  },
+  {
+    "text": "Now, there are three main questions, well the first question already you have seen the answer",
+    "start": 168.12,
+    "end": 176.36,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n— Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers\nHow to represent numbers in binary?\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nTECHNOLOGY, MEGHALAYA\n\nSa ES"
+  },
+  {
+    "text": "to it earlier, that how we can represent binary numbers. So, to recall you can represent binary",
+    "start": 176.44,
+    "end": 184.44,
+    "ocr_text": "Introduction\n\nComputers are built using tiny electronic switches.\n\n— Typically made up of MOS transistors.\n\n— The state of the switches are typically expressed in binary (ON/OFF).\nTo design arithmetic circuits for use in computers, we need to\nwork with binary numbers\n\nHow to represent numbers in binary?\nHow to carry out various arithriietic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nINPTEL ONUNE NATIONAL INSTITUTE OF\nHEARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "numbers in either an unsigned form or in signed form, with respect to signed number representation,",
+    "start": 184.44,
+    "end": 192.44,
+    "ocr_text": "Introduction\n\nComputers are built using tiny electronic switches.\n\n— Typically made up of MOS transistors.\n\n— The state of the switches are typically expressed in binary (ON/OFF).\nTo design arithmetic circuits for use in computers, we need to\nwork with binary numbers\n\nHow to represent numbers in binary?\nHow to carry out various arithriietic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nINPTEL ONUNE NATIONAL INSTITUTE OF\nHEARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "we have seen the sin magnitude once complement and the two complement representations. What we",
+    "start": 192.44,
+    "end": 201.44,
+    "ocr_text": "Introduction\n\nComputers are built using tiny electronic switches.\n\n— Typically made up of MOS transistors.\n\n— The state of the switches are typically expressed in binary (ON/OFF).\nTo design arithmetic circuits for use in computers, we need to\nwork with binary numbers\n\nHow to represent numbers in binary?\nHow to carry out various arithriietic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nINPTEL ONUNE NATIONAL INSTITUTE OF\nHEARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "will see now is that how we can carry out various arithmetic operations in binary and how",
+    "start": 201.6,
+    "end": 208.6,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n— Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers\nHow to represent numbers in binary?\n\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nNT KHARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY, MEGHALAYA\n\nINPTEL ONLINE Ese"
+  },
+  {
+    "text": "to implement these operations efficiently in hardware, this will be the main objective",
+    "start": 211.56,
+    "end": 218.16,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n— Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers\nHow to represent numbers in binary?\n\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nNT KHARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY, MEGHALAYA\n\nINPTEL ONLINE Ese"
+  },
+  {
+    "text": "of the next few lectures. So, we make a quick recapitulation of the representation of integers.",
+    "start": 218.16,
+    "end": 227.16,
+    "ocr_text": "Introduction\n\n+ Computers are built using tiny electronic switches.\n— Typically made up of MOS transistors.\n— The state of the switches are typically expressed in binary (ON/OFF).\n+ To design arithmetic circuits for use in computers, we need to\nwork with binary numbers.\nHow to represent numbers in binary?\n\nHow to carry out various arithmetic operations in binary?\n\nHow to implement them efficiently in hardware?\n\nNT WAARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY, MEGHALAYA\n\nINPTEL ONLINE Eee"
+  },
+  {
+    "text": "So, you may recall that with respect to unsigned number representation, let us say we are",
+    "start": 227.16,
+    "end": 234.16,
+    "ocr_text": "Representation of Integers\n\n+ Unsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (2-1) to +(2°\"-1)\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely used,\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nNT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "representing integers. So, in n bits we can represent numbers from 0 up to 2 to the power",
+    "start": 235.52,
+    "end": 242.52,
+    "ocr_text": "Representation of Integers\n\n+ Unsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\nFor n-bit 1’s complement, range is -(2\"\"-1) to +(2\"7-1).\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n2's complement representation is most widely used.\n\nINPTEL ONLINE\nNT KARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "n minus 1. So, let us say suppose n equal to 3, so for n equal to 3 you can represent",
+    "start": 243.52,
+    "end": 250.52,
+    "ocr_text": "Representation of Integers\n\n+ Unsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\nFor n-bit 1’s complement, range is -(2\"\"-1) to +(2\"7-1).\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n2's complement representation is most widely used.\n\nINPTEL ONLINE\nNT KARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "numbers starting from 0 0 0 up to 1 1 1. So, there are a total of 2 to the power 3 minus",
+    "start": 250.52,
+    "end": 257.52,
+    "ocr_text": "Representation of Integers\n\n+ Unsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\nFor n-bit 1’s complement, range is -(2\"\"-1) to +(2\"7-1).\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n2's complement representation is most widely used.\n\nINPTEL ONLINE\nNT KARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "1 or 7 possible combinations here fine. So, this will be the range of the numbers, but when",
+    "start": 263.88,
+    "end": 270.88,
+    "ocr_text": "Representation of Integers\n\nned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (2-1) to +(2°\"-1)\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both,the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely u"
+  },
+  {
+    "text": "you talk about signed representation as it said, there are several alternative methods",
+    "start": 270.88,
+    "end": 277.88,
+    "ocr_text": "Representation of Integers\n\nned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (2-1) to +(2°\"-1)\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both,the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely u"
+  },
+  {
+    "text": "out of them once complement and two complement at the most common for once complement representation",
+    "start": 281.44,
+    "end": 288.44,
+    "ocr_text": "Representation of Integers\n\nned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (2-1) to +(2°\"-1)\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both,the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely u"
+  },
+  {
+    "text": "in n bits, the range of the numbers that can represented is minus 2 to the power n minus",
+    "start": 289.16,
+    "end": 296.16,
+    "ocr_text": "Representation of Integers\n\nned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (2-1) to +(2°\"-1)\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely used.\n\nNT WHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA\n\nINPTEL ONLINE OES"
+  },
+  {
+    "text": "1 minus 1 to plus 2 to the power n minus 1 minus 1. But for two complement representation",
+    "start": 296.96,
+    "end": 303.16,
+    "ocr_text": "Representation of Integers\n\n+ Unsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n\n+ Signed integer number representation\n\n— For n-bit 1’s complement, range is (2-1) to +(2!\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely used.\n\nINTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "mean on the negative side we can represent one extra digit number extra number minus 2",
+    "start": 307.2,
+    "end": 313.2,
+    "ocr_text": "Representation of Integers\n\n+ Unsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (2-1) to +(2°*-1)\n~ For n-bit 2’s complement, range is -2\" to +(2\"\"-1)\nFor both the representations, subtriiction can be done using addition.\n2's complement representation is most widely used,\n\nINPTEL ONLINE\nNT RHARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "to the power n minus 1. The reason is that for once complement representation there are",
+    "start": 313.6,
+    "end": 320.6,
+    "ocr_text": "Representation of Integers\n\n+ Unsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (2-1) to +(2°*-1)\n~ For n-bit 2’s complement, range is -2\" to +(2\"\"-1)\nFor both the representations, subtriiction can be done using addition.\n2's complement representation is most widely used,\n\nINPTEL ONLINE\nNT RHARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "two alternate representations of 0, this we have already seen earlier, but in two complement",
+    "start": 320.6,
+    "end": 327.6,
+    "ocr_text": "Representation of Integers\n\nUnsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (2-1) to +(2°*-1)\nFor n-bit 2’s complemeiit, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely used.\n\nINPTEL ONLINE\nNT WAARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "form 0 has a unique representation. The main advantage of this once and two complement",
+    "start": 327.6,
+    "end": 334.6,
+    "ocr_text": "Representation of Integers\n\nUnsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (2-1) to +(2°*-1)\nFor n-bit 2’s complemeiit, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely used.\n\nINPTEL ONLINE\nNT WAARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "forms is that we really do not need a subtractor circuit in our a-lew. In both this representation",
+    "start": 335.08,
+    "end": 342.08,
+    "ocr_text": "Representation of Integers\n\n+ Unsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (27-1) to +(2\"\"-1)\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely used,\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "subtraction can be done using addition alone, but we will see for reasons that we will",
+    "start": 344.32,
+    "end": 350.52,
+    "ocr_text": "Representation of Integers\n\n+ Unsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (27-1) to +(2\"\"-1)\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely used,\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "be discussing that out of these two again two complement representation has a distinct",
+    "start": 351.08,
+    "end": 357.28,
+    "ocr_text": "Representation of Integers\n\nUnsigned integer number representation\n— For n-bit binary, range is 0 to (2\"-1).\nSigned integer number representation\n— For n-bit 1’s complement, range is (2-1) to +(2°\"-1)\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely used. >"
+  },
+  {
+    "text": "advantage and therefore, it is most widely used. So, let us first look at how we can carry",
+    "start": 357.28,
+    "end": 364.28,
+    "ocr_text": "Representation of Integers\n\n+ Unsigned integer number representation\n— For n-bit binary, range is 0 to (2°-1).\n+ Signed integer number representation\n— For n-bit 1’s complement, range is (27-1) to +(2°\"-1)\nFor n-bit 2’s complement, range is -2\"* to +(2\"*-1)\nFor both the representations, subtraction can be done using addition.\n\n2’s complement representation is most widely used.\n\nNPTEL ONLINE\nNT HAARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "out subtraction using once complement representation. The idea is fairly simple, well when we subtract",
+    "start": 366.0,
+    "end": 373.0,
+    "ocr_text": "Subtraction Using Addition :: 1’ s Complement\n= How to compute A—B ?\n— Compute the 1’ s complement of B (say, B,)\n— Compute R= A+B,\n\n— Ifa carry is obtained after addition is ‘1\n+ Add the carry back to R (called end-around carry),\n+ Thatis,R=R+1\nThe result is a positive number.\n\nThe result is negative, and is in 1° s complement form in R.\n\nSeu"
+  },
+  {
+    "text": "a number b from a let us say a minus b, this is what we are trying to compute. What",
+    "start": 373.0,
+    "end": 380.0,
+    "ocr_text": "Subtraction Using Addition :: 1’ s Complement\n= How to compute A—B ?\n— Compute the 1’ s complement of B (say, B,)\n— Compute R= A+B,\n\n— Ifa carry is obtained after addition is ‘1\n+ Add the carry back to R (called end-around carry),\n+ Thatis,R=R+1\nThe result is a positive number.\n\nThe result is negative, and is in 1° s complement form in R.\n\nSeu"
+  },
+  {
+    "text": "we do? We first compute the once complement of b, let us call it b 1, the once complement",
+    "start": 380.84,
+    "end": 387.84,
+    "ocr_text": "Subtraction Using Addition :: 1’ s Complement\n\n+ How to compute A-B ?\n\n— Compute the 1’ s complement of B (say, B,).\n\n— Compute R=A+B,\n\n— Ifa carry is obtained after addition is “1”\n+ Add the carry back to R (called end-around carry)\n+ Thatis,R=R+1\n+ The result is a positive number.\n\nElse\n\n+ The result is negative, and is in 1’ s complement form in R.\n\nINTEL ONLINE\nNT WSARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "of b, then we add this once complement of b to a that means we are calculating a plus",
+    "start": 388.76,
+    "end": 395.76,
+    "ocr_text": "1’ s Complement\n\nSubtraction Using Addition\n\nHow to compute A —B ?\n— Compute the 1’ s cothplement of B (say, By).\n\nompute R=A +B,\n— Ifa carry is obtained after addition is “1”\n\n+ Add the carry back to R (called e7\n\naround carry).\n\n+ Thatis,R=R+1\n+ The result is a positive number.\n\nThe result is negative, and is in 1° s complement form in R."
+  },
+  {
+    "text": "b 1. Now, after this addition if we find that there is a final carry out, if the carry",
+    "start": 395.76,
+    "end": 402.76,
+    "ocr_text": "Subtraction Using Addition :: 1’ s Complement\n\n+ How to compute A—B ?\n— Compute the 1’ s complement of B (say, By).\n— Compute R=A +B,\n— Ifa carry is obtainéd after addition is “1”\n+ Add the carry back to R (called end-around carry),\n+ Thatis,R=R+1\nThe result is a positive number.\n\nThe result is negative, and is in 1° s complement form in R."
+  },
+  {
+    "text": "of one is coming out, then what we do? We make a correction, we take this carry back and",
+    "start": 405.88,
+    "end": 412.88,
+    "ocr_text": "Subtraction Using Addition :: 1’ s Complement\n\n+ How to compute A—B ?\n\n— Compute the 1’ s complement of B (say, B,).\nompute R =A +B,\n\n— Ifa carry is obtained after addition is “1°\n+ Add the carry back to R (called end-around carry)\n+ Thatis,R=R +A\n+ The result is a positive number.\n\nElse\n\n+ The result is negative, and is in 1’ s complement form in R.\n\nINPTEL ONLINE\nNT RARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "add this one to r that means we are effectively doing r equal to r plus 1 as a corrective",
+    "start": 415.76,
+    "end": 422.76,
+    "ocr_text": "1’ s Complement\n\nSubtraction Using Addition\n\nHow to compute A—B ?\n— Compute the 1’ s complement of B (say, B,).\n\n— Compute R=A+B,\n— Ifa carry is obtained after addition is “1”\naround carry).\n\n+ Add the carry back to R (called end\n\n+ Thatis,R=R+1\n\n+ The result is a positive number.\n\nElse\nThe result is negative, and is in 1” s complement form in R.\n\nINTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "step, whenever there is a carry of one coming out and in this situation the final result",
+    "start": 423.48,
+    "end": 430.48,
+    "ocr_text": "1’ s Complement\n\nSubtraction Using Addition\n\nHow to compute A—B ?\n— Compute the 1’ s complement of B (say, B,).\n\n— Compute R=A+B,\n— Ifa carry is obtained after addition is “1”\naround carry).\n\n+ Add the carry back to R (called end\n\n+ Thatis,R=R+1\n\n+ The result is a positive number.\n\nElse\nThe result is negative, and is in 1” s complement form in R.\n\nINTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "will be a positive number. But, however if there is no carry coming out this will imply",
+    "start": 431.12,
+    "end": 438.12,
+    "ocr_text": "Subtraction Using Addition :: 1’ s Complement\n\n+ How to compute A—B ?\n— Compute the 1’ s complement of B (say, By).\nompute R= A +B,\n— Ifa carry is obtained after addition is “1°\n+ Add the carry back to R (called end-around carry)\n+ Thatis,R=R+1\n+ The result is a positive number.\nElse\n+ The result is negative, and is in 1’ s complement form in R\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "that the result is negative and it is already in once complement form in this variable",
+    "start": 438.84,
+    "end": 445.84,
+    "ocr_text": "Subtraction Using Addition :: 1’ s Complement\n\n> How to compute A-B ?\n— Compute the 1’ s complement of B (say, B,).\n— Compute R=A +B,\n— Ifa carry is obtained after addition is “1”\n+ Add the carry back to R (called end-around carry),\n+ Thatis,R=R+1\nThe result is a positive number.\n\nINPTEL ONLINE\nNT HARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "or register r. Let us see an example, let us say we are trying to subtract 2 from 6 in",
+    "start": 446.52,
+    "end": 453.52,
+    "ocr_text": "Example 1\n\n1's complement of 2 = 1101\n\n6 = 0110 Assume 4-bit representations.\n\n1101 Since there is a carry, it is\n\n= 10011 added back to the result\n\nThe result is positive\n\nINPTEL ONLINE\nET KHARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "4 bit representation. So, 6 in 4 bit is 0 1 1 0 and 2 is 0 0 1 0. So, the once complement",
+    "start": 455.96,
+    "end": 462.96,
+    "ocr_text": "Example 1\n\n1's complement of 2 = 1101\n\n6 = Q110 Assume 4-bit representations.\n\n-2 = 1101 Since there is a carry, itis\n10011 added back to the result\n\nEnd-around i The result is positive.\ncarry 0100\n\nINPTEL ONLINE\nET KHARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "will be 1 1 0 1. So, we are actually adding the once complement of 2 that means minus",
+    "start": 466.92,
+    "end": 473.92,
+    "ocr_text": "Example 1\n\n1's complement of 2 = 1101\n\n6 =: 0110 Assume 4-bit representations.\n\n1101 Since there is a carry, it is\n\n10011 added back to the result\n[omnes\n\nThe result is positive\n0100\n\nINPTEL ONLINE\n= MTRHARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "2 2 6 directly. So, 0 1 1 is 1 no carry 1 and 0 is 1 1 and 1 is 0 with a carry of 1 1",
+    "start": 473.92,
+    "end": 480.92,
+    "ocr_text": "Example 1\n\n1's complement of 2 = 1101\n\n6 =: 0110 Assume 4-bit representations.\n\n1101 Since there is a carry, it is\n\n10011 added back to the result\n[omnes\n\nThe result is positive\n0100\n\nINPTEL ONLINE\n= MTRHARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "and 1 is 0 with a carry of 1. So, there is a final carry out. So, what we are saying is",
+    "start": 483.68,
+    "end": 489.16,
+    "ocr_text": "Example 1\n\n1's complement of 2 = 1101\n\n6 =: 010 Assume 4-bit representations.\n\n-2 = 1101 Since there is a carry, it is\n10011 added back to the result\n\nEnd-around £\ncarry (0100\n\nThe result is positive\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "that this final carry out we are bringing it back and adding to this intermediate sum.",
+    "start": 489.16,
+    "end": 496.16,
+    "ocr_text": "Example 1\n\n1's complement of 2 = 1101\n\n6 =: 0110 Assume 4-bit representations.\n\nSince there is a carry, it is\nadded back to the result.\n\nThe result is positive\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "So, 0 0 1 1 plus 1 this becomes 0 1 0 0 this is the final result plus 4. This is the",
+    "start": 497.16,
+    "end": 504.16,
+    "ocr_text": "Example 1\n\n1's complement of 2 = 1101\n\n6 =: 0110 Assume 4-bit representations.\n\n1101 Since there is a carry, it is\n\n10011 added back to the result\n=\n\nThe result is positive\n0100\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "how subtraction is carried out when the result is positive. Let us take another example",
+    "start": 507.76,
+    "end": 513.72,
+    "ocr_text": "IT KHARAGPUR\n\nExample 1\n\n1's complement of 2 = 1101\n\n6 =: 0110\n-2 = 1101\n10011\n\n1\n\n0100\n\nNPTEL ONUNE\n\nAssume 4-bit representations.\n\nSince there is a carry, it is\nadded back to the result\n\nThe result is positive\n\nCERTIFICATION COURSES &"
+  },
+  {
+    "text": "where the result is supposed to be negative 3 minus 5. So, 3 is 0 0 1 1 and the once complement",
+    "start": 513.72,
+    "end": 520.72,
+    "ocr_text": "IT KHARAGPUR\n\nExample 1\n\n1's complement of 2 = 1101\n\n6 =: 0110\n-2 = 1101\n10011\n\n1\n\n0100\n\nNPTEL ONUNE\n\nAssume 4-bit representations.\n\nSince there is a carry, it is\nadded back to the result\n\nThe result is positive\n\nCERTIFICATION COURSES &"
+  },
+  {
+    "text": "of 5 is 1 0 1 0 you just add them up 0 1 is 1 1 is 0 with a carry of 1 1 0 1 is 1 but",
+    "start": 520.72,
+    "end": 527.72,
+    "ocr_text": "Example 2\n\n1's complement of 5 = 1010\n\n0011\n1010”\n\nSince there is no carry, the result is\n1101 negative.\n\nAssume 4-bit representations\n\n1101 Is the 1’ s complement of\n0010, that is, it represents ~2.\n\nINPTEL ONLINE 4\n=o MTMuaracpun CERTIFICATION COURSES &"
+  },
+  {
+    "text": "no carry. So, when there is no carry as I said our first conclusion is that the result",
+    "start": 533.72,
+    "end": 540.72,
+    "ocr_text": "Example 2\n\n1’ s complement of 5 = 1010\n\n0011\n1010\n\nSince there is no carry, the result is\n1791 negative.\n\nAssume 4-bit representatior\n\n1101 is the 1’ s complement of\n0010, that is, it represents ~2.\n\nNPTEL ONLINE 4\n= NT OARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "is negative and whatever is remaining here this will be the result in once complement",
+    "start": 541.6,
+    "end": 547.6,
+    "ocr_text": "Example 2\n\n1's complement of 5 = 1010\n\n0011\n1010\n\nSince there is no carry, the result is\n101 negative.\n\nAssume 4-bit representatior\n\n1101 is the 1’ s complement of\n0010, that is, it represents ~2.\n\nINTEL ONLINE\n4 NT KHARAGPUR CERTIFICATION COURSES &\n\nEwe"
+  },
+  {
+    "text": "you recall 1 1 0 1 in once complement is representing the number minus 2. So, this is what",
+    "start": 548.08,
+    "end": 554.6,
+    "ocr_text": "Example 2\n\n1's complement of 5 = 1010\n\n0011 Assume 4-bit representatior\nLO) Since there is no carry, the result\n1101\n\nnegative.\n\n1101 is the 1’ s complement of\n0010, that is, it represents ~2.\n\nINPTEL ONLINE\nNT WHARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "has been summarized here and what we get here. Now, let us look at the 2's complementary",
+    "start": 559.16,
+    "end": 566.16,
+    "ocr_text": "Example 2\n\n1's complement of 5 = 1010\n\n0011\n1010\n\nSince there is no carry, the result is\n1101 negative.\n\nAssume 4-bit representation\n\n1101 Is the 1’ s complement of\n0010, that is, it represents ~2."
+  },
+  {
+    "text": "presentation. So, in 2's complement also the idea is fairly similar. So, when you",
+    "start": 567.08,
+    "end": 574.08,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of B (say, 8,).\n\n— Compute R= A+B,\n— Ifa carry is obtained after addition\n+ Ignore the carry.\n+ The result is a positive number.\nElse\n+ The result is negative, and is in 2” s complement form in R.\n\nIT KUARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY. MEGHALAYA\n\nNPTEL ONLINE Eee"
+  },
+  {
+    "text": "are trying to subtract the number B from A we take the 2's complement of B. So, you",
+    "start": 574.8,
+    "end": 580.8,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of B (say, 8,).\n\n— Compute R= A+B,\n— Ifa carry is obtained after addition\n+ Ignore the carry.\n+ The result is a positive number.\nElse\n+ The result is negative, and is in 2” s complement form in R.\n\nIT KUARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY. MEGHALAYA\n\nNPTEL ONLINE Eee"
+  },
+  {
+    "text": "recall the 2's complement of a number is the once complement plus 1 you add an addition",
+    "start": 581.2,
+    "end": 588.2,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of B (say, B,)\n— Compute R= A+B, 7\n— Ifa carry is obtained after addition\n= Ignore the carry.\n+ The result is a positive number.\nElse\n+ The result is negative, and is in 2’ s complement form in R.\n\nSe"
+  },
+  {
+    "text": "1 additional 1 to the number to get the 2's complement form. So, in this case this number",
+    "start": 588.8,
+    "end": 595.8,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of B (say, B,)\n— Compute R= A+B, 7\n— Ifa carry is obtained after addition\n= Ignore the carry.\n+ The result is a positive number.\nElse\n+ The result is negative, and is in 2’ s complement form in R.\n\nSe"
+  },
+  {
+    "text": "which you are trying to subtract you take the 2's complement of that number. So, let us",
+    "start": 596.64,
+    "end": 601.64,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\n- Compute the 2” s complement of 8 (s\n— Compute R= A+B,\n— Ifa carry is obtained after addition\nnore the carry.\n+ The result is a positive number.\nElse\n+ The result is negative, and is in 2’ s complement form in R."
+  },
+  {
+    "text": "call it B 2 and we add B 2 to A this is how we carry out subtraction and after this",
+    "start": 601.64,
+    "end": 608.64,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\n- Compute the 2” s complement of 8 (s\n— Compute R= A+B,\n— Ifa carry is obtained after addition\nnore the carry.\n+ The result is a positive number.\nElse\n+ The result is negative, and is in 2’ s complement form in R."
+  },
+  {
+    "text": "addition step if you see that a carry is coming out simply ignore the carry and your",
+    "start": 611.8,
+    "end": 618.8,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of 8 (s\n— Compute R=A+B,\n— Ifa carry is obtained after addition\n+ The result is a positive number.\nElse\n+ The result is negative, and is in 2’ s complement form in R"
+  },
+  {
+    "text": "conclusion is that the result is a positive number. But if there is a no carry your conclusion",
+    "start": 619.08,
+    "end": 625.6,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A~—B ?\nCompute the 2” s complement of B (say, B,)\n— Compute R= A+B,\n— Ifa carry is obtained after addition\n= Ignore the carry.\n+ The result is a positive number.\nElse 7\n+ The result is negative, and is in 2’ s complement form in R.\n\nINTEL ONLINE\nNT KUARAGPUR CERTIFICATION COURSES € X\n«"
+  },
+  {
+    "text": "will be the result is negative and it is already in 2's complement form. So, you see here",
+    "start": 625.68,
+    "end": 632.68,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of 8 (s\n— Compute R= A+B,\n— Ifa carry is obtained after addition\n= Ignore the carry.\n+ The result is a positive number.\nElse\n\n+ The result is negative, and is in 2” s complement form in R.\n\nNOTEL ONUNE\n3 NT KARAGPUR CERTIFICATION COURSES €\na"
+  },
+  {
+    "text": "in 2's complement form that additional corrective step is not required that end around carry",
+    "start": 633.8,
+    "end": 640.8,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of 8 (s\n— Compute R= A+B,\n— Ifa carry is obtained after addition\n= Ignore the carry.\n+ The result is a positive number.\nElse\n\n+ The result is negative, and is in 2” s complement form in R.\n\nNOTEL ONUNE\n3 NT KARAGPUR CERTIFICATION COURSES €\na"
+  },
+  {
+    "text": "your bring it back and adding to the partial sum that step is not required here. So, in",
+    "start": 640.8,
+    "end": 647.28,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of 8 (s\n— Compute R= A+B,\n— Ifa carry is obtained after addition\n= Ignore the carry.\n+ The result is a positive number.\nElse\n\n+ The result is negative, and is in 2” s complement form in R.\n\nNOTEL ONUNE\n3 NT KARAGPUR CERTIFICATION COURSES €\na"
+  },
+  {
+    "text": "a sense 2's complement representation is more efficient in terms of the effort of calculation.",
+    "start": 647.28,
+    "end": 654.28,
+    "ocr_text": "Subtraction Using Addition :: 2’ s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of 8 (s\n— Compute R= A+B,\n— Ifa carry is obtained after addition\n= Ignore the carry.\n+ The result is a positive number.\nElse\n\n+ The result is negative, and is in 2” s complement form in R.\n\nNOTEL ONUNE\n3 NT KARAGPUR CERTIFICATION COURSES €\na"
+  },
+  {
+    "text": "So, when you are talking about implementing hardware this will also be directly responsible",
+    "start": 654.28,
+    "end": 661.28,
+    "ocr_text": "Subtraction Using Addition :: 2” s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of B (say, B,)\n— Compute R= A+B,\n— Ifa carry is obtained after addition is “1”\n+ The result is a positive number.\nElse\n\n+ The result is negative, and is in 2\" s complement form in R."
+  },
+  {
+    "text": "for the decision that will be taking that 2's complement will be better than 1's complement.",
+    "start": 661.92,
+    "end": 666.92,
+    "ocr_text": "Subtraction Using Addition :: 2” s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of B (say, B,)\n— Compute R= A+B,\n— Ifa carry is obtained after addition is “1”\n+ The result is a positive number.\nElse\n\n+ The result is negative, and is in 2\" s complement form in R."
+  },
+  {
+    "text": "So, let us take some examples again here. Let us take this one 6 minus 2. So, for 2 the",
+    "start": 666.92,
+    "end": 673.92,
+    "ocr_text": "Subtraction Using Addition :: 2” s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of B (say, B,)\n— Compute R= A+B,\n— Ifa carry is obtained after addition is “1”\n+ The result is a positive number.\nElse\n\n+ The result is negative, and is in 2\" s complement form in R."
+  },
+  {
+    "text": "1's complement is 1 1 0 1 you add 1 to it you get the 2's complement it is 1 1 1 0.",
+    "start": 673.92,
+    "end": 680.92,
+    "ocr_text": "Subtraction Using Addition :: 2” s Complement\n\n+ How to compute A—B ?\nCompute the 2” s complement of B (say, B,)\n— Compute R= A+B,\n— Ifa carry is obtained after addition is “1”\n+ The result is a positive number.\nElse\n\n+ The result is negative, and is in 2\" s complement form in R."
+  },
+  {
+    "text": "You simply add 6 and minus 2 0 0 0 1 1 is 0 with a carry of 1 1 1 1 is 1 with a carry",
+    "start": 686.72,
+    "end": 693.72,
+    "ocr_text": "Example 1 :: 6—2\n\ncomplement of 2 = 1101+1 = 1110\n\n0110 ‘Assume 4-bit representations\n1110\n\nPresence of carry indicates that\n10100\n\nA the result is positive.\n\nNo need to add the end-around\nIgnore carry carry like in 1\" s complement.\n\nNPTEL ONLINE\nIT KAARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "of 1 1 0 1 is 0 with a carry of 1. So, there is a carry coming out you simply ignore the",
+    "start": 696.36,
+    "end": 703.36,
+    "ocr_text": "Example 1\n\n2’ s complement of 2 = 1101 +1\n\n6 = 0110 ‘Assume 4-bit representations\n-2 = 1110\n\nPresence of carry indicates that\n70100\n\na the result is positive.\n\nNo need to add the end-around\nIgnore carry carry like in 1\" s complement.\n\nINPTEL ONLINE 4\n5g MT Runeacrur CEamiFieATION COURSES &"
+  },
+  {
+    "text": "carry and 0 1 0 0 whatever remains that is your final result plus 4. As I said here",
+    "start": 703.92,
+    "end": 710.92,
+    "ocr_text": "Example 1\n\n2’ s complement of 2 = 1101 +1\n\n6 = 0110 ‘Assume 4-bit representations\n-2 = 1110\n\nPresence of carry indicates that\n70100\n\na the result is positive.\n\nNo need to add the end-around\nIgnore carry carry like in 1\" s complement.\n\nINPTEL ONLINE 4\n5g MT Runeacrur CEamiFieATION COURSES &"
+  },
+  {
+    "text": "you do not need to add the end around carry. When the result is supposed to be negative",
+    "start": 712.92,
+    "end": 719.92,
+    "ocr_text": "Example 1\n\ncomplement of 2 = 1101 +1\n\n0110\n1110\n10100 positive.\n\npqs No need to add the end-around\n\nIgnore carry carry like in 1 s complement.\n\n‘Assume 4-bit representations\n\nPresence of carry indicates that\n\nINETEL ONLINE\nWOAARAGPUR CERmiFIeATION COURSES &"
+  },
+  {
+    "text": "like the same example 3 minus 5 you take the 2's complement of 5 this is the 1's complement",
+    "start": 722.2,
+    "end": 728.4,
+    "ocr_text": "Example 2\n\n2’ s complement of 5 = 1010 +1\n\n0011 a ma\n\nssume 4-bit representations.\n1011 ei\na Since there is no carry, the result is\nnegative\n\n1110 is the 2’ s complement of\n0010, that is, it represents ~2\n\nNPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "plus 1 this is the 2's complement you add them up 1 1 is 0 with a carry of 1 1 1 1 is",
+    "start": 728.48,
+    "end": 735.48,
+    "ocr_text": "Example 2 :: 3-5\n\n2’ s complement of 5 = 1010 +1 = 1911\n\n0011\n\n1011\n\nant) Since there is no carry, the result is\nnegative.\n\nAssume 4-bit representations\n\n1110 is the 2’ s complement of\n0010, thatis, it represents —2\n\nINPTEL ONLINE z\nIT WAARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "1 with a carry of 1 1 0 0 is 1 0 1 is 1 no carry. So, your conclusion is that your result",
+    "start": 735.48,
+    "end": 742.48,
+    "ocr_text": "Example 2\n\n2’ s complement of 5 = 1010 +1\n\n0011 —\nume 4-bit repre:\n\n1011\nrane Since there is no carry, the result is\nnegative.\n\n1110 is the 2’ s complement of\n0010, that is, it represents —2\n\nferiontne"
+  },
+  {
+    "text": "is negative and 1 1 1 0 is the 2's complement representation of the result. Now, you can",
+    "start": 743.36,
+    "end": 750.36,
+    "ocr_text": "Example 2\n\n2’ s complement of 5 = 1010 +1\n\n0011 —\nume 4-bit repre:\n\n1011\nrane Since there is no carry, the result is\nnegative.\n\n1110 is the 2’ s complement of\n0010, that is, it represents —2\n\nferiontne"
+  },
+  {
+    "text": "check 1 1 1 0 is nothing but minus 2. So, you are getting the correct result right.",
+    "start": 750.64,
+    "end": 757.64,
+    "ocr_text": "Example 2 :: 3—5\n2's complement of 5 1010 +1 1011\n\n0011\n\n1011\n\neare Since there is no carry, the result is\n> negative.\n\nAssume 4-bit representations.\n\n1110 is the 2’ s complement of\n0010, thatis, it represents —2\n\nINPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES &"
+  },
+  {
+    "text": "So, the idea is that for 2's complement representation whether you are adding a larger",
+    "start": 757.64,
+    "end": 763.6,
+    "ocr_text": "Example 2\n\n2’ s complement of 5 = 1010 +1\n\n0011 === =\nume 4-bit representations.\n\n1011\noran Since there is no carry, the result is\nnegative.\n\n1110 is the 2’ s complement of\n0010, that is, it represents ~2\n\nNPTEL ONUNE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "number from a smaller number or a smaller number from a larger number your addition mechanism",
+    "start": 763.6,
+    "end": 769.8,
+    "ocr_text": "Example 2\n\n2’ s complement of 5 = 1010 +1\n\n0011 === =\nume 4-bit representations.\n\n1011\noran Since there is no carry, the result is\nnegative.\n\n1110 is the 2’ s complement of\n0010, that is, it represents ~2\n\nNPTEL ONUNE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "is identical your subtraction and addition are no different when you want to subtract",
+    "start": 769.8,
+    "end": 776.04,
+    "ocr_text": "Example 2\n\n2’ s complement of 5 = 1010 +1\n\n0011 === =\nume 4-bit representations.\n\n1011\noran Since there is no carry, the result is\nnegative.\n\n1110 is the 2’ s complement of\n0010, that is, it represents ~2\n\nNPTEL ONUNE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "you represent a negative number in 2's complement form and you add it. So, you only carry out",
+    "start": 776.04,
+    "end": 781.84,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\n+ When two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n\nNPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "addition no subtraction is required right. So, when we talk about addition of 2 binary",
+    "start": 781.84,
+    "end": 788.84,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\n+ When two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n\nNPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "digits let us say. So, when you are adding 2 bits a and b we generate a sum s and a carry",
+    "start": 790.04,
+    "end": 797.04,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\n+ When two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n\nNPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "c as per the truth table that is shown here. If the input bits are 0 0 the sum is 0 as",
+    "start": 797.84,
+    "end": 805.84,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\n- When two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:"
+  },
+  {
+    "text": "carry is 0 if they are 0 1 or 1 0 then they will be a sum of 1 but no carry. But if they",
+    "start": 806.0,
+    "end": 812.0,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\n+ When two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:"
+  },
+  {
+    "text": "are both 1 and 1 then sum will be 0 and carry will be 1. So, this is the rule as I said",
+    "start": 814.8,
+    "end": 822.8,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\n+ When two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:"
+  },
+  {
+    "text": "some plus this 2 numbers a and b this will be generating a sum and a carry. So, this is",
+    "start": 824.96,
+    "end": 831.24,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\n+ When two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n\nINPTEL ONLINE\nNT KARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "actually shown here 0 0 0 1 in that order first carry and then some 0 1 and 1 0. So, this",
+    "start": 831.32,
+    "end": 838.24,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\n+ When two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n|_inputs | Outputs ie secmrra\nO+1=0h |\n1+0=01\ni+1=10 |\n\nINPTEL ONLINE\nNT KUARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "kind of a circuit which implements this truth table is called a half adder and in a block",
+    "start": 841.24,
+    "end": 847.72,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\n+ When two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n|_inputs | Outputs [ier\nO+1=01\n1+0=01\n1+1=10\n\nHALF ADDER\n\nINPTEL ONLINE\nIT KUARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "diagram form we can show it like this this a and b are the 2 inputs and this sum and",
+    "start": 847.72,
+    "end": 853.52,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\nWhen two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n\n| _inputs | outputs ree\n\n0+1=01\n1+0=01\n1+1=10\n\nHALF ADDER\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "carry are the 2 outputs. So, if you just write down the expression from this truth table",
+    "start": 853.52,
+    "end": 860.52,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\nWhen two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n\n| _inputs | outputs ree\n\n0+1=01\n1+0=01\n1+1=10\n\nHALF ADDER\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "expression for sum will be sum will be 1 here and here. So, it is a bar b or a b bar this",
+    "start": 861.64,
+    "end": 868.24,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\nWhen two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n\nS=A.B+AB = ADB\n\n| _inputs | outputs rey\nc-an\n\n0+1=01\n1+0=01\n1+1=10\n\nHALF ADDER\n\nINPTEL ONLINE\nIT KAARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "is nothing but the exclusive or of a and b and c will be 1 when a b both are 1 that is",
+    "start": 869.64,
+    "end": 876.64,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\n+ When two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n\noR oul S=RB+AB = AOB\n\nB\n\nHALF ADDER\n\nINPTEL ONLINE\nIT KAARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "a b end of a and b. So, in terms of implementation a half adder will consist of an exclusive",
+    "start": 877.04,
+    "end": 884.04,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\nWhen two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n\nS=W.B+ AB\n\n0+1=01\n1+0=01 |g\n1+1=10\n\n>c\n\n| _inputs | outputs eeeal\nte I C=AB\n1 HA\n\nHALF ADDER\n\nINPTEL ONLINE\nCERTIFICATION COURSES\n\nNT KHARAGPUR"
+  },
+  {
+    "text": "or get and an end get fine. Now, when we talk about addition of",
+    "start": 884.04,
+    "end": 893.12,
+    "ocr_text": "Addition of Two Binary Digits (Bits)\n\nWhen two bits A and B are added, a sum (S) and carry (C) are\ngenerated as per the following truth table:\n\nS=W.B+ AB\n\n0+1=01\n1+0=01 |g\n1+1=10\n\n>c\n\n| _inputs | outputs eeeal\nte I C=AB\n1 HA\n\nHALF ADDER\n\nINPTEL ONLINE\nCERTIFICATION COURSES\n\nNT KHARAGPUR"
+  },
+  {
+    "text": "multibit numbers normally we do parallel addition like this is a number this is another number.",
+    "start": 893.12,
+    "end": 900.12,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<«— Carry 1111110«— Carry\n\n0101011<—— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 000000 1<— Number 8\n\n0110100<— sums 109 0000<— sums"
+  },
+  {
+    "text": "So, when we add them we start from the list significant bit. So, initially the carry input",
+    "start": 900.12,
+    "end": 905.92,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n010110<— Carry 1111110«— Carry\n0101011<— Number A 0111111<— Number a\n+ 000100 t<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\nINPTEL ONLINE\nKUARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "is 0. So, this is this row shows the carry this 1 1 will result in a sum of 0 with a",
+    "start": 905.92,
+    "end": 912.92,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n00101104— Carry 1111110«— Carry\n\n010101 1.<— Number A 0111111<— Number A\n+ 0001001<— Numbers + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums"
+  },
+  {
+    "text": "carry of 1 this 1 1 1 and 0 added again sum and 0 and carry of 1 1 0 0 will give us sum",
+    "start": 914.12,
+    "end": 921.04,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n00101104— Carry 1111110«— Carry\n\n010101 1.<— Number A 0111111<— Number A\n+ 0001001<— Numbers + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums"
+  },
+  {
+    "text": "of 1 no carry 0 1 1 is a sum of 0 carry of 1 1 0 0 will give 1 no carry this again 1 no",
+    "start": 923.24,
+    "end": 930.24,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010 R10<— Carry 1111110«— Carry\n\n0101011<— Number A 0111111<— Number A\n+ 0001001<—— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums"
+  },
+  {
+    "text": "carry 0 0 0 0 0. So, you get this sum you take another example here where this is an",
+    "start": 932.92,
+    "end": 939.92,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0140100<— sums 1000000<— sums\n\nNBTEL ONLINE 4\nIT WAARAGPUR CERTIFICATION COURSES é"
+  },
+  {
+    "text": "extreme case of something that I am trying to demonstrate. So, the first number is like",
+    "start": 940.92,
+    "end": 945.72,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n0101011<— Number A Q111111<— Number a\n\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums"
+  },
+  {
+    "text": "this 0 1 1 1 and the second number is only a 1 less 0. So, you add the first two digits",
+    "start": 945.72,
+    "end": 952.72,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n0101011<— Number A 0111111<— Number Aa\n+ 0001001<— Number 8 + 000000 t<— Number 8\n\n0110100<— sums 1000000<— sums"
+  },
+  {
+    "text": "by any digits get a 0 with a carry of 1 1 and 1 will be 0 with a carry of 1 the same",
+    "start": 955.2,
+    "end": 962.2,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000009<— sums\n\nINPTEL ONLINE\n= MTIARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "thing is repeating 0 with a carry of 1 0 with a carry of 1 and finally, this carry will",
+    "start": 962.2,
+    "end": 967.36,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000009<— sums\n\nINPTEL ONLINE\n= MTIARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "be generating the last bit of sum. So, what I am trying to illustrate in this example",
+    "start": 967.44,
+    "end": 972.24,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«2— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\nferent"
+  },
+  {
+    "text": "is that the carry is propagating from the list significant stage to the most significant",
+    "start": 972.24,
+    "end": 978.24,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«2— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\nferent"
+  },
+  {
+    "text": "stage. After adding the first digit happens there is a carry generated this carry again",
+    "start": 978.24,
+    "end": 985.24,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110¢— Carry\n0101011<— Number A 0111111<— Number a\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\nINPTEL ONLINE\n© MTSHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "generates a carry this carry again generates a carry. So, there is a rippling effect of",
+    "start": 985.88,
+    "end": 992.88,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 111%110«— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\nINPTEL ONLINE\n4 NT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "one stage to the other. So, it is something like that from the list significant stage to",
+    "start": 993.36,
+    "end": 998.84,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 111%110«— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\nINPTEL ONLINE\n4 NT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "the most significant stage the carry will be moving stage by stage in that fashion.",
+    "start": 998.84,
+    "end": 1004.64,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 111%110«— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\nINPTEL ONLINE\n4 NT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "So, you will have to wait until all the carry has rippled through the different stages",
+    "start": 1004.64,
+    "end": 1010.44,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 111%110«— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\nINPTEL ONLINE\n4 NT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "of addition and finally, after that you get the result.",
+    "start": 1010.44,
+    "end": 1015.64,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n0101011<— Number A 0111111<— Number A\n0001001<— Number 8 + 0000001<— Number 8\n\n0110100%— sums 1000000<— sums\n\n+ At every bit position (stage), we require to add 3 bits\n> 1 bit for number A\n> 1 bit for number B WE NEED A FUL\n\n> 1 carry bit coming from the previous s\n\nINPTEL ONLINE\nNT KLARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "So, the observation here is that for adding multibit number for every stage or bit position",
+    "start": 1015.64,
+    "end": 1022.64,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n0101011<— Number A 0111111<— Number A\n0001001<— Number 8 + 0000001<— Number 8\n\n0110100%— sums 1000000<— sums\n\n+ At every bit position (stage), we require to add 3 bits\n> 1 bit for number A\n> 1 bit for number B WE NEED A FUL\n\n> 1 carry bit coming from the previous s\n\nINPTEL ONLINE\nNT KLARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "we need to add three digits two digits for the numbers a and b and one digit from the",
+    "start": 1027.16,
+    "end": 1034.16,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001061<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\n+ At every bit position (stage), we require to add 3 bits:\n> 1 bit for number A\n> 1 bit for number B WE NEED A FL\n\n> 1 carry bit coming from the previous s"
+  },
+  {
+    "text": "carry which is being generated from the previous stage. So, essentially we require to add",
+    "start": 1034.16,
+    "end": 1040.16,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001061<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\n+ At every bit position (stage), we require to add 3 bits:\n> 1 bit for number A\n> 1 bit for number B WE NEED A FL\n\n> 1 carry bit coming from the previous s"
+  },
+  {
+    "text": "three bits one bit for a one bit for b and one carry bit this kind of an adder it adds",
+    "start": 1040.44,
+    "end": 1047.44,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\n+ At every bit position (stage), we require to add 3 bits:\n> 1 bit for number A E\n> 1 bit for number 8 WE NEED A FU\n\n> Larry bit coming from the previous\n\nINPTEL ONLINE\n= BT RuARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "three bits is called a full adder. Let us now see how a full adder looks like this is",
+    "start": 1048.0,
+    "end": 1055.0,
+    "ocr_text": "Addition of Multi-bit Binary Numbers\n\n0010110<— Carry 1111110«— Carry\n0101011<— Number A 0111111<— Number A\n+ 0001001<— Number 8 + 0000001<— Number 8\n\n0110100<— sums 1000000<— sums\n\n+ At every bit position (stage), we require to add 3 bits:\n> 1 bit for number A\n> 1 bit for number B WE NEED A FULI\n\n> carry bit coming from the previous stage"
+  },
+  {
+    "text": "the truth table of a full adder where I have three input bits a and b and the carry add",
+    "start": 1055.92,
+    "end": 1062.92,
+    "ocr_text": "Full Adder\n\n9\n\n°\na\n°\na\n°\n1\n°\na\n\nINPTEL ONLINE 4\nNT KARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "and two sum bits again sum and carry out. So, inputs there can be eight combinations",
+    "start": 1063.52,
+    "end": 1070.04,
+    "ocr_text": "Full Adder\n\n9\n\n°\na\n°\na\n°\n1\n°\na\n\nINPTEL ONLINE 4\nNT KARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "so if it is 0 0 0 sum will be 0 carry will be 0 0 0 1 sum will be 1 carry will be 0 same",
+    "start": 1070.72,
+    "end": 1077.16,
+    "ocr_text": "CERTIFICATION COURSES\n\nINPTEL ONLINE\n\nz\nz\n¢<\n3\na"
+  },
+  {
+    "text": "for 0 1 0, but if the two of them are once then sum will be 0 and carry will be 1 similarly",
+    "start": 1077.16,
+    "end": 1084.16,
+    "ocr_text": "NPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "and for the last case one one one sum will be 1 carry will also be 1. So, a full adder can",
+    "start": 1084.76,
+    "end": 1091.76,
+    "ocr_text": "NPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "be conceptually in a block diagram form expressed like this three inputs and two outputs and",
+    "start": 1091.84,
+    "end": 1097.84,
+    "ocr_text": "hoHororof\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the sum and carry expressions can be written like this. Some expression if you just consider",
+    "start": 1100.08,
+    "end": 1106.58,
+    "ocr_text": "S = RBG y+ NBG py! + ABE a! + ABC\nA@DBOC,\n\nCout = B.Gn + ACen + A.B + ALB.\nABtBG, + AG,\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "the output or the sum is 1 this four terms and the minimum terms will be a bar b bar",
+    "start": 1106.58,
+    "end": 1111.58,
+    "ocr_text": "A\n8\n\n(ae\n\n9\n\nS = RBG y+ NBG py! + ABE a! + A.B.\nA@BOC,\n\nCout = B.Gin + A.Cn + A.B + A.B.Gy\nAB+BG, +AG,\n\nRoHOKROHO\n\nINPTEL ONLINE\nss ae CERTIFICATION COURSES"
+  },
+  {
+    "text": "sin a bar b sin bar a b bar sin bar and a b c. So, if you do a simplification of this",
+    "start": 1111.58,
+    "end": 1118.58,
+    "ocr_text": "A\n8\n\n(ae\n\n9\n\nS = RBG y+ NBG py! + ABE a! + A.B.\nA@BOC,\n\nCout = B.Gin + A.Cn + A.B + A.B.Gy\nAB+BG, +AG,\n\nRoHOKROHO\n\nINPTEL ONLINE\nss ae CERTIFICATION COURSES"
+  },
+  {
+    "text": "you will find that this is nothing, but the exclusive order of a b and sin similarly",
+    "start": 1118.58,
+    "end": 1125.58,
+    "ocr_text": "S = RBG y+ NBG y! $A.B'C a! + ABC\nA@DBOC, a\n\nCoun = B.Gin + A.Cin + A.B + A.B.Gy\nAB+BG, + AC,\n\nNPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "see how has this four places where it is 1 it will be a bar b sin a b bar sin and this",
+    "start": 1128.14,
+    "end": 1134.14,
+    "ocr_text": "¢\n\nS = RBG y+ NBG pl + ABC! + ABC\nA@DBOC,\nB.Gy + ACn + A.B + A.B.G,,\nABtBG, +AG,\n\nhoHOoHOHO\n\nINPTEL ONLINE\nek CERTIFICATION COURSES\n\nFS)"
+  },
+  {
+    "text": "is a b sin bar and last one a b c. So, this again if you minimize it will be just a b or",
+    "start": 1136.94,
+    "end": 1142.94,
+    "ocr_text": "Full Adder\n\n9\n\nS = RBG y+ NBG y! + ABE a! + ABC\nA@BOC,\n\nCout = B.Gin + A.Cin + A.B + A.B.Gy\nAB+BG, + AC,\n\nRoHOHROHO\n\nINPTEL ONLINE\nIT KARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "b c in or a c in. So, these are the final expression for this sum and the carry outs.",
+    "start": 1142.94,
+    "end": 1149.94,
+    "ocr_text": "Full Adder\n\n9\n\nS = RBG y+ NBG y! + ABE a! + ABC\nA@BOC,\n\nCout = B.Gin + A.Cin + A.B + A.B.Gy\nAB+BG, + AC,\n\nRoHOHROHO\n\nINPTEL ONLINE\nIT KARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "So, if I knew implement full adder there are various ways of implementing this circuit",
+    "start": 1153.46,
+    "end": 1160.46,
+    "ocr_text": "S = RBG y+ NBG py! + ABE a! + A.B.C\nA@DBOC,\n\nCout 2B-Gn + A.Gy + A.B + A.B.Gy\nAB+BG, + AC,\n\nNPTEL ONUNE\nIT KARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the first circuit directly implements this function s is the exclusive order and c is",
+    "start": 1162.34,
+    "end": 1168.34,
+    "ocr_text": "Various Implementations of Full Adder\n\nATR war €|\n\nPi \\"
+  },
+  {
+    "text": "b or b c in plus a c in. So, it directly implements this c in is the c is the c in carry input.",
+    "start": 1168.34,
+    "end": 1175.34,
+    "ocr_text": "e\n\nS = RBG, + WBC\nA@DBOC,\n\nCout = B.Gin + A.Cin + A.B + A.B.G\nAB+BG, + AG,\n\nRoHOHROHO\n\nNPTEL ONLINE\nIT KAARAGPUR CERTIFICATION COURSES €\n\nBea"
+  },
+  {
+    "text": "So, an exclusive order to generate the sum and a two level and on network to generate",
+    "start": 1175.34,
+    "end": 1179.78,
+    "ocr_text": "Various Implementations of Full Adder\n\nA ree\ntal ei - ee\ne aver sE-Ta ane © HOR\nA @ ADDER 5\nnerEL onuine\nmraunacrun CER LMAO counses\n="
+  },
+  {
+    "text": "the carry. Now, there is some scope for optimization if you break this three input x or into two input",
+    "start": 1179.78,
+    "end": 1187.78,
+    "ocr_text": "Various Implementations of Full Adder\n\nA ree\ntal ei - ee\ne aver sE-Ta ane © HOR\nA @ ADDER 5\nnerEL onuine\nmraunacrun CER LMAO counses\n="
+  },
+  {
+    "text": "x or gates and if you take the output from the first x or gate to this two level and",
+    "start": 1188.18,
+    "end": 1193.58,
+    "ocr_text": "Various Implementations of Full Adder\n\nSatay cE =\n(alr & - ee\no —{e rover s LTA tiquy © J\ne & ADDER s 5\nNeTEL onuine\nmTaunacrun CERT STOR counses\nb ="
+  },
+  {
+    "text": "a circuit here also you can generate c out and your circuit complexity becomes a little",
+    "start": 1193.58,
+    "end": 1198.94,
+    "ocr_text": "Various Implementations of Full Adder\n\nSatay cE =\n(alr & - ee\no —{e rover s LTA tiquy © J\ne & ADDER s 5\nNeTEL onuine\nmTaunacrun CERT STOR counses\nb ="
+  },
+  {
+    "text": "less this is also an alternate design and the third diagram that I am showing is that",
+    "start": 1198.94,
+    "end": 1205.42,
+    "ocr_text": "Various Implementations of Full Adder\n\na aur\n1ALr aa = Gs\nse apver sL-TA aap € J\nc. & ADDER s\nneTEL onune\nmeuanncrun Serr eieOh courses\n="
+  },
+  {
+    "text": "if you have half adders as your building blocks you can combine two half adders plus an",
+    "start": 1205.42,
+    "end": 1211.92,
+    "ocr_text": "Various Implementations of Full Adder\n\nA Lae e+ RF\n4ALF oR L— Con\n8 B ADDER SETA aig C J\nGe 8 ADRER s s\nNPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES\n, <"
+  },
+  {
+    "text": "or gate to design a full adder these are the alternate designs. So, let us look at the",
+    "start": 1211.92,
+    "end": 1219.92,
+    "ocr_text": "Various Implementations of Full Adder\n\nA Lae e+ RF\n4ALF oR L— Con\n8 B ADDER SETA aig C J\nGe 8 ADRER s s\nNPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES\n, <"
+  },
+  {
+    "text": "design like this let us make a simple delay analysis. So, we assume that the delay of",
+    "start": 1223.74,
+    "end": 1230.58,
+    "ocr_text": "Various Implementations of Full Adder\n\n5"
+  },
+  {
+    "text": "the basic gates what are the basic gates let us assume and or n and nor not these are",
+    "start": 1232.58,
+    "end": 1238.58,
+    "ocr_text": "+ Delay of a full adder\nAssume that the delay of all basic gates\n(AND, OF NAND, NOR, NOT) is 6.\nDelay for Carry = 25\nDelay for Sum = 36\n\n(AND-OR delay plus one inverter delay)"
+  },
+  {
+    "text": "the basic gates. But, what about x or gate let us look at a scenario of a two input x",
+    "start": 1238.7,
+    "end": 1246.7,
+    "ocr_text": "Delay of a full adder\n\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\n\nDelay for Carry = 25\n\nDe\n\nay for Sum = 35\n\n(AND-OR delay plus one inverter delay)\n\nIT KHARAGPUR\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES\n\nfy"
+  },
+  {
+    "text": "or gate let us say I have two inputs a b and an output of f. So, what does f represent",
+    "start": 1246.86,
+    "end": 1253.7,
+    "ocr_text": "Delay of a full adder\n\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\n\nDelay for Carry = 25\n\nDe\n\nay for Sum = 35\n\n(AND-OR delay plus one inverter delay)\n\nIT KHARAGPUR\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES\n\nfy"
+  },
+  {
+    "text": "a bar b or a b bar. So, if I want to implement it I can implement it using two level and",
+    "start": 1258.86,
+    "end": 1265.86,
+    "ocr_text": "Delay of a full adder\n\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\n\nDelay for Carry = 25\n\nDe\n\nay for Sum = 35\n\n(AND-OR delay plus one inverter delay)\n\nIT KHARAGPUR\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES\n\nfy"
+  },
+  {
+    "text": "or this will be my f if first one will be fed with a bar b. So, if this is a there will",
+    "start": 1265.86,
+    "end": 1272.86,
+    "ocr_text": "Delay of a full adder\n\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\n\nDelay for Carry = 25\n\nDe\n\nay for Sum = 35\n\n(AND-OR delay plus one inverter delay)\n\nIT KHARAGPUR\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES\n\nfy"
+  },
+  {
+    "text": "be a not gate a bar and b second one will be a b bar a will be fed as it is and there",
+    "start": 1281.7,
+    "end": 1288.7,
+    "ocr_text": "Delay of a full adder\n\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\n\nDelay for Carry = 25\n\nDe\n\nay for Sum = 35\n\n(AND-OR delay plus one inverter delay)\n\nIT KHARAGPUR\n\nNPTEL ONLINE\n\nCERTIFICATION COURSES\n\nfy"
+  },
+  {
+    "text": "will be b bar. So, here if you look from the input to the output you will see that there",
+    "start": 1288.7,
+    "end": 1295.7,
+    "ocr_text": "+ Delay of a full adder\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\nDelay for Carry = 25\n\nDelay forSum = 38\n\n(AND-OR delay plus one inverter delay)\n\nNT RHARAGPUR ICATION\n\nCERTIFICATION COURSES &"
+  },
+  {
+    "text": "are three levels of gates one is this to not gates then this and gates and then this",
+    "start": 1300.74,
+    "end": 1306.74,
+    "ocr_text": "+ Delay of a full adder\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\nDelay for Carry = 25\n\nDelay forSum = 38\n\n(AND-OR delay plus one inverter delay)\n\nNT RHARAGPUR ICATION\n\nCERTIFICATION COURSES &"
+  },
+  {
+    "text": "or gate. So, the equivalent delay of a two input x or will be thrice delta if delta",
+    "start": 1306.74,
+    "end": 1313.74,
+    "ocr_text": "+ Delay of a full adder\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\nDelay for Carry = 25\n\nDelay forSum = 38\n\n(AND-OR delay plus one inverter delay)\n\nNT RHARAGPUR ICATION\n\nCERTIFICATION COURSES &"
+  },
+  {
+    "text": "is the delay of a basic gate. So, this is what is mentioned here that for the x or gate",
+    "start": 1314.38,
+    "end": 1321.38,
+    "ocr_text": "+ Delay of a full adder\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\nDelay for Carry = 25\n\nDelay forSum = 38\n\n(AND-OR delay plus one inverter delay)\n\nNT RHARAGPUR ICATION\n\nCERTIFICATION COURSES &"
+  },
+  {
+    "text": "for the sum the delay will be thrice delta and for the carry this circuit I am already showing",
+    "start": 1322.98,
+    "end": 1328.78,
+    "ocr_text": "+ Delay of a full adder\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\nDelay for Carry = 25\n\nDelay forSum = 38\n\n(AND-OR delay plus one inverter delay)\n\nNT RHARAGPUR ICATION\n\nCERTIFICATION COURSES &"
+  },
+  {
+    "text": "here it will be two level gate delay twice delta fine. Now, let us see how we can design",
+    "start": 1328.78,
+    "end": 1335.78,
+    "ocr_text": "+ Delay of a full adder\nAssume that the delay of all basic gates\n(AND, OR, NAND, NOR, NOT) is 6.\nDelay for Carry = 25\n\nDelay forSum = 38\n\n(AND-OR delay plus one inverter delay)\n\nNT RHARAGPUR ICATION\n\nCERTIFICATION COURSES &"
+  },
+  {
+    "text": "a parallel adder parallel adder means we are trying to add more than one bits together",
+    "start": 1335.78,
+    "end": 1342.78,
+    "ocr_text": "Parallel Adder Design\n\n= We shall look at the Various designs of n-bit parallel adder.\na) Ripple carry adder\nb) Carry look-ahead adder\n©) Carry save adder\nd) Carry select adder"
+  },
+  {
+    "text": "two n bit numbers. We have already seen how we can do it by hand we add the list driven",
+    "start": 1345.46,
+    "end": 1351.22,
+    "ocr_text": "Parallel Adder Design\n\n= We shall look at the Various designs of n-bit parallel adder.\na) Ripple carry adder\nb) Carry look-ahead adder\n©) Carry save adder\nd) Carry select adder"
+  },
+  {
+    "text": "digits generator carry next digit generator carry next digit and so on. So, this same concept",
+    "start": 1351.22,
+    "end": 1358.22,
+    "ocr_text": "Parallel Adder Design\n\n= We shall look at the Various designs of n-bit parallel adder.\na) Ripple carry adder\nb) Carry look-ahead adder\n©) Carry save adder\nd) Carry select adder"
+  },
+  {
+    "text": "you can extend in the first adder design that we shall be seen there are several mean",
+    "start": 1358.22,
+    "end": 1364.82,
+    "ocr_text": "Parallel Adder Design\n\n= We shall look at the various designs of n-bit parallel adder.\na) Ripple carry adder\nb) Carry look-ahead adder\n©) Carry save adder\nd) Carry selectigdder\n\nNT KAARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY, MEGHALAYA\n\nINPTEL ONLINE OES"
+  },
+  {
+    "text": "types of adders that will be exploring ripple carry carry look at carry save carry select",
+    "start": 1364.82,
+    "end": 1369.46,
+    "ocr_text": "Parallel Adder Design\n\n= We shall look at the various designs of n-bit parallel adder.\na) Ripple carry adder\nb) Carry look-ahead adder\n©) Carry save adder\nd) Carry selectigdder\n\nNT KAARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY, MEGHALAYA\n\nINPTEL ONLINE OES"
+  },
+  {
+    "text": "etcetera, but let us look at it one by one ripple carry adder is the simplest say ripple",
+    "start": 1369.46,
+    "end": 1376.46,
+    "ocr_text": "Parallel Adder Design\n\n= We shall look at the various designs of n-bit parallel adder.\na) Ripple carry adder\nb) Carry look-ahead adder\n©) Carry save adder\nd) Carry selectigdder\n\nNT KAARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY, MEGHALAYA\n\nINPTEL ONLINE OES"
+  },
+  {
+    "text": "carry adder models the way we do addition using a paper and pencil method just to recall",
+    "start": 1379.7,
+    "end": 1386.7,
+    "ocr_text": "Ripple Carry Adder\n\nCascade n full adders to create a n- bit parallel adder.\nCarry output from stage-i propagates as the carry input to\nstage-(i+1).\n\nIn the worst-case, carry ripples through all the stages.\n\n11111 10<— Carry\n0111111<— Number A\n\n+ 0000001<— Number 8\n1000000<— sums\n\nNT AARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY, MEGHALAYA\n\nNPTEL ONLINE eae"
+  },
+  {
+    "text": "again you take this example once more. So, the two numbers a and b are given we add",
+    "start": 1387.86,
+    "end": 1392.86,
+    "ocr_text": "Ripple Carry Adder\n\nCascade n full adders to create a n- bit parallel adder.\nCarry output from stage-i propagates as the carry input to\nstage-(i+1).\nIn the worst-case, carry ripples through all the stages.\n\n1111110<«— Carry\n\n0111111<— Number a\n\n+ 600000 1<— Numbers\n1000000<— sums\n\nNT WHARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY, MEGHALAYA\n\nNPTEL ONLINE OE Se"
+  },
+  {
+    "text": "the least significant digit of the numbers with an initial carry of 0 no carry is there you",
+    "start": 1394.94,
+    "end": 1401.26,
+    "ocr_text": "Ripple Carry Adder\n\nCascade n full adders to create a n- bit parallel adder.\nCarry output from stage-i propagates as the carry input to\nstage-(i+1).\nIn the worst-case, carry ripples through all the stages.\n\n1111110<«— Carry\n\n0111111<— Number a\n\n+ 600000 1<— Numbers\n1000000<— sums\n\nNT WHARAGPUR CERTIFICATION COURSES\n\nTECHNOLOGY, MEGHALAYA\n\nNPTEL ONLINE OE Se"
+  },
+  {
+    "text": "get a sum you get a carry in the next stage you again add these three digits you get a",
+    "start": 1401.26,
+    "end": 1408.26,
+    "ocr_text": "Ripple Carry Adder\n\nCascade n full adders to create a n- bit parallel adder.\nCarry output from stage-i propagates as the carry input to\n\nstage-(i+1).\nIn the worst-case, carry ripples through all the stages.\n1111119<— Carry\n0111111<— Number\n+ 0000001<— Numbe\n\n1000000< sum s\n\nNPTEL ONUNE NATIONAL INSTITUTE OF-\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA\n\nNT KHARAGPUR"
+  },
+  {
+    "text": "sum and a carry you again add these three digits and this way you repeat. So, if there are",
+    "start": 1409.74,
+    "end": 1416.26,
+    "ocr_text": "Ripple Carry Adder\n\nCascade n full adders to create a n- bit parallel adder.\nCarry output from stage-i propagates as the carry input to\n\nstage-(i+1).\nIn the worst-case, carry ripples through all the stages.\n1111110<— Carry\n011111 4<— Number A\n+ 000000 1<— Numbers\n\n1000000<— sums\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA\n\nNT KHARAGPUR"
+  },
+  {
+    "text": "n digits in my binary number so, I will be needing n such I mean adder stages full adder",
+    "start": 1416.46,
+    "end": 1423.46,
+    "ocr_text": "Ripple Carry Adder\n\nCascade n full adders to create a n- bit parallel adder.\nCarry output from stage-i propagates as the carry input to\n\nstage-(i+1).\n\nIn the worst-case, carry ripples through all the stages.\n\n1111110<— Carry\n0111111<— Number a\n\n+ 0000001<— Numbers\n\n1000000< sum s\n\nINPTEL ONLINE NATIONAL INSTITUTE OF-\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA\n\nIT KHARAGPUR"
+  },
+  {
+    "text": "stages right. So, let us see this n full adder stages will be like this. So, my input",
+    "start": 1423.46,
+    "end": 1430.46,
+    "ocr_text": "Ripple Carry Adder\n\nCascade n full adders to create a n- bit parallel adder.\nCarry output from stage-i propagates as the carry input to\n\nstage-(i+1).\n\nIn the worst-case, carry ripples through all the stages.\n\n1111110<— Carry\n0111111<— Number a\n\n+ 0000001<— Numbers\n\n1000000< sum s\n\nINPTEL ONLINE NATIONAL INSTITUTE OF-\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA\n\nIT KHARAGPUR"
+  },
+  {
+    "text": "numbers are fed bit wise in this form a 0 be 0 to the least significant stage a 1 b 1",
+    "start": 1433.46,
+    "end": 1440.46,
+    "ocr_text": "INPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "here a 2 b 2 here and a n minus 1 b n minus 1 here and as you can see that the carry out",
+    "start": 1440.46,
+    "end": 1448.46,
+    "ocr_text": "INPTEL ONLINE z\nNT RHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "of the first stage the least significant stage is going as a carry input to the next stage",
+    "start": 1448.78,
+    "end": 1455.46,
+    "ocr_text": "INPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "carry out of this stage is going as a carry input to this stage and so on. So, this is",
+    "start": 1455.94,
+    "end": 1462.94,
+    "ocr_text": "INPTEL ONLINE 7\nIT KHARAGPUR CERTIFICATION COURSES R"
+  },
+  {
+    "text": "and this is a parallel adder that I have designed just using a cascade of several full adders",
+    "start": 1462.94,
+    "end": 1468.94,
+    "ocr_text": "INPTEL ONLINE 7\nIT KHARAGPUR CERTIFICATION COURSES R"
+  },
+  {
+    "text": "so, I have several full adders and every full adder is capable of adding three bits so,",
+    "start": 1468.94,
+    "end": 1475.94,
+    "ocr_text": "INPTEL ONLINE 7\nIT KHARAGPUR CERTIFICATION COURSES R"
+  },
+  {
+    "text": "I am adding three bits three bits three bits like that and there will be one full adder",
+    "start": 1476.5,
+    "end": 1482.7,
+    "ocr_text": "INPTEL ONLINE 7\nIT KHARAGPUR CERTIFICATION COURSES R"
+  },
+  {
+    "text": "at every stage which will be handling the addition of those three bits and when the addition",
+    "start": 1482.7,
+    "end": 1488.18,
+    "ocr_text": "INPTEL ONLINE 7\nIT KHARAGPUR CERTIFICATION COURSES R"
+  },
+  {
+    "text": "is carried out the full adder is generating a sum and it will be generating the carry",
+    "start": 1488.18,
+    "end": 1494.66,
+    "ocr_text": "INPTEL ONLINE 7\nIT KHARAGPUR CERTIFICATION COURSES R"
+  },
+  {
+    "text": "for the next stage. So, the example that I have shown in the worst case the carry might",
+    "start": 1494.66,
+    "end": 1501.14,
+    "ocr_text": "Two numbers: Boon AiAiAy and By, ...B,B,By\nInput carry: &\nOutput carry: ¢\n\nNPTEL ONLINE 4\nNT WAARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "be propagating from the least significant stage to the most significant stage.",
+    "start": 1501.14,
+    "end": 1508.14,
+    "ocr_text": "Two numbers: Boon AiAiAy and By, ...B,B,By\nInput carry: &\nOutput carry: ¢\n\nNPTEL ONLINE 4\nNT WAARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, for this ripple carry adder circuit so, what I have assumed is that the two numbers",
+    "start": 1508.14,
+    "end": 1516.14,
+    "ocr_text": "Two numbers: Boon AiAiAy and By, ...B,B,By\nInput carry: &\nOutput carry: ¢\n\nNPTEL ONLINE 4\nNT WAARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "are a and b both are n bit numbers the input carry is c 0 this is the carry in of the last",
+    "start": 1516.42,
+    "end": 1524.42,
+    "ocr_text": "Two numbers: Boon AiAiAy and By, ...B,B,By\nInput carry: &\nOutput carry: ¢\n\nNPTEL ONLINE 4\nNT WAARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "stage some is a 0 to a sin of minus 1 n bits and there will be a carry out c n. Now, if",
+    "start": 1524.5,
+    "end": 1531.42,
+    "ocr_text": "Two numbers: Boon AiAiAy and By, ...B,B,By\nInput carry: &\nOutput carry: ¢\n\nNPTEL ONLINE 4\nNT WAARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "you want to calculate the delay it is fairly simple see for a full adder we have already",
+    "start": 1538.46,
+    "end": 1543.74,
+    "ocr_text": "[een bees)\nDelay for ¢\n\n| Delay for Cus\n\nTwo numbers: AoA ArAy and By. .--B:8,8, Peasy Boren\n\nInput carry: ©\nsum: Sea\nOutput carry: iG\n\nINPTEL ONLINE NATIONAL INSTITUTE OF-\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY. MEGHALAYA"
+  },
+  {
+    "text": "calculated the delay and we have seen that the delay for the carry out is twice delta.",
+    "start": 1543.74,
+    "end": 1549.74,
+    "ocr_text": "[een bees)\nDelay for ¢\n\n| Delay for Cus\n\nTwo numbers: AoA ArAy and By. .--B:8,8, Peasy Boren\n\nInput carry: ©\nsum: Sea\nOutput carry: iG\n\nINPTEL ONLINE NATIONAL INSTITUTE OF-\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY. MEGHALAYA"
+  },
+  {
+    "text": "So, for the first full adder when I apply a 0 b 0 and c 0 so, after two delta c 1 will",
+    "start": 1550.54,
+    "end": 1557.54,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\n\nDelay for C,. = 2(n-2)5\n\nTwo numbers: Boe AAiAy and By y--B:8,8, Ds eyrou Cees\nInput carry: &\nSum: Sn\nOutput carry: ¢\n\nNT KARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA\n\nINPTEL ONLINE (@) ses"
+  },
+  {
+    "text": "be generated so, it is only after two delta in the worst case this a 1 b 1 c 1 will be",
+    "start": 1557.54,
+    "end": 1564.14,
+    "ocr_text": "Delayforc, =35\nDelayforc, = 45\n\nDelay for, = 2(n-2)5\n\nTwo numbers: Boon AAsAy and By y--B:8,B, Dele vitoCuee=es\n\nInput carry: ©\nSum: Sp\nOutput carry: ¢\n\nNT KARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA\n\nINPTEL ONLINE eae"
+  },
+  {
+    "text": "available. So, you wait for another two delta you will be getting c 2 so, for c 2 will",
+    "start": 1564.14,
+    "end": 1569.86,
+    "ocr_text": "Delayforc, =35\nDelayforc, = 45\n\nDelay for, = 2(n-2)5\n\nTwo numbers: Boon AAsAy and By y--B:8,B, Dele vitoCuee=es\n\nInput carry: ©\nSum: Sp\nOutput carry: ¢\n\nNT KARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA\n\nINPTEL ONLINE eae"
+  },
+  {
+    "text": "be getting at 4 delta c 3 will be getting at 6 delta and so on. So, c n minus 1 so,",
+    "start": 1569.86,
+    "end": 1576.86,
+    "ocr_text": "Delay for C,\n\nDelay for C, x\n\nTwo numbers: Aon AAvAy and By .--B:8,B, Delay for C,\nInput carry: S\nOutput carry: iG"
+  },
+  {
+    "text": "if you extend it it will be after two n minus 1 into delta and the final carry out will",
+    "start": 1576.86,
+    "end": 1583.86,
+    "ocr_text": "yforC, =25\nDelayforc, = 45\n\nDelay for C,, = 2(n-2)\n\nTwo numbers: Boon AiAy and By .-B:8,B, Delay forc, = 2nd\nInput carry: ©\nOutput carry: ¢\n\nNPTEL ONLINE\nIT KUARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "be generating after two n delta. So, for generating the carry is your maximum",
+    "start": 1585.62,
+    "end": 1592.14,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\n\nDelay for, = 2(n-2)5\nDelay forc, = 2nd\n\nTwo numbers: Boon ArAy and By y--B,8,B,\nInput carry: eS\nOutput carry: ¢\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "delay is two n delta let us now look at the sum see for sum as you can as you recall it",
+    "start": 1592.14,
+    "end": 1599.14,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\n\nDelay for, = 2(n-2)5\nDelay forc, = 2nd\n\nTwo numbers: Boon ArAy and By y--B,8,B,\nInput carry: eS\nOutput carry: ¢\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "is an exorgete for delays 3 delta. So, s 0 will be generated in 3 delta let us look",
+    "start": 1599.14,
+    "end": 1606.14,
+    "ocr_text": "Two numbers:\nInput carry:\nOutput carry:\n\nIT KARAGPUR\n\na\nc\n\nSn\n\n¢\n\nDelayforc, = 25\nDelayforc, = 45\n\nDelay for, = 2(n-2)5\n\nALAAg and By Delayforc, = 2nd\n\nDelay forS, = 35\n\nDelay for, =25+35=55\n\nDelay fors, =45+ 35-75\n\nDelay for S,.._= 2(n-1)5 + 36 = (2n+1) 5\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "at s 1 this carry c 1 is generated at two delta time. So, starting from two delta this",
+    "start": 1608.34,
+    "end": 1615.34,
+    "ocr_text": "Delayforc, = 25\nSo | Delayforc, = 45\n\nDelay for, = 2(n-2)5\nTwo numbers: Boor ArAy and By 1-888, Delay forG, _=2n5\nInput carry: ©\n\nOutput carry: ¢\n\nDelay forS, | = 35\nDelay forS, = 25+ 35=55\nDelayfors, =45 + 35=75\nDelay for S,. = 2(n-1)6 + 36 = (2n+1) 5\n\nINPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "will require another 3 delta that will be 5 delta c 2 is generated at 4 delta time.",
+    "start": 1615.98,
+    "end": 1622.98,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\n\nDelay for, = 2(n-2)5\nTwo numbers: Bon ZArAy and By y--B,8,B, Delay for, _=2n5\nInput carry: ©\n\nOutput carry: iG\n\nDelay forS, = 35\nDelay for, =25+35=55\nDelay fors, = 45+ 35= 76\nDelay for S,,1 = 2(n-1)6 + 36 = (2n+1) 5\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, starting at 4 delta you take another 3 delta for f a 2 so, s 2 will be generated",
+    "start": 1622.98,
+    "end": 1629.98,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\n\nDelay for, = 2(n-2)5\nTwo numbers: Bon ZArAy and By y--B,8,B, Delay for, _=2n5\nInput carry: ©\n\nOutput carry: iG\n\nDelay forS, = 35\nDelay for, =25+35=55\nDelay fors, = 45+ 35= 76\nDelay for S,,1 = 2(n-1)6 + 36 = (2n+1) 5\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "at 4 delta plus 3 delta 7 delta time look at the last stage c n minus 1 is generated",
+    "start": 1631.1,
+    "end": 1638.1,
+    "ocr_text": "Two numbers:\nInput carry:\nOutput carry:\n\nNT KHARAGPUR\n\nAon AArAy and By. .--B,8,B,\nc\n\nSn\n&\n\nDelayforc, = 25\nDelayforc, = 45\nDelay for, = 2(n-2)5\nDelayforc, = 2nd\n\nDelay forS, = 35\nDelay forS, =25+35=55\nDelay for, =45+ 35-75\nDelay for S,. = 2(n-1)6 + 36 = (2n+1) 5\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "at this time 2 n minus 1 delta so, that plus another 3 delta which is 2 n plus 1 delta.",
+    "start": 1638.66,
+    "end": 1645.66,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\n\nDelay for, = 2(n-2)8\nTwo numbers: Boon AZAsAy and By .---B:8,B, Delay for G, _=2n5\nInput carry: ©\n\nOutput carry: iG\n\nDelay forS, = 35\nDelay forS, =25 + 35=55\nDelay forS, = 45+ 35=75\nDelay for S,.._ = 2(n-1)6 + 36 = (2n+1) 5\n\nINPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES ¢"
+  },
+  {
+    "text": "So, you see out of these two 2 n plus 1 delta is larger so, the worst case delay of",
+    "start": 1645.66,
+    "end": 1652.66,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\nDelay for, = 2(n-2)5\n\nTwo numbers: Boo AiAy and By .-B:8,B, Delay for G, _=2n5\n\nInput carry: S\n\nOutput carry: iG\n\nDelay forS, = 35\nDelay for, =25+35=55\nDelay fors, =45+ 35-75\nDelay for S,.._= 2(n-1)6 + 36 = (2n+1) 5"
+  },
+  {
+    "text": "the ripple carry added is 2 n plus 1 delta this grows linearly as the value of n increases",
+    "start": 1653.02,
+    "end": 1660.02,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\nDelay for, = 2(n-2)5\n\nTwo numbers: Boo AiAy and By .-B:8,B, Delay for G, _=2n5\n\nInput carry: S\n\nOutput carry: iG\n\nDelay forS, = 35\nDelay for, =25+35=55\nDelay fors, =45+ 35-75\nDelay for S,.._= 2(n-1)6 + 36 = (2n+1) 5"
+  },
+  {
+    "text": "and this is mainly due to the ripple effect of the carry. So, I have already shown the",
+    "start": 1662.78,
+    "end": 1668.1,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\n\nDelay for, = 2(n-2)5\nTwo numbers: Boe AARy and By y-B:8,B, Delay for Gy = 2nd\nInput carry: c een\nOutput carry: é\n\nDelay fors, = 36\nDelay fors, = 25 + 35 = 55\nDelay fors; = 45 +35=75\nDelay for 5.1 = 2(n-1)6 + 36 = (2ng1) 6\n\nAS"
+  },
+  {
+    "text": "worst case scenario that when you apply an input carry the worst case the input carry",
+    "start": 1668.1,
+    "end": 1673.34,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\n\nDelay for, = 2(n-2)5\nDelay forc, = 2nd\n\nTwo numbers: Boa AZAiAo and By :--.8,B:B,\ninput carry: OrEae Delay forS, = 36\npape raciaien Delay for; =25+35=55\nSPUR CAEY: Delay forS, =45 + 35=75\nDelay for S,.. = 2(n-1)8 + 36 = (2n+1) &"
+  },
+  {
+    "text": "will be rippling through all these stages and to the final output fine. So, this is",
+    "start": 1673.34,
+    "end": 1680.34,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\n\nDelay for, = 2(n-2)5\nDelay forc, = 2nd\n\nTwo numbers: Boa AZAiAo and By :--.8,B:B,\ninput carry: OrEae Delay forS, = 36\npape raciaien Delay for; =25+35=55\nSPUR CAEY: Delay forS, =45 + 35=75\nDelay for S,.. = 2(n-1)8 + 36 = (2n+1) &"
+  },
+  {
+    "text": "how a ripple carry adder works delays proportional to n. So, how to design a parallel subtractor?",
+    "start": 1680.34,
+    "end": 1687.34,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nComputing A-B is the same as adding the 2’s complement of B to A.\n\n2's complement is equal to 1's complement plus 1\nLet x, = 8.\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nNT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "I have already shown you that how to design a parallel adder. Now, already we have seen",
+    "start": 1691.42,
+    "end": 1697.9,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nComputing A-B is the same as adding the 2’s complement of B to A.\n\n2's complement is equal to 1's complement plus 1\nLet x, = 8.\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nNT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "how two complement subtraction is done you take this two complement of the number you",
+    "start": 1697.9,
+    "end": 1703.06,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nComputing AB. © as adding the 2’s complement of B to A.\ncomplement a omplemeit plus 2\nLet x, = 8.\n\nINPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "want to subtract and then add it. So, it is fairly simple you see I am just showing you",
+    "start": 1703.14,
+    "end": 1709.14,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nComputing AB. © as adding the 2’s complement of B to A.\ncomplement a omplemeit plus 2\nLet x, = 8.\n\nINPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "a schematic diagram let us say for every bit of this number b let x i denote b i bar",
+    "start": 1709.14,
+    "end": 1716.14,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nComputing AB. e as adding the 2’s complement of B to A.\ncomplement -omplement plus 1.\nLet x, = 8.\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €\n«"
+  },
+  {
+    "text": "the not of it. So, what we do we take a normal ripple carry adder just like we have shown",
+    "start": 1718.38,
+    "end": 1725.1,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\n\\dding the 2’s complement of B to A.\n-omplement plus 1.\n\nNPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €\n="
+  },
+  {
+    "text": "the first number a you apply as usual second number instead of b you apply this x.",
+    "start": 1725.1,
+    "end": 1732.1,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nComputing AB. e as adding the 2’s complement of B to A.\ncomplement -omplement plus 1.\n\nINPTEL ONLINE\nNT KUARAGPUR CERTIFICATION COURSES\nq <"
+  },
+  {
+    "text": "So, what is x? x is essentially the once complement of b you are complementing are doing a not of",
+    "start": 1733.94,
+    "end": 1739.94,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nComputing AB. e as adding the 2’s complement of B to A.\ncomplement -omplement plus 1.\n\nINPTEL ONLINE\nNT KUARAGPUR CERTIFICATION COURSES\nq <"
+  },
+  {
+    "text": "all the bits and another change we are doing carry input since the initial cases this carry",
+    "start": 1740.34,
+    "end": 1748.34,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nComputing AB. © as adding the 2’s complement of B to A.\ncomplement -omplement plus 1.\nLet x, = 8\n\nINPTEL ONLINE\nIT RHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "input initially would be 0 right. But here we are saying that the carry input is set to",
+    "start": 1748.34,
+    "end": 1754.54,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\nDelay forc,, = 2(n-2)5\n\n=a Delay forc, = 2nd\nInput carry Delay for 5, = 35\na S, Delayfors, = 25+ 35-55\njutput carry: Delay fors, =45+36=75\nDelay for S,.. = 2(n-1)6 + 36 = (2n+1) 5\n\nINPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "1. So, essentially I am applying once complement and adding a carry input of 1 which affect",
+    "start": 1754.54,
+    "end": 1761.54,
+    "ocr_text": "Delayforc, = 25\nDelayforc, = 45\nDelay forc,, = 2(n-2)5\n\n=a Delay forc, = 2nd\nInput carry Delay for 5, = 35\na S, Delayfors, = 25+ 35-55\njutput carry: Delay fors, =45+36=75\nDelay for S,.. = 2(n-1)6 + 36 = (2n+1) 5\n\nINPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "the means I am adding a two complement number I am doing a once complement plus another",
+    "start": 1763.22,
+    "end": 1769.22,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nComputing AB. ¢ as adding the 2’s complement of B to A.\ncomplement -omplement plus 1."
+  },
+  {
+    "text": "extra one that makes it two complement. So, what this adder will be computing is nothing",
+    "start": 1769.22,
+    "end": 1775.42,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nComputing AB. ¢ as adding the 2’s complement of B to A.\ncomplement -omplement plus 1."
+  },
+  {
+    "text": "but the sum of a and the two complement of b. So, what will be getting in the final",
+    "start": 1775.42,
+    "end": 1782.42,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nng AB © as adding the 2’s complement of B to A.\ncomplement 2 -omplement plus 1.\nLet x, = 8\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT RARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "sum output will be the final result a minus b. So, how you can design a general adder subtractor?",
+    "start": 1783.06,
+    "end": 1790.06,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nng AB © as adding the 2’s complement of B to A.\ncomplement 2 -omplement plus 1.\nLet x, = 8\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT RARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "You can design a general adder subtractor then let us have a circuit like this we have",
+    "start": 1790.06,
+    "end": 1797.06,
+    "ocr_text": "How to Design a Parallel Subtractor?\n\n+ Observation:\nng AB © as adding the 2’s complement of B to A.\ncomplement 2 -omplement plus 1.\nLet x, = 8\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT RARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "an in bit adder I apply the first number here a 0 to n minus 1. Well I apply this second",
+    "start": 1797.42,
+    "end": 1804.42,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nRar A Ro\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nNPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €\n«"
+  },
+  {
+    "text": "number not directly but through a sequence of x or gates. So, how are this x or gates",
+    "start": 1805.34,
+    "end": 1812.34,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nAn Ar Ao Bas\n\nADD’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE\nIT WHARAGPUR CERTIFICATION COURSES\ne"
+  },
+  {
+    "text": "connected they one of the input to the x or gate is connected directly from an external",
+    "start": 1813.46,
+    "end": 1819.46,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nAn Ar Ao Bas\n\nADD’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE\nIT WHARAGPUR CERTIFICATION COURSES\ne"
+  },
+  {
+    "text": "control input add sub and the other input the second input of this x or gates are fed",
+    "start": 1819.46,
+    "end": 1826.46,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES\n«"
+  },
+  {
+    "text": "with the bits of the second number b 0 b 1 b n minus 1. So, what will you just recall",
+    "start": 1826.62,
+    "end": 1833.62,
+    "ocr_text": "A Parallel Ss an\n\nAnr Ar Ao Bas\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "the function of an x or gate suppose I have an x or gate let us say I have one input",
+    "start": 1833.62,
+    "end": 1840.62,
+    "ocr_text": "A Parallel Ss an\n\nAnr Ar Ao Bas\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "as let us say b i I have a second input let us say c if this is f let us say if c is 0",
+    "start": 1840.78,
+    "end": 1847.78,
+    "ocr_text": "A Parallel Ss an\n\nAnr Ar Ao Bas\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "then you can easily check f will be same as b i if c is 1 f will be same as b i bar",
+    "start": 1854.18,
+    "end": 1861.18,
+    "ocr_text": "A Parallel Ss an\n\nAnr Ar Ao Bas\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "because if you write down the exclusive or function it will be immediately clear you put",
+    "start": 1861.2,
+    "end": 1868.18,
+    "ocr_text": "A Parallel Ss an\n\nAnr Ar Ao Bas\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE\nNT KHARAGPUR CERTIFICATION COURSES €"
+  },
+  {
+    "text": "c equal to 0 b i will remain you put c equal to 1 this will go out b i bar will remain.",
+    "start": 1875.78,
+    "end": 1882.78,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nAy Ao Bas B By\n\nADD’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "So, you can use this x or gate as a controlled inverter if c is 0 no inversion if c is",
+    "start": 1882.78,
+    "end": 1889.78,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nAy Ao Bas B By\n\nADD’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "1 then there will be a not right. So, essentially here this x or gates are being used as a control",
+    "start": 1892.22,
+    "end": 1899.22,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nAy Ao Bas B By\n\nADD’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "inverter if this control signal is equal to 1 which means the once complement of this",
+    "start": 1900.34,
+    "end": 1907.34,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nAy Ao Bas B By\n\nADD’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "number b will be fed into this input of the adder and this c 0 will also be 1 same input",
+    "start": 1908.34,
+    "end": 1914.34,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nAs Ro Box\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "is being fed here. So, now we will be doing a subtraction but if this control input is",
+    "start": 1915.02,
+    "end": 1921.22,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nAnr Ar Ro\n\nADD*/ sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT KUARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "0 so the carry input is 0 as well as b will be directly coming to the input of the",
+    "start": 1921.22,
+    "end": 1927.46,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nAnr Ar Ro\n\nADD*/ sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT KUARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "adder. So, now it will be acting as an adder. So, this simple circuit just by the addition",
+    "start": 1927.46,
+    "end": 1934.06,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KAARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "of a few exclusive or gates we can have a combination where you can implement both an adder and a",
+    "start": 1934.22,
+    "end": 1941.22,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KAARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "subtractor using the same hardware circuit. So, we shall see some adder designs which are",
+    "start": 1941.22,
+    "end": 1948.22,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KAARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "faster than the ripple carry adder that we have already seen in our next lecture.",
+    "start": 1950.3,
+    "end": 1954.06,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KAARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "I mean we have also seen one thing that how we can combine addition and subtraction for",
+    "start": 1954.06,
+    "end": 1960.06,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KAARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "subtraction we really do not need a separate piece of hardware we can use an adder directly",
+    "start": 1960.46,
+    "end": 1965.78,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KAARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "to carry out subtraction as well. So, this was the main topic of a discussion in this",
+    "start": 1965.78,
+    "end": 1972.78,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KAARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "lecture. So, with this way come to the end of this lecture as I said in our next lecture",
+    "start": 1972.94,
+    "end": 1979.94,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KAARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "we shall looking at some other kind of adder designs which are in some sense better or",
+    "start": 1980.9,
+    "end": 1987.9,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KAARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "faster than the ripple carry adder that we have seen. Thank you.",
+    "start": 1987.9,
+    "end": 1992.9,
+    "ocr_text": "A Parallel Adder/Subtractor\n\nApp’ / sus\n\nn-bit Parallel Adder\n\nINPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KAARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  }
+]

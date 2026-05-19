@@ -1,0 +1,656 @@
+[
+  {
+    "text": "Good morning. So today we will talk about part C of the module and Bayesian learning.",
+    "start": 0.0,
+    "end": 24.0,
+    "ocr_text": "PlntD) = | i"
+  },
+  {
+    "text": "Today's topic is Knife Base. In the last class we looked at the Bayes theorem.",
+    "start": 24.0,
+    "end": 31.0,
+    "ocr_text": "PlntD) = | i"
+  },
+  {
+    "text": "To recapitulate it says the posterior probability of a hypothesis given the data is given by probability",
+    "start": 31.0,
+    "end": 40.0,
+    "ocr_text": "PlntD) = | i"
+  },
+  {
+    "text": "of B given H times prior probability of the hypothesis divided by the likelihood of the data.",
+    "start": 40.0,
+    "end": 49.0,
+    "ocr_text": "PlntD) = | i"
+  },
+  {
+    "text": "So, if you think of the you are trying to find out let us apply Bayes theorem to classification.",
+    "start": 49.0,
+    "end": 56.0,
+    "ocr_text": "PlntD) = | i"
+  },
+  {
+    "text": "You want to find out the classification why given the input x. So, if you apply Bayes theorem",
+    "start": 56.0,
+    "end": 66.0,
+    "ocr_text": "‘|"
+  },
+  {
+    "text": "probability y by x is proportional to as we have seen that for different hypothesis the likelihood",
+    "start": 66.0,
+    "end": 73.0,
+    "ocr_text": "Pld) = POA) AW)\nPQ)"
+  },
+  {
+    "text": "of the data is identical. So, we need not consider it. So, we can consider the probability",
+    "start": 73.0,
+    "end": 79.0,
+    "ocr_text": "Pld) = POA) AW)\nPQ)"
+  },
+  {
+    "text": "y by y given x is proportional to probability of x given y times probability of y. That is",
+    "start": 79.0,
+    "end": 96.0,
+    "ocr_text": "Pld) = POA) AW)\nPQ)"
+  },
+  {
+    "text": "now x is the input instance and it can be a vector of features. So, we can write it as",
+    "start": 96.0,
+    "end": 105.0,
+    "ocr_text": "Ph (D) = Poth. Any\n\nPG"
+  },
+  {
+    "text": "probability x 1 x 2 x small n if small n is the number of features by y times p y.",
+    "start": 105.0,
+    "end": 119.0,
+    "ocr_text": "Ph (D) = Poth. Any\n\nPG"
+  },
+  {
+    "text": "Now, this expression probability x 1 x 2 x n given y is a joint probability and joint",
+    "start": 120.0,
+    "end": 129.0,
+    "ocr_text": "(a {D) = POUY. He)\n\n-) >(D)\nPCY |X} ew poly PD |\n= P06 mx [YP\n\n)"
+  },
+  {
+    "text": "probability is difficult to learn and represent because if there are n features even if the",
+    "start": 129.0,
+    "end": 136.0,
+    "ocr_text": "(h{D) > (Din (\neo}\ney\n\nPOY |X} e2 PR!\n=PM M2"
+  },
+  {
+    "text": "features are Boolean there are 2 to the power n possible combinations of the features.",
+    "start": 136.0,
+    "end": 143.0,
+    "ocr_text": "(Aid) (I\n\nPay ¢\n\nPCY | x)ov PR! I\n= PC\n\n‘)\n\nrp\n[Po Y)"
+  },
+  {
+    "text": "And you have to store the values corresponding the probability values corresponding to all",
+    "start": 144.0,
+    "end": 150.0,
+    "ocr_text": "(Aid) (I\n\nPay ¢\n\nPCY | x)ov PR! I\n= PC\n\n‘)\n\nrp\n[Po Y)"
+  },
+  {
+    "text": "of them and this is a intractable problem. Now, in naive Bayes which we will talk about today,",
+    "start": 150.0,
+    "end": 159.0,
+    "ocr_text": "(i {D) = (PI\n\np(y |x) ee eae ro ,\n=PK ry” [y-P"
+  },
+  {
+    "text": "we make a simplifying assumption. The assumption that we make is that individual x size are independent",
+    "start": 159.0,
+    "end": 172.0,
+    "ocr_text": "Plh p= a PODIA). ea)"
+  },
+  {
+    "text": "given y. So, in general we can write this as this part as probability x 1 given y times",
+    "start": 173.0,
+    "end": 185.0,
+    "ocr_text": "P(n(d) = Sue Or ie"
+  },
+  {
+    "text": "probability x 2 given x 1 y times probability x n given x 1 x 2 x n minus 1 y times probability",
+    "start": 185.0,
+    "end": 201.0,
+    "ocr_text": "Ph (D) = POW A)\nES P@) \\\nP(Y |X} poi hO\n\n=PO Ph"
+  },
+  {
+    "text": "of y. Now, in the naive Bayes assumption we say that probability of x i given x j y is equal to probability x i given y or x i and x j are independent given y.",
+    "start": 201.5,
+    "end": 227.0,
+    "ocr_text": "Ph (D) = ). Fn)\n\n_— ea OW) )\n= 76 te oa [YP\n\nNevitve Bayes\nMare — BOu ly) POM’ ~. PRnkX }"
+  },
+  {
+    "text": "And based on that assumption we can rewrite this as probability of x 1 given y times probability x 2 given y times probability of x n given y times probability of y.",
+    "start": 227.0,
+    "end": 245.0,
+    "ocr_text": "——\n\nPin fd) = POM\n\nP(D)\nPCy |x)oe Bel: PO\n= 96 & x [Y-\n\npo)\n\nNev \"8 Bout) POela a! Plinth %\n\nWy POY)"
+  },
+  {
+    "text": "This is based on the naive Bayes assumption. So, we are assuming conditional independence among the individual attributes x 1 x 2 x n.",
+    "start": 245.0,
+    "end": 266.0,
+    "ocr_text": "ra (dD) = FOI :)\n\nrly |x)oo BOP PCD )\nNaviveB an =a Ci ). Po -\n\na\n\nwe :\na\n|"
+  },
+  {
+    "text": "And based on this we can do the classification. So, we are assuming all the input features are conditionally independent and this can be computed as probability x 1 given y, x 2 given y, x n given y etcetera.",
+    "start": 267.0,
+    "end": 287.0,
+    "ocr_text": "Pn {D) = POINY ey\n= PQ@) \\\nP(X |X) ev pop a)\nog TPM x fy)-P ,\nNiece BK) gg vd Pol May POW\n\nzeae = PC gm Pal). P(Y)\na,\n\na\n\nPi)\niy, OO\n\n“Ub"
+  },
+  {
+    "text": "So, if you look at the slide from Bayes rule if the probability of y taking a particular value y k given the value of the input features x 1 x 2 x n is given by probability y equal to y k times probability x 1 x 2 x n given y equal to y k divided by this is the denominator which is independent of y equal to y k.",
+    "start": 288.0,
+    "end": 315.0,
+    "ocr_text": "Naive Bayes\n\nBayes rule:\n\nPO = y)PCX1---Xnl¥ =\nPCY = yx|X1---Xn) ¢ YrIPCX | Yr)\n\nDj PW = yj) PCR. -- Xnl¥ = 95)\n\nAssuming conditional independence among X/’s:\nPO = yx) Ti PCY = yx)\nLj PW = vp Th PCY = 95)\n\nPCY = yx|X1--- Xn)\n\nSo, classification rule for \\”°~= < X;, ---, X,> is:\n\n2\n\nyree — argmax PCY = yx) TT PORPMIY = yx)\n\na"
+  },
+  {
+    "text": "As you mean conditional independence we get it as probability y equal to y k times product of probability x i given y equal to y k and there is a denominator.",
+    "start": 315.0,
+    "end": 327.0,
+    "ocr_text": "Naive Bayes\nBayes rule:\n\nPO = yp) PCX1--- Xnl¥ = ye\nPCY = yx|X1.--Xn) ¢ YrIPCX1 | Yr)\nDj POW = ys) PC... Xnl¥ = 95)\n\nAssuming conditional independence among X;/’s:\nPO = yp) Ti POGY = yn)\nPOY = y|X1-..Xn\nOFS Hel Xa Xe) = SG = yy) Th POY = uy)\n\nSo, classification rule for X7°¥= < X;, ---, X,> is:\nyre’ — arg max POY = yx) TL PCRP IY = 9x)\n\na"
+  },
+  {
+    "text": "And based on this we can get a classifier. The classifier says that given a new example the classification y new is that y k for which we have given y k.",
+    "start": 327.0,
+    "end": 344.0,
+    "ocr_text": "Naive Bayes\nBayes rule:\n\nPOW = yp) POX... Xnl¥ = ye\nPCY = yp|X1---Xn) ¢ YRIPCX1 | Yr)\nyj POY = yj) PCX1--- Xnl¥ = yy)\n\nAssuming conditional independence among X's:\nPO = yp) Ti POY = yn)\nPOY = y|X1-..Xn\nOFS RIX Xd) = SG = yy) Th POY = 5)\n\nSo, classification rule for X7°~= < X;, ---, X,> is:\nyree — argmax PCY = yx) TT POP MY = yx)\n\na"
+  },
+  {
+    "text": "So, this quantity is maximized that is the product over all the training all the attributes probability x i given y of the training example of the new instance probability x i new given y given y equal to y k.",
+    "start": 345.0,
+    "end": 374.0,
+    "ocr_text": "Nav\n\nte na =\nJZ\n\n(i (D) = (n)\n\ncing Oy 0) )\nsayy? 2G tt LP\n= POY) PO YL PE ale % yy. PCY)\n\n= PR [D-P EY) PQ&IY).P(Y)"
+  },
+  {
+    "text": "times probability of times probability of the prior probability y equal to y k. So, this times this is maximum. So, you want to take that classification for which the prior probability of y equal to y k times this product is by k.",
+    "start": 375.0,
+    "end": 404.0,
+    "ocr_text": "PCY |X ami S| ha. POD «)\n2 = = £66 mh fD Xx 1G ll (y)- ), Pe\nNate Bi Gr Ke Hlx AL PEnb % 0 PO)\n\nfe = PO sali) PQ) PC\n\nns ee\n\no\n|"
+  },
+  {
+    "text": "Now, if you look at the individual probabilities that we required to compute this what do we notice is that for each value of y.",
+    "start": 404.0,
+    "end": 417.0,
+    "ocr_text": "PhD) = a)\n\nP(y|xlee POT Did) »)\nNavrve Bayes = 0% tea LY: Xn LY ). PE\nBie = gh PCbe 1 BGs PCY)\n\\ nen AS Pl Y) Pal). P(Y)"
+  },
+  {
+    "text": "Suppose y takes two values plus and minus we need to know for all such cases we need to know probability of y equal to true probability of y equal to false.",
+    "start": 417.0,
+    "end": 428.0,
+    "ocr_text": "P(h(D) = a An)\n\nPCY |x) &¥ el IaH a |\nNoero Tg ON ae\nre =\" BOY) POLI YL Pemba MoV ’)\nTg B= Path PGat) Pe). PCY)\n\nl ne IT POsNe yt ea\n\n4 a"
+  },
+  {
+    "text": "And for each feature x i we need to know probability of x i given y equal to plus probability of x i given y equal to minus.",
+    "start": 429.0,
+    "end": 440.0,
+    "ocr_text": "p Oy id\n“I oe | P )\n\n= 7.06 thn > |\nNata Zl) Pst 9.1 PED vy PO)\n. “a Ply) Pl). PCY)\n\n—\n*\n\n~< oe PO. “i\na } ‘"
+  },
+  {
+    "text": "And x i can have different values. Suppose x i has three values for each of the values of x i we have to find out we have to estimate probability x i equal to value 1 given y equal to plus probability x i equal to value 2 given y equal to plus.",
+    "start": 440.0,
+    "end": 457.0,
+    "ocr_text": "(D) >\n\n| aa)\ncsi Pe «)\n\nNavin Boe MB D(x bar)-t Plinth %Y) PCY)\nbt SF otcis) Pooh, Pv)\nSo"
+  },
+  {
+    "text": "Similarly, probability x i equal to value 3 given y equal to plus similarly probability x i equal to value 1 given y equal to minus and so on.",
+    "start": 457.0,
+    "end": 467.0,
+    "ocr_text": "PalD) = <<\n\nNeciveBaye 57\n\nA ssempam =\nor px al\n\nPY |X) o” Peel 10°\n= PG te Xe LP\nP ge Pela P| is\n\nAh)\n\n«1 PC)\n\nLE PGalv) POY). PY)"
+  },
+  {
+    "text": "So, what we have is that the number of probabilities that we require to calculate let us assume that x 1 x 2 x n and y are binary attributes for y we require two values.",
+    "start": 467.0,
+    "end": 479.0,
+    "ocr_text": "PalD) = <<\n\nNeciveBaye 57\n\nA ssempam =\nor px al\n\nPY |X) o” Peel 10°\n= PG te Xe LP\nP ge Pela P| is\n\nAh)\n\n«1 PC)\n\nLE PGalv) POY). PY)"
+  },
+  {
+    "text": "Suppose actually one of them will suffice the other we can get for if each x i has two values. So, for each x i will require x i equal to true for each value of y.",
+    "start": 479.0,
+    "end": 492.0,
+    "ocr_text": "PCY |X) o bel NM re\n\nNeer ye Bays” ® 0% de mm LY\nfase Ply) Pa\nyn = a = PI aS\n\neo)\npy) 1 Pn |X yy. PCY\n) PEPE"
+  },
+  {
+    "text": "If we know x i equal to true we can also get x i equal to false. So, we have x i equal to true given y equal to true x i equal to true given y equal to false.",
+    "start": 492.0,
+    "end": 501.0,
+    "ocr_text": "Plh (D) = POY. FY)\n\n: P(D)\n1 ee)\n= P(X %--Xn E\nbP? (x IY. Peel) POY). PCY)\neo Bhima a 7\nre TPG leg ea\n\n4 >"
+  },
+  {
+    "text": "So, total 2 n plus 2 values 2 n plus 1 values will suffice to represent this probabilities which is very much possible.",
+    "start": 501.0,
+    "end": 511.0,
+    "ocr_text": "Ph (dD) = tO ie\n\nPCY |X) o Pe ii ew :\n= 26 te me [YF |\nEe ei. PCL Plea tes POD\nyy ie a P (Kal). a\n4"
+  },
+  {
+    "text": "And this is a simple this gives us a simple algorithm for classification called naive base.",
+    "start": 511.0,
+    "end": 519.0,
+    "ocr_text": "E@aew\n|X} ev bole\nime xX PG lO py) ;\npers = POY x V1 Pm |X Me yy. POY)\noe t= 7 PAS o Pa \\y). P( )\n\nBe ey"
+  },
+  {
+    "text": "Now, let us see what is the resulting naive base algorithm when you have discrete values of x for which you can look at the slide which gives the outline of the naive base algorithm.",
+    "start": 519.0,
+    "end": 535.0,
+    "ocr_text": "Hh i(D) = (h)\n\nAas oo PO Grd PC ’\n— x» 1:\n\na = ti Pee ) PO),\n\nanaes"
+  },
+  {
+    "text": "This is a very simple algorithm. So, when we train naive base we take the training set and for each value y k.",
+    "start": 535.0,
+    "end": 547.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n* Train Naive Bayes (examples)\nfor each” value y,\nestimate 7, = PCY = yx)\nfor each” value x, of each attribute X;\nestimate 0;;, = P(X; = xig|Y = yx)\n° Classify (X7°™)\n\nnew __ or xrewly — y,\niy\" argmax PCY wd TT POE ly = yx)\n\nyrew — argmax me [1 ijn\nA\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "Suppose there are n values of y k we need to estimate only n minus 1 parameters because y k equal to 1 y k equal to 2 from y k equal to 3 you know the probabilities of some of the probabilities as 1.",
+    "start": 547.0,
+    "end": 563.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n* Train Naive Bayes (examples)\nfor each” value y;,\nestimate Th = P(Y = yz)\nfor each” value x, of each attribute X;\nestimate 0;;, = P(X; = xiz|Y = yx)\n\n* Classify (X7°™”)\n\nnew __ — newly = y,\nY argmax PCY wd TT POE ly = yx)\n\nyrew — argmax me [1 ijn\ni\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "So, we need to estimate only n minus 1 of the values. Anyway for each value y k we will estimate pi k as the probability of y equal to y k.",
+    "start": 563.0,
+    "end": 575.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n* Train Naive Bayes (examples)\nfor each” value vy,\nestimate 7, = PCY = yx)\nfor each” value x, of each attribute X;\nestimate 0;;, = P(X; = xig|Y = yx)\n* Classify (X7°™”)\n\nnew __ — xnewy = y,\nY argmax PCY wd TT POE ly = yx)\n\nyrew — argmax mn [1 Oije\nA\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "This is the prior probability how do we estimate that? Suppose we are given 100 training examples and y k has 3 values v 1 v 2 v 3 y k equal to v 1 for 70 of the examples.",
+    "start": 575.0,
+    "end": 592.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n* Train Naive Bayes (examples)\nfor each” value y;,\nestimate 7% = PCY = yx)\nfor each” value X; of each attribute X;\nestimate 0;;, = P(X; = xig|Y = yx)\n* Classify (X7°™”)\nyrew —argmax POY = un) TE PCPly = un)\n\nyrew — argmax mn [1 0ije\nA\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "v 2 for 20 of the examples v 3 for 10 of the examples then probability of y equal to y k would be estimated to be 70 by 100 for value 2 20 by 100 for value 3 10 by 100 or some other estimate measure which we will again talk about.",
+    "start": 592.0,
+    "end": 612.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n* Train Naive Bayes (examples)\nfor each” value y,\nestimate 7, = P(Y = yx)\nfor each” value x; of each attribute X;\nestimate 0;;, = P(X; = xig|Y = yx)\n* Classify (X7°™”)\nynew — argmax POY = un) TL POXPOY = ve)\n\nyrew — argmax mn [1 Oije\ni\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "Now for each value x i j of each attribute x i for the jth instance for each attribute x i for each x i j we will estimate theta i j k as the parameter that probability that x equal to x i j given y equal to y k.",
+    "start": 612.0,
+    "end": 639.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n* Train Naive Bayes (examples)\nfor each” value y;,\nestimate 7% = P(Ys= yz)\nfor each” value x; of each attribute X;\nestimate 0,5, = P(X; = xig|Y = yx)\n\n* Classify (X7°™”)\n\nnew __ a xrewy = y,\nY argmax POY = yx) TT POP IY = un)\n\nyrew — argmax me [1 Oije\nA\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "So, if y k takes n different values then this will require n minus 1 estimates. If each x takes k values we require how many estimates we require?",
+    "start": 642.0,
+    "end": 671.0,
+    "ocr_text": "P(ntd) = POL). RO)\n7"
+  },
+  {
+    "text": "2 into n estimates. So, 3 minus 1 into n. So, small x i j is the different at different values that attribute x i can take.",
+    "start": 671.0,
+    "end": 692.0,
+    "ocr_text": "Plata) = POM) Rid)\n\niz"
+  },
+  {
+    "text": "So, these probabilities we need to estimate. Now based on this estimate we can have the class O in the training phase we learn these estimates from the training examples.",
+    "start": 692.0,
+    "end": 705.0,
+    "ocr_text": "Platd) = POIA). RO)\n[oa"
+  },
+  {
+    "text": "And after we have learnt the estimate you look at the slide again we can classify a new instance x new as its class y new is that y k for which this expression is maximized.",
+    "start": 705.0,
+    "end": 724.0,
+    "ocr_text": "Platd) = POIA). RO)\n[oa"
+  },
+  {
+    "text": "Probability y equal to y k times product over i probability x i new given y equal to y k as we have seen.",
+    "start": 724.0,
+    "end": 734.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n* Train Naive Bayes (examples)\nfor each” value y;,\nestimate 7, = P(Y = yx)\nfor each” value x; of each attribute X;\nestimate 0,5, = P(X; = xiz|Y = yx)\n\n* Classify (X7°™”)\n\nnew =a xrevly — y,\n3 arg men PCY = yx) II PCUXPERY|Y = yx)\nyrew’ — argma 7 I ijk\n\ngmax 7k , ijk\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "And in terms of the parameters simplified values of the parameters that we have written this is given by this.",
+    "start": 734.0,
+    "end": 741.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n\n* Train Naive Bayes (examples)\nfor each” value y;,\n\nestimate 7, = P(Y = yx)\nfor each” value x, of each attribute X;\nestimate 0,5, = P(X; = xig|Y = yx)\n\n* Classify (X7°™”)\n\nnew __ — xnewy = y,\nY argmax PCY wd TT POG ly = yx)\n\n&\nyrew — argmax me [1 ijn\ni\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "So, this is the knife phase algorithm for the case where all the attributes are discrete valued or nominal valued.",
+    "start": 741.0,
+    "end": 752.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n* Train Naive Bayes (examples)\nfor each” value y,\nestimate 7, = PCY = yz)\nfor each” value x; of each attribute X;\nestimate 0,5, = P(X; = xig|Y = yx)\n* Classify (X7°™”)\n\nnew __ =n xnewly = y,\nY argmax PCY wd TL POE ly = yx)\n\nyrew — argmax me [1 Oije\nA\n\n* probabilities must sum to 1,'so need estimate only n-1 parameters."
+  },
+  {
+    "text": "Before we proceed let us look at an example. And one more thing that I forgot to tell you is that when we estimate these parameters probability of x i given y or probability y we may sometimes come across a situation where in the training example the count for computing the probability.",
+    "start": 752.0,
+    "end": 781.0,
+    "ocr_text": "Estimating Parameters: Y, X;discrete-valued\n\nMaximum likelihood estimates (MLE’s):\nH#DLY = yx}\nID|\nA#DLX; = vig AY = yeh\nADLY = yp}\n\nFR = PY = ux)\n\n65% = PCG = 2iz|Y = yR)\n\nNumber of items in set D for\nwhich Y=y,"
+  },
+  {
+    "text": "So, the probability is 0 then we have a problem you see in the classification we have a product that we are computing we are taking the product of this probability and the product of these probabilities.",
+    "start": 781.0,
+    "end": 798.0,
+    "ocr_text": "(Ald) -\n\n(dim\n\n(h)\n\nPf .\n\nP(Ke= Xy | Y= Ye)\n? (7 Ye) — @-1)"
+  },
+  {
+    "text": "Now if we have insufficient training instances there may be a case where probability x i equal to x i j given y equal to y k you know there is no training example for a particular y k for which x i is a particular value of x i j.",
+    "start": 798.0,
+    "end": 817.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n\n* Train Naive Bayes (examples)\nfor each” value y,\n\nestimate 7, = PCY = yz)\nfor each” value x, of each attribute X;\n\nestimate 0,5, = P(X; = xig|Y = yx)\n\n* Classify (X7°™”)\n\nnew ayn xrewly —\niy arg max PCY = yx) II PCUXPEY|Y = yp)\nyrew —argmax me] ] ijn i\n\ngma Tk , ijk\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "So, this value if we do knife estimation of the probabilities by frequency counting this probability will become 0.",
+    "start": 817.0,
+    "end": 826.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n\n* Train Naive Bayes (examples)\nfor each” value y;,\n\nestimate 7, = P(Y = yx)\nfor each” value x, of each attribute X;\nestimate 0;;, = P(X; = xig|Y = yx)\n\nb\n° Classify (X7°™)\n\nnew __ =n xnewly — y,\nY argmax PCY wo TT POS ly = yx)\n\nyrew — argmax mn [1 Oise\ni\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "And if of a product one probability term becomes 0 the entire product becomes 0 in order to avoid that we need to do something called smoothing in order to avoid such situations.",
+    "start": 826.0,
+    "end": 840.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n* Train Naive Bayes (examples)\nfor each” value yj,\nestimate 7, = PCY = yx)\nfor each” value x, of each attribute X;\nestimate 0,5, = P(X; = xiz|Y = yx)\n* Classify (X7°™”)\n\nnew __ <n newly = a.\npe argmax PCY wd TT POE ly = yx)\n\nyrew — argmax me [1 0ije\nA\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "And so what we do is that when we do the estimating of the different parameters for example when we try to estimate pi k for pi k we look at the count the number of times y equal to y k divided by total number of data instances.",
+    "start": 840.0,
+    "end": 861.0,
+    "ocr_text": "Naive Bayes Algorithm — discrete X;\n* Train Naive Bayes (examples)\nfor each” value yj,\nestimate 7, = PCY = yx)\nfor each” value x, of each attribute X;\nestimate 0,5, = P(X; = xiz|Y = yx)\n* Classify (X7°™”)\n\nnew __ <n newly = a.\npe argmax PCY wd TT POE ly = yx)\n\nyrew — argmax me [1 0ije\nA\n\n* probabilities must sum to 1, so need estimate only n-1 parameters."
+  },
+  {
+    "text": "For theta i j k estimate which is probability x i equal to small x i j given y equal to y k we count the number of instances for which capital x i equal to small x i j and y equal to y k divided by number of instances for which y equal to y k.",
+    "start": 861.0,
+    "end": 879.0,
+    "ocr_text": "Estimating Parameters: Y, X;discrete-valued\n\nMaximum likelihood estimates (MLE’s):\nH#DLY = yx}\nPl,\nAD{X; = 23 AY = yx}\nA#DLY = yp}\n\nFh = PW = 4K)\n\nOijn = PCR = wig|Y = yx)\n\nNumber of items in set D for\nwhich Y=y,"
+  },
+  {
+    "text": "This is the simple formula for maximum likelihood estimation and in this case it is possible that especially in computing theta i j k sometimes we will get the numerator as 0.",
+    "start": 879.0,
+    "end": 894.0,
+    "ocr_text": "Estimating Parameters: Y, X,discrete-valued\n\nMaximum likelihood estimates (MLE’s):\nH#DLY = yx}\nIDI\n#D{X; = wig NY = yx}\nADLY = yp}\n\nFe = PW = 4K)\n\nOijn = PX = wij|¥ = yx)\n\nNumber of items in set D for\nwhich Y=y,\nte"
+  },
+  {
+    "text": "And in order to avoid that we introduce smoothing where we initialize some small probability to each of these values.",
+    "start": 894.0,
+    "end": 905.0,
+    "ocr_text": "Estimating Parameters: Y, X;discrete-valued\n\nMaximum likelihood estimates (MLE’s):\nH#DLY = yx}\nIDI\nADLX; = v7 NY = yx}\nAD{Y = yp}\n\nFe = PW = 4x)\n\nGi5n = PCX, = 2i5|Y = vx)\n\nNumber of items in set D for\nwhich Y=y,"
+  },
+  {
+    "text": "And we will see in a later slide that we can add plus 1 to each of the numerator and compensate it by some value added to the denominator.",
+    "start": 905.0,
+    "end": 916.0,
+    "ocr_text": "Estimating Parameters: Y, X;discrete-valued\n\nMaximum likelihood estimates (MLE’s):\nH#DLY = yx}\nID|\nAD{X, = 23 AY = yx}\nA#DLY = yp}\n\nFh = PW = 4K)\n\nOijn = PX = wij|Y = yx)\n\nNumber of items in set D for\nwhich Y=y,"
+  },
+  {
+    "text": "But before that let us look at an example. This is an example taken from Michels Bokal-Vische learning where we have a description of different days and the attributes are outlook temperature humidity and wind these are the climate attributes of different days and the target attribute is whether it is a good day for playing tennis.",
+    "start": 917.0,
+    "end": 940.0,
+    "ocr_text": "Example\n\nExample: Play Tennis\nPlayTennis: training examples\nDay |] Outlook Temperature Humidity — Wind | PlayTennis\nD1] sunny Hot High Weak No\npz || sunny Hot High Strong No\nD3} Overcast Hot High Weak Yes\npa | Rain Mild High Weak Yes\nps | Rain Cool Normal Weak Yes\nD6 Rain Cool Normal Strong No.\nD7 |} overcast Cool Normal Strong Yes\nps || sunny id High Weak No\npe |] sunny Cool Normal Weak Yes\npio || Rain Mild Normal Weak Yes\nput |] sunny Normal Strong Yes\np12 |} overcast Mild High Strong Yes\np13 |] Overcast Hot Normal Weak Yes\np14 |] Rain Mile High Strong No"
+  },
+  {
+    "text": "And given this training example if you apply knife paste to it in the training phase you will output the probabilities.",
+    "start": 941.0,
+    "end": 949.0,
+    "ocr_text": "Example\n\nExample: Play Tennis\nPlayTennis: training examples\nDay |] Outlook Temperature Humidity — Wind | PlayTennis\nD1] sunny Hot High Weak No\np2 |] sunny Hot High Strong No\nDs |} Overcast Hot High Weak Yes\npa |] Rain Mita High Weak Yes\nps |] rain Cool Normal Weak Yes\npe |] Rain Cool Normal Strong No\nD7 |] overcast Cool Normal Strong | Yes\nps |] sunny a High Weak No\npe |] sunny Cool Normal Weak Yes\npio |} Rain Mile Normal Weak Yes\npn |} sunny Normal strong | ‘Yeo\np12 |} overcast Mild High Strong | Yes\np13 |} Overcast Hot Normal Weak Yo\npis || Rain Mila High Strong No"
+  },
+  {
+    "text": "So if outlook is sunny play equal to yes given outlook is sunny is 2 by 9 play equal to no given outlook is sunny is 3 by 5 play equal to yes given outlook is overcast is 4 by 9 play equal to no given outlook overcast is 0 by 5 and so on.",
+    "start": 949.0,
+    "end": 969.0,
+    "ocr_text": "Learning Phase\n\nExample\n\nOutlook | Play=Yes Temperature | Play=Yes Play=No\nA 2/9 Hot 2/9 2/5\nOvercas: 4/9 Mild 4/9 2/5\nRain 3/9 Cool 3/9 1/5\n\nHumidity | Play=Yes | Play=No Wind Play=Yes | Play=No\nHigh | 3/9 4/5 Strong 3/9 3/5\nNormal 6/9 1/5 Waals 6/9 2/5\n\nP(Play=Yes) = 9/14\n\nP(Play=No) = 5/14"
+  },
+  {
+    "text": "So these are the values that we get by doing the maximum likelihood instance estimation from the data.",
+    "start": 970.0,
+    "end": 980.0,
+    "ocr_text": "Example\n\nLearning Phase\n\nOutlook Temperature | Play=Yes Play=No\nSunny Hot 2/9 2/5\nOvercast Mild 4/9 2/5\nRain Cool 3/9 a/s\n\nHumidity | Play=Yes | Play=No Wind Play=Yes | Play=No\nHigh | 3/9 4/5 Strong 3/9 3/5\nNormal 6/9 1/5 Weak 6/9 2/5\n\nP(Play=Yes)=9/14 — P(Play=No) = 5/14"
+  },
+  {
+    "text": "And these are the prior probabilities for playing tennis and for not playing tennis and these are the values of theta i j k.",
+    "start": 980.0,
+    "end": 990.0,
+    "ocr_text": "Example\n\nLearning Phase\n\nOutlook Temperature | Play=Yes Play=No\nSunny Hot 2/9 2/5\nOvercast Mild 4/9 2/5\nRain Cool 3/9 a/s\n\nHumidity | Play=Yes | Play=No Wind Play=Yes | Play=No\nHigh | 3/9 4/5 Strong 3/9 3/5\nNormal 6/9 1/5 IGE 6/9 2/5\n\n&\nP(Play=Yes)=9/14 — P(Play=No)=5/14"
+  },
+  {
+    "text": "So these can be estimated using the previous maximum likelihood estimate formula that we have seen and this graph we get this values.",
+    "start": 990.0,
+    "end": 1002.0,
+    "ocr_text": "Example\n\nLearning Phase\n\nOutlook Temperature | Play=Yes Play=No\nSunny Hot 2/9 2/5\nOvercast Mild 4/9 2/5\nRain Cool 3/9 1/5\n\nHumidity | Play=Yes | Play=No Wind Play=Yes | Play=No\nHigh | 3/9 4/5 Strong 3/9 3/5\nNormal 6/9 1/5 Weak 6/9 2/5\n\nP(Play=Yes)=9/14 — P(Play=No)=5/14"
+  },
+  {
+    "text": "Now this is what happens in the training phase. In the test phase you are given a new instance and you have to predict its level.",
+    "start": 1002.0,
+    "end": 1011.0,
+    "ocr_text": "Learning Phase\n\nExample\n\nOutlook Temperature | Play=Yes Play=No\nSunny Hot 2/9 2/5\nOvercast Mild 4/9 2/5\nRain Cool 3/9 1/5\n\nHumidity ] Play=ves | Play=No Wind Play=Yes | Play=No\nHigh 3/9 4/5 Strong 3/9 3/5\nNormal 6/9 1/5 Weak 6/9 2/5\n\nP(Play=Yes) = 9/14\n\nP(Play=No) = 5/14"
+  },
+  {
+    "text": "For example suppose the new instance is outlook is sunny temperature equal to cool humidity is high and wind is strong.",
+    "start": 1012.0,
+    "end": 1021.0,
+    "ocr_text": "Example\n\nTest Phase\n\n— Given a new instance, predict its label\nX’=(Qutlook=Sunny, Temperatur\n\n— Look up tables achieved in the learning phrase\nP(Outlook-Sunny|Play-Yes)=2/9  P(Qutlook-Sunny | Play-No) = 3/5\nP(Temperature-Cool| Play-Yes)-3/9 P(Temperature=Cool | Play=-No) = 1/5\n\nP(Huminity=High|Play=Yes)=3/9  P(Huminity-High| Play-No)\nP(Wind-Strong |Play=Yes) -3/9 P(Wind=Strong | Play-No) = 3/5\nP(Play-Yes) = 9/14 P(Play=No) = 5/14\n\n— Decision making with the MAP rule\n\n‘Cool, Humidity=High, Wind=Strong)\n\nPes |x’)\nP(No!x’) =\n\n[P(Sunny | Yes)P(Cool | Yes)P(High | Yes)P(Strong | Yes) ]P(Play=Yes\n= [P(Sunny | No) P(Cool | No)P(High |No)P(Strong | No)|P(Play-No) =\n\n0.0053\n.0206\n\nGiven the fact P(Yes |x’) < P(No |x’), we label x’ to be “No”.\n\n9"
+  },
+  {
+    "text": "And based on this probability values that we have seen in the previous page we can do the decision with the map rule.",
+    "start": 1021.0,
+    "end": 1030.0,
+    "ocr_text": "Example\n\nTest Phase\n\n— Given a new instance, predict its label\nX’=(Outlook=Sunny, Temperatur\n\n— Look up tables achieved in the learning phrase\nP(Outlook-Sunny|Play=Yes)=2/9 _ P(Outlook-Sunny | Play-No) = 3/5\nP(Temperature-Cool| Play-Yes)-3/9 P(Temperature=Cool | Play=-No) = 1/5\nP(Huminity=High|Play=Yes)=3/9  P(Huminity-High| Play-No)\nP(Wind-Strong |Play=Yes) -3/9 P(Wind=Strong | Play-No) = 3/5\nP(Play-Yes) = 9/14 P(Play=No) = 5/14\n\n— Decision making with the MAP rule\n\n‘Cool, Humidity=High, Wind=Strong)\n\nPes |x’) = [P(Sunny | Yes)P(Cool | Yes)P(High | Yes)P(Strong | Yes)|P(Play=Yes'\nP(No| x’) = [P(Sunny | No) P(Cool| No)P(High |No)P(Strong | No)|P(Play=No) =\n\n0.0053\n.0206\n\nGiven the fact P(Yes |x’) < P(No |x’), we label x’ to be “No”.\n\n9"
+  },
+  {
+    "text": "And we find out that probability yes given x prime turns out to be 0.0053 probability no given x prime is 0.0206.",
+    "start": 1030.0,
+    "end": 1042.0,
+    "ocr_text": "Example\n\nTest Phase\n\n— Given a new instance, predict its label\nX’=(Qutlook=Sunny, Temperatur\n\n— Look up tables achieved in the learning phrase\nP(Outlook-Sunny|Play=Yes)=2/9 _ P(Outlook-Sunny | Play-No) = 3/5\nP(Temperature-Cool | Play~Yes) = 3/9\nP(Huminity-High | Play=Yes) = 3/9\nP(Wind=Strong |Play=Yes) = 3/9\nP(Play=Yes) = 9/14\n\n— Decision making with the MAP rule\n\n‘Cool, Humidity=High, Wind=Strong)\n\nP(Wind=Strong| Play-No) = 3/5\nP(Play=No) = 5/14\n\nPes |x’) = [P(Sunny | Yes)P(Cool | Yes)P(High | Yes)P(Strong | Yes)|P(Play=Yes'\nP(Ro| x’) = [P(Sunny | No) P(Cool| No)P(High |No)P(Strong | No)|P(Play=No) =\n\n0.0053\n.0206\n\nGiven the fact P(Yes |x’) < P(No |x’), we label x’ to be “No”\n\n9"
+  },
+  {
+    "text": "And because probability of yes given x prime is less than probability no given x prime we label x prime to be no.",
+    "start": 1042.0,
+    "end": 1051.0,
+    "ocr_text": "Example\n\nTest Phase\n\n— Given a new instance, predict its label\nX’=(Qutlook=Sunny, Temperatur\n\n— Look up tables achieved in the learning phrase\nP(Outlook-Sunny|Play-Yes)= 2/9 P(Qutlook-Sunny| Play-No) = 3/5\nP(Temperature-Cool| Play-Yes)-3/9 P(Temperature=Cool| Play==No) = 1/5\nP(Huminity=High|Play=Yes)=3/9  P(Huminity-High| Play-No)\nP(Wind-Strong |Play=Yes) -3/9 P(Wind=Strong | Play=No) = 3/5\nP(Play-Yes) - 9/14 P(Play=No) = 5/14\n\n— Decision making with the MAP rule\n\n‘Cool, Humidity=High, Wind=Strong)\n\nP(¥es | x’) = [P(Sunny | Yes)P(Cool | Yes)P(High | Yes)P(Strong | Yes)|P(Play=Yes\nP(No| x’) = [P(Sunny | No) P(Cool| No)P(High |No)P(Strong | No)|P(Play=No) =\n\n0.0053\n.0206\n\nGiven the fact P(¥@s1x’)< P(No |x’), we label x’ to be “No”.\n\n9"
+  },
+  {
+    "text": "So this is a simple application of knife base it is an extremely simple algorithm we look at the training set.",
+    "start": 1052.0,
+    "end": 1058.0,
+    "ocr_text": "Example\n\nTest Phase\n— Given a new instance, predict its label\nX’=(Outlook=Sunny, Temperatur\n\n— Look up tables achieved in the learning phrase\nP(Outlook-Sunny|Play=Yes)=2/9 _ P(Outlook-Sunny | Play-No) = 3/5\nP(Temperature-Cool| Play-Yes)-3/9 P(Temperature=Cool| Play=-No) = 1/5\n\n‘Cool, Humidity=High, Wind=Strong)\n\nP(Huminity-High |Play~Yes)=3/9 __ P(FTuminity-High | Play-No) = 4/5\nP(Wind-Strong |Play=Yes) -3/9 P(Wind=Strong | Play=No) = 3/5\nP(Play-Yes) - 9/14 P(Play=No) = 5/14\n— Decision making with the MAP rule\nP(¥es |x’) = [P(Sunny | Yes)P(Cool| Yes)P(High | Yes)P(Strong | Yes) P(Play=Yes) = 0.0053\n\nP(No! x’) = [P(Sunny | No) P(Cool | No)P(High | No)P(Strong | Noy|P(Play-No) =\n\n.0206\n\nGiven the fact P(Yes |x’) < P(No |x’), we label x’ to be “No”.\n\n9"
+  },
+  {
+    "text": "You estimate you are MLE estimate of the different parameters then given the test set you apply that formula.",
+    "start": 1058.0,
+    "end": 1068.0,
+    "ocr_text": "Example\n\nTest Phase\n— Given a new instance, predict its label\nX’=(Outlook=Sunny, Temperatur\n\n— Look up tables achieved in the learning phrase\nP(Outlook-Sunny|Play=Yes)=2/9 _ P(Outlook-Sunny | Play=No) = 3/5\nP(Temperature-Cool| Play-Yes)-3/9 P(Temperature=Cool| Play=-No) = 1/5\n\n‘Cool, Humidity=High, Wind=Strong)\n\nP(Huminity-High|Play-Yes)-3/9  P(Huminity-High| Play-No) = 4/5\nRenee Arora Te) OD P(Wind-Strong | Play-No) = 3/5\nP(Play=Yes) = 9/14 P@lay-No)—5/14\n— Decision making with the MAP rule\nP(ies |x’) = [P(Sunny | Yes)P(Cool | Yes)P(High | Yes)P (Strong | Yes)}P(Play=Yes) = 0.0053\n\nP(No! x’) = [P(Sunny | No) P(Cool | No)P(High | No)P(Strong | Noy|P(Play-No) =\n\n.0206\n\nGiven the fact P(Yes |x’) < P(No |x’), we label x’ to be “No”.\n\n9"
+  },
+  {
+    "text": "Now as I mentioned that if you are unlucky the estimate for probability x i given y may be 0 because there may be that some particular attribute value is not represented for a particular class.",
+    "start": 1069.0,
+    "end": 1085.0,
+    "ocr_text": "Estimating Parameters: Y, X;discrete-valued\n\nIf unlucky, our MLE estimate for PCX; / Y) may be zero.\n\n#DAY = yt\n|D|\n6ijn = POX = iglY = yx)\n\nFe = PY = yx)\n\nADLX; = vig NY = vnc}\n#DY = on}\n\nMAP estimates:\n\nAD{Y =yx}t Only difference:\n|D| +1R ti “imaginary” examples\n\nADLX = viG NY Sy} tl\n#D{Y = yp} +IM\n\nT= PY = yn)\n\nGig = POX = wig|Y = ye)"
+  },
+  {
+    "text": "Because we do not have sufficient training example to alleviate the fact we can use moving there are many approaches for smoothing.",
+    "start": 1085.0,
+    "end": 1096.0,
+    "ocr_text": "Estimating Parameters: Y, X,discrete-valued\n\nIf unlucky, our MLE estimate for ?CX; / Y) may be zero.\n\n#ADLY = uxt\n|D|\n6ijn = PCX: = xiglY = yx)\n\nFe = PCY = yx)\n\nAD{X: = 243 NY = yx}\n#DLY = yx}\n\nMAP estimates:\n\nAD{Y =ynpt Only difference:\n|D| +1R ti “imaginary” examples\n\nADLXi = vig NY = ye} tl\n#D{Y = yx} +IM\n\nFr = PY = yn)\n\nOijk = PCXi = wig|Y = ye)"
+  },
+  {
+    "text": "In loading many sophisticated approaches but we will introduce only a simplest approach for spooting.",
+    "start": 1097.0,
+    "end": 1103.0,
+    "ocr_text": "Estimating Parameters: ¥, X;,discrete-valued\n\nIf unlucky, our MLE estimate for PCX; / Y) may be zero.\n#DLY = yx}\n\nIDI\n6ijn = PCX = xiglY = yx)\n\nFe = PCY = yx)\n\nDX; = 243 NY = yx}\nH#DLY = yx}\n\nMAP estimates:\n\nAD{Y =ynpt Only difference:\n|D| +1R ti “imaginary” examples\n\nADLX = vig NY Sy} tl\n#D{Y = yp} +IM\n\nFr = PY = yn)\n\nOijk = PCXi = wig|Y = ye)"
+  },
+  {
+    "text": "What we do is that for every probability estimate that we do we add a number of add some number that number could be 1 or could be a fraction L which corresponds to some imaginary instances.",
+    "start": 1103.0,
+    "end": 1124.0,
+    "ocr_text": "Estimating Parameters: ¥, X;,discrete-valued\n\nIf unlucky, our MLE estimate for PCX; / Y) may be zero.\n#DLY = yx}\n\nIDI\n6ijn = PCX = xiglY = yx)\n\nFe = PCY = yx)\n\nDX; = 243 NY = yx}\nH#DLY = yx}\n\nMAP estimates:\n\nAD{Y =ynpt Only difference:\n|D| +1R ti “imaginary” examples\n\nADLX = vig NY Sy} tl\n#D{Y = yp} +IM\n\nFr = PY = yn)\n\nOijk = PCXi = wig|Y = ye)"
+  },
+  {
+    "text": "And because we are adding a small positive value to the numerator we must compensate by adding L into R to the denominator where R is the number of possible values of y k.",
+    "start": 1124.0,
+    "end": 1138.0,
+    "ocr_text": "Estimating Parameters: Y, X;discrete-valued\n\nIf unlucky, our MLE estimate for PCX; / Y) may be zero.\n\n#DAY = yr\n|D|\nOijn = PX = wig|Y = yx)\n\nFe = PY = ye)\n\nAD{X; = 23 NY = yx}\nAD{Y = yx}\n\nMAP estimates:\n\nAD{Y =yept Only difference:\n|D| +1R ti “imaginary” examples\n\nBDLX = vig NY = yx} tl\n#D{Y = yp} +IM\n\nFr = PY = yn)\n\nOijk = PCXi = wig|Y = ye)"
+  },
+  {
+    "text": "So that the sum of the pi k's become remain 1. Similarly to estimate theta ij k we can add L here and in the denominator we must compensate by adding Lm.",
+    "start": 1138.0,
+    "end": 1152.0,
+    "ocr_text": "Estimating Parameters: Y, X;discrete-valued\n\nIf unlucky, our MLE estimate for PCX; / Y) may be zero.\n#DLY = yx}\n\n|D|\n6ijn = PX = xig|Y = yx)\n\nFe = PCY = yx)\n\nPDX; = wij NY = yx}\nH#DLY = yx}\n\nMAP estimates:\n\nAD{Y =ypt Only difference:\n|D| +7R ti “imaginary” examples\n\nADL X; = 27 AY = yp tl\n#D{Y = yp} +IM\n\nFr = PY = yn)\n\nOijh = POX = wiglY = yr)"
+  },
+  {
+    "text": "So that the sum of theta ij k over a particular value of ij will be equal to 1. So this is smoothing which we can apply in order to alleviate the problem due to 0 probability.",
+    "start": 1152.0,
+    "end": 1167.0,
+    "ocr_text": "Estimating Parameters: Y, X;discrete-valued\n\nIf unlucky, our MLE estimate for ?CX; / Y) may be zero.\n\n#DAY = yt\n|D|\n6ijn = POX = wig|Y = yx)\n\nFe = PW = yx)\n\nH#D{X; = 13453 NY = yx}\nADLY = yx}\n\nMAP estimates:\nZ#D{Y = Yn} + 1 Only difference:\n\n|D| +1R “imaginary” examples\nADLX = vig NY =U} tl\nA#D{Y =u} +1\n\nFre = PY = yn)\n\nGijk = POX = wiglY¥ = ye)"
+  },
+  {
+    "text": "Now one important assumption that we made in knife base is that the x i's are conditionally independent given y.",
+    "start": 1167.0,
+    "end": 1177.0,
+    "ocr_text": "Naive Bayes: Assumptions of Conditional\nIndependence\n\nOften the X,are not really conditionally independent\n\n° Wecan use Naive Bayes in many cases anyway\n\n— often the right classification, even when not the right\nprobability"
+  },
+  {
+    "text": "But this is not really a valid assumption and it often does not hold. We can often use the right classification even when but even if this assumption does not always hold knife base is surprisingly quite effective.",
+    "start": 1178.0,
+    "end": 1197.0,
+    "ocr_text": "Naive Bayes: Assumptions of Conditional\nIndependence\n\nOften the X,are not really conditionally independent\n\n° Wecan use Naive Bayes in many cases anyway\n\n— often the right classification, even when not the right\nprobability"
+  },
+  {
+    "text": "You know given its simplicity it is surprisingly quite effective in many number of cases and often it turns out that even if the assumption is not valid knife base gives the correct classification.",
+    "start": 1197.0,
+    "end": 1210.0,
+    "ocr_text": "Naive Bayes: Assumptions of Conditional\nIndependence\n\nOften the X;are not really conditionally independent\n\n° Wecan use Naive Bayes in many cases anyway\n\n— often the right classification, even when not the right\nprobability"
+  },
+  {
+    "text": "Because knife base is not I we are not really using this assumption to find the exact probability but to choose between the different possible classes.",
+    "start": 1210.0,
+    "end": 1220.0,
+    "ocr_text": "Naive Bayes: Assumptions of Conditional\nIndependence\n\nOften the X;are not really conditionally independent\n\n° Wecan use Naive Bayes in many cases anyway\n\n— often the right classification, even when not the right\nprobability"
+  },
+  {
+    "text": "And in that way knife base works quite well in many cases for example in text classification knife base is a very standard also which is applied and does surprisingly well it is fast and because even when the assumptions are not right it gives the right example.",
+    "start": 1220.0,
+    "end": 1239.0,
+    "ocr_text": "Naive Bayes: Assumptions of Conditional\nIndependence\n\nOften the X;are not really conditionally independent\n\n° Wecan use Naive Bayes in many cases anyway\n\n— often the right classification, even when not the right\nprobability"
+  },
+  {
+    "text": "Now we will look at the case where the input attributes are continuous valued. We have so far seen where the both the input attribute and the output attribute are discrete value.",
+    "start": 1239.0,
+    "end": 1253.0,
+    "ocr_text": "Dy\n? CE Ye) = n-\\)\n\\"
+  },
+  {
+    "text": "What if the input attribute is continuous valued? If the input attribute are continuous valued we can assume that the conditional probability of that attribute is can be modeled by a Gaussian.",
+    "start": 1253.0,
+    "end": 1268.0,
+    "ocr_text": "Dy\n? CE Ye) = n-\\)\n\\"
+  },
+  {
+    "text": "And based on that we can have Gaussian knife base. So for this I will request you to look at this slide. Suppose you have continuous valued features then you can model the conditional probability probability x i equal to x given y equal to y k as a normal distribution or Gaussian distribution which is given by this standard formula 1 by root over 2 pi sigma square e to the power minus x minus mu 1.",
+    "start": 1268.0,
+    "end": 1297.0,
+    "ocr_text": "Dy\n? CE Ye) = n-\\)\n\\"
+  },
+  {
+    "text": "So, this is the same for all x i or y or you can assume that they are same for all y i and so on. This makes the model have less number of parameters if you wish.",
+    "start": 1297.0,
+    "end": 1325.0,
+    "ocr_text": "Gaussian Naive Bayes (continuous X)\n\nAlgorithm: Continuous-valued Features\n— Conditional probability often modeled with the normal\n\ndistribution\n—@— UE 2\n1 a\nPCX; x|Y Yr) e a\nCipV 20\n\nSometimes assume variance\n— isindependent of Y (i.e., o)),\n— orindependent of X; (i.e., o,)\n— or both (i.e., co)\n\n12"
+  },
+  {
+    "text": "Under this assumption we can have the Gaussian knife base algorithm. In the Gaussian knife base algorithm in the training phase we look at the training data set and from the training data set we estimate pi k as before.",
+    "start": 1325.0,
+    "end": 1343.0,
+    "ocr_text": "Gaussian Naive Bayes (continuous X)\n\nAlgorithm: Continuous-valued Features\n— Conditional probability often modeled with the normal\n\ndistribution\n—@— “UE 2\n2 a\nPX = &|Y = yx) e the\nCipV 20\n\nSometimes assume variance\n— is independent of Y (i.e., 9),\n— orindependent of X; (i.e., ,)\n— or both (i.e., co)\n\n12"
+  },
+  {
+    "text": "pi k is probability y equal to y k the prior probability of the different classes. This is estimated as before but for each attribute x i we estimate the mu i k and sigma i k.",
+    "start": 1343.0,
+    "end": 1360.0,
+    "ocr_text": "Gaussian Naive Bayes Algorithm — continuous X;\n(but still discrete Y)\n* Train Naive Bayes (examples)\nfor each value y,\nestimate* 7, = P(Y = yz)\nfor each attribute X;estimate\nclass conditional mean /4ik, variance Oj\n\n° Classify (X7e™”)\nnew = newly\nY —argmax PCY = yq) Il PCUXPERY|Y = yp)\n\nyrew —argmax mp [] Normal(X?, pigs ik)"
+  },
+  {
+    "text": "For each x i for a particular y k in order to find probability x i given y we estimate mu and sigma from the data.",
+    "start": 1360.0,
+    "end": 1370.0,
+    "ocr_text": "Gaussian Naive Bayes Algorithm — continuous X;\n(but still discrete Y)\n* Train Naive Bayes (examples)\nfor each value y,\nestimate* 7, = P(Y = yx)\nfor each attribute X;estimate\nclass conditional mean /4;k variance Ojk\n\n° Classify (X7e™”)\nnew = newly\nY —argmax PCY = ye) II PCUXPERY|Y = yp)\n\nyrew — arg max xx [] Normal XP\", Hibs 7%)"
+  },
+  {
+    "text": "And after we have done this estimates in the testing phase we can classify the mu instance x nu as y nu is that y k for which you know this is the standard formula for knife base.",
+    "start": 1370.0,
+    "end": 1387.0,
+    "ocr_text": "Gaussian Naive Bayes Algorithm — continuous X;\n(but still discrete Y)\n* Train Naive Bayes (examples)\nfor each value y;,\nestimate* 7, = P(Y = yz)\nfor each attribute X;estimate\nclass conditional mean /4;k, variance Ojk\n\n° Classify (X7e™”)\nyrew —argmax PC = ue) TL Pre’ |Y = ux)\n\nyrew —argmax mp [] Normal(X?, pigs ik)"
+  },
+  {
+    "text": "Here probability y equal to y k was estimated as pi k and for probability x i nu given y equal to y k we use a normal distribution over x i nu mu sigma where mu sigma where the parameters found in the training phase.",
+    "start": 1387.0,
+    "end": 1404.0,
+    "ocr_text": "Gaussian Naive Bayes Algorithm — continuous X;\n(but still discrete Y)\n* Train Naive Bayes (examples)\nfor each value vy,\nestimate* 7, = P(Y = yx)\nfor each attribute X;estimate\nclass conditional mean /4;k, variance Ojk\n\n* Classify (X7°™)\nnew = newly =\nY —argmax PCY = wi TTPOE lY = yx)\n\nynew — aramax ay [] Normal XP, wins on)"
+  },
+  {
+    "text": "So, based on that we can apply the Gaussian knife base algorithm.",
+    "start": 1404.0,
+    "end": 1414.0,
+    "ocr_text": "Gaussian Naive Bayes Algorithm — continuous X;\n(but still discrete Y)\n* Train Naive Bayes (examples)\nfor each value vy,\nestimate* 7, = P(Y = yz)\nfor each attribute X;estimate\nclass conditional mean /4ik. variance Ojk\n\n° Classify (X7e™”)\nnew _ newly\nY —argmax PCY = yx) Il PUXSPERENY = yx)\n\nyrew —argmax xp [] Normal(X?\", pikes git)"
+  },
+  {
+    "text": "Now, in the Gaussian knife base is used for continuous x and we can also have so this is used particularly in case where x is continuous and y is discrete.",
+    "start": 1414.0,
+    "end": 1433.0,
+    "ocr_text": "Gaussian Naive Bayes Algorithm — continuous X;\n(but still discrete Y)\n* Train Naive Bayes (examples)\nfor each value y;,\nestimate* 7, = P(Y = yz)\nfor each attribute X;estimate\nclass conditional mean /4ik, variance Ojk\n\n° Classify (X7e™”)\nyrew — argmax PCY = un) TT POXPMlY = un)\n\nyrew —argmax mT] Normal(X?, pins ik)"
+  },
+  {
+    "text": "And the maximum likelihood estimate as we have said the estimate of mu and sigma are given by mu is given by estimate of the mean of the sample and this is a standard way of doing maximum likelihood estimate.",
+    "start": 1433.0,
+    "end": 1449.0,
+    "ocr_text": "Estimating Parameters: Y discrete, \\;continuous\n\nMaximum likelihood estimates: jth training\n\nexample\n\nhin = = SD Xf 5 CYP = 9k)\n\nw= SGT =m) *\n\nith feature hain AE GS -\n6(z)=1 if z true,\nelse O\n2 1\n\n2, = —_* I — figp)25(VI = Ye\noR SOI =) Bin)?6(Y? = yp)"
+  },
+  {
+    "text": "And sigma is also obtained by the standard deviation of the sample as is given by this slide.",
+    "start": 1449.0,
+    "end": 1456.0,
+    "ocr_text": "Estimating Parameters: Y discrete, X;continuous\n\nMaximum likelihood estimates: jth training\nexample\nRik = DX OC =\n= SS5CT =) > \"\nith feature\nkth class\n6(z)=1 if z true,\nelse O\n32 = —__ i J 7. )2 =\noh SGI =a Los Bin) 5X YR)"
+  },
+  {
+    "text": "Now, in so to conclude knife base is a very simple algorithm which makes the knife assumption that the different attributes x i and x j are independent given the value of the class.",
+    "start": 1457.0,
+    "end": 1475.0,
+    "ocr_text": "Estimating Parameters: Y discrete, \\;continuous\n\nMaximum likelihood estimates: jth training\nexample\nRin = =o DX (YX = x)\nBR 5 5 = un) y : *\nith feature\nkth class\n8(z)=1 if z true,\nelse O\n62 = —_+ J fi.)26(v9 =\noR SGI =m Los Bin) 5X YR)"
+  },
+  {
+    "text": "This assumption is not always realistic but it simplifies our computations greatly and in many cases the resulting algorithm is quite good even though it is so simple.",
+    "start": 1476.0,
+    "end": 1491.0,
+    "ocr_text": "Estimating Parameters: Y discrete, X;continuous\n\nMaximum likelihood estimates: jth training\nexample\nPik = SR IO OY? = ye)\nKS Sj 5OF = yn) Ps 7 *\nith feature\nkth class\n6(z)=1 if z true,\nelse O\n32 = 1 J _ 7.,)2 i —\noR SGI =m Los Bin) 5X YR)"
+  },
+  {
+    "text": "Even though the independence assumption is not always satisfied in practice the as attributes are often correlated we are get quite good results.",
+    "start": 1491.0,
+    "end": 1504.0,
+    "ocr_text": "Estimating Parameters: Y discrete, ;continuous\n\nMaximum likelihood estimates: jth training\nexample\nRin = =o DX (XI = ig)\nBh 5 5 OT = ue) y *\nith feature\nkth class\n8(z)=1 if z true,\nelse O\n32 —-—___ i i 7.,)2 j=\noR SI = ww Los Bin) 5X YR)"
+  },
+  {
+    "text": "Now, but we cannot always apply knife base and as we have seen we cannot do the full joint distribution probability x 1, x n given y it is very it is not tractable to really do this.",
+    "start": 1505.0,
+    "end": 1522.0,
+    "ocr_text": "Estimating Parameters: Y discrete, X;continuous\n\nMaximum likelihood estimates: jth training\nexample\nRin = =o DD XI OX = vk)\nBR 5 5 OT = un) y : *\nith feature\nkth class\n8(z)=1 if z true,\nelse O\n62, = —_1 J fin)26(v9 =\noh SGI = wm Los Bin) 5X YR)"
+  },
+  {
+    "text": "And to alleviate this we study Bayesian networks in Bayesian networks we can strike a balance we need not make full independence assumptions or full dependence assumptions rather we denote the causal relationships and conditional independence.",
+    "start": 1522.0,
+    "end": 1551.0,
+    "ocr_text": "Pinto) = FOIA) A)\ney?"
+  },
+  {
+    "text": "The specific conditional independence of the different attributes and in belief networks we also denote causal relationships.",
+    "start": 1552.0,
+    "end": 1567.0,
+    "ocr_text": "="
+  },
+  {
+    "text": "So, we show the actual relations and actual independence between the attributes and based on this we can based on this we can get different learning algorithms which do not make as knife assumptions as knife base but can capture the relationships in the domain.",
+    "start": 1567.0,
+    "end": 1590.0,
+    "ocr_text": "Naive Bayes\n\nExample: Continuous-valued Features\n— Temperature is naturally of continuous value.\nYes: 25.2, 19.3, 18.5, 21.7, 20.1, 24.3, 22.8, 23.1, 19.8\nNo: 27.3, 30.1, 17.4, 29.5, 15.1\n= Estimate mean and variance for each class\nHyes = 21.64, Oy, =2.35\n\n5 1S. wp?\nfide NC = 23.88, ony = 7.09\n\nN\n\n— Learning Phase: output two Gaussian models for P(temp|C)\n\n- _ 2 = 2\nPeel Yes) = I exp{ — = 21.647) ___1__ og (_ = 21.64)\n2.35/22 2x2.35 2.35/27 11.09\na _ 2 - >\nB(x|.No)= exp( — @=23-88)7)__1_ 5.9 _ @=23.88)\n7.09/22 2x 7.09 7.09J2x 50.25\n15"
+  },
+  {
+    "text": "And it is a very it is an advanced topic and we have different types of Bayesian networks we have belief networks also called directed graphical model and we also have another type of networks Bayesian networks which are called undirected graphical models.",
+    "start": 1590.0,
+    "end": 1617.0,
+    "ocr_text": "Condiidronat tnchepenctimix\na Aslan lupy"
+  },
+  {
+    "text": "And these can capture different relationships but today we finished this topic thank you very much.",
+    "start": 1617.0,
+    "end": 1627.0,
+    "ocr_text": "Conditarnst Tne penctinu,\nCamas ufo fnlpy"
+  }
+]

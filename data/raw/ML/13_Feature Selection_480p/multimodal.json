@@ -1,0 +1,968 @@
+[
+  {
+    "text": "Good morning. Today we will cover today we are in the first third module which is on",
+    "start": 0.0,
+    "end": 24.84,
+    "ocr_text": "jachine Learning"
+  },
+  {
+    "text": "instance space learning and feature reduction. We have the part B of this module where we will",
+    "start": 24.84,
+    "end": 30.52,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart B: Feature Selection\n\nSudeshna Sarkar\nIIT Kharagpur"
+  },
+  {
+    "text": "talk about feature selection. In the last class we have looked at instance space learning",
+    "start": 30.52,
+    "end": 37.2,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart B: Feature Selection\n\nSudeshna Sarkar\nIIT Kharagpur"
+  },
+  {
+    "text": "and we have seen that in instance space learning given the test data instance we have to find",
+    "start": 37.2,
+    "end": 44.76,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart B: Feature Selection\n\nSudeshna Sarkar\nIIT Kharagpur"
+  },
+  {
+    "text": "out the nearby instances for this we need a distance function. This distance function",
+    "start": 44.76,
+    "end": 50.64,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart B: Feature Selection\n\nSudeshna Sarkar\nIIT Kharagpur"
+  },
+  {
+    "text": "is computed in terms of the features. If the number of features is large there is a problem",
+    "start": 50.64,
+    "end": 56.96,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart B: Feature Selection\n\nSudeshna Sarkar\nIIT Kharagpur"
+  },
+  {
+    "text": "because the distance that you get is not may not be representative of the actual distance.",
+    "start": 56.96,
+    "end": 64.0,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart B: Feature Selection\n\nSudeshna Sarkar\nIIT Kharagpur"
+  },
+  {
+    "text": "So, this is a reason why feature reduction becomes important.",
+    "start": 64.0,
+    "end": 70.92,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart B: Feature Selection\n\nSudeshna Sarkar\nIIT Kharagpur"
+  },
+  {
+    "text": "Now, we have seen that or you know that information about the target. So, features contain",
+    "start": 70.92,
+    "end": 84.16,
+    "ocr_text": "Le abare Races ho\nfeohiinse contain Mfemakion about tong"
+  },
+  {
+    "text": "information about the target and the function the classification function is defined in terms of",
+    "start": 84.16,
+    "end": 107.36,
+    "ocr_text": "Le abare Races ho\nfeohiinse contain Mfemakion about tong"
+  },
+  {
+    "text": "the features. So, you may be tempted to think that more features means better information or more information",
+    "start": 107.36,
+    "end": 130.32,
+    "ocr_text": "Teale Rody, chine\n\ndota e\nfeoka contain Onfenahien Oscut tangle"
+  },
+  {
+    "text": "and better discriminative power or better classification power. But is this really the case",
+    "start": 130.32,
+    "end": 145.08,
+    "ocr_text": "techies contain Wfeemabien clout tog\n\nMove Fes lines > Mere mdernotion"
+  },
+  {
+    "text": "always? We will see that this is not always the case. This may not hold always that just because",
+    "start": 145.08,
+    "end": 155.4,
+    "ocr_text": "feobiinsa contain Wfeemakien dsout toigel\n\nMove = irdavrro tron\n\nMisc mi nabirre pourer"
+  },
+  {
+    "text": "you have more features does not mean you have more information or better classification performance.",
+    "start": 155.4,
+    "end": 165.12,
+    "ocr_text": "tealtvre Kode, hoe\nfeobinse contain mfena hon adscut target\n\nMove pe a> Jee irdovenotron\n\nABelte disesi mi nalive pods\n———J"
+  },
+  {
+    "text": "If you look at the slide this is one typical scenario as if you keep the number of training",
+    "start": 165.12,
+    "end": 173.04,
+    "ocr_text": "Curse of Dimensionality\n\n* number of training examples is fixed\n\n=> the classifier’s performance usually will\ndegrade for a large number of features!\n\nclassifier performance\n\n>\n# of variables"
+  },
+  {
+    "text": "examples fixed and the training set is not extremely large then typically what may happen",
+    "start": 173.04,
+    "end": 179.44,
+    "ocr_text": "Curse of Dimensionality\n\n* number of training examples is fixed\n\n=> the classifier’s performance usually will\ndegrade for a large number of features!\n\nclassifier performance\n\n>\n# of variables"
+  },
+  {
+    "text": "is that when you increase the number of features initially the classifier performance may go up",
+    "start": 179.44,
+    "end": 186.44,
+    "ocr_text": "Curse of Dimensionality\n\n* number of training examples is fixed\n\n=> the classifier’s performance usually will\ndegrade for a large number of features!\n\nclassifier performance\n\n>\n# of variables"
+  },
+  {
+    "text": "and then the classifier performance may be degraded. So, this is the reason why can it be so?",
+    "start": 186.44,
+    "end": 194.32,
+    "ocr_text": "Curse of Dimensionality\n\n* number of training examples is fixed\n\n=> the classifier’s performance usually will\ndegrade for a large number of features!\n\nclassifier performance\n\n>\n# of variables"
+  },
+  {
+    "text": "The reason is some features can be irrelevant. You can have irrelevant features. In",
+    "start": 194.32,
+    "end": 209.7,
+    "ocr_text": "Curse of Dimensionality\n\n* number of training examples is fixed\n\n=> the classifier’s performance usually will\ndegrade for a large number of features!\n\nclassifier performance\n\n>\n# of variables"
+  },
+  {
+    "text": "algorithm such as Keneer's neighbor these irrelevant features introduce noise and they",
+    "start": 209.7,
+    "end": 218.56,
+    "ocr_text": "feabive Rods hie\ntechn contain mfemakien cbsout tang\n\nNove feabiines >\" i ee\neine £ fie Belin Liseri mi nalive power"
+  },
+  {
+    "text": "fool the learning algorithm because you are trying to find which instances are close together",
+    "start": 218.56,
+    "end": 223.68,
+    "ocr_text": "tealtve Kode, chor\n\nfesta contain Mfemakien cout tongel\n\nMowe yo => JMere ind ov enotron\n= SS ae"
+  },
+  {
+    "text": "these irrelevant features are noisy features will make this make the result wrong. Secondly,",
+    "start": 223.68,
+    "end": 234.8,
+    "ocr_text": "tealtve Kode, chor\n\nfesta contain Mfemakien cout tongel\n\nMowe yo => JMere ind ov enotron\n= SS ae"
+  },
+  {
+    "text": "you may have redundant features. If you have a fixed number of training examples and redundant",
+    "start": 234.8,
+    "end": 247.28,
+    "ocr_text": "tealive Rody hie\nfechas contain Mfc hen dsout ta yt\nMove fer ; => /Mee ind ov notion\nivrelevonl Seal ABetu disai mi nabire pods"
+  },
+  {
+    "text": "features which do not contribute additional information they may lead to degradation in performance",
+    "start": 247.28,
+    "end": 255.12,
+    "ocr_text": "Fealbane Kode char\n\nT\nfechas contain mfemakien aout tangt\n\nMove eohiin Meee ind oveno tion\n_ itrelevant Bs Be Belts discimi nalive Aouses\n\n— Tedundawk te -"
+  },
+  {
+    "text": "of the learning algorithm. And so these irrelevant features and redundant features can confuse",
+    "start": 255.12,
+    "end": 264.28,
+    "ocr_text": "Leabane Kode chore\ntechie contain Wfremakien clout target\nNove fealtines => Jere mdfornns tron\n- wow Pateae, Bellen Piccliattatinn Baud\nnk\n\n. = im"
+  },
+  {
+    "text": "learners especially when you have limited training documents limited training examples limited",
+    "start": 264.28,
+    "end": 276.84,
+    "ocr_text": "Leabane Kode chore\ntechie contain Wfremakien clout target\nNove fealtines => Jere mdfornns tron\n- wow Pateae, Bellen Piccliattatinn Baud\nnk\n\n. = im"
+  },
+  {
+    "text": "computational resources. When we have a large number of features this",
+    "start": 276.84,
+    "end": 292.72,
+    "ocr_text": "ae contain mhenasi m about target\n\nMove Feshinun > Wee ig oon\n\n_ lerelevon £ ie ian disci mi calive power\n— “—  ———_T =\nTedundawk tet nila radar a\n\n“ao"
+  },
+  {
+    "text": "search space hypothesis space will be larger and searching may take more time depending on the",
+    "start": 292.72,
+    "end": 298.32,
+    "ocr_text": "eabive Kod chee\nteobiirse contain infremalson abot tongek\n\nMove weer are\n\nr ivede 2 Bolten ee Sh ~*\n— Yedunde\n\nLivibes tradning\nLiroke§ es fa"
+  },
+  {
+    "text": "algorithm that you can choose and with limited training examples you cannot work with large number",
+    "start": 298.32,
+    "end": 305.6,
+    "ocr_text": "Leads vc ‘Roddy hoe\nfechas contain Mfemakion aheut target\nMove ae ind ovrno tion\n— drrelewo GB a, Belt disesi mi nabare poses\n= Tedw - —\ndank Laud Seka\n\nex\n\n\\ raphe bina) Aun,"
+  },
+  {
+    "text": "of features because we have seen that it leads to over 50. So, these things contribute to a",
+    "start": 305.6,
+    "end": 313.96,
+    "ocr_text": "fechas contain mfiemahien Ascut target\nMove feo hiinun ~~ JMee wndevn\nivrelevouk £6 a eS)\n— edundamk +) Laws on) ="
+  },
+  {
+    "text": "phenomena which we call the curse of dimensionality. When you have too many features too many",
+    "start": 313.96,
+    "end": 333.0,
+    "ocr_text": "fechas contain mfiemahien Ascut target\nMove feo hiinun ~~ JMee wndevn\nivrelevouk £6 a eS)\n— edundamk +) Laws on) ="
+  },
+  {
+    "text": "dimensions this will lead to the gradation of the learning algorithm more computational time and",
+    "start": 333.0,
+    "end": 341.0,
+    "ocr_text": "prelate\nWON\n\nFale Rauch —_Clutie of ren\nfecbiinue contain Whemakien adscat a “get\n\nMove fechinwa > JME a\n_ ivreleovont entice: AB is\n- red Loe diy"
+  },
+  {
+    "text": "this phenomena is called the curse of dimensionality to overcome this curse of dimensionality we want",
+    "start": 341.0,
+    "end": 348.76,
+    "ocr_text": "2 Roddy che\n\ntechies eatin vn ofa on adsout tai yt\nN- Qi SS pare wndevn\n\n_ ivrel % mt esti, Betta diserien mi Pa power\n, Lintkd bo, 7\nee"
+  },
+  {
+    "text": "to do feature reduction. There are two types of feature reduction one is called feature selection",
+    "start": 348.76,
+    "end": 355.48,
+    "ocr_text": "pealore Kody che | LV\n\nteobiinse contain femal en cdsout tai yt\nMove ear ay pare ind ovrno tion\n\nivrelwank = Eat tire Poses\n— Yedundamnk ta\n\nex"
+  },
+  {
+    "text": "the other is called feature extraction. In feature selection what we do is that given an initial",
+    "start": 355.56,
+    "end": 382.44,
+    "ocr_text": "fain “ae ohout Hacget\n> )Mece neem les\na a Belten Aiserj mi poms t\nNiwated fainieg ex\nUivks corbadadinc)\nAeron,"
+  },
+  {
+    "text": "set of features f equal to x 1 x 2 x n we are given initially n number of features we want to",
+    "start": 382.44,
+    "end": 395.0,
+    "ocr_text": "t dimeusivnalite\nFeat Rauch | Curae irene,\n— Fealiree Sehchy\n\n,"
+  },
+  {
+    "text": "find a subset f prime which is a subset of f equal to let us say x prime 1 x prime 2 x prime",
+    "start": 395.0,
+    "end": 411.48,
+    "ocr_text": "feral Ratucho= | ts Of COMEENES I}\n\noe\n\n~ Fealires Sch ch on Fe oh ue aN"
+  },
+  {
+    "text": "so we want to find a subset of those features so that it optimizes certain criteria. So, what do you want to optimize?",
+    "start": 413.4,
+    "end": 422.44,
+    "ocr_text": "nolibe\nV7\n\nReale Rauch | Curse of dives\nye oP"
+  },
+  {
+    "text": "So, think about it. So, we will first talk about the next method of feature reduction which is",
+    "start": 432.44,
+    "end": 438.44,
+    "ocr_text": "_ Fealiase Schch. 9\n‘a me ae 4 ANS\nPICK = $x, %2,- Poa"
+  },
+  {
+    "text": "called feature extraction. We will talk about feature extraction in the next class but what feature",
+    "start": 438.44,
+    "end": 449.88,
+    "ocr_text": "Fe abere Keds hoe [C ars 4 a\n~ Fealtrce Seboh —— Le mae\nsete = ° Xf) ¥2,- Phe"
+  },
+  {
+    "text": "extraction does is that it transforms or projects the original set of features into a new subspace",
+    "start": 449.88,
+    "end": 461.72,
+    "ocr_text": "tealove Kode cho LU “\n\n~ Fealace Sheba Fe Shu nS\n\n. echgnoeee fee PICE = § x) %2) Par"
+  },
+  {
+    "text": "which has smaller number of dimension. So, feature it will to a projection to m less than n dimensions",
+    "start": 461.8,
+    "end": 477.48,
+    "ocr_text": "fealove Kody chine LU\n\n— Fealiace Schick ane oF\n\n~ Fealire Extraction e = 8x, %2, Ft /\n\nA"
+  },
+  {
+    "text": "there is in feature selection you select a subset of the features we will talk about feature",
+    "start": 480.76,
+    "end": 486.76,
+    "ocr_text": "Peale Ratuckn | LUts AUNTS |\n\n—~ Pealinse Schchm Fe $4, AN\na Zt\n~ Fealire Extratran PIC “ é x) Mej7\n\nON dinnensi\n\nO plone"
+  },
+  {
+    "text": "extraction in the next class. So, the in both these cases what you are seeking to optimize is",
+    "start": 486.76,
+    "end": 495.08,
+    "ocr_text": "~ Fealtace Sehohm Fe ote ANS\nfo 7 ff\n= \"tre Extraction PICE = § xi, 2, #on"
+  },
+  {
+    "text": "you want to either improve or maintain classification accuracy",
+    "start": 495.64,
+    "end": 505.32,
+    "ocr_text": "lik\n\n7 Peale Sia ext 7 NS\neg aon PCE = $x) eae Pin\nFreed ts MIN) dune cam"
+  },
+  {
+    "text": "and you want to simplify classifier complexity. Earlier we saw curve which showed that as you",
+    "start": 505.64,
+    "end": 529.48,
+    "ocr_text": "Fealire feduchn | LUE of durreusn ily\n\n= Fealiace Steck on Fe $4, L wr\n\nPeal extacwen PIKE = § xj, ¥2,- Ba\n\nFeseclem Bei ee"
+  },
+  {
+    "text": "increase the number of features the classification accuracy initially increases and then reduces.",
+    "start": 529.48,
+    "end": 538.2,
+    "ocr_text": "Fealoe Reluchor | Cite & Aen ,\n\n~ Fealtre Sehchn Fe eau nS\n~ Fealmre Extract ae = § xj) %2, FA fat\neh mise ty Maltadn Or\n\n= Lime —7\n—_ 2 pee nae a Simplify lansities lamplexit,\n3\n\nhips,\n\n4\n\na a"
+  },
+  {
+    "text": "It could also be the case that the classification accuracy increases and then remains the same.",
+    "start": 538.92,
+    "end": 544.52,
+    "ocr_text": "Feabe Reduct | Liaise fe ‘\n— fealine Shh Fe Sh, ves ANG ;\nJ a / el : x .\n_ Fealidie Ei eee em i 222 2M\ne- 2 Citar ime oy madntaan a\n\nOptinae =\"\na Simplify asstin tomploxil,\n\npl"
+  },
+  {
+    "text": "So, you want to find a small number of features which either improves classification accuracy",
+    "start": 545.64,
+    "end": 551.96,
+    "ocr_text": "fe altive Kode che\n~ Fealiase Schock a —_ aes 75) ;\nD 7a.\nP C Fealine Extraction 1 | ee “i Yiny\n/ Frigede n MEY N Atmensiony\n\n; A than imidg\n\nHe Optmac-- ©\n: eS siupll"
+  },
+  {
+    "text": "or maintains the same accuracy and it simplifies the complexity of the classifier. So,",
+    "start": 552.04,
+    "end": 559.88,
+    "ocr_text": "fe altive Kode che\n~ Fealiase Schock a —_ aes 75) ;\nD 7a.\nP C Fealine Extraction 1 | ee “i Yiny\n/ Frigede n MEY N Atmensiony\n\n; A than imidg\n\nHe Optmac-- ©\n: eS siupll"
+  },
+  {
+    "text": "these are the reasons why we do feature selection. Now, we said that in feature selection we want to",
+    "start": 559.88,
+    "end": 566.84,
+    "ocr_text": "— fealiare Sch on Fe a gee ANS ?\nPCE = § x, %- Poa\n\nVrtige Frdim te MEN dimensions\n\np  Citke IimBvare By Malina Orcura\n\nX\n\nPSH, arcfin smslont"
+  },
+  {
+    "text": "select a subset of the original feature set. Now, let us see how we can select that subset.",
+    "start": 566.84,
+    "end": 574.2,
+    "ocr_text": "Curse of Dimensionality\n\n* number of training exampies is fixed\n\n=> the classifier’s performance usually will\ndegrade for a large number of features!\n\nNie\n\nclassifier performance\n\n>\n# of variables\n\n“Na"
+  },
+  {
+    "text": "So, you can see that if we have n features the number of subsets possible is 2 to the power n",
+    "start": 574.76,
+    "end": 587.4,
+    "ocr_text": "Curse of Dimensionality\n\n* number of training exampies is fixed\n\n=> the classifier’s performance usually will\ndegrade for a large number of features!\n\nNie\n\nclassifier performance\n\n>\n# of variables\n\n“Na"
+  },
+  {
+    "text": "and it is impossible for us to enumerate each of these possible subsets and check",
+    "start": 592.44,
+    "end": 598.52,
+    "ocr_text": "Dore Kacy choy | x ure of Aimenaroy ai\n= Feali Shh wv Ee ae, 4b /7N s\n\n\\N\nSS) : :\n. os BGP = 3 xX; %2,. Pal"
+  },
+  {
+    "text": "how good it is because the number of subsets is exponential. So, we need a method which works in",
+    "start": 599.48,
+    "end": 608.52,
+    "ocr_text": "Fe alle Kad chor\n\n1\n\ny\n\nee ee A\na possible subsds & a = 9X) / ia"
+  },
+  {
+    "text": "reasonable time. The methods that we can use for feature subset selection can be optimum methods,",
+    "start": 608.52,
+    "end": 615.8,
+    "ocr_text": "(At\n\nEe abt Radia chy a a af\n\n2” possi! de PCF = $x), %2, Yas"
+  },
+  {
+    "text": "can be heuristic methods, can be randomized methods. However, we can use optimum methods if the",
+    "start": 616.36,
+    "end": 632.84,
+    "ocr_text": "Falke Rods chr | Cure 4 ct :\noe [isi baat\nalias Sho Fe $4, 4 ,u'\n7p Fae 7 AM 3\n\nN\nrl,\nON possible subs CE 8x92, Pak"
+  },
+  {
+    "text": "hypothesis space or the feature subset space has a structure so that we can have a optimum algorithm",
+    "start": 633.56,
+    "end": 642.68,
+    "ocr_text": "fe altura Kody choy\n~ Fealine Shoko\n\n2M possible Mite\n="
+  },
+  {
+    "text": "which works with polynomial time. Otherwise, we can use a heuristic or greedy algorithm or some",
+    "start": 642.68,
+    "end": 648.92,
+    "ocr_text": "Eeabire Keduchor- | KY\n\n-/, = gC , 7 ye\naa possible subsds PCF ea *2° Zon'>\n— Ope"
+  },
+  {
+    "text": "type of randomized algorithm. Now, the search algorithm which considers the different feature",
+    "start": 648.92,
+    "end": 655.0,
+    "ocr_text": "fe aleve Kock, chive\n\nNM cata POPE Pus\n7] = Ofsirnewa\n\n— Heuvicle\n\n= Randanitel"
+  },
+  {
+    "text": "subsets will also have some mechanism to evaluate each subset and for evaluation",
+    "start": 655.0,
+    "end": 662.6,
+    "ocr_text": "fe aleve Kock, chive\n\nNM cata POPE Pus\n7] = Ofsirnewa\n\n— Heuvicle\n\n= Randanitel"
+  },
+  {
+    "text": "we use two types of methods which I will describe in detail unsupervised methods and supervised",
+    "start": 662.68,
+    "end": 675.72,
+    "ocr_text": "_ Fealire ShAm [Fe aon Lh tei\nPCF = 8 xi, #2, Fa\nme Ofsirnuwa\n\n— Heuviebe"
+  },
+  {
+    "text": "methods. In unsupervised methods we do not evaluate the subset over the training examples.",
+    "start": 675.72,
+    "end": 689.4,
+    "ocr_text": "~ Fealine Shobm Fe S% xy xn\nPCE 8x2. Pal\n= Ofsirnucwa\n\n— hemicbe\n~ Rardawideh\n\na\n\n2\n\ngible subsds"
+  },
+  {
+    "text": "We evaluate the information content in some way in an unsupervised way. These methods are called",
+    "start": 690.2,
+    "end": 696.6,
+    "ocr_text": "leat re Kody hie \\Y 3 $\nST ee\nTa 2M 2, A\nB possible subs E ie i Une mS\n\nEvoluadaion"
+  },
+  {
+    "text": "filter methods. In supervised methods also called wrapper methods, we evaluate the feature subset",
+    "start": 696.6,
+    "end": 710.76,
+    "ocr_text": "{ alive Kody hh peu eee\n~ Fealine Shh Fe St, %, ,2v5\nPCE 8 x0 Fond\n\nps possible F\n. = Opsirnucwa\nFvclusd — Heute\nff [beng Rancowsinal"
+  },
+  {
+    "text": "by using it on a learning algorithm. These are called supervised methods or wrapper methods.",
+    "start": 711.0,
+    "end": 718.44,
+    "ocr_text": "~ Fealase Schock on Fe oh, iy ANS\nPICF = xi, Pa\n\nEs a Ofsirnuewa\n\\ a — Heuviebe\n\n4 é Filta, Rantonah\n\ni\n\n2M bo MiB ubsd"
+  },
+  {
+    "text": "Now, let us look at",
+    "start": 720.28,
+    "end": 721.72,
+    "ocr_text": "Ee abvte Kode choy pes co 7\na é\n— fealinre Sch on ye XN3\n\n7\n\nPICR = $5, Pas\n\nEvoluadaon oie\neGatwedl -talhe.\n\n= Shouse ~ Wrabpes"
+  },
+  {
+    "text": "the feature selection is an optimization problem. You have a search algorithm, you have an objective",
+    "start": 721.8,
+    "end": 744.2,
+    "ocr_text": "Ee abvte Kode choy pes co 7\na é\n— fealinre Sch on ye XN3\n\n7\n\nPICR = $5, Pas\n\nEvoluadaon oie\neGatwedl -talhe.\n\n= Shouse ~ Wrabpes"
+  },
+  {
+    "text": "function and you are trying to optimize the objective function. So, the search algorithm, if you",
+    "start": 744.2,
+    "end": 749.8,
+    "ocr_text": "Feature Selection Steps\n\nFeature selection is an Complete feature set\noptimization problem.\no Step 1: Search the space\nof possible feature\nsubsets. \"Xooot\n\nFeature Subset Selection\n\nSearch\n\no Step 2: Pick the subset Objective\nP i\" function\nthat is optimal or near-\noptimal with respect to rere aa\nsome objective function. rc\nPR\n\nalgorithm"
+  },
+  {
+    "text": "look at this diagram here, the search algorithm will select a feature subset and score it on the",
+    "start": 749.8,
+    "end": 756.36,
+    "ocr_text": "Feature Selection Steps\n\nFeature selection is an ‘Complete fectinereet\noptimization problem.\nGen ia th hao Grae Feature Subset Selection\n© Step 1: Searc\nme is\nof possible feature\n\nFeature\n\nsubsets. mre\no Step 2: Pick the subset Objective\nFe 5 function\nthat is optimal or near-\noptimal with respect to Peciieaaw aes\nsome objective function. rc\nPR\n\nalgorithm"
+  },
+  {
+    "text": "objective function and find the goodness of the feature subset. Based on this it will decide",
+    "start": 756.36,
+    "end": 762.36,
+    "ocr_text": "Feature Selection Steps\n\nFeature selection is an Complete feature set\noptimization problem.\no Step 1: Search the space\nof possible feature\nsubsets. \"Roset\n\nFeature Subset Selection\n\nSearch\n\n© Step 2: Pick the subset Objective\nPi i\" function\nthat is optimal or near-\noptimal with respect to Ponies\nsome objective function. rc\nPR\n\nalgorithm"
+  },
+  {
+    "text": "which part of the search space to explore next and after this module is completed, you get a final",
+    "start": 762.36,
+    "end": 769.64,
+    "ocr_text": "Feature Selection Steps\n\nFeature selection is an Complete feature set\noptimization problem.\no Step 1: Search the space\nof possible feature\nsubsets. \"Roset\n\nFeature Subset Selection\n\nSearch\n\n© Step 2: Pick the subset Objective\nPi i\" function\nthat is optimal or near-\noptimal with respect to Ponies\nsome objective function. rc\nPR\n\nalgorithm"
+  },
+  {
+    "text": "feature subset and this final feature subset is used by your machine learning or pattern recognition",
+    "start": 769.64,
+    "end": 777.0,
+    "ocr_text": "Feature Selection Steps\n\nFeature selection is an\n\noptimization problem.\n\no Step 1: Search the space\nof possible feature\nsubsets.\n\no Step 2: Pick the subset\nthat is optimal or near-\noptimal with respect to\n\nsome objective function.\n\nComplete feature set\n\nFeature Subset Selection\n\nSearch\n\nFeature\n‘subset"
+  },
+  {
+    "text": "algorithm. So, you want to pick the subset that is optimal or near optimal with respect to the",
+    "start": 777.0,
+    "end": 783.56,
+    "ocr_text": "Feature Selection Steps\n\nFeature selection is an Complete feature set\noptimization problem.\no Step 1: Search the space\nof possible feature\nsubsets. \"Xooot\n\nFeature Subset Selection\n\nSearch\n\no Step 2: Pick the subset Objective\nP i\" function\nthat is optimal or near-\noptimal with respect to eects anes\nsome objective function. rc\nPR\n\nalgorithm"
+  },
+  {
+    "text": "objective function. Now, as the feature subset can be evaluated by two methods in supervised methods",
+    "start": 783.56,
+    "end": 795.32,
+    "ocr_text": "Feature Selection Steps\n\nFeature selection is an Complete feature set\noptimization problem.\no Step 1: Search the space\nof possible feature\nsubsets. \"Xooot\n\nFeature Subset Selection\n\nSearch\n\no Step 2: Pick the subset Objective\nP i\" function\nthat is optimal or near-\noptimal with respect to eects anes\nsome objective function. rc\nPR\n\nalgorithm"
+  },
+  {
+    "text": "or wrapper methods, we train using the selected subset and we estimate the error on the validation set.",
+    "start": 795.32,
+    "end": 803.4,
+    "ocr_text": "Evaluating feature subset\n\nSupervised (wrapper method)\n— Train using selected subset\n— Estimate error on validation dataset\n\nUnsupervised (filter method)\n— Look at input only\n— Select the subset that has the most information"
+  },
+  {
+    "text": "In unsupervised or filter methods, we look at only the input and we select the subset which has",
+    "start": 804.36,
+    "end": 812.12,
+    "ocr_text": "Evaluating feature subset\n\nSupervised (wrapper method)\n— Train using selected subset\n— Estimate error on validation dataset\n\nUnsupervised (filter method)\n— Look at input only\n— Select the subset that has the most information"
+  },
+  {
+    "text": "the most information. Now, these two types of methods are illustrated in this picture.",
+    "start": 812.12,
+    "end": 818.04,
+    "ocr_text": "Evaluating feature subset\n\nSupervised (wrapper method)\n— Train using selected subset\n— Estimate error on validation dataset\n\nUnsupervised (filter method)\n— Look at input only\n— Select the subset that has the most information"
+  },
+  {
+    "text": "So, in the filter method, the search algorithm comes up with a feature subset that is evaluated",
+    "start": 819.08,
+    "end": 827.24,
+    "ocr_text": "Evaluation Strategies\n\nFilter Methods\n\nComplete feature set\n\nFilter FSS.\n\nSearch\n\nInformation\n‘content\n\nObjective\nfunction\n\nFinal feature subset\n\n~\nML\nalgorithm\n——\n\nWrapper Methods\n\n(aang aa)\n(training data)\n\nComplete feature set\n\nWrapper FSS.\n\n« ~)\nSearch\nA\n\nFeature Predictive\n‘subset ‘accuracy\n\nPR\nalgorithm\n\nFinal feature subset\n\n( PR\nalgorithm"
+  },
+  {
+    "text": "for information content and based on that search algorithm proceeds and finally, this module",
+    "start": 827.24,
+    "end": 832.84,
+    "ocr_text": "Evaluation Strategies\n\nFilter Methods\n\nComplete feature set\n\nFilter FSS.\n\nSearch 5\n\nFeature Information\n‘subset\n\nObjective\n\nfunction\n\nFinal teature subset\n\n~\nML\nalgorithm\nee\n\nWrapper Methods\n\n—\n\nComplete feature set\n\nWrapper FSS.\n\nPreaicuve\n‘subset ‘accuracy\n\nFinal feature subset\n\n( PR\nalgorithm"
+  },
+  {
+    "text": "gives a final feature subset. In the wrapper based method or supervised method, the search algorithm",
+    "start": 832.84,
+    "end": 840.92,
+    "ocr_text": "Evaluation Strategies\n\nFilter Methods\n\nComplete feature set\n\nFilter FSS.\n\nSearch 5\n\nFeature Information\n‘subset\n\nObjective\n\nfunction\n\nFinal teature subset\n\n~\nML\nalgorithm\nee\n\nWrapper Methods\n\n—\n\nComplete feature set\n\nWrapper FSS.\n\nPreaicuve\n‘subset ‘accuracy\n\nFinal feature subset\n\n( PR\nalgorithm"
+  },
+  {
+    "text": "outputs a feature subset which is again used with a pattern recognition of machine learning algorithm",
+    "start": 840.92,
+    "end": 848.52,
+    "ocr_text": "Evaluation Strategies\n\nFilter Methods Wrapper Methods\nComplete ature set Complete ature set\n\nFilter FSS.\n\nSearch\n\nInformation\n‘content\n\nWrapper FSS.\n\n| i Preaetve\neee pe\n\nFinal feature subset\n\nPR\nalgorithm"
+  },
+  {
+    "text": "and the prediction accuracy is obtained which is fed to the search algorithm and after this",
+    "start": 848.52,
+    "end": 854.36,
+    "ocr_text": "Evaluation Strategies\n\nFilter Methods\n\nComplete feature set\n\nFilter FSS.\n\nSearch\n\nInformation\n‘content\n\nFinal teature subset\n\n~\nML\nalgorithm\nli\n\nWrapper Methods\n\n(Sssuae)\n(training data)\n\nComplete feature set\n\nWrapper FSS.\n\nC ~)\nSearch\n4\n\n| T Preaetve\npro pe\n\nPR\nalgorithm\n\nFinal feature subset\n\nPR\nalgorithm"
+  },
+  {
+    "text": "whole module is completed, you have a feature subset which is used by your machine learning algorithm.",
+    "start": 854.36,
+    "end": 860.12,
+    "ocr_text": "Evaluation Strategies\n\nFilter Methods\n\nComplete feature set\n\nFilter FSS.\n\nSearch\n\nInformation\n‘content\n\nFinal teature subset\n\n~\nML\nalgorithm\nli\n\nWrapper Methods\n\n(Sssuae)\n(training data)\n\nComplete feature set\n\nWrapper FSS.\n\nC ~)\nSearch\n4\n\n| T Preaetve\npro pe\n\nPR\nalgorithm\n\nFinal feature subset\n\nPR\nalgorithm"
+  },
+  {
+    "text": "So, these are the two different methods of two different frameworks of feature selection.",
+    "start": 860.12,
+    "end": 867.64,
+    "ocr_text": "Evaluation Strategies\n\nFilter Methods\n\nComplete feature set\n\nFilter FSS.\n\nSearch\n\nFeature Information\n‘subset ‘content\n\nObjective ')\nfunction\n\nFinal teature subset\n\n~\nML\nalgorithm\na,\n\nWrapper Methods\n\n—\n\nComplete feature set\n\nWrapper FSS.\n\nC |\nSearch\nJ\n\nFogtuce | i Predicwe\nTaiset may\n\nFinal feature subset\n\n( PR\nalgorithm"
+  },
+  {
+    "text": "Now, how do you do the feature selection algorithm? So, first of all, what you can do is that",
+    "start": 868.84,
+    "end": 877.32,
+    "ocr_text": "Eealire Kod chor | KY 49 ,\n— fealixe Shock Fe oh, L ANS ;\ndcp -8 6, at\noS possible sib: dm CF =8 Xj) ¥2 mS\naa Ofsirnuewa\n\nEvoluadeon ="
+  },
+  {
+    "text": "if features are redundant, you may not use all the features. So, you can find uncorelated features.",
+    "start": 879.88,
+    "end": 888.36,
+    "ocr_text": "Evaluation Strategies\n\nFilter Methods\n\nComplete feature set\n\nFilter FSS.\n\nFeature Information\n‘subset ‘content\n\nObjective)\nfunction\n\nFinal teature subset\n\n~\nML\nalgorithm\nse)\n\nWrapper Methods\n\noes)\n(training data)\n\nComplete feature set\n\nWrapper FSS.\n\nC ~\nSearch\nJ\n\nFeature | T Predicwe\na 2\n\nFinal feature subset\n\nPR\nalgorithm"
+  },
+  {
+    "text": "You start with some features and then when you try to introduce the new feature, you do not",
+    "start": 890.12,
+    "end": 903.56,
+    "ocr_text": "Ce abive Keddy Aine GUase alae\n— fealiare Shh ov [Pe oh, By, Xn 5\n\nff\n\n~ ga PICE = 8X4, ¥%2). 2m\n\n:\nRod"
+  },
+  {
+    "text": "take that feature. If that feature is highly correlated with another feature which already",
+    "start": 903.56,
+    "end": 909.0,
+    "ocr_text": "a albinre Kode chine\n\n&)\n\neo” oe ocr Pe y hale"
+  },
+  {
+    "text": "contains the information about that feature. So, you select only uncorelated features and for",
+    "start": 909.0,
+    "end": 918.36,
+    "ocr_text": "reals re Kody cho\n\n—~ Fealace Shohon\n\n_ Find uncowdlal\n\nICE = 8 xh,02,. Had"
+  },
+  {
+    "text": "selecting, so you have to select uncorelated features and you also have to eliminate",
+    "start": 918.36,
+    "end": 926.44,
+    "ocr_text": "Dy uadiery\n\nFe alhne Kad chr | Coarse of Pirnetsi eT | —\n— fealiare Shh on Fe $4, L An5\n\n— uncorrdatiat bis = SX, 4, Botha"
+  },
+  {
+    "text": "redundant irrelevant features. So, there are two types, so there are some",
+    "start": 927.48,
+    "end": 933.88,
+    "ocr_text": "tealive Kode, chive\n\n~ Fealiace Sehch on Fe am, i, An 7\nCICK = 8X) #2, Pan\n\n~ Shedd uncorvel\nfoe"
+  },
+  {
+    "text": "heuristic algorithm that we can use. There are two frameworks for heuristic,",
+    "start": 933.88,
+    "end": 938.6,
+    "ocr_text": "tealive Kode, chive\n\n~ Fealiace Sehch on Fe am, i, An 7\nCICK = 8X) #2, Pan\n\n~ Shedd uncorvel\nfoe"
+  },
+  {
+    "text": "basic simple heuristic algorithm for features subset selection. There is forward selection",
+    "start": 938.6,
+    "end": 943.8,
+    "ocr_text": "Pet a)\n\nFealine Radu cho | | Curse of aimee\n— fealirxe Shon Fe $4, L An5\n\n4\n\nSue deh uncorredlabiat ae = e Ate Fm\na For,"
+  },
+  {
+    "text": "algorithm and backward selection algorithm. In forward selection algorithm, you start with",
+    "start": 943.88,
+    "end": 952.36,
+    "ocr_text": "Pet a)\n\nFealine Radu cho | | Curse of aimee\n— fealirxe Shon Fe $4, L An5\n\n4\n\nSue deh uncorredlabiat ae = e Ate Fm\na For,"
+  },
+  {
+    "text": "empty feature set and we add feature one at a time. So, you start from an empty set of features.",
+    "start": 952.84,
+    "end": 960.76,
+    "ocr_text": "Fealbine Rode chor meses Zl\n= Fealare Shebon Fe $7, L pee\noi foro\n\n- Backward"
+  },
+  {
+    "text": "So, let us first write about the forward selection algorithm.",
+    "start": 960.76,
+    "end": 964.76,
+    "ocr_text": "Fealine feduchn | VI\n\n~ Fealiace Schch Fe a L os\n\n_ Saeaed ur tal BRIE = 8H ¥2,- Poa\n= For we ae"
+  },
+  {
+    "text": "You start with empty feature set and then you add features one by one. So, you try each of the",
+    "start": 973.8,
+    "end": 1002.04,
+    "ocr_text": "Evaluation Strategies\n\nFilter Methods\n\nComplete feature set\n\nFilter FSS.\n\nFeature Information\n‘subset ‘content\n\"Objective\nfunction\n\nFinal feature subset\n\nML\nalgorithm\n—,\n\nWrapper Methods\n\n(Training data)\n\nComplete feature set\n\nWrapper FSS.\n\nC ~\nSearch\nJ\n\neatuge | T Preacive\nTamsel ey\nPR\nexgoritnm\n\nFinal feature subset\n\n( PR\nalgorithm"
+  },
+  {
+    "text": "remaining features and for each of them, you estimate the accuracy.",
+    "start": 1002.04,
+    "end": 1017.64,
+    "ocr_text": "Forward Seti\n“_ Stark with empty feria. ST"
+  },
+  {
+    "text": "So, you estimate the classification or regression error",
+    "start": 1017.64,
+    "end": 1027.24,
+    "ocr_text": "ee\n\nSS\n\nFaword Section\n\nSe\n— Start with empty a ST\n\nTy each emo nig falc"
+  },
+  {
+    "text": "for adding each specific feature and you select the feature that gives maximum improvement.",
+    "start": 1027.24,
+    "end": 1051.32,
+    "ocr_text": "urs. OL\n\nFrwond Sect a\n——————\n— Start with empty ferhin <t\n\n= [im ench we\n\n%"
+  },
+  {
+    "text": "To find which feature gives maximum improvement, you can use the validation set and not the",
+    "start": 1057.8,
+    "end": 1069.0,
+    "ocr_text": "Forward Shetrim\n_ Stent with empty feolixe s ST\n\n14 each wemou rw Hoe\n\n— Fetimae Claosfiead” ~ + erree For ackding tach Pak."
+  },
+  {
+    "text": "trading set as we have discussed earlier. So, you can stop when there is no significant improvement.",
+    "start": 1069.0,
+    "end": 1077.08,
+    "ocr_text": "foward Shedim\nStank with en ty feckins T\n\nP ei wae hon reg, errec Fv aching each Pak\nb sud eee\n<"
+  },
+  {
+    "text": "So, it is a greedy algorithm. You start with empty feature set, add features one by one.",
+    "start": 1088.12,
+    "end": 1095.96,
+    "ocr_text": "Forward Shectaim\n\nTOU ONE tA\n— Stark with empty mas ST\n\n= Ty each remain palin\n\n= Estima cleosdieakonf- - tan oor ackchang Gch faa"
+  },
+  {
+    "text": "When you add a feature, you try to evaluate the result of adding all the features and select",
+    "start": 1095.96,
+    "end": 1102.76,
+    "ocr_text": "foward Ge Anim\nSE\n\nStart with emst Lesditas T\n\n— Ty ch MB flee\n\n— Estima & PM ctionpres erro for ackchng Soh fash.\n~ Sdick feotp ° piss ese Provera"
+  },
+  {
+    "text": "that feature whose addition makes the maximum improvement and you continue this process until",
+    "start": 1102.76,
+    "end": 1108.76,
+    "ocr_text": "foward Ge Anim\nSE\n\nStart with emst Lesditas T\n\n— Ty ch MB flee\n\n— Estima & PM ctionpres erro for ackchng Soh fash.\n~ Sdick feotp ° piss ese Provera"
+  },
+  {
+    "text": "adding a feature does not give rise to significant improvement. Similarly, you can also have",
+    "start": 1108.76,
+    "end": 1116.28,
+    "ocr_text": "Taw ood Section\n\n= ‘Stent with em sty fale AT\nTy od ih ~ tealine\n\n= Esthet Weston foes, errec Foy aching cen Pak\n= Sle: ’ i\n~ Sry ,"
+  },
+  {
+    "text": "backward search in backward search. What should you start with? In backward search, you start with",
+    "start": 1116.28,
+    "end": 1132.68,
+    "ocr_text": "SheAsinn aa\n— Stl with empl fechins AT\n\n2a th wremad wha\nAr. lsoeceakonylieg errer for aching Sdn pep\n\n‘hp thon tea me Significant Dworrven,"
+  },
+  {
+    "text": "the full feature set. Then you try removing features.",
+    "start": 1133.32,
+    "end": 1143.56,
+    "ocr_text": "heckionfreg, error for dckdiing Sn tak.\nhak gare moe enprore mm\n~, tale, that i ne Signiticauk Dusen,\n\ni\n=\n4\n\nee"
+  },
+  {
+    "text": "You try removing features from the features that you have. You find that feature whose removal",
+    "start": 1148.76,
+    "end": 1160.12,
+    "ocr_text": "pL\nhike\n\nSa\n\n“Backward Sear\n\n—Bheok wth Gtk feshias A\n\n{¢ A285, errer for akong adh Parka.\nok Groen rhe mm prone runt\n\nWik mM Significant Drafrvenl."
+  },
+  {
+    "text": "gives rise to maximum improvement in performance. You try removing, you drop the feature.",
+    "start": 1160.92,
+    "end": 1171.32,
+    "ocr_text": "“Backward Search\n\nBlak wth gk is\n\n— Tey penev\n\n- Fete\nsaa ol hn etre for ack\n~ Shp See ae aoe"
+  },
+  {
+    "text": "You drop the feature with the smallest improvement or with smallest impact on error.",
+    "start": 1171.32,
+    "end": 1190.68,
+    "ocr_text": "“Ba ckwond Search\n= Ty Dama wns t\nive"
+  },
+  {
+    "text": "So, this is a similar algorithm for backward search to find a feature subset.",
+    "start": 1191.4,
+    "end": 1202.2,
+    "ocr_text": "“Backward Search\n\n= ek oth ay ated\n\n= Ty Jems”\n\n- Drop to = ath si"
+  },
+  {
+    "text": "Now, feature selection methods can be univariate methods which look at one feature at a time or",
+    "start": 1204.44,
+    "end": 1213.32,
+    "ocr_text": "Backward Search\n\nBeek with fohk Leshins T\n. =\n\nSir 4 ema wns\n\n~ Drop tod. ey sgrnallect Tra ak om cain"
+  },
+  {
+    "text": "can be multivariate feature. In univariate methods, methods, so why we do is that we look at each",
+    "start": 1213.32,
+    "end": 1222.12,
+    "ocr_text": "Feature selection\n\nUnivariate (looks at each feature independently of others)\n— Pearson correlation coefficient\n— F-score\n— Chi-square\n— Signal to noise ratio\n— mutual information\n= Ee.\n¢ Rank features by importance\n* Ranking cut-off is determined by user"
+  },
+  {
+    "text": "feature independently of the other features. For this, we can look for different methods. For example,",
+    "start": 1222.12,
+    "end": 1230.28,
+    "ocr_text": "Feature selection\n\nUnivariate (looks at each feature independently of others)\n— Pearson correlation coefficient\n— F-score\n— Chi-square\n— Signal to noise ratio\n— mutual information\n= (EWE,\n° Rank features by importance\n* Ranking cut-off is determined by user"
+  },
+  {
+    "text": "Pearson correlation coefficient, F score, chi square, signal to noise ratio, mutual information,",
+    "start": 1230.28,
+    "end": 1239.16,
+    "ocr_text": "Feature selection\n\nUnivariate (looks at each feature independently of others)\n— Pearson correlation coefficient\n— F-store\n— Chi-square\n— Signal to noise ratio\n— mutual information\n= (EWE,\n¢ Rank features by importance\n* Ranking cut-off is determined by user"
+  },
+  {
+    "text": "etcetera. Based on the method that we select, we will rank the features by importance.",
+    "start": 1239.4,
+    "end": 1245.88,
+    "ocr_text": "Feature selection\n\nUnivariate (looks at each feature independently of others)\n— Pearson correlation coefficient\n— F-score\n— Chi-square\n— Signal to noise ratio\n— mutual information\n= Pte.\n¢ Rank features by importance\n* Ranking cut-off is determined by user"
+  },
+  {
+    "text": "The user will select a cutoff and we will take the top M features above the cutoff.",
+    "start": 1246.68,
+    "end": 1254.12,
+    "ocr_text": "D. e\nKo ckwand, Seartn\n\n\\"
+  },
+  {
+    "text": "What top features? Top few features or features which have ranked above the cutoff.",
+    "start": 1254.12,
+    "end": 1258.92,
+    "ocr_text": "D. e\nKo ckwand, Seartn\n\n\\"
+  },
+  {
+    "text": "I will just talk about one or two of these methods.",
+    "start": 1258.92,
+    "end": 1261.96,
+    "ocr_text": "Feature selection\n\nUnivariate (looks at each feature independently of others)\n— Pearson correlation coefficient\n= [FSR\n— Chi-square\n— Signal to noise ratio\n— mutual information\n= Eve.\n¢ Rank features by importance\n* Ranking cut-off is determined by user"
+  },
+  {
+    "text": "But, this univariate methods basically what they do is that the measure some type of correlation",
+    "start": 1262.68,
+    "end": 1270.6,
+    "ocr_text": "Feature selection\n\nUnivariate (looks at each feature independently of others)\n— Pearson correlation coefficient\n= [FSR\n— Chi-square\n— Signal to noise ratio\n— mutual information\n= Eve.\n¢ Rank features by importance\n* Ranking cut-off is determined by user"
+  },
+  {
+    "text": "between two random variables. In this case, we are measuring the correlation between a feature,",
+    "start": 1270.6,
+    "end": 1277.32,
+    "ocr_text": "Feature selection\n\nUnivariate (looks at each feature independently of others)\n— Pearson correlation coefficient\n\n— F-score Univariate methods measure\n\n— Chi-square some type of correlation\n\n— Signal to noise ratio between two random variables\n— mutual information + the label (y,) and a fixed feature\n— Etc. (x; for fixed j)\n\n* Rank features by importance\n* Ranking cut-off is determined by user"
+  },
+  {
+    "text": "between a particular feature and the target variable. And they keep those features which have",
+    "start": 1277.96,
+    "end": 1284.2,
+    "ocr_text": "Feature selection\n\nUnivariate (looks at each feature independently of others)\n— Pearson correlation coefficient\n\n— F-score Univariate methods measure\n\n— Chi-square some type of correlation\n\n— Signal to noise ratio between two random variables\n— mutual information + the label (y,) and a fixed feature\n— Etc. (x; for fixed j)\n\n*¢ Rank features by importance\n* Ranking cut-off is determined by user"
+  },
+  {
+    "text": "higher correlation. And Pearson correlation coefficient measures the correlation.",
+    "start": 1284.2,
+    "end": 1290.76,
+    "ocr_text": "Feature selection\n\nUnivariate (looks at each feature independently of others)\n— Pearson correlation coefficient\n\n— F-score Univariate methods measure\n\n— Chi-square some type of correlation\n\n— Signal to noise ratio between two random variables\n— mutual information + the label (y,) and a fixed feature\n— Etc. (x; for fixed j)\n\n*¢ Rank features by importance\n* Ranking cut-off is determined by user"
+  },
+  {
+    "text": "Correlation is given by the following formula are equal to sigma over all the training examples",
+    "start": 1291.4,
+    "end": 1298.92,
+    "ocr_text": "Pearson correlation coefficient\n\n* Measures the correlation between two variables\n¢ Formula for Pearson correlation =\n\nw(x — X)(\"%-— Y)\nVEniCG — XP Von. — ¥)?\n\n° The correlation ris between +1 and —1.\n= +1 means perfect positive correlation\n= —1 in the other direction"
+  },
+  {
+    "text": "xi minus x bar yi minus y bar. x bar is the average value of the random variable xi which is",
+    "start": 1298.92,
+    "end": 1307.56,
+    "ocr_text": "Pearson correlation coefficient\n\n* Measures the correlation between two variables\n¢ Formula for Pearson correlation =\n\nDEG — X) (Vie ¥)\nVYrniOG — Xx)? /Sni% — Y)?\n\n° The correlation ris between +1 and —1.\n= +1 means perfect positive correlation\n= —1 in the other direction"
+  },
+  {
+    "text": "a feature y bar is the random variable average of the random variable y divided by this.",
+    "start": 1307.56,
+    "end": 1314.92,
+    "ocr_text": "Pearson correlation coefficient\n\n* Measures the correlation between two variables\n¢ Formula for Pearson correlation =\n\nDG — X)(% — ¥)\nVrEiCG — x)? /Sn% — ¥)2\n\n° The correlation ris between +1 and —1.\n= +1 means perfect positive correlation\n= —1 in the other direction"
+  },
+  {
+    "text": "So, the correlation value is between plus 1 and minus 1. Plus 1 means perfect positive correlation.",
+    "start": 1315.56,
+    "end": 1323.0,
+    "ocr_text": "Pearson correlation coefficient\n\n* Measures the correlation between two variables\n* Formula for Pearson correlation =\n\nDG — X)(% — ¥)\nVrEiCG — x)? /Sn1% — ¥)2\n\n° The correlation ris between +1 and —1.\n= +1 means perfect positive correlation\n= —1 in the other direction"
+  },
+  {
+    "text": "Minus 1 means perfect negative correlation. Both plus and minus 1 are close to plus 1 and minus 1",
+    "start": 1323.0,
+    "end": 1329.48,
+    "ocr_text": "Pearson correlation coefficient\n\n* Measures the correlation between two variables\n* Formula for Pearson correlation =\n\nDG — X)(% — ¥)\nVrEiCG — x)? /Sn1% — ¥)2\n\n° The correlation ris between +1 and —1.\n= +1 means perfect positive correlation\n= —1 in the other direction"
+  },
+  {
+    "text": "means highly correlated. Closer to 0 means no correlation. So, you want to select features which",
+    "start": 1329.48,
+    "end": 1335.4,
+    "ocr_text": "Pearson correlation coefficient\n\n* Measures the correlation between two variables\n¢ Formula for Pearson correlation =\n\nDEX — X)(% — ¥)\nYrniO — xX)? /Shi% — Y)?\n\n° The correlation ris between +1 and —1.\n= +1 means perfect positive correlation\n= —1 in the other direction"
+  },
+  {
+    "text": "have high positive or high negative correlation. This picture, this slide illustrates,",
+    "start": 1335.4,
+    "end": 1342.04,
+    "ocr_text": "Pearson correlation coefficient\n\n* Measures the correlation between two variables\n¢ Formula for Pearson correlation =\n\nDEX — X)(% — ¥)\nYrniO — xX)? /Shi% — Y)?\n\n° The correlation ris between +1 and —1.\n= +1 means perfect positive correlation\n= —1 in the other direction"
+  },
+  {
+    "text": "you know some points x and y. And for these points correlation is minus 1.",
+    "start": 1342.84,
+    "end": 1350.92,
+    "ocr_text": "Pearson correlation coefficient\n\n* Measures the correlation between two variables\n¢ Formula for Pearson correlation =\n\nDEX — X)(% — ¥)\nYrniO — xX)? /Shi% — Y)?\n\n° The correlation ris between +1 and —1.\n= +1 means perfect positive correlation\n= —1 in the other direction"
+  },
+  {
+    "text": "For this point, correlation is between 0 and minus 1. For these points correlation is between",
+    "start": 1351.64,
+    "end": 1357.4,
+    "ocr_text": "Signal to noise ratio\n\n¢ Differencein means divided by difference in\nstandard deviation between the two classes\n\nS2N(X,Y) = (Hx - Hy)/(x— oy)\n\n¢ Large values indicate a strong correlation"
+  },
+  {
+    "text": "0 and plus 1, these points correlation is plus 1 and for these points correlation is 0.",
+    "start": 1357.4,
+    "end": 1363.72,
+    "ocr_text": "Signal to noise ratio\n\n¢ Differencein means divided by difference in\nstandard deviation between the two classes\n\nS2N(X,Y) = (Hx - Hy)/(x— oy)\n\n¢ Large values indicate a strong correlation"
+  },
+  {
+    "text": "So, that is Pearson correlation coefficient. I will just briefly mention another method called",
+    "start": 1365.88,
+    "end": 1371.16,
+    "ocr_text": "Signal to noise ratio\n\n¢ Differencein means divided by difference in\nstandard deviation between the two classes\n\nS2N(X,Y) = (Hx - Hy)/(x— oy)\n\n¢ Large values indicate a strong correlation"
+  },
+  {
+    "text": "signal to noise ratio which measures the difference in means divided by the difference in",
+    "start": 1371.16,
+    "end": 1377.64,
+    "ocr_text": "Signal to noise ratio\n\n¢ Differencein means divided by difference in\nstandard deviation between the two classes\n\nS2N(X,Y) = (Hx - Hy)/(x— oy)\n\n¢ Large values indicate a strong correlation"
+  },
+  {
+    "text": "standard deviation between the two classes. And the formula is given by mu x minus mu y divided",
+    "start": 1377.64,
+    "end": 1384.76,
+    "ocr_text": "Signal to noise ratio\n\n¢ Differencein means divided by difference in\nstandard deviation between the two classes\n\nS2N(X,Y) = (Hx - Hy)/(3x— Sy)\n\n¢ Large values indicate a strong correlation"
+  },
+  {
+    "text": "by sigma x minus sigma y and large values indicate a strong correlation. So, for every feature,",
+    "start": 1384.76,
+    "end": 1391.88,
+    "ocr_text": "Signal to noise ratio\n\n¢ Differencein means divided by difference in\nstandard deviation between the two classes\n\nS2N(X,Y) = (Hx - Hy)/(3x— Sy)\n\n¢ Large values indicate a strong correlation"
+  },
+  {
+    "text": "you can find the value of SNR on with y and then sort them according to this value and select",
+    "start": 1391.88,
+    "end": 1401.16,
+    "ocr_text": "Signal to noise ratio\n\n¢ Differencein means divided by difference in\nstandard deviation between the two classes\n\nS2N(X,Y) = (Hx - Hy)/(Sx— Sy)\n\n¢ Large values indicate a strong correlation"
+  },
+  {
+    "text": "the largest values or those values which are above a cutoff. In contrast to the univariate",
+    "start": 1401.16,
+    "end": 1408.76,
+    "ocr_text": "7 Ko chwand Seart.\n\n— Try nemaving = &\n- Deop fotion with\n\nis Taped meu"
+  },
+  {
+    "text": "selection methods, we also have multivariate selection methods. In multivariate selection methods,",
+    "start": 1408.76,
+    "end": 1415.8,
+    "ocr_text": "Multivariate feature selection\n\nMultivariate (considers all features simultaneously)\nConsider the vector w for any linear classifier.\nClassification of a point x is given by w'x+Wo.\n\nSmall entries of w will have little effect on the dot\nproduct and therefore those features are less relevant.\n\nFor example if w = (10, .01, -9) then features O and 2 are\ncontributing more to the dot product than feature 1.\n— Aranking of features given by this w is 0, 2, 1."
+  },
+  {
+    "text": "they consider all the features. For example, we have talked about linear regression. So, linear",
+    "start": 1415.8,
+    "end": 1423.56,
+    "ocr_text": "Multivariate feature selection\n\nMultivariate (considers all features simultaneously)\nConsider the vector w for any linear classifier.\nClassification of a point x is given by w'x+wWo.\n\nSmall entries of w will have little effect on the dot\nproduct and therefore those features are less relevant.\n\nFor example if w = (10, .01, -9) then features O and 2 are\ncontributing more to the dot product than feature 1.\n— Aranking of features given by this w is 0, 2, 1."
+  },
+  {
+    "text": "regression will find a set of weights. In our class, we refer to those weights as beta 0, beta 1,",
+    "start": 1423.56,
+    "end": 1431.24,
+    "ocr_text": "Multivariate feature selection\n\nMultivariate (considers all features simultaneously)\nConsider the vector w for any linear classifier.\nClassification of a point x is given by w'x+wWo.\n\nSmall entries of w will have little effect on the dot\nproduct and therefore those features are less relevant.\n\nFor example if w = (10, .01, -9) then features O and 2 are\ncontributing more to the dot product than feature 1.\n— Aranking of features given by this w is 0, 2, 1."
+  },
+  {
+    "text": "beta 2, beta n which are the coefficients of the n attributes and the value of the bias.",
+    "start": 1431.24,
+    "end": 1437.0,
+    "ocr_text": "“Ko ckwand, Search\n\nShak wth fol fk of\n— Tey pemeving titi.\n\ne\n= Drop tot. pith s Talat om cin"
+  },
+  {
+    "text": "The classification of a point is given by this equation of the line and the coefficient matrix",
+    "start": 1437.56,
+    "end": 1446.36,
+    "ocr_text": "Multivariate feature selection\n\nMultivariate (considers all features simultaneously)\nConsider the vector w for any linear classifier.\nClassification of a point x is given by WIX+Wo.\n\nSmall entries of w will have little effect on the dot\nproduct and therefore those features are less relevant.\n\nFor example if w = (10, .01, -9) then features O and 2 are\ncontributing more to the dot product than feature 1.\n— Aranking of features given by this w is 0, 2, 1."
+  },
+  {
+    "text": "is given by W transpose. Now, you look at the values of this matrix. If W is small,",
+    "start": 1446.36,
+    "end": 1452.84,
+    "ocr_text": "Multivariate feature selection\n\nMultivariate (considers all features simultaneously)\nConsider the vector w for any linear classifier.\nClassification of a point x is given by w'x+Wo.\n\nSmall entries of w will have little effect on the dot\nproduct and therefore those features are less relevant.\n\nFor example if w = (10, .01, -9) then features O and 2 are\ncontributing more to the dot product than feature 1.\n— Aranking of features given by this w is 0, 2, 1."
+  },
+  {
+    "text": "the corresponding feature, if you have W i x i and W i is small, x i has less contribution to y.",
+    "start": 1453.48,
+    "end": 1462.2,
+    "ocr_text": "Multivariate feature selection\n\nMultivariate (considers all features simultaneously)\nConsider the vector w for any linear classifier.\nClassification of a point x is given by w'x+Wo.\n\nSmall entries of w will have little effect on the dot\nproduct and therefore those features are less relevant.\n\nFor example if w = (10, .01, -9) then features O and 2 are\ncontributing more to the dot product than feature 1.\n— Aranking of features given by this w is 0, 2, 1."
+  },
+  {
+    "text": "But if W i is large, x i has large contribution to y. If x i W i is small, it has small contribution.",
+    "start": 1462.84,
+    "end": 1470.6,
+    "ocr_text": "Spear at Gi Polite 3\n\n— Ty removing\n\nExe\n~ Drop totic SA act Tapa om cen"
+  },
+  {
+    "text": "So, for example, if W values at 10.01 minus 9, the features whose coefficients are 10 and minus 9,",
+    "start": 1471.72,
+    "end": 1483.4,
+    "ocr_text": "Multivariate feature selection\n\nMultivariate (considers all features simultaneously)\nConsider the vector w for any linear classifier.\nClassification of a point x is given by w'x+Wo.\n\nSmall entries of w will have little effect on the dot\nproduct and therefore those features are less relevant.\n\nFor example if w = (10, .01, -9) then features O and 2 are\ncontributing more to the dot product than feature 1.\n— Aranking of features given by this w is 0, 2, 1."
+  },
+  {
+    "text": "they have high contribution to the output. But the one with coefficient 0.01 has no contribution to",
+    "start": 1483.4,
+    "end": 1491.32,
+    "ocr_text": "Multivariate feature selection\n\nMultivariate (considers all features simultaneously)\nConsider the vector w for any linear classifier.\nClassification of a point x is given by w'x+Wo.\n\nSmall entries of w will have little effect on the dot\nproduct and therefore those features are less relevant.\n\nFor example if w = (19, .01, -9) then features O and 2 are\ncontributing more to the dot product than feature 1.\n— Aranking of features given by this w is 0, 2, 1."
+  },
+  {
+    "text": "the output. So, we can drop this feature. So, this is multivariate feature selection and the W",
+    "start": 1491.48,
+    "end": 1500.36,
+    "ocr_text": "Multivariate feature selection\n\nMultivariate (considers all features simultaneously)\nConsider the vector w for any linear classifier.\nClassification of a point x is given by w'x+Wo.\n\nSmall entries of w will have little effect on the dot\nproduct and therefore those features are less relevant.\n\nFor example if w = (10, .01, -9) then features O and 2 are\ncontributing more to the dot product than feature 1.\n— Aranking of features given by this w is 0, 2, 1."
+  },
+  {
+    "text": "can be obtained by any of linear classifiers. For example, we have seen a method in our class.",
+    "start": 1500.36,
+    "end": 1507.08,
+    "ocr_text": "Multivariate feature selection\n\n* The w can be obtained by any of linear classifiers\n¢ Avariant of this approach is called recursive feature\nelimination:\n— Compute w on all features\n— Remove feature with smallest w;,\n— Recompute w on reduced data\nIf stopping criterion not met then go to step 2"
+  },
+  {
+    "text": "A variant of this multivariate feature selection approach is called recursive feature elimination.",
+    "start": 1507.96,
+    "end": 1515.24,
+    "ocr_text": "Multivariate feature selection\n&\n\n* The w can be obtained by any of linear classifiers\n¢ Avariant of this approach is called recursive feature\nelimination:\n— Compute w on all features\n— Remove feature with smallest w;,\n— Recompute w on reduced data\nIf stopping criterion not met then go to step 2"
+  },
+  {
+    "text": "In recursive, a feature elimination, you compute the W on all the features and you remove the",
+    "start": 1515.32,
+    "end": 1522.28,
+    "ocr_text": "Multivariate feature selection\n\n* The w can be obtained by any of linear classifiers\n¢ Avariant of this approach is called recursive feature\nelimination:\n— Compute w on all features\n— Remove feature with smallest w;,\n— Recompute w on reduced data\nIf stopping criterion not met then go to step 2"
+  },
+  {
+    "text": "feature with the smallest value of W. Then you recomput W on the reduced data. So, initially you",
+    "start": 1522.28,
+    "end": 1528.76,
+    "ocr_text": "Multivariate feature selection\n\n* The w can be obtained by any of linear classifiers\n¢ Avariant of this approach is called recursive feature\nelimination:\n— Compute w on all features\n— Remove feature with smallest w;,\n— Recompute w on reduced data\nIf stopping criterion not met then go to step 2"
+  },
+  {
+    "text": "have n features. You remove the feature with the smallest W. You are left with n minus 1 features.",
+    "start": 1528.76,
+    "end": 1536.52,
+    "ocr_text": "Multivariate feature selection\n\n* The w can be obtained by any of linear classifiers\n° Avariant of this approach is called recursive feature\nelimination:\n— Compute w on all features\n— Remove feature with smallest w;,\n— Recompute w on reduced data\n— If stopping criterion not met then go to step 2"
+  },
+  {
+    "text": "On this n minus 1 features, you recomput W by invoking your algorithm again. And recursively,",
+    "start": 1536.52,
+    "end": 1543.72,
+    "ocr_text": "Ba chwand, Search\n— Thy nemetng ptt =\n~ Deop fotion with MS mpek mca"
+  },
+  {
+    "text": "you keep doing this until the stopping criteria is met. This is about multivariate feature selection.",
+    "start": 1543.72,
+    "end": 1551.0,
+    "ocr_text": "Ba chwand, Search\n— Thy nemetng ptt =\n~ Deop fotion with MS mpek mca"
+  },
+  {
+    "text": "With this, we come to the end of today's lecture. In the next volume, next part, we will talk",
+    "start": 1551.0,
+    "end": 1557.32,
+    "ocr_text": "Ba ckwond Search\n\noe Ty ace at 6\n- Drop totic Mic Tm Pak on Cn"
+  },
+  {
+    "text": "about feature extraction. Thank you.",
+    "start": 1557.32,
+    "end": 1566.52,
+    "ocr_text": "“Bo ckwand Search\n\n= Ty Jame ing fh ’\n~ Drop fat sith Bi pack om erie"
+  }
+]

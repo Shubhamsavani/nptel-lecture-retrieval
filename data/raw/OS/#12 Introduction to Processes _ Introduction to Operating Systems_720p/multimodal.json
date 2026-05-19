@@ -1,0 +1,806 @@
+[
+  {
+    "text": "Hello and welcome to this video. So, in this video we will look at processes which is",
+    "start": 0.0,
+    "end": 23.68,
+    "ocr_text": "NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "possibly the most crucial part of operating systems. So, processes as we know is a program in execution.",
+    "start": 23.68,
+    "end": 32.56,
+    "ocr_text": "NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "So, we will see today how operating systems manage processes. So, let us start with this now famous",
+    "start": 33.2,
+    "end": 39.6,
+    "ocr_text": "Virtual Address Space of a Process\n\n#include <stdio.h>\n\naint main(){\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\nS\n\n$gcc hello.c +-—PrOceSS __ MAX_SIZE\n\nStack 0\nao\n33\nExecutable |___\\|_ Heap ge\n(a.out) data Ss\n$./a.out (global and static) Ss\nEe\nText ae\n(instructions)\n\n(=)"
+  },
+  {
+    "text": "example of printing hello world onto a screen. So, when compiled with gcc hello.c it creates an",
+    "start": 39.6,
+    "end": 49.36,
+    "ocr_text": "Virtual Address Space of a Process\n\n#include <stdio.h>\n\naint main(){\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\nS\n\n$gcc hello.c +-—PrOceSS __ MAX_SIZE\n\nStack 0\nao\n33\nExecutable |___\\|_ Heap ge\n(a.out) data Ss\n$./a.out (global and static) Ss\nEe\nText ae\n(instructions)\n\n(=)"
+  },
+  {
+    "text": "executable a dot out. So, when a dot out is executed a process is created part of this process",
+    "start": 49.36,
+    "end": 57.6,
+    "ocr_text": "Virtual Address Space of a Process\n\n#include <stdio.h>\n\nint main(){\nchar str[] = “Hello World\\n\";\nprintf(\"xs\", str);\n\n$gcc hello.c —PfoceSS _ MAX_SIZE\n\nStack -\nan\n33\nExecutable |___\\|_ Heap ge\n(a.oui) data 2s\n'$./a.out (global and static) so\nze\nText ale\n(instructions)\n\nfo)"
+  },
+  {
+    "text": "will be in the RAM and it is identified by a virtual address map. So, the virtual address map is a",
+    "start": 57.6,
+    "end": 66.16,
+    "ocr_text": "Virtual Address Space of a Process\n\n#include <stdio.h>\n\nint main(){\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\n\n$gcchello.c —PfoceSS _ MAX_SIZE\n\nStack 0\nnn\n33\nExecutable |_—_\\|_ Heap ge\n(a.out) data 2s\n$./a.out (global and static) | § 6\nEe\nText ats\n(instructions)\n\nfo)"
+  },
+  {
+    "text": "sequence of continuous addressable memory locations starting from 0 to a limit of max size.",
+    "start": 66.16,
+    "end": 73.92,
+    "ocr_text": "Virtual Address Space of a Process\n\n#include <stdio.h>\n\nint main(){\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\n\n$gcchello.c -—ProceSS _ MAX_SIZE\n\nStack a\nann\n38\nExecutable }_—__\\|_ Heap ge\n(a.out) data ss\n$./a.out (global and static) | § 6\ns¢\nText £\n(instructions)\n\nfo)\nv"
+  },
+  {
+    "text": "So, within this virtual address map we have various aspects of the process including the",
+    "start": 74.8,
+    "end": 81.04,
+    "ocr_text": "Virtual Address Space of a Process\n\n#include <stdio.h>\n\nint main(){\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\n\n$gcchello.c -—ProceSS _ MAX_SIZE\n\nStack a\nann\n38\nExecutable }_—__\\|_ Heap ge\n(a.out) data ss\n$./a.out (global and static) | § 6\ns¢\nText £\n(instructions)\n\nfo)\nv"
+  },
+  {
+    "text": "instructions, global and static data heap as well as the stack. So, as we have seen in an earlier",
+    "start": 81.68,
+    "end": 90.64,
+    "ocr_text": "Virtual Address Space of a Process\n\n#include <stdio.h>\n\nint main(){\nchar str[] = “Hello World\\n\";\nprintf(\"%s\", str);\n\n$gcc hello.c + p—PrOSeSS _ MAX_SIZE\n\nStack 0\nnn\n33\nExecutable |__—\\|_ Heap ge\n(a.out) data Ss\n$./a.out (global and static) | § ©\nEe\nText me\n(instructions)\n\nfo)"
+  },
+  {
+    "text": "video the virtual address space or virtual address map of a process is divided into equally",
+    "start": 90.64,
+    "end": 98.72,
+    "ocr_text": "Virtual address\nmap of a process\n\nVirtual Address Map of a Process\n\nRAM\n14, 5\n5 MAX_SIZE Po\n5 12\n4 11 4\n3 10\n2 gl 3.\nil 0 8\nprocess page table 7 6\nblock —_ page frame A 1\n1 6 5\n2 13 4\n8 9 3\n4 id 2\n5 14 1\n6 7"
+  },
+  {
+    "text": "sized blocks. So, typically the size of each block is 4 kilobytes. Again there is each process",
+    "start": 98.72,
+    "end": 107.2,
+    "ocr_text": "Virtual address\nmap of a process\n\nVirtual Address Map of a Process\n\nRAM\n14, 5\n5 MAX_SIZE be\n5 12\n4 1 4\n3 10\nWZ 9 3\n1 0 8\n_ process page table 7 6\nblock _ page frame 6 1\ni 6 5\n2 ® 4\ng 9 3\n4 11 2\n5 14 1\n6 7"
+  },
+  {
+    "text": "would also have a process page table in memory which maps each block of the process into a",
+    "start": 107.2,
+    "end": 114.88,
+    "ocr_text": "Virtual address\nmap of a process\n\nVirtual Address Map of a Process\n\nRAM\n14[ 5\n5 MAX_SIZE PY\n5 12\n4 1 4\nS 10\n2 gl 3.\n1 im) 8\n~ process page table 7 6\nblock” page frame 6 1\nif 6 5\n2 13 4\ng 9 3\n4 11 2\n5 14 1\n6 7"
+  },
+  {
+    "text": "corresponding page frame. The RAM as we have seen is divided into page frames of size 4 kb",
+    "start": 114.88,
+    "end": 123.2,
+    "ocr_text": "Virtual address\nmap of a process\n\nVirtual Address Map of a Process\n\nRAM\n14[ 5\n5 MAX_SIZE PY\n5 12\n4 1 4\nS 10\n2 gl 3.\n1 im) 8\n~ process page table 7 6\nblock” page frame 6 1\nif 6 5\n2 13 4\ng 9 3\n4 11 2\n5 14 1\n6 7"
+  },
+  {
+    "text": "similar to the block size and these page frames contain the actual code and data of the process",
+    "start": 123.2,
+    "end": 131.52,
+    "ocr_text": "Virtual address\nmap of a process\n\nVirtual Address Map of a Process\n\nsin\n\nMAX_SIZE\n\nblock\n1\n\n2)\n3\n4\n5\n6\n\nOp rocess page table\n\npage frame\n6\n\n13\n9\nFl\n14\n7\n\n14\n\n12\n11\n10\n\nSBNWATANDMO"
+  },
+  {
+    "text": "which is being executed. Now, we have seen these in a previous video but the question which we need",
+    "start": 131.52,
+    "end": 140.0,
+    "ocr_text": "Virtual address\nmap of a process\n\nVirtual Address Map of a Process\n\na\\Ny]o|a|alo\n\nMAX_SIZE\n\nblock\n1\n\n2\n3\n4\n5\n6\n\n0 rocess page table\n\npage frame\n6\n\n13\n9\nFm\n14\n7\n\n14\n\n12\n11\n10\n\n©\n\nSNWATOANO\n\nRAM\n~e\n\n2\n\n4\n\n3\n\n6\n\n1"
+  },
+  {
+    "text": "to ask is where does the operating system or where does the kernel reside in this entire scheme.",
+    "start": 140.0,
+    "end": 146.96,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\nRAM\n5 MAX_SIZE ea 2\n5 12\n4 1 4\n3 10\n2 gl___ 3.\n1 0 8\nprocess page table _ 7 6\nblock _ page frame 6 1\n1 6 5\n2 13 4\ng 9 3\n4 1 2\n5 14 1\n6 7"
+  },
+  {
+    "text": "So, as we know the kernel is an other software and has to be present in the RAM to execute thus",
+    "start": 147.68,
+    "end": 157.76,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\nMAX_SIZE\n\nalylo|alalo\n\n0\nprocess page table\nblock _ page frame\n6\n\n13\n9\nFl\n14\n7\n\n©] a} s) oo] no} =\n\n14\n\n12\n11\n10\n\n©\n\nSBNWATONO"
+  },
+  {
+    "text": "in most operating systems such as Linux as well as in the operating systems which we are studying",
+    "start": 157.76,
+    "end": 164.56,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\nRAM\n14, 5\n5 MAX_SIZE a\n5 12\n4 1 4\n3 10\n2 gl 3.\n1 0 8\nprocess page table 7 6\nblock _ page frame 6 1\n1 6 5\n2 13 4\ng 9 3\n4 11 2\n5 14 1\n6 7"
+  },
+  {
+    "text": "that is x v 6 the kernel resides in the lower part of the memory starting from page frames 1, 2, 3 and",
+    "start": 164.56,
+    "end": 173.04,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\nRAM\n14, 5\n5 MAX_SIZE a\n5 12\n4 1 4\n3 10\n2 gl 3.\n1 0 8\nprocess page table 7 6\nblock _ page frame 6 1\n1 6 5\n2 13 4\ng 9 3\n4 11 2\n5 14 1\n6 7"
+  },
+  {
+    "text": "so on. Just like every other page frame the kernel 2 is divided into page frames of equal size.",
+    "start": 173.04,
+    "end": 182.48,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\no\n\nalnlolala\n\nMAX_SIZE\n\nblock\n1\n\n2\n3\n4\n5\n6\n\n0 rocess page table\n\npage frame\n6\n\n13\n9\nrm\n14\n7\n\n14\n\n12\n11\n10\n\nSBNWATOANDMO\n\nKernel"
+  },
+  {
+    "text": "Now, since we are using the virtual addressing in the system the page frames corresponding to the",
+    "start": 183.04,
+    "end": 189.6,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\nalylo|alalo\n\nMAX_SIZE\n\n0\nprocess page table\nblock _ page frame\n6\n\n13\n9\nrm\n14\n7\n\n©} a} A) o} no} =\n\n14\n\n12\ni]\n10\n\n©\n\nSNWATOANO\n\nKernel"
+  },
+  {
+    "text": "kernel are mapped into the virtual address space of the process. So, the kernel code and data",
+    "start": 189.6,
+    "end": 196.8,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\nkernel\n\no\n\n®|~]00|~0\n\nalnlolala\n\nMax Limit\n\nMAX_SIZE\n\nblock\n1\n\n2\n3\n4\n5\n6\n\n0 process page table _\n\npage frame\n6\n\n13\n9\nrm\n14\n7\n\n14\n\n12\na\n10\n\nSANWATOANDMO"
+  },
+  {
+    "text": "are present above the max size and below a limit known as max limit. Now, again in the processes",
+    "start": 196.88,
+    "end": 203.92,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\nkernel\n\no\n\n|r] || c| o/s]\n\nMax Limit\n\nMAX_SIZE\n\n9 process page table _\n\nblock\n\n©} a} s)o}n} =\n\npage frame\n6\n\n13\n9\nrl\n14\n7\n\n14\n\n12\n11\n10\n\n©\n\nSANWATONO\n\nNJ 0}o/S\n\nkernel"
+  },
+  {
+    "text": "page table there are entries corresponding to this map for instance 7, 8, 9 and 10 corresponded",
+    "start": 203.92,
+    "end": 211.76,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\nkernel\n\no\n\n|r] || c| o/s]\n\nMax Limit\n\nMAX_SIZE\n\n9 process page table _\n\nblock\n\n©} a} s)o}n} =\n\npage frame\n6\n\n13\n9\nrl\n14\n7\n\n14\n\n12\n11\n10\n\n©\n\nSANWATONO\n\nNJ 0}o/S\n\nkernel"
+  },
+  {
+    "text": "to the blocks that have the kernel code and data and the page table tells us that they are mapped",
+    "start": 211.76,
+    "end": 218.16,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\n— Max Limit\ngs\nSe RAM\n7 5\n~ 4 MAX_SIZE 14\n| 13\n5 12\n| 4 _| 4 4\n3 10\n2 gl___ 3.\n1 0 8\nprocess page table 7 6\nbeck page fame 6 ‘il\n5\nspe ‘e\n3\n4 1 | 8\n[7 i)\ntf 1\n8 2\n9 3\nfo 4\n\nkernel"
+  },
+  {
+    "text": "into page frames 1, 2, 3 and 4. Now, we could divide this particular virtual address space into",
+    "start": 218.16,
+    "end": 226.48,
+    "ocr_text": "Virtual address\nmap of a process\n\nWhere does the kernel reside?\n\n— Max Limit\n\ngs\n\n58 RAM\n7 5\n\n~ MAX_SIZE 4\n\na\nis\n\nrs\ni\n\no\no\n\nnN\n©\no\n\n8\nO rocess page table 7 6\nbork page fame 6 1\n5{/-—____}\nspe ‘ye\n3\n4 1  e:)\n5 14 4 7\n6 7\ni 1\n8 2\n9 3\n10 4"
+  },
+  {
+    "text": "two components. One is the user space which corresponds to the to this blue area which contains",
+    "start": 226.48,
+    "end": 235.12,
+    "ocr_text": "Kernel and User Space\n\nMax Limit\n\n|eul9y\nZola} |] Jo] jol-| |/or/aoln\na\nTANT ODOROMTANS\nssaooe\nued jaulay\nXo\nwe}\noa Se olollls\nssa00e ued ea bm il bb DD\nty WwesBoud sesn 3S\nBS g\n7) Ble\nx 9} 8 —Jau}oo|+]10}«0|m| 0 oS\nQa\n2 °\nS}o}c0)n|0]t9|-4| o/euf—\n\naoeds\njeway\n\neoeds\ndoesn"
+  },
+  {
+    "text": "the user processes code data and other segments such as the stack in heap. Again, there is the",
+    "start": 235.12,
+    "end": 243.68,
+    "ocr_text": "Kernel and User Space\n\nMax Limit\n\njeusey\noe\nTONE OOOROM TONS\n\nsseooe\nued jeulay\nXo\nCB\nix}\nne BE O/2|0/=|2)n | eleva\nsseo0e ued Bg Ole |)\noO\nuy wesBoud ses as\nN a\n7) Be\nx 9} 8 —|au}oo|+)10} | m0 oS\naa\n2 °\n2} a} c0)n|0]t9| +] eo /euf—\n\naoeds eoeds\njeway gesn"
+  },
+  {
+    "text": "kernel space which corresponds to the kernel code data and other aspects of the kernel.",
+    "start": 243.68,
+    "end": 249.2,
+    "ocr_text": "Kernel and User Space\n\nMax Limit\n\njeusey\noe\nTONE OOOROM TONS\n\nsseooe\nued jeulay\nXo\nCB\nix}\nne BE O/2|0/=|2)n | eleva\nsseo0e ued Bg Ole |)\noO\nuy wesBoud ses as\nN a\n7) Be\nx 9} 8 —|au}oo|+)10} | m0 oS\naa\n2 °\n2} a} c0)n|0]t9| +] eo /euf—\n\naoeds eoeds\njeway gesn"
+  },
+  {
+    "text": "So, the max size defines the boundary between the user space and the kernel space.",
+    "start": 250.16,
+    "end": 254.88,
+    "ocr_text": "Kernel and User Space\n\nMax Limit\n\njeusey\noe\nTONE OOOR OM TONS\n\nsseooe\nueo jauey\nXo\na 85\nsse00e ued Fo hea bal be bab UD lo\nwy WwesBoud ses 3S\nBS g\n7) Be\nx ee Da bad i\nsit oft\n\n2} 0|09|% | co] u0| + 09] eu) —\n\nuU—t__\n\naoeds eoeds\njoey gesn"
+  },
+  {
+    "text": "A user program can only access any code or data present in this user space.",
+    "start": 255.68,
+    "end": 263.2,
+    "ocr_text": "Kernel and User Space\n\nMax Limit\n\njausey\noe\nTONE OOOROM TONS\n\nssaooe\nued jaulay\nXo\n2\noop Se lololcls\nssaooe ued Bid ba i baba\nwy WwesBoud ses 3S\nBS a\noO Ble\nBs 9} 8 —Ja}oo|+}10}o|m 0 oS\nQa\n= od\nS} a} 00|n | 0) 10 | 00/0 —\n\neoeds eoeds\njeway gesn"
+  },
+  {
+    "text": "The user program cannot access anything in the kernel space. On the other hand, the kernel can",
+    "start": 264.8,
+    "end": 271.36,
+    "ocr_text": "Kernel and User Space\n\nMax Limit\n\njausey\noe\nTONE OOOROM TONS\n\nssaooe\nued jaulay\nXo\n2\noop Se lololcls\nssaooe ued Bid ba i baba\nwy WwesBoud ses 3S\nBS a\noO Ble\nBs 9} 8 —Ja}oo|+}10}o|m 0 oS\nQa\n= od\nS} a} 00|n | 0) 10 | 00/0 —\n\neoeds eoeds\njeway gesn"
+  },
+  {
+    "text": "access code as well as data in both the kernel space as well as the user space. So, this prevents the",
+    "start": 271.36,
+    "end": 280.72,
+    "ocr_text": "Kernel and User Space\n\nMax Limit\n\njeusey\noe\nTONE OOOROM TONS\n\nssaooe\nued jaulay\nI\nXo\nQ\noop Se olalcls\nssoo0e ued eBid ba bid baa\n[sey\n4 yy weiBoud sesn 3g\nBS 8\nOo Be\nx O18 —Jau}oo|+)10}o|m | 0 oS\nQa\n= ol\n2} a} c0)n|0]t9|+| eoeuf—\n\neoeds eoeds\njeway gesn"
+  },
+  {
+    "text": "user space programs from maliciously modifying data or modifying kernel structures.",
+    "start": 281.6,
+    "end": 289.92,
+    "ocr_text": "Kernel and User Space\n\nMax Limit\n\njeusey\now\nTONE OOOR OM TONS\n\nsseo0e\nued jausay\n\nim\nssaooe ued\nweuBoud Jas¢\n\nMAX_SIZE\n\nSo} 00|r| | 10] +] co) 0u)—\n\nuLUH—t__\n\neoeds\ngesn\n\neoeds\njeway\n\nz\niv)\n\nOe O|2/0|Z|Z\\n| alo <\n2D\n\na8\n\n3\n\nBx\n\nSha] -|-v}oo}<+].0| of sfeofer|=\nQa"
+  },
+  {
+    "text": "So, another thing to notice is that there is a contiguous mapping between the kernel addresses",
+    "start": 291.52,
+    "end": 298.72,
+    "ocr_text": "Kernel and User Space\n\nMax Limit\n\njausey\noe\nTONE OOOROM TONS\n\nssaooe\nued jaulay\n[\n32\n= JE) o|0 t\n( =\nsseooe ued Baa bad il baba\nwy WwesBoud ses 3S\nBS g\n7) Be\nBs 9} 8 — Jaro} +]10}«o|m 0 oS\nQa\n= ol\n}op}c0)n|0]t9|4] eo /euf—\n\naoeds eoeds\njoey gesn"
+  },
+  {
+    "text": "in the virtual space of the process to the corresponding physical frames in which the kernel gets",
+    "start": 298.72,
+    "end": 304.64,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA : 0X00124345\n\nprocess page table\n\nblock\n1\n\n©) 0) o} a) A} wo} >\n\nS\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 a\n10\no|__ 3\n\nThis makes it easy to convert\n* a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "mapped into. For instance, the kernel blocks 7, 8, 9 and 10 get mapped into the contiguous",
+    "start": 304.64,
+    "end": 313.92,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA : 0X00124345\n\nprocess page table\n\nblock\n1\n\n©) 0) o} a) A} wo} >\n\nS\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 a\n10\no|__ 3\n\nThis makes it easy to convert\n* a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "page frames 1, 2, 3 and 4. So, why is this contiguous mapping actually used? So, one most important aspect",
+    "start": 313.92,
+    "end": 324.4,
+    "ocr_text": "Contiguous Mapping of Kernel\n\n— jax Limit\nCo) 10\nc 9\n58 RAM\nx 14 5\n6 13 2\n5 12\n4 1 4\n2 10\ni i\n\nprocess page table\n\nblock _ page frame\n\n6\n13 4|__10\n9 3,9\nIn xv6 1 2 8\nMAX_SIZE : 0x80000000 14 7\n\ni This makes it easy to convert\n\n* a VA to PA (by subtracting MAX_SIZE)\n+ aPAto VA (by adding MAX_SIZE)\n\nVA : 0x80124345\nPA : 0X00124345\n\n©) 0) oa) A) || =\n\ncS)\nRona\n\nkernel"
+  },
+  {
+    "text": "is that given this contiguous mapping, it is easy for the kernel to make conversions from virtual",
+    "start": 324.4,
+    "end": 331.68,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA : 0X00124345\n\nblock\n41\n\n©) 0) om) A] wo} >\n\no\n\nprocess page table\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 4\n10\no|__3\n\nThis makes it easy to convert\n* a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "address to physical address and vice versa. For instance, to convert from virtual address in the",
+    "start": 331.68,
+    "end": 338.4,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA : 0X00124345\n\nprocess page table\n\nblock\n41\n\n©) 0) No) A} wo} >\n\nSo\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 a\n10\ng|__3\n\nR\nThis makes it easy to convert\n\n+ a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "kernel space to the corresponding physical address in the page frames of the kernel, a simple",
+    "start": 338.4,
+    "end": 344.56,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nao)\n£ RAM\noO\na4 14{ 5\n13{_ _2\n12\n\"1 4\n10\no|__ 3\nprocess page table\nblock _ page frame\n1 6\n2 13\n3 9\nIn xv6 4 4\nMAX_SIZE : 0x80000000 5 14\n$ i This makes it easy to convert\nVA : 0x80124345 5 7 * a VAto PA (by subtracting MAX_SIZE)\nPA : 0X00124345 9 3 * a PA to VA (by adding MAX_SIZE)\n10 4\n\nkernel"
+  },
+  {
+    "text": "subtraction by max size would do the trick. For instance, in x v 6, where the max size is defined",
+    "start": 344.56,
+    "end": 351.68,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nao)\n£ RAM\noO\na4 14{ 5\n13{_ _2\n12\n\"1 4\n10\no|__ 3\nprocess page table\nblock _ page frame\n1 6\n2 13\n3 9\nIn xv6 4 4\nMAX_SIZE : 0x80000000 5 14\n$ i This makes it easy to convert\nVA : 0x80124345 5 7 * a VAto PA (by subtracting MAX_SIZE)\nPA : 0X00124345 9 3 * a PA to VA (by adding MAX_SIZE)\n10 4\n\nkernel"
+  },
+  {
+    "text": "as 0 x 8 0 0 0 0, a virtual address of 0 x 8 0 1 2 4 3 4 5 can be converted to the corresponding",
+    "start": 351.92,
+    "end": 365.36,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA : 0X00124345\n\nblock\nil\n\n©) 0) No) A] wo}\n\no\n\nprocess page table\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 4\n10\na|__3\n\nThis makes it easy to convert\n* a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "physical address by subtracting the max size. So, the physical address would be simply written as",
+    "start": 365.36,
+    "end": 370.96,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA : QX00124345\n\nblock\nil\n\n©) 0) No) a) A] wo} >\n\nS\n\nprocess page table\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 4\n10\no|__3\n\nThis makes it easy to convert\n* a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "0 x 0 0 1 2 4 3 4 5. Similarly, a physical address corresponding in the kernel",
+    "start": 370.96,
+    "end": 379.84,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA : QX00124345\n\nblock\nil\n\n©) 0) No) a) A] wo} >\n\nS\n\nprocess page table\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 4\n10\no|__3\n\nThis makes it easy to convert\n* a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "code and data in the kernel page frames can be converted to the corresponding virtual address",
+    "start": 380.8,
+    "end": 387.12,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA : 0X00124345\n\nprocess page table\n\nblock\n1\n\n©) 0) a) a) A} wo} >\n\nS\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 a\n10\na|__ 3\n\nThis makes it easy to convert\n* a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "in the kernel space by adding max size. For example, in this case the physical address 0 x 0 0",
+    "start": 388.96,
+    "end": 396.96,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA : 0X00124345\n\nprocess page table\n\nblock\nil\n\n©) 0) No) A} wo} >\n\nSo\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 4\n10\na|__ 3\n\nThis makes it easy to convert\n* a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "1 2 4 3 4 5 can be converted to the corresponding virtual address in the kernel space by adding this",
+    "start": 396.96,
+    "end": 405.52,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA: 0X00124345\n\nprocess page table\n\nblock\n41\n\n©) 0) N om) A] wo}\n\nSo\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 4\n10\no|__ 3\n\nThis makes it easy to convert\n* a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "max size to get 0 x 8 0 1 2 4 3 4 5. So, what happens when we have multiple processes in the system,",
+    "start": 405.52,
+    "end": 418.72,
+    "ocr_text": "Contiguous Mapping of Kernel\n\nkernel\n\nIn xv6\nMAX_SIZE : 0x80000000\n\nVA : 0x80124345\nPA : 0X00124345\n\nblock\n1\n\n©) 0) om} Ale}\n\nSo\n\nprocess page table\n\npage frame\n\n13\n\nRAM\n14 5\n13 2\n12\n\"1 4\n10\na|__ 3\n\nThis makes it easy to convert\n* a VA to PA (by subtracting MAX_SIZE)\n+ a PA to VA (by adding MAX_SIZE)\n\nkernel"
+  },
+  {
+    "text": "the kernel space is mapped identically in all virtual address spaces of every process.",
+    "start": 418.72,
+    "end": 425.2,
+    "ocr_text": "Kernel and multiple processes\n\n3|N]o/8/|o|~1]0@/0|S\n\nMax Limit\n\nMAX_SIZE\n\nMax Limit\n\nMAX_SIZE\n\n> |1]0]8]a]0|S]@/o]S\n\nprocess page table\n\nN}@/O}S) |>|o|s)e/e0)A)a}r :\n\nkernel"
+  },
+  {
+    "text": "For instance, above max size to and below max limit the kernel space is present in all processes.",
+    "start": 425.2,
+    "end": 434.56,
+    "ocr_text": "Kernel and multiple processes\n\nca\n\n3 ]o|8)a|o|~1]0/0|5\n\nMax Limit\n\nMax Limit\n\nMAX_SIZE\n\nMAX_SIZE\n\n= |N]e/4/a1}o|~1]0/0|/S\n\nprocess page table\n\nkernel"
+  },
+  {
+    "text": "Similarly, the page table in each process also has an identical mapping between the kernel page",
+    "start": 436.48,
+    "end": 444.88,
+    "ocr_text": "Kernel and multiple processes\n\n3|N]o/A]n|o|~1]0/0|S\n\nMax Limit\n\nMax Limit\n\nMAX_SIZE\n\nMAX_SIZE\n\n=|N]e/4/a11o|~1]0/0|S\n\nprocess page table\n\nkernel"
+  },
+  {
+    "text": "tables and the corresponding page frames that the kernel occupies as can be seen in these few entries",
+    "start": 444.88,
+    "end": 454.16,
+    "ocr_text": "Kernel and multiple processes\n\n3|N]o/A]n|o|~1]0/0|S\n\nMax Limit\n\nMax Limit\n\nMAX_SIZE\n\nMAX_SIZE\n\n=|N]e/4/a11o|~1]0/0|S\n\nprocess page table\n\nkernel"
+  },
+  {
+    "text": "as well as these few entries. Now, one thing to be noticed is that although the virtual address",
+    "start": 454.16,
+    "end": 461.44,
+    "ocr_text": "Kernel and multiple processes\n\n3 | ]o/8]n]o|~1]0/0|S\n\nMax Limit\n\nMAX_SIZE\n\nMax Limit\n\nMAX_SIZE\n\n=| ]e/4)a1o|~1]0/0|S\n\nprocess page table\n\nNj@}olS} |= coed\n\nkernel"
+  },
+  {
+    "text": "of each process has different entries for the kernel, however all processes eventually map",
+    "start": 461.92,
+    "end": 469.52,
+    "ocr_text": "Kernel and multiple processes\n\n3|N]o/8]a|o|~1]0/0|/S\n\nMax Limit\n\nMAX_SIZE\n\nMax Limit\n\nMAX_SIZE\n\na |N]e/4/a1]o|~1]0/o|S\n\nprocess page table\n\nN}@/O}S} |>|o|s)e/0)-A)a}r :\n\nkernel"
+  },
+  {
+    "text": "their kernel space into the same page frames in the RAM. So, what this means is that we have just",
+    "start": 469.52,
+    "end": 476.88,
+    "ocr_text": "Kernel and multiple processes\n\n=|] o/8)n|o|~1]0/o|S\n\nMax Limit\n\nMAX_SIZE\n\nMax Limit\n\nMAX_SIZE\n\n= |N]e/4)a]o|~1]0@/o|S\n\nprocess page table\n\nkernel"
+  },
+  {
+    "text": "a single copy of the kernel present in the RAM. However, there can be multiple identical entries",
+    "start": 476.88,
+    "end": 485.12,
+    "ocr_text": "Kernel and multiple processes\n\naN ]o/8]n}o|~1]0/0|S\n\nMax Limit\n\nMax Limit\n\nMAX_SIZE\n\nMAX_SIZE\n\n= |N]e/4)a1]o|~1]0@/0/S,\n\nprocess page table\n\nkernel"
+  },
+  {
+    "text": "in each process page table corresponding to the kernel code and data.",
+    "start": 485.2,
+    "end": 490.96,
+    "ocr_text": "Kernel and multiple processes\n\n=|N]e/8]a}o|~1]0/o0|S\n\nMax Limit\n\nMAX_SIZE\n\nMax Limit\n\nMAX_SIZE\n\naN ]e/4/a11o|~1]0/0|S,\n\nprocess page table\n\nN}@/O/S) |>|o|>)e/eo/-A)a}r :\n\nkernel"
+  },
+  {
+    "text": "Now, that we have seen where the kernel exists in the RAM as well as where it gets mapped to",
+    "start": 493.04,
+    "end": 498.8,
+    "ocr_text": "Kernel and multiple processes\n\n=|N]e/8]a}o|~1]0/o0|S\n\nMax Limit\n\nMAX_SIZE\n\nMax Limit\n\nMAX_SIZE\n\naN ]e/4/a11o|~1]0/0|S,\n\nprocess page table\n\nN}@/O/S) |>|o|>)e/eo/-A)a}r :\n\nkernel"
+  },
+  {
+    "text": "in the virtual address space of each process. Now, we will look at what meta data the kernel has",
+    "start": 498.8,
+    "end": 505.52,
+    "ocr_text": "Kernel Data about a Process\n\n* Corresponding to each process, the kernel keeps some metadata"
+  },
+  {
+    "text": "corresponding to each process that runs in the system. So, each process in the system has three meta",
+    "start": 505.52,
+    "end": 511.68,
+    "ocr_text": "Kernel Data about a Process\n\n* Corresponding to each process, the kernel keeps some metadata"
+  },
+  {
+    "text": "data known as the process control block, a kernel stack for that user process and the corresponding",
+    "start": 511.76,
+    "end": 519.44,
+    "ocr_text": "Kernel Data about a Process\n\n* Corresponding to each process, the kernel keeps some metadata"
+  },
+  {
+    "text": "page table for that user process. So, each process that runs in the system will have these",
+    "start": 519.44,
+    "end": 525.36,
+    "ocr_text": "Kernel Data about a Process\n\n* Corresponding to each process, the kernel keeps some metadata\n\nprocess control block (PCB)\n\nws\n\nkernel stack for the user process\npage tables for the user process. P|\n\nprocess control block (PCB)\nkernel stack for the user process\npage tables for the user process.\n\nCONS\n\nprocess control block (PCB)\nkernel stack for the user process\npage tables for the user process.\n\naS)"
+  },
+  {
+    "text": "three blocks that is unique for that process. So, we have already seen that page tables",
+    "start": 526.08,
+    "end": 532.48,
+    "ocr_text": "Kernel Data about a Process\n\n* Corresponding to each process, the kernel keeps some metadata\n\nprocess control block (PCB)\n\ncoats)\n\nkernel stack for the user process\npage tables for the user process. |\n1°)\n\nprocess control block (PCB)\nkernel stack for the user process\npage tables for the user process.\n\nCOIS =\n\nprocess control block (PCB)\nkernel stack for the user process\npage tables for the user process.\n\nEIS"
+  },
+  {
+    "text": "map the virtual addressable space of that user process to the corresponding page frames",
+    "start": 533.28,
+    "end": 539.76,
+    "ocr_text": "Kernel Data about a Process\n\n* Corresponding to each process, the kernel keeps some metadata\n\nprocess control block (PCB)\n\ncoats)\n\nkernel stack for the user process\npage tables for the user process. |\n1°)\n\nprocess control block (PCB)\nkernel stack for the user process\npage tables for the user process.\n\nCOIS =\n\nprocess control block (PCB)\nkernel stack for the user process\npage tables for the user process.\n\nEIS"
+  },
+  {
+    "text": "that the process occupies. Now, we will look at the other two meta data.",
+    "start": 540.72,
+    "end": 544.8,
+    "ocr_text": "Kernel Data about a Process\n\n* Corresponding to each process, the kernel keeps some metadata\n\nprocess control block (PCB)\n\nOwes\n\nkernel stack for the user process\npage tables for the user process. P|\n\nprocess control block (PCB)\nkernel stack for the user process\npage tables for the user process.\n\nSM\n\nprocess control block (PCB)\nkernel stack for the user process\npage tables for the user process.\n\nPS"
+  },
+  {
+    "text": "So, we have learned that corresponding to each process there are various segments and one",
+    "start": 546.64,
+    "end": 554.64,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nfi\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "important segment is the stack of the process. So, this process stack present in the user space",
+    "start": 554.64,
+    "end": 562.16,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nfi\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "would have information such as the local variables and also information about function calls. So,",
+    "start": 562.16,
+    "end": 568.48,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n« Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nfi\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "this we will now call as the user space stack. In addition to the user space stack, each process",
+    "start": 568.48,
+    "end": 574.88,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n« Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nHeap\n\nData\n\nText\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "will also have something known as the kernel space stack or the kernel stack for that process.",
+    "start": 574.88,
+    "end": 581.04,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n« Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nHeap\n\nData\n\nText\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "So, this kernel stack is used when the kernel executes in the context of a process.",
+    "start": 581.6,
+    "end": 589.52,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nprdice\nf\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "For instance, when the process executes a system call it results in the kernel",
+    "start": 589.52,
+    "end": 595.2,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nproce\nf\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "some kernel code executing and this kernel code would use the kernel stack for its local variables",
+    "start": 595.76,
+    "end": 604.72,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nproce\nf\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "as well as function calls. Also, this kernel stack is used for many other important aspects such as",
+    "start": 604.72,
+    "end": 612.24,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nproce\nf\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "to store the context of a process as well as to store. In addition to the standard use of the",
+    "start": 612.24,
+    "end": 624.8,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nproce\nf\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "stack such as for local and auto variables as well as for function calls, the kernel stacks",
+    "start": 624.8,
+    "end": 631.92,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nproce\n5\nf\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "plays a crucial role in storing the context of a process which would allow the process to restart",
+    "start": 631.92,
+    "end": 638.8,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nproce\nf\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "after periods of time. So, why do we have two separate stacks? Why do we have a user stack",
+    "start": 638.8,
+    "end": 647.2,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nproce\nx\nfi\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "for the process as well as the kernel stack? The advantage that we achieve is that the kernel",
+    "start": 647.2,
+    "end": 652.88,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nproce\nf\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "execute even if the user stack is corrupted. So, attacks that target the stack such as buffer",
+    "start": 653.12,
+    "end": 659.28,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n+ Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nproce\nf\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "overflow attack will not affect the kernel in such a case. So, let us look at some of the important",
+    "start": 659.28,
+    "end": 668.96,
+    "ocr_text": "Process Stacks\n\nEach process has 2 stacks\n— User space stack\n\n« Used when executing user code\n\n— Kernel space stack\n\n+ Used when kernel code in the context of\na process\n(for eg. during system calls)\nAdvantage : Kernel can execute even if user stack\nis corrupted\n\n(Attacks that target the stack, such as buffer\noverflow attack, will not affect the kernel)\n\nKernel (Text + Data)\n\nKernel Stack for\nproce\nf\n\nHeap\n\nData\n\nText\n\n(instructions)\n\nProcess Address\nSpace\n\n10"
+  },
+  {
+    "text": "components in the PCB. So, this particular structure is taken from the XP6 operating systems",
+    "start": 668.96,
+    "end": 676.08,
+    "ocr_text": "Summary of entries in PCB\n\nstruct proc { 5 Size of process memory\nuint sz;\n\npde _t* pgdir; ———— Page directory pointer for process\n\nchar *kstack;\nenum procstate stater——p\nint pid; Kernel stack pointer\n\nstruct proc *parent;\nstruct trapframe *tf;\nstruct context *context;\nvoid *chan;\n\nint killed;\n\nstruct file *ofile[NOFILE]\nstruct inode *cwd\n\nchar name[16}.\n\n*——> Files opened\n\nCurrent working directory\n\nExecutable name\n\n12"
+  },
+  {
+    "text": "PCB which is defined as truck block. So, some of the important elements or aspects of this",
+    "start": 676.56,
+    "end": 684.16,
+    "ocr_text": "Summary of entries in PCB\n\nstruct proc { Cd Size of process memory\nuint sz;\n\npde t* pgdir; —————__—_ Page directory pointer for process\n\nchar *kstack;\nenum procstate stater——p\nint pid; Kernel stack pointer\n\nstruct proc *parent;\nstruct trapframe *tf;\nstruct context *context;\nvoid *chan;\n\nint killed;\n\nstruct file *ofile[NOFILE]\nstruct inode *cwd\n\nchar name[16}\n\n*——> Files opened\n\nCurrent working directory\n\nExecutable name\n\n12"
+  },
+  {
+    "text": "particular structure is SZ which is the size of the process memory PGDIR which is a pointer",
+    "start": 684.16,
+    "end": 694.16,
+    "ocr_text": "Summary of entries in PCB\n\nstruct proc { Cd Size of process memory\nuint sz;\n\npde t* pgdir; —————__—_ Page directory pointer for process\n\nchar *kstack;\nenum procstate stater——p\nint pid; Kernel stack pointer\n\nstruct proc *parent;\nstruct trapframe *tf;\nstruct context *context;\nvoid *chan;\n\nint killed;\n\nstruct file *ofile[NOFILE]\nstruct inode *cwd\n\nchar name[16}\n\n*——> Files opened\n\nCurrent working directory\n\nExecutable name\n\n12"
+  },
+  {
+    "text": "to the page directory for the process case stack which is a pointer to the kernel stack which we",
+    "start": 694.16,
+    "end": 703.52,
+    "ocr_text": "Summary of entries in PCB\n\nstruct proc { Size of process memory\nuint sz;\n\npde t* pgdir; ———————_—_ Page directory pointer for process\n\nchar *kstack;\nenum procstate statep——p\nint pid; Kernel stack pointer\n\nstruct proc *parent;\nstruct trapframe *tf;\nstruct context *context;\nvoid *chan;\n\nint killed;\n\nstruct file *ofile[NOFILE]\nstruct inode *cwd\n\nchar name[16}\n\n*——> Files opened\n\nCurrent working directory\n\nExecutable name\n\n12"
+  },
+  {
+    "text": "have defined a few slides earlier and there are other aspects such as the a list of files that",
+    "start": 703.6,
+    "end": 710.64,
+    "ocr_text": "Summary of entries in PCB\n\nstruct proc { Size of process memory\nuint sz;\n\npde t* pgdir; ——————_—_—_ Page directory pointer for process\n\nchar *Kstack;\nenum procstate stater——p\nint pid; Kernel stack pointer\n\nstruct proc *parent;\nstruct trapframe *tf;\nstruct context *context;\nvoid *chan;\n\nint killed;\n\nstruct file *ofile[NOFILE]\nstruct inode *cwd\n\nchar name[16}.\n\n*——> Files opened\n\nCurrent working directory\n\nExecutable name\n\n12"
+  },
+  {
+    "text": "are opened by the process, the current working directory of the process and the executable name",
+    "start": 710.64,
+    "end": 715.92,
+    "ocr_text": "Summary of entries in PCB\n\nstruct proc { Size of process memory\nuint sz;\n\npde t* pgdir; —————_— Page directory pointer for process\n\nchar *kstack;\nenum procstate stater——p\nint pid; Kernel stack pointer\n\nstruct proc *parent;\nstruct trapframe *tf;\nstruct context *context;\nvoid *chan;\n\nint killed;\n\nstruct file *ofile[NOFILE]\nstruct inode *cwd\n\nchar name[16}.\n\n*+7>—> Files opened\n\nCurrent working directory\n\nExecutable name\n\n12"
+  },
+  {
+    "text": "for instance A dot out in our example. So, we will look at some of these other parameters in",
+    "start": 715.92,
+    "end": 722.56,
+    "ocr_text": "Summary of entries in PCB\n\nstruct proc { 5 Size of process memory\nuint sz;\n\npde t* pgdir; —————_—_ Page directory pointer for process\n\nchar *kstack;\nenum procstate stater——p\nint pid; Kernel stack pointer\n\nstruct proc *parent;\nstruct trapframe *tf;\nstruct context *context;\nvoid *chan;\n\nint killed;\n\nstruct file *ofile[NOFILE]\nstruct inode *cwd\n\nchar name[16}\n\n*——> Files opened\n\nCurrent working directory\n\nExecutable name\n\n12"
+  },
+  {
+    "text": "the forthcoming slides. So, an important entry in the PCB corresponding to each process is the",
+    "start": 722.56,
+    "end": 731.92,
+    "ocr_text": "Summary of entries in PCB\n\nstruct proc { 5 Size of process memory\nuint sz;\n\npde t* pgdir; —————_—_ Page directory pointer for process\n\nchar *kstack;\nenum procstate stater——p\nint pid; Kernel stack pointer\n\nstruct proc *parent;\nstruct trapframe *tf;\nstruct context *context;\nvoid *chan;\n\nint killed;\n\nstruct file *ofile[NOFILE]\nstruct inode *cwd\n\nchar name[16}\n\n*——> Files opened\n\nCurrent working directory\n\nExecutable name\n\n12"
+  },
+  {
+    "text": "PID or process identifier. So, this is an identifier for the process essentially defined as an integer",
+    "start": 731.92,
+    "end": 740.0,
+    "ocr_text": "Entries in PCB\n\n> PID\n— Process Identifier\n— Number incremented sequentially\n* Need to ensure each process has a unique PID"
+  },
+  {
+    "text": "and each process would have a unique PID. So, typically the number would be incremented sequentially",
+    "start": 740.64,
+    "end": 749.52,
+    "ocr_text": "Entries in PCB\n\nPID\n\n— Rrocess Identifier\n— Number incremented sequentially\n* Need to ensure each process has a unique PID"
+  },
+  {
+    "text": "in such a manner that when a process is created it gets a unique number.",
+    "start": 749.52,
+    "end": 754.4,
+    "ocr_text": "Entries in PCB\n\nPID\n\n— Process Identifier\n— Number incremented sequentially\n* Need to ensure each process has a unique PID"
+  },
+  {
+    "text": "Another very important aspect in the PCB is the state of the process. So, from the time a process",
+    "start": 754.88,
+    "end": 765.44,
+    "ocr_text": "Entries in PCB\n\nPID\n\n— Process Identifier\n— Number incremented sequentially\n* Need to ensure each process has a unique PID"
+  },
+  {
+    "text": "is created to the time it exits it moves through several states such as the new ready block state",
+    "start": 765.44,
+    "end": 774.72,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK > RUNNING >\n\nNEW (EMBRYO) -~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\nl ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "or running state. The XP6 calls these states by different names such as the new is called the",
+    "start": 774.72,
+    "end": 781.76,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK > RUNNING >\n\nNEW (EMBRYO) -~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\nl ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "embryo which means that a new process is currently being created while ready is known as the",
+    "start": 781.76,
+    "end": 789.92,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\n_atock + RUNNING >\n\nNEW (EMBRYO) > The new process is currently being created\nREADY (KUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "runnable which means it is ready to run while the sleeping is known as the block state",
+    "start": 789.92,
+    "end": 795.6,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK > RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc .h (struct proc) 2350"
+  },
+  {
+    "text": "and essentially block for an IO. So, how and when does a process actually go from one state to another.",
+    "start": 797.52,
+    "end": 805.76,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\n_BLock + RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an vo\n\n! ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "So, when a new process is created it is initially in the state known as new when it is ready to run",
+    "start": 806.24,
+    "end": 815.92,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK + RUNNING >\n\nNEW (EMBRYO)  ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "the state is moved to what is known as the ready state and when it finally runs on the processor",
+    "start": 815.92,
+    "end": 823.84,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK >» RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\nl ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "it gets shifted to the running state. After running for a while the process gets preempted from the",
+    "start": 823.84,
+    "end": 830.96,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK >» RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\nl ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "processor in order to allow other processes to run and in such a case it goes back from the",
+    "start": 830.96,
+    "end": 837.84,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\n_BLock + RUNNING >\n\nNEW (EMBRYO) > The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "running state to the ready state. Now, suppose during the execution of the process there is some",
+    "start": 837.84,
+    "end": 847.2,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLock + RUNNING >\n\nNEW (EMBRYO) > The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\nl ref: proc .h (struct proc) 2350"
+  },
+  {
+    "text": "IO operation that is required for instance the process could call invoke a scan F which requires",
+    "start": 847.2,
+    "end": 854.48,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK > RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\nl ref: proc .h (struct proc) 2350"
+  },
+  {
+    "text": "the user to enter something through the keyboard. In such a case the process would be",
+    "start": 854.48,
+    "end": 859.44,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK > RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\nl ref: proc .h (struct proc) 2350"
+  },
+  {
+    "text": "moved from a running state to a block state. So, the process will remain in the block state",
+    "start": 860.4,
+    "end": 866.32,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK > RUNNING\n\nNEW (EMBRYO) _ ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc .h (struct proc) 2350"
+  },
+  {
+    "text": "until the event occurs for instance when the user enters something through the keyboard.",
+    "start": 866.32,
+    "end": 871.36,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLogk + RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "So, when this event occurs the process moves from the block state back to the ready state",
+    "start": 871.92,
+    "end": 877.28,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLogk + RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "and this process of moving from one state to another from ready to running from running to",
+    "start": 878.08,
+    "end": 884.8,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK > RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "the back to ready or from running to block and then ready keeps going on through the entire",
+    "start": 884.8,
+    "end": 890.64,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK > RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "life cycle of the process. At the end when the process exits or gets terminated it goes to what is",
+    "start": 890.64,
+    "end": 899.44,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLOCK > RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc .h (struct proc) 2350"
+  },
+  {
+    "text": "known as the exit and exit state is not shown in this diagram. So, you could actually look up",
+    "start": 899.44,
+    "end": 907.52,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\n_BLock + RUNNING >\n\nNEW (EMBRYO) ~ The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc.h (struct proc) 2350"
+  },
+  {
+    "text": "the xp6 code prok.h and which will give you more information about the various states.",
+    "start": 908.32,
+    "end": 915.6,
+    "ocr_text": "Process States\n\n¢ Process State : specifies the state of the process\n\nBLock + RUNNING >\n\nNEW (EMBRYO) > The new process is currently being created\nREADY (RUNNABLE) > Ready to run\n\nRUNNING ~~ Currently executing\n\nSLEEPING(BLOCKED) ~ Blocked for an I/O\n\n! ref: proc .h (struct proc) 2350"
+  },
+  {
+    "text": "So, what is this ready state? Operating systems maintain a queue of processes which are all in the",
+    "start": 916.56,
+    "end": 923.2,
+    "ocr_text": "Scheduling Runnable Processes\n\nPickD\nJ Timer\n\ninterrupt\n\nCPU\nScheduler\n\nScheduler triggered to run when timer interrupt occurs or when running process is\nblocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch\n\nRunning\nProcess\n\nQueue of READY Processes"
+  },
+  {
+    "text": "ready state. When an event such as a timer interrupt occurs a module within the operating system",
+    "start": 923.2,
+    "end": 930.0,
+    "ocr_text": "Scheduling Runnable Processes\n\nPickD\nJ Timer\n\ninterrupt\n\nCPU\nScheduler\n\nScheduler triggered to run when timer interrupt occurs or when running process is\nblocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch\n\nRunning\nProcess\n\nQueue of READY Processes"
+  },
+  {
+    "text": "known as the CPU scheduler gets triggered this CPU scheduler then scans through these",
+    "start": 930.08,
+    "end": 936.8,
+    "ocr_text": "Scheduling Runnable Processes\n\n€nn22- ee\n#/ Timer\n\ninterrupt\n\nCPU\nScheduler\n\nScheduler triggered to run when timer interrupt occurs or when running process is\nblocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch\n\nRunning\nProcess\n\nQueue of READY Processes"
+  },
+  {
+    "text": "the queue of ready processes and selects one which then gets executed in the processor.",
+    "start": 938.0,
+    "end": 946.4,
+    "ocr_text": "Scheduling Runnable Processes\n\n———\n#/ Timer\n\ninterrupt\n\nCPU\nScheduler\n\nScheduler triggered to run when timer interrupt occurs or when running process is\nblocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch\n\nRunning\nProcess\n\nQueue of READY Processes"
+  },
+  {
+    "text": "This selected process then changes its state from ready to running.",
+    "start": 947.04,
+    "end": 951.04,
+    "ocr_text": "Scheduling Runnable Processes\n\ny] <--------..\n‘a! Timer\n\ninterrupt\n\nCPU\nss Scheduler\n\nScheduler triggered to run when timer interrupt occurs or when running process is\nblocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch\n\nRunning\nProcess\n\nQueue of READY Processes"
+  },
+  {
+    "text": "The running process would continue to run until the next timer interrupt occurs.",
+    "start": 952.96,
+    "end": 957.36,
+    "ocr_text": "Scheduling Runnable Processes\n\ny] <--------..\n‘a! Timer\n\ninterrupt\n\nCPU\nss Scheduler\n\nScheduler triggered to run when timer interrupt occurs or when running process is\nblocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch\n\nRunning\nProcess\n\nQueue of READY Processes"
+  },
+  {
+    "text": "And the entire cycle repeats itself. Another entry in the PCB are pointers to what is known as",
+    "start": 960.08,
+    "end": 968.08,
+    "ocr_text": "Scheduling Runnable Processes\n\n} <--------..\nm/// = Timer\n\ninterrupt\n\nCPU\nScheduler\nScheduler triggered to run when timer interrupt occurs or when running process is\nblocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch\n\nRunning\nProcess\n\nQueue of READY Processes"
+  },
+  {
+    "text": "the trap frame and context. So, these trap frame as well as context are part of the kernel stack",
+    "start": 968.08,
+    "end": 975.6,
+    "ocr_text": "Entries in PCB\n\n¢ Pointer to trapframe and pointer to\n\ncits\n\n-context\n\nEIP\n\n— Present as part of the kernel stack of a\n\nTrao Number\nds\n\nprocess.\n\nes\n\n— Contains the state of all registers\n\neax\n\ncorresponding to the process\n\nL=10.4\n\n— Used to restart a process after a context\n\nesi\nedi\n\nesp\n\nswitch trapframe —__y|\n\n(empty)"
+  },
+  {
+    "text": "and as seen in this figure they have a lot of information about the current state of the running",
+    "start": 975.6,
+    "end": 983.84,
+    "ocr_text": "Entries in PCB\n\n¢ Pointer to trapframe and pointer to\n\ncontext\n\n— Present as part of the kernel stack of a\n\nprocess.\n\n— Contains the state of all registers\n\ncorresponding to the process\n\n— Used to restart a process after a context\n\nswitch\n\nEFI\n\nEIP\n\nTrao Number\nds\n\nes\n\neax\n\nECxX\n\nesi\nedi\n\nesp\n\ntrapframe —__y\n\n(empty)"
+  },
+  {
+    "text": "process. For instance it would save the stack segment the stack pointer the flags register the",
+    "start": 984.64,
+    "end": 992.32,
+    "ocr_text": "Entries in PCB\n\n¢ Pointer to trapframe and pointer to\n\ncontext\n\n— Present as part of the kernel stack of a\n\nprocess.\n\n— Contains the state of all registers\n\ncorresponding to the process\n\n— Used to restart a process after a context\n\nswitch\n\nEFI\n\nEIP\n\nTrao Number\nds\n\nes\n\neax\n\nECxX\n\nesi\nedi\n\nesp\n\ntrapframe —__y\n\n(empty)"
+  },
+  {
+    "text": "code segment instruction pointer and so on. So, this particular trap frame and context is used",
+    "start": 992.32,
+    "end": 999.52,
+    "ocr_text": "Entries in PCB\n\n¢ Pointer to trapframe and pointer to\n\ncontext\n\n— Present as part of the kernel stack of a\n\nprocess.\n\n— Contains the state of all registers\n\ncorresponding to the process\n\n— Used to restart a process after a context\n\nswitch\n\ni\n\nTrao Number\n\neax\n\ni=109,6\n\nes!\n\ntrapframe —__y\n\n(empty)"
+  },
+  {
+    "text": "when a process is restarted after a context switch. So, how are these various PCBs stored in xv6?",
+    "start": 999.52,
+    "end": 1008.4,
+    "ocr_text": "Entries in PCB\n\n¢ Pointer to trapframe and pointer to\n\ncontext\n\n— Present as part of the kernel stack of a\n\nprocess.\n\n— Contains the state of all registers\n\ncorresponding to the process\n\n— Used to restart a process after a context\n\nswitch\n\nEFI\n\nEIP\n\n|_Error Code _|\nTrao Number\nds\n\nes\n\neax\n\nL=10.4\n\nesi\nedi\n\nesp\n\ntrapframe —__y\n\n(empty)"
+  },
+  {
+    "text": "So, in xv6 a structure known as p table is defined. So, this structure has an array of struct",
+    "start": 1009.36,
+    "end": 1016.88,
+    "ocr_text": "Storing procs in xv6\n\nIn a globally defined array present in ptable\n\nNPROC is the maximum number of processes that can be present\nin the system (#define NPROC 64)\n\nAlso present in ptable is a lock that seralizes access to the array.\n\nstruct {\nstruct spinlock lock;\nstruct proc proc[NPROC];\n} ptable;\n\nref : proc.c (struct ptable) 2409, params.h (NPROC) 0150 17"
+  },
+  {
+    "text": "procs. So, remember that struct procs is actually the PCB structure in xv6. So,",
+    "start": 1016.88,
+    "end": 1022.64,
+    "ocr_text": "Storing procs in xv6\n\nIn a globally defined array present in ptable\n\nNPROC is the maximum number of processes that can be present\nin the system (#define NPROC 64)\n\nAlso present in ptable is a lock that seralizes access to the array.\n\nstruct {\nstruct spinlock lock;\nstruct proc proc[NPROC];\n} ptable;\n\nref : proc.c (struct ptable) 2409, params.h (NPROC) 0150 17"
+  },
+  {
+    "text": "the array has n proc entries where n proc is defined as 64. So, each process that gets created",
+    "start": 1023.68,
+    "end": 1033.28,
+    "ocr_text": "Storing procs in xv6\n\nIn a globally defined array present in ptable\n\nNPROC is the maximum number of processes that can be present\nin the system (#define NPROC 64)\n\nAlso present in ptable is a lock that seralizes access to the array.\n\nstruct {\nstruct spinlock lock;\nstruct proc proc[NPROC];\n} ptable;\n\nref : proc.c (struct ptable) 2409, params.h (NPROC) 0150 17"
+  },
+  {
+    "text": "in xv6 will have an entry in this particular array. So, you could have more information about",
+    "start": 1033.28,
+    "end": 1041.6,
+    "ocr_text": "Storing procs in xv6\n\nIn a globally defined array present in ptable\n\nNPROC is the maximum number of processes that can be present\nin the system (#define NPROC 64)\n\nAlso present in ptable is a lock that seralizes access to the array.\n\nstruct {\nstruct spinlock lock;\nstruct proc proc[NPROC];\n} ptable;\n\nref : proc.c (struct ptable) 2409, params.h (NPROC) 0150 47"
+  },
+  {
+    "text": "this particular structure in look by looking at the xv6 code proc.c and the structure p table.",
+    "start": 1041.6,
+    "end": 1049.12,
+    "ocr_text": "Storing procs in xv6\n\nIn a globally defined array present in ptable\n\nNPROC is the maximum number of processes that can be present\nin the system (#define NPROC 64)\n\nAlso present in ptable is a lock that seralizes access to the array.\n\nstruct {\nstruct spinlock lock;\nstruct proc proc[NPROC];\n} ptable;\n\nref : proc.c (struct ptable) 2409, params.h (NPROC) 0150 17"
+  },
+  {
+    "text": "Also, paramsthat h is a file in xv6 which defines what n proc is. So, this gives us a brief introduction",
+    "start": 1049.92,
+    "end": 1058.88,
+    "ocr_text": "Storing procs in xv6\n\nIn a globally defined array present in ptable\n\nNPROC is the maximum number of processes that can be present\nin the system (#define NPROC 64)\n\nAlso present in ptable is a lock that seralizes access to the array.\n\nstruct {\nstruct spinlock lock;\nstruct proc proc[NPROC];\n} ptable;\n\nref : proc.c (struct ptable) 2409, params.h (NPROC) 0150 17"
+  },
+  {
+    "text": "to how processes are managed in the operating system. In the next video we will look at how a",
+    "start": 1058.88,
+    "end": 1066.72,
+    "ocr_text": "Storing procs in xv6\n\nIn a globally defined array present in ptable\n\nNPROC is the maximum number of processes that can be present\nin the system (#define NPROC 64)\n\nAlso present in ptable is a lock that seralizes access to the array.\n\nstruct {\nstruct spinlock lock;\nstruct proc proc[NPROC];\n} ptable;\n\nref : proc.c (struct ptable) 2409, params.h (NPROC) 0150 17"
+  },
+  {
+    "text": "process gets created executes and exits from the system. Thank you.",
+    "start": 1066.72,
+    "end": 1080.4,
+    "ocr_text": "Storing procs in xv6\n\nIn a globally defined array present in ptable\n\nNPROC is the maximum number of processes that can be present\nin the system (#define NPROC 64)\n\nAlso present in ptable is a lock that seralizes access to the array.\n\nstruct {\nstruct spinlock lock;\nstruct proc proc[NPROC];\n} ptable;\n\nref : proc.c (struct ptable) 2409, params.h (NPROC) 0150 17"
+  }
+]

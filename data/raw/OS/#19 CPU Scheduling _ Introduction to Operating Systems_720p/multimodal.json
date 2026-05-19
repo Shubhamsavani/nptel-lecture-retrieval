@@ -1,0 +1,1934 @@
+[
+  {
+    "text": "Hello, in this lecture we will look at CPU scheduling algorithms. We have seen in operating",
+    "start": 0.0,
+    "end": 24.12,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "systems that a scheduler present would choose a particular process from the ready queue and",
+    "start": 24.12,
+    "end": 30.74,
+    "ocr_text": "Which process to choose?\n\nRunning\nProcess\n\ny) interrupt\nevery 100ms\n\nWhich process should the scheduler choose next?\n\nQueue of Ready Processes\n\n‘€)"
+  },
+  {
+    "text": "that process is assigned to run in the processor. Now, the question that we were going to analyze",
+    "start": 30.74,
+    "end": 36.4,
+    "ocr_text": "Which process to choose?\n\nRunning\nProcess\n\ny) interrupt\nevery 100ms\n\nWhich process should the scheduler choose next?\n\nQueue of Ready Processes\n\n‘€)"
+  },
+  {
+    "text": "now is how should this scheduler choose the next process. Essentially how should the",
+    "start": 36.4,
+    "end": 43.24,
+    "ocr_text": "Which process to choose?\n\ne222\nu) interrupt\n\nevery 100ms\n\nQueue of Ready Processes [owner |\n\nWhich process should the scheduler choose next?\n\nRunning\nProcess"
+  },
+  {
+    "text": "scheduler choose a process to run on the CPU from the existing queue of ready processes.",
+    "start": 43.24,
+    "end": 51.52,
+    "ocr_text": "Which process to choose?\n\ne222\nu) interrupt\n\nevery 100ms\n\nQueue of Ready Processes [owner |\n\nWhich process should the scheduler choose next?\n\nRunning\nProcess"
+  },
+  {
+    "text": "Now to analyze this, we first look at execution faces of a process. Now, any program has",
+    "start": 51.52,
+    "end": 59.6,
+    "ocr_text": "Which process to choose?\n\nGo-nn-\nY} interrupt\n\nevery 100ms\n\nRunning\nProcess\n\nQueue of Ready Processes\n\nWhich process should the scheduler choose next?"
+  },
+  {
+    "text": "been known to have two faces of execution. One is when it is actually executing instructions,",
+    "start": 59.6,
+    "end": 65.72,
+    "ocr_text": "Execution phases of a process\n\nExecution phases of a process\nProcess CPU\nC Working »\nCPU Idle\nCPU idle due to I/O operation\n\nCPV burst J\nS _ -\n‘ RAM\nSSS\n\ntime"
+  },
+  {
+    "text": "which is known as a CPU burst while the other is when it is blocked on an IO or not doing",
+    "start": 65.72,
+    "end": 75.04,
+    "ocr_text": "Execution phases of a process\n\nExecution phases of a process\nProcess CPU tn\nC Working )\nCPU Idle\nCPU idle due to I/O operation\n\nCPV burst J\ns ts a\nRAM\nel\n\ntime"
+  },
+  {
+    "text": "any operations. So, in this particular case the CPU is idle. Thus as we look with over time,",
+    "start": 75.04,
+    "end": 81.0,
+    "ocr_text": "Execution phases of a process\n\nExecution phases of a process\nProcess CPU\nC Working »\nCPU Idle\nCPU idle due to I/O operation\n\nCPV burst J\nS tS —\n: RAM\na\n\ntime"
+  },
+  {
+    "text": "a particular process would have some amount of CPU burst in which it would execute instructions",
+    "start": 81.0,
+    "end": 87.68,
+    "ocr_text": "Execution phases of a process\n\nExecution phases of a process\nProcess CPU\nC Working »\nCPU Idle\nCPU idle due to I/O operation\n\nCPV burst J\nS tS —\n: RAM\na\n\ntime"
+  },
+  {
+    "text": "on the processor. Then it would have and some idle time in which it is waiting for an IO operation,",
+    "start": 87.68,
+    "end": 94.08,
+    "ocr_text": "Execution phases of a process\n\nExecution phases of a process\nProcess CPU\nC Working »\nCPU Idle\nCPU idle due to I/O operation\n\nCPV burst J\nS tS =\nRAM aU\n————EEEEEEEES\n\ntime"
+  },
+  {
+    "text": "then there would be a burst of CPU time and so on. Thus there is always this interleading",
+    "start": 94.08,
+    "end": 100.8,
+    "ocr_text": "Execution phases of a process\n\nExecution phases of a process\nProcess CPU\nC Working »\nCPU Idle\nCPU idle due to I/O operation\n\nCPV burst J\nS tS =\nRAM aU\n————EEEEEEEES\n\ntime"
+  },
+  {
+    "text": "between CPU burst and idle time that is awaiting for an operation. So, based on this faces of",
+    "start": 100.8,
+    "end": 109.0,
+    "ocr_text": "Execution phases of a process\n\nExecution phases of a process\nProcess CPU\nC Working »\nCPU Idle\nCPU idle due to I/O operation\n\nCPV burst J\nS Ts ¥\nRAM oF\na\n\ntime"
+  },
+  {
+    "text": "execution, one can classify processes into two types. One is the IO bound processes while",
+    "start": 109.0,
+    "end": 116.04,
+    "ocr_text": "Execution phases of a process\n\nExecution phases of a process\nProcess CPU\nWorking\n%\nCPU Idle\nCPU idle due to I/O operation\n\nCPV burst i\n2 Tt =\nRAM\nSS SSS SS\n\ntime"
+  },
+  {
+    "text": "the other is the CPU bound process. Why do you make this distinction between IO bound and CPU",
+    "start": 116.04,
+    "end": 121.56,
+    "ocr_text": "Types of Processes\n\n* I/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. Gec, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje eee\nI vr\n\n_|. cpu usage\n> time"
+  },
+  {
+    "text": "bound processes? Essentially this is from a scheduling perspective. We would like to give",
+    "start": 121.56,
+    "end": 126.4,
+    "ocr_text": "Types of Processes\n\n* I/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. Gec, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje eee\nI vr\n\n_|. cpu usage\n> time"
+  },
+  {
+    "text": "IO bound processes a higher priority with which they are allocated the CPU. Essentially we want",
+    "start": 126.4,
+    "end": 132.88,
+    "ocr_text": "Types of Processes\n\n* I/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n¢ CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje\nI\n\nexecute\na\n\n_|) cpu usage\n> time"
+  },
+  {
+    "text": "that IO bound processes wait lesser time for the CPU compared to CPU bound processes.",
+    "start": 132.88,
+    "end": 139.84,
+    "ocr_text": "Types of Processes\n\n* I/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n¢ CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje\nI\n\nexecute\na\n\n_|) cpu usage\n> time"
+  },
+  {
+    "text": "So, why is this required? We can take with an example. So, suppose we are using a word",
+    "start": 139.84,
+    "end": 146.52,
+    "ocr_text": "Types of Processes\n\n¢ 1/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n+ Useful to have long CPU bursts\n— Could do with lower priorities idje Sree\n\nI 7 _|) cpu usage\n> time"
+  },
+  {
+    "text": "processor such as a notepad or VIM and we are giving this IO bound process a very low priority.",
+    "start": 146.52,
+    "end": 154.64,
+    "ocr_text": "Types of Processes\n\n¢ I/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n¢ CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje\nI 7\n> time\n\nexecute\nA\n\ncpu usage"
+  },
+  {
+    "text": "Now, suppose a user presses a key because it has a low priority. It does not get the CPU to",
+    "start": 155.6,
+    "end": 161.68,
+    "ocr_text": "Types of Processes\n\n¢ 1/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) » cpu usage\n> time\n\n¢ CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idle execute\nI\n\n_| cpu usage\n> time"
+  },
+  {
+    "text": "very often and therefore, it would take some time before that key pressed by the user appears",
+    "start": 162.56,
+    "end": 169.04,
+    "ocr_text": "Types of Processes\n\n¢ 1/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) » cpu usage\n> time\n\n¢ CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idle execute\nI\n\n_| cpu usage\n> time"
+  },
+  {
+    "text": "onto the screen. So, this may be quite uncomfortable for the user. Therefore, we would like to give the",
+    "start": 169.04,
+    "end": 175.92,
+    "ocr_text": "Types of Processes\n\n¢ I/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idle poms\n\n! Z _| cpu usage\n> time"
+  },
+  {
+    "text": "IO bound process such as the word processor higher priority with which it will get the CPU",
+    "start": 175.92,
+    "end": 182.8,
+    "ocr_text": "Types of Processes\n\n* 1/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n¢ CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje aaa\n\nZ _| cpu usage\n> time"
+  },
+  {
+    "text": "so that the user interaction with the CPU becomes more comfortable. On the other hand if we look",
+    "start": 182.96,
+    "end": 187.92,
+    "ocr_text": "Types of Processes\n\n* 1/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n¢ CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje aaa\n\nZ _| cpu usage\n> time"
+  },
+  {
+    "text": "at CPU bound processes we could give it a lower priority. Now, for instance if you take one of",
+    "start": 187.92,
+    "end": 194.08,
+    "ocr_text": "Types of Processes\n\n* 1/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardy any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje spas\n\n! 7 _| cpu usage\n> time"
+  },
+  {
+    "text": "these applications the CPU bound applications like for instance say let us say GCC that is",
+    "start": 194.08,
+    "end": 200.24,
+    "ocr_text": "Types of Processes\n\n* 1/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardy any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje spas\n\n! 7 _| cpu usage\n> time"
+  },
+  {
+    "text": "compiling a program and let us say you are compiling a large program which takes five minutes.",
+    "start": 200.8,
+    "end": 205.36,
+    "ocr_text": "Types of Processes\n\n¢ 1/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n\n3D rendering, etc) o\n* Useful to have long CPU bursts\n— Could do with lower priorities idje execute\n\nl cpu usage\n\n> time"
+  },
+  {
+    "text": "Now, it will not affect this user much if the time taken to compile that particular program",
+    "start": 205.36,
+    "end": 212.56,
+    "ocr_text": "Types of Processes\n\n¢ I/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n¢ CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje\ni}\n\nexecute\na\n\n_|) cpu usage\n> time"
+  },
+  {
+    "text": "increases from five minutes to say 5.5 minutes thus CPU bound processes could work with a lower",
+    "start": 212.56,
+    "end": 220.0,
+    "ocr_text": "Types of Processes\n\n¢ I/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n¢ CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje\ni}\n\nexecute\na\n\n_|) cpu usage\n> time"
+  },
+  {
+    "text": "priority. This classification between IO bound and CPU bound is not a rigid classification that is",
+    "start": 220.0,
+    "end": 226.88,
+    "ocr_text": "Types of Processes\n\n¢ I/O bound\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with Iqwer priorities idje\ni}\n\nexecute\na\n\n_| cpu usage\n> time"
+  },
+  {
+    "text": "a process could be an IO bound process at one time and after sometime it could behave like a",
+    "start": 227.92,
+    "end": 234.56,
+    "ocr_text": "Types of Processes\n\nThis is not a rigid\n* 1/0 bound classification\n— Has small pursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje RGSS\n\nu Z _| cpu usage\n> time"
+  },
+  {
+    "text": "CPU bound process. So, to take an example of a process which behaves both like a IO bound as",
+    "start": 234.56,
+    "end": 240.4,
+    "ocr_text": "Types of Processes\n\nThis is not a rigid\n* 1/0 bound classification\n— Has small pursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje RGSS\n\nu Z _| cpu usage\n> time"
+  },
+  {
+    "text": "well as CPU bound you could take for instance Microsoft Excel. When we are actually entering data",
+    "start": 240.4,
+    "end": 246.88,
+    "ocr_text": "Types of Processes\n\nThis is not a rigid\n* 1/O bound classification\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje execute\n1\n\n_| cpu usage\n> time"
+  },
+  {
+    "text": "into the various cells in Excel it acts as IO bound process. So, it behaves like an IO bound",
+    "start": 246.88,
+    "end": 253.52,
+    "ocr_text": "Types of Processes\n\nThis is not a rigid\n¢ 1/O bound classification\n\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje\ni}\n\nexecute\na\n\n_| cpu usage\n> time"
+  },
+  {
+    "text": "process with small CPU bus and large times of IO cycles while on the other hand when you are",
+    "start": 253.52,
+    "end": 260.72,
+    "ocr_text": "Types of Processes\n\nThis is not a rigid\n¢ 1/O bound classification\n\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje\ni}\n\nexecute\na\n\n_| cpu usage\n> time"
+  },
+  {
+    "text": "actually computing some statistic on the data entered Excel will behave like a CPU bound process",
+    "start": 260.72,
+    "end": 267.84,
+    "ocr_text": "Types of Processes\n\nThis is not a rigid\n* 1/O bound classification\n\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) & cpu usage\n> time\n\n¢ CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n+ Useful to have long CPU bursts\n— Could do with lower priorities idle\nI 7\n> time\n\nexecute\nA\n\ncpu usage"
+  },
+  {
+    "text": "where there is a large portion of CPU activity or the time taken to actually operate on that particular",
+    "start": 268.4,
+    "end": 275.6,
+    "ocr_text": "Types of Processes\n\nThis is not a rigid\n¢ 1/O bound classification\n— Has small bursts of CPU activity and then waits for I/O\n— eg. Word processor\n— Affects user interaction (we want these processes to have\nhighest priority) cpu usage\n> time\n\n* CPU bound\n— Hardly any I/O, mostly CPU activity (eg. gcc, scientific modeling,\n3D rendering, etc)\n* Useful to have long CPU bursts\n— Could do with lower priorities idje (Paes\nI 7\n\nw _| cpu usage\n> time"
+  },
+  {
+    "text": "data. Now, let us come back to the question about how the CPU scheduler should choose from the",
+    "start": 275.6,
+    "end": 282.0,
+    "ocr_text": "CPU Scheduler\n\nWhich process to choose?\n\nRunning\nProcess\n\nai\n@\n\nevery 1 00ms\n\nQueue of Ready Processes\n\nCPU\nScheduler\n\nScheduler triggered to run when interrupt occurs or when running\nprocess is blocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch"
+  },
+  {
+    "text": "Q of ready processes the next process to execute in the CPU. There could be several ways in which",
+    "start": 282.0,
+    "end": 288.96,
+    "ocr_text": "CPU Scheduler\n\nWhich process to choose?\n\nRunning\nProcess\n\nai\n@\n\nevery 1 00ms\n\nQueue of Ready Processes\n\nCPU\nScheduler\n\nScheduler triggered to run when interrupt occurs or when running\nprocess is blocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch"
+  },
+  {
+    "text": "the scheduler could make this choice essentially there could be several CPU scheduling algorithms",
+    "start": 288.96,
+    "end": 294.64,
+    "ocr_text": "CPU Scheduler\n\nWhich process to choose?\n\nRunning\nProcess\n\ne a L every 100ms\n\nQueue of Ready Processes\n\ncheduler\n\nScheduler triggered to run when interrupt occurs or when running\nprocess is blocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch"
+  },
+  {
+    "text": "which would look into the Q and make a particular decision. So, in order to compare these various",
+    "start": 295.28,
+    "end": 301.68,
+    "ocr_text": "CPU Scheduler\n\nWhich process to choose?\n\nRunning\nProcess | <--------\nd interrupt\nj ~ every 100ms\n@ su\nQueue of Ready Processes\nCPU\nW Scheduler\n\nScheduler triggered to run when interrupt occurs or when running\nprocess is blocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch"
+  },
+  {
+    "text": "scheduling algorithms operating systems textbooks or operating systems research defines several",
+    "start": 302.32,
+    "end": 310.0,
+    "ocr_text": "CPU Scheduler\n\nWhich process to choose?\n\nRunning\nProcess | <--------\nd interrupt\nj ~ every 100ms\n@ su\nQueue of Ready Processes\nCPU\nW Scheduler\n\nScheduler triggered to run when interrupt occurs or when running\nprocess is blocked on I/O\n\nScheduler picks another process from the ready queue\nPerforms a context switch"
+  },
+  {
+    "text": "scheduling criteria. So, these criteria could be used to actually compare various scheduling",
+    "start": 310.0,
+    "end": 316.16,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "algorithms to see the advantages and disadvantages of each of them. So, let us go through each of these",
+    "start": 316.16,
+    "end": 322.8,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "scheduling criteria one by one the first scheduling criteria is the CPU utilization.",
+    "start": 322.8,
+    "end": 329.76,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "The scheduling algorithm should be designed in such a way. So, as to maximize CPU utilization",
+    "start": 329.76,
+    "end": 336.96,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU ufilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "in other words the CPU should be ideal as minimum time as possible. The next criteria we will look",
+    "start": 336.96,
+    "end": 344.96,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "is the throughput essentially scheduling algorithms would try to complete as many processes as possible",
+    "start": 345.36,
+    "end": 354.64,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "per unit time. A third criteria is the turnaround time and this criteria is looked at from a single",
+    "start": 354.64,
+    "end": 361.04,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "process perspective. So, turnaround time is defined as the time taken for a single process",
+    "start": 361.04,
+    "end": 367.36,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "from start to completion. The fourth criteria is response time. So, this is defined as the time",
+    "start": 367.92,
+    "end": 374.72,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "taken from the point that when the process enters into the ready queue to the point when the",
+    "start": 374.8,
+    "end": 381.04,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "process goes into the running state that is the time taken from the instant the process enters",
+    "start": 381.04,
+    "end": 387.52,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "the ready queue to the time the CPU begins to execute instructions corresponding to that process.",
+    "start": 387.52,
+    "end": 394.16,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "Another criteria is the waiting time. Now, this criteria is based on the time taken by a process",
+    "start": 395.12,
+    "end": 403.44,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process shéuld not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "in the ready queue. Now, as we know processes ready to run are present in the ready queue and it",
+    "start": 403.44,
+    "end": 411.92,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process shéuld not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "is required that they do not wait too long in the ready queue. So, scheduling algorithms could",
+    "start": 411.92,
+    "end": 419.92,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "be designed in such a way that the waiting time or the average waiting time in the ready queue",
+    "start": 419.92,
+    "end": 425.92,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "is minimized. The final criteria we will see now is fairness. The scheduler should ensure that",
+    "start": 425.92,
+    "end": 433.04,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "each process is given a fair share of the CPU based on some particular policy.",
+    "start": 433.04,
+    "end": 438.8,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "So, it should not be the case that some process for instance takes say 90 percent of the CPU",
+    "start": 439.6,
+    "end": 446.08,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "while all other processes just get around 10 percent of the CPU. So, all these criteria need to",
+    "start": 446.08,
+    "end": 451.92,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "be considered while designing a scheduling algorithm for an operating system. A single scheduling",
+    "start": 451.92,
+    "end": 458.0,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "algorithm will not efficiently be able to cater to all these criteria simultaneously.",
+    "start": 458.0,
+    "end": 463.52,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "So, therefore, scheduling algorithms are therefore, designed for to meet a subset of these criteria.",
+    "start": 464.32,
+    "end": 471.36,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "For instance, if you consider a real time operating system, the scheduling algorithm for that system",
+    "start": 471.36,
+    "end": 477.68,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "would for instance be designed to have minimum response time. Other factors such as",
+    "start": 477.68,
+    "end": 483.44,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "CPU utilization and throughput may be of secondary importance. On the other hand,",
+    "start": 484.32,
+    "end": 489.44,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "desktop operating system like Linux should will be designed for fairness. So, that all applications",
+    "start": 490.4,
+    "end": 498.32,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU shouldtrespond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "running in the CPU or in the system are given a fair share of the CPU. Criteria such as response time",
+    "start": 498.32,
+    "end": 506.48,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— Fora process, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness _\n— Give edch process a fair share of CPU"
+  },
+  {
+    "text": "may be less important from that perspective. So, we will now look at several scheduling algorithms",
+    "start": 507.44,
+    "end": 513.12,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "starting from the simplest one that is the first come first serve scheduling algorithm and go to",
+    "start": 513.2,
+    "end": 518.96,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "more complex scheduling algorithms as we proceed. So, let us look at the first come first serve",
+    "start": 518.96,
+    "end": 523.92,
+    "ocr_text": "Scheduling Criteria\n\nMaximize CPU utilization\n\n— CPU should not be idle\n\nMaximize throughput\n\n— Complete as many processes as possible per unit time\n\nMinimize turnaround time\n\n— For aprocess, turnaround time, is the time from start to completion\nMinimize response time\n\n— CPU should respond immediately\n\nMinimize waiting time\n\n— Process should not wait long in the ready queue\n(sum of all time waiting in the ready queue)\n\nFairness\n— Give each process a fair share of CPU"
+  },
+  {
+    "text": "of the FCFS scheduling algorithm. The basic scheme in this case is that the first process that",
+    "start": 523.92,
+    "end": 531.68,
+    "ocr_text": "FCFS Scheduling\n(First Come First Serve)\n* First job that requests the CPU gets the CPU\n\n+ Non preemptive\n— Process continues till the burst cycle ends"
+  },
+  {
+    "text": "request the CPU would be allocated the CPU or in other words, the first process which enters into",
+    "start": 531.68,
+    "end": 539.04,
+    "ocr_text": "FCFS Scheduling\n(First Come First Serve)\n* First job that requests the CPU gets the CPU\n\n+ Non preemptive\n— Process continues till the burst cycle ends"
+  },
+  {
+    "text": "the ready queue would be allocated the CPU. So, this is a non-freective scheduling algorithm",
+    "start": 539.04,
+    "end": 546.16,
+    "ocr_text": "FCFS Scheduling\n(First Come First Serve)\n+ First job that requests the CPU gets the CPU\n\n+ Non preemptive\n— Process continues till the burst cycle ends"
+  },
+  {
+    "text": "which means that the process once allocated the CPU will continue to execute in the CPU",
+    "start": 546.16,
+    "end": 554.88,
+    "ocr_text": "FCFS Scheduling\n(First Come First Serve)\n* First job that requests the CPU gets the CPU\n\n+ Non preemptive\n— Process continues till the burst cycle ends\n@"
+  },
+  {
+    "text": "until its burst cycle completes. Let us see this with an example. Let us say we have a system",
+    "start": 554.88,
+    "end": 562.64,
+    "ocr_text": "FCFS Scheduling\n(First Come First Serve)\n* First job that requests the CPU gets the CPU\n\n+ Non preemptive\n— Process continues till the burst cycle ends\n@"
+  },
+  {
+    "text": "with four processes running the processes are label P1, P2, P3, P4 and they have an arrival time.",
+    "start": 562.72,
+    "end": 570.56,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\nFa 0 7\nP25 0 A\nP3 0 2"
+  },
+  {
+    "text": "So, the arrival time is present in the second column. So, the arrival time is defined as the time",
+    "start": 570.56,
+    "end": 576.56,
+    "ocr_text": "FCFS Example\n\nProcess *irrival Burst\nTime Time\n\nP1 0 7\na |\nP3 0 2"
+  },
+  {
+    "text": "when these processes enter into the ready queue. So, for this particular very simple example.",
+    "start": 577.2,
+    "end": 584.0,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\nFal 0 7\nPa (0\nP3 0 2"
+  },
+  {
+    "text": "So, we will consider that the that all processes enter the ready queue at the same time that is at",
+    "start": 584.0,
+    "end": 590.96,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\nFal 0 7\nPa (0\nP3 0 2"
+  },
+  {
+    "text": "0th time instant. The third column is the CPU burst time. So, it gives the amount of CPU burst",
+    "start": 591.44,
+    "end": 601.28,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\nP1 0 7\nP20 0 A\n\nP3 0 2"
+  },
+  {
+    "text": "for each process. For instance, P1 has a CPU burst of 7 cycles. P2 has a burst of 4 cycles.",
+    "start": 601.28,
+    "end": 610.08,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\n[>| 0 70\nP20 0 A\nP3 0 2"
+  },
+  {
+    "text": "Thus, this particular table we have like 4 processes which all enter simultaneously into the",
+    "start": 610.08,
+    "end": 616.8,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\nI 0 7\nP2000 A\nP3 0 2"
+  },
+  {
+    "text": "ready queue at the time instant 0 and they have different CPU burst times. For instance,",
+    "start": 616.8,
+    "end": 624.32,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\nP41 0 7\n\nP3 0 2"
+  },
+  {
+    "text": "P1 has 7 cycles P2, 4 cycles P3, 2 cycles and P4, 5 cycles. Now, we will see how these four",
+    "start": 625.36,
+    "end": 634.32,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\nFal 0 7\n\nP3 0 2"
+  },
+  {
+    "text": "processes get scheduled into the CPU or how these four processes get allocated the CPU.",
+    "start": 634.32,
+    "end": 640.8,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\nFal 0 7\n\nP3 0 2"
+  },
+  {
+    "text": "Since, all of these processes arrive at the same time, the scheduler does not actually have a",
+    "start": 641.6,
+    "end": 647.68,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\n\nTime Time\nP41, 0) /\nP3 0 2"
+  },
+  {
+    "text": "choice to make. So, he would pick randomly a particular order. For instance, let us say the",
+    "start": 647.68,
+    "end": 654.8,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\n\nTime Time\nP41 , o 7\nP3 0 2"
+  },
+  {
+    "text": "scheduler picks P1 to run. So, P1 runs for 7 cycles and when it completes the scheduler picks",
+    "start": 654.8,
+    "end": 663.2,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\n\nTime Time\nP41 , o 7\nP3 0 2"
+  },
+  {
+    "text": "P2 and P2 runs for 4 cycles. After P2 completes its burst and P3 executes in the CPU for 2 cycles",
+    "start": 663.2,
+    "end": 673.28,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\nP1 0 Tid\nP20 0 A\nP3 0 2"
+  },
+  {
+    "text": "and then finally, P4 is scheduled in to execute for 5 CPU cycles. So, this is represented by a",
+    "start": 673.28,
+    "end": 682.16,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\n\nTime Time\n[>| 0 7\nP3 & 0 2"
+  },
+  {
+    "text": "grant chart. So, a grant chart is a horizontal bar chart developed as a production tool in 1917",
+    "start": 682.16,
+    "end": 689.76,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\nTime Time\n\nP1 0 7\nP20 0 4\nP3 0 2\n\n%"
+  },
+  {
+    "text": "by Henry Elk Grant, who was an American engineer and a social scientist. So, essentially in a grant",
+    "start": 689.84,
+    "end": 696.08,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\n\nTime Time\nPal 0 7\n[a\nP3 0 2\n\nA Gantt chart is a horizontal bar chart developed as a\nproduction control tool in 1917 by Henry L. Gantt, an\nAmerican engineer and social scientist.\n\nEEE 6B\nP2 P4\n\nGrantt Chart\n\ntime"
+  },
+  {
+    "text": "chart, we have like several blocks over here and each block represents a cycle of execution.",
+    "start": 696.08,
+    "end": 701.76,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\n\nTime Time\nP41 0) ia\nro 4a\nP3 0 2\n\nA Gantt chart is a horizontal bar chart developed as a\nproduction control tool in 1917 by Henry L. Gantt, an\nAmerican engineer and social scientist.\n\nGrantt Chart\n\n© En 6B\nP2 3 PA\n\ntime"
+  },
+  {
+    "text": "So, for instance, P1 executes for 7 cycles. So, it has like 7 blocks 1, 2, 3, 4, 5, 6, 7.",
+    "start": 702.8,
+    "end": 712.0,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\n\nTime Time\nP41 0) ia\nro 4a\nP3 0 2\n\nA Gantt chart is a horizontal bar chart developed as a\nproduction control tool in 1917 by Henry L. Gantt, an\nAmerican engineer and social scientist.\n\nGrantt Chart\n\n© En 6B\nP2 3 PA\n\ntime"
+  },
+  {
+    "text": "P2 then executes for 4 cycles. So, it is given like 4 blocks then P3 executes for 2 cycles. So,",
+    "start": 712.72,
+    "end": 719.92,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\n\nTime Time\nPal 0 ia\nfe |\nP3 0 2\n\nA Gantt chart is a horizontal bar chart developed as a\nproduction control tool in 1917 by Henry L. Gantt, an\nAmerican engineer and social scientist.\n\nGrantt Chart\n\n5 EEnn) 6D\nP2 P4\n\ntime"
+  },
+  {
+    "text": "it is given 2 blocks and finally, P4 executes for 5 blocks 5 cycles. So, it is given 5 blocks.",
+    "start": 719.92,
+    "end": 726.72,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst\n\nTime Time\nFal 0 7\nLn Aas\nP3 0 2\n\nA Gantt chart is a horizontal bar chart developed as a\nproduction control tool in 1917 by Henry L. Gantt, an\nAmerican engineer and social scientist.\n\nGrantt Chart\nEEEE., SRR08\nP2 P4\n\ntime"
+  },
+  {
+    "text": "So, we could compute the average waiting time for this particular case. We see that process",
+    "start": 729.28,
+    "end": 736.08,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst Average Waiting Time\n\nTime —‘ Time = (0+7+411+13)/4\nP41 0 7 a TK\n[Poo Average Response Time\n\nP3 0 2 =(0+7+11413)/4\n\n(same as Average Waiting Time)\n\nGrantt Chart\nHERS EEE\nP2 F P4\n\ntime"
+  },
+  {
+    "text": "P1 enters into the ready queue at the instant 0 and immediately gets to execute in the CPU. Thus,",
+    "start": 736.08,
+    "end": 745.36,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst Average Waiting Time\n\nTime —‘ Time = (0+7+411+13)/4\nP41 0 7 = tite\n[P20 Average Response Time\n\nP3 0 D =(0+7+11413)/4\n\n(same as Average Waiting Time)\n\nGrantt Chart\n| ee |\nP2 23\n\nP4\n\ntime"
+  },
+  {
+    "text": "it does not have to wait at all. The second process P2 arrives also at 0 that is also arrives at",
+    "start": 745.36,
+    "end": 753.28,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\n\nProcess Arrival Burst\n= (0+7+11+13)/4\n\nTime Time\n\nP41 0 7 = Uke\nP20 0 4 Average Response Time\n=(0+7+11+413)/4\n\nP3 0 2\n\n(same as Average Waiting Time)\n\nGrantt Chart\nEEES EREE\nP2 P3 P4\n\ntime"
+  },
+  {
+    "text": "this point, but gets to execute only after P1 executes that is after 7 cycles. Thus, its wait time",
+    "start": 753.28,
+    "end": 763.2,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\n\nProcess Arrival Burst\n= (0+7+11+13)/4\n\nTime Time\n\nP41 0 7 = Uke\nP20 0 4 Average Response Time\n=(0+7+11+413)/4\n\nP3 0 2\n\n(same as Average Waiting Time)\n\nGrantt Chart\nEEES EREE\nP2 P3 P4\n\ntime"
+  },
+  {
+    "text": "is for process P2 is 7. Similarly, process P3 which also enters in the 0th cycle gets to",
+    "start": 763.2,
+    "end": 771.84,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\nTime Time = (0+7+4+11+13)/4\n\nP4 0 7 = Uae\n\n[P20 Average Response Time\n\nP3 0 D =(0+7+11+413)/4\n\n(same as Average Waiting Time)\n\nProcess Arrival Burst\n\nGrantt Chart\nDES HEREE\nP2 23\n\nP4\n\ntime"
+  },
+  {
+    "text": "execute only after process P1 and P2 completes. In other words, it has to wait 11 cycles.",
+    "start": 771.84,
+    "end": 778.88,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\n= (0+7+11+4+13)/4\n= 7.75\n\nProcess Arrival Burst\nTime Time\n\nPil 0 7\n\n| Average Response Time\n\nP3 0 D =(0+7+11413)/4\n\n(same as Average Waiting Time)\n\nGrantt Chart :\nEERE 6G\nP2\n\nyy P3 P4\n\ntime"
+  },
+  {
+    "text": "The fourth process in a similar way needs to wait for 13 cycles. Therefore, the average waiting time",
+    "start": 780.08,
+    "end": 787.12,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst Average Waiting Time\n\nTime —‘ Time = (O+74 14+ 13)/4\nP4 0 7 =) Unite\n[P20 Average Response Time\n\nP3 0 2 =(0+7+11413)/4\n\n(same as Average Waiting Time)\n\nGrantt Chart\ntt ee\nP2\n\nP34\n\ntime"
+  },
+  {
+    "text": "in this particular case is 7.75 cycles. Now, we can look at another scheduling criteria which is",
+    "start": 788.0,
+    "end": 797.04,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\nTime Time = (0+74+11+13)/4\nP41 0 7 = 119%\n\n[P20 Average Response Time\n\nP3 0 2 =(0+7+11413)/4\n\n(same as Average Waiting Time)\n\nProcess Arrival Burst\n\nGrantt Chart\ntt ee |\nRZ >3 P4\n\ntime"
+  },
+  {
+    "text": "the average response time. So, average response time in this case is the same as the average waiting",
+    "start": 797.04,
+    "end": 803.52,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\nTime Time = (0+74+11+13)/4\n\nP41 0 7 = Uitte\n\n[P2 oA Average Response Time\n\nP3 0 2 =(0+7411413)/4\n\n(same as Average Waiting Time)\n\nProcess Arrival Burst\n\nGrantt Chart\ntt ee |\nP2 3\n\nP4\n\ntime"
+  },
+  {
+    "text": "time. So, the average response time is the time taken for a particular process to begin executing",
+    "start": 803.52,
+    "end": 810.48,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\nTime Time = (0+74+11+13)/4\n\nP41 0 7 = Uitte\n\n[P2 oA Average Response Time\n\nP3 0 2 =(0+7411413)/4\n\n(same as Average Waiting Time)\n\nProcess Arrival Burst\n\nGrantt Chart\ntt ee |\nP2 3\n\nP4\n\ntime"
+  },
+  {
+    "text": "in the CPU minus the time it actually enters into the ready queue. So, for instance, P2 enters",
+    "start": 810.48,
+    "end": 818.0,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\n\nProcess Arrival Burst\n= (0+7+11+13)/4\n\nTime Time\n\nP4 0 7 = Uke\nP20 Average Response Time\n=(0+7+411+413)/4\n\nP3 0 2\n\n(same as Average Waiting Time)\n\nGrantt Chart _\nHann REED\nP2 3\n\nP4\n\ntime"
+  },
+  {
+    "text": "into the ready queue at this instant, but begins to execute in the CPU only after 7 cycles.",
+    "start": 818.0,
+    "end": 823.92,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\n\nProcess Arrival Burst\n= (0+7+ 11+ 13)/4\n\nTime Time\n\nP4 0 7 = Uete\nP20 Average Response Time\nP3 0 2 =(0+7+11413)/4\n\n(same as Average Waiting Time)\n\nGrantt Chart\ntt ee |\nP2 P3\n\nP4\n\nfen\n\ntime"
+  },
+  {
+    "text": "So, therefore, the response time for process P2 is 7. Similarly, process P3 has a response time",
+    "start": 824.64,
+    "end": 833.84,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\n\nProcess Arrival Burst\n= (0+7+ 11+ 13)/4\n\nTime Time\n\nP4 0 7 = Uete\nP20 Average Response Time\nP3 0 2 =(0+7+11413)/4\n\n(same as Average Waiting Time)\n\nGrantt Chart\ntt ee |\nP2 P3\n\nP4\n\nfen\n\ntime"
+  },
+  {
+    "text": "of 11 because it has waited for 11 cycles to actually begin executing in the CPU. So,",
+    "start": 833.84,
+    "end": 839.52,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst Average Waiting Time\n\nTime —‘ Time = (0+7+11+13)/4\nP41 0 7 = tide\nP20 Average Response Time\n\nP3 0 2 = (OFZ 411+ 13)/4\n\n(same as Average Waiting Time)\n\nGrantt Chart\n| ee\nP2 P3 P4\n\ntime"
+  },
+  {
+    "text": "on average the average response time is 7.75 just like the average waiting time.",
+    "start": 840.32,
+    "end": 846.56,
+    "ocr_text": "FCFS Example\n\nAverage Waiting Time\n= (0+7+11+4+13)/4\n= 7.75\n\nProcess Arrival Burst\nTime Time\n\nP41 0 7\n\nP2000 Average Response Time\n\nP3 0 2 =(0+7 411+ 13)/4\nu\n\n(same as Average Waiting Time)\n\nGrantt Chart =\nBEES EEE\nP2 3\n\nP4\n\ntime"
+  },
+  {
+    "text": "Now, one characteristic of the FCFS scheduling algorithm is that the order of scheduling matters.",
+    "start": 847.2,
+    "end": 854.32,
+    "ocr_text": "FCFS Example\n\n¢ Order of scheduling matters\n\nProcess Arrival Burst\nTime Time\n\nAverage Waiting Time\n\nP41 0) 7\na = (0+4+6+411)/4\n(el |\n\nGrantt Chart\n\nEERE 6B\nP2 P4\n\ntime\n\nP3"
+  },
+  {
+    "text": "In the previous slide that is in this slide, we had assumed that P1 executes then P2 executes",
+    "start": 854.32,
+    "end": 859.52,
+    "ocr_text": "FCFS Example\n\n¢ Order of scheduling matters\n\nProcess Arrival Burst\nTime Time\n\nAverage Waiting Time\n\nP41 0) 7\na = (0+4+6+411)/4\n(el |\n\nGrantt Chart\n\nEERE 6B\nP2 P4\n\ntime\n\nP3"
+  },
+  {
+    "text": "then P3 and then P4 and we have got a average waiting time and average response time of 7.75",
+    "start": 859.52,
+    "end": 866.88,
+    "ocr_text": "FCFS Example\n\nProcess Arrival Burst Average Waiting Time\nTime Time = (0+74+11+13)/4\n\nP4 0 i = thelhe)\n\n| Average Response Time\n\nP3 0 2 =(0+7+11+13)/4\n\n(same as Average Waiting Time)\n\nGrantt Chart\n\nHann SERRE\nP2\n\nP34\n\ntime"
+  },
+  {
+    "text": "cycles. Now, suppose we just change the ordering and let us say the ordering is now as follows that",
+    "start": 867.52,
+    "end": 876.0,
+    "ocr_text": "FCFS Example\n\n¢ Order of scheduling matters\n\nProcess Arrival Burst .W]\nTime Time\n\nAverage Waiting Time\n\nP41 0 7\na = (0+4+6411)/4\nCn (|\n\nGrantt Chart\n\nEES EEE\nP2 P4\n\ntime\n\nF"
+  },
+  {
+    "text": "P2 executes then P3 executes then P4 and finally P1. In such a case, if we compute the average waiting",
+    "start": 876.0,
+    "end": 884.48,
+    "ocr_text": "FCFS Example\n\n¢ Order of scheduling matters\n\nProcess Arrival Burst\nTime Time\n\nAverage Waiting Time\n\nP41 0 7\na = (0+4+6+411)/4\n(|\n\nGrantt Chart\n\nSEER BS\nP2 P4\n\ntime"
+  },
+  {
+    "text": "time, we see that it gets reduced from 7.75 cycles to 5.25 cycles. Similarly, if you compute the",
+    "start": 884.48,
+    "end": 893.84,
+    "ocr_text": "FCFS Example\n\n¢ Order of scheduling matters\n\nProcess Arrival Burst\nTime Time\n\nAverage Waiting Time\n\nP41 0 7\na = (0+4+6+411)/4\n(|\n\nGrantt Chart\n\nSEER BS\nP2 P4\n\ntime"
+  },
+  {
+    "text": "average response time, you will see that the response time is also 5.25 cycles.",
+    "start": 893.84,
+    "end": 898.88,
+    "ocr_text": "FCFS Example\n\n¢ Order of scheduling matters\n\nProcess Arrival Burst\nTime Time\n\nAverage Waiting Time\n\nP1 0 7\n\na = (0+4+6+11)/4\nP3 0 2 ww\n|\n\nGrantt Chart\nEEnE HERE\nP2 P3 P4\n\ntime"
+  },
+  {
+    "text": "In a similar way, you could compute the other criteria which we have mentioned over here",
+    "start": 899.92,
+    "end": 904.88,
+    "ocr_text": "FCFS Example\n\n¢ Order of scheduling matters\n\nProcess Arrival Burst\nTime Time\n\nAverage Waiting Time\n\nP41 ) 7\n| = (0+4+6+411)/4\na (|\n\nGrantt Chart\n\nEERE 6B\nP2 P4\n\ntime"
+  },
+  {
+    "text": "and you would be able to actually see the difference with the two ordering schemes.",
+    "start": 906.32,
+    "end": 911.44,
+    "ocr_text": "FCFS Example\n\n¢ Order of scheduling matters\n\nProcess Arrival Burst\nTime Time\n\nAverage Waiting Time\n\nP41 i) 7\na = (0+4+6+411)/4\nLe (|\n\nGrantt Chart\n\nEEnn 6B\nP2 P4\n\ntime\n\nPs"
+  },
+  {
+    "text": "Another characteristic of the FCFS scheduling algorithm is the con-boy effect.",
+    "start": 912.96,
+    "end": 917.36,
+    "ocr_text": "FCFS Example\n\n¢ Order of scheduling matters\n\nProcess Arrival Burst\nTime Time\n\nAverage Waiting Time\n\nP41 i) 7\na = (0+4+6+411)/4\nLe (|\n\nGrantt Chart\n\nEEnn 6B\nP2 P4\n\ntime\n\nPs"
+  },
+  {
+    "text": "Essentially, in this particular case, we see that all processes wait for one big process to get",
+    "start": 918.0,
+    "end": 924.08,
+    "ocr_text": "The Convoy Effect\n\nAll processes wait for the one\n\nProcess Arrival Burst\n\nTime Time big process to get off the CPU.\nP41 0 7\nP3 0 2\n\nGrantt Chart\n\n|| | i | | |\nP2 P3. PA\n\ntime"
+  },
+  {
+    "text": "off the CPU. So, for instance, in this case, until or rather even though all processes",
+    "start": 924.08,
+    "end": 932.24,
+    "ocr_text": "The Convoy Effect\n\nAll processes wait for the one\n\nProcess Arrival Burst\n\nTime Time big process to get off the CPU.\nP41 0 7\nP3 0 2\n\nGrantt Chart\n\n|| | i | | |\nP2 P3. PA\n\ntime"
+  },
+  {
+    "text": "enter the CPU at the same time, all processes have to wait for P1 to complete only then that",
+    "start": 933.04,
+    "end": 942.16,
+    "ocr_text": "The Convoy Effect\n\nMW]\nAll processes wait for the one\n\nProcess Arrival Burst\n\nTime Time big process to get off the CPU.\nail 0 iG\nP3 0 2\n\nGrantt Chart\n\nP4\n\nEEEE )6EEEE\nP2 >3\n\ntime"
+  },
+  {
+    "text": "they could be scheduled. So, if we have a large process over here, for instance, we have a",
+    "start": 942.24,
+    "end": 946.56,
+    "ocr_text": "The Convoy Effect\n\nProcess Arrival Burst All processes wait for the one\nTime Time big process to get off the CPU.\n\nP41 0 ifr\n\nP3 0 2\n\nGrantt Chart\n\nlla mt\n\nP34\n\ntime"
+  },
+  {
+    "text": "process P1 instead of a burst time of 7 takes a burst time of say 100. All other processes,",
+    "start": 947.44,
+    "end": 954.88,
+    "ocr_text": "The Convoy Effect\n\nAll processes wait for the one\n\nProcess Arrival Burst\n\nTime Time big process to get off the CPU.\nP41 0 7\nP3 0 2\n\nGrantt Chart\n\nHaan ERE\nP2 P3 P4\n\ntime"
+  },
+  {
+    "text": "P2, P3 and P4 would wait for 100 clock cycles before they actually be able to get to execute",
+    "start": 954.88,
+    "end": 963.52,
+    "ocr_text": "The Convoy Effect\n\nAll processes wait for the one\n\nProcess Arrival Burst\n\nTime Time big process to get off the CPU.\nP41 0 7\nP3 0 2\n\nGrantt Chart\n\nHaan ERE\nP2 P3 P4\n\ntime"
+  },
+  {
+    "text": "in the CPU. So, this is a huge drawback of the FCFS scheduling scheme.",
+    "start": 963.52,
+    "end": 969.2,
+    "ocr_text": "The Convoy Effect\n\nAll processes wait for the one\n\nProcess Arrival Burst\n\nTime Time big process to get off the CPU.\nP41 0 7\nP3 0 2\n\nGrantt Chart\n\nEmm BRE\nP2 3 PA\n\ntime"
+  },
+  {
+    "text": "However, FCFS scheduling algorithm have several advantages. The first thing is it is extremely simple.",
+    "start": 970.4,
+    "end": 977.36,
+    "ocr_text": "FCFS Pros and Cons\n\n¢ Advantages\n— Simple\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\n¢ Disadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "So, the scheduling algorithm could complete very quickly and therefore, the time taken by the",
+    "start": 977.36,
+    "end": 983.36,
+    "ocr_text": "FCFS Pros and Cons\n\nAdvantages\n— Simple\n\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\nDisadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "scheduling algorithm will be very less and you would end up with very less context delays while",
+    "start": 983.36,
+    "end": 989.6,
+    "ocr_text": "FCFS Pros and Cons\n\nAdvantages\n— Simple\n\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\nDisadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "changing the context. Another advantage of the FCFS scheduling algorithm is that it is fair.",
+    "start": 989.6,
+    "end": 995.92,
+    "ocr_text": "FCFS Pros and Cons\n\nAdvantages\n— Simple\n\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\nDisadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "As long as no process hogs the CPU, every process will eventually run or in other words,",
+    "start": 996.56,
+    "end": 1003.12,
+    "ocr_text": "FCFS Pros and Cons\n\nAdvantages\n— Simple\n\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\nDisadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "as long as every process terminates at some point, every other process in the ready queue will",
+    "start": 1003.12,
+    "end": 1008.4,
+    "ocr_text": "FCFS Pros and Cons\n\nAdvantages\n— Simple\n\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\nDisadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "eventually get to execute in the CPU. Now, the drawback or the disadvantage of the FCFS",
+    "start": 1008.4,
+    "end": 1016.08,
+    "ocr_text": "FCFS Pros and Cons\n\nAdvantages\n— Simple\n\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\nDisadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "schedulers as we have seen is that the waiting time depends on the arrival order.",
+    "start": 1016.08,
+    "end": 1020.72,
+    "ocr_text": "FCFS Pros and Cons\n\nAdvantages\n— Simple\n\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\nDisadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "So, we have seen the example in the previous slides. Another disadvantage is that short processes",
+    "start": 1021.36,
+    "end": 1026.56,
+    "ocr_text": "FCFS Pros and Cons\n\nAdvantages\n— Simple\n\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\nDisadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "are stuck in the ready queue waiting for long processes to complete or rather this is the",
+    "start": 1027.28,
+    "end": 1033.92,
+    "ocr_text": "FCFS Pros and Cons\n\nAdvantages\n— Simple\n\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\nDisadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "convoy effect that we have looked at. Now, let us look at another scheduling algorithm known as",
+    "start": 1033.92,
+    "end": 1041.84,
+    "ocr_text": "FCFS Pros and Cons\n\nAdvantages\n— Simple\n\n— Fair (as long as no process hogs the CPU, every\nprocess will eventually run)\n\nDisadvantages\n— Waiting time depends on arrival order\n\n— short processes stuck waiting for long process to\ncomplete"
+  },
+  {
+    "text": "the shortest job first scheduling algorithm. In this particular scheduling algorithm,",
+    "start": 1041.84,
+    "end": 1046.24,
+    "ocr_text": "Shortest Job First (SJF)\nno preemption\n\nSchedule process with the shortest burst time\n— FCFS if same\n\nNo preemption: the process continues to execute until its CPU burst\ncompletes\n\nSJF, with preemption: the process may get preempted when a new\nprocess arrives\n(more on this later)"
+  },
+  {
+    "text": "the job or the process with the shortest CPU burst time is scheduled before the others.",
+    "start": 1047.12,
+    "end": 1053.52,
+    "ocr_text": "Shortest Job First (SJF)\nno preemption\n\nSchedule process with the shortest burst time\n— FCFS if same\n\nNo preemption: the process continues to execute until its CPU burst\ncompletes\n\nSJF, with preemption: the process may get preempted when a new\nprocess arrives\n(more on this later)"
+  },
+  {
+    "text": "Now, if you have more than one process with the same CPU burst time, then the standard FCFS",
+    "start": 1054.48,
+    "end": 1062.0,
+    "ocr_text": "Shortest Job First (SJF)\nno preemption\n\nSchedule process with the shortest burst time\n— FCFS if same\n\nNo preemption: the process continues to execute until its CPU burst\ncompletes\n\nSJF, with preemption: the process may get preempted when a new\nprocess arrives\n(more on this later)"
+  },
+  {
+    "text": "scheduling is used. There are two variants of the shortest job first scheduling algorithm.",
+    "start": 1062.0,
+    "end": 1067.68,
+    "ocr_text": "Shortest Job First (SJF)\nno preemption\n\nSchedule process with the shortest burst time\n— FCFS if same\n\nNo preemption: the process continues to execute until its CPU burst\ncompletes “\n\nSJF, with preemption: the process may get preempted when a new\nprocess arrives\n(more on this later)"
+  },
+  {
+    "text": "The first is the no preemption variant while the second one is the shortest job first with",
+    "start": 1067.68,
+    "end": 1072.8,
+    "ocr_text": "Shortest Job First (SJF)\nno preemption\n\nSchedule process with the shortest burst time\n— FCFS if same\n\nNo preemption: the process continues to execute until its CPU burst\ncompletes “\n\nSJF, with preemption: the process may get preempted when a new\nprocess arrives\n(more on this later)"
+  },
+  {
+    "text": "preemption. Now, in the STF with no preemption, the process will continue to execute in the CPU",
+    "start": 1072.8,
+    "end": 1080.88,
+    "ocr_text": "Shortest Job First (SJF)\nno preemption\n\nSchedule process with the shortest burst time\n— FCFS if same\n\nNo preemption: the process continues to execute until its CPU burst\ncompletes “\n\nSJF, with preemption: the process may get preempted when a new\nprocess arrives\n(more on this later)"
+  },
+  {
+    "text": "until its CPU burst completes. In the second variant with preemption, it may be possible that the",
+    "start": 1082.0,
+    "end": 1089.28,
+    "ocr_text": "Shortest Job First (SJF)\nno preemption\n\nSchedule process with the shortest burst time\n— FCFS if same\n\nNo preemption: the process continues to execute until its CPU burst\ncompletes\n\nSJF, with preemption: the process may get preempted when a new\nprocess arrives\n(more on this later)"
+  },
+  {
+    "text": "process which may get preempted when a new process arrives into the ready queue. We will see more",
+    "start": 1089.28,
+    "end": 1095.76,
+    "ocr_text": "Shortest Job First (SJF)\nno preemption\n\nSchedule process with the shortest burst time\n— FCFS if same\n\nNo preemption: the process continues to execute until its CPU burst\ncompletes\n\nSJF, with preemption: the process may get preempted when a new\nprocess arrives\n(more on this later)"
+  },
+  {
+    "text": "on this later. But first, we will start with the shortest job first variant with no preemption.",
+    "start": 1095.84,
+    "end": 1101.28,
+    "ocr_text": "Shortest Job First (SJF)\nno preemption\n\nSchedule process with the shortest burst time\n— FCFS if same\n\nNo preemption: the process continues to execute until its CPU burst\ncompletes\n\nSJF, with preemption: the process may get preempted when a new\nprocess arrives\n(more on this later)"
+  },
+  {
+    "text": "So, let us take the same example that we have seen in the previous case. We have the four processes",
+    "start": 1101.28,
+    "end": 1106.4,
+    "ocr_text": "Shortest Job First (SJF)\nno preemption\n\nSchedule process with the shortest burst time\n— FCFS if same\n\nNo preemption: the process continues to execute until its CPU burst\ncompletes\n\nSJF, with preemption: the process may get preempted when a new\nprocess arrives\n(more on this later)"
+  },
+  {
+    "text": "P 1 to P 4 and all of them are arriving at the instant 0 that is at instant 0, these four processes",
+    "start": 1106.4,
+    "end": 1114.72,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\n\nTime Time\nAverage wait time\n\ned 0 W\nzn “hae\n= 2.75\nP3 0 2\nAverage response time\n\n= (Average wait time)\n\na\nP2\noecgnee\n\nSchedule p4P\nGrantt Chart\n\nArrival"
+  },
+  {
+    "text": "P 1 to P 4 get into the ready queue and each of these processes have a different CPU burst time",
+    "start": 1114.72,
+    "end": 1121.6,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\n\nTime Time\nAverage wait time\n\ned 0 W\nzn “hae\n= 2.75\nP3 0 2\nAverage response time\n\n= (Average wait time)\n\na\nP2\noecgnee\n\nSchedule p4P\nGrantt Chart\n\nArrival"
+  },
+  {
+    "text": "that is 7, 4, 2 and 1 respectively. Now, in the first instant, the CPU scheduler will look at the",
+    "start": 1121.68,
+    "end": 1129.36,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\n\nTime Time\nAverage wait time\n\nP41 0 Aa\nroa “ag\n= 2.75\nP3 0 2\nAverage response time\n\n= (Average wait time)\n\nP4\nP2\nSocmnee\n\nSchedule p4P\nGrantt Chart\n\nArrival"
+  },
+  {
+    "text": "various burst times and find the one which is minimum. So, in this case, we see that P 4 has the",
+    "start": 1129.36,
+    "end": 1135.12,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\nPal 0 7\n\nP3 0 2\n\nPa\nP2\n\nArrival\n\nSchedule p4P\n\nGrantt Chart\n\nAverage wait time\n=(7+3+1+0)/4\n= 2.75\n\nAverage response time\n= (Average wait time)"
+  },
+  {
+    "text": "minimum CPU burst time. So, that is scheduled first. So, first process P 4 gets scheduled until it",
+    "start": 1135.12,
+    "end": 1141.44,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\n\nTime Time\nAverage wait time\n\nP1 0 7\n7 | “ag\n= 2.75\nP3 0 2\nAverage response time\n\n= (Average wait time)\n\nae\nP2\nArrival\nSEE\nSchedule P4P3 P2\n\nGrantt Chart"
+  },
+  {
+    "text": "completes in this particular case, it completes in one cycle. Then, among the remaining three,",
+    "start": 1141.44,
+    "end": 1148.64,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\n\nTime Time\nAverage wait time\n\nP1 0 7\n7 | “ag\n= 2.75\nP3 0 2\nAverage response time\n\n= (Average wait time)\n\nae\nP2\nArrival\nSEE\nSchedule P4P3 P2\n\nGrantt Chart"
+  },
+  {
+    "text": "we see that P 3 has the lowest CPU burst time. So, process P 3 gets scheduled and completes",
+    "start": 1149.52,
+    "end": 1156.56,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\n\nTime Time\nAverage wait time\n\nFS) 0 VAN)\n= (Average wait time)\nRe\nP2\nArrival\noocmnee\n\nSchedule p4P\nGrantt Chart"
+  },
+  {
+    "text": "till and executes till it completes its burst. Then, P 2 gets scheduled because it has a burst time",
+    "start": 1156.56,
+    "end": 1164.24,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\n\nTime Time\nAverage wait time\n\nP1 0 7\nRO jo a stege | O*\n= 2.75\nP3 0 2\nAverage response time\n\n= (Average wait time)\n\nre\nP2\n\nSchedule p4P\nGrantt Chart\n\nArrival"
+  },
+  {
+    "text": "of 4 while P 1 has a higher burst time of 7 and finally, P 1 gets to execute till completion.",
+    "start": 1164.24,
+    "end": 1170.64,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\n\nTime Time\nAverage wait time\n\nP1 0 7\nRO jo a stege | O*\n= 2.75\nP3 0 2\nAverage response time\n\n= (Average wait time)\n\nre\nP2\n\nSchedule p4P\nGrantt Chart\n\nArrival"
+  },
+  {
+    "text": "Now, the average weight time if we compute this is 2.75 while the average response time is also",
+    "start": 1171.2,
+    "end": 1178.56,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\n\nTime Time\nAverage wait time\n\nP1 0 a\nre joa “ae\n= 2.75\nP3 0 2\nAverage response time\n\n= (Average wait time)\n\nP4\nP2\noocmnee\n\nSchedule p4P\nGrantt Chart\n\nArrival"
+  },
+  {
+    "text": "2.75 as in the weight time case. Now, let us look at another example of shortest job first without",
+    "start": 1178.56,
+    "end": 1185.84,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\n\nTime Time\nAverage wait time\n\neal 0 7\nRo aS “fa\n= 2.75\nP3 0 2\nAverage response time\n\n= (Average wait time)\nfy\n\nzy\n\nP2\nArrival\n\nSnREEE\nSchedule P4P3 P2\n\nGrantt Chart"
+  },
+  {
+    "text": "preemption. So, we will take the same four processes P 1 to P 4 and each of these processes have",
+    "start": 1185.84,
+    "end": 1191.52,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst Another Example\n\nTime Time,\nwT\nAverage wait time\n(0+8+4+0)/4\n\nP1 0 i\nP22 A 23\nP3 4 2\n= (Average wait time)\nGrantt Chart\n\nArrival P2 P3\na sola\n\nSchedule P4P3"
+  },
+  {
+    "text": "the same burst time as before that is 7, 4, 2 and 1 respectively. However, they arrive at different",
+    "start": 1191.52,
+    "end": 1198.96,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst Another Example\n\nTime Time,\nwT\nAverage wait time\n(0+8+4+0)/4\n\nP1 0 i\nP22 A 23\nP3 4 2\n= (Average wait time)\nGrantt Chart\n\nArrival P2 P3\na sola\n\nSchedule P4P3"
+  },
+  {
+    "text": "instance that is the moment the instant in which they enter into the ready queue would be",
+    "start": 1198.96,
+    "end": 1205.36,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\nFoal 0 7\n\nP3 4 D\n[ra 7 a\n\nGrantt Chart\n\nArrival P2\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nSchedule P4P3"
+  },
+  {
+    "text": "different. So, P 1 enters at the 0th instant P 2 in the second instant P 3 at the 4th instant",
+    "start": 1205.36,
+    "end": 1212.24,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\nP41 0 7\nPa\nP3 4 2\n\nGrantt Chart\n\nArrival P2 P3\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nSchedule P4pP"
+  },
+  {
+    "text": "and P 4 in the 7th instant. Now, this is a slight modification in the grand chart where in addition",
+    "start": 1212.24,
+    "end": 1219.2,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\nP41 0 7\nPa\nP3 4 2\n\nGrantt Chart\n\nArrival P2 P3\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nSchedule P4pP"
+  },
+  {
+    "text": "to showing which process is executing in the CPU, it also shows the order in which processes arrive.",
+    "start": 1219.2,
+    "end": 1226.96,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\nea 0 7\nP20 2 4\nP3 4 2\n\nGrantt Chart\n\nArrival P2 P3\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\n6 : ola\n\nSchedule P4pP"
+  },
+  {
+    "text": "It shows that P 1 arrives first then P 2 in the second instant then P 3 and finally, P 4 in the",
+    "start": 1226.96,
+    "end": 1234.16,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\nFea 0 7\n\nP3 4 D\n[Pay te\n\nGrantt Chart\n\nArrival P2)\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nSchedule P4P2"
+  },
+  {
+    "text": "7th instant. Now, when the scheduler begins to execute at this particular instant the only",
+    "start": 1234.16,
+    "end": 1241.52,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\nFea 0 7\n\nP3 4 D\n[Pay te\n\nGrantt Chart\n\nArrival P2)\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nSchedule P4P2"
+  },
+  {
+    "text": "process that has arrived at this particular point is P 1 therefore, it schedules P 1 to execute.",
+    "start": 1241.52,
+    "end": 1248.48,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\nal 0 7\n\nP3 4 Q\na ee\n\nGrantt Chart\n\nArrival R P2\nWi\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nP4\n| et\n\nSchedule P4P3\n\nP2"
+  },
+  {
+    "text": "So, P 1 executes for its entire burst that is of 7 cycles and then at this particular cycle",
+    "start": 1249.52,
+    "end": 1258.16,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\nP1 0 7\nP20 2 A\nP3 4 2\n\nGrantt Chart\n\nArrival P2 P3\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nb : sola\n\nSchedule P4P"
+  },
+  {
+    "text": "the scheduler enters again or a scheduler executes again and this time it has got three processes",
+    "start": 1258.16,
+    "end": 1266.24,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\neal 0 7\nP20 2 4\nP3 4 2\n\nGrantt Chart\n\nArrival P2\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nSchedule P4 P<"
+  },
+  {
+    "text": "to choose from all P 2, P 3 as well as P 4 have arrived in the ready queue and out of them",
+    "start": 1266.24,
+    "end": 1272.24,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\na 0 7\nP20 2 A\nP3 4 2\n\nGrantt Chart\n\nArrival P2 P3\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nSchedule R4 P."
+  },
+  {
+    "text": "P 4 has the shortest burst time therefore, it is chosen for execution therefore, P 4 executes in",
+    "start": 1272.8,
+    "end": 1280.16,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\na 0 7\nP20 2 A\nP3 4 2\n\nGrantt Chart\n\nArrival P2 P3\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nSchedule R4 P."
+  },
+  {
+    "text": "the CPU and then P 3 because P 3 has a shorter burst time than P 2 and finally, P 2 gets executed.",
+    "start": 1280.16,
+    "end": 1288.56,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst Another Example\n\nTime Time\nAverage wait time\n\nP41 0 i\n\nP22 4a i aia\n=3\n\nP3 4 2\n\n= (Average wait time)\nGrantt Chart\n\nArrival P2 P3\nm anne\n\nSchedule P4P2"
+  },
+  {
+    "text": "So, if you compute the average weight time we see that it is three cycles. So, the advantages",
+    "start": 1289.84,
+    "end": 1298.64,
+    "ocr_text": "SJF (without preemption)\n\nProcess Arrival Burst\nTime Time\n\nP1 0 7\nP20 2 A\nP3 4 2\n\nGrantt Chart\n\nArrival P2\n\nAnother Example\n\nAverage wait time\n=(0+8+4+0)/4\n=3\n\nAverage response time\n= (Average wait time)\n\nSchedule P4P3"
+  },
+  {
+    "text": "of the shortest job first scheduling algorithm is that is optimal that it will always give you the",
+    "start": 1298.64,
+    "end": 1303.76,
+    "ocr_text": "Shortest Job First\n\nAdvantages\nOptimal : Minimum average wait time\nAverage response time decreases\n\nDisadvantages\nNot practical : difficult to predict burst time\nLearning to predict future\nMay starve long jobs"
+  },
+  {
+    "text": "minimum average weighting time and as a result of this the average response time also decreases.",
+    "start": 1303.76,
+    "end": 1310.32,
+    "ocr_text": "Shortest Job First\n\nAdvantages\nOptimal : Minimum average wait time\nAverage response time decreases\n\nDisadvantages\nNot practical : difficult to predict burst time\nLearning to predict future\nMay starve long jobs"
+  },
+  {
+    "text": "The main disadvantage of the STF scheduling algorithm is that it is not practical essentially,",
+    "start": 1310.96,
+    "end": 1317.44,
+    "ocr_text": "Shortest Job First\n\nAdvantages\nOptimal : Minimum average wait time\nAverage response time decreases\n\nDisadvantages\nNot practical : difficult to predict burst time\nLearning to predict future\nMay starve long jobs"
+  },
+  {
+    "text": "it is very difficult to predict what the burst time would be. So, another drawback of the STF",
+    "start": 1317.44,
+    "end": 1324.16,
+    "ocr_text": "Shortest Job First\n\nAdvantages\nOptimal : Minimum average wait time\nAverage response time decreases\n\nDisadvantages\nNot practical : difficult to predict burst time\nLearning to predict future\nMay starve long jobs"
+  },
+  {
+    "text": "scheduling algorithm is that some jobs may get starved essentially if you have a process which",
+    "start": 1324.16,
+    "end": 1330.88,
+    "ocr_text": "Shortest Job First\n\nAdvantages\nOptimal : Minimum average wait time\nAverage response time decreases\n\nDisadvantages\nNot practical : difficult to predict burst time\nLearning to predict future\nMay starve long jobs"
+  },
+  {
+    "text": "has an extremely long CPU burst time then it may never get a chance to actually execute in the CPU.",
+    "start": 1330.96,
+    "end": 1337.6,
+    "ocr_text": "Shortest Job First\n\nAdvantages\nOptimal : Minimum average wait time\nAverage response time decreases\n\nDisadvantages\nNot practical : difficult to predict burst time\nLearning to predict future\nMay starve long jobs"
+  },
+  {
+    "text": "Now, we will look at the shortest job first scheduling algorithm with preemption. So,",
+    "start": 1338.64,
+    "end": 1343.76,
+    "ocr_text": "Shortest Remaining Time First -- SRTF\n(SJF with preemption)\n\n* If anew process arrives with a shorter burst time than\nremaining of current process then schedule new process\n\n* Further reduces average waiting time and average\nresponse time\n\n* Not practical"
+  },
+  {
+    "text": "this is also the shortest remaining time first. So, the basic idea in this algorithm is that if a new",
+    "start": 1343.76,
+    "end": 1351.84,
+    "ocr_text": "Shortest Remaining Time First -- SRTF\n(SJF with preemption)\n\n* If anew process arrives with a shorter burst time than\nremaining of current process then schedule new process\n\n* Further reduces average waiting time and average\nresponse time\n\n* Not practical"
+  },
+  {
+    "text": "process arrives into the ready queue and this process has a shorter burst time then the remaining",
+    "start": 1351.84,
+    "end": 1358.96,
+    "ocr_text": "Shortest Remaining Time First -- SRTF\n(SJF with preemption)\n\n* If anew process arrives with a shorter burst time than\nremaining of current process then schedule new process\n\n* Further reduces average waiting time and average\nresponse time\n\n* Not practical"
+  },
+  {
+    "text": "of the current process then there is a context which and the new process gets scheduled into the CPU.",
+    "start": 1359.04,
+    "end": 1365.2,
+    "ocr_text": "Shortest Remaining Time First -- SRTF\n(SJF with preemption)\n\n* If anew process arrives with a shorter burst time than\nremaining of current process then schedule new process\n8\n\n* Further reduces average waiting time and average\nresponse time\n\n* Not practical"
+  },
+  {
+    "text": "This further reduces the average waiting time as well as the average response time.",
+    "start": 1366.16,
+    "end": 1370.56,
+    "ocr_text": "Shortest Remaining Time First -- SRTF\n(SJF with preemption)\n\n* If anew process arrives with a shorter burst time than\nremaining of current process then schedule new process\n\n* Further reduces average waiting time and average\nresponse time\n\n* Not practical"
+  },
+  {
+    "text": "However, as in the previous case that is the shortest job first with no preemption here also it",
+    "start": 1371.44,
+    "end": 1377.36,
+    "ocr_text": "Shortest Remaining Time First -- SRTF\n(SJF with preemption)\n\n* If anew process arrives with a shorter burst time than\nremaining of current process then schedule new process\n\n* Further reduces average waiting time and average\nresponse time\n\n* Not practical"
+  },
+  {
+    "text": "is not practical. So, let us understand more on this with an example. So, let us take the same",
+    "start": 1377.36,
+    "end": 1383.04,
+    "ocr_text": "Shortest Remaining Time First -- SRTF\n(SJF with preemption)\n\n* If anew process arrives with a shorter burst time than\nremaining of current process then schedule new process\n\n* Further reduces average waiting time and average\nresponse time\n\n* Not practical"
+  },
+  {
+    "text": "example of 4 processes with burst time 7, 4, 2 and 1 and arrival times at 0, 2, 4 and 7.",
+    "start": 1383.04,
+    "end": 1391.28,
+    "ocr_text": "Shortest Remaining Time First -- SRTF\n(SJF with preemption)\n\n* If anew process arrives with a shorter burst time than\nremaining of current process then schedule new process\n\n* Further reduces average waiting time and average\nresponse time\n\n* Not practical"
+  },
+  {
+    "text": "We will develop the grand chart as the time processes. So, at the instant 0 the only process",
+    "start": 1391.28,
+    "end": 1399.04,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\nTime Time\n\nP41 0 7\nP20 a 4\nP3 4 D\n\nGrantt Chart\n\nArrival\n\nSchedule"
+  },
+  {
+    "text": "which is present is P 1 and therefore, the scheduler has no choice but to schedule P 1",
+    "start": 1399.04,
+    "end": 1404.56,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\nTime Time\n\nP41 () a\nP2020 a\nP3 4 a\n\nGrantt Chart\n\nArrival\nA]\n\nSchedule"
+  },
+  {
+    "text": "onto the CPU thus P 1 would execute for 2 clock cycles. Now, after the second clock cycle the",
+    "start": 1405.2,
+    "end": 1414.08,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nAl 0 7\n|\nP3 4 2\n\nGrantt Chart\n\nArrival P2\nSchedule\n\nP2 burst is 4, P1 remaining is 5\n(preempt P1)"
+  },
+  {
+    "text": "process P 2 has entered into the ready queue. Now, you see that P 2 has a burst of 4 cycles.",
+    "start": 1414.08,
+    "end": 1423.12,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nAl 0 7\n|\nP3 4 2\n\nGrantt Chart\n\nArrival P2\nSchedule\n\nP2 burst is 4, P1 remaining is 5\n(preempt P1)"
+  },
+  {
+    "text": "However, P 1 has a remaining burst of 5 cycles. So, what we mean by this is that out of the",
+    "start": 1423.84,
+    "end": 1429.44,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\n[AI 0 a\n|\nP3 4 D}\n\nGrantt Chart\n\nArrival P2\nSchedule\n\nP2 burst is 4, P1 remaining is 5\n(preempt P1)"
+  },
+  {
+    "text": "CPU burst time of 7 cycles P 1 has completed 2 cycles. So, what remains is 5.",
+    "start": 1429.44,
+    "end": 1435.28,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 rw)\n(|\nP3 4 DQ\n\nGrantt Chart\n\nArrival P2\nSchedule\n\nP2 burst is 4, P1 remaining is 5\n(preempt P1)"
+  },
+  {
+    "text": "Now, the scheduler will see that P 1 has 5 cycles which is greater than P 2 which has a burst",
+    "start": 1435.92,
+    "end": 1442.64,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 7\nmeee\nP3 4 Q\n\nGrantt Chart\n\nArrival P2\nSchedule\n\nP2 burst is 4, P1 remaining is 5°\n(preempt P1)"
+  },
+  {
+    "text": "of 4 cycles. Therefore, it will do a context which and schedule P 2 to run. So, P 2 will run for",
+    "start": 1442.64,
+    "end": 1449.12,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 7\nmeee\nP3 4 Q\n\nGrantt Chart\n\nArrival P2\nSchedule\n\nP2 burst is 4, P1 remaining is 5°\n(preempt P1)"
+  },
+  {
+    "text": "2 clock cycles and then P 3 arrives at the 4th clock instant. So, at this particular instant",
+    "start": 1449.12,
+    "end": 1457.12,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 7\n[|\nP3 4 D\n\nGrantt Chart\n\nArrival P2>R3\n| oe\nSchedule P2\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "the scheduler will find out that P 3 has a burst time of 2 cycles while P 2 has a remaining",
+    "start": 1457.2,
+    "end": 1463.6,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 ia\n(|\nPS) 4 2,\n\nGrantt Chart\n\nArrival P2 P3\nSchedule Pp2\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "a burst time of 2 cycles. We achieved 2 because out of the 4th cycle burst time for P 2 it has",
+    "start": 1464.4,
+    "end": 1471.36,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 ia\n(|\nPS) 4 2,\n\nGrantt Chart\n\nArrival P2 P3\nSchedule Pp2\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "completed 2. So, what remains is 2 more cycles. Since, P 2 the old process which is running on the",
+    "start": 1471.36,
+    "end": 1478.08,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nal 0 i\n| >\nP3 4 2\n\nGrantt Chart\n\nArrival P2 P3\nSchedule P2\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "CPU has a 2 cycle remaining burst time and P 3 the new process also has 2 cycle burst time",
+    "start": 1478.08,
+    "end": 1486.88,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nAl 0 7\nfn\nP3 4 2\n\nGrantt Chart\n\nArrival P2 P3\nSchedule P2\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is ay\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "therefore, there is no preemption and P 2 will continue to execute. Now, after P 2 completes",
+    "start": 1486.96,
+    "end": 1493.76,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 a\nre 2 4\nP3 4 D\n\nGrantt Chart\n\nArrival P2 P3\nSchedule P2 SW)\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "in this particular case P 3 executes for 2 cycles and then P 4 enters. Now, after which",
+    "start": 1493.76,
+    "end": 1500.96,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 a\nre 2 4\nP3 4 D\n\nGrantt Chart\n\nArrival P2 P3\nSchedule P2 SW)\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "if you will verify will not cause any preemption. So, after P 3 completes the scheduler decides",
+    "start": 1501.76,
+    "end": 1508.8,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\neal 0 ia\nrz a\nP3 4 Q\n\nGrantt Chart\n\nArrival P2 P3 P4\nBann):\nSchedule p2 P3\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "to run either P 4 or P 1. So, we see that P 4 has a burst cycle of 1 while P 1 has a remaining",
+    "start": 1508.88,
+    "end": 1517.6,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 ia\nrz\nP3 4 2\n\nGrantt Chart\n\nArrival P2 P3 P4\n|| | ae\nSchedule P2 P3\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "burst cycle of 5. Therefore, the scheduler will decide to choose P 4 over P 1. So, P 4 runs",
+    "start": 1517.6,
+    "end": 1527.2,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nal 0 i\n| |\nP3 4 2\n\nGrantt Chart\n\nArrival PZ P3 P4 a\nSchedule P2 P3\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "on the CPU and after it completes P 1 will execute for its remaining burst time.",
+    "start": 1527.2,
+    "end": 1533.04,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 i\nrez la\nP3 4 2\n\nGrantt Chart\n\nArrival RZ P4\nSchedule P2 3 P4 7\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "So, if you compute the average wait time you see that it reduces to 2.5 while the average",
+    "start": 1534.0,
+    "end": 1539.52,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 i\nrez la\nP3 4 2\n\nGrantt Chart\n\nArrival RZ P4\nSchedule P2 3 P4 7\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "response time reduces considerably to 0.75. However, as we mentioned before just like the shortest",
+    "start": 1539.52,
+    "end": 1547.52,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 a Average wait time\nrz a aig a Oi8\n=2.5\nP3 4 2\n\n=(0+0+2+1)/4\nGrantt Chart =0.75\n\n3 P4\n|| |\nP32 P4\n\nArrival\n\nP2\naia\nSchedule P2\n\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "job first this scheduling algorithm is also not feasible to be implemented in practice because it",
+    "start": 1547.52,
+    "end": 1556.0,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\nP1 0 ia Average wait time\nRee eels\n=2.5\nP3 4 2\n\n=(0+0+2+1)/4\nGrantt Chart =0.75\n\nArrival P2 P3 P4\n|\nP2 3 P4\n\nSchedule\n\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "is very difficult to actually identify what the burst time of a process is and even more difficult",
+    "start": 1556.0,
+    "end": 1562.88,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\neal 0 T Average wait time\n(| se\n=2.5\nP3 4 2\n\n=(0+04+2+1)/4\nGrantt Chart =0.75\n\nArrival\n\nP4\n| |\n3 PA\n\nP2\nSchedule P2\n\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "to identify what the remaining burst time of the process would be. Now, we will look at another",
+    "start": 1562.88,
+    "end": 1568.64,
+    "ocr_text": "SRTF Example\n\nProcess Arrival Burst\n\nTime Time\neal 0 T Average wait time\n(| se\n=2.5\nP3 4 2\n\n=(0+04+2+1)/4\nGrantt Chart =0.75\n\nArrival\n\nP4\n| |\n3 PA\n\nP2\nSchedule P2\n\nP2 burst is 4, P1 remaining is 5 P3 burst is 2, P2 remaining is 2\n(preempt P1) (no preemption)"
+  },
+  {
+    "text": "scheduling algorithm known as the round robin scheduling algorithm. So, essentially with the round",
+    "start": 1568.64,
+    "end": 1574.88,
+    "ocr_text": "Round Robin Scheduling\n\n* Run process for a time slice then move to\nback to ready queue\n\nConfigure timer to interrupt\nperiodically\n\nAt every timer interrupt, preempt\ncurrent running process"
+  },
+  {
+    "text": "robin scheduling algorithm a process runs for a time slice that is a process executes for a time",
+    "start": 1574.88,
+    "end": 1582.64,
+    "ocr_text": "Round Robin Scheduling\n\n* Run process for a time slice then move to\nback to ready queue\n\nConfigure timer to interrupt\nperiodically\n\nAt every timer interrupt, preempt\ncurrent running process"
+  },
+  {
+    "text": "slice and when the time slice completes it is moved on to the ready queue. So, in order to",
+    "start": 1582.64,
+    "end": 1588.64,
+    "ocr_text": "Round Robin Scheduling\n\n¢ Run process for a time slice then move to\nback to ready queue\n\nConfigure timer to interrupt\nperiodically\n\nAt every timer interrupt, preempt\ncurrent running process"
+  },
+  {
+    "text": "achieve this round robin scheduling algorithm which is also a preemptive scheduling algorithm.",
+    "start": 1588.64,
+    "end": 1593.12,
+    "ocr_text": "Round Robin Scheduling\n\n¢ Run process for a time slice then move to\nback to ready queue\n\nConfigure timer to interrupt\nperiodically\n\nAt every timer interrupt, preempt\ncurrent running process"
+  },
+  {
+    "text": "Now, in order to achieve the round robin scheduling we need to configure the timer in the system",
+    "start": 1593.12,
+    "end": 1599.36,
+    "ocr_text": "Round Robin Scheduling\n\n¢ Run process for a time slice then move to\nback to ready queue\n\nConfigure timer to interrupt\nperiodically\n\nAt every timer interrupt, preempt\ncurrent running process"
+  },
+  {
+    "text": "to interrupt the CPU periodically. At every timer interrupt the kernel would preempt the current",
+    "start": 1599.36,
+    "end": 1604.88,
+    "ocr_text": "Round Robin Scheduling\n\n* Run process for a time slice then move to\nback to ready queue\n\nConfigure timer to interrupt\nperiodically\n\nAt every timer interrupt, preempt\ncurrent running process"
+  },
+  {
+    "text": "process and choose another process to execute in the CPU. Let us discuss the round robin scheduling",
+    "start": 1604.88,
+    "end": 1612.0,
+    "ocr_text": "Round Robin Scheduling\n\n* Run process for a time slice then move to\nback to ready queue\n\nConfigure timer to interrupt\nperiodically\n\nAt every timer interrupt, preempt\ncurrent running process"
+  },
+  {
+    "text": "algorithm with an example. So, one difference with respect to the other scheduling algorithms",
+    "start": 1612.96,
+    "end": 1619.04,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nP1 0 5\n|\n\nP3 0 2\n\nchedule| P11\n\nFIFO | P2\n/P3\nP4"
+  },
+  {
+    "text": "that we have seen so far is the notion of time slice. So, this is the grand chart. So, especially",
+    "start": 1619.04,
+    "end": 1626.56,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\n[>] 0 5\ni |\n\nP3 0 2\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "see that periodically in this case with the period equal to 2 that is we have keeping a time",
+    "start": 1626.56,
+    "end": 1634.08,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nP1 0 5\nP20 A\n\nP3 0 2\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "slice equal to 2. There is a timer interrupt that occurs and the timer interrupt would result in",
+    "start": 1634.08,
+    "end": 1641.6,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nP1 0 5\nP20 A\n\nP3 0 2\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "the scheduler being run and potentially another process being scheduled into the CPU. So,",
+    "start": 1641.6,
+    "end": 1648.24,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nea 0 5\nPAs\n\nP3 0 2\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "a data structure which is very useful in implementing the round robin scheduling algorithm",
+    "start": 1648.24,
+    "end": 1652.64,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\n[1 0 5\nEe\n\nP3 0 2\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "is the P4. So, this particular P4 stores the processes that need to be executed next into the",
+    "start": 1653.36,
+    "end": 1662.08,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\n[1 0 5\nEe\n\nP3 0 2\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "CPU. For example, in this particular case P2 is at the top of the P4. So, it is a next process which",
+    "start": 1662.08,
+    "end": 1670.4,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\neal 0 5\nP20 A\n\nP3 0 2\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "gets executed in the P4. So, P2 gets executed over here. So, for example, we will still consider",
+    "start": 1670.4,
+    "end": 1676.56,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\neal 0 5\n| |\n\nP3 0 2\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "the 4 processes as we have done before that is P1 to P4 and we will assume that all of them arrive",
+    "start": 1676.56,
+    "end": 1682.08,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nP1 0 5\nP20 0\n\nP3 0 2\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "at the instance 0 and go into the P4 of the ready queue and they have bus times of 5, 4, 2 and",
+    "start": 1682.96,
+    "end": 1693.36,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nP1 0 5\nP20 0\n\nP3 0 2\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "3 respectively. So, let us say for discussion that the scheduler starts off with this particular",
+    "start": 1693.52,
+    "end": 1700.48,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nP1 0 5\nrns\n\nP3 0 2\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "order P1, P2, P3 and P4. So, and it first chooses to execute P1. So, P1 executes for 2 cycles",
+    "start": 1700.48,
+    "end": 1709.44,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nP1 0 5\n7 a a)\n\nP3 0 Z\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "and then there is a interrupt which occurs leading to a context switch and then the top of the P4",
+    "start": 1709.44,
+    "end": 1716.64,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\n[P| 0 5\na\n\nP3 0 2\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "in this particular case P2 gets scheduled into the CPU while P1 gets pushed into the P4.",
+    "start": 1716.72,
+    "end": 1723.36,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nP1 0 5\nPeo la\n\nP3 0 2\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "So, P2 then executes for 2 cycles until the next timer interrupt in which case the time slice",
+    "start": 1724.24,
+    "end": 1729.76,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nP1 0 5\nPeo la\n\nP3 0 2\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "of 2 cycles completes and then it gets pushed into the P4. So, P2 now is at the bottom of the P4",
+    "start": 1730.64,
+    "end": 1738.4,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\n[Pil 0 5\na |\n\nP3 0 2\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "while P3 which is at the top of the P4 gets scheduled to run. So, in this way",
+    "start": 1738.4,
+    "end": 1745.12,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\neal 0 5\nEAL\n\nP3 0 2\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "every 2 cycles a new process may get scheduled into the CPU and execute.",
+    "start": 1746.64,
+    "end": 1754.08,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2\nProcess Arrival Burst\n\nTime Time\nP1 0 5\ni |\n\nP3 0 2\n\nchedule| P11\n\nFIFO | P2\n| P3\nP4"
+  },
+  {
+    "text": "So, if we compute the average waiting time. So, in this particular case we will see that",
+    "start": 1755.76,
+    "end": 1761.36,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst = (9+ Sia salO) ie\n\nTime Time = 7.15\nFal 0 5 Average Response Time\nP3 0 2 =8\n\n#Context Switches = 7\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "the average waiting time and the average response time is different. So, what is the average waiting",
+    "start": 1761.36,
+    "end": 1766.72,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst = (9+ Sia salO) ie\n\nTime Time = 7.15\nFal 0 5 Average Response Time\nP3 0 2 =8\n\n#Context Switches = 7\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "time for P1? So, the P1 executes 2 cycles here, 2 cycles here and a completes execution over here.",
+    "start": 1766.72,
+    "end": 1775.12,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst =(9+8+4+10)/4\n\nTime Time Se\n(Pal 0 5 Average Response Time\nP3 0 2 =o\n\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "So, it waits in the in the ready queue in the remaining of the cycles. So, the number of cycles",
+    "start": 1775.12,
+    "end": 1780.88,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst =(9+8+4+10)/4\n\nTime Time Sts\nP41 0 5 Average Response Time\nP3 0 2 a\n\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "it waits is 1 2 3 4 5 6 7 8 9. So, P1 waits for 9 cycles. Now, P2 waits for 8 cycles 1 2 3 4 5 6 7 8",
+    "start": 1780.88,
+    "end": 1797.92,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst =(9+8+4+10)/4\n\nTime Time Sts\nP41 0 5 Average Response Time\nP3 0 2 a\n\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "P3 for 4 cycles and P4 for 10 cycles. So, the average waiting time is 7.75 cycles.",
+    "start": 1798.56,
+    "end": 1806.16,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst =(9+8+ oe 10)/4\n\nS v\nTime Time = thts\n\nP41 0 5 Average Response Time\n\nP3 0 D a\n\n#Context Switches = 7\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "Now, to compute the average response time as we defined it before the response time is the time",
+    "start": 1806.96,
+    "end": 1813.2,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst =(9+8+4+10)/4\n\nTime Time Sis\nP1 0 5 Average Response Time\n=30\nPS) 0 2\n\n#Context Switches = 7\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "the process enters into the ready queue to the time it begins to execute in the CPU.",
+    "start": 1813.84,
+    "end": 1820.0,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst =(9+8+4+10)/4\n\nTime Time Sis\nP1 0 5 Average Response Time\n=30\nPS) 0 2\n\n#Context Switches = 7\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "That latency would be the response time. So, P1 for instance has a response time of 0",
+    "start": 1821.04,
+    "end": 1827.6,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst AS 8 ithe 10)1/4\n\nTime Time = ets)\nP1 0 5 Average Response Time\nP3 0 D <2\n\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "because it enters into the ready queue or enters into the P4 and gets executed immediately.",
+    "start": 1827.6,
+    "end": 1835.76,
+    "ocr_text": "Process Arrival Burst\nTime Time\n\n[PAI\n\nP3\n\nRound Robin Scheduling\n\n0\n\n=3\n\n0\n\nTime slice = 2 Average Waiting time\n=(9+8+4+10)/4\n=7.75\n\n5 Average Response Time\n\n2\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | R2\nP3\n\nP4"
+  },
+  {
+    "text": "P2 on the other hand enters in the 0th cycle, but gets to execute only after 2 cycles. So,",
+    "start": 1836.72,
+    "end": 1843.12,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst mh SaaS i ial) 1d\n\nTime Time =the\nP41 0 5 Average Response Time\nP3 0 2 a4\n\n#Context Switches = 7\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "it has a response time of 2. Similarly, P3 enters at 0, but executes only at this point. So,",
+    "start": 1843.12,
+    "end": 1850.72,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst mh SaaS i ial) 1d\n\nTime Time =the\nP41 0 5 Average Response Time\nP3 0 2 a4\n\n#Context Switches = 7\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "rather at this instant therefore, it has a response time of 4 and P4 has a response time of 6.",
+    "start": 1851.44,
+    "end": 1860.24,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst =(9+8+4+10)/4\n\nTime Time fete\nP41 0 5 Average Response Time\nP3 0 2 =\n\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "Therefore, the average response time is 3. Now, the number of context switches that occur",
+    "start": 1860.96,
+    "end": 1866.32,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst mu Saeed ea 10)1/.4\n\nTime Time Stelle\nFl 0 5 Average Response Time\n=3 \\\n\nP3 0 2\n\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "are is 7. So, in this case 1 2 3 4 5 6 and a context switch occurs over here because",
+    "start": 1866.32,
+    "end": 1876.4,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst =(9+8+4+10)/4\n\nTime Time Saks\nP41 0 5 Average Response Time\nP3 0 2 =¢\n\n#Context Switches = 7\n\nchedule\n\nFIFO"
+  },
+  {
+    "text": "the process P4 is exiting out and P1 gets continues to execute. So, the number of context switches",
+    "start": 1877.12,
+    "end": 1886.4,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst es Sia Chas eal}\n\nTime Time Stele\nP41 0 5 Average Response Time\nP3 0 2 ae\n\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "over here are 7 that is 1 2 3 4 5 6 and the 7th context switch occurs over here when P4 exits",
+    "start": 1886.4,
+    "end": 1896.96,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst =(9+8+4+10)/4\n\nTime Time eel\nP1 y 5 Average Response Time\nP3 0 2 =)\n\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "and P1 gets switched into the CPU. Now, let us take another more complex example of",
+    "start": 1896.96,
+    "end": 1903.92,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst ASRS 4s 10)\n\nTime Time =i\nPal 0 5 Average Response Time\nP3 0 2 =e\n\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "round robin scheduling where we also have arrival times which are not the same. So, P1 is arriving at",
+    "start": 1904.0,
+    "end": 1911.76,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst ASRS 4s 10)\n\nTime Time =i\nPal 0 5 Average Response Time\nP3 0 2 =e\n\n#Context Switches = 7\n\nchedule| P11\n\nFIFO | P2\nP3\nP4"
+  },
+  {
+    "text": "the 0th instant P2 at the second P3 and P4 at the third and ninth respectively.",
+    "start": 1911.76,
+    "end": 1919.28,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\nOo. 7\n\nPil Average Response Time\n\n(0+24+3+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\n\nchedule | P1 P41\n\nFIFO P2 | P2"
+  },
+  {
+    "text": "So, we can similarly draw the grand chart and the states of the P4 for this case.",
+    "start": 1920.24,
+    "end": 1925.44,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n0 7\n\nFA Average Response Time\n\n(0+24+34+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\n\nchedule | P1 P41\n\nFIFO P2 | P2"
+  },
+  {
+    "text": "So, to start with in the 0th instant the only process which has arrived is P1 and therefore,",
+    "start": 1926.16,
+    "end": 1933.12,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n0 7\n\nP1 Average Response Time\n\n(0+24+3+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\nchedule | P1 Pal\nFIFO P2 |P2"
+  },
+  {
+    "text": "P1 executes for 2 cycles and at this particular point when the timer interrupt occurs no other",
+    "start": 1933.12,
+    "end": 1942.24,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n0 7\n\nP1 Average Response Time\n\n(0+24+3+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\nchedule | P1 Pal\nFIFO P2 |P2"
+  },
+  {
+    "text": "process is present as yet. Therefore, P1 will continue to execute for another 2 cycles for",
+    "start": 1942.24,
+    "end": 1948.0,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n\nP1 y ¢ Average Response Time\n(0+2+3+43)/4\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\n\nchedule | P1 P41\n\nFIFO P2 | P2\nP3"
+  },
+  {
+    "text": "another time slice. However, in this time slice we have 2 processes which have entered into",
+    "start": 1948.0,
+    "end": 1954.16,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n\nP41 0 u Average Response Time\n(0+2+3+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2\n\nchedule | P1 PA\n\nFIFO P2"
+  },
+  {
+    "text": "the ready queue these are the process P2 and P3. So, P2 arrives at this interval while P3 arrives",
+    "start": 1954.16,
+    "end": 1962.64,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n\nP41 0 u Average Response Time\n(0+2+3+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2\n\nchedule | P1 PA\n\nFIFO P2"
+  },
+  {
+    "text": "at this interval and they get added into the P4. So, at the second time slice completion",
+    "start": 1962.64,
+    "end": 1971.36,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n\nFal 0 7 Average Response Time\n(0+2+3+43)/4\n2\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\n\nchedule | P1 P41\n\nFIFO P2 | P2"
+  },
+  {
+    "text": "there is a context which and P2 gets scheduled into into the CPU to execute while P1 which",
+    "start": 1971.36,
+    "end": 1980.72,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n\nP41 0 ia Average Response Time\n(0+2+3+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\n\nchedule | P1 P41\n\nFIFO P2 | P2"
+  },
+  {
+    "text": "was executing will then go into the P4. So, P2 executes for 2 cycles then P3 executes for",
+    "start": 1980.72,
+    "end": 1989.84,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n0 i\n\nP1 Average Response Time\n\n(0+2+3+3)/4\n2\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\n\nchedule | P1 PA\n\nFIFO P2 | P2"
+  },
+  {
+    "text": "2 cycles then P1 executes for 2 cycles and at that time P4 has arrived and gets added into the",
+    "start": 1989.84,
+    "end": 1998.16,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n\nP1 0 7 Average Response Time\n(0+2+3+3)/4\n2\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3 P4\n\nchedule | P1 P41\n\nFIFO P2 | P2"
+  },
+  {
+    "text": "P4. So, now we have 3 processes P1, P2 and P4 and these get scheduled to run for a period of time.",
+    "start": 1998.72,
+    "end": 2006.88,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n\nFail y ia Average Response Time\n\n(0+24+3+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2\n\nchedule | P1 P41\n\nFIFO P2"
+  },
+  {
+    "text": "So, the average waiting time in this case is 4.75 while the average response time is 2.",
+    "start": 2007.6,
+    "end": 2013.68,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst 2475 %\n\nTime Time\n0 7\n\nP41 Average Response Time\n\n(0+24+34+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2\n\nchedule | P1 P41\n\nFIFO P2"
+  },
+  {
+    "text": "So, how is the average waiting time 4.75? It means that process P1 has waited for 7 cycles.",
+    "start": 2014.48,
+    "end": 2021.92,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst 2475 %\n\nTime Time\n0 7\n\nP41 Average Response Time\n\n(0+24+34+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2\n\nchedule | P1 P41\n\nFIFO P2"
+  },
+  {
+    "text": "So, before it completes so that is 1, 2, 3, 4, 5, 6 and 7 while process P2 has waited for 6 cycles.",
+    "start": 2021.92,
+    "end": 2033.04,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=({+6+3+3)/4\n\nProcess Arrival Burst =445\n\nTime Time\n\nP41 0 7 Average Response Time\n(0+2+3+3)/4\n2\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\n\nchedule | P1 PA\n\nFIFO P2 | P2"
+  },
+  {
+    "text": "So, it is 1, 2, 3, 4, 5, 6 process 3 has waited for 3 cycles and process 4 has waited for 3 cycles.",
+    "start": 2033.28,
+    "end": 2045.28,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n=(7+6+3+43)/4\n\nProcess Arrival Burst =4.75\n\nTime Time\n\nP1 0 ia Average Response Time\n(0+2+3+3)/4\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\n\nchedule | P1 P41\n\nFIFO P2 | P2"
+  },
+  {
+    "text": "The average response time can be verified to be equal to 2 and the number of context which is",
+    "start": 2045.28,
+    "end": 2051.6,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst i SS) i\n\nTime Time Se\nP41 0 ? Average Response Time\n=(0+2+3+3)/4\n=?\n\nWw]\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\n\nchedule | P1 P4\n\nFIFO P2 | P2"
+  },
+  {
+    "text": "was as before 7. Now, let us take the same example as we have done before but with a time slice of",
+    "start": 2052.24,
+    "end": 2060.24,
+    "ocr_text": "Round Robin Scheduling\n\nTime slice = 2 Average Waiting time\n\nProcess Arrival Burst i SS) i\n\nTime Time Se\nP41 0 ? Average Response Time\n=(0+2+3+3)/4\n=?\n\nWw]\n\n#Context Switches = 7\n\nArrival | P41 P2 | P3\n\nchedule | P1 P4\n\nFIFO P2 | P2"
+  },
+  {
+    "text": "1 that is we have reduced the time slice from 2 and we have made it 1. So, we see that in every",
+    "start": 2060.88,
+    "end": 2067.68,
+    "ocr_text": "Example (smaller timeslice)\n\nTime slice = 1 Average Waiting time\n\nProcess Arrival Burst =(7+7+44+2)/4\nTime Time =5\nP1 0 u\nP22 A aren\n=(0+1+2+42)/4\n\nP3 3 2 = 1.25\n\na eC Deen eee\nArrival | P41 P2 §P3\nchedule | P1 P1 §P2 §P1 §P3 | P2 |P1 P1\n\nFIFO P2 |P1 |P3 }P2 | P1 |P3\n\nP3 |p2 |P1\n\nMore context switches but quicker response times 21"
+  },
+  {
+    "text": "instant we have a timer interrupt and potentially a context switch that can occur.",
+    "start": 2067.68,
+    "end": 2073.44,
+    "ocr_text": "Example (smaller timeslice)\n\nTime slice = 1 Average Waiting time\n\nProcess Arrival Burst =(7+7+4+42)/4\nTime Time =5\nP41 0 7\nP20 2 4 soMtaeia\n=(0+1+2+2)/4\n\nP3 3 a = 1.25\n\n—— #Context Switches = 11\nArrival\nchedule | P P3 |P2 | P1 P41\n\nFIFO P2 }P1 |P3\n\nPe P41\n\nMore context switches but quicker response times 21"
+  },
+  {
+    "text": "If we compute the average waiting time and average response time for this particular case,",
+    "start": 2074.24,
+    "end": 2078.32,
+    "ocr_text": "Example (smaller timeslice)\n\nTime slice = 1 Average Waiting time\n\nProcess Arrival Burst =(7+7+4+42)/4\nTime Time =5\nP41 0 7\nP20 2 4 soMtaeia\n=(0+1+2+2)/4\n\nP3 3 a = 1.25\n\n—— #Context Switches = 11\nArrival\nchedule | P P3 |P2 | P1 P41\n\nFIFO P2 }P1 |P3\n\nPe P41\n\nMore context switches but quicker response times 21"
+  },
+  {
+    "text": "we see that the average response time in particular has reduced.",
+    "start": 2078.32,
+    "end": 2082.72,
+    "ocr_text": "Example (smaller timeslice)\n\nProcess Arrival Burst\nTime Time\n\nP41 0 i\n\nreo ea 2\n\nTime slice = 1\n\nAverage Waiting time\n=(7+7+4+2)/4\n\n=5\n\nAverage Response Time\n=(0+1+2+42)/4\n\n= 1.25 t%\n\n#Context Switches = 11\n\nArrival\n\nchedule | P\n\nFIFO\n\nP3\n\np2 |P1 |P3\nP1 |P3 |Pp2\nP3 |p2 |P1\n\nMore context switches but quicker response times"
+  },
+  {
+    "text": "Why has this occurred? Because once a process has entered into the queue,",
+    "start": 2083.6,
+    "end": 2088.96,
+    "ocr_text": "Example (smaller timeslice)\n\nProcess Arrival Burst\nTime Time\n\nP41 0 i\n\nreo ea 2\n\nTime slice = 1\n\nAverage Waiting time\n=(7+7+4+2)/4\n\n=5\n\nAverage Response Time\n=(0+1+2+42)/4\n\n= 1.25 t%\n\n#Context Switches = 11\n\nArrival\n\nchedule | P\n\nFIFO\n\nP3\n\np2 |P1 |P3\nP1 |P3 |Pp2\nP3 |p2 |P1\n\nMore context switches but quicker response times"
+  },
+  {
+    "text": "it has to wait for lesser cycles before it gets scheduled into the CPU.",
+    "start": 2088.96,
+    "end": 2093.84,
+    "ocr_text": "Example (smaller timeslice)\n\nTime slice = 1 Average Waiting time\n\nProcess Arrival Burst =(7+7+4+42)/4\nTime Time =5\nal 0 7\nP20 2 MOrtt2e2/4\n=(0+1+2+2)/4\nPeo = — = 1.25\n\n#Context Switches = 11\n\nFal\n\nArrival\nchedule | P Pi #P3 §P2 7P1\nFIFO P3 |P2\nP2 |P1\n\nMore context switches but quicker response times 21"
+  },
+  {
+    "text": "On the other hand, the number of context switches has increased from 7 to 11.",
+    "start": 2094.48,
+    "end": 2099.28,
+    "ocr_text": "Example (smaller timeslice)\n\nTime slice = 1 Average Waiting time\n\nProcess Arrival Burst =(7+7+4+42)/4\nTime Time =5\nal 0 7\nP20 2 MOrtt2e2/4\n=(0+1+2+2)/4\nPeo = — = 1.25\n\n#Context Switches = 11\n\nFal\n\nArrival\nchedule | P Pi #P3 §P2 7P1\nFIFO P3 |P2\nP2 |P1\n\nMore context switches but quicker response times 21"
+  },
+  {
+    "text": "Since we are having timer interrupts which are more frequent,",
+    "start": 2100.08,
+    "end": 2103.92,
+    "ocr_text": "Example (smaller timeslice)\n\nTime slice = 1 Average Waiting time\n\nProcess Arrival Burst =(7+7+442)/4\nTime Time =5\nP41 0 it\n=(0+1+2+42)/4\nreo eo 2. = 1.25\n\n#Context Switches = 11\n\nFal!\n\nArrival\nchedule | P P2 7P1 |P3 | P2 |P1\nFIFO P1 |P3 |P2\nP3 |P2 }P1\n\nMore context switches but quicker response times 21"
+  },
+  {
+    "text": "therefore there is more likely that a context switch will occur.",
+    "start": 2104.96,
+    "end": 2109.36,
+    "ocr_text": "Example (smaller timeslice)\n\nTime slice = 1 Average Waiting time\n\nProcess Arrival Burst =(7+7+442)/4\nTime Time =5\nP41 0 it\n=(0+1+2+42)/4\nreo eo 2. = 1.25\n\n#Context Switches = 11\n\nFal!\n\nArrival\nchedule | P P2 7P1 |P3 | P2 |P1\nFIFO P1 |P3 |P2\nP3 |P2 }P1\n\nMore context switches but quicker response times 21"
+  },
+  {
+    "text": "Now, if you take the same example but with a time slice of 5 instead of 1 and if we compute",
+    "start": 2111.04,
+    "end": 2117.04,
+    "ocr_text": "Example (smaller timeslice)\n\nTime slice = 1 Average Waiting time\n\nProcess Arrival Burst =(7+7+4+42)/4\nTime Time =5\nP41 0 7\nP20 2 MOrtt2e2/4\n=(0+1+2+2)/4\nmo 3 2 =1.25\n\n== #Context Switches = 11\n\nArrival P3\nchedule | P P1 §P2 |P1 |P3\n\nP1\n\nFIFO p2 |p1 |p3 |p2\n\nP3 |p2 |P1\n\nMore context switches but quicker response times 21"
+  },
+  {
+    "text": "the average waiting time and average response time, we see that the response time increases",
+    "start": 2117.2,
+    "end": 2122.0,
+    "ocr_text": "Example (larger timeslice)\n\nTime slice = 5 Average Waiting time\n\nProcess Arrival Burst =(5+3+9+3)/4\nTime Time =5\nP41 0 7\nee ee Average Response Time\n=(0+3+6+2)/4\nP3 3 2 =2.\n\n#Context Switches = 4\n\nArrival | P41 P2 | P3\n\nchedule | P1\n\nFIFO P2 |P2\nP3\n\nLesser context switches but looks more like FCFS (bad response time)"
+  },
+  {
+    "text": "considerably to 2.75. While the number of context switches reduces quite a bit to 4.",
+    "start": 2122.0,
+    "end": 2129.2,
+    "ocr_text": "Example (larger timeslice)\n\nTime slice = 5 Average Waiting time\n\nProcess Arrival Burst =(5+3+9+3)/4\nTime Time =5\nP41 0 7\nee ee Average Response Time\n=(0+3+6+2)/4\nP3 3 2 =2.\n\n#Context Switches = 4\n\nArrival | P41 P2 | P3\n\nchedule | P1\n\nFIFO P2 |P2\nP3\n\nLesser context switches but looks more like FCFS (bad response time)"
+  },
+  {
+    "text": "On the other hand, we see that the scheduling begins to behave more and more like the first",
+    "start": 2130.0,
+    "end": 2136.48,
+    "ocr_text": "Example (larger timeslice)\n\nTime slice = 5 Average Waiting time\n\nProcess Arrival Burst =(5+3+9+3)/4\nTime Time =5\nPal 0 7\nrn worstet2ia\n=(0+3+6+2)/4\nP3 3 2 =2.75\n\n#Context Switches = 4\n\nArrival | P41 P2 |P3\n\nchedule | P1\n\nFIFO P2 |P2\nP3\n\nLesser context switches but looks more like FCFS (bad response time)"
+  },
+  {
+    "text": "come first serve. The response time is bad because due to the large time slice,",
+    "start": 2136.48,
+    "end": 2142.08,
+    "ocr_text": "Example (larger timeslice)\n\nTime slice = 5 Average Waiting time\n\nProcess Arrival Burst =(5+3+9+3)/4\nTime Time =5\nP41 0 7\nP20 2 4 torsteeaia\n=(0+3+6+42)/4\nP3 3 2 =2.75\n\n#Context Switches = 4\n\nArrival | P41 P2 |P3\n=\nchedule | P1\nFIFO P2 |P2\nP3\n\nLesser context switches but looks more like FCFS (bad response time)"
+  },
+  {
+    "text": "the scheduling behaves more and more like the first come first serve which we know has a",
+    "start": 2142.08,
+    "end": 2149.2,
+    "ocr_text": "Example (larger timeslice)\n\nTime slice = 5 Average Waiting time\n\nProcess Arrival Burst =(5+3+9+3)/4\nTime Time =5\nP41 0 7\nP20 2 4 torsteeaia\n=(0+3+6+42)/4\nP3 3 2 =2.75\n\n#Context Switches = 4\n\nArrival | P41 P2 |P3\n=\nchedule | P1\nFIFO P2 |P2\nP3\n\nLesser context switches but looks more like FCFS (bad response time)"
+  },
+  {
+    "text": "bad response time. From all these examples that we have seen so far, we see we can conclude that",
+    "start": 2149.2,
+    "end": 2156.32,
+    "ocr_text": "Example (larger timeslice)\n\nTime slice = 5 Average Waiting time\n\nProcess Arrival Burst =(5+3+9+3)/4\nTime Time =5\nP41 0 7\nP20 2 Orstet 2/4\n=(0+3+6+2)/4\nP3 3 2 =2.75\n\n#Context Switches = 4\n\nArrival | P41 P2 | P3\n\nchedule | P1\n\nFIFO P2 |P2\nP3\n\nLesser context switches but looks more like FCFS (bad response time)"
+  },
+  {
+    "text": "duration of a time slice is very critical. It affects both the response time as well as the number",
+    "start": 2157.6,
+    "end": 2165.28,
+    "ocr_text": "Example (larger timeslice)\n\nTime slice = 5 Average Waiting time\n\nProcess Arrival Burst =(5+3+9+3)/4\nTime Time =5\nP41 0 7\nP20 2 Orstet 2/4\n=(0+3+6+2)/4\nP3 3 2 =2.75\n\n#Context Switches = 4\n\nArrival | P41 P2 | P3\n\nchedule | P1\n\nFIFO P2 |P2\nP3\n\nLesser context switches but looks more like FCFS (bad response time)"
+  },
+  {
+    "text": "of context switches. So, essentially if we have a time slice which is of a very short quantum,",
+    "start": 2165.28,
+    "end": 2172.4,
+    "ocr_text": "Duration of Timeslice\n\n* Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in.\n\n— Bad because, context switch overhead increase\n* Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "the advantage is that processes need not wait too long in the ready queue before they get",
+    "start": 2172.64,
+    "end": 2179.12,
+    "ocr_text": "Duration of Timeslice\n\n* Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in.\n\n— Bad because, context switch overhead increase\n* Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "scheduled into the CPU. Essentially, this means that the response time of the process would be",
+    "start": 2179.12,
+    "end": 2185.12,
+    "ocr_text": "Duration of Timeslice\n\n« Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in.\n\n— Bad because, context switch overhead increase\n* Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "very good or it would have a less response time. On the other hand, having a short time slice",
+    "start": 2185.92,
+    "end": 2194.56,
+    "ocr_text": "Duration of Timeslice\n\n*« Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in. ~\n\n— Bad because, context switch overhead increase\n* Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "is bad because we would have very frequent context switches. As we have seen before,",
+    "start": 2194.56,
+    "end": 2200.88,
+    "ocr_text": "Duration of Timeslice\n\n*« Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in. ~\n\n— Bad because, context switch overhead increase\n* Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "context switches could have considerable overheads. Therefore, it degrades the performance of the",
+    "start": 2200.88,
+    "end": 2205.52,
+    "ocr_text": "Duration of Timeslice\n\n« Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in.\n\n— Bad because, context switch overhead increase\n* Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "system. A long time slice or a long quantum has a drawback that processes no longer appear to",
+    "start": 2205.52,
+    "end": 2211.28,
+    "ocr_text": "Duration of Timeslice\n\n« Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in.\n\n— Bad because, context switch overhead increase\n* Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently ~?\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "execute concurrently. It appears more like a first come first serve type of scheduling algorithm.",
+    "start": 2211.28,
+    "end": 2216.64,
+    "ocr_text": "Duration of Timeslice\n\n« Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in.\n\n— Bad because, context switch overhead increase\n* Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently ~?\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "So, this again in turn may degrade system performance. So, typically in a modern day operating",
+    "start": 2217.52,
+    "end": 2224.0,
+    "ocr_text": "Duration of Timeslice\n\n¢« Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in.\n\n— Bad because, context switch overhead increase\n* Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "systems, the time slice duration is kept anything from 10 milliseconds to 100 milliseconds.",
+    "start": 2224.0,
+    "end": 2229.28,
+    "ocr_text": "Duration of Timeslice\n\n¢« Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in.\n\n— Bad because, context switch overhead increase\n* Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "So, xv6 programs, programs the timer to interrupt every 10 milliseconds.",
+    "start": 2230.16,
+    "end": 2235.28,
+    "ocr_text": "Duration of Timeslice\n\n¢« Ashort quantum\n\n— Good because, processes need not wait long before they are\nscheduled in.\n\n— Bad because, context switch overhead increase\n*« Along quantum\n\n— Bad because processes no longer appear to execute\nconcurrently\n\n— May degrade system performance\n* Typically kept between 10ms to 100ms\n— xv6 programs timers to interrupt every 10ms."
+  },
+  {
+    "text": "So, the advantage of the round robin scheduling algorithm is as follows. The algorithm is fair because",
+    "start": 2236.72,
+    "end": 2242.24,
+    "ocr_text": "Round Robin Scheduling\n\n¢ Advantages\n— Fair (Each process gets a fair chance to run on the\nCPU)\n— Low average wait time, when burst times vary\n— Faster response time\n\n¢ Disadvantages\n— Increased context switching\n* Context switches are overheads!!!\n— High average wait time, when burst times have equal\nlengths"
+  },
+  {
+    "text": "each process gets a fair chance to run on the CPU. The average wait time is low especially when",
+    "start": 2242.24,
+    "end": 2249.2,
+    "ocr_text": "Round Robin Scheduling\n\n¢ Advantages\n— Fair (Each process gets a fair chance to run on the\nCPU)\n— Low average wait time, when burst times vary\n— Faster response time\n\n¢ Disadvantages\n— Increased context switching\n* Context switches are overheads!!!\n— High average wait time, when burst times have equal\nlengths"
+  },
+  {
+    "text": "the burst times vary and the response time is very good. On the other hand, the drawbacks of the",
+    "start": 2249.28,
+    "end": 2257.52,
+    "ocr_text": "Round Robin Scheduling\n\n¢ Advantages\n— Fair (Each process gets a fair chance to run on the\nCPU)\n— Low average wait time, when burst times vary\n— Faster response time\n\n¢ Disadvantages\n— Increased context switching\n* Context switches are overheads!!!\n— High average wait time, when burst times have equal\nlengths"
+  },
+  {
+    "text": "round robin scheduling algorithm are as follows. There is an increased number of context switching",
+    "start": 2257.52,
+    "end": 2263.28,
+    "ocr_text": "Round Robin Scheduling\n\n¢ Advantages\n— Fair (Each process gets a fair chance to run on the\nCPU)\n— Low average wait time, when burst times vary\n— Faster response time\n\n¢ Disadvantages\n— Incre&sed context switching\n* Context switches are overheads!!!\n— High average wait time, when burst times have equal\nlengths"
+  },
+  {
+    "text": "that occurs and as we have seen before context switching has considerable overheads.",
+    "start": 2263.28,
+    "end": 2268.24,
+    "ocr_text": "Round Robin Scheduling\n\n¢ Advantages\n— Fair (Each process gets a fair chance to run on the\nCPU)\n— Low average wait time, when burst times vary\n— Faster response time\n\n¢ Disadvantages\n— Incre&sed context switching\n* Context switches are overheads!!!\n— High average wait time, when burst times have equal\nlengths"
+  },
+  {
+    "text": "And the second drawback is that the average wait time is high especially when the burst times",
+    "start": 2269.12,
+    "end": 2273.68,
+    "ocr_text": "Round Robin Scheduling\n\n¢ Advantages\n— Fair (Each process gets a fair chance to run on the\nCPU)\n— Low average wait time, when burst times vary\n— Faster response time\n\n¢ Disadvantages\n— Increased context switching\n* Context switches are overheads!!!\n— High average wait time, when burst times have equal\nlengths"
+  },
+  {
+    "text": "have equal lengths. The xv6 scheduling policy is a variant of the round robin scheduling policy.",
+    "start": 2273.68,
+    "end": 2281.84,
+    "ocr_text": "Round Robin Scheduling\n\n¢ Advantages\n— Fair (Each process gets a fair chance to run on the\nCPU)\n— Low average wait time, when burst times vary\n— Faster response time\n\n¢ Disadvantages\n— Increased context switching\n* Context switches are overheads!!!\n— High average wait time, when burst times have equal\nlengths"
+  },
+  {
+    "text": "The source code is shown over here. So, essentially what the xv6 scheduler does is that it",
+    "start": 2282.64,
+    "end": 2289.04,
+    "ocr_text": "xv6 Scheduler Policy\n\nscheduler((voidl]\n{\n\nDecided by the iibiok aia\n. a for(;3){\nScheduling Policy // Enable interrupts on this processor.\nstiQ);\nJ OOD ob\n\neetiftre(Sptable. lock) ;\n\nfor(p = ptable.proc; p < Sptable.proc{NPROC]; p++){\nif(p->state != RUNNABLE)\ncontinue;\n\nThe xv6 schedule\nPolicy\n\n--- Strawman Scheduler\n* organize processes in a list\n\nHW Sw ae Sprocess's job\n// to release ptable.lock and then reacquire it\n\n* pick the first one that // before jumping back to us.\n. proc = p;\nis runnable switchuvm(p%y\n. p->state = RUNNING;\nput suspended task the swtch(&cpu->scheduler, proc->context) ;\nend of the list switchkvm();\nFar from ideal!! // Process is done running for now.\n. only round robin | // It should have changed its p->state before coming back.\n4 : proc = 0;\nscheduling policy |\n- does not support release (&ptable. Lock) ;\n\npriorities |"
+  },
+  {
+    "text": "passes through the p table array. So, we have seen p table before which is an array of",
+    "start": 2289.04,
+    "end": 2294.88,
+    "ocr_text": "xv6 Scheduler Policy\n\nscheduler(void\nDecided by the So\n7 ‘ for(;;){\nScheduling Policy // Enable interrupts on this processor.\nstil);\n\nThe xv6 schedule\nPolicy\n\n--- Strawman Scheduler\n* organize processes in a list\n\nfor(p = ptable.proc; p < &ptable.proc[NPROC]; p++){\nif(p->state !3\"RUNNABLE)\ncontinue;\n\n—— S process's job\n// to release ptable.lock and then reacquire it\n\n* pick the first one that // before jumping back to us.\n. proc = p;\nis runnable switchuvm(p) ;\n. p->state = RUNNING;\nput suspended task the swtch(&cpu->scheduler, proc->context) ;\nend of the list switchkvm();\nFar from ideal!! // Process is done running for now.\nO jl // It should have changed its p->state before coming back.\nonly round robin \\ ane\nscheduling policy } 3\n\n+ — does not support release(Sptable. lock) ;\n\npriorities [RY"
+  },
+  {
+    "text": "prox and the scheduler passes through this particular array and finds the next process that is",
+    "start": 2295.84,
+    "end": 2302.24,
+    "ocr_text": "xv6 Scheduler Policy\n\nscheduler]\nDecided by the opened\nn rn for(;;){\nScheduling Policy // Enable interrupts on this processor.\nstil);\n\nThe xv6 schedule\nPolicy\n\n--- Strawman Scheduler\n* organize processes in a list\n\nfor(p = ptable.proc; p < &ptable.proc[NPROC]; p++){\nif (p->statgn!= RUNNABLE)\n\n—— Sprocess's job\n// to release ptable.lock and then reacquire it\n\n* pick the first one that // before jumping back to us.\n. proc = p;\nis runnable switchuvm(p);\n. p->state = RUNNING;\nput suspended task the swtch(&cpu->scheduler, proc->context) ;\nend of the list switchkvm();\nFar from ideal!! // Process is done running for now.\nOo jl // It should have changed its p->state before coming back.\nonly round robin i Le ie:\nscheduling policy } 3\n\n+ does not support release(Sptable. lock) ;\n\npriorities |"
+  },
+  {
+    "text": "runnable and invokes the switch. So, this is where you invoke the context switch.",
+    "start": 2302.24,
+    "end": 2308.24,
+    "ocr_text": "xv6 Scheduler Policy\n\nscheduler]\nDecided by the opened\nn rn for(;;){\nScheduling Policy // Enable interrupts on this processor.\nstil);\n\nThe xv6 schedule\nPolicy\n\n--- Strawman Scheduler\n* organize processes in a list\n\nfor(p = ptable.proc; p < &ptable.proc[NPROC]; p++){\nif (p->statgn!= RUNNABLE)\n\n—— Sprocess's job\n// to release ptable.lock and then reacquire it\n\n* pick the first one that // before jumping back to us.\n. proc = p;\nis runnable switchuvm(p);\n. p->state = RUNNING;\nput suspended task the swtch(&cpu->scheduler, proc->context) ;\nend of the list switchkvm();\nFar from ideal!! // Process is done running for now.\nOo jl // It should have changed its p->state before coming back.\nonly round robin i Le ie:\nscheduling policy } 3\n\n+ does not support release(Sptable. lock) ;\n\npriorities |"
+  },
+  {
+    "text": "So, every time the scheduler executes the next process in this array that is runnable gets",
+    "start": 2309.6,
+    "end": 2316.48,
+    "ocr_text": "xv6 Scheduler Policy\n\nscheduler((voidl]\n{\n\nDecided by the aaa ta\n\" ‘ for(;;){\nScheduling Policy // Enable interrupts on this processor.\nstil);\nJ 1 OOD ob\n\neetiftre(sptable. lock) ;\n\nfor(p = ptable.proc; p < Sptable.proc(NPROC]; p++){\nif(p->state != RUNNABLE)\ncontinue;\n\nThe xv6 schedule\nPolicy\n\n--- Strawman Scheduler\n* organize processes in a list\n\nHW Sw ae Sprocess's job\n// to release ptable.lock and then reacquire it\n\n* pick the first one that // before jumping back to us.\n. proc = p;\nis runnable switchuvm(p) ;\n. p->state = RUNNING;\nput suspended task the swtch(&cpu->scheduler, proc->context) ;\nend of the list | switchkvm();\nFar from ideall!! |) 77 Process is done running for now.\n5: only round robin | // It should have changed its p->state before coming back.\n4 \" proc = 0;\nscheduling policy |\ni\" Aaeenat support release(&ptable. Lock) ;\n\npriorities |"
+  },
+  {
+    "text": "scheduled to execute. So, next we will see scheduling algorithms which are based on priority.",
+    "start": 2316.48,
+    "end": 2322.48,
+    "ocr_text": "xv6 Scheduler Policy\n\nscheduler((voidl]\n{\n\nDecided by the aaa ta\n\" ‘ for(;;){\nScheduling Policy // Enable interrupts on this processor.\nstil);\nJ 1 OOD ob\n\neetiftre(sptable. lock) ;\n\nfor(p = ptable.proc; p < Sptable.proc(NPROC]; p++){\nif(p->state != RUNNABLE)\ncontinue;\n\nThe xv6 schedule\nPolicy\n\n--- Strawman Scheduler\n* organize processes in a list\n\nHW Sw ae Sprocess's job\n// to release ptable.lock and then reacquire it\n\n* pick the first one that // before jumping back to us.\n. proc = p;\nis runnable switchuvm(p) ;\n. p->state = RUNNING;\nput suspended task the swtch(&cpu->scheduler, proc->context) ;\nend of the list | switchkvm();\nFar from ideall!! |) 77 Process is done running for now.\n5: only round robin | // It should have changed its p->state before coming back.\n4 \" proc = 0;\nscheduling policy |\ni\" Aaeenat support release(&ptable. Lock) ;\n\npriorities |"
+  },
+  {
+    "text": "So, these are the priority based scheduling algorithms. Thank you.",
+    "start": 2322.48,
+    "end": 2331.68,
+    "ocr_text": "ow\n\nIIT Madras Production\n\nFunded by\nDepartment of Higher Education\nMinistry of Human Resource Development\nGovernment of India\n\nwww.nptel.ac.in\n\nCopyrights Reserved"
+  }
+]

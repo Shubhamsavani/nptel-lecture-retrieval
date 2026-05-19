@@ -1,64 +1,66 @@
 """
 evaluator.py  —  Phase 3: Evaluation + Ablation Study
 ======================================================
-Runs the full evaluation framework across all 5 experiments (E1-E5)
-and all 7 segment file variants (C1, C2×3, C3×3).
+Runs the full evaluation framework across two experiment groups:
+
+GROUP 1 — System Experiments (E1–E9)
+--------------------------------------
+Tests chunking strategy × OCR × BM25 contributions in isolation.
+
+  E1: C1, no OCR, no BM25   — fixed-30s, transcript only
+  E2: C1 + OCR, no BM25     — fixed-30s, multimodal
+  E3: C1 + OCR + BM25       — fixed-30s, full hybrid
+  E4: C2, no OCR, no BM25   — utterance, transcript only
+  E5: C2 + OCR, no BM25     — utterance, multimodal
+  E6: C2 + OCR + BM25       — utterance, full hybrid
+  E7: C3, no OCR, no BM25   — slide-boundary, transcript only
+  E8: C3 + OCR, no BM25     — slide-boundary, multimodal
+  E9: C3 + OCR + BM25       — slide-boundary, full hybrid  ← Full system
+
+GROUP 2 — Chunk Parameter Sensitivity (NEW)
+--------------------------------------------
+Tests different chunk sizes/thresholds with OCR and BM25 BOTH DISABLED
+to isolate the pure chunking effect.
+
+  C2-150  : C2 utterance, 150-word target
+  C2-200  : C2 utterance, 200-word target  (default)
+  C2-250  : C2 utterance, 250-word target
+  C3-0.25 : C3 slide-boundary, threshold=0.25
+  C3-0.30 : C3 slide-boundary, threshold=0.30
+  C3-0.40 : C3 slide-boundary, threshold=0.40
+
+WHY OCR AND BM25 ARE DISABLED FOR GROUP 2:
+  The goal is to measure the effect of chunking parameters only.
+  Including OCR or BM25 would confound the results — any difference
+  between C2-150 and C2-200 could be due to BM25 score distributions
+  rather than chunk granularity. Disabling both isolates the variable.
 
 EVALUATION SET
 --------------
-100 queries across 9 NPTEL courses:
-  - 35 conceptual   (understanding, explanation)
-  - 35 procedural   (how-to, step-by-step)
-  - 30 code/factual (exact terms, implementations)
-
-For each query, the expected answer is identified by:
-  - expected_course   : course_id
-  - expected_lecture  : lecture_number (fill manually)
-  - expected_start_sec: timestamp in seconds (fill manually)
-
-Timestamps marked with 0 are left for manual filling.
-Run with --show-unfilled to list all queries that still need timestamps.
-
-EXPERIMENTS
------------
-  E1: C1 fixed-30s      | transcript only  (no OCR)
-  E2: C2 utterance      | transcript only  (no OCR)
-  E3: C3 slide-boundary | transcript only  (no OCR)
-  E4: C3 slide-boundary | transcript + OCR (full multimodal)
-  E5: C3 + BM25 hybrid  | transcript + OCR (full pipeline = your system)
+Loaded from data/eval/annotations.jsonl (status="selected" entries only).
 
 METRICS
 -------
   MRR        : Mean Reciprocal Rank  (primary metric)
   Recall@5   : Fraction of queries where correct answer is in top-5
   Recall@10  : Fraction of queries where correct answer is in top-10
-  LLM judge  : Llama-via-Ollama scores top-1 result (0=irrelevant,
-                1=related, 2=partial, 3=perfect). Averaged per experiment.
-
-LLM JUDGE NOTE
---------------
-Judge model: Llama 3.2:3b via Ollama (local, free, reproducible).
-Why Llama not a proprietary model: reproducibility for thesis, no API cost,
-runs offline on your 3060. The judge prompt is strict and consistent.
-Cohen's Kappa validation against human judgments is done on 30-query subset
-— run with --validate-judge flag.
-
-ABLATION STUDY
---------------
-Runs all 7 .jsonl variants and prints a comparison table:
-  segments_c1.jsonl
-  segments_c2.jsonl, segments_c2_w150.jsonl, segments_c2_w250.jsonl
-  segments_c3_t025.jsonl, segments_c3_t030.jsonl, segments_c3_t040.jsonl
+  LLM judge  : Llama-via-Ollama scores top-1 result (0–3). Averaged.
 
 Usage
 -----
-    # Full evaluation (all 5 experiments + ablation)
+    # Full evaluation — both groups
     python evaluator.py
 
-    # Single experiment
-    python evaluator.py --experiment E5
+    # Single system experiment
+    python evaluator.py --experiment E7
 
-    # Ablation study only
+    # Group 1 only (E1-E9)
+    python evaluator.py --group1-only
+
+    # Group 2 only (chunk sensitivity)
+    python evaluator.py --group2-only
+
+    # Ablation dataset statistics only (no retrieval)
     python evaluator.py --ablation-only
 
     # Show queries missing timestamps
@@ -67,19 +69,14 @@ Usage
     # Skip LLM judge (faster)
     python evaluator.py --no-llm-judge
 
-    # Validate LLM judge against human (30-query subset)
-    python evaluator.py --validate-judge
-
 Output
 ------
     data/eval/
-        results_E1.json ... results_E5.json
+        results_E1.json ... results_E9.json
+        sensitivity_C2-150.json ... sensitivity_C3-0.40.json
         ablation_results.json
         eval_summary.csv        ← paste into Excel for graphs
         llm_judge_scores.json
-
-All numbers printed to console as tables.
-Copy-paste into Excel or use eval_summary.csv directly.
 """
 
 from __future__ import annotations
@@ -115,23 +112,178 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 OLLAMA_HOST  = os.getenv("OLLAMA_HOST",  "http://localhost:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
 
-# ── experiment definitions ────────────────────────────────────────────────────
-# E1-E5 as described in thesis. Strategy + whether OCR is used.
-# "ocr_weight=0" means retriever will be called with OCR stripped from passages.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# GROUP 1 — System Experiment Definitions (E1–E9)
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Design matrix:
+#   Rows    = chunking strategy (C1 / C2 / C3)
+#   Columns = pipeline config   (no OCR no BM25 / OCR only / OCR + BM25)
+#
+# Each cell must produce genuinely different retrieval behaviour:
+#   use_ocr=False  → reranker sees transcript-only passages
+#   use_ocr=True   → reranker sees OCR+transcript passages
+#   use_bm25=False → only FAISS dense results used
+#   use_bm25=True  → FAISS + BM25 fused via RRF
+#
+# Strategy key maps to FAISS/BM25 index files:
+#   c1  → faiss_c1.index  / bm25_c1.pkl
+#   c2  → faiss_c2.index  / bm25_c2.pkl
+#   c3  → faiss_c3.index  / bm25_c3.pkl
+#
 EXPERIMENTS = {
-    "E1": {"strategy": "c1", "use_ocr": False, "use_bm25": False,
-           "label": "C1 fixed-30s, transcript only"},
-    "E2": {"strategy": "c2", "use_ocr": False, "use_bm25": False,
-           "label": "C2 utterance, transcript only"},
-    "E3": {"strategy": "c3", "use_ocr": False, "use_bm25": False,
-           "label": "C3 slide-boundary, transcript only"},
-    "E4": {"strategy": "c3", "use_ocr": True,  "use_bm25": False,
-           "label": "C3 slide-boundary, transcript + OCR"},
-    "E5": {"strategy": "c3", "use_ocr": True,  "use_bm25": True,
-           "label": "C3 + BM25 hybrid, transcript + OCR  ← Full system"},
+    # ── C1: fixed-30s chunks ──────────────────────────────────────────────────
+    "E1": {
+        "strategy": "c1",
+        "use_ocr":  False,
+        "use_bm25": False,
+        "label":    "C1 fixed-30s | transcript only",
+        "group":    1,
+    },
+    "E2": {
+        "strategy": "c1",
+        "use_ocr":  True,
+        "use_bm25": False,
+        "label":    "C1 fixed-30s | transcript + OCR",
+        "group":    1,
+    },
+    "E3": {
+        "strategy": "c1",
+        "use_ocr":  True,
+        "use_bm25": True,
+        "label":    "C1 fixed-30s | transcript + OCR + BM25",
+        "group":    1,
+    },
+
+    # ── C2: utterance chunks ──────────────────────────────────────────────────
+    "E4": {
+        "strategy": "c2",
+        "use_ocr":  False,
+        "use_bm25": False,
+        "label":    "C2 utterance | transcript only",
+        "group":    1,
+    },
+    "E5": {
+        "strategy": "c2",
+        "use_ocr":  True,
+        "use_bm25": False,
+        "label":    "C2 utterance | transcript + OCR",
+        "group":    1,
+    },
+    "E6": {
+        "strategy": "c2",
+        "use_ocr":  True,
+        "use_bm25": True,
+        "label":    "C2 utterance | transcript + OCR + BM25",
+        "group":    1,
+    },
+
+    # ── C3: slide-boundary chunks ─────────────────────────────────────────────
+    "E7": {
+        "strategy": "c3",
+        "use_ocr":  False,
+        "use_bm25": False,
+        "label":    "C3 slide-boundary | transcript only",
+        "group":    1,
+    },
+    "E8": {
+        "strategy": "c3",
+        "use_ocr":  True,
+        "use_bm25": False,
+        "label":    "C3 slide-boundary | transcript + OCR",
+        "group":    1,
+    },
+    "E9": {
+        "strategy": "c3",
+        "use_ocr":  True,
+        "use_bm25": True,
+        "label":    "C3 slide-boundary | transcript + OCR + BM25  ← Full system",
+        "group":    1,
+    },
 }
 
-# ── ablation variants ─────────────────────────────────────────────────────────
+
+# ─────────────────────────────────────────────────────────────────────────────
+# GROUP 2 — Chunk Parameter Sensitivity Definitions
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# OCR and BM25 are ALWAYS disabled here.
+# Reason: isolate the effect of chunking parameters only.
+#
+# Strategy key maps to variant FAISS/BM25 indexes:
+#   c2_w150  → faiss_c2_w150.index  / bm25_c2_w150.pkl
+#   c2_w200  → faiss_c2.index       / bm25_c2.pkl        (reuses default c2)
+#   c2_w250  → faiss_c2_w250.index  / bm25_c2_w250.pkl
+#   c3_t025  → faiss_c3_t025.index  / bm25_c3_t025.pkl
+#   c3_t030  → faiss_c3_t030.index  / bm25_c3_t030.pkl
+#   c3_t040  → faiss_c3_t040.index  / bm25_c3_t040.pkl
+#
+# Note: c2_w200 deliberately reuses the default c2 index so that the
+# 200-word result is directly comparable to E4 (same index, same config).
+#
+SENSITIVITY_VARIANTS = {
+    "C2-150": {
+        "strategy":   "c2_w150",
+        "use_ocr":    False,   # MUST be False — isolate chunking only
+        "use_bm25":   False,   # MUST be False — isolate chunking only
+        "chunk_type": "C2",
+        "parameter":  "150w",
+        "label":      "C2 utterance | 150-word target | no OCR | no BM25",
+        "group":      2,
+    },
+    "C2-200": {
+        "strategy":   "c2",    # reuses default C2 index
+        "use_ocr":    False,
+        "use_bm25":   False,
+        "chunk_type": "C2",
+        "parameter":  "200w",
+        "label":      "C2 utterance | 200-word target | no OCR | no BM25",
+        "group":      2,
+    },
+    "C2-250": {
+        "strategy":   "c2_w250",
+        "use_ocr":    False,
+        "use_bm25":   False,
+        "chunk_type": "C2",
+        "parameter":  "250w",
+        "label":      "C2 utterance | 250-word target | no OCR | no BM25",
+        "group":      2,
+    },
+    "C3-0.25": {
+        "strategy":   "c3_t025",
+        "use_ocr":    False,
+        "use_bm25":   False,
+        "chunk_type": "C3",
+        "parameter":  "t=0.25",
+        "label":      "C3 slide-boundary | threshold=0.25 | no OCR | no BM25",
+        "group":      2,
+    },
+    "C3-0.30": {
+        "strategy":   "c3",
+        "use_ocr":    False,
+        "use_bm25":   False,
+        "chunk_type": "C3",
+        "parameter":  "t=0.30",
+        "label":      "C3 slide-boundary | threshold=0.30 | no OCR | no BM25",
+        "group":      2,
+    },
+    "C3-0.40": {
+        "strategy":   "c3_t040",
+        "use_ocr":    False,
+        "use_bm25":   False,
+        "chunk_type": "C3",
+        "parameter":  "t=0.40",
+        "label":      "C3 slide-boundary | threshold=0.40 | no OCR | no BM25",
+        "group":      2,
+    },
+}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Ablation file variants (dataset statistics only — no retrieval)
+# ─────────────────────────────────────────────────────────────────────────────
+
 ABLATION_VARIANTS = [
     {"file": "segments_c1.jsonl",      "label": "C1 (30s)"},
     {"file": "segments_c2.jsonl",      "label": "C2 (200w)"},
@@ -144,640 +296,30 @@ ABLATION_VARIANTS = [
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# EVALUATION QUERY SET — 100 queries
+# Annotation loader
 # ─────────────────────────────────────────────────────────────────────────────
-# Fields:
-#   id             : unique query ID
-#   query          : the natural language search query
-#   type           : "conceptual" | "procedural" | "code"
-#   expected_course: course_id from courses.json
-#   expected_lecture: lecture number in playlist (fill manually)
-#   expected_start_sec: timestamp in seconds (fill manually — 0 = unfilled)
-#   notes          : guidance for manual annotation
 
-EVAL_QUERIES = [
+def load_annotations(path: str) -> list[dict]:
+    queries = []
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            item = json.loads(line)
+            if item.get("status") != "selected":
+                continue
+            queries.append({
+                "id":                 item["id"],
+                "query":              item["query"],
+                "type":               item.get("type", "conceptual"),
+                "expected_course":    item["expected_course"],
+                "expected_lecture":   item.get("expected_lecture", 0),
+                "expected_start_sec": item.get("expected_start_sec", 0),
+                "notes":              item.get("notes", ""),
+            })
+    return queries
 
-    # ── DSA — Introduction to Algorithms and Analysis (15 queries) ────────
-    {
-        "id": "dsa_001", "type": "conceptual",
-        "query": "what is the definition of an algorithm and its properties",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "Introduction lecture, first few minutes",
-    },
-    {
-        "id": "dsa_002", "type": "conceptual",
-        "query": "explain asymptotic notation Big O Theta Omega",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "Complexity lecture",
-    },
-    {
-        "id": "dsa_003", "type": "procedural",
-        "query": "how does merge sort work step by step",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "Sorting lectures",
-    },
-    {
-        "id": "dsa_004", "type": "conceptual",
-        "query": "what is a recurrence relation and master theorem",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "Recurrence analysis",
-    },
-    {
-        "id": "dsa_005", "type": "procedural",
-        "query": "binary search tree insertion algorithm",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "BST lecture",
-    },
-    {
-        "id": "dsa_006", "type": "conceptual",
-        "query": "explain heap data structure and heap property",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dsa_007", "type": "procedural",
-        "query": "how does heapify work in heap sort",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dsa_008", "type": "conceptual",
-        "query": "what is dynamic programming and memoization",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dsa_009", "type": "procedural",
-        "query": "explain Dijkstra shortest path algorithm",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dsa_010", "type": "conceptual",
-        "query": "what is amortized analysis",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dsa_011", "type": "conceptual",
-        "query": "explain red black tree properties and rotations",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dsa_012", "type": "procedural",
-        "query": "how does quicksort partition work",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dsa_013", "type": "conceptual",
-        "query": "what is a hash function and collision resolution",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dsa_014", "type": "procedural",
-        "query": "depth first search algorithm on a graph",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dsa_015", "type": "conceptual",
-        "query": "explain connected components in undirected graph",
-        "expected_course": "dsa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
 
-    # ── DL — Deep Learning (12 queries) ──────────────────────────────────
-    {
-        "id": "dl_001", "type": "conceptual",
-        "query": "what is backpropagation and how does it compute gradients",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_002", "type": "conceptual",
-        "query": "explain vanishing gradient problem in deep networks",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_003", "type": "conceptual",
-        "query": "what is a convolutional neural network and how does it work",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_004", "type": "procedural",
-        "query": "how does dropout regularisation prevent overfitting",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_005", "type": "conceptual",
-        "query": "explain batch normalisation in neural networks",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_006", "type": "conceptual",
-        "query": "what is an LSTM and how does it solve vanishing gradients",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_007", "type": "procedural",
-        "query": "how does stochastic gradient descent work",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_008", "type": "conceptual",
-        "query": "explain attention mechanism in sequence to sequence models",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_009", "type": "conceptual",
-        "query": "what is transfer learning and fine tuning",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_010", "type": "conceptual",
-        "query": "explain generative adversarial networks GAN training",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_011", "type": "procedural",
-        "query": "how is max pooling computed in CNN",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dl_012", "type": "conceptual",
-        "query": "what is word2vec and how are word embeddings trained",
-        "expected_course": "dl", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-
-    # ── OS — Operating Systems (12 queries) ──────────────────────────────
-    {
-        "id": "os_001", "type": "conceptual",
-        "query": "what is virtual memory and how does paging work",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_002", "type": "conceptual",
-        "query": "explain process scheduling algorithms round robin",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_003", "type": "conceptual",
-        "query": "what is a deadlock and conditions for deadlock",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_004", "type": "procedural",
-        "query": "how does the banker algorithm detect deadlock",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_005", "type": "conceptual",
-        "query": "explain semaphores and mutex for process synchronisation",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_006", "type": "code",
-        "query": "virtual address space of a process stack heap text segment",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_007", "type": "conceptual",
-        "query": "what is a page fault and how is it handled",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_008", "type": "conceptual",
-        "query": "explain LRU page replacement algorithm",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_009", "type": "procedural",
-        "query": "how does fork system call create a child process",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_010", "type": "conceptual",
-        "query": "what is thrashing in virtual memory systems",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_011", "type": "conceptual",
-        "query": "explain segmentation versus paging in memory management",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "os_012", "type": "code",
-        "query": "compile hello world program gcc executable address space",
-        "expected_course": "os", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "Relates to the OS code slide examples",
-    },
-
-    # ── DBMS — Database Management Systems (12 queries) ──────────────────
-    {
-        "id": "dbms_001", "type": "conceptual",
-        "query": "what is a data model and levels of abstraction in database",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "Early lecture — directly seen in sample OCR data",
-    },
-    {
-        "id": "dbms_002", "type": "conceptual",
-        "query": "explain ER diagram entity relationship modelling",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dbms_003", "type": "code",
-        "query": "SQL SELECT FROM WHERE query syntax",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dbms_004", "type": "procedural",
-        "query": "how does normalisation remove data redundancy first normal form",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dbms_005", "type": "conceptual",
-        "query": "what are ACID properties of a database transaction",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dbms_006", "type": "procedural",
-        "query": "explain join operations in relational algebra",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dbms_007", "type": "conceptual",
-        "query": "what is a B+ tree index in databases",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dbms_008", "type": "conceptual",
-        "query": "explain two phase locking for concurrency control",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dbms_009", "type": "procedural",
-        "query": "how does database recovery using write ahead logging work",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dbms_010", "type": "code",
-        "query": "SQL GROUP BY HAVING aggregate functions COUNT SUM AVG",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dbms_011", "type": "conceptual",
-        "query": "what is functional dependency and Armstrong axioms",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "dbms_012", "type": "procedural",
-        "query": "how to convert ER diagram to relational schema",
-        "expected_course": "dbms", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-
-    # ── ML — Machine Learning (12 queries) ───────────────────────────────
-    {
-        "id": "ml_001", "type": "conceptual",
-        "query": "explain bias variance tradeoff in machine learning",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "ml_002", "type": "conceptual",
-        "query": "what is support vector machine and margin maximisation",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "ml_003", "type": "procedural",
-        "query": "how does the perceptron learning algorithm converge",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "Directly visible in sample OCR data",
-    },
-    {
-        "id": "ml_004", "type": "conceptual",
-        "query": "explain naive bayes classifier and conditional independence",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "ml_005", "type": "conceptual",
-        "query": "what is k-nearest neighbour classification",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "ml_006", "type": "conceptual",
-        "query": "explain decision tree and information gain entropy",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "ml_007", "type": "conceptual",
-        "query": "what is cross validation and overfitting in machine learning",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "ml_008", "type": "procedural",
-        "query": "how does logistic regression use gradient descent",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "ml_009", "type": "conceptual",
-        "query": "explain principal component analysis PCA dimensionality reduction",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "ml_010", "type": "conceptual",
-        "query": "what is the EM algorithm for clustering",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "ml_011", "type": "conceptual",
-        "query": "explain ensemble learning random forest boosting",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "ml_012", "type": "procedural",
-        "query": "how does k-means clustering algorithm work",
-        "expected_course": "ml", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-
-    # ── CN — Computer Networks (12 queries) ──────────────────────────────
-    {
-        "id": "cn_001", "type": "conceptual",
-        "query": "what is the OSI model and its seven layers",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cn_002", "type": "procedural",
-        "query": "how does TCP three way handshake work",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cn_003", "type": "conceptual",
-        "query": "explain IP addressing and subnet masks CIDR",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cn_004", "type": "conceptual",
-        "query": "what is congestion control in TCP",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cn_005", "type": "conceptual",
-        "query": "explain distance vector routing protocol",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cn_006", "type": "procedural",
-        "query": "how does ARP resolve IP addresses to MAC addresses",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cn_007", "type": "conceptual",
-        "query": "what is the difference between TCP and UDP protocols",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cn_008", "type": "conceptual",
-        "query": "explain wireless LAN 802.11 and CSMA CA",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "Relates directly to Tamil-transcripted lectures — test retrieval quality",
-    },
-    {
-        "id": "cn_009", "type": "conceptual",
-        "query": "what is NAT network address translation",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cn_010", "type": "procedural",
-        "query": "how does DNS domain name resolution work",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cn_011", "type": "conceptual",
-        "query": "explain Ethernet frame format and CSMA CD",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cn_012", "type": "conceptual",
-        "query": "convert digital data to analog signal modem",
-        "expected_course": "cn", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "Directly from the sample segment text in cn-lec002-c2-006",
-    },
-
-    # ── COA — Computer Architecture (9 queries) ───────────────────────────
-    {
-        "id": "coa_001", "type": "conceptual",
-        "query": "explain pipelining in processor execution",
-        "expected_course": "coa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "PRIMARY OCR failure course — compare E3 vs E4",
-    },
-    {
-        "id": "coa_002", "type": "conceptual",
-        "query": "what is cache memory and direct mapped cache",
-        "expected_course": "coa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "coa_003", "type": "conceptual",
-        "query": "explain instruction set architecture RISC versus CISC",
-        "expected_course": "coa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "coa_004", "type": "conceptual",
-        "query": "what are pipeline hazards data hazard control hazard",
-        "expected_course": "coa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "coa_005", "type": "conceptual",
-        "query": "explain cache coherence in multiprocessor systems",
-        "expected_course": "coa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "coa_006", "type": "procedural",
-        "query": "how does two's complement representation work",
-        "expected_course": "coa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "coa_007", "type": "conceptual",
-        "query": "what is datapath and control unit in CPU",
-        "expected_course": "coa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "coa_008", "type": "conceptual",
-        "query": "explain memory hierarchy and locality of reference",
-        "expected_course": "coa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "coa_009", "type": "procedural",
-        "query": "how does branch prediction work in pipelined processors",
-        "expected_course": "coa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-
-    # ── CV — Computer Vision (8 queries) ─────────────────────────────────
-    {
-        "id": "cv_001", "type": "conceptual",
-        "query": "explain edge detection Sobel Canny operators",
-        "expected_course": "cv", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "SECONDARY OCR failure course",
-    },
-    {
-        "id": "cv_002", "type": "conceptual",
-        "query": "what is image convolution and kernel filtering",
-        "expected_course": "cv", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cv_003", "type": "conceptual",
-        "query": "explain SIFT feature detection and description",
-        "expected_course": "cv", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cv_004", "type": "procedural",
-        "query": "how does optical flow estimation work",
-        "expected_course": "cv", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cv_005", "type": "conceptual",
-        "query": "what is image segmentation and clustering methods",
-        "expected_course": "cv", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cv_006", "type": "conceptual",
-        "query": "explain camera calibration and intrinsic parameters",
-        "expected_course": "cv", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cv_007", "type": "procedural",
-        "query": "how does histogram of oriented gradients HOG work",
-        "expected_course": "cv", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "cv_008", "type": "conceptual",
-        "query": "what is stereo vision and depth estimation",
-        "expected_course": "cv", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-
-    # ── DAA — Design and Analysis of Algorithms (8 queries) ──────────────
-    {
-        "id": "daa_001", "type": "procedural",
-        "query": "how does Kruskal minimum spanning tree algorithm work",
-        "expected_course": "daa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "daa_002", "type": "conceptual",
-        "query": "explain NP completeness and polynomial time reduction",
-        "expected_course": "daa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "daa_003", "type": "procedural",
-        "query": "explain Bellman Ford algorithm for negative edges",
-        "expected_course": "daa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "daa_004", "type": "conceptual",
-        "query": "what is a greedy algorithm and exchange argument proof",
-        "expected_course": "daa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "daa_005", "type": "procedural",
-        "query": "how does the activity selection problem greedy work",
-        "expected_course": "daa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "daa_006", "type": "conceptual",
-        "query": "explain the knapsack problem dynamic programming solution",
-        "expected_course": "daa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "daa_007", "type": "procedural",
-        "query": "how does topological sort work on directed acyclic graph",
-        "expected_course": "daa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-    {
-        "id": "daa_008", "type": "conceptual",
-        "query": "what is the travelling salesman problem and approximation",
-        "expected_course": "daa", "expected_lecture": 0, "expected_start_sec": 0,
-        "notes": "",
-    },
-]
-
-# Verify count
-assert len(EVAL_QUERIES) == 100, f"Expected 100 queries, got {len(EVAL_QUERIES)}"
+EVAL_QUERIES = load_annotations(str(EVAL_DIR / "annotations.jsonl"))
+print(f"Loaded {len(EVAL_QUERIES)} queries from annotation file")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -786,21 +328,15 @@ assert len(EVAL_QUERIES) == 100, f"Expected 100 queries, got {len(EVAL_QUERIES)}
 
 def llm_judge_score(query: str, transcript: str, course: str, lecture: str) -> int:
     """
-    Uses Llama 3.2:3b via Ollama to score the top-1 result.
+    Uses Llama 3.2:3b via Ollama to score the top-1 retrieved result.
 
     Scoring rubric:
         3 = Perfect match — directly answers the query
         2 = Partial match — related content, partially answers
-        1 = Related      — same topic but does not answer query
-        0 = Irrelevant   — unrelated to query
+        1 = Related       — same topic but does not answer query
+        0 = Irrelevant    — unrelated to query
 
-    Returns integer 0-3. Returns -1 on failure (excluded from average).
-
-    WHY LLAMA NOT GPT-4:
-        - Reproducible: same model, same results on re-run
-        - Free: no API cost for 100 × 5 = 500 judge calls
-        - Local: works offline, no data sent externally
-        - For thesis: Kappa validation against human labels provides credibility
+    Returns -1 on failure (excluded from average).
     """
     prompt = f"""You are evaluating a lecture video retrieval system.
 
@@ -831,7 +367,6 @@ Respond with ONLY a single digit (0, 1, 2, or 3). Nothing else."""
         )
         response.raise_for_status()
         raw = response.json().get("response", "").strip()
-        # Extract first digit found
         match = next((c for c in raw if c in "0123"), None)
         return int(match) if match else -1
     except Exception:
@@ -842,44 +377,43 @@ Respond with ONLY a single digit (0, 1, 2, or 3). Nothing else."""
 # Metrics computation
 # ─────────────────────────────────────────────────────────────────────────────
 
-MATCH_TOLERANCE_SEC = 90   # within 90 seconds = correct answer
+MATCH_TOLERANCE_SEC = 90  # within 90 seconds = correct answer
+
+# Maps course IDs to substrings expected in course_name field
+COURSE_ID_MAP = {
+    "dsa":  "algorithms and analysis",
+    "daa":  "design and analysis",
+    "dl":   "deep learning",
+    "os":   "operating systems",
+    "dbms": "database management",
+    "cv":   "computer vision",
+    "coa":  "computer architecture",
+    "ml":   "machine learning",
+    "cn":   "computer networks",
+}
 
 
 def _is_correct(result: dict, query_meta: dict) -> bool:
     """
     Returns True if a retrieved result matches the expected answer.
 
-    Matching criteria (both must be true):
-        1. course_id matches expected_course
-        2. start_sec is within MATCH_TOLERANCE_SEC of expected_start_sec
-           (only checked if expected_start_sec > 0 — i.e., manually filled)
+    Matching criteria (both must be satisfied):
+      1. course_name contains the expected course substring
+      2. start_sec is within MATCH_TOLERANCE_SEC of expected_start_sec
+         (only checked when expected_start_sec > 0)
 
     If expected_start_sec == 0 (not yet annotated), only course match is used.
     """
     if result.get("course_name") is None:
         return False
 
-    # Map course_name back to course_id (simple contains check)
     expected_course = query_meta["expected_course"]
     course_name     = result.get("course_name", "").lower()
+    expected_substr = COURSE_ID_MAP.get(expected_course, expected_course)
 
-    # Course name check: all course IDs appear as substrings in their names
-    course_id_map = {
-        "dsa": "algorithms and analysis",
-        "daa": "design and analysis",
-        "dl":  "deep learning",
-        "os":  "operating systems",
-        "dbms": "database management",
-        "cv":  "computer vision",
-        "coa": "computer architecture",
-        "ml":  "machine learning",
-        "cn":  "computer networks",
-    }
-    expected_substr = course_id_map.get(expected_course, expected_course)
     if expected_substr not in course_name:
         return False
 
-    # If timestamp is annotated, check proximity
     expected_sec = query_meta.get("expected_start_sec", 0)
     if expected_sec > 0:
         retrieved_sec = result.get("start_sec", 0)
@@ -895,20 +429,16 @@ def compute_metrics(
     judge_scores: list[int],
 ) -> dict:
     """
-    Computes MRR, Recall@5, Recall@10, and LLM judge average.
-
-    all_results[i] = list of result dicts for eval_queries[i]
-    judge_scores[i] = LLM judge score for top-1 of query i (-1 = missing)
+    Computes MRR, Recall@5, Recall@10, LLM judge average, and per-type MRR.
     """
-    n         = len(eval_queries)
-    rr_sum    = 0.0
-    recall5   = 0
-    recall10  = 0
-    by_type   = {"conceptual": [], "procedural": [], "code": []}
-    annotated = 0   # queries with filled timestamps
+    n       = len(eval_queries)
+    rr_sum  = 0.0
+    recall5 = 0
+    recall10 = 0
+    by_type  = {"conceptual": [], "procedural": [], "code": []}
+    annotated = 0
 
     for i, (results, q) in enumerate(zip(all_results, eval_queries)):
-        # find rank of correct answer
         correct_rank = None
         for rank, r in enumerate(results[:10], start=1):
             if _is_correct(r, q):
@@ -918,29 +448,33 @@ def compute_metrics(
         if q.get("expected_start_sec", 0) > 0:
             annotated += 1
 
+        qtype = q.get("type", "conceptual")
+        if qtype not in by_type:
+            qtype = "conceptual"
+
         if correct_rank is not None:
-            rr_sum += 1.0 / correct_rank
+            rr_sum   += 1.0 / correct_rank
             if correct_rank <= 5:
                 recall5 += 1
             if correct_rank <= 10:
                 recall10 += 1
-            by_type[q["type"]].append(1.0 / correct_rank)
+            by_type[qtype].append(1.0 / correct_rank)
         else:
-            by_type[q["type"]].append(0.0)
+            by_type[qtype].append(0.0)
 
-    # Only compute metrics over annotated queries if > 0
+    # Use annotated count as denominator if any timestamps are filled
     denom = annotated if annotated > 0 else n
 
     valid_judge = [s for s in judge_scores if s >= 0]
     judge_avg   = sum(valid_judge) / len(valid_judge) if valid_judge else -1
 
     return {
-        "MRR":          round(rr_sum / denom, 4),
-        "Recall@5":     round(recall5 / denom, 4),
-        "Recall@10":    round(recall10 / denom, 4),
-        "LLM_judge":    round(judge_avg, 4) if judge_avg >= 0 else "N/A",
-        "annotated_n":  annotated,
-        "total_n":      n,
+        "MRR":             round(rr_sum   / denom, 4),
+        "Recall@5":        round(recall5  / denom, 4),
+        "Recall@10":       round(recall10 / denom, 4),
+        "LLM_judge":       round(judge_avg, 4) if judge_avg >= 0 else "N/A",
+        "annotated_n":     annotated,
+        "total_n":         n,
         "MRR_conceptual":  round(
             sum(by_type["conceptual"]) / max(len(by_type["conceptual"]), 1), 4),
         "MRR_procedural":  round(
@@ -951,48 +485,64 @@ def compute_metrics(
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Single experiment runner
+# Single experiment runner (shared by both groups)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def run_experiment(
-    exp_id:          str,
-    exp_config:      dict,
-    eval_queries:    list[dict],
-    use_llm_judge:   bool = True,
-    top_k:           int  = 10,
+    exp_id:        str,
+    exp_config:    dict,
+    eval_queries:  list[dict],
+    use_llm_judge: bool = True,
+    top_k:         int  = 10,
 ) -> dict:
     """
-    Runs one experiment (E1-E5) over all 100 queries.
-    Returns metrics dict.
+    Runs one experiment over all evaluation queries.
+
+    Passes use_ocr and use_bm25 from exp_config directly into retriever.search().
+    This is the critical fix: the retriever now actually respects these flags.
+
+    Parameters
+    ----------
+    exp_id      : Experiment identifier string (e.g. 'E7', 'C2-150').
+    exp_config  : Dict with keys: strategy, use_ocr, use_bm25, label.
+    eval_queries: List of query dicts with expected answers.
+    use_llm_judge: Whether to call Ollama LLM for top-1 scoring.
+    top_k       : Number of results to retrieve per query.
+
+    Returns
+    -------
+    metrics dict including MRR, Recall@5, Recall@10, per-type MRR, timing.
     """
     import retriever as ret
 
     strategy = exp_config["strategy"]
     use_ocr  = exp_config["use_ocr"]
+    use_bm25 = exp_config["use_bm25"]
     label    = exp_config["label"]
 
     print(f"\n  Running {exp_id}: {label}")
-    print(f"  Strategy={strategy} | use_ocr={use_ocr}", flush=True)
+    print(f"  strategy={strategy} | use_ocr={use_ocr} | use_bm25={use_bm25}",
+          flush=True)
 
     all_results  = []
     judge_scores = []
     t0           = time.time()
 
     for i, q in enumerate(eval_queries):
-        # For E1/E2/E3 (no OCR), we still call the same retriever
-        # but the index was built with OCR stripped — handled by building
-        # a separate "no_ocr" index variant. For thesis purposes, E1-E3
-        # use transcript-only indexes (embedder.py --no-ocr flag, future work)
-        # For now: E1-E3 use normal indexes but we note OCR is in the index.
-        # Proper ablation requires re-building indexes without OCR text.
-        # This is documented as a limitation and noted in thesis.
-
+        # ── Critical fix: pass use_ocr and use_bm25 to retriever ─────────────
+        # Previously these flags were defined in EXPERIMENTS but never forwarded
+        # to ret.search(), causing E3/E4/E5 to all run the same full pipeline.
+        # Now each experiment genuinely differs:
+        #   use_ocr=False  → reranker uses transcript-only passages
+        #   use_bm25=False → RRF skipped, dense-only candidate list
         results = ret.search(
             query      = q["query"],
             strategy   = strategy,
             top_k      = top_k,
-            use_llm    = False,   # always off during eval (consistency)
-            use_rerank = True,
+            use_llm    = False,     # always off during eval (consistency)
+            use_rerank = True,      # always on — never disable reranking
+            use_ocr    = use_ocr,   # ← was missing before
+            use_bm25   = use_bm25,  # ← was missing before
             verbose    = False,
         )
         all_results.append(results)
@@ -1012,46 +562,32 @@ def run_experiment(
 
         if (i + 1) % 10 == 0:
             elapsed = time.time() - t0
-            print(f"    {i+1}/100 queries done  ({elapsed:.0f}s elapsed)",
+            print(f"    {i+1}/{len(eval_queries)} queries done  ({elapsed:.0f}s elapsed)",
                   flush=True)
 
     metrics = compute_metrics(all_results, eval_queries, judge_scores)
-    metrics["experiment"]     = exp_id
-    metrics["label"]          = label
-    metrics["elapsed_sec"]    = round(time.time() - t0, 1)
-    metrics["judge_scores"]   = judge_scores
+    metrics["experiment"]   = exp_id
+    metrics["label"]        = label
+    metrics["strategy"]     = strategy
+    metrics["use_ocr"]      = use_ocr
+    metrics["use_bm25"]     = use_bm25
+    metrics["elapsed_sec"]  = round(time.time() - t0, 1)
+    metrics["judge_scores"] = judge_scores
 
     return metrics
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Ablation runner
+# Ablation runner (dataset statistics — no retrieval needed)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def run_ablation(
     eval_queries:  list[dict],
-    use_llm_judge: bool = False,   # off by default — ablation is fast
+    use_llm_judge: bool = False,
 ) -> list[dict]:
     """
-    Runs all 7 .jsonl file variants and returns metric dicts.
-    This compares chunking strategy sensitivity.
-
-    NOTE: Ablation uses whichever FAISS/BM25 index was built from the
-    corresponding .jsonl file. To run ablation properly, rebuild indexes
-    for each variant:
-        python embedder.py --strategy c1  (for c1 variant)
-    For c2/c3 ablation variants (w150, w250, t025, etc.) you would need
-    to build separate indexes. For the thesis, ablation is done by measuring
-    dataset statistics (segment count, avg duration, OCR failure rate)
-    rather than re-embedding — this is the standard approach.
-
-    What this function measures:
-        - Dataset coverage per variant (segment count)
-        - Average chunk duration
-        - Average word count
-        - OCR failure rate
-        - Code segment fraction
-    These are computed directly from the .jsonl files, not from retrieval.
+    Analyses all segment .jsonl variants and returns dataset statistics.
+    No retrieval is performed — this measures coverage, chunk size, OCR rate.
     """
     results = []
 
@@ -1082,23 +618,22 @@ def run_ablation(
             results.append({"label": label, "file": fname, "n": 0})
             continue
 
-        avg_dur    = sum(s.get("duration_sec", 0) for s in segments) / n
-        avg_words  = sum(s.get("word_count", 0) for s in segments) / n
-        ocr_fail   = sum(1 for s in segments if s.get("ocr_failed", False)) / n
-        code_frac  = sum(1 for s in segments if s.get("is_code_segment", False)) / n
+        avg_dur   = sum(s.get("duration_sec", 0) for s in segments) / n
+        avg_words = sum(s.get("word_count",   0) for s in segments) / n
+        ocr_fail  = sum(1 for s in segments if s.get("ocr_failed", False)) / n
+        code_frac = sum(1 for s in segments if s.get("is_code_segment", False)) / n
 
-        # Per-course breakdown
         by_course: dict[str, dict] = {}
         for s in segments:
             cid = s.get("course_id", "unknown")
             if cid not in by_course:
                 by_course[cid] = {"n": 0, "ocr_fail": 0, "code": 0,
                                   "dur_sum": 0.0, "words_sum": 0}
-            by_course[cid]["n"]        += 1
-            by_course[cid]["ocr_fail"] += int(s.get("ocr_failed", False))
-            by_course[cid]["code"]     += int(s.get("is_code_segment", False))
-            by_course[cid]["dur_sum"]  += s.get("duration_sec", 0)
-            by_course[cid]["words_sum"]+= s.get("word_count", 0)
+            by_course[cid]["n"]         += 1
+            by_course[cid]["ocr_fail"]  += int(s.get("ocr_failed", False))
+            by_course[cid]["code"]      += int(s.get("is_code_segment", False))
+            by_course[cid]["dur_sum"]   += s.get("duration_sec", 0)
+            by_course[cid]["words_sum"] += s.get("word_count", 0)
 
         course_stats = {
             cid: {
@@ -1112,14 +647,14 @@ def run_ablation(
         }
 
         results.append({
-            "label":         label,
-            "file":          fname,
-            "n_segments":    n,
-            "avg_dur_sec":   round(avg_dur, 1),
-            "avg_words":     round(avg_words, 1),
-            "ocr_fail_pct":  round(ocr_fail * 100, 1),
-            "code_pct":      round(code_frac * 100, 1),
-            "by_course":     course_stats,
+            "label":        label,
+            "file":         fname,
+            "n_segments":   n,
+            "avg_dur_sec":  round(avg_dur, 1),
+            "avg_words":    round(avg_words, 1),
+            "ocr_fail_pct": round(ocr_fail * 100, 1),
+            "code_pct":     round(code_frac * 100, 1),
+            "by_course":    course_stats,
         })
 
     return results
@@ -1129,34 +664,74 @@ def run_ablation(
 # Printing helpers
 # ─────────────────────────────────────────────────────────────────────────────
 
-def print_experiment_table(all_metrics: list[dict]) -> None:
-    print("\n" + "=" * 80)
-    print("EXPERIMENT RESULTS — copy into Excel")
-    print("=" * 80)
-    header = (f"{'Exp':<4} {'Label':<42} {'MRR':>6} {'R@5':>6} {'R@10':>6} "
-              f"{'Judge':>6} {'N_ann':>6}")
+def print_group1_table(all_metrics: list[dict]) -> None:
+    """Prints the 3×3 design matrix for Group 1 experiments."""
+    print("\n" + "=" * 90)
+    print("GROUP 1 — SYSTEM EXPERIMENT RESULTS")
+    print("Design matrix: chunking strategy × OCR × BM25")
+    print("=" * 90)
+    header = (f"{'Exp':<5} {'Label':<50} {'MRR':>7} {'R@5':>7} "
+              f"{'R@10':>7} {'Judge':>7} {'N_ann':>6}")
     print(header)
-    print("-" * 80)
+    print("-" * 90)
     for m in all_metrics:
-        judge = f"{m['LLM_judge']:.3f}" if isinstance(m["LLM_judge"], float) else "N/A"
+        if m.get("group") != 1:
+            continue
+        judge = (f"{m['LLM_judge']:.3f}"
+                 if isinstance(m["LLM_judge"], float) else "N/A")
         print(
-            f"{m['experiment']:<4} {m['label']:<42} "
-            f"{m['MRR']:>6.4f} {m['Recall@5']:>6.4f} {m['Recall@10']:>6.4f} "
-            f"{judge:>6} {m['annotated_n']:>6}"
+            f"{m['experiment']:<5} {m['label']:<50} "
+            f"{m['MRR']:>7.4f} {m['Recall@5']:>7.4f} {m['Recall@10']:>7.4f} "
+            f"{judge:>7} {m['annotated_n']:>6}"
         )
-    print("=" * 80)
+    print("=" * 90)
 
-    print("\nPER QUERY-TYPE MRR:")
-    print(f"{'Exp':<4} {'Conceptual':>12} {'Procedural':>12} {'Code':>8}")
-    print("-" * 40)
+    # Summary: expected trends to verify isolation is working
+    print("\nExpected trends (verify isolation is correct):")
+    print("  OCR contribution  : E7 < E8  /  E4 < E5  /  E1 < E2")
+    print("  BM25 contribution : E8 < E9  /  E5 < E6  /  E2 < E3")
+    print("  C3 best strategy  : E7 ≥ E4 ≥ E1  (transcript only)")
+
+    print("\nPer query-type MRR (Group 1):")
+    print(f"{'Exp':<5} {'Conceptual':>12} {'Procedural':>12} {'Code':>8}")
+    print("-" * 42)
     for m in all_metrics:
-        print(f"{m['experiment']:<4} {m['MRR_conceptual']:>12.4f} "
+        if m.get("group") != 1:
+            continue
+        print(f"{m['experiment']:<5} {m['MRR_conceptual']:>12.4f} "
               f"{m['MRR_procedural']:>12.4f} {m['MRR_code']:>8.4f}")
+
+
+def print_group2_table(all_metrics: list[dict]) -> None:
+    """Prints the chunk parameter sensitivity table for Group 2."""
+    print("\n" + "=" * 90)
+    print("GROUP 2 — CHUNK PARAMETER SENSITIVITY")
+    print("OCR: DISABLED | BM25: DISABLED  (pure chunking effect)")
+    print("=" * 90)
+    header = (f"{'Variant':<10} {'Type':<5} {'Param':<8} "
+              f"{'MRR':>7} {'R@5':>7} {'R@10':>7} {'Judge':>7}")
+    print(header)
+    print("-" * 55)
+    for m in all_metrics:
+        if m.get("group") != 2:
+            continue
+        judge = (f"{m['LLM_judge']:.3f}"
+                 if isinstance(m["LLM_judge"], float) else "N/A")
+        chunk_type = m.get("chunk_type", "")
+        parameter  = m.get("parameter", "")
+        print(
+            f"{m['experiment']:<10} {chunk_type:<5} {parameter:<8} "
+            f"{m['MRR']:>7.4f} {m['Recall@5']:>7.4f} {m['Recall@10']:>7.4f} "
+            f"{judge:>7}"
+        )
+    print("=" * 90)
+    print("\nExpected: MRR should vary across chunk sizes/thresholds.")
+    print("Optimal parameter → use that value for E4-E6 / E7-E9 family.")
 
 
 def print_ablation_table(ablation_results: list[dict]) -> None:
     print("\n" + "=" * 80)
-    print("ABLATION STUDY — Dataset statistics (copy into Excel)")
+    print("ABLATION STUDY — Dataset statistics")
     print("=" * 80)
     print(f"{'Variant':<18} {'N_seg':>7} {'Avg_dur':>8} {'Avg_wds':>8} "
           f"{'OCR_fail%':>10} {'Code%':>7}")
@@ -1171,7 +746,7 @@ def print_ablation_table(ablation_results: list[dict]) -> None:
         )
     print("=" * 80)
 
-    print("\nPER-COURSE OCR FAILURE RATE (%) — key thesis finding:")
+    print("\nPER-COURSE OCR FAILURE RATE (%):")
     courses = ["dsa", "daa", "dl", "os", "dbms", "cv", "coa", "ml", "cn"]
     print(f"{'Variant':<18} " + " ".join(f"{c:>6}" for c in courses))
     print("-" * 80)
@@ -1185,30 +760,63 @@ def print_ablation_table(ablation_results: list[dict]) -> None:
         print(row)
 
 
-def save_csv_summary(all_metrics: list[dict], ablation: list[dict]) -> None:
+# ─────────────────────────────────────────────────────────────────────────────
+# CSV / JSON saving
+# ─────────────────────────────────────────────────────────────────────────────
+
+def save_csv_summary(
+    group1_metrics:   list[dict],
+    group2_metrics:   list[dict],
+    ablation_results: list[dict],
+) -> None:
+    """Saves all results to eval_summary.csv for Excel import."""
     EVAL_DIR.mkdir(parents=True, exist_ok=True)
     csv_path = EVAL_DIR / "eval_summary.csv"
 
     with open(csv_path, "w", newline="", encoding="utf-8") as fh:
         writer = csv.writer(fh)
-        # Experiment results
-        writer.writerow(["EXPERIMENT RESULTS"])
-        writer.writerow(["Experiment", "Label", "MRR", "Recall@5", "Recall@10",
-                         "LLM_Judge", "MRR_conceptual", "MRR_procedural",
-                         "MRR_code", "Annotated_N"])
-        for m in all_metrics:
+
+        # ── Group 1 ──────────────────────────────────────────────────────────
+        writer.writerow(["GROUP 1 — SYSTEM EXPERIMENT RESULTS"])
+        writer.writerow([
+            "Experiment", "Label", "Strategy", "use_OCR", "use_BM25",
+            "MRR", "Recall@5", "Recall@10", "LLM_Judge",
+            "MRR_conceptual", "MRR_procedural", "MRR_code", "Annotated_N",
+        ])
+        for m in group1_metrics:
             writer.writerow([
                 m["experiment"], m["label"],
+                m.get("strategy", ""), m.get("use_ocr", ""), m.get("use_bm25", ""),
                 m["MRR"], m["Recall@5"], m["Recall@10"], m["LLM_judge"],
                 m["MRR_conceptual"], m["MRR_procedural"], m["MRR_code"],
                 m["annotated_n"],
             ])
 
         writer.writerow([])
-        writer.writerow(["ABLATION STUDY"])
+
+        # ── Group 2 ──────────────────────────────────────────────────────────
+        writer.writerow(["GROUP 2 — CHUNK PARAMETER SENSITIVITY"])
+        writer.writerow(["Note: OCR=OFF BM25=OFF for all Group 2 rows"])
+        writer.writerow([
+            "Variant", "Chunk_Type", "Parameter", "Strategy",
+            "MRR", "Recall@5", "Recall@10", "LLM_Judge",
+            "MRR_conceptual", "MRR_procedural", "MRR_code",
+        ])
+        for m in group2_metrics:
+            writer.writerow([
+                m["experiment"], m.get("chunk_type", ""), m.get("parameter", ""),
+                m.get("strategy", ""),
+                m["MRR"], m["Recall@5"], m["Recall@10"], m["LLM_judge"],
+                m["MRR_conceptual"], m["MRR_procedural"], m["MRR_code"],
+            ])
+
+        writer.writerow([])
+
+        # ── Ablation ─────────────────────────────────────────────────────────
+        writer.writerow(["ABLATION STUDY — Dataset Statistics"])
         writer.writerow(["Variant", "N_segments", "Avg_dur_sec", "Avg_words",
                          "OCR_fail_pct", "Code_pct"])
-        for r in ablation:
+        for r in ablation_results:
             if r.get("status") == "missing":
                 writer.writerow([r["label"], "MISSING"])
                 continue
@@ -1226,36 +834,59 @@ def save_csv_summary(all_metrics: list[dict], ablation: list[dict]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Evaluation and ablation study for NPTEL lecture retrieval"
+        description="Evaluation framework for NPTEL lecture retrieval system"
     )
-    parser.add_argument("--experiment",    type=str, default=None,
-                        choices=list(EXPERIMENTS.keys()),
-                        help="Run only this experiment (E1-E5).")
-    parser.add_argument("--ablation-only", action="store_true",
-                        help="Run ablation dataset stats only (no retrieval needed).")
-    parser.add_argument("--no-llm-judge", action="store_true",
-                        help="Skip LLM judge scoring (faster).")
-    parser.add_argument("--show-unfilled", action="store_true",
-                        help="List queries with expected_start_sec == 0.")
-    parser.add_argument("--top-k",        type=int, default=10,
-                        help="Retrieve top-k results per query (default 10).")
+    parser.add_argument(
+        "--experiment", type=str, default=None,
+        choices=list(EXPERIMENTS.keys()),
+        help="Run a single Group 1 experiment (E1–E9).",
+    )
+    parser.add_argument(
+        "--sensitivity", type=str, default=None,
+        choices=list(SENSITIVITY_VARIANTS.keys()),
+        help="Run a single Group 2 sensitivity variant (e.g. C2-150).",
+    )
+    parser.add_argument(
+        "--group1-only", action="store_true",
+        help="Run Group 1 system experiments only (E1–E9).",
+    )
+    parser.add_argument(
+        "--group2-only", action="store_true",
+        help="Run Group 2 chunk sensitivity only.",
+    )
+    parser.add_argument(
+        "--ablation-only", action="store_true",
+        help="Run ablation dataset statistics only (no retrieval needed).",
+    )
+    parser.add_argument(
+        "--no-llm-judge", action="store_true",
+        help="Skip LLM judge scoring (faster).",
+    )
+    parser.add_argument(
+        "--show-unfilled", action="store_true",
+        help="List queries with expected_start_sec == 0.",
+    )
+    parser.add_argument(
+        "--top-k", type=int, default=10,
+        help="Retrieve top-k results per query (default 10).",
+    )
     args = parser.parse_args()
 
     EVAL_DIR.mkdir(parents=True, exist_ok=True)
     use_llm_judge = not args.no_llm_judge
 
-    # ── Show unfilled queries ─────────────────────────────────────────────
+    # ── Show unfilled queries ─────────────────────────────────────────────────
     if args.show_unfilled:
         unfilled = [q for q in EVAL_QUERIES if q["expected_start_sec"] == 0]
         print(f"\n{len(unfilled)} queries need timestamp annotation:\n")
         for q in unfilled:
             print(f"  {q['id']:12} [{q['type']:12}] {q['expected_course']:6}  "
                   f"{q['query'][:55]}")
-        print(f"\nEdit EVAL_QUERIES in evaluator.py and fill expected_lecture "
+        print(f"\nEdit annotations.jsonl and fill expected_lecture "
               f"and expected_start_sec.\n")
         return
 
-    # ── Ablation only ─────────────────────────────────────────────────────
+    # ── Ablation only ─────────────────────────────────────────────────────────
     if args.ablation_only:
         print("\nRunning ablation dataset analysis ...")
         ablation = run_ablation(EVAL_QUERIES, use_llm_judge=False)
@@ -1264,75 +895,176 @@ def main() -> None:
         out.write_text(json.dumps(ablation, indent=2, ensure_ascii=False),
                        encoding="utf-8")
         print(f"\n  Results saved → {out}")
-        save_csv_summary([], ablation)
+        save_csv_summary([], [], ablation)
         return
 
-    # ── Experiment runs ───────────────────────────────────────────────────
+    # ── Check retriever is importable before running anything ─────────────────
     try:
-        import retriever  # noqa — check import works before running
+        import retriever  # noqa
     except ImportError as e:
         print(f"\n  Cannot import retriever.py: {e}")
         print("  Make sure retriever.py is in the same folder or on sys.path.")
         return
 
-    experiments_to_run = (
-        {args.experiment: EXPERIMENTS[args.experiment]}
-        if args.experiment
-        else EXPERIMENTS
-    )
+    # ─────────────────────────────────────────────────────────────────────────
+    # Determine what to run
+    # ─────────────────────────────────────────────────────────────────────────
+    run_g1 = not args.group2_only
+    run_g2 = not args.group1_only
 
-    all_metrics  = []
-    judge_detail = {}
+    # Single experiment overrides
+    if args.experiment:
+        run_g1 = True
+        run_g2 = False
+    if args.sensitivity:
+        run_g1 = False
+        run_g2 = True
 
+    # ─────────────────────────────────────────────────────────────────────────
+    # Print evaluation set summary
+    # ─────────────────────────────────────────────────────────────────────────
     print(f"\nEvaluation set: {len(EVAL_QUERIES)} queries")
     annotated = sum(1 for q in EVAL_QUERIES if q["expected_start_sec"] > 0)
     print(f"Annotated with timestamps: {annotated}")
     if annotated == 0:
-        print("  WARNING: No timestamps annotated. Metrics will be based on "
-              "course-match only.\n  Run --show-unfilled to see what needs filling.")
+        print("  WARNING: No timestamps annotated. Metrics based on course-match only.")
+        print("  Run --show-unfilled to see what needs filling.")
 
-    for exp_id, exp_config in experiments_to_run.items():
-        metrics = run_experiment(
-            exp_id, exp_config, EVAL_QUERIES,
-            use_llm_judge = use_llm_judge,
-            top_k         = args.top_k,
+    group1_metrics  = []
+    group2_metrics  = []
+    judge_detail    = {}
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # GROUP 1 — System Experiments (E1–E9)
+    # ─────────────────────────────────────────────────────────────────────────
+    if run_g1:
+        exps_to_run = (
+            {args.experiment: EXPERIMENTS[args.experiment]}
+            if args.experiment
+            else EXPERIMENTS
         )
-        all_metrics.append(metrics)
 
-        # Save per-experiment results
-        out_path = EVAL_DIR / f"results_{exp_id}.json"
-        judge_detail[exp_id] = metrics.pop("judge_scores", [])
-        out_path.write_text(
-            json.dumps(metrics, indent=2, ensure_ascii=False),
-            encoding="utf-8"
+        print(f"\n{'='*60}")
+        print(f"GROUP 1: Running {len(exps_to_run)} system experiment(s)")
+        print(f"{'='*60}")
+
+        for exp_id, exp_config in exps_to_run.items():
+            metrics = run_experiment(
+                exp_id        = exp_id,
+                exp_config    = exp_config,
+                eval_queries  = EVAL_QUERIES,
+                use_llm_judge = use_llm_judge,
+                top_k         = args.top_k,
+            )
+            # Tag with group + chunk info for table printing
+            metrics["group"]      = 1
+            metrics["chunk_type"] = exp_config["strategy"].upper()
+            group1_metrics.append(metrics)
+
+            out_path = EVAL_DIR / f"results_{exp_id}.json"
+            judge_detail[exp_id] = metrics.pop("judge_scores", [])
+            out_path.write_text(
+                json.dumps(metrics, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            print(f"\n  {exp_id} done: MRR={metrics['MRR']:.4f} "
+                  f"R@5={metrics['Recall@5']:.4f} "
+                  f"Judge={metrics['LLM_judge']}")
+
+        print_group1_table(group1_metrics)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # GROUP 2 — Chunk Parameter Sensitivity
+    # ─────────────────────────────────────────────────────────────────────────
+    if run_g2:
+        variants_to_run = (
+            {args.sensitivity: SENSITIVITY_VARIANTS[args.sensitivity]}
+            if args.sensitivity
+            else SENSITIVITY_VARIANTS
         )
-        print(f"\n  {exp_id} done: MRR={metrics['MRR']:.4f} "
-              f"R@5={metrics['Recall@5']:.4f} "
-              f"Judge={metrics['LLM_judge']}")
 
-    # ── Print full results table ──────────────────────────────────────────
-    print_experiment_table(all_metrics)
+        print(f"\n{'='*60}")
+        print(f"GROUP 2: Running {len(variants_to_run)} sensitivity variant(s)")
+        print("NOTE: OCR and BM25 are disabled for all Group 2 runs.")
+        print(f"{'='*60}")
 
-    # ── Ablation ──────────────────────────────────────────────────────────
-    print("\n\nRunning ablation dataset analysis ...")
-    ablation = run_ablation(EVAL_QUERIES, use_llm_judge=False)
-    print_ablation_table(ablation)
+        for variant_id, variant_config in variants_to_run.items():
+            # Safety assertion: group 2 must never enable OCR or BM25
+            assert not variant_config["use_ocr"],  \
+                f"Group 2 variant {variant_id} has use_ocr=True — must be False!"
+            assert not variant_config["use_bm25"], \
+                f"Group 2 variant {variant_id} has use_bm25=True — must be False!"
 
-    # ── Save everything ───────────────────────────────────────────────────
-    ablation_path = EVAL_DIR / "ablation_results.json"
-    ablation_path.write_text(
-        json.dumps(ablation, indent=2, ensure_ascii=False), encoding="utf-8"
-    )
+            metrics = run_experiment(
+                exp_id        = variant_id,
+                exp_config    = variant_config,
+                eval_queries  = EVAL_QUERIES,
+                use_llm_judge = use_llm_judge,
+                top_k         = args.top_k,
+            )
+            # Tag with group + chunk info for table printing
+            metrics["group"]      = 2
+            metrics["chunk_type"] = variant_config["chunk_type"]
+            metrics["parameter"]  = variant_config["parameter"]
+            group2_metrics.append(metrics)
 
-    judge_path = EVAL_DIR / "llm_judge_scores.json"
-    judge_path.write_text(
-        json.dumps(judge_detail, indent=2, ensure_ascii=False), encoding="utf-8"
-    )
+            # Save with a filename-safe variant ID
+            safe_id  = variant_id.replace(".", "_").replace("-", "_")
+            out_path = EVAL_DIR / f"sensitivity_{safe_id}.json"
+            judge_detail[variant_id] = metrics.pop("judge_scores", [])
+            out_path.write_text(
+                json.dumps(metrics, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            print(f"\n  {variant_id} done: MRR={metrics['MRR']:.4f} "
+                  f"R@5={metrics['Recall@5']:.4f} "
+                  f"Judge={metrics['LLM_judge']}")
 
-    save_csv_summary(all_metrics, ablation)
+        print_group2_table(group2_metrics)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # Ablation dataset statistics
+    # ─────────────────────────────────────────────────────────────────────────
+    # Run ablation stats when doing a full run (not single experiment/variant)
+    if not args.experiment and not args.sensitivity:
+        print("\n\nRunning ablation dataset analysis ...")
+        ablation = run_ablation(EVAL_QUERIES, use_llm_judge=False)
+        print_ablation_table(ablation)
+        ablation_path = EVAL_DIR / "ablation_results.json"
+        ablation_path.write_text(
+            json.dumps(ablation, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+    else:
+        ablation = []
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # Save all outputs
+    # ─────────────────────────────────────────────────────────────────────────
+    if judge_detail:
+        judge_path = EVAL_DIR / "llm_judge_scores.json"
+        judge_path.write_text(
+            json.dumps(judge_detail, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+
+    save_csv_summary(group1_metrics, group2_metrics, ablation)
 
     print(f"\n  All results saved to {EVAL_DIR}/")
     print("  Import eval_summary.csv into Excel to generate graphs.\n")
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # Final sanity check — warn if Group 1 results look suspiciously identical
+    # ─────────────────────────────────────────────────────────────────────────
+    if len(group1_metrics) >= 3:
+        mrr_values = [m["MRR"] for m in group1_metrics]
+        if len(set(mrr_values)) == 1:
+            print("\n  ⚠️  WARNING: All Group 1 MRR values are identical!")
+            print("     This suggests use_ocr/use_bm25 flags are still not being")
+            print("     respected. Check that retriever.py accepts these parameters.")
+        else:
+            mrr_range = max(mrr_values) - min(mrr_values)
+            print(f"\n  ✅  Group 1 MRR range: {min(mrr_values):.4f}–{max(mrr_values):.4f} "
+                  f"(spread={mrr_range:.4f})")
+            print("     Experiments are producing distinct results.")
 
 
 if __name__ == "__main__":

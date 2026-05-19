@@ -1,0 +1,1244 @@
+[
+  {
+    "text": "It is called the Harris coronary detector. It goes after the people who worked on this",
+    "start": 0.0,
+    "end": 21.92,
+    "ocr_text": "R\n\nLavwia"
+  },
+  {
+    "text": "problem. HCD, Harris coronary detector, Harris is somebody's name. This was a paper published,",
+    "start": 21.92,
+    "end": 33.52,
+    "ocr_text": "R\n\nLavwia"
+  },
+  {
+    "text": "actually interesting, it was a conference paper. So, to just motivate what we mean by this,",
+    "start": 33.52,
+    "end": 43.44,
+    "ocr_text": "Comp Qeted\n\nLavia"
+  },
+  {
+    "text": "right. So, of course, they kind of formulated it in a certain way using gradients and all, but just",
+    "start": 43.44,
+    "end": 49.04,
+    "ocr_text": "Hawia Comm Qtech\nee ss\n\nProf. A.N. Rajagopalan\n\nDepartment of Electrical Engineering\nIIT Madras"
+  },
+  {
+    "text": "to motivate it, why such a thing makes sense. Let us just look at an image and let me draw three of them.",
+    "start": 49.04,
+    "end": 59.6,
+    "ocr_text": "Hawia Comm Qtech\nee ss\n\nProf. A.N. Rajagopalan\n\nDepartment of Electrical Engineering\nIIT Madras"
+  },
+  {
+    "text": "In one case, I have what is called uniform plus some noise. I am adding noise because you know,",
+    "start": 61.28,
+    "end": 70.96,
+    "ocr_text": "Wawia Covnw Queda"
+  },
+  {
+    "text": "it does not, I do not want it to be wanted to think that you know all images are exact, all",
+    "start": 70.96,
+    "end": 74.64,
+    "ocr_text": "Hawia Comm Qetecr\n\nUnt or\n\n+ nord"
+  },
+  {
+    "text": "entities are exactly the same. Maybe there is some amount of noise there. The second one is actually an edge,",
+    "start": 74.64,
+    "end": 79.52,
+    "ocr_text": "Hawia Comm Qetecr\n\nUnt or\n\n+ nord"
+  },
+  {
+    "text": "and the third one is a corner. So, uniform means what, I mean you can think of this as some,",
+    "start": 81.76,
+    "end": 89.92,
+    "ocr_text": "Wawia Covnw Queda\n\nUnt ore\nnade E"
+  },
+  {
+    "text": "some i plus i plus some n of whatever, I mean you know, what is zero mean with some sigma,",
+    "start": 89.92,
+    "end": 97.12,
+    "ocr_text": "H Oia\n\nCovnw Qetea\n\nUnt ove\"\n+ nage\n\nEe\n\nCom\n\nfi\n\n“un!”\n\n|"
+  },
+  {
+    "text": "this is something like that. Some Gaussian noise, something that is added, uniform does not mean",
+    "start": 98.8,
+    "end": 102.72,
+    "ocr_text": "Wawia Covnw Queda\n\nUnt ore\nnade SF a cone\n\nT+e vo *) ‘"
+  },
+  {
+    "text": "uniform noise, uniform intensity plus some noise edge. Let us say, we have got zero here,",
+    "start": 102.72,
+    "end": 111.92,
+    "ocr_text": "Wawia Covnw Queda\n\nUnt ore\nnade SF a cone\n\nT+e vo *) ‘"
+  },
+  {
+    "text": "I mean we will just take an ideal case, just to give some insights, corner,",
+    "start": 111.92,
+    "end": 116.8,
+    "ocr_text": "Wawia Covnw Queda\n\nUniform inten)\nnade a Comer\n\nT+e vo *)"
+  },
+  {
+    "text": "I think I will draw them by a different color. This is the corner, right.",
+    "start": 119.6,
+    "end": 129.28,
+    "ocr_text": "Hawa Comme Qetecr\n\n-\n\nUnif ore intro)\nnade i an Comer\n\nT+e vo *)"
+  },
+  {
+    "text": "Now, suppose, suppose I take a patch, there is some patch which I decide, some size.",
+    "start": 129.28,
+    "end": 138.4,
+    "ocr_text": "Lawia Comw Qute ca\n\n“inn!”\n\n( &\nast\n\n|\n\\\n\nUnt orm inten)\nf node\n\nEd\nComyv\nT+ nloy*) a"
+  },
+  {
+    "text": "I take this patch and move around, in a sense, I kind of move around. Suppose, I am here at this",
+    "start": 138.4,
+    "end": 147.12,
+    "ocr_text": "Lawia Comw Que\n\n“mw!\n\nast\n\n|\n\\\n\nUnmfore inreesi)\nf node\n\nEd\nComyv\nT+ n(oy*) a"
+  },
+  {
+    "text": "load this location, let us call that some x i y i, I am sitting there and it is move around.",
+    "start": 147.12,
+    "end": 152.32,
+    "ocr_text": "Yawia Covnw Qete da\n\n-\n\nast\n\nUnit orn introeri)\nnade aa Come\n\nT+e vo *)"
+  },
+  {
+    "text": "In terms of the gradients, what do you think will happen? See, for example, the appearance of the",
+    "start": 152.48,
+    "end": 159.92,
+    "ocr_text": "Yawia Covnw Qete da\n\n-\n\nast\n\nUnit orn introeri)\nnade aa Come\n\nT+e vo *)"
+  },
+  {
+    "text": "patch is going to change, right, as I move around, it is not exactly the same, right. So, the",
+    "start": 159.92,
+    "end": 163.36,
+    "ocr_text": "Howia Comme Qetedr\n\nDB T\n\nast\n\nUnit oven introeri)\nnade SF me Comer\n\nTe vo *)"
+  },
+  {
+    "text": "appearance of the patch, it is going to, now let us just talk about the appearance.",
+    "start": 163.36,
+    "end": 166.48,
+    "ocr_text": "Howia Comme Qetedr\n\nDB T\n\nast\n\nUnit oven introeri)\nnade SF me Comer\n\nTe vo *)"
+  },
+  {
+    "text": "Okay, all right, I mean, no, let us not even talk about gradients, let us just talk about appearance.",
+    "start": 167.36,
+    "end": 171.44,
+    "ocr_text": "Hawa Comme Qetecr\n\nB T\n\nast\n\nUniforen intron)\nnade ae Comer\n\nT+ uo *)"
+  },
+  {
+    "text": "In the first case, how much will be the change in the appearance?",
+    "start": 171.44,
+    "end": 175.28,
+    "ocr_text": "Hawa Comme Qetecr\n\nB T\n\nast\n\nUniforen intron)\nnade ae Comer\n\nT+ uo *)"
+  },
+  {
+    "text": "They expect, they expect a lot of change in the appearance, or do you feel that maybe there will be",
+    "start": 176.24,
+    "end": 180.4,
+    "ocr_text": "H ayia\n\nCovnw Qete cd\n\nUnmfore inreesi)\n+ nage\n\nT+ n(oy*)\n\nast\n\nSS a\n\n-\n\nCom\n\n“unm”\n\nvy)\n\n|"
+  },
+  {
+    "text": "just a little bit of change in the appearance? Very little, right. So, we all agree that the appearance",
+    "start": 180.48,
+    "end": 185.44,
+    "ocr_text": "H ayia\n\nCovnw Qete cd\n\nUnmfore inreesi)\n+ nage\n\nT+ n(oy*)\n\nast\n\nSS a\n\n-\n\nCom\n\n“unm”\n\nvy)\n\n|"
+  },
+  {
+    "text": "will be, the change in the appearance is going to be minimal, okay, because most of it is uniform.",
+    "start": 185.44,
+    "end": 189.84,
+    "ocr_text": "Lawia Comw Quteca-\n\n“ium!”\n\nast\n\n|\n\\\n\nUnt orm inroeni)\n+f node\n\nEd\nComyv\nT+ wloy*) a"
+  },
+  {
+    "text": "So, except for some noise. What about the next case? Edge. So, let us say, say I take a patch.",
+    "start": 189.84,
+    "end": 195.52,
+    "ocr_text": "Lawia Comw Quteca-\n\n“ium!”\n\nast\n\n|\n\\\n\nUnt orm inroeni)\n+f node\n\nEd\nComyv\nT+ wloy*) a"
+  },
+  {
+    "text": "Now, I move around, yes, I begin.",
+    "start": 198.48,
+    "end": 204.08,
+    "ocr_text": "Hawa Com Qetecr\n\nis [_\n\nast\n\nUni orn intron)\nnade a? aed\n\nTe vo, *)"
+  },
+  {
+    "text": "When you are, okay, now, but then, but then would this be somewhat, kind of say direction sensitive,",
+    "start": 204.24,
+    "end": 211.28,
+    "ocr_text": "Hawa Com Qetecr\n\nis [_\n\nast\n\nUni orn intron)\nnade a? aed\n\nTe vo, *)"
+  },
+  {
+    "text": "the, okay. So, which way would the change be minimal and which way would they change?",
+    "start": 211.28,
+    "end": 216.48,
+    "ocr_text": "Lawia Comw Que\n\n(ps)\n\nast\n\n“unm!\n\n|\n\\\n\nunfore inreeni)\n+ node\n\nEd\nComv\nT+ wCoy*) a"
+  },
+  {
+    "text": "So, horizontally, right. So, when you move orthogonal to the edge, you will find a lot of variation,",
+    "start": 216.48,
+    "end": 221.12,
+    "ocr_text": "Lawia Comw Que\n\n(ps)\n\nasF\n\n“ium!”\n\n|\n\\\n\nunfore inreeni)\nnade Ed 7\nT+ wCoy*) 0 my"
+  },
+  {
+    "text": "right. Horizontally, if I pull this patch out like this, you will see a lot of variation.",
+    "start": 221.12,
+    "end": 225.2,
+    "ocr_text": "Lawia Comw Que\n\n(ps)\n\nasF\n\n“ium!”\n\n|\n\\\n\nunfore inreeni)\nnade Ed 7\nT+ wCoy*) 0 my"
+  },
+  {
+    "text": "But if I move along the edge, there is going to be hardly any variation, if I move along there,",
+    "start": 225.2,
+    "end": 229.44,
+    "ocr_text": "H Oia\n\nCorn Qete cr\n\nUnforet introns)\n+f node\n\nT+ nCoy*)\n\n[ps\n\nast\n\nos\n\n-\n\nCom\n\nfi\n\n“ium!”\n\n|\n\\"
+  },
+  {
+    "text": "that means there is some sensitivity here, right, with respect to which way I move,",
+    "start": 229.44,
+    "end": 232.56,
+    "ocr_text": "H Oia\n\nCorn Qete cr\n\nUnforet introns)\n+f node\n\nT+ nCoy*)\n\n[ps\n\nast\n\nos\n\n-\n\nCom\n\nfi\n\n“ium!”\n\n|\n\\"
+  },
+  {
+    "text": "okay, which means that the appearance change depends upon how I move.",
+    "start": 232.88,
+    "end": 236.4,
+    "ocr_text": "H Oia\n\nCorn Qete cr\n\nUnforet introns)\n+f node\n\nT+ nCoy*)\n\n[ps\n\nast\n\nos\n\n-\n\nCom\n\nfi\n\n“ium!”\n\n|\n\\"
+  },
+  {
+    "text": "And if I move in a particular way, there is going to be a lot of change, but then if I move",
+    "start": 236.4,
+    "end": 239.44,
+    "ocr_text": "Hawi Comm Qtech\n\nis [_\n\nast\n\nUniforen intron)\nf node an Comer\n\nTe uo, *)"
+  },
+  {
+    "text": "in another way, which is like along the edge, then it looks like there is not going to be much of",
+    "start": 239.44,
+    "end": 242.88,
+    "ocr_text": "Hawi Comm Qtech\n\nis [_\n\nast\n\nUniforen intron)\nf node an Comer\n\nTe uo, *)"
+  },
+  {
+    "text": "a, much of a change in the appearance. What about the third guy? I have a patch.",
+    "start": 242.88,
+    "end": 247.36,
+    "ocr_text": "Hawi Comm Qtech\n\nis [_\n\nast\n\nUniforen intron)\nf node an Comer\n\nTe uo, *)"
+  },
+  {
+    "text": "Oops.",
+    "start": 247.84,
+    "end": 248.84,
+    "ocr_text": "Hawia Corn Qtech\n—\n[ ;\na5\nUnit ore inoeai\nea a? a Com\nT+ wCoy*)\n\nuw\n\n|\n\\"
+  },
+  {
+    "text": "So, I have the corner there, sitting inside that pan, now I move,",
+    "start": 248.84,
+    "end": 261.64,
+    "ocr_text": "Hawia Corn Qtech\n—\n[ ;\na5\nUnit ore inoeai\nea a? a Com\nT+ wCoy*)\n\nuw\n\n|\n\\"
+  },
+  {
+    "text": "so, I can, what will happen now? Any direction, if you move, there is going to be a change in the appearance,",
+    "start": 261.64,
+    "end": 269.12,
+    "ocr_text": "Howia Comme Qetedr\n\n(U toe\n\nast\n\nUniforen introori)\nnade aa Come\n\nT+ uo, *)"
+  },
+  {
+    "text": "right, whichever way you move, because you are actually sitting at a corner, okay. So, in a sense,",
+    "start": 269.12,
+    "end": 273.52,
+    "ocr_text": "H awia  Covew Que oh\n\ntoe\nasr\n\nUnfore imtoo)\nnode\n\nEd\nNes\nT+ wCoy*)\n\nCom"
+  },
+  {
+    "text": "that is what the Harris-Carner actually right tries to capture. So, at a corner,",
+    "start": 273.52,
+    "end": 279.28,
+    "ocr_text": "H awia  Covew Que oh\n\ntoe\nasr\n\nUnfore imtoo)\nnode\n\nEd\nNes\nT+ wCoy*)\n\nCom"
+  },
+  {
+    "text": "right, whichever way you move, the appearance, the appearance of that patch is going to change",
+    "start": 279.28,
+    "end": 284.0,
+    "ocr_text": "H Owia\n\nCov Quer oh\n\nUnfore inroesi)\nnade\nT+ nCoy*)\n\nast\n\na\n\nar\n\nComyv\n\n“umn\n\n|\n\\"
+  },
+  {
+    "text": "significantly, whichever way you move, okay. And that is what, that is what is, you know,",
+    "start": 284.56,
+    "end": 291.6,
+    "ocr_text": "H Owia\n\nCov Quer oh\n\nUnfore inroesi)\nnade\nT+ nCoy*)\n\nast\n\na\n\nar\n\nComyv\n\n“umn\n\n|\n\\"
+  },
+  {
+    "text": "essence of this and we will try to capture it using whatever map is needed for that, right.",
+    "start": 291.6,
+    "end": 297.12,
+    "ocr_text": "H Oia\n\nCornw Quiche\n\nUnit over intoori)\nnade\n\nT+ nCoy*)\n\nast\n\nSO\n\nan\n\nComm\n\nfi\n\n“Vn!”\n\n|\n\\"
+  },
+  {
+    "text": "Of course, all this is there in that slide, okay, that anyway we will upload, but,",
+    "start": 298.8,
+    "end": 302.4,
+    "ocr_text": "H Oia\n\nCornw Qutech-\n\nUnt ore inten)\nnade\n\nT+ wloy*)\n\nase\n\nee\n\nar\n\nComm\n\nfi\n“eg!”\n\n(/\n\n|\n\\"
+  },
+  {
+    "text": "there is two, okay. So, then the idea is this. So, let us say that, now let delta x and delta y",
+    "start": 303.52,
+    "end": 319.92,
+    "ocr_text": "H Oia\n\nCornw Qutech-\n\nUnt ore inten)\nnade\n\nT+ wloy*)\n\nase\n\nee\n\nar\n\nComm\n\nfi\n“eg!”\n\n(/\n\n|\n\\"
+  },
+  {
+    "text": "represent shift in x and x and y directions, shifts in, shift in y x and y directions respectively,",
+    "start": 323.36,
+    "end": 332.88,
+    "ocr_text": "Wawia Covnw Quiero\n\nfe) LE) LU\n\nUniform introns)\nnode\n\nT+ nloy*)\n\nLie be od f\n\nfi\n\n“ium!”\n\n|\n\\"
+  },
+  {
+    "text": "directions. Then, then the change in appearance of a patch,",
+    "start": 333.52,
+    "end": 345.68,
+    "ocr_text": "Hawia Comm Qute dr\n\n2) Le\n\nUniform introori)\nf nade\n\nT+ uo *)\n\nLie Oe ard ay yepvedemt aludl"
+  },
+  {
+    "text": "the change in appearance of a patch of size w,",
+    "start": 345.68,
+    "end": 366.32,
+    "ocr_text": "Hawia Come Qetedr\n\nfe) Le LJ\n\nUniform inten)\nf node\n\nac no, )\n\nLk bx od AY yepvedens Alife in 2 and J eircotronte\n\nthen He Crorr,"
+  },
+  {
+    "text": "can be found as c of, let us call this some c of delta x delta y, which is the change,",
+    "start": 366.8,
+    "end": 381.44,
+    "ocr_text": "Wawia Covnw Qete oh\n\nfe] Lt) |&\n\nUnit or imroesi)\nth Comy\n\nT+ no,*)\n\nyovedem Ahift in 2 and d divectons.\n\nLik Dx aed ay\nanpeavanc. of a por, op Ae Wy\n\nthen Ye Orange tr"
+  },
+  {
+    "text": "c represent the change in appearance. So, this, let us say we compute a summation i of x i y i",
+    "start": 382.0,
+    "end": 389.36,
+    "ocr_text": "Howia Comme Qetedr\n\n) Le) Ld\n\nUniform inten)\nf node\nT+ wloy*)\nLik ax ard Ay yovedem Ahi, in a and d divections-\nthen He Orange tn anpeavance a a pare, “4 ae WY\n\nCan be Found om\n\nlA"
+  },
+  {
+    "text": "minus i of x i plus delta x y i plus delta y and x i y i belonging to this w, which is the size of that patch.",
+    "start": 390.16,
+    "end": 408.88,
+    "ocr_text": "Howia Comme Qetecr\n\na ©\n\nnif or inroesi)\nth\nT+ wCoy*)\nLue bx aed Ay ypvedemt Ahuft in 9% and J eircotronte\nthen He Changs tr anpeavance a a pare, op a\n\nCan he Found 0)\nc( ae as) = S 5 (tC"
+  },
+  {
+    "text": "So, what this means is that means is that, that, right, within that window,",
+    "start": 409.68,
+    "end": 417.6,
+    "ocr_text": "Hawia Corn Qetech-\n\nfe) Le) LJ\n\nUniform inroesi)\nf node\nT+ no,*)\nLyk Bx aed By Yepvedert abut in 2 and divechons.\nthen He Orange tr appeavance a a porch o4 nize WY\n\nCan be Found 2)\n\ncl aa) = a 2 (ures 276))\n\naan"
+  },
+  {
+    "text": "okay, if I move by an amount to see, right, delta x delta y and I want to compare the patch,",
+    "start": 418.56,
+    "end": 424.24,
+    "ocr_text": "Wawia Covnw Que oh\n\n=) LE) Ld\n\nUniform inten)\nf node\nT+ no,*)\nLyk Bx aed By Vopvedert abut in and divechons.\nshen We Orange iy anpeavance of a poke op aime wi\nCan be Found oy) -\n—i (re, 3+) )\n\n<( 4% ay) = seen\n\nSe"
+  },
+  {
+    "text": "which I get with respect to, with respect to, right, that particular motion delta x delta y",
+    "start": 424.24,
+    "end": 430.4,
+    "ocr_text": "Wawia Covnw Que oh\n\n=) LE) Ld\n\nUniform inten)\nf node\nT+ no,*)\nLyk Bx aed By Vopvedert abut in and divechons.\nshen We Orange iy anpeavance of a poke op aime wi\nCan be Found oy) -\n—i (re, 3+) )\n\n<( 4% ay) = seen\n\nSe"
+  },
+  {
+    "text": "and how much, how much is the change in the appearance. So, you can, of course, we play the",
+    "start": 430.4,
+    "end": 435.44,
+    "ocr_text": "Hawia Corn Qtech\n\nLJ\n\nnif ore inten)\nth\nT+ wloy*)\nLik Dx aed Ay yopvedem Aluft in a and al divecthons.\nthin He Orange iy Onpeavance of a pak o4 ase\n\nCan be Found 7)\n\nCC ats) = ss (eux) EO? +)\n\nXI, EW"
+  },
+  {
+    "text": "standard trick, which is to actually take this and expand it in using a Taylor series. So,",
+    "start": 435.44,
+    "end": 439.92,
+    "ocr_text": "Hawia Comm Qtech\n\na)\n\nnif or inreesi)\nth\nT+ wloy*)\nLue bx aed Ay yopvedemt Ahuft in 9 and J Uiveciton’.\nthin He Crongs iy Onpeavance of 2 pak o4 Aste\n\nCan be Found mw\nc( 4%, 49) = SS z(4,y) —T (*% ax, Yi +)\n\nHIE W\n\nx4,"
+  },
+  {
+    "text": "you have x i plus delta x, make some approximations now, because you want something that is computable.",
+    "start": 439.92,
+    "end": 444.8,
+    "ocr_text": "Hawia Comm Qtech\n\na)\n\nnif or inreesi)\nth\nT+ wloy*)\nLue bx aed Ay yopvedemt Ahuft in 9 and J Uiveciton’.\nthin He Crongs iy Onpeavance of 2 pak o4 Aste\n\nCan be Found mw\nc( 4%, 49) = SS z(4,y) —T (*% ax, Yi +)\n\nHIE W\n\nx4,"
+  },
+  {
+    "text": "So, you write this as i of x i y i plus, let us say and all these are scalars now, right,",
+    "start": 445.6,
+    "end": 451.84,
+    "ocr_text": "Hawa Comme Qetecr\n\na B®\n\nUniform inten)\n$f node\n\nT+ oe)\n\nLik Dx acd Ay vovedes Aluft in 2 and i divections-\n\nthen He Orange iy anpeavance of a pateh e+ ane W\nCan be Found 0)\nss( tle) ECE +)\n\nC( 4%, 49) =\n3 EW\n\n=x (te, eo) b\n\n(te 4 yer 48) =\n\n¢\""
+  },
+  {
+    "text": "it is just into looking at intensities. So, delta x again is a scalar, just a displacement,",
+    "start": 451.84,
+    "end": 456.56,
+    "ocr_text": "Hawa Comme Qetecr\n\na B®\n\nUniform inten)\n$f node\n\nT+ oe)\n\nLik Dx acd Ay vovedes Aluft in 2 and i divections-\n\nthen He Orange iy anpeavance of a pateh e+ ane W\nCan be Found 0)\nss( tle) ECE +)\n\nC( 4%, 49) =\n3 EW\n\n=x (te, eo) b\n\n(te 4 yer 48) =\n\n¢\""
+  },
+  {
+    "text": "delta y is a displacement. So, I am writing a scalar form plus delta x, let us say we call this,",
+    "start": 456.56,
+    "end": 463.52,
+    "ocr_text": "Hawia Comme Qetecr\n\n@) LJ\n\nUniform inten)\n+ node\n\nT+ nCoy*)\n\nLik ax ard Ay vovedem Aluft in 2 and P| divectons-\n\nthen He Orange iy anpeavance of a patch e+ ane W\nCan be Found 0)\nss( zag) EC +)\n\nC( 4%, 49) =\n3 EW\n\n= (, 9) +\n\n&\n\n(te 4% yer 48) ="
+  },
+  {
+    "text": "what is, what is the notation i x, okay, and x i y i plus delta y i y x i y i,",
+    "start": 463.52,
+    "end": 478.96,
+    "ocr_text": "Hawia Comme Qetecr\n\n@) LJ\n\nUniform inten)\n+ node\n\nT+ nCoy*)\n\nLik ax ard Ay vovedem Aluft in 2 and P| divectons-\n\nthen He Orange iy anpeavance of a patch e+ ane W\nCan be Found 0)\nss( zag) EC +)\n\nC( 4%, 49) =\n3 EW\n\n= (, 9) +\n\n&\n\n(te 4% yer 48) ="
+  },
+  {
+    "text": "and then you will have some higher order terms, which we will ignore, what happened?",
+    "start": 480.0,
+    "end": 483.84,
+    "ocr_text": "awia Covnw Qute ca\n\nUniform inroesi)\n+ node\nT+ oe)\nLik TS and Ay yopvedem Aly in a and i divectons-\nthen He Crongs tr anpeavanc. of a pares, o4 awe (WY\nCan be Found om\nCC ase) = SEC RCs) TOs +)\n\nXI, EW\naan oe za, Ie) + T(t) + 49 BUF"
+  },
+  {
+    "text": "Something good, right.",
+    "start": 484.0,
+    "end": 486.0,
+    "ocr_text": "awia Covnw Qute ca\n\nUniform inroesi)\n+ node\nT+ oe)\nLik TS and Ay yopvedem Aly in a and i divectons-\nthen He Crongs tr anpeavanc. of a pares, o4 awe (WY\nCan be Found om\nCC ase) = SEC RCs) TOs +)\n\nXI, EW\naan oe za, Ie) + T(t) + 49 BUF"
+  },
+  {
+    "text": "x i plus delta x, y i plus delta y plus delta y, plus delta y.",
+    "start": 486.0,
+    "end": 492.0,
+    "ocr_text": "Hawa Comme Qetccr\n\nfe) Le) Ld\n\nUniform inroesi)\n+ node\nT+ oe)\nLik ax ard Ay yopvedem Aluft in a and i divechons.\nthen He Changs tr anpeavanc. of a pares, o4 Ae\nCan be Found 0)\nc( 4% 49) = SS x (44) —i (*% +O, de +)\n\nx EW\n=) ee Te (%ow) + 4Y F, (4,9)\n&\n\n(te 4% yr 40) ="
+  },
+  {
+    "text": "What happened? Last line, i of x i plus delta x, oh, by, correct, yeah, thanks, y i plus delta y is",
+    "start": 493.04,
+    "end": 500.64,
+    "ocr_text": "Hawa Comme Qetccr\n\nfe) Le) Ld\n\nUniform inroesi)\n+ node\nT+ oe)\nLik ax ard Ay yopvedem Aluft in a and i divechons.\nthen He Changs tr anpeavanc. of a pares, o4 Ae\nCan be Found 0)\nc( 4% 49) = SS x (44) —i (*% +O, de +)\n\nx EW\n=) ee Te (%ow) + 4Y F, (4,9)\n&\n\n(te 4% yr 40) ="
+  },
+  {
+    "text": "equal to this one, right, x i y i plus delta x i x plus delta y, okay, and plus some terms,",
+    "start": 500.64,
+    "end": 505.04,
+    "ocr_text": "Hawia Corn Qtech\n\n@) Le) LJ\n\nUniform inten)\n$f node\nT+ nloy*)\nLik Dx ard Ay yopvedem Aluft in a and al divecthons.\nthen He Orange tr anpeavance. of a pore, op\n\nCan be Found om\n\ncl a4 a9) = ss( zx) TCO %: +)\n\nXI, EW\nZl, Je) Fe T.(%o%) + 49 F, (4,9)\n\nzai rhe, ger 49)"
+  },
+  {
+    "text": "higher order terms, which we will ignore. Then what we can do is, we can actually push that in here,",
+    "start": 506.0,
+    "end": 512.16,
+    "ocr_text": "Hawia Corn Qetech-\n\nUniform inten)\nf node\nT+ nCoy*)\nLik Dx acd 4y vovedes Abt in 2 and P| divectons-\nthen He Orange tr anpeavance of 2a pore, o4 ave WY\n\nCan be Found om\n\ncl 4489) = S5(209) — (Hen, o +)\n\nXI, EW\n= (, p) + Arc: Ty. (te) + ay T(4K) 4 Pet\n\n(te 4H y+ 49) ="
+  },
+  {
+    "text": "and then we will get summation x i y i, then i of x i, y i minus i of x i y i minus delta x,",
+    "start": 512.16,
+    "end": 526.88,
+    "ocr_text": "Hawia Corn Qetech-\n\nUniform inten)\nf node\nT+ nCoy*)\nLik Dx acd 4y vovedes Abt in 2 and P| divectons-\nthen He Orange tr anpeavance of 2a pore, o4 ave WY\n\nCan be Found om\n\ncl 4489) = S5(209) — (Hen, o +)\n\nXI, EW\n= (, p) + Arc: Ty. (te) + ay T(4K) 4 Pet\n\n(te 4H y+ 49) ="
+  },
+  {
+    "text": "i x of x i y i minus delta y i y of x i y i. So, if you ignore those terms, then this is all that we",
+    "start": 528.4,
+    "end": 538.72,
+    "ocr_text": "Howia Comme Qetecr\n\n@) LE LJ\n\nnif ore inroeni)\ntb\nT+ nloy*)\nLik Ax ard ay yovedem Al in a ang J divechons.\nthen He range tr anpeavanc. of a pares, o4 awe (WY\nCan he Found ou)\nC( 4% 49) = ssf tl) —T (mre, de +)\n\nXI, EW\nvtaceta prep) = EOE IDE Me TCH) ABU BY\n= So ( 20,3) - x (4,9) — 4% x, (440\n\nIC"
+  },
+  {
+    "text": "are left with. Of course, these are all, this will, this approximation will have some effect,",
+    "start": 538.72,
+    "end": 546.16,
+    "ocr_text": "Howia Comme Qetecr\n\n=) LE LU\n\nnif orn inten)\nie\nT+ nCoy*)\nLik Ax ard ay yovedem Al in a ang J divechions.\nthen He Crongs tr anpeavanc. of a pareh, o4 awe (WY\nCan he Fond 0)\nc( 4%, 49) = SS x (%4 4.) —t (*% +O, I +)\n\nXIE W\nol @ oe OR +44) = ral 60 Po) ou ce Te(teH) + OY TO, a) 4 + Per\n_ ose. ( sl4e2— FOR) — Ox 3 (4,9) — 07 (4 2))> 0\n\nGE, IC"
+  },
+  {
+    "text": "but that is okay, right. So, okay, so, so, I think, so what happens is these two cancel off,",
+    "start": 546.16,
+    "end": 550.32,
+    "ocr_text": "Wawia Covnw Que oh\n\nLU\n\nUniform inroesi)\nf+ node\nT+ oe)\nLie Oe and Ay yovedem Ahuft in 30 and J clivecitons-\nthen He Crongs tr anpeavanc. of a pares, o4 Ae\nCan he Fond 0)\nC( 4%, 49) = SS( (4) —T (mre, de +)\n\nx9 EW\nol @ oe OR +44) = Sond ea Te (HoH) + OY Tyl% a4 + Pet\n\nLge (3a ESA — OM) — O99)\n\nEC"
+  },
+  {
+    "text": "and you can in a way, since say that, what you are left with is simply delta x i x,",
+    "start": 551.04,
+    "end": 555.52,
+    "ocr_text": "Wawia Covnw Que oh\n\nLU\n\nUniform inroesi)\nf+ node\nT+ oe)\nLie Oe and Ay yovedem Ahuft in 30 and J clivecitons-\nthen He Crongs tr anpeavanc. of a pares, o4 Ae\nCan he Fond 0)\nC( 4%, 49) = SS( (4) —T (mre, de +)\n\nx9 EW\nol @ oe OR +44) = Sond ea Te (HoH) + OY Tyl% a4 + Pet\n\nLge (3a ESA — OM) — O99)\n\nEC"
+  },
+  {
+    "text": "x i y i plus delta y i y x i y i the whole square, summed over all x i y i.",
+    "start": 556.8,
+    "end": 567.28,
+    "ocr_text": "Wawia Covnw Que oh\n\n@) LJ\n\nwie\nT+ wCoy*)\nLyk Bx aed By Vepvedet Abt in and divechons:\nthin He rong iy Onpeavance of a patch e+ ae W\nCan be found\nc( 4%, 49) = SS x(*,y) —1 (* +a, I +)\n\n9 EW\nol @ ee OR +44) = (ena) eee Te (HoH) + OY Tl\" a4 + Per\n\nCBee (aya = ESA) — He 22 ~ 9H)\n\nDpPs Ax Tx (te) + i\n\nIC"
+  },
+  {
+    "text": "Okay, now if you expand this, you can expand this, and that will give you C of delta x,",
+    "start": 569.52,
+    "end": 578.4,
+    "ocr_text": "Wawia Covnw Que oh\n\n@) LJ\n\nnif ore inroesi)\nth\nT+ oe)\nLak Ax acd ay yovedem Aluft in 2 ang J divechons.\nthen He Changs tr anpeavanc. of a porch o4 Ate\nCan he Found )\nC( 4%, 49) = ssf t(4.9) —1 (m4 e%, Je +)\n\nx9 EW\nel @ oe OR +44) = = (4, Je) FO Te (eH) OY TOM a) 4 + Pet\n\n_ se (x ag 1) = ty (4,9) >>\n420) Gul) + Ay Aes % 7\nos\n\nGE, IC"
+  },
+  {
+    "text": "delta y. So, you will get summation 0 all scalar, so, okay, so you get like delta square x i x square,",
+    "start": 580.72,
+    "end": 589.84,
+    "ocr_text": "py\n\n»\nBy\na\n\nYW\nJ"
+  },
+  {
+    "text": "x i y, and all this i x, and all this gradient, right, we should have some, some sort of a",
+    "start": 591.28,
+    "end": 596.4,
+    "ocr_text": "ely\n\n2\n=\nxX\noc.\n\nie\nC\nray\nau 4\n4)"
+  },
+  {
+    "text": "mask, right, to actually do that, which we have already seen, you know, you can, I will also talk",
+    "start": 596.4,
+    "end": 600.4,
+    "ocr_text": "ea ans\nCC Ox, 49) = Ss Dx. ZC, 3)"
+  },
+  {
+    "text": "about that, but we are assuming that there is some way to compute the gradient along x and",
+    "start": 600.4,
+    "end": 603.52,
+    "ocr_text": "ea ans\nCC Ox, 49) = Ss Dx. ZC, 3)"
+  },
+  {
+    "text": "gradient along y and so on. Plus, let us say delta square y y square x i y i plus two, what is this?",
+    "start": 603.52,
+    "end": 615.52,
+    "ocr_text": "ea ans\nCC Ox, 49) = Ss Dx. ZC, 3)"
+  },
+  {
+    "text": "Delta x, delta y i x i x i y i, do i y x i y, and it will get.",
+    "start": 615.52,
+    "end": 627.84,
+    "ocr_text": "Se ee aa Ou) ay Ty (8 3)\n\nCC Ox, 49) =\n+ 2 Ax 49. Teh"
+  },
+  {
+    "text": "Now, can we can we write this in a more compact form,",
+    "start": 629.76,
+    "end": 632.88,
+    "ocr_text": "cC on A}= Be EO +4 TS (nv)\n+ 2 Ox 4y- x, (te) + Fy (%e, %)\nb"
+  },
+  {
+    "text": "like this looks like, looks a little messy, can we write in terms of a matrix vector form or something?",
+    "start": 634.0,
+    "end": 638.48,
+    "ocr_text": "cC on A}= Be EO +4 TS (nv)\n+ 2 Ox 4y- x, (te) + Fy (%e, %)\nb"
+  },
+  {
+    "text": "Okay, this is after all, you know, a quadratic, right, so, so this equal to, so we can write this as",
+    "start": 638.64,
+    "end": 649.84,
+    "ocr_text": "cC on A}= Be Ow y Fay FT Oe\n+ 2 Ox 4y- x, (te) + Fy (2%, %)\ni"
+  },
+  {
+    "text": "delta x, delta y, and then a matrix, what will be the size of this guy, again delta x, delta y.",
+    "start": 649.84,
+    "end": 659.04,
+    "ocr_text": "cl Oy 4y)= 2S Boe. E Ch, 3) + ay x; GoD\n+ 2 Ox 4y- x, (te) + Fy (%e, %)\n\n=-ss [®"
+  },
+  {
+    "text": "So, what will be the entries of this, i x square x i y i, then i x i y, I just, I will drop that",
+    "start": 659.04,
+    "end": 669.6,
+    "ocr_text": "cl Oy 4y)= 2S easaey 3) + ay x; (aep\n+ 2 Ox dy. x, (te) + Fy (te, %)\n\n= s35 [4 ay) [ | |]"
+  },
+  {
+    "text": "x i y, okay, it is there, i y i x, which is the same as i x, because these are all scalers, okay,",
+    "start": 669.6,
+    "end": 675.04,
+    "ocr_text": "CC Ox, ay)= FS Ba Ea Fay HOU)\n4+ 2 An by. Te (te, 9°) - Fy (2°)\n\n- ss [a 99) ie ia | o |\n49"
+  },
+  {
+    "text": "so this is all like gradient at a point, okay, so that is why it is okay to interchange the order,",
+    "start": 675.04,
+    "end": 680.32,
+    "ocr_text": "cc A 4y) = 2S Dx: ae Ou, ay Ty Cu 9)\n2 Ax by. Ty (HE) > 39 (=>)\n\nss Lan and foe) HY OE\nE53 *“"
+  },
+  {
+    "text": "and then you have like i y square, okay, this is the same as what you had, what you had here,",
+    "start": 680.32,
+    "end": 686.56,
+    "ocr_text": "cc A 4y) = 2S Dx: ae Ou, ay Ty Cu 9)\n2 Ax by. Ty (HE) > 39 (=>)\n\nss Lan and foe) HY OE\nE53 *“"
+  },
+  {
+    "text": "this is easy to check, verify. So, now this delta x, delta y, it has, I mean, it is independent of the",
+    "start": 687.52,
+    "end": 695.12,
+    "ocr_text": "yay Ty OH”\n\nCC On, 4y)= 2S Dx. Cu,\nZy (2%, ») «K,\n\n+ 2 Ax 49. Te (2c, 9) -\n\n= ss [4~ 43) Te (%)) eS _o\nZS zy 49"
+  },
+  {
+    "text": "i, right, because it is simply a displacement, therefore, you can actually pull that out,",
+    "start": 695.12,
+    "end": 698.96,
+    "ocr_text": "2 ae\ncc Or dy) = Ss Ax. GOW\n\ny ay Fy OE _\nxo (#8) Fy ») ra\n+ 2 Ax 4): a\n\n=.\" 7 AW\n\n2) Te\n\n= ss [4% a9 Toe (4) |\non — x4 zy 49\n\n= (4 .\n\n“aut”\n\nvy)\n\nj\n{"
+  },
+  {
+    "text": "and then what will have is delta x, delta y, yeah, yeah, yeah, exact, so summation over,",
+    "start": 698.96,
+    "end": 709.28,
+    "ocr_text": "2 ae\ncc Or dy) = Ss Ax. GOW\n\ny ay Fy OE _\nxo (#8) Fy ») ra\n+ 2 Ax 4): a\n\n=.\" 7 AW\n\n2) Te\n\n= ss [4% a9 Toe (4) |\non — x4 zy 49\n\n= (4 .\n\n“aut”\n\nvy)\n\nj\n{"
+  },
+  {
+    "text": "so now this I will put this inside, sorry, did you, okay, x i y i, then double summation i,",
+    "start": 709.28,
+    "end": 720.24,
+    "ocr_text": "ay CW\n\nra Ax, Ay) = ss Boe. E CK,\n(a9) FE) A\n\n+ 2 Oe by. De\n\nss [4 4) [Ee 35) \\ 4%\n————— zy\n5 3 “°\n\n(4 45) | p\n\n[\n\ntl"
+  },
+  {
+    "text": "x, x i y i, i y, x i y i, then double sum, then again i x, x i y i, i y, i, i, i, then double sum i,",
+    "start": 720.48,
+    "end": 740.96,
+    "ocr_text": "yay Ty OH\n\nCC 4 4y)= PS en ie) Oi,\nZy (2%, ») ya\n\n+ 2 Ax 49. Te (6,3) -\n\nss [4> oy) [ES 3.5) \\ 4s\n==\n— 5 8 “9\n\n(4 45) |** max) LUE\n\n[I\n\niil"
+  },
+  {
+    "text": "y square, x i y i, and then delta x, delta y, right, and this matrix, let us call this as sum r,",
+    "start": 740.96,
+    "end": 760.88,
+    "ocr_text": "Cc du, dy)= FS Be. TC) ay Ty Oe x)\n+ 2 Ox 4. x, (409) + Fy (%, %) <—\n\n— ss fan ad [On mS os e\n—— |e5 2 *\n\n(a 4s) |= r(x) LL Ta») BX)\nsx Ele» 5ler) SF ©\n\n\\\n\nii}"
+  },
+  {
+    "text": "okay, this is called, this is sum matrix r, okay, now, okay, now what we can do is, you know,",
+    "start": 761.12,
+    "end": 775.28,
+    "ocr_text": "c4 u oh SE +o zt (9)\nCC Ox 4y) = Ss Dx: Te Chi, 3) y 49\n\n+ 2 AX 49: Te (te, 9°) 2 ay (2%, x)\n\n\"fat; )°) The 7 aw\n= mye ay [eH |\n\n1-4, TT a\n(ax 43) Sex) TL TCH) 21 «%) [ 3S |\n\nsx nex Bex) S24 (459)\n\n“tug!”\n\n\"y\n\n\\\n{\n\ni"
+  },
+  {
+    "text": "so this i x, that we can have, let us say horizontal gradient, we can have a horizontal gradient",
+    "start": 775.28,
+    "end": 784.0,
+    "ocr_text": "CC A, 4y)= PS Dx. ae Ou, ay zy (ese)\n2 Ax by. Te (HE) 39 (x\n\n= ss [4= 49) Te (4) RY oes\n—— |n5 9 “9\n\n[ae 49) rs st ie) D2 Te C2) TOI) | | = |\n\nii}\n\n49\n\nea Elen BEW TE HOM\n\nR."
+  },
+  {
+    "text": "operator for this, and i y, right, so horizontal gradient, recurnell or whatever, or mask,",
+    "start": 784.0,
+    "end": 793.44,
+    "ocr_text": "CC A, 4y)= PS Dx. ae Ou, ay zy (ese)\n2 Ax by. Te (HE) 39 (x\n\n= ss [4= 49) Te (4) RY oes\n—— |n5 9 “9\n\n[ae 49) rs st ie) D2 Te C2) TOI) | | = |\n\nii}\n\n49\n\nea Elen BEW TE HOM\n\nR."
+  },
+  {
+    "text": "something you will need, so which is, which is maybe of the kind, it is a simplest that you can",
+    "start": 794.08,
+    "end": 798.4,
+    "ocr_text": "za u a z\nCC dy 4y) = ss Ax GOW y) 4y Fy CH x)\n+ 2 Ax 4): Dy (te, 3) - 35 (2, x) > al\n\n= ss [4= 49) Te (4) aa) oes\n——— rs 4\n30 cy) J\n\n— (a by) |= ry (ux) LL tx Ce, x) 9 (3) [ >|\n49\n\nsx Ele BH) 32 (44,9)\n\nR\n\nBe Povizontol Fame i bh"
+  },
+  {
+    "text": "think about is maybe minus 1, 0, 1, all 0 cells, where this is a simplest that you can think of,",
+    "start": 798.4,
+    "end": 803.76,
+    "ocr_text": "CC 4 4y)= 2S Dx. a2) Ou) ay zy (2, 9)\n+ 2 Ax dy. Te (269°) - Fy (2%) <—\n\n= ss [4% ay Te (%,)) Te fo\n_— _\n5 3 “9\n\n(4% sy) | 2 ay) LL eC) (74,9) [ = |\n5 _(%%) Blwx) SF Ty (1%) a\n\nii}\n\nToe —> Horizonte gvedeent Kened yj"
+  },
+  {
+    "text": "or you can have, right, because they actually introduce a Gaussian average, so therefore,",
+    "start": 803.76,
+    "end": 808.56,
+    "ocr_text": "CC 4 4y)= 2S Dx. a2) Ou) ay zy (2, 9)\n+ 2 Ax dy. Te (269°) - Fy (2%) <—\n\n= ss [4% ay Te (%,)) Te fo\n_— _\n5 3 “9\n\n(4% sy) | 2 ay) LL eC) (74,9) [ = |\n5 _(%%) Blwx) SF Ty (1%) a\n\nii}\n\nToe —> Horizonte gvedeent Kened yj"
+  },
+  {
+    "text": "that is why they do not have less, minus 1, minus 1, minus 1, that kind, they do actually a Gaussian",
+    "start": 808.56,
+    "end": 813.52,
+    "ocr_text": "4 u oA of +o zt CD)\nCC dx 4y) = 1) ad, Ax: Te Ch, 3) y 79\n\n+ 2 AX 4): Te (te, 3) » ay (%, %)\n\n\"ft; )°) Toe 7 ae\n= mye ay PH) |\n=> 2 Las\" ns xy 49\n\nMg Ss TT a\n(4 sy) | 2 r(x) LL Ta Ce») HX) [ |\n\nsx mle Blsx) 22% (459)\n\nfi\n\n“tug!\n\n\"y\n\n{\ni)\n\ni\n\nrey=12)\nBe Hovizontol iam Ken i\n\nRew"
+  },
+  {
+    "text": "average, similarly i y, right, you can also have a vertical gradient, and that is all you need,",
+    "start": 813.52,
+    "end": 819.2,
+    "ocr_text": "4 u oA of +o zt CD)\nCC dx 4y) = 1) ad, Ax: Te Ch, 3) y 79\n\n+ 2 AX 4): Te (te, 3) » ay (%, %)\n\n\"ft; )°) Toe 7 ae\n= mye ay PH) |\n=> 2 Las\" ns xy 49\n\nMg Ss TT a\n(4 sy) | 2 r(x) LL Ta Ce») HX) [ |\n\nsx mle Blsx) 22% (459)\n\nfi\n\n“tug!\n\n\"y\n\n{\ni)\n\ni\n\nrey=12)\nBe Hovizontol iam Ken i\n\nRew"
+  },
+  {
+    "text": "I mean, because you just have i x, i y, i x square, which is simply, squaring that number,",
+    "start": 819.2,
+    "end": 823.84,
+    "ocr_text": "+ 2 Ox 4y- leony: Fy (%, a“ ye\n\n= 3s [4% 493 [ES | [* «|\n49\n\n(4 Ay) rssh Mix) DL 4 nee x) 5 (%,°) r = |\nsr RBH) SF OL)\n\nii}\n\nTe —> — Harizontol geet Kavned [e\\ <|2)\n\nae Rew\nty — An"
+  },
+  {
+    "text": "and i y square, which is squaring the y gradient, right, so what this, so what, okay, now,",
+    "start": 824.4,
+    "end": 832.16,
+    "ocr_text": "+ 2 Ox 4y- leony: Fy (%, a“ ye\n\n= 3s [4% 493 [ES | [* «|\n49\n\n(4 Ay) rssh Mix) DL 4 nee x) 5 (%,°) r = |\nsr RBH) SF OL)\n\nii}\n\nTe —> — Harizontol geet Kavned [e\\ <|2)\n\nae Rew\nty — An"
+  },
+  {
+    "text": "I think there is just this other point to mitigate the effect of noise,",
+    "start": 832.16,
+    "end": 835.28,
+    "ocr_text": "+ 2 Ox 5y- leony: Fy (%, a“ ye\n\n= ss [4% 495 Es. =| [* «|\n49\n\n(4 Ay) rast @uxr) SL Tx Cote, % ) Hr) r 2 |\nsr RBH) SF TOL)\n\nii}\n\nTe —> — Havizontol geet Kavned [ey <| 2)\n\nae ew\nty — An"
+  },
+  {
+    "text": "to mitigate the effect of noise, the patch is first smooth with, with, with a Gaussian,",
+    "start": 835.36,
+    "end": 851.6,
+    "ocr_text": "CC An, 4y)= Se en X04, x) + ay zy (Cun?)\n+ 2 Ax dy. Z(t 9) - By (2%, 9°) yal\n\n~ ss Can 8) ES 9 e a]\n49\n\n(ax 4s) |Z ss ex) LL (et) (42) [ 3S |\n\nSy al 30) By lz *) sz as (2 aD)\n\nTe —> — Horizonte queer Kern EEG)\nTy — on 2\n\nTe matigete ¥,"
+  },
+  {
+    "text": "the patch is first, that means the patch of size w cross w that you have, right, is first smoothed",
+    "start": 854.08,
+    "end": 862.0,
+    "ocr_text": "elk + ay zy (mw ye)\ncl do, 49) + 2 Ax 49. Te ey Fy (%, 3) aa\n\n= 3s [4% 495 Es =| | *)\n\naly CEN\nie as) Post Gee) TL Te = (a, % ) C95) |\nSa _T(%%) JH x) BS? x Ct)\n\n; rye)\nBe Hovizontol = Kevned Stat)\nond \"1\n\nnoid.\nTa maka rte We Ofer F ,"
+  },
+  {
+    "text": "with a Gaussian, but a Gaussian, so what this means is that, is that when you compute your i x,",
+    "start": 862.8,
+    "end": 874.48,
+    "ocr_text": "CC 4 4y)= 2S Dx. a8 Ou, ay zy (ier)\n+ 2 Ax 4): ZT (te, 9) 35 (2%, %) yaa\n\n~ ss Can and fea) BS) ) A ol\n—— |n5 9 “9\n-\n\n- a = (ak ) Fp (76,0 TT Aw\n= eo) [See SF, (24%) PHY) [ 3S |\n\nea Elen BEH TE HOM\n\nEt)\n\nTe mats ote We Ofer F Noida she poh % Fi\n\nTe —> Horizonte pote Kevned f=} <2)\n\n25)"
+  },
+  {
+    "text": "right, if you had a continuous case, then you are doing something like dou by dou x off, g of x,",
+    "start": 874.48,
+    "end": 882.24,
+    "ocr_text": "Ty Cu x)\nDx. X04, 9) + ay y L\ncl Ov, 4y) = ee 2 Ax 49; ZB, (te) - Ty (%, %)\n\n= 33 eae! 49) Es za | *)\n\nhx A ) x, an\nol Ae Je\n. y) pe Con) S179) 50 D) \"\n) Sy %(%%) ) (4%) S2 xy (te a)\n\nii}\n\n[ey -| 2)\nTe —> Horizonte gee Kevned Stat)\nbo\n\n3 UMN Aa\nnoid p' 4 fur Amo othed\nWe + q he pord,\nTa maka ete ae\ncrawl»."
+  },
+  {
+    "text": "y, y, some sigma s, right, call that as some smoothing, okay, capital S smoothing applied on i at",
+    "start": 882.24,
+    "end": 890.48,
+    "ocr_text": "ms + 33 (mw ye)\n- ss fu G2)\nCC Ox, Ay) = 2\n\n+ Ei ale le, We\n\n= 32 (4 Sp) ES <5 | “)\n\nate 5 (43) an\n‘Axe AY) |=. pies iS oat S22 = 4) ) ,\n2 a) me >) clea =z\n\nT_T) Hts x) St as (9)\n\nii}\n\noc ; [ey -| 2)\nwn\n+> Povizontol gen ke\nI nh a\n. mooted\nF olde pore, te fur A\nTa mckg ote We Ofer q n Phe\n‘ Gama. Tee 3 r\n\nh\nOn"
+  },
+  {
+    "text": "x, i, y, i, so it is like saying that, you know, you have a Gaussian sitting on it, and then,",
+    "start": 890.96,
+    "end": 899.04,
+    "ocr_text": "ag Or, dy) = pe 2), Dx: ae) Ow, ay zy (Ever)\n+ 2 Ax dy. x, (409) + Fy (26, 9°) <<\n\n=> ss [44> 45) ea) 1.5) \\ 4%\nrey = 49\neK\n\nS aT (al ) Ty (709° mH Oo\n(ax 43) [3 (x) LE Ta (4%) HOE) [ 3S |\n\nea Elen BEH TE HOM\n\nii}\n\nTe —> Horizonte geet Kevncd [=}<t2)\n\nry\nTe mal rhe We Ofer F Noida Pre por fone amoothed wh A\n\nGamo. aT Q (Giga is\nOn\n\n5 ="
+  },
+  {
+    "text": "you are doing some kind of smoothing, I mean, instead of waiting everything uniformly,",
+    "start": 899.04,
+    "end": 902.8,
+    "ocr_text": "at + ay zy (mw ye)\naq Oo, 4) + 2 Ax 49. Xe Loy. Zy (2%, x5 aa\n\n= 3s [4% 49) ES =| | 8)\n\nx an Sat) a) oy (59 [ an\n[ae 49) [= ssa lux) SL S\\ Ps\n\nT_T) Hts x) St a (t9))\n\nii}\n\n[ey -| 2)\nTe —> Horizonte gee Karnes Stat)\nbo\n\n; ond wh a\nnoid the pore fun amo\nTa maka ete We ie\n\nGamo. or a (6c b) E) “ =C4.x) )\nOn R"
+  },
+  {
+    "text": "you are having a non-uniform kind of a weightage coming from this smoothness through a Gaussian,",
+    "start": 902.8,
+    "end": 909.12,
+    "ocr_text": "at + ay zy (mw ye)\naq Oo, 4) + 2 Ax 49. Xe Loy. Zy (2%, x5 aa\n\n= 3s [4% 49) ES =| | 8)\n\nx an Sat) a) oy (59 [ an\n[ae 49) [= ssa lux) SL S\\ Ps\n\nT_T) Hts x) St a (t9))\n\nii}\n\n[ey -| 2)\nTe —> Horizonte gee Karnes Stat)\nbo\n\n; ond wh a\nnoid the pore fun amo\nTa maka ete We ie\n\nGamo. or a (6c b) E) “ =C4.x) )\nOn R"
+  },
+  {
+    "text": "then in addition, in addition similarly, for i y, okay, so for i y also, you have something similar,",
+    "start": 909.12,
+    "end": 915.36,
+    "ocr_text": "ay Ty C9)\n) 2S Do. a iS i hese _\nCC a, 49) = eae\n\napd (OGne ES = | 8)\n\nTT Ow\nFx) LL tx en 2) HOW) [ mn\nsee Mi\n(4 45) oie\n\nsx Ele B(e) 32 ae (te 7)\n\nii}\n\n: [=}-]2)\nPovizontol amen Ke vned tet)\nTc _>\nbo\n\nwh A\n‘ 0 Obed\nNoid the ph fue am\n+4\nLigne th Ufe\nTa mig t auon ~\n\na_ (6428) ZCXi,%:)\nwe on )"
+  },
+  {
+    "text": "then also to give more weightage to the point of the middle of the patch, then there is one more",
+    "start": 915.68,
+    "end": 921.12,
+    "ocr_text": "rag Oo\n\n4y)= 2S Lo. X04, y) ay Ty (8, x)\n\n+ 2 Ax dy. ZB, (9) - Fy (2%, 9°) <<\n= 53 ae ay ae’ See\n49\n= (4 by) ras sat Ku) LL Tx “Cats, 9c) (495) [ 3S |\n4\nSy al de) ) (x *) st xy (2 oh) a)\nTe— Hovizontol gee Ken f=}-2)\na Bee)\nTa matig ote Wwe Ofer J noig the pare 9 fur Amootked wh A\n\nGamo. -\ntx = A049 )« SOCK\nso ¢ ) C%é,%)\n."
+  },
+  {
+    "text": "Gaussian, so there will be some hyper parameters, okay, that come in, because of all this,",
+    "start": 921.12,
+    "end": 925.52,
+    "ocr_text": "rag Oo\n\n4y)= 2S Lo. X04, y) ay Ty (8, x)\n\n+ 2 Ax dy. ZB, (9) - Fy (2%, 9°) <<\n= 53 ae ay ae’ See\n49\n= (4 by) ras sat Ku) LL Tx “Cats, 9c) (495) [ 3S |\n4\nSy al de) ) (x *) st xy (2 oh) a)\nTe— Hovizontol gee Ken f=}-2)\na Bee)\nTa matig ote Wwe Ofer J noig the pare 9 fur Amootked wh A\n\nGamo. -\ntx = A049 )« SOCK\nso ¢ ) C%é,%)\n."
+  },
+  {
+    "text": "also to give, to give more weightage,",
+    "start": 926.4,
+    "end": 930.32,
+    "ocr_text": "2\n&\n£\n:\na"
+  },
+  {
+    "text": "it is to the point of the, I mean, middle of the patch,",
+    "start": 930.48,
+    "end": 937.04,
+    "ocr_text": "2\n&\n£\n:\na"
+  },
+  {
+    "text": "middle of the patch,",
+    "start": 942.48,
+    "end": 943.36,
+    "ocr_text": "Aire, + i mon or at bh Me poi iy"
+  },
+  {
+    "text": "so what they do is, you know, so they use another Gaussian, use another Gaussian, which does the following.",
+    "start": 949.28,
+    "end": 955.76,
+    "ocr_text": "Aire, do Gite Mow “a bh Te poi in Ae\n\nmiddle of te pore:"
+  },
+  {
+    "text": "Anyway, this, I think, you know, this is not so relevant, but I am just writing it, because it is there,",
+    "start": 956.24,
+    "end": 962.24,
+    "ocr_text": "le, ye mon ua, hb Me poi in Te\n\nmiddle of qu por, we AnothY Gavnien"
+  },
+  {
+    "text": "so it is like minus x minus x i square plus y minus y i, so minus of y minus y i square by some,",
+    "start": 962.24,
+    "end": 971.84,
+    "ocr_text": "le, ye mon ua, hb Me poi in Te\n\nmiddle of qu por, we AnothY Gavnien"
+  },
+  {
+    "text": "divided by some 2, let us say sigma square w or whatever, this is not the same as the other one,",
+    "start": 974.72,
+    "end": 979.6,
+    "ocr_text": "Ali, + ot MOK uu bh fk Poi In Tle\n\nmiddle of te pork, vie snot — Gravion\n\non (a-\netre"
+  },
+  {
+    "text": "this is a different, different sigma, and, you know, so ideal, so it is like saying that when you",
+    "start": 979.68,
+    "end": 986.56,
+    "ocr_text": "Dire, de att mow uel bh fe poi In Tle\n\nmiddk of qe pra. ‘UL Anothy Gavaion\n7 a av\n(0¢— le) + gn\n26\n\nww\n\nb"
+  },
+  {
+    "text": "compute r, right, so you have something like, if you call this as some, say w of, w of x i y i,",
+    "start": 986.56,
+    "end": 995.28,
+    "ocr_text": "ple, + gi mon Oe bh T poie in\n\nmiddle of te pord, VIE tet Gavan\noe) + Lda\naS 2a\n\n~\n\nNe"
+  },
+  {
+    "text": "and if this is the weight that you have, then it is like equal to saying that you are computing",
+    "start": 995.28,
+    "end": 998.96,
+    "ocr_text": "Nie, Ye mow va bh Te pier in\n\nmiddle of a a a Another Gaviion\n(oc— 2.) (9-2\n\nQ@= SF\n\nNe"
+  },
+  {
+    "text": "your r as some w of x i y i into i x square at x i y i, I mean, okay, now these are just some",
+    "start": 998.96,
+    "end": 1007.36,
+    "ocr_text": "Nie, Ye mow va bh Te pier in\n\nmiddle of a a a Another Gaviion\n(oc— 2.) (9-2\n\nQ@= SF\n\nNe"
+  },
+  {
+    "text": "smoothing operations, okay, there is nothing to get overly worried about this, just some smoothing,",
+    "start": 1007.36,
+    "end": 1012.56,
+    "ocr_text": "Mire, + Yue mor va bh Te poi in\n\nmiddle of Fe path, VIE anctee — Gaumion\na 3\n3: i\n\\w(sun) = e — a?\n\n@ ~ SO (06, 8) zi (%, )\n&\n\nTe"
+  },
+  {
+    "text": "right, they are doing this to make sure that it is a Gaussian, because then you can give importance",
+    "start": 1012.56,
+    "end": 1017.28,
+    "ocr_text": "Mire, + Yue mor va bh Te poi in\n\nmiddle of Fe path, VIE anctee — Gaumion\na 3\n3: i\n\\w(sun) = e — a?\n\n@ ~ SO (06, 8) zi (%, )\n&\n\nTe"
+  },
+  {
+    "text": "to something in the middle and, you know, okay, what is more, okay, now typically there are some",
+    "start": 1017.28,
+    "end": 1021.52,
+    "ocr_text": "Aire, 4a ae MOH ua b Mk poiee in Tle\n\nmiddle of Fe path, VIE anctee — Grauvion\na AY\nAw (*y 2) =, @ C= p>\n\n@ ~ SO (06, 8) zi (%, )\n\nbe"
+  },
+  {
+    "text": "hyper parameters, okay, sigma w is usually 1 and sigma s is 2, I mean, these are all",
+    "start": 1021.52,
+    "end": 1026.56,
+    "ocr_text": "Aire, 4a ae MOH ua b Mk poiee in Tle\n\nmiddle of Fe path, VIE anctee — Grauvion\na AY\nAw (*y 2) =, @ C= p>\n\n@ ~ SO (06, 8) zi (%, )\n\nbe"
+  },
+  {
+    "text": "hyper parameters, okay, of this method, but what is more interesting is, if you are following,",
+    "start": 1027.28,
+    "end": 1031.52,
+    "ocr_text": "Dire, + Yue mow va bh Te poier in\nmiddle of Te pare, cure anothe — (ravaion\na b's\nke god\n\\( 9) = @ cS re\n\nQ@ ~ SO (06, 8) zo (%, 4)"
+  },
+  {
+    "text": "so if you look at, look at r itself, right, so the r that you had, okay, now if you,",
+    "start": 1032.4,
+    "end": 1038.72,
+    "ocr_text": "Dire, + Yue mow va bh Te poier in\nmiddle of Te pare, cure anothe — (ravaion\na b's\nke god\n\\( 9) = @ cS re\n\nQ@ ~ SO (06, 8) zo (%, 4)"
+  },
+  {
+    "text": "if you actually, actually looked at the eigenvectors of r, see first of all, right, r is actually",
+    "start": 1038.72,
+    "end": 1044.88,
+    "ocr_text": "Aire, 4 gig Mow va he poink in A\n\nmiddle of Fe path, VIC anctee — Graunion\na a\n3; oh\n\\w(4un) = @. — a\n\nry gacan ee) ent"
+  },
+  {
+    "text": "a symmetric matrix, right, as you saw, it is like i x square, what is it, i x i y, i x i y, and then i y",
+    "start": 1044.88,
+    "end": 1050.72,
+    "ocr_text": "Aire, 4 gig Mow va he poink in A\n\nmiddle of Fe path, VIC anctee — Graunion\na a\n3; oh\n\\w(4un) = @. — a\n\nry gacan ee) ent"
+  },
+  {
+    "text": "square, right, so it is actually a symmetric matrix, and you know that every symmetric matrix is",
+    "start": 1050.72,
+    "end": 1059.76,
+    "ocr_text": "Aire, 4p gig Mow vs bh Me peink in A\n\nmiddle of Fe pot, VIE anctee — Grauvion\na Bs\n4; i\nWw(sun) = e. (ont ="
+  },
+  {
+    "text": "actually normal, right, which means that a a transpose is a transpose a, right, whenever that",
+    "start": 1059.76,
+    "end": 1065.44,
+    "ocr_text": "Dire, + Ye mor va bh Te poi in\nmiddle of Te pare, cure ancthy — Gravion\n= ae\nle god\n\\wi( 0) => @ Corme ey\n\n- SD (26,3) Tee (2, Is)\n\nSyranvh’c moi .\n\nNe"
+  },
+  {
+    "text": "happens any matrix is what is called uniterally diagonalizable as they say, if it is a, if it is a",
+    "start": 1065.44,
+    "end": 1070.56,
+    "ocr_text": "ple, de att mow ue bh Me poi In Tle\n\nmiddle of te pord, VIE Anathes Gavnion\n(0¢= le) + J-d\n\nAw (Ayn) @ 2a\n5 S2 (96, 8) Te (%, 3) fu = ae\nTTT"
+  },
+  {
+    "text": "normal matrix, okay, I mean normal does not mean the normal, abnormal, not that sense, normal matrix,",
+    "start": 1070.56,
+    "end": 1076.48,
+    "ocr_text": "ple, de att mow ue bh Me poi In Tle\n\nmiddle of te pord, VIE Anathes Gavnion\n(0¢= le) + J-d\n\nAw (Ayn) @ 2a\n5 S2 (96, 8) Te (%, 3) fu = ae\nTTT"
+  },
+  {
+    "text": "have you guys encountered a normal matrix, a normal means something like the, a matrix is normal,",
+    "start": 1076.48,
+    "end": 1083.12,
+    "ocr_text": "ple, de att mow ue bh Me poi In Tle\n\nmiddle of te pord, VIE Anathes Gavnion\n(0¢= le) + J-d\n\nAw (Ayn) @ 2a\n5 S2 (96, 8) Te (%, 3) fu = ae\nTTT"
+  },
+  {
+    "text": "if a a transpose equal to a transpose, yeah, of course for a symmetric matrix it automatically",
+    "start": 1083.12,
+    "end": 1086.8,
+    "ocr_text": "ple, de att mow ue bh Me poi In Tle\n\nmiddle of te pord, VIE Anathes Gavnion\n(0¢= le) + J-d\n\nAw (Ayn) @ 2a\n5 S2 (96, 8) Te (%, 3) fu = ae\nTTT"
+  },
+  {
+    "text": "is true, but there are matrices, right, that are not symmetric, but actually obey this,",
+    "start": 1086.96,
+    "end": 1090.8,
+    "ocr_text": "Miro, +2 Yue mow va bh Te poier in\nmiddle of Te pare, cue ancthy — Graunion\na As\nle y-de\n\\( 2) — Cn Coe zz\n\n: SD = (96,3) Tee (26, Is)\n\nSyrarrah'e mobi\n\nKe"
+  },
+  {
+    "text": "for example, if it is complex, right, let me just drop a, a, a, a, Hermitian is equal to a,",
+    "start": 1091.6,
+    "end": 1095.6,
+    "ocr_text": "Miro, +2 Yue mow va bh Te poier in\nmiddle of Te pare, cue ancthy — Graunion\na As\nle y-de\n\\( 2) — Cn Coe zz\n\n: SD = (96,3) Tee (26, Is)\n\nSyrarrah'e mobi\n\nKe"
+  },
+  {
+    "text": "Hermitian, a, a, have you seen a matrix like that, dft, sorry, no orthogonal will mean a transpose",
+    "start": 1095.6,
+    "end": 1104.72,
+    "ocr_text": "Mire, + Ye mow va bh Te poi in\nmiddle of Te pare, cure anothe — (ravaion\na Bs\nke g-de\nAw (4) = e Ss > me\n\n= S } Cty 3) x (2, )\n\nNe"
+  },
+  {
+    "text": "should be identity, that condition is not there, it does not have to be identity, it is just a",
+    "start": 1104.72,
+    "end": 1109.44,
+    "ocr_text": "Mire, + Ye mow va bh Te poi in\nmiddle of Te pare, cure anothe — (ravaion\na Bs\nke g-de\nAw (4) = e Ss > me\n\n= S } Cty 3) x (2, )\n\nNe"
+  },
+  {
+    "text": "a a transpose, it will be equal to a transpose a, I am saying a dft will obey this, a dft",
+    "start": 1109.6,
+    "end": 1116.4,
+    "ocr_text": "Aire, 4 YE MOK ua b hk Poi in\nmiddie of te por, ve snot — Gravion\na a\nle god\nAw (4) = e SS > se\n\n- SO (26, 2) Te (2, Is)\n\nSyran'c mow\n\nNe"
+  },
+  {
+    "text": "is not asymmetric, do you know that a dft matrix is not symmetric, right, but then it will,",
+    "start": 1116.4,
+    "end": 1122.48,
+    "ocr_text": "Aire, 4 YE MOK ua b hk Poi in\nmiddie of te pared, ve anotee — Gravion\na bts\nle y-de\nvw (4) = e & > Pes\n\n- SOD (26,3) Tee (26, Is)\n\nSyran'c moe\n\nNe"
+  },
+  {
+    "text": "it is normal, it will satisfy this, only thing you should replace transpose is the Hermitian,",
+    "start": 1122.48,
+    "end": 1127.04,
+    "ocr_text": "Aire, 4 YE MOK ua b hk Poi in\nmiddie of te pared, ve anotee — Gravion\na bts\nle y-de\nvw (4) = e & > Pes\n\n- SOD (26,3) Tee (26, Is)\n\nSyran'c moe\n\nNe"
+  },
+  {
+    "text": "because it is complex entries, right, so this is like real, this is a real case, but it is",
+    "start": 1127.04,
+    "end": 1131.44,
+    "ocr_text": "Miro, +2 Yue mor va bh Te poi in\nmiddle of Te pare, cure ancthy — Gravion\na Rts\nke god\nAw (4) = e Cs z Pes\n\n- SO (26,3) Te (2, Is)\n\nSyrarrah'e moi\n\nKe"
+  },
+  {
+    "text": "a, now complex and all that you should be more careful, it is like a, Hermitian is equal to",
+    "start": 1131.44,
+    "end": 1136.08,
+    "ocr_text": "Miro, +2 Yue mor va bh Te poi in\nmiddle of Te pare, cure ancthy — Gravion\na Rts\nke god\nAw (4) = e Cs z Pes\n\n- SO (26,3) Te (2, Is)\n\nSyrarrah'e moi\n\nKe"
+  },
+  {
+    "text": "identity in fact, for a, for a, for a dft, it is much more powerful, okay, so, no, no, you",
+    "start": 1136.64,
+    "end": 1144.24,
+    "ocr_text": "Aire, 4 aig Mow va bh Me peink in A\n\nmiddle of Fe path, VIE anctee — Grauion\na Bs\n4; eth\nww (40) _ Py Coe ce =\n\nSymmum'e moh\nAAT= HA."
+  },
+  {
+    "text": "should call it unitary, orthogonal means transpose, when Hermitian is involved, it becomes unitary,",
+    "start": 1144.24,
+    "end": 1150.0,
+    "ocr_text": "Aire, 4 aig Mow va bh Me peink in A\n\nmiddle of Fe path, VIE anctee — Grauion\na Bs\n4; eth\nww (40) _ Py Coe ce =\n\nSymmum'e moh\nAAT= HA."
+  },
+  {
+    "text": "okay, there is a slight difference between two, okay, now the, the, the point is this, right,",
+    "start": 1150.0,
+    "end": 1154.56,
+    "ocr_text": "Aire, 4p gig Mow vs he poink in A\n\nmiddle of Fe path, VIC anctee  Grauion\na Rts\n2; fh\nww (45) _ A Coe ce =\n\nSymmum'e moh\nAAtz HA."
+  },
+  {
+    "text": "so when you have, so which means that it is, this is a normal matrix, and there is actually a",
+    "start": 1154.56,
+    "end": 1159.6,
+    "ocr_text": "Aire, 4p gig Mow vs he poink in A\n\nmiddle of Fe path, VIC anctee  Grauion\na Rts\n2; fh\nww (45) _ A Coe ce =\n\nSymmum'e moh\nAAtz HA."
+  },
+  {
+    "text": "theorem, right, that says that every normal matrix is unitary diagonalizable, or in this case,",
+    "start": 1159.6,
+    "end": 1164.8,
+    "ocr_text": "Dire, ue moe ud Te poi in TL\n\nmiddle of He para, We anctee  Grauvion\na B's\n\\w (Xun) @ Sodas Ja\n\nss Cua) HOEY\nTT\n\nSymmure mobi (narmod )\n& Apt= AA"
+  },
+  {
+    "text": "you know unitary, because every, we just take all real numbers, so let us not worry about",
+    "start": 1165.2,
+    "end": 1168.96,
+    "ocr_text": "Ale, de Git Mow ud rb fk Poi In Tle\n\nMidd of qu para. Ue act Gavrion\n(oc—e) + (se\n\nWR = ge 2a\nss (ud) BOY ceo Tee\ncee\nSymnure_ mobi (normed\n(1 ) AAtz KA\n\nR=?\n\n|"
+  },
+  {
+    "text": "complex entries, so, what this means is that you can diagonalize it as p diagonal, p transpose,",
+    "start": 1168.96,
+    "end": 1173.52,
+    "ocr_text": "Ale, de Git Mow ud rb fk Poi In Tle\n\nMidd of qu para. Ue act Gavrion\n(oc—e) + (se\n\nWR = ge 2a\nss (ud) BOY ceo Tee\ncee\nSymnure_ mobi (normed\n(1 ) AAtz KA\n\nR=?\n\n|"
+  },
+  {
+    "text": "okay, where this p p transpose is this identity, okay, so all these are actually two cross two,",
+    "start": 1175.2,
+    "end": 1179.44,
+    "ocr_text": "pire, de ate Mow ue bh fe poi In Tle\n\nmiddle of qu pore, ‘UL Anothy Gavnion\n(2c ke 4 Joa L\n\nAw (4) = @. oa\n2\nss (ud) BOY) icra\na\nSyemmrahie_ moh (ooo )\nAA = MA\n\nR= PAP”"
+  },
+  {
+    "text": "so this guy, right, so this is actually a diagonal matrix, right, so this is like lambda 1, 0,",
+    "start": 1180.32,
+    "end": 1185.44,
+    "ocr_text": "pire, de ate Mow ue bh fe poi In Tle\n\nmiddle of qu pore, ‘UL Anothy Gavnion\n(2c ke 4 Joa L\n\nAw (4) = @. oa\n2\nss (ud) BOY) icra\na\nSyemmrahie_ moh (ooo )\nAA = MA\n\nR= PAP”"
+  },
+  {
+    "text": "0, and then this lambda 2, okay, and, and where are the eigenvectors of R,",
+    "start": 1186.24,
+    "end": 1191.04,
+    "ocr_text": "Ale,\n\nue mow Va bh fe poi in\n\nmiddle of Fe path, VIE anctee — Ghaumion\na AY\nVw (AR) = oe joo\n\n~\n\nSd (06, 8) x, (2%, )\n\nSyeamun'e mohise _ ours)\n\nR= PAP\n\nte =\n\nTus =) O=2\nTT\nAAT= MA\n\n“it”\n\n\"y\n\n}"
+  },
+  {
+    "text": "this is called, this is, this is an eigenvalue eigenvector decomposition, right, why,",
+    "start": 1191.2,
+    "end": 1196.0,
+    "ocr_text": "Ale,\n\nue mow Va bh fe poi in\n\nmiddle of Fe path, VIE anctee — Ghaumion\na AY\nVw (AR) = oe joo\n\n~\n\nSd (06, 8) x, (2%, )\n\nSyeamun'e mohise _ ours)\n\nR= PAP\n\nte =\n\nTus =) O=2\nTT\nAAT= MA\n\n“it”\n\n\"y\n\n}"
+  },
+  {
+    "text": "do you call it eigenvalue eigenvector decomposition? Because p is made up of the eigenvectors,",
+    "start": 1196.0,
+    "end": 1201.2,
+    "ocr_text": "Ale, de ait mow uel bh fk poi in Tle\n\nwad of flu pore, ‘ure Anothy Gavaion\n\nwun = @. 26\n2\nss ecu HOEY) io oS\naaa,\noe (ooered )\nAA = MA\nR= PAP\n\nin ere"
+  },
+  {
+    "text": "yeah, so which, what, of the p, is it the rows of p, or is the columns of p, columns of p,",
+    "start": 1201.2,
+    "end": 1206.4,
+    "ocr_text": "Ale, de ait mow uel bh fk poi in Tle\n\nwad of flu pore, ‘ure Anothy Gavaion\n\nwun = @. 26\n2\nss ecu HOEY) io oS\naaa,\noe (ooered )\nAA = MA\nR= PAP\n\nin ere"
+  },
+  {
+    "text": "right, so you can show that if I take, let us say the Ith column of p, and if you do R times,",
+    "start": 1206.4,
+    "end": 1210.8,
+    "ocr_text": "Ale, + ge mon ud fb Te poi in Te\n\njAdle of te pord, WIE macien (RROD\n\n¥\n2 4 (9-3\n\nWw(%uQ) a =f\n~ SF “O69 Te (26, Is) fost Get\na ey ate MA\nR=. PAP"
+  },
+  {
+    "text": "let us say that p i, you can show that, that will be equal to lambda i p i, right, that is why",
+    "start": 1210.8,
+    "end": 1214.88,
+    "ocr_text": "Ale, + ge mon ud fb Te poi in Te\n\njAdle of te pord, WIE macien (RROD\n\n¥\n2 4 (9-3\n\nWw(%uQ) a =f\n~ SF “O69 Te (26, Is) fost Get\na ey ate MA\nR=. PAP"
+  },
+  {
+    "text": "it is an eigenvector, so that is why you call it an eigenvector eigenvalue eigenvector decomposition,",
+    "start": 1214.88,
+    "end": 1219.36,
+    "ocr_text": "Ale, + ge mon ud fb Te poi in Te\n\njAdle of te pord, WIE macien (RROD\n\n¥\n2 4 (9-3\n\nWw(%uQ) a =f\n~ SF “O69 Te (26, Is) fost Get\na ey ate MA\nR=. PAP"
+  },
+  {
+    "text": "right, now the eigenvectors are of R, R sitting S eigenvectors of R are the columns of p,",
+    "start": 1219.36,
+    "end": 1226.64,
+    "ocr_text": "Ale, &\n\nwe mon bh Me poier in\n\nmiddie of qu pore,\n\n‘UL Anothy Gaunion\n\nGn = i\n\nA\n\nS } ow C ow, ) x (2%, )\n\nSymmane mobic. (norma )\n\nRen PAP\n\nT N (2 ae)\n\nTus =) ae\na\nAAtz KA\n\n“int”\n\n\"y\n\n{"
+  },
+  {
+    "text": "are the columns of p, right, now, so an eigenvector, what is it, what is it really represent,",
+    "start": 1230.64,
+    "end": 1238.24,
+    "ocr_text": "Ale,\n\nue Mow ves\n\nbh fk Poiee in\nmiddle of Re pork, UIE Anathew Gauvien\nza AY\nVw (%') —) oe = ja2\n\n20.\n\nA\n\n“ing!\n\nSd (06, 8) x, (2%, )\n\ne\n\n(i\no\\\n\"\n{i\n\n\\\n\nSyeomun'e mohise (norma )\n\n. AAT= MA\nR= PAP"
+  },
+  {
+    "text": "an eigenvector, you have a covariance matrix, right, this R, this is like, I mean,",
+    "start": 1238.24,
+    "end": 1245.6,
+    "ocr_text": "Ale,\n\nue mow ves\n\nbh fe poi In tle\nmiddle of fe para, WE anathy — Gravion\nAw (Xun) oe = y=3:)\"\n2\n- Sw = (968, 3) Ty (2%, 9) Sue! Gre\nTTT\nSammie mobi (narmod )\nAM =A\nR= PA p\n1 “fe\n© dn\nEi genvedtes\n\nHe mn -\n4 KR o™ colu 4 ? »\n\n“ie!\n\n\"y\n\n}"
+  },
+  {
+    "text": "all of, all of whatever you expect of a covariance matrix, right, this guy will actually satisfy.",
+    "start": 1245.92,
+    "end": 1250.0,
+    "ocr_text": "Ale,\n\nue mow ves\n\nbh fe poi In tle\nmiddle of fe para, WE anathy — Gravion\nAw (Xun) oc = y-3:)\"\n2\n- Sw = (965, 3) Ty (2%, ) Sue! Gre\nTTT\nSammie mobi (norma )\nAM =A\nR= PA p\n1 “f>3\n© dn\nEi genvedtes\n\nHe mn -\n4 KR o™ colu 4 ? »\n\n“int\n\n\"y\n\n}"
+  },
+  {
+    "text": "Now, when you have, when you have a covariance matrix and you have done this eigenvalue eigenvector",
+    "start": 1250.56,
+    "end": 1255.28,
+    "ocr_text": "Ale,\n\nue mow ves\n\nbh fe poi In tle\nmiddle of fe para, WE anathy — Gravion\nAw (Xun) oc = y-3:)\"\n2\n- Sw = (965, 3) Ty (2%, ) Sue! Gre\nTTT\nSammie mobi (norma )\nAM =A\nR= PA p\n1 “f>3\n© dn\nEi genvedtes\n\nHe mn -\n4 KR o™ colu 4 ? »\n\n“int\n\n\"y\n\n}"
+  },
+  {
+    "text": "decomposition, what is the eigenvectors really tell you? They tell what the variations are,",
+    "start": 1255.28,
+    "end": 1264.72,
+    "ocr_text": "Mle,\n\nue Mow ved\n\nbh fe poi In tle\nmiddle of Te para, ie anctee  Grauion\nAw (Xun) no = y-2:)\"\n2\n- Sw (8,8) Tx (24, Ye) Buel Gre\nTTT\nSammie mobi (narmod )\n. AM =A\nR= PAN p\n1 “2s\n© dw\nee\n\nHe mna 0\n4 KR ™ colu o ? »\n\nVint!\n\n\"y\n\n|"
+  },
+  {
+    "text": "in which directions the variations are from highest to lowest, right, so for example,",
+    "start": 1264.72,
+    "end": 1270.96,
+    "ocr_text": "Mle,\n\nue Mow ved\n\nbh fe poi In tle\nmiddle of Te para, ie anctee  Grauion\nAw (Xun) no = y-2:)\"\n2\n- Sw (8,8) Tx (24, Ye) Buel Gre\nTTT\nSammie mobi (narmod )\n. AM =A\nR= PAN p\n1 “2s\n© dw\nee\n\nHe mna 0\n4 KR ™ colu o ? »\n\nVint!\n\n\"y\n\n|"
+  },
+  {
+    "text": "so for example, I mean, you know, so if you find that, if you find that, if you find that",
+    "start": 1271.76,
+    "end": 1275.84,
+    "ocr_text": "Aire, de itt MOK uu bk hk poict- in Tle\n\nmiddie of te port, VIE Anothes Gaunion\n(oe) + (9-9\n\nWM =e za\nse ecu) Bye! Gee\na le\nSyrmur'e moh NovmoA\n- ( ) AAT= HA\n+\nR- PAP\nNL ay °\na ae\n\nEijeniede 4 Ra ow Ne columna 4 e."
+  },
+  {
+    "text": "rate along, let us say, along one direction, you have the highest variance, right, how will you",
+    "start": 1275.84,
+    "end": 1281.2,
+    "ocr_text": "fle, ym mon ud, Me poink in FL\n\nmiddle of Te pokd, VE Anat (nave\n\nw(t) es + (9-2)\n= SO (06, 8) dex * (2, Is) Tus =) 62h\nTT\nSyrah’ mobi _ Curt)\nAM =A\nR- PAP\n\nCe Pe\nEigenuechen 4 fae He columns 4 °."
+  },
+  {
+    "text": "capture that, that is captured through the eigenvalue, right, so the eigenvalue should be high for that,",
+    "start": 1281.2,
+    "end": 1285.68,
+    "ocr_text": "fle, ym mon ud, Me poink in FL\n\nmiddle of Te pokd, VE Anat (nave\n\nw(t) es + (9-2)\n= SO (06, 8) dex * (2, Is) Tus =) 62h\nTT\nSyrah’ mobi _ Curt)\nAM =A\nR- PAP\n\nCe Pe\nEigenuechen 4 fae He columns 4 °."
+  },
+  {
+    "text": "that is when you say that, that is the, that is the most dominant sort of a component,",
+    "start": 1285.68,
+    "end": 1289.68,
+    "ocr_text": "[Alre, +\nmiddie\n\nile\n\nmon we Te pair in\n\nVw (4)\n\n—\n\nof te\n\na\n\nS } uo C ou, ) =, (oe, 4)\n\nparc.\n\ncue ancthy — Graunion\n[Ce + (9-3\n260\n\nSyrah’ mobi (narmod )\n\nAAT= HA\n+\nR- PAP\nLor ?\nA) nae\n\nines oa 4 RR ow He columna 4 e.\n\n“ing!”\n\n\"y\n\nj\nf"
+  },
+  {
+    "text": "along which the variations are the highest, so it means that, so it means that,",
+    "start": 1289.68,
+    "end": 1292.56,
+    "ocr_text": "[Alre, +\nmiddie\n\nile\n\nmon we Te pair in\n\nVw (4)\n\n—\n\nof te\n\na\n\nS } uo C ou, ) =, (oe, 4)\n\nparc.\n\ncue ancthy — Graunion\n[Ce + (9-3\n260\n\nSyrah’ mobi (narmod )\n\nAAT= HA\n+\nR- PAP\nLor ?\nA) nae\n\nines oa 4 RR ow He columna 4 e.\n\n“ing!”\n\n\"y\n\nj\nf"
+  },
+  {
+    "text": "if you had point, which had a distribution like that, then you will say that the spread is",
+    "start": 1292.56,
+    "end": 1296.96,
+    "ocr_text": "[Alre, +\nmiddie\n\nile\n\nmon we Te pair in\n\nVw (4)\n\n—\n\nof te\n\na\n\nS } uo C ou, ) =, (oe, 4)\n\nparc.\n\ncue ancthy — Graunion\n[Ce + (9-3\n260\n\nSyrah’ mobi (narmod )\n\nAAT= HA\n+\nR- PAP\nLor ?\nA) nae\n\nines oa 4 RR ow He columna 4 e.\n\n“ing!”\n\n\"y\n\nj\nf"
+  },
+  {
+    "text": "maximum along this direction, then they probably the next spread is, if it is a 2D rate, then you",
+    "start": 1296.96,
+    "end": 1302.08,
+    "ocr_text": "fle, ym mon ue, Me poink in TL\n\nmiddle of Te pare, ‘ure anothe — (ravaion\n\nu se Pr v\n= S 2 (06, 8) x (&, 4) Sw t Co a\noo\nSyranv'c moh NovmoA\nf y AAT = MA\n+\nR= PAP\nay NL ay °\n2 da\n\nSea 4 Ra ow He columna 4 ?."
+  },
+  {
+    "text": "will say in the orthogonal direction, there is still a little amount of spread, right, this is what,",
+    "start": 1302.08,
+    "end": 1305.44,
+    "ocr_text": "fle, ym mon ue, Me poink in TL\n\nmiddle of Te pare, ‘ure anothe — (ravaion\n\nu se Pr v\n= S 2 (06, 8) x (&, 4) Sw t Co a\noo\nSyranv'c moh NovmoA\nf y AAT = MA\n+\nR= PAP\nay NL ay °\n2 da\n\nSea 4 Ra ow He columna 4 ?."
+  },
+  {
+    "text": "what the eigenvectors will capture, this is what, this is exactly what these eigenvectors of R will",
+    "start": 1305.44,
+    "end": 1309.84,
+    "ocr_text": "Aire, de ait mow uel bh fe poi In Tle\n\nmiddle of flu pre, ‘UL Anothy Gaviion\n\n7 a v\nA (%un) =o no ae a\n2\nsa Cu) OY) ee Ss\nTT\nSyma oobi. (nveneh )\nAAT= MA\n\nR= PAP"
+  },
+  {
+    "text": "also capture and for us, right, it is all in terms of interpreting this now, in terms of what the,",
+    "start": 1309.84,
+    "end": 1315.04,
+    "ocr_text": "Aire, de ait mow uel bh fe poi In Tle\n\nmiddle of flu pre, ‘UL Anothy Gaviion\n\n7 a v\nA (%un) =o no ae a\n2\nsa Cu) OY) ee Ss\nTT\nSyma oobi. (nveneh )\nAAT= MA\n\nR= PAP"
+  },
+  {
+    "text": "what, what it should reflect about my corner now, right, so what, so what, what you can show is that,",
+    "start": 1315.68,
+    "end": 1322.08,
+    "ocr_text": "Aire, de ait mow uel bh fe poi In Tle\n\nmiddle of flu pr, ‘UL Anothy Gavnion\n\n7 a x v\noe att\nA (%un) = ot : aa\n2\nsx wena BO) Gest BEF\nSymmrubic_ mob (ooered ) AAt= MA\nT\nPAP\n\nR=\n;"
+  },
+  {
+    "text": "the eigenvalue is that you get out of this and then the eigenvector, it will have an",
+    "start": 1322.08,
+    "end": 1325.68,
+    "ocr_text": "Aire, de ait mow uel bh fe poi In Tle\n\nmiddle of flu pr, ‘UL Anothy Gavnion\n\n7 a x v\noe att\nA (%un) = ot : aa\n2\nsx wena BO) Gest BEF\nSymmrubic_ mob (ooered ) AAt= MA\nT\nPAP\n\nR=\n;"
+  },
+  {
+    "text": "interpretation with respect to the, with respect to the edges that you have and when two edges",
+    "start": 1325.68,
+    "end": 1330.16,
+    "ocr_text": "Aire, + YE MOK ua b hk Poi in Tle\n\nmiddle of Te pare, ‘ure anothe — (ravaion\n\nZa a tg\nCeo ot =e yo3i\n2\n_ Sa) Me (96, 9) Te (2%, Ye) Su =) O22\nTTT\nSyme mobi (norma )\n——————— AAA HA\n\na PAP"
+  },
+  {
+    "text": "meet, that is when you get a corner, right, and therefore, for a corner, the eigenvalues will have",
+    "start": 1330.16,
+    "end": 1334.56,
+    "ocr_text": "Aire, + YE MOK ua b hk Poi in Tle\n\nmiddle of Te pare, ‘ure anothe — (ravaion\n\nZa a tg\nCeo ot =e yo3i\n2\n_ Sa) Me (96, 9) Te (2%, Ye) Su =) O22\nTTT\nSyme mobi (norma )\n——————— AAA HA\n\na PAP"
+  },
+  {
+    "text": "a behavior of a certain kind, so you can actually make out what point you are looking at, I mean,",
+    "start": 1334.56,
+    "end": 1338.72,
+    "ocr_text": "Aire, + YE MOK ua b hk Poi in Tle\n\nmiddle of Te pare, ‘ure anothe — (ravaion\n\nZa a tg\nCeo ot =e yo3i\n2\n_ Sa) Me (96, 9) Te (2%, Ye) Su =) O22\nTTT\nSyme mobi (norma )\n——————— AAA HA\n\na PAP"
+  },
+  {
+    "text": "it is not just that it will tell you a corner, it can tell you whether it is an edge,",
+    "start": 1338.72,
+    "end": 1342.08,
+    "ocr_text": "Aire, + YE MOK ua b hk Poi in Tle\n\nmiddle of Te pare, cure anothy — (ravaion\n\n7 aa 5—3 v\nocc —d\n(Aun) = ot : =\n2\nSammukc moi (namo ) ae AA\nT\nPAP\n\nR=\n+"
+  },
+  {
+    "text": "where you are sitting, whether it is a flat region, where you are sitting or, or where you are sitting,",
+    "start": 1342.08,
+    "end": 1346.32,
+    "ocr_text": "Aire, + YE MOK ua b hk Poi in Tle\n\nmiddle of Te pare, cure anothy — (ravaion\n\n7 aa 5—3 v\nocc —d\n(Aun) = ot : =\n2\nSammukc moi (namo ) ae AA\nT\nPAP\n\nR=\n+"
+  },
+  {
+    "text": "is that a corner, right, that is the kind of information that, this matrix can actually give you,",
+    "start": 1346.32,
+    "end": 1350.96,
+    "ocr_text": "Ale, de Git Mow ud br fk Poi In Tle\n\nmiddle of flu pre, ‘UL Anothy Gavnion\n\n7 a v\nVw (4) a oe ae a\n2\nss cu) BOY arent\nTTT\nSyma oobi. (ovened )\nAAT= MA\n\nR= PAP"
+  },
+  {
+    "text": "which we will see in the next class, we are not off time.",
+    "start": 1350.96,
+    "end": 1353.04,
+    "ocr_text": "Ale, de Git Mow ud br fk Poi In Tle\n\nmiddle of flu pre, ‘UL Anothy Gavnion\n\n7 a v\nVw (4) a oe ae a\n2\nss cu) BOY arent\nTTT\nSyma oobi. (ovened )\nAAT= MA\n\nR= PAP"
+  },
+  {
+    "text": "So, the corner should be, this is any orthogonal order, it can get any, it, no, no, so the thing is",
+    "start": 1355.04,
+    "end": 1362.48,
+    "ocr_text": "What does 'Qauantity' refer to?"
+  },
+  {
+    "text": "ready, need not be orthogonal, you are saying that what if I had an edge, yeah, that is also fine,",
+    "start": 1362.48,
+    "end": 1366.96,
+    "ocr_text": "What does 'Qauantity' refer to?"
+  },
+  {
+    "text": "that is also fine, because there also when you move around, right, when you will get, see,",
+    "start": 1366.96,
+    "end": 1370.24,
+    "ocr_text": "Ale, de ate mow ud bh fe poi In Tle\n\nmiddle of fu pore, ‘UL Anothy Gavnion\n(0 le ae god Ll\n\n\\w (4) — @. oa\n2\nsa (ud OY eee\nee\nSame mohiwe (norma )\nAAT = MA\n\nR= PAP"
+  },
+  {
+    "text": "there what will happen is, you see, in an orthogonal case, right, you will, you see, when,",
+    "start": 1370.24,
+    "end": 1374.16,
+    "ocr_text": "Ale, de ate mow ud bh fe poi In Tle\n\nmiddle of fu pore, ‘UL Anothy Gavnion\n(0 le ae god Ll\n\n\\w (4) — @. oa\n2\nsa (ud OY eee\nee\nSame mohiwe (norma )\nAAT = MA\n\nR= PAP"
+  },
+  {
+    "text": "when you, when you have something like this, which is actually also a corner, then what will happen,",
+    "start": 1374.16,
+    "end": 1378.0,
+    "ocr_text": "Ale, de ate mow ud bh fe poi In Tle\n\nmiddle of fu pore, ‘UL Anothy Gavnion\n(0 le ae god Ll\n\n\\w (4) — @. oa\n2\nsa (ud OY eee\nee\nSame mohiwe (norma )\nAAT = MA\n\nR= PAP"
+  },
+  {
+    "text": "is, you know, you will get, you will get one direction along which the maximum spread is there,",
+    "start": 1378.0,
+    "end": 1381.76,
+    "ocr_text": "Mle,\n\nle\n\nmo us\n\nmiddle\n\\w(4un)\n\nof te\n\nbh Te poi in Ae\npre, ‘ure anothy —_ Graunion\n\noe ye y-2)\n\n20)\n\nS } ur C wu, ) =, (26, )\nSymmum'e moe (norma )\n\na PAP\n\n7 fi\n“inne!”\n\n|\n\\"
+  },
+  {
+    "text": "the other one, the interpretation will be hard, just the interpretation will not be so easy,",
+    "start": 1381.76,
+    "end": 1386.64,
+    "ocr_text": "Mle,\n\nle\n\nmo us\n\nmiddle\n\\w(4un)\n\nof te\n\nbh Te poi in Ae\npre, ‘ure anothy —_ Graunion\n\noe ye y-2)\n\n20)\n\nS } ur C wu, ) =, (26, )\nSymmum'e moe (norma )\n\na PAP\n\n7 fi\n“inne!”\n\n|\n\\"
+  },
+  {
+    "text": "because the spread, right, the eigenvector will still reflect that there is an orthogonal",
+    "start": 1386.64,
+    "end": 1390.96,
+    "ocr_text": "Miro, +2 Yue moe ua bh Me poi in ee\n\nmiddle of Be pork, VIC anotey — Cravaion\n\n7 2m v\nVw (AR) = ot aoe = ya%\n2\n- SOD = (96,3) ae, (2%, ¥) Su =) Oo2e\na ry\nSyme moi (norma )\nAAA HA\n\na PAP"
+  },
+  {
+    "text": "direction in which the next spread is the highest, but if you have like this, right, then it is much",
+    "start": 1390.96,
+    "end": 1394.72,
+    "ocr_text": "Miro, +2 Yue moe ua bh Me poi in ee\n\nmiddle of Be pork, VIC anotey — Cravaion\n\n7 2m v\nVw (AR) = ot aoe = ya%\n2\n- SOD = (96,3) ae, (2%, ¥) Su =) Oo2e\na ry\nSyme moi (norma )\nAAA HA\n\na PAP"
+  },
+  {
+    "text": "more clean, I mean, then you know that right along one direction, in the orthogonal, you can",
+    "start": 1394.72,
+    "end": 1397.84,
+    "ocr_text": "Miro, +2 Yue moe ua bh Me poi in ee\n\nmiddle of Be pork, VIC anotey — Cravaion\n\n7 2m v\nVw (AR) = ot aoe = ya%\n2\n- SOD = (96,3) ae, (2%, ¥) Su =) Oo2e\na ry\nSyme moi (norma )\nAAA HA\n\na PAP"
+  },
+  {
+    "text": "associate with that, but corner does not, that is, I forgot to tell, it does not necessarily",
+    "start": 1397.84,
+    "end": 1402.24,
+    "ocr_text": "Miro, +2 Yue mor ua bh Me poi in Te\n\nmiddle of Be pork, VIC anotey — Cravaion\n\n7 23 v\nVw (AR) = ot coast =o ya%\n2\n_ sD (6,2) ae, (2%, Ye) Suz! Oe\neo ST\nSammie mobi (norma )\nSy AAA HA\n\na PAP\n\ncolumna a ?.\n\nEigenvecho 4 Rae te"
+  },
+  {
+    "text": "mean that they have to meet orthogonally and all, it can also be an edge like this,",
+    "start": 1402.24,
+    "end": 1405.44,
+    "ocr_text": "Miro, +2 Yue mor ua bh Me poi in Te\n\nmiddle of Be pork, VIC anotey — Cravaion\n\n7 23 v\nVw (AR) = ot coast =o ya%\n2\n_ sD (6,2) ae, (2%, Ye) Suz! Oe\neo ST\nSammie mobi (norma )\nSy AAA HA\n\na PAP\n\ncolumna a ?.\n\nEigenvecho 4 Rae te"
+  },
+  {
+    "text": "corner like that.",
+    "start": 1405.44,
+    "end": 1407.04,
+    "ocr_text": "IIT Madras Production\n\nFunded by\nDepartment of Higher Education\nMinistry of Human Resource Development\nGovernment of India\n\nwww.nptel.ac.in"
+  }
+]

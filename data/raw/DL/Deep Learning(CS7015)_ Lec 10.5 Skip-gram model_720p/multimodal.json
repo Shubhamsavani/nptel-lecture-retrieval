@@ -1,0 +1,674 @@
+[
+  {
+    "text": "So, with that we will move on to the next model. I am still not telling you how to solve",
+    "start": 0.0,
+    "end": 16.44,
+    "ocr_text": "NPTEL ONLINE COURSE\n\nl"
+  },
+  {
+    "text": "this problem, we will come to that later. I am just going to the next model which is the",
+    "start": 16.44,
+    "end": 19.68,
+    "ocr_text": "Module 10.5: Skip-gram model\n\nMitesh M. Kh ©7015 (Deep Learn"
+  },
+  {
+    "text": "skip gram model and this is the famous word to make which you are trying to implement.",
+    "start": 19.68,
+    "end": 24.64,
+    "ocr_text": "Module 10.5: Skip-gram model\n\nMitesh M. Kh ©7015 (Deep Learn"
+  },
+  {
+    "text": "The model that we just saw was known as a continuous back of words. It predicts the output",
+    "start": 24.64,
+    "end": 29.52,
+    "ocr_text": "Module 10.5: Skip-gram model\n\nMitesh M. Kh ©7015 (Deep Learn"
+  },
+  {
+    "text": "given the context. Skip gram model does the reverse of that. You are given a word, you",
+    "start": 29.52,
+    "end": 36.44,
+    "ocr_text": "e The model that we just saw is called the continuous bag of words model (it\npredicts an output word give a bag of context words)\n\nMitesh M. Khapra 387015 (Deep Learning) : Lecture 10,"
+  },
+  {
+    "text": "want to predict all the context words. So, now I am given the word on, I am trying to",
+    "start": 36.44,
+    "end": 41.4,
+    "ocr_text": "e Notice that the role of context and\nword has changed now\n\nhe sat a chair\n\nWeonteat € R**IV!\n\nhe Ril\n\nWiora € REXIY\n\nO7O]1]..,)0]0]0|xc®!\non\n\nMitesh M. Khapra 015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "predict the words which appear on the left and right side of it. Is that fine? So, how",
+    "start": 41.4,
+    "end": 45.96,
+    "ocr_text": "e Notice that the role of context and\nword has changed now\n\nhe sat a chair\n\nWeonteat € R**IV!\n\nhe Ril\n\nWiora € REXIY\n\nO7O]1]..,)0]0]0|xc®!\non\n\nMitesh M. Khapra 015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "many prediction problems am I solving? How many predictions am I giving you? 4 in this",
+    "start": 45.96,
+    "end": 51.12,
+    "ocr_text": "e Notice that the role of context and\nword has changed now\n\nhe sat a chair\nWeontert € REXIVI\n\nhe RIK\n\nWw ae REXIV\n\nO];O]1]..)0]0]0 |xc®\non\n\nMitesh M. Khapra 015 (Deep Learning) : Lecture 10"
+  },
+  {
+    "text": "scale? So, you see that this is a case where your y actually belongs to r 4, of course,",
+    "start": 51.12,
+    "end": 61.56,
+    "ocr_text": "e Notice that the role of context and\nword has changed now\n\nhe sat a chair\nWeontert € REXIVI\n\nhe RIK\n\nWw ae REXIV\n\nO];O]1]..)0]0]0 |xc®\non\n\nMitesh M. Khapra 015 (Deep Learning) : Lecture 10"
+  },
+  {
+    "text": "it is not r 4, it is 4 into v and because you are predicting the entire distribution.",
+    "start": 61.56,
+    "end": 66.2,
+    "ocr_text": "e Notice that the role of contert and\nword has changed now\n\nhe sat a chair\n\nWeontert € RP*IVI\nhe RK!\nWwora € REXIY\ne RIV!\no;o;if..]o]o]oxs®\non\n\nyee\n\nMitesh M. Khapra 015 (Deep Learning) ; Lecture 10"
+  },
+  {
+    "text": "But what I meant is that you want these 4 different outputs, you just do not want one",
+    "start": 66.2,
+    "end": 69.8,
+    "ocr_text": "e Notice that the role of context and\nword has changed now\n\nhe sat a chair\n\nWeontert € R**IV!\nhe RIK!\nWwora € REXIV\nO]O]1]..)0]0]0|xc®\non\naia\n\nrc\n\nMitesh M. Khapra 015 (Deep L"
+  },
+  {
+    "text": "single output. Apart from that does everything else remain same. You have an input word, you",
+    "start": 69.8,
+    "end": 77.4,
+    "ocr_text": "e Notice that the role of context and\nword has changed now\n\nhe sat a chair\n\nWeontert € R**IV!\nhe RIK!\nWwora € REXIV\nO]O]1]..)0]0]0|xc®\non\naia\n\nrc\n\nMitesh M. Khapra 015 (Deep L"
+  },
+  {
+    "text": "compute a hidden representation. From that hidden representation you try to predict the",
+    "start": 77.4,
+    "end": 81.28,
+    "ocr_text": "e Notice that the role of contert and\nword has changed now\n\nhe sat a chair\n\nWeontert € RP*IVI\nhe RIK!\nWarora € REXIY\neR!\nO;oO;1]..;0]o] 0 |x*®\non\nur\n\nyet\n\nMitesh M. Khapra 015 (Deep Learning) ; Lecture 10"
+  },
+  {
+    "text": "outputs, you get a probability distribution, what is your loss function? Is the dash of",
+    "start": 81.28,
+    "end": 87.56,
+    "ocr_text": "e Notice that the role of contert and\nword has changed now\n\nhe sat a chair\n\nWeontert € RP*IVI\nhe RIK!\nWarora € REXIY\neR!\nO;oO;1]..;0]o] 0 |x*®\non\nur\n\nyet\n\nMitesh M. Khapra 015 (Deep Learning) ; Lecture 10"
+  },
+  {
+    "text": "cross-entropy? Sum of cross-entropy. How many cross-entropy do we have? 4 in this",
+    "start": 87.56,
+    "end": 92.24,
+    "ocr_text": "e Notice that the role of contert and\nword has changed now\n\nhe sat a chair\n\nWeontert € RP*IVI\nhe RIKI\nWrora € REXIY\neR!\nOo;o;i1]..;0],o] 0 |x*®\non\nger\n\nset\n\n(Deep"
+  },
+  {
+    "text": "case. And also notice that I have, I hope I have, I have changed W word and W context.",
+    "start": 92.24,
+    "end": 99.64,
+    "ocr_text": "e Notice that the role of contert and\nword has changed now\n\nhe sat a chair\n\nWeontert € RP*IVI\nhe RIKI\nWrora € REXIY\neR!\nOo;o;i1]..;0],o] 0 |x*®\non\nger\n\nset\n\n(Deep"
+  },
+  {
+    "text": "They have flipped now. Is that fine? The role of context and the word has changed. In the",
+    "start": 99.72,
+    "end": 106.32,
+    "ocr_text": "he gat a hati e Notice that the role of contert and\n\nword has changed now\n\nWeonteat F R**!VI\nhe RIK!\nO]0]1]..,0]0]0|xc™\non\nuw\n\nyet\n\nMitesh M. Khapre 15 (Deep Le Leeture 10"
+  },
+  {
+    "text": "simple case, when you are trying to take one word as the input and only predict one word",
+    "start": 106.32,
+    "end": 111.28,
+    "ocr_text": "e Notice that the role of context and\n\nsat\nword has changed now\ne In the simple case when there is only\nWeontest € RAVI one context word, we will arrive at\nneRikl the same update rule for ue as we did\nfor Uy earlier\nWinona € REXIY\neR!\nofofi]..[o]fo]o|***\non\n\nMitesh M. Khapra 15 (Deep Lecture 10"
+  },
+  {
+    "text": "around it, it just becomes the same as the first case that we saw in the continuous",
+    "start": 111.28,
+    "end": 115.12,
+    "ocr_text": "e Notice that the role of context and\n\nsat\nword has changed now\ne In the simple case when there is only\nWeontest € RAVI one context word, we will arrive at\nneRikl the same update rule for ue as we did\nfor Uy earlier\nWinona € REXIY\neR!\nofofi]..[o]fo]o|***\non\n\nMitesh M. Khapra 15 (Deep Lecture 10"
+  },
+  {
+    "text": "back upwards. There is no difference there because there also you take one word and predict",
+    "start": 115.12,
+    "end": 119.2,
+    "ocr_text": "e Notice that the role of context and\n\nsat\nword has changed now\ne In the simple case when there is only\nWeontext € RM*IVI one context word, we will arrive at\nheRil the same update rule for ue as we did\nfor UV» earlier\nWord € REXIY\nO;O[1][..] 0] 0] 0 ]***\"'\non\n\nMitesh M. KI 15 (Deep"
+  },
+  {
+    "text": "the other word. So, the entire math remains the same. How many if you get that? And even",
+    "start": 119.2,
+    "end": 124.4,
+    "ocr_text": "e Notice that the role of context and\n\nsat\nword has changed now\ne In the simple case when there is only\nWeontext € RM*IVI one context word, we will arrive at\nheRil the same update rule for ue as we did\nfor UV» earlier\nWord € REXIY\nO;O[1][..] 0] 0] 0 ]***\"'\non\n\nMitesh M. KI 15 (Deep"
+  },
+  {
+    "text": "when we have multiple context words, our loss function is just going to be the sum of",
+    "start": 124.4,
+    "end": 128.12,
+    "ocr_text": "e Notice that the role of context and\n\nsat\nword has changed now\ne In the simple case when there is only\nWeontext € RM*IVI one context word, we will arrive at\nheRil the same update rule for ue as we did\nfor UV» earlier\nWord € REXIY\nO;O[1][..] 0] 0] 0 ]***\"'\non\n\nMitesh M. KI 15 (Deep"
+  },
+  {
+    "text": "the cross-entropy for all those d predictions that I need to make or d minus one predictions",
+    "start": 128.2,
+    "end": 133.48,
+    "ocr_text": "he sat a chair\n\nWeontert € RPXIVI\nhe RFI\nWrora € REXIY\n0]0]1 0[0]0|*<*\"!\non\n\nMitesh M. KI\n\ne Notice that the role of contert and\nword has changed now\n\ne In the simple case when there is only\none context word, we will arrive at\nthe same update rule for ue as we did\nfor Uy earlier\n\ne Notice that even when we have mul-\ntiple context words the loss function\nwould just be a summation of many\ncross entropy errors\n\n15 (Deep"
+  },
+  {
+    "text": "that I need to make. And then once I see a loss function which is a sum of some things,",
+    "start": 133.48,
+    "end": 140.48,
+    "ocr_text": "he sat a chair\n\nWeontert € RPXIVI\nhe RFI\nWrora € REXIY\n0]0]1 0[0]0|*<*\"!\non\n\nMitesh M. KI\n\ne Notice that the role of contert and\nword has changed now\n\ne In the simple case when there is only\none context word, we will arrive at\nthe same update rule for ue as we did\nfor Uy earlier\n\ne Notice that even when we have mul-\ntiple context words the loss function\nwould just be a summation of many\ncross entropy errors\n\n15 (Deep"
+  },
+  {
+    "text": "I am not worried because I know how to deal with each of these components and gradients",
+    "start": 140.48,
+    "end": 146.16,
+    "ocr_text": "he sat a chair\n\nWeontert € R**IVI\nhe RIK!\nWrrora € REXIY\n0] 0]1 0[0]0|*<*'!\non\n\nMitesh M. KI\n\ne Notice that the role of contert and\nword has changed now\n\ne In the simple case when there is only\none context word, we will arrive at\nthe same update rule for ue as we did\nfor Uy earlier\n\ne Notice that even when we have mul-\ntiple context words the loss function\nwould just be a summation of many\ncross entropy errors\n\n15 (Deep"
+  },
+  {
+    "text": "are additive. So, if you have the gradient of sum, it is just the sum of the gradients.",
+    "start": 146.16,
+    "end": 149.84,
+    "ocr_text": "e Notice that the role of contert and\nword has changed now\n\nhe sat a chair\n\ne In the simple case when there is only\n\nWeontest € RAI\" one context word, we will arrive at\nheRitl the same update rule for ue as we did\nfor Uy earlier\nWiora € REXIY e Notice that even when we have mul-\ntiple context words the loss function\nOlolil..lololoixe®”! would just be a summation of many\n\non CTOSS entropy errors\n\nMitesh M 15 (Deep"
+  },
+  {
+    "text": "So, as I know how to deal with one of these, I can deal with the sum. So, that is why",
+    "start": 149.84,
+    "end": 154.0,
+    "ocr_text": "e Notice that the role of contert and\nword has changed now\n\nhe sat a chair\n\ne In the simple case when there is only\n\nWeontest € RAI\" one context word, we will arrive at\nheRitl the same update rule for ue as we did\nfor Uy earlier\nWiora € REXIY e Notice that even when we have mul-\ntiple context words the loss function\nOlolil..lololoixe®”! would just be a summation of many\n\non CTOSS entropy errors\n\nMitesh M 15 (Deep"
+  },
+  {
+    "text": "I do not really worry. All of you are at that level where you do not worry with the sum",
+    "start": 154.0,
+    "end": 158.6,
+    "ocr_text": "e Notice that the role of contert and\nword has changed now\n\nhe sat a chair\n\ne In the simple case when there is only\n\nWeontest € RAI\" one context word, we will arrive at\nheRitl the same update rule for ue as we did\nfor Uy earlier\nWiora € REXIY e Notice that even when we have mul-\ntiple context words the loss function\nOlolil..lololoixe®”! would just be a summation of many\n\non CTOSS entropy errors\n\nMitesh M 15 (Deep"
+  },
+  {
+    "text": "as a loss function. What are the problems with this? Already written the same as the",
+    "start": 158.6,
+    "end": 163.16,
+    "ocr_text": "he sat a chair Some problems\n\ne Same as bag of words\n\nWeontest € R*XIVI\nhe RIK!\nWirora € REXIV\nOy;oO];i]..])0]0]0]x<®\"\non\n\n‘015 (Deep"
+  },
+  {
+    "text": "back upwards. Now, we are doing these four expensive computations at the end. So, the",
+    "start": 163.16,
+    "end": 169.04,
+    "ocr_text": "he sat a chair Some problems\n\ne Same as bag of words\n\nWeontest € R*XIVI\nhe RIK!\nWirora € REXIV\nOy;oO];i]..])0]0]0]x<®\"\non\n\n‘015 (Deep"
+  },
+  {
+    "text": "softmax computation is expensive. There are three different solutions and there are three",
+    "start": 169.04,
+    "end": 173.72,
+    "ocr_text": "he sat a chair Some problems\n\ne Same as bag of words\n\ne The softmax function at the output\n\nWeontert € REXIVI ‘ : ‘\nis computationally expensive\nhe RIKI\nWivora € REXIY\ne RVI\nofofi]..[o]fo]o|*x**\non\n\nMitesh M. Khapra 015 (Deep Li Lecture 10"
+  },
+  {
+    "text": "different ways that we can deal with it. One is something known as use negative sampling.",
+    "start": 173.72,
+    "end": 179.48,
+    "ocr_text": "he sat a chair Some problems\n\ne Same as bag of words\n\ne The softmax function at the output\n\nWeontert € REXIVI ‘ : ‘\nis computationally expensive\nhe RIKI\nWivora € REXIY\ne RVI\nofofi]..[o]fo]o|*x**\non\n\nMitesh M. Khapra 015 (Deep Li Lecture 10"
+  },
+  {
+    "text": "The other is to use contrasted estimation and the third is to use a hierarchical softmax.",
+    "start": 179.48,
+    "end": 183.92,
+    "ocr_text": "he sat a chair Some problems\n\ne Same as bag of words\n\ne The softmax function at the output\n\nWeontert € REXIVI . ‘ .\nis computationally expensive\nheel @ Solution 1: Use negative sampling\ne@ Solution 2: Use contrastive estima-\n\nWrora € REXIY .\n\ntion\n\neR!\nofofi]..[ofo fo |*x**\n\non\n\n‘015 (Deep"
+  },
+  {
+    "text": "So, we are going to see all of these and I will shamelessly continue for a few more minutes.",
+    "start": 183.92,
+    "end": 189.32,
+    "ocr_text": "he sat a chair Some problems\n\ne Same as bag of words\n\ne The softmax function at the output\n\nWeontert € REXIVI . ‘ .\nis computationally expensive\nheel @ Solution 1: Use negative sampling\ne@ Solution 2: Use contrastive estima-\n\nWrora € REXIY .\n\ntion\n\neR!\nofofi]..[ofo fo |*x**\n\non\n\n‘015 (Deep"
+  },
+  {
+    "text": "So, first we will see use negative sampling because that is very easy. So, let d be the",
+    "start": 189.32,
+    "end": 196.92,
+    "ocr_text": "he\n\nSome problems\n\nsat a chair\ne Same as bag of words\noeivt e The softmax function at the output\nWeontcat € R** G A\nfeat is computationally expensive\nnee! @ Solution 1: Use negative sampling\ne@ Solution 2: Use contrastive estima-\nWirora € REXIY +\ntion\nv4 e Solution 3: Use hierarchical softmax\n0 0] 0 |*xc*\n\non"
+  },
+  {
+    "text": "set of all correct w comma c pairs in the corpus. What do I mean by that? All words which",
+    "start": 196.92,
+    "end": 203.92,
+    "ocr_text": "e D = [(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\na), (sat, chair), (on, corpus\na), (on,chair), (a,chair),\n(on,sat), (a, sat),\n(chair, aot (a, on),\n(chair, on), (chair, a) |\n\nMitesh M. Khapra 7015 (Deep Learning) : Lecture 10"
+  },
+  {
+    "text": "actually appeared in the word comma context pair. So, you can look at the vector which",
+    "start": 203.92,
+    "end": 207.96,
+    "ocr_text": "e D = [(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\na), (sat, chair), (on, corpus\na), (on,chair), (a,chair),\n(on,sat), (a, sat),\n(chair, aot (a, on),\n(chair, on), (chair, a) |\n\nMitesh M. Khapra 7015 (Deep Learning) : Lecture 10"
+  },
+  {
+    "text": "I have constructed. So, sat on sat on sat there. You can imagine that all of these appeared",
+    "start": 207.96,
+    "end": 212.04,
+    "ocr_text": "e D = ([(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\na), (sat, chair), (on, corpus\na), (on,chair), (a,chair),\n(on,sat), (a, sat),\n(chair, “ty (a, on),\n(chair, on), (chair, a) |\n\nMitesh M. Khapra 015 (Deep Learnir ture 10"
+  },
+  {
+    "text": "in the context of each other. So, this is my correct corpus as from what I got from my",
+    "start": 212.04,
+    "end": 217.84,
+    "ocr_text": "e D = ([(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\na), (sat, chair), (on, corpus\na), (on,chair), (a,chair),\n(on,sat), (a, sat),\n(chair, “ty (a, on),\n(chair, on), (chair, a) |\n\nMitesh M. Khapra 015 (Deep Learnir ture 10"
+  },
+  {
+    "text": "data. Now, let d prime with a set of all incorrect w comma r pairs in the corpus and r here",
+    "start": 217.84,
+    "end": 225.24,
+    "ocr_text": "e D = ([(sat, on), (sat, e Let D be the set of all correct (w,c¢) pairs in the\na), (sat, chair), (on, corpus\na), (ou,chair), (a,chair), e Let D’ be the set of all incorrect. (w,r) pairs in\n(on,sat), (a, sat), the corpus\n\n(chair, “i (a, on),\n\n(\n\nchair, on), (chair, a) |\n\ne D' = ((sat, oxygen),\n(sat, magic), (chair,\nsad), (chair, walking)]\n\nMitesh M. Khapra ©$7015 (Deep Learning) : Lecture 10"
+  },
+  {
+    "text": "stands for random. So, how am I going to construct this corpus? So, I take a word. I know all",
+    "start": 225.24,
+    "end": 230.2,
+    "ocr_text": "e D = [(sat, on), (sat,\n\na), (on,chair), (a,chair),\n(on,sat), (a, sat),\n(chair ant (a, on),\n(\n\nchair, on), (chair, a) |\n\ne D' = ((sat,\n\n(sat, magic), (chair,\n\nsad), (chair, walking)]\n\nchair), (on,\n\noxygen),\n\ne Let D be the set of all correct (w,c¢) pairs in the\n\ncorpus\n\ne Let D’ be the set of all incorrect (w,7) pairs in\n\nthe corpus\n\nDeep Learnir"
+  },
+  {
+    "text": "the words which appeared with it and I know all these other words which have not appeared",
+    "start": 230.2,
+    "end": 233.8,
+    "ocr_text": "e D = [(sat, on), (sat,\n\na), (on,chair), (a,chair),\n(on,sat), (a, sat),\n(chair ant (a, on),\n(\n\nchair, on), (chair, a) |\n\ne D' = ((sat,\n\n(sat, magic), (chair,\n\nsad), (chair, walking)]\n\nchair), (on,\n\noxygen),\n\ne Let D be the set of all correct (w,c¢) pairs in the\n\ncorpus\n\ne Let D’ be the set of all incorrect (w,7) pairs in\n\nthe corpus\n\nDeep Learnir"
+  },
+  {
+    "text": "with it. So, I will random be sample a word from there and put it as r. Is that fine?",
+    "start": 233.8,
+    "end": 238.88,
+    "ocr_text": "e D = [(sat, on), (sat,\n\na), (on,chair), (a,chair),\n(on,sat), (a, sat),\n(chair ant (a, on),\n(\n\nchair, on), (chair, a) |\n\ne D' = ((sat,\n\n(sat, magic), (chair,\n\nsad), (chair, walking)]\n\nchair), (on,\n\noxygen),\n\ne Let D be the set of all correct (w,c¢) pairs in the\n\ncorpus\n\ne Let D’ be the set of all incorrect (w,7) pairs in\n\nthe corpus\n\nDeep Learnir"
+  },
+  {
+    "text": "So, I can compute d prime again d prime comes for free d was always for free. Now, d prime",
+    "start": 238.88,
+    "end": 244.44,
+    "ocr_text": "e D = [(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\n\na), (sat, chair), (on, corpus\n\na), (ou,chair), (a,chair), e Let D’ be the set of all incorrect. (w,r) pairs in\n( si (a, sat), the corpus\n\nile al red ie e D' can be constructed by randomly sampling a\n\ncontext word r which has never appeared with w\n\ne D’ = ((sat, oxygen), and creating a pair (w,r)\n\n(sat, magic), (chair,\nsad), (chair, walking)]"
+  },
+  {
+    "text": "is also obviously for free. So, I have w comma c and w comma r and I have these corpus",
+    "start": 244.44,
+    "end": 250.08,
+    "ocr_text": "e D = [(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\n\na), (sat, chair), (on, corpus\n\na), (ou,chair), (a,chair), e Let D’ be the set of all incorrect. (w,r) pairs in\n( si (a, sat), the corpus\n\nile al red ie e D' can be constructed by randomly sampling a\n\ncontext word r which has never appeared with w\n\ne D’ = ((sat, oxygen), and creating a pair (w,r)\n\n(sat, magic), (chair,\nsad), (chair, walking)]"
+  },
+  {
+    "text": "d and d prime. And as before let v w be the representation of the word and u c be the",
+    "start": 250.08,
+    "end": 259.08,
+    "ocr_text": "e D = ([(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\n\na), (sat, chair), (on, corpus\n\na), (on,chair), (a,chair), e Let D’ be the set of all incorrect (w,7) pairs in\n( se (a, sat), the corpus\n\n(c a (a, on), e D’ can be constructed by randomly sampling a\n(chair, on), (chair, a) | . . °\n\ncontext word r which has never appeared with w\ne D’ = ([(sat, oxygen) and creating a pair (w,r)\n(sat, magic), (chair,\n\nsad), (chair, walking)]\n\nLeeture 10"
+  },
+  {
+    "text": "representation of the context word. So, v w will try to these two and u c will try to",
+    "start": 259.08,
+    "end": 265.16,
+    "ocr_text": "e D = ([(sat, on), (sat,\na), (sat, chair), (on,\na), (on,chair), (a,chair),\non,sat), (a, sat),\ni (a, on),\n\n(\n(ch\n(\n\nchair, on), (chair, a) |\n\nD' = [{(sat, oxygen),\n(sat, magic), (chair,\n\nsad), (chair, walking)]\n\nMitesh\n\ne Let D be the sct of all correct (w,c) pairs in the\ncorpus\n\ne Let D’ be the set of all incorrect. (w,r) pairs in\nthe corpus\n\ne D’ can be constructed by randomly sampling a\ncontext word r which has never appeared with w\nand creating a pair (w,7)\n\ne As before let(v,\\be the representation of the word\n\nw and/u,)be the representation of the context word\n\nGc #\n\nM. Kh"
+  },
+  {
+    "text": "these and u r is something else that we will use for this hopefully. Is that fine?",
+    "start": 265.16,
+    "end": 270.84,
+    "ocr_text": "e D = ([(sat, on), (sat,\na), (sat, chair), (on,\na), (on,chair), (a,chair),\n\non,sat), (a, sat),\n\n(\n(ch\n(\n\nchair, on), (chair, a) |\n\ne D' = ((sat, oxygen),\n(sat, magic), (chair,\n\nsad), (chair, walking)]\n\nLet D be the sct of all correct (w,c) pairs in the\n\ncorpus\n\nLet D be the set of alt incorrect! (w,r) pairs in\n\nthe corpus uy\nD can be cons by randomly sampling a\n\nw and/u,)be the represerttation of the context word\n\nc aaa"
+  },
+  {
+    "text": "Now, for a given w comma c which belongs to d which is the true corpus. What are we",
+    "start": 270.84,
+    "end": 278.72,
+    "ocr_text": "e D = ([(sat, on), (sat,\na), (sat, chair), (on,\na), (on,chair), (a,chair),\n\non,sat), (a, sat),\n\n(\n(ch\n(\n\nchair, on), (chair, a) |\n\ne D' = ((sat, oxygen),\n(sat, magic), (chair,\n\nsad), (chair, walking)]\n\nLet D be the sct of all correct (w,c) pairs in the\n\ncorpus\n\nLet D be the set of alt incorrect! (w,r) pairs in\n\nthe corpus uy\nD can be cons by randomly sampling a\n\nw and/u,)be the represerttation of the context word\n\nc aaa"
+  },
+  {
+    "text": "interested in maximizing? So, let us think of z as a random variable whether which tells",
+    "start": 278.72,
+    "end": 282.92,
+    "ocr_text": "@ For a given (w,c) € D we are interested in max\nimizing\nP(z = 1lu,c) 8\n\n| p(z = 1|w,c)\n\nUe Uw\n\nMitesh M. Khapra 387015 (Deep Learning) : Lecture 10,"
+  },
+  {
+    "text": "us whether this is a true pair or not. So, given w comma c I want to maximize that p",
+    "start": 282.92,
+    "end": 289.48,
+    "ocr_text": "@ For a given (w,c) € D we are interested in max\nimizing\nP(z = 1lu,c) 8\n\n| p(z = 1|w,c)\n\nUe Uw\n\nMitesh M. Khapra 387015 (Deep Learning) : Lecture 10,"
+  },
+  {
+    "text": "of z is equal to 1. Now, this is what I want to maximize. Now, it depends on me how do",
+    "start": 289.48,
+    "end": 296.68,
+    "ocr_text": "e For a given (w,c) € D we are interested in max-\nimizing\nP(z = llw,c) 8\n\n| p(z = 1fw,e)\n\nUe Uw\n\nMitesh M. Khapra 187015 (Deep Learning) : Lecture 10"
+  },
+  {
+    "text": "I model this probability. So, can you guess how am I going to model this? The answer is",
+    "start": 296.68,
+    "end": 303.6,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nimizing\nP(z = llw,c) 8\n\n] p(z = 1fw,e)\n\nMitesh M. Khapra 187015 (Deep Learning) : Leeture 10"
+  },
+  {
+    "text": "there in the figure. Can you tell me what is the model that I have chosen? Can you tell",
+    "start": 303.6,
+    "end": 306.68,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nimizing\nP(z = llw,c) 8\n\n] p(z = 1fw,e)\n\nMitesh M. Khapra 187015 (Deep Learning) : Leeture 10"
+  },
+  {
+    "text": "me what is the formula for z equal to 1 given w comma c that I have chosen? This stands",
+    "start": 306.68,
+    "end": 313.16,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nimizing\nP(z = 1lw,c) 8\n\n| p(z = 1fw,e)\n\nUe Uw\n\n‘015 (Deep"
+  },
+  {
+    "text": "for dot product this stands for the sigmoid function. I know this is some u c representation",
+    "start": 313.16,
+    "end": 317.6,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nimizing\nP(z = 1lw,c) 8\n\n| p(z = 1fw,e)\n\nUe Uw\n\n‘015 (Deep"
+  },
+  {
+    "text": "this is some v w representation. Note that these representations are not learned yet. I",
+    "start": 317.6,
+    "end": 322.68,
+    "ocr_text": "@ For a given (w,c) € D we are interested in max\nimizin\nP(z = llw,c) 8\n\np(z = 1fw,e)\n\ne Let us model this probability by\n\nHf g >\n\np(z = lw,c) = o(ur vw)\n1\n\nUw"
+  },
+  {
+    "text": "need to learn them using the training objective that I set. But at the beginning they are",
+    "start": 322.68,
+    "end": 327.32,
+    "ocr_text": "@ For a given (w,c) € D we are interested in max\nimizin\nP(z = llw,c) 8\n\np(z = 1fw,e)\n\ne Let us model this probability by\n\nHf g >\n\np(z = lw,c) = o(ur vw)\n1\n\nUw"
+  },
+  {
+    "text": "initialized to some random values. And the way I am going to model probability of z equal",
+    "start": 327.32,
+    "end": 332.04,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nimizin\nP(z = 1\\u,c) Zs\n\n| p(z = 1fw,e)\n\ne Let us model this probability by\n\np(z = 1|w,c) = o(ur vw)\n1\n\n~ 4 en ulow"
+  },
+  {
+    "text": "to 1 given w c is that I am going to say that it is just the sigmoid function of the dot",
+    "start": 332.04,
+    "end": 337.48,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nimizin\nP(z = 1\\u,c) Zs\n\n| p(z = 1fw,e)\n\ne Let us model this probability by\n\np(z = 1|w,c) = o(ur vw)\n1\n\n~ 4 en ulow"
+  },
+  {
+    "text": "product between them. How many if you get this? I am comfortable with this. This is the",
+    "start": 337.48,
+    "end": 341.32,
+    "ocr_text": "e For a given (w,c) € D we are interested in max-\nimizing\n\np(z = 1fw,e)\ne Let us model this probability by\n\np(z = 1lw,c) = o(ur oy\n\nMites\n\nh M. Khapra 15 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "modeling choice which I have made or rather the authors of Scribgurama.",
+    "start": 341.32,
+    "end": 345.8,
+    "ocr_text": "e For a given (w,c) € D we are interested in max-\nimizing\n\np(z = 1fw,e)\ne Let us model this probability by\n\np(z = 1lw,c) = o(ur oy\n\nMites\n\nh M. Khapra 15 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "Now, how am I going to now what do I want to do for all w comma c belonging to d? I",
+    "start": 345.8,
+    "end": 352.32,
+    "ocr_text": "e For a given (w,c) € D we are interested in max-\nimizing\nP(z= llw,c) mizing,\n\n] p(z = 1\\w,c)\ne Let us model this probability by\n\np(z = llw,c) = o(ue Uw,\n\nMitesh M. KI"
+  },
+  {
+    "text": "want to maximize this probability. Is that fine? For all the w comma c pairs which belong",
+    "start": 352.32,
+    "end": 359.4,
+    "ocr_text": "e For a given (w,c) € D we are interested in max-\nimizing\nP(z= llw,c) mizing,\n\n] p(z = 1\\w,c)\ne Let us model this probability by\n\np(z = llw,c) = o(ue Uw,\n\nMitesh M. KI"
+  },
+  {
+    "text": "to my true corpus which is the d corpus I want this probability to be high. How many",
+    "start": 359.4,
+    "end": 364.28,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nPlz _ Lw c) imizing\nz= ;\n\n| p(z = 1\\w,e) =.\n\ne Let us model this probability by"
+  },
+  {
+    "text": "such pairs do I have? Many many right. So, let us call them as I have n such w comma c pairs.",
+    "start": 364.28,
+    "end": 369.72,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nPlz _ Lw c) imizing\nz= ;\n\n| p(z = 1\\w,e) =.\n\ne Let us model this probability by"
+  },
+  {
+    "text": "So, can you tell me what my loss function is going to look like? Maximize this for the",
+    "start": 369.72,
+    "end": 376.16,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nimizing\nP(z= llu,c) 8\n\n| pz = 1\\w,e) =.\n\nis)\n\ne Let us model this probability by\n\np(z = llw,c) = o(ur vn,\n\nUe Uw\n\n15 (Deep ning) : Lecture 10"
+  },
+  {
+    "text": "first pair and for the second pair and for the third pair all the way up to the n pairs.",
+    "start": 376.16,
+    "end": 382.24,
+    "ocr_text": "1jw,c)\n\ne For a given (w,c) € D we are interested in max\nimizing\n\ne Let us model this probability by\n\np(z = llw,c) = o(us Uw,"
+  },
+  {
+    "text": "So, what is it going to look like? For every w comma c which belongs to my correct corpus",
+    "start": 382.24,
+    "end": 388.4,
+    "ocr_text": "1jw,c)\n\ne For a given (w,c) € D we are interested in max\nimizing\n\ne Let us model this probability by\n\np(z = llw,c) = o(us Uw,"
+  },
+  {
+    "text": "I want to maximize that probability of z equal to 1 given that w comma c pair right.",
+    "start": 388.4,
+    "end": 394.48,
+    "ocr_text": "Ue\n\nP(z\n\nis)\n\n1Jw,c)\n\nUw\n\nFor a given (w,c) € D we arc interested in max\nimizing\n\np(z = 1\\w,e)\nLet us model this probability by\n\np(z = lw,c) = o(ur vw)\n1\n\n~ 14 e-wow\n\nConsidering all (w,c) € D, we are interested in\n\nimize Il p(z = 1lw,c)\n1)\n\nma,\n\n(we\n\nwhere @ is the word representation (v,) and con-\ntext representation (u,) forall words in our corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "And since it is an n I will have this product. How many if you are comfortable with this?",
+    "start": 394.48,
+    "end": 399.28,
+    "ocr_text": "Ue\n\nP(z\n\nis)\n\n1Jw,c)\n\nUw\n\nFor a given (w,c) € D we arc interested in max\nimizing\n\np(z = 1\\w,e)\nLet us model this probability by\n\np(z = lw,c) = o(ur vw)\n1\n\n~ 14 e-wow\n\nConsidering all (w,c) € D, we are interested in\n\nimize Il p(z = 1lw,c)\n1)\n\nma,\n\n(we\n\nwhere @ is the word representation (v,) and con-\ntext representation (u,) forall words in our corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "So, this essentially and this is something that you do regularly you should have done",
+    "start": 399.28,
+    "end": 403.6,
+    "ocr_text": "Ue\n\nP(z= llw,c)\n\nis)\n\nUw\n\nFor a given (w,c) € D we arc interested in max\nimizing\n\np(z = 1|w,c)\nLet us model this probability by\n\np(z = l|w,c) = o(ur vw)\n1\n\n~ 4 en ul ow\n\nConsidering all (w,c) € D, we are interested in\n\nimize Il p(z = 1\\w,c)\n(we) GD)\n\nma,\n\nwhere @ is the word representation (2) and con-\n\ntext representation (u,) for all words in our corpus"
+  },
+  {
+    "text": "this in machine learning or pattern recognition or some way right. That you want to basically",
+    "start": 403.6,
+    "end": 407.88,
+    "ocr_text": "Ue\n\nP(z= llw,c)\n\nis)\n\nUw\n\nFor a given (w,c) € D we arc interested in max\nimizing\n\np(z = 1|w,c)\nLet us model this probability by\n\np(z = l|w,c) = o(ur vw)\n1\n\n~ 4 en ul ow\n\nConsidering all (w,c) € D, we are interested in\n\nimize Il p(z = 1\\w,c)\n(we) GD)\n\nma,\n\nwhere @ is the word representation (2) and con-\n\ntext representation (u,) for all words in our corpus"
+  },
+  {
+    "text": "maximize the log likelihood of the data which is saying that you want to maximize the",
+    "start": 407.88,
+    "end": 411.72,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nimizin\nP(z = 1|w,c) 8\n\n| p(z = 1fw,e)\n\ne Let us model this probability by\n\nQ\n\np(z = llw,c) = a(n vw)\n1\n\n1 4 en ul ow\n\ne Considering all (w,¢) € D, we are interested in\n\nUe Vw\n\nwhere @ is the word representation (2) and con-\ntext representation (u,) forall words in our corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "probability of every training instance which is saying that you want to maximize the",
+    "start": 411.72,
+    "end": 415.8,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\nimizin\nP(z = 1|w,c) 8\n\n| p(z = 1fw,e)\n\ne Let us model this probability by\n\nQ\n\np(z = llw,c) = a(n vw)\n1\n\n1 4 en ul ow\n\ne Considering all (w,¢) € D, we are interested in\n\nUe Vw\n\nwhere @ is the word representation (2) and con-\ntext representation (u,) forall words in our corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "end of all these probabilities right. You take the end of all of them is that fine?",
+    "start": 415.8,
+    "end": 420.88,
+    "ocr_text": "Uc\n\nP(z\n\nHf q >\n\n1Jw,c)\n\nUw\n\nFor a given (w,c) € D we arc interested in max\nimizing\n\np(z = 1|w,c)\nLet us model this probability by\n\np(z = l|w,c) = o(ur vw)\n1\n\n~ [4 enulow\n\nConsidering all (w,c) € D, we are interested in\n\nwhere @ is the word representation (2) and con-\ntext representation (u,) forall words in our corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "Now, for the other case w are belonging to D prime what is it that I want to maximize",
+    "start": 420.88,
+    "end": 430.48,
+    "ocr_text": "Uc\n\nP(z\n\nHf q >\n\n1Jw,c)\n\nUw\n\nFor a given (w,c) € D we arc interested in max\nimizing\n\np(z = 1|w,c)\nLet us model this probability by\n\np(z = l|w,c) = o(ur vw)\n1\n\n~ [4 enulow\n\nConsidering all (w,c) € D, we are interested in\n\nwhere @ is the word representation (2) and con-\ntext representation (u,) forall words in our corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "this probability right because I know this is an incorrect pair. So, I want my random variable",
+    "start": 430.48,
+    "end": 434.6,
+    "ocr_text": ") = ul : . . soe\ne For (w,r) € D we arc interested in maximizing\n\nP(z = 0lw,r) plz = Ojw,r)\n\nQ\n\nUy Uw"
+  },
+  {
+    "text": "to output 0. Now, what is this going to be the probability 1 minus the probability that",
+    "start": 434.6,
+    "end": 441.08,
+    "ocr_text": ") = ul : . . soe\ne For (w,r) € D we arc interested in maximizing\n\nP(z = 0lw,r) plz = Ojw,r)\n\nQ\n\nUy Uw"
+  },
+  {
+    "text": "it was correct and that actually if you just simplify a bit it turns out to be this.",
+    "start": 441.08,
+    "end": 447.76,
+    "ocr_text": "e For (w,r) € D we arc interested in maximizing\nP(z = 0lw,r)\n\n+ e Again we model this as\n\n_ p(z = Olw,r) = 1— o(ur vw)\n©\n\nUp Vw\n\nMitesh M. Kha 15 (Deep ning) : Lecture 10"
+  },
+  {
+    "text": "Now, for all the elements which belong to D prime what is the objective function that",
+    "start": 447.76,
+    "end": 452.52,
+    "ocr_text": "Uy\n\nP(z=0lw,r)\n\nUw\n\nMit\n\ne For (w,r) € D we arc interested in maximizing\n\np(z = Olw,r)\n\ne Again we model this as\n\np(z = Olw,r) = 1—a(ul vy)\n\n1\nlL:\n~ Lp em ew\n\n=1-\n\n: . 7 us : :\ne Considering all (w,r) € D , we are interested in\n\nmaximize Il p(z = Olw,r)\n(w,r)eD\"\n\nh M.K ture 10"
+  },
+  {
+    "text": "I have? I want to maximize this for the first w comma r random pair for the second w",
+    "start": 452.52,
+    "end": 459.32,
+    "ocr_text": "Uy\n\nP(z=0lw,r)\n\nUw\n\nMit\n\ne For (w,r) € D we arc interested in maximizing\n\np(z = Olw,r)\n\ne Again we model this as\n\np(z = Olw,r) = 1—a(ul vy)\n\n1\nlL:\n~ Lp em ew\n\n=1-\n\n: . 7 us : :\ne Considering all (w,r) € D , we are interested in\n\nmaximize Il p(z = Olw,r)\n(w,r)eD\"\n\nh M.K ture 10"
+  },
+  {
+    "text": "comma r random pair and so on for all the random pairs in my corpus. So, it is just going",
+    "start": 459.32,
+    "end": 464.0,
+    "ocr_text": "e For (w,r) € D we arc interested in maximizing\nP(z =0lu,r\n\n| = 0|w,r)\no\ne Again we model this as\np(z = O|w,r) = 1—o(ul vy)\n1\n=|- .\n1+ e tr tw\nit .\n= 7 =a( ul Vw\n1+ euro\ne@ Considering all (w,r) € D’, we are interested in\nUp Uy\n\nmaximize II P(e w,T\n(wre\n\nMitesh M. K"
+  },
+  {
+    "text": "to be a product of all these probabilities is that fine? So, now what is my total objective",
+    "start": 464.0,
+    "end": 468.44,
+    "ocr_text": "e For (w,r) € D we arc interested in maximizing\nP(z =0lu,r\n\n| = 0|w,r)\no\ne Again we model this as\np(z = O|w,r) = 1—o(ul vy)\n1\n=|- .\n1+ e tr tw\nit .\n= 7 =a( ul Vw\n1+ euro\ne@ Considering all (w,r) € D’, we are interested in\nUp Uy\n\nmaximize II P(e w,T\n(wre\n\nMitesh M. K"
+  },
+  {
+    "text": "function? For every pair in D maximize that for every pair in D and for every pair in D",
+    "start": 468.44,
+    "end": 475.72,
+    "ocr_text": "+ Ul : . . soe\ne For (w,r) € D we are interested in maximizing\nP(z =0lw,r\n= 0|w,r)\n\ne Again we model this as\n\n=1-a(ul vw)\n\np(z = Ow,\n-1 1\n1 r\n~ 1+ Cun Ow ~ a( Up Vw)\n\n. : - td . :\ne Considering all (w,r) € D , we are interested in\n\nUy Vw\nmaximize Il pl =obw,\n\n(wre!\n\n15 (Deep"
+  },
+  {
+    "text": "prime maximize the 0 probability. So, what is the total going to be? Is this fine? How",
+    "start": 475.72,
+    "end": 482.92,
+    "ocr_text": "e For (w,r) € D we arc interested in maximizing\n\nP(z 7 r) ple = Olw,r)\n\no\ne Again we model this as\n; TP.\np(z = Olw,r) = 1 —a(uz vw)\n1 1\n<1 pete\n1 -\nTy\nine a(—U;, Vw)\n© Considering all (w,r) € D’, we are interested in\nUy Uw\n\nmaximize Il plz = Owe.) >)\n\n(w,r)eD!\n\nMitesh M. K"
+  },
+  {
+    "text": "many if you agree with this? So, for everything belonging to D I had this AND rule. For everything",
+    "start": 482.92,
+    "end": 488.76,
+    "ocr_text": "e For (w,r) € D we arc interested in maximizing\n\nP(z 7 r) ple = Olw,r)\n\no\ne Again we model this as\n; TP.\np(z = Olw,r) = 1 —a(uz vw)\n1 1\n<1 pete\n1 -\nTy\nine a(—U;, Vw)\n© Considering all (w,r) € D’, we are interested in\nUy Uw\n\nmaximize Il plz = Owe.) >)\n\n(w,r)eD!\n\nMitesh M. K"
+  },
+  {
+    "text": "belonging D prime I had another AND rule and I am interested in both the ANDs right.",
+    "start": 488.76,
+    "end": 494.32,
+    "ocr_text": "@ Combining the two we get:\n\nIl p(z = I\\w,c) Il p(z = Olw,r)\n\n(w,c)ED (w,r)eD’\n\nx\nll\n\nP( Olw,r)\n\nUp Uw\n\nMitesh M. Khapra 15 (Deep Learni Leeture 10"
+  },
+  {
+    "text": "So, this for D and maximize for D prime of course, different quantities for D and D prime",
+    "start": 494.32,
+    "end": 498.32,
+    "ocr_text": "@ Combining the two we get:\n\nIl p(z = I\\w,c) Il p(z = Olw,r)\n\n(w,c)ED (w,r)eD’\n\nx\nll\n\nP( Olw,r)\n\nUp Uw\n\nMitesh M. Khapra 15 (Deep Learni Leeture 10"
+  },
+  {
+    "text": "fine. So, you get this once you basically take the log and so on. So, this is a simple",
+    "start": 498.32,
+    "end": 503.98,
+    "ocr_text": "Combining the two we get:\n\nII pP(z = l\\w,c) Il p(z = O|w,r)\n\n(w,e)ED (wre D\"\nSmaximize I] eG =te.d T] G-pG = 1,1)\n(w,e)eD (w rep!\n> log p(z = 1\\w,¢)\n(w,c)ED\n+ > log(1 — p(z = 1lw,r))\n(w,r)eD!\nSMaxtinize > log — + > log oe\n8 Ll+erts tw i 1 + etn Uw\n(w,e)ED (w,r)eD\nrimize solve v > o(—v vy\n=maximize > log o(v, Uw) + > log o(—v, v\n(w,c)ED (w,r)eD!\n\nwhere o(x7) ="
+  },
+  {
+    "text": "set of map operations that I do you will end up with this neat formula that for all the",
+    "start": 503.98,
+    "end": 511.48,
+    "ocr_text": "Combining the two we get:\n\nII pP(z = l\\w,c) Il p(z = O|w,r)\n\n(w,e)ED (wre D\"\nSmaximize I] eG =te.d T] G-pG = 1,1)\n(w,e)eD (w rep!\n> log p(z = 1\\w,¢)\n(w,c)ED\n+ > log(1 — p(z = 1lw,r))\n(w,r)eD!\nSMaxtinize > log — + > log oe\n8 Ll+erts tw i 1 + etn Uw\n(w,e)ED (w,r)eD\nrimize solve v > o(—v vy\n=maximize > log o(v, Uw) + > log o(—v, v\n(w,c)ED (w,r)eD!\n\nwhere o(x7) ="
+  },
+  {
+    "text": "w comma c pairs belonging to D you want to maximize this quantity which means you want",
+    "start": 511.48,
+    "end": 519.08,
+    "ocr_text": "@ Combining the two we get:\n\nP(z= = Ow, r) maximize II p(z = I\\w,c) ) II p(z = O|w,r)\n(w,c)ED (wreD’\n- Smaximize II p(z = lw, c) lI (1 = p(z = 1fw,r))\n(w,c)ED (web!\n\nSmavimize > log p(z = 1\\w,¢)\n©) (w,c)ED\n\nt > log(1 — p(z = 1|w,r))\n\n(w.r)eD!\nMALTMAtZe > log 1 ~ + > log —oe\n“oe” Bp ere Sie ,\n(w,e)€D tune D!\nSmavimiz > log o(v Pony) + SS log o(—vs vw)\n(w,c)ED (w,r)eD’\nVw\n« where o(x) = im =\n\nMitesh M. K\n\n5 (Deep"
+  },
+  {
+    "text": "to maximize what? You want to maximize the when will this quantity be maximized? When",
+    "start": 519.08,
+    "end": 524.96,
+    "ocr_text": "P(z = 0lw,7\n\nI\n\noO\n\nMit\n\n@ Combining the two we get:\n\nmaximize II p(z = l\\w,ec) ll p(z = O|w,r)\n(w,e)ED (wre D’\nSmaximize I] e@=te.d T] G-pG = 1,1)\n(wye)ED (wrjeD!\nsmarimize > log p(z = 1|w,c)\n(w,c)ED\n+ > log(1 — p(z = 1|w,r))\n(w,r)eD!\n=Maxtnize 1\nmae € > Og —>r—\n\n(w,e)ED l+e\n\n=maximize\n@\n\n> log o(—v7 vw)\n\n(w,r)ED\n\nwhere o(x) =\n\nh M\n\n‘015 (Deep"
+  },
+  {
+    "text": "the dot product between the two is high that means again what are you doing? You are trying",
+    "start": 524.96,
+    "end": 530.16,
+    "ocr_text": "P(z = 0lw,7\n\nI\n\noO\n\nMit\n\n@ Combining the two we get:\n\nmaximize II p(z = l\\w,ec) ll p(z = O|w,r)\n(w,e)ED (wre D’\nSmaximize I] e@=te.d T] G-pG = 1,1)\n(wye)ED (wrjeD!\nsmarimize > log p(z = 1|w,c)\n(w,c)ED\n+ > log(1 — p(z = 1|w,r))\n(w,r)eD!\n=Maxtnize 1\nmae € > Og —>r—\n\n(w,e)ED l+e\n\n=maximize\n@\n\n> log o(—v7 vw)\n\n(w,r)ED\n\nwhere o(x) =\n\nh M\n\n‘015 (Deep"
+  },
+  {
+    "text": "to bring the context vectors close to the word vectors again transitively what will happen?",
+    "start": 530.16,
+    "end": 535.56,
+    "ocr_text": "@ Combining the two we get:\n\nP(z=0|w,r) maximize II p(z = 1\\w,c) ) II p(z = Olw,r)\n(weed (wre D'\nz Smaximize I] eG =he.d T] G-pG = 1,7)\n(w,e)ED (wrjeD!\n\n=maximize » log p(z = 1\\w,¢)\n8\n\n(w,c)ED\n© + SP log(t — p(z = 1fw,r))\n\n(w,r)eD!\n=Maxtmnize l ——_|+=—\nmoe € > Og ——— ,\n(w,e)eD\nSmaximize loga (3s y > log o(—v, vow)\n(w,e)ED> — (w,r)ED!\n\nVw\nu where a(x) = —\n\nMitesh M. K ‘015 (Deep"
+  },
+  {
+    "text": "The words which appear in the same context will go close to each other. What is the additional",
+    "start": 535.56,
+    "end": 539.32,
+    "ocr_text": "R\n\nOlw,\n\nr)\n\nMit\n\n@ Combining the two we get:\n\nmaximize II p(z = Iw, c)\n\nIl p(z = O|w,r)\n\n(w,e)ED (wre D\"\nSmaximize I] eG =te.d T] G-pG = 1,1)\n(w,e)ED (web!\nsmaximize > log p(z = 1\\w,c)\n(w,c)ED\n+ > log(1 — p(z = 1w,r\n(w,r)eD!\n\n1\n=Maxtmnize log\n¢ bo Se Tew l+e\n\n(w,e)ED\n\n=mMaximize\n@\n\nSS log o(—v7 vw)\n\n(w,r)eD!\n\nwhere o(x) =\n\nh M. K ‘015 (Deep"
+  },
+  {
+    "text": "thing that you are ensuring here? The words which do not appear in the same context you",
+    "start": 539.32,
+    "end": 543.0,
+    "ocr_text": "R\n\nOlw,\n\nr)\n\nMit\n\n@ Combining the two we get:\n\nmaximize II p(z = Iw, c)\n\nIl p(z = O|w,r)\n\n(w,e)ED (wre D\"\nSmaximize I] eG =te.d T] G-pG = 1,1)\n(w,e)ED (web!\nsmaximize > log p(z = 1\\w,c)\n(w,c)ED\n+ > log(1 — p(z = 1w,r\n(w,r)eD!\n\n1\n=Maxtmnize log\n¢ bo Se Tew l+e\n\n(w,e)ED\n\n=mMaximize\n@\n\nSS log o(—v7 vw)\n\n(w,r)eD!\n\nwhere o(x) =\n\nh M. K ‘015 (Deep"
+  },
+  {
+    "text": "are trying to push them apart why? Because of the second loss function. So, you see the",
+    "start": 543.0,
+    "end": 547.32,
+    "ocr_text": "R\n\nOlw,\n\nr)\n\nMit\n\n@ Combining the two we get:\n\nmaximize II p(z = Iw, c)\n\nIl p(z = O|w,r)\n\n(w,e)ED (wre D\"\nSmaximize I] eG =te.d T] G-pG = 1,1)\n(w,e)ED (web!\nsmaximize > log p(z = 1\\w,c)\n(w,c)ED\n+ > log(1 — p(z = 1w,r\n(w,r)eD!\n\n1\n=Maxtmnize log\n¢ bo Se Tew l+e\n\n(w,e)ED\n\n=mMaximize\n@\n\nSS log o(—v7 vw)\n\n(w,r)eD!\n\nwhere o(x) =\n\nh M. K ‘015 (Deep"
+  },
+  {
+    "text": "difference between the two now. In the first case you are only opt I mean you are obsessed",
+    "start": 547.32,
+    "end": 552.08,
+    "ocr_text": "Up\n\nR\n\nQ\n\nOlw,r)\n\nUw\n\nMit\n\n@ Combining the two we get:\n\n) II p(z = Olw,r)\n\nmaximize II p(z = 1\\w,c)\n\n(w,c)ED (wre b\"\nSmaximize I] eG =te.d T] G-pG = 1,7)\n(w,e)ED (wep!\nsmaximize > log p(z = 1\\w,c)\n(w,e)ED\n+ > log(1 — p(z = 1w,r\n(w.r)eD’\n\n: 1\n=maximize > log ———-— S + > log Ten\n\n(we) D Ite\nSS log o(—v;. vu\n\n(w,r)eD! a\n\nh M.K"
+  },
+  {
+    "text": "with bringing things close together. Here you are also focusing on the case that where you",
+    "start": 552.08,
+    "end": 556.68,
+    "ocr_text": "Up\n\nR\n\nQ\n\nOlw,r)\n\nUw\n\nMit\n\n@ Combining the two we get:\n\n) II p(z = Olw,r)\n\nmaximize II p(z = 1\\w,c)\n\n(w,c)ED (wre b\"\nSmaximize I] eG =te.d T] G-pG = 1,7)\n(w,e)ED (wep!\nsmaximize > log p(z = 1\\w,c)\n(w,e)ED\n+ > log(1 — p(z = 1w,r\n(w.r)eD’\n\n: 1\n=maximize > log ———-— S + > log Ten\n\n(we) D Ite\nSS log o(—v;. vu\n\n(w,r)eD! a\n\nh M.K"
+  },
+  {
+    "text": "do not want certain things to be close together because they never appeared in the same context.",
+    "start": 556.68,
+    "end": 560.56,
+    "ocr_text": "@ Combining the two we get:\n\nP(z=0|w,r) maximize II p(z = I\\w,c) ll p(z = O|w,r)\n(w,e)ED (w reD’\n> Smaximize I] e@=he.d T] G-pG =1le,r)\n(w,e)ED (wrjeD!\n\n=maximize ) logp(z = 1|w,c)\n8\n\n(w,c)ED\n©) + > log(1 — p(z = 1w,r\n\n(w,r)eD!\n\n=Maxtmnize y log ———,.—\n6\n\n(w,e)ED\n\n=maximize , > log o(—v Vy\n@ ° =\n\n(wr)eD! =\n\nl+e\n\nUr Vw\n\nMitesh M. K"
+  },
+  {
+    "text": "Is that fine? So, you see that this is a more powerful loss function than the earlier",
+    "start": 560.56,
+    "end": 564.12,
+    "ocr_text": "@ Combining the two we get:\n\nP(z=0|w,r) maximize II p(z = I\\w,c) ll p(z = O|w,r)\n(w,e)ED (w reD’\n> Smaximize I] e@=he.d T] G-pG =1le,r)\n(w,e)ED (wrjeD!\n\n=maximize ) logp(z = 1|w,c)\n8\n\n(w,c)ED\n©) + > log(1 — p(z = 1w,r\n\n(w,r)eD!\n\n=Maxtmnize y log ———,.—\n6\n\n(w,e)ED\n\n=maximize , > log o(—v Vy\n@ ° =\n\n(wr)eD! =\n\nl+e\n\nUr Vw\n\nMitesh M. K"
+  },
+  {
+    "text": "one. So, that is what the skip graph model does and in the original paper, Michel Overtal",
+    "start": 564.12,
+    "end": 571.56,
+    "ocr_text": "@ Combining the two we get:\n\nP(z=0|w,r) maximize II p(z = I\\w,c) ll p(z = O|w,r)\n(w,e)ED (w reD’\n> Smaximize I] e@=he.d T] G-pG =1le,r)\n(w,e)ED (wrjeD!\n\n=maximize ) logp(z = 1|w,c)\n8\n\n(w,c)ED\n©) + > log(1 — p(z = 1w,r\n\n(w,r)eD!\n\n=Maxtmnize y log ———,.—\n6\n\n(w,e)ED\n\n=maximize , > log o(—v Vy\n@ ° =\n\n(wr)eD! =\n\nl+e\n\nUr Vw\n\nMitesh M. K"
+  },
+  {
+    "text": "sample K random pairs for every positive pair. So, that means if your size of D was N what",
+    "start": 571.64,
+    "end": 578.56,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = O|w,r) negative (w,1) pairs for every positive (w,¢) pairs\n\n1. Khapra"
+  },
+  {
+    "text": "would the size of D prime be K into N? So, that they had that many positive examples",
+    "start": 580.76,
+    "end": 586.8,
+    "ocr_text": "e In the original paper, Mikolov et. al._samy\nP(z =0|w,r) neato) Pa for every’ positige (w, ¢) pairs\n\nMitesh M. Khapra 015 (Deep Learnir"
+  },
+  {
+    "text": "and K times that the number of negative examples and this was a hyper parameter which was tuned",
+    "start": 586.8,
+    "end": 592.84,
+    "ocr_text": "e In the original paper, Mikolov et\nP(z = Olw, r) neato PD for every’ positi (w, c) pairs\n\n7015 (Deep I"
+  },
+  {
+    "text": "and they used a value of K such that it gave them the best results.",
+    "start": 592.84,
+    "end": 601.28,
+    "ocr_text": "e In the original paper, Mikolov et\nP(z = Olw, r) neato PD for every’ positi (w, c) pairs\n\n7015 (Deep I"
+  },
+  {
+    "text": "So, remember that we have this problem of constructing W comma R. Now, I said that consider",
+    "start": 601.28,
+    "end": 608.28,
+    "ocr_text": "P(\n\nz= 0|w,r)\n\nVw\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n© The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\n‘015 (Deep"
+  },
+  {
+    "text": "all the words which do not appear with your word and sample from there and put something",
+    "start": 608.28,
+    "end": 613.8,
+    "ocr_text": "P(\n\nz= 0|w,r)\n\n©\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,¢) pairs\n\ne The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nM. Khapra 387015 (Deep Learning) : Lecture 10\n\nMitesh"
+  },
+  {
+    "text": "there. So, they used a slightly so that means how do I sample that? One is I assign all",
+    "start": 613.8,
+    "end": 619.6,
+    "ocr_text": "P(\n\nz= 0|w,r)\n\n©\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,¢) pairs\n\ne The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nM. Khapra 387015 (Deep Learning) : Lecture 10\n\nMitesh"
+  },
+  {
+    "text": "the words a uniform distribution that every word is equally likely what is a better way",
+    "start": 619.6,
+    "end": 624.2,
+    "ocr_text": "P(\n\nz=0|w,r)\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\n@ The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\n‘015 (Deep"
+  },
+  {
+    "text": "of doing that? I think I will just finish this next time.",
+    "start": 624.2,
+    "end": 627.6,
+    "ocr_text": "P(\n\nz=0|w,r)\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\n@ The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\n‘015 (Deep"
+  }
+]

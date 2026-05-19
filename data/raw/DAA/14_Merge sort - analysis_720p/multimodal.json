@@ -1,0 +1,932 @@
+[
+  {
+    "text": "So, we have seen how to use a divide and conquer strategy to implement a sorting algorithm",
+    "start": 0.0,
+    "end": 6.7,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge sort: Analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "called merge sort.",
+    "start": 6.7,
+    "end": 7.7,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge sort: Analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, now we want to analyze whether merge sort actually behaves better than our order n squared",
+    "start": 7.7,
+    "end": 13.82,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge sort: Analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "intuitive sorts like insertion sort and selection sort.",
+    "start": 13.82,
+    "end": 17.86,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge sort: Analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, in order to analyze merge sort, we first need to look at the merge operation itself.",
+    "start": 17.86,
+    "end": 23.98,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge sort: Analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, remember that when we merge two sorted lists, what we do is we take both lists side by side",
+    "start": 24.38,
+    "end": 30.54,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 2, Module 6\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nMerge sort: Analysis\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "and we keep copying the smaller of the two elements at the head of each list into the final list",
+    "start": 30.54,
+    "end": 34.98,
+    "ocr_text": "// Merge A[@..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "C. So, this was the code that we wrote last time.",
+    "start": 34.98,
+    "end": 39.58,
+    "ocr_text": "// Merge A[@..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "So, basically we have a list A which runs from 0 to m minus 1 and we have another list",
+    "start": 39.58,
+    "end": 48.58,
+    "ocr_text": "// Merge A[@..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "B which runs from 0 to n minus 1 and we produce the output in a third list C which has",
+    "start": 48.58,
+    "end": 57.38,
+    "ocr_text": "i—\n\n// Merge A[@..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "indices from 0 to m plus n minus 1.",
+    "start": 57.38,
+    "end": 60.58,
+    "ocr_text": "J\n\n(e) ma\n\n// Merge A[@..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C Oe ae\n\n0 mens\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "So, what we do is we start by putting an index ij into these two lists and index k into",
+    "start": 60.58,
+    "end": 68.9,
+    "ocr_text": "J\n\n(e) ma\n\n// Merge A[@..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\n// Case 1: Move head of A into C Oe ae\n\n0 mens\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "the list C and we compare these two values and we take the smaller of the two values",
+    "start": 68.9,
+    "end": 72.86,
+    "ocr_text": "// Merge A[@..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\nke\n\n// Case 1: Move head of A into C eee\n\n0\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "and move it here and then we move this and then we keep moving these two indices and all",
+    "start": 72.86,
+    "end": 77.02,
+    "ocr_text": "// Merge A[@..m-1], B[@..n-1] into C[Q..m+n-1]\n\n// Current positions in A,B,C respectively\n\nke\n\n// Case 1: Move head of A into C eee\n\n0\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "the while we keep moving k. So, the question is how long does this take?",
+    "start": 77.02,
+    "end": 81.02,
+    "ocr_text": "// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\n\nmene |"
+  },
+  {
+    "text": "So, in each iteration notice that we add one element to C, right.",
+    "start": 81.02,
+    "end": 88.42,
+    "ocr_text": "// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\n\nmene |"
+  },
+  {
+    "text": "But the size of C is exactly m plus n because there are m elements in A and there are n elements",
+    "start": 88.42,
+    "end": 94.78,
+    "ocr_text": "// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\n\nmene |"
+  },
+  {
+    "text": "in B and each of them will eventually make it to C. So, there are m plus n elements,",
+    "start": 94.78,
+    "end": 100.02,
+    "ocr_text": "// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\n\nmene |"
+  },
+  {
+    "text": "right.",
+    "start": 100.02,
+    "end": 101.02,
+    "ocr_text": "// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "And in each iteration of this loop the loop that we had before, right. So, in each iteration",
+    "start": 101.02,
+    "end": 105.38,
+    "ocr_text": "// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "of this loop one element gets added to C either in this if or in this if k is incremented,",
+    "start": 105.38,
+    "end": 111.86,
+    "ocr_text": "// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "right. So, this list as you can see will make k will make progress in every iteration.",
+    "start": 111.86,
+    "end": 116.22,
+    "ocr_text": "// Case 1: Move head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "So, there is a bound of m plus n steps for this loop and in the loop we will if you count",
+    "start": 116.22,
+    "end": 121.3,
+    "ocr_text": "0 mee |\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "very carefully we have a comparison we may have one more comparison we have an assignment",
+    "start": 121.3,
+    "end": 125.34,
+    "ocr_text": "0 mee |\n\n// Case 2: Move head of B into C"
+  },
+  {
+    "text": "and so on.",
+    "start": 125.34,
+    "end": 126.34,
+    "ocr_text": "// Case CD: head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "But you can check that there are no more than seven steps involved. So, some constant number",
+    "start": 126.34,
+    "end": 130.38,
+    "ocr_text": "// Case CD: head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "of steps regardless of which branch we take in this, right. So, we have m plus n iterations",
+    "start": 130.38,
+    "end": 135.46,
+    "ocr_text": "// Case CD: head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "each of which has some constant number of steps. So, we have overall order m plus n steps.",
+    "start": 135.46,
+    "end": 141.18,
+    "ocr_text": "// Case CD: head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "But m plus n is of course bounded by two times the maximum of m plus n. So, we can just",
+    "start": 141.18,
+    "end": 145.82,
+    "ocr_text": "// Case CD: head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "say that this thing takes order of maximum m plus n. If m is roughly the same as n which",
+    "start": 145.82,
+    "end": 151.14,
+    "ocr_text": "// Case CD: head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "will typically be the case in merge sort because we split it in half. So, the two will",
+    "start": 151.14,
+    "end": 154.46,
+    "ocr_text": "// Case CD: head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "differ by at most one in terms of length. Then we find that merging is a linear time operation.",
+    "start": 154.46,
+    "end": 159.78,
+    "ocr_text": "// Case CD: head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "So, if we want to merge two lists it takes time proportional to the length of the two lists",
+    "start": 159.78,
+    "end": 164.3,
+    "ocr_text": "// Case CD: head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "together. So, now coming to merge sort itself what we want to do is we want to take a list",
+    "start": 164.3,
+    "end": 172.74,
+    "ocr_text": "// Case CD: head of A into C\n\n// Case 2: Move head of B into C\n\nmee |"
+  },
+  {
+    "text": "of size n, right and we want to split it into two lists of size n by 2, right and then",
+    "start": 172.74,
+    "end": 178.9,
+    "ocr_text": "* \\\n2t(r/2) {n)\n*"
+  },
+  {
+    "text": "we sort these separately and then we merge. So, in order to do this it is very clear that",
+    "start": 178.9,
+    "end": 186.98,
+    "ocr_text": "* \\\n2t(r/2) {n)\n*"
+  },
+  {
+    "text": "if we look at tn as the time taken by merge sort on an input of size n, then this requires",
+    "start": 186.98,
+    "end": 192.9,
+    "ocr_text": "* \\\n2t(r/2) {n)\n*"
+  },
+  {
+    "text": "us to sort two lists of size n by 2 and then as we have seen it takes order n time in",
+    "start": 192.9,
+    "end": 198.0,
+    "ocr_text": "* \\\n2t(r/2) {n)\n*"
+  },
+  {
+    "text": "order to merge them. Now, in order to compute this t of n explicitly we will assume that",
+    "start": 198.0,
+    "end": 207.54,
+    "ocr_text": "* \\\n2t(r/2) {n)\n*"
+  },
+  {
+    "text": "n is a power of 2. Now, it turns out that merge sort does not in any way require n to be",
+    "start": 207.54,
+    "end": 213.26,
+    "ocr_text": "* \\\n2t(r/2) {n)\n*"
+  },
+  {
+    "text": "a power of 2 not even an even number. If it is not even then when we split into two parts",
+    "start": 213.26,
+    "end": 218.42,
+    "ocr_text": "= ier\n——_ (n)\n* >"
+  },
+  {
+    "text": "they will not be equal because we cannot split an order number into two equal parts, but",
+    "start": 218.42,
+    "end": 222.84,
+    "ocr_text": "= ier\n——_ (n)\n* >"
+  },
+  {
+    "text": "it does not matter the algorithm will still look correctly. This assumption that n is",
+    "start": 222.84,
+    "end": 226.62,
+    "ocr_text": "= ier\n——_ (n)\n* >"
+  },
+  {
+    "text": "2 to the k is only a simplification for us to be able to come up with a nice calculation.",
+    "start": 226.62,
+    "end": 232.58,
+    "ocr_text": "———\ns (\")\n—\n* é t ) )"
+  },
+  {
+    "text": "So, we have two problems of size n by 2, 2 times t of n by 2 and then we have a merge",
+    "start": 232.58,
+    "end": 238.58,
+    "ocr_text": "———\ns (\")\n—\n* é t ) )"
+  },
+  {
+    "text": "of n. So, how do we solve something that is of course, we also have a base case which",
+    "start": 238.58,
+    "end": 242.42,
+    "ocr_text": "———\ns (\")\n—\n* é t ) )"
+  },
+  {
+    "text": "says that when we have only one element it takes no time except to just check that you",
+    "start": 242.42,
+    "end": 247.46,
+    "ocr_text": "———\ns (\")\n—\n* é t ) )"
+  },
+  {
+    "text": "have only one element. So, t of 1 is 1. So, if you have a solution an expression like",
+    "start": 247.46,
+    "end": 253.62,
+    "ocr_text": "———\ns (\")\n—\n* é t ) )"
+  },
+  {
+    "text": "this two recurrences like this then how do we solve them. So, the basic idea is to keep",
+    "start": 253.62,
+    "end": 258.98,
+    "ocr_text": "———\ns (\")\n—\n* é t ) )"
+  },
+  {
+    "text": "the simplest way to do it of course, you can come up with more sophisticated ways which",
+    "start": 258.98,
+    "end": 262.22,
+    "ocr_text": "———\ns (\")\n—\n* é t ) )"
+  },
+  {
+    "text": "we will not go into right now, but one simple way should just keep expanding using the same",
+    "start": 262.22,
+    "end": 267.46,
+    "ocr_text": "———\ns (\")\n—\n* é t ) )"
+  },
+  {
+    "text": "analysis the same expression until you come down to the base case. So, we start with",
+    "start": 267.46,
+    "end": 273.86,
+    "ocr_text": "———\ns (\")\n—\n* é t ) )"
+  },
+  {
+    "text": "the base case t 1 equal to 1 and the general case t n is 2 times t of n by 2 plus n. So,",
+    "start": 273.86,
+    "end": 281.26,
+    "ocr_text": "———\ns (\")\n—\n* é t ) )"
+  },
+  {
+    "text": "now what we can do is we can use the same equation to expand t of n by 2. So, we expand",
+    "start": 281.26,
+    "end": 287.62,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "t of n by 2 then we find that t of n by 2 becomes 2 times t of n by 4 plus n by 2 because",
+    "start": 287.62,
+    "end": 294.1,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "I take whatever is here divided by 2 so, n by 2 by 2 is n by 4 and I take whatever is here",
+    "start": 294.1,
+    "end": 298.26,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "and plug it in here so, n by 2 times. Now, if I expand this out carefully then this 2 and",
+    "start": 298.26,
+    "end": 304.9,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "this 2 other than write it as 4 I will write it as 2 squared I will also observe and this",
+    "start": 304.9,
+    "end": 310.38,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "will be useful that this 4 is again 2 squared right and then this n by 2 is multiplied. So,",
+    "start": 310.38,
+    "end": 319.54,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "this n by 2 is multiplied by 2 so, I get 2 times n by 2 so, that is n plus n so, I get 2 n.",
+    "start": 319.54,
+    "end": 325.54,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "So, it is not an accident that I have 2 squared 2 squared in 2 n as we will see if you do one more",
+    "start": 326.74,
+    "end": 331.3,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "step now if I take this expression t of n by 2 squared and I apply the same rule to this right.",
+    "start": 331.3,
+    "end": 340.02,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "Then this t of n by 2 squared expands out like this right it is n by 2 squared divided by 2 is",
+    "start": 340.02,
+    "end": 348.02,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "n by 2 cubed so, I get 2 times t n by 2 cubed plus n by 2 squared now this and this will cancel",
+    "start": 348.02,
+    "end": 354.34,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "right. So, I get 1 n here I already have 2 n so, I get 3 ns and this 2 into 2 squared I will",
+    "start": 354.34,
+    "end": 361.62,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "write as 2 cubed right. So, I have gone from 2 squared t n by 2 squared plus 2 n to 2 cubed t",
+    "start": 361.62,
+    "end": 366.98,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "n by 2 cubed plus 3 n so, it is easy to verify that if you do this j times you will have 2 to the",
+    "start": 366.98,
+    "end": 374.58,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "power j times t of n by 2 to the power j plus j n right. So, now when do we reach the base case",
+    "start": 374.58,
+    "end": 382.26,
+    "ocr_text": "Sr nec"
+  },
+  {
+    "text": "we reach the base case when n by 2 to the power j goes to 1. So, when does this happen?",
+    "start": 382.26,
+    "end": 389.38,
+    "ocr_text": "ey"
+  },
+  {
+    "text": "Well n by 2 to the power j is equal to 1 it means that 2 to the power j is equal to n right.",
+    "start": 390.34,
+    "end": 397.86,
+    "ocr_text": "ey"
+  },
+  {
+    "text": "So, j is nothing but log of n to the base 2 right. So, we will always use log n in general to",
+    "start": 397.86,
+    "end": 407.22,
+    "ocr_text": "ey"
+  },
+  {
+    "text": "mean log of n to the base 2 unless otherwise specified ok. So, after log of n steps",
+    "start": 407.22,
+    "end": 413.62,
+    "ocr_text": "ey"
+  },
+  {
+    "text": "we end up with something which looks like this right it has 2 to the j t n by 2 to the j plus j n",
+    "start": 414.9,
+    "end": 421.54,
+    "ocr_text": "ey"
+  },
+  {
+    "text": "after log n steps j is log n. So, I have 2 to the log n then t of n by this so, this is t of 1",
+    "start": 421.54,
+    "end": 429.38,
+    "ocr_text": "ey"
+  },
+  {
+    "text": "now. So, this is just 1. So, this multiplied by 1 and then I have j times n so, j is log n so,",
+    "start": 429.38,
+    "end": 436.5,
+    "ocr_text": "ey"
+  },
+  {
+    "text": "j is log n and n is n right. So, I have after doing this expansion log n times I end up with 2 to",
+    "start": 436.5,
+    "end": 446.58,
+    "ocr_text": "oe Se"
+  },
+  {
+    "text": "the log n plus log n times n 2 to the log n by definition is just n right because that is the",
+    "start": 446.66,
+    "end": 453.54,
+    "ocr_text": "oe Se"
+  },
+  {
+    "text": "definition of log that is the exponent of 2 which gives you n. So, this is n and I have this gives",
+    "start": 453.54,
+    "end": 459.46,
+    "ocr_text": "oe Se"
+  },
+  {
+    "text": "the n log n and we know from general things that n is big of n log n. So, this is bounded by 2",
+    "start": 459.46,
+    "end": 466.34,
+    "ocr_text": "oe Se"
+  },
+  {
+    "text": "times n log n. So, we can say that overall merge sort takes time own n log n right. So, we have",
+    "start": 466.34,
+    "end": 472.42,
+    "ocr_text": "oe Se"
+  },
+  {
+    "text": "achieved a significant improvement because remember that so far both insertion sort and selection",
+    "start": 472.42,
+    "end": 477.38,
+    "ocr_text": "oe Se"
+  },
+  {
+    "text": "sort were o n square and we have come down from o n square to o n log n by using this divide and conquer",
+    "start": 477.38,
+    "end": 483.62,
+    "ocr_text": "oe Se"
+  },
+  {
+    "text": "strategy. So, why is this a big deal? We saw right at the beginning that o n log n is much more",
+    "start": 483.62,
+    "end": 491.78,
+    "ocr_text": "oe Se"
+  },
+  {
+    "text": "efficient than o n square. If we assume as we have said that a reasonably standard desktop",
+    "start": 491.78,
+    "end": 499.62,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "machine can do 10 to the 8 operations per second then the size of the feasible input of what we",
+    "start": 499.62,
+    "end": 506.1,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "can sort with the sorting algorithm goes from 10,000 for an n square algorithm to 10 million or one",
+    "start": 506.1,
+    "end": 512.42,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "crore for an n log n algorithm. So, therefore, if we really have to sort large volumes of data,",
+    "start": 512.42,
+    "end": 517.94,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "n log n makes it feasible for us to do so in a reasonable amount of time whereas n squared would",
+    "start": 517.94,
+    "end": 522.18,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "take years as we saw before. So, before we conclude there are some nice things to notice. So,",
+    "start": 522.26,
+    "end": 531.3,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "this merge operation which we have used in merge sort is actually a very useful operation on any",
+    "start": 531.3,
+    "end": 535.62,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "sorted list. So, one thing that we do in merge is that we actually combine the list without losing",
+    "start": 535.62,
+    "end": 541.38,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "anything. So, if we merge two lists such as say 1, 2, 4 and 2, 3, 6 and in our final thing we will",
+    "start": 541.38,
+    "end": 549.62,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "have two copies of two because there are two copies and then 3, 4, 6. So, sometimes we may want to",
+    "start": 549.62,
+    "end": 557.94,
+    "ocr_text": "Fy aa|\n[23,64\n\n* Exercise:"
+  },
+  {
+    "text": "not have this we may want to keep only one copy we may want to treat these as sets. So,",
+    "start": 558.58,
+    "end": 562.82,
+    "ocr_text": "[h,2, a\n[2,3,\n\nRanaall\n\n* Exercise:"
+  },
+  {
+    "text": "if I take this as a set 1, 2, 4 and the set 2, 3, 6 then the resulting union of the two sets is",
+    "start": 562.82,
+    "end": 570.02,
+    "ocr_text": "[h,2, a\n[2,3,\n\nRanaall\n\n* Exercise:"
+  },
+  {
+    "text": "1, 2, 3, 4, 6 is only one copy of. Well, we can easily do this in our merge procedure by just",
+    "start": 570.02,
+    "end": 577.22,
+    "ocr_text": "Li,2, u | qhtuy\n23,0. 423,03\nParo era\n\n*\n*\n\n* Exercise: List d"
+  },
+  {
+    "text": "saying that when I find so earlier we had two cases we had AI less than or equal to Bj and then we",
+    "start": 577.22,
+    "end": 585.7,
+    "ocr_text": "l\\,2, & | R12 u)\n[Z,2,6) 40365\ni L246 |\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "had AI greater than Bj. So, in the first case we copied from AI, the second case we copied from",
+    "start": 585.7,
+    "end": 593.06,
+    "ocr_text": "L\\,2, & | RZ u)\n[3,04 423,03\n4 [i224 |\n\n* Exercise: List difference: eleme' i"
+  },
+  {
+    "text": "Bj and in either case we only incremented either I or J along with K. In this case we say that if",
+    "start": 593.06,
+    "end": 599.14,
+    "ocr_text": "L\\,2, & | RZ u)\n[3,04 423,03\n4 [i224 |\n\n* Exercise: List difference: eleme' i"
+  },
+  {
+    "text": "the two sides are equal we keep one copy of it in the final list but we skip over both these copies",
+    "start": 599.14,
+    "end": 604.42,
+    "ocr_text": "l1,2, u | {h2u)\n[2,3,6\\ 423,03\n[ 2K Bh |\n\nKe 8G\nAR\\> BIN\n\n* Exercise: List difference: eleme' i"
+  },
+  {
+    "text": "we increment all three pointers. So, if we are at this position and this position then in our",
+    "start": 604.42,
+    "end": 610.18,
+    "ocr_text": "l1,2, u | {h2u)\n[2,3,6\\ 423,03\n[ 2K Bh |\n\nKe 8G\nAR\\> BIN\n\n* Exercise: List difference: eleme' i"
+  },
+  {
+    "text": "output we will copy a two and then we will move this pointer to the right and this pointer",
+    "start": 610.18,
+    "end": 615.54,
+    "ocr_text": "iy u | {htuy\n[2,3, 6 £23.03\ni Luz eae)\n\nKe 8Q\\\nAR \\ > BUN\n\n* Exercise:"
+  },
+  {
+    "text": "the right. So, I do not copy two twice. So, this is one thing that we can do.",
+    "start": 615.54,
+    "end": 620.5,
+    "ocr_text": "ay\n136) 42303\nvan 2,3,4,6 \\\n\nuv\n\neI oe v wQeahl\n. : cremer AR\\ > BUN\n\n* Exercise:"
+  },
+  {
+    "text": "The other thing that we can do is to intersect two lists. So, if we again have 1, 2, 3",
+    "start": 625.22,
+    "end": 631.06,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "and maybe 2, 3, 6 then maybe we want to make sure that we have in our output only 2 and 3.",
+    "start": 631.94,
+    "end": 639.78,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "So, now what we do is when we start looking at these two if they are not equal then obviously",
+    "start": 641.14,
+    "end": 645.62,
+    "ocr_text": ": : : cea\n(ae\n\n* Exercise:"
+  },
+  {
+    "text": "they are not in the intersection but which one should we leave well two could still be there because",
+    "start": 645.62,
+    "end": 650.02,
+    "ocr_text": "} Pes)\nfe, ial\n{2,2}\n\n* Exercise:"
+  },
+  {
+    "text": "one is smaller. So, we move this pointer right. So, if AI is smaller than Bj we increment I.",
+    "start": 650.02,
+    "end": 654.74,
+    "ocr_text": "} Pes)\nfe, ial\n{2,2}\n\n* Exercise:"
+  },
+  {
+    "text": "Now, we say when AI and Bj are the same we would as we did for union we will move the two out",
+    "start": 654.74,
+    "end": 660.02,
+    "ocr_text": "} Pes)\nfe, ial\n{2,2}\n\n* Exercise:"
+  },
+  {
+    "text": "and we will merge we will move both pointers. So, now both pointers come to this position.",
+    "start": 660.66,
+    "end": 664.82,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "Now again we will say that we have 3 and we will continue and then when we see the other way around",
+    "start": 664.82,
+    "end": 669.86,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "if Bj is smaller than AI we will increment J and not I. So, the important thing to notice that",
+    "start": 669.86,
+    "end": 674.82,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "merge is a very generic operation we can do what we did earlier which is to actually shuffle",
+    "start": 674.82,
+    "end": 679.7,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "the two sorted lists into one big sorted list where no elements are lost or we can remove duplicate",
+    "start": 679.7,
+    "end": 685.14,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "duplicates while we are doing it treated as a set union operation or we can only keep the common",
+    "start": 685.14,
+    "end": 689.78,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "parts which is set intersection operation. So, to check that you have understood this maybe you",
+    "start": 689.78,
+    "end": 694.82,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "should try out the following exercise. So, supposing we want to do what is called list difference.",
+    "start": 694.82,
+    "end": 699.54,
+    "ocr_text": "* Exercise:"
+  },
+  {
+    "text": "So, set difference is sometimes written like this. So, if I take the set 1 2 3 and the set",
+    "start": 699.54,
+    "end": 705.78,
+    "ocr_text": "a\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "say 3 4 6 right and I ask the set difference it says whatever is in A but not in B.",
+    "start": 706.66,
+    "end": 712.18,
+    "ocr_text": "oe\n\nLeeyNZ3u,65\n\n(2/34 |\n>)\n{2,2}\n\n2)\n\n* Exercise:"
+  },
+  {
+    "text": "So, the answer should be in this case 1 and then 2 but not 3 because 3 is there and go.",
+    "start": 712.18,
+    "end": 717.62,
+    "ocr_text": "oe\n\nLeeyNZ3u,65\n\n(2/34 |\n>)\n{2,2}\n\n2)\n\n* Exercise:"
+  },
+  {
+    "text": "So, you can do the same thing for list. So, for example, if I had list 1 2 3 and the list 3 4 6",
+    "start": 718.34,
+    "end": 722.74,
+    "ocr_text": "A\\ &\n\nLe ey N23 ,65\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "then I might want to keep the list only 1 2. So, just check whether you can adapt merge in the way",
+    "start": 722.74,
+    "end": 727.78,
+    "ocr_text": "A\\ &\n\nLe ey N23 ,65\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "we have done now for union and intersection in order to list difference.",
+    "start": 727.78,
+    "end": 731.46,
+    "ocr_text": "A\\ &\n\nLeh Neau ts\n\nbier]\n7)\nears\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "So, merge sort though it is an order n log n sorting algorithm and therefore, is significantly",
+    "start": 736.26,
+    "end": 741.22,
+    "ocr_text": "A\\ &\n\nLeh Neau ts\n\nbier]\n7)\nears\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "faster than insertion sort of selection sort. It does have some shortcomings.",
+    "start": 742.42,
+    "end": 746.02,
+    "ocr_text": "A\\ &\n\nLeh Neau ts\n\nbier]\n7)\nears\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "The main problem with merge sort is that it requires extra space. See when I take A and B",
+    "start": 746.58,
+    "end": 751.62,
+    "ocr_text": "A\\ &\n\nLeh Neau ts\n\nbier]\n7)\nears\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "and I merge it into C it is almost impossible to do this without storing the merge array in a separate",
+    "start": 752.58,
+    "end": 760.9,
+    "ocr_text": "A\\ &\n\nLeh Neau ts\n\nbier]\n7)\nears\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "place because if I start merging in place then the sorted order of A and B gets messed up or I have",
+    "start": 760.9,
+    "end": 767.46,
+    "ocr_text": "A\\ &\n\nLeh Neau ts\n\nbier]\n7)\nears\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "to keep shifting things and so the merge is no longer linear time. So, if I want a linear time merge",
+    "start": 767.46,
+    "end": 771.7,
+    "ocr_text": "A\\ &\n\nLeh Neau ts\n\nbier]\n7)\nears\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "of A and B this can only be achieved by using an external list of the size which is the sum of the",
+    "start": 771.7,
+    "end": 778.26,
+    "ocr_text": "A\\ &\n\nLeh Neau ts\n\nbier]\n7)\nears\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "two lists in order to store this. This means that if we are sorting large arrays and also extra",
+    "start": 778.26,
+    "end": 783.3,
+    "ocr_text": "A\\ &\n\nLeh Neau ts\n\nbier]\n7)\nears\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "spaces being used because I have to keep duplicating the space in order to the merge operation.",
+    "start": 783.3,
+    "end": 787.54,
+    "ocr_text": "A\\ &\n\nLeh Neau ts\n\nbier]\n7)\nears\n\n* Exercise: List differenc"
+  },
+  {
+    "text": "And of course, the other thing about merge sort which is very difficult to overcome is that it",
+    "start": 788.74,
+    "end": 792.74,
+    "ocr_text": "Tue"
+  },
+  {
+    "text": "is inherently recursive. I mean there is no way to actually easily make it iterative because",
+    "start": 792.74,
+    "end": 797.54,
+    "ocr_text": "Tue"
+  },
+  {
+    "text": "we need to construct the sorted things and then merge them. So, we need to store these recursive",
+    "start": 797.62,
+    "end": 803.94,
+    "ocr_text": "Tue"
+  },
+  {
+    "text": "solutions at each point in order to combine them. So, the recursive call and return can be expensive",
+    "start": 804.74,
+    "end": 809.94,
+    "ocr_text": "Tue"
+  },
+  {
+    "text": "also. So, although merge sort is a very attractive sort in terms of its theoretical complexity,",
+    "start": 809.94,
+    "end": 816.5,
+    "ocr_text": "Tue"
+  },
+  {
+    "text": "it is not sometimes used in practice because of these limitations and we will see how to overcome",
+    "start": 816.5,
+    "end": 821.54,
+    "ocr_text": "Tue"
+  },
+  {
+    "text": "this in some other way. So, the main reason we need extra space in merge sort is because of the",
+    "start": 821.54,
+    "end": 826.98,
+    "ocr_text": "Tue"
+  },
+  {
+    "text": "merge operation. As we saw in order to combine A and B into a list C in linear time, you need extra",
+    "start": 826.98,
+    "end": 832.66,
+    "ocr_text": "Tue"
+  },
+  {
+    "text": "space. Now, suppose and the reason this happens is because we could have something like the left side",
+    "start": 832.66,
+    "end": 838.02,
+    "ocr_text": "Tue"
+  },
+  {
+    "text": "could be say 2, 4, 6 and the right side could be say 1, 3, 5 and now we need to take things from",
+    "start": 838.02,
+    "end": 846.26,
+    "ocr_text": "Tue"
+  },
+  {
+    "text": "both sides. So, sometimes I need to take something from here, then I need to take something from here,",
+    "start": 846.26,
+    "end": 849.46,
+    "ocr_text": "inate (eae"
+  },
+  {
+    "text": "then I need to take something from here and so on. So, though each of the two halves is sorted,",
+    "start": 849.46,
+    "end": 854.26,
+    "ocr_text": "inate (eae"
+  },
+  {
+    "text": "there are elements from the left which must go to the right and the elements from right must go to",
+    "start": 854.34,
+    "end": 858.1,
+    "ocr_text": "inate (eae"
+  },
+  {
+    "text": "the left. So, now if we could come up with a way to avoid doing this. So, such that everything in the",
+    "start": 858.1,
+    "end": 864.58,
+    "ocr_text": "CES"
+  },
+  {
+    "text": "red part is smaller than everything in the green part, then once I have sorted the red part and",
+    "start": 864.58,
+    "end": 868.9,
+    "ocr_text": "CES"
+  },
+  {
+    "text": "have sorted the green part and automatically everything in the red part stays to the left of",
+    "start": 868.9,
+    "end": 872.66,
+    "ocr_text": "re tie ="
+  },
+  {
+    "text": "everything in the green part. So, if I had had instead of this, if I had had on the left,",
+    "start": 872.66,
+    "end": 877.46,
+    "ocr_text": "re tie ="
+  },
+  {
+    "text": "I had started with say 2 and 3 and the right had started with this 6, 4, 5 and then I had",
+    "start": 877.54,
+    "end": 884.26,
+    "ocr_text": "Ay ay te ee\n\nGN"
+  },
+  {
+    "text": "locally sorted these things. So, I had got 1, 2, 3 and then here I had got 4, 5, 6. Then after this,",
+    "start": 884.26,
+    "end": 891.46,
+    "ocr_text": "Ay ay te ee\n\nGN"
+  },
+  {
+    "text": "if I had guaranteed that this this split was such that everything on the left is smaller than",
+    "start": 891.46,
+    "end": 895.3,
+    "ocr_text": "zie |\\(eurs\n\nAL\niL? cee"
+  },
+  {
+    "text": "everything on the right. After doing this divide and then solving the sub problems, there is no",
+    "start": 895.3,
+    "end": 900.18,
+    "ocr_text": "zie |\\(eurs\n\nAL\niL? cee"
+  },
+  {
+    "text": "combination of there is no need to merge. So, our next sorting algorithm will look at a strategy",
+    "start": 900.18,
+    "end": 905.14,
+    "ocr_text": "zie |\\(eurs\n\nAL\niL? cee"
+  },
+  {
+    "text": "to implement this idea.",
+    "start": 905.14,
+    "end": 915.14,
+    "ocr_text": "aus (lV:"
+  }
+]

@@ -1,0 +1,1580 @@
+[
+  {
+    "text": "So, continuing our discussion about efficiently computing recursive functions, let us look",
+    "start": 0.0,
+    "end": 6.36,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "at the problem of computing grid paths.",
+    "start": 6.36,
+    "end": 9.6,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, we have a grid, a rectangular grid, where we start walking at the bottom left corner",
+    "start": 9.6,
+    "end": 17.48,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "and the rule is that we can only go up or right.",
+    "start": 17.48,
+    "end": 21.28,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, we want to start at the bottom and we want to reach the top right corner.",
+    "start": 21.28,
+    "end": 25.84,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, we can number the coordinates.",
+    "start": 26.24,
+    "end": 27.68,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, the bottom right corner we call 0 0.",
+    "start": 27.68,
+    "end": 29.96,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "This particular grid has got five columns and 10 rows.",
+    "start": 29.96,
+    "end": 33.92,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, the top right corner is 5 comma 10.",
+    "start": 33.92,
+    "end": 37.32,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "Right?",
+    "start": 37.32,
+    "end": 38.32,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "And the question that we ask is how many different ways are there to go from 0 0 to 5 10.",
+    "start": 38.32,
+    "end": 44.2,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, what do we mean by different ways?",
+    "start": 44.2,
+    "end": 46.4,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "Well, here for instance is one grid path.",
+    "start": 46.4,
+    "end": 48.4,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "This blue line takes us up from 0 0, then right, then up, then right and so on.",
+    "start": 48.4,
+    "end": 52.96,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, this trace is out one particular sequence of edges along this grid, taking us from the",
+    "start": 52.96,
+    "end": 59.04,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "bottom left corner to the top right.",
+    "start": 59.04,
+    "end": 61.28,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "So, we could of course, choose a different one, which in this particular one the red one",
+    "start": 61.28,
+    "end": 65.96,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 7, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nGrid Paths\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "and the blue one are completely disjoint.",
+    "start": 65.96,
+    "end": 67.88,
+    "ocr_text": ">"
+  },
+  {
+    "text": "They do not use any of the same edges.",
+    "start": 67.88,
+    "end": 70.12,
+    "ocr_text": ">"
+  },
+  {
+    "text": "But in general, I could have paths which overlap with other one.",
+    "start": 70.12,
+    "end": 73.72,
+    "ocr_text": ">"
+  },
+  {
+    "text": "So, this yellow one partly overlaps with the blue at the middle over here.",
+    "start": 73.72,
+    "end": 78.12,
+    "ocr_text": ">"
+  },
+  {
+    "text": "Right?",
+    "start": 78.12,
+    "end": 79.12,
+    "ocr_text": ">"
+  },
+  {
+    "text": "And then it overlaps with the red one over here.",
+    "start": 79.12,
+    "end": 81.0,
+    "ocr_text": ">"
+  },
+  {
+    "text": "Right?",
+    "start": 81.0,
+    "end": 82.0,
+    "ocr_text": ">"
+  },
+  {
+    "text": "So, we want to know how many such different paths are there from 0 0 to M n.",
+    "start": 82.0,
+    "end": 89.24,
+    "ocr_text": ">"
+  },
+  {
+    "text": "Now it turns out that this problem is actually a very classical problem in combinatorics counting.",
+    "start": 89.24,
+    "end": 94.48,
+    "ocr_text": ">"
+  },
+  {
+    "text": "Right?",
+    "start": 94.48,
+    "end": 95.48,
+    "ocr_text": ">"
+  },
+  {
+    "text": "So, the way to analyze this is to see that if I want to go from the bottom to the top,",
+    "start": 95.48,
+    "end": 102.08,
+    "ocr_text": ">"
+  },
+  {
+    "text": "then I must on the in one dimension, I must go from 0 to 5.",
+    "start": 102.08,
+    "end": 106.88,
+    "ocr_text": ">"
+  },
+  {
+    "text": "The other dimension, I must go to 0 to 10.",
+    "start": 106.88,
+    "end": 109.04,
+    "ocr_text": ">"
+  },
+  {
+    "text": "So, totally I must make 15 steps.",
+    "start": 109.04,
+    "end": 111.28,
+    "ocr_text": ">"
+  },
+  {
+    "text": "Right?",
+    "start": 111.28,
+    "end": 112.28,
+    "ocr_text": ">"
+  },
+  {
+    "text": "There is no choice.",
+    "start": 112.28,
+    "end": 113.28,
+    "ocr_text": ">"
+  },
+  {
+    "text": "I must walk 15 segments.",
+    "start": 113.28,
+    "end": 116.76,
+    "ocr_text": ">"
+  },
+  {
+    "text": "In general, if I am going to some M comma M, I must walk M plus N segments.",
+    "start": 116.76,
+    "end": 122.72,
+    "ocr_text": ">"
+  },
+  {
+    "text": "Now, if I have these 15 segments and I am going to 5 10, that means I have to go right",
+    "start": 122.72,
+    "end": 128.24,
+    "ocr_text": ">"
+  },
+  {
+    "text": "5 times, right?",
+    "start": 128.24,
+    "end": 131.04,
+    "ocr_text": ">"
+  },
+  {
+    "text": "And I have to go up 10 times.",
+    "start": 131.04,
+    "end": 133.24,
+    "ocr_text": ">"
+  },
+  {
+    "text": "Now, in which sequence I do these rights and ups is what determines which path I take.",
+    "start": 133.24,
+    "end": 139.0,
+    "ocr_text": ">"
+  },
+  {
+    "text": "Right?",
+    "start": 139.04,
+    "end": 140.0,
+    "ocr_text": "See eee ence)"
+  },
+  {
+    "text": "But every path will have exactly 5 right moves and exactly 10 up moves.",
+    "start": 140.0,
+    "end": 144.76,
+    "ocr_text": "See eee ence)"
+  },
+  {
+    "text": "Right?",
+    "start": 144.76,
+    "end": 145.76,
+    "ocr_text": "See eee ence)"
+  },
+  {
+    "text": "So, there will 10 up moves and 5 right moves.",
+    "start": 145.76,
+    "end": 149.2,
+    "ocr_text": "Se eee eee)"
+  },
+  {
+    "text": "So, now if I take this and I think of this as an overall thing saying this is my first",
+    "start": 149.2,
+    "end": 154.6,
+    "ocr_text": "Se eee eee)"
+  },
+  {
+    "text": "move, this is my second move, this is my third move and so on, out to my 15th move, then",
+    "start": 154.6,
+    "end": 159.16,
+    "ocr_text": "Se eee eee)"
+  },
+  {
+    "text": "if I tell you that you moved right, I moved right at these positions at some 5 positions.",
+    "start": 159.16,
+    "end": 164.6,
+    "ocr_text": "Se eee eee)"
+  },
+  {
+    "text": "Then automatically I must move up at the remaining positions because I have to do exactly",
+    "start": 164.6,
+    "end": 168.64,
+    "ocr_text": "72 OO"
+  },
+  {
+    "text": "5 and exactly 5 right and 10 up.",
+    "start": 168.64,
+    "end": 171.36,
+    "ocr_text": "72 OO"
+  },
+  {
+    "text": "Okay?",
+    "start": 171.36,
+    "end": 172.36,
+    "ocr_text": "72 OO"
+  },
+  {
+    "text": "So, therefore, all I need to do to determine exactly which path I am taking is to fix the",
+    "start": 172.36,
+    "end": 177.84,
+    "ocr_text": "72 OO"
+  },
+  {
+    "text": "position of the 5 right moves among the total 15, right?",
+    "start": 177.84,
+    "end": 181.56,
+    "ocr_text": "37077\n=!\n\n© oO\n6-\n1@s"
+  },
+  {
+    "text": "So, among 15 positions, I choose 5.",
+    "start": 181.56,
+    "end": 184.76,
+    "ocr_text": "37077\n=!\n\n© oO\n6-\n1@s"
+  },
+  {
+    "text": "Okay?",
+    "start": 184.76,
+    "end": 185.76,
+    "ocr_text": "37077\n=!\n\n© oO\n6-\n1@s"
+  },
+  {
+    "text": "This is usually written as 15 choose 5.",
+    "start": 185.76,
+    "end": 188.72,
+    "ocr_text": "Se ee ec iee)\n\n1@36-© oo"
+  },
+  {
+    "text": "So, this is a very standard combinatorial thing.",
+    "start": 188.72,
+    "end": 192.16,
+    "ocr_text": "Se ee ec iee)\n\n1@36-© oo"
+  },
+  {
+    "text": "15 choose 5, N choose K is N factorial divided by K factorial into N minus K factorial.",
+    "start": 192.16,
+    "end": 198.2,
+    "ocr_text": "Se ee ec iee)\n\n1@36-© oo"
+  },
+  {
+    "text": "Okay?",
+    "start": 198.2,
+    "end": 199.2,
+    "ocr_text": "=\n7\nae)\n\n/\\s\n16\nONS\n6-© 0 os\n\n15 choose 5"
+  },
+  {
+    "text": "So, 15 factorial divided by 10 factorial into N 5 factorial, it happens to be 3,000 and",
+    "start": 199.2,
+    "end": 203.76,
+    "ocr_text": "=\n7\nae)\n\n/\\s\n16\nONS\n6-© 0 os\n\n15 choose 5"
+  },
+  {
+    "text": "3 in this case.",
+    "start": 203.76,
+    "end": 204.76,
+    "ocr_text": "=\n7\nae)\n\n/\\s\n16\nONS\n6-© 0 os\n\n15 choose 5"
+  },
+  {
+    "text": "So, for this particular grid, there are 3,000 and 3 ways.",
+    "start": 204.76,
+    "end": 207.92,
+    "ocr_text": "=\n7\nae)\n\n/\\s\n16\nONS\n6-© 0 os\n\n15 choose 5"
+  },
+  {
+    "text": "Now, of course, instead of choosing the right positions, I could also have told you the",
+    "start": 207.92,
+    "end": 212.8,
+    "ocr_text": "Se eee aac ieee)"
+  },
+  {
+    "text": "10 positions where I moved up, okay?",
+    "start": 212.8,
+    "end": 215.52,
+    "ocr_text": "Se eee aac ieee)"
+  },
+  {
+    "text": "That leaves 5 open positions where I must move right.",
+    "start": 215.52,
+    "end": 219.6,
+    "ocr_text": "Se eee eae)\n\n/ ‘) (D6 Hoaewocaors\nLe }* 15 choose §"
+  },
+  {
+    "text": "Okay?",
+    "start": 219.6,
+    "end": 220.6,
+    "ocr_text": "Se eee eae)\n\n/ ‘) (D6 Hoaewocaors\nLe }* 15 choose §"
+  },
+  {
+    "text": "So, this would give us 15 choose 10.",
+    "start": 220.6,
+    "end": 223.68,
+    "ocr_text": "Se eee eae)\n\n/ ‘) (D6 Hoaewocaors\nLe }* 15 choose §"
+  },
+  {
+    "text": "And so, it is not a coincidence that 15 chose 10 and 15 choose 5 are in fact the same",
+    "start": 223.68,
+    "end": 228.08,
+    "ocr_text": "Se eee eae)\n\n/ ‘) (D6 Hoaewocaors\nLe }* 15 choose §"
+  },
+  {
+    "text": "expression.",
+    "start": 228.08,
+    "end": 229.08,
+    "ocr_text": "/\\s\nNice pate\n\n10\n\nSe eee eee)\n\nhG)\n(D6 Hoaewocaos"
+  },
+  {
+    "text": "Okay?",
+    "start": 229.08,
+    "end": 230.08,
+    "ocr_text": "/\\s\nNice pate\n\n10\n\nSe eee eee)\n\nhG)\n(D6 Hoaewocaos"
+  },
+  {
+    "text": "So, whether you choose to compute it as 15 choose 5 or 15 choose 10, it does not matter.",
+    "start": 230.08,
+    "end": 234.4,
+    "ocr_text": "/\\s\nNice pate\n\n10\n\nSe eee eee)\n\nhG)\n(D6 Hoaewocaos"
+  },
+  {
+    "text": "So, in general, it is going to be M plus N choose M or M plus N choose N where I am going",
+    "start": 234.4,
+    "end": 243.8,
+    "ocr_text": "/\\s\nNice pate\n\n10\n\nSe eee eee)\n\nhG)\n(D6 Hoaewocaos"
+  },
+  {
+    "text": "from 0, 0 up to N comma N.",
+    "start": 243.8,
+    "end": 247.36,
+    "ocr_text": "/ ‘), (D6 Hoaewocaors\n\ni ae >"
+  },
+  {
+    "text": "I have to make M right moves and N up moves.",
+    "start": 247.36,
+    "end": 250.88,
+    "ocr_text": "() (D6 Hoaewocaos\n\neee man )\ni) y ae\n('s Zan) Men\n(0,0) n)"
+  },
+  {
+    "text": "So, I need to choose M out of M plus N total moves or N out of M plus N.",
+    "start": 250.88,
+    "end": 256.12,
+    "ocr_text": "() (D6 Hoaewocaos\n\neee man )\ni) y ae\n('s Zan) Men\n(0,0) n)"
+  },
+  {
+    "text": "Both of them will give you the same expression because that is why in choose case N factorial",
+    "start": 256.12,
+    "end": 261.88,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "K factorial N minus K.",
+    "start": 261.88,
+    "end": 263.36,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "So, if you just exchange K and N minus K, you get the same expression.",
+    "start": 263.36,
+    "end": 267.36,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "So, that is all very well.",
+    "start": 267.36,
+    "end": 270.2,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "But what for example, if this is not a perfect grid, supposing we have some intersections",
+    "start": 270.2,
+    "end": 276.76,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "which are blocked.",
+    "start": 276.76,
+    "end": 277.76,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "So, in this particular case, if we look at this intersection, this 2, 4, it is 1, 2,",
+    "start": 277.76,
+    "end": 282.68,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "I mean 1, 2, 3, 4.",
+    "start": 282.68,
+    "end": 284.16,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "So, we have put a black mark to indicate that for the moment you cannot go through it.",
+    "start": 284.48,
+    "end": 288.72,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "Right?",
+    "start": 288.72,
+    "end": 289.72,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "So, any path that goes through 2, 4 should not be counted among the valid paths from 0, 0 to 5 there.",
+    "start": 289.72,
+    "end": 296.24,
+    "ocr_text": "Soe eee eae)\n\n(), (D6 Hoaewocaos\n\naes (aa)\nees, ( m\n('s 200) Mn\n(0,0) n)"
+  },
+  {
+    "text": "So, the blue path that we had drawn before actually goes through this intersection.",
+    "start": 296.24,
+    "end": 300.36,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, this path is no longer a valid path.",
+    "start": 300.36,
+    "end": 303.64,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "The red path is okay because it bypasses it.",
+    "start": 303.64,
+    "end": 305.88,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "But the yellow path unfortunately also goes through this intersection.",
+    "start": 305.88,
+    "end": 309.08,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, of the 3 paths that we had seen so far, 2 actually do not go through.",
+    "start": 309.08,
+    "end": 313.32,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, the question now is out of those 3,000 and 3 paths that we said were there from 0, 0 to 5, 10.",
+    "start": 313.8,
+    "end": 319.96,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "How many of them are still valid if we are not allowed to go through this intersection?",
+    "start": 319.96,
+    "end": 324.52,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, it turns out that actually this also has a combinatorial solution.",
+    "start": 326.8,
+    "end": 330.6,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, what you can say is that in order to go from here and if I want to avoid a block from the",
+    "start": 330.6,
+    "end": 338.52,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "intersection.",
+    "start": 338.52,
+    "end": 339.52,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, let me see how many ways are there going through it and just remove them.",
+    "start": 339.52,
+    "end": 344.84,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, what I will do is I will say that every path that goes through the current blocked",
+    "start": 344.84,
+    "end": 350.32,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "intersection is a path from 0, 0 to 2, 4 followed by a path from 2, 4 to 5, 10 because",
+    "start": 350.32,
+    "end": 355.64,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "it goes through 2, 4.",
+    "start": 355.64,
+    "end": 357.32,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, we can think of this as a smaller grid from 0, 0 to 2, 4.",
+    "start": 357.32,
+    "end": 362.12,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, if you solve this, this is this N plus N, N plus N choose N. So, I get 6 choose 2.",
+    "start": 363.12,
+    "end": 368.84,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, I get there are 15 ways to go from 0, 0 to 2, 4. Likewise, if I consider this grid,",
+    "start": 368.84,
+    "end": 374.44,
+    "ocr_text": "Q\no-\n\n(38)\n+t\nNn\n—"
+  },
+  {
+    "text": "then this is 3 and this is 6 because it was 10 and 5, I have done 2 and 4 respectively.",
+    "start": 376.12,
+    "end": 384.12,
+    "ocr_text": "QB\nOn\n\n(99)\n+t\nKn\n="
+  },
+  {
+    "text": "So, after 2, there is still 3 left horizontally, after 4, there is still 6 left vertically.",
+    "start": 384.12,
+    "end": 388.76,
+    "ocr_text": "QB\nOn\n\n(99)\n+t\nKn\n="
+  },
+  {
+    "text": "So, this is like going from a new 0, 0 to 3, 6. So, there I get 6 plus 3 choose 3 and this",
+    "start": 388.84,
+    "end": 396.36,
+    "ocr_text": "(ee\n\n1743"
+  },
+  {
+    "text": "turns out to be 84. Now, any path which comes to the bottom 2, 2, 4 followed by any path that",
+    "start": 396.36,
+    "end": 402.52,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "goes from there to the top is a valid path passing through 2, 4. So, I have to multiply these",
+    "start": 402.52,
+    "end": 407.56,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "two numbers, I have to take 15 times 84 and again 12, 60. So, this is the total number of paths",
+    "start": 407.56,
+    "end": 413.88,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "which are going through 2, 4. But I do not want paths going through 2, 4. I am saying that paths",
+    "start": 413.96,
+    "end": 420.12,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "going through 2, 4 are not allowed. So, I must count all these paths as invalid. So, I take the",
+    "start": 420.12,
+    "end": 425.4,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "original 333 subtract. So, I take 333 and I have subtract 12, 60 and I get 1740.",
+    "start": 425.4,
+    "end": 434.36,
+    "ocr_text": "1743"
+  },
+  {
+    "text": "So, taking our combinatorial exercise to the next step, I can find out how many paths go",
+    "start": 435.64,
+    "end": 442.68,
+    "ocr_text": "ee\nse\n\n1743 99% — |2bo = 1943"
+  },
+  {
+    "text": "from the origin to a given point on the top right provided one path, one position is blocked.",
+    "start": 442.76,
+    "end": 448.36,
+    "ocr_text": "ee\nse\n\n1743 99% — |2bo = 1943"
+  },
+  {
+    "text": "So, this imperfection could be more complex, I could have two positions blocked.",
+    "start": 450.76,
+    "end": 455.4,
+    "ocr_text": "ee\nse\n\n1743 99% — |2bo = 1943"
+  },
+  {
+    "text": "In this case, the blue, yellow and red paths are all invalid because the red path also happens",
+    "start": 457.0,
+    "end": 463.16,
+    "ocr_text": "(210) (4,4)\n\neaee"
+  },
+  {
+    "text": "to get blocked. So, now I have a block at 2, 4 and also at 4, 4. So, if I count all the paths",
+    "start": 463.16,
+    "end": 471.16,
+    "ocr_text": "(210) (4,4)\n\neaee"
+  },
+  {
+    "text": "going through 2, 4, 4 which I have already done, I can subtract those. Similarly, I can compute all",
+    "start": 471.16,
+    "end": 476.36,
+    "ocr_text": "(210) (4,4)\n\neaee"
+  },
+  {
+    "text": "the paths going through 4, 4 and subtract those. But now what happens is this is yellow path,",
+    "start": 476.36,
+    "end": 481.4,
+    "ocr_text": "(210) (4,4)\n\neaee"
+  },
+  {
+    "text": "okay, subtracted twice because it is part of the paths going through 2, 4 and part of the paths",
+    "start": 482.36,
+    "end": 487.96,
+    "ocr_text": "(210) (4,4)\n\neaee"
+  },
+  {
+    "text": "going through 4, 4. So, I have accidentally removed it twice from my total. So, I have to put it back,",
+    "start": 487.96,
+    "end": 494.92,
+    "ocr_text": "(210) (4,4)\n\neaee"
+  },
+  {
+    "text": "okay. So, you have to now compute those paths which go through both the intersections and add them",
+    "start": 495.8,
+    "end": 500.04,
+    "ocr_text": "(214) (4,4)"
+  },
+  {
+    "text": "back. Well, this in combinatorics is called inclusion and exclusion. You come across it also,",
+    "start": 500.2,
+    "end": 505.4,
+    "ocr_text": "(214) (4,4)"
+  },
+  {
+    "text": "sometimes when you do bend diagram, then you do sets. If you want to find out, you know, you say,",
+    "start": 505.4,
+    "end": 509.48,
+    "ocr_text": "(214) (4,4)"
+  },
+  {
+    "text": "how many people are, how many sets have one element, how many sets have, out of the intersection,",
+    "start": 509.48,
+    "end": 513.8,
+    "ocr_text": "(214) (4,4)"
+  },
+  {
+    "text": "how many sets do you have, you know, you have students taking three subjects, English,",
+    "start": 513.8,
+    "end": 518.6,
+    "ocr_text": "(214) (4,4)"
+  },
+  {
+    "text": "history and physics and then so many taking English and history, so many take history and physics",
+    "start": 519.4,
+    "end": 523.56,
+    "ocr_text": "(214) (4,4)"
+  },
+  {
+    "text": "and so on. So, when you do that kind of counting, you do exactly this inclusion exclusion,",
+    "start": 523.56,
+    "end": 527.08,
+    "ocr_text": "(214) (4,4)"
+  },
+  {
+    "text": "right. So, as we get more and more messy grids, this combinatorial question becomes more and more",
+    "start": 528.04,
+    "end": 534.84,
+    "ocr_text": "FS\nF\nhee al z\niS;"
+  },
+  {
+    "text": "complicated to solve this. So, let us look for a better solution. So, as you might guess,",
+    "start": 534.84,
+    "end": 542.92,
+    "ocr_text": "FS\nF\nhee al z\niS;"
+  },
+  {
+    "text": "since we are looking at these kind of inductive formulations and recursive programs,",
+    "start": 542.92,
+    "end": 547.96,
+    "ocr_text": "(2) 4,4)\n\nee"
+  },
+  {
+    "text": "what we are really looking for is an inductive formulation of the grid program.",
+    "start": 547.96,
+    "end": 551.16,
+    "ocr_text": "* Mc up\n\n* > right from"
+  },
+  {
+    "text": "So, let us ask ourselves a follow-up question. How do I get to a point ij on the grid?",
+    "start": 552.12,
+    "end": 557.64,
+    "ocr_text": "* Mc up\n\n* > right from"
+  },
+  {
+    "text": "So, I claim that given our structure, which is that we can go right or we can go up,",
+    "start": 558.68,
+    "end": 562.68,
+    "ocr_text": "* \\ up\n\n* > right from"
+  },
+  {
+    "text": "there are only two ways I can come here. I can either come right from the neighbor on my left.",
+    "start": 563.32,
+    "end": 568.84,
+    "ocr_text": "* \\ up\n\n* > right from"
+  },
+  {
+    "text": "So, from ij minus 1, I can make one step right and come to ij or from i minus 1j, I can go up one step.",
+    "start": 569.48,
+    "end": 577.0,
+    "ocr_text": "’ > up\n\n* ve right from"
+  },
+  {
+    "text": "So, if I have any path which starts at 0, 0, any path which somehow comes",
+    "start": 577.96,
+    "end": 583.64,
+    "ocr_text": "* Move up\n\n* OVE right from"
+  },
+  {
+    "text": "to ij minus 1, then by taking one exactly one step, that path becomes one path to ij.",
+    "start": 585.16,
+    "end": 591.16,
+    "ocr_text": "up\n\nVe right from (i-1\n\n(9,0)"
+  },
+  {
+    "text": "So, every path from 0, 0 to i minus ij minus 1 can be extended in a unique way to ij.",
+    "start": 591.72,
+    "end": 597.08,
+    "ocr_text": "up\n\nVe right from (i-1\n\n(9,0)"
+  },
+  {
+    "text": "Likewise, any path which comes from 0, 0 to i minus 1j can be extended in a unique way.",
+    "start": 597.88,
+    "end": 603.08,
+    "ocr_text": "> up\n\nVE right from\n\n(9,0)"
+  },
+  {
+    "text": "So, if I count the paths coming to the two neighbors, then each of those paths can be extended",
+    "start": 604.04,
+    "end": 609.08,
+    "ocr_text": "> up\n\nVE right from\n\n(9,0)"
+  },
+  {
+    "text": "to reach the current node. So, therefore, I get an inductive formulation as follows.",
+    "start": 609.08,
+    "end": 613.24,
+    "ocr_text": "—__>\n\nup\n\nright from\n\n(0,0)"
+  },
+  {
+    "text": "So, let us write paths ij to denote the number of paths from 0, 0 to the current point ij.",
+    "start": 614.52,
+    "end": 619.56,
+    "ocr_text": "—__>\n\nup\n\nright from\n\n(0,0)"
+  },
+  {
+    "text": "So, what we have just seen from our inductive analysis of the problem is that if we are at ij,",
+    "start": 620.28,
+    "end": 625.96,
+    "ocr_text": "# Bottom row\n. f f # Left column\n\n# Base case"
+  },
+  {
+    "text": "then the paths come from the left or from below. So, the paths to ij are the sum of the",
+    "start": 626.52,
+    "end": 631.88,
+    "ocr_text": "# Bottom row\n-1) # Left column\n\n# Base case"
+  },
+  {
+    "text": "paths to i minus 1j and the paths to ij minus 1. So, there are of course, some boundary conditions.",
+    "start": 631.88,
+    "end": 639.0,
+    "ocr_text": "# Bottom row\n-1) # Left column\n\n# Base case"
+  },
+  {
+    "text": "So, if we look at our grid in general, then if we look at the leftmost column,",
+    "start": 639.0,
+    "end": 644.12,
+    "ocr_text": "# Bottom row\n# Left column\n\n# Base case"
+  },
+  {
+    "text": "let us start at the bottom rows, we start bottom row. Then we know that this is of the form 0,",
+    "start": 644.12,
+    "end": 650.76,
+    "ocr_text": "# Bottom row\n# Left column\n\n# Base case"
+  },
+  {
+    "text": "0, then 1, 0, and so on to 5, 0. So, anything of the form i is 0,",
+    "start": 651.56,
+    "end": 659.64,
+    "ocr_text": "# Bottom row\n),j-1) # Left column\n\n# Base case"
+  },
+  {
+    "text": "derives its value only from the left because there is no corresponding move from below.",
+    "start": 660.2,
+    "end": 665.96,
+    "ocr_text": "— (tj)\n# Bottom row\n* Paths(( i 1) # Left column\n\n# Base case Gi woes aD"
+  },
+  {
+    "text": "Similarly, if I am the leftmost column, then this is 0, 0, 0, 1 and so on up to 0, 0, 15.",
+    "start": 665.96,
+    "end": 671.96,
+    "ocr_text": "# Bottom row\n* Paths(( NS 1) # Left column\n\n# Base case Oi Ste.\n—."
+  },
+  {
+    "text": "And now there is nothing from the left. So, I can only get it from j minus from in the row below.",
+    "start": 671.96,
+    "end": 677.32,
+    "ocr_text": "# Bottom row\n* Paths(( NS 1) # Left column\n\n# Base case Oi Ste.\n—."
+  },
+  {
+    "text": "And finally, we have to ask ourselves what happens at the initial condition. So, if I am at 0, 0,",
+    "start": 678.44,
+    "end": 683.32,
+    "ocr_text": "# Bottom row\n* Paths aths(0,j-1) # Left column”,\n\n# Base case 010 ye -- ©"
+  },
+  {
+    "text": "and I want to go to 0, 0, how many ways are there? Well, this is a trivial path, there is only one",
+    "start": 683.32,
+    "end": 687.72,
+    "ocr_text": "# Bottom row\n* Paths aths(0,j-1) # Left column”,\n\n# Base case 010 ye -- ©"
+  },
+  {
+    "text": "way by just staying there. It is important that it is not 0 because remember that if it is 0,",
+    "start": 687.72,
+    "end": 691.88,
+    "ocr_text": "\"\n\n1]\n) # Bottom row i\n\n. s(( aths(0,j-1) # Left column”,\n\n# Base case 010 0 -- ©"
+  },
+  {
+    "text": "then everywhere you are just adding things and nothing will come, you will get no paths.",
+    "start": 691.88,
+    "end": 695.48,
+    "ocr_text": "\"\n\n1]\n) # Bottom row i\n\n. s(( aths(0,j-1) # Left column”,\n\n# Base case 010 0 -- ©"
+  },
+  {
+    "text": "So, it is important that there is exactly one path from 0, 0 to itself.",
+    "start": 696.44,
+    "end": 700.12,
+    "ocr_text": "]\n# Bottom row :\n\n* Paths 3ths(0,j-1) # Left column”,\n\n* Paths(0,( # Base case poles cp"
+  },
+  {
+    "text": "So, how do we deal with holes in this setup? That is easy. We just say that whenever there is a",
+    "start": 702.92,
+    "end": 709.08,
+    "ocr_text": "]\n# Bottom row :\n\n* Paths 3ths(0,j-1) # Left column”,\n\n* Paths(0,( # Base case poles cp"
+  },
+  {
+    "text": "hole at a given point, we just declare paths of i8 to be 0. In other words, if there is a hole at",
+    "start": 709.08,
+    "end": 714.68,
+    "ocr_text": "# Bottom row\n* Pa — Paths # Left column\n\n| # Base case"
+  },
+  {
+    "text": "some point, then this thing is going to contribute 0 regardless of what is above or below.",
+    "start": 714.68,
+    "end": 719.96,
+    "ocr_text": "# Bottom row\n* Pa — Paths # Left column\n\n| # Base case"
+  },
+  {
+    "text": "So, if I have something coming from here and here, I will just ignore it and say this is 0.",
+    "start": 719.96,
+    "end": 724.12,
+    "ocr_text": ")) # Bottom row\n# Left column\n\n# Base case"
+  },
+  {
+    "text": "And likewise, when I compute the thing above, there will be some value x coming from the left.",
+    "start": 724.12,
+    "end": 729.56,
+    "ocr_text": ")) # Bottom row\n# Left column\n\n# Base case"
+  },
+  {
+    "text": "So, this will just be x to 0. And similarly, over here, there will be something coming from below,",
+    "start": 729.56,
+    "end": 734.2,
+    "ocr_text": ")) # Bottom row\n=| 1) # Left column\n\n# Base case"
+  },
+  {
+    "text": "say y and this will be 0 plus 1. So, any hole will just have by declaration,",
+    "start": 734.2,
+    "end": 739.4,
+    "ocr_text": ")) # Bottom row\n=| 1) # Left column\n\n# Base case"
+  },
+  {
+    "text": "paths ij equal to 0 because nothing can go through it. And this will automatically",
+    "start": 740.44,
+    "end": 744.2,
+    "ocr_text": "wm, m0\na)\n\n=e —_\n\noy\nMets\n\n# Bottom row\n# Left column\n\n* # Base case"
+  },
+  {
+    "text": "propagate to its neighbors correctly. The remaining inductive weaponry is exactly as before.",
+    "start": 744.2,
+    "end": 749.08,
+    "ocr_text": "wm, m0\na)\n\n=e —_\n\noy\nMets\n\n# Bottom row\n# Left column\n\n* # Base case"
+  },
+  {
+    "text": "So, if it is not a hole, it depends on its two neighbors. Then we have the bottom row left column",
+    "start": 749.08,
+    "end": 754.36,
+    "ocr_text": "mH. AO\nao)\n\n=e _\n\noy\ndikes\n\n# Bottom row\n* Paths(0 aths( # Left column\n\n# Base case"
+  },
+  {
+    "text": "and the origin as basic cases. So, the difficulty with this calculation is the same as it was",
+    "start": 754.36,
+    "end": 762.28,
+    "ocr_text": "mH. AO\nao)\n\n=e _\n\noy\ndikes\n\n# Bottom row\n* Paths(0 aths( # Left column\n\n# Base case"
+  },
+  {
+    "text": "with Fibonacci, which is that if I have a particular calculation. So, for example,",
+    "start": 762.28,
+    "end": 766.36,
+    "ocr_text": "mH. AO\nao)\n\n=e _\n\noy\ndikes\n\n# Bottom row\n* Paths(0 aths( # Left column\n\n# Base case"
+  },
+  {
+    "text": "suppose we start a recursive calculation at 5, 10. Then this will ask for 4, 10.",
+    "start": 766.36,
+    "end": 773.56,
+    "ocr_text": "mH. AO\nao)\n\n=e _\n\noy\ndikes\n\n# Bottom row\n* Paths(0 aths( # Left column\n\n# Base case"
+  },
+  {
+    "text": "And 5, 9. Now, these in turn will both ask for 4, 9. So, 4, 9 if I just evaluate this path's",
+    "start": 774.92,
+    "end": 784.68,
+    "ocr_text": "(-&]\n\n(49) (5,10) “a\n\nComa Ga"
+  },
+  {
+    "text": "function recursively, the way it is written in the inductive definition, it will end up calling",
+    "start": 784.68,
+    "end": 789.32,
+    "ocr_text": "(-&]\n\n(49) (5,10) “a\n\nComa Ga"
+  },
+  {
+    "text": "paths of 4, 9 at least twice from this perspective. And this wasteful recomputation will occur",
+    "start": 789.32,
+    "end": 795.08,
+    "ocr_text": "(-&]\n\n(49) (5,10) “a\n\nComa Ga"
+  },
+  {
+    "text": "throughout and we will get an exponential number of calls to paths. So, we have seen before we have",
+    "start": 795.08,
+    "end": 800.28,
+    "ocr_text": "CD) (Ss, 10)\n(ay {SP"
+  },
+  {
+    "text": "two technologies to deal with this. So, one is memoization where we just make sure that we never",
+    "start": 800.36,
+    "end": 804.92,
+    "ocr_text": "CD) (Ss, 10)\n(ay {SP"
+  },
+  {
+    "text": "call paths ij with the same value of i and j more than once. The other way is to anticipate",
+    "start": 804.92,
+    "end": 812.6,
+    "ocr_text": "CD) (Ss, 10)\n(ay {SP"
+  },
+  {
+    "text": "the subproblems, figure out how they depend on each other and then solve them directly,",
+    "start": 812.6,
+    "end": 817.56,
+    "ocr_text": "oD) (5,10)\n(Ce (sD"
+  },
+  {
+    "text": "iteratively in a suitable order. And this is what you call dynamic programming.",
+    "start": 817.56,
+    "end": 822.04,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "So, how would we use dynamic programming on the grid? So, this is our grid with the two holes at",
+    "start": 824.04,
+    "end": 828.52,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "2, 4 and 4, 4. The first thing is to identify the DAG structure of the dependencies.",
+    "start": 828.52,
+    "end": 833.88,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "So, we know that every ij depends on its left and bottom level. So, this is how we do the DAG.",
+    "start": 835.16,
+    "end": 842.84,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "If you remember, if this depends on the two values left and below, we draw an edge from the left",
+    "start": 842.84,
+    "end": 847.64,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "to this node and from below to this node. So, this is the DAG structure. So, the yellow edges",
+    "start": 847.64,
+    "end": 852.84,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "to fill in the DAG structure. So, the DAG structure goes naturally from the bottom left to the top",
+    "start": 852.84,
+    "end": 857.4,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "right. So, this is the only 0, integrate node if this DAG. So, if you want to do a computation of",
+    "start": 857.96,
+    "end": 866.44,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "this grid, the grid paths directly using dynamic programming, the only place we can start is 0,",
+    "start": 866.44,
+    "end": 874.04,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "so we started 0, 0 and we fill the value there which is 1. And now we observe that we have two",
+    "start": 875.4,
+    "end": 879.96,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "possibilities. We can go to the right or we can go up because these two dependencies are now removed.",
+    "start": 879.96,
+    "end": 884.04,
+    "ocr_text": "(42) (5,10)\n(ya) (5D"
+  },
+  {
+    "text": "So, let us just go row by row. So, if we do this value, then automatically this dependency will",
+    "start": 884.28,
+    "end": 890.36,
+    "ocr_text": "|"
+  },
+  {
+    "text": "go. So, we will have to do this value when this will go. So, we can do this value and so on.",
+    "start": 890.36,
+    "end": 893.96,
+    "ocr_text": "|"
+  },
+  {
+    "text": "So, we can compute the entire bottom row and these are all inherited from the left using our base",
+    "start": 893.96,
+    "end": 898.92,
+    "ocr_text": "|"
+  },
+  {
+    "text": "case. So, and it is very clear. I mean intuitively it is clear there is only one way to get to any",
+    "start": 898.92,
+    "end": 903.64,
+    "ocr_text": "|"
+  },
+  {
+    "text": "of these places which is just to go straight from left to right in node deviations. So, there is",
+    "start": 903.64,
+    "end": 908.52,
+    "ocr_text": "|"
+  },
+  {
+    "text": "only one path to every node on the bottom row. Now, we can move up one row and we can see that this",
+    "start": 908.52,
+    "end": 914.36,
+    "ocr_text": "|"
+  },
+  {
+    "text": "node in the first row from the second row is now available, it has already available.",
+    "start": 915.64,
+    "end": 919.96,
+    "ocr_text": "|"
+  },
+  {
+    "text": "But if we do that, we can also do the node towards right and the node towards right.",
+    "start": 919.96,
+    "end": 923.88,
+    "ocr_text": "|"
+  },
+  {
+    "text": "So, we can fill the entire second row and at each point we are just adding up. So,",
+    "start": 923.88,
+    "end": 928.04,
+    "ocr_text": "|"
+  },
+  {
+    "text": "2 plus 1 plus 1 is 2, 1 plus 3 is 4 and so on. Likewise, we can do the next row. So, for example,",
+    "start": 928.04,
+    "end": 934.2,
+    "ocr_text": "|"
+  },
+  {
+    "text": "6 plus 4 is 10 and so on. Likewise, we can do the next row. 20 plus 15 is 35. Now,",
+    "start": 934.2,
+    "end": 940.28,
+    "ocr_text": "|"
+  },
+  {
+    "text": "we come to the holes right. So, at the holes we said that these will be 0 regardless of what comes",
+    "start": 940.28,
+    "end": 945.32,
+    "ocr_text": "|"
+  },
+  {
+    "text": "from below. Even though they stand coming from below, this first hole must be 0. So, 35 from below",
+    "start": 945.32,
+    "end": 949.88,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "this hole is 0. So, we just compute this row exactly as before except at the holes, we put a 0",
+    "start": 949.88,
+    "end": 955.24,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "regardless of what is coming into it. We do not count it as 5 plus n, we just put 0. We do not count",
+    "start": 955.24,
+    "end": 959.56,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "this hole as 20 plus 35, we put 0. Now, when we go to the next row likewise, the 0 contributes",
+    "start": 959.64,
+    "end": 964.52,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "only 0. So, above it because no paths can come through this this direction, the number of paths",
+    "start": 964.52,
+    "end": 969.8,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "coming here is only 6 coming from the left. Similarly, the number of paths coming here is only 26",
+    "start": 969.8,
+    "end": 973.8,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "coming from the left. Similarly, the number of paths they are coming to this point,",
+    "start": 973.8,
+    "end": 978.04,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "could not come from there. So, this 20 is copied there, this 56 is copied there.",
+    "start": 978.68,
+    "end": 983.0,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "So, we can do this row by row and if you can just enumerate every row like this by copying",
+    "start": 983.0,
+    "end": 988.04,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "adding up the values to the left and below and we will find that there are actually 1363 paths",
+    "start": 988.68,
+    "end": 994.2,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "with these two obstructions. And if we move the obstructions around, we can redo this calculation,",
+    "start": 994.2,
+    "end": 999.48,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "it will be as efficient, we do not have to worry about this inclusion and this solution.",
+    "start": 999.48,
+    "end": 1002.92,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "So, this is one way to do the dynamic programming, but remember any topological sort will work.",
+    "start": 1003.8,
+    "end": 1008.2,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "So, we could instead start with one and go column by column. So, we can go up and fill that and then",
+    "start": 1008.76,
+    "end": 1014.68,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "we can fill up the entire first column. The first column will again be only once because there is",
+    "start": 1014.68,
+    "end": 1018.52,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "only one way to do this. Having filled the first column, now we can fill the second column",
+    "start": 1018.52,
+    "end": 1022.6,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "and then we can fill the third column and the fourth column and so on. And obviously,",
+    "start": 1023.32,
+    "end": 1027.56,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "this is only a different way of enumerating the values that values do not change. So, we should",
+    "start": 1027.56,
+    "end": 1031.64,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "eventually enter to the same values at every point. And finally, you can also do it by diagonal.",
+    "start": 1031.64,
+    "end": 1039.4,
+    "ocr_text": "aA"
+  },
+  {
+    "text": "So, notice that when I do this one, then these two points now are 0-integrity nodes. So,",
+    "start": 1040.12,
+    "end": 1046.44,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "I can do both of them. Now, I have these three points as 0-integrity nodes. So, I can do all three of",
+    "start": 1046.44,
+    "end": 1052.68,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "these. Then I have these four points as 0-integrity nodes. So, I can do all of these and so on.",
+    "start": 1052.68,
+    "end": 1057.8,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "Okay. So, this is just to emphasize that the choice of topological sort is an entirely up to you.",
+    "start": 1057.8,
+    "end": 1064.44,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "Very often it will be more complicated to program this kind of diagonal thing. So,",
+    "start": 1065.64,
+    "end": 1069.16,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "usually what tries to do it by row and column, but any topological ordering of the",
+    "start": 1069.16,
+    "end": 1073.64,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "of the base values can be used in order to compute them. All you need to know is when you come to a",
+    "start": 1074.36,
+    "end": 1079.4,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "node, a value that you want to compute, all its dependencies must have already been computed.",
+    "start": 1079.4,
+    "end": 1084.2,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "That is what this DAG structure gives you. So, the subproblems form a DAG",
+    "start": 1084.2,
+    "end": 1087.88,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "and you have to navigate your way through the DAG in a most effective way as far as programming it.",
+    "start": 1088.6,
+    "end": 1093.16,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "It is usually by row or column in a table, but it could be by diagonal also.",
+    "start": 1093.88,
+    "end": 1097.48,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "So, finally, before we conclude, let us just look at an instructive",
+    "start": 1100.04,
+    "end": 1104.12,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "illustration of the difference between memorization and dynamic programming.",
+    "start": 1104.76,
+    "end": 1109.56,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "Okay. So, if we have a bunch of holes that are along the border, then intuitively what it says is",
+    "start": 1110.28,
+    "end": 1117.0,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "that if I start from here and I go anywhere like this, I am going to get stuck.",
+    "start": 1117.0,
+    "end": 1120.12,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "So, if I start my memorization from there, then everywhere it is just going to see a 0.",
+    "start": 1121.56,
+    "end": 1127.0,
+    "ocr_text": "Abst"
+  },
+  {
+    "text": "Okay. So, all these values are just going to be 0 and my memorization is not going to look further",
+    "start": 1127.0,
+    "end": 1133.0,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "along this. So, memorization I claim is only going to look along this outer boundary.",
+    "start": 1133.0,
+    "end": 1141.24,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "Only these grid points will actually be computed by memorization.",
+    "start": 1141.24,
+    "end": 1144.36,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "Okay. Whereas, if I do dynamic programming, I will start from here and I will blindly fill up,",
+    "start": 1145.08,
+    "end": 1149.56,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "only when I reach the 0, I realize that the values are kept computed inside this grid,",
+    "start": 1149.56,
+    "end": 1153.24,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "don't flip. So, there is this entire shaded region in this grid whose values are not needed",
+    "start": 1153.24,
+    "end": 1159.32,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "because they cannot contribute 20 parts from the bottom for the top because every part going",
+    "start": 1159.32,
+    "end": 1163.64,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "for them will get blocked by one of these cells. Whereas, dynamic programming is now going to blindly",
+    "start": 1163.64,
+    "end": 1168.52,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "compute values for these points, even though they are useless, memorization will not because it only",
+    "start": 1168.52,
+    "end": 1172.76,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "computes by need and it will never reach these points. So, therefore, the memo table will have",
+    "start": 1172.76,
+    "end": 1178.76,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "a linear number of entries. It will have say 2m plus 2n entries. If only of the outer boundary of",
+    "start": 1178.84,
+    "end": 1185.72,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "this grid will be covered. So, it will have a linear number of entries in terms of the two dimensions.",
+    "start": 1185.72,
+    "end": 1190.28,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "Whereas, dynamic programming will have m times n entries. It will have every grid point will be",
+    "start": 1190.28,
+    "end": 1194.36,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "computed in the day, even though most of them are useless. So, in a sense in this example, dynamic",
+    "start": 1194.36,
+    "end": 1201.24,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "programming is wastefully computing values which we can by a little bit of analysis realize will never",
+    "start": 1201.24,
+    "end": 1207.96,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "be used because it is just blindly computing every sub problem on its way from the origin to the top.",
+    "start": 1207.96,
+    "end": 1213.08,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "However, as we said before, dynamic programming is iterative. It is going to be just a simple loop.",
+    "start": 1214.28,
+    "end": 1219.72,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "Memoization is going to be recursive. It is going to be optimized to not make the same recursive",
+    "start": 1221.08,
+    "end": 1226.6,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "call twice, but never that it is recursive and recursion carries a cost in terms of the execution",
+    "start": 1226.6,
+    "end": 1230.92,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "with a programming language. So, therefore, though this looks like a wasteful dynamic programming",
+    "start": 1230.92,
+    "end": 1235.4,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "strategy in case the holes are distributed in a bad way, actually it does not matter. It usually",
+    "start": 1235.4,
+    "end": 1240.44,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "turns out that a dynamic programming implementation will be usually more efficient than a Memoize",
+    "start": 1240.44,
+    "end": 1246.28,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "implementation. So, the Memoize implementation is easy to do because we know that we can go from an",
+    "start": 1246.28,
+    "end": 1251.8,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "inductive definition directly to a recursive program. And we saw last time that there is a generic",
+    "start": 1251.8,
+    "end": 1256.84,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "formula or a recipe to make any recursive program Memoize. You just have to insert a couple of",
+    "start": 1256.84,
+    "end": 1261.16,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "steps saying look up the table and feed the table. So, therefore, getting a Memoize",
+    "start": 1261.24,
+    "end": 1265.8,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "implementation is very easy. Getting a dynamic programming implementation requires some analysis",
+    "start": 1265.8,
+    "end": 1271.88,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "of the sub problems and figuring out a good order in which to evaluate the sub problem. So,",
+    "start": 1271.88,
+    "end": 1275.72,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "it is more work. But this extra work usually pays off because then you get an iterative",
+    "start": 1275.72,
+    "end": 1280.52,
+    "ocr_text": "Abt"
+  },
+  {
+    "text": "computation of all the sub problems rather than a recursive one.",
+    "start": 1280.52,
+    "end": 1286.52,
+    "ocr_text": "Abt"
+  }
+]

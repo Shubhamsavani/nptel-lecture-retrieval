@@ -1,0 +1,776 @@
+[
+  {
+    "text": "Hello, in the last video we had looked at IPCs or inter process communication. So, we",
+    "start": 0.0,
+    "end": 22.04,
+    "ocr_text": "\\ NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "had seen that due to IPCs we could build application comprising of several processes",
+    "start": 22.04,
+    "end": 28.44,
+    "ocr_text": ";\nVE\nx\n.\n\nae\n\n&"
+  },
+  {
+    "text": "and we could achieve modularity and as a result of having modular processes, with each process",
+    "start": 28.44,
+    "end": 37.08,
+    "ocr_text": ";\nVE\nx\n.\n\nae\n\n&"
+  },
+  {
+    "text": "doing a specific job, we are able to have a very efficient and easily easy to understand",
+    "start": 37.08,
+    "end": 45.24,
+    "ocr_text": ";\nVE\nx\n.\n\nae\n\n&"
+  },
+  {
+    "text": "applications. One consequence of having this modular approach and the use of IPCs is the",
+    "start": 45.24,
+    "end": 53.08,
+    "ocr_text": ";\nVE\nx\n.\n\nae\n\n&"
+  },
+  {
+    "text": "requirement for synchronization. In this video we will look at what synchronization is and",
+    "start": 53.08,
+    "end": 58.4,
+    "ocr_text": "Motivating Scenario\n\nshared variable\n\nint counter=5; program 1\n\n{\n:\ni‘\n\nCounter counter--\ni\n\n} |}\n\n* Single core\n\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\n|\n\nCPU usage wrt time"
+  },
+  {
+    "text": "what are the issues corresponding to synchronization and how it can be solved. Let us explain",
+    "start": 58.4,
+    "end": 64.44,
+    "ocr_text": "Motivating Scenario\n\nshared variable\n\nint counter=5; program 1\n\n{\n:\ni‘\n\nCounter counter--\ni\n\n} |}\n\n* Single core\n\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\n|\n\nCPU usage wrt time"
+  },
+  {
+    "text": "what synchronization is with this motivating scenario. Let us say we have two programs,",
+    "start": 64.44,
+    "end": 70.4,
+    "ocr_text": "Motivating Scenario\n\nshared variable\n\nint counter=5; program 1\n\n{\n:\ni‘\n\nCounter counter--\ni\n\n} |}\n\n* Single core\n\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\n|\n\nCPU usage wrt time"
+  },
+  {
+    "text": "program 0 and program 1 and a shared variable which is defined as counter. So, it is a global",
+    "start": 70.4,
+    "end": 79.2,
+    "ocr_text": "Motivating Scenario\n\nshared variable\n\nint counter=5; program 1\n\n{\n:\ni‘\n\nCounter counter--\ni\n\n} |}\n\n* Single core\n\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\n|\n\nCPU usage wrt time"
+  },
+  {
+    "text": "shared variable int counter equal to 5. So, in program 0 we are incrementing the counter",
+    "start": 79.2,
+    "end": 85.68,
+    "ocr_text": "Motivating Scenario\n\nshared variable\nint counter=5;\n\n,\n.\ncounter++ counter--\ni *\n} }\n\n* Single core\n\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\n|\n\nCPU usage wrt time"
+  },
+  {
+    "text": "by 1, while in program 1 we are reducing the counter by 1 essentially decreasing the counter",
+    "start": 85.68,
+    "end": 92.0,
+    "ocr_text": "Motivating Scenario\n\nshared variable\n\nint counter=5; program 1\n\n{\n.\n:\n\nCOTS, counter--\n°\n\n} }\n\n¢ Single core\n\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\nCPU usage wrt time"
+  },
+  {
+    "text": "by 1. Now, as we know that when we execute this program let us say in a single code processor.",
+    "start": 92.0,
+    "end": 101.04,
+    "ocr_text": "Motivating Scenario\n\nshared variable\n\nint counter=5; program 1\n\n{\n.\n:\n\nCOTS, counter--\n°\n\n} }\n\n¢ Single core\n\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\nCPU usage wrt time"
+  },
+  {
+    "text": "So, program 0 would execute for some time then there would be a context which when program",
+    "start": 101.04,
+    "end": 107.04,
+    "ocr_text": "Motivating Scenario\n\nshared variable\n\nint counter=5; program 1\n\n{\n:\nA\n\ncounten counter--\n°\n\n} }\n\n* Single core\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\n|\n\nCPU usage wrt time"
+  },
+  {
+    "text": "2 would execute and then program 1 would execute and so on assuming that it is a round",
+    "start": 107.12,
+    "end": 112.12,
+    "ocr_text": "Motivating Scenario\n\nshared variable\n\nint counter=5; program 1\n\n{\n4\n:\n\nCOUNIET ES counter--\n°\n\n} }\n\n* Single core\n\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\nCPU usage wrt time"
+  },
+  {
+    "text": "robin scheduling and assuming that no other process is present.",
+    "start": 112.12,
+    "end": 117.68,
+    "ocr_text": "Motivating Scenario\n\nshared variable\n\nint counter=5; program 1\n\n{\n4\n:\n\nCOUNIET ES counter--\n°\n\n} }\n\n* Single core\n\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\nCPU usage wrt time"
+  },
+  {
+    "text": "Now, the question is what would be the value of counter. One would expect that the counter",
+    "start": 117.68,
+    "end": 125.68,
+    "ocr_text": "Motivating Scenario\n\nshared variable\n\nint counter=5; program 1\n\n{\n‘\n:\nCOUnLE LS counter--\n} }\n\n* Single core\n\n— Program 1 and program 2 are executing at the same time but sharing a\nsingle core\n\nCPU usage wrt time"
+  },
+  {
+    "text": "value is 5 because let us say program 0 executes first. So, it is going to increment the value",
+    "start": 125.68,
+    "end": 134.88,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; program 1\n\n{|\n\ncounter a counter--\n*\n\n}\n\n}\n\n¢ What is the value of counter?\n— expected to be 5\n— but could also be 4 and 6"
+  },
+  {
+    "text": "of counter. So, counter becomes 6 over here and then program 1 executes and it decrements",
+    "start": 134.96,
+    "end": 141.4,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; program 1\n\n{|\n\ncounter a counter--\n*\n\n}\n\n}\n\n¢ What is the value of counter?\n— expected to be 5\n— but could also be 4 and 6"
+  },
+  {
+    "text": "the value of the counter and since the counter is shared. So, and has the value of 6 it gets",
+    "start": 141.4,
+    "end": 147.88,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; program 1\n\n{\n\ncounter counter--\n*\n\n}\n\n}\n\n¢ What is the value of counter?\n— expected to be 5\n— but could also be 4 and 6"
+  },
+  {
+    "text": "decremented back to 5. On the other hand if let us say program 1 executes first and then",
+    "start": 147.88,
+    "end": 154.0,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; program 1\n\n{\n\nCOUnLET counter--\n*\n\n}\n\n}\n\n¢ What is the value of counter?\n— expected to be 5\n— but could also be 4 and 6"
+  },
+  {
+    "text": "program 0. So, counter minus minus would cause the counter to reduce from 5 to 4 and then",
+    "start": 154.0,
+    "end": 162.32,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; program 1\n\n{\n\nCOUnLET counter--\n*\n\n}\n\n}\n\n¢ What is the value of counter?\n— expected to be 5\n— but could also be 4 and 6"
+  },
+  {
+    "text": "program 0 executes this particular line causing it to increment the counter from 4 back to 5.",
+    "start": 162.32,
+    "end": 169.32,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; program 1\n\na\n\nCounter counter--i,\n*\n\n}\n\n}\n\n¢ What is the value of counter?\n— expected to be 5\n— but could also be 4 and 6"
+  },
+  {
+    "text": "Thus, one would expect that the result at the end of both these programs would be 5 for",
+    "start": 169.32,
+    "end": 174.8,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\n\nCOUNTS counter--\n*\n\n}\n\n}\n\n¢ What is the value of counter?\n— expected to be 5\n— but could also be 4 and 6"
+  },
+  {
+    "text": "the value of the counter. But now, what we will show is that we can also obtain the values",
+    "start": 174.8,
+    "end": 181.32,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\n\nCOUNTS counter--\n*\n\n}\n\n}\n\n¢ What is the value of counter?\n— expected to be 5\n— but could also be 4 and 6"
+  },
+  {
+    "text": "of 4 and 6 for the value of counter. So, let us see this more in detail. So, let us look",
+    "start": 181.32,
+    "end": 189.32,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; program 1\n\n{\n\nCOUR counter--\n*\n\n}\n\n}\n\n¢ What is the value of counter?\n— expected to be 5\n— but could also be 4 and 6"
+  },
+  {
+    "text": "more deeply into how these instructions are executing. Let us see what happens when we",
+    "start": 189.6,
+    "end": 194.6,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; F\n\nR\n\ni\ncOunients counter--\n} }\n\nR1 € counter\n\nR1€R1+1\n\n_ | counter €<R1\ncontext!\"R> < counter\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "are actually implementing this counter. So, essentially what we are doing is we are saying",
+    "start": 194.6,
+    "end": 198.8,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; F\n\nR\n\ni\ncOunients counter--\n} }\n\nR1 € counter\n\nR1€R1+1\n\n_ | counter €<R1\ncontext!\"R> < counter\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "how what happens when we are doing counter plus plus with respect to the assembly instructions.",
+    "start": 198.8,
+    "end": 204.8,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5;\n\n*\n*\n\ncountert+ counter--\n*\n\n} }\n\nR1 € counter\nR1€R1+1\n\ncounter <R1\ncontext! 25 <\n\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "So, first the value of counter which is stored in memory is loaded into a register say R1",
+    "start": 204.8,
+    "end": 211.8,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5;\n\n*\n*\n\ncountert+ counter--\n*\n\n} }\n\nR1 € counter\nR1€R1+1\n\ncounter <R1\ncontext! 25 <\n\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "and then R1 is incremented by 1. So, that is the second line R1 equal to R1 plus 1 and",
+    "start": 212.8,
+    "end": 219.8,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5;\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\n\nR1€R1+4\n\n_ |. counter €R1\n\ncontext} | yunter\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "then R1 is written back into memory. So, R1 is written back into the value of counter which",
+    "start": 220.16,
+    "end": 226.6,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\n\nR1€R1+1\ncounter €<Rt,\n\nconte) nter\n\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "is stored in memory. So, in terms of the numbers. So, we have 5 here which is the counter.",
+    "start": 226.6,
+    "end": 232.6,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; proc\n\n*\n*\ncounter++ counter--\n* *\n} }\n\nR1 € counter\nR1€R1+1\n\ncounter <R1\ncontextl7R yunter\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "So, the contents of counter is 5 and that is loaded into R1 then 5 is incremented. So,",
+    "start": 232.6,
+    "end": 240.1,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; proc\n\n*\n*\ncounter++ counter--\n* *\n} }\n\nR1 € counter\nR1€R1+1\n\ncounter <R1\ncontextl7R yunter\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "now R1 contains 6 and the value of R1 is written back into counter. So, this value of 6 is",
+    "start": 240.1,
+    "end": 247.1,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5;\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\n\nR1€R1+1\n\n_ |. counter €R1\n\ncontext| | ounter\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "written back into the memory location specified by counter and therefore, 6 is written back",
+    "start": 247.1,
+    "end": 252.3,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\n\nR1€R1+1\n\n_ |. counter €<R1\nconte: ) < nter\nswitch\n\n‘ounte\n\ncounter = 5"
+  },
+  {
+    "text": "in the counter. Now, suppose there is a context which the same thing happens again. So,",
+    "start": 252.3,
+    "end": 259.3,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\n\nR1€R1+1\n\n_ |. counter €<R1\nconte: ) < nter\nswitch\n\n‘ounte\n\ncounter = 5"
+  },
+  {
+    "text": "value of counter is loaded into R2. So, the R2 has the value of 6 then we are decrymenting",
+    "start": 259.3,
+    "end": 265.6,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5;\n\n*\n*\ncounter++ counter--\n= *\n} }\n\nR1 € counter\n\nR1€R1+1\n\n__| counter €R1\nconte: 22 € gounter\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "R2 by 1. So, R2 becomes 6 minus 1 that is 5 and then the register R2 is stored back into",
+    "start": 265.7,
+    "end": 275.2,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5;\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\n\nR1€R1+1\n\n_ |. counter €R1\ncontext\" 5 punter\nswitch | 5 by\n\ncounter = 5"
+  },
+  {
+    "text": "the memory location counter. Therefore, R2 is 5. Therefore, the value of 5 is stored back",
+    "start": 275.44,
+    "end": 282.2,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5;\n\n*\n*\ncounter++ counter--\nud =\n} }\n\nR1 € counter\n\nR1€R1+1\ncounter <R1\ncontext! 29 € counter\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "into the counter. So, at the end of these two programs executing the value of counter is",
+    "start": 282.2,
+    "end": 287.5,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5;\n\n*\n*\ncounter++ counter--\nud =\n} }\n\nR1 € counter\n\nR1€R1+1\ncounter <R1\ncontext! 29 € counter\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "5. So, now let us look at the second two scenarios when we get the value of counter as 4 and",
+    "start": 287.5,
+    "end": 294.5,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\n\nR1€R1+1\n\ncounter <R1\ncontext! 25\n\nswitch\n\ncounter = 5"
+  },
+  {
+    "text": "when we get the value of counter as 6. So, let us look at this scenario. So, program",
+    "start": 295.22,
+    "end": 302.22,
+    "ocr_text": "Motivating Scenario\n\ncounter++\n\n*\n\n}\n\nShared variable\nint counter=5;\n\ncounter--\n\nconte)\nswitch\n\nR1 € counter\nR1€R1+1\ncounter €R1\n\ncounter = 5\n\nR1_€ counter.\n\ncoun! R2\nR1€R1+17\ncounter < R1\n\ncounter = 6"
+  },
+  {
+    "text": "0 executes and loads the value of counter into R1. Therefore, we collect that R1 has the",
+    "start": 302.72,
+    "end": 309.22,
+    "ocr_text": "Motivating Scenario\n\ncounter++\n\n*\n\n}\n\nShared variable\nint counter=5;\n\ncounter--\n\nconte)\nswitch\n\nR1 € counter\nR1€R1+1\ncounter €R1\n\ncounter = 5\n\nR1_€ counter.\n\ncoun! R2\nR1€R1+17\ncounter < R1\n\ncounter = 6"
+  },
+  {
+    "text": "value of 5. Now, there is a context which over here and process 1 executes. Now, the",
+    "start": 309.3,
+    "end": 316.3,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\nit\n*\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\n\nR1_€ counter.\n2 & inter\n\nR1€R1+1\n\ncounter <R1\ncontext 23 € counter\nswitch )\n\ncoun! <\nR1€R1+17\ncounter < R1\n\ncounter = 5 counter = 6"
+  },
+  {
+    "text": "counter over here is still having the value of 5 and it is loaded into the register R2.",
+    "start": 316.54,
+    "end": 322.54,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\na\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\nR1€R1+1\n\ncounter €R1\ncontex yunter\nswitch\n\nRt im counter.\n\nR1€R1+17\ncounter <— R1\n\ncounter = 5 counter = 6"
+  },
+  {
+    "text": "Then R2 is decrymented by 1. So, R2 now has 4 and the value of 4 is stored back into",
+    "start": 322.94,
+    "end": 329.94,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\na\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\nR1€R1+1\n\ncounter €R1\ncontex yunter\nswitch\n\nRt im counter.\n\nR1€R1+17\ncounter <— R1\n\ncounter = 5 counter = 6"
+  },
+  {
+    "text": "counter. So, now counter in memory has the value of 4. Now, there is a context which again",
+    "start": 330.8,
+    "end": 337.04,
+    "ocr_text": "Motivating Scenario\n\ncounter++\n\n*\n\n}\n\nShared variable\nint counter=5;\n\ncounter--\n\nconte)\nswitch\n\nR1 € counter\nR1€R1+1\ncounter €R1\n\ncounter = 5\n\nR1_€ counter\nunter\n\ncounté F\nR1€R1+17\ncounter < R1\n\ncounter = 6"
+  },
+  {
+    "text": "and recollect when there is a context which the program 0 continues from wherever it",
+    "start": 337.04,
+    "end": 341.84,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; I\n\n*\n*\ncounter++ counter--\n‘al a\n} }\n\nR1 € counter\n\nR1_€ counter.\ninter\n\nR1€R1+1\n\ncounter <R1\ncontext! R29 < counter\nswitch é\n\ncount St\nR1€R1+17\ncounter < R1\n\ncounter = 5 counter = 6"
+  },
+  {
+    "text": "has stopped. Essentially, the context which was stored in the kernel is restored back",
+    "start": 341.84,
+    "end": 346.84,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; I\n\n*\n*\ncounter++ counter--\n‘al a\n} }\n\nR1 € counter\n\nR1_€ counter.\ninter\n\nR1€R1+1\n\ncounter <R1\ncontext! R29 < counter\nswitch é\n\ncount St\nR1€R1+17\ncounter < R1\n\ncounter = 5 counter = 6"
+  },
+  {
+    "text": "into process 0, allowing it to continue from where it stopped. Therefore, we see that",
+    "start": 347.84,
+    "end": 353.84,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5;\n\n*\n*\ncounter++ counter--\n* b *\n} }\n\nR1 € counter\nR1€R1+1\ncounter, €R1\n\nRt € counter\n\nconte)\nswitch\n\ncounter <R\nRt €R1+17\ncounter — R1\n\ncounter = 5 counter = 6"
+  },
+  {
+    "text": "the value of R1 at this particular point was 5 and after the context which we have R1",
+    "start": 353.84,
+    "end": 360.84,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5;\n\n*\n*\ncounter++ counter--\n* b *\n} }\n\nR1 € counter\nR1€R1+1\ncounter, €R1\n\nRt € counter\n\nconte)\nswitch\n\ncounter <R\nRt €R1+17\ncounter — R1\n\ncounter = 5 counter = 6"
+  },
+  {
+    "text": "back at 5 again over here. So, R1 is incremented by 1 to get 6 and the value of 6 is stored into",
+    "start": 360.84,
+    "end": 367.84,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; proc\n\n*\n*\ncounter++ counter--\n* *\n} }\n\nR1 € counter\n\nR1_€ counter\n\nR1€R1+1\n\ncounter €R1\ncontext!7R\n\nR2 yunter\nswitch\n\ncoun! f\nR1 €Ri+ 1\ncounter — R1\n\ncounter = 5 counter = 6"
+  },
+  {
+    "text": "counter. Therefore, at the end of this execution we get the counter value equal to 6. Now,",
+    "start": 367.84,
+    "end": 374.34,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; proc\n\n*\n*\ncounter++ counter--\nbe *\n} }\n\nR1 € counter\nR1€R1+1\n\nRi € counter\nyuNter\ncounter <R1\n\ncontext! R 3\n\nswitch\n\ncoun!\nR1 ERI + 7\ncounter — R1\n\ncounter = 5 counter = 6"
+  },
+  {
+    "text": "let us look at the third case that is when we get the counter value equal to 4. So,",
+    "start": 374.34,
+    "end": 379.18,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; proc\n\n*\n*\ncounter++ counter--\nbe *\n} }\n\nR1 € counter\nR1€R1+1\n\nRi € counter\nyuNter\ncounter <R1\n\ncontext! R 3\n\nswitch\n\ncoun!\nR1 ERI + 7\ncounter — R1\n\ncounter = 5 counter = 6"
+  },
+  {
+    "text": "this is exactly the opposite to the second case in which the program 1 is executed first.",
+    "start": 379.18,
+    "end": 386.18,
+    "ocr_text": "Motivating Scenario\n\ncounter++\n\n*\n\n}\n\nShared variable\nint counter=5;\n\n{\n\n*\n\n*\n\ncounter--\n\n*\n\n}\n\nconte)\nswitch\n\nR1 € counter\nR1€R1+1\ncounter €R1\nF punter\n\ncounter = 5\n\nRt € counter\ninter\n€R2-1\n\nount F\nR1€R1+17\ncounter — R1\n\ncounter = 6\n\n‘4 suNnter\nR2 € counter\nR2 €R2+1\ncounter <R2\nRo\ncount\n\ncounter = 4"
+  },
+  {
+    "text": "Essentially, the counter which has a value of 5 gets loaded into R2. Therefore, R2 has",
+    "start": 386.18,
+    "end": 393.18,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\n‘i\na\ncounter a counter--\n*\n} }\n\nR1 € counter ef € counter. R2 € couster\npunter R2 € counter\n\nR2€R2-1 R2 €R2+1\n\nR1€R1+1\n\n_ | counter €R1\nconte: ) yunter\nswitch\n\noun R counter, €R2\nR1€R1+1\n\nf counter — R1\n\ncounter = 5 counter = 6 counter = 4"
+  },
+  {
+    "text": "5. Now, there is a context which causing program 0 to execute and the value of counter is",
+    "start": 394.02,
+    "end": 401.02,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\n‘i\na\ncounter a counter--\n*\n} }\n\nR1 € counter ef € counter. R2 € couster\npunter R2 € counter\n\nR2€R2-1 R2 €R2+1\n\nR1€R1+1\n\n_ | counter €R1\nconte: ) yunter\nswitch\n\noun R counter, €R2\nR1€R1+1\n\nf counter — R1\n\ncounter = 5 counter = 6 counter = 4"
+  },
+  {
+    "text": "loaded into R2 incremented by 1. So, that is 6 and 6 is written back into counter.",
+    "start": 401.02,
+    "end": 408.02,
+    "ocr_text": "Motivating Scenario\n\ncounter++\n\n*\n\n}\n\nShared variable\nint counter=5;\n\nprogram 1\n\n{\n\n*\n\n*\n\ncounter--\n\n*\n\n}\n\nconte)\nswitch\n\nR1 € counter\nR1€R1+1\ncounter €<R1\n\ncounter = 5\n\nRi € counter\n\nR1€R1+1\ncounter < R1\n\ncounter = 6\n\nunter\nRo € counter\nR2 €R2+1\n\ncounter €R2\n\ncounter = 4"
+  },
+  {
+    "text": "So, counter now we have the value of 6. So, there is a context which again causing",
+    "start": 411.22,
+    "end": 416.4,
+    "ocr_text": "Motivating Scenario\n\nShared variable\nint counter=5; proc\n\n*\n*\ncounter++ counter--\n* *\n} }\n\nR1 € counter\nR1€R1+1\n\nR1 SS COUNIEY, € counter\npunter R2 € counter\nR2 €R2-1 R2 €R2+1\n\ncounter <R2 counter <R2\nR1€R1+1 R2\ncounter < R1\n\nswitch\n\ncounter = 5 counter = 6 counter = 4"
+  },
+  {
+    "text": "program 1 to execute from where it had stopped. So, we notice that R2 had the value of 5.",
+    "start": 416.4,
+    "end": 423.4,
+    "ocr_text": "Motivating Scenario\n\ncounter++\n\n*\n\n}\n\nShared variable\nint counter=5;\n\n{\n\n*\n\n*\n\ncounter--\n\n*\n\n}\n\nconte)\nswitch\n\nR1 € counter\nR1€R1+1\ncounter <R1\nR2 punter\n\ncounter = 5\n\nie € counter\n\nR1€R1+ 7\ncounter — R1\n\ncounter = 6\n\nunter\nR2 € counter\nR2 €R2+1\n\ncounter €R2\n\ncounter = 4"
+  },
+  {
+    "text": "Now, R2 is reduced by 1. So, that is that makes it 4 and the value of 4 is stored into",
+    "start": 423.4,
+    "end": 430.4,
+    "ocr_text": "Motivating Scenario\n\ncounter++\n\n*\n\n}\n\nShared variable\nint counter=5;\n\n{\n\n*\n\n*\n\ncounter--\n\n*\n\n}\n\nconte)\nswitch\n\nR1 € counter\nR1€R1+1\ncounter <R1\nR2 punter\n\ncounter = 5\n\nie € counter\n\nR1€R1+ 7\ncounter — R1\n\ncounter = 6\n\nunter\nR2 € counter\nR2 €R2+1\n\ncounter €R2\n\ncounter = 4"
+  },
+  {
+    "text": "the memory location corresponding to counter. Thus, at the end of execution in this case,",
+    "start": 430.72,
+    "end": 435.72,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1_€ counter. R2 € counter\nR2 inter R2 € counter\n1 R2 €R2+1\n\nR1 € counter\n\nR1€R1+1\nSounter €R1\n\nunter\n\noun CR counter <R2\nR1€R1+17\ncounter — R1 coun\n\nconte)\nswitch\n\ncounter = 5 counter = 6 counter = 4"
+  },
+  {
+    "text": "the value of counter is 4. So, this was an example of the issues that could occur when we",
+    "start": 435.72,
+    "end": 442.72,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1_€ counter. R2 € counter\nR2 inter R2 € counter\n2 <F 1 R2 €R2+1\n\nR1 € counter\n\nR1€R1+1\n\n_ |. counter <R1\ncontext!R9 yunter\nswitch\n\nuN! CR counter <R2\nBA €R1+17\ncounter — R1 coun\n\ncounter = 5 counter = 6 counter = 4"
+  },
+  {
+    "text": "have a shared memory. So, even though there was a very simple operation of incrementing",
+    "start": 442.92,
+    "end": 447.42,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1_€ counter. R2 € counter\nR2 inter R2 € counter\n2 <F 1 R2 €R2+1\n\nR1 € counter\n\nR1€R1+1\n\n_ |. counter <R1\ncontext!R9 yunter\nswitch\n\nuN! CR counter <R2\nBA €R1+17\ncounter — R1 coun\n\ncounter = 5 counter = 6 counter = 4"
+  },
+  {
+    "text": "a counter in one place while decrymending the counter in another place, we had seen that",
+    "start": 447.42,
+    "end": 452.92,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\nR1€R1+1\n\ncounter €R1\ncontext! 725 yunter\nswitch\n\nR1_€ counter. f punter\nR2 punter R2 € counter\nR R2-1 R2 €R2+1\n\noun CR counter €R2\nR1€R1+1\ncounter — R1\n\ncounter = 5 counter = 6 counter = 4"
+  },
+  {
+    "text": "the result could be different depending on how the instructions get executed and how",
+    "start": 452.92,
+    "end": 457.44,
+    "ocr_text": "Motivating Scenario\n\nShared variable\n\nint counter=5; program 1\n\n{\n*\n*\ncounter++ counter--\n*\n} }\n\nR1 € counter\nR1€R1+1\n\ncounter €R1\ncontext! 725 yunter\nswitch\n\nR1_€ counter. f punter\nR2 punter R2 € counter\nR R2-1 R2 €R2+1\n\noun CR counter €R2\nR1€R1+1\ncounter — R1\n\ncounter = 5 counter = 6 counter = 4"
+  },
+  {
+    "text": "the context which is occurred. So, we would define this scenario more formally by what",
+    "start": 457.52,
+    "end": 463.8,
+    "ocr_text": "Motivating Scenario\n\ncounter++\n\n*\n\n}\n\nShared variable\nint counter=5;\n\nprogram 1\n\n{\n\n*\n\n*\n\ncounter--\n\n*\n\n}\n\nswitch\n\nR1 € counter\nR1€R1+1\n\ncounter = 5\n\nR1_€ counter\n\noun\nR1€R1+1\ngounter <— R1\n\ncounter = 6\n\nunter\nR2 € counter\nR2 €R2+1\n\ncounter €R2\n\n‘count\n\ncounter = 4"
+  },
+  {
+    "text": "is known as race conditions. A race condition is a situation where several processes access",
+    "start": 463.8,
+    "end": 471.28,
+    "ocr_text": "Motivating Scenario\n\ncounter++\n\n*\n\n}\n\nShared variable\nint counter=5;\n\nprogram 1\n\n{\n\n*\n\n*\n\ncounter--\n\n*\n\n}\n\nswitch\n\nR1 € counter\nR1€R1+1\n\ncounter = 5\n\nR1_€ counter\n\noun\nR1€R1+1\ngounter <— R1\n\ncounter = 6\n\nunter\nR2 € counter\nR2 €R2+1\n\ncounter €R2\n\n‘count\n\ncounter = 4"
+  },
+  {
+    "text": "and manipulate the same data. So, this part of the process which accesses common or the",
+    "start": 471.68,
+    "end": 478.68,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\nounte critical section\n\n} No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "shared data is known as a critical section. The outcome of a race condition would depend",
+    "start": 479.24,
+    "end": 485.64,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\n‘ount + critical section\n\n} No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "on the order in which the accesses to that data take place. As we have seen in the previous",
+    "start": 485.64,
+    "end": 492.64,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\noun critical section\n\n} No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "example, depending on which program executes first as well as depending on how the context",
+    "start": 492.64,
+    "end": 499.64,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\noun critical section\n\n} No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "which is occur, the result would vary. The race conditions could be prevented by what",
+    "start": 499.8,
+    "end": 506.8,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\noun critical section\n\n} No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "is known as synchronization. Essentially, with synchronization, we would ensure that only",
+    "start": 508.08,
+    "end": 514.08,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\n‘oun’ critical section\n\n} No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "one process at a time would manipulate the critical data. So, coming back to our example,",
+    "start": 514.16,
+    "end": 521.16,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\n‘oun’ critical section\n\n} No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "what is required is that we would mark this area of instructions which access or which",
+    "start": 522.24,
+    "end": 529.24,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\nounte critical section\n\naN No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "manipulate the shared data as a critical section. Then, we would have some additional techniques",
+    "start": 529.88,
+    "end": 535.56,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\noun critical section\n\n} No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "to ensure that no more than one process could execute in a critical section at a given",
+    "start": 535.56,
+    "end": 541.56,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\ncoun critical section\n5)\n\n} No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "time. So, we will see this in more detail in this particular video along with the videos",
+    "start": 541.56,
+    "end": 547.88,
+    "ocr_text": "Race Conditions\n\n* Race conditions\n\n— Asituation where several processes access and manipulate the\nsame data (critical section)\n\n— The outcome depends on the order in which the access take\nplace\n\n— Prevent race conditions by synchronization\n+ Ensure only one process at a time manipulates the critical data\n\ncoun critical section\n5)\n\n} No more than one\n\nprocess should execute in\ncritical section at a time"
+  },
+  {
+    "text": "that follow this. Race conditions not only occur in single core systems, but also in",
+    "start": 547.88,
+    "end": 554.08,
+    "ocr_text": "Race Conditions in Multicore\n\nshared variable\n\nint counter=5; program 1\n\n{\ncounter++ counter--\n} }\n* Multi core\n— Program 1 and program 2 are executing at the same time on different\ncores\n\nLs} - CPU usage wrt time"
+  },
+  {
+    "text": "multi core systems. So, essentially this is quite obvious to deduce that due to the fact",
+    "start": 554.08,
+    "end": 560.6,
+    "ocr_text": "Race Conditions in Multicore\n\nshared variable\n\nint counter=5; program 1\n\n{\ncounter++ counter--\n} }\n* Multi core\n— Program 1 and program 2 are executing at the same time on different\ncores\n\nLs} - CPU usage wrt time"
+  },
+  {
+    "text": "that each processor in a multi core system is executing simultaneously, it is likely that",
+    "start": 560.6,
+    "end": 567.6,
+    "ocr_text": ".\n\nRace Conditions in Multicore\n\nshared variable\nint counter=5; program 1\n\n( *\ncounter++ a\n} ‘\nMulti core\n— Program 1 and program 2 are executing at the same time on different\ncores\n\na! 1\n\n| CPU usage wrt time"
+  },
+  {
+    "text": "this shared variable could be accessed by both programs at exactly the same time. Therefore,",
+    "start": 567.76,
+    "end": 574.76,
+    "ocr_text": ".\n\nRace Conditions in Multicore\n\nshared variable\nint counter=5; program 1\ntr\n\n( *\ncounter++ ——\n} } ,\nMulti core\n— Program 1 and program 2 are executing at the same time on different\ncores\n\nS| ;\n\nLs} CPU usage wrt time"
+  },
+  {
+    "text": "race conditions in multi core systems is more pronounced compared to the single core",
+    "start": 575.84,
+    "end": 581.36,
+    "ocr_text": ".\n\nRace Conditions in Multicore\n\nshared variable\nint counter=5;\n\n.\n'\ncounter++ counter--\n* *\n} }\n\nMulti core\n— Program 1 and program 2 are executing at the same time on different\ncores\n\n~~ ;\n\nrE CPU usage wrt time"
+  },
+  {
+    "text": "systems. Now, let us look at how solutions for the critical section problem can be obtained.",
+    "start": 581.36,
+    "end": 588.36,
+    "ocr_text": ".\n\nRace Conditions in Multicore\n\nshared variable\nint counter=5;\n\n.\n'\ncounter++ counter--\n* *\n} }\n\nMulti core\n— Program 1 and program 2 are executing at the same time on different\ncores\n\n~~ ;\n\nrE CPU usage wrt time"
+  },
+  {
+    "text": "Any solution for the critical section problem should satisfy the following requirements.",
+    "start": 589.68,
+    "end": 593.88,
+    "ocr_text": "Critical Section\n\n¢ Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncritical section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n— No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "These are one mutual exclusion to progress and three no starvation or bounded weight.",
+    "start": 593.88,
+    "end": 600.88,
+    "ocr_text": "Critical Section\n\n¢ Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncritical section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n— No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "In mutual exclusion, the critical section solution should ensure that not more than one process",
+    "start": 601.76,
+    "end": 608.26,
+    "ocr_text": "Critical Section\n\n¢ Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncritical section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n= No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "is in the critical section at a given time. Progress should ensure that when no process",
+    "start": 608.26,
+    "end": 614.56,
+    "ocr_text": "Critical Section\n\n¢ Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncritical section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n— No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "is in the critical section, any process that requests entry into that critical section",
+    "start": 614.56,
+    "end": 620.56,
+    "ocr_text": "Critical Section\n\n¢ Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncritical section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n— No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "must be permitted without any delay. Bounded weight or no starvation means that there is",
+    "start": 620.64,
+    "end": 627.64,
+    "ocr_text": "Critical Section\n\n« Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncritical section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n— No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "an upper bound on the number of times a process enters the critical section while another",
+    "start": 627.64,
+    "end": 632.92,
+    "ocr_text": "Critical Section\n\n¢ Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncritical section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n— No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "is waiting. Essentially, it means that a process should not wait infinitely long in order",
+    "start": 632.92,
+    "end": 640.4,
+    "ocr_text": "Critical Section\n\n¢ Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncritical section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n— No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "to gain access into the critical section. All critical section problems use techniques",
+    "start": 640.4,
+    "end": 646.76,
+    "ocr_text": "Critical Section\n\n¢ Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncritical section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n— No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "known as locking and unlocking in order to solve the critical section problem. Essentially,",
+    "start": 647.0,
+    "end": 652.8,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; proc\nlock_t L; {\n\ncounter++ counter--\n\n*\n\n*\n\n|}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "in the solution, we would have something like this which is also a shared variable. So,",
+    "start": 652.8,
+    "end": 657.6,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; proc\nlock_t L; {\n\ncounter++ counter--\n\n*\n\n*\n\n|}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "we define something known as a lock and define it as an L. So, before entering into the",
+    "start": 657.6,
+    "end": 663.08,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; program 1\nlock_tL; {\n\n*\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "critical section, the program should invoke lock L and while exiting from the critical section,",
+    "start": 663.08,
+    "end": 670.08,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; program 1\nlock_tL; {\n\n*\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "the unlock L should be invoked. Similarly, every program which uses the same critical",
+    "start": 670.08,
+    "end": 675.8,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; proc\nlock_t L; {\n\ncounter--\n\n*\n\n|}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "section should lock an unlock before entering and exiting the critical section respectively.",
+    "start": 675.8,
+    "end": 682.8,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5;\nlock_t L; {\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "Now, what lock does is that it acquires the lock L exclusively. So, after lock completes",
+    "start": 683.16,
+    "end": 690.16,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5;\nlock_t L; {\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "its execution that is after the function lock L completes execution, it is ensured that",
+    "start": 691.56,
+    "end": 698.56,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; program 1\nlock_t L; {\n\n*\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "exactly one process in this case only this process enters into the critical section",
+    "start": 698.56,
+    "end": 705.56,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; ‘\nlock_t L; {\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "and is present in the critical section. When unlock is invoked, the exclusive access",
+    "start": 706.6,
+    "end": 713.6,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; ‘\nlock_t L; {\n\ncounter--\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "to the lock is released. This permits other processes to access the critical section.",
+    "start": 713.72,
+    "end": 720.72,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; ‘\nlock_t L; {\n\ncounter--\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "Now, the locking and unlocking should be designed in such a way that the three requirements",
+    "start": 720.72,
+    "end": 727.24,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; program 1\nlock_t L; {\n\n*\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section\n\ncy"
+  },
+  {
+    "text": "of the critical section solution should be satisfied that is mutual exclusion, progress",
+    "start": 727.24,
+    "end": 734.24,
+    "ocr_text": "Critical Section\n\n¢ Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncriticai section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n— No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "and bounded rate. So, we had already seen mutual exclusion and let us see progress. So,",
+    "start": 734.24,
+    "end": 741.24,
+    "ocr_text": "Critical Section\n\n¢ Any solution should satisfy the following\n\nrequirements\n\n— Mutual Exclusion : No more than one process in\ncriticai section at a given time\n\n— Progress : When no process is in the critical section,\nany process that requests entry into the critical\nsection must be permitted without any delay\n\n— No starvation (bounded wait): There is an upper\nbound on the number of times a process enters the\ncritical section, while another is waiting."
+  },
+  {
+    "text": "progress means that let us say program 0 is not in the critical section and let us say",
+    "start": 741.76,
+    "end": 746.96,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5;\nlock_t L; {\n\ncounter++ counter--\n\n*\n\n*\n\n|}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "program 1 has come here and then it has requested the lock. So, progress means that since",
+    "start": 746.96,
+    "end": 753.96,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; program 1\nlock_t L; {\n\n*\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "no other program is in the critical section. So, it should be given the lock immediately.",
+    "start": 754.96,
+    "end": 760.96,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; program 1\nlock_t L; {\n\n*\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "So, program 1 should get exclusive access to the lock.",
+    "start": 760.96,
+    "end": 765.6,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; proc\nlock_t L; {\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "Bounded weight means this particular scenario. Let us say program 0 is present in the critical",
+    "start": 765.6,
+    "end": 771.6,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; proc\nlock_t L; {\n\ncouater++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "section while program 1 has requested the lock. So, there is a limit on the amount of",
+    "start": 771.6,
+    "end": 778.6,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; proc\nlock_t L; {\n\ncouater++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "time that program 1 has to wait before it gets access into the critical section. That",
+    "start": 778.62,
+    "end": 784.48,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; program 1\nlock_t L; {\n\n*\n\nb&\ncounter++ couhter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "is the solution should ensure that program 0 unlocks L and only then will program 1 enter",
+    "start": 784.48,
+    "end": 791.48,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; program 1\nlock_t L; {\n\n*\n\nb&\ncounter++ couhter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "into the lock. So, there is a bound on the amount of time that program 1 weights if it",
+    "start": 794.32,
+    "end": 800.6,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; program 1\nlock_t L; {\n\n*\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "request the lock while program 0 is already in the critical section.",
+    "start": 800.6,
+    "end": 807.2,
+    "ocr_text": "Locks and Unlocks\n\nshared variable\nint counter=5; program 1\nlock_t L; {\n\n*\n\ncounter++ counter--\n\n*\n\n*\n\n}\n\nacquire lock L exclusively\n— Only the process with L can access the critical section\nrelease exclusive access to lock L\n— Permitting other processes to access the critical section"
+  },
+  {
+    "text": "The use of lock and unlock constructs in a program will ensure that the critical section",
+    "start": 807.2,
+    "end": 812.68,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %eax, %ebx\n\n¢ Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  },
+  {
+    "text": "is atomic. So, when do we need to use these locking mechanisms? Essentially single instructions",
+    "start": 812.68,
+    "end": 819.68,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %eax, %ebx\n\n¢ Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  },
+  {
+    "text": "by themselves are atomic. Instructions such as add EAX to EBX is an atomic instruction",
+    "start": 819.68,
+    "end": 826.68,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %*eax, Yebx\n\n¢ Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  },
+  {
+    "text": "and does not require any explicit lock. However, multiple instructions where you have a sequence",
+    "start": 826.92,
+    "end": 833.28,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %eax, %ebx\n\n* Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  },
+  {
+    "text": "of instructions and if you need to make them atomic then explicit locking and unlocking",
+    "start": 833.28,
+    "end": 839.24,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %eax, %ebx\n\n* Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  },
+  {
+    "text": "is required. So, each piece of code in the operating system must be checked if they need",
+    "start": 839.24,
+    "end": 844.76,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %eax, %ebx\n\n¢ Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  },
+  {
+    "text": "to be made atomic or not. Essentially things involving the interrupt",
+    "start": 844.76,
+    "end": 848.88,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %eax, %ebx\n\n¢ Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  },
+  {
+    "text": "handlers need to be checked to be made atomic. So, in this particular video we had seen",
+    "start": 848.88,
+    "end": 855.88,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %eax, %ebx\n\n¢ Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  },
+  {
+    "text": "the requirement for locking and unlocking of instructions. So, in the next video we are",
+    "start": 856.52,
+    "end": 862.16,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %eax, %ebx\n\n¢ Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  },
+  {
+    "text": "going to see how such locking and unlocking mechanisms are implemented in systems.",
+    "start": 862.16,
+    "end": 869.16,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %eax, %ebx\n\n¢ Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  },
+  {
+    "text": "Thank you.",
+    "start": 869.16,
+    "end": 870.0,
+    "ocr_text": "When to have Locking?\n\n¢ Single instructions by themselves are\natomic\n\neg. add %eax, %ebx\n\n¢ Multiple instructions need to be explicitly\nmade atomic\n\n— Each piece of code in the OS must be\nchecked if they need to be atomic"
+  }
+]

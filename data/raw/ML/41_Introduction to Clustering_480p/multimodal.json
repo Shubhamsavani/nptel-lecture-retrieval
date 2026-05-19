@@ -1,0 +1,1022 @@
+[
+  {
+    "text": "Good morning. So, today we will talk about clustering. In the earlier classes so far in",
+    "start": 0.0,
+    "end": 27.04,
+    "ocr_text": "Course Name\nIntroduction to Machine Learning"
+  },
+  {
+    "text": "this course we have mainly talked about supervised learning. In supervised learning we have some data",
+    "start": 27.04,
+    "end": 35.04,
+    "ocr_text": "4\nay"
+  },
+  {
+    "text": "which are labeled and we try to learn a function. We want we try to come up with a method to label",
+    "start": 35.04,
+    "end": 42.72,
+    "ocr_text": "Uns uy\n\n=\n\n=="
+  },
+  {
+    "text": "unseen instances correctly. Today we will look at unsupervised learning and we will look at",
+    "start": 42.72,
+    "end": 53.84,
+    "ocr_text": "Uns uy\n\n=\n\n=="
+  },
+  {
+    "text": "one specific type of unsupervised learning which is called clustering. We will introduce what",
+    "start": 53.84,
+    "end": 68.4,
+    "ocr_text": "Uns uy\n\n=\n\n=="
+  },
+  {
+    "text": "clustering is and in the subsequent classes we will give illustrations of different specific",
+    "start": 68.4,
+    "end": 76.76,
+    "ocr_text": "Gustereg"
+  },
+  {
+    "text": "plastic methods. In unsupervised learning as we have discussed in the first class of this course",
+    "start": 76.76,
+    "end": 84.04,
+    "ocr_text": "Unsupervised learning\n\n* Unsupervised learning:\n\n— Data with no target attribute. Describe hidden structure from\nunlabeled data.\n\n— Explore the data to find some intrinsic structures in them.\n\n* Clustering: the task of grouping a set of objects in such a\nway that objects in the same group (called a cluster) are\nmore similar to each other than to those in other clusters.\n\n* Useful for\n— Automatically organizing data.\n\n— Understanding hidden structure in data.\n— Preprocessing for further analysis."
+  },
+  {
+    "text": "that we have data but those data have no labels. So, we have unlabeled data instances and in",
+    "start": 84.84,
+    "end": 94.68,
+    "ocr_text": "Unsupervised learning\n\n* Unsupervised learning:\n\n— Data with no target attribute. Describe hidden structure from\nunlabeled data.\n\n— Explore the data to find some intrinsic structures in them.\n\n* Clustering: the task of grouping a set of objects in such a\nway that objects in the same group (called a cluster) are\nmore similar to each other than to those in other clusters.\n\n* Useful for\n— Automatically organizing data.\n\n— Understanding hidden structure in data.\n— Preprocessing for further analysis."
+  },
+  {
+    "text": "unsupervised learning we want to find hidden structure in the unlabeled data. So, you want to",
+    "start": 94.68,
+    "end": 102.04,
+    "ocr_text": "Unsupervised learning\n\n* Unsupervised learning:\n\n— Data with no target attribute. Describe hidden structure from\nunlabeled data.\n\n— Explore the data to find some intrinsic structures in them.\n\n* Clustering: the task of grouping a set of objects in sucha\nway that objects in the same group (called a cluster) are\nmore similar to each other than to those in other clusters.\n\n* Useful for\n— Automatically organizing data.\n\n— Understanding hidden structure in data.\n— Preprocessing for further analysis."
+  },
+  {
+    "text": "explore the data to find some structure in there but there is no old standard or there is no",
+    "start": 102.04,
+    "end": 110.2,
+    "ocr_text": "Unsupervised learning\n\n* Unsupervised learning:\n\n— Data with no target attribute. Describe hidden structure from\nunlabeled data.\n\n— Explore the data to find some intrinsic structures in them.\n\n* Clustering: the task of grouping a set of objects in such a\nway that objects in the same group (called a cluster) are\nmore similar to each other than to those in other clusters.\n\n* Useful for\n— Automatically organizing data.\n\n— Understanding hidden structure in data.\n— Preprocessing for further analysis."
+  },
+  {
+    "text": "no labels to say that this is what you get. Now, why would we be interested in this? When we",
+    "start": 111.48,
+    "end": 120.28,
+    "ocr_text": "Unsupervised learning\n\n* Unsupervised learning:\n\n— Data with no target attribute. Describe hidden structure from\nunlabeled data.\n\n— Explore the data to find some intrinsic structures in them.\n\n* Clustering: the task of grouping a set of objects in sucha\nway that objects in the same group (called a cluster) are\nmore similar to each other than to those in other clusters.\n\n+ Useful for\n— Automatically organizing data.\n\n— Understanding hidden structure in data.\n— Preprocessing for further analysis."
+  },
+  {
+    "text": "have a large amount of data unless we are able to group the data we will not be able to do studies",
+    "start": 120.28,
+    "end": 128.6,
+    "ocr_text": "Unsupervised learning\n\n* Unsupervised learning:\n\n— Data with no target attribute. Describe hidden structure from\nunlabeled data.\n\n— Explore the data to find some intrinsic structures in them.\n\n* Clustering: the task of grouping a set of objects in sucha\nway that objects in the same group (called a cluster) are\nmore similar to each other than to those in other clusters.\n\n+ Useful for\n— Automatically organizing data.\n\n— Understanding hidden structure in data.\n— Preprocessing for further analysis."
+  },
+  {
+    "text": "and to proper exploration of the data. For example, let us take the example of the plant and animal",
+    "start": 128.6,
+    "end": 137.16,
+    "ocr_text": "Unsupervis <f Leawig\nSN\n\nClastes ing"
+  },
+  {
+    "text": "kingdom. So, biologists have studied the different species of plants and animals and come up with a",
+    "start": 137.16,
+    "end": 146.76,
+    "ocr_text": "Uns uperu’ sed Leann\n\nClastes ing"
+  },
+  {
+    "text": "grouping of them and these groups can be called clusters. They have grouped animals into",
+    "start": 148.76,
+    "end": 153.96,
+    "ocr_text": "Uns uperu’ << Leeerg\n\nCluster rg"
+  },
+  {
+    "text": "vertebrates and invertebrates and then vertebrates as mammals, fascia etcetera. So, these labels",
+    "start": 153.96,
+    "end": 160.84,
+    "ocr_text": "Uns uperu’ << Leeerg\n\nCluster rg"
+  },
+  {
+    "text": "they are not given to the early scientists but they have come up with these groupings based on",
+    "start": 160.84,
+    "end": 167.8,
+    "ocr_text": "Unsuperv's ef Lewy\n\nClastes ing"
+  },
+  {
+    "text": "species which share similar attributes and based on that this grouping has been done.",
+    "start": 168.68,
+    "end": 175.0,
+    "ocr_text": "Unsuperv's ed Lean"
+  },
+  {
+    "text": "Now, clustering is the most popular type of unsupervised learning there are few other types of",
+    "start": 176.04,
+    "end": 182.68,
+    "ocr_text": "Unsuperv's <A L"
+  },
+  {
+    "text": "unsupervised learning which we will not talk about in this class. In clustering the task is given",
+    "start": 182.68,
+    "end": 189.56,
+    "ocr_text": "Unsuperv's <A L"
+  },
+  {
+    "text": "a set of data instances. So, here you do not have earlier our sample content x i by i values.",
+    "start": 189.56,
+    "end": 197.32,
+    "ocr_text": "Uns uperu! 5 el Leary\n\nClustering"
+  },
+  {
+    "text": "Here the sample will contain only x 1, x 2, x 3, x n. So, only the data points are given",
+    "start": 197.32,
+    "end": 204.92,
+    "ocr_text": "Clustering"
+  },
+  {
+    "text": "and no output or no output label is given. So, given a set of these instances objects in clustering",
+    "start": 205.0,
+    "end": 213.08,
+    "ocr_text": "Clustering"
+  },
+  {
+    "text": "we want to group the objects into clusters. So, we can find a cluster c 1, c 2, c 3. So, c 1 will",
+    "start": 213.64,
+    "end": 222.84,
+    "ocr_text": "4\nXe\nKe\n\nKon\n\nyg\nced Lew\nnus\n\nUnsap i,"
+  },
+  {
+    "text": "contain a number of these items. Suppose x 2, x 3, x 7 go in c 1, x 1, x 4, x 10, x 11 go in c 2",
+    "start": 222.84,
+    "end": 237.08,
+    "ocr_text": "Uns aper vis cf Lear why\n\nHy Clastes ng"
+  },
+  {
+    "text": "and then x 5, x 6, x 8, x 9, x 12. So, these are the suppose these are three different clusters.",
+    "start": 237.72,
+    "end": 253.0,
+    "ocr_text": "%) Clustering\nx\n\nx X Xie xy"
+  },
+  {
+    "text": "We come up with a given this sample we come up with groups and how do we come up with groups.",
+    "start": 253.0,
+    "end": 262.6,
+    "ocr_text": "Unsupervis ft Leone\n\n%, Clustering\nxe\nla\na re 7% Xz\nx Xe Kio X y\n\neo\n\nym &\n\n| Vy\n\nA /}\nNy"
+  },
+  {
+    "text": "So, instances which belong to the same group would be in some way similar to each other.",
+    "start": 263.24,
+    "end": 269.88,
+    "ocr_text": "Unsuperv's LEENS\n\n: oh 3 5\n\nPat G OX) X Xe XyS\n\nNy"
+  },
+  {
+    "text": "So, x 2, x 3, x 7 should have some similarity among each other. x 1, x 4, x 10, x 11 should have",
+    "start": 271.08,
+    "end": 277.8,
+    "ocr_text": "Aster\nC 8h A palo\n6 Hi NgR Ss\n’ i “4\nS Xs Xe Xe Xq"
+  },
+  {
+    "text": "some similarity with each other and x 3 and x 4 two elements which belong to different clusters",
+    "start": 277.8,
+    "end": 285.72,
+    "ocr_text": "Cluster vg\nCG oh % Med\n\nG ra Xq oe\niS Xs Xe Xe Xq % td"
+  },
+  {
+    "text": "in some way this similarity with each other. Based on this we can come up with groups.",
+    "start": 286.52,
+    "end": 291.72,
+    "ocr_text": "pee"
+  },
+  {
+    "text": "Now, clustering is useful for many applications. For example, it can be used to automatically",
+    "start": 293.0,
+    "end": 299.72,
+    "ocr_text": "pee"
+  },
+  {
+    "text": "organize data. For example, the plant species or animal species or news documents or books.",
+    "start": 299.72,
+    "end": 307.64,
+    "ocr_text": "Unsuperu's ed Lew\n\nCluster rg\nC 8%\n\na\n\n2 Xs Xe"
+  },
+  {
+    "text": "It can be used for understanding hidden structure in data and sometimes clustering is used as",
+    "start": 308.12,
+    "end": 316.12,
+    "ocr_text": "Unsupervised learning\n\n* Unsupervised learning:\n\n— Data with no target attribute. Describe hidden structure from\nunlabeled data.\n\n— Explore the data to find some intrinsic structures in them.\n\n* Clustering: the task of grouping a set of objects in such a\nway that objects in the same group (called a cluster) are\nmore similar to each other than to those in other clusters.\n\n- Useful for\n— Automatically organizing data\n— Understanding hidden structure in data.\n\n— Preprocessing for further analysis."
+  },
+  {
+    "text": "pre-processing for further analysis of the data. Now, look let us look at this slide to look at",
+    "start": 316.68,
+    "end": 323.88,
+    "ocr_text": "Unsuperv's <b Leary\n\nGoh % MS ~\nGOK XH Mew Xy8 ,\n) Xs Xe Xe Xq XQ ="
+  },
+  {
+    "text": "an application of news clustering. Some of you will have used Google News. In Google News,",
+    "start": 323.88,
+    "end": 330.84,
+    "ocr_text": "Unsuperv's <b Leary\n\nGoh % MS ~\nGOK XH Mew Xy8 ,\n) Xs Xe Xe Xq XQ ="
+  },
+  {
+    "text": "you will notice that the different news stories are grouped. For example, so this is one news story",
+    "start": 330.92,
+    "end": 339.08,
+    "ocr_text": "Applications: News Clustering (Google)"
+  },
+  {
+    "text": "is about the bombing of Istanbul airport on 29 June 2016 and the news stories",
+    "start": 340.6,
+    "end": 349.88,
+    "ocr_text": "Applications: News Clustering (Google)"
+  },
+  {
+    "text": "under that they are grouped together. So, this is unsupervised clustering because this particular",
+    "start": 349.88,
+    "end": 357.24,
+    "ocr_text": "Applications: News Clustering (Google)"
+  },
+  {
+    "text": "news story was not given as a label to this but the related news items were grouped together.",
+    "start": 357.24,
+    "end": 365.8,
+    "ocr_text": "Applications: News Clustering (Google)"
+  },
+  {
+    "text": "So, Google News is an example of a system which does news clustering. Then this is an example of",
+    "start": 365.8,
+    "end": 374.12,
+    "ocr_text": "Applications: News Clustering (Google)\n\n=\naul"
+  },
+  {
+    "text": "clustering of gene expression data. So, these genes are clustered based on the gene expression.",
+    "start": 374.12,
+    "end": 383.08,
+    "ocr_text": "Applications: News Clustering (Google)\n\n=\naul"
+  },
+  {
+    "text": "Other applications for example, as I have talked about in biology, the classification of plant",
+    "start": 383.32,
+    "end": 389.4,
+    "ocr_text": "Gene Expression Clustering"
+  },
+  {
+    "text": "and animal kingdom given their features. In marketing customer segmentation based on the database",
+    "start": 389.4,
+    "end": 397.16,
+    "ocr_text": "Other Applications\n\n* Biology: classification of plants and animal kingdom\n\ngiven their features\n&\n\n* Marketing: Customer Segmentation based ona\ndatabase of customer data containing their\nproperties and past buying records\n\n¢ Clustering weblog data to discover groups of similar\naccess patterns.\n\nRecognize communities in social networks."
+  },
+  {
+    "text": "of customer data containing their properties and past buying records, these are very useful to",
+    "start": 397.16,
+    "end": 403.32,
+    "ocr_text": "Other Applications\n\n* Biology: classification of plants and animal kingdom\ngiven their features\n\n* Marketing: Customer Segmentation based ona\ndatabase of customer data containing their\nproperties and past buying records\n\n¢ Clustering weblog data to discover groups of similar\naccess patterns.\n\nRecognize communities in social networks."
+  },
+  {
+    "text": "marketing companies because based on the grouping of the customers, they can decide what type of",
+    "start": 403.32,
+    "end": 409.72,
+    "ocr_text": "Other Applications\n\n* Biology: classification of plants and animal kingdom\ngiven their features\n\n* Marketing: Customer Segmentation based ona\ndatabase of customer data containing their\nproperties and past buying records\n\n¢ Clustering weblog data to discover groups of similar\naccess patterns.\n\nRecognize communities in social networks."
+  },
+  {
+    "text": "promotions to target to each customer. Third example is clustering of web log data to discover",
+    "start": 409.72,
+    "end": 418.2,
+    "ocr_text": "Other Applications\n\n* Biology: classification of plants and animal kingdom\ngiven their features\n\n* Marketing: Customer Segmentation based ona\ndatabase of customer data containing their\nproperties and past buying records\n\n* Clustering weblog data to discover groups of similar\naccess patterns.\n\nRecognize communities in social networks."
+  },
+  {
+    "text": "groups of similar access patterns and the fourth example is to recognize communities in social",
+    "start": 418.2,
+    "end": 425.72,
+    "ocr_text": "Other Applications\n\n* Biology: classification of plants and animal kingdom\ngiven their features\n\n* Marketing: Customer Segmentation based ona\ndatabase of customer data containing their\nproperties and past buying records\n\n¢ Clustering weblog data to discover groups of similar\naccess patterns.\n\nRecognize communities in social networks."
+  },
+  {
+    "text": "networks based on their similarities. Let us look at in order to talk about clustering",
+    "start": 425.72,
+    "end": 432.6,
+    "ocr_text": "An illustration\n\n* This data set has four natural clusters."
+  },
+  {
+    "text": "algorithms, let us look at some example data. So, these are the data points only the data points",
+    "start": 432.68,
+    "end": 440.28,
+    "ocr_text": "An illustration\n\n* This data set has four natural clusters."
+  },
+  {
+    "text": "are given their labels are not given. But in this particular data you see visually that there are",
+    "start": 440.28,
+    "end": 447.4,
+    "ocr_text": "An illustration\n\n+ This data set has four natural clusters."
+  },
+  {
+    "text": "four natural clusters and what a clustering algorithm is required to do is take this and come",
+    "start": 447.4,
+    "end": 455.64,
+    "ocr_text": "An illustration\n\n* This data set has four natural clusters."
+  },
+  {
+    "text": "up with this four clusters. Ideally this is what the clustering algorithm will do.",
+    "start": 455.8,
+    "end": 460.68,
+    "ocr_text": "An illustration\n\n* This data set has four natural clusters."
+  },
+  {
+    "text": "So, there are different aspects of clustering. First of all, there is a clustering algorithm",
+    "start": 462.04,
+    "end": 468.44,
+    "ocr_text": "An illustration\n\n* This data set has four natural clusters."
+  },
+  {
+    "text": "and there are different types of clustering algorithm. We will discuss a few of the clustering",
+    "start": 468.44,
+    "end": 474.04,
+    "ocr_text": "Aspects of clustering\n\n° Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans Tihaqualtiny oa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n+ Adistance or similarity function all enti, Wve\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 444 the application.\n\n* Clustering quality\n— Inter-clusters distance = maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "algorithms in the next few classes. There are algorithms which are partition or divisionally",
+    "start": 474.04,
+    "end": 480.52,
+    "ocr_text": "Aspects of clustering\n\n° Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans Tihaqualtiny oa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n+ Adistance or similarity function all enti, Wve\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 444 the application.\n\n* Clustering quality\n— Inter-clusters distance = maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "nature which takes the data and divides them into a number of groups. K means is an example",
+    "start": 480.68,
+    "end": 487.68,
+    "ocr_text": "Aspects of clustering\n\n° Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans The queliiay oa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n+ Adistance or similarity function allzentiiinian, Wie\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 444 the application.\n\n* Clustering quality\n— Inter-clusters distance = maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "of a partitional clustering algorithm. Then there are hierarchical clustering algorithms which",
+    "start": 488.76,
+    "end": 495.0,
+    "ocr_text": "Aspects of clustering\n\n° Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans The quality ofa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n* Adistance or similarity function allzentininn, Wie\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 414 the application.\n\n* Clustering quality\n— Inter-clusters distance = maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "hierarchically divides the data into clusters hierarchical algorithms may be based on top-down",
+    "start": 495.0,
+    "end": 503.0,
+    "ocr_text": "Aspects of clustering\n\n° Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans The quality ofa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n* Adistance or similarity function allzentininn, Wie\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 414 the application.\n\n* Clustering quality\n— Inter-clusters distance = maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "method or bottom-up method which is done in adaptive hierarchical clustering. Again, we will",
+    "start": 504.04,
+    "end": 510.04,
+    "ocr_text": "Aspects of clustering\n\n¢ Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans Tine quelliay oa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n* Adistance or similarity function allsentiiininn, Wie\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 44 the application.\n\n* Clustering quality\n— Inter-clusters distance = maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "see that in the next class. There are other methods like module based methods for example,",
+    "start": 510.04,
+    "end": 515.88,
+    "ocr_text": "Aspects of clustering\n\n° Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans Tine Gueliny oa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n+ Adistance or similarity function allsentiiinian, Wine\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 444 the application.\n\n* Clustering quality\n— Inter-clusters distance => maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "mixture of cautions, density based methods like db scan etcetera. So, there is a clustering algorithm.",
+    "start": 515.88,
+    "end": 522.28,
+    "ocr_text": "Aspects of clustering\n\n¢ Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans The quality ofa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n+ Adistance or similarity function all sent, tne\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 444 the application.\n\n* Clustering quality\n— Inter-clusters distance = maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "Secondly, there is a distance or similarity function which the clustering algorithm uses or tries",
+    "start": 523.0,
+    "end": 528.76,
+    "ocr_text": "Aspects of clustering\n\n¢ Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans The quality ofa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n+ Adistance or similarity function all sent, tne\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 444 the application.\n\n* Clustering quality\n— Inter-clusters distance = maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "to optimize. We told earlier that in a cluster the elements in a cluster are similar to each other",
+    "start": 528.76,
+    "end": 535.48,
+    "ocr_text": "Aspects of clustering\n\n- Aclustering algorithm such as\n\n— Partitional clusteringer, kmeans Tac WAY\n\nclustering result\n— Mixture of Gaussians depends on the\n\n— Hierarchical clusteringeg, AHC\n\n, a : Igorithm, th\n+ Adistance or similarity function iseuU Tu ans\n¢ distance function,\n— such as Euclidean akowski, cosine and the application.\n+ Clustering quality\n— Inter-clusters distance = maximized.\n\n— Intra-clusters distance — minimized"
+  },
+  {
+    "text": "and the elements belonging to two different clusters are different from each other.",
+    "start": 535.48,
+    "end": 539.72,
+    "ocr_text": "Uns aper vis <h Leawry\n\nCluster ig\nog 5\n\nG { Xo Xyd\n\n*s"
+  },
+  {
+    "text": "And to measure how similar or dissimilar two elements are, we have to use a metric or similarity",
+    "start": 540.28,
+    "end": 547.48,
+    "ocr_text": "Uns aper vis <h Leawry\n\nCluster ig\nog 5\n\nG { Xo Xyd\n\n*s"
+  },
+  {
+    "text": "or dissimilarity measure. Some possible measures are Euclidean distance, cosine distance,",
+    "start": 547.48,
+    "end": 553.16,
+    "ocr_text": "Uns aper vis <h Leawry\n\nCluster ig\nog 5\n\nG { Xo Xyd\n\n*s"
+  },
+  {
+    "text": "pairs and correlation coefficient and so on. Thirdly, one has to have a way of evaluating how good",
+    "start": 553.16,
+    "end": 561.0,
+    "ocr_text": "Uns uperw! 6 ed Lenny\n¢Z\n\nCluster ig\nCh ae iS\nG 3X 3 \""
+  },
+  {
+    "text": "the clusters is for that one can look at different methods. For example, one can try to",
+    "start": 561.0,
+    "end": 567.32,
+    "ocr_text": "Uns uperw! 6 ed Lenny\n¢Z\n\nCluster ig\nCh ae iS\nG 3X 3 \""
+  },
+  {
+    "text": "minimize the intra-clustered distance of elements which belong to the same cluster and maximize",
+    "start": 570.12,
+    "end": 576.52,
+    "ocr_text": "Uns uperv’ << Leaning\n\nCluster irg"
+  },
+  {
+    "text": "the inter-clustered distance elements that belong to different clusters. The quality of a clustering",
+    "start": 576.52,
+    "end": 583.32,
+    "ocr_text": "Aspects of clustering\n\n° Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans The quality ofa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n+ Adistance or similarity function allsentiiinin, Wie\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 444 the application.\n\n* Clustering quality\n— Inter-clusters distance = maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "result depends on the algorithm the distance function used and the application for which you are",
+    "start": 583.32,
+    "end": 589.32,
+    "ocr_text": "Aspects of clustering\n\n° Aclustering algorithm such as\n\n— Partitional clustering eg, kmeans The quality ofa\n\n— Hierarchical clustering eg, AHC clustering result\n\n— Mixture of Gaussians depends on the\n+ Adistance or similarity function allsentiiinin, Wie\ndistance function,\n\n— such as Euclidean, Minkowski, cosine 444 the application.\n\n* Clustering quality\n— Inter-clusters distance = maximized\n\n— Intra-clusters distance = minimized"
+  },
+  {
+    "text": "using it. So, these are some of the major clustering approaches partitioning based methods",
+    "start": 589.32,
+    "end": 596.04,
+    "ocr_text": "Major Clustering Approaches\n\n* Partitioning: Construct various partitions and then evaluate\nthem by some criterion\n\n* Hierarchical: Create a hierarchical decomposition of the set of\nobjects using some criterion\n\nModel-based: Hypothesize a model for each cluster and find\nbest fit of models to data\n\nDensity-based: Guided by connectivity and density functiog\n\n* Graph-Theoretic Clustering"
+  },
+  {
+    "text": "which involves constructing various partitions hierarchical methods which creates a hierarchical",
+    "start": 597.32,
+    "end": 605.48,
+    "ocr_text": "Major Clustering Approaches\n\n* Partitioning: Construct various partitions and then evaluate\nthem by some criterion\n\n* Hierarchical: Create a hierarchical decomposition of the set of\nobjects using some criterion\n\nModel-based: Hypothesize a model for each cluster and find\nbest fit of models to data\n\nDensity-based: Guided by connectivity and density functions\n\n* Graph-Theoretic Clustering"
+  },
+  {
+    "text": "decomposition of the set of objects, model based methods which hypothesize a model for each cluster",
+    "start": 605.48,
+    "end": 613.24,
+    "ocr_text": "Major Clustering Approaches\n\n* Partitioning: Construct various partitions and then evaluate\nthem by some criterion\n\n* Hierarchical: Create a hierarchical decomposition of the set of\nobjects using some criterion\n\nModel-based: Hypothesize a model for each cluster and find\nbest fit of models to data\n\nDensity-based: Guided by connectivity and density functiog\n\n* Graph-Theoretic Clustering"
+  },
+  {
+    "text": "and finds the best fit of model to data, density-based clustering algorithms which are guided by",
+    "start": 613.24,
+    "end": 619.88,
+    "ocr_text": "Major Clustering Approaches\n\n* Partitioning: Construct various partitions and then evaluate\nthem by some criterion\n\n* Hierarchical: Create a hierarchical decomposition of the set of\nobjects using some criterion\n\nModel-based: Hypothesize a model for each cluster and find\nbest fit of models to data\n\nDensity-based: Guided by connectivity and density functiog\n\n* Graph-Theoretic Clustering"
+  },
+  {
+    "text": "connectivity and density functions, graph theoretic clustering based on the under construction of a graph",
+    "start": 619.88,
+    "end": 626.44,
+    "ocr_text": "Major Clustering Approaches\n\n* Partitioning: Construct various partitions and then evaluate\nthem by some criterion\n\n* Hierarchical: Create a hierarchical decomposition of the set of\nobjects using some criterion\n\n+ Model-based: Hypothesize a model for each cluster and find\nbest fit of models to data\n\nDensity-based: Guided by connectivity and density functions\n\n* Graph-Theoretic Clustering"
+  },
+  {
+    "text": "and looking at some graph theoretic measures like min cut and so on. So, these are some of the",
+    "start": 626.44,
+    "end": 632.68,
+    "ocr_text": "Major Clustering Approaches\n\n* Partitioning: Construct various partitions and then evaluate\nthem by some criterion\n\n* Hierarchical: Create a hierarchical decomposition of the set of\nobjects using some criterion\n\nModel-based: Hypothesize a model for each cluster and find\nbest fit of models to data\n\nDensity-based: Guided by connectivity and density functions\n\n* Graph-Theoretic Clustering"
+  },
+  {
+    "text": "different clustering approaches. Some few of them we will talk about in this class.",
+    "start": 632.68,
+    "end": 637.4,
+    "ocr_text": "Major Clustering Approaches\n\n* Partitioning: Construct various partitions and then evaluate\nthem by some criterion\n\n* Hierarchical: Create a hierarchical decomposition of the set of\nobjects using some criterion\n\nModel-based: Hypothesize a model for each cluster and find\nbest fit of models to data\n\nDensity-based: Guided by connectivity and density functions\n\n* Graph-Theoretic Clustering"
+  },
+  {
+    "text": "So, partitioning algorithms construct a partition of so given at data sample, the partitioning algorithms",
+    "start": 637.56,
+    "end": 648.68,
+    "ocr_text": "ee\nPartitioning Algorithms\n\n+ Partitioning method: Construct a partition of a\ndatabase D of m objects into a set of k clusters\n\n° Givena k, find a partition of k clusters that optimizes\nthe chosen partitioning criterion\n\n— Global optimal: exhaustively enumerate all partitions\n\n— Heuristic method: k-means (MacQueen, 1967)"
+  },
+  {
+    "text": "will construct a partition of these into k clusters. So, k is given to the algorithm it will find",
+    "start": 649.8,
+    "end": 656.76,
+    "ocr_text": "Lee...\nPartitioning Algorithms\n\n* Partitioning method: Construct a partition of a\ndatabase D of m objects into a set of k clusters\n\n° Givenak, find a partition of k clusters that optimizes\nthe chosen partitioning criterion\n\n— Global optimal: exhaustively enumerate all partitions\n\n— Heuristic method: k-means (MacQueen, 1967)"
+  },
+  {
+    "text": "k clusters that optimizes the chosen criteria. You may come up the algorithm may come up with a",
+    "start": 656.76,
+    "end": 666.2,
+    "ocr_text": "ee\nPartitioning Algorithms\n\n* Partitioning method: Construct a partition of a\ndatabase D of m objects into a set of k clusters\n\n° Givenak, find a partition of k clusters that optimizes\nthe chosen partitioning criterion\n\n— Global optimal: exhaustively enumerate all partitions\n\n— Heuristic method: k-means (MacQueen, 1967)"
+  },
+  {
+    "text": "global optimum of the chosen criteria or use a heuristic method and come up with a local",
+    "start": 666.2,
+    "end": 672.84,
+    "ocr_text": "Uns uperw! < <A Lewy\n\nCuster ng\nq sh eg\nG Pa Ye NG 3\n\nSq Xs eg"
+  },
+  {
+    "text": "optimum. So, we will explore in detail the k means algorithm which comes up with a local optimum",
+    "start": 672.84,
+    "end": 682.6,
+    "ocr_text": "Uns uperw! < <A Lewy\n\nCuster ng\nq sh eg\nG Pa Ye NG 3\n\nSq Xs eg"
+  },
+  {
+    "text": "based on certain criteria. The second type of clustering algorithms is hierarchical clustering.",
+    "start": 682.6,
+    "end": 689.16,
+    "ocr_text": "Cluster vg"
+  },
+  {
+    "text": "For example, animals may be grouped into vertebrates and invertebrates.",
+    "start": 689.88,
+    "end": 694.28,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invergebrate\n\nMe le She wofm ingect cru3tacean\nNNN OK NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "Vertebrates may be broken into fish reptiles and phabian mammals and so on.",
+    "start": 695.16,
+    "end": 699.8,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate inverfebrate\n\nWie cae sols\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partition\nclustering algorithm. ;"
+  },
+  {
+    "text": "This is an example of using a tree or hierarchical clustering. We will look at some methods for",
+    "start": 699.8,
+    "end": 705.08,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate inverfebrate\n\nWie cae sols\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partition\nclustering algorithm. ;"
+  },
+  {
+    "text": "hierarchical clustering which produces a nested sequence of clusters. You can for example,",
+    "start": 705.08,
+    "end": 713.48,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invergebrate\n\neae Sa wofm ingect craStacean\nNNN OK NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "use a partition algorithm and recursively apply it to get a hierarchical clustering or you may",
+    "start": 714.2,
+    "end": 721.48,
+    "ocr_text": "Hierarchical Clustering\n\nanimal\n\nvertebrate invergebrate\n\neae Sa wofm ingect craStacean\nNNN OK NAA\n\n* Produce a nested sequence of clusters.\n\n* One approach: recursive application of a partitional\nclustering algorithm."
+  },
+  {
+    "text": "do a bottom up clustering where you start with a large number with each cluster containing one item",
+    "start": 721.48,
+    "end": 728.6,
+    "ocr_text": "Unsuperu's ef Lenny\nClustering\nC 3% % XS\nG ra Xa Ku Xi 5\nS Xs Xg Xe Xq ,"
+  },
+  {
+    "text": "and repeatedly go on marching the clusters until you get one cluster and as a result you can get",
+    "start": 728.6,
+    "end": 735.08,
+    "ocr_text": "Uns uperwr sb Lewy\nClustering\n\nC 8% % og\nG2 Xe Ky X y a) (\nG Us Xe Xe |"
+  },
+  {
+    "text": "a nested tree. We will talk more about it in a later class. A third type of clustering is a",
+    "start": 735.08,
+    "end": 741.0,
+    "ocr_text": "Model Based Clustering\n\nCluster plot * Amodel is hypothesized\n\ne,g., Assume data is\ngenerated by a mixture of\nunderlying probability\ndistributions\n\n° Fit the data to model"
+  },
+  {
+    "text": "model based cluster where given the data points you hypothesize a model. For example, you can think of",
+    "start": 741.08,
+    "end": 748.2,
+    "ocr_text": "Model Based Clustering\n\nCluster plot * Amodel is hypothesized\n\ne,g., Assume data is\ngenerated by a mixture of\nunderlying probability\ndistributions\n\n° Fit the data to model"
+  },
+  {
+    "text": "each cluster being represented by a Gaussian distribution with a mean and a standard deviation.",
+    "start": 748.2,
+    "end": 754.2,
+    "ocr_text": "wag\n\nModel Based Clustering\n\n* Amodel is hypothesized\n\n° e,g., Assume data is\ngenerated by a mixture of\nunderlying probability\ndistributions\n\n* Fitthe data to model\n\nCluster plot"
+  },
+  {
+    "text": "And you try to fit the data to the model and for example, you can come up with these three",
+    "start": 755.72,
+    "end": 761.16,
+    "ocr_text": "wag\n\nModel Based Clustering\n\n* Amodel is hypothesized\n\n° e,g., Assume data is\ngenerated by a mixture of\nunderlying probability\ndistributions\n\n* Fitthe data to model\n\nCluster plot"
+  },
+  {
+    "text": "clusters. A fourth type of algorithm is called density based clustering. We will not talk about it",
+    "start": 761.96,
+    "end": 770.12,
+    "ocr_text": "wag\n\nModel Based Clustering\n\n* Amodel is hypothesized\n\n° e,g., Assume data is\ngenerated by a mixture of\nunderlying probability\ndistributions\n\n* Fitthe data to model\n\nCluster plot"
+  },
+  {
+    "text": "in this class if we do not have time, but it is based on the similarity based on the density of",
+    "start": 770.12,
+    "end": 779.16,
+    "ocr_text": "Density based Clustering\n\n* Based on density\nconnected points\n\n* Locates regions of high\n\ndensity separated by\n\nregions of low density\n\n+ e.g., DBSCAN"
+  },
+  {
+    "text": "a region. The density of a region is the number of instances in a region in feature space.",
+    "start": 779.16,
+    "end": 784.36,
+    "ocr_text": "Density based Clustering\n\n* Based on density\nconnected points\n\n* Locates regions of high\n\ndensity separated by\n\nregions of low density\n\n* e.g., DBSCAN"
+  },
+  {
+    "text": "It locates regions of high density and connects those points together. So, DB scan is a popular",
+    "start": 785.24,
+    "end": 792.36,
+    "ocr_text": "Density based Clustering\n\n* Based on density\nconnected points\n\n* Locates regions of high\n\ndensity separated by\n\nregions of low density\n\n+ e.g., DBSCAN"
+  },
+  {
+    "text": "density based clustering algorithm. Then we have graph theoretic clustering algorithms which",
+    "start": 792.36,
+    "end": 799.0,
+    "ocr_text": "Density based Clustering\n\n* Based on density\nconnected points\n\n* Locates regions of high\n\ndensity separated by\n\nregions of low density\n\n+ e.g., DBSCAN"
+  },
+  {
+    "text": "takes nodes to represent the different items and the weights of the edges is based on the",
+    "start": 799.88,
+    "end": 806.52,
+    "ocr_text": "Graph Theoretic Clustering\n\n° Weights of edges\nbetween items (nodes)\nbased on similarity\n\n*° E.g.,look for minimum\ncut in a graph"
+  },
+  {
+    "text": "similarity of the items. And based on this a graph is constructed and certain graph algorithms",
+    "start": 806.52,
+    "end": 812.68,
+    "ocr_text": "Graph Theoretic Clustering\n\n° Weights of edges\nbetween items (nodes)\nbased on similarity\n\n° E.g., look for minimum\ncut in a graph"
+  },
+  {
+    "text": "are used to find connected, find strongly connected components. For example, looking for minimum",
+    "start": 812.68,
+    "end": 820.84,
+    "ocr_text": "Graph Theoretic Clustering\n\n° Weights of edges\nbetween items (nodes)\nbased on similarity\n\n° E.g., look for minimum\ncut in a graph"
+  },
+  {
+    "text": "cut in a graph. Again, we will not talk about these type of algorithms in this class.",
+    "start": 820.84,
+    "end": 826.44,
+    "ocr_text": "Graph Theoretic Clustering\n\n° Weights of edges\nbetween items (nodes)\nbased on similarity\n\n° E.g., look for minimum\ncut in a graph"
+  },
+  {
+    "text": "The third aspect of a clustering algorithm is the metric that we use, a distance metric or a",
+    "start": 827.72,
+    "end": 834.2,
+    "ocr_text": "(Dis)similarity measures\n\n* Distance metric (scale-dependent)\n— Minkowski family of distance measures\n\nm ‘/p\nd(x, xj) = (Sle. - xl”)\n\ns=1\nManhattan (p=1), Euclidean (p=2)\n— Cosine distance\n\nXp. Xj\n\ncostae Ga) = Tez ial"
+  },
+  {
+    "text": "similarity metric. So, there are certain distance metrics. For example, the mincosky family of",
+    "start": 834.2,
+    "end": 841.8,
+    "ocr_text": "(Dis)similarity measures\n\n* Distance metric (scale-dependent)\n— Minkowski family of distance measures\n\nm ‘/p\nd(x, xj) = (Sle. - xl”)\n\ns=1\nManhattan (p=1), Euclidean (p=2)\n— Cosine distance\n\nXp. Xj\n\ncostae Ga) = Tez ial"
+  },
+  {
+    "text": "distance measures, where given to items x i x j, the mincosky distance between d x i and x i",
+    "start": 841.8,
+    "end": 854.84,
+    "ocr_text": "(Dis)similarity measures\n\n* Distance metric (scale-dependent)\n— Minkowski family of distance measures\n\nm ‘/p\nd(x, xj) = (Se. _ xl”)\n\ns=1\nManhattan (p=1), Euclidean (p=2)\n— Cosine distance\n\nXi. Xj\n\ncostme (4) = ieeiall-ell"
+  },
+  {
+    "text": "and x j is computed as it takes the summation over the training examples.",
+    "start": 854.84,
+    "end": 866.6,
+    "ocr_text": "(Uns upervis el Leawig\nYS eS\n\nif\nG bh eS\nS Pa Xe Xi 2\nG Xs Xe Os .\npa"
+  },
+  {
+    "text": "It takes the summation over, sorry, the number of input attributes. Let us say n is the input",
+    "start": 873.24,
+    "end": 879.08,
+    "ocr_text": "Unsupervis <f Perry\nGiles she)\nC oh x Xe é\nG 2X Me ies Ci a i\n\nSs\n\n& Xs Xe Xe X_ ="
+  },
+  {
+    "text": "attribute x i s minus x j s to the power p, the whole thing to the power 1 by p.",
+    "start": 879.08,
+    "end": 888.04,
+    "ocr_text": "Clusteriag\nG §& % Xs AGM)\n\n& ra X > m Ais—Xj"
+  },
+  {
+    "text": "This is the mincosky metric. So, one popular, you know, if you set p equal to 2, you get the",
+    "start": 889.96,
+    "end": 898.04,
+    "ocr_text": "Uns aperw sd Leauny\n\nd(x.)\ni/p\n\nG gh % XS id\nGm By > es)\nG bx J S (2 bon)\n\nPte"
+  },
+  {
+    "text": "Euclidean distance. In Euclidean distance, what you have is Euclidean distance of x i x j is mincosky",
+    "start": 898.04,
+    "end": 908.6,
+    "ocr_text": "Unsaperw ged Leanwty\nSe\n\n: dM)\n[2 ’ (5 hes)\n\n5\narm /\n\nyk"
+  },
+  {
+    "text": "distance with p equal to 2, which gives you root over sigma s equal to 1 to n x i 1 minus x i s minus",
+    "start": 908.6,
+    "end": 925.0,
+    "ocr_text": "Unsupervis sf Perry\n[7 Fd (x.X)) d (x. X))\nw\n\n_ -F#"
+  },
+  {
+    "text": "x j s whole square. This is the Euclidean distance or you can have the Manhattan distance between x i and x j as",
+    "start": 925.0,
+    "end": 935.24,
+    "ocr_text": "Unsuperw 6 el Lean’\n\nEd (xXx)\n\nS\n\nd(x, %)\n\n“(2h\n\nae"
+  },
+  {
+    "text": "summation over s equal to 1 to n x i s minus x j s. If you set p equal to 1, you get Manhattan",
+    "start": 938.6,
+    "end": 947.72,
+    "ocr_text": "Unsaperw <<d Lenny\nSe\n\nEa (xix) Md (x, Xj)\n\nye\n\nts — x,,|\n\nra"
+  },
+  {
+    "text": "distance, which is defined like this p equal to 2, you get Euclidean distance and you can also use",
+    "start": 947.72,
+    "end": 953.0,
+    "ocr_text": "Unsaperw ced Leary\nnse\n\nEa (xix) Mad (x.,X))\n\n——ass"
+  },
+  {
+    "text": "p equal to 3, 4. So, this is one type of distance metric. A second metric, which is often used",
+    "start": 953.0,
+    "end": 960.68,
+    "ocr_text": "Unsaperw ced Leary\nnse\n\nEa (xix) Mad (x.,X))\n\n——ass"
+  },
+  {
+    "text": "when you work with text data in the bag of word model is the cosine distance metric. So, given to",
+    "start": 960.68,
+    "end": 968.52,
+    "ocr_text": "(Dis)similarity measures\n\n* Distance metric (scale-dependent)\n— Minkowski family of distance measures\n\nm /p\nd(x, xj) = (Sle. = xl”)\n\nS=a\nManhattan (p=1), Euclidean (p=2)\n— Cosine distance\n\nXi. Xj\n\ncostae) = Teeth ileal"
+  },
+  {
+    "text": "the objects x i and x j are the vectors of these two objects, you find the cosine between these",
+    "start": 968.52,
+    "end": 976.2,
+    "ocr_text": "(Dis)similarity measures\n\n* Distance metric (scale-dependent)\n— Minkowski family of distance measures\n\nm ‘/p\nd(x, xj) = (Se. _ xl”)\n\ns=1\nManhattan (p=1), Euclidean (p=2)\n— Cosine distance\n\nXj. Xj\n\ncosts (2) = i-aiinllell"
+  },
+  {
+    "text": "two vectors and the cosine between these two vectors can be computed. So, the cos of x i x j can",
+    "start": 976.2,
+    "end": 986.84,
+    "ocr_text": "Ed (XiX)) a 7"
+  },
+  {
+    "text": "be computed as the dot product of the vectors x i dot x j divided by root over the sum of this,",
+    "start": 986.92,
+    "end": 999.64,
+    "ocr_text": "ea (xixy) Md)\n\ni o. ~~ 4"
+  },
+  {
+    "text": "the coefficients of this. So, which we can write as mod x i dot mod x j. This is the normalization",
+    "start": 999.64,
+    "end": 1013.4,
+    "ocr_text": "a\n\nEd G X) eh j"
+  },
+  {
+    "text": "factor and this is the dot product. So, basically what you are doing is that you are finding the",
+    "start": 1013.4,
+    "end": 1018.92,
+    "ocr_text": "Unsaperw sed Leawtg\nSirsa\n\nEd (xij) Md (x.,%)"
+  },
+  {
+    "text": "cosine between the two vectors. Then apart from such metrics, there are correlation coefficients,",
+    "start": 1018.92,
+    "end": 1029.4,
+    "ocr_text": "ed (xixjy) . Md (xX)"
+  },
+  {
+    "text": "which are scale invariant and there are different such measures. For example, Mahalanobis",
+    "start": 1029.4,
+    "end": 1036.44,
+    "ocr_text": "caeeneee eee\n(Dis)similarity measures\n\n* Correlation coefficients (scale-invariant)\n* Mahalanobis distance\n\ndQ, xi) = IG — x; )E-1 (x; — x; )\n\n* Pearson correlation\n\nCov(Xj, x)\n\nrei x) ~ Ox, Ox,\ni oe"
+  },
+  {
+    "text": "distance, Pearson correlation coefficient, Spearman relation and so on. Mahalanobis distance d x i",
+    "start": 1036.44,
+    "end": 1046.6,
+    "ocr_text": "Se\n(Dis)similarity measures\n\n* Correlation coefficients (scale-invariant)\n° Mahalanobis distance\n\nd(x}, xi) = IG — xj )E-1 (x; — x)\n\n*° Pearson correlation\n\nCov (Xj, x;)\n\nrex) =\n\nOx, Fxj"
+  },
+  {
+    "text": "x j is taken as root over x i minus x j sigma inverse x i minus x j. So, with this sigma is the",
+    "start": 1046.6,
+    "end": 1056.52,
+    "ocr_text": "ee\n(Dis)similarity measures\n\n* Correlation coefficients (scale-invariant)\n° Mahalanobis distance\n\ndy, 1) = ate — xj )E-1 (x; — x)\n\n* Pearson correlation\n\nCov (xj, xj)\n\nre, x) =\n\nOx, Fxj"
+  },
+  {
+    "text": "covariance matrix. If they are independent, then this is equal to the Euclidean distance and then",
+    "start": 1056.52,
+    "end": 1064.28,
+    "ocr_text": "ee\n(Dis)similarity measures\n\n* Correlation coefficients (scale-invariant)\n° Mahalanobis distance\n\ndy, 41) = nee — xj )E-1(x; — x)\n\n* Pearson correlation\n\nCov (Xj, xj)\n\nre, x) =\n\nOx, Fxj"
+  },
+  {
+    "text": "we have the Pearson correlation coefficient, which is given by covariance of x i x j divided by",
+    "start": 1064.44,
+    "end": 1071.88,
+    "ocr_text": "ee\n(Dis)similarity measures\n\n* Correlation coefficients (scale-invariant)\n° Mahalanobis distance\n\ndy, 41) = nee — xj )E-1(x; — x)\n\n* Pearson correlation\n\nCov (Xj, xj)\n\nre, x) =\n\nOx, Fxj"
+  },
+  {
+    "text": "sigma x i sigma x j. So, sigma x i stands for how far each of the items in a cluster is from the",
+    "start": 1071.88,
+    "end": 1081.24,
+    "ocr_text": "ee\n(Dis)similarity measures\n\n* Correlation coefficients (scale-invariant)\n° Mahalanobis distance\n\ndy, 41) = nee — xj )E-1 (x; — x)\n\n* Pearson correlation\n\nCov (Xjinx;)\n\nre, x) =\n\nOx, Fx;"
+  },
+  {
+    "text": "mean of the cluster and this is covariance of x i x j. So, these are some of the similarity",
+    "start": 1081.24,
+    "end": 1087.88,
+    "ocr_text": "ee\n(Dis)similarity measures\n\n* Correlation coefficients (scale-invariant)\n° Mahalanobis distance\n\ndG, 41) = IG — xj )E-1 (x; — x)\n\n* Pearson correlation\n\nCov (Xj, xj)\n\nre, x) =\n\nOx, Fx;"
+  },
+  {
+    "text": "metrics that are used in the clustering algorithms. The next aspect, which is of importance to us,",
+    "start": 1087.88,
+    "end": 1096.92,
+    "ocr_text": "ee\n(Dis)similarity measures\n\n* Correlation coefficients (scale-invariant)\n° Mahalanobis distance\n\ndy, 41) = nee — xj )E-1 (x; — x)\n\n* Pearson correlation\n\nCov (Xj, xj)\n\nrex) =\n\nOx, Fx;"
+  },
+  {
+    "text": "is how to measure the quality of a clustering algorithm. There are two types of measures of",
+    "start": 1096.92,
+    "end": 1104.04,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\nDavies-Bouldin index\n\nMoe +o\ni Ek dew Gy)\n\n*  €xternal evaluation:\n— evaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f-measure\n\nme TP +TN\n\n~ TP +FP+FN+TN\n\nANB TP\nJ(4, By = 4081 _\n\n|AUB| TP+FP+FN"
+  },
+  {
+    "text": "quality. It could be internal evaluation or external evaluation. In internal evaluation,",
+    "start": 1104.04,
+    "end": 1111.64,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\nDavies-Bouldin index\n\nMoe +o\ni Ek dew Gy)\n\n*  €xternal evaluation:\n— evaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f-measure\n\nme TP +TN\n\n~ TP +FP+FN+TN\n\nANB TP\nJ(4, By = 4081 _\n\n|AUB| TP+FP+FN"
+  },
+  {
+    "text": "you evaluate the cluster quality by the clusters and the data that you have.",
+    "start": 1112.28,
+    "end": 1117.8,
+    "ocr_text": "Uns uparw < <A Lenwng\n\npa(ia) Md)"
+  },
+  {
+    "text": "Whereas, for external evaluation, you use additional data. So, for example, in internal",
+    "start": 1118.6,
+    "end": 1126.12,
+    "ocr_text": "ea (xixjy) _. Md (xx)\n\nx;"
+  },
+  {
+    "text": "evaluation, we try to look at how close the points in a cluster are with each other and how far",
+    "start": 1126.12,
+    "end": 1133.08,
+    "ocr_text": "Unsa upe envis <h Lenny\nSS\n\nEd (% A) Md (x, x)\n\nss Xis— X,,|\n\n=\nzi"
+  },
+  {
+    "text": "they are from members in other cluster. There are many several such measures. One of them is the",
+    "start": 1133.08,
+    "end": 1139.64,
+    "ocr_text": "Unsa upe envis <h Lenny\nSS\n\nEd (% A) Md (x, x)\n\nss Xis— X,,|\n\n=\nzi"
+  },
+  {
+    "text": "Davis-Buldin index. Davis-Buldin index is computed as 1 by n summation over the number of clusters.",
+    "start": 1139.64,
+    "end": 1149.16,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\n\nDavies-Bouldin index\nae, ot GtG\nmax—t——\nn fet d(C, G)\n\n— evaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f-measure\n\n*  €xternal evaluation:\n\nhic TP +TN\n- TP+FP+FN+TN\nIAN BI ip\nJ(A, B) = =\n\n|AUB| TP+FP+FN"
+  },
+  {
+    "text": "You take items belonging to the same cluster, which are j not equal to i. You look at sigma i",
+    "start": 1150.68,
+    "end": 1161.48,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\n\nDavies-Boul index\n= nD Wate 5\nmaxi Sr\nnL Se dG G)\n\n— evaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f- measure\nTP +TN\nIAN BI TP\nJAUB| TP+FP+FN\n\n*  €xternal evaluation:\n\nRI\n\nJ(A, B) ="
+  },
+  {
+    "text": "plus sigma j divided by d c i c j. This is the distance of c i with c j and this is the spread of",
+    "start": 1161.48,
+    "end": 1168.76,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\nDavies-Bouldin index\n\n1 ato\nDB=—) max——+\nJet ARC, Gj)\n\n*  €xternal evaluation:\n— evaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f-measure\n\nmie TP +TN\n“ TP +FP+FN+TN\nIAN BI TP\nJCA, B) = =\n\n|AUB| TP+FP+FN"
+  },
+  {
+    "text": "sigma i and sigma j. This is one measure of the quality of a cluster. Then, if you have some",
+    "start": 1168.76,
+    "end": 1178.6,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\nDavies-Bouldin index\n\n1 to;\nDB =—) max—t—4\nyet dei G)\n\n*  €xternal evaluation:\n\nevaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f-measure\n\npre TP +TN\n- TP +FP+FN+TN\nIAN Bl TP\nJCA,B) = Zoe\n\n|AUB| TP+FP+FN"
+  },
+  {
+    "text": "label data, but you ignore the labels and come up with the clustering of the data, you can compare",
+    "start": 1178.6,
+    "end": 1186.6,
+    "ocr_text": "Uns auperw << Leawny\na\n\nEd (XX) Md (xX)\n\nao say\n\nPy"
+  },
+  {
+    "text": "the cluster that you have got with the labels that you have. This gives you external evaluation.",
+    "start": 1186.6,
+    "end": 1195.16,
+    "ocr_text": "Unsuperw’ << Lenny\nSS ee\n\neu(xx) Md)\n\nDa\n\naa.) fo"
+  },
+  {
+    "text": "For example, there are different external evaluation metrics like F measure,",
+    "start": 1195.56,
+    "end": 1202.28,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\nDavies-Boul index\n\nnyo +o\n~ EK den Gy)\n\n+ €xternal evaluation:\n— evaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f-measure\n. TP +TN\nTP+FP+FN+TN\nIAN BI ie)\nJAUB| TP+FP+FN\n\nRI\n\nJ(A, B) ="
+  },
+  {
+    "text": "Chakad index, Rand index, etc. Now, we have earlier talked about defined what we mean by true",
+    "start": 1203.0,
+    "end": 1214.6,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\nDavies-Boul index\n\nnyo +o\n~ EK den Gy)\n\n+ €xternal evaluation:\n— evaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f-measure\n. TP +TN\nTP+FP+FN+TN\nIAN BI ie)\nJAUB| TP+FP+FN\n\nRI\n\nJ(A, B) ="
+  },
+  {
+    "text": "positive, true negative, false positive, false negative, to refresh your memory. Let me draw this",
+    "start": 1214.6,
+    "end": 1221.88,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\nDavies-Bouldin index\n\nmoe a+\n~ EK den Gy)\n\n*  €xternal evaluation:\n\nevaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f-measure\n\nmes TP +TN\n“TP +FP+FN+TN\nJ, By = A081 TP\n\nJAUB| TP+FP+FN"
+  },
+  {
+    "text": "table. Suppose, this is the actual label of the data item and the actual label is plus or actual",
+    "start": 1221.88,
+    "end": 1237.64,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\n\nDavies-Bouldin index\n= FQ aed\n\nmax\nn Pet ACE, cj)\n\n— evaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f-measure\n\n*  €xternal evaluation:\n\nwe TP +TN\n- TP+FP+FN+TN\nlan Bl dita\nJ(A, B) = =\n\n|AUB| TP+FP+FN"
+  },
+  {
+    "text": "label is minus and this is predicted by your algorithm predicted plus predicted minus.",
+    "start": 1237.64,
+    "end": 1248.68,
+    "ocr_text": "Quality of Clustering\n\n+ Internal evaluation:\n\n— assign the best score to the algorithm that produces clusters with high\nsimilarity within a cluster and low similarity between clusters, e.g.,\n\nDavies-Bouldin index\n= FQ aed\n\nmax\nn Pet ACE, cj)\n\n— evaluated based on data such as known class labels and external\nbenchmarks, eg, Rand Index, Jaccard Index, f-measure\n\n*  €xternal evaluation:\n\nwe TP +TN\n- TP+FP+FN+TN\nlan Bl dita\nJ(A, B) = =\n\n|AUB| TP+FP+FN"
+  },
+  {
+    "text": "Now, if you collect the set of items for which the actual label is plus and your algorithm",
+    "start": 1251.72,
+    "end": 1259.88,
+    "ocr_text": "AchoL"
+  },
+  {
+    "text": "has predicted plus, they are true positive. If the actual label is minus and your algorithm",
+    "start": 1259.88,
+    "end": 1266.76,
+    "ocr_text": "AchoL"
+  },
+  {
+    "text": "has predicted minus, it is called true negative. But, if the actual label is plus, your algorithm",
+    "start": 1266.84,
+    "end": 1276.44,
+    "ocr_text": "AchwL"
+  },
+  {
+    "text": "has predicted minus, this is called false negative. If the actual label is minus, your algorithm",
+    "start": 1276.44,
+    "end": 1283.72,
+    "ocr_text": "AchwL"
+  },
+  {
+    "text": "has predicted plus, it is called false positive. Now, the Rand index, so tp and tn, so these are the",
+    "start": 1283.72,
+    "end": 1294.68,
+    "ocr_text": "AchwL"
+  },
+  {
+    "text": "two regions where your algorithm has worked correctly. Rand index is given by tp plus tn",
+    "start": 1294.68,
+    "end": 1305.16,
+    "ocr_text": "AcheL"
+  },
+  {
+    "text": "divided by the sum of all four. So, the fraction of examples for which your algorithm has predicted",
+    "start": 1305.88,
+    "end": 1313.72,
+    "ocr_text": "Unsupersis <A Fenn"
+  },
+  {
+    "text": "the correct class. The jacquard index is given by jacquard index of two sets a b is given by",
+    "start": 1313.8,
+    "end": 1335.72,
+    "ocr_text": "Unsupersis <A Fenn"
+  },
+  {
+    "text": "a intersection b divided by a union b. In this case, if you take the intersection of the",
+    "start": 1335.8,
+    "end": 1343.72,
+    "ocr_text": "TP+ LW\n———__\n“TPT IN+FD4 F p/"
+  },
+  {
+    "text": "predicted and the actual, what you get is true positive. These are the ones which,",
+    "start": 1343.72,
+    "end": 1350.2,
+    "ocr_text": "TP+ LW\n———__\n“TPT IN+FD4 F p/"
+  },
+  {
+    "text": "these are the intersection of those which both of the algorithm's have predicted correctly.",
+    "start": 1350.76,
+    "end": 1356.92,
+    "ocr_text": "Unsupersis ef berg\n—. Actuah\n\n_ TPT\nTPE IN+ED+ F py)\ni: ey)\n\nDt\n\n—~ | FN{ TN :"
+  },
+  {
+    "text": "So, divided by the union of those that any of the algorithm's have predicted correctly.",
+    "start": 1356.92,
+    "end": 1363.88,
+    "ocr_text": "Uns ape sed Leawiy\n\n7TP+TWV\n2 Sa\nTPr IN+FD4 F/\n\nT="
+  },
+  {
+    "text": "So, this is divided by tp plus fp plus fn. So, these are some possible matrix then there is another common metric called f measure",
+    "start": 1363.88,
+    "end": 1376.92,
+    "ocr_text": "Uns ape sed Leawiy\n\n7TP+TWV\n2 Sa\nTPr IN+FD4 F/\n\nT="
+  },
+  {
+    "text": "which is a harmonic mean of precision and recall. Precision is true positive divided by true",
+    "start": 1377.56,
+    "end": 1388.52,
+    "ocr_text": "Uns aperw < <A Lewy\n\n7TP+TW\nRI = ———_—__\nTPE IN+F D4 Fy\nvps\n\nTPLEPL Ep)"
+  },
+  {
+    "text": "positive plus false positive. Recall is true positive divided by true positive plus false negative",
+    "start": 1388.52,
+    "end": 1397.64,
+    "ocr_text": "Unsuperw ced beauty\nfa —— ie\n\n» ,\n: 7TP+OWV\nTP | @aemars\n5 l TPt INFFD4 F py\n\nv =i\n PREPLEA"
+  },
+  {
+    "text": "and that f measure is the harmonic mean between them. So, these are some measures that are used for",
+    "start": 1397.64,
+    "end": 1405.16,
+    "ocr_text": "(Uns uperv! s<d Leung\n>\n|,\n\nTP+TW\nTPE ING FDS Fp/\n1 as"
+  },
+  {
+    "text": "external evaluation. With this, I stop today's lecture. In the next class, we will start with k",
+    "start": 1405.16,
+    "end": 1413.08,
+    "ocr_text": "dca\n\n_ THTW\n- _ nr\nTRE IN+FD4 Pn"
+  },
+  {
+    "text": "means which is an example of a partitional class string algorithm. Then we will talk about one hierarchy",
+    "start": 1413.08,
+    "end": 1420.68,
+    "ocr_text": "dca\n\n_ THTW\n- _ nr\nTRE IN+FD4 Pn"
+  },
+  {
+    "text": "of the string algorithm and we may talk about one model base class string algorithms which is",
+    "start": 1420.68,
+    "end": 1427.56,
+    "ocr_text": "Uns aper < <b Leanry\nActoL\n\n_ TPTW\n:_ wee\nTPEINAFD4 Fp)\nTP\n‘alazaay\n\nmy RI"
+  },
+  {
+    "text": "a mixture of cosians. Thank you.",
+    "start": 1427.56,
+    "end": 1439.96,
+    "ocr_text": "Uns uperw << Lenny\nActoL\n\nTP+ TW\n\na\nTPE IN+FD4 En)\n\n~"
+  }
+]

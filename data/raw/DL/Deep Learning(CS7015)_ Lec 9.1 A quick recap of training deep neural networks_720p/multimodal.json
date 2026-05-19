@@ -1,0 +1,368 @@
+[
+  {
+    "text": "Welcome to lecture 9 of CS7015. Today we will talk about greedy layer by spray training,",
+    "start": 0.0,
+    "end": 20.64,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n\\"
+  },
+  {
+    "text": "better activation functions, better weight initialization methods and batch normalization.",
+    "start": 20.64,
+    "end": 25.48,
+    "ocr_text": "387015 (Deep Learning) : Lecture 9\n\nGreedy Layerwise Pre-training, Better activation functions, Better weight\ninitialization methods, Batch Normalization\n\nMitesh M. Khapra\n\nDepartiment of Computer Scicnce and Engincering\nIndian Institute of Technology Madras\n\nMitesh M. Khapra 115 (Deep Learning) : Leeture 9"
+  },
+  {
+    "text": "So, today's lecture is more like tips and tricks to make deep learning work. So, when you are",
+    "start": 25.96,
+    "end": 32.68,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 9\n\nGreedy Layerwise Pre-training, Better activation functions, Better weight\ninitialization methods, Batch Normalization\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering,\nIndian Institute of Technology Madras\n\n1M. Khapra 015 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "actually experimenting with deep learning in practice, what are some of the things that you need to",
+    "start": 32.68,
+    "end": 36.68,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 9\n\nGreedy Layerwise Pre-training, Better activation functions, Better weight\ninitialization methods, Batch Normalization\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering,\nIndian Institute of Technology Madras\n\n1M. Khapra 015 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "keep in mind? And it is also my way of connecting the history that we saw to where we are today.",
+    "start": 37.64,
+    "end": 44.36,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 9\n\nGreedy Layerwise Pre-training, Better activation functions, Better weight\ninitialization methods, Batch Normalization\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras\n\nMitesh M. Khapra 115 (Deep Learning) : Leeture 9"
+  },
+  {
+    "text": "So, there were certain things which we saw in the history and now I will try to bring those back",
+    "start": 44.36,
+    "end": 49.88,
+    "ocr_text": "CS7015 (Deep Learning) : Lecture 9\n\nGreedy Layerwise Pre-training, Better activation functions, Better weight\ninitialization methods, Batch Normalization\n\nMitesh M. Khapra\n\nDepartment of Computer Science and Engineering\nIndian Institute of Technology Madras\n\nMitesh M. Khapra 115 (Deep Learning) : Leeture 9"
+  },
+  {
+    "text": "and connect to where we are headed from here, where we have reached today and where we are headed",
+    "start": 49.88,
+    "end": 54.12,
+    "ocr_text": "197015 (Deep Learning) : Lecture 9\n\nGreedy Layerwise Pre-training, Better activation functions, Better weight\ninitialization methods, Batch Normalization\n\nMitesh M. Khapra\n\nDepartiment of Computer Science and Engincering\nIndian Institute of Technology Madras\n\nM. Khapra 15 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "from here. So, that is with that in module 1, I will do a very quick recap of training neural networks.",
+    "start": 54.52,
+    "end": 62.52,
+    "ocr_text": "197015 (Deep Learning) : Lecture 9\n\nGreedy Layerwise Pre-training, Better activation functions, Better weight\ninitialization methods, Batch Normalization\n\nMitesh M. Khapra\n\nDepartiment of Computer Science and Engincering\nIndian Institute of Technology Madras\n\nM. Khapra 15 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "I will not take more than 5 bits and I need it for a specific purpose. So, we already saw how to",
+    "start": 62.52,
+    "end": 67.32,
+    "ocr_text": "Module 9.1 : A quick recap of training deep neural\nnetworks\n\nMitesh M. Khapra CS7015 (Deep Learning) : Leeture 9"
+  },
+  {
+    "text": "train such a very shallow neural network. What was the learning algorithm, gradient visit and this",
+    "start": 67.32,
+    "end": 75.64,
+    "ocr_text": "h M. Khapre ©S7015 (Deep Learning) : Leeture 9"
+  },
+  {
+    "text": "was the update rule. In particular, I want you to notice that the gradient actually depends on",
+    "start": 75.64,
+    "end": 82.36,
+    "ocr_text": "e We already saw how to train this network\nw=w-7Vw where,\n~ OL w\n“Vw = — (w)\nr Ow\n\n= (f(x) — uy) * f(x) #1 f(x) #2\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "the input. So, when you compute the gradient formula, you have this multiplication by x. So,",
+    "start": 82.36,
+    "end": 87.48,
+    "ocr_text": "e We already saw how to train this network\nw=w-7Vw where,\n~ OL w\n“Vw = — (w)\nr Ow\n\n= (f(x) — uy) * f(x) #1 f(x) #2\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "it is proportional to the input and this is one fact that we will use at least a couple of places",
+    "start": 87.48,
+    "end": 91.88,
+    "ocr_text": "e We already saw how to train this network\n\nw= Ww where,\n\nw OL (w\n© ya oo w\ni\n\n* f(x) *(1— f(x) x2)\n\nMitesh M. Khapra é 5 (Deep Learning) : Leeture"
+  },
+  {
+    "text": "in the lecture today. So, this was a very shallow single neural network. What if we have a wider",
+    "start": 91.88,
+    "end": 97.08,
+    "ocr_text": "e We already saw how to train this network\n\nw= Ww where,\n\nw OL (w\n© ya oo w\ni\n\n* f(x) *(1— f(x) x2)\n\nMitesh M. Khapra é 5 (Deep Learning) : Leeture"
+  },
+  {
+    "text": "network still which algorithm gradient descent? And we just have these three different formulae",
+    "start": 97.08,
+    "end": 103.64,
+    "ocr_text": "e@ We already saw how to train this network\nw=w-7Vw where,\nOL (w)\nVu = —\nr Ow\n\n= (f(x) — uy) * F(x) #1 = F(x) #2\n\ne@ What about a wider network with more inputs:\n\nMitesh M. Khapra 5 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "and for each of these formulae note that the gradient or rather this gradient depends on the",
+    "start": 103.64,
+    "end": 108.6,
+    "ocr_text": "e@ We already saw how to train this network\nw=w-7Vw where,\nOL (w)\nVu = —\nr Ow\n\n= (f(x) — uy) * F(x) #1 = F(x) #2\n\ne@ What about a wider network with more inputs:\n\nMitesh M. Khapra 5 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "input that you are feeding it. I will not keep this in mind. And what if we have a deeper network?",
+    "start": 108.68,
+    "end": 113.88,
+    "ocr_text": "e@ We already saw how to train this network\n\nw=w-7Vw where,\n\nw Vw = ae tw)\nx Ow\n= (f(x) — y) * F(x) * (1 — f(x) #2\ny\n\ne@ What about a wider network with more inputs:\n\noO wy = wi — 7Vuy\nw) /rv2| wy w2 = we — Vw\nwz = w3 — 1Vw3\n\na 13 =\n\n1 where Fu)= (F(x) — y) * f(x) * (1 — f(x) ©.\n\nLeeture 9"
+  },
+  {
+    "text": "So, we saw a very shallow network, we saw wide network. Now, I am showing you a deep network.",
+    "start": 114.76,
+    "end": 119.16,
+    "ocr_text": "e@ We already saw how to train this network\n\nw=w-7Vw where,\n\nw Vw = ae tw)\nx Ow\n= (f(x) — y) * F(x) * (1 — f(x) #2\ny\n\ne@ What about a wider network with more inputs:\n\noO wy = wi — 7Vuy\nw) /rv2| wy w2 = we — Vw\nwz = w3 — 1Vw3\n\na 13 =\n\n1 where Fu)= (F(x) — y) * f(x) * (1 — f(x) ©.\n\nLeeture 9"
+  },
+  {
+    "text": "What will you do? Again gradient descent, but you will apply the chain rule for computing the",
+    "start": 119.16,
+    "end": 124.2,
+    "ocr_text": "e@ What if we have a deeper network ?\n\nr=ho\n\na; = wihyii hi = o(ai)\n\nay = wy *r=wy, xho\n\n1M. Khapra 015 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "gradients. And again here in general, you will notice that for any of these weights W 1, W 2, W 3,",
+    "start": 124.2,
+    "end": 131.08,
+    "ocr_text": "e@ What if we have a deeper network ?\n\nr=ho\n\na; = wihyii hi = o(ai)\n\nay = wy *r=wy, xho\n\n1M. Khapra 015 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "the gradient formula will have this H i minus 1. What is H i minus 1?",
+    "start": 131.64,
+    "end": 136.04,
+    "ocr_text": "e@ What if we have a deeper network ?\n\ne We can now calculate Vw) using chain rule:\na OL(w) OL(w) Oy Vaz Ohg Jag Ohy Oay\na3 Ow, Oy “Aa3Ohy ay Oh, “Oa, “Ow,\n, Og\n31 he = 02(w) K ccsssceceeeeees «ho\n(a: dy\n12\nwyf e In general,\nhy\ny oN ;\na-) OL (w\n4 Vuj = —— * \\\nwy oy\nr=ho\n\na; = wihyis hy = o(ai)\n\nay = wy eT = wy, * ho\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 9"
+  },
+  {
+    "text": "Input from the previous layer and H 0 is the actual input. So, the gradient at any layer is",
+    "start": 136.04,
+    "end": 143.24,
+    "ocr_text": "ww\n\nr=ho\n\na; = wihyishi = o(ai)\n\nay = wy, *r=wy, xho\n\ne@ What if we have a deeper network ?\ne@ We can now calculate Vw, using chain rule:\nOL(w) OL(w) Oy Vaz Ohg Jay Ohy Oay\n\nOw, Oy (Oax Ohg Jay Oh, Ja, Ow\na «ho\noy\n\ne In general,\n\nOL\nVa) = 22) wk 1.\nOy ==>\n\n1M. Khapra 5 (Decp Learning) : Lecture 9"
+  },
+  {
+    "text": "actually proportional to the input from the previous layer. And this could either be the input from",
+    "start": 143.24,
+    "end": 147.56,
+    "ocr_text": "ww\n\nr=ho\n\na; = wihyishi = o(ai)\n\nay = wy, *r=wy, xho\n\ne@ What if we have a deeper network ?\ne@ We can now calculate Vw, using chain rule:\nOL(w) OL(w) Oy Vaz Ohg Jay Ohy Oay\n\nOw, Oy (Oax Ohg Jay Oh, Ja, Ow\na «ho\noy\n\ne In general,\n\nOL\nVa) = 22) wk 1.\nOy ==>\n\n1M. Khapra 5 (Decp Learning) : Lecture 9"
+  },
+  {
+    "text": "the hidden layer or the actual input. And finally, we saw this thin, so we saw wide network, we saw",
+    "start": 147.56,
+    "end": 156.68,
+    "ocr_text": "e@ What if we have a deeper network ?\ne We can now calculate Vw) using chain rule:\na OL(w) OL(w) Oy Vaz Ohy Jay Ohy Vay\naz Ow, Oy “Oa3Ohy Oay Oh, “Oa, “Ow,\nWB hy = - tw) Koeeeceeeeeeeees «hy\n() Oy\n12\nwy e In general,\nIhy\noN\n) OL\nS (\"4 = a2) L See rer ere Ter * hj; 1.\na. Oy ==\nwy =\nr=ho\n\na; = why is hi = o(ai)\n\nay = Wy, eT = WwW, * ho\n\nMitesh M. Khapra 7015 (Deep Learning) : Lecture"
+  },
+  {
+    "text": "thin network. Now, we will see a wide network and a deep network. Sorry, we saw earlier we saw",
+    "start": 156.68,
+    "end": 162.28,
+    "ocr_text": "e What happens if we have a network which is deep\nand wide?\n\nM. Khapra 115 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "wide network and a deep network. Now, we will see a wide and deep network. And here again,",
+    "start": 162.28,
+    "end": 166.2,
+    "ocr_text": "e What happens if we have a network which is deep\nand wide?\n\nM. Khapra 115 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "you have compute the gradient by applying this chain rule across multiple paths. And that is what",
+    "start": 166.2,
+    "end": 171.32,
+    "ocr_text": "e@ What happens if we have a network which is deep\nand wide?\n\ne How do you calculate Vw2 =?\n\ne It will be given by chain rule applied across mul-\ntiple paths (We saw this in detail when we studied\nback propagation)\n\nMitesh M. Khapra 5 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "we use and we call it back propagation. And remember again there, the same thing holds that the",
+    "start": 171.32,
+    "end": 176.92,
+    "ocr_text": "e@ What happens if we have a network which is deep\nand wide?\n\ne How do you calculate Vw2 =?\n\ne It will be given by chain rule applied across mul-\ntiple paths (We saw this in detail when we studied\nback propagation)\n\nMitesh M. Khapra 5 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "gradients at some point are proportional to the input at that layer. Everyone remembers that.",
+    "start": 176.92,
+    "end": 181.08,
+    "ocr_text": "L e@ What happens if we have a network which is deep\nand wide?\ne How do you calculate Vw2 =?\ne It will be given by chain rule applied across mul-\ntiple paths (We saw this in detail when we studied\nback propagation)\n\n1M. Khapra 7015 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "So, this is important. So, what we have is things to remember from what we have seen so far is",
+    "start": 181.8,
+    "end": 187.4,
+    "ocr_text": "L e@ What happens if we have a network which is deep\nand wide?\ne How do you calculate Vw2 =?\ne It will be given by chain rule applied across mul-\ntiple paths (We saw this in detail when we studied\nback propagation)\n\n1M. Khapra 7015 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "that. So, training neural networks is basically a game of gradients. So, you compute the gradients,",
+    "start": 187.4,
+    "end": 191.88,
+    "ocr_text": "Things to remember\ne Training Neural Networks is a Game of Gradients (played using any of the\nexisting gradient based approaches that we discussed)\n\n1M. Khapra G p Learning) : Lecture 9"
+  },
+  {
+    "text": "and everything depends on those. How will you update the weights and everything from there on",
+    "start": 192.28,
+    "end": 195.96,
+    "ocr_text": "Things to remember\ne Training Neural Networks is a Game of Gradients (played using any of the\nexisting gradient based approaches that we discussed)\n\n1M. Khapra G p Learning) : Lecture 9"
+  },
+  {
+    "text": "is about the gradients. And these gradients actually tell you the responsibility of the parameters",
+    "start": 195.96,
+    "end": 202.6,
+    "ocr_text": "Things to remember\ne Training Neural Networks is a Game of Gradients (played using any of the\nexisting gradient based approaches that we discussed)\n\ne@ The gradient tells us the responsibility of a parameter towards the loss\n\nMitesh M. Khapra ©S7015 (Deep ning) : Leeture 9:"
+  },
+  {
+    "text": "to the loss and you appropriately update them. And we saw various variance of how to use the",
+    "start": 202.6,
+    "end": 210.36,
+    "ocr_text": "Things to remember\ne Training Neural Networks is a Game of Gradients (played using any of the\nexisting gradient based approaches that we discussed)\n\ne@ The gradient tells us the responsibility of a parameter towards the loss\n\nMitesh M. Khapra ©S7015 (Deep ning) : Leeture 9:"
+  },
+  {
+    "text": "gradient. So, we saw the gradient descent, we saw nag, momentum and all. But in all of these,",
+    "start": 210.36,
+    "end": 215.08,
+    "ocr_text": "Things to remember\ne ‘Training Neural Networks is a Game of Gradients (played using any of the\nexisting gradient based approaches that we discussed)\n\ne@ The gradient tells us the responsibility of a parameter towards the loss\n\nM. Khapra 'S7015 (Deep Le Leeture 9"
+  },
+  {
+    "text": "the underlying core thing was to compute the gradient and then do some manipulations based on",
+    "start": 215.08,
+    "end": 219.8,
+    "ocr_text": "Things to remember\ne Training Neural Networks is a Game of Gradients (played using any of the\nexisting gradient based approaches that we discussed)\n\ne@ The gradient tells us the responsibility of a parameter towards the loss\n\nmish\n\nMitesh M. Khapra ©S7015 (Deep ning) : Lecture 9"
+  },
+  {
+    "text": "that. And the other key thing is that the gradient at a particular layer depends on the input",
+    "start": 220.76,
+    "end": 225.96,
+    "ocr_text": "Things to remember\ne Training Neural Networks is a Game of Gradients (played using any of the\nexisting gradient based approaches that we discussed)\n\ne@ The gradient tells us the responsibility of a parameter towards the loss\n\nmish\n\nMitesh M. Khapra ©S7015 (Deep ning) : Lecture 9"
+  },
+  {
+    "text": "to that layer. So, now let us go back and just retrospect a bit and see what is it that we have",
+    "start": 225.96,
+    "end": 235.0,
+    "ocr_text": "y\n+\noO\n\n@O@®\nwit way wsp\n\nvy) v2 vy\n\nh M. Khapra 5 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "learned so far. So, so far what I have taught you gradient descent, sorry, back propagation is",
+    "start": 235.0,
+    "end": 239.72,
+    "ocr_text": "y\n+\noO\n\n@O@®\nwit way wsp\n\nvy) v2 vy\n\nh M. Khapra 5 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "something which was proposed way back in 1986. So, in fact, it was existing before that, but it was",
+    "start": 239.72,
+    "end": 247.08,
+    "ocr_text": "oO a)\n\nwit wah ws]\n\nry 2 v3\n\n1M. Khapra\n\n7015 (Deep Learning)\n\nLeeture 9"
+  },
+  {
+    "text": "popularized by this work of Rumell Hart and others in 1986. So, but then in the 1990s or early",
+    "start": 247.08,
+    "end": 255.4,
+    "ocr_text": "e Backpropagation was made popular\nby Rumelhart et.al in 1986\n\n7)\nI\n\nv3\n\nXS\nS\n\nXS\nW3\n\nMitesh M. Khapra 5 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "2000s, if back propagation already existed and we could train deep neural networks,",
+    "start": 255.4,
+    "end": 259.8,
+    "ocr_text": "Learning\nby buck-\n\npresentations\npaguting errors\n\ne Backpropagation was made popular\nby Rumelhart et.al in 1986\n\n,o@\nwit wah ws]\nT) ‘ TR\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 9:"
+  },
+  {
+    "text": "then why did we hear so much about deep learning at that time. Of course, you guys were busy with",
+    "start": 259.8,
+    "end": 263.72,
+    "ocr_text": "Learning\nby buck-\n\npresentations\npaguting errors\n\ne Backpropagation was made popular\nby Rumelhart et.al in 1986\n\n,o@\nwit wah ws]\nT) ‘ TR\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 9:"
+  },
+  {
+    "text": "school and all at that time, but why did the others are older people like me not hear about it.",
+    "start": 263.72,
+    "end": 269.16,
+    "ocr_text": "Learning\nby buck-\n\npresentations\npaguting errors\n\ne Backpropagation was made popular\nby Rumelhart et.al in 1986\n\n,o@\nwit wah ws]\nT) ‘ TR\n\nMitesh M. Khapra 7015 (Deep ning) : Leeture 9:"
+  },
+  {
+    "text": "Computational power. Is that the only thing?",
+    "start": 271.88,
+    "end": 273.56,
+    "ocr_text": "Learning representations\nby buck-propaguting errors\n\ne Backpropagation was made popular\nby Ruimelhart et.al in 1986\n\nMitesh M. Khapra CS7015 (Deep ning) : Lecture"
+  },
+  {
+    "text": "Computational power, computation and memory. Is that the only thing?",
+    "start": 273.56,
+    "end": 278.44,
+    "ocr_text": "Learning representations\nby buck-propaguting errors\n\ne Backpropagation was made popular\nby Ruimelhart et.al in 1986\n\nMitesh M. Khapra CS7015 (Deep ning) : Lecture"
+  },
+  {
+    "text": "Computational power. Who said convergence, okay, good. So, actually, what happened right in the",
+    "start": 278.44,
+    "end": 285.24,
+    "ocr_text": "Learning representations\nby buck-propaguting errors\n\ne Backpropagation was made popular\nby Ruimelhart et.al in 1986\n\n(aS (0) to)\na Z)\nwit wah wy\n\nTy) TY TR\n\nMitesh M. Khapra 015 (Deep ning) : Leeture 9:"
+  },
+  {
+    "text": "late 80s and early 90s and even early 2000s, when you used back propagation to train really deep",
+    "start": 285.24,
+    "end": 291.64,
+    "ocr_text": "e Backpropagation was made popular\nby Rumelhart et.al in 1986\n\ne However when used for really deep\n\nG (a) \\ networks it was not very successful\naS\nwit wah ws\n\nTy) T\n\n1M. Khapra 015 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "networks, it was not very successful and what do I mean by not successful actually?",
+    "start": 291.64,
+    "end": 296.04,
+    "ocr_text": "e Backpropagation was made popular\nby Rumelhart et.al in 1986\n\ne However when used for really deep\n\nG (a) \\ networks it was not very successful\naS\nwit wah ws\n\nTy) T\n\n1M. Khapra 015 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "What are the two things that could happen? Someone gave the answer already.",
+    "start": 296.68,
+    "end": 299.96,
+    "ocr_text": "e Backpropagation was made popular\nby Rumelhart et.al in 1986\n\ne However when used for really deep\n\nsful\n\nI\n\n(ay (a) (7) networks it was not very succe\nNN IN,\nwit wah ws]\n\nTy) TY\n\n1M. Khapra 015 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "It does not converge, right? That means you do not reach the optimum solution, right?",
+    "start": 299.96,
+    "end": 305.34,
+    "ocr_text": "e Backpropagation was made popular\nby Rumelhart et.al in 1986\n\ne However when used for really deep\n\nsful\n\nI\n\n(ay (a) (7) networks it was not very succe\nNN IN,\nwit wah ws]\n\nTy) TY\n\n1M. Khapra 015 (Deep Learning) : Lecture 9"
+  },
+  {
+    "text": "In fact, till 2006, it was very hard to train very deep networks, okay? And typically",
+    "start": 305.34,
+    "end": 313.04,
+    "ocr_text": "Learning representations\n\ne Backpropagation was made popular\nby Ruimelhart et.al in 1986\n\ne However when used for really deep\n\nful\n\ne In fact, till 2006 it was very hard to\ntrain very deep network\n\nnetworks it was not very succ\n\nMitesh M. Khapra ‘015 (Deep ning) : Lecture 9"
+  },
+  {
+    "text": "even a large number of epochs, these networks did not converge. That means they were still",
+    "start": 313.04,
+    "end": 317.48,
+    "ocr_text": "Learning representations\n\ne Backpropagation was made popular\nby Ruimelhart et.al in 1986\n\ne However when used for really deep\n\nful\n\ne In fact, till 2006 it was very hard to\ntrain very deep network\n\nnetworks it was not very succ\n\nMitesh M. Khapra ‘015 (Deep ning) : Lecture 9"
+  },
+  {
+    "text": "at a very high loss. And although in principle everything is fine, you have a deep neural",
+    "start": 317.48,
+    "end": 321.38,
+    "ocr_text": "pPEENgy,\nfor\n\n=%\n\n‘eas!\n\nwit wal ws\n\nvy) T2\n\nrepresentations\npropagating errors\n\nBackpropagation was made popular\nby Rumelhart et.al in 1986\n\nHowever when used for really deep\nful\nIn fact, till 2006 it was very hard to\ntrain very deep networks\n\nnetworks it was not very suc\n\nTypically, even after a large number\nof epochs the training did not con-\nverge"
+  },
+  {
+    "text": "network, you have an algorithm that can train it, but you are still not being able to train",
+    "start": 321.38,
+    "end": 326.16,
+    "ocr_text": "pPEENgy,\nfor\n\n=%\n\n‘eas!\n\nwit wal ws\n\nvy) T2\n\nrepresentations\npropagating errors\n\nBackpropagation was made popular\nby Rumelhart et.al in 1986\n\nHowever when used for really deep\nful\nIn fact, till 2006 it was very hard to\ntrain very deep networks\n\nnetworks it was not very suc\n\nTypically, even after a large number\nof epochs the training did not con-\nverge"
+  },
+  {
+    "text": "it properly and you are not being able to make any practical use of that, right? So,",
+    "start": 326.16,
+    "end": 329.92,
+    "ocr_text": "fPEENey,\n\n4\n\n‘ena!\n\nOO\nwy wah ws\n\nTv) TY\n\nBackpropagation was made popular\nby Rumelhart et.al in 1986\n\nHowever when used for really deep\nful\nIn fact, till 2006 it was very hard to\ntrain very deep networks\n\nnetworks it was not very succe\n\nTypically, even after a large number\nof epochs the training did not con-\nverge"
+  },
+  {
+    "text": "that was the story till 2006. So, today is about what happened in 2006? What it led to",
+    "start": 329.92,
+    "end": 337.24,
+    "ocr_text": "fPEENey,\n\n4\n\n‘ena!\n\nOO\nwy wah ws\n\nTv) TY\n\nBackpropagation was made popular\nby Rumelhart et.al in 1986\n\nHowever when used for really deep\nful\nIn fact, till 2006 it was very hard to\ntrain very deep networks\n\nnetworks it was not very succe\n\nTypically, even after a large number\nof epochs the training did not con-\nverge"
+  },
+  {
+    "text": "in the next few years and then where we are currently, right? So, that is the journey",
+    "start": 337.24,
+    "end": 341.0,
+    "ocr_text": "representations\n\ne Backpropagation was made popular\nby Ruinelhart et.al in 1986\n\ne However when used for really deep\n\n(@y@)\nwit wah\n\nT) v\n\nnetworks it was not very successful\ne In fact, till 2006 it was very hard to\ntrain very deep networks\n\ne Typically, even after a large number\nof epochs the training did not con-\nverge"
+  },
+  {
+    "text": "that we need to make, okay? And that is why we started off with this quick recap of",
+    "start": 341.0,
+    "end": 344.6,
+    "ocr_text": "representations\n\ne Backpropagation was made popular\nby Ruinelhart et.al in 1986\n\ne However when used for really deep\n\n(@y@)\nwit wah\n\nT) v\n\nnetworks it was not very successful\ne In fact, till 2006 it was very hard to\ntrain very deep networks\n\ne Typically, even after a large number\nof epochs the training did not con-\nverge"
+  },
+  {
+    "text": "back propagation, because that is what I want to tell you that why did it not work earlier",
+    "start": 344.6,
+    "end": 348.56,
+    "ocr_text": "representations\n\ne Backpropagation was made popular\nby Ruinelhart et.al in 1986\n\ne However when used for really deep\n\n(@y@)\nwit wah\n\nT) v\n\nnetworks it was not very successful\ne In fact, till 2006 it was very hard to\ntrain very deep networks\n\ne Typically, even after a large number\nof epochs the training did not con-\nverge"
+  },
+  {
+    "text": "and where are we today, okay?",
+    "start": 348.56,
+    "end": 349.76,
+    "ocr_text": "representations\n\ne Backpropagation was made popular\nby Ruinelhart et.al in 1986\n\ne However when used for really deep\n\n(@y@)\nwit wah\n\nT) v\n\nnetworks it was not very successful\ne In fact, till 2006 it was very hard to\ntrain very deep networks\n\ne Typically, even after a large number\nof epochs the training did not con-\nverge"
+  }
+]

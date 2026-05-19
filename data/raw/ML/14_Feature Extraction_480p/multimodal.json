@@ -1,0 +1,902 @@
+[
+  {
+    "text": "Good morning. So, today we will start the fourth, the third lecture in the module on",
+    "start": 0.0,
+    "end": 27.36,
+    "ocr_text": ", WAFORURERC Machine Learning"
+  },
+  {
+    "text": "instant space learning and features reduction. In the last class we have talked about feature",
+    "start": 27.36,
+    "end": 33.04,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart C: Feature Extraction\n\nSudeshna Sarkar\nIT Kharagpur"
+  },
+  {
+    "text": "selection. In today's class we will talk about feature extraction. So, in feature extraction",
+    "start": 33.04,
+    "end": 39.2,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart C: Feature Extraction\n\nSudeshna Sarkar\nIT Kharagpur"
+  },
+  {
+    "text": "what we have is that we have a n dimensional features x 1 x 2 x n and we want to map it",
+    "start": 39.2,
+    "end": 48.8,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart C: Feature Extraction\n\nSudeshna Sarkar\nIT Kharagpur"
+  },
+  {
+    "text": "to a lower dimensional space which is m dimensional and we want to get the features z 1 z 2",
+    "start": 48.8,
+    "end": 56.96,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart C: Feature Extraction\n\nSudeshna Sarkar\nIT Kharagpur"
+  },
+  {
+    "text": "m. So, this is the new features where m is less than m and each of these features is some",
+    "start": 57.76,
+    "end": 66.24,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart C: Feature Extraction\n\nSudeshna Sarkar\nIT Kharagpur"
+  },
+  {
+    "text": "function of the original features x 1 x 2 x n. You note that in feature selection which we",
+    "start": 66.24,
+    "end": 75.92,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart C: Feature Extraction\n\nSudeshna Sarkar\nIT Kharagpur"
+  },
+  {
+    "text": "covered in the last class we said we take a subset of the features. Instead what we are doing in",
+    "start": 75.92,
+    "end": 81.52,
+    "ocr_text": "Foundations of Machine Learning\n\nModule 3: Instance Based Learning and\nFeature Reduction\n\nPart C: Feature Extraction\n\nSudeshna Sarkar\nIT Kharagpur"
+  },
+  {
+    "text": "feature extraction is that we are taking the original features and mapping it to a lower",
+    "start": 81.52,
+    "end": 86.88,
+    "ocr_text": "CK | Zi jee find a pecferon Mat\n\nan"
+  },
+  {
+    "text": "dimensional space and each feature is obtained as a function of the feature set. So, it is a projection",
+    "start": 86.88,
+    "end": 93.84,
+    "ocr_text": "CK | Zi jee find a pecferon Mat\n\nan"
+  },
+  {
+    "text": "of a higher dimensional feature space to a lower dimensional feature space and we want to make",
+    "start": 93.84,
+    "end": 100.64,
+    "ocr_text": "CK | Zi jee find a pecferon Mat\n\nan"
+  },
+  {
+    "text": "this projection so that the smaller dimensional feature set can help us to have better classification",
+    "start": 100.64,
+    "end": 110.56,
+    "ocr_text": "CK | Zi jee find a pecferon Mat\n\nan"
+  },
+  {
+    "text": "or faster classification as we have noted in the last class. So, what we need to do is that",
+    "start": 110.56,
+    "end": 116.48,
+    "ocr_text": "CK | Zi jee find a pecferon Mat\n\nan"
+  },
+  {
+    "text": "we need to find a projection matrix w such that z equal to w t x. So, z is this is z and this is x.",
+    "start": 116.88,
+    "end": 144.0,
+    "ocr_text": "CK | Zi jee find a pecferon Mat\n\nan"
+  },
+  {
+    "text": "So, we want to find w t where z is w t x which is a projection from n dimensional space to",
+    "start": 147.68,
+    "end": 156.8,
+    "ocr_text": "f nc a prejecuan mal\nW\n=w Xx"
+  },
+  {
+    "text": "m dimensional space and what we expect from such a projection is that the new features they are",
+    "start": 158.16,
+    "end": 166.24,
+    "ocr_text": "f nc a prejecuan mal\nW\n=w Xx"
+  },
+  {
+    "text": "uncorrelated and cannot be reduced further. In the last class we noted that features can be redundant",
+    "start": 166.32,
+    "end": 185.28,
+    "ocr_text": "tind a prose\na\nL i eEAN L\nA mal\n\nW"
+  },
+  {
+    "text": "and therefore, we can have larger number of features when we mapping to smaller space we want",
+    "start": 185.76,
+    "end": 191.52,
+    "ocr_text": "find a prefectea mal =\n\nW\nBaw X\n\n— Unardlatl , cannct be\nAduced Placthn"
+  },
+  {
+    "text": "that the features are not redundant among themselves that they are uncorrelated and cannot be reduced",
+    "start": 191.6,
+    "end": 198.24,
+    "ocr_text": "find a prefectea mal =\n\nW\nBaw X\n\n— Unardlatl , cannct be\nAduced Placthn"
+  },
+  {
+    "text": "further. Secondly, we want features to have large variance or large variation why because if the",
+    "start": 198.24,
+    "end": 208.96,
+    "ocr_text": "find a prefer mal»\nrou\nW\n= isa\nzZ=w Xx\n—Unendabl , cannot be"
+  },
+  {
+    "text": "feature takes similar value for all the instances that feature cannot be used as a discriminator.",
+    "start": 208.96,
+    "end": 216.16,
+    "ocr_text": "tind a. pre Efe mal\nW\nBaw! X\n—\\Inwndabt , cannet be\nAwd Lasctien\n\n= Lage VOM ANC"
+  },
+  {
+    "text": "So, since we want the features to be able to distinguish between the different instances",
+    "start": 216.8,
+    "end": 223.28,
+    "ocr_text": "Li ZA a Find a peofecbin mai\neee ‘| | wo\na z Xv Baw X\n— Unaredatat , Cann be\n\n7 Lage VOMANCR"
+  },
+  {
+    "text": "we encourage larger variation or larger variance between the features because otherwise the",
+    "start": 223.28,
+    "end": 229.92,
+    "ocr_text": "Li ZA a Find a peofecbin mai\neee ‘| | wo\na z Xv Baw X\n— Unaredatat , Cann be\n\n7 Lage VOMANCR"
+  },
+  {
+    "text": "features would not bear any information. Now, let us look at the slides. So, suppose you have",
+    "start": 229.92,
+    "end": 240.24,
+    "ocr_text": "- ; = T=\nvan) Z L al x\n— nent , cannt be"
+  },
+  {
+    "text": "the following instances and there in the two dimensional feature space there are two features",
+    "start": 240.24,
+    "end": 246.08,
+    "ocr_text": "Geometric picture of principal components (PCs)"
+  },
+  {
+    "text": "x 1 and x 2 and in that space you have these instances. Now, you have a choice of deciding suppose",
+    "start": 246.16,
+    "end": 254.0,
+    "ocr_text": "Geometric picture of principal components (PCs)"
+  },
+  {
+    "text": "you want to map these two dimensional feature space into a one dimensional feature space you have",
+    "start": 254.0,
+    "end": 259.44,
+    "ocr_text": "Geometric picture of principal components (PCs)"
+  },
+  {
+    "text": "to select that access. Now, this is a possible access. Now, along this access you can so this is",
+    "start": 259.44,
+    "end": 267.76,
+    "ocr_text": "Geometric picture of principal components (PCs)"
+  },
+  {
+    "text": "the access and you can project each of these instances on this access. So, after projection this",
+    "start": 267.76,
+    "end": 275.04,
+    "ocr_text": "Geometric picture of principal components (PCs)"
+  },
+  {
+    "text": "point will map to this point on this access this point will map here this point will map here.",
+    "start": 275.04,
+    "end": 281.76,
+    "ocr_text": "Geometric picture of principal components (PCs)\n\n—<— >"
+  },
+  {
+    "text": "So, the different points will map here here here here here here here here.",
+    "start": 281.76,
+    "end": 285.76,
+    "ocr_text": "Geometric picture of principal components (PCs)\n\n—<— >"
+  },
+  {
+    "text": "In contrast we could have taken the access like this and if we did that these points will map here",
+    "start": 288.0,
+    "end": 295.76,
+    "ocr_text": "Geometric picture of principal components (PCs)\n\n\\"
+  },
+  {
+    "text": "here here here. So, can you tell me out of these two possible projections. So, this is let us say",
+    "start": 295.76,
+    "end": 303.6,
+    "ocr_text": "Geometric picture of principal components (PCs)\n\na"
+  },
+  {
+    "text": "1 and this is 2 which one would you prefer. So, you notice that in 2 there is a larger variation",
+    "start": 305.36,
+    "end": 315.36,
+    "ocr_text": "Geometric picture of principal components (PCs)\n\n\\"
+  },
+  {
+    "text": "there is a larger variance among the features. So, we would by the principle that we are going by",
+    "start": 315.36,
+    "end": 322.64,
+    "ocr_text": "Geometric picture of principal components (PCs)\n\n\\"
+  },
+  {
+    "text": "prefer this diamond this access to the previous access. Now, I will so based on this so what we do is",
+    "start": 322.64,
+    "end": 332.96,
+    "ocr_text": "Geometric picture of principal components (PCs)\n\n\\"
+  },
+  {
+    "text": "that some of you may have studied mathematics and are familiar with principle components.",
+    "start": 332.96,
+    "end": 349.04,
+    "ocr_text": "Algebraic definition of PCs\nGiven a sample of p observations on a vector of N variables\nfe, .25°77 x, fe RY\n\ndefine the first principal component of the sample\nby the linear transformation\n\nN.\nT E\n45 X, =D WaXy> 7 — 2 P>\n=\n\nwhere the vector W, = W11. Wo15°77> Wi)\nX= Oyo %p 50°77 X yy)\n\nis chosen such that var[Z, | is maximum."
+  },
+  {
+    "text": "For feature extraction this principle components play a very important role. So, we can take the",
+    "start": 352.96,
+    "end": 361.28,
+    "ocr_text": "Find o- prefecten mal\nW\n2 we\n\n: — nen, cannat be\nYudieed Luter\n\n— Luge VOM\n\nZ\nZz\n\nWAN"
+  },
+  {
+    "text": "principle components of the data points that we have and take the principle components the first",
+    "start": 361.92,
+    "end": 369.6,
+    "ocr_text": "2 = ee, tind a. prefectan mal\nW :\n= a om\nZw xX\n\n— Unerdbatt , cannst be\nAdc flactien\n\n= Luge VOMance"
+  },
+  {
+    "text": "principle component the second principle component etcetera the top principle components",
+    "start": 369.6,
+    "end": 374.32,
+    "ocr_text": "———\nfda p\n\ni U “\n\nW\n\nG vc.\n[ — nendatt , cannc b\nAdu flstin :\n\n. Lage VOMANCR"
+  },
+  {
+    "text": "as the new access and that will give us certain properties which satisfy our objectives of",
+    "start": 374.32,
+    "end": 381.68,
+    "ocr_text": "———\nfda p\n\ni U “\n\nW\n\nG vc.\n[ — nendatt , cannc b\nAdu flstin :\n\n. Lage VOMANCR"
+  },
+  {
+    "text": "getting un-correlated features and features with large variance. So, first let us see that if we want",
+    "start": 381.68,
+    "end": 389.2,
+    "ocr_text": "tin @ prea mats\nU\n\nW\n\n2 -w' XK\n= Unonelator , cannst be\n\n; Linge Vas once"
+  },
+  {
+    "text": "to given our instances in n dimensional space if we want to select one new feature the first",
+    "start": 389.2,
+    "end": 400.0,
+    "ocr_text": "find & prepeaies mal\n\nW\n\nBaw! X\n\n— Unernebatst , anna bs\nAedued Lact :\n\n7 Linge Vas nce"
+  },
+  {
+    "text": "feature how we should select the first feature. So, we are given a sample of p observations x 1 x 2 x n",
+    "start": 400.0,
+    "end": 410.48,
+    "ocr_text": "ee)\noo\nBaw! X\nf — Unendatst , cannet be\nPadus flactiun\n\n' Lage VOM ANC"
+  },
+  {
+    "text": "and for each sorry p observations and for each observations we have a n dimensional vector",
+    "start": 411.04,
+    "end": 420.88,
+    "ocr_text": "Sa Le Find a p cog acta mats\n‘ vo\n— nares , tone\nNduccd flatiun\n\n= Luge VOMoance"
+  },
+  {
+    "text": "representing the n features. Now, what we want to do is that we want to find this mapping",
+    "start": 420.88,
+    "end": 429.92,
+    "ocr_text": "Lind. C prefectan mals\nU\n\nWw _\n\nBw! xX\n\n—nanelasl , conn be\nWedncsd Liston\n\n= Luge VOMance"
+  },
+  {
+    "text": "from x to z where z is m dimensional and let us say initially we consider z to be one dimension.",
+    "start": 432.08,
+    "end": 440.24,
+    "ocr_text": "i) eee Lind. a p Gans mal"
+  },
+  {
+    "text": "So, we want to find out the feature the one feature which will be best for our purposes.",
+    "start": 440.8,
+    "end": 448.16,
+    "ocr_text": "_ fd a. peepesvin me .\n\nAy 2 \" i\nmH § Tx\n. o! — Unda, cannst be\n\nLage VOMANCR"
+  },
+  {
+    "text": "Now, one criteria that we can use you know because we are choosing only one feature the",
+    "start": 449.52,
+    "end": 456.08,
+    "ocr_text": "Di pale ieee ;\n3 id a peeferon matu\n\nxy <a\n\nx. Oba\n\nW —\njz—w'* |\n= Unonelator , cannet be\n7 Livge Voumance"
+  },
+  {
+    "text": "question of being correlated or uncorrelated does not arise. So, we can go by this principle we",
+    "start": 456.08,
+    "end": 462.56,
+    "ocr_text": "find a peefechin mali\nian\n\nW\nesc |\n\n— nant , cannct be\n\nri Luge VOMance"
+  },
+  {
+    "text": "can choose that feature which has the largest variance. So, we choose the feature such that the",
+    "start": 462.56,
+    "end": 471.12,
+    "ocr_text": "find a peefechin mali\nian\n\nW\nesc |\n\n— nant , cannct be\n\nri Luge VOMance"
+  },
+  {
+    "text": "variance of z 1 is maximum that is we find that value of the weights for which the projection",
+    "start": 471.12,
+    "end": 483.84,
+    "ocr_text": "find a peefechin mali\nian\n\nW\nesc |\n\n— nant , cannct be\n\nri Luge VOMance"
+  },
+  {
+    "text": "that we get corresponds to the largest variance of z 1. So, this is what we want to do and this is",
+    "start": 483.92,
+    "end": 493.2,
+    "ocr_text": "find prgiaeh mal»\nU\n\neee |\n\n—Unendatol , cannst be\n\nAeduesd Fratin\n“Cage"
+  },
+  {
+    "text": "where the principle components come handy because mathematically the principle component is that",
+    "start": 493.2,
+    "end": 503.36,
+    "ocr_text": "find prgiaeh mal»\nU\n\neee |\n\n—Unendatol , cannst be\n\nAeduesd Fratin\n“Cage"
+  },
+  {
+    "text": "vector which exactly does this. There are two ways of considering the properties of principle",
+    "start": 503.36,
+    "end": 513.52,
+    "ocr_text": "find prgiaeh mal»\nU\n\neee |\n\n—Unendatol , cannst be\n\nAeduesd Fratin\n“Cage"
+  },
+  {
+    "text": "components. One is it is that projection for which the variance is maximum. Secondly,",
+    "start": 513.52,
+    "end": 520.56,
+    "ocr_text": "fo, eetenrin MAM ~\nfind & pre]\n\n— Unandatl , cannst be\n\nae"
+  },
+  {
+    "text": "principle component can be looked upon as if you map the original vectors to this new low",
+    "start": 520.56,
+    "end": 530.72,
+    "ocr_text": "rind a\n\n= Unanelator , cannst be\n\nos\n\necfetin mal"
+  },
+  {
+    "text": "dimensional vector space given a fixed size of that dimension. The principle components are such",
+    "start": 530.72,
+    "end": 536.72,
+    "ocr_text": "rind a\n\n= Unanelator , cannst be\n\nos\n\necfetin mal"
+  },
+  {
+    "text": "that if you want to recover the original instances from this reduced representation the principle",
+    "start": 536.8,
+    "end": 545.76,
+    "ocr_text": "eee mal\n\nW =\nee |\n\n— Unandatst , Cannot be\n_ Aeducssh ution\n\nFind a |"
+  },
+  {
+    "text": "components are such that the reconstruction error is minimum. So, for more details you should refer",
+    "start": 545.76,
+    "end": 552.24,
+    "ocr_text": ") dein mai\nBe aa\n\nW —~\nEos\n\n—nanelatt , cannes be\neduesd Fratin\n\nWge VOMOANCR"
+  },
+  {
+    "text": "to an algebra book. Let us look at this picture in the slide. So, if you look at this slide we see",
+    "start": 552.24,
+    "end": 562.08,
+    "ocr_text": ") dein mai\nBe aa\n\nW —~\nEos\n\n—nanelatt , cannes be\neduesd Fratin\n\nWge VOMOANCR"
+  },
+  {
+    "text": "that for the points in red these are our instances the first principle component the principle is",
+    "start": 562.16,
+    "end": 570.4,
+    "ocr_text": "voaf2e4 fe\n\nproaximun"
+  },
+  {
+    "text": "given by this green line. This green line gives the principle component direction 1 whereas,",
+    "start": 570.4,
+    "end": 579.36,
+    "ocr_text": "voaf2e4 fe\n\nproaximun"
+  },
+  {
+    "text": "this is the second principle component. So, the first principle component is chosen based on",
+    "start": 580.16,
+    "end": 587.28,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\nGirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "largest variance. How do we choose the second principle component? First of all when we choose",
+    "start": 587.36,
+    "end": 593.44,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\nGirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "the second feature we want to make sure that this feature is uncorrelated with the first feature.",
+    "start": 593.44,
+    "end": 600.4,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\nGirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "So, we want to select a feature which is orthogonal to the first feature that is they do not have",
+    "start": 600.4,
+    "end": 606.4,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\nGirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "they do not share any information they are uncorrelated for that we choose an orthogonal",
+    "start": 606.4,
+    "end": 612.64,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\nGirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "direction. Among the possible vectors in the orthogonal direction this is the direction for which",
+    "start": 612.72,
+    "end": 620.56,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\nGirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "the variation is maximum. So, the first principle component is the one which maximizes the variance.",
+    "start": 620.56,
+    "end": 628.08,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\ndirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "The second is orthogonal to the first and with that constraint the variance is maximum.",
+    "start": 628.08,
+    "end": 635.68,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\ndirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "The third will be orthogonal to both the first and the second and other variance will be maximum.",
+    "start": 635.68,
+    "end": 642.96,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\ndirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "Of course, if the original feature space is two dimensional the new feature space cannot be",
+    "start": 642.96,
+    "end": 649.12,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\ndirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "more than two dimensional you are constrained by that. But, you can take even a two dimensional",
+    "start": 650.0,
+    "end": 656.16,
+    "ocr_text": "PCA\n\n4 Feature 2\nPrincipal comp. Principal comp.\ndirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "space two or two dimensional space by making the additional property having the additional property",
+    "start": 656.16,
+    "end": 663.68,
+    "ocr_text": "PCA\n\n. 4 Feature 2\nPrincipal comp. Principal comp.\nGirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "that then two new two feature dimensions are orthogonal. Now, so there are two main principles",
+    "start": 663.68,
+    "end": 673.36,
+    "ocr_text": "PCA\n\n. 4 Feature 2\nPrincipal comp. Principal comp.\nGirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "for choosing the feature directions. So, we want to choose directions such that the total",
+    "start": 673.36,
+    "end": 688.08,
+    "ocr_text": "PCA\n\n. 4 Feature 2\nPrincipal comp. Principal comp.\nGirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "variation of the data is maximum that is we maximize total variance.",
+    "start": 688.96,
+    "end": 697.68,
+    "ocr_text": "PCA\n\n. 4 Feature 2\nPrincipal comp. Principal comp.\nGirection 2 direction 1\n\nFeature 1"
+  },
+  {
+    "text": "Secondly, we want to choose directions that are orthogonal so that we minimize correlation.",
+    "start": 705.28,
+    "end": 711.28,
+    "ocr_text": "a Miwa mize oe"
+  },
+  {
+    "text": "So, for this we choose m orthogonal direction. Actually m can be less than equal to n if you wish",
+    "start": 718.08,
+    "end": 735.04,
+    "ocr_text": "a Miwa mize oe"
+  },
+  {
+    "text": "for feature reduction m strictly less than n. So, we choose m orthogonal directions",
+    "start": 736.8,
+    "end": 742.96,
+    "ocr_text": "{ Moycinni22 otal variance\n> Minimiee correk bar\n\nChaose M<N ot! apne,\n\n}\n\n‘"
+  },
+  {
+    "text": "which maximize total variance. So, how do we do this? We have an n dimensional feature space",
+    "start": 743.52,
+    "end": 765.04,
+    "ocr_text": "{ Moycinni22 otal variance\n> Minimiee correk bar\n\nChaose M<N ot! apne,\n\n}\n\n‘"
+  },
+  {
+    "text": "and we have a n by n symmetric covariance matrix. So, we have this training data",
+    "start": 765.68,
+    "end": 775.28,
+    "ocr_text": "o\n\nRK"
+  },
+  {
+    "text": "in the n dimensional feature space. So, we can have this covariance matrix",
+    "start": 777.76,
+    "end": 783.76,
+    "ocr_text": "o\n\nRK"
+  },
+  {
+    "text": "of the these are our training data points. This is the covariance matrix. From this covariance",
+    "start": 785.92,
+    "end": 793.92,
+    "ocr_text": "Pa\n\n2\n\nChie\n\nYoximize total Vaouan ce\n————\nMaw mize correo\n\nM<N ox thogenak dived\n\nLhe"
+  },
+  {
+    "text": "matrix we select the m top principle components which are also called eigenvectors. So, we select",
+    "start": 793.92,
+    "end": 803.36,
+    "ocr_text": "Pa\n\n2\n\nChie\n\nYoximize total Vaouan ce\n————\nMaw mize correo\n\nM<N ox thogenak dived\n\nLhe"
+  },
+  {
+    "text": "m largest eigenvectors of this covariance matrix.",
+    "start": 806.72,
+    "end": 812.56,
+    "ocr_text": "|\n\n4\n\nMinimize Cor pekbior\n\nM <N ee dived\n\nCw @a\n\nD7"
+  },
+  {
+    "text": "These eigenvectors the top eigenvectors are the one for which the eigenvalues are maximum.",
+    "start": 813.36,
+    "end": 824.8,
+    "ocr_text": "|\n\n4\n\nMinimize Cor pekbior\n\nM <N ee dived\n\nCw @a\n\nD7"
+  },
+  {
+    "text": "The first eigenvector will be the direction with the largest variance second with the second",
+    "start": 824.8,
+    "end": 830.48,
+    "ocr_text": "Maw mize correbhor\nChasse MIKGN oxth\n\neuch maxim] ot\n\n|\n\nL diced\n\nas ON?\n\nBi"
+  },
+  {
+    "text": "largest variance and so on. Now, let us look at the slides. This is an application of principle",
+    "start": 830.48,
+    "end": 839.44,
+    "ocr_text": "Moxinvize total Varance\n> Min miee corre ben\nChose MN cethogmnak divedtim\nsdach maxim total vention\ni\nSala M longest eguvey\n\nBike"
+  },
+  {
+    "text": "component analysis for image compression. Initially, we have a large number of features",
+    "start": 839.44,
+    "end": 845.52,
+    "ocr_text": "PCA for image compression\n\np=1 p=2 p=4 p=3\np=16 p=32 p=64 p=100\nq a\n2 . ae\n\nOriginal\nImage\n\nae"
+  },
+  {
+    "text": "and what we have done is that if we represent these pictures using only one principle component,",
+    "start": 846.16,
+    "end": 855.36,
+    "ocr_text": "PCA for image compression\n\np=1 p=2 p=4 p=3\nOriginal\n7 p=16 p=32 p=64 p=100 Image\nJ a\n2 3\na ae\n\ne a"
+  },
+  {
+    "text": "the first principle component after reconstruction this is the picture that we get.",
+    "start": 855.36,
+    "end": 860.32,
+    "ocr_text": "PCA for image compression\n\na 4 ra\np=1 p=2 p=4 p=3\nOriginal\n; p=16 p=32 p=64 p=100 Image\n\n¢ ¢"
+  },
+  {
+    "text": "If we use two dimensions, four dimensions, eight dimensions, sixteen dimensions,",
+    "start": 860.96,
+    "end": 865.84,
+    "ocr_text": "PCA for image compression\n\na 4 ra\np=1 p=2 p=4 p=3\nOriginal\n; p=16 p=32 p=64 p=100 Image\n\n¢ ¢"
+  },
+  {
+    "text": "thirty two sixty four and hundred, this shows the reconstructions that we get, whereas this is",
+    "start": 865.84,
+    "end": 871.36,
+    "ocr_text": "PCA for image compression\n\np=1 p=2 p=4 p=8\np=16 p=32 p=64\n4 ae\n2 amt g Sal\n\nOriginal\nImage\n\na,"
+  },
+  {
+    "text": "the original image. So, as I said that are two ways of interpreting principle components.",
+    "start": 871.36,
+    "end": 877.76,
+    "ocr_text": "PCA for image compression\n\np=1 p=2 p=4 p=8\np=16 p=32 p=64\n4 ae\n2 amt g Sal\n\nOriginal\nImage\n\na,"
+  },
+  {
+    "text": "If you take the top principle components, they are selected such that they are orthogonal",
+    "start": 878.48,
+    "end": 884.4,
+    "ocr_text": "Main mize\n\n2 total Vauance\n\nCoy peletion\nhogonah dived\n\nbe"
+  },
+  {
+    "text": "and their variances maximum and also they can be interpreted as that selection of vectors",
+    "start": 884.4,
+    "end": 892.64,
+    "ocr_text": "Main mize\n\n2 total Vauance\n\nCoy peletion\nhogonah dived\n\nbe"
+  },
+  {
+    "text": "which are orthogonal for which the reconstruction error is minimal and this can be you can see",
+    "start": 892.72,
+    "end": 899.68,
+    "ocr_text": "Hotel Variance\n\nMim mize © rrekelian\n\nmal dives\n\n2\n\nChaos M <N\n\nstuch maxi mike\n\nbe"
+  },
+  {
+    "text": "from the image compression how well it works. Now, let us try to see or think about is principle",
+    "start": 900.32,
+    "end": 910.24,
+    "ocr_text": "PCA for image compression\n\np=1 p=2 p=4 p=8\nOriginal\n7 p=16 p=32 p=64 p=100 Image\nq ae\n\ne a"
+  },
+  {
+    "text": "component analysis on good criteria for classification. Now, so principle component analysis if we",
+    "start": 910.24,
+    "end": 919.28,
+    "ocr_text": "Is PCA a good criterion for classification?\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information"
+  },
+  {
+    "text": "just have the data points not considering the label, the principle component gives high variation.",
+    "start": 919.28,
+    "end": 925.84,
+    "ocr_text": "Is PCA a good criterion for classification?\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information"
+  },
+  {
+    "text": "But if we now look at a classification problem, where we do not have just the input values of the",
+    "start": 925.84,
+    "end": 932.08,
+    "ocr_text": "shadh maximize total veri axe ; ‘:\n\nile"
+  },
+  {
+    "text": "instances, we also have the label is principle component still a good way of doing that.",
+    "start": 932.08,
+    "end": 938.64,
+    "ocr_text": "shadh maximize total veri axe ; ‘:\n\nile"
+  },
+  {
+    "text": "To illustrate this, let us look at this slide. We have these points and they belong to two classes,",
+    "start": 938.64,
+    "end": 946.56,
+    "ocr_text": "Is PCA a good criterion for classification?\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information"
+  },
+  {
+    "text": "orange class and blue class. Now, the principle component direction is given by this pink line",
+    "start": 946.56,
+    "end": 953.2,
+    "ocr_text": "Is PCA a good criterion for classification?\n&\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information"
+  },
+  {
+    "text": "and this pink line is the one which achieves largest variance among the instances.",
+    "start": 953.92,
+    "end": 959.36,
+    "ocr_text": "Is PCA a good criterion for classification?\n&\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information"
+  },
+  {
+    "text": "But you see this pink line is not very good in separating the orange points and the blue points",
+    "start": 959.92,
+    "end": 966.32,
+    "ocr_text": "Is PCA a good criterion for classification?\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information"
+  },
+  {
+    "text": "because if you project the orange points and the blue points on this axis, you will see they are",
+    "start": 966.32,
+    "end": 971.2,
+    "ocr_text": "Is PCA a good criterion for classification?\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information"
+  },
+  {
+    "text": "coming together. So, even though the total spread is high, this particular axis is not able to",
+    "start": 971.28,
+    "end": 977.92,
+    "ocr_text": "Is PCA a good criterion for classification?\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information"
+  },
+  {
+    "text": "discriminate between the orange and blue class. This means this is not a very good idea when you",
+    "start": 979.52,
+    "end": 985.12,
+    "ocr_text": "Is PCA a good criterion for classification?\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information"
+  },
+  {
+    "text": "look at a classification problem because when we do principle components, we are not taking care of",
+    "start": 985.12,
+    "end": 992.32,
+    "ocr_text": "Is PCA a good criterion for classification?\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information S"
+  },
+  {
+    "text": "class information which is very important for supervised learning. So, if you have these points,",
+    "start": 992.4,
+    "end": 1000.72,
+    "ocr_text": "Is PCA a good criterion for classification?\n\nData variation\ndetermines the\nprojection direction\nWhat’s missing?\n\n— Class information S"
+  },
+  {
+    "text": "what would be a good criteria? So, what we really want is a feature that separates the classes",
+    "start": 1000.72,
+    "end": 1007.44,
+    "ocr_text": "What is a good projection?\n\n¢ Similarly, what isa\ngood criterion?\n\n— Separating different\n@\nclasses @ e\ne@"
+  },
+  {
+    "text": "rather than a feature which simply has high variance. So, we want to make sure that the particular",
+    "start": 1007.44,
+    "end": 1017.2,
+    "ocr_text": "What is a good projection?\n\n¢ Similarly, what isa\ngood criterion?\n\n— Separating different\nclasses"
+  },
+  {
+    "text": "feature that we choose does separates the classes. If we choose this axis, it does not separate",
+    "start": 1017.2,
+    "end": 1023.76,
+    "ocr_text": "What is a good projection?\n\nTwo classes\noverlap\n\n¢ Similarly, what isa\ngood criterion?\n\n— Separating different\nclasses"
+  },
+  {
+    "text": "the classes because when you project the orange points and blue points on this axis, they will overlap.",
+    "start": 1023.76,
+    "end": 1029.68,
+    "ocr_text": "What is a good projection?\n\nTwo classes\noverlap\n\n¢ Similarly, what isa\ngood criterion?\n\n— Separating different\nclasses"
+  },
+  {
+    "text": "So, this is not very good. If we choose the pink axis, now if you project the points on this",
+    "start": 1029.68,
+    "end": 1037.6,
+    "ocr_text": "What is a good projection?\n\n¢ Similarly, what isa\ngood criterion?\n\n— Separating different\nclasses\n\nTwo classes\n\noverlap"
+  },
+  {
+    "text": "axis, what you notice is that the orange and blue points are separated. So, this pink axis acts as",
+    "start": 1037.6,
+    "end": 1046.16,
+    "ocr_text": "What is a good projection?\n\nTwo classes\noverlap\n\n¢ Similarly, what isa\ngood criterion?\n\n— Separating different\nclasses"
+  },
+  {
+    "text": "a separator for the different classes rather than the blue line here. So, if we use this pink line,",
+    "start": 1046.16,
+    "end": 1056.16,
+    "ocr_text": "What is a good projection?\n\n¢ Similarly, what isa\ngood criterion?\n\n— Separating different\nclasses\n\nTwo classes\noverlap"
+  },
+  {
+    "text": "the two classes are separated. So, that is to be preferred. Now, in order to achieve this, we have",
+    "start": 1056.16,
+    "end": 1063.68,
+    "ocr_text": "What class information may be useful?\n\n* Between-class distance\n\n— Distance between the centroids\nof different classes"
+  },
+  {
+    "text": "to see what is the information that we will use. First of all, we want to separate the classes.",
+    "start": 1063.68,
+    "end": 1070.96,
+    "ocr_text": "What class information may be useful?\n\n* Between-class distance\n\n— Distance between the centroids\nof different classes"
+  },
+  {
+    "text": "So, we want to maximize between class distance. So, for this we can think of that given the points,",
+    "start": 1071.04,
+    "end": 1078.72,
+    "ocr_text": "What class information may be useful?\n\n* Between-class distance\n\n— Distance between the centroids\nof different classes"
+  },
+  {
+    "text": "we take the centroid of the orange points and the centroid of the blue points.",
+    "start": 1078.72,
+    "end": 1083.92,
+    "ocr_text": "What class information may be useful?\n\n¢ Between-class distance\n\n— Distance between the centroids\nof different classes"
+  },
+  {
+    "text": "And these two should be far away. So, we want the between class distance to be high.",
+    "start": 1085.28,
+    "end": 1091.12,
+    "ocr_text": "What class information may be useful?\n\n* Between-class distance\n\n— Distance between the centroids\nof different classes"
+  },
+  {
+    "text": "Secondly, so this is the centroid of this points. This is the centroid of this points.",
+    "start": 1092.56,
+    "end": 1098.16,
+    "ocr_text": "What class information may be useful?\n\n* Between-class distance\n\n— Distance between the centroids\nof different classes"
+  },
+  {
+    "text": "We want the distance between them to be high. Secondly, we want to, if you look at within class",
+    "start": 1098.16,
+    "end": 1107.44,
+    "ocr_text": "What class information may be useful?\n\n* Between-class distance\n\n— Distance between the centroids\nof different classes"
+  },
+  {
+    "text": "distance, we want within class distance to be small. So, within class distance is the accumulated",
+    "start": 1107.44,
+    "end": 1114.4,
+    "ocr_text": "What class information may be useful?\n\nBetween-class distance\n— Distance between the centroids of\ndifferent classes\nWithin-class distance\n+ Accumulated distance of an instance\nto the centroid of its class\n\nLinear discriminant analysis (LDA) finds\nmost discriminant projection by\n* maximizing between-class distance\n* and minimizing within-class distance"
+  },
+  {
+    "text": "distance of an instance to the centroid of its class. So, within the class, we want to select a",
+    "start": 1114.4,
+    "end": 1120.4,
+    "ocr_text": "What class information may be useful?\n\nBetween-class distance\n— Distance between the centroids of\ndifferent classes\nWithin-class distance\n+ Accumulated distance of an instance\nto the centroid of its class\n\nLinear discriminant analysis (LDA) finds\nmost discriminant projection by\n* maximizing between-class distance\n* and minimizing within-class distance"
+  },
+  {
+    "text": "feature. So, that upon projecting on that feature, the within class distance is small, the between",
+    "start": 1120.4,
+    "end": 1127.28,
+    "ocr_text": "What class information may be useful?\n\nBetween-class distance\n— Distance between the centroids of\ndifferent classes\nWithin-class distance\n+ Accumulated distance of an instance\nto the centroid of its class\n\nLinear discriminant analysis (LDA) finds\nmost discriminant projection by\n* maximizing between-class distance\n* and minimizing within-class distance"
+  },
+  {
+    "text": "class distance is high. And linear discriminant analysis can be used to find the most discriminant",
+    "start": 1127.28,
+    "end": 1137.04,
+    "ocr_text": "What class information may be useful?\n\nBetween-class distance\n— Distance between the centroids of\n\ndifferent classes @ cee\nWithin-class distance ee e*\n+ Accumulated distance of an instance e@\nto the centroid of its class @ aD\ne@ ee\nLinear discriminant analysis (LDA) finds @ e @\nmost discriminant projection by e@ e e\n* maximizing between-class distance C )\n\n* and minimizing within-class distance"
+  },
+  {
+    "text": "projection, which maximizes between class distance and minimizes within class distance.",
+    "start": 1137.04,
+    "end": 1145.04,
+    "ocr_text": "What class information may be useful?\n\nBetween-class distance\n— Distance between the centroids of\n\ndifferent classes e@ ee\nWithin-class distance ee e\n+ Accumulated distance of an instance e@\nto the centroid of its class @ @\n@ ee\nLinear discriminant analysis (LDA) finds @ e @\nmost discriminant projection by oO e@ e\n* maximizing between-class distance @\n\n* and mifiimizing within-class distance"
+  },
+  {
+    "text": "Now, for this, in linear discriminant, so this is the representation here.",
+    "start": 1146.96,
+    "end": 1153.68,
+    "ocr_text": "What class information may be useful?\n\nBetween-class distance\n— Distance between the centroids of\ndifferent classes\nWithin-class distance\n+ Accumulated distance of an instance\nto the centroid of its class\n\nLinear discriminant analysis (LDA) finds\nmost discriminant projection by\n* maximizing between-class distance\n\n* and minimizing within-class distance"
+  },
+  {
+    "text": "And so, in linear discriminant analysis, we defined a problem as this. Given the points,",
+    "start": 1153.84,
+    "end": 1163.28,
+    "ocr_text": "What class information may be useful?\n\nBetween-class distance\n— Distance between the centroids of\ndifferent classes\nWithin-class distance\n+ Accumulated distance of an instance\nto the centroid of its class\n\nLinear discriminant analysis (LDA) finds\nmost discriminant projection by\n* maximizing between-class distance\n\n* and minimizing within-class distance"
+  },
+  {
+    "text": "belonging to let us say two classes, we want to find a low dimensional space such that,",
+    "start": 1163.28,
+    "end": 1170.16,
+    "ocr_text": "Linear Discriminant Analysis\n\n¢ Find a low-dimensional space such that when\nx is projected, classes are well-separated"
+  },
+  {
+    "text": "when we project the instances on this axis, the classes are well separated.",
+    "start": 1170.16,
+    "end": 1176.24,
+    "ocr_text": "Linear Discriminant Analysis\n\n¢ Find a low-dimensional space such that when\nx is projected, classes are well-separated"
+  },
+  {
+    "text": "They are well separated and we can use this following formula. So, M1 is the mean of the first class.",
+    "start": 1176.8,
+    "end": 1188.24,
+    "ocr_text": "Means and Scatter after projection\n\n>, wi xtrt\n\n=\nm = = —=w'm\nt\n=r\nrte Ge Oa wixft(l—rt) _ aliens\n» = stWaAt Te. 2\na >. —r) im\nsf = DS(wTx' —-m)?r\nc\n=\nsf =\n\n= DYowk! — m2)?2(1 — r*)\nt"
+  },
+  {
+    "text": "So, the centroid of class 1, M2 is the centroid of the instances of class 2. S1 square is the",
+    "start": 1188.24,
+    "end": 1197.2,
+    "ocr_text": "Means and Scatter after projection\n\n>, wi xtrt\n\n-\nm = = ——=wim\nDhert\nmz, = 2ewixtG—r') weirs wlm\n2 = = 2\n+. — r')\ns$ = SOwTx' —m,)?r'\nt\nsi = S(wTx' — m2)? — r')\nt"
+  },
+  {
+    "text": "standard deviation of class 1 and S2 square is the standard deviation of class 2.",
+    "start": 1197.2,
+    "end": 1203.44,
+    "ocr_text": "Means and Scatter after projection\n\nSwi xtrt\n\n-\nm = = S——=wlm\nvt\nSe?\n\nm = Sewixtd—r) _ wim\n2 = = 2\n+d -r')\n\nsf = DSwTx' —m)?r\nt\n\nsf =e S\\(wTx! — m2)?(1 — r')\nt"
+  },
+  {
+    "text": "And we want the means to be as far away as possible. So, the objective function that we use",
+    "start": 1203.68,
+    "end": 1210.56,
+    "ocr_text": "Means and Scatter after projection\n\nSwi xtrt\n\n-\nm = = S——=wlm\nvt\nSe?\n\nm = Sewixtd—r) _ wim\n2 = = 2\n+d -r')\n\nsf = DSwTx' —m)?r\nt\n\nsf =e S\\(wTx! — m2)?(1 — r')\nt"
+  },
+  {
+    "text": "looks at the difference between the means and we want the statter between the points to be",
+    "start": 1211.44,
+    "end": 1217.36,
+    "ocr_text": "Good Projection\n\n* Means are as far away as possible\n¢ Scatter is small as possible\n\n° Fisher Linear Discriminant\n\nFw) ey\n\nSp +3"
+  },
+  {
+    "text": "as small as possible. So, we put statter in the denominator. One particular method for doing this",
+    "start": 1217.36,
+    "end": 1226.56,
+    "ocr_text": "Good Projection\n\n* Means are as far away as possible\n° Scatter is small as possible\n\n° Fisher Linear Discriminant\n\nJ(w) = ee a"
+  },
+  {
+    "text": "is Fischer linear discriminant. Fischer linear discriminant uses as objective function.",
+    "start": 1226.56,
+    "end": 1233.84,
+    "ocr_text": "Good Projection\n\n* Means are as far away as possible\n*¢ Scatter is small as possible\n\n° Fisher Linear Discriminant\n\nrej\n\nSe +3"
+  },
+  {
+    "text": "When you have two classes, if objective function is M1 minus M2 whole square divided by S1 square",
+    "start": 1234.8,
+    "end": 1243.2,
+    "ocr_text": "Good Projection\n\n* Means are as far away as possible\n*¢ Scatter is small as possible\n\n° Fisher Linear Discriminant\n\nrej\n\nSe +3"
+  },
+  {
+    "text": "plus S2 square and it tries to maximize this objective function. It tries to find W,",
+    "start": 1243.2,
+    "end": 1251.44,
+    "ocr_text": "Good Projection\n\n* Means are as far away as possible\n*¢ Scatter is small as possible\n\n° Fisher Linear Discriminant\n\nPas\nJ (ww) = Cera)\nSy; +S)"
+  },
+  {
+    "text": "that is the projection of the feature space to the new feature space using the parameters W such",
+    "start": 1251.44,
+    "end": 1259.36,
+    "ocr_text": "Good Projection\n\n* Means are as far away as possible\n° Scatter is small as possible\n\n° Fisher Linear Discriminant\n\nJw) = (aa\n\nSp +3"
+  },
+  {
+    "text": "that this criteria is maximize. This is for a two class problem. This criteria can be suitably",
+    "start": 1259.36,
+    "end": 1268.8,
+    "ocr_text": "Good Projection\n\n* Means are as far away as possible\n*° Scatter is small as possible\n\n° Fisher Linear Discriminant\n\n(0) =a"
+  },
+  {
+    "text": "modified when you want to work with three class four class or in general multi class problems.",
+    "start": 1268.8,
+    "end": 1275.12,
+    "ocr_text": "{. Moxinne Vane\n2 Maw mize covrek han\nChee M <N ox he . divetPsr\n\nshuch maximRe fotak"
+  },
+  {
+    "text": "But we will not talk about it today. So, that brings us to the end of",
+    "start": 1275.12,
+    "end": 1280.48,
+    "ocr_text": "| Maximnz tal Variance\n2 Mana mize corre han\nChose MN ovtte “diced\n\nstuch meximRe tote i oP"
+  },
+  {
+    "text": "feature reduction. Thank you very much.",
+    "start": 1280.48,
+    "end": 1287.84,
+    "ocr_text": "| Maximnz tal Variance\n2 Mana mize corre han\nChose MN ovtte “diced\n\nstuch meximRe tote i oP"
+  }
+]

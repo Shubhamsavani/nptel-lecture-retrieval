@@ -1,0 +1,554 @@
+[
+  {
+    "text": "So, what I will do is I will quickly go over what we were doing yesterday and then by",
+    "start": 0.0,
+    "end": 17.52,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n)"
+  },
+  {
+    "text": "the time people come in we can start with the new stuff right.",
+    "start": 17.52,
+    "end": 20.68,
+    "ocr_text": "he\n\nSome problems\n\nsat a chair\ne Same as bag of words\nelt e The softmax function at the output\nWeontert € R** . . .\nfeat is computationally expensive\nhe!» Solution 1: Use negative sampling\ne Solution 2: Use contrastive estima-\nWrwora € REXIY _\ntion\niv} @ Solution 3: Use hicrarchical softmax\n0 0 [0 |*c*\non\n\n015 (Deep"
+  },
+  {
+    "text": "So, we were looking at so the T is so this needs to be corrected someone pointed out yesterday",
+    "start": 20.68,
+    "end": 27.32,
+    "ocr_text": "he\n\nSome problems\n\nsat a chair\ne Same as bag of words\nelt e The softmax function at the output\nWeontert € R** . . .\nfeat is computationally expensive\nhe!» Solution 1: Use negative sampling\ne Solution 2: Use contrastive estima-\nWrwora € REXIY _\ntion\niv} @ Solution 3: Use hicrarchical softmax\n0 0 [0 |*c*\non\n\n015 (Deep"
+  },
+  {
+    "text": "same as bag of words it should be same problems as the bag of words model right.",
+    "start": 27.32,
+    "end": 34.32,
+    "ocr_text": "he\n\nSome problems\n\nsat a chair\ne Same as bag of words\noelvt e The softmax function at the output\nWeontexe € Ri * . . .\nfeet is computationally expensive\nhel — @ Solution 1: Use negative sampling\ne Solution 2: Use contrastive estima-\nWirora € REXIY ae\ntion\nme @ Solution 3: Use hicrarchical softmax\n0 0 [0 |*<*\non\n\n‘015 (Deep"
+  },
+  {
+    "text": "So, we are trying to fix this problem where we have this large softmax computation which",
+    "start": 34.32,
+    "end": 39.6,
+    "ocr_text": "he\n\nSome problems\n\nsat a chair\ne Same as bag of words\noelvt e The softmax function at the output\nWeontexe € Ri * . . .\nfeet is computationally expensive\nhel — @ Solution 1: Use negative sampling\ne Solution 2: Use contrastive estima-\nWirora € REXIY ae\ntion\nme @ Solution 3: Use hicrarchical softmax\n0 0 [0 |*<*\non\n\n‘015 (Deep"
+  },
+  {
+    "text": "is very inefficient and we wanted ways of getting rid of that.",
+    "start": 39.6,
+    "end": 43.16,
+    "ocr_text": "he\n\nSome problems\n\nsat a chair\ne Same as bag of words\nRAME 25.088 OL Words _\nwavy The softmax function at the output\nfeat is computationally expensive\nhel» Solution 1: Use negative sampling\ne Solution 2: Use contrastive estima-\nWrrora € REXIY i0\ntion\nVI @ Solution 3: Use hicrarchical softmax\n0 0 0 xeER\non\n\n‘015 (Deep"
+  },
+  {
+    "text": "So, the first thing that we were looking at is using negative sampling right and here",
+    "start": 43.16,
+    "end": 48.52,
+    "ocr_text": "he\n\nSome problems\n\nsat a chair\ne Same as bag of words\nRAME 25.088 OL Words _\nwavy The softmax function at the output\nfeat is computationally expensive\nhel» Solution 1: Use negative sampling\ne Solution 2: Use contrastive estima-\nWrrora € REXIY i0\ntion\nVI @ Solution 3: Use hicrarchical softmax\n0 0 0 xeER\non\n\n‘015 (Deep"
+  },
+  {
+    "text": "the key idea was to construct this D and D prime where D prime was the random corpus",
+    "start": 48.52,
+    "end": 53.96,
+    "ocr_text": "e D = [(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\na), (sat, chair), (on, corpus\na), (on,chair), (a,chair), e Let D’ be the set of all incorrect. (w,r) pairs in\n(on,sat), (a, sat),\n(chair a (a, on),\n(chair, on), (chair, a) |\n\nthe corpus\n\ne D' = ((sat, oxygen),\n(sat, magic), (chair,\nsad), (chair, walking)]\n\nMitesh M. Kh 7015 (Deep Learnir"
+  },
+  {
+    "text": "and D was a true corpus right and how do you create this random corpus is something that",
+    "start": 53.96,
+    "end": 59.48,
+    "ocr_text": "e D = [(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\na), (sat, chair), (on, corpus\na), (on,chair), (a,chair), e Let D’ be the set of all incorrect. (w,r) pairs in\n(on,sat), (a, sat),\n(chair a (a, on),\n(chair, on), (chair, a) |\n\nthe corpus\n\ne D' = ((sat, oxygen),\n(sat, magic), (chair,\nsad), (chair, walking)]\n\nMitesh M. Kh 7015 (Deep Learnir"
+  },
+  {
+    "text": "was left at the end and which I need to go over today.",
+    "start": 59.48,
+    "end": 62.32,
+    "ocr_text": "G7 [(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\na), (\n\nsat, chair), (on, corpus\na), (on,chair), (a,chair), e Let D’ be the set of all incorrect. (w,r) pairs in\n(on,sat), (a, sat), the corpus\n(chair,sat), (a, on),\n\n(chair, on), (chair, a) |\n\npe\n(sat, magic Chair,\nsad), (chair, walking)]\n\nsat,\n\nMitesh M. Khapra 7015 (Deep Learning) : Lecture 10"
+  },
+  {
+    "text": "So, I will go over that and then we realize that this actually could be modeled using",
+    "start": 62.32,
+    "end": 69.12,
+    "ocr_text": "G7 [(sat, on), (sat, e Let D be the sct of all correct (w,c) pairs in the\na), (\n\nsat, chair), (on, corpus\na), (on,chair), (a,chair), e Let D’ be the set of all incorrect. (w,r) pairs in\n(on,sat), (a, sat), the corpus\n(chair,sat), (a, on),\n\n(chair, on), (chair, a) |\n\npe\n(sat, magic Chair,\nsad), (chair, walking)]\n\nsat,\n\nMitesh M. Khapra 7015 (Deep Learning) : Lecture 10"
+  },
+  {
+    "text": "such a network where you take the dot product between the word representations right and",
+    "start": 69.12,
+    "end": 76.12,
+    "ocr_text": "e For a given (w,c) € D we are interested in max\n\nimizing\np(z = 1jw,e)\ne Let us model this probability by\n\np(z = l|w,c) = o(ur vw)\n1\n\n14 enurow"
+  },
+  {
+    "text": "try to maximize this dot product for all the correct pairs by setting up your loss function",
+    "start": 76.12,
+    "end": 80.68,
+    "ocr_text": "e For a given (w,c) € D we arc interested in max-\nimizing\n\np(z = 1|w,c)\ne Let us model this probability by\n\np(z = 1|w,c) = o(ur vw)\n1\n\n14 enurow"
+  },
+  {
+    "text": "accordingly and try to maximize or rather minimize this dot product minimize this",
+    "start": 80.68,
+    "end": 86.64,
+    "ocr_text": "e For a given (w,c) € D we arc interested in max-\nimizing\n\np(z = 1|w,c)\ne Let us model this probability by\n\np(z = 1|w,c) = o(ur vw)\n1\n\n14 enurow"
+  },
+  {
+    "text": "dot product for all the incorrect pairs by again setting the objective function appropriately",
+    "start": 86.64,
+    "end": 91.28,
+    "ocr_text": "Uy\n\nP(z =0lw,r\n\nUw\n\nMit\n\n@ Combining the two we get:\n\nmaximize II p(z = 1\\w,c) ll p(z = O|w,r)\n\n(w,e)ED (wre b’\nSmaximize II plz = lw, c) II (1 = p(z = 1fw,r))\n(w,e)eD (w rep!\nsmavimize > log p(z = 1\\w,c)\n(w,c)ED\n+ > log(1 — p(z = 1|w,r))\n(w.r)eD’\n\n1\nSMaxtmnize > log ———-—\n° (w,e)ED Ite\n\n=maximize y log o(v7 vw)\n8\n\n(w,c)ED\n\n», log o(—v) vy\n\n(w,ryeD’\n\nwhere o(x) = ine =\n\nh M.K\n\n‘015 (Deep"
+  },
+  {
+    "text": "right. So, we had this objective function where we want to maximize the probability that",
+    "start": 91.28,
+    "end": 95.76,
+    "ocr_text": "Uy\n\nP(z =0lw,r\n\nUw\n\nMit\n\n@ Combining the two we get:\n\nmaximize II p(z = 1\\w,c) ll p(z = O|w,r)\n\n(w,e)ED (wre b’\nSmaximize II plz = lw, c) II (1 = p(z = 1fw,r))\n(w,e)eD (w rep!\nsmavimize > log p(z = 1\\w,c)\n(w,c)ED\n+ > log(1 — p(z = 1|w,r))\n(w.r)eD’\n\n1\nSMaxtmnize > log ———-—\n° (w,e)ED Ite\n\n=maximize y log o(v7 vw)\n8\n\n(w,c)ED\n\n», log o(—v) vy\n\n(w,ryeD’\n\nwhere o(x) = ine =\n\nh M.K\n\n‘015 (Deep"
+  },
+  {
+    "text": "the pair is correct for the correct pairs and maximize the probability that the pair is",
+    "start": 95.76,
+    "end": 100.44,
+    "ocr_text": "Uy\n\nxR\n\nOlw,\n\nr)\n\nUw\n\nMit\n\nCombining the two we get:\n\nmaximize II p(z = l\\w,c) Il p(z = Olw, ry\n\n(we) ED_\n\nten re\n\nSmaximize II p(z = lw, c) II (1 = p(z = 1fw,r))\n\n(w,e)eD (web!\nsmavimize > log p(z = 1|w,c)\n(w,e)ED\n+ $2 log(1 — p(z = lJw,r))\n(w.r)eD’\n\n1 1\n=mnaximize log. —————— + log ————\n(w,e)ED ep —\n\nmaximize log o(v2 vw) log o(—v) vy\n\n(w,c)ED (w,r)eD!\n\nwhere o(x) = ine =\n\nh M\n\n‘015 (Deep"
+  },
+  {
+    "text": "incorrect for the incorrect pairs and both these probabilities we had model using a sigmoid",
+    "start": 100.44,
+    "end": 105.56,
+    "ocr_text": "Uy\n\nxR\n\nOlw,\n\nr)\n\nUw\n\nMit\n\nCombining the two we get:\n\nmaximize II p(z = l\\w,c) Il p(z = Olw, ry\n\n(we) ED_\n\nten re\n\nSmaximize II p(z = lw, c) II (1 = p(z = 1fw,r))\n\n(w,e)eD (web!\nsmavimize > log p(z = 1|w,c)\n(w,e)ED\n+ $2 log(1 — p(z = lJw,r))\n(w.r)eD’\n\n1 1\n=mnaximize log. —————— + log ————\n(w,e)ED ep —\n\nmaximize log o(v2 vw) log o(—v) vy\n\n(w,c)ED (w,r)eD!\n\nwhere o(x) = ine =\n\nh M\n\n‘015 (Deep"
+  },
+  {
+    "text": "function and inside the sigmoid function we had the dot product between the corresponding",
+    "start": 105.56,
+    "end": 109.56,
+    "ocr_text": "Olw,r)\n\nMit\n\n@ Combining the two we get:\n\nmaximiz e II plz\n\n(we) D_\n\n= I\\w,c)\n\nIl p(z = O|w,r)\n\nts ED\n\nSmaximize II plz = lw, c) ll (1 = p(z = 1fw,r))\n\n(w,e)eD (wep!\n=r caiisin b ole = ,\nnaximize > log p(z = 1\\w,c)\n(w,c)ED\n+ > log(1 — p(z = llw,r\n(w,r)eD’\n=Maxinize > log ———,,—\n° (w,e)ED l+e\n=marimize > log o(v7 vw) SS log o(—v7 vw)\n(weyeD (wed!\nwhere o(x) = in =\n\nh M.K"
+  },
+  {
+    "text": "representations. So, the net effect is you either maximize the dot product of the correct",
+    "start": 109.56,
+    "end": 113.84,
+    "ocr_text": "Olw,r)\n\nMit\n\n@ Combining the two we get:\n\nmaximiz e II plz\n\n(we) D_\n\n= I\\w,c)\n\nIl p(z = O|w,r)\n\nts ED\n\nSmaximize II plz = lw, c) ll (1 = p(z = 1fw,r))\n\n(w,e)eD (wep!\n=r caiisin b ole = ,\nnaximize > log p(z = 1\\w,c)\n(w,c)ED\n+ > log(1 — p(z = llw,r\n(w,r)eD’\n=Maxinize > log ———,,—\n° (w,e)ED l+e\n=marimize > log o(v7 vw) SS log o(—v7 vw)\n(weyeD (wed!\nwhere o(x) = in =\n\nh M.K"
+  },
+  {
+    "text": "pairs or minimize the dot product of the or other and in minimize the dot product of",
+    "start": 113.84,
+    "end": 118.76,
+    "ocr_text": "Olw,r)\n\nMit\n\n@ Combining the two we get:\n\nmaximiz e II plz\n\n(we) D_\n\n= I\\w,c)\n\nIl p(z = O|w,r)\n\nts ED\n\nSmaximize II plz = lw, c) ll (1 = p(z = 1fw,r))\n\n(w,e)eD (wep!\n=r caiisin b ole = ,\nnaximize > log p(z = 1\\w,c)\n(w,c)ED\n+ > log(1 — p(z = llw,r\n(w,r)eD’\n=Maxinize > log ———,,—\n° (w,e)ED l+e\n=marimize > log o(v7 vw) SS log o(—v7 vw)\n(weyeD (wed!\nwhere o(x) = in =\n\nh M.K"
+  },
+  {
+    "text": "the incorrect pairs right and then so now today the part which was remaining about the",
+    "start": 118.76,
+    "end": 125.84,
+    "ocr_text": "Up\n\nR\n\nQ\n\nOlw,r)\n\nUw\n\nMit\n\nCombining the two we get:\n\nmaximize II p(z = l\\w,e) Il p(z = O|w,r)\n\n(w,e)ED w rep’ —_\nSmaximize II p(z = lw, c) Il (1 = p(z = 1fw,r))\n(w,e)eD (wrjeD!\nSmarimize » log p(z = 1/w,¢)\n(w,c)ED\n+ > log(1 — p(z = 1|w,r))\n(w,r)eD!\n=a imize > log ———— i (1085\n(w,e)ED\nsmarimize > log o(v7 vw) > a\n(w,e)eD — (w,r)eD!\nwhere o(x) = in =\n\nh M.K\n\n‘015 (Deep"
+  },
+  {
+    "text": "comparison between D and D prime. So, whatever saying last time is that D prime is actually",
+    "start": 125.84,
+    "end": 133.4,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z=0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\nI\n\nUr Uw\n\n7015 (Deep Learn’"
+  },
+  {
+    "text": "K times D that means, you sample more negative examples then positive examples. So, if you",
+    "start": 133.4,
+    "end": 138.92,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z=0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\nI\n\nUr Uw\n\n7015 (Deep Learn’"
+  },
+  {
+    "text": "think about it actually the number of negative examples in the language is much much more",
+    "start": 138.92,
+    "end": 143.48,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = O|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\n: Ky Dd\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep Learn"
+  },
+  {
+    "text": "than the number of positive examples. So, if you have 50 K words in your vocabulary most",
+    "start": 143.48,
+    "end": 148.64,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = O|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\n: Ky Dd\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep Learn"
+  },
+  {
+    "text": "of them do not appear together right. So, that number is actually very very large is compared",
+    "start": 148.64,
+    "end": 153.12,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\noO\n\nUr Vw\n\n©S7015 (Deep Learn"
+  },
+  {
+    "text": "to the number of words which can occur together right. So, how do you account for this natural",
+    "start": 153.12,
+    "end": 158.6,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\noO\n\nUr Vw\n\n©S7015 (Deep Learn"
+  },
+  {
+    "text": "limb balance. So, they said that if you keep it same then we are saying that the size of",
+    "start": 158.6,
+    "end": 163.6,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\neB Ky dD\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep Learn"
+  },
+  {
+    "text": "D prime and D is going to be same that means, the words which appear together and not to",
+    "start": 163.6,
+    "end": 168.0,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\neB Ky dD\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep Learn"
+  },
+  {
+    "text": "appear together we are keeping those two corpora as the same. So, that does not sound reasonable.",
+    "start": 168.0,
+    "end": 172.84,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\na2\n\nUp Uw\n\n(Deep Learn"
+  },
+  {
+    "text": "So, they decided that will keep it K times ok. Now, this K was a hyper parameter which was",
+    "start": 172.84,
+    "end": 178.36,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\na2\n\nUp Uw\n\n(Deep Learn"
+  },
+  {
+    "text": "tuned based on the data that they had and can you guess how they would have tuned it.",
+    "start": 178.36,
+    "end": 183.76,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z =0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\n(Deep Learn"
+  },
+  {
+    "text": "Now, what do you tune your parameters on what it how do you tune your parameters for the",
+    "start": 183.76,
+    "end": 188.76,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z =0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\n(Deep Learn"
+  },
+  {
+    "text": "back propagation. No using what a validation set is it too early in the morning is it fine",
+    "start": 188.76,
+    "end": 195.56,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = Olw,r) negative (w,1) pairs for every positive (w,c) pairs\n\nI\n\nUp Uw\n\n7015 (Deep Learn"
+  },
+  {
+    "text": "validation set ok. So, they might have had some validation set and if you look at the",
+    "start": 196.28,
+    "end": 200.48,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z =0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\nUp Uw\n\n7015 (Deep Learn"
+  },
+  {
+    "text": "original word to weight code with someone had posted yesterday which allows you to compute",
+    "start": 200.48,
+    "end": 205.44,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z =0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\nUp Uw\n\n7015 (Deep Learn"
+  },
+  {
+    "text": "the distance matrix right. So, you could what you could do is you could learn these representations",
+    "start": 205.44,
+    "end": 211.12,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\nUp Uw"
+  },
+  {
+    "text": "take a few pairs of words and take a few pairs of good words right say cat and dog or cat",
+    "start": 211.12,
+    "end": 216.08,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\nUp Uw"
+  },
+  {
+    "text": "and feline and so on and also bad words like cat and truck bad combinations rather and",
+    "start": 216.08,
+    "end": 223.36,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = Olw,r) negative (w,1) pairs for every positive (w,c) pairs\n\nUp Uw\n\n7015 (Deep Learn"
+  },
+  {
+    "text": "see if the distance between cat and truck is much higher than the distance between cat",
+    "start": 223.36,
+    "end": 229.32,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = Olw,r) negative (w,1) pairs for every positive (w,c) pairs\n\nUp Uw\n\n7015 (Deep Learn"
+  },
+  {
+    "text": "and feline or cat and dog right. So, you select that K which gives you the best performance",
+    "start": 229.32,
+    "end": 234.0,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\nI\n\nUp Up\n\nMitesh M. Kh 7015 (Deep Learn"
+  },
+  {
+    "text": "on your validation set and the validation set here would essentially be to find if you",
+    "start": 234.0,
+    "end": 239.04,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\nI\n\nUp Up\n\nMitesh M. Kh 7015 (Deep Learn"
+  },
+  {
+    "text": "get good representations for word pairs that you care about and for word pairs that you",
+    "start": 239.04,
+    "end": 242.92,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\nI\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep 1"
+  },
+  {
+    "text": "do not care about ok. Now, the other thing was how do you create this",
+    "start": 242.92,
+    "end": 247.72,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\nI\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep 1"
+  },
+  {
+    "text": "R ok. So, you have v words in the vocabulary you are looking at one of those w you know",
+    "start": 247.72,
+    "end": 257.16,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z=0|w,r) negative (w&) pairs for every positive (w,¢) pairs\n\nI\n\nUp Uw"
+  },
+  {
+    "text": "that some of those have appeared with w in some context, but there is this large set which",
+    "start": 257.16,
+    "end": 262.2,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (wr) pairs for every positive (w,c) pairs\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep I"
+  },
+  {
+    "text": "has not appeared with w in any context right. So, you are going to draw R from this set",
+    "start": 262.2,
+    "end": 267.36,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (wr) pairs for every positive (w,c) pairs\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep I"
+  },
+  {
+    "text": "and the simplest thing to do would be to just draw with uniform distribution that means",
+    "start": 267.36,
+    "end": 272.28,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w&) pairs for every positive (w,c) pairs\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep I"
+  },
+  {
+    "text": "all words and let us call this suppose there are capital R words here all of these words",
+    "start": 272.36,
+    "end": 278.32,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w&) pairs for every positive (w,c) pairs\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep I"
+  },
+  {
+    "text": "could be drawn from using the probability 1 by R right where R is less than v is that",
+    "start": 278.32,
+    "end": 284.64,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\n\nP(z = 0|w,r) negative (w&) pairs for every positive (w,¢) pairs\n1\nD> 2\no a\n* A\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep I"
+  },
+  {
+    "text": "fine that is one way of doing it just randomly pick any word from the remaining words and",
+    "start": 284.64,
+    "end": 288.16,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\n\nP(z = 0|w,r) negative (w&) pairs for every positive (w,¢) pairs\n1\nD> 2\no a\n* A\n\nUp Uw\n\nMitesh M. Kh 7015 (Deep I"
+  },
+  {
+    "text": "put it a pair it with w, but you would also want to account for the individual frequencies",
+    "start": 288.16,
+    "end": 293.8,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (wr) pairs for every positive (w,c) pairs\n\noO\n\\\n“ga\nEy\n+\nWw\n\nUp Up"
+  },
+  {
+    "text": "of those words right. If the word is actually very frequent pair it up more with w if it",
+    "start": 293.8,
+    "end": 300.84,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (wr) pairs for every positive (w,c) pairs\n\noO\n\\\n“ga\nEy\n+\nWw\n\nUp Up"
+  },
+  {
+    "text": "is not frequent do not pair it up enough does that make sense. So, I could actually use",
+    "start": 300.84,
+    "end": 305.0,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z =0|w,r) negative (w&) pairs for every positive (w,c) pairs\n\n© __——__——\n\n——\n=\n\nUp Uw\n\nMitesh M. Kh ©7015 (Deep Learn’"
+  },
+  {
+    "text": "the frequencies of each of these words and sample according to that frequency right instead",
+    "start": 305.0,
+    "end": 312.52,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z =0|w,r) negative (w&) pairs for every positive (w,c) pairs\n\n© __——__——\n\n——\n=\n\nUp Uw\n\nMitesh M. Kh ©7015 (Deep Learn’"
+  },
+  {
+    "text": "of using a unicarned distribution. So, they did something similar, but they had this",
+    "start": 312.52,
+    "end": 317.9,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z = 0|w,r) negative (w&) pairs for every positive (w,c) pairs\n\n© hy.\n\noy\n\n+\n\nUr Uw\n\nMitesh M. Kh 7015 (Deep Learn"
+  },
+  {
+    "text": "hyper parameter again. So, basically I was sampling using the probability of R which",
+    "start": 317.9,
+    "end": 322.2,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\nbs)\n—\nll\n\nOlw,r)\n| e@ The size of D is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nQ\n\nfied unigram distribution\n\ncount(r) 4\nN\n\nre\n\nN = total number of words in the corpus\n\nUp Uw\n\n‘015 (Deep"
+  },
+  {
+    "text": "is equal to count of R divided by the number of times number of all the words in the",
+    "start": 322.2,
+    "end": 326.2,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\nbs)\n—\nll\n\nOlw,r)\n| e@ The size of D is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nQ\n\nfied unigram distribution\n\ncount(r) 4\nN\n\nre\n\nN = total number of words in the corpus\n\nUp Uw\n\n‘015 (Deep"
+  },
+  {
+    "text": "corpus that is actually the frequency of R divided by the total number of words in the",
+    "start": 326.2,
+    "end": 330.26,
+    "ocr_text": "R\n\nOlw,r)\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\n@ The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\n-\n\nrA(p(r.\n\n{counite\nr\n\nBle\n\nN = total number of words in the corpus"
+  },
+  {
+    "text": "corpus. So, instead of just taking that they had this weird factor of 3 by 4 they realize",
+    "start": 330.26,
+    "end": 336.04,
+    "ocr_text": "R\n\nOlw,r)\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\n@ The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\n-\n\nrA(p(r.\n\n{counite\nr\n\nBle\n\nN = total number of words in the corpus"
+  },
+  {
+    "text": "that if you take this 3 by 4 you get the best performance. So, let me just make a few",
+    "start": 336.04,
+    "end": 341.52,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z=0\\w,r) negative (w, r) pairs for every positive (w,¢) pairs\ne@ The size of D is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nN = total number of words in the corpus\n\nUp Vw\n\n‘015 (Deep"
+  },
+  {
+    "text": "comments on that. So, the original code of or rather the original skip gram or the bag",
+    "start": 341.52,
+    "end": 346.88,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z=0\\w,r) negative (w, r) pairs for every positive (w,¢) pairs\ne@ The size of D is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nN = total number of words in the corpus\n\nUp Vw\n\n‘015 (Deep"
+  },
+  {
+    "text": "of words model actually worked very well and it kind of had a lot of seminal effect or",
+    "start": 346.88,
+    "end": 353.72,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\nxe\nll\n\nP( Olw,r)\n\ni e The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nQ\n\nfied unigram distribution\n\n{gant\nr\n\nN = total number of words in the corpus\n\nUp Uw\n\n‘015 (Deep"
+  },
+  {
+    "text": "lot of revolutionary effect on the field of NLP right. So, now, everyone started talking",
+    "start": 353.72,
+    "end": 357.48,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\nxe\nll\n\nP( Olw,r)\n\ni e The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nQ\n\nfied unigram distribution\n\n{gant\nr\n\nN = total number of words in the corpus\n\nUp Uw\n\n‘015 (Deep"
+  },
+  {
+    "text": "about word vectors and how you can use this meaningful representations of words as features",
+    "start": 357.48,
+    "end": 362.96,
+    "ocr_text": "Uy\n\nP(z = 0lw,r)\n\nUw\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n© The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nCount(r\n7\nN\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "for various downstream NLP right. So, at the end in NLP what you are doing is you are",
+    "start": 362.96,
+    "end": 366.8,
+    "ocr_text": "Uy\n\nP(z = 0lw,r)\n\nUw\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n© The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nCount(r\n7\nN\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "collecting a bunch of words a document or a sentence or something and trying to do some",
+    "start": 366.8,
+    "end": 371.44,
+    "ocr_text": "P(z = 0lw,r)\n\nUp Uw\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n© The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\nVQ 3\n{ean\n\nr\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "processing on that. Now, earlier used to construct features out of these sentences using",
+    "start": 371.44,
+    "end": 376.8,
+    "ocr_text": "P(z = 0lw,r)\n\nUp Uw\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n© The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\nVQ 3\n{ean\n\nr\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "some hand crafted features, but now someone said that there is this automatic way of constructing",
+    "start": 376.8,
+    "end": 382.48,
+    "ocr_text": "P(z=0|w,r)\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n© The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\ncount(r\nIr\nN\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "word features right which is using this method. So, people really bought on to that idea",
+    "start": 382.48,
+    "end": 388.52,
+    "ocr_text": "P(z=0|w,r)\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n© The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\ncount(r\nIr\nN\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "and lot of work started happening and then later on at the end of the course we will see",
+    "start": 388.52,
+    "end": 393.96,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nrn negative (w,1) pairs for every positive (w,c) pairs\nP(z=0|w,r) gative ( ) pe yI (w,) pa\n\ne The size of D is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\n‘ N\n\nN = total number of words in the corpus\n\nUp Uw"
+  },
+  {
+    "text": "something that what it eventually led to, but later on when people started analyzing",
+    "start": 393.96,
+    "end": 400.12,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nrn negative (w,1) pairs for every positive (w,c) pairs\nP(z=0|w,r) gative ( ) pe yI (w,) pa\n\ne The size of D is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\n‘ N\n\nN = total number of words in the corpus\n\nUp Uw"
+  },
+  {
+    "text": "this more carefully right they realize that the original word to a implementation had",
+    "start": 400.12,
+    "end": 404.04,
+    "ocr_text": "P(z=0|w,r)\n\nVw\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n© The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "a lot of these heuristics or lot of these parameters which needed to be really tuned",
+    "start": 404.04,
+    "end": 410.24,
+    "ocr_text": "P(z=0|w,r)\n\nVw\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n© The size of D’ is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "to the core for it to be able to complete with SVD which so that is what we will look at",
+    "start": 410.24,
+    "end": 415.36,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\n\nP(z = O0|w,r) negative (w,1) pairs for every positive (w,c) pairs\n\n| e The size of D is thus k times the size of D\ne The random context word is drawn from a modi-\nOo an < . . .\nfied unigram distribution\n=\n()\ncount(r)a\nr\nN\nN = total number of words in the corpus\nUy Uw\n\nMitesh M. Khapra ($7015 (Deep Learning) : Lecture 10,"
+  },
+  {
+    "text": "at the end. So, SVD was already one way of competing word representations which while",
+    "start": 415.36,
+    "end": 419.96,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\n\nP(z = O|w,r) negative (w, r) pairs for every positive (w,c) pairs\n| e The size of D is thus k times the size of D\n\ne@ The random context word is drawn from a modi-\n\nfied unigram distribution\n\neure\nIr\n\nN = total number of words in the corpus\n\nUp Uw\n\n‘015 (Deep"
+  },
+  {
+    "text": "popular was not so popular it was used for various reasons, but it was not like every",
+    "start": 419.96,
+    "end": 425.24,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\n\nP(z = O|w,r) negative (w, r) pairs for every positive (w,c) pairs\n| e The size of D is thus k times the size of D\n\ne@ The random context word is drawn from a modi-\n\nfied unigram distribution\n\neure\nIr\n\nN = total number of words in the corpus\n\nUp Uw\n\n‘015 (Deep"
+  },
+  {
+    "text": "NLP application is using SVD representations right, but now it is almost like every NLP",
+    "start": 425.24,
+    "end": 430.4,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z=0\\w,r) negative (w, r) pairs for every positive (w,c) pairs\n| e The size of D is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nN = total number of words in the corpus\n\nUp Uw"
+  },
+  {
+    "text": "application is using word representations. So, later on we will see that some of these",
+    "start": 430.4,
+    "end": 434.88,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z=0\\w,r) negative (w, r) pairs for every positive (w,c) pairs\n| e The size of D is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nN = total number of words in the corpus\n\nUp Uw"
+  },
+  {
+    "text": "things like 3 by 4 or K the value of K the value of learning rate and some other hyper",
+    "start": 434.88,
+    "end": 439.68,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nP(z=0\\w,r) negative (w, r) pairs for every positive (w,c) pairs\n| e The size of D is thus k times the size of D\n\ne The random context word is drawn from a modi-\n\nfied unigram distribution\n\nN = total number of words in the corpus\n\nUp Uw"
+  },
+  {
+    "text": "parameters if you really tune them very very well it is only then that is this word to",
+    "start": 439.68,
+    "end": 445.68,
+    "ocr_text": "Up\n\nP(z = 0lw,r)\n\n|\n\no\n\nUw\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\ne The size of D’ is thus kAimes the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\n[count\nIr\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "wake algorithm can beat the word representations learned by SVD right or other the other",
+    "start": 445.68,
+    "end": 450.28,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\n\nrn negative (w,1) pairs for every positive (w,c) pairs\n\nP(z=0lw,r) gative ( ) pe YI (w,¢) pe\n\ne The size of Dis thus kAimes the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\n; N\n\nN = total number of words in the corpus\n\nOGL\n\nUp Uw\n\n015 (Deep"
+  },
+  {
+    "text": "thing that if you introduce some parameters in SVD and tune them because remember for",
+    "start": 450.28,
+    "end": 455.56,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\n\nrn negative (w,1) pairs for every positive (w,c) pairs\n\nP(z=0lw,r) gative ( ) pe YI (w,¢) pe\n\ne The size of Dis thus kAimes the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\n; N\n\nN = total number of words in the corpus\n\nOGL\n\nUp Uw\n\n015 (Deep"
+  },
+  {
+    "text": "SVD there was no tuning right we just got a solution we just have the closed form solution",
+    "start": 455.56,
+    "end": 459.56,
+    "ocr_text": "P(z = 0lw,r)\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\ne The size of D’ is thus kAimes the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\nN = total number of words in the corpus\n\n015 (Deep"
+  },
+  {
+    "text": "which is the eigenvectors, but you could do some things for creating the co occurrence",
+    "start": 459.56,
+    "end": 464.0,
+    "ocr_text": "P(z = 0lw,r)\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\ne The size of D’ is thus kAimes the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\nN = total number of words in the corpus\n\n015 (Deep"
+  },
+  {
+    "text": "matrix if you introduce some factor there which is also looks like this 3 by 4 or something",
+    "start": 464.0,
+    "end": 468.28,
+    "ocr_text": "P(z = 0lw,r)\n\ne In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\ne The size of D’ is thus kAimes the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\nN = total number of words in the corpus\n\n015 (Deep"
+  },
+  {
+    "text": "like that or if you also introduce something which looks like a K then you will be able",
+    "start": 468.36,
+    "end": 473.48,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\nP(z = 0lu,r) } .\ne The size of Dis thus; kAtimes the size of D\ne The random context word is drawn from a modi-\noO\n\nfied unigram distribution\n\nDV 3\n\nr ~(p(r)4\n' N\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "to get the same kind of representations or the equally powerful representations from SVD",
+    "start": 473.48,
+    "end": 478.28,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\nP(z = 0lu,r) } .\ne The size of Dis thus; kAtimes the size of D\ne The random context word is drawn from a modi-\noO\n\nfied unigram distribution\n\nDV 3\n\nr ~(p(r)4\n' N\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "as what you get from word to wake. So, that is why I am stressing on these hyper parameters",
+    "start": 478.28,
+    "end": 482.28,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\na)\n<\nll\n\nOlw,r)\ne The size of Dis thus/kLtimes the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\n\\Q 3\n\nO ea\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "there is some significance of this.",
+    "start": 482.28,
+    "end": 483.28,
+    "ocr_text": "e In the original paper, Mikolov et. al. sample k\nnegative (w,1) pairs for every positive (w,c) pairs\n\na)\n<\nll\n\nOlw,r)\ne The size of Dis thus/kLtimes the size of D\n\ne The random context word is drawn from a modi-\nfied unigram distribution\n\n\\Q 3\n\nO ea\n\nN = total number of words in the corpus\n\n‘015 (Deep"
+  },
+  {
+    "text": "Thank you.",
+    "start": 498.28,
+    "end": 513.28,
+    "ocr_text": "Madhu\nMaria Neeta -\nohana\nMohana Sundari\nsrishna\n\ncrccc rte ewike eae —\nPremkumar\nRasavi"
+  }
+]

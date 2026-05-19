@@ -1,0 +1,1082 @@
+[
+  {
+    "text": "So, in our earlier discussions on the MIPS32 pipeline, we had basically concentrated on the",
+    "start": 0.0,
+    "end": 26.72,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "integer instructions. We had seen how the pipeline works, we had seen the effects of the hazards,",
+    "start": 26.72,
+    "end": 34.4,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "the interrupts and various ways to handle these problems and to improve the performance.",
+    "start": 35.2,
+    "end": 42.16,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "But now, let us come to the real scenario. Well, in a real computer, we do not only have the",
+    "start": 43.44,
+    "end": 51.84,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "integer operations or the instructions. We need also to process scientific data,",
+    "start": 51.84,
+    "end": 59.44,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "we write in a, which are in the form of floating point numbers. So, we need floating point arithmetic,",
+    "start": 59.44,
+    "end": 67.36,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "floating point processing to be done in the computer system itself. Now, so far we have assumed",
+    "start": 67.36,
+    "end": 76.16,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "our x stage, for example, will be able to finish a computation in a single site, but that is a",
+    "start": 76.4,
+    "end": 85.52,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "little too optimistic. Realistically speaking, can you finish a multiplication or a division operation",
+    "start": 85.52,
+    "end": 93.84,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "in one site? Well, you can provided you make the clock sufficiently slow, but that is not a good",
+    "start": 93.84,
+    "end": 102.16,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "idea if you do that, everything else will also become slow. Moreover, we have seen that for",
+    "start": 102.16,
+    "end": 109.28,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "floating point operations, you need multiple cycles to carry out the floating point operation itself,",
+    "start": 109.28,
+    "end": 116.8,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "which means essentially your EX cycle itself may require multiple clocks.",
+    "start": 118.4,
+    "end": 125.2,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "So, we are talking about something called multi cycle operations. So, the topic of our lecture",
+    "start": 126.08,
+    "end": 135.44,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "today is multi cycle operation in MIPS 32. Let us see. As it said that the real implementation",
+    "start": 135.44,
+    "end": 147.44,
+    "ocr_text": "Lecture 59: MULTICYCLE OPERATIONS\n\nPROF. INDRANIL SENGUPTA\nDEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING, IIT KHARAGPUR"
+  },
+  {
+    "text": "of the MIPS 32, where you can run all kinds of applications, they will contain obviously both",
+    "start": 147.44,
+    "end": 153.92,
+    "ocr_text": "Introduction\n\n+ Real implementation of MIPS32will consist of both integer and floating-point\nunits.\n+ Floating-point operations are more complex than integer operations\nWill require more than one cycles in the EX st\n— Makes the pipeline scheduling and control more complex.\n— New types of data hazards may appear that are otherwise not possible in the\nMiPS32 integer pipelin:\n\nNPTEL ONLINE NATIONAL Ib\nUT KHARAGPUR CERTIFICATION COURSES TECHNOL ”"
+  },
+  {
+    "text": "integer and floating point units and floating point operations are more complex than integer",
+    "start": 153.92,
+    "end": 161.2,
+    "ocr_text": "Introduction\n\n+ Real implementation of MIPS32will consist of both integer and floating-point\nunits.\n+ Floating-point operations are more complex than integer operations\nWill require more than one cycles in the EX st\n— Makes the pipeline scheduling and control more complex.\n— New types of data hazards may appear that are otherwise not possible in the\nMiPS32 integer pipelin:\n\nNPTEL ONLINE NATIONAL Ib\nUT KHARAGPUR CERTIFICATION COURSES TECHNOL ”"
+  },
+  {
+    "text": "operations. Not only that, even within the integer operations as it said, multiplying divide can",
+    "start": 161.2,
+    "end": 167.68,
+    "ocr_text": "Introduction\n\n+ Real implementation of MIPS32 will consist of both integer and floating-point\nunits.\n+ Floating-point operations are more cormplex than integer operations\nWill require more than one cycles in the EX st\n— Makes the pipeline scheduling and control more complex.\n— New types of data hazards may appear that are otherwise not possible in the\nMIPS32 integer pipelin:\n\nmm"
+  },
+  {
+    "text": "be more complex than add and subtract. So, these kind of operations are slower in general and may",
+    "start": 167.68,
+    "end": 178.4,
+    "ocr_text": "Introduction\n\nReal implementation of MIPS32 will consist of both integer and floating-point\nunits.\n\nFloating-point operations are more complex than integer operations\n\n— Will require more than one cycles in the EX stage.\n\n— Makes the pipeline scheduling and control more complex.\n\nMiPS32 integ\n\nNPTEL ONLINE NATIONAL Lal\nITKHARAGPUR CERTIFICATION COURSES Te"
+  },
+  {
+    "text": "require more than one cycle to finish during the EX stage. This obviously makes the pipeline",
+    "start": 178.4,
+    "end": 187.6,
+    "ocr_text": "Introduction\n\n+ Real implementation of MIPS32 will consist of both integer and floating-point\nunits.\n\n+ Floating-point operations are more complex than integer operations\n= Will require more than one cycles in the EX st\n— Makes the pipeline scheduling and control more complex.\n\nMiPS32 integer pipeline\n\n<—_"
+  },
+  {
+    "text": "scheduling and controlling much more complex and we shall see more different interesting",
+    "start": 187.6,
+    "end": 196.16,
+    "ocr_text": "Introduction\n\nReal implementation of MIPS32 will consist of both integer and floating-point\nunits.\nFloating-point operations are more complex than integer operations\nII require more than one cycles in the EX st\n— Makes the pipeline scheduling and control more complex.\nMiPS32 i\n\naS"
+  },
+  {
+    "text": "kinds of hazards can appear because of this. Because, you see earlier, what you had assumed is that",
+    "start": 196.16,
+    "end": 202.24,
+    "ocr_text": "Introduction\n\n+ Real implementation of MIPS32 will consist of both integer and floating-point\nunits.\n+ Floating-point operations are more complex than integer operations\nIl require more than one cycles in the EX stage.\nMakes the pipeline scheduling and control more complex.\nMiPS32 intege:"
+  },
+  {
+    "text": "all instructions are of the same size, they take same time within 5 cycle, they are much simpler.",
+    "start": 202.48,
+    "end": 209.12,
+    "ocr_text": "Introduction\n\n+ Real implementation of MIPS32 will consist of both integer and floating-point\nunits.\n+ Floating-point operations are more complex than integer operations\nIl require more than one cycles in the EX stage.\nMakes the pipeline scheduling and control more complex.\nMiPS32 intege:"
+  },
+  {
+    "text": "But, now when you say instructions can vary in time in terms of the execution,",
+    "start": 209.76,
+    "end": 213.92,
+    "ocr_text": "Introduction\n\n+ Real implementation of MIPS32 will consist of both integer and floating-point\nunits.\n+ Floating-point operations are more complex than integer operations\nIl require more than one cycles in the EX stage.\nMakes the pipeline scheduling and control more complex.\nMiPS32 intege:"
+  },
+  {
+    "text": "we are landing ourselves into a big bit trouble. So, which instruction will be finishing,",
+    "start": 214.64,
+    "end": 219.44,
+    "ocr_text": "Introduction\n\n+ Real implementation of MIPS32 will consist of both integer and floating-point\nunits.\n+ Floating-point operations are more complex than integer operations\nIl require more than one cycles in the EX stage.\nMakes the pipeline scheduling and control more complex.\nMiPS32 intege:"
+  },
+  {
+    "text": "maybe the earlier instruction will be finishing later, next instruction will be finishing earlier.",
+    "start": 219.44,
+    "end": 224.96,
+    "ocr_text": "Introduction\n\n+ Real implementation of MIPS32 will consist of both integer and floating-point\nunits.\n+ Floating-point operations are more complex than integer operations\nIl require more than one cycles in the EX stage.\nMakes the pipeline scheduling and control more complex.\nMiPS32 intege:"
+  },
+  {
+    "text": "Lots of such problems can occur. Let us see. So, the first and very naive solution is not to make",
+    "start": 225.04,
+    "end": 239.68,
+    "ocr_text": "(a) Solution 1\n\n+ Do not make any change in the pipeline control\n\n+ Use a slow clock such that the ALU operations for floating-point instructions\ncan finish in one clock cycle (in EX stage)."
+  },
+  {
+    "text": "any change in the control. Just slow down the clock as I said such that your operation may be",
+    "start": 239.68,
+    "end": 249.92,
+    "ocr_text": "(a) Solution 1\n\n+ Do not make any change in the pipeline control\n\n+ Use a slow clock such that the ALU operations for floating-point instructions\ncan finish in one clock cycle (in EX stage)."
+  },
+  {
+    "text": "more time consuming, but you give sufficient time within a clock period to complete it.",
+    "start": 250.0,
+    "end": 256.4,
+    "ocr_text": "(a) Solution 1\n\n+ Donot make any change in the pipeline control\n\n+ Use a slow clock such that the ALU operations for floating-point instructions\ncan finish in one clock cycle (in EX stage).\n\nTennoug a Sava\n\nK\n|"
+  },
+  {
+    "text": "So, maybe earlier your clock was like this, this was your clock signal, but now you make the clock",
+    "start": 257.28,
+    "end": 267.44,
+    "ocr_text": "(a) Solution 1\n\n+ Donot make any change in the pipeline control\n\n+ Use a slow clock such that the ALU operations for floating-point instructions\ncan finish in one clock cycle (in EX stage).\n\nTennoug a Sava\n\nK\n|"
+  },
+  {
+    "text": "like this. Well, obviously, this is not a good idea because you are making your clock period",
+    "start": 267.44,
+    "end": 275.36,
+    "ocr_text": "(a) Solution 1\n\n+ Donot make any change in the pipeline control\n\n+ Use a slow clock such that the ALU operations for floating-point instructions\ncan finish in one clock cycle (in EX stage).\n\nTennoug a Sava\n\nK\n|"
+  },
+  {
+    "text": "slow means, that all your stages not only E x i f i d E x m m w b, they will all be running",
+    "start": 275.36,
+    "end": 283.44,
+    "ocr_text": "(a) Solution 1\n\nDo not make any change in the pipeline control\nUse a slow clock such that the ALU operations for floating-point instructions\ncan finish in one clock cycle (in EX stage).\nDrawback\nOther operations are d down, causing severe degradation in\nperforman\n— Not acceptable in practic«\n\nNATIONAL Ws\nRey SS\n[es"
+  },
+  {
+    "text": "at this speed t. So, if you slow down the clock, everything will slow down. So, that is not a good idea",
+    "start": 283.44,
+    "end": 292.56,
+    "ocr_text": "(a) Solution 1\n\nDo not make any change in the pipeline control\nUse a slow clock such that the ALU operations for floating-point instructions\ncan finish in one clock cycle (in EX stage).\nDrawback\nOther operations are d down, causing severe degradation in\nperforman\n— Not acceptable in practic«\n\nNATIONAL Ws\nRey SS\n[es"
+  },
+  {
+    "text": "very clearly. This is the drawback as I said other operations are also slowed down and this",
+    "start": 292.56,
+    "end": 302.32,
+    "ocr_text": "(a) Solution 1\n\nDo not make any change in the pipeline control\nUse a slow clock such that the ALU operations for floating-point instructions\ncan finish in one clock cycle (in EX stage).\nDrawback\nOther operations are d down, causing severe degradation in\nperforman\n— Not acceptable in practic«\n\nNATIONAL Ws\nRey SS\n[es"
+  },
+  {
+    "text": "obviously, will cause a severe degradation in performance and obviously, we cannot use it in practice.",
+    "start": 302.32,
+    "end": 308.4,
+    "ocr_text": "(a) Solution 1\n\nDo not make any change in the pipeline control\nUse a slow clock such that the ALU operations for floating-point instructions\ncan finish in one clock cycle (in EX stage).\nDrawback\nOther operations are d down, causing severe degradation in\nperforman\n— Not acceptable in practic«\n\nNATIONAL Ws\nRey SS\n[es"
+  },
+  {
+    "text": "Let us see. So, what is the more practical solution? More practical solution is that we do not",
+    "start": 311.2,
+    "end": 319.12,
+    "ocr_text": "(b) Solution 2\n\nWe allow the floating-point arithmetic pipeline to have a longer latency.\n\ny depending «\n\nex EX MEM\n\nThe number of repetitions\n\nita 1D EX\n\nNPTEL ONLINE NATIONAL\nUTKHARAGPUR CERTIFICATION COURSES TECHNOL)"
+  },
+  {
+    "text": "change or modify our instruction fetch decode m m and w b because they do not change the remain",
+    "start": 320.0,
+    "end": 328.08,
+    "ocr_text": "(b) Solution 2\n\n+ We allow the floating-point arithmetic pipeline to have a longer latency.\n\n= The number of repetitions can vary depending on the ope\n\n1D EX OEX) EX EX. MEM\n\n(PTEL ONLINE\nIIT KHARAGPUR GERTIeaTION counses"
+  },
+  {
+    "text": "as it is. Our only concern is the E x operations where the arithmetic operations are carried out,",
+    "start": 328.16,
+    "end": 336.8,
+    "ocr_text": "(b) Solution 2\n\n+ We allow the floating-point arithmetic pipeline to have a longer latency.\n\n= The number of repetitions can vary depending on the ope\n\niF DEX OEX) EXO EX MEM. WB\n\nNeTEL ONIN\nITKHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "which here we are saying can vary in complexity or arithmetic operations are not of the same type,",
+    "start": 336.8,
+    "end": 343.92,
+    "ocr_text": "(b) Solution 2\n\nWe allow the floating-point arithmetic pipeline to have a longer latency.\n\n— EX cycle is considered to be repeated several time\n— The number of repetitions can vary depending on the ope\n\niF 1D EX) OEX EX OEX. MEM"
+  },
+  {
+    "text": "summer integer, summer floating point, even within integer they can be of various complexities.",
+    "start": 343.92,
+    "end": 349.36,
+    "ocr_text": "(b) Solution 2\n\nWe allow the floating-point arithmetic pipeline to have a longer latency.\n\n— EX cycle is considered to be repeated several time\n— The number of repetitions can vary depending on the ope\n\niF 1D EX) OEX EX OEX. MEM"
+  },
+  {
+    "text": "This is our concern. So, let us, let us assume integer and floating point for the time",
+    "start": 350.48,
+    "end": 357.6,
+    "ocr_text": "(b) Solution 2\nMEM We\n\nThe number of repetitions\n1 1D) MEX ese EXE Mex\n\n(PTEL ONLINE\nIIT KHARAGPUR CEMTIneaTION couRses"
+  },
+  {
+    "text": "we allow floating point arithmetic pipeline to have a longer latency.",
+    "start": 358.32,
+    "end": 363.44,
+    "ocr_text": "(b) Solution 2\nMEM We\n\nThe number of repetitions\n1 1D) MEX ese EXE Mex\n\n(PTEL ONLINE\nIIT KHARAGPUR CEMTIneaTION couRses"
+  },
+  {
+    "text": "So, logically speaking what we are saying is that in the instruction execution cycle,",
+    "start": 364.72,
+    "end": 370.0,
+    "ocr_text": "(b) Solution 2\nMEM We\n\nThe number of repetitions\n1 1D) MEX ese EXE Mex\n\n(PTEL ONLINE\nIIT KHARAGPUR CEMTIneaTION couRses"
+  },
+  {
+    "text": "the E x cycle is repeated more than one clock cycles. So, we are repeating the E x cycle several times",
+    "start": 371.04,
+    "end": 380.64,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latency.\n\nThe number of repetitions can vary depending on the ope\n\nfa 1D EX ex EX MEM we\n\n2"
+  },
+  {
+    "text": "and how many times we are repeating that depends on the complexity of the operation.",
+    "start": 381.68,
+    "end": 386.8,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latency.\n\nThe number of repetitions can vary depending on the ope\n\nfa 1D EX OEX EX EX MEM\n\nNPTEL ONLIN\nIIT KHARAGPUR GEATInsTION courses"
+  },
+  {
+    "text": "So, here as you shall see that in a real computing platform, if you allow this, the E x data",
+    "start": 387.76,
+    "end": 403.76,
+    "ocr_text": "(b) Solution 2\n\n1 1D EX) EXO EX EX. MEM. WB\n\nThe EX stage will have multiple floating-point functional units.\n\n— For example, one for addition/subtraction (pipelined), one for multipl\n(pipelined), and one for division (non-pip\n\n— Astall will occur in the pipeline if the instruction to be issued will either cause\n\ntructural hazard for the functional unit, or a data hazard.\n\nere\nIT KHARAGPUR GEtrineaION courses"
+  },
+  {
+    "text": "path in the E x stage will actually be having multiple functional units not just one.",
+    "start": 403.76,
+    "end": 409.76,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latency.\nEX cycle Is considered to be repeated several tim\nThe number of repetitions can vary depending on the operation.\n\n1 1D EX —x —X MEM we\n\nThe EX stage will have multiple floating-p¢\n\nxample, one for additi\n(pipelined), and one fo:\n\n— Astall will occur in the pipeline if the instruction to be issued ause a\ntructural hazard for the functional unit, or a data hazard.\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "Maybe there will be one functional unit that will be handling additional subtraction,",
+    "start": 410.08,
+    "end": 415.52,
+    "ocr_text": "(b) Solution 2\n\nlow the floating-point arithmetic pipeline to have a longer latency.\nThe number of repetitions can vary depending on the operation.\n\nita DEX) EX) OEX EX. MEM. WB\n\nThe EX stage will have multiple floating-point functional units.\n\n— For example, one for additi (pipelined), one for multiplication\n(pipelined), and one\n\n— Astall will occur in the pipeline if the instruction to be issued will either cause\ntructural hazard for the functional unit, or a data hazard.\n\n(TEL ONLI\nITKHARAGPUR CEttinesttON courses"
+  },
+  {
+    "text": "there will be one functional unit for multiplication and one functional unit for division.",
+    "start": 416.48,
+    "end": 421.2,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latency.\nThe number of repetitions can vary depending on the operation\n\niF 1D EX OEX) EX OEX MEM. WB\n\nThe EX st 2 floating-point functional units.\n\n— For example, one for additi (pipelined), one for multiplication\n\n(pipelined), and one ined).\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\ntructural hazard for the functional unit, or a data hazard.\n\n(TEL ONL\nITKHARAGPUR GEMTINesTION counses"
+  },
+  {
+    "text": "Now, here there can be stalls due to structural hazards as well.",
+    "start": 423.84,
+    "end": 429.28,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latency.\nThe number of repetitions can vary depending on the operation\n\niF 1D EX OEX) EX OEX MEM. WB\n\nThe EX st 2 floating-point functional units.\n\n— For example, one for additi (pipelined), one for multiplication\n\n(pipelined), and one ined).\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\ntructural hazard for the functional unit, or a data hazard.\n\n(TEL ONL\nITKHARAGPUR GEMTINesTION counses"
+  },
+  {
+    "text": "You see here there is a possibility of a stall if you are trying to issue an instruction means",
+    "start": 430.88,
+    "end": 438.96,
+    "ocr_text": "(b) Solution 2\n\nWe allow the floating-point arithmetic pipeline to have a longer latency.\nEX cycle 1s considered to be repeated several time\n— The number of repetitions can vary depending on the operation.\n\nfa DEX) EX) EX EX MEM. WB\n\nThe EX stage will have multiple floating-point functional units.\n\n= Fo nple, one for addition/subtraction (pipelined), one for multiplication\n(pipelined), and one for division (non-pipelined).\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\n\ntructural hazard for the functional unit, or a data hazard.\n\n+ Pipelining the f s od th ural hazard."
+  },
+  {
+    "text": "your instructions trying to move from I D to E x. It may so happen that the earlier instruction",
+    "start": 438.96,
+    "end": 446.32,
+    "ocr_text": "(b) Solution 2\n\nnt arithmetic pipeline to have a longer latency.\n\nWe allow the floating-pe\n.d to be repeated seve\n‘an vary depending on the ope\nMEM We\n\nEX evele is consider alum\n\nThe number of repetitions c\nfa ie EXT ex Mex ex\n\n2 floating-point functional units.\n\nThe EX stage will have multip!\nfor addition/subtr (pipelin\non (non-pipelined).\n\namp ), one for multiplicatior\n\n(pipelined), and one for div\n\nA stall will occur in the pipeline if the instruction to be is ill either cause a\n\nzard for the functional unit\noid the structural haz\n\ntructural ha or a data hazard.\n\nEL ONLI\nITKHARAGPUR GERTIeaTION counses"
+  },
+  {
+    "text": "which was then the pipeline, it was using the same functional unit and it was still somewhere",
+    "start": 446.32,
+    "end": 451.68,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latency.\nX cycle is considered to be repeated several tm\n\nThe number of repetitions can vary depending on the operation.\n\nfa wo EX EX EX EX. MEM. WB\n\n+ The EX stage will have multiple floating-point functional units.\nFor example, one for addition/s (pipelined), one for multiplication\n(pipelined), and one for div : ned).\n\n= Astall will occur in the pipeline if the instruction to be issued will either caus:\ntructural hazard for the functional unit, or a data hazard."
+  },
+  {
+    "text": "in the E x. So, the next instruction cannot enter the E x unless the E x or the arithmetic is",
+    "start": 451.68,
+    "end": 462.08,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latency.\nX cycle is considered to be repeated several tm\n\nThe number of repetitions can vary depending on the operation.\n\nfa wo EX EX EX EX. MEM. WB\n\n+ The EX stage will have multiple floating-point functional units.\nFor example, one for addition/s (pipelined), one for multiplication\n(pipelined), and one for div : ned).\n\n= Astall will occur in the pipeline if the instruction to be issued will either caus:\ntructural hazard for the functional unit, or a data hazard."
+  },
+  {
+    "text": "itself pipeline. You recall we discuss the pipeline implementation of some of the floating point",
+    "start": 462.08,
+    "end": 469.12,
+    "ocr_text": "(b) Solution 2\n\nlow the floating-point arithmetic pipeline to have a longer latency.\nThe number of repetitions can vary depending on the operation\n\nfa iD EX [ex Mex MEM we\n\nThe EX stage will have multip! ional units.\n\nnple, one for additi for multiplication\n(pipelined), and one for division (non-pip\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\ntructural hazard for the functional unit, or a data hazard.\n\n(PTEL ONLINE\nIIT KHARAGPUR CEtineaWON counses"
+  },
+  {
+    "text": "operations. This is why we need that. If they are not pipeline, then while a previous instruction",
+    "start": 469.12,
+    "end": 476.48,
+    "ocr_text": "(b) Solution 2\n\nlow the floating-point arithmetic pipeline to have a longer latency.\nThe number of repetitions can vary depending on the operation\n\nfa iD EX [ex Mex MEM we\n\nThe EX stage will have multip! ional units.\n\nnple, one for additi for multiplication\n(pipelined), and one for division (non-pip\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\ntructural hazard for the functional unit, or a data hazard.\n\n(PTEL ONLINE\nIIT KHARAGPUR CEtineaWON counses"
+  },
+  {
+    "text": "is doing multiplication, the next instruction has to wait for the multiplication until or unless",
+    "start": 476.48,
+    "end": 483.04,
+    "ocr_text": "(b) Solution 2\n\nlow the floating-point arithmetic pipeline to have a longer latency.\nThe number of repetitions can vary depending on the operation\n\nfa iD EX [ex Mex MEM we\n\nThe EX stage will have multip! ional units.\n\nnple, one for additi for multiplication\n(pipelined), and one for division (non-pip\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\ntructural hazard for the functional unit, or a data hazard.\n\n(PTEL ONLINE\nIIT KHARAGPUR CEtineaWON counses"
+  },
+  {
+    "text": "the earlier one has complete. But if the multiply operation itself is pipeline, so when the first",
+    "start": 483.04,
+    "end": 490.72,
+    "ocr_text": "(b) Solution 2\n\nlow the floating-point arithmetic pipeline to have a longer latency.\nThe number of repetitions can vary depending on the operation\n\nfa iD EX [ex Mex MEM we\n\nThe EX stage will have multip! ional units.\n\nnple, one for additi for multiplication\n(pipelined), and one for division (non-pip\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\ntructural hazard for the functional unit, or a data hazard.\n\n(PTEL ONLINE\nIIT KHARAGPUR CEtineaWON counses"
+  },
+  {
+    "text": "instruction is in the second stage of multiplication, the next instruction can enter the first stage.",
+    "start": 490.72,
+    "end": 495.76,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latenc\n— The number of repetitions can vary depending on the operation.\n\niF 1D EX OEX) EXO EX. MEM. WB\n\nThe EX stage will have multiple floating-point functional units.\n\nFor example, one for addition/subtraction (pipelined), one for multiplication\n(pipelined), and one for division (non-pipelined)\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\ntructural hazard for the functional unit, or #data hazard.\n\nNPTEL ONL\nIITKHARAGPUR GEttineatWON courses"
+  },
+  {
+    "text": "So, they can proceed in the overlap operation. So, if you have pipelining in the functional unit,",
+    "start": 496.48,
+    "end": 507.44,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latenc\n— The number of repetitions can vary depending on the operation.\n\niF 1D EX OEX) EXO EX. MEM. WB\n\nThe EX stage will have multiple floating-point functional units.\n\nFor example, one for addition/subtraction (pipelined), one for multiplication\n(pipelined), and one for division (non-pipelined)\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\ntructural hazard for the functional unit, or #data hazard.\n\nNPTEL ONL\nIITKHARAGPUR GEttineatWON courses"
+  },
+  {
+    "text": "then you can avoid structural hazard otherwise there will be a structural hazard in the pipeline",
+    "start": 507.44,
+    "end": 513.28,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latenc\n— The number of repetitions can vary depending on the operation.\n\niF 1D EX OEX) EXO EX. MEM. WB\n\nThe EX stage will have multiple floating-point functional units.\n\nFor example, one for addition/subtraction (pipelined), one for multiplication\n(pipelined), and one for division (non-pipelined)\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\ntructural hazard for the functional unit, or #data hazard.\n\nNPTEL ONL\nIITKHARAGPUR GEttineatWON courses"
+  },
+  {
+    "text": "in the E x stage. Well, this is a logical picture where we are assuming that the E x stage,",
+    "start": 514.0,
+    "end": 524.64,
+    "ocr_text": "(b) Solution 2\n\nllow the floating-point arithmetic pipeline to have a longer latenc\n— The number of repetitions can vary depending on the operation.\n\niF 1D EX OEX) EXO EX. MEM. WB\n\nThe EX stage will have multiple floating-point functional units.\n\nFor example, one for addition/subtraction (pipelined), one for multiplication\n(pipelined), and one for division (non-pipelined)\n\n= Astall will occur in the pipeline if the instruction to be issued will either cause a\ntructural hazard for the functional unit, or #data hazard.\n\nNPTEL ONL\nIITKHARAGPUR GEttineatWON courses"
+  },
+  {
+    "text": "then logically four functional units. The first one is our conventional integer unit which",
+    "start": 525.68,
+    "end": 532.16,
+    "ocr_text": "+ Consider that there are four\nfunctional units\nMain integer unit that handles\nloads and stores, integer ALU\noperations, and branche:\nFloating-point adder /\n\nFloating-point and integer\n\nmultiplier\n\nFloating-point and integer\n\ndivider\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "you have seen earlier so far. So, for that the sequence will be I F I D E x M M W B. So, we are",
+    "start": 532.16,
+    "end": 540.88,
+    "ocr_text": "+ Consider that there are four\nfunctional units\nMain integer unit that handles\nloads and stores, integer ALU\noperations, and branche:\nFloating-point adder /\n\nFloating-point and integer\n\nmultiplier\n\nFloating-point and integer\n\ndivider\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "showing as the integer unit. So, the main integer unit will be handling all loads and store operations",
+    "start": 540.88,
+    "end": 547.92,
+    "ocr_text": "es\n+ Consider that there are four anny\n\nfunctional units:\nMain integer unit that\nloads and stor\noperations, and branches\nFloating-point adder /\nFloating-point and integer\nmultiplier\nFloating-point and integer\n\ndivider\n\nPTEL ON eo\nIT KHARAGPUR Ericson courses Teno"
+  },
+  {
+    "text": "from memory, the integer A value operations and also branches. There will be a floating point",
+    "start": 547.92,
+    "end": 556.64,
+    "ocr_text": "x\n+ Consider that there are four anny\n\nfunctional units\n\nMain integer unit that handles\nloads and stores, integer ALLL\noperations, and branche!\nFloating-point adder /\nsubtractor\n\nFloating-point and integer\nmultiplier\n\nFloating-point and integer\n\ndivider\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES Tecnnoudy ge\nass"
+  },
+  {
+    "text": "address of tractor another function unit. This blue arrow indicates that you may have to iterate",
+    "start": 556.64,
+    "end": 562.4,
+    "ocr_text": "x\n+ Consider that there are four canny\n\nfunctional units:\nMain integer unit that handles\nloads and stores, integer ALU\noperations, and branches\nFloating-point adder /\nsubtractor\nFloating-point and integer\nmultiplier\n\nFloating-point and integer\n\ndivider\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "several times. This is a multi-cytl E x stage. There can be a multiplier floating point and also",
+    "start": 562.56,
+    "end": 570.96,
+    "ocr_text": "x\n+ Consider that there are four canny\n\nfunctional units:\nMain integer unit that handles\nloads and stores, integer ALU\noperations, and branches\nFloating-point adder /\nsubtractor\nFloating-point and integer\nmultiplier\n\nFloating-point and integer\n\ndivider\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "integer multiplier. I said integer multiplication can also take more than one cycles. So, this stage",
+    "start": 570.96,
+    "end": 579.76,
+    "ocr_text": "x\n+ Consider that there are four ru)\n\nfunctional units:\n) Main integer unit that handles\nloads and stores, integer ALU\n‘operations, and branche:\n\nb) Floating-point adder /\n\n€) Floating-point and integer\nmultiplier\n\nd) Floating-point and integ\ndivider\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "can do both floating point or integer multiplier and this is a division floating point or integer",
+    "start": 579.76,
+    "end": 586.56,
+    "ocr_text": "x\n+ Consider that there are four anny\n\nfunctional units:\nMain integer unit that Hi\ntoads and stores, integ\noperations, and branches\nFloating-point adder /\n\nFloating-point and integer\n\nmultiplier\n\nFloating-point and integer\n\ndivider\n\nnen\nIITKHARAGPUR GEMTINeaTION counses"
+  },
+  {
+    "text": "division unit. So, as you can see other than the integer E x unit the other E x units are",
+    "start": 586.56,
+    "end": 594.8,
+    "ocr_text": "x\n+ Consider that there are four unt)\n\nfunctional units:\n\nMain integer unit that handles\n\nloads and stores, integer ALU\n\noperations, and branches\n\nFloating-point adder /\ntractor\n\nFloating-point and integer\n\nmultiplier\n\nFloating-point and integer\n\ndivider\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "multi-cytl. They will need multiple cycles of E x. Now, earlier we had briefly looked at the",
+    "start": 594.8,
+    "end": 607.92,
+    "ocr_text": "x\n+ Consider that there are four unt)\n\nfunctional units:\n\nMain integer unit that handles\n\nloads and stores, integer ALU\n\noperations, and branches\n\nFloating-point adder /\ntractor\n\nFloating-point and integer\n\nmultiplier\n\nFloating-point and integer\n\ndivider\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "MIPS 32 floating point registers and some of the instructions therein. So, just a quick recap.",
+    "start": 607.92,
+    "end": 613.6,
+    "ocr_text": "MIPS32 Floating-Point Extension\n\nIn the floating-point extension of MIPS32, there are 32 floating-point\nregisters FO to F31, each of size 32 bits.\nFor double-precision operations, register pairs can be used to store the data\n— Register pair <FO, F1> > referred to as FO\n\nster pair <F2, F3> > referred to as F2,\n\nster pair <F30, F31> > referred to as F30\nSome examples of double-precision floating-point instructions are shown in\nthe next slide\n\nNPTEL NUN\nITKHARAGPUR GEMTIHeaTION counses"
+  },
+  {
+    "text": "So, in the MIPS 32 there are 32 floating point registers which are named F 0 to F 31.",
+    "start": 613.6,
+    "end": 620.8,
+    "ocr_text": "MIPS32 Floating-Point Extension\n\nIn the floating-point extension of MIPS32, there are 32 floating-point\nregisters FO to F31, each of size 32 bits.\nFor double-precision operations, register pairs can be used to store the data\n— Register pair <FO, F1> > referred to as FO\n\nster pair <F2, F3> > referred to as F2,\n\nster pair <F30, F31> > referred to as F30\nSome examples of double-precision floating-point instructions are shown in\nthe next slide\n\nNPTEL NUN\nITKHARAGPUR GEMTIHeaTION counses"
+  },
+  {
+    "text": "They are all of 32 bit size. Well, when we work with double precision numbers that means 64 bits",
+    "start": 622.24,
+    "end": 632.56,
+    "ocr_text": "MIPS32 Floating-Point Extension\n\nIn the floating-point extension of MIPS32, there are 32 floating-point\n\nregisters FO to F31, each of size 32 bits.\n\nFor double-precision operations, register pairs can be used to store the data:\nister pair <FO, F1> > referred to as FO\n\n— Register pair <F2, F3> > referred to as F2\n\nRegister pair <F30, F31> > referred to as F30\nSome examples of double-precision floating-point instructions are shown in\nthe next slide"
+  },
+  {
+    "text": "then we can take register pairs that means that may even an odd register pairs like F 0 and F 1",
+    "start": 633.44,
+    "end": 639.68,
+    "ocr_text": "MIPS32 Floating-Point Extension\n\nIn the floating-point extension of MIPS32, there are 32 floating-point\nregisters FO to F31, each of size 32 bits.\nFor double-precision operations, register pairs can be used to store the data:\npister pair <FO, F1> S referred to as FO\n\n— Register pair <F2, F3> > referred to as F2\n\nRegister pair <F30, F31> > referred to as F30\nSome examples of double-precision floating-point instructions are shown in\nthe next slide\n\nNPTEL ONLIN\nIIT KHARAGPUR GEMTIeaTON counses"
+  },
+  {
+    "text": "you can take together F 2 and F 3 and so on and register pairs you name by the first one F 0",
+    "start": 639.84,
+    "end": 646.72,
+    "ocr_text": "MIPS32 Floating-Point Extension\n\nIn the floating-point extension of MIPS32, there are 32 floating-point\n\nregisters FO to F31, each of size 32 bits.\n\nFor double-precision operations, register pairs can be used to store the data\n\n— Register pair <FO, F1g > referred to as FO\n— Register pair <F2, F3> > referred to as F2\nRegister pair <F30, F31> > referred to as F30\nSome examples of double-precision floating-point instructions are shown in\nthe next slide\n\nNPTEL ONLIN\nITKHARAGPUR ERTIECATION counses"
+  },
+  {
+    "text": "register pair means F 0 and F 1 F 2 register pair means F 2 and F 3. Similarly, F 30 means F 30",
+    "start": 646.72,
+    "end": 654.08,
+    "ocr_text": "MIPS32 Floating-Point Extension\n\nIn the floating-point extension of MIPS32, there are 32 floating-point\nregisters FO to F31, each of size 32 bits.\nFor double-precision operations, register pairs can be used to store the dat\nRegister pair <FO, F1> > referred to as FO\n— Register pair <F2, F3> > referred to as F2\nRegister pair <F30, F31> > referred to as F30\nSome examples of double-precision floating-point instructions are shown in\nthe next slide\n\nSERN cousss @ wewesy"
+  },
+  {
+    "text": "and F 31. So, like this you can use register pairs for double precision operations.",
+    "start": 654.08,
+    "end": 660.08,
+    "ocr_text": "MIPS32 Floating-Point Extension\n\nIn the floating-point extension of MIPS32, there are 32 floating-point\nregisters FO to F31, each of size 32 bits.\nFor double-precision operations, register pairs can be used to store the dat\nRegister pair <FO, F1> > referred to as FO\n— Register pair <F2, F3> > referred to as F2\nRegister pair <F30, F31> > referred to as F30\nSome examples of double-precision floating-point instructions are shown in\nthe next slide\n\nSERN cousss @ wewesy"
+  },
+  {
+    "text": "Now, some examples I am giving here for such operations. Let us say the first instruction",
+    "start": 661.04,
+    "end": 670.8,
+    "ocr_text": "MIPS32 Floating-Point Extension\n\nIn the floating-point extension of MIPS32, there are 32 floating-point\nregisters FO to F31, each of size 32 bits.\nFor double-precision operations, register pairs can be used to store the data\nRegister pair <FO2¥1> > referred to as FO\n— Register pair <F2, F3> > referred to as F2\nRegister pair <F30, F31> > referred to as F30\nSome examples of double-precision floating-point instructions are shown in\nthe next slide\n\nrf G |"
+  },
+  {
+    "text": "L dot d means load double d stands for double precision. Load double precision you see this is",
+    "start": 671.84,
+    "end": 681.36,
+    "ocr_text": "Floating-Point Instruction Examples\n\na) Load into a floating-point register pair\nL.D ¥6, 200(R2) // 6 = Mem(R2+200];  ¥7 = Mem[R2+204};\nb) Store from a floating-point register pair\nD Fa, 40(R5) // Mom[R5+40] = ¥4\n\n2) Arithmetic operations on floating-point register pairs\n\nADD.D FO, F4,F6\nF4,¥6,¥\n\nNATIONAL Ib\nTen\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "loading from memory. So, whenever you are specifying the memory address where specifying the integer",
+    "start": 681.36,
+    "end": 686.48,
+    "ocr_text": "Floa it Instruction Examples\n\na) Load into a floating-point register pair\nL.D ¥6, 200(R2) // 6 = Mem(R2+200]; ¥7 = Mem(R2+204):\nb) Store from a floating-point register pair\nS.D Fa, 40(R5) // Mom(R5+40] = Fa; Mem(RS+44] =\na) Arithmetic operations on floating-point register pairs:\nD FO,Fa,¥6\nF4,F6,¥8"
+  },
+  {
+    "text": "register 200 R 2 which means memory 200 plus R 2 and we are loading into F 6 because it is double",
+    "start": 686.48,
+    "end": 694.16,
+    "ocr_text": "Floa it Instruction Examples\n\nLoad into a floating-point register pair\n\nL.D ¥6, 200(R2) // 6 = Mem(RZ+200]; ¥7 = Mem(R2+204};\n\nStore from a floating-point register pair\nS.D Fa, 40(R5) // Mom[R5+40] = ¥4;  Mom(R5+44] = FS;\nArithmetic operations on floating-point register pairs:\nD FO,F4,¥6\n¥4,¥6,¥8"
+  },
+  {
+    "text": "precision it will loading into F 6 and also F 7 this is R 2 plus 200 this will be R 2 plus 204",
+    "start": 694.16,
+    "end": 701.68,
+    "ocr_text": "Floa it Instruction Examples\n\nLoad into a floating-point register pair\n\nL.D ¥6, 200(R2) // 6 = Mem(RZ+200]; ¥7 = Mem(R2+204};\n\nStore from a floating-point register pair\nS.D Fa, 40(R5) // Mom[R5+40] = ¥4;  Mom(R5+44] = FS;\nArithmetic operations on floating-point register pairs:\nD FO,F4,¥6\n¥4,¥6,¥8"
+  },
+  {
+    "text": "because memory is by-toriented and every register is 32 bits. So, 4 addresses per register.",
+    "start": 702.4,
+    "end": 710.64,
+    "ocr_text": "Floa it Instruction Examples\n\nLoad into a floating-point register pair\n\n// 6 = Mem{R2+200]; F7 = Mem(R2+204]\n\na)\nLD 6, 200(R2)\n\nb) Store froma floating-point reg\nMom(R5+40] = ¥4;  Mem(R5+44] = FS;\n\nS.D Fa, 40(R5) “u\n\nArithmetic operations on floating-point register pairs\n\na)\nADD.D FO, F4,F6\nMUL.D ¥4,F6,¥8\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Similarly, store double you store this F 4 F 5 into this memory location. So, F 4 will get stored",
+    "start": 710.96,
+    "end": 721.44,
+    "ocr_text": "it Instruction Examples\n\nFloa\n\na) Load into a floating-point register pair\nL.D 6, 200(R2) // 6 = Mem(R24200]; ¥7 = Mem(R2+204) :\n\nStore from a floating-point register pair\nS.D Fa, 40(R5) // Mom(R5+40}\n\nb)\n~ Fa; Mom(Rs+aa} = ¥5;\n\nArithmetic operations on floating-point register pairs:\n\nADD.D FO, F4,F6\n\nF4,F6,¥8\n\nNPTEL ONLINE NATIONAL\n\nCERTIFICATION COURSES TEONOUE ae\n:\n\nete\n\nITKHARAGPUR\n\na)"
+  },
+  {
+    "text": "here F 5 will get stored here 44 plus 4. Similarly, you can have the other operations all are double",
+    "start": 721.44,
+    "end": 730.48,
+    "ocr_text": "Floating-Point Instruction Examples\n\na) Load into a floating-point register pair\nL.D 6, 200(R2) // 6 = Mom(R2+200); ¥7 = Mem(R2+204};\n\nb) Store from a floating-point register pair\nD Fa, 40(R5) // Mom(R5+40] ~ Fa m[RS+44)\n\n2) Arithmetic operations on floating-point register pairs\nADD.D FO, F4,¥6\nFa, £6, 88\n\nITKHARAGPUR CEATIFICATION COURSES"
+  },
+  {
+    "text": "precision dot d dot d means double. So, you write like this that means F 4 F 5 and F 6 F 7 will be",
+    "start": 730.48,
+    "end": 738.0,
+    "ocr_text": "ig-Point Instruction Examples\n\nFloa\n\nLoad into a floating-point register pair\nL.D ¥6, 200(R2) // 6 = Mem(R2+200);  ¥7 = Mem(R2\nStore froma floating-point register pair\n\nFa, 40(R5) // Mom(R5+40}\n\ns.D ~ ra; Mom(Rs+aa] =\nArithmetic operations on floating-point register pairs:\nFO,F4,F6\n\nADD.D\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nITKHARAGPUR\n\n¥4,F6,¥8\n\nNATIONAL i\nTECHNOL\n\na\nak\n=<“)"
+  },
+  {
+    "text": "added result will be in F 0 F 1 and similarly. So, we talk about latency and initiation intervals",
+    "start": 738.0,
+    "end": 750.8,
+    "ocr_text": "Floa it Instruction Examples\n\na) Load into a floating-point register pair\nL.D ¥6, 200(R2) // 6 = Mom(R2+200); ¥7 = Mem(R2+204};\nb) Store froma floating-point register pair\nS.D Fa, 20(R5) // Mom(R5+40] = Fa; Mom(R5+44] = ¥5;\n\na) Arithmetic operations on floating-point register pairs:\nD FO, F4,¥6\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO"
+  },
+  {
+    "text": "in this kind of multicycle pipelines. My multicycle arithmetic unit whenever we talk about latency",
+    "start": 750.8,
+    "end": 762.24,
+    "ocr_text": "Latency and Initiation Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\n\noperation and hence improved performanc\n\nDefinitions:\nLatency: The number of cycles between an instruction producing a result and\nanother instruction using,\n\nb) Initiation Interval: The number of cycles that must clapse between Issuing two\noperations of the same type\n\nNPTEL ONLIN\nITKHARAGPUR GEtTIneaTION counses"
+  },
+  {
+    "text": "what does the latency mean you see just as it mentioned that the arithmetic units are",
+    "start": 762.56,
+    "end": 769.68,
+    "ocr_text": "Latency and Initiation Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\noperation and hence improved performanc\nDefinitions:\n3) Latency: The number of cycles between an instruction producing a result and\nanother instruction using\nb) Initiation Interval: The number of cycles tha elapse between Issuing tw\n\noperations of the same type\n\n="
+  },
+  {
+    "text": "often pipeline wherever possible because unless you do a pipeline you cannot overlap the operations",
+    "start": 769.68,
+    "end": 776.0,
+    "ocr_text": "Latency and Initiation Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\n\noperation and hence improved performanc\n\nDefinitions:\nLatency: The number of eye n instruction producing a result and\n\nanother instruction using\n\nb) Initiation Interval: The number of cycles that must elapse between Issuing two\noperations of the same typ.\n\nNeTEL ONLI\nIT KHARAGPUR CEMTIeaTION courses"
+  },
+  {
+    "text": "like I am giving a small example. Suppose there is one multiplication instruction followed by",
+    "start": 777.68,
+    "end": 783.76,
+    "ocr_text": "Latency and Initiation Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\n\noperation and hence improved performanc\n\nDefinitions:\n\na) Latency: The number of cycles & n instruction producing a result and\nanother instruction using\n\nb) Initiation Interval: The number of e between issuing two.\n\noperations of the same type\n\niianacun Becomes | GY NERA"
+  },
+  {
+    "text": "another multiplication instruction. Let us say I have an instruction fetch for this instruction",
+    "start": 783.76,
+    "end": 790.88,
+    "ocr_text": "Latency and Initiation Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\n\noperation and hence improved performanc\n\nDefinitions:\n\na) Latency: The number of cycles & n instruction producing a result and\nanother instruction using\n\nb) Initiation Interval: The number of e between issuing two.\n\noperations of the same type\n\niianacun Becomes | GY NERA"
+  },
+  {
+    "text": "decode then execute this will take much longer I am showing it like this a much extended",
+    "start": 791.04,
+    "end": 796.96,
+    "ocr_text": "Latency and Initiation Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\n\noperation and hence improved performanc\n\nDefinitions:\n\na) Latency: The number of cycles & n instruction producing a result and\nanother instruction using\n\nb) Initiation Interval: The number of e between issuing two.\n\noperations of the same type\n\niianacun Becomes | GY NERA"
+  },
+  {
+    "text": "execute cycle then M M W B. But for this one well you can do instruction fetch here you can do",
+    "start": 796.96,
+    "end": 807.52,
+    "ocr_text": "Latency and Initiation Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\n\noperation and hence improved performanc\n\nDefinitions:\n\na) Latency: The number of cycles & n instruction producing a result and\nanother instruction using\n\nb) Initiation Interval: The number of e between issuing two.\n\noperations of the same type\n\niianacun Becomes | GY NERA"
+  },
+  {
+    "text": "instruction decode here, but you cannot start EX until this early instruction has finished it.",
+    "start": 807.52,
+    "end": 815.6,
+    "ocr_text": "Rai te xo (LEX) nen ws"
+  },
+  {
+    "text": "So, you can start the EX cycle only here after this is finished then M M.",
+    "start": 815.68,
+    "end": 822.32,
+    "ocr_text": "Rai te xo (LEX) nen ws"
+  },
+  {
+    "text": "This is if it is not pipeline, but if it is pipeline then your situation will be like this",
+    "start": 824.32,
+    "end": 831.68,
+    "ocr_text": "Rai te xo (LEX) nen ws"
+  },
+  {
+    "text": "instruction fetch instruction decode let us say in the EX let us say it takes 4 steps let us say",
+    "start": 832.72,
+    "end": 841.2,
+    "ocr_text": "MUL we 22 Le\n\nMDL TF ID -\"-<= {\n\nMUL"
+  },
+  {
+    "text": "so there will be 4 cycles of EX then M M W B. So, for the second one you can do instruction fetch",
+    "start": 842.08,
+    "end": 853.92,
+    "ocr_text": "=p) {aya\nKyi re ro [Ex ) HEM ws\nMUL Fae Danaea es Mee\nPres\n\nxX Ex Ex Ex\nMoe =D) | maine ea fe MEM\nPtr ss"
+  },
+  {
+    "text": "here you can do instruction decode here and it can start the EX from here itself first step,",
+    "start": 853.92,
+    "end": 860.64,
+    "ocr_text": "=p) {aya\nKyi re ro [Ex ) HEM ws\nMUL Fae Danaea es Mee\nPres\n\nxX Ex Ex Ex\nMoe =D) | maine ea fe MEM\nPtr ss"
+  },
+  {
+    "text": "second step, third step and fourth step. So, there is no need for in waiting right this is the",
+    "start": 860.64,
+    "end": 867.12,
+    "ocr_text": "MUL\n\nMpL\n\nMUL\n\npul"
+  },
+  {
+    "text": "this is the idea what I am saying fine. Now, latency means now we are talking about the data dependencies.",
+    "start": 868.08,
+    "end": 879.2,
+    "ocr_text": "MUL te sp [ex 1 MEH\nes fs (exe aes\nMUL 8, a\n\n= HEM 6\n\npul"
+  },
+  {
+    "text": "There is one instruction which is producing a result and another instruction which is using it.",
+    "start": 880.48,
+    "end": 885.2,
+    "ocr_text": "Latency and Ini\n\ntion Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\noperation and hence improved performanc\nDefinitions:\n\nLatency: The number of cycles between\n\nanother instruction using\n\nb) Initiation Interval: The number of\noperations of the\n\nn instruction producing a result and\n\nthat must elapse bet\n\n.en Issuing two\n\nNeTEL ONLIN\nITKHARAGPUR ERTIneATION counses"
+  },
+  {
+    "text": "So, how many minimum number of clock cycles will be required between them?",
+    "start": 886.0,
+    "end": 889.68,
+    "ocr_text": "Latency and Ini\n\ntion Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\noperation and hence improved performanc\nDefinitions:\nLatency: The number of cyc n instruction producing a result\nanother instruction using\n\nb) Initiation Interval: The number of cycles that mus\noperations of the\n\nen Issuing two\n\nNPTEL ONLINE\nITKHARAGPUR TION\n\nNATIONAL\nCERTIFICATION COURSES Tecnnotg"
+  },
+  {
+    "text": "Like we had seen earlier that a load instruction followed by its use in an integer case required",
+    "start": 890.24,
+    "end": 897.92,
+    "ocr_text": "Latency and Ini\n\ntion Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\noperation and hence improved performanc\nDefinitions:\nLatency: The number of cyc n instruction producing a result\nanother instruction using\n\nb) Initiation Interval: The number of cycles that mus\noperations of the\n\nen Issuing two\n\nNPTEL ONLINE\nITKHARAGPUR TION\n\nNATIONAL\nCERTIFICATION COURSES Tecnnotg"
+  },
+  {
+    "text": "one stall cycles which means latency was 1. But for floating point operations latency can be more.",
+    "start": 897.92,
+    "end": 905.12,
+    "ocr_text": "Latency and Ini\n\ntion Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\noperation and hence improved performanc\nDefinitions:\nLatency: The number of cyc n instruction producing a result\nanother instruction using\n\nb) Initiation Interval: The number of cycles that mus\noperations of the\n\nen Issuing two\n\nNPTEL ONLINE\nITKHARAGPUR TION\n\nNATIONAL\nCERTIFICATION COURSES Tecnnotg"
+  },
+  {
+    "text": "An initiation interval means how frequently we can issue instructions of the same type.",
+    "start": 906.24,
+    "end": 912.72,
+    "ocr_text": "Latency and Ini\n\ntion Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\noperation and hence improved performanc\nDefinitions:\nLatency: The number of cyc n instruction producing a r¢\nanother instruction using\nb) Initiation Interval: The number of\noperations of the\n\nthat must elapse betw\n\nen Issuing two\nme type. 2\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Well if it is fully pipeline we can issue it every cycle like the previous example of",
+    "start": 913.68,
+    "end": 918.72,
+    "ocr_text": "Latency and Ini\n\ntion Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\noperation and hence improved performanc\nDefinitions:\nLatency: The number of cyc n instruction producing a r¢\nanother instruction using\nb) Initiation Interval: The number of\noperations of the\n\nthat must elapse betw\n\nen Issuing two\nme type. 2\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "multiplication option. These are the typical values which will assume and these values are very",
+    "start": 918.72,
+    "end": 926.24,
+    "ocr_text": "Latency and Initiation Interval\n\nThe multi-cycle arithmetic units are often pipelined to allow overlapped\noperation and hence improved performanc\nDefinitions:\nLatency: The number of cycles between an instruction producing a result and\nanother instruction using it\nb) Initiation Interval: The number of cycles that must elapse between Issuing two\n\noperations of the same type.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "realistic. For integer operations which you saw earlier latency was 0 and initiation operation",
+    "start": 926.24,
+    "end": 935.28,
+    "ocr_text": "Typical Values Assumed\n\n+ _LFP divide\n\nFP multiply\n\nFP div"
+  },
+  {
+    "text": "was 1 because for integer A value operations using data forwarding we could avoid all hazards",
+    "start": 935.28,
+    "end": 941.92,
+    "ocr_text": "Typical Values Assumed\n\nFP divide\n\nNPTEL ONLIN\nITKHARAGPUR GEtTIneaON counses"
+  },
+  {
+    "text": "data hazards. An initiation interval which means one one cycle we can apply the inputs.",
+    "start": 942.0,
+    "end": 948.16,
+    "ocr_text": "Typical Values Assumed\n\nFP divide\n\nNPTEL ONLIN\nITKHARAGPUR GEtTIneaON counses"
+  },
+  {
+    "text": "Memory followed data memory there was a latency one there was a hazard which you saw earlier.",
+    "start": 949.44,
+    "end": 956.08,
+    "ocr_text": "Typical Values Assumed\n\nInteger ALU + FP multiply 7\nData Memory (integer / + _ FP divide A (not\nFLP load)\nFP add / subtract Ttis possible to have up to:\nFP multiply + 4 outstanding FP add/subtract\nFP divide 2 + 7 outstanding FP multiply\n\n+ _LFP divide\n\nNPTEL ONLIN\nITKHARAGPUR GEttineaTION courses"
+  },
+  {
+    "text": "Initiation interval was 1. For floating point add and subtract where assuming see I mean assuming",
+    "start": 957.12,
+    "end": 964.48,
+    "ocr_text": "Typical Values Assumed\n\nInteger ALU + FP multiply 7\nData Memory (intege + FP divide 1 (not\nFLP load)\nFP add / subtract is possible to have up to:\nFP multiply 4 outstanding FP add/subtract\nFP divid 7 outstanding FP multiply\n\n1 FP divide\n\nNPTEL ONLIN\nIT KHARAGPUR CEtTiFICATION Counses"
+  },
+  {
+    "text": "that the number of x stages in floating point at subtract is 4. So, between two consecutive means",
+    "start": 964.48,
+    "end": 971.36,
+    "ocr_text": "Typical Values Assumed\n\nInteger ALU + FP multiply 7\nData Memory (intege + FP divide 1 (not\nFLP load)\nFP add / subtract is possible to have up to:\nFP multiply 4 outstanding FP add/subtract\nFP divid 7 outstanding FP multiply\n\n1 FP divide\n\nNPTEL ONLIN\nIT KHARAGPUR CEtTiFICATION Counses"
+  },
+  {
+    "text": "if there is a data dependency the first instruction will be requiring 4 cycles to complete the add.",
+    "start": 972.08,
+    "end": 977.68,
+    "ocr_text": "Typical Values Assumed\n\n+ FP add/subtract: 4\n© FP multiply 7\nData Memory (intege + FP divide\n\nFLP load)\n\nInteger ALU\n\nFP add / subtract Ttis possible to have up\nFP multiply + 4 outstanding FP add/subtract\nFP\n\nanding FP multiply\n\nNPTEL ONLIN\nIITKHARAGPUR CEtTIestON counses"
+  },
+  {
+    "text": "So, the next instruction will have to wait for 3 more cycles because anyway it is starting one",
+    "start": 978.64,
+    "end": 984.64,
+    "ocr_text": "Typical Values Assumed\n\nInteger ALU + FP multiply 7\n\nData Memory (intege + FP divide 1 (not\n\nFLP load)\n\nFP add / subtract is possible to have up to:\n\nFP multiply 4 outstanding FP add/subtr\n\nFP div 7 outstanding FP multiply\nide\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "cycle later it has to wait 3 more cycles for this addition to complete so that you can forward the",
+    "start": 984.64,
+    "end": 990.96,
+    "ocr_text": "Typical Values Assumed\n\nInteger ALU + FP multiply 7\n\nData Memory (intege + FP divide 1 (not\n\nFLP load)\n\nFP add / subtract is possible to have up to:\n\nFP multiply 4 outstanding FP add/subtr\n\nFP div 7 outstanding FP multiply\nide\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "result. Multiply requires 7 cycles let us say so the latency here will be 6.",
+    "start": 990.96,
+    "end": 996.96,
+    "ocr_text": "Typical Values Assumed\n\nNPTEL ON\nITKHARAGPUR EMTIneaTION couRses"
+  },
+  {
+    "text": "And we were assuming that the division unit is not pipeline and it takes 24 time units to run",
+    "start": 997.2,
+    "end": 1007.04,
+    "ocr_text": "Typical Values Assumed\n\n= FP add/subtract: 4\nInteger ALU + FP multiply 7\nData Memory (intege: + FP divide\n\n1 (not pipelined)\nFLP load)\n\nFP add / subtract Teis possible to have up to:\nFP multiply + 4 outstanding FP add/subtract\nanding FP multiply\n\nide\n\nFP div\n\nNPTEL ONUIN Nan\nIT KHARAGPUR CEATIneATION counses Teco"
+  },
+  {
+    "text": "that is why latency is 24 and initiation interval also is now sorry the total time time",
+    "start": 1007.04,
+    "end": 1015.28,
+    "ocr_text": "Typical Values Assumed\n\nInteger ALU + FP multiply 7\nData Memory (ir + FP divide 1 (not pipelin.\nFLP load)\nFP add / subtract is possible to have up to:\nFP multiply 4 outstanding FP add/subtract\nFP divie 2 7 outstanding FP multiply\n\n1 FP divide\n\nNPTEL ONLI\nITKHARAGPUR GEATIBeATION counses"
+  },
+  {
+    "text": "time is 25 that is why latency is 24 one less this is not pipeline because these are pipeline",
+    "start": 1015.28,
+    "end": 1022.32,
+    "ocr_text": "Typical Values Assumed\n\nNPTEL ONLI\nIT KHARAGPUR GEtTIeaTION counses"
+  },
+  {
+    "text": "you can start one operation every clock cycle. But in divide if there two consecutive divides",
+    "start": 1022.4,
+    "end": 1028.8,
+    "ocr_text": "Typical Values Assumed\n\nNPTEL ONLI\nIT KHARAGPUR GEtTIeaTION counses"
+  },
+  {
+    "text": "the second divide can start only 25 clock cycles later right. So, because these are the numbers",
+    "start": 1028.8,
+    "end": 1038.88,
+    "ocr_text": "Typical Values Assumed\n\nInteger ALU + FP multiply 7\nData Memory (integer / + FP divide 1 (not pipelined)\nFLP load)\nFP add / subtract Teis possible to have up to:\nFP multiply 4 outstanding FP add/subt\nFP divi 2 utstanding FP multiply\n\nLEP divide\n\nNPTEL ONLIN\nITKHARAGPUR GEtTIneaTION couRses"
+  },
+  {
+    "text": "so you can have 4 floating point addition subtraction working together 7 multiply operations",
+    "start": 1038.88,
+    "end": 1045.36,
+    "ocr_text": "Typical Values Assumed\n\nInteger ALU + FP multiply 7\nData Memory (le + FP divide 1 (no\nFLP load)\nFP add / subtract Ttis possible to have up to:\nply + 4 outstanding FP add/subtract\nFP divid 2 + 7 dlitstanding FP multiply\n+ _LFP divide\n\n(TEL ONIN\nITKHARAGPUR GEtTineaTION courses"
+  },
+  {
+    "text": "working together but only one division operation at a time because this is not pipeline.",
+    "start": 1045.36,
+    "end": 1051.2,
+    "ocr_text": "Typical Values Assumed\n\nFP multiply\nFP divid\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, our architecture looks like this these are the pipeline stages IFI the Mehman WB are here",
+    "start": 1052.88,
+    "end": 1064.96,
+    "ocr_text": "Typical Values Assumed\n\nFP multiply\nFP divid\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "these are the x stages. So, integer unit has a single x for floating point addition there are 4",
+    "start": 1064.96,
+    "end": 1072.32,
+    "ocr_text": "MIPS32 Multi-cycle\nPipeline Structure\n\nor Unit\n\nNPTEL oni\n\nITRHARAGPUR GEtTineaTION counses"
+  },
+  {
+    "text": "stages for floating point multiplication there are 7 stages and division is a single stage but with",
+    "start": 1072.32,
+    "end": 1079.92,
+    "ocr_text": "MIPS32 Multi-cycle\nPipeline Structure\n\nor Unit\n\nV\\eemmmeey) |\n\nDivider\n\nNPTEL ONLINE\nIT'KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "delay of 25. So, it is a non pipeline right this is how a typical you see division it is not",
+    "start": 1079.92,
+    "end": 1091.2,
+    "ocr_text": "MIPS32 Multi-cycle\nPipeline Structure\n\nor Unit\n\nIT KHARAGPUR GEtTIneaION couRses"
+  },
+  {
+    "text": "pipeline mainly because well well in some computers will find division is also pipeline the two",
+    "start": 1091.2,
+    "end": 1098.8,
+    "ocr_text": "MIPS32 Multi-cycle\nPipeline Structure\n\nor Unit\n\nITKHARAGPUR"
+  },
+  {
+    "text": "reasons the cost of pipelining a divider is much more only for very sophisticated number crunching",
+    "start": 1098.8,
+    "end": 1107.6,
+    "ocr_text": "MIPS32 Multi-cycle\nPipeline Structure\n\nInteger Unit\n\nDivider\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "computing platforms you need very fast division operations there you can do it. But otherwise",
+    "start": 1107.6,
+    "end": 1113.68,
+    "ocr_text": "MIPS32 Multi-cycle\nPipeline Structure\n\nInteger Unit\n\nDivider\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "the frequency of division is much less as compared to I mean other operation the addition subtraction",
+    "start": 1113.68,
+    "end": 1119.44,
+    "ocr_text": "MIPS32 Multi-cycle\nPipeline Structure\n\nInteger Unit\n\nDivider\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "multiplication. So, there are some combiaries carcasses where division is not pipeline.",
+    "start": 1119.44,
+    "end": 1125.36,
+    "ocr_text": "MIPS32 Multi-cycle\nPipeline Structure\n\nInteger Unit\n\nDivider\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, some some interesting scenarios you can see here now I have shown one multiply followed by an",
+    "start": 1129.36,
+    "end": 1135.92,
+    "ocr_text": "Some Scenarios\n\nMUL. m2 M3) M4 MS) «M6)oM7) MEM WB\nLo ID eX) =oMEM we\n(Out of order completion of instructions\n\nLo F8,0(RS) bx MEM we\nMUL.D F4,F8,F10 10 Mi MZ (M3 (Ma MS MO M7 M\nADD.0 F6,F4,F12 r At\n\nS.D F6,0(R5) © > Mem we\n\nStalls arising due to RAW hazards\n\n(PTEL ONLINE\nIIT KHARAGPUR EMTInOATON counses"
+  },
+  {
+    "text": "add the all double load and store multiply will need 7 cycles in the execution stage among to M7",
+    "start": 1136.0,
+    "end": 1146.72,
+    "ocr_text": "Some Scenarios\n\nMUL. m2 M3) M4 MS) «M6)oM7) MEM WB\nLo ID eX) =oMEM we\n(Out of order completion of instructions\n\nLo F8,0(RS) bx MEM we\nMUL.D F4,F8,F10 10 Mi MZ (M3 (Ma MS MO M7 M\nADD.0 F6,F4,F12 r At\n\nS.D F6,0(R5) © > Mem we\n\nStalls arising due to RAW hazards\n\n(PTEL ONLINE\nIIT KHARAGPUR EMTInOATON counses"
+  },
+  {
+    "text": "add will require 4 cycles in the at stage load and store you can 5 each total.",
+    "start": 1147.52,
+    "end": 1153.36,
+    "ocr_text": "MUL.\nLo\nso\n\nLD F#,0(RS)\nMUL.D F4,F8,F10\nADD.D F6,F4,F12\n\n5. F6,0(R5)\n\nITKHARAGPUR\n\nSome Scenarios\n\nm2 M30 M4 MS.\n(Out of order completion of instructions\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "Now, you see out of order completion of instructions the third instruction finishes first",
+    "start": 1154.56,
+    "end": 1160.24,
+    "ocr_text": "MUL.\nLo\nso\n\nLD F#,0(RS)\nMUL.D F4,F8,F10\nADD.D F6,F4,F12\n\n5. F6,0(R5)\n\nITKHARAGPUR\n\nSome Scenarios\n\nm2 M30 M4 MS.\n(Out of order completion of instructions\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "fourth instruction finishes next then the second instruction then the first instruction.",
+    "start": 1161.04,
+    "end": 1166.16,
+    "ocr_text": "muL.o\nLo\n5.0\n\nLD F#,0(RS)\nMUL.D F4,F8,F10\nADD.D F6,F4,F12\n\n5.0 F6,0(R5)\n\nITKHARAGPUR\n\nSome Scenarios\nm2 ma me M7 MEM\n\n(Out of order completion of instructions\n\nStalls arising due to RAW hazards\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "So, for multi cycle operation this is the first thing that happens. So, there will be out of order",
+    "start": 1167.04,
+    "end": 1172.72,
+    "ocr_text": "muL.o\nLo\n5.0\n\nLD F#,0(RS)\nMUL.D F4,F8,F10\nADD.D F6,F4,F12\n\n5.0 F6,0(R5)\n\nITKHARAGPUR\n\nSome Scenarios\nm2 ma me M7 MEM\n\n(Out of order completion of instructions\n\nStalls arising due to RAW hazards\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "completion of instructions then second instruction illustrates some interesting read after",
+    "start": 1173.44,
+    "end": 1185.2,
+    "ocr_text": "muL.o\nLo\n\nLD F#,0(RS)\nMUL.D F4,F8,F10\nADD.D F6,F4,F12\n\nS.D F6,0(R5)\n\nITKHARAGPUR\n\nSome Scenarios\nme Ma oMS M6 M7 MEM\n\n1D MeM we.\n\n1D eX MEM we\n(Out of order completion of instructions\n\nStalls arising due to RAW hazards\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "write hazards. So, see here the example I have taken is that a load which loads a double",
+    "start": 1185.2,
+    "end": 1193.2,
+    "ocr_text": "Some Scenarios\n\nMuL.o Mi ooM2 M3 Ma MS M6 M7 MEM we\nLo 1D eX MEM we\n(Out of order completion of instructions\n\nLp F8,0(RS) MEM we\nMUL.D F4,F8,F10 Mi MZ M3) (Ma MS MGMT\nADD.D F6,Fa,F12 f\n\n5.0 F6,0(R5) © Mem we\n\nStalls arising due to RAW hazards\n\nNeTEL ONLIN\nITKHARAGPUR GEttinestION courses"
+  },
+  {
+    "text": "precision value in F 8 and F 9 then multiply which uses F 8 deposits the result in F 4 and add",
+    "start": 1193.2,
+    "end": 1201.76,
+    "ocr_text": "Some Scenarios\n\nMuL.o Mi ooM2 M3 Ma MS M6 M7 MEM we\nLo 1D eX MEM we\n(Out of order completion of instructions\n\nLp F8,0(RS) MEM we\nMUL.D F4,F8,F10 Mi MZ M3) (Ma MS MGMT\nADD.D F6,Fa,F12 f\n\n5.0 F6,0(R5) © Mem we\n\nStalls arising due to RAW hazards\n\nNeTEL ONLIN\nITKHARAGPUR GEttinestION courses"
+  },
+  {
+    "text": "which uses F 4 result in F 6 and a store which stores F 6. Let us see load load will take 5",
+    "start": 1201.76,
+    "end": 1211.44,
+    "ocr_text": "MUL.O\nLo\n\nLD F#,0(RS)\nMUL.D F4,F8,F10\nADD.D F6,F4,F32\n5.0 F6,0(R5)\n\nSome Scenarios\nm2 M3 Ma Me m7\n(Out of order completion of instructions\n\nStalls arising duo to RAW hazards\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nme"
+  },
+  {
+    "text": "cycles like this loaded value is available at the end of M. So, with data forwarding multiply operation",
+    "start": 1211.6,
+    "end": 1221.28,
+    "ocr_text": "MUL.\nLo\n\nLD F#,0(RS)\nMUL.D F4,F3,F10\nADD.D F6,F4,F12\n\n5.0 F6,0(R5)\n\nITKHARAGPUR\n\nSome Scenarios\n\nm2 M3) M4 MS) MG M7 MEM.\n(Out of order completion of instructions\n\nStalls arising due to RAW hazards\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nwe"
+  },
+  {
+    "text": "can start only after the data is loaded after M. So, there will be one stall cycle required.",
+    "start": 1221.28,
+    "end": 1226.64,
+    "ocr_text": "MUL.\nLo\n\nLD F8,0(RS)\nMUL.D F4,F8,F10\nADD.D F6,F4,F12\n\n5.0 F6,0(R5)\n\nITKHARAGPUR\n\nSome Scenarios\nm2 M3) M4 MS MG M7 MEM.\n1D eX oMEM—wB\n\n(Out of order completion of instructions\n\nStalls arising due to RAW hazards\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nwe"
+  },
+  {
+    "text": "So, here multiplication can start now add requires F 4 here again even using data forwarding",
+    "start": 1227.44,
+    "end": 1236.08,
+    "ocr_text": "MULD\nLo\n\nLD F#,0(RS)\nMUL.0 F4,F8,F10\nADD.D F6,F4,F12\n\n5. F6,0(R5)\n\nITKHARAGPUR\n\nSome Scenarios\nme Ma ooMS M6) OM? MEM WB\n\nOut of order completion of instructions\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "F 4 will be known only after multiplication over here at the end of M 7.",
+    "start": 1236.8,
+    "end": 1241.6,
+    "ocr_text": "Some Scenarios\n\nMUL.O m2 M3) M4 MS M6 =oM7 MEM we\nLo 1D EX MEM we\n(Out of order completion of instructions\n\nLD F8,0(RS) MEM we\nMUL.D F4,F8,F10 Ma M2 [M3) (Ma) as MG M7\" MEM\nADD.D F6,Fa,F12 0\n\nS.D F6,0(R5) Mem we\n\nStalls arising due to RAW hazards\n\n{oTEL ONLINE\nITKHARAGPUR GEttinestION courses"
+  },
+  {
+    "text": "So, add can issue that means from I D to E X it can start only after that there will be 6 stall",
+    "start": 1242.96,
+    "end": 1250.0,
+    "ocr_text": "Some Scenarios\n\nMUL.O m2 M3) M4 MS M6 =oM7 MEM we\nLo 1D EX MEM we\n(Out of order completion of instructions\n\nLD F8,0(RS) MEM we\nMUL.D F4,F8,F10 Ma M2 [M3) (Ma) as MG M7\" MEM\nADD.D F6,Fa,F12 0\n\nS.D F6,0(R5) Mem we\n\nStalls arising due to RAW hazards\n\n{oTEL ONLINE\nITKHARAGPUR GEttinestION courses"
+  },
+  {
+    "text": "cycles here. Similarly, add will finish here at the end of F 4.",
+    "start": 1250.0,
+    "end": 1257.76,
+    "ocr_text": "Some Scenarios\nm2 M3) Ma MS M6 M7 MEM WB\n\nMuUL.D\n\nLo 1D MEM we.\n(Out of order completion of instructions\n\nLo F8,0(RS) mem we\nMUL.D F4,F8,F10\n\nADD.D F6,F4,F12\n\nS.D F6,0(R5) © © Mem we\nStalls arising due to RAW hazards\n\n(PTEL ONLINE\nIT KHARAGPUR ERTIFeATION counses"
+  },
+  {
+    "text": "But, after F 4 there is a M M stage anyway and store will get its M M stage only after that",
+    "start": 1257.84,
+    "end": 1269.92,
+    "ocr_text": "MUL.\nLo\nso\n\nLD F#,0(RS)\nMUL.D F4,F8,F10\nADD.D F6,F4,F12\n\n5.0 F6,0(R5)\n\nITKHARAGPUR\n\nSome Scenarios\nme Ma ooMS M6 M7 MEM\n\n(Out of order completion of instructions\n\narising due to RAW hazards\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "and store will happen here. So, there is no problem store will take place here.",
+    "start": 1270.56,
+    "end": 1274.0,
+    "ocr_text": "Some Scenarios\n\nMUL.O MlooM2 M3 M4 MS M6 M7 MEM WB\nLo 1D EX MEM WB\n5.0 te x MEM we\n\n(Out of order completion of instructions\n\nLo F8,0(RS) mem we\nMUL.D F4,F8,F10 Ma (M2 (M3) (Ma) MS) Me M7\nADD.D F6,F4,F12 i\n\n5.0 F6,0(R5) fa mew we\n\nStalls arising due to RAW hazards\n\nWrTEL ONLINE\nITKHARAGPUR CERTIFICATION couRsES\n\noF"
+  },
+  {
+    "text": "So, there will be three additional stalls here. So, you can see that there are so many stalls",
+    "start": 1275.04,
+    "end": 1279.6,
+    "ocr_text": "Some Scenarios\n\nMUL.O m2 M3) Ma MS M6 M7 MEM we\nLo 1D EX MEM WB\n(Out of order completion of instructions\n\nLD F8,0(RS) Mem we\nMUL.D F4,F8,F10 2 M3 Ma MS MG M7\n\nADD.D F6,F4,F12\n\nS.D F6,0(R5) MEM woe\n\nStalls arising duo so RAW hazards"
+  },
+  {
+    "text": "because of R A W hazards in floating point operations. So, you see the number of stall cycles",
+    "start": 1280.24,
+    "end": 1287.12,
+    "ocr_text": "Some Scenarios\n\nMUL.O m2 M3) Ma MS M6 M7 MEM we\nLo 1D EX MEM WB\n(Out of order completion of instructions\n\nLD F8,0(RS) Mem we\nMUL.D F4,F8,F10 2 M3 Ma MS MG M7\n\nADD.D F6,F4,F12\n\nS.D F6,0(R5) MEM woe\n\nStalls arising duo so RAW hazards"
+  },
+  {
+    "text": "are significantly higher in this cases for multi cycle operations. So, you need to take care",
+    "start": 1287.12,
+    "end": 1292.48,
+    "ocr_text": "Some Scenarios\n\nMUL.O m2 M3) Ma MS M6 M7 MEM we\nLo 1D EX MEM WB\n(Out of order completion of instructions\n\nLD F8,0(RS) Mem we\nMUL.D F4,F8,F10 2 M3 Ma MS MG M7\n\nADD.D F6,F4,F12\n\nS.D F6,0(R5) MEM woe\n\nStalls arising duo so RAW hazards"
+  },
+  {
+    "text": "means you means the compiler needs to take care of these kind of things and there are very",
+    "start": 1292.48,
+    "end": 1297.28,
+    "ocr_text": "Some Scenarios\n\nMUL.O m2 M3) Ma MS M6 M7 MEM we\nLo 1D EX MEM WB\n(Out of order completion of instructions\n\nLD F8,0(RS) Mem we\nMUL.D F4,F8,F10 2 M3 Ma MS MG M7\n\nADD.D F6,F4,F12\n\nS.D F6,0(R5) MEM woe\n\nStalls arising duo so RAW hazards"
+  },
+  {
+    "text": "sophisticated techniques which compiler use some of this we will discuss to prevent and try to",
+    "start": 1297.28,
+    "end": 1303.92,
+    "ocr_text": "Some Scenarios\n\nMUL D Ml M2 M3 Ma MS M6 M7 MEM WB\n\nLo 1D Mem we,\n(Out of order completion of instructions\n\nLo F8,0(RS) mem we\n\nMUL.0 F4,F8,F10 haa nS MO MP NEM\n\nADD.O F6,Fa,F12 AL Az aa ag ry\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA\n\n5.0 F6,0(RS)\n\nStalls arising duo to RAW hazards\n\nNPTEL ONLIN\nUT RHARAGPUR CEATIFICATION COURSES"
+  },
+  {
+    "text": "fill up these slots for these stalls delay slots fine. Now, another interesting example here",
+    "start": 1303.92,
+    "end": 1316.4,
+    "ocr_text": "Some Scenarios\n\nMUL D Ml M2 M3 Ma MS M6 M7 MEM WB\n\nLo 1D Mem we,\n(Out of order completion of instructions\n\nLo F8,0(RS) mem we\n\nMUL.0 F4,F8,F10 haa nS MO MP NEM\n\nADD.O F6,Fa,F12 AL Az aa ag ry\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA\n\n5.0 F6,0(RS)\n\nStalls arising duo to RAW hazards\n\nNPTEL ONLIN\nUT RHARAGPUR CEATIFICATION COURSES"
+  },
+  {
+    "text": "this results in a right after right hazards which was never possible in a integer pipeline.",
+    "start": 1316.48,
+    "end": 1322.32,
+    "ocr_text": "we\nMem\nF6,F8,F10 a As Aa MEM wo\nir Mem WB\nif x MEM Wa\n\nF6,0(RS) vem\n\nThree instructions are trying to write into the FP register bank simultaneously.\n+ WAW hazard for the last two conflicting instructions (both writing F6).\n\nNo conflict in MEM as only the last instruction accesses memory.\n\nNr iN\nITKHARAGPUR GEMTIneaTION courses"
+  },
+  {
+    "text": "See there are three instructions I am showing or multiply a subtract and a load with",
+    "start": 1323.52,
+    "end": 1330.0,
+    "ocr_text": "we\nMem\nF6,F8,F10 a As Aa MEM wo\nir Mem WB\nif x MEM Wa\n\nF6,0(RS) vem\n\nThree instructions are trying to write into the FP register bank simultaneously.\n+ WAW hazard for the last two conflicting instructions (both writing F6).\n\nNo conflict in MEM as only the last instruction accesses memory.\n\nNr iN\nITKHARAGPUR GEMTIneaTION courses"
+  },
+  {
+    "text": "two two instructions in between I am not in search of what instructions these are",
+    "start": 1330.72,
+    "end": 1334.08,
+    "ocr_text": "F6,F8,F10 aa MEM wa\nMEM | We\n\nF6,0(RS) x MEM\n\nThree instructions are trying to write into the FP. ultaneously.\n+ WAW hazard for the\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "is independent instructions. But, the point is that they are all writing into some registers",
+    "start": 1334.08,
+    "end": 1341.68,
+    "ocr_text": "F6,F8,F10 aa MEM wa\nMEM | We\n\nF6,0(RS) x MEM\n\nThree instructions are trying to write into the FP. ultaneously.\n+ WAW hazard for the\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "multiply will require seven x stages subtract will require four x stages load will require one.",
+    "start": 1342.32,
+    "end": 1350.56,
+    "ocr_text": "&x MEM we\nMEM\n\nF6,F8,F10 a3 Aa MEM wo\n\nmem we\n\nx MEM Wa\n\nF6,0(R5) x MEM we\n\nThree instructions are tryini ultaneously.\n\n+ WAW hazard for the last two conflicting instructions (both writing F6).\n\nNo conflict in MEM as only the last\n\nNPTEL ONLIN\nITKHARAGPUR GEMTIneATION counses"
+  },
+  {
+    "text": "But, interestingly you see they all reach the W B stages together.",
+    "start": 1351.44,
+    "end": 1355.28,
+    "ocr_text": "&x MEM we\n1D eX) MEM WB.\nF6,F8,F10 al A200 03 Aa MEM wo\n10 x Mem we\nif io) EX | MEM | We\n\nF6,0(RS) i 1D SEX MEM we\n\nThree instructions are trying to write into the FP register bank simultaneously.\n+ WAW hazard for the last two conflicting instructions (both writing F6).\n\nNo conflict in MEM as only the last instruction accesses memory.\n\nNPTEL ONLIN\nIIT KHARAGPUR GERTINCATION counses"
+  },
+  {
+    "text": "So, there can be resource conflicts structural hazard in the W B stage.",
+    "start": 1358.24,
+    "end": 1362.88,
+    "ocr_text": "F6,F8,F10 a3 Aa MEM\nMEM | We\n\nF6,0(RS) x MEM we\n\nThree instructions are trying to write into the FP registe multaneously.\n\n+ WAW hazard for the last two conflicting instructions (both writing F6).\n\nNo conflict in MEM as only the last instruction accesses memory.\n\nNPTEL OLIN\nITKHARAGPUR EiTineaTION courses"
+  },
+  {
+    "text": "First one is trying to write into F 4 this one is trying to write into F 6 this is trying to",
+    "start": 1363.92,
+    "end": 1369.12,
+    "ocr_text": "F6,F8,F10 a3 Aa MEM\nMEM | We\n\nF6,0(RS) x MEM we\n\nThree instructions are trying to write into the FP registe multaneously.\n\n+ WAW hazard for the last two conflicting instructions (both writing F6).\n\nNo conflict in MEM as only the last instruction accesses memory.\n\nNPTEL OLIN\nITKHARAGPUR EiTineaTION courses"
+  },
+  {
+    "text": "to this is also trying to write into F 6. So, there is a conflict here these needs to be handled",
+    "start": 1369.36,
+    "end": 1378.64,
+    "ocr_text": "x MEM we\n\nMEM\n\nF6,F8,F10 aa Aa MEM we\ni MEM | We\n\nF6,0(R5), x MEM\n\nThree instructions are trying to write into the FP register bank simultaneously.\n+ WAW hazard for the last two conflicting instructions (both writing F6).\n\nNo conflict in MEM as only the last instruction accesses memory.\n\nNeTEL ONIN Nan\nITKHARAGPUR GEfTInestION counses Teno"
+  },
+  {
+    "text": "these instructions should not be allowed to reach W B stage at the same time.",
+    "start": 1379.28,
+    "end": 1384.24,
+    "ocr_text": "ex MEM we\nMEM\nF6,F8,F10 Al As Aa MEM wo\nir mem we\nif x MEM Wa\n\nF6,0(R5) x MEM we\n\nThree instructions are trying to write into the FP ultaneously.\n+ WAW hazard for the last two conflicting instructions (both writing F6).\n\nNo conflict in MEM as only the last instruction accesses memory.\n\nNeTEL ONLIN\nITKHARAGPUR GEATIneaTION counses"
+  },
+  {
+    "text": "So, some stall cycles in W B also needs to be inserted here. But, for mem in this example",
+    "start": 1386.24,
+    "end": 1392.24,
+    "ocr_text": "ex MEM\n\nF6,F8,F10 Aa MEM we\nmem we.\nMem | We\n\nF6,0(R5) x MEM we\n\nultaneously.\n\nThree instructions are trying to write into the FP\n¢t two conflicting instructions (both writing Fé).\n\n+ WAW hazard for the\nn MEM as only the last instruction accesses memory.\n\nNeTEL ONLIN\nIITKHARAGPUR GEtTIneaTION counses"
+  },
+  {
+    "text": "there is no conflict because only load is accessing memory. But, here when although this",
+    "start": 1392.24,
+    "end": 1398.08,
+    "ocr_text": "ex MEM\n\nF6,F8,F10 Aa MEM we\nmem we.\nMem | We\n\nF6,0(R5) x MEM we\n\nultaneously.\n\nThree instructions are trying to write into the FP\n¢t two conflicting instructions (both writing Fé).\n\n+ WAW hazard for the\nn MEM as only the last instruction accesses memory.\n\nNeTEL ONLIN\nIITKHARAGPUR GEtTIneaTION counses"
+  },
+  {
+    "text": "the instruction reach mem together, but here there is nothing to be done in mem for multiply",
+    "start": 1398.08,
+    "end": 1403.52,
+    "ocr_text": "F6,F8,F10\n\nF6,0(R5)\n\nThree instructions are trying to write into the FP\n+ WAW hazard for the last two conflicting instructions (both we\n\nNo conflict\n\nITKHARAGPUR\n\n&x MEM we\nMem\nAl\n10 mem\nif x\n1D\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\negister bank si\ning F6).\n\nAa we\nMEM | We\nx MEM we\n\nmultaneously.\n\nn MEMas only the last tion accesses memory.\n\nNATIONAL\nTeck"
+  },
+  {
+    "text": "and subtract only W B only this loads requires mem. The conflict in W B is important here you",
+    "start": 1403.52,
+    "end": 1412.08,
+    "ocr_text": "F6,F8,F10\n\nF6,0(R5)\n\nThree instructions are trying to write into the FP\n+ WAW hazard for the last two conflicting instructions (both we\n\nNo conflict\n\nITKHARAGPUR\n\n&x MEM we\nMem\nAl\n10 mem\nif x\n1D\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\negister bank si\ning F6).\n\nAa we\nMEM | We\nx MEM we\n\nmultaneously.\n\nn MEMas only the last tion accesses memory.\n\nNATIONAL\nTeck"
+  },
+  {
+    "text": "need to insert stalls. So, with this way come to the end of this lecture where see means we",
+    "start": 1412.08,
+    "end": 1420.8,
+    "ocr_text": "we\n\nMem\n\nF6,F8,F10 Aa Aa MEM wo.\nMem WB\nx MEM Wa\n\nF6,0(R5) 1D EX MEM\n\nThree instructions are trying to write into the FP register bank simultaneously.\n+ WAW hazard for the last two conflicting instructions (both writing F6).\n\nNo conflict in MEM as only the last instruction accesses memory.\n\nNPTEL ONUIN\nIITKHARAGPUR GEitineaTION courses"
+  },
+  {
+    "text": "have not gone into detail just we try to apprise about the problems that arise in",
+    "start": 1420.8,
+    "end": 1427.92,
+    "ocr_text": "=\n\no~"
+  },
+  {
+    "text": "multi cycle operations what are the kind of issues and hazards that can show up.",
+    "start": 1427.92,
+    "end": 1433.28,
+    "ocr_text": "=\n\no~"
+  },
+  {
+    "text": "And of course, in a real machine there has to be a very sophisticated mechanism to handle",
+    "start": 1434.0,
+    "end": 1439.2,
+    "ocr_text": "=\n\no~"
+  },
+  {
+    "text": "all these kinds of problems. Thank you.",
+    "start": 1439.2,
+    "end": 1448.64,
+    "ocr_text": "=\n\no~"
+  }
+]

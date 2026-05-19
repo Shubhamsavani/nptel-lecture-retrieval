@@ -1,0 +1,1292 @@
+[
+  {
+    "text": "Hello everyone, welcome to the first tutorial class of this course.",
+    "start": 0.0,
+    "end": 22.16,
+    "ocr_text": "Introduction to Machine Learning"
+  },
+  {
+    "text": "I am Anirban Santara, I am a PhD student in the Department of Computer Science and Engineering",
+    "start": 22.16,
+    "end": 26.56,
+    "ocr_text": "haat\noy\nea"
+  },
+  {
+    "text": "of IIT Karakpur and a TA for this course.",
+    "start": 26.56,
+    "end": 29.52,
+    "ocr_text": "haat\noy\nea"
+  },
+  {
+    "text": "So in these tutorial classes, I am going to take you through step by step hands on problem",
+    "start": 29.52,
+    "end": 37.28,
+    "ocr_text": "haat\noy\nea"
+  },
+  {
+    "text": "solving in the area of machine learning.",
+    "start": 37.28,
+    "end": 39.44,
+    "ocr_text": "haat\noy\nea"
+  },
+  {
+    "text": "So in the first tutorial class, we are going to concentrate on linear regression, logistic",
+    "start": 39.44,
+    "end": 43.84,
+    "ocr_text": "haat\noy\nea"
+  },
+  {
+    "text": "regression and decision trees and we will use decision trees for regression and classification",
+    "start": 43.84,
+    "end": 50.24,
+    "ocr_text": "haat\noy\nea"
+  },
+  {
+    "text": "and these are going to be the first steps that will give you a picture or give you an idea",
+    "start": 50.24,
+    "end": 56.36,
+    "ocr_text": "Platform\n\nWe will be using Scikits learn\n(sklearn) Python toolbox for\nmost of our hands-on tutorials.\n\nmachine learning in Python"
+  },
+  {
+    "text": "of how problem solving really occurs in real life machine learning applications.",
+    "start": 56.44,
+    "end": 62.76,
+    "ocr_text": "Platform\n\nWe will be using Scikits learn\n(sklearn) Python toolbox for\nmost of our hands-on tutorials.\n\nmachine learning in Python"
+  },
+  {
+    "text": "So the platform which we are going to use is Python based toolbox called Cykits learn.",
+    "start": 62.76,
+    "end": 71.0,
+    "ocr_text": "Platform\n\nWe will be using Scikits learn\n(sklearn) Python toolbox for\nmost of our hands-on tutorials.\n\nmachine learning in Python"
+  },
+  {
+    "text": "So this particular toolbox is very popular in the industry as well as in the academy",
+    "start": 71.0,
+    "end": 76.44,
+    "ocr_text": "Platform\n\nWe will be using Scikits learn\n(sklearn) Python toolbox for\nmost of our hands-on tutorials.\n\nmachine learning in Python"
+  },
+  {
+    "text": "and has implementations of a huge number of machine learning algorithms and we are",
+    "start": 76.44,
+    "end": 82.12,
+    "ocr_text": "Platform\n\nWe will be using Scikits learn\n(sklearn) Python toolbox for\n\nmost of our hands-on tutorials.\n\nmachine learning in Python"
+  },
+  {
+    "text": "going to use this particular library in most parts of our course.",
+    "start": 82.12,
+    "end": 87.08,
+    "ocr_text": "Platform\n\nWe will be using Scikits learn\n(sklearn) Python toolbox for\n\nmost of our hands-on tutorials.\n\nmachine learning in Python"
+  },
+  {
+    "text": "So in this particular tutorial, we are going to use two things from the linear model part",
+    "start": 87.08,
+    "end": 94.2,
+    "ocr_text": "Platform\n\nWe will be using Scikits learn\n(sklearn) Python toolbox for\nmost of our hands-on tutorials.\n\nThis tutorial will use: CT) leaun\n\n+ LinearRegression and\nLogisticRegression from\nsklearn.linear_model\n\n* DecisionTreeRegressor and\nDecisionTreeClassifier from\nsklearn.tree\n\nmachine learning in Python"
+  },
+  {
+    "text": "of the Cykits learn toolbox.",
+    "start": 94.2,
+    "end": 96.6,
+    "ocr_text": "Platform\n\nWe will be using Scikits learn\n(sklearn) Python toolbox for\nmost of our hands-on tutorials.\n\nThis tutorial will use: CT) leaun\n\n+ LinearRegression and\nLogisticRegression from\nsklearn.linear_model\n\n* DecisionTreeRegressor and\nDecisionTreeClassifier from\nsklearn.tree\n\nmachine learning in Python"
+  },
+  {
+    "text": "So the first thing will be linear regression, second will be logistic regression and then",
+    "start": 96.6,
+    "end": 101.88,
+    "ocr_text": "Platform\n\nWe will be using Scikits learn\n(sklearn) Python toolbox for\nmost of our hands-on tutorials.\n\nThis tutorial will use: @ lCeaun\n\n+ LinearRegression and\nLogisticRegression from\nsklearn.linear_model\n\n* DecisionTreeRegressor and\nDecisionTreeClassifier from\nsklearn.tree\n\nmachine learning in Python"
+  },
+  {
+    "text": "from the tree module of this particular toolbox, we are going to use decision tree regressor",
+    "start": 101.88,
+    "end": 107.16,
+    "ocr_text": "Platform\n\nWe will be using Scikits learn\n(sklearn) Python toolbox for\nmost of our hands-on tutorials.\n\nThis tutorial will use: @ lCeaun\n\n+ LinearRegression and\nLogisticRegression from\nsklearn.linear_model\n\n* DecisionTreeRegressor and\nDecisionTreeClassifier from\nsklearn.tree\n\nmachine learning in Python"
+  },
+  {
+    "text": "and decision tree classifier.",
+    "start": 107.16,
+    "end": 110.4,
+    "ocr_text": "Linear Regression"
+  },
+  {
+    "text": "So let us come to linear regression first.",
+    "start": 110.48,
+    "end": 112.56,
+    "ocr_text": "Linear Regression"
+  },
+  {
+    "text": "So linear regression is all about approximating linear function on your data.",
+    "start": 112.56,
+    "end": 119.24,
+    "ocr_text": "Linear Regression"
+  },
+  {
+    "text": "So given a data, you are going to fit a model and this model is limited by the family of",
+    "start": 119.24,
+    "end": 126.72,
+    "ocr_text": "Linear regression\n\nApproximation by a linear function in the feature space"
+  },
+  {
+    "text": "linear functions of the input features.",
+    "start": 126.72,
+    "end": 131.44,
+    "ocr_text": "Linear regression\n\nApproximation by a linear function in the feature space"
+  },
+  {
+    "text": "So the first thing which we will do in this tutorial is create a synthetic data set.",
+    "start": 131.44,
+    "end": 139.04,
+    "ocr_text": "Linear regression\n\nApproximation by a linear function in the feature space"
+  },
+  {
+    "text": "Why do we use a synthetic data set just to keep things simple.",
+    "start": 139.36,
+    "end": 142.56,
+    "ocr_text": "Step 1: Visualization of the dataset\nThis is a synthetic dataset. The function used is:\ny= = + sin) + (0,1)"
+  },
+  {
+    "text": "So our synthetic data set has been made using the function which you can see on the slide.",
+    "start": 142.56,
+    "end": 148.4,
+    "ocr_text": "Step 1: Visualization of the dataset\nThis is a synthetic dataset. The function used is:\ny= = + sin) + (0,1)"
+  },
+  {
+    "text": "So it is a very easy function and the third part of the function is actually Gaussian noise",
+    "start": 148.4,
+    "end": 154.72,
+    "ocr_text": "Step 1: Visualization of the dataset\nThis is a synthetic dataset. The function used is:\ny= = + sin(x) + (0,1)"
+  },
+  {
+    "text": "which gives some randomness to the data and a feel of what real life data sets actually",
+    "start": 154.72,
+    "end": 160.24,
+    "ocr_text": "Step 1: Visualization of the dataset\nThis is a synthetic dataset. The function used is:\ny= = + sin(x) + (0,1)"
+  },
+  {
+    "text": "look like.",
+    "start": 160.24,
+    "end": 161.84,
+    "ocr_text": "Step 1: Visualization of the dataset\nThis is a synthetic dataset. The function used is:\ny= = + sin(x) + (0,1)"
+  },
+  {
+    "text": "So the first step in any machine learning problem solving is to visualize the data set.",
+    "start": 161.84,
+    "end": 167.68,
+    "ocr_text": "Step 1: Visualization of the dataset\nThis is a synthetic dataset. The function used is:\ny= = + sin(x) + (0,1)"
+  },
+  {
+    "text": "And this actually gives a nice picture of how complex the problem actually is and like",
+    "start": 167.76,
+    "end": 174.4,
+    "ocr_text": "a\n\n4 a\nw\n\nue,\n4"
+  },
+  {
+    "text": "how to exactly go about solving the problem.",
+    "start": 174.4,
+    "end": 177.12,
+    "ocr_text": "a\n\n4 a\nw\n\nue,\n4"
+  },
+  {
+    "text": "So visualization is important and the second step in any machine learning application is to",
+    "start": 177.12,
+    "end": 184.96,
+    "ocr_text": "pe es"
+  },
+  {
+    "text": "split the data set which is available to us into three fragments.",
+    "start": 185.76,
+    "end": 189.6,
+    "ocr_text": "Step 2: Split the\ndata\n\nWe split the data into\n* Training (70%),\n\n* Validation (15%) and\n* Test (15%)\n\nSets."
+  },
+  {
+    "text": "The training data set, the validation set and the test set.",
+    "start": 189.6,
+    "end": 193.92,
+    "ocr_text": "Step 2: Split the\ndata\n\nWe split the data into\n* Training (70%),\n\n* Validation (15%) and\n* Test (15%)\n\nSets."
+  },
+  {
+    "text": "So the protocol is to train the model on the training set and after every episode of training",
+    "start": 193.92,
+    "end": 202.0,
+    "ocr_text": "Step 2: Split the\ndata\n\nWe split the data into\n* Training (70%),\n\n* Validation (15%) and\n* Test (15%)\n\nSets."
+  },
+  {
+    "text": "in order to evaluate how good the algorithm would actually generalize in the real world",
+    "start": 202.0,
+    "end": 207.84,
+    "ocr_text": "Step 2: Split the\ndata\n\nWe split the data into\n* Training (70%),\n\n* Validation (15%) and\n* Test (15%)\n\nSets."
+  },
+  {
+    "text": "we are going to evaluate the model on the validation set.",
+    "start": 208.64,
+    "end": 213.36,
+    "ocr_text": "Step 2: Split the\ndata\n\nWe split the data into\n* Training (70%),\n\n* Validation (15%) and\n* Test (15%)\n\nSets."
+  },
+  {
+    "text": "And after every episode of learning we go about doing one phase of evaluation on the validation",
+    "start": 213.36,
+    "end": 218.64,
+    "ocr_text": "Step 2: Split the\ndata\n\nWe split the data into\n* Training (70%),\n\n* Validation (15%) and\n* Test (15%)\n\nSets."
+  },
+  {
+    "text": "set and we go come back and tune the hyperparameters of the system.",
+    "start": 218.72,
+    "end": 223.52,
+    "ocr_text": "Step 2: Split the\ndata\n\nWe split the data into\n* Training (70%),\n\n* Validation (15%) and\n* Test (15%)\n\nSets."
+  },
+  {
+    "text": "Like we can change the number of kind of features we are using.",
+    "start": 223.52,
+    "end": 227.2,
+    "ocr_text": "Step 2: Split the\ndata\n\nWe split the data into\n* Training (70%),\n\n* Validation (15%) and\n* Test (15%)\n\nSets."
+  },
+  {
+    "text": "We may like to change certain model architectures and say number of nodes in a or number of",
+    "start": 227.2,
+    "end": 232.72,
+    "ocr_text": "Step 2: Split the\ndata\n\nWe split the data into\n* Training (70%),\n\n* Validation (15%) and\n* Test (15%)\n\nSets."
+  },
+  {
+    "text": "trees in an ensemble. So a number of nodes in a neural network and these things are the hyperparameters",
+    "start": 233.6,
+    "end": 240.24,
+    "ocr_text": "Step 2: Split the\ndata\n\nWe split the data into\n* Training (70%),\n\n* Validation (15%) and\n* Test (15%)\n\nSets."
+  },
+  {
+    "text": "which are not optimized directly by the learning algorithm but those that in hyperparameters have to",
+    "start": 240.24,
+    "end": 245.36,
+    "ocr_text": "as a"
+  },
+  {
+    "text": "be observed based on the model's performance on the validation data or how good it actually",
+    "start": 245.36,
+    "end": 251.76,
+    "ocr_text": "+"
+  },
+  {
+    "text": "generalizes to real world. So that is why we need the validation set and finally after all the",
+    "start": 251.76,
+    "end": 258.8,
+    "ocr_text": "+"
+  },
+  {
+    "text": "training has been done, all the tuning of the architecture has been done. We take the test set",
+    "start": 258.8,
+    "end": 265.92,
+    "ocr_text": "+"
+  },
+  {
+    "text": "and we find the performance of the model on the test set and this particular performance which we",
+    "start": 265.92,
+    "end": 271.36,
+    "ocr_text": "al\nEw\n\nrt\nea"
+  },
+  {
+    "text": "get it is actually supposed to be reported as a measure of actual generalization of the model",
+    "start": 271.36,
+    "end": 279.04,
+    "ocr_text": "al\nEw\n\nrt\nea"
+  },
+  {
+    "text": "because this particular test set was not shown to the model at any five phase of its training.",
+    "start": 279.04,
+    "end": 285.52,
+    "ocr_text": "al\nEw\n\nrt\nea"
+  },
+  {
+    "text": "Neither during its parameter learning nor during its hyperparameter tuning. So this actually gives",
+    "start": 286.08,
+    "end": 291.44,
+    "ocr_text": "al\nEw\n\nrt\nea"
+  },
+  {
+    "text": "a feel of what an un a set of unseen examples or unseen cases may look like. So that is why we need",
+    "start": 291.6,
+    "end": 302.8,
+    "ocr_text": "al\nEw\n\nrt\nea"
+  },
+  {
+    "text": "to do this kind of a split of the data that is available towards into training validation and",
+    "start": 302.8,
+    "end": 308.16,
+    "ocr_text": "TESK er\nDEBUGGING Exy,"
+  },
+  {
+    "text": "test sets and it is a general practice to have 70 percent of the data aside as training set",
+    "start": 308.16,
+    "end": 317.04,
+    "ocr_text": "TESK er\nDEBUGGING Exy,"
+  },
+  {
+    "text": "and the rest 30 percent is divided into validation and test set. So that is what we do here.",
+    "start": 317.6,
+    "end": 322.64,
+    "ocr_text": "TESK er\nDEBUGGING Exy,"
+  },
+  {
+    "text": "So the next step is to fit a linear model onto the training set and over here we first invoke",
+    "start": 324.8,
+    "end": 335.12,
+    "ocr_text": "TESK er\nDEBUGGING Exy,"
+  },
+  {
+    "text": "the linear regression model the class and we create an object of this particular class",
+    "start": 335.76,
+    "end": 344.64,
+    "ocr_text": "model. fit(x train. for line fitting,\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "and this particular object class has a number of has all necessary functions that are required for",
+    "start": 344.64,
+    "end": 352.96,
+    "ocr_text": "model. fit(x train. for line fitting,\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "working with linear regression models and that is it and we also we first like create copies of",
+    "start": 354.0,
+    "end": 363.52,
+    "ocr_text": "Step 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "our training set the x-trained and y-trained are the training features the inputs and the labels",
+    "start": 363.52,
+    "end": 371.6,
+    "ocr_text": "model. fit(x train_for line fitting,\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "and we reshape them into the particular convention which is necessary for the linear regression",
+    "start": 371.6,
+    "end": 378.0,
+    "ocr_text": "model. fit(x train. for line fitting,\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "object and we create copies of these data sets because it tends to overwrite the examples if we",
+    "start": 378.0,
+    "end": 388.0,
+    "ocr_text": "Step 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "do not do it. So that is why. So first we do this and first the data is ready so that is what we",
+    "start": 388.0,
+    "end": 394.08,
+    "ocr_text": "4 ‘"
+  },
+  {
+    "text": "have in the second line. So x-trained for line fitting and y-trained for line fitting they are the",
+    "start": 394.08,
+    "end": 399.68,
+    "ocr_text": "4 ‘"
+  },
+  {
+    "text": "input features and targets that is the disheighted outputs correspondingly and next we go for",
+    "start": 399.84,
+    "end": 409.28,
+    "ocr_text": "1: fitGc train. for Line fitting,\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "the training part and in this particular episode what do we do? This is this particular step we",
+    "start": 410.4,
+    "end": 416.56,
+    "ocr_text": "Step 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "fit which we invoke model dot fit this function. So this particular function does",
+    "start": 417.04,
+    "end": 422.72,
+    "ocr_text": "Step 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "least a squared error minimization on the training set. So whatever does it do? For every single",
+    "start": 423.12,
+    "end": 431.2,
+    "ocr_text": "model. fit(x train. for line fitting,\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "training example it calculates the prediction for the model and then it finds out what is the",
+    "start": 431.2,
+    "end": 437.92,
+    "ocr_text": "model. fit(x train. for line fitting,\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "amount of deviation of this predicted value from the desired value which is also given to the",
+    "start": 437.92,
+    "end": 445.12,
+    "ocr_text": "#itGe train. for line fitting,\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "model and now this deviation or the error is first squared so that it becomes",
+    "start": 445.52,
+    "end": 451.92,
+    "ocr_text": "#itGe train. for line fitting,\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "it does not become so that it becomes insensitive to the sign and then it is summed over the entire",
+    "start": 453.04,
+    "end": 460.64,
+    "ocr_text": "#itGe train. for line fitting,\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "training set and this particular error is the squared error that we are talking about and this",
+    "start": 460.64,
+    "end": 466.64,
+    "ocr_text": "y_Line_fitting)\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "error is minimized through gradient descent learning and finally we get a model which minimizes",
+    "start": 466.64,
+    "end": 472.8,
+    "ocr_text": "y_Line_fitting)\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "the squared error and so here we see that the model has learned to fit a line to the data and this",
+    "start": 472.88,
+    "end": 483.44,
+    "ocr_text": "y_Line_fitting)\n\nStep 3: Fit a linear model\n\nWe fit a line that minimizes the squared error on the training set"
+  },
+  {
+    "text": "line minimizes the squared error on the training set and you can see that it passes nicely through",
+    "start": 483.44,
+    "end": 488.64,
+    "ocr_text": "Visualization of the model\n\nThe blue line is the line that the model has learnt to fit to the data. It\nminimizes the squared error on the training set"
+  },
+  {
+    "text": "the distribution of samples and the fourth step is how to evaluate is evaluation of the model.",
+    "start": 488.64,
+    "end": 497.12,
+    "ocr_text": "Visualization of the model\n\nThe blue line is the line that the model has learnt to fit to the data. It\nminimizes the squared error on the training set"
+  },
+  {
+    "text": "So in this particular step what do we do? We find out the how good the trained model generalizes",
+    "start": 497.12,
+    "end": 503.92,
+    "ocr_text": "Step 4: Evaluation by Mean Squared Error\n(MSE)\n\nThe validation and test errors give an estimate of how well the model\nwould generalize to unseen data: the lower the better."
+  },
+  {
+    "text": "so because it all matters to us what all matters to us is how good the model would perform on some",
+    "start": 503.92,
+    "end": 510.64,
+    "ocr_text": "Step 4: Evaluation by Mean Squared Error\n(MSE)\n\nThe validation and test errors give an estimate of how well the model\nwould generalize to unseen data: the lower the better."
+  },
+  {
+    "text": "unknown task. So when the model it does not matter to us how good the model would perform on some",
+    "start": 510.64,
+    "end": 519.04,
+    "ocr_text": "Step 4: Evaluation by Mean Squared Error\n(MSE)\n\nThe validation and test errors give an estimate of how well the model\nwould generalize to unseen data: the lower the better."
+  },
+  {
+    "text": "seen examples or the examples from the training set which we already know we already know the",
+    "start": 519.92,
+    "end": 524.88,
+    "ocr_text": "Step 4: Evaluation by Mean Squared Error\n(MSE)\n\nThe validation and test errors give an estimate of how well the model\nwould generalize to unseen data: the lower the better."
+  },
+  {
+    "text": "desired outputs the correct outputs for all of those examples they do not matter towards any more",
+    "start": 524.88,
+    "end": 529.76,
+    "ocr_text": "Step 4: Evaluation by Mean Squared Error\n(MSE)\n\nThe validation and test errors give an estimate of how well the model\nwould generalize to unseen data: the lower the better."
+  },
+  {
+    "text": "what matters to us is how good the model would perform when it is sent out to the world to the",
+    "start": 529.76,
+    "end": 536.88,
+    "ocr_text": "Step 4: Evaluation by Mean Squared Error\n(MSE)\n\nThe validation and test errors give an estimate of how well the model\nwould generalize to unseen data: the lower the better."
+  },
+  {
+    "text": "unknown world and ask to perform so that is what we talk what is meant by the generalization",
+    "start": 536.88,
+    "end": 541.52,
+    "ocr_text": "Step 4: Evaluation by Mean Squared Error\n(MSE)\n\nThe validation and test errors give an estimate of how well the model\nwould generalize to unseen data: the lower the better."
+  },
+  {
+    "text": "performance and this generalization performance is to be measured next. So what do we do? We find out",
+    "start": 541.52,
+    "end": 547.36,
+    "ocr_text": "Step 4: Evaluation by Mean Squared Error\n(MSE)\n\nThe validation and test errors give an estimate of how well the model\nwould generalize to unseen data: the lower the better."
+  },
+  {
+    "text": "the mean squared errors for the validation set and the test set and those numbers can be calculated",
+    "start": 547.36,
+    "end": 554.4,
+    "ocr_text": "Step 4: Evaluation by Mean Squared Error\n(MSE)\n\nThe validation and test errors give an estimate of how well the model\nwould generalize to unseen data: the lower the better."
+  },
+  {
+    "text": "using the code that is given. So yeah that was the end of the linear regression part and all the",
+    "start": 554.4,
+    "end": 563.44,
+    "ocr_text": "Step 4: Evaluation by Mean Squared Error\n(MSE)\n\nThe validation and test errors give an estimate of how well the model\nwould generalize to unseen data: the lower the better."
+  },
+  {
+    "text": "code and instructions and explanations will be provided to you through an ipython notebook",
+    "start": 563.44,
+    "end": 569.68,
+    "ocr_text": "2. Logistic Regression"
+  },
+  {
+    "text": "which will be provided to you via the portal for this particular course on NPTEL and",
+    "start": 570.4,
+    "end": 576.8,
+    "ocr_text": "2. Logistic Regression"
+  },
+  {
+    "text": "currently they are also on GitHub and I think that they will we will we will preserve these ipython",
+    "start": 576.8,
+    "end": 582.72,
+    "ocr_text": "2. Logistic Regression"
+  },
+  {
+    "text": "notebooks on our GitHub page as well and those links will be provided in the course website.",
+    "start": 582.72,
+    "end": 588.16,
+    "ocr_text": "2. Logistic Regression"
+  },
+  {
+    "text": "So you would be able to directly you know directly use that particular notebook and you execute",
+    "start": 589.2,
+    "end": 597.92,
+    "ocr_text": "2. Logistic Regression"
+  },
+  {
+    "text": "the cells one by one so each cell describes one particular step in the learning procedure so",
+    "start": 597.92,
+    "end": 603.76,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "in the entire procedure. So the entire procedure is broken up into steps and each step is within each",
+    "start": 603.76,
+    "end": 608.56,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "cell and you execute a cell and it will execute the particular action that is required all right.",
+    "start": 608.56,
+    "end": 618.4,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "So that is going to be really convenient for you people to practice and understand how",
+    "start": 618.4,
+    "end": 623.28,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "a thing is done. So next we come to logistic regression. So logistic regression is all about",
+    "start": 623.28,
+    "end": 629.36,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "classification using a linear decision boundary. Now you can look up on the web and find out",
+    "start": 630.08,
+    "end": 634.96,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "why exactly how exactly this classification via a linear decision boundary happens using",
+    "start": 635.04,
+    "end": 640.88,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "logistic regression rather I can just say in a few words that logistic regression model would",
+    "start": 640.88,
+    "end": 647.2,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "try to so it is inherently a binary classifier so it is a two class classifier and it can be trained",
+    "start": 647.2,
+    "end": 654.56,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "to output a probability for the two classes. Given a particular input example it can output the",
+    "start": 654.56,
+    "end": 660.0,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "probability of it belonging to either class 0 or class 1 say. So like either true or false",
+    "start": 660.0,
+    "end": 666.8,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "and now you can like threshold the output into at like say 0.5 and the output which logistic",
+    "start": 666.8,
+    "end": 675.04,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "regression unit would give is between 0 and 1. So if you threshold that value at 0.5 you get a",
+    "start": 675.04,
+    "end": 681.28,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "classification output all right. So this is how logistic regression works. So you can also look",
+    "start": 681.84,
+    "end": 688.48,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "up on the web. So logistic regression performs classification by via a linear decision boundary.",
+    "start": 688.48,
+    "end": 694.4,
+    "ocr_text": "Logistic regression\n\nClassification by a linear decision boundary"
+  },
+  {
+    "text": "And we are going to use a very popular data set it is called the IADS data set as in this particular",
+    "start": 695.2,
+    "end": 702.96,
+    "ocr_text": "Step 1:\nVisualization of\nthe dataset\n\nWe will use a truncated\nversion of the Iris dataset in\nthis example\n\nWe will consider only two\ninput features:\n\nSepal length (in cm)\nSepal width (in cm)\nAnd only two output classes:\nIris Setosa\n5 Versicolour"
+  },
+  {
+    "text": "example. So this data set has is actually a data set of iris flowers. So these flowers fall into",
+    "start": 702.96,
+    "end": 711.6,
+    "ocr_text": "Step 1:\nVisualization of\nthe dataset\n\nWe will use a truncated\nversion of the Iris dataset in\nthis example\n\nWe will consider only two\ninput features:\n\nSepal length (in cm)\nSepal width (in cm)\nAnd only two output classes:\nIris Setosa\n5 Versicolour"
+  },
+  {
+    "text": "these plants come in three different species, three different kinds of flowers. So the task is",
+    "start": 711.68,
+    "end": 720.72,
+    "ocr_text": "Step 1:\nVisualization of\nthe dataset\n\nWe will use a truncated\nversion of the Iris dataset in\nthis example\n\nWe will consider only two\ninput features:\n\nSepal length (in cm)\nSepal width (in cm)\n\nAnd only two output classes:\n\nIris Setosa\n= Versicolour"
+  },
+  {
+    "text": "to classify these flowers on the basis of just four of their features with the sepal length,",
+    "start": 720.72,
+    "end": 728.56,
+    "ocr_text": "Step 1:\nVisualization of\nthe dataset\n\nWe will use a truncated\nversion of the Iris dataset in\nthis example.\n\nWe will consider only two\ninput features:\n\nSepal length (in cm)\nSepal width (in cm)\nAnd only two output classes:\nIris Setosa\n5 Versicolour"
+  },
+  {
+    "text": "sepal width, petal length and petal width and based on these four features you have to classify",
+    "start": 728.56,
+    "end": 736.64,
+    "ocr_text": "Step 1:\nVisualization of\nthe dataset\n\nWe will use a truncated\nversion of the Iris dataset in\nthis example.\n\nWe will consider only two\ninput features:\n\nSepal length (in cm)\nSepal width (in cm)\nAnd only two output classes:\nIris Setosa\n5 Versicolour\n\nres"
+  },
+  {
+    "text": "the flowers into one of the three different species. So this is the task all right. But to make it",
+    "start": 736.72,
+    "end": 746.72,
+    "ocr_text": "Step 1:\nVisualization of\nthe dataset\n\nWe will use a truncated\nversion of the Iris dataset in\nthis example.\n\nWe will consider only two\ninput features:\n\nSepal length (in cm)\nSepal width (in cm)\nAnd only two output classes:\nIris Setosa\n5 Versicolour"
+  },
+  {
+    "text": "keep it simple and easy to visualize and appreciate I have decided to reduce the complexity of the",
+    "start": 746.72,
+    "end": 754.72,
+    "ocr_text": "Step 1:\nVisualization of\nthe dataset\n\nWe will use a truncated\nversion of the Iris dataset in\nthis example.\n\nWe will consider only two\ninput features:\n\nSepal length (in cm)\nSepal width (in cm)\n\nAnd only two output classes:\n\nIris Setosa\nIris Versicolour"
+  },
+  {
+    "text": "data set up bit. So what we are going to do we are just going to take up two features of the data",
+    "start": 754.72,
+    "end": 760.48,
+    "ocr_text": "Step 1:\nVisualization of\nthe dataset\n\nWe will use a truncated\nversion of the Iris dataset in\nthis example.\n\nWe will consider only two\ninput features:\n\nSepal length (in cm)\nSepal width (in cm)\n\nAnd only two output classes:\n\nIris Setosa\nIris Versicolour"
+  },
+  {
+    "text": "with the sepal length and sepal width only and just consider two classes out of three",
+    "start": 760.48,
+    "end": 768.16,
+    "ocr_text": "Step 1:\nVisualization of\nthe dataset\n\nWe will use a truncated\nversion of the Iris dataset in\nthis example.\n\nWe will consider only two\ninput features:\n\nSepal length (in cm)\n\nSepal width (in cm)\n\nAnd only two output classes:\nIris Setosa\n\nIris Versicolour"
+  },
+  {
+    "text": "possible classes of flowers we are going to take two classes of the flower. So the simplification",
+    "start": 768.16,
+    "end": 772.88,
+    "ocr_text": "ad &\n\nzi\na"
+  },
+  {
+    "text": "is this. So we use only two input features the first two and the first two classes all right.",
+    "start": 772.88,
+    "end": 781.12,
+    "ocr_text": "ad &\n\nzi\na"
+  },
+  {
+    "text": "So we do the same exercise as before we split the data into training validation and test sets as",
+    "start": 783.04,
+    "end": 789.2,
+    "ocr_text": "THE.\nSTAGES OF\n\nts,\nfern\nWy,"
+  },
+  {
+    "text": "necessary and then we fit the logistic regression model. So we invoke the logistic regression class",
+    "start": 789.2,
+    "end": 799.68,
+    "ocr_text": "Step 2: Make training, validation and test\nsplits\n\nTraining — 70%, Validation— 15%, Test — 15%"
+  },
+  {
+    "text": "and create an object and then we do a model dot fit. So this does the minimum error approximation",
+    "start": 799.68,
+    "end": 809.28,
+    "ocr_text": "Step 3: Fit the logistic regression model\n\nWe fit a linear decision boundary that minimizes the classification error"
+  },
+  {
+    "text": "so it this particular algorithm will minimize the classification error and you can find the full",
+    "start": 810.0,
+    "end": 815.68,
+    "ocr_text": "Step 3: Fit the logistic regression model\n\nWe fit a linear decision boundary that minimizes the classification error"
+  },
+  {
+    "text": "documentation on the official website of the psychites learn right. So once this model is trained",
+    "start": 815.68,
+    "end": 826.56,
+    "ocr_text": "Step 3: Fit the logistic regression model\n\nWe fit a linear decision boundary that minimizes the classification error"
+  },
+  {
+    "text": "you can find that this model creates a linear decision boundary. So as I said before so the two",
+    "start": 826.56,
+    "end": 834.32,
+    "ocr_text": "Step 4: Visualize the decision boundary\n\nWe color the areas of the feature space assigned to the two different\nclasses. Blue belongs to class O and orange to class 1"
+  },
+  {
+    "text": "different classes are easily linear is separable in this case and that is why it is possible to",
+    "start": 834.32,
+    "end": 841.76,
+    "ocr_text": "Step 4: Visualize the decision boundary\n\nWe color the areas of the feature space assigned to the two different\nclasses. Blue belongs to class O and orange to class 1"
+  },
+  {
+    "text": "draw such a beautiful decision boundary which correctly divides the entire feature space into",
+    "start": 841.76,
+    "end": 848.32,
+    "ocr_text": "Step 4: Visualize the decision boundary\n\nWe color the areas of the feature space assigned to the two different\nclasses. Blue belongs to class O and orange to class 1"
+  },
+  {
+    "text": "two fragments right. So as you can see there the blue region belongs to class 0 according to",
+    "start": 848.32,
+    "end": 855.44,
+    "ocr_text": "Step 4: Visualize the decision boundary\n\nWe color the areas of the feature space assigned to the two different\nclasses. Blue belongs to class O and orange to class 1"
+  },
+  {
+    "text": "the model and the orange one belongs to class 1 okay. So finally we evaluate the model and we find",
+    "start": 855.44,
+    "end": 865.2,
+    "ocr_text": "Step 4: Visualize the decision boundary\n\nWe color the areas of the feature space assigned to the two different\nclasses. Blue belongs to class O and orange to class 1"
+  },
+  {
+    "text": "that we have 0 percent misclassification error both on validation and test sets so that it is",
+    "start": 865.28,
+    "end": 872.64,
+    "ocr_text": "Step 5: Evaluate the model\n\n0% validation and test error was only possible because the classes were\nlinearly separable"
+  },
+  {
+    "text": "completely generalizes according to as far as we know by according to the data that has been provided",
+    "start": 872.64,
+    "end": 878.24,
+    "ocr_text": "Step 5: Evaluate the model\n\n0% validation and test error was only possible because the classes were\nlinearly separable"
+  },
+  {
+    "text": "to us. So it is just because of the case that we were fortunate to have the two classes that we",
+    "start": 878.24,
+    "end": 887.68,
+    "ocr_text": "Step 5: Evaluate the model\n\n0% validation and test error was only possible because the classes were\nlinearly separable"
+  },
+  {
+    "text": "picked to be linearly separable in the particular feature space that we choose and that is not",
+    "start": 887.68,
+    "end": 894.64,
+    "ocr_text": "Step 5: Evaluate the model\n\n0% validation and test error was only possible because the classes were\nlinearly separable"
+  },
+  {
+    "text": "the case in most of the real world situations but just to keep things simple and just to give you",
+    "start": 894.88,
+    "end": 899.92,
+    "ocr_text": "Step 5: Evaluate the model\n\n0% validation and test error was only possible because the classes were\nlinearly separable"
+  },
+  {
+    "text": "people an idea of how logistic regression works this I chose this example right. So next we enter",
+    "start": 899.92,
+    "end": 909.92,
+    "ocr_text": "Decision tree regression"
+  },
+  {
+    "text": "decision tree regression. So decision trees are piecewise linear models all right so the linear",
+    "start": 909.92,
+    "end": 918.56,
+    "ocr_text": "Decision tree regression"
+  },
+  {
+    "text": "regression and logistic regression they were like single line fitting models all right the at",
+    "start": 918.56,
+    "end": 923.2,
+    "ocr_text": "Decision tree regression\n\nDecision trees are used to learn piecewise linear models to fit the data"
+  },
+  {
+    "text": "least the variant that we that I showed you the particular model that I demonstrated in this",
+    "start": 923.2,
+    "end": 928.72,
+    "ocr_text": "Decision tree regression\n\nDecision trees are used to learn piecewise linear models to fit the data"
+  },
+  {
+    "text": "tutorial but a decision tree tries to learn a set of if else conditions all right if then ends",
+    "start": 928.72,
+    "end": 936.56,
+    "ocr_text": "Decision tree regression\n\nDecision trees are used to learn piecewise linear models to fit the data"
+  },
+  {
+    "text": "conditions. So if like if the input be in a particular range of the feature space or in a",
+    "start": 936.56,
+    "end": 942.64,
+    "ocr_text": "Decision tree regression\n\nDecision trees are used to learn piecewise linear models to fit the data"
+  },
+  {
+    "text": "particular place of the feature space then it is going to fit one particular line to the data.",
+    "start": 942.64,
+    "end": 948.32,
+    "ocr_text": "Decision tree regression\n\nDecision trees are used to learn piecewise linear models to fit the data"
+  },
+  {
+    "text": "So it is a piecewise linear model right and we use the same dataset same synthetic dataset",
+    "start": 948.32,
+    "end": 956.88,
+    "ocr_text": "Decision tree regression\n\nDecision trees are used to learn piecewise linear models to fit the data\n\nPRRs\n\nN"
+  },
+  {
+    "text": "that we used in the linear regression example and finally we fit the model. So we invoke the",
+    "start": 956.88,
+    "end": 963.6,
+    "ocr_text": "Step 2: Fit the model\n\nWe study models of different maximum tree-depths"
+  },
+  {
+    "text": "decision tree regressor class we create an object of that class and we fit the model by minimizing",
+    "start": 963.6,
+    "end": 970.56,
+    "ocr_text": "Step 2: Fit the model\n\nWe study models of different maximum tree-depths"
+  },
+  {
+    "text": "the again the amount of deviation which we have from the true values and we now what we are going",
+    "start": 970.88,
+    "end": 980.56,
+    "ocr_text": "Step 2: Fit the model\n\nWe study models of different maximum tree-depths"
+  },
+  {
+    "text": "to do in this particular section of the tutorial is understand how we can engineer the depth maximum",
+    "start": 980.56,
+    "end": 988.72,
+    "ocr_text": "Step 2: Fit the model\n\nWe study models of different maximum tree-depths"
+  },
+  {
+    "text": "depth parameter of our decision tree to control the amount of bias and variance that say in the model.",
+    "start": 988.72,
+    "end": 995.2,
+    "ocr_text": "Step 2: Fit the model\n\nWe study models of different maximum tree-depths"
+  },
+  {
+    "text": "So we see that the leftmost example that you see that has a maximum depth of 1. So it is just",
+    "start": 995.52,
+    "end": 1005.76,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "single if else condition so if the data be less than 1 then it is using one particular line and",
+    "start": 1007.04,
+    "end": 1016.96,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data\n\nAge"
+  },
+  {
+    "text": "it is greater than 1 then it is using another line and very simple model that is the",
+    "start": 1016.96,
+    "end": 1022.08,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "same responsible so maximum depth equal to 1. We can see that both the training error and the",
+    "start": 1022.08,
+    "end": 1027.76,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "generalization error which is given by the training and the validation and the test errors are high",
+    "start": 1027.76,
+    "end": 1034.24,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "and that is and while if we go to maximum depth equal to 3 then we can see that we have a",
+    "start": 1035.68,
+    "end": 1042.88,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "piecewise linear model which fits really closely to the data but maybe it fits just well which",
+    "start": 1042.88,
+    "end": 1050.08,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "will come to the next slide and we will discuss about this so which one fits the best. Whereas",
+    "start": 1050.08,
+    "end": 1055.36,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "if we increase the maximum depth to 10 then you can see that this tries to like fit the",
+    "start": 1056.24,
+    "end": 1061.92,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "red data the data really really closely and this is not at all sustainable or that all generalizable",
+    "start": 1061.92,
+    "end": 1068.96,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "because if you can see that is trying to like hug on to every single point of the example set",
+    "start": 1068.96,
+    "end": 1074.96,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "of the training set and most of these points are noisy because we explicitly imposed",
+    "start": 1075.04,
+    "end": 1081.04,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "superimposed some Gaussian noise on the data so this is not at all encouraged so that is why",
+    "start": 1081.84,
+    "end": 1087.68,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "that is why we should like this particular model has very high variance and we should be able to",
+    "start": 1088.72,
+    "end": 1094.24,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data"
+  },
+  {
+    "text": "like we should be able to identify this overfitting happening and choose a maximum depth which",
+    "start": 1095.44,
+    "end": 1102.8,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data\n\nat toa"
+  },
+  {
+    "text": "is lesser than this value. So the next slide this curve shows the variation of training, validation",
+    "start": 1103.36,
+    "end": 1111.52,
+    "ocr_text": "Step 3: Evaluation and visualization\n\nWith increasing depth, the model fits tighter to the data\n\nat toa"
+  },
+  {
+    "text": "and test errors with maximum depth. So as you can see that for maximum depth equal to 3 up to",
+    "start": 1111.52,
+    "end": 1118.8,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth >3"
+  },
+  {
+    "text": "maximum depth equal to 3 rather training, validation and test errors all of them keep decreasing",
+    "start": 1118.8,
+    "end": 1125.52,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth > 3"
+  },
+  {
+    "text": "or at least they are non-increasing. Whereas if like for like as soon as we increase the maximum",
+    "start": 1126.08,
+    "end": 1133.12,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth > 3"
+  },
+  {
+    "text": "depth parameter beyond 3 this model starts overfitting and that is clear because the training",
+    "start": 1133.12,
+    "end": 1141.2,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth > 3"
+  },
+  {
+    "text": "error decreases whereas the validation and test errors keep tend to increase.",
+    "start": 1141.2,
+    "end": 1146.08,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth >3"
+  },
+  {
+    "text": "So this is what is done in practical machine learning. So we would rather choose",
+    "start": 1146.48,
+    "end": 1156.08,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth > 3"
+  },
+  {
+    "text": "like when we were for making the model which is going to be deployed we are going to choose",
+    "start": 1157.28,
+    "end": 1162.4,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth > 3"
+  },
+  {
+    "text": "maximum depth of 1 sorry of 2 or 3 rather 2 is a for safer option because we do not really want",
+    "start": 1163.2,
+    "end": 1173.44,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth > 3"
+  },
+  {
+    "text": "the model to fit snugly on the data because we want it to we want to keep it loose so that like it",
+    "start": 1173.44,
+    "end": 1180.24,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth >3"
+  },
+  {
+    "text": "kind of fits well on the data. So it kind of fits well on the training data as well as it generalizes",
+    "start": 1180.24,
+    "end": 1190.16,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth > 3"
+  },
+  {
+    "text": "well in the real world. So preferred choice of max depth would be either 2 or 3 in this case.",
+    "start": 1190.16,
+    "end": 1200.48,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth > 3"
+  },
+  {
+    "text": "So next let us look at the application of decision trees in classification. So decision trees learn",
+    "start": 1201.44,
+    "end": 1212.08,
+    "ocr_text": "Variation of error with maximum depth of\ntree\n\nWe see that overfitting sets in for max_depth > 3"
+  },
+  {
+    "text": "piecewise linear decision boundaries. So a single logistic regression classifier would learn a",
+    "start": 1212.08,
+    "end": 1216.88,
+    "ocr_text": "Decision tree classification"
+  },
+  {
+    "text": "single line as a decision boundary whereas decision trees can like learn piecewise linear model.",
+    "start": 1216.88,
+    "end": 1223.28,
+    "ocr_text": "Decision tree classification\n\nDecision trees learn piece-wise linear decision boundaries"
+  },
+  {
+    "text": "So what do we mean by that? So we mean by that the feature space is going to be divided into small",
+    "start": 1223.28,
+    "end": 1230.24,
+    "ocr_text": "Decision tree classification\n\nDecision trees learn piece-wise linear decision boundaries"
+  },
+  {
+    "text": "volumes and within each single volume the decision tree is going to learn one particular hyperplane",
+    "start": 1230.32,
+    "end": 1236.16,
+    "ocr_text": "Decision tree classification\n\nDecision trees learn piece-wise linear decision boundaries"
+  },
+  {
+    "text": "which is the generalization of a line and that is the yeah general linear function. So this",
+    "start": 1237.04,
+    "end": 1243.2,
+    "ocr_text": "Decision tree classification\n\nDecision trees learn piece-wise linear decision boundaries"
+  },
+  {
+    "text": "particular kind of behavior happens when decision trees are used in classification and that is what",
+    "start": 1243.2,
+    "end": 1250.0,
+    "ocr_text": "Decision tree classification\n\nDecision trees learn piece-wise linear decision boundaries"
+  },
+  {
+    "text": "we are going to do next. So we are going to use the entire of IBIS dataset here. So IBIS dataset has",
+    "start": 1250.0,
+    "end": 1256.32,
+    "ocr_text": "THES ae\nDEBUGGING"
+  },
+  {
+    "text": "four input features and three output classes and do the same kind of training validation and",
+    "start": 1256.88,
+    "end": 1264.08,
+    "ocr_text": "Step 1: Prepare dataset\n\nWe use the whole Iris dataset here"
+  },
+  {
+    "text": "test splitting and next we create an object of the decision tree classifier class and we",
+    "start": 1264.08,
+    "end": 1274.56,
+    "ocr_text": "Step 1: Prepare dataset\n\nWe use the whole Iris dataset here"
+  },
+  {
+    "text": "fit the model. We fit the model sorry yes and this also minimizes the classification error.",
+    "start": 1275.36,
+    "end": 1288.96,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "So this is one piece of code and the source of this code is also given in the ipython notebook",
+    "start": 1288.96,
+    "end": 1295.44,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "which will be which will be also presented on the course website you can find it out there.",
+    "start": 1295.44,
+    "end": 1301.44,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "So this is a nice way of visualizing the decision tree at what particular decision node what kind",
+    "start": 1301.44,
+    "end": 1306.32,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "of decision is getting learned and as you can see that finally the model learns to you know the",
+    "start": 1306.32,
+    "end": 1317.28,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "each of these leaves has a genie index of 0. So the genie index or genie coefficient",
+    "start": 1317.28,
+    "end": 1325.28,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "yes the genie coefficient is a measure of how homogeneous a cluster is. So a genie index or",
+    "start": 1325.68,
+    "end": 1337.28,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "genie coefficient of 0.0 means that the cluster of inputs or the set of inputs that are coming to",
+    "start": 1337.28,
+    "end": 1344.48,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "that particular leaf node are all belonging to one single class. So they are completely homogeneous.",
+    "start": 1344.48,
+    "end": 1351.52,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "So when you like push in one example and unknown example through the decision tree and it lands",
+    "start": 1351.52,
+    "end": 1358.24,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "up in one particular leaf you are 100 percent sure that what particular class it is going to be",
+    "start": 1358.24,
+    "end": 1364.56,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "because each leaf corresponds to one class. So this is like one kind of decision tree making",
+    "start": 1364.56,
+    "end": 1369.76,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "procedure or making philosophy and there can be other variants as well. So we will discuss it",
+    "start": 1369.76,
+    "end": 1377.76,
+    "ocr_text": "Step 3: Visualize the model"
+  },
+  {
+    "text": "in the next classes or we will supply links to you web links which give better description of how",
+    "start": 1378.24,
+    "end": 1385.92,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "complicated decision trees and decision forests are learned to classify the data well.",
+    "start": 1387.6,
+    "end": 1394.0,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "So next is evaluation of the model and we do it in the same way as we had done in the last",
+    "start": 1395.76,
+    "end": 1403.04,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "three examples and we get a validation set a error of 12 percent because see the previous one",
+    "start": 1403.04,
+    "end": 1411.76,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "which we did it was a simplified version of the IRIS dataset and the beauty of the IRIS dataset",
+    "start": 1411.76,
+    "end": 1417.92,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "is that the first and the second classes they are linearly separable but they are not linearly",
+    "start": 1417.92,
+    "end": 1422.56,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "separable with the third class. So as soon as the third class comes in so it is difficult to fit",
+    "start": 1422.56,
+    "end": 1427.84,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "a linear decision boundary and that is why we get some non-zero validation error in this case",
+    "start": 1427.92,
+    "end": 1435.76,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "the test error is luckyly zero just because the third class that come in and the sets were not",
+    "start": 1435.76,
+    "end": 1444.64,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "were not any more linearly separable and there is a nice way of visualizing decision boundaries",
+    "start": 1445.2,
+    "end": 1451.04,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "and learnt at every single of these nodes. So every single node learns to or the decision node",
+    "start": 1451.04,
+    "end": 1457.6,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "learns to learn a particular decision rule. So it learns to choose certain features",
+    "start": 1457.6,
+    "end": 1464.48,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "and splits on those features on that particular chosen feature axis which increases the homogeneity",
+    "start": 1464.96,
+    "end": 1475.52,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "in the training in the in the amount of in the clusters going into the children nodes of that",
+    "start": 1475.52,
+    "end": 1483.2,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\n\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "particular decision node and yeah and so we have a 12 percent validation error in this example.",
+    "start": 1483.2,
+    "end": 1492.8,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\n\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "So you can try out these models using other input data and we can discuss the performances on the",
+    "start": 1493.84,
+    "end": 1502.24,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "course forum. Thank you so much so thank you so much for attending my first ever video recording.",
+    "start": 1502.96,
+    "end": 1510.88,
+    "ocr_text": "Evaluate the model\n\nMisclassification error in the validation set: 12%\nMisclassification error in the test set: 0%"
+  },
+  {
+    "text": "Thank you so much see you guys in the next video and we will be discussing principle components",
+    "start": 1511.44,
+    "end": 1516.96,
+    "ocr_text": "Ade\n\npt\n\nEee"
+  },
+  {
+    "text": "analysis and feature selection which also form very crucial aspects of practical machine learning.",
+    "start": 1516.96,
+    "end": 1524.64,
+    "ocr_text": "Ade\n\npt\n\nEee"
+  },
+  {
+    "text": "So bye bye see you next time.",
+    "start": 1524.64,
+    "end": 1535.04,
+    "ocr_text": "Ade\n\npt\n\nEee"
+  }
+]

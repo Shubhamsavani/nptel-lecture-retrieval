@@ -1,0 +1,1394 @@
+[
+  {
+    "text": "So, in the last lecture we were looking into the control hazard is associated problems.",
+    "start": 0.0,
+    "end": 24.08,
+    "ocr_text": "CPL idet =|\n0% branch\n\nRanch penalty =| cycle"
+  },
+  {
+    "text": "Let us see in that for MIPS 32 instructions and architecture the pipeline implementation.",
+    "start": 24.08,
+    "end": 31.08,
+    "ocr_text": "CPL idet =|\n0% branch\n\nRanch penalty =| cycle"
+  },
+  {
+    "text": "We can reduce the branch penalty to one cycle because we mentioned that at the end of the",
+    "start": 31.08,
+    "end": 38.8,
+    "ocr_text": "CPL idet =|\n0% branch\n\nRanch penalty =| cycle"
+  },
+  {
+    "text": "ID stage we can know both the outcome of a branch whether it is taken or not taken",
+    "start": 38.8,
+    "end": 45.56,
+    "ocr_text": "CPL idet =|\n0% branch\n\nRanch penalty =| cycle"
+  },
+  {
+    "text": "branch and also the branch target address.",
+    "start": 45.56,
+    "end": 49.16,
+    "ocr_text": "CPL idet =|\n0% branch\n\nRanch penalty =| cycle"
+  },
+  {
+    "text": "So, in the worst case we have to incur a penalty of one cycle. So, you should say that",
+    "start": 49.8,
+    "end": 56.8,
+    "ocr_text": "CPL idet =|\n0% branch\n\nRanch penalty =| cycle"
+  },
+  {
+    "text": "well one cycle is fine for load followed by use we have one cycle, there also one cycle.",
+    "start": 56.8,
+    "end": 62.56,
+    "ocr_text": "CPL idet =|\n0% branch\n\nRanch penalty =| cycle"
+  },
+  {
+    "text": "So, let us see but you see one thing let us make a simple calculation. So, we saw in",
+    "start": 62.56,
+    "end": 70.4,
+    "ocr_text": "CPL idet =|\n0% branch\n\nRanch penalty =| cycle"
+  },
+  {
+    "text": "the earlier example we took in the last lecture that the ideal CPI was 1 30 percent of branch",
+    "start": 70.4,
+    "end": 77.06,
+    "ocr_text": "CPL idet =|\n0% branch\n\nRanch penalty =| cycle"
+  },
+  {
+    "text": "but here we are saying that branch penalty is one cycle. So, what will be the actual CPI?",
+    "start": 77.06,
+    "end": 82.98,
+    "ocr_text": "CPLidet =!\n230% branch\n\nGranch penalty =I cycle"
+  },
+  {
+    "text": "In that case the actual CPI will be 70 percent of the case when there is no branch CPI will",
+    "start": 82.98,
+    "end": 92.66,
+    "ocr_text": "CPLidet =!\n230% branch\n\nGranch penalty =I cycle"
+  },
+  {
+    "text": "be 1 the ideal and for the 30 percent of the cases there will be one cycle penalty.",
+    "start": 92.66,
+    "end": 99.1,
+    "ocr_text": "CPLidet = |\n20% branch\n\nGranch penalty =I cycle\n\nActual CPI = O74"
+  },
+  {
+    "text": "So, CPI will be 1 plus 1 2. So, it will be 0.7 plus 0.6 1.3. So, you see still you have",
+    "start": 99.1,
+    "end": 113.3,
+    "ocr_text": "CPLidet = |\n20% branch\n\nBranch peralty = | cycle\n\nActual CPI = 070%! + 030 X"
+  },
+  {
+    "text": "a 30 percent degradation this is still quite substantial right. Let us see how we can reduce",
+    "start": 113.3,
+    "end": 123.26,
+    "ocr_text": "CPLidea = |\n20% branch\n\nBranch peralty =| cycle\n\nActual CPI = O70 X%/ + o30x 2\n\n= |"
+  },
+  {
+    "text": "this further. So, this is the topic of our discussion in this lecture how to tackle",
+    "start": 123.26,
+    "end": 130.26,
+    "ocr_text": "CPLidet = |\n\n20% branch\n\nBranch penalty =| cycle\n\nActual CPI = 070%! + oBOxXZ\n\n= |-30\n\n=> 30% degra"
+  },
+  {
+    "text": "the hazards in particular the control hazards further. Let us see. So, our specific target",
+    "start": 130.26,
+    "end": 138.34,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n\nFour techniques based on compile-time guesse\n\nare discussed\nThe simplest scheme is to freeze the pipelin\n\nand insert (one) stall cycle.\nb) We predict that the bi s not taken, and allow the hardware to continuc\nthe branch was not\n\nas if\nMust not chang\n\n+ te\n\nthe machine state until the branch outcome Is finally known.\ne prediction is br top th\n\nITKHARAGPUR\n\nTEL OW NATIONAL INSTITUTE OF\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "here will be to reduce the pipeline branch penalties. So, we start by discussing four",
+    "start": 138.34,
+    "end": 147.58,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n\nFour techniques based on compile-time guesse\n\nare discussed\nThe simplest scheme is to freeze the pipelin\n\nand insert (one) stall cycle.\nb) We predict that the bi s not taken, and allow the hardware to continuc\nthe branch was not\n\nas if\nMust not chang\n\n+ te\n\nthe machine state until the branch outcome Is finally known.\ne prediction is br top th\n\nITKHARAGPUR\n\nTEL OW NATIONAL INSTITUTE OF\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "broad techniques. First is a very new approach we have seen that a branch will incur one cycle",
+    "start": 147.58,
+    "end": 154.14,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n+ Four techniques based on compile-time guesses are discus:\n\n4\nimplest\n\nheme i ine and insert (one) stall cycle\nb) We predict that the\n\nthe branch w.\n\nJot taken, and allow the hardware to continue\n\nas if\n+ Must not change the machine state until the branch outcome is finally kno\n+ ithe prediction is v\n\n\\ch is taken), we stop the pipeline and restart th\n+ Illustration on next\n\nNPTEL ONLINE\nITKHARAGPUR\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "penalty. So, whenever there is a branch you freeze the pipeline insert one stall cycle",
+    "start": 154.14,
+    "end": 160.66,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n+ Four techniques based on compile-time guesses are discus:\n\n4\nimplest\n\nheme i ine and insert (one) stall cycle\nb) We predict that the\n\nthe branch w.\n\nJot taken, and allow the hardware to continue\n\nas if\n+ Must not change the machine state until the branch outcome is finally kno\n+ ithe prediction is v\n\n\\ch is taken), we stop the pipeline and restart th\n+ Illustration on next\n\nNPTEL ONLINE\nITKHARAGPUR\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "this is the simplest approach main advantage is simplicity but as I shown in that example",
+    "start": 160.66,
+    "end": 168.38,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n\nFour techniques based on compile-time guesses are discu\n\ned\nThe simplest scheme is to freeze the pip\n\nnd insert (one) stall cycle.\n\nb) We predict that the branch is not taken, and allow the hardware to continuc\nMust not change the\n\nas if\n: machine state until the branch outcome is finally kno\nprediction is wron ch is taken),\n\nHehe\n\nop the pipeline and restart th\nIllustration on next\n\nITKHARAGPUR\n\nNATIONAL Ib\nCERTIFICATION COURSES TECHNOL\n\nNPTEL ONLINE aie\n="
+  },
+  {
+    "text": "just now that the overhead can be significantly high still. So, with the figures in the example",
+    "start": 168.38,
+    "end": 176.34,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n\nFour techniques based on compile-time guesses are discu\n\ned\nThe simplest scheme is to freeze the pip\n\nnd insert (one) stall cycle.\n\nb) We predict that the branch is not taken, and allow the hardware to continuc\nMust not change the\n\nas if\n: machine state until the branch outcome is finally kno\nprediction is wron ch is taken),\n\nHehe\n\nop the pipeline and restart th\nIllustration on next\n\nITKHARAGPUR\n\nNATIONAL Ib\nCERTIFICATION COURSES TECHNOL\n\nNPTEL ONLINE aie\n="
+  },
+  {
+    "text": "I took we saw that there can be 30 percent performance overhead.",
+    "start": 176.42,
+    "end": 182.02,
+    "ocr_text": "Reducing Pipeline Branch Penalties\ni)\n\nWe predict that the branch is not taken, and allow the hardware to continuc\nthe branch w\n\nMust not change the until the branch outcome fs finally know\n+ Ifthe prediction is wron ch is taken),\n\nas if\n\nhen\nITKHARAGPUR meen\n\n5\nCERTIFICATION COURSES\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "Now, the other approaches are based on some kind of prediction. Second approach says we",
+    "start": 182.02,
+    "end": 188.62,
+    "ocr_text": "Reducing Pipeline Branch Penalties\ni)\n\nWe predict that the branch is not taken, and allow the hardware to continuc\nthe branch w\n\nMust not change the until the branch outcome fs finally know\n+ Ifthe prediction is wron ch is taken),\n\nas if\n\nhen\nITKHARAGPUR meen\n\n5\nCERTIFICATION COURSES\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "predict that the branch is not taken and we allow the hardware to continue as if the",
+    "start": 188.62,
+    "end": 196.18,
+    "ocr_text": "Reducing Pipeline Branch Penalties\ni)\n\nWe predict that the branch is not taken, and allow the hardware to continuc\nthe branch w\n\nMust not change the until the branch outcome fs finally know\n+ Ifthe prediction is wron ch is taken),\n\nas if\n\nhen\nITKHARAGPUR meen\n\n5\nCERTIFICATION COURSES\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "branch is not executed at all that means the next instruction is fetched it is executed",
+    "start": 196.18,
+    "end": 203.42,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n\nFour techniques based on compile-time guesse\n\nare discussed\nThe simp! heme is te the pipeline and insert (one) stall cycle.\n- Ma age is simplicity\n\nb) We predict that the branch is not taken, and allow the hardware to continue as if\nthe branch was not executed.\n\n+ Must not chany\n+d\n\nhe machine sta\nprediction is\n\nuntil the branch outcome is finally kno\n:ch from the ta\n\n1e. branch is taken), we stop the pipeline and re\n+ Illustration on 0\n\nNPTEL ONLINE\nITKHARAGPUR ITIRCATION\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "and we continue as if nothing has happened until the branch outcome is actually known",
+    "start": 203.5,
+    "end": 210.1,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n\nFour techniques based on compile-time guesse\n\nare discussed\nThe simp! heme is te the pipeline and insert (one) stall cycle.\n- Ma age is simplicity\n\nb) We predict that the branch is not taken, and allow the hardware to continue as if\nthe branch was not executed.\n\n+ Must not chany\n+d\n\nhe machine sta\nprediction is\n\nuntil the branch outcome is finally kno\n:ch from the ta\n\n1e. branch is taken), we stop the pipeline and re\n+ Illustration on 0\n\nNPTEL ONLINE\nITKHARAGPUR ITIRCATION\n\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "to us. So, when the branch outcome is actually known to us then we can know whether our",
+    "start": 210.1,
+    "end": 219.58,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n\nFour techniques based on compile-time guesses are discussed\n\n4) The simplest scheme is to freeze the pipeline and insert (one) stall cycle\nb) We predict that the branch is not taken, and allow the hardware to continu\nthe branch was not executed.\n+ Must not change the machine state until the branch outcome ts finally know\nprediction is wron ich is taken), op the pipeline and restart\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "prediction was right or wrong. If we see that our prediction was right we do not do anything",
+    "start": 219.58,
+    "end": 226.58,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n\n+ Four techniques based on compile-time guesses are discussed\na) The simplest scheme is to freeze the pip and insert (one) stall cycle.\nb) 10f taken, and allow the hardware to continue as if\nthe branch was not executed.\n+ Must not change the machine state until the branch outcome is finally known.\n\ncae he pipeline and restart th\n\nITKHARAGPUR GERTIeATON counses"
+  },
+  {
+    "text": "the next instruction which was already entered into the pipe which was already executing",
+    "start": 226.98,
+    "end": 231.66,
+    "ocr_text": "Reducing Pipeline Branch Penalties\n\n+ Four techniques based on compile-time guesses are discussed\na) The simplest scheme is to freeze the pip and insert (one) stall cycle.\nb) 10f taken, and allow the hardware to continue as if\nthe branch was not executed.\n+ Must not change the machine state until the branch outcome is finally known.\n\ncae he pipeline and restart th\n\nITKHARAGPUR GERTIeATON counses"
+  },
+  {
+    "text": "let it continue and execute we do not incur any stall cycle for that but only if we find",
+    "start": 231.74,
+    "end": 237.98,
+    "ocr_text": "i\ntied"
+  },
+  {
+    "text": "that our decision was wrong it was actually a taken branch you are assuming not taken",
+    "start": 237.98,
+    "end": 243.26,
+    "ocr_text": "i\ntied"
+  },
+  {
+    "text": "then we will have to stop that insert a stall and fetch the new instruction from the target.",
+    "start": 243.26,
+    "end": 249.26,
+    "ocr_text": "i\ntied"
+  },
+  {
+    "text": "So, let us take an illustrate example. So, if it is a not taken branch then there will",
+    "start": 249.26,
+    "end": 256.26,
+    "ocr_text": "i\ntied"
+  },
+  {
+    "text": "be no penalty that means it is a branch instruction but the branch is not taken. So, the",
+    "start": 256.26,
+    "end": 263.26,
+    "ocr_text": "Not\nTaken\nBranch\n(no\npenalty)\n\nBranch\n(Qeyele\npenalty)\n\nBEQ Lobal\n\ninstr. (41)\n\nInstr. (+3)\n\nInstr. (444)\n\nco\n\nBEQ Label\nInstr. (i+)\nInstr. (142)\ninstr. (343)\n\nInstr. (144)\n\nIT KHARAGPUR\n\nx MEM we\n10 EX MEM we\ne 10 eX) MEM. owe\n\nx MEM WB\nx MEM we\nx MEM we\n\niD ek MEM wa\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "sequentially following instruction will be executing after that. So, the hardware will be",
+    "start": 263.62,
+    "end": 268.06,
+    "ocr_text": "Not\nTaken\nBranch\n(no\npenalty)\n\nBranch\n(Qeyele\npenalty)\n\nBEQ Lobal\n\ninstr. (41)\n\nInstr. (+3)\n\nInstr. (444)\n\nco\n\nBEQ Label\nInstr. (i+)\nInstr. (142)\ninstr. (343)\n\nInstr. (144)\n\nIT KHARAGPUR\n\nx MEM we\n10 EX MEM we\ne 10 eX) MEM. owe\n\nx MEM WB\nx MEM we\nx MEM we\n\niD ek MEM wa\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "assuming that the branch is not taken. So, it will fetch the consecutive instruction without",
+    "start": 268.06,
+    "end": 274.58,
+    "ocr_text": "BEQ Label MEM WB\nNot 2!\n\nTaken Instr. (#1) x MEM we\nBranch instr. (/+2) a\n(no\n\nInstr. (143) i 10 EXO MEM. owe\npenalty)\n\nInstr. (144) io ee MEM we,\n\nBEQ Label MEM WB\n\nBranch taste. (i+1) Mem we\n\n(Leycle instr. (i+2) Sta &xX MEM we\n\nenalt\nPenaley) instr. (13) 1D EX MEM we\n\nInstr. (144) E iD ex MEM wa\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "any stall. So, for such cases there will be no penalty but if the branch is actually",
+    "start": 274.58,
+    "end": 281.58,
+    "ocr_text": "BEQ Label MEM WB\nNot 2!\n\nTaken Instr. (#1) x MEM we\nBranch instr. (/+2) a\n(no\n\nInstr. (143) i 10 EXO MEM. owe\npenalty)\n\nInstr. (144) io ee MEM we,\n\nBEQ Label MEM WB\n\nBranch taste. (i+1) Mem we\n\n(Leycle instr. (i+2) Sta &xX MEM we\n\nenalt\nPenaley) instr. (13) 1D EX MEM we\n\nInstr. (144) E iD ex MEM wa\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "taken then at the end of the ID stage you will come to know that your prediction was wrong",
+    "start": 281.58,
+    "end": 288.58,
+    "ocr_text": "BEQ Label\nNot 2:\n\nTaken Instr. (}#1)\nBranch instr. (+2)\n(no\n\nCeiateyy inst (ea\n\nInstr. (144)\n\ntaken _ BEQ Label\nBranch taste. (i#1)\n(Leycle inser. (i+2)\n\nenalt\nPenaley) instr. (3)\n\nInstr. (144)\n\nIT KHARAGPUR\n\n=x MEM we\n1 Xo mem we\ni 10 EXO MEM owe\n\nx MEM WB\nx MEM we\n10 EX MEM wa.\n1D ex MEM wa.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "because it is here you come to know that your branch is taken or not taken by decoding",
+    "start": 289.7,
+    "end": 294.7,
+    "ocr_text": "BEQ Label\nNot ae\n\nTaken\nBranch instr. (1+2)\n(no\n\npenalty)\n\nInstr. (141)\n\nInstr. (+3)\n\nInstr. (144)\n\nBEQ Lab\nInste. (+1)\nInstr. (142)\ninstr. (i+3)\nInstr. (144)\n\nITKHARAGPUR\n\n=x Mem we\n10 Xo MEM we\n\nx MEM WB\nx MEM we\nDx MEM wa\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "the registers right. So, if it is wrong then there will be one stall cycle inserted and",
+    "start": 294.7,
+    "end": 301.22,
+    "ocr_text": "BEQ Label\nNot ae\n\nTaken\nBranch instr. (1+2)\n(no\n\npenalty)\n\nInstr. (141)\n\nInstr. (+3)\n\nInstr. (144)\n\nBEQ Lab\nInste. (+1)\nInstr. (142)\ninstr. (i+3)\nInstr. (144)\n\nITKHARAGPUR\n\n=x Mem we\n10 Xo MEM we\n\nx MEM WB\nx MEM we\nDx MEM wa\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nCERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "for this case you will be incurring a one cycle penalty. But for some of the cases there",
+    "start": 301.22,
+    "end": 307.74,
+    "ocr_text": "BEQ Label MEM WB\n\nNot\n=x MEM we\n\nTaken Instr. (ie)\nBranch 42) 1 EX Mem owe\n(no\n\npenalty)\n\ninstr. (+3) fa 10 EX MEM. owe\n\nInstr. (144)\n\nBEQ Label x MEM WB\ninstr. (F+1) 1 eX) MEM sw\nInstr. (142) ex MEM we\n\npenalty)\nInste. (743) 10 eX MEM owe\nInstr. (144) x MEM we\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "will be no penalty for some cases there will be one cycle penalty. The third approach",
+    "start": 307.74,
+    "end": 314.34,
+    "ocr_text": "BEQ Label MEM WB\n\ninstr. (11) =x MEM we\n\nBranch instr. (i+2) 10 EX MEM wo\nro, e 10 eX) MEM owes\npenalty) -\n\nInstr. (+3)\n\nInstr, (144) 10\n\nBEQ Labs x MEM We\nInste. (f+1) Mem we\ninate. (142) ex | MEM we\n\npenalty)\nInstr. (143) 1D eX MEM we\nInstr. (144) ex Mem wa\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "is we predict that the branch is taken just the reverse we assume that the branch is always",
+    "start": 314.34,
+    "end": 318.94,
+    "ocr_text": "BEQ Label MEM WB\n\ninstr. (11) =x MEM we\n\nBranch instr. (i+2) 10 EX MEM wo\nro, e 10 eX) MEM owes\npenalty) -\n\nInstr. (+3)\n\nInstr, (144) 10\n\nBEQ Labs x MEM We\nInste. (f+1) Mem we\ninate. (142) ex | MEM we\n\npenalty)\nInstr. (143) 1D eX MEM we\nInstr. (144) ex Mem wa\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "taken. But unfortunately for MIPS 32 you will see that this prediction does not help because",
+    "start": 318.94,
+    "end": 326.44,
+    "ocr_text": "Tal\nNot\nTaken\nBranch\n\n(royce\n\n¢) We predict that the branch is taken\n\n* Assoon led and the target address computed, fetching\naddress together (at the end of | no advantage in this approach\n\nBEQ Lab MEM WB\n\ninstr. (141) x Mowe\n\nInstr. (142) x | MEM we\n\npenalty) taste. (#3) 10 eX «MEM we\n\nInstr. (144)\n\nex MEM wa\n\nNPTEL ONLINE\n\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "if we predict that the branch is taken that means you will always be fetching the next",
+    "start": 327.46,
+    "end": 331.98,
+    "ocr_text": ") We predict that the branch is taken\n+ As soon as the branch outcome 1s decoded and the target address computed, fetchin\n\nddress together (at the end of 10), there is no advantage in this approach\n\nBEQ Lab 1D MEM WB\nInste. (11) x MEM we\n\nBranch\n\n(eyele\n\npenalty) taste. (i+3) i 1D EX) MEM wR,\n\nInste. (142) io) Mem | we\n\ninstr. (+4) 1D ex MEM wa.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "instruction from the target address and the target address is known only at the end",
+    "start": 331.98,
+    "end": 337.9,
+    "ocr_text": ") We predict that the branch is taken\n+ As soon as the branch outcome 1s decoded and the target address computed, fetchin\n\nddress together (at the end of 10), there is no advantage in this approach\n\nBEQ Lab 1D MEM WB\nInste. (11) x MEM we\n\nBranch\n\n(eyele\n\npenalty) taste. (i+3) i 1D EX) MEM wR,\n\nInste. (142) io) Mem | we\n\ninstr. (+4) 1D ex MEM wa.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF.\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "of ID right. So, only after ID you can start the fetch. So, anyway this one cycle will",
+    "start": 337.9,
+    "end": 344.9,
+    "ocr_text": ") We predict that the branch is taken\n+ As soon as the branch outcome 1s decoded and the target address computed, fetching\nof instructions can commence from the computed tar\n\naddress together (at the end of ID), there ts no advantage in this approach\n\nBEQ Lab x MEM WB\nInstr. (141)\n\nBranch\n\n(oyce\n\npenalty) taste. (i+3) x MEM we\n\nInstr. (142) Mem We\n\nInstr. (144) E 1D MEM we.\n\nINPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "get lost. So, irrespective of whether it is taken or not taken branch for MIPS 32 this",
+    "start": 345.38,
+    "end": 353.38,
+    "ocr_text": "Tak\nNot\nTaken\nBranch\n(reyele\npenalty)\n\n¢) We predict that the branch is taken\n\n1 as the branch outcome ts decoded and the target address computed, fetching\n\nof instructions can commence from the computed ta\n\nddress together (at the end of 1D), there is no advantage in this approach,\n\nBEQ Label\ninstr. (141)\nInstr. (142)\n\nInstr. (743)\n\nInstr. (144)\n\nx MEM | WB\n\nx | MEM\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "one cycle penalty will always be there. So, here the idea is that whenever the branch outcome",
+    "start": 353.38,
+    "end": 360.38,
+    "ocr_text": "Tak\nNot\nTaken\nBranch\n(reyele\npenalty)\n\n¢) We predict that the branch is taken\n\n1 as the branch outcome ts decoded and the target address computed, fetching\n\nof instructions can commence from the computed ta\n\nddress together (at the end of 1D), there is no advantage in this approach,\n\nBEQ Label\ninstr. (141)\nInstr. (142)\n\nInstr. (743)\n\nInstr. (144)\n\nx MEM | WB\n\nx | MEM\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "is decoded and the address is known that means at the end of ID fetching of instructions",
+    "start": 361.38,
+    "end": 367.38,
+    "ocr_text": "¢)_ We predict that the branch is taken\n+ As soon as the branch outcome 's decoded and the target address computed, fetchin\nof instructions can commence from the computed ta\naddress together (at the end of ID), there ts no advantage in this approach\n\nNot BEQ Lab MEM WB\nTaken\nBranch\n(eye\npenalty) taste. (i+3) MEM we\n\nInstr. (142) MEM we\n\nInstr. (142) x MEM we\n\nInstr. (144) E ex mem wa\n\nNPTEL ONLINE\nIPKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "can continue from the target that means here. So, as I said for MIPS 32 we know the branch",
+    "start": 367.38,
+    "end": 374.38,
+    "ocr_text": "¢) We predict that the branch is taken\n+ As soon as the branch outcome 1s decoded and the target address computed, fetching\nof instructions can commence from the computed\naddress together (at the end of ID), there ts no advantage in this approach\n\nTaken or (meet Joos ToT ee oe Dae oe)\n\nNot BEQ Lab x MEM WB\n\nTaken\n\nBranch 7\n\n(revere tnste (#2) r | MEM we\n\npenalty) taste. (i#3) er\nInstr. (14)\n\nInstr. (f1) Mem we\n\nINPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "outcome and the target address both together. So, there is no advantage in this approach",
+    "start": 374.78,
+    "end": 380.28,
+    "ocr_text": "¢) We predict that the branch is taken\n+ As soon as the branch outcome 1s decoded and the target address computed, fetching\nof instructions can commence from the computed\naddress together (at the end of ID), there ts no advantage in this approach\n\nTaken or (meet Joos ToT ee oe Dae oe)\n\nNot BEQ Lab x MEM WB\n\nTaken\n\nBranch 7\n\n(revere tnste (#2) r | MEM we\n\npenalty) taste. (i#3) er\nInstr. (14)\n\nInstr. (f1) Mem we\n\nINPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "because in both cases there is one cycle penalty. For more complex instruction machines",
+    "start": 380.28,
+    "end": 387.28,
+    "ocr_text": "¢) We predict that the branch is taken\n+ As soon as the branch outcome 1s decoded and th ddress computed, fetchin\nof instructions can commence from the computed ta\n\naddress together (at the end of ID), there ts no advantage in this approach\n\nBEQ Labi x MEM We\ninstr. (i+1)\n\nInstr. (1+2) MEM we\n\nInstr. (343) MEM we.\n\nInstr. (144) E ex Mem we\n\nIIT KHARAGPUR EnTIneATION counses"
+  },
+  {
+    "text": "maybe this will help. So, where possibly the branch address is known earlier but whether",
+    "start": 387.28,
+    "end": 394.28,
+    "ocr_text": "¢) We predict that the branch is taken\n+ As soon as the branch outcome 1s decoded and the target addres\nof instructions can commence from the computed targe\n\ncomputed, fetch\n\naddress together (at the end of ID), there ts no advantage in this approach\n\nBEQ Label 10 MEM WB\nInstr. (141) ie\n\nInstr. (142) mem | we\n\nnate (#3) ex MEM we.\n\nInstr (144) ee Mem wa\nPTELONUN:\n\nIIT KHARAGPUR CEttiesTION couRseS"
+  },
+  {
+    "text": "it is a taken or not taken branch that is known much later in the instruction execution",
+    "start": 394.28,
+    "end": 398.88,
+    "ocr_text": "¢) We predict that the branch is taken\n+ As soon as the branch outcome 1s decoded and the target addres\nof instructions can commence from the computed targe\n\ncomputed, fetch\n\naddress together (at the end of ID), there ts no advantage in this approach\n\nBEQ Label 10 MEM WB\nInstr. (141) ie\n\nInstr. (142) mem | we\n\nnate (#3) ex MEM we.\n\nInstr (144) ee Mem wa\nPTELONUN:\n\nIIT KHARAGPUR CEttiesTION couRseS"
+  },
+  {
+    "text": "cycle. For those kind of complex instructions maybe this predictive strategy will work",
+    "start": 398.88,
+    "end": 404.88,
+    "ocr_text": "¢) We predict that the branch is taken\n+ As soon as the branch outcome 1s decoded and the target addres\nof instructions can commence from the computed targe\n\ncomputed, fetch\n\naddress together (at the end of ID), there ts no advantage in this approach\n\nBEQ Label 10 MEM WB\nInstr. (141) ie\n\nInstr. (142) mem | we\n\nnate (#3) ex MEM we.\n\nInstr (144) ee Mem wa\nPTELONUN:\n\nIIT KHARAGPUR CEttiesTION couRseS"
+  },
+  {
+    "text": "better but not for MIPS this really does not work for MIPS all right. And the last approach",
+    "start": 404.88,
+    "end": 411.88,
+    "ocr_text": "¢) We predict that the branch is taken\n+ As soon as the branch outcome 1s decoded and the target addres\nof instructions can commence from the computed targe\n\ncomputed, fetch\n\naddress together (at the end of ID), there ts no advantage in this approach\n\nBEQ Label 10 MEM WB\nInstr. (141) ie\n\nInstr. (142) mem | we\n\nnate (#3) ex MEM we.\n\nInstr (144) ee Mem wa\nPTELONUN:\n\nIIT KHARAGPUR CEttiesTION couRseS"
+  },
+  {
+    "text": "is called something called delayed branch. Delayed branch what it says it says that",
+    "start": 411.88,
+    "end": 418.88,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler.\n\nBranch instruction\n\nBranch target if taken"
+  },
+  {
+    "text": "well there is a branch instruction let that branch execute it can be a taken branch",
+    "start": 420.48,
+    "end": 427.08,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler.\n\nBranch instruction\n\nBranch target if taken"
+  },
+  {
+    "text": "or not taken branch. Now, the assumption is that the slots which are following that",
+    "start": 427.08,
+    "end": 434.08,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler.\n\nBranch instruction\n\nBranch target if taken"
+  },
+  {
+    "text": "branch instruction where you are normally inserting the stall cycles. For MIPS there",
+    "start": 434.08,
+    "end": 439.52,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler.\n\nBranch instruction\n\nBranch target if taken"
+  },
+  {
+    "text": "is one stall cycle I said for branch. So, there is one stall cycle call it as a branch",
+    "start": 439.52,
+    "end": 445.24,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler.\n\nBranch instruction\n\nBranch target if taken"
+  },
+  {
+    "text": "delay slot. What we are saying that the instruction which is there in the delay slot that means",
+    "start": 445.24,
+    "end": 450.68,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler.\n\nBranch instruction\n\nBranch target if taken"
+  },
+  {
+    "text": "one instruction will be fetched after the branch the assumption is that that instruction will",
+    "start": 450.68,
+    "end": 457.16,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler.\n\nBranch instruction\n\nBranch target if taken"
+  },
+  {
+    "text": "always be executed and the compiler knows that irrespective of the branch is taken or not",
+    "start": 457.16,
+    "end": 463.88,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler\n\nBranch instruction\nBranch target if taken"
+  },
+  {
+    "text": "taken. So, the compiler will try to put some instruction in the delay slot which is supposed",
+    "start": 463.96,
+    "end": 471.96,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler\n\nBranch instruction\nBranch target if taken"
+  },
+  {
+    "text": "to be executed every time the branch is executed irrespective of it is a taken or not taken",
+    "start": 471.96,
+    "end": 478.16,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler\n\nBranch instruction\nBranch target if taken"
+  },
+  {
+    "text": "this is the basic idea. So, this is called delayed branch here we are making the hardware",
+    "start": 478.16,
+    "end": 486.16,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler\n\nBranch instruction\nBranch target if taken"
+  },
+  {
+    "text": "simple but we are putting all the responsibility on the compiler. So, in general a branch",
+    "start": 486.16,
+    "end": 493.0,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler\n\nBranch instruction\nBranch target if taken"
+  },
+  {
+    "text": "instruction can have n stall penalties but for MIPS 30 to a say that it is only 1 n equal",
+    "start": 493.0,
+    "end": 499.6,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler\n\nBranch instruction\nBranch target if taken"
+  },
+  {
+    "text": "to 1. But in general I am showing n after this n penalty the next target address will",
+    "start": 499.6,
+    "end": 506.6,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler\n\nBranch instruction\nBranch target if taken\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "be known. So, the next instruction can be fetched after that. So, these n successor instructions",
+    "start": 506.6,
+    "end": 515.28,
+    "ocr_text": "a) w\nimp!\n\nITKHARAGPUR\n\nan use a technique called c\nje but puts more responsit\n\nBranch instruction\n\nBranch targes if taken\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nity on the compiler\n\nwhich makes the hardw\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "are called branch delay slots for MIPS it is 1. So, the compiler will try to move instructions",
+    "start": 515.36,
+    "end": 523.36,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw.\nimple but puts more responsibility on the compiler\n\nSucces Branch\n: — delay stots\nBranch target if taken\n\nIT KHARAGPUR ERTIeaTION counses"
+  },
+  {
+    "text": "around and try to fill them up and as I said the interpretation is that wherever whenever",
+    "start": 526.56,
+    "end": 533.56,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler.\n\nBranch\n\nSucces Branch For MIPS32, n=1\n\n: — delay slots\nBranch target if taken\n\nNPTEL ONL\nIT KHARAGPUR GEtTInesTION counses"
+  },
+  {
+    "text": "instructions have put in the branch delay slots in this strategy in the fourth strategy",
+    "start": 534.32,
+    "end": 539.96,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler.\n\nBranch\n\nSucces Branch For MIPS32, n=1\n\n: — delay slots\nBranch target if taken\n\nNPTEL ONL\nIT KHARAGPUR GEtTInesTION counses"
+  },
+  {
+    "text": "these instructions are always executed irrespective of the outcome of the branch whether you",
+    "start": 539.96,
+    "end": 546.04,
+    "ocr_text": "d) We can use a technique called delayed brar\n\n-h, which makes the hardw\nimple but puts mor\n\nresponsibility on the compiler.\n\nBranch\n~ Branch\n\nFor MIPS32, n=1\n— delay slots\n\nBranch target if taken\n\nnen\nITKHARAGPUR ERTIeaTION counses"
+  },
+  {
+    "text": "take it or do not take it fine. So, let us take some examples suppose I have an add instruction",
+    "start": 546.04,
+    "end": 553.04,
+    "ocr_text": "d) We can use a technique called delayed branch, which makes the hardw\nimple but puts more responsibility on the compiler.\n\nSuccessor. Branch For MIPS32, n=1\n: delay slots\nBranch target if taken\n\nsmmuanacoun SETI courses Paar"
+  },
+  {
+    "text": "followed by a branch if R 2 is 0 jump to L and there is a delay slot after that. So,",
+    "start": 556.92,
+    "end": 562.92,
+    "ocr_text": "Some Examples\n\nBES R2,\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "you see the add instruction is executed before branch always right. So, there is no harm",
+    "start": 562.92,
+    "end": 569.44,
+    "ocr_text": "Some Examples\n\nBES R2,\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "if I move this add to the delay slot because whenever there is a branch the delay slot will",
+    "start": 569.44,
+    "end": 576.0,
+    "ocr_text": "Some Examples\n\nBEOQ2 RZ.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "also be executed and add is coming here. So, we are saving this time we are not wasting",
+    "start": 576.0,
+    "end": 583.0,
+    "ocr_text": "Some Examples\n\nBEO2 R2.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the delay slot rather we are moving a useful instruction. So, whenever the branch is taking",
+    "start": 583.0,
+    "end": 588.76,
+    "ocr_text": "Some Examples\n\nBEO2 R2.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "or not taking add will always be executed this is one example the other example is a little",
+    "start": 588.76,
+    "end": 595.76,
+    "ocr_text": "Some Examples\n\nNPTEL ONLINE NATIONAL\nITKHARAGPUR CERTIFICATION COURSES TECHNOU"
+  },
+  {
+    "text": "complex something like this suppose I am adding I am subtracting getting a result in R 3 and",
+    "start": 595.76,
+    "end": 602.76,
+    "ocr_text": "Some Examples\n\nte ADD Ri, R2,RE\nBEQz R3.E\n\nBEOQS R2,E\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "if R 3 is 0 we are jumping to L after that there is a delay slot. But the add instruction",
+    "start": 603.2,
+    "end": 610.2,
+    "ocr_text": "Some Examples\n\nte ADD Ri, R2,RE\nBEQz R3.E\n\nBEOQS R2,E\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "does not depend on R 3 to the independent R 3. So, here we move this this add instruction",
+    "start": 610.2,
+    "end": 617.2,
+    "ocr_text": "Some Examples\n\narco achond ADD Ri, R2,/RS\n\nBEO2 R2.\n\nNeTEL ONLIN\nITKHARAGPUR SEMTIBATION counses"
+  },
+  {
+    "text": "to the delay slot. So, we subtract we do a branch then we jump while we do a jump during",
+    "start": 617.2,
+    "end": 624.2,
+    "ocr_text": "Some Examples\n\nBEOS R2.\n\nINT KHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "that time the add is executing right. So, this is just a responsibility compiler to just",
+    "start": 625.0,
+    "end": 631.2,
+    "ocr_text": "Some Examples\n\nBEOS R2.\n\nINT KHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "compile you analyze the code and find out if it can move some instructions like this.",
+    "start": 634.0,
+    "end": 640.12,
+    "ocr_text": "Some Examples\n\noe ADD Pi, R2,RS\nCUR R3,R4/RS\nBEQZ R3.L\n\nBEOQS R2."
+  },
+  {
+    "text": "Similarly another scenario there is a add then there is a branch to L there is a delay",
+    "start": 640.12,
+    "end": 647.12,
+    "ocr_text": "Some Examples\n\nBEQZ R3.L SUB R3,R4,RS\n\nBEO2 R2.5\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "slot after branch and after that there is a subtract instruction. The subtract instruction",
+    "start": 647.52,
+    "end": 653.52,
+    "ocr_text": "Some Examples\n\nADD Ri, R2,Re\nBEQZ RIL\n\nBEOQS R2,\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "can also use R 3 does not matter because branch outcome is already done. So, this subtract",
+    "start": 655.0,
+    "end": 661.0,
+    "ocr_text": "Some Examples\n\nADD Ri, R2,Re\nBEQZ RIL\n\nBEOQS R2,\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "can move to the delay slot in this case. You see in the second and third cases during",
+    "start": 661.0,
+    "end": 668.0,
+    "ocr_text": "Some Examples\n\nBEQZ RIL\n\nBEOQS R2.E TRE RS\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the last iteration maybe this instruction of moving that will be executed one extra time.",
+    "start": 668.12,
+    "end": 674.12,
+    "ocr_text": "Some Examples\n\nEO Ti ADD RA ROARS\n\nBEOS R2. TRE | RS\n\nNPTEL Ont NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES Techn"
+  },
+  {
+    "text": "So, the compiler can analyze the code and find out if that one extra time execution will",
+    "start": 674.12,
+    "end": 680.12,
+    "ocr_text": "Some Examples\n\nEO Ti ADD RA ROARS\n\nBEOS R2. TRE | RS\n\nNPTEL Ont NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES Techn"
+  },
+  {
+    "text": "actually matter or not matter in the final computation of the result. If it does not matter",
+    "start": 680.76,
+    "end": 686.0,
+    "ocr_text": "Some Examples\n\nEO Ti ADD RA ROARS\n\nBEOS R2. TRE | RS\n\nNPTEL Ont NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES Techn"
+  },
+  {
+    "text": "it can safely move it and if it is possible to move an instruction that means you are",
+    "start": 686.0,
+    "end": 692.0,
+    "ocr_text": "Some Examples\n\nEO Ti ADD RA ROARS\n\nBEOS R2. TRE | RS\n\nNPTEL Ont NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES Techn"
+  },
+  {
+    "text": "avoiding that one cycle stall due to control hazard. You are moving a meaningful instruction",
+    "start": 692.0,
+    "end": 697.8,
+    "ocr_text": "Some Examples\n\nEO Ti ADD RA ROARS\n\nBEOS R2. TRE | RS\n\nNPTEL Ont NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES Techn"
+  },
+  {
+    "text": "in the delay slot and when a branch is executed the instruction in the delay slot is also",
+    "start": 697.8,
+    "end": 703.8,
+    "ocr_text": "Some Examples\n\nEO Ti ADD RA ROARS\n\nBEOS R2. TRE | RS\n\nNPTEL Ont NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES Techn"
+  },
+  {
+    "text": "executed. But this is done only for pipeline implementation",
+    "start": 703.8,
+    "end": 710.04,
+    "ocr_text": "Additional overhead for delayed branche\n\n— Multiple PC’s (one plus the length of the delay slot, i 1 to\ncorrectly restore the state when an interrupt occurs,\nConsider a taken branch instruction followed by instruction(s) in the delay\nlott:\n+ The PC of branch target and PC's of delay slots are not sequenti\n\nNPTEL ONLI NATIONAL INSTITUTE OF\nNT KHARAGPUR QERTIesTION courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "where this strategy is followed but for other strategies you will have to insert that stall.",
+    "start": 710.2,
+    "end": 715.2,
+    "ocr_text": "Additional overhead for delayed branche\n\n— Multiple PC’s (one plus the length of the delay slot, i 1 to\ncorrectly restore the state when an interrupt occurs,\nConsider a taken branch instruction followed by instruction(s) in the delay\nlott:\n+ The PC of branch target and PC's of delay slots are not sequenti\n\nNPTEL ONLI NATIONAL INSTITUTE OF\nNT KHARAGPUR QERTIesTION courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "Okay fine. So, for delayed branches there are some other difficulties like you will be",
+    "start": 715.2,
+    "end": 722.2,
+    "ocr_text": "Additional overhead for delayed branche\n\n— Multiple PC’s (one plus the length of the delay slot, i 1 to\ncorrectly restore the state when an interrupt occurs,\nConsider a taken branch instruction followed by instruction(s) in the delay\nlott:\n+ The PC of branch target and PC's of delay slots are not sequenti\n\nNPTEL ONLI NATIONAL INSTITUTE OF\nNT KHARAGPUR QERTIesTION courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "having some multiple program counters because in fact will be n plus 1. So, it means other",
+    "start": 725.04,
+    "end": 732.04,
+    "ocr_text": "Additional overhead for delayed branche\n\n— Multiple PC’s (one plus the length of the delay slot, i 1 to\ncorrectly restore the state when an interrupt occurs,\nConsider a taken branch instruction followed by instruction(s) in the delay\nlott:\n+ The PC of branch target and PC's of delay slots are not sequenti\n\nNPTEL ONLI NATIONAL INSTITUTE OF\nNT KHARAGPUR QERTIesTION courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "than the target address. So, all the instruction in the delay slot also need to be restarted",
+    "start": 732.04,
+    "end": 739.04,
+    "ocr_text": "Additional overhead for delayed branche\n\n— Multiple PC’s (one plus the length of the delay slot, i 1 to\ncorrectly restore the state when an interrupt occurs,\nConsider a taken branch instruction followed by instruction(s) in the delay\nlott:\n+ The PC of branch target and PC's of delay slots are not sequenti\n\nNPTEL ONLI NATIONAL INSTITUTE OF\nNT KHARAGPUR QERTIesTION courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "if there is an interrupt in between. So, there are multiple values of the program counter",
+    "start": 740.92,
+    "end": 747.92,
+    "ocr_text": "Additional overhead for delayed branche\n\n— Multiple PC’s (one plus the length of the delay slot 1 to\ncorrectly restore the state when an interrupt occurs,\nConsider a taken branch instruction followed by instruction(s) in the delay\nlot(s)\n+ The PC of branch target and PC's of delay slots are not sequential\n\nNeTEL ONIN NATIONAL INSTITUTE\nITKHARAGPUR EMTINeaTION counses TeaRStoGy MRCHACAVA"
+  },
+  {
+    "text": "that need to be saved because the PC of the branch target and the PC of the delay slot",
+    "start": 750.12,
+    "end": 755.6,
+    "ocr_text": "Additional overhead for delayed branche\n\n— Multiple PC’s (one plus the length of the delay slot, i.¢ 1 dto\ncorrectly restore the state when an interrupt occurs,\n\nConsider a taken branch instruction followed by instruction(s) in the delay\n\nThe PC of branch target and PC’s of delay slots are not sequenti\n\nNPTEL ONLI NATIONAL INSTITUTE OF\nIT KHARAGPUR GEttineaTION counses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "they are not sequential branch here doing somewhere else and PC delay slots are the instructions",
+    "start": 755.6,
+    "end": 761.4,
+    "ocr_text": "Additional overhead for delayed branche\n\n— Multiple PC’s (one plus the length of the delay slot\ncorrectly restore the state when an interrupt occurs,\n\nConsider a taken branch instruction followed by instruction(s) in the delay\n\n+ The PC of by arget and PC's of delay slots are not sequenti\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "right after the branch. Let us take an example. Let us consider pipeline with the ideal CPI",
+    "start": 761.48,
+    "end": 769.48,
+    "ocr_text": "Additional overhead for delayed branche\n\n— Multiple PC’s (one plus the length of the delay slot\ncorrectly restore the state when an interrupt occurs,\n\nConsider a taken branch instruction followed by instruction(s) in the delay\n\n+ The PC of by arget and PC's of delay slots are not sequenti\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "of 1. Let us say 20 percent of the instruction are branch and out of them 70 percent are",
+    "start": 771.4,
+    "end": 779.4,
+    "ocr_text": "Example 1\n\nConsider the MIPS32 pipeline with ideal CPI of 1. Assume that 20% of the instructio:\nexecuted are branch instructions, out o? which 75% are taken branches. Evaluate the\n\npipeline speedup for the four techniques discussed to reduce br:\n\nSolution:\nIdeal CPI x Pipeline Depth\nSpeedin. = ——_.senncelx Pineine cee\nideal CPI + Pipeline stall cycles / Instruction\n\nPipeline De\n\n1 + (Branch frequency x Branch penalty)\n\nnen\nNT KHARAGPUR GEttineaTION counses"
+  },
+  {
+    "text": "taken and the remaining 20 percent and not taken. So, using the 4 strategies we discussed",
+    "start": 779.4,
+    "end": 786.4,
+    "ocr_text": "Example 1\n\nConsider the MIPS32 pipeline with ideal CPI of 1. Assume that 20% of the instructio!\nexecuted are branch instructions, out of which 75% are takan branches. Evaluate the\n\npipeline speedup for the four techniques discussed to reduce branch penalties.\n\nSolution:\nIdeal CPI x Pipeline Depth\nSpeedup. = ——__esllcPU x PlpelinelDenth _—_\nideal CPI + Pipeline stall cycles / Instruction\nPipeline De\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "let us evaluate this speed up. So, speed up will be calculating using this formula. This",
+    "start": 786.64,
+    "end": 793.64,
+    "ocr_text": "Example 1\n\nConsider the MIPS32 pipeline with ideal CPI of 1. Assume that 20% of the instructions\nexecuted are branch instructions, out of which 75% are taken branches. Evaluate the\n\npipeline speedup for the four techniques discussed to reduce branch penaltic\n\nSolution:\nIdeal CPI x Pipeline Depth\nSpeedin = eee\nIdeal CPI + Pipeline stall cy Instruction\nPipeline Depth\n\n1 + (Branch frequency x Branch penalty)\n\nIIT KHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "ideal CPI multiplied by pipeline depth divide by ideal CPI plus stall cycles for instruction.",
+    "start": 793.64,
+    "end": 800.64,
+    "ocr_text": "Example 1\n\nConsider the MIPS32 pipeline with ideal CPI of 1. Assume that 20% of the instructions\nexecuted are branch instructions, out of which 75% are taken branches. Evaluate the\n\npipeline speedup for the four techniques discussed to reduce branch penaltic\n\nSolution:\nIdeal CPI x Pipeline Depth\nSpeedin = eee\nIdeal CPI + Pipeline stall cy Instruction\nPipeline Depth\n\n1 + (Branch frequency x Branch penalty)\n\nIIT KHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "This we have derived earlier already because ideal CPI is 1 you put 1 and pipeline stall",
+    "start": 802.0,
+    "end": 809.0,
+    "ocr_text": "Example 1\n\nConsider the MIPS32 pipeline with ideal CPI of 1. A: 1 20% of the instructions\nexecuted are branch instructions, out of which 75% are taken branches. Evaluate the\n\npipeline speedup for the four techniques discussed to reduce branch penaltic\n\nSolution:\nIdeal CPI x Pipeline Depth\nSpaedup= ee esc ls Ebene lee =\nideal CPI + Pipeline stall cycles / Instruction\nPinelina Depth\n\nT + (Branch frequency x Branch penalty)\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "cycle for instruction in this case will be branch frequency multiplied by branch penalty.",
+    "start": 809.0,
+    "end": 815.0,
+    "ocr_text": "Example 1\n\nConsider the MIPS32 pipeline with ideal CPI of 1. Assume that 20% of the instructions\n\nexecuted are branch instructions, out of which 75% are taken branches. Evalua\n\npipeline speedup for the four techniques discussed to reduce branch penaltic\n\nSolution\nIdeal CPI x Pipeline Depth\nSpeedup te ee\nIdeal CPI + Pipeline stall cycles / Instruction\n\nPipeline De\n\n1 + (Branch frequency x Branch penalty)\n\nNeTEL ONL\nITKHARAGPUR GEtTIneaTION courses"
+  },
+  {
+    "text": "So, we will be using this formula. So, let us look at the 4 possibilities. This stall",
+    "start": 815.8,
+    "end": 821.28,
+    "ocr_text": "{a) Stall pipeline\n\nBranch penalty = 1\nSpeedup = 5/(1 + 0.20 x 1)\n4.47\n\nNeTEL onune =\nITRHARAGPUR RERTIRCETION courses Ey wa\np es"
+  },
+  {
+    "text": "pipeline strategy where we stalling always your branch penalty will be 1. So, you just",
+    "start": 821.28,
+    "end": 828.28,
+    "ocr_text": "{a) Stall pipeline\n\nBranch penalty = 1\nSpeedup = 5/(1 + 0.20 x 1)\n4.47\n\nNeTEL onune =\nITRHARAGPUR RERTIRCETION courses Ey wa\np es"
+  },
+  {
+    "text": "20 percent of the instruction are branch and 75 percent are taken. So, for all the branch",
+    "start": 830.28,
+    "end": 835.76,
+    "ocr_text": "Example 1\n\nConsider the MIPS32 pipeline withvideal CPI of 1. Assume that 20% of the instru\nexecuted are branch instructions, out of which 75% are taken branches. Evalua\npipeline speedup for the four techniques discussed to reduce branch penaltic\n\nSolution:\nIdeal CPI x Pipeline Depth\n\nSpesdup|= wee Cob xe pele eo\n\nideal CPI + Pipeline stall cycles / Instruction\n\n1 + (Branch frequency x Branch penalty)\n\nere\nIIT KHARAGPUR GEtTineaON counses"
+  },
+  {
+    "text": "you are stalling. So, for 0.2 branch penalty will be 1. So, 0.2 multiplied by 1 if you calculate",
+    "start": 835.76,
+    "end": 842.76,
+    "ocr_text": "{a) Stall pipeline\n\nBranch penalty = 1\nSpeedup = 5/(1 + 0.20 x 1)\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "speed up becomes 4.17. The second strategy predict not taken. So, you will be incurring",
+    "start": 843.72,
+    "end": 850.72,
+    "ocr_text": "{a) Stall pipeline\n\nBranch penalty = 1\nSpeedup = 5/(1 + 0.20 x 1)\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "the overhead only for the 75 percent of the cases where the branch is actually taken.",
+    "start": 853.72,
+    "end": 860.72,
+    "ocr_text": "{a) Stall pipeline\nBranch penalty = 1\n\nSpeedup = 5/(1 + 0.20x 1)\n417\n\nITKHARAGPUR\n\n(b) Predict not takeg\n\nBranch penalty = 1\nSpeedup = 5 / (1 + (0.20 x 0.75)\n4.35\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNATIONAL\n,"
+  },
+  {
+    "text": "So, you speed up is higher than this you see 4.35. But predict taken is not taken by",
+    "start": 863.16,
+    "end": 870.16,
+    "ocr_text": "i pipeline edict not taken\n\nh penalty = 1 Ity = 2\nSpeedup = 5/(1 + 0.20 x 1) Speedup = 5 / (1 + (0.20 x 0.35))\n4.17 4.35\n\nwere owe wna\ne"
+  },
+  {
+    "text": "the branch. Here I mean you are incurring the penalty again all the time because there is",
+    "start": 873.76,
+    "end": 880.76,
+    "ocr_text": "{a) Stall pipeline\nBranch penalty = 1\n\nSpeedup = 5/(1 +0.20x 1)\n4.17\n\nITKHARAGPUR\n\n(b) Predict\n\nBranch pen.\nSpeedup\n\nNPTEL ons\n\ne\nCERTIFICATION COURSES\n\nIty = 1\n5/(1 + (0.20 x 0.75)\n\n4.35"
+  },
+  {
+    "text": "no advantage it is same as stall pipeline. And for the last strategy del s slot del s branch",
+    "start": 881.68,
+    "end": 888.68,
+    "ocr_text": "(a) Stall pi (b) Predict not taken\nBranch penalty = 1 Branch penalty = 1\n\nSpeedup = 5 / (1 + 0.20 x 1) Speedup = 5 / (1 + (0.20 x 0.75)\n7 4.35\n\n) Predict taken\n\nBranch penalty = 1\nSpeedup = 5 / (1 + 0.20 x a)\n4.17\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "here for the branch you are trying to move an instruction in the del s slot. I am assuming",
+    "start": 889.32,
+    "end": 895.4,
+    "ocr_text": "{a) Stall pipeline (b) Predict not taken\nBranch penalty = 1 Branch penalty = 1\n\nSpeedup = 5/ (1 + 0.20 x 1) Speedup = 5 / (1 + (0.20 x 0.75)\n4.17 4.35\n\n) Predict taken (a) Delayed brani\n\nBranch penalty = 1 Branch penalty = 0.5\nSpeedup =5/(1 +0.20x 1) Speedup = 5/(1 + (0.20 x0.5\n4.17 4.55\n\nNPTEL ONLIN\nIIT KHARAGPUR SErTIFICATION courses"
+  },
+  {
+    "text": "that there is 50 percent probability that the compiler will be able to fill up the del s",
+    "start": 895.4,
+    "end": 901.32,
+    "ocr_text": "(a) Stall pipeline\n\nBranch penalty = 1\nSpeedup = 5/(1 + 0.20x 1)\n\nat\n\n€) Predict taken\n\nBranch penalty = 1\n5/(1 +0\n4.17\n\n(b) Predict not taken\n\nBranch penalty = 1\n\np= 5/ (1 + (0.20 x 0.75))\n4.35\n\n(@) Delayed branch\n\nBranch penalty = 0.5\nSpeedup =5/(1 + (0.20 ¥0.5\n\n®\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "slot. So, I am multiplying this by 0.5. So, if you calculate you will see that you get",
+    "start": 901.32,
+    "end": 906.56,
+    "ocr_text": "(a) Stall pipeline\n\nBranch penalty = 1\nSpeedup = 5/(1 + 0.20x 1)\n\nat\n\n€) Predict taken\n\nBranch penalty = 1\n5/(1 +0\n4.17\n\n(b) Predict not taken\n\nBranch penalty = 1\n\np= 5/ (1 + (0.20 x 0.75))\n4.35\n\n(@) Delayed branch\n\nBranch penalty = 0.5\nSpeedup =5/(1 + (0.20 ¥0.5\n\n®\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "a higher figure 4.55. Now, interrupts pose a more difficult problem in a pipeline.",
+    "start": 906.56,
+    "end": 913.56,
+    "ocr_text": "Stall pipeline\nBranch penalty = 1\n\nSpeedup = 5 /(1 + 0.20x 1)\n\n(©) Predict taken\n\nBranch penalty = 1\nSpeedup =5/(1 +0\n4.17\n\n(b) Predict not take\n\nBranch penalty = 1\n\nSpeedup = 5 / (1 + (0.20 x 0.75))\n\n4.35\n\n(a) Delayed branch\n\nBranch penalty\nSpeedup =5/(1+(0\n\n4.55\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNATIONAL\nTECHNOU"
+  },
+  {
+    "text": "Let us see in the MIPS 5 stage pipeline integer pipeline whenever interrupt comes what are",
+    "start": 917.56,
+    "end": 924.56,
+    "ocr_text": "Stall pipeline\nBranch penalty = 1\n\nSpeedup = 5 /(1 + 0.20x 1)\n\n(©) Predict taken\n\nBranch penalty = 1\nSpeedup =5/(1 +0\n4.17\n\n(b) Predict not take\n\nBranch penalty = 1\n\nSpeedup = 5 / (1 + (0.20 x 0.75))\n\n4.35\n\n(a) Delayed branch\n\nBranch penalty\nSpeedup =5/(1+(0\n\n4.55\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nNATIONAL\nTECHNOU"
+  },
+  {
+    "text": "the issues. Interrupts can complicate the design of the pipeline how? See overlapping of",
+    "start": 925.04,
+    "end": 931.56,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\n\nNPTEL Ona NATIONAL INSTITUTE OF\nIT KHARAGPUR EEITIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "the instruction execution makes it difficult to decide whether an instruction can modify",
+    "start": 934.68,
+    "end": 941.68,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\n\nNPTEL Ona NATIONAL INSTITUTE OF\nIT KHARAGPUR EEITIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "something. When I say safely change the state it means either changes the value of some",
+    "start": 941.68,
+    "end": 946.88,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\n\nOverlapping s fficult to decide whether\n\nNPTEL ONLI NATIONAL INSTITUTE OF\nIT KHARAGPUR GERTHeaTION courses TeaiRiotogy MECHALAVA"
+  },
+  {
+    "text": "register or something. See suppose an instruction changes the value of register later on it",
+    "start": 946.88,
+    "end": 953.16,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\n\nOverlapping s fficult to decide whether\n\nNPTEL ONLI NATIONAL INSTITUTE OF\nIT KHARAGPUR GERTHeaTION courses TeaiRiotogy MECHALAVA"
+  },
+  {
+    "text": "is found that there is an interrupt that instruction has to be withdrawn. But already it has",
+    "start": 953.16,
+    "end": 958.16,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\n\nOverlapping s fficult to decide whether\n\nNPTEL ONLI NATIONAL INSTITUTE OF\nIT KHARAGPUR GERTHeaTION courses TeaiRiotogy MECHALAVA"
+  },
+  {
+    "text": "modified the register what to do that that is a problem. So, the instruction should not",
+    "start": 958.16,
+    "end": 964.16,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the di pipeline.\nOverlapping of instruction ns difficult to decid\n\nan instruction can\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "change the state of the machine before it is known that the interrupt has occurred or",
+    "start": 964.16,
+    "end": 968.36,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the di pipeline.\nOverlapping of instruction ns difficult to decid\n\nan instruction can\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "not. Some interrupts can force the machine to stop the instruction before it is completed",
+    "start": 968.36,
+    "end": 976.36,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the di pipeline.\nOverlapping of instruction ns difficult to decid\n\nan instruction can\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "like the page fault interrupt. So, whenever you are trying to fetch an instruction where",
+    "start": 977.08,
+    "end": 983.36,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\nOverlapping of instruction executions make it more difficult to decide wheth:\nInstruction can safely change the state of the machine\nSome interrupts can force the machine to abort the instruction before it\ncompleted (e.g. page fault)"
+  },
+  {
+    "text": "the memory location from your fetching is not there in memory it has to be fetched from",
+    "start": 983.36,
+    "end": 989.76,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\nOverlapping of instruction executions make it more difficult to decide wheth:\nInstruction can safely change the state of the machine\nSome interrupts can force the machine to abort the instruction before it\ncompleted (e.g. page fault)"
+  },
+  {
+    "text": "disk that is the example of a page fault. So, under those cases the instruction has to",
+    "start": 989.76,
+    "end": 996.76,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\nOverlapping of instruction executions make it more difficult to decide wheth:\nInstruction can safely change the state of the machine\nSome interrupts can force the machine to abort the instruction before it\ncompleted (e.g. page fault)"
+  },
+  {
+    "text": "be restarted after the requested memory contents are brought into memory from disk to memory",
+    "start": 998.12,
+    "end": 1005.12,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\nOverlapping of instruction executions make it more difficult to decide wheth:\nInstruction can safely change the state of the machine\nSome interrupts can force the machine to abort the instruction before it\ncompleted (e.g. page fault)"
+  },
+  {
+    "text": "you will again execute that instruction will be restarting it. So, such interrupts are",
+    "start": 1005.28,
+    "end": 1012.28,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\nOverlapping of instruction executions make it more difficult to decide whether\nan instruction can safely change the state of the machin\nSome s can force the machine to abort the instruction before it\ncomple ge fault)\n\nThe most difficult interrupts to handle in a pipeline have the pro\n\nb)_ They have to restarted"
+  },
+  {
+    "text": "more difficult. So, the most difficult interrupts have the properties that they occur in between",
+    "start": 1012.88,
+    "end": 1019.88,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\nOverlapping of instruction executions make it more difficult to decide whether\nan instruction can safely change the state of the machin\nSome s can force the machine to abort the instruction before it\ncomple ge fault)\n\nThe most difficult interrupts to handle in a pipeline have the pro\n\nb)_ They have to restarted"
+  },
+  {
+    "text": "an instruction and they have to restart it these are the more difficult types.",
+    "start": 1020.68,
+    "end": 1027.68,
+    "ocr_text": "Dealing with Interrupts in MIPS32\n\n+ Interrupts complicate the design of an instruction pipeline.\nOverlapping of instruction executions make it more difficult to decide whether\nan instruction can safely change the state of the machin\nSome s can force the machine to abort the instruction before it\ncomple ge fault)\n\nThe most difficult interrupts to handle in a pipeline have the pro\n\nb)_ They have to restarted"
+  },
+  {
+    "text": "So, one strategy for interrupt handling can be like this. So, whenever an interrupt",
+    "start": 1027.68,
+    "end": 1033.68,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be\n\nsaved safely as follows\nATRAP instruction is f\n\nced into the pipeline at the next IF cycle\nUntil the TRAP is taken, disable\n\nall writes for the fauttin\nothers that follow. >\n\nprevents any state change\nAfter the interrupt handler tak\n\nontrol, it saves the PC of\n\nIT KHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "occurs this interrupt can occur in any stage it can occur in I a F I d X. So, a special",
+    "start": 1033.68,
+    "end": 1040.68,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be\n\nsaved safely as follows\nATRAP instruction is f\n\nced into the pipeline at the next IF cycle\nUntil the TRAP is taken, disable\n\nall writes for the fauttin\nothers that follow. >\n\nprevents any state change\nAfter the interrupt handler tak\n\nontrol, it saves the PC of\n\nIT KHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "trap instruction or a some kind of a flag is forced into the pipeline at the next instruction",
+    "start": 1043.92,
+    "end": 1050.92,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be\n\nsaved safely as follows\na) ATRAP instruction is f\n\nthe next IF cycle\nable all writes for the fa\n\nprevents any state change\nAfter the interrupt handler tak\n\nced into the pipeline a\nb)_Uniil the TRAP is taken, di ting instruction and all\nothers that follow. >\n\nontrol, it saves the PC of the faulting"
+  },
+  {
+    "text": "fetch cycle which will indicate that an interrupt has occurred. And until this see the control",
+    "start": 1050.92,
+    "end": 1057.92,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be\n\nATRAP instruction\n\nsaved safely as follows\nthe next IF cycle\n\nable all writes for the fa\nprevents any state change\nAfter the interrupt handler tak\n\ns forced into the pipeline a\nUntil the TRAP is taken, di ting instraction and all\nothers that follow. >\n\nontrol, it saves the PC of the faulting\n\nNera onuine NATIONAL wane\nITRHARAGPUR GEITFReATION couRSES | TeCHNOUIY gear\ny es }"
+  },
+  {
+    "text": "unit will know that this trap instruction was inserted and the control unit will not",
+    "start": 1057.92,
+    "end": 1064.92,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be\na) ATRAP instruction is f\n\nUntil the TRAP is taken, disable alll\nothers that follow. >\n\naved safely as follows\nthe next IF cycle\n\nites for the faulting in\nprevents any state change\n\nAfter the interrupt handler tak\n\nced inso the pipeline a\n\nstruction and all\n\ncontrol, it saves the PC of\n\nhe faulting\n\nNeTEL onune NATONAL wai\nrT HIARAGPUR SETTER courses | peers ge AN\na"
+  },
+  {
+    "text": "allow any rights to occur it will disable all rights not only for the instruction which",
+    "start": 1066.0,
+    "end": 1073.0,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be\n\nsaved safely as follows\nthe next IF cycle\n\nUntil the TRAP is taken, disable all writes for the fa\nothers that follow. > prevents any state change\nAfter the interrupt handler tak\n\nATRAP instruct\n\non is forced into the pipeline a\n\nontrol, it saves the PC of the faulting\n\nNpTEL ons\nITKHARAGPUR\n\n5\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "generated the exception of the interrupt, but for all the instruction which follow it.",
+    "start": 1073.6,
+    "end": 1080.6,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be\n\nsaved safely as follows\nthe next IF cycle\n\nUntil the TRAP is taken, disable all writes for the fa\nothers that follow. > prevents any state change\nAfter the interrupt handler tak\n\nATRAP instruct\n\non is forced into the pipeline a\n\nontrol, it saves the PC of the faulting\n\nNpTEL ons\nITKHARAGPUR\n\n5\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "This will continue until the trap reaches the W B stage until the trap comes out of the",
+    "start": 1080.6,
+    "end": 1087.6,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be\n\nATRAP instruction\n\naved safely as follows\nthe next IF cycle\n, disable all writes for the faultin\n\nprevents any state change\nAfter the interrupt handler tak\n\ns forced into the pipeline a\nUntil the TRAP is take\n\ninstruction and all\nothers that follow. >\n\n‘ontrol, it saves the PC of"
+  },
+  {
+    "text": "pipe will be disabling all rights. And when the trap comes out then only the interrupt",
+    "start": 1087.92,
+    "end": 1094.92,
+    "ocr_text": "When an interruptoccurs, the pipeline state can be\n\nsaved safely as follows\na) ATRAP instruction\n\nthe next IF cycle\nb) Until the TRAP is taken, disable all writes for the fa\n\nothers that follow. —> prevents any state change\nAfter the interrupt handler tak\n\nforced into the pipeline a\n\nontrol, it saves the PC of the faulting\n\n<i"
+  },
+  {
+    "text": "handler or the interrupt service routine will be activated it will save the program counter",
+    "start": 1094.92,
+    "end": 1099.84,
+    "ocr_text": "When an interruptoccurs, the pipeline state can be\n\nsaved safely as follows\na) ATRAP instruction\n\nthe next IF cycle\nb) Until the TRAP is taken, disable all writes for the fa\n\nothers that follow. —> prevents any state change\nAfter the interrupt handler tak\n\nforced into the pipeline a\n\nontrol, it saves the PC of the faulting\n\n<i"
+  },
+  {
+    "text": "of the instruction that generated the page fault and it will process the interrupt.",
+    "start": 1099.84,
+    "end": 1106.84,
+    "ocr_text": "When an interruptoccurs, the pipeline state can be\n\nsaved safely as follows\nATRAP instruction is f\n\nat the next IF cycle\nUntil the TRAP is taken, disable all writes for the fa\n\nothers that follow. > prevents any state change\nAfter the interrupt handler tak\n\nced into the pipeline\nting instruction and all\n\nontrol, it save\n\nthe PC of the faulting,\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Now, for delayed branches it is a difficult condition that I have said that the instruction",
+    "start": 1106.84,
+    "end": 1113.84,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be saved safely as follows:\na) ATRAP instruction is forced into the pipeline at the next IF cycle\nb) Until the TRAP is taken, disable alll writes for the faulting instr\n\nothers that follow. > prevents any state change\n\nc)_ After the interrupt handler tak trol, it saves the PC of the faulting\n\nFor delayed branches, suppose that an instruction in the branch-delay slot\n\ncauses the interrupt\n\nIf the branch is taken, then the instructions to restart are those in the slot plu:\nthe instruction at the branch target\n\n— Anumber of PC values need to be saved and restored\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "in the branch delay slot might have caused interrupt there was an instruction which is",
+    "start": 1114.84,
+    "end": 1121.84,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be saved safely as follows:\na) ATRAP instruction is forced into the pipeline at the next IF cycle\nb) Until the TRAP is taken, disable alll writes for the faulting instr\n\nothers that follow. > prevents any state change\n\nc)_ After the interrupt handler tak trol, it saves the PC of the faulting\n\nFor delayed branches, suppose that an instruction in the branch-delay slot\n\ncauses the interrupt\n\nIf the branch is taken, then the instructions to restart are those in the slot plu:\nthe instruction at the branch target\n\n— Anumber of PC values need to be saved and restored\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "present in the delay slot that can cause the interrupt. So, if the branch is taken so",
+    "start": 1121.84,
+    "end": 1128.84,
+    "ocr_text": "When an interruptoccurs, the pipeline state can be saved safely as follows:\na) ATRAP instruction is forced into the pipeline at the next IF cycle\nb) Until the TRAP is taken, disable all writes for the faulting instruction\n\nothers that follow. > prevents any state change\n\nc) Afterthe interrupt handler takes control, it saves the PC of the faulting\n\nFor delayed branches, suppose that an instruction in the branch-delay slot\n\ncauses the interrupt\n\n— ifthe branch is taken, then the instructions to restart are those in the slot\nthe instruction at the branch targe\n\n— Anumber of PC values need to be saved and restored\n\nNPTEL onus\n\nITRHARAGPUR GEttineaWON counses"
+  },
+  {
+    "text": "what I mean to say is that there was a branch let us say a branch equal some target level",
+    "start": 1129.84,
+    "end": 1136.84,
+    "ocr_text": "When an interruptoccurs, the pipeline state can be saved safely as follows:\n\na) ATRAP instruction is forced into the pipeline at the next IF cycle\n\nb) Until the TRAP is taken, disable all writes for the faulting instr\nothers that follow. > prevents any state change\n\nc) Afterthe interrupt handler takes control, it saves the PC of the faulting\n\nFor delayed branches, suppose that an instruction in the branch-delay slot\n\ncauses the interrupt\n\nIf the branch is taken, then the instructions to restart are those in the slot pl\nthe instruction at the brafich taree\n\n— Anumber of PC values need to be saved and restored\n\nNPTEL oni\n\nITKHARAGPUR CEITIFICATION COURSES"
+  },
+  {
+    "text": "and there was a branch delay slot let us say there was one delay slot there was some",
+    "start": 1137.84,
+    "end": 1143.84,
+    "ocr_text": "When an interruptoccurs, the pipeline state can be saved safely as follows:\n\na) ATRAP instruction is forced into the pipeline at the next IF cycle\n\nb) Until the TRAP is taken, disable all writes for the faulting instr\nothers that follow. > prevents any state change\n\nc) Afterthe interrupt handler takes control, it saves the PC of the faulting\n\nFor delayed branches, suppose that an instruction in the branch-delay slot\n\ncauses the interrupt\n\nIf the branch is taken, then the instructions to restart are those in the slot pl\nthe instruction at the brafich taree\n\n— Anumber of PC values need to be saved and restored\n\nNPTEL oni\n\nITKHARAGPUR CEITIFICATION COURSES"
+  },
+  {
+    "text": "instructions here let us say x y z and this instruction x y z has generated an interrupt.",
+    "start": 1143.84,
+    "end": 1150.84,
+    "ocr_text": "When an interruptoccurs, the pipeline state can be saved safely as follows:\n\na) ATRAP instruction is forced into the pipeline at the next IF cycle\n\nb) Until the TRAP is taken, disable all writes for the faulting instr\nothers that follow. > prevents any state change\n\nc) Afterthe interrupt handler takes control, it saves the PC of the faulting\n\nFor delayed branches, suppose that an instruction in the branch-delay slot\n\ncauses the interrupt\n\nIf the branch is taken, then the instructions to restart are those in the slot pl\nthe instruction at the brafich taree\n\n— Anumber of PC values need to be saved and restored\n\nNPTEL oni\n\nITKHARAGPUR CEITIFICATION COURSES"
+  },
+  {
+    "text": "So, in the pipeline this branch instruction was already there it was fetched it was let",
+    "start": 1150.84,
+    "end": 1158.84,
+    "ocr_text": "BEA Lable IF ID EX MEM WB"
+  },
+  {
+    "text": "say decoded it was executed it was supposed to do main W B. So, this is the first step",
+    "start": 1159.52,
+    "end": 1166.52,
+    "ocr_text": "BEA Lable IF ID EX MEM WB"
+  },
+  {
+    "text": "and the next instruction is supposed to also execute along with it. So, x y z should also",
+    "start": 1167.68,
+    "end": 1172.68,
+    "ocr_text": "BEA Lable IF ID EX MEM WB"
+  },
+  {
+    "text": "be supposed to be fetched here decoded here executed here and so on. So, what I am saying",
+    "start": 1172.68,
+    "end": 1179.36,
+    "ocr_text": "BEA Lable IF ID EX MEM WB"
+  },
+  {
+    "text": "is that suppose this instruction during the x stage generates an interrupt. So, you will",
+    "start": 1179.36,
+    "end": 1186.36,
+    "ocr_text": "BEA Latle\n\nm3)\nSES)\n\nIF ID EK MEM WB\nEF) SDVEDG"
+  },
+  {
+    "text": "have to stop everything not only this but also this branch instruction you cannot jump",
+    "start": 1186.36,
+    "end": 1193.36,
+    "ocr_text": "Bea lable pha sagas an se"
+  },
+  {
+    "text": "to the level. So, you will have to stop everything and when you come back you will have to not",
+    "start": 1199.2,
+    "end": 1205.4,
+    "ocr_text": "ID EX MEM WB\n\nBEA  Latle ar\n5) zr > @)-\n\nZriewupt"
+  },
+  {
+    "text": "only restart this x y z but also the instruction that is there in this target level some other",
+    "start": 1205.4,
+    "end": 1212.4,
+    "ocr_text": "ID EX MEM WB\n\nBea  Latle BF\nzr r> @-\n\nTle wept"
+  },
+  {
+    "text": "steps let us say an add instruction is there also this instruction. So, multiple program",
+    "start": 1212.4,
+    "end": 1219.4,
+    "ocr_text": "ID EX MEM WB\n\nBea  Latle BF\nzr r> @-\n\nTle wept"
+  },
+  {
+    "text": "counter values have to be saved the PC of this x y z and also the PC of this right this",
+    "start": 1219.4,
+    "end": 1227.4,
+    "ocr_text": "Bea Lable IF ID EK MEM WB\n> yz sr rp ED-\nTre rie\n\nLable: /ADD = -— \\"
+  },
+  {
+    "text": "is what is mentioned here the instructions to restart are those in this slot plus the",
+    "start": 1227.56,
+    "end": 1233.56,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be saved safely as follows:\n) ATRAP instruction ed into the pipeline at the next IF cycle\nb) Until the TRAP is taken, disable all writes for the faulting instruction and all\nothers that follow. > prevents any state change\n\n¢) Afterthe interrupt handler takes control, it saves the PC of the faulting\n\nFor delayed branches, suppose that an instruction in the branch-delay slot\n\ncauses the interrupt\n\n- If the branch is taken, then the instructions to restart are th\nthe instruction at the branc\n\n— Anumber of PC values ni\n\nNPTEL ONLIN\nIIT KHARAGPUR GEtriseat1ON courses"
+  },
+  {
+    "text": "instruction at the branch target which requires one needs a number of PC values to be saved",
+    "start": 1233.56,
+    "end": 1240.56,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be saved safely as follows:\n) ATRAP instruction ed into the pipeline at the next IF cycle\nb) Until the TRAP is taken, disable all writes for the faulting instruction and all\nothers that follow. > prevents any state change\n\n¢) Afterthe interrupt handler takes control, it saves the PC of the faulting\n\nFor delayed branches, suppose that an instruction in the branch-delay slot\n\ncauses the interrupt\n\n- If the branch is taken, then the instructions to restart are th\nthe instruction at the branc\n\n— Anumber of PC values ni\n\nNPTEL ONLIN\nIIT KHARAGPUR GEtriseat1ON courses"
+  },
+  {
+    "text": "and of course, restored. So, when the interrupt is handled after that there is a special",
+    "start": 1241.56,
+    "end": 1247.56,
+    "ocr_text": "When an interrupt occurs, the pipeline state can be saved safely as follows:\n) ATRAP instruction is forced into the pipeline at the next IF cycle\nb) Until the TRAP is taken, disable all writes for the faulting instr\nothers that follow. > prevents any state change\n\n¢) Afterthe interrupt handler takes control, it saves the PC of the faulting\n\nFor delayed branches, suppose that an instruction in the branch-delay slot\n\ncauses the interrupt\n\n~ If the branch is taken, then the instructions to r¢\nthe instruction at the branch target\n\n— Anumber of PC values need to be\n\nITKHARAGPUR CEATIFICATION COURSES"
+  },
+  {
+    "text": "instruction MIF32 called return from x m exception RFE that is the instruction to be given",
+    "start": 1250.2,
+    "end": 1257.2,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nchine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be stopped such that the instructions before\nthe faulting instruction are completed, while those after can be restarted from\ncratch\nSupporting precise interrupts is a requirement in many systems (e.€. page fault,\nIEEE arithmetic, ete\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "at the end or the last instruction of the interrupt service routine or handler that will",
+    "start": 1259.44,
+    "end": 1263.94,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupeed instructions.\n\n= Precise interr If the pipeline can be stopped such that the instructions before\nthe faulting instruction are comp! while the restarted from\ncratch\n\n— Supporting precise interrupts is a requirement in many systems (ee. page fault\nIEEE arithmetic, etc.)\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "be reloading the PCs automatically and restarting the interrupted instructions.",
+    "start": 1263.94,
+    "end": 1270.94,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupeed instructions.\n\n= Precise interr If the pipeline can be stopped such that the instructions before\nthe faulting instruction are comp! while the restarted from\ncratch\n\n— Supporting precise interrupts is a requirement in many systems (ee. page fault\nIEEE arithmetic, etc.)\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, for these kind of delayed branch kind of machines the RFE instruction had to do",
+    "start": 1270.94,
+    "end": 1277.94,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\ninterrupted instructions,\n\n— Precise interrupts: If the pipeline can be stopped such that the instructions before\nthe faulting instruction 2 ‘ed, while tho n be restarted from\ncratch\nSupporting precise interrupts is a requirement in many systems (ee. page fault\nIEEE arithmetic, etc.)\n\nNPTEL ONLINE NATIONAL 1p oF\nIT KHARAGPUR CERTIFICATION COURSES TNO gel ys"
+  },
+  {
+    "text": "a lot it will it will have to reload multiple PCs. So, there is a terminology called precise",
+    "start": 1278.46,
+    "end": 1285.46,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be stopped such that the instructions before\nthe faulting instruction are completed, while the n be restarted from\n‘cratch\n\n— Supporting precise interrupts is a requirement in many systems (e.€. page fault\nIEEE arithmetic, etc.)\n\nNeTeL onuine NATIONAL nay™oF\nTRHARAGPUR CERTIFICATION couRSES eater ge SN\naes"
+  },
+  {
+    "text": "interrupts precise interrupt says that let us say an interrupt has occurred. So, if it is",
+    "start": 1285.94,
+    "end": 1292.94,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be stopped such that the instructions before\nthe faulting instruction are completed, while those after c tarted from\n‘cratch\nSupporting precise interrupts is a requirement in many systems (e.e. page fault,\nIEEE arithmetic, etc.)\n\nNPTEL ONLIN\nIIT KHARAGPUR CERTIeATION couRses"
+  },
+  {
+    "text": "possible for the control unit to stop the pipeline such that all instructions before the",
+    "start": 1293.82,
+    "end": 1300.82,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be stopped such that the instructions before\nthe faulting instruction are completed, while those after c tarted from\n‘cratch\nSupporting precise interrupts is a requirement in many systems (e.e. page fault,\nIEEE arithmetic, etc.)\n\nNPTEL ONLIN\nIIT KHARAGPUR CERTIeATION couRses"
+  },
+  {
+    "text": "instruction that generated the interrupt can complete and all instructions that follow",
+    "start": 1303.18,
+    "end": 1309.18,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be stopped such that the instructions before\nthe faulting instruction are completed, while those after c tarted from\n‘cratch\nSupporting precise interrupts is a requirement in many systems (e.e. page fault,\nIEEE arithmetic, etc.)\n\nNPTEL ONLIN\nIIT KHARAGPUR CERTIeATION couRses"
+  },
+  {
+    "text": "will wait they will be restarted later. Then we say it is a precise interrupt. So,",
+    "start": 1309.18,
+    "end": 1316.18,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be such that the instructions before\nthe faulting instructién are completed, while be restarted from\ncratch\n\nSupporting precise interrupts is a requirement in many systems (e.e. page fault,\n\nIEEE arithmetic, etc.)\n\nNPTEL ONUIN NATIONALINSTITUT\nAIT KHARAGPUR CEMTIeaTION counses TeaRotoey, MECHALAYA"
+  },
+  {
+    "text": "as you if you see the definition the pipeline can be stopped such that the instruction before",
+    "start": 1317.18,
+    "end": 1324.18,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be such that the instructions before\nthe faulting instructién are completed, while be restarted from\ncratch\n\nSupporting precise interrupts is a requirement in many systems (e.e. page fault,\n\nIEEE arithmetic, etc.)\n\nNPTEL ONUIN NATIONALINSTITUT\nAIT KHARAGPUR CEMTIeaTION counses TeaRotoey, MECHALAYA"
+  },
+  {
+    "text": "the faulting instruction are completed while those after can be restarted from scratch",
+    "start": 1325.3,
+    "end": 1331.3,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be ed such that the instructions before\nthe faulting instruction are co |. w n be restarted from\n\ncratch =\n\nSupporting precise interrupts is a requirement in many systems (e.e. page fault\nIEEE ari\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "then we say it is a precise interrupt. Well there are cases let us say for page 4 and",
+    "start": 1331.3,
+    "end": 1337.5,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be ed such that the instructions before\nthe faulting instruction are co |. w n be restarted from\n\ncratch =\n\nSupporting precise interrupts is a requirement in many systems (e.e. page fault\nIEEE ari\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "also for IEEE arithmetic this precise interrupt is a necessity. So, the designers of these",
+    "start": 1337.5,
+    "end": 1344.5,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be stopped such that the instructions before\nthe faulting instruction are completed, while those after can be restarted from\n‘cratch\nSupporting precise interrupts is a requirement in many systems (e.€. page fault,\nIEEE ari"
+  },
+  {
+    "text": "pipelines they spend some effort to ensure that interrupt handling is precise and just",
+    "start": 1344.5,
+    "end": 1351.5,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be stopped such that the instructions before\nthe faulting instruction are completed, while those after can be restarted from\n‘cratch\nSupporting precise interrupts is a requirement in many systems (e.€. page fault,\nIEEE ari"
+  },
+  {
+    "text": "a quick snapshot. So, what are the kinds of interrupts that can generate in the 5 stage",
+    "start": 1354.54,
+    "end": 1359.5,
+    "ocr_text": "After handling the interrupt, special instruction (RFE in MIPS32) return the\nmachine from the interrupt handler by reloading the PC’s and restarting the\n\ninterrupted instructions.\n\n— Precise interrupts: If the pipeline can be stopped such that the instructions before\nthe faulting instruction are completed, while tho be restarted from\ncratch\nSupporting precise interrupts is a requirement in many systems (e.€. page fault,\nIEEE arithmetic, ete.)\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "the exceptions. In the instruction fetch stage that can be patch fault while fetching the",
+    "start": 1359.5,
+    "end": 1364.5,
+    "ocr_text": "exceptions that may occur in MIPS32 pipeline:\n\nesse i Jesu tsauein\n\nPage fault, misaligned memory acces:\nmemory protection violation\n\n19 a| opcode\n\nex Arithmetic exception\n\nMEM Page fault, misaligned memory access\nmemory protection violatic\n\nwe None\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "instruction there can be misaligned memory access because we said that all instruction",
+    "start": 1364.5,
+    "end": 1370.5,
+    "ocr_text": "exceptions that may occur in MIPS32 pipeline:\n\nesse i Jesu tsauein\n\nPage fault, misaligned memory acces:\nmemory protection violation\n\n19 a| opcode\n\nex Arithmetic exception\n\nMEM Page fault, misaligned memory access\nmemory protection violatic\n\nwe None\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "fetches have to be from a multiple of 4 memory address should be a multiple of 4.",
+    "start": 1371.14,
+    "end": 1377.14,
+    "ocr_text": "Some exceptions that may occur in MIPS32 pir\n\nPgetaai cs [ieee tants —___]\n\n> fault,\nnory protection violation’\n\nmisaligned memory ace\n\n10\nEX\nMEM\n\nArithmetic exception\n\nfault,\nmemory prote\n\nwa None\n\nITKHARAGPUR\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nmory access,\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "But by mistake if you have given a misaligned address that will also generate an exception",
+    "start": 1377.14,
+    "end": 1382.14,
+    "ocr_text": "Some exceptions that may occur in MIPS32 pir\n\nPgetaai cs [ieee tants —___]\n\n> fault,\nnory protection violation’\n\nmisaligned memory ace\n\n10\nEX\nMEM\n\nArithmetic exception\n\nfault,\nmemory prote\n\nwa None\n\nITKHARAGPUR\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nmory access,\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "and memory protection violation you are trying to access from a memory location where you",
+    "start": 1382.14,
+    "end": 1389.14,
+    "ocr_text": "Some exceptions that may occur in MIPS32 pipeline:\n\n[gets [iste tbssuette —___]\n\nPage fault, misaligned memory acces:\nnory protection violation\n\n10\nx Arithmetic exception\n\nMEM Page fault, misaligned memory access\nmemory protection violation\n\nwe None\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "do not have the access rights access permissions. For IEEE you can get illegal op code for",
+    "start": 1389.14,
+    "end": 1395.54,
+    "ocr_text": "Some exceptions that may occur in MIPS32 pipeline:\n\n[gets [iste tbssuette —___]\n\nPage fault, misaligned memory acces:\nnory protection violation\n\n10\nx Arithmetic exception\n\nMEM Page fault, misaligned memory access\nmemory protection violation\n\nwe None\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "IEEEX you can get let us say divide by 0 some kind of arithmetic exception. Memm",
+    "start": 1395.54,
+    "end": 1400.18,
+    "ocr_text": "Some exceptions that may occur in MIPS32 pi\n\nPigcmits [eoad tutte,\n\nPagefault, misaligned memory acc\nmemory protection violation\n\nIllegal opcode\nArithmetic exception\n\nMEM Page fault, misaligned memory access\nmemory protection violation\n\nwe None\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "same patch fault misaligned access memory protection violation and WB does nothing.",
+    "start": 1400.18,
+    "end": 1407.18,
+    "ocr_text": "Some exceptions that may occur in MIPS32 pi\n\nPigcmits [eoad tutte,\n\nPagefault, misaligned memory acc\nmemory protection violation\n\nIllegal opcode\nArithmetic exception\n\nMEM Page fault, misaligned memory access\nmemory protection violation\n\nwe None\n\nNPTEL ONLINE\nCERTIFICATION COURSES"
+  },
+  {
+    "text": "Multiple interrupts may occur in the same cycle this is one danger like here let us say",
+    "start": 1410.18,
+    "end": 1415.34,
+    "ocr_text": "Multiple interrupts may also occur in the same clock cycle\n\nAn example:\n\nWw R1100(R2) IF x MEM WB.\nADD R4,RS,RG > x MEM owe\n\n» cause a data page fault (in MEM) and arithmetic exception (in EX) at th\nme time (clock cycle 4)\n\nAsa possible solution, we can deal only with the data page fault and then restart\n\nthe execution. The second interrupt will occur again, and will be handled later.\n\nNee\nITKHARAGPUR GEttinesWON courses"
+  },
+  {
+    "text": "load instruction followed by an add. Here load instruction can generate a patch fault",
+    "start": 1415.34,
+    "end": 1421.94,
+    "ocr_text": "Multiple interrupts may also occur in the same clock cycle\n\nAn example:\n\ntw R1,100(R2)— IF x MEM, We.\nADD R4,RS.RG ° x MEM we\n\nfault (in MEM) and arithmetic exception (in EX) at th\nme time (clock cycle 4)\n\nAsa possible solution, we can deal only with the data page fault and then restart\nthe execution. The second interrupt will occur again, and will be handled later."
+  },
+  {
+    "text": "during Memm while this add can generate an arithmetic exception during IEEEX. So, two",
+    "start": 1422.02,
+    "end": 1428.54,
+    "ocr_text": "Multiple interrupts may also occur in the same clock cycle\n\nAn example:\n\ntw R1,100(R2)— IF x MEM, We.\nADD R4,RS.RG ° x MEM we\n\nfault (in MEM) and arithmetic exception (in EX) at th\nme time (clock cycle 4)\n\nAsa possible solution, we can deal only with the data page fault and then restart\nthe execution. The second interrupt will occur again, and will be handled later."
+  },
+  {
+    "text": "interrupts are being generated in the same clock cycle. So, one solution is that if this",
+    "start": 1428.54,
+    "end": 1434.82,
+    "ocr_text": "Multiple interrupts may also occur in the same clock cycle\n\nAn example:\n\nLW R1,100(R2) IF x MEM We\nADD R4,RS.RG =x MEM we\n\n) cause a data page fault (in MEM) and arithmetic exception (in EX) at th\nme time (clock cycle 4)\n\n— Asa possible solution, we can deal only with the data page fault and then restart\nthe execution. The second interrupt will occur again, and will be handled later.\n\nNETEL ON NATIONAL Us\nITKHARAGPUR CEITIFICATION CouRsES HNO"
+  },
+  {
+    "text": "kind of a thing happen. So, you ignore the second instruction interrupt you only handle",
+    "start": 1434.82,
+    "end": 1441.02,
+    "ocr_text": "Multiple interrupts may also occur in the same clock cycle\n\nAn example:\n\nLW R1,100(R2) IF x MEM We\nADD R4,RS.RG =x MEM we\n\n) cause a data page fault (in MEM) and arithmetic exception (in EX) at th\nme time (clock cycle 4)\n\n— Asa possible solution, we can deal only with the data page fault and then restart\nthe execution. The second interrupt will occur again, and will be handled later.\n\nNETEL ON NATIONAL Us\nITKHARAGPUR CEITIFICATION CouRsES HNO"
+  },
+  {
+    "text": "the first one and again restart. So, if this second instruction had generated an interrupt",
+    "start": 1441.02,
+    "end": 1448.02,
+    "ocr_text": "Multiple interrupts may also occur in the same clock cycle\n\nAn example:\n\nLy R1,100(R2)— IF MEM | WB\nADD R4,RS,RG 10 x MEM owe\n\nCan cause a data page fault (in MEM) and arithmetic exception (in EX) at th\nme time (clock cycle 4)\n— Asa possible solution, we can deal only with the data page fault and then restart\nthe execution. The second interrupt will occur again, and will be handled later.\n\nr & |\n\ny"
+  },
+  {
+    "text": "it will generate it again. We deal only with the patch fault and restart the execution",
+    "start": 1449.02,
+    "end": 1455.02,
+    "ocr_text": "Multiple interrupts may also occur in the same clock cycle\n\nAn example:\n\ntw R1,100(R2) IF MEM | WB\nADD R4,RS,RG x MEM we\n\nause a data page fault (in MEM) and arithmetic ¢ on (in EX) at thi\nme time (clock cycle 4)\n\n— Asa possible solution, we can deal only with the data page fault and then restart\nxecution. The second interrupt will occur again, and will be handled later."
+  },
+  {
+    "text": "the second interrupt will occur again and will be handled at that time. This is one solution",
+    "start": 1455.02,
+    "end": 1462.02,
+    "ocr_text": "Multiple interrupts may also occur in the same clock cycle\n\nAn example:\n\ntw R1,100(R2) IF Xo MEM WB.\nADD R4,RS,RG o x MEM ow\n\ndata page fault (in MEM) and arithmetic exception (in EX) at th\ntime (clock cycle 4),\n\ns a possible solution, we can deal only with the data page fault and then restart\nxecution. The second interrupt will occur again, and will be handled\n\nNPTEL onus\nITKHARAGPUR CEATIFICATION counsES\n\nNATIONAL ysiiaaor\nTecNOUg gel Sava"
+  },
+  {
+    "text": "you can think of. The second difficulty is that interrupts may appear out of order.",
+    "start": 1462.02,
+    "end": 1469.02,
+    "ocr_text": "Multiple interrupts may also occur in the same clock cycle\n\nAn example:\n\ntw R1,100(R2) IF Xo MEM WB.\nADD R4,RS,RG o x MEM ow\n\ndata page fault (in MEM) and arithmetic exception (in EX) at th\ntime (clock cycle 4),\n\ns a possible solution, we can deal only with the data page fault and then restart\nxecution. The second interrupt will occur again, and will be handled\n\nNPTEL onus\nITKHARAGPUR CEATIFICATION counsES\n\nNATIONAL ysiiaaor\nTecNOUg gel Sava"
+  },
+  {
+    "text": "Let us take another example the first load instruction may be having a patch fault",
+    "start": 1469.02,
+    "end": 1476.02,
+    "ocr_text": "+ Difficulty: Interrupts may appear out of order.\nLW causes a data page fault (cycle 4), and’ ADD cau struction page fault\n(cycle 2)\n\nCree SIE)\n0\n\niw RI, a iF MEM | WB\n\n+ Apossible solution to this problem is discussed next\n\n="
+  },
+  {
+    "text": "here in Memm and this add instruction can have a patch fault in IEEEX. So, it is out",
+    "start": 1478.82,
+    "end": 1485.82,
+    "ocr_text": "+ Difficulty: Interrupts may appear out of order.\nLW causes a data page fault (cycle 4), and ADD causes an instruction page fault\n(cycle 2)\n\nCie CDS ee\n\ntw R1,100(R2) IF ID MEM, WB.\n\n+ Apossible solution to this problem is discussed ne\n\nPace\nEy ma"
+  },
+  {
+    "text": "of order. So, for out of order interrupts that means the earlier instruction is generating",
+    "start": 1488.42,
+    "end": 1495.42,
+    "ocr_text": "+ Difficulty: Interrupts may appear out of order\nWe a data page fault (cycle 4), and ADD causes an instruction page fault\n(cycle 2)\n\nCee CO\n\ntw R1,100(R2) FID MEM | WB\n\nADD R4,RS.RG iF 10 ex mem\n\n+ Apossible solution to this problem is discussed next"
+  },
+  {
+    "text": "interrupt later. Later instruction is generating interrupt earlier. So, a possible solution to",
+    "start": 1495.94,
+    "end": 1502.94,
+    "ocr_text": "+ Difficulty: Interrupts may appear out of order.\nLW causes a data page fault (cycle 4), and ADD causes an instruction page fault\n(cycle 2)\n\n| instruction | a | 2 | 3 [oa | os [is |\n\niw R1,100(R2) IF IDX MEM. WB\n\nADD R4,RS,RG F 10 =x MEM\n\n+ Apossible solution to this problem is discussed next\n\nNpTEL ONLINE NATIONAL I\nITKHARAGPUR CERTIFICATION COURSES TECHNOL"
+  },
+  {
+    "text": "this will be just discussing briefly. The solution is like this the hardware will post",
+    "start": 1503.3,
+    "end": 1510.3,
+    "ocr_text": "+ Difficulty: Interrupts may appear out of order.\nLW causes a data page fault (cycle 4), and ADD causes an instruction page fault\n(cycle 2)\n\n| instruction | a | 2 | 3 [oa | os [is |\n\niw R1,100(R2) IF IDX MEM. WB\n\nADD R4,RS,RG F 10 =x MEM\n\n+ Apossible solution to this problem is discussed next\n\nNpTEL ONLINE NATIONAL I\nITKHARAGPUR CERTIFICATION COURSES TECHNOL"
+  },
+  {
+    "text": "each interrupt in a status vector. Like you see you have the pipeline stages right you",
+    "start": 1513.82,
+    "end": 1520.82,
+    "ocr_text": "Possible Solution\n\nThe hardware posts each interrupt in a status vector, which is carried along,\nwith each instruction as it moves through the pipeline\n\nVhen an instruction reaches WB, the interrupt status vector is checked and\nhandled if present\n\nes that all interrupt handling Is carried out in precise order.\n\nte"
+  },
+  {
+    "text": "have the instruction fetch you have the instruction decode you have the execute you have the",
+    "start": 1520.82,
+    "end": 1527.82,
+    "ocr_text": "Possible Solution\nThe hardware posts each interrupt in a status vector, which Is ¢\nwith each instruction as it moves through the pipeline.\n\nWhen an instruction reaches WB, the interrupt status vector i\nhandled if present\n\nGuarantees that all Interrupt handling\n\nNPTEL ONL NATIONAL INSTITUTE OF\nIT KHARAGPUR CEtTIneaTION counses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "Memm you have the WB. So, what we are saying is that when the instructions move from one",
+    "start": 1531.78,
+    "end": 1538.78,
+    "ocr_text": "Possible Solution\nThe hardware posts each interrupt in a status vector, which Is ¢\nwith each instruction as it moves through the pipeline.\n\nWhen an instruction reaches WB, the interrupt status vector i\nhandled if present\n\nGuarantees that all Interrupt handling\n\nNPTEL ONL NATIONAL INSTITUTE OF\nIT KHARAGPUR CEtTIneaTION counses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "stretch to the next there is also a special register values status register which is part",
+    "start": 1542.06,
+    "end": 1549.06,
+    "ocr_text": "Possible Solution\nThe hardware posts each interrupt in a status vector, which Is ¢\nwith each instruction as it moves through the pipeline.\n\nWhen an instruction reaches WB, the interrupt status vector i\nhandled if present\n\nGuarantees that all Interrupt handling\n\nNPTEL ONL NATIONAL INSTITUTE OF\nIT KHARAGPUR CEtTIneaTION counses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "of the the interstage latches. This will also move from one stretch to the next right.",
+    "start": 1549.86,
+    "end": 1556.86,
+    "ocr_text": ")\n\n|\nIF i) | Be | men | WB |\n| |\n¥ | =| [—> |\na =a ri coe te\n\n—\nstatus\n\n%\n\n¥"
+  },
+  {
+    "text": "This is the status this will move like this. So, what we are saying is that this status",
+    "start": 1559.7,
+    "end": 1566.7,
+    "ocr_text": ")\n\n|\nIF i) | Be | men | WB |\n| |\n¥ | =| [—> |\na =a ri coe te\n\n—\nstatus\n\n%\n\n¥"
+  },
+  {
+    "text": "vector is carried along with instruction as a mostly pipe and in that status vector you",
+    "start": 1570.3,
+    "end": 1577.3,
+    "ocr_text": ")\n\n|\nIF i) | Be | men | WB |\n| |\n¥ | =| [—> |\na =a ri coe te\n\n—\nstatus\n\n%\n\n¥"
+  },
+  {
+    "text": "set a bit indicating that there is an interrupt and also the type of the interrupt. So, you",
+    "start": 1577.7,
+    "end": 1584.7,
+    "ocr_text": "+ Possible Solution\nThe hardware posts each Interrupt in a status ve\nwith each instruction as it moves through the pipeline\n\ntor, which is carried along,\n\nWhen an instruction reaches WB, the interrupt status vector is checked and\n\nhandled if present\n\nGuarantees that all interrupt handling Is carried out in precise order\n\nNeTEL ONUIN\nIT KHARAGPUR GEMTIneaTION counses\n\nusers ae a\nY &s"
+  },
+  {
+    "text": "do not do anything here you let it move and when it reaches WB only then you process the",
+    "start": 1584.7,
+    "end": 1591.7,
+    "ocr_text": "+ Possible Solution\nThe hardware posts each Interrupt in a status ve\nwith each instruction as it moves through the pipeline\n\ntor, which is carried along,\n\nWhen an instruction reaches WB, the interrupt status vector is checked and\n\nhandled if present\n\nGuarantees that all interrupt handling Is carried out in precise order\n\nNeTEL ONUIN\nIT KHARAGPUR GEMTIneaTION counses\n\nusers ae a\nY &s"
+  },
+  {
+    "text": "interrupt maybe the interrupt has occurred here, but you allow it to move till WB when",
+    "start": 1592.06,
+    "end": 1597.3,
+    "ocr_text": "lee ex | nen | v2 |\ngee S EES\n\nIF\n—_\neee\n\nstatus"
+  },
+  {
+    "text": "it reaches here you see that what is the type of the interrupt you see it is a it was the",
+    "start": 1597.3,
+    "end": 1602.74,
+    "ocr_text": "}\n| Ex | aan | Fi\nJaa: ee\n\nao > O55\n\nze || Bb\n\n— a\noe\nstatus"
+  },
+  {
+    "text": "instruction fetch fault then you handle that interrupt right. So, when the instruction",
+    "start": 1602.74,
+    "end": 1609.74,
+    "ocr_text": "}\n| Ex | aan | Fi\nJaa: ee\n\nao > O55\n\nze || Bb\n\n— a\noe\nstatus"
+  },
+  {
+    "text": "reaches WB the interrupt status vector is checked and handled, but if you do it like this",
+    "start": 1609.74,
+    "end": 1616.74,
+    "ocr_text": "Possible Solution\n\nThe hardware posts each interrupt in a statu:\n\nvith each instruction as it moves through the\n\nyan instruction reach\nhandled if present\n\narantees that all interrupt ha\n\nNeTEL ONL\nIT KHARAGPUR CEATIFICATION COURSES\n\ntor, which is ¢\n\npipeline\nstatus\n\nvector i\n\nFried along\n\nche\n\nked and"
+  },
+  {
+    "text": "then preciseness of the interrupt is guaranteed because the first instruction will be reaching",
+    "start": 1617.62,
+    "end": 1624.62,
+    "ocr_text": "Possible Solution\n\nThe hardware posts each Interrupt in a status vector, which Is carried along,\n\nwith each instruction as it moves through the pipeline\n\nVhen an instruction reaches WB, the interrupt status vector is checked and\nhandled if present\n\nall Interrupt handling Is carried out In precise order\n\nNATIONAL a\nTECHNOL"
+  },
+  {
+    "text": "WB earlier the following instruction will be reaching WB later. So, the first one to reach",
+    "start": 1625.22,
+    "end": 1632.02,
+    "ocr_text": "Tne\n= ee\n\nstatus"
+  },
+  {
+    "text": "will be the early instruction. So, maybe the instructions were generated out of order,",
+    "start": 1632.02,
+    "end": 1638.34,
+    "ocr_text": "Tne\n= ee\n\nstatus"
+  },
+  {
+    "text": "but the first instruction will always reach WB earlier than the next instruction. So,",
+    "start": 1638.34,
+    "end": 1644.34,
+    "ocr_text": "Tne\n= ee\n\nstatus"
+  },
+  {
+    "text": "the interrupt for the first instruction will reach WB earlier this is the idea right.",
+    "start": 1644.34,
+    "end": 1651.34,
+    "ocr_text": "Tne\n= ee\n\nstatus"
+  },
+  {
+    "text": "So, this is what we mentioned here that interrupt handling will be carried out in precise",
+    "start": 1651.34,
+    "end": 1658.82,
+    "ocr_text": "+ Possible Solution\n\nThe hardware posts each interrupt in a status vector, which Is carried along,\nwith each instruction as it moves through the pipeline\n\nVhen an instruction reaches WB, t status vector is checked and\nhandled if present\n\nGuarantees that all interrupt ha z Is .d out In precise order."
+  },
+  {
+    "text": "order and with this way come to the end of this lecture.",
+    "start": 1658.82,
+    "end": 1664.82,
+    "ocr_text": "+ Possible Solution\n\nThe hardware posts each interrupt in a status vector, which Is carried along,\nwith each instruction as it moves through the pipeline\n\nVhen an instruction reaches WB, t status vector is checked and\nhandled if present\n\nGuarantees that all interrupt ha z Is .d out In precise order."
+  },
+  {
+    "text": "Now, the next lecture we shall be discussing some more methods to improve the control",
+    "start": 1664.82,
+    "end": 1670.06,
+    "ocr_text": "+ Possible Solution\n\nThe hardware posts each interrupt in a status vector, which Is carried along,\nwith each instruction as it moves through the pipeline\n\nVhen an instruction reaches WB, t status vector is checked and\nhandled if present\n\nGuarantees that all interrupt ha z Is .d out In precise order."
+  },
+  {
+    "text": "hazard handling.",
+    "start": 1670.06,
+    "end": 1671.06,
+    "ocr_text": "+ Possible Solution\n\nThe hardware posts each interrupt in a status vector, which Is carried along,\nwith each instruction as it moves through the pipeline\n\nVhen an instruction reaches WB, t status vector is checked and\nhandled if present\n\nGuarantees that all interrupt ha z Is .d out In precise order."
+  }
+]

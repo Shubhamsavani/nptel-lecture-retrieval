@@ -1,0 +1,932 @@
+[
+  {
+    "text": "Hello, in the previous video we had seen how interrupts can be requested from any external",
+    "start": 0.0,
+    "end": 23.04,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "device and it would result in a interrupt service routine being executed.",
+    "start": 23.04,
+    "end": 27.6,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "So, in this video we will look at more into detail how interrupts are handled.",
+    "start": 27.92,
+    "end": 32.96,
+    "ocr_text": "| NPTEL ONLINE COURSE"
+  },
+  {
+    "text": "So, interrupt handling is a pretty involved process which involves both the CPU as well as",
+    "start": 33.84,
+    "end": 41.6,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nDevice asserts interrupt\nline\n\nBy device\nand PIC\nBy CP\n\nme”\nCPU\n\nautomatically\n\nDone in\nos"
+  },
+  {
+    "text": "the operating system. So, we will go step by step and see what are the various",
+    "start": 41.6,
+    "end": 45.76,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nDevice asserts interrupt\nline\n\nBy device\nand PIC\nBy CP\n\nme”\nCPU\n\nautomatically\n\nDone in\nos"
+  },
+  {
+    "text": "stages in interrupt handling. So, let us start with the first let us say that the device",
+    "start": 46.64,
+    "end": 53.36,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nDevice asserts interrupt\nline\n\nBy device\nand PIC\nBy CP\n\nme”\nCPU\n\nautomatically\n\nDone in\nos"
+  },
+  {
+    "text": "asserts an interrupt line and as we know this would result in the interrupt controller",
+    "start": 53.36,
+    "end": 59.2,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nDevice asserts interrupt\nline\n\nBy device\nand PIC\nBy CP\n\nme”\nCPU\n\nautomatically\n\nDone in\nos"
+  },
+  {
+    "text": "channelizing that request into the INT pin of the processor. So, what happens next?",
+    "start": 59.92,
+    "end": 66.4,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nDevice asserts interrupt\nline\n\nBy device\nand PIC\nBy CP\n\nmc”\nCPU\n\nautomatically\n\nDone in\nos"
+  },
+  {
+    "text": "So, in the processor called CPU over here the CPU would sense that the interrupt line or the",
+    "start": 66.4,
+    "end": 73.04,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nDevice asserts interrupt\nline\n\nAfter current instruction completes.\nCPU senses interrupt line and obtains IRQ number\n\nFrom PIC\n\nBy device\nand PIC\n\nme”\nCPU\n\nautomatically\n\nDone in\nos"
+  },
+  {
+    "text": "INT line is asserted and it would obtain the IRQ number from the PIC that is the programmable",
+    "start": 73.04,
+    "end": 79.12,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nDevice asserts interrupt\nline\n\nAfter current instruction completes.\nCPU senses interrupt line and obtains IRQ number\n\nFrom PIC\n\nBy device\nand PIC\n\nme”\nCPU\n\nautomatically\n\nDone in\nos"
+  },
+  {
+    "text": "interrupt controller. Then the processor would switch to the kernel stack and also switch the",
+    "start": 79.12,
+    "end": 86.72,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nDevice asserts interrupt\nline\n\nAfter current instruction completes.\nCPU senses interrupt line and obtains IRQ number\nFrom PIC\n\n»\n\nBy device\nand PIC\n\nmc”\nCPU\n\nautomatically\n\nDone in\nos"
+  },
+  {
+    "text": "privilege level if required. The third step is the current execution of the program is stopped",
+    "start": 86.72,
+    "end": 96.0,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nDevice asserts interrupt\nline\n\nAfter current instruction completes.\nCPU senses interrupt line and obtains IRQ number\n\nFrom PIC By device\nand PIC\nDone by\nSwitch to kernel stack if necessary, | | CPU\nswitch privilgge level if needed automatically\nDone in\n\nos"
+  },
+  {
+    "text": "and the program state is saved. So, in x86 the program state comprises of several registers",
+    "start": 96.56,
+    "end": 103.84,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n(3) , X86 saves the SS, ESP, EFLAGS,\nBasi tai d aot CS, EIP, error code on stack\nasieiprogiamstalciseven ! (restored by iret instruction).\n\nSuspends current task."
+  },
+  {
+    "text": "such as the SS register that is the stack segment, the stack pointer, flags register,",
+    "start": 103.84,
+    "end": 109.2,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n(3) , X86 saves the SS, ESP, EFLAGS,\nBasi tai d aot CS, EIP, error code on stack\nasieiprogiamstalciseven ! (restored by iret instruction).\n\nSuspends current task."
+  },
+  {
+    "text": "a code segment and the instruction pointer. So, all these are saved onto the stack and then",
+    "start": 109.2,
+    "end": 115.92,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n(3) , X86 saves the SS, ESP, EFLAGS,\n. ___,! CS, EIP, error code on stack\nBasic program state saved F (restoted by iret instruction).\n\nSuspends current task."
+  },
+  {
+    "text": "the processor would jump to the interrupt handler. So, in the interrupt handler we have a top half",
+    "start": 115.92,
+    "end": 123.76,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\nwest CS, EIP, error code on stack\n! (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---+ interrupt handler?\nbl i"
+  },
+  {
+    "text": "of the interrupt handler. Important things like respond to the interrupt, most storage of the",
+    "start": 123.76,
+    "end": 130.48,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\nwest CS, EIP, error code on stack\n! (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---+ interrupt handler?\nbl i"
+  },
+  {
+    "text": "program state scheduling of something known as the bottom half of the interrupt handler is done",
+    "start": 130.48,
+    "end": 136.56,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\nwes! CS, EIP, error code on stack\n: (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---* interrupt handler?\n\n5 Just do the important stuff like\nos. !... respond to interrupt\nInterrupt handler (top half) ina . more storing of program state\n\n. schedule the bottom half\n.. IRET"
+  },
+  {
+    "text": "and then it is followed by the IRIT which is the return from the interrupt.",
+    "start": 137.2,
+    "end": 141.6,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\noot CS, EIP, error code on stack\n! (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---+ interrupt handler?\n\n5 Just do the important stuff like\nos. !... respond to interrupt\nInterrupt handler (top half) anc . more storing of program state\n\n, schedule the bottom half\n.. IRET"
+  },
+  {
+    "text": "The CPU then executes the return from interrupt and after some time there is the bottom half of",
+    "start": 143.28,
+    "end": 149.52,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\noot CS, EIP, error code on stack\n! (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---+ interrupt handler?\n\n5 Just do the important stuff like\nos. !... respond to interrupt\nInterrupt handler (top half) anc . more storing of program state\n\n, schedule the bottom half\n.. IRET"
+  },
+  {
+    "text": "the interrupt handler that runs. So, this bottom half of the interrupt handler is essentially known",
+    "start": 149.52,
+    "end": 156.32,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\n\n' CS, EIP, error code on stack\n\n: (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---+ interrupt handler?\n\n_ dust do the important stuff like\n5 !... respond to interrupt\n.. more storing of program state\nschedule the bottom half\n| . IRET\n\n' Restore flags and registers saved\n: earlier. Restore running task.\n\nOS. Interrupt handler (top half)\n\nReturn from interrupt\n\n7\nos — handler (bottom half)\n\n' The work horse for the interrupt"
+  },
+  {
+    "text": "as the workhorse of the interrupt and does most of the difficult or time consuming jobs.",
+    "start": 156.4,
+    "end": 161.44,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\n\n' CS, EIP, error code on stack\n\n! (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---* interrupt handler?\n\n_ Just do the important stuff like\n5 !... respond to interrupt\n.. more storing of program state\nschedule the bottom half\n| . IRET\n\n' Restore flags and registers saved\n: earlier. Restore running task.\n\nOS Interrupt handler (top half)\n\nReturn from interrupt\n\nTe\nis\nos — handler (bottom half)\n\n' The work horse for the interrupt"
+  },
+  {
+    "text": "So, one thing to notice is that each of these stages could be done either by the CPU automatically",
+    "start": 162.32,
+    "end": 168.32,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\n\n' CS, EIP, error code on stack\n\n! (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---* interrupt handler?\n\n_ Just do the important stuff like\n5 !... respond to interrupt\n.. more storing of program state\nschedule the bottom half\n| . IRET\n\n' Restore flags and registers saved\n: earlier. Restore running task.\n\nOS Interrupt handler (top half)\n\nReturn from interrupt\n\nTe\nis\nos — handler (bottom half)\n\n' The work horse for the interrupt"
+  },
+  {
+    "text": "that is the processor hardware itself does this automatically. So, these are the black boxes",
+    "start": 168.32,
+    "end": 174.72,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nDevice asserts interrupt\nline\n\nAfter current instruction completes.\nCPU senses interrupt line and obtains IRQ number\n\nFrom PIC By device\nand PIC\nDone by\nSwitch to kernel stack if necessary, i CPU\nswitch privilege level if needed automatically\nDone in\n\nos"
+  },
+  {
+    "text": "while the yellow boxes is done in software essentially by the operating system.",
+    "start": 175.92,
+    "end": 180.56,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\n\n' CS, EIP, error code on stack\n\n! (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---* interrupt handler?\n\n5 _ dust do the important stuff like\nos '... respond to interrupt\nInterrupt handler (top half) “--* .., more storing of program state\nschedule the bottom half\n| _IRET\n\n' Restore flags and registers saved\n: earlier. Restore running task.\n\nReturn from interrupt"
+  },
+  {
+    "text": "So, you see that some of these steps are done automatically by the CPU while others",
+    "start": 180.56,
+    "end": 187.36,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\n\n' CS, EIP, error code on stack\n\n! (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---* interrupt handler?\n\n5 _ dust do the important stuff like\nos '... respond to interrupt\nInterrupt handler (top half) “--* .., more storing of program state\nschedule the bottom half\n| _IRET\n\n' Restore flags and registers saved\n: earlier. Restore running task.\n\nReturn from interrupt"
+  },
+  {
+    "text": "such as the interrupt handler is done in software by the operating system. So, what we will see next",
+    "start": 187.36,
+    "end": 194.48,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\n\n' CS, EIP, error code on stack\n\n! (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---* interrupt handler?\n\nJust do the important stuff like\n5 '... respond to interrupt\n... more storing of program state\nschedule the bottom half\n\nOS.\n\nInterrupt handler (top half)\n\n| .. IRET\n(6) ' Restore flags and registers saved\n~--* earlier. Restore running task.\n\n7\nos Onn. handler (bottom half) zs\n\nReturn from interrupt\n\n' The work horse for the interrupt"
+  },
+  {
+    "text": "is each of these stages in more detail. So, after the current instruction completes executing",
+    "start": 194.48,
+    "end": 202.4,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n, X86 saves the SS, ESP, EFLAGS,\n\n' CS, EIP, error code on stack\n\n! (restored by iret instruction).\nSuspends current task.\n\nBasic program state saved\n\n| How does hardware find the OS\nJump to interrupt handler ---* interrupt handler?\n\nJust do the important stuff like\n5 '... respond to interrupt\n... more storing of program state\nschedule the bottom half\n\nOS.\n\nInterrupt handler (top half)\n\n| .. IRET\n(6) ' Restore flags and registers saved\n~--* earlier. Restore running task.\n\n7\nos Onn. handler (bottom half) zs\n\nReturn from interrupt\n\n' The work horse for the interrupt"
+  },
+  {
+    "text": "the CPU senses the INT line and then when it determines that a particular interrupt has been",
+    "start": 202.4,
+    "end": 208.64,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nee ee,\n\nAfter current instruction completes.\nCPU senses interrupt line and obtains IRQ number )\n» From PIC.\n\nBy device\nand PIC\nBy CP\n\nme”\nCPU\n\nautomatically\n\nDone in\nsoftware"
+  },
+  {
+    "text": "requested it obtains the IRQ number of that interrupt from the PIC. Then it would switch to the",
+    "start": 208.64,
+    "end": 216.56,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nee ee,\n\nAfter current instruction completes.\n\nCPU senses interrupt line and obtairts IRQ number >\nFrom PIC\n\nBy device\nand PIC\nBy CP\n\nme”\nCPU\n\nautomatically\n\nDone in\nsoftware"
+  },
+  {
+    "text": "kernel stack if necessary and also change the privilege level to ring 0 that is it would allow",
+    "start": 216.56,
+    "end": 223.04,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nBy device\nand PIC\n\nms”\nCPU\n\nautomatically\n\noe\nSwitch to kernel stack if necessary,\nswitch privilege levgl if needed\n\nDone in\nsoftware"
+  },
+  {
+    "text": "the kernel code to start executing. So, we will look at this. So, we will look at the stacks first.",
+    "start": 223.04,
+    "end": 231.36,
+    "ocr_text": "What happens when there is an\nInterrupt?\n\nBy device\nand PIC\n\nms”\nCPU\n\nautomatically\n\noe\nSwitch to kernel stack if necessary,\nswitch privilege levgl if needed\n\nDone in\nsoftware"
+  },
+  {
+    "text": "So, as we have seen before each process has two stacks. So, one stack known as the user stack",
+    "start": 231.36,
+    "end": 236.88,
+    "ocr_text": "@ Stacks\n\n¢ Each process has two ao\nstacks\nKernel Stack\n—a_user space stack for process\n—akernel space stack ,.\na\n2\n2e Heap\nDo\ng< | >\ng 5 Data\n85\nz§ Text\n\n(instructions)\n\nVirtual Memory Map"
+  },
+  {
+    "text": "is visible in the user space and it is typically what is used to store various auto variables",
+    "start": 237.36,
+    "end": 244.16,
+    "ocr_text": "@ Stacks\n\n* Each process has two Kernel (Text? Bt)\nstacks\n—a_user space stack\n—akernel space stack ,.\na\n2\n2e Heap\nDo\nOE Data\n85\nz§ Text\n\n(instructions)\n\nVirtual Memory Map"
+  },
+  {
+    "text": "and a function calls for the instructions in the user program. On the other hand there is a hidden",
+    "start": 244.8,
+    "end": 252.0,
+    "ocr_text": "@ Stacks\n\n* Each process has two Kernel (Text? Bt)\nstacks\n—a_user space stack\n—akernel space stack ,.\na\n2\n2e Heap\nDo\nOE Data\n85\nz§ Text\n\n(instructions)\n\nVirtual Memory Map"
+  },
+  {
+    "text": "kernel stack corresponding to each process. So, when the processor detects the interrupt the context",
+    "start": 252.0,
+    "end": 259.12,
+    "ocr_text": "@) Stacks\n\n* Each process has two Hemel (Text* Bt)\nstacks\n— a user space stack\n—akernel space stack ,.\na\n2 eg Heap\nRo\n8~ |>,\ng 5 Data\n85\nz§ Text\n\n(instructions)\n\nVirtual Memory Map"
+  },
+  {
+    "text": "changes from the user stack to the kernel stack. Now, henceforth the kernel stack is going to be used",
+    "start": 259.12,
+    "end": 266.0,
+    "ocr_text": "@ Stacks\n\n* Each process has two Herel (Text? Bt)\nstacks\n— a user space stack\n—akernel space stack ,.\na\n2\n2e Heap\n2 ®o\no~ |>u\ng 5 Data\nBS\n«ts Text\n\n(instructions)\n\nVirtual Memory Map"
+  },
+  {
+    "text": "to store auto variables as well as for function calls of the code that executes in the kernel.",
+    "start": 266.0,
+    "end": 272.24,
+    "ocr_text": "@ Stacks\n\n* Each process has two Herel (Text? Bt)\nstacks\n—a_user space stack\n—akernel space stack .\na\n2 e Heap\n2o\n<a,\ng = Data\n85\nz§ Text\n\n(instructions)\n\nVirtual Memory Map"
+  },
+  {
+    "text": "So, why do we switch stacks? Essentially stacks are switched because the OS cannot trust the user",
+    "start": 273.6,
+    "end": 280.16,
+    "ocr_text": "@ Stacks\n\n* Each process has two Herel (Text? Bt)\nstacks\n—a_user space stack\n—akernel space stack .\na\n2 e Heap\n2o\n<a,\ng = Data\n85\nz§ Text\n\n(instructions)\n\nVirtual Memory Map"
+  },
+  {
+    "text": "process stacks. The user process stacks may be corrupted and as a result we do not want that the",
+    "start": 280.16,
+    "end": 286.64,
+    "ocr_text": "@) Switching Stack\n\n« Why switch stack?\n-— OS cannot trust stack of user process\n— User processes ‘cannot access the kernel stack\n* How to switch stack?\n— CPU should know locations of the new SS and ESP.\n— Done by task segment descriptor\n* When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nie automatically by CPU"
+  },
+  {
+    "text": "kernel also gets corrupted due to this reason. Another reason is that user processes cannot access",
+    "start": 286.64,
+    "end": 293.84,
+    "ocr_text": "@) Switching Stack\n\n« Why switch stack?\n-— OS cannot trust stack of user process\n— User processes cannot access the kernel stack\n* How to switch stack?\n— CPU should know locations of the new SS and ESP.\n— Done by task segment descriptor\n« | When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nje automatically by CPU"
+  },
+  {
+    "text": "the kernel stack. So, for instance if the if the user process is a malicious virus for instance.",
+    "start": 293.84,
+    "end": 300.56,
+    "ocr_text": "@) Switching Stack\n\n« Why switch stack?\n-— OS cannot trust stack of user process\n— User processes cannot access the kernel stack\n* How to switch stack?\n— CPU should know locations of the new SS and ESP.\n— Done by task segment descriptor\n« | When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nje automatically by CPU"
+  },
+  {
+    "text": "So, it has no access to the kernel stack and therefore cannot modify or change anything in the",
+    "start": 301.2,
+    "end": 306.56,
+    "ocr_text": "@) Switching Stack\n\n¢ Why switch stack?\n-— OS cannot trust stack of user process\n— User processes cannot access the kernel stack\n* — How to switch stack?\n— CPU should know locations of the new SS and ESP.\n— Done by task segment descriptor\n« | When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nje automatically by CPU"
+  },
+  {
+    "text": "kernel. So, second thing is how is the stack actually switched from the user stack to the kernel",
+    "start": 306.56,
+    "end": 313.04,
+    "ocr_text": "@) Switching Stack\n\n¢ Why switch stack?\n-— OS cannot trust stack of user process\n— User processes cannot access the kernel stack\n. How to switch stack?\n— CPU should know locations of the new SS and ESP.\n— Done by task segment descriptor\n« | When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nie automatically by CPU"
+  },
+  {
+    "text": "stack. So, this is done by something known as the task segment descriptor and essentially what",
+    "start": 313.04,
+    "end": 320.88,
+    "ocr_text": "@) Switching Stack\n\n¢ Why switch stack?\n-— OS cannot trust stack of user process\n— User processes cannot access the kernel stack\n. How to switch stack?\n— CPU should know locations of the new SS and ESP.\n— Done by task segment descriptor\n« | When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nie automatically by CPU"
+  },
+  {
+    "text": "it does is that it changes the stack segment and the stack pointer of the processor. So,",
+    "start": 320.88,
+    "end": 326.64,
+    "ocr_text": "@) Switching Stack\n\n« Why switch stack?\n-— OS cannot trust stack of user process\n— User processes cannot access the kernel stack\n* How to switch stack?\n— CPU should know locations of the new SS and ESP.\n— Done by task segment descriptor\n*« When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nie automatically by CPU"
+  },
+  {
+    "text": "the information of the new stack segment and the stack pointer is present in the stack segment",
+    "start": 326.64,
+    "end": 332.8,
+    "ocr_text": "@ Switching Stack\n\n¢ Why switch stack?\n-— OS cannot trust stack of user process\n— User processes cannot access the kernel stack\n* How to switch stack?\n— CPU should know locations of the new SS and ESR.\n— Done by task segment descriptor\n* | When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nie automatically by CPU"
+  },
+  {
+    "text": "register. So, another thing that occurs during the process of switching stack is that the privilege",
+    "start": 332.8,
+    "end": 340.32,
+    "ocr_text": "@ Switching Stack\n\n¢ Why switch stack?\n-— OS cannot trust stack of user process\n— User processes cannot access the kernel stack\n* How to switch stack?\n— CPU should know locations of the new SS and ESR.\n— Done by task segment descriptor\n* | When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nie automatically by CPU"
+  },
+  {
+    "text": "level changes from low to high that is from ring 3 which where the user processes run to ring 0",
+    "start": 340.32,
+    "end": 349.52,
+    "ocr_text": "@) Switching Stack\n\n¢ Why switch stack?\n-— OS cannot trust stack of user process\n— User processes cannot access the kernel stack\n* — How to switch stack?\n— CPU should know locations of the new SS and ESP.\n— Done by task segment descriptor\n* | When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nie automatically by CPU"
+  },
+  {
+    "text": "where the kernel runs. So, all these things are done automatically by the CPU.",
+    "start": 349.52,
+    "end": 353.36,
+    "ocr_text": "@) Switching Stack\n\n¢ Why switch stack?\n-— OS cannot trust stack of user process\n— User processes cannot access the kernel stack\n* — How to switch stack?\n— CPU should know locations of the new SS and ESP.\n— Done by task segment descriptor\n« When interrupt occurs, the OS executes\n— The privilege changes from low to high\n\nDone automatically by CPU"
+  },
+  {
+    "text": "So, after changing stack and racing privilege level the basic program state is saved.",
+    "start": 355.28,
+    "end": 361.84,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\nBasic program state saved"
+  },
+  {
+    "text": "So, what this means is that suppose we have a program which is being executed in user space",
+    "start": 362.88,
+    "end": 369.2,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\nBasic program state saved"
+  },
+  {
+    "text": "and an interrupt occurs then the state of that process is saved.",
+    "start": 370.4,
+    "end": 375.68,
+    "ocr_text": "® Saving Program State\n\nWhy?\n* Current program being executed must be able to\nresume after interrupt service is completed"
+  },
+  {
+    "text": "Why do we require to save the state of that process? It is required so that the process could",
+    "start": 375.84,
+    "end": 382.88,
+    "ocr_text": "® Saving Program State\n\nWhy?\n* Current program being executed must be able to\nresume after interrupt service is completed"
+  },
+  {
+    "text": "resume after the interrupt servicing is completed. How is the program state saved? In order to save",
+    "start": 382.88,
+    "end": 390.64,
+    "ocr_text": "® Saving Program State\n\nWhy?\n* Current program being executed must be able to\nresume after interrupt service is completed"
+  },
+  {
+    "text": "the program state we will use the kernel stack which we have just pointed to when the interrupt occurred.",
+    "start": 390.64,
+    "end": 398.72,
+    "ocr_text": "® Saving Program State\n\nWhen stack switch occurs\nalso save the previous SS and ESP\n\nss\nESP.\ncrass Procedure’ s kernel stack\nEl\nError Code_|«— ESP after"
+  },
+  {
+    "text": "So, in the kernel stack we would save the various registers such as SS, ESP, E flags,",
+    "start": 398.72,
+    "end": 405.68,
+    "ocr_text": "® Saving Program State\n\nWhen stack switch occurs\nalso save the previous SS and ESP\n\n2SS\nESP.\nErAcs Procedure’ s kernel stack\nEIP.\nError Code_|«— ESP after"
+  },
+  {
+    "text": "CS, EIP and an error code if required. Next we will see how the processor jumps to the interrupt",
+    "start": 405.68,
+    "end": 413.04,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n+\n\nJump to interrupt handler b"
+  },
+  {
+    "text": "handler. So, we have seen this before that the processor would use the IRQ number or the interrupt",
+    "start": 413.04,
+    "end": 419.2,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n+\n\nJump to interrupt handler b"
+  },
+  {
+    "text": "vector to index into the IDT table from where we would obtain the segment selector as well as",
+    "start": 419.2,
+    "end": 425.36,
+    "ocr_text": "Getting to the Interrupt Procedure\n\n(obtained from\neither the PIC or APIC)\n\nIDTR : pointer to [DT\ntable in memory\n\ner\ncrest\nVector Trap Gate T\n» [eee\nar ol\nDTR\nsoqnent Sea\ncot er.or\nous\nous\n[}64 bytes\n\nDestination\nCode Segment\n\nInterrupt\nProcedure\n\nDone\nautomatically\nby CPU"
+  },
+  {
+    "text": "an offset. The segment selector is used to obtain the base address of the code segment while the",
+    "start": 425.52,
+    "end": 433.6,
+    "ocr_text": "Getting to the Interrupt Procedure\n\nDestation\ner code Segment\nTrlerupt\n‘our >| “tao aws ar\n(obtained from D\neither the PIC or APIC) one\n, automatically\nDTR~ ol by CPU\nSegment Selector\nGot ortor\nIDTR : pointer to IDT fen,\ntable in memory\n>| Seki | |\n}o4 bytes"
+  },
+  {
+    "text": "offset is added to this base address to obtain the location of the interrupt procedure.",
+    "start": 433.6,
+    "end": 438.72,
+    "ocr_text": "Getting to the Interrupt Procedure\n\nDestation\ner code Segment\nTrlerupt\n‘our >| “tao aws ar\n(obtained from D\neither the PIC or APIC) one\n, automatically\nDTR~ ol by CPU\nSegment Selector\nGot ortor\nIDTR : pointer to IDT fen,\ntable in memory\n>| Seki | |\n}o4 bytes"
+  },
+  {
+    "text": "So, the processor could then begin to execute this interrupt procedure.",
+    "start": 439.44,
+    "end": 444.16,
+    "ocr_text": "Getting to the Interrupt Procedure\n\n(obtained from\neither the PIC or APIC)\n\nIDTR : pointer to [DT\ntable in memory\n\nor\ncrest\n‘Vector Trap Gate 1\nad\n\nDTR [>\nSonn Sec\ncot ertor\n\nous\n\nless\n\n[}64 bytes\n\nDestination\nCode Segment\n\nInterrupt\n\nProgedure\n\nDone\nautomatically\nby CPU"
+  },
+  {
+    "text": "The next step is to actually execute the interrupt handler, return from the interrupt and also",
+    "start": 445.52,
+    "end": 451.36,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n5\n© Interrupt handler (top half)\n\n6\nReturn from interrupt\nt\nInterrupt handler (bottom half)"
+  },
+  {
+    "text": "execute the bottom half of the interrupt handler. So, let us see what a typical interrupt handler does.",
+    "start": 451.36,
+    "end": 456.4,
+    "ocr_text": "What more happens when there is\nan Interrupt?\n\n5\n© Interrupt handler (top half)\n\n6\nReturn from interrupt\nt\nInterrupt handler (bottom half)"
+  },
+  {
+    "text": "So, a typical interrupt handler would have three parts. One, it would save some additional",
+    "start": 456.8,
+    "end": 462.72,
+    "ocr_text": "® Interrupt Handlers\n\n¢ Typical Interrupt Handler\n— Save additional information (written in assembly)\n— Process interrupt (communicate with I/O devices)\n— Restore CPU context and return (written in assembly)"
+  },
+  {
+    "text": "information about the process being invoked. Then it would process the interrupt which is going to",
+    "start": 462.72,
+    "end": 469.2,
+    "ocr_text": "® Interrupt Handlers\n\n¢ Typical Interrupt Handler\n— Save additional information (written in assembly)\n— Process interrupt (communicate with I/O devices)\n— Restore CPU context and return (written in assembly)"
+  },
+  {
+    "text": "be very specific to the type of interrupt. For instance if it is a keyboard interrupt then the",
+    "start": 469.2,
+    "end": 474.32,
+    "ocr_text": "® Interrupt Handlers\n\n¢ Typical Interrupt Handler\n— Save additional information (written in assembly)\n— Process interrupt (communicate with I/O devices)\n— Restore CPU context and return (written in assembly)"
+  },
+  {
+    "text": "code executed over here would be very specific to the keyboard. On the other hand if it is a timer",
+    "start": 474.32,
+    "end": 479.36,
+    "ocr_text": "® Interrupt Handlers\n\n¢ Typical Interrupt Handler\n— Save additional information (written in assembly)\n— Process interrupt (communicate with I/O devices)\n— Restore CPU context and return (written in assembly)"
+  },
+  {
+    "text": "then the interrupt would be very specific to timers. After the processing of the interrupt is done",
+    "start": 480.08,
+    "end": 485.52,
+    "ocr_text": "® Interrupt Handlers\n\n* Typical Interrupt Handler\n— Save additional information (written in assembly)\n— Process interrupt (communicate with I/O devices)\n— Restore CPU context and return (written in assembly)"
+  },
+  {
+    "text": "then the CPU restores the original context and returns back to the user process.",
+    "start": 486.0,
+    "end": 491.2,
+    "ocr_text": "® Interrupt Handlers\n\n¢ Typical Interrupt Handler\n— Save additional information (written in assembly)\n— Process interrupt (communicate with I/O devices)\n— Restore CPU context and return (written in assembly)"
+  },
+  {
+    "text": "So, we have the first and the third part written in assembly language that is typically written",
+    "start": 492.0,
+    "end": 497.6,
+    "ocr_text": "® Interrupt Handlers\n\n¢ Typical Interrupt Handler\n— Save additional information (written in assembly)\n— Process interrupt (communicate with I/O devices)\n— Restore CPU context and return (written in assembly)"
+  },
+  {
+    "text": "in assembly language that is this part as well as this part while the processing of the interrupt",
+    "start": 497.6,
+    "end": 502.88,
+    "ocr_text": "® Interrupt Handlers\n\n¢ Typical Interrupt Handler\n— Save additional information (written in assembly)\n— Process interrupt (communicate with I/O devices)\n— Restore CPU context and return (written in assembly)"
+  },
+  {
+    "text": "is typically written in a higher level language like C. So, let us see about the additional",
+    "start": 502.88,
+    "end": 508.88,
+    "ocr_text": "® Interrupt Handlers\n\n¢ Typical Interrupt Handler\n— Save additional information (written in assembly)\n— Process interrupt (communicate with I/O devices)\n— Restore CPU context and return (written in assembly)"
+  },
+  {
+    "text": "information that is stored. So, we have seen in an earlier slide that when the that there is a",
+    "start": 508.88,
+    "end": 516.24,
+    "ocr_text": "Saving State of Process\n\nSs.\n\nies)\n* Save the remaining state of the =a z\nexecuting process |_EFLAGS _ 3)\n— Astructure known as trapframe is used = = J 3.\nfor the purpose\n— The trapframe is part of the kernel’s a Nuriber\nstack for the process es g\neax Sg\n— a\nesi kd\nedi\nesp\n(empty)\ntrapframe\n\nref : struct trapframe in x86.h (0602 [06])"
+  },
+  {
+    "text": "saving of the program state on the kernel stack and note that this is done automatically by the CPU",
+    "start": 516.24,
+    "end": 523.04,
+    "ocr_text": "® Saving Program State\n\nWhen stack switch occurs\nalso save the previous SS and ESP\n\nss\nESP.\nEreAcs Procedure’ s kernel stack\nEIR\nError Code_|«— ESP after"
+  },
+  {
+    "text": "and second that a few registers such as the SS ESP, EFLAG, CS, EIP and the and error code may be saved.",
+    "start": 523.04,
+    "end": 531.92,
+    "ocr_text": "® Saving Program State\n\nWhen stack switch occurs\nalso save the previous SS and ESP\n\nss\nESP.\nEreAcs Procedure’ s kernel stack\nEIR\nError Code_|«— ESP after"
+  },
+  {
+    "text": "So, when the interrupt handler begins to execute additional information is also stored onto the",
+    "start": 532.64,
+    "end": 539.84,
+    "ocr_text": "® Saving Program State\n\nWhen stack switch occurs\nalso save the previous SS and ESP\n\nss\nESP.\nEF AGS Procedure’ s kernel stack\nEIP.\nError Code_|«— ESP after"
+  },
+  {
+    "text": "kernel stack. So, we have a part of this which is stored by the hardware or that is by the CPU",
+    "start": 539.84,
+    "end": 545.04,
+    "ocr_text": "Saving State of Process\n\nSs.\n\nies)\n* Save the remaining state of the 33. z\nexecuting process EFLAGS. 3)\n— Astructure known as trapframe is used cs J 3.\nfor the purpose\n— The trapframe is part of the kernel’s Trap Number\nstack for the process es @\nocx 2\nesi 4\nedi\nesp\n(empty)\ntranframe\n\nref : struct trapframe in x86.h (0602 [06])"
+  },
+  {
+    "text": "automatically and remaining part which is done in software that is in by the operating system.",
+    "start": 545.04,
+    "end": 550.72,
+    "ocr_text": "Saving State of Process\n\nSS. oo\n* Save the remaining state of the S38 z\nexecuting process EFLAGS i)\n— Astructure known as trapframe is used r cs s\nfor the purpose [ErrorGode |S\n— The trapframe is part of the kernel’s me Number\nstack for the process es wo\neax g\n- 5\nesi Mo\nedi\nesp\n(empty)\ntrapframe\n\nref : struct trapframe in x86.h (0602 [06])"
+  },
+  {
+    "text": "So, this additional part which is done by the operating system will have more registers which",
+    "start": 550.72,
+    "end": 556.0,
+    "ocr_text": "Saving State of Process\n\nSS. oo\n* Save the remaining state of the S38 z\nexecuting process EFLAGS i)\n— Astructure known as trapframe is used r cs s\nfor the purpose [ErrorGode |S\n— The trapframe is part of the kernel’s me Number\nstack for the process es wo\neax g\n- 5\nesi Mo\nedi\nesp\n(empty)\ntrapframe\n\nref : struct trapframe in x86.h (0602 [06])"
+  },
+  {
+    "text": "are saved for example, the segment registers such as the DSES and so on and also the general",
+    "start": 556.48,
+    "end": 562.8,
+    "ocr_text": "Saving State of Process\n\nSs.\n\nies]\n* Save the remaining state of the 33 z\nexecuting process EFLAGS 3)\n— Astructure known as trapframe is used cs s\nforthe purpose q§g.-§  |GRGEHER) ~~~\n— The trapframe is part of the kernel’s 2. Number\nstack for the process es g\ncx 2\nesi had\nedi\nesp\n(empty)\ntrapframe\n\nref : struct trapframe in x86.h (0602 [06])"
+  },
+  {
+    "text": "purpose registers such as the EAX, ECX and so on. Similarly, the other registers like the ESI,",
+    "start": 562.8,
+    "end": 569.84,
+    "ocr_text": "Saving State of Process\n\nSs.\n\nies]\n* Save the remaining state of the 33 z\nexecuting process EFLAGS 3)\n— Astructure known as trapframe is used cs s\nforthe purpose q§g.-§  |GRGEHER) ~~~\n— The trapframe is part of the kernel’s 2. Number\nstack for the process es g\ncx 2\nesi had\nedi\nesp\n(empty)\ntrapframe\n\nref : struct trapframe in x86.h (0602 [06])"
+  },
+  {
+    "text": "EDI and ESPR stored or this pattern of registers which is stored onto the kernel stack is known",
+    "start": 569.84,
+    "end": 576.72,
+    "ocr_text": "Saving State of Process\n\nSs.\n\nies]\n+ Save the remaining state of the ss z\nexecuting process EFLAGS. 3)\n— Astructure known as trapframe is used - on s\nfor the purpose “ErrorCode |\n— The trapframe is part of the kernel’s ed Number\nstack for the process es B\neax g\n— 5\nesi ©\nedi_.\nesp _\n(empty)\ntranframe\n\nref : struct trapframe in x86.h (0602 [06])"
+  },
+  {
+    "text": "as a trap frame and plays a crucial role during the return from the interrupt in order that the",
+    "start": 576.72,
+    "end": 582.08,
+    "ocr_text": "Saving State of Process\n\nSs.\n\nies)\n* Save the remaining state of the 38 z\nexecuting process EFLAGS 3)\n— Astructure known as trapframe is used cs acme\nfor the purpose\n— The trapframe is part of the kernel’s 2s Number\nstack for the process es g\neax 3\n— a\nesi oO\nedi\nesp\n(empty)\ntranframe\n\nref : struct trapframe in x86.h (0602 [06])"
+  },
+  {
+    "text": "user process which has been executing before could continue to execute from where it has stopped.",
+    "start": 582.16,
+    "end": 587.84,
+    "ocr_text": "Saving State of Process\n\nSs.\n\nies)\n* Save the remaining state of the 38 z\nexecuting process EFLAGS 3)\n— Astructure known as trapframe is used cs acme\nfor the purpose\n— The trapframe is part of the kernel’s 2s Number\nstack for the process es g\neax 3\n— a\nesi oO\nedi\nesp\n(empty)\ntranframe\n\nref : struct trapframe in x86.h (0602 [06])"
+  },
+  {
+    "text": "One important aspect when writing an interrupt handler is the interrupt latency.",
+    "start": 588.96,
+    "end": 593.92,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\ntime needed to\n\n‘os\n\nservice an interrupt\n\nUser process 2\n\nInterrupt handler executes\n\nInterrupt latency can be important, for instance in real\n\nInterrupt latency can be significant\n\ntime systems"
+  },
+  {
+    "text": "So, what is this interrupt latency? So, let us say that we have a processor which is executing",
+    "start": 593.92,
+    "end": 599.28,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\ntime needed to\n\n‘os\n\nservice an interrupt\n\nUser process 2\n\nInterrupt handler executes\n\nInterrupt latency can be important, for instance in real\n\nInterrupt latency can be significant\n\ntime systems"
+  },
+  {
+    "text": "a user process that is user process 1 and after some time an interrupt occurs. So, when this",
+    "start": 599.28,
+    "end": 606.4,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to service an interrupt\n\n‘os\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real time systems"
+  },
+  {
+    "text": "interrupt occurs we know that there are a series of tasks that happen between the CPU as well as",
+    "start": 606.48,
+    "end": 612.8,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to service an interrupt\n\n‘os\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real time systems"
+  },
+  {
+    "text": "the operating system. First the interrupt has to be detected by the PIC and then forwarded to the",
+    "start": 612.8,
+    "end": 619.2,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to service an interrupt\n\n‘os\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real time systems"
+  },
+  {
+    "text": "CPU. Then the CPU detects the interrupt and then it has to do various things like change",
+    "start": 619.2,
+    "end": 625.28,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\ntime needed to service an interrupt\n\n@:\ngi\n2:\nOo;\niy\nS }— User process 1 User process 2\nfaq\na}\nH interrupt Interrupt handler executes\nGeavassdccccdassssssccccaccasessccatacsaderascecuccusetsss! time\n\nInterrupt latency can be important, for instance in real\nInterrupt latency can be significant\n\ntime systems"
+  },
+  {
+    "text": "context from user space to kernel space and then save various registers of the user space program",
+    "start": 625.28,
+    "end": 631.12,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\ntime needed to\n\nservice an interrupt\n\nOQ:\ngi\n2:\nOm\niy\nSt User process 1 User process 2\nisu\n4 interrupt Interrupt handler executes\nBasacetscescecssestasecsnentaensscstrscsceeestsetteeceese® time\n\nInterrupt latency can be important, for instance in real\nInterrupt latency can be significant\n\ntime systems"
+  },
+  {
+    "text": "and only then it would be able to run the interrupt handler. So, this time difference between",
+    "start": 631.92,
+    "end": 638.4,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\ntime needed to\n\nservice an interrupt\n\nOQ:\ngi\n2:\nOm\niy\nSt User process 1 User process 2\nisu\n4 interrupt Interrupt handler executes\nBasacetscescecssestasecsnentaensscstrscsceeestsetteeceese® time\n\nInterrupt latency can be important, for instance in real\nInterrupt latency can be significant\n\ntime systems"
+  },
+  {
+    "text": "when the interrupt actually has been triggered to when the interrupt handler executes is known as",
+    "start": 638.4,
+    "end": 644.32,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to\n\n‘os\n\nservice an interrupt\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real\n\ntime systems"
+  },
+  {
+    "text": "the interrupt latency. So, this interrupt latency can be significant as well as important especially",
+    "start": 644.32,
+    "end": 651.2,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to\n\n‘os\n\nservice an interrupt\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real\n\ntime systems"
+  },
+  {
+    "text": "in systems such as real time systems. For instance if you look at systems such as",
+    "start": 651.2,
+    "end": 656.0,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to\n\n‘os\n\nservice an interrupt\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real\n\ntime systems"
+  },
+  {
+    "text": "an operating system used in used in car you do not want a large latency for instance when an",
+    "start": 656.24,
+    "end": 662.96,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to\n\n‘os\n\nservice an interrupt\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real\n\ntime systems"
+  },
+  {
+    "text": "interrupt occurs in order to release the airbag which is present in some of the modern cars.",
+    "start": 662.96,
+    "end": 669.92,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to\n\n‘os\n\nservice an interrupt\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real\n\ntime systems"
+  },
+  {
+    "text": "So, for instance when an accident occurs you would require that airbags are immediately and",
+    "start": 669.92,
+    "end": 675.04,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to\n\n‘os\n\nservice an interrupt\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real\n\ntime systems"
+  },
+  {
+    "text": "extremely quickly opened up. Therefore, in such a case you would require the interrupt latency",
+    "start": 675.04,
+    "end": 680.64,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to\n\n‘os\n\nservice an interrupt\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real\n\ntime systems"
+  },
+  {
+    "text": "to be as small as possible what affects this interrupt latency. So, the interrupt latency could",
+    "start": 680.72,
+    "end": 686.8,
+    "ocr_text": "Event Specific Processing\n(Interrupt Latency)\n\nUser process 1\n\nPrivilege level\n\ninterrupt\n\nInterrupt latency can be important,\nInterrupt latency can be significant\n\ntime needed to\n\n‘os\n\nservice an interrupt\n\nUser process 2\n\nInterrupt handler executes\n\nfor instance in real\n\ntime systems"
+  },
+  {
+    "text": "vary between a minimum and a maximum in a system. The minimum interrupt latency is due to the",
+    "start": 686.8,
+    "end": 693.28,
+    "ocr_text": "Interrupt Latency\n\n¢ Minimum Interrupt Latency\n— Mostly due to the interrupt controller\n\n¢ Maximum Interrupt Latency\n— Due to the OS\n— Occurs when interrupt handler cannot be serviced immediately\n\n* Eg. when OS doing some other important jobs, interrupt handler would need\nto wait till completion of atomic operations."
+  },
+  {
+    "text": "delays within the interrupt controller. So, the system would typically not be able to get",
+    "start": 693.28,
+    "end": 698.08,
+    "ocr_text": "Interrupt Latency\n\n¢ Minimum Interrupt Latency\n— Mostly due to the interrupt controller\n\n¢ Maximum Interrupt Latency\n— Due to the OS\n— Occurs when interrupt handler cannot be serviced immediately\n\n* Eg. when OS doing some other important jobs, interrupt handler would need\nto wait till completion of atomic operations."
+  },
+  {
+    "text": "interrupt latency which is less than this minimum latency specified by the controller.",
+    "start": 699.04,
+    "end": 704.56,
+    "ocr_text": "Interrupt Latency\n\n¢ Minimum Interrupt Latency\n— Mostly due to the interrupt controller\n\n¢ Maximum Interrupt Latency\n— Due to the OS\n— Occurs when interrupt handler cannot be serviced immediately\n\n* Eg. when OS doing some other important jobs, interrupt handler would need\nto wait till completion of atomic operations."
+  },
+  {
+    "text": "On the other hand the maximum interrupt latency is due to the way the operating system is",
+    "start": 704.56,
+    "end": 710.4,
+    "ocr_text": "Interrupt Latency\n\n¢ Minimum Interrupt Latency\n— Mostly due to the interrupt controller\n\n¢ Maximum Interrupt Latency\n— Due to the OS\n— Occurs when interrupt handler cannot be serviced immediately\n\n* Eg. when OS doing some other important jobs, interrupt handler would need\nto wait till completion of atomic operations."
+  },
+  {
+    "text": "designed. Some operating systems for instance would disable interrupts when doing important jobs",
+    "start": 710.4,
+    "end": 717.84,
+    "ocr_text": "Interrupt Latency\n\n¢ Minimum Interrupt Latency\n— Mostly due to the interrupt controller\n\n¢ Maximum Interrupt Latency\n— Due to the OS\n— Occurs when interrupt handler cannot be serviced immediately\n\n* Eg. when OS doing some other important jobs, interrupt handler would need\nto wait till completion of atomic operations."
+  },
+  {
+    "text": "such as handling an other interrupt or doing some atomic operations. So, during this process",
+    "start": 717.84,
+    "end": 726.08,
+    "ocr_text": "Interrupt Latency\n\n¢ Minimum Interrupt Latency\n— Mostly due to the interrupt controller\n\n« Maximum Interrupt Latency\n— Due to the OS\n— Occurs when interrupt handler cannot be serviced immediately\n\n* Eg. when OS doing some other important jobs, interrupt handler would need\nto wait till completion of atomic operations. iS"
+  },
+  {
+    "text": "a new interrupt occurs that interrupt would have to wait until the previous interrupt completes",
+    "start": 726.08,
+    "end": 733.44,
+    "ocr_text": "Interrupt Latency\n\n¢ Minimum Interrupt Latency\n— Mostly due to the interrupt controller\n\n¢ Maximum Interrupt Latency\n— Due to the OS\n— Occurs when interrupt handler cannot be serviced immediately\n\n* Eg. when OS doing some other important jobs, interrupt handler would need\nto wait till completion of atomic operations."
+  },
+  {
+    "text": "or the atomic operation completes. So, as a result you will get an increase in the interrupt",
+    "start": 733.44,
+    "end": 738.88,
+    "ocr_text": "Interrupt Latency\n\n¢ Minimum Interrupt Latency\n— Mostly due to the interrupt controller\n\n¢ Maximum Interrupt Latency\n— Due to the OS\n— Occurs when interrupt handler cannot be serviced immediately\n\n* Eg. when OS doing some other important jobs, interrupt handler would need\nto wait till completion of atomic operations."
+  },
+  {
+    "text": "latency. So, one way to reduce interrupt latency is by not disabling interrupts.",
+    "start": 738.88,
+    "end": 745.76,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru PES) ot handler 2\n\nInterrupt handler 1\n\n|\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n+ To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n* Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "However, this could result in what is known as nested interrupts and is depicted in this particular",
+    "start": 745.76,
+    "end": 751.6,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interrupts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n+ To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n* Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "figure. So, let us say the kernel code is executing in the CPU and after some time an interrupt occurs",
+    "start": 751.6,
+    "end": 758.16,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interrupts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n+ To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n* Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "due to which the interrupt handler begins to execute. So, while the interrupt handler executes",
+    "start": 759.04,
+    "end": 765.28,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru PES) ot handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n+ To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "a second interrupt of a higher priority occurs and this would lead to the interrupt handler,",
+    "start": 765.28,
+    "end": 771.04,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru Pts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n* To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n* Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "the second interrupt handler being executed. After the second interrupt handler completes",
+    "start": 771.04,
+    "end": 775.6,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru Pts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n* To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n* Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "the first interrupt handler continues from where it had stopped just before the interrupt occurred.",
+    "start": 776.4,
+    "end": 781.28,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interrupts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n* To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "That is it had stopped at this particular point and it will now continue executing from this",
+    "start": 781.28,
+    "end": 785.52,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interrupts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n* To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "particular point. So, after this interrupt handler finishes executing the original kernel code",
+    "start": 785.52,
+    "end": 792.96,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interrupts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n+ To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "will continue to execute. So, as we see the system becomes more responsive in the sense that",
+    "start": 792.96,
+    "end": 799.6,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interrupts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n+ To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "when a new interrupt of a higher priority comes the latency in in curd is much lesser.",
+    "start": 799.6,
+    "end": 805.04,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru Pts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n* To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "However, the limitation is that this nested interrupts makes designing the operating system",
+    "start": 806.08,
+    "end": 816.16,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru PES) ot handler 2\n\nInterrupt handler 1\n\n|\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n* To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "far more difficult. Also validating this particular operating system will be more tedious.",
+    "start": 816.24,
+    "end": 824.48,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru Pts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n+ To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n* Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "So, therefore, as far as possible we would like to design interrupt handlers to be extremely small",
+    "start": 825.52,
+    "end": 834.0,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru Pts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n+ To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "so that such nested interrupts are highly unlikely. For instance, if we design this interrupt handler",
+    "start": 834.0,
+    "end": 841.36,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru Pts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n+ To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "in such a way that it would have completed its execution at this point itself then there would",
+    "start": 842.16,
+    "end": 847.12,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interrupts) handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n+ To improve responsiveness, enable Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n* Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "be no need to actually nest the second interrupt. One way to actually achieve small interrupt handlers",
+    "start": 847.12,
+    "end": 853.12,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru PES) ot handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n* To improve responsiveness, enable’ Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "is to design it in such a way that only the required crucial and critical operations are performed",
+    "start": 853.12,
+    "end": 860.0,
+    "ocr_text": "Not disabling Interrupts\n\n(Nested Interru PES) ot handler 2\n\nInterrupt handler 1\n\ninterrupt\n\nKernel code Kernel code\n\ninterrupt\n* To improve responsiveness, enable’ Interrupts within handlers\n— This often causes nested interrupts\n— Makes system more responsive but difficult to develop and validate\n+ Ideal Interrupt design approach: design interrupt handlers to be\nsmall so that nested interrupts are less likely"
+  },
+  {
+    "text": "in the interrupt handler. All other operations are deferred to later that is all other non-critical",
+    "start": 860.0,
+    "end": 865.6,
+    "ocr_text": "Small Interrupt Handlers\n\n* Do as little as possible in the interrupt\nhandler\n— Often just queue a work item or set a flag\n\n¢ Defer non-critical actions till later"
+  },
+  {
+    "text": "actions are deferred to later. In renax this is achieved by having a top half interrupt handler",
+    "start": 865.6,
+    "end": 872.4,
+    "ocr_text": "Top and Bottom Half Technique\n(Linux)\n\n¢ Top half : do minimum work and return from interrupt\nhandler\n— Saving registers\n— Unmasking other interrupts\n— Trigger bottom half interrupt\n— Restore registers and return to previous context\n¢ Bottom half : deferred processing\n— eg. Workqueue\n— Can be interrupted"
+  },
+  {
+    "text": "and a bottom half interrupt handler. The top half interrupt handler gets executed first and does",
+    "start": 872.4,
+    "end": 877.92,
+    "ocr_text": "Top and Bottom Half Technique\n(Linux)\n\n¢ Top half : do minimum work and return from interrupt\nhandler\n— Saving registers\n— Unmasking other interrupts\n— Trigger bottom half interrupt\n— Restore registers and return to previous context\n¢ Bottom half : deferred processing\n— eg. Workqueue\n— Can be interrupted"
+  },
+  {
+    "text": "the minimum amount of work which is critical and then returns from the interrupt. So, the critical",
+    "start": 877.92,
+    "end": 886.08,
+    "ocr_text": "Top and Bottom Half Technique\n(Linux)\n\n* Top half: do minimum work and return from interrupt\nhandler b\n— Saving registers\n— Unmasking other interrupts\n— Trigger bottom half interrupt\n— Restore registers and return to previous context\n* Bottom half : deferred processing\n— eg. Workqueue\n— Can be interrupted"
+  },
+  {
+    "text": "work is involved is the saving of registers unmasking of other interrupts triggering the bottom",
+    "start": 886.08,
+    "end": 892.72,
+    "ocr_text": "Top and Bottom Half Technique\n(Linux)\n\n* Top half: do minimum work and return from interrupt\nhandler\n— Saving registers\n— Unmasking other interrupts\n— Trigger bottom half interrupt\n— Restore registers and return to previous context\n¢ Bottom half : deferred processing\n— eg. Workqueue\n— Can be interrupted"
+  },
+  {
+    "text": "half of the interrupt handler to execute and restoring registers and returning to the previous",
+    "start": 892.96,
+    "end": 898.32,
+    "ocr_text": "Top and Bottom Half Technique\n(Linux)\n\n* Top half: do minimum work and return from interrupt\nhandler\n— Saving registers\n— Unmasking other interrupts\n— Trigger bottom half interrupt\n— Restore registers and return to previous context\n¢ Bottom half : deferred processing\n— eg. Workqueue\n— Can be interrupted"
+  },
+  {
+    "text": "context. So, sometime later the bottom half interrupt handler then executes. The bottom half interrupt",
+    "start": 898.32,
+    "end": 904.96,
+    "ocr_text": "Top and Bottom Half Technique\n(Linux)\n\n* Top half: do minimum work and return from interrupt\nhandler\n— Saving registers\n— Unmasking other interrupts\n— Trigger bottom half interrupt\n— Restore registers and return to previous context\n¢ Bottom half : deferred processing\n— eg. Workqueue\n— Can be interrupted"
+  },
+  {
+    "text": "handler would typically fetch some data which the top half interrupt handler has sent to it through",
+    "start": 904.96,
+    "end": 911.04,
+    "ocr_text": "Top and Bottom Half Technique\n(Linux)\n\n* Top half: do minimum work and return from interrupt\nhandler\n— Saving registers\n— Unmasking other interrupts\n— Trigger bottom half interrupt\n— Restore registers and return to previous context\n¢ Bottom half : deferred processing\n— eg. Workqueue\n— Can be interrupted"
+  },
+  {
+    "text": "a say for instance a queue and it will process that particular data. So, unlike the top half interrupt",
+    "start": 911.04,
+    "end": 917.44,
+    "ocr_text": "Top and Bottom Half Technique\n(Linux)\n\n* Top half: do minimum work and return from interrupt\nhandler\n— Saving registers\n— Unmasking other interrupts\n— Trigger bottom half interrupt\n— Restore registers and return to previous context\n* Bottom half : deferred processing\n— eg. Workqueue\n— Can be interrupted"
+  },
+  {
+    "text": "handler the bottom half interrupt handler can be interrupted. So, let us take an example of",
+    "start": 917.44,
+    "end": 923.68,
+    "ocr_text": "Top and Bottom Half Technique\n(Linux)\n\n¢ Top half: do minimum work and return from interrupt\nhandler\n— Saving registers\n— Unmasking other interrupts\n— Trigger bottom half interrupt\n— Restore registers and return to previous context\n* Bottom half : deferred processing\n— eg. Workqueue\n— Can be interrupted"
+  },
+  {
+    "text": "interrupt handling in x v 6. In particular we will see about interrupt handling with respect to the",
+    "start": 923.68,
+    "end": 929.36,
+    "ocr_text": "Top and Bottom Half Technique\n(Linux)\n\n¢ Top half: do minimum work and return from interrupt\nhandler\n— Saving registers\n— Unmasking other interrupts\n— Trigger bottom half interrupt\n— Restore registers and return to previous context\n* Bottom half : deferred processing\n— eg. Workqueue\n— Can be interrupted"
+  },
+  {
+    "text": "keyboard. So, we have seen this particular figure before and we have seen that the keyboard",
+    "start": 929.36,
+    "end": 934.16,
+    "ocr_text": "Example\n(Keyboard Interrupt in xv6)\n\n* Keyboard connected to Stee |S >| wt\nsecond interrupt line in\n3\n\n>|\n8259 master [sores ft\n¢ Mapped to vector 33 in xv6 | Paataboie ||\n1\"\n* Akeystroke will result in a\nthe function consleintr to\nbe executed ———— »\n\nCMOS Clock >}\neo\n[wate] |\n[wae |? >|”\nce\n[Primary | _yI\n\n‘SecondaryHD = -}———>}"
+  },
+  {
+    "text": "is connected to IRQ 1 of the master 8259. So, when a key is pressed then it results in this particular",
+    "start": 934.16,
+    "end": 944.16,
+    "ocr_text": "Example\n(Keyboard Interrupt in xv6)\n\n* Keyboard connected to Stee |S >| wt\nsecond interrupt line in\n3\n\n>|\n8259 master [sores ft\n¢ Mapped to vector 33 in xv6 | Paataboie ||\n1\"\n* Akeystroke will result in a\nthe function consleintr to\nbe executed ———— »\n\nCMOS Clock >}\neo\n[wate] |\n[wae |? >|”\nce\n[Primary | _yI\n\n‘SecondaryHD = -}———>}"
+  },
+  {
+    "text": "line 1 being asserted and the master 8259 with then transfer the interrupt to the CPU through the",
+    "start": 944.16,
+    "end": 952.32,
+    "ocr_text": "Example\n(Keyboard Interrupt in xv6)\n\n* Keyboard connected to Ssetee |S >| wt\nsecond interrupt line in\n3\n\n>|\n8259 master oe\n« Mapped to vector 33 in xv6 | Paatabome ||\n1\n+ Akeystroke will result in a a\nthe function consleintr to\nbe executed ————_\n\nCMOS Clock >}\n[wae | >|\n[wats }_5|\n[wane |? >|\nce\n[Primary [4 yt\n\n‘SecondaryHOD = -——>}"
+  },
+  {
+    "text": "INTP. The CPU would then detect that a keystroke has been pressed and determine the corresponding",
+    "start": 952.32,
+    "end": 962.32,
+    "ocr_text": "Example\n(Keyboard Interrupt in xv6)\n\n* Keyboard connected to a wt\nsecond interrupt line in qa= Pp\n8259 master Seatboies [>>|\n¢ Mapped to vector 33 in xv6 PaataDeices |p\na P Dives |S >|\n*« A keystroke will result in — [me\nthe function consleintr to\n\nbe executed\n\n‘CHOS Clock >|\n|\n|\nmaiae — [-_»}\n\nwave [-2-»}\n\na\nPamaryHO |_|}\n\nSecondayHD |S _»}"
+  },
+  {
+    "text": "interrupt vector which would result in this function console INTR to be executed. Now in the",
+    "start": 963.12,
+    "end": 969.36,
+    "ocr_text": "Example\n(Keyboard Interrupt in xv6)\n\n* Keyboard connected to Sete |S >| wt\nsecond interrupt line in\n3\n\n>|\n8259 master Seal Devens lena =\n\n« Mapped to vector 33 in xv6 | Paatabeme ||\n\n¢« A keystroke will result in ee [7 |\nthe function consleintr to\nbe executed ——— »\n\nCMOS Clock >}\n[wae | >|\n[wate] |\n[wane |? || 2\nce\n[Primary | yp\n\n‘SecondaryHD = -}———>}"
+  },
+  {
+    "text": "console INTR which is present in console dot c in the x v 6 code what is first done is that",
+    "start": 969.36,
+    "end": 976.48,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\n\nread pointer write pointer\n\\ 2% /\nr w\n\nsegment where data is NOT written"
+  },
+  {
+    "text": "the function would communicate with the keyboard using the keyboard driver present in kbd dot c",
+    "start": 976.48,
+    "end": 982.96,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\nread pointer write pointer\n\n\\Z .\n\\\n\n7\n\nsegment where data is NOT written"
+  },
+  {
+    "text": "to determine which key has been pressed. Now if it was a special key then there was a special",
+    "start": 982.96,
+    "end": 989.28,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\nread pointer write pointer\n\n\\Z .\n\\\n\n7\n\nsegment where data is NOT written"
+  },
+  {
+    "text": "servicing done for special characters pressed in the keyboard and that then the data is pushed",
+    "start": 989.28,
+    "end": 995.04,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\nread pointer write pointer\n\nVW :\n\\\n\n.\n\nsegment where data is NOT written"
+  },
+  {
+    "text": "into a circular buffer. So, the circular buffer is as shown over here it has got a read pointer",
+    "start": 995.12,
+    "end": 1000.24,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\n\nread pointer write pointer\n\nsegment where data is NOT written"
+  },
+  {
+    "text": "and a write pointer. So, the console INTR will push the data at the memory pointed to by the",
+    "start": 1000.24,
+    "end": 1007.36,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\n\nread pointer write pointer\n\nsegment where data is NOT written"
+  },
+  {
+    "text": "write pointer and then increment w. So, at a later point other functions in the operating system",
+    "start": 1007.36,
+    "end": 1017.2,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\nread pointer write pointer\n\n\\ 4\n\nr &\n\n\\\\\n\nsegment where data is NOT written"
+  },
+  {
+    "text": "would then read data using the read pointer and therefore, be able to determine what are the key",
+    "start": 1017.2,
+    "end": 1022.64,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\nread pointer write pointer\n\n\\? :\n\\\n\nsegment where data is NOT written"
+  },
+  {
+    "text": "strokes which have been pressed. So, this was a brief introduction to INTR and how INTR",
+    "start": 1022.64,
+    "end": 1028.04,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\nread pointer write pointer\n\n\\? :\n\\\n\nsegment where data is NOT written"
+  },
+  {
+    "text": "are work and how they are handling handle by the CPU and the operating system. In the next video",
+    "start": 1028.04,
+    "end": 1033.84,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\nread pointer write pointer\n\n\\? :\n\\\n\nsegment where data is NOT written"
+  },
+  {
+    "text": "we will look at software INTR and how they are used to implement system calls in the operating system.",
+    "start": 1033.84,
+    "end": 1039.84,
+    "ocr_text": "Keyboard Interrupt Handler\n\nconsoleintr (console.c)\n\nget pressed character (kbdgetc (kbd.c))\n\nService special characters\n\nPush into circular buffer\n\ntalks to keyboard through\nspecific predifined io ports\n\nsegment where data is written\nread pointer write pointer\n\n\\? :\n\\\n\nsegment where data is NOT written"
+  }
+]

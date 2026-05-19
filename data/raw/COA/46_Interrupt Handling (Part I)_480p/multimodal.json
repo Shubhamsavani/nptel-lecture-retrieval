@@ -1,0 +1,1274 @@
+[
+  {
+    "text": "So, we continue with our discussion on interrupt handling. In this lecture we shall first",
+    "start": 0.0,
+    "end": 24.16,
+    "ocr_text": "Handling Multiple Devices\n\n+ Suppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device?\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt requests be handled?"
+  },
+  {
+    "text": "be looking at some issues that occurs whenever multiple devices are allowed to send interrupt",
+    "start": 24.16,
+    "end": 32.6,
+    "ocr_text": "Handling Multiple Devices\n\n+ Suppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device?\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt requests be handled?"
+  },
+  {
+    "text": "signals to the processor ok. So, this is the part 2 of interrupt handling.",
+    "start": 32.6,
+    "end": 40.08,
+    "ocr_text": "Handling Multiple Devices\n\n+ Suppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device?\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt requests be handled?"
+  },
+  {
+    "text": "So, we start with this problem or issue of handling multiple devices. Well, we have already",
+    "start": 40.08,
+    "end": 48.76,
+    "ocr_text": "Handling Multiple Devices\n\n+ Suppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device?\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt requests be handled?"
+  },
+  {
+    "text": "talked about this earlier you know last lecture, but there are something else also we shall",
+    "start": 48.76,
+    "end": 53.24,
+    "ocr_text": "Handling Multiple Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\n\nThe following questions need to be answered\n\n2) How can the CPU identify the interrupting device\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt be handled?"
+  },
+  {
+    "text": "be discussing today. Now, here we assume because there are multiple devices that a number",
+    "start": 53.24,
+    "end": 62.8,
+    "ocr_text": "Handling Multiple Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\n\nThe following questions need to be answered\n\n2) How can the CPU identify the interrupting device\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt be handled?"
+  },
+  {
+    "text": "of devices can potentially generate interrupts to the CPU. Now, there are 4 questions we",
+    "start": 62.8,
+    "end": 71.0,
+    "ocr_text": "Handling Multiple,Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt be handled?"
+  },
+  {
+    "text": "need to answer. We need to have solutions to all 4 of these. Some of these we have already",
+    "start": 71.0,
+    "end": 77.48,
+    "ocr_text": "Handling Multiple Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt be handled?"
+  },
+  {
+    "text": "answered earlier like first is how can this CPU identify the interrupting device.",
+    "start": 77.48,
+    "end": 84.6,
+    "ocr_text": "Handling Multiple Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt be handled?\n\nNETEL ONLINE national | (g\nii ae"
+  },
+  {
+    "text": "Well, earlier we suggested one method that is using the interrupt vector concept. The interrupting",
+    "start": 84.6,
+    "end": 91.84,
+    "ocr_text": "Handling Multiple Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt be handled?\n\nNETEL ONLINE national | (g\nii ae"
+  },
+  {
+    "text": "device itself can send an interrupt vector through which this CPU can identify who has",
+    "start": 91.84,
+    "end": 98.08,
+    "ocr_text": "Handling Multiple Devices\n\n+ Suppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt be handled?"
+  },
+  {
+    "text": "interrupted ok. So, this is the way in which the device itself is identifying that well",
+    "start": 98.08,
+    "end": 106.48,
+    "ocr_text": "3 He"
+  },
+  {
+    "text": "I have interrupted. So, CPU can know that fine. So, the second important question is that",
+    "start": 106.48,
+    "end": 114.04,
+    "ocr_text": "3 He"
+  },
+  {
+    "text": "well how can the CPU obtain the starting address of the ISR? Well, once the CPU has identified",
+    "start": 114.04,
+    "end": 122.24,
+    "ocr_text": "Handling Multiple Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\n\nThe following questions need to be answered\n\n2) How can the CPU identify the interrupting device?\n\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt requests be handled?"
+  },
+  {
+    "text": "the device this is easy because the address of the ISR can be stored in a table. After",
+    "start": 122.24,
+    "end": 129.68,
+    "ocr_text": "Handling Multiple Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\n\nThe following questions need to be answered\n\n2) How can the CPU identify the interrupting device?\n\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt requests be handled?"
+  },
+  {
+    "text": "knowing that which device has interrupted the CPU can consult the table get the address",
+    "start": 129.68,
+    "end": 135.44,
+    "ocr_text": "Handling Multiple Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\n\nThe following questions need to be answered\n\n2) How can the CPU identify the interrupting device?\n\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt requests be handled?"
+  },
+  {
+    "text": "and can jump to that appropriate address ok. And the third question is should we allow",
+    "start": 135.44,
+    "end": 144.4,
+    "ocr_text": "Handling Multiple Devices\n\n+ Suppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device?\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt requests be handled?\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "interrupt nesting to occur to happen? Because we saw earlier that interrupt nesting can create",
+    "start": 144.4,
+    "end": 150.0,
+    "ocr_text": "Handling Multiple Devices\n\n+ Suppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device?\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt requests be handled?\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "some problems or we should be disabling the interrupts while interrupts are being processed.",
+    "start": 150.0,
+    "end": 157.88,
+    "ocr_text": "Handling Multiple Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two o: neous interrupt be handled?"
+  },
+  {
+    "text": "And lastly for simultaneous interrupt requests how we should handle them. Let us look at this",
+    "start": 157.88,
+    "end": 166.56,
+    "ocr_text": "Handling Multiple Devices\n\nSuppose that a number of devices capable of generating interrupts are\nconnected to the CPU\nThe following questions need to be answered\n2) How can the CPU identify the interrupting device\nb) How can the CPU obtain the starting address of the appropriate ISR?\n\nd) How should two or more simultaneous interrupt be handled?\n\nNATIONAL"
+  },
+  {
+    "text": "one by one device identification. Well, this already we have talked about earlier the first",
+    "start": 166.56,
+    "end": 175.6,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activatin}\nline that is common to all the devices. That is,\nINTR, + INTR, +. + INTR\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "thing is that there are several external devices which can which may be having different interrupt",
+    "start": 175.6,
+    "end": 183.88,
+    "ocr_text": "Suppose that an external device requests an interrupt by activating an INTR\nline that is common to all the devices. That is,\nINTR = INTR, + INTR, + ... + INTR\n\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "signals I n tier 1 I n tier 2 let us say up to I n tier n. So, if anyone of them generates an",
+    "start": 183.88,
+    "end": 190.68,
+    "ocr_text": "Suppose that an external device requests an interrupt by activating an INTR\nline that is common to all the devices. That is,\nINTR = INTR, + INTR, + ... + INTR\n\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "interrupt you can make a logical or connection and you can generate the consolidated interrupt",
+    "start": 190.68,
+    "end": 198.48,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activating an INTR\nline that is common to all the devices. That is,\nINTR = INTR, + INTR, +... + INTR\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "request which will be sent to the CPU. So, CPU will get interrupted. Now, in addition each",
+    "start": 198.48,
+    "end": 207.4,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activatin}\nline that is common to all the devices. That is,\nINTR = INTR, + INTR, +... + INT\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "device can have a status bit indicating whether it has interrupted. So, what we are saying is",
+    "start": 207.4,
+    "end": 213.64,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activating an INTR\nline that is common to all the devices. That is,\nINTR, + INTR, + .. + INTR\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "something like this. Let us say we have the different devices let us say device 1 device 2 and",
+    "start": 213.64,
+    "end": 227.8,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activating an INTR\nline that is common to all the devices. That is,\nINTR, + INTR, + .. + INTR\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "device n. Let us say there can be a port let us say this will be an input port where each of",
+    "start": 227.8,
+    "end": 242.84,
+    "ocr_text": "Sol"
+  },
+  {
+    "text": "the device can set one of the bits of this port. Now, what this bits will indicate this will",
+    "start": 242.84,
+    "end": 253.32,
+    "ocr_text": "Sol"
+  },
+  {
+    "text": "indicate whether interrupted or not, whether interrupted. Let us say device 2 had interrupted.",
+    "start": 253.32,
+    "end": 267.16,
+    "ocr_text": "al\nDevee | |\n\neee\n\nae\nIpeveen |\nSee"
+  },
+  {
+    "text": "So, device 2 will be setting this particular bit to 1 and all other bits will remain 0.",
+    "start": 267.72,
+    "end": 274.44,
+    "ocr_text": "al\nDevee | |\n\neee\n\nae\nIpeveen |\nSee"
+  },
+  {
+    "text": "So, what this CPU will do? CPU can read this word and it can check this bits 1 by 1 which of them is",
+    "start": 275.96,
+    "end": 285.56,
+    "ocr_text": "al\nDevee | |\n\neee\n\nae\nIpeveen |\nSee"
+  },
+  {
+    "text": "1. So, it can identify which of the bit is 1 by checking this bits 1 by 1. This process is sometimes",
+    "start": 285.56,
+    "end": 295.32,
+    "ocr_text": "Polling\n9"
+  },
+  {
+    "text": "called polling. Polling means it is scanning 1 by 1 to find out which device had sent the interrupt.",
+    "start": 295.32,
+    "end": 305.96,
+    "ocr_text": "Polling\n9"
+  },
+  {
+    "text": "So, this is exactly what is mentioned here in this slide.",
+    "start": 308.84,
+    "end": 313.48,
+    "ocr_text": "Polling\n9"
+  },
+  {
+    "text": "Each device can have a status bit indicating whether it has interrupted.",
+    "start": 316.92,
+    "end": 323.88,
+    "ocr_text": "ene\n\na Neel\nae =\n: Deve 2 |\n\na\n\n\\__ Trew\nWhether, \\\nRiel\n\nen"
+  },
+  {
+    "text": "And CPU can go on polling those bits 1 by 1 as I said to find out that which device had interrupted.",
+    "start": 325.56,
+    "end": 332.92,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activatin}\nline that is common to all the devices. That is,\nINTR = INTR, + INTR, + ... + INTR\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out whg has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "Now, of course, a better alternative will be used to interrupt vector is the concept of the",
+    "start": 334.2,
+    "end": 338.52,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activatin}\nline that is common to all the devices. That is,\nINTR = INTR, + INTR, + ... + INTR\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out whg has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "interrupt vector that we talked about earlier. Because you see when the CPU is doing polling some",
+    "start": 338.52,
+    "end": 344.92,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activating an INTR\nline that is common to all the devices. That is,\nINTR = INTR, + INTR, +... + INT\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "additional time will be required because there will be a program which will be running which will",
+    "start": 344.92,
+    "end": 348.92,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activating an INTR\nline that is common to all the devices. That is,\nINTR = INTR, + INTR, +... + INT\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "shifting the bits 1 by 1 maybe and will be checking which bit is 1 which bit is 0 that takes some time.",
+    "start": 349.48,
+    "end": 356.2,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activating an INTR\nline that is common to all the devices. That is,\nINTR = INTR, + INTR, +... + INT\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "But if the device itself sends an identifying code the interrupt vector on the data bus,",
+    "start": 356.84,
+    "end": 363.4,
+    "ocr_text": "(a) Device Identification\n\nSuppose that an external device requests an interrupt by activating an INTR\nline that is common to all the devices. That is,\nINTR = INTR, + INTR, +... + INT\nEach device can have a status bit indicating whether it has interrupted.\nCPU can poll the status bits to find out who has interrupted.\nA better alternative is to use the interrupt vector concept discussed earlier.\n\n— The interrupting device sends a special identifying code on the data bus upon\nreceiving the interrupt acknowledge."
+  },
+  {
+    "text": "CPU can immediately read that and directly find out which device has interrupted no need of any",
+    "start": 363.4,
+    "end": 369.88,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\nacks flexibility.\n\nIT KHARAGPUR GEnTIFICATION couRsES"
+  },
+  {
+    "text": "polling. So, this is a better alternative. The second question find starting address of ISR.",
+    "start": 369.96,
+    "end": 380.6,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\nacks flexibility.\n\nIT KHARAGPUR GEnTIFICATION couRsES"
+  },
+  {
+    "text": "Well, here there can be multiple ways you can think of.",
+    "start": 381.48,
+    "end": 386.36,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\nacks flexibility.\n\nIT KHARAGPUR GEnTIFICATION couRsES"
+  },
+  {
+    "text": "There can be processors where multiple interrupt requests pins are there.",
+    "start": 388.36,
+    "end": 392.04,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each ifdividual input\nacks flexibility.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "This you would see mostly in some older processors but in most of the modern processors you do not",
+    "start": 392.28,
+    "end": 399.88,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each ifdividual input\nacks flexibility.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "see this. In many older processors you will see that there was multiple interrupt input lines",
+    "start": 399.88,
+    "end": 408.04,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each ifdividual input\nacks flexibility.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "and each of this interrupt input interrupt request lines was associated with a particular address",
+    "start": 408.92,
+    "end": 417.32,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each ifdividual input\nacks flexibility.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "of ISR which means that if an interrupt comes over this line 1 it will jump to a particular address.",
+    "start": 417.56,
+    "end": 425.48,
+    "ocr_text": "Tipe\n\n="
+  },
+  {
+    "text": "If an interrupt comes on line 2 it will jump to another particular address.",
+    "start": 426.04,
+    "end": 430.68,
+    "ocr_text": "Tipe\n\n="
+  },
+  {
+    "text": "So, when you write your ISR you have to write those ISRs in those particular addresses.",
+    "start": 431.56,
+    "end": 436.92,
+    "ocr_text": "Tipe\n\n="
+  },
+  {
+    "text": "This was one of the concepts which was used in some of the processors.",
+    "start": 438.04,
+    "end": 441.96,
+    "ocr_text": "Tipe\n\n="
+  },
+  {
+    "text": "So, for multiple interrupt request lines as I said the address of the ISR can be fixed for",
+    "start": 442.52,
+    "end": 450.68,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\nacks flexibility.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "each individual input. So, by hardware if an interrupt comes on a particular line the control",
+    "start": 450.68,
+    "end": 457.24,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\nacks flexibility.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "will automatically jump to a particular address. So, ISR will have to be loaded there.",
+    "start": 457.24,
+    "end": 462.44,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\nacks flexibility.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "But this method lacks flexibility because if there are four interrupt inputs you can have only",
+    "start": 463.24,
+    "end": 469.4,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\nacks flexibility.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "four ISRs but in general the number of devices you are interfacing can be more than four also.",
+    "start": 469.4,
+    "end": 475.48,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\nacks flexibility.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, flexibility is less in this approach.",
+    "start": 476.28,
+    "end": 479.08,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\n\nacks flexibility.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, again if you use the interrupt vector scheme this is much more flexible.",
+    "start": 482.68,
+    "end": 486.92,
+    "ocr_text": "(b) Find Starting Address of ISR\n\n+ Fora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\n\nacks flexibility.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "There can be many devices which are connected to the CPU.",
+    "start": 488.04,
+    "end": 490.84,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\n= Lacks flexibility.\nthe interrupt vector scheme discussed earlier, the able to\n\nntify itself to the CPU.\n\nCPU can then lookup’ t here the .es for all the devices\n\ntored\n\nThe interrupt latency is hat increas © are not immediately\n\njumping to the ISR.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, whoever has interrupted will send the corresponding interrupt vector on the database.",
+    "start": 491.8,
+    "end": 497.0,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\n= Lacks flexibility.\nthe interrupt vector scheme discussed earlier, the able to\n\nntify itself to the CPU.\n\nCPU can then lookup’ t here the .es for all the devices\n\ntored\n\nThe interrupt latency is hat increas © are not immediately\n\njumping to the ISR.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, there is no restriction as to how many devices can be connected. It can be 2, 5, 10, 100.",
+    "start": 497.96,
+    "end": 503.72,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interrupt request inputs, the address of the ISR\ncan be fixed for each individual input\n= Lacks flexibility.\nthe interrupt vector scheme discussed earlier, the able to\n\nntify itself to the CPU.\n\nCPU can then lookup’ t here the .es for all the devices\n\ntored\n\nThe interrupt latency is hat increas © are not immediately\n\njumping to the ISR.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, the interrupting device will have the responsibility of sending the interrupt vector",
+    "start": 505.08,
+    "end": 510.04,
+    "ocr_text": "te\nFi"
+  },
+  {
+    "text": "on the database and CPU can read it and uniquely identify the device who has sent the interrupt.",
+    "start": 510.04,
+    "end": 517.64,
+    "ocr_text": "te\nFi"
+  },
+  {
+    "text": "Okay fine. So, once the CPU has identified the device there can be a lookup table where all the",
+    "start": 517.96,
+    "end": 527.24,
+    "ocr_text": "te\nFi"
+  },
+  {
+    "text": "ISR addresses will be stored. So, CPU can look do a lookup in the table and find out the corresponding",
+    "start": 527.24,
+    "end": 537.16,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interrupt request inputs, the address of the ISR\n\ncan be fixed for each individual input\n\n= Lacks flexibility.\n\nIf we use the interrupt vector scheme discussed earlier, the able to\nntify itself to the CPU.\n\n— ,€PU can then lookup at. here the ISR addresses for all the devices\ntored\n\n— The interrupt latency is hat increased, since we are not immediately\njumping to the ISR."
+  },
+  {
+    "text": "ISR address and then it will be jumping to the corresponding ISR. The only difficulty here is that",
+    "start": 537.16,
+    "end": 545.08,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interruptrequest inputs, the address of the ISR\n\ncan be fixed for each individual input\n\n= Lacks flexibility.\n\nIf we use the interrupt vector scheme discussed earlier, the able to\nntify itself to the CPU.\n\n= CPUcan then lookup at here the: .es for all the devices\ntored\n\n— The interrupt latency is hat increase: © are not immediately\njumping to the ISR.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "you need to do some processing searching a table and so on. So, a little more time is required",
+    "start": 545.08,
+    "end": 550.84,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interruptrequest inputs, the address of the ISR\n\ncan be fixed for each individual input\n\n= Lacks flexibility.\n\nIf we use the interrupt vector scheme discussed earlier, the able to\nntify itself to the CPU.\n\n= €PUcan then lookup at here the ISR addresses for all the devices\nstored.\n\n— The interrupt latency is hat increased, since we are not immediately\njumping to the ISR."
+  },
+  {
+    "text": "for interrupt handling. So, this we are calling as the interrupt latency. The delay between an",
+    "start": 550.84,
+    "end": 558.68,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interruptrequest inputs, the address of the ISR\n\ncan be fixed for each individual input\n\n= Lacks flexibility.\n\nIf we use the interrupt vector scheme discussed earlier, the able to\nntify itself to the CPU.\n\n= €PUcan then lookup at here the ISR addresses for all the devices\nstored.\n\n— The interrupt latency is hat increased, since we are not immediately\njumping to the ISR."
+  },
+  {
+    "text": "interrupt request signal is arriving and when the interrupt acknowledge is finally going out.",
+    "start": 558.68,
+    "end": 565.08,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interruptrequest inputs, the address of the ISR\n\ncan be fixed for each individual input\n\n= Lacks flexibility.\n\nIf we use the interrupt vector scheme discussed earlier, the able to\nntify itself to the CPU.\n\n= €PUcan then lookup at here the ISR addresses for all the devices\nstored.\n\n— The interrupt latency is hat increased, since we are not immediately\njumping to the ISR."
+  },
+  {
+    "text": "So, this delay will be increased a little bit because here you need to do a little more processing",
+    "start": 565.64,
+    "end": 571.0,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interruptrequest inputs, the address of the ISR\n\ncan be fixed for each individual input\n\n= Lacks flexibility.\n\nIf we use the interrupt vector scheme discussed earlier, the able to\nntify itself to the CPU.\n\n= CPUcan then lookup at here the ISR addresses for all the devices\nstored.\n\n— The interrupt latency is somewhat increased, since we are not immediately\njumping to the ISR."
+  },
+  {
+    "text": "to find out the address of the ISR. So, here we are not immediately jumping to the ISR.",
+    "start": 571.64,
+    "end": 578.76,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interruptrequest inputs, the address of the ISR\n\ncan be fixed for each individual input\n\n= Lacks flexibility.\n\nIf we use the interrupt vector scheme discussed earlier, the able to\nntify itself to the CPU.\n\n= CPUcan then lookup at here the ISR addresses for all the devices\nstored.\n\n— The interrupt latency is somewhat increased, since we are not immediately\njumping to the ISR."
+  },
+  {
+    "text": "We are searching for the address first and then jumping.",
+    "start": 578.76,
+    "end": 581.4,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interruptrequest inputs, the address of the ISR\n\ncan be fixed for each individual input\n\n= Lacks flexibility.\n\nIf we use the interrupt vector scheme discussed earlier, the able to\nntify itself to the CPU.\n\n= CPUcan then lookup at here the ISR addresses for all the devices\nstored.\n\n— The interrupt latency is somewhat increased, since we are not immediately\njumping to the ISR."
+  },
+  {
+    "text": "Now regarding interrupt nesting. So, we told earlier that we can have a simple approach of",
+    "start": 584.52,
+    "end": 591.56,
+    "ocr_text": "(b) Find Starting Address of ISR\n\nFora processor with multiple interruptrequest inputs, the address of the ISR\n\ncan be fixed for each individual input\n\n= Lacks flexibility.\n\nIf we use the interrupt vector scheme discussed earlier, the able to\nntify itself to the CPU.\n\n= CPUcan then lookup at here the ISR addresses for all the devices\nstored.\n\n— The interrupt latency is somewhat increased, since we are not immediately\njumping to the ISR."
+  },
+  {
+    "text": "disabling all interrupts while the execution of an ISR is going on. So, this is of course, simple.",
+    "start": 591.56,
+    "end": 599.48,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nBisable all interrupts during the execution of an ISR.\n— This ensures that the in pt request from one device will not cause more\nthat one interruptions.\n—  ISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "This will ensure that whenever an interrupt comes there will not be any more interruptions.",
+    "start": 599.48,
+    "end": 605.48,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nDisable all interrupts during the execution of an ISR.\n— This ensures that the interrupt request from one device will not cause more\nthat one interruptions.\n—  ISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "The ISR will be executing the completion, it will come back and then if another interrupt comes,",
+    "start": 606.04,
+    "end": 611.0,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nDisable all interrupts during the execution of an ISR.\n— This ensures that the interrupt request from one device will not cause more\nthat one interruptions.\n—  ISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "there will be another interruptions. So, there will be at most one interruptions for interrupt request.",
+    "start": 611.0,
+    "end": 616.68,
+    "ocr_text": "(c) Interrupt Nesting\n\nimple approach:\nDisable all interrupts during the execution of an ISR\n\nThis ensures that the interrupt request from one device will not cause more\nthat one interruptions.\n\nISR’s are typically short, and the delay they may cause in\n\nInterrupt request is often acceptable.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "But you see the point in notice that for most of the devices the ISRs are typically very short.",
+    "start": 618.92,
+    "end": 625.96,
+    "ocr_text": "(c) Interrupt Nesting\n\nimple approach:\nDisable all interrupts during the execution of an ISR\n\nThis ensures that the interrupt request from one device will not cause more\nthat one interruptions.\n\nISR’s are typically short, and the delay they may cause in\n\nInterrupt request is often acceptable.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "Like for IOD devices just transfer a few bytes or words of data that is the task of the ISR.",
+    "start": 626.92,
+    "end": 634.2,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nDisable all interrupts during the execution of an ISR.\n— This ensures that the interrupt request from one device will not cause more\nthat one interruptions.\n— ISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "So, as such the total time taken for the ISR to finish or execute is typically very small.",
+    "start": 635.08,
+    "end": 643.08,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nDisable all interrupts during the execution of an ISR.\n— This ensures that the interrupt request from one device will not cause more\nthat one interruptions.\n— ISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "So, you can afford to use this approach that you can disable the interrupts because you know",
+    "start": 645.16,
+    "end": 651.56,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nDisable all interrupts during the execution of an ISR.\n— This ensures that the interrupt request from one device will not cause more\nthat one interruptions.\n— ISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,"
+  },
+  {
+    "text": "that the ISR will be finished very quickly. So, even if you have disabled so, after finishing the",
+    "start": 651.56,
+    "end": 656.92,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nDisable all interrupts during the execution of an ISR.\n— This ensures that the interrupt request from one device will not cause more\nthat one interruptions.\n— ISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,"
+  },
+  {
+    "text": "interrupt can be handled which has come after that. So, this will not be that much of a problem.",
+    "start": 656.92,
+    "end": 663.8,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nDisable all interrupts during the execution of an ISR.\n— This ensures that the interrupt request from one device will not cause more\nthat one interruptions.\n= ISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,"
+  },
+  {
+    "text": "Well a better method may be you mean you can use interrupt priority.",
+    "start": 666.44,
+    "end": 671.56,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\nDisable all interrupts during the execution of an ISR.\nThis ensures that the interrupt request from one device will not cause more\nthat one interruptions.\nISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,\n\nInterrupt priority;\n\n— Some interrupting devices may be assigned higher priorities than others.\n\nExample: timer interrupt to maintain a real-time clock\n\nHigher priority interrupt may interrupt the ISR of lower priority on"
+  },
+  {
+    "text": "Like some interrupting devices may be assigned higher priority than the others.",
+    "start": 672.92,
+    "end": 676.76,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\nDisable all interrupts during the execution of an ISR.\nThis ensures that the interrupt request from one device will not cause more\nthat one interruptions.\nISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,\n\nInterrupt priority;\n\n— Some interrupting devices may be assigned higher priorities than others.\n\nExample: timer interrupt to maintain a real-time clock\n\nHigher priority interrupt may interrupt the ISR of lower priority on"
+  },
+  {
+    "text": "The idea is that here you are not ruling away interrupt nesting altogether.",
+    "start": 676.84,
+    "end": 686.68,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nDisable all interrupts during the execution of an ISR.\nThis ensures that the interrupt request from one device will not cause more\nthat one interruptions.\nISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,\n\n+ Interrupt priority:\n\n— Some interrupting devices may be assigned higher priorities than others.\n\nExample: timer interrupt to maintain a real-time clock\n\nHigher priority interrupt may interrupt the ISR of lower priority on\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Here you are saying that you are allowed to do interrupt nesting, but only higher priority interrupts",
+    "start": 687.4,
+    "end": 697.56,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nDisable all interrupts during the execution of an ISR.\nThis ensures that the interrupt request from one device will not cause more\nthat one interruptions.\nISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable.\n\n+ Interrupt priority:\n\n— Some interrupting devices may be assigned higher priorities than othe\n\nExample: timer interrupt to maintain a real-time.glock\nHigher priority interrupt may interrupt the ISR of lower priority on\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "can interrupt the ISR of a lower priority interrupt.",
+    "start": 697.56,
+    "end": 703.88,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\nDisable all interrupts during the execution of an ISR.\nThis ensures that the interrupt request from one device will not cause more\nthat one interruptions.\nISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,\n\nInterrupt priority:\n\n— Some interrupting devices may be assigned higher priorities than others.\n\nExample: timer interrupt to maintain a real-time clock\n\nHigher priority interrupt may interrupt the ISR of lower priority on"
+  },
+  {
+    "text": "Like I am given example, suppose there is a timer which is generating an interrupt every one millisecond",
+    "start": 704.6,
+    "end": 713.16,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\nDisable all interrupts during the execution of an ISR.\nThis ensures that the interrupt request from one device will not cause more\nthat one interruptions.\nISR’s are typically short, and the delay they may cause in handling a second\nInterrupt request is often acceptable,\n\nInterrupt priority:\n\n— Some interrupting devices may be assigned higher priorities than others.\n\nExample: timer interrupt to maintain a real-time clock\n\nHigher priority interrupt may interrupt the ISR of lower priority on"
+  },
+  {
+    "text": "and using which you are maintaining a real time clock which is very accurate.",
+    "start": 713.8,
+    "end": 717.16,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\n\nDisable all interrupts during the execution of an ISR\n\nThis ensures that the interrupt request from one device will not cause more\nthat one interruptions.\nand the delay they may cause in handling a second\n\nISR’s are typically short\nn acceptable:\n\nInterrupt request is oft\nInterrupt priority:\n\nnterrupting devices may be assigned higher priorities than othe\n\ninterrupt to maintain a real-time clock\n\nwer priority oni\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA\n\nity interrupt may interrupt the ISR of lo\n\nNPTEL ONLINE\nCERTIFICATION COURSES\n\nITKHARAGPUR"
+  },
+  {
+    "text": "Now, you cannot afford to delay this timer interrupt because this real time clock is a very",
+    "start": 719.0,
+    "end": 725.88,
+    "ocr_text": "(c) Interrupt Nesting\n\n+ Asimple approach\nDisable all interrupts during the execution of an ISR.\nThis ensures that the interrupt request from one device will not cause more\n\nthat one interruptions.\n\nand the delay they may cause in handling a second\n\nISR’s are typically short\n» acceptable:\n\nInterrupt request is oft\n\n+ Interrupt priority:\n\n— Some interrupting devices may be assigned higher priorities than othe\nExample: timer interrupt to maintain a real-time clock\nHigher priority interrupt may interrupt the ISR of lower priority on\n\nNPTEL ONLIN\nIT KHARAGPUR CEITIFICATION CouRsES"
+  },
+  {
+    "text": "important thing. Many subsystems of your computer may be using this real time clock for various",
+    "start": 725.88,
+    "end": 733.72,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\nDisable all interrupts during the execution of an ISR.\nThis ensures that the i spt request from one device will not cause more\n\nthat one interruptions.\n\nand the delay they may cause in handling a second\n\nISR’s are typically short\n» acceptable.\n\nInterrupt request is oft\n\nInterrupt priority:\n\nnterrupting devices may be assigned higher priorities than othe\nample: timer interrupt to maintain a real-time clock\nHigher priority interrupt may interrupt the ISR of lower priority on"
+  },
+  {
+    "text": "purposes. So, when this real time clock interrupt comes if the CPU sees that some other ISR is currently",
+    "start": 733.72,
+    "end": 743.32,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\nDisable all interrupts during the execution of an ISR.\nThis ensures that the i spt request from one device will not cause more\n\nthat one interruptions.\n\nand the delay they may cause in handling a second\n\nISR’s are typically short\n» acceptable.\n\nInterrupt request is oft\n\nInterrupt priority:\n\nnterrupting devices may be assigned higher priorities than othe\nample: timer interrupt to maintain a real-time clock\nHigher priority interrupt may interrupt the ISR of lower priority on"
+  },
+  {
+    "text": "being executed it will interrupt that because this real time clock interrupt is a very high priority",
+    "start": 743.32,
+    "end": 749.88,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\nDisable all interrupts during the execution of an ISR.\nThis ensures that the i spt request from one device will not cause more\n\nthat one interruptions.\n\nand the delay they may cause in handling a second\n\nISR’s are typically short\n» acceptable.\n\nInterrupt request is oft\n\nInterrupt priority:\n\nnterrupting devices may be assigned higher priorities than othe\nample: timer interrupt to maintain a real-time clock\nHigher priority interrupt may interrupt the ISR of lower priority on"
+  },
+  {
+    "text": "interrupt. So, a high priority interrupt can interrupt the ISR of lower priority devices or interrupts.",
+    "start": 750.12,
+    "end": 759.96,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\nDisable all interrupts during the execution of an ISR.\nThis ensures that the i spt request from one device will not cause more\n\nthat one interruptions.\n\nand the delay they may cause in handling a second\n\nISR’s are typically short\n» acceptable.\n\nInterrupt request is oft\n\nInterrupt priority:\nnterrupting devices may be\ninterrupt to maintain\n\nassigned higher priorities than othe\nreal-time clock\n\nity interrupt may interrupt the ISR of lower priority on\n\nNPTEL ONLIN\nITKHARAGPUR GERTIeaTION courses"
+  },
+  {
+    "text": "This is the concept ok. So, by using interrupt priority you can have an arrangement where high",
+    "start": 759.96,
+    "end": 767.56,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\nDisable all interrupts during the execution of an ISR.\nThis ensures that the i spt request from one device will not cause more\n\nthat one interruptions.\n\nand the delay they may cause in handling a second\n\nISR’s are typically short\n» acceptable.\n\nInterrupt request is oft\n\nInterrupt priority:\nnterrupting devices may be\ninterrupt to maintain\n\nassigned higher priorities than othe\nreal-time clock\n\nity interrupt may interrupt the ISR of lower priority on\n\nNPTEL ONLIN\nITKHARAGPUR GERTIeaTION courses"
+  },
+  {
+    "text": "priority interrupts can interrupt the ISR of lower priority ones. So, lastly coming to simultaneous",
+    "start": 767.56,
+    "end": 776.84,
+    "ocr_text": "(c) Interrupt Nesting\n\nA simple approach:\nDisable all interrupts during the execution of an ISR.\nThis ensures that the i spt request from one device will not cause more\n\nthat one interruptions.\n\nand the delay they may cause in handling a second\n\nISR’s are typically short\n» acceptable.\n\nInterrupt request is oft\n\nInterrupt priority:\nnterrupting devices may be\ninterrupt to maintain\n\nassigned higher priorities than othe\nreal-time clock\n\nity interrupt may interrupt the ISR of lower priority on\n\nNPTEL ONLIN\nITKHARAGPUR GERTIeaTION courses"
+  },
+  {
+    "text": "requests. So, here we are assuming that simultaneous interrupt requests can arrive from two or more",
+    "start": 776.84,
+    "end": 783.96,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt requests\nfrom two or more devices.\n— €PU should have some mechanism by which only one request is serviced while\nthe others are delayed or ignored.\n= Ifthe CPU has multiple interrupt request lines, it can have a priority scheme\n\nwhere it accepts the request with the highest priority\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "device. So, obviously, CPU should have some mechanism to resolve that. Well, first approach can",
+    "start": 783.96,
+    "end": 792.52,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt requests\nfrom two or more devices.\n— €PU should have some mechanism by which only one request is serviced while\nthe others are delayed or ignored.\n= Ifthe CPU has multiple interrupt request lines, it can have a priority scheme\n\nwhere it accepts the request with the highest priority\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "be a simple priority scheme which we talked about earlier using a priority interrupt priority controller",
+    "start": 792.52,
+    "end": 797.8,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt requests\nfrom two or more devices.\nPU should have some mechanism by which only one request is serviced while\nthe others are.delayed or ignored.\n= Ifthe CPU has multiple interrupt request lines, it can have a priority scheme\n\nwhere it accepts the request with the highest priority.\n\nITKHARAGPUR GEMTIeATON courses"
+  },
+  {
+    "text": "kind of a thing. So, conceptually we are showing it like this there is a CPU,",
+    "start": 798.44,
+    "end": 803.24,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt requests\nfrom two or more devices.\nPU should have some mechanism by which only one request is serviced while\nthe others are delayed or ignored.\n= Ifthe CPU has multiple interrupt request lines, it can have a priority scheme\nwhere it accepts the request with the highest priority\n\nNPTEL ONLIN\nITKHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "there can be multiple devices. So, each of them having a request and an acknowledgement line.",
+    "start": 804.2,
+    "end": 809.16,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt requests\nfrom two or more devices.\nPU should have some mechanism by which only one request is serviced while\nthe others are delayed or ignored.\n= Ifthe CPU has multiple interrupt request lines, it can have a priority scheme\nwhere it accepts the request with the highest priority\n\nNPTEL ONLIN\nITKHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "So, if more than one request is coming together the device or the interrupt input that has the higher",
+    "start": 811.0,
+    "end": 819.4,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt reques\nfrom two or more devices.\nPU should have some mechanism by which only one request is serviced while\nthe others are delayed or ignored.\n= Ifthe CPU has multiple interrupt request lines, it can have a priority scheme\nwhere it accepts the request with the highest priority.\n\nNeTEL ONLIN\nITKHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "priority that will be acknowledged while the other will be temporarily ignored it will be handled",
+    "start": 819.4,
+    "end": 825.56,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt requests\nfrom two or more devices.\nPU should have some mechanism by which only one request is serviced while\nthe others are delayed or ignored.\n= Ifthe CPU has multiple interrupt request lines, it can have a priority scheme\nwhere it accepts the request with the highest priority.\n\nNPTEL ONLIN\nITKHARAGPUR GEMTIneaTION counses"
+  },
+  {
+    "text": "later right. So, here we are assuming let us say that I N T A I will be having higher priority",
+    "start": 825.72,
+    "end": 835.48,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt requests\nfrom two or more devices.\nPU should have some mechanism by which only one request is serviced while\nthe others are delayed or ignored.\n= Ifthe CPU has multiple interrupt request lines, it can have a priority scheme\n\nwhere it accept st with the highest priority\n\nINTA has\nhigher priority\nthan INTR,,\nwhere i<j\n\nNeTEL ONLIN\nITKHARAGPUR EERTIFRCATION counses"
+  },
+  {
+    "text": "than I N T R sorry I N T R I will be having higher priority than I N T R J if I is less than J.",
+    "start": 835.48,
+    "end": 845.8,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt requests\nfrom two or more devices.\nPU should have some mechanism by which only one request is serviced while\nthe others are delayed or ignored.\n= Ifthe CPU has multiple interrupt request lines, it can have a priority scheme\n\nwhere it accepts the request with the highest priority\n\nINTA has\nhigher priority\nthan INTR,,\nwhere i<j\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "So, this I N T R one will be having higher priority than I N T R 2 I N T R 2 will be having higher",
+    "start": 846.6,
+    "end": 852.2,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt requests\nfrom two or more devices.\n— €PU should have some mechanism by which only one request is serviced while\nthe others are delayed or ignored.\n= Ifthe cPUH quest lines, it c\nst with the highest priority\n\nINTA has\nhigher priority\nthan INTR,,\nwhere i<j\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "priority than I N T A 3 and so on fine. Now, there is another way to assign priority instead of",
+    "start": 852.2,
+    "end": 861.72,
+    "ocr_text": "(d) Simultaneous Requests\n\n+ Here we consider the problem of simultaneous arrivals of interrupt requests\nfrom two or more devices.\n— €PU should have some mechanism by which only one request is serviced while\nthe others are delayed or ignored.\n= Ifthe cPUH quest lines, it c\nst with the highest priority\n\nINTA has\nhigher priority\nthan INTR,,\nwhere i<j\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "fix fixing this priority like this there is another way in which this priority thing is also",
+    "start": 862.36,
+    "end": 868.76,
+    "ocr_text": "Another way to a priority is to use polling using daisy chaining\n\n= In polling, priority is.automatically assigned based on the order in which th\ndevices are polled\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the device\nA device when it receives INTA, passes the signal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bu\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "implemented in practice. This is a method called daisy chaining. Now, the idea of this daisy chaining",
+    "start": 868.76,
+    "end": 876.28,
+    "ocr_text": "Another way to a pricrity is to use polling using daisy chaining\n\n= Inpolling, priority is automatically assigned based on the order in which the\ndevices are polled\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the device\nA device when it receives INTA, passes the signal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bu\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "will be explaining with an example the concept is fairly simple. Well, in the method of polling",
+    "start": 876.28,
+    "end": 883.24,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\nling, priority is automatically assigned\n\ny chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\n\nA device when it receives INTA, pas: al to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\n\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "you recall you are checking the devices one by one. Now, there you can regard that priority of the",
+    "start": 884.36,
+    "end": 893.08,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\nling, priority is automatically assigned\n\ny chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\n\nA device when it receives INTA, pas: al to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\n\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "device is automatically assigned based on the order in which you are checking or you are polling",
+    "start": 893.08,
+    "end": 898.6,
+    "ocr_text": "+ Another way to assign priority is to us\n\nIn polling,\n\ndes\n\npriority is automatically assigned\n\nIn daisy*chain connect\nINTA line\nthrough the devices.\n\nis connected in a daisy ch\n\nhad i\nidentify\n\nwhen it receives INTA, pi\n\nt interrupted. Else, it stop:\n\nng code on the data bu’\nThus, the device that is electrically close\n\npriority.\n\nNPTEL ONLINE\n\nITKHARAGPUR CERTIFICATION COURSES\n\non, the INTR line is common to all the devices,\nain fashion allowing it to propagate\n\npolling using daisy chaining\n\ned on the order in which thi\n\nbut the\n\nserially\n\nal to the next ¢\nof INTA\n\nvice only if it\n\nand puts the\n\nPU will have the highest\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "like suppose there are 8 devices and you are checking the status of the devices one by one.",
+    "start": 899.48,
+    "end": 905.4,
+    "ocr_text": "Another way to assign priority is to use polling using daisy chaining\n\nling, priority is automatically assigned\n\ny chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\n\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\n\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\n\nITKHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "Now, the order in which you are checking the devices that will determine the priority the first",
+    "start": 907.0,
+    "end": 913.08,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\nIn polling, priority is automatically assigned based on the order in which the\ndes\n\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\n\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\n\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "device that you are checking. Well, we will of course, be checked first if it has interrupted it",
+    "start": 913.08,
+    "end": 920.36,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\nIn polling, priority is automatically assigned based on the order in which the\ndes\n\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\n\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\n\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "will be handled first. So, it is having the higher priority. So, if the first device has not",
+    "start": 920.36,
+    "end": 925.4,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\nIn polling, priority is automatically assigned based on the order in which the\ndes\n\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\n\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\n\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "interrupted then only you are going to the next that is having a lower priority. So, the order",
+    "start": 925.4,
+    "end": 930.36,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\nIn polling, priority is automatically assigned based on the order in which the\ndes\n\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\n\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\n\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "in which you are checking that implicitly defines the priority. So, daisy chaining does something",
+    "start": 930.36,
+    "end": 940.6,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\nIn polling, priority is automatically assigned based on the order in which the\ndes\n\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\n\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\n\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "like this will show the example a little later. So, for daisy chaining connection the interrupt",
+    "start": 940.6,
+    "end": 947.96,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\n= In polling, priority is automatically assigned based on the order in which the\ndevices are polled\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority.\n\nNPTEL ONLIN\nIIT KHARAGPUR EtTIneaTION counses"
+  },
+  {
+    "text": "request line is common to all the devices. But the interrupt acknowledge line is connected in a",
+    "start": 947.96,
+    "end": 956.92,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\n= In polling, priority is automatically assigned based on the order in which the\ndevices are polled\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority.\n\nNPTEL ONLIN\nIIT KHARAGPUR EtTIneaTION counses"
+  },
+  {
+    "text": "particular fashion will be showing this. This is called a daisy chaining fashion which",
+    "start": 956.92,
+    "end": 963.24,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\n= In polling, priority is automatically assigned based on the order in which the\ndevices are polled\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority.\n\nNPTEL ONLIN\nIIT KHARAGPUR EtTIneaTION counses"
+  },
+  {
+    "text": "propagate serially through the device let us see it first. So, it is something like this.",
+    "start": 963.24,
+    "end": 968.12,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\n= In polling, priority is automatically assigned based on the order in which the\ndevices are polled\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority.\n\nNPTEL ONLIN\nIIT KHARAGPUR EtTIneaTION counses"
+  },
+  {
+    "text": "So, all the devices they are having the interrupt request they are all connected together. Well",
+    "start": 969.72,
+    "end": 975.24,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nIT KHARAGPUR GEITIFICATION CouRsES"
+  },
+  {
+    "text": "here although we are showing they are all join actually it can be a or gate. So, any device",
+    "start": 975.24,
+    "end": 981.88,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "interrupting will be generating an I n t r. But I n t a is not connected directly to all the devices.",
+    "start": 981.88,
+    "end": 988.52,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "I n t is connecting to device 1 device 1 is generating an I n t s signal to device 2 device 2 is",
+    "start": 989.24,
+    "end": 996.28,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nNPTEL ONLIN\nIT KHARAGPUR GEMTIeaTION counses"
+  },
+  {
+    "text": "generating an I n t s signal to device 3 and so on. Now, the way it happens is like this.",
+    "start": 996.28,
+    "end": 1001.56,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Well after an interrupt is generated this interrupt could have come from any of the devices.",
+    "start": 1002.68,
+    "end": 1008.04,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "This CPU generates an acknowledgement it first comes to device 1. Now, if device 1 had interrupted",
+    "start": 1008.6,
+    "end": 1018.52,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nDevice 1\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "then it will send the interrupt vector on the database and it will stop this I n t a from",
+    "start": 1019.48,
+    "end": 1026.68,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA,"
+  },
+  {
+    "text": "propagating any further. But if device 1 had not interrupted then it will allow this I n t a to",
+    "start": 1026.68,
+    "end": 1034.92,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR"
+  },
+  {
+    "text": "go forward to device 2 device 2 will do the same thing it will check whether it has interrupted or",
+    "start": 1035.8,
+    "end": 1042.12,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR"
+  },
+  {
+    "text": "not. If yes then it will put the interrupt vector on the database and if not it will allow I n t",
+    "start": 1042.12,
+    "end": 1049.56,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR"
+  },
+  {
+    "text": "to propagate to the next device and so on. So, the order in which the devices is connected will",
+    "start": 1049.56,
+    "end": 1056.76,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nNPTEL ONLIN\nIT KHARAGPUR CEnTIFICATION CouRsES"
+  },
+  {
+    "text": "define the priority. The device which is nearest to the CPU will be having the highest priority",
+    "start": 1056.76,
+    "end": 1063.24,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nDevice n"
+  },
+  {
+    "text": "and the device farthest will be having the lowest priority. So, coming back just exactly what I have",
+    "start": 1063.24,
+    "end": 1072.28,
+    "ocr_text": "Daisy Chain Arrangement\n\nINTR\n\nDevice n"
+  },
+  {
+    "text": "said is written here. So, a device when it receives I n t a passes the signal to the next device",
+    "start": 1072.28,
+    "end": 1079.96,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\n= Inpolling, priority is automatically assigned based on the order in which t\ndevices are polled\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\nA device when it receives INTA, passes th to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts\nidentifying code on the data bu\nThus, the device that is electrically closest to the CPU will have the\n\npriority.\n\nNeTEL ONLIN\nITKHARAGPUR GERTICATION counses"
+  },
+  {
+    "text": "only if it had not interrupted. Else if it had interrupted it will stop the propagation of I n t",
+    "start": 1079.96,
+    "end": 1089.88,
+    "ocr_text": "Another way to a priority is to use polling using daisy chaining\n\n= In polling, priority is automatically assigned based on the order in which th:\ndevices are polled\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\nA device when it receives INTA, passes the signal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CERTIFICATION COURSES TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "and will put the interrupt vector or the identifying code on the database. So, as I said the device",
+    "start": 1090.76,
+    "end": 1098.04,
+    "ocr_text": "Another way to a priority is to use pollin; daisy chaining\n\n= In polling, priority is automatically assigned based on the order in which th:\ndevices are polled\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\nA device when it receives INTA, passes the signal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "that is electrically closest to the CPU will have the highest priority. This is how daisy chin works.",
+    "start": 1098.04,
+    "end": 1107.32,
+    "ocr_text": "+ Another way to assign priority is to use polling using daisy chaining\n\nIn polling, priority is automatically assigned based on the order in which the\ndevices are polled\n\nIn daisy chain connection, the INTR line is common to alll the devices, but the\nINTA line is connected in a daisy chain fashion allowing it to propagate serially\nthrough the devices.\n\nA device when it receives INTA, pas: gnal to the next device only if it\nhad not interrupted. Else, it stops the propagation of INTA, and puts the\nidentifying code on the data bus.\n\nThus, the device that is electrically closest to the CPU will have the highest\n\npriority."
+  },
+  {
+    "text": "Now, let us look at the different types of interrupt. Now, this diagram shows you the different types.",
+    "start": 1109.64,
+    "end": 1116.92,
+    "ocr_text": "Types of Interrupts\n\n—————\n\nHardware Software\nInterrupt Interrupt\n\n4 -\n\nMaskable Non-Maskable Exception\nInterrupt Interrupt\n\nNPTEL ONUIN NATIONAL INSTITUTE OF\nIT KHARAGPUR SEMTIECATION counses TEUHNOLOGY, MEGHACAYA"
+  },
+  {
+    "text": "Broadly speaking you can classify interrupts as hardware interrupt and software interrupt.",
+    "start": 1117.08,
+    "end": 1123.8,
+    "ocr_text": "Types of Interrupts\n\n———\n\nHardware Software\nInterrupt Interrupt\n\n£ v\n\nMaskable Non-Maskable Exception\n\nInterrupt Interrupt\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Well the name comes from the source well hardware interrupt is something which is generated by the",
+    "start": 1124.76,
+    "end": 1132.28,
+    "ocr_text": "Types of Interrupts\n\n———\n\nHardware Software\nInterrupt Interrupt\n\n£ v\n\nMaskable Non-Maskable Exception\n\nInterrupt Interrupt\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "hardware and software interrupt is something which is generated because of the execution of an",
+    "start": 1132.28,
+    "end": 1139.56,
+    "ocr_text": "Types of Interrupts\n\n———\n\nHardware Software\nInterrupt Interrupt\n\n£ v\n\nMaskable Non-Maskable Exception\n\nInterrupt Interrupt\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "instruction that is why it is called a software interrupt and hardware interrupt again in turn",
+    "start": 1139.56,
+    "end": 1147.4,
+    "ocr_text": "Types of Interrupts\n\n>———,,\n\nHardware Software\nInterrupt Interrupt\n\nt —\n\nMaskable Non-Maskable Exception\nInterrupt Interrupt\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "can be either maskable or non-maskable and under software interrupt you can make a categorization.",
+    "start": 1147.4,
+    "end": 1154.76,
+    "ocr_text": "Types of Interrupts\n\n>———,,\n\nHardware Software\nInterrupt Interrupt\n\nt —\n\nMaskable Non-Maskable Exception\nInterrupt Interrupt\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "You can have something called trap or you can have something called exception. Let us look at these",
+    "start": 1155.56,
+    "end": 1162.52,
+    "ocr_text": "Types of Interrupts\n\n>——\"—,,\n\nHardware Software\nInterrupt Interrupt\n\nL —\n\nMaskable Non-Maskable Exception\nInterrupt Interrupt\n\nITKHARAGPUR CEITIFICATION CouRsES"
+  },
+  {
+    "text": "nomenclature what these are actually. Well coming to hardware interrupt as I said that the",
+    "start": 1162.6,
+    "end": 1172.6,
+    "ocr_text": "Types of Interrupts\n\n>——\"—,,\n\nHardware Software\nInterrupt Interrupt\n\nL —\n\nMaskable Non-Maskable Exception\nInterrupt Interrupt\n\nITKHARAGPUR CEITIFICATION CouRsES"
+  },
+  {
+    "text": "interrupt signal is generated by the hardware it is coming from a device which is external to the CPU",
+    "start": 1172.6,
+    "end": 1178.92,
+    "ocr_text": "Hardware Interrupt:\n— The interrupt signal 8 coming from a device external to the CPU.\nExample: keyboard interrupt, timer interrupt, e\n\nMaskable Interrupt\n\n— Hardware interrupts that can be masked or delayed when a higher\npriority interrupt request arrive:\n\n— There are processor instructions that can selectively mask and unm\nthe interrupt request lines of the CPU.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "from some hardware unit it is coming. It coming coming from memory it coming coming from an iodevice",
+    "start": 1178.92,
+    "end": 1184.12,
+    "ocr_text": "Hardware Interrupt:\n\n— The interrupt signal is coming from a device external to the CPU.\nExample: keyboard interrupt, timer interrupt, e\n\nMaskable Interrupt\n\n— Hardware interrupts that can be masked or delayed when a higher\npriority interrupt request arrive:\n\n— There are processor instructions that can selectively ma\nthe interrupt request lines of the CPU.\n\nNPTEL ONLIN\nIT KHARAGPUR GEMTIesTON counses"
+  },
+  {
+    "text": "some examples are keyboard interrupt someone has pressed a key timer interrupt the timer tick",
+    "start": 1184.28,
+    "end": 1191.88,
+    "ocr_text": "Hardware Interrupt:\n\n— The interrupt signal is coming from a device external to the CPU.\nExample: keyboard interrupt, timer interrupt, e\n\nMaskable Interrupt\n\n— Hardware interrupts that can be masked or delayed when a higher\npriority interrupt request arrive:\n\n— There are processor instructions that can selectively ma\nthe interrupt request lines of the CPU.\n\nNPTEL ONLIN\nIT KHARAGPUR GEMTIesTON counses"
+  },
+  {
+    "text": "has reached. Suppose I am maintaining the time of the day the tick is coming every millisecond so",
+    "start": 1193.08,
+    "end": 1199.48,
+    "ocr_text": "Hardware Interrupt:\n— The interrupt signal is coming from a device external to th\nExample: keyboard interrupt, timer intérrupt, etc\n\nMaskable Interrupt\n\n— Hardware interrupts that can be masked or delayed when a higher\npriority interrupt request arrives\n\n— There are processor instructions that can selectively mask and unm\nthe interrupt request lines of the CPU.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "whenever a tick comes you increment the value of the clock. These are examples of hardware interrupt.",
+    "start": 1199.48,
+    "end": 1207.56,
+    "ocr_text": "Hardware Interrupt:\n— The interrupt signal is coming from a device external to th\nExample: keyboard interrupt, timer intérrupt, etc\n\nMaskable Interrupt\n\n— Hardware interrupts that can be masked or delayed when a higher\npriority interrupt request arrives\n\n— There are processor instructions that can selectively mask and unm\nthe interrupt request lines of the CPU.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Now, maskable interrupt means well you are allowed to mask some of the interrupts mask means",
+    "start": 1208.2,
+    "end": 1215.64,
+    "ocr_text": "Hardware Interrupt:\nThe interrupt signal is coming from a device external to the CPU.\n\nExample: keyboard interrupt, timer interrupt, etc\nkable Interrupt\n\nHardware interrupts that can be mas!\npriority interrupt request arrives\n\ned or delayed when a higher\n\nThere are processor instructions that can selectively mask and unm\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA\n\nthe interrupt request lines of the CPU.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "temporarily stop the handling of those interrupts this means masking that means you are allowed to",
+    "start": 1216.52,
+    "end": 1225.64,
+    "ocr_text": "Hardware Interrupt:\nThe interrupt signal is coming from a device external to the CPU.\n\nExample: keyboard interrupt, timer interrupt, etc\nkable Interrupt\n\nHardware interrupts that can be mas!\npriority interrupt request arrives\n\ned or delayed when a higher\n\nThere are processor instructions that can selectively mask and unm\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA\n\nthe interrupt request lines of the CPU.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "delay the handling or the processing of the interrupts these kind of interrupts are called",
+    "start": 1225.64,
+    "end": 1232.04,
+    "ocr_text": "Hardware Interrupt:\ngnal is coming from a device external to the CPU.\n\nThe interrupts\nExample: keyboard interrupt, timer interrupt, etc\n\nHardware interrupts that can be masked or delayed when a higher\n\npriority interrupt request arrives\n\nThere are processor instructions that can selectively mask and unma\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA\n\nthe interrupt request lines of the CPU.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "maskable interrupts. So, the hardware interrupts that can be masked or delayed when a higher",
+    "start": 1232.12,
+    "end": 1244.6,
+    "ocr_text": "Hardware Interrupt:\ngnal is coming from a device external to the CPU.\n\nThe interrupts\nExample: keyboard interrupt, timer interrupt, etc\n\nHardware interrupts that can be masked or delayed when a higher\n\npriority interrupt request arrives\n\nThere are processor instructions that can selectively mask and unma\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA\n\nthe interrupt request lines of the CPU.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "priority interrupt request arrives are called maskable interrupts. Suppose there are multiple interrupts",
+    "start": 1244.6,
+    "end": 1250.12,
+    "ocr_text": "Hardware Interrupt:\ngnal is coming from a device external to the CPU.\n\nThe interrupts\nExample: keyboard interrupt, timer interrupt, etc\n\nHardware interrupts that can be masked or delayed when a higher\n\npriority interrupt request arrives\n\nThere are processor instructions that can selectively mask and unma\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA\n\nthe interrupt request lines of the CPU.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "you are handling one of them well if a higher priority interrupt comes and you can afford to delay the",
+    "start": 1250.84,
+    "end": 1257.16,
+    "ocr_text": "Hardware Interrupt:\n— The interrupt signal is coming from a device external to th\n\nExample: keyboard interrupt, timer interrupt, etc\n\nMaskable Interrupt\n\n— Hardware interrupts that can be masked or delayed when a higher\npriority interrupt request arrives\n\n— There are processor instructions that can selectively mask and unm\nthe interrupt request lines of the CPU."
+  },
+  {
+    "text": "currently in the current interrupt which has been handled then we say that it is a maskable",
+    "start": 1258.12,
+    "end": 1264.44,
+    "ocr_text": "Hardware Interrupt:\n— The interrupt signal is coming from a device external to th\n\nExample: keyboard interrupt, timer interrupt, etc\n\nMaskable Interrupt\n\n— Hardware interrupts that can be masked or delayed when a higher\npriority interrupt request arrives\n\n— There are processor instructions that can selectively mask and unm\nthe interrupt request lines of the CPU."
+  },
+  {
+    "text": "interrupt you are able to mask or pause the handling of that interrupt temporarily.",
+    "start": 1264.44,
+    "end": 1271.48,
+    "ocr_text": "Hardware Interrupt:\n— The interrupt signal is coming from a device external to th\n\nExample: keyboard interrupt, timer interrupt, etc\n\nMaskable Interrupt\n\n— Hardware interrupts that can be masked or delayed when a higher\npriority interrupt request arrives\n\n— There are processor instructions that can selectively mask and unm\nthe interrupt request lines of the CPU."
+  },
+  {
+    "text": "So, in systems where this kind of maskable interrupts are allowed there are instructions using which",
+    "start": 1274.36,
+    "end": 1282.76,
+    "ocr_text": "Hardware Interrupt:\n— The interrupt signal is coming from a device external to the CPU.\nExample: keyboard interrupt, timer interrupt,\n\nMaskable Interrupt\n\n— Hardware interrupts that can be masked or delayed when a higher\npriority interrupt request arrives\n\n— There are processor instructions that can selectively mask and unm\ntheiinterrupt request lines of the CPU.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "you can mask or unmask the various interrupts. Non-maskable interrupt is one where the interrupts",
+    "start": 1282.76,
+    "end": 1294.04,
+    "ocr_text": "Hardware Interrupt:\n— The interrupt signal is coming from a device external to the CPU.\nExample: keyboard interrupt, timer interrupt,\n\nMaskable Interrupt\n\n— Hardware interrupts that can be masked or delayed when a higher\npriority interrupt request arrives\n\n— There are processor instructions that can selectively mask and unm\ntheiinterrupt request lines of the CPU.\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "cannot be delayed they should be handled by the CPU immediately. Some examples are some kind of",
+    "start": 1295.0,
+    "end": 1305.0,
+    "ocr_text": "Non-Maskable Interrupt\n— Interrupts that cannot be delayed and should be handled by the CPU.\nimmediately.\n\nExamples: power fail interrupts, real-time system interrupts, etc\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "powerful interrupts you detect that the power supply of your computer is failing the voltage level",
+    "start": 1305.0,
+    "end": 1313.48,
+    "ocr_text": "* Non-Maskable Interrupt:\n— Interrupts that cannot be delayed and should be handled by the CPU.\nimmediately.\n\nExamples: power fail interrupts, real-time system interrupts, etc\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "is going down maybe there is a power failure. So, if there is an interrupt which comes now I may",
+    "start": 1313.48,
+    "end": 1320.04,
+    "ocr_text": "* Non-Maskable Interrupt:\n— Interrupts that cannot be delayed and should be handled by the CPU.\nimmediately.\n\nExamples: power fail interrupts, real-time system interrupts, etc\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "save some of my important data to a non volatile part of the memory this is a very important or",
+    "start": 1320.04,
+    "end": 1327.32,
+    "ocr_text": "* Non-Maskable Interrupt:\n— Interrupts that cannot be delayed and should be handled by the CPU.\nimmediately.\n\nExamples: power fail interrupts, real-time system interrupts, etc\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "high priority interrupt ok. Similarly, there can be some real time system interrupts.",
+    "start": 1327.32,
+    "end": 1333.32,
+    "ocr_text": "* Non-Maskable Interrupt:\n— Interrupts that cannot be delayed and should be handled by the CPU.\nimmediately.\n\nExamples: power fail interrupts, real-time system interrupts, etc\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Real time system interrupt means some interrupt request is coming and the interrupt request has to",
+    "start": 1334.52,
+    "end": 1340.84,
+    "ocr_text": "* Non-Maskable Interrupt:\n— Interrupts that cannot be delayed and should be handled by the CPU.\nimmediately.\n\nExamples: power fail interrupts, real-time system interrupts, etc\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "be serviced within well defined time limit. So, if you are not able to do that maybe your",
+    "start": 1340.84,
+    "end": 1350.84,
+    "ocr_text": "* Non-Maskable Interrupt:\n— Interrupts that cannot be delayed and should be handled by the CPU.\nimmediately.\n\nExamples: power fail interrupts, real-time system interrupts, etc\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "processing will be wrong or the objective for which you have designed the system will be lost.",
+    "start": 1351.48,
+    "end": 1358.92,
+    "ocr_text": "* Non-Maskable Interrupt:\n— Interrupts that cannot be delayed and should be handled by the CPU.\nimmediately.\n\nExamples: power fail interrupts, real-time system interrupts, etc\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "Well some examples may be medical information system. So, where you are monitoring a patient",
+    "start": 1359.64,
+    "end": 1365.56,
+    "ocr_text": "* Non-Maskable Interrupt:\n— Interrupts that cannot be delayed and should be handled by the CPU.\nimmediately.\n\nExamples: power fail interrupts, real-time system interrupts, etc\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "in real time depending on some health status you are taking some corrective actions.",
+    "start": 1365.56,
+    "end": 1371.72,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs. ©\n+ TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\n~"
+  },
+  {
+    "text": "So, if there is something anomalous you must take some action immediately.",
+    "start": 1372.6,
+    "end": 1377.56,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs. ©\n+ TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\n~"
+  },
+  {
+    "text": "You think of an industrial control plant you are sensing temperature, pressure, humidity so many",
+    "start": 1378.04,
+    "end": 1384.12,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs. ©\n+ TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\n~"
+  },
+  {
+    "text": "things. So, if you see that some parameter values has gone beyond the desired range you may have",
+    "start": 1384.12,
+    "end": 1392.36,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs. ©\n+ TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\n~"
+  },
+  {
+    "text": "to immediately take some corrective action. Well for a surveillance system you see that an enemy",
+    "start": 1392.36,
+    "end": 1400.04,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs. ©\n+ TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\n~"
+  },
+  {
+    "text": "aircraft or a missile is heading towards you you should immediately start the intercepting mechanism.",
+    "start": 1400.04,
+    "end": 1405.48,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs. ©\n+ TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\n~"
+  },
+  {
+    "text": "So, these are some examples where interrupts have to be handled immediately and we have to use",
+    "start": 1406.44,
+    "end": 1413.72,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs. ©\n+ TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\n~"
+  },
+  {
+    "text": "non-maskable interrupt for such cases. These interrupts cannot be masked or delayed these are",
+    "start": 1414.28,
+    "end": 1420.84,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs. ©\n+ TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\n~"
+  },
+  {
+    "text": "extremely important. Well coming to software interrupt, software interrupts are caused due to",
+    "start": 1420.84,
+    "end": 1429.96,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs. ©\n+ TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\n~"
+  },
+  {
+    "text": "execution of some instructions they are not caused by some external hardware.",
+    "start": 1429.96,
+    "end": 1435.4,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs. ©\n+ TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES\n\n~"
+  },
+  {
+    "text": "So, one type is called traps there also sometimes called system calls. These are nothing but",
+    "start": 1437.16,
+    "end": 1445.08,
+    "ocr_text": "* Software Interrupt:\n— They are caused due to execution of some instructions.\nNot caused due to external inputs.\n* TRAP:\n— They are special instructions used to request services from the\noperating system\n— Also called system calls."
+  },
+  {
+    "text": "special instructions which are used to request services from the operating system.",
+    "start": 1445.08,
+    "end": 1449.8,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs.\n+ TRAP:\n— They are special instructions used to request services from the\noperating system,\n— Also called system calls\n\nnanond a\noust (on)\n\nERG"
+  },
+  {
+    "text": "Well these will be studying in more detail when you discuss these things in the operating system",
+    "start": 1450.44,
+    "end": 1456.76,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs.\n+ TRAP:\n— They are special instructions used to request services from the\noperating system,\n— Also called system calls\n\nnanond a\noust (on)\n\nERG"
+  },
+  {
+    "text": "but for the timing let us assume that a trap or a system call is a kind of an instruction",
+    "start": 1457.72,
+    "end": 1463.4,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs.\n+ TRAP:\n— They are special instructions used to request services from the\noperating system,\n— Also called system calls\n\nnanond a\noust (on)\n\nERG"
+  },
+  {
+    "text": "which behaves similar to an interrupt. So, when it is being executed some instructions are saved",
+    "start": 1463.4,
+    "end": 1470.12,
+    "ocr_text": "* Software Interrupt:\n\n— They are caused due to execution of some instructions.\n\nNot caused due to external inputs.\n+ TRAP:\n— They are special instructions used to request services from the\noperating system,\n— Also called system calls\n\nnanond a\noust (on)\n\nERG"
+  },
+  {
+    "text": "then you jump to a routine that routine gets executed that may be part of the operating system",
+    "start": 1471.4,
+    "end": 1477.32,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\nThey are generated from within the system.\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\n\naccess, ete\n\nIT KHARAGPUR CEATIFICATION COURSES"
+  },
+  {
+    "text": "then you come back right that is what a trap is.",
+    "start": 1477.4,
+    "end": 1482.36,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\nThey are generated from within the system.\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\n\naccess, ete\n\nIT KHARAGPUR CEATIFICATION COURSES"
+  },
+  {
+    "text": "And the second kind of software interrupt is called exception. Well exception is unplanned",
+    "start": 1486.28,
+    "end": 1492.04,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\nThey are generated from within the system.\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\n\naccess, ete\n\nIT KHARAGPUR CEATIFICATION COURSES"
+  },
+  {
+    "text": "while trap is planned means you have an instruction you are executing it. This is the planned call",
+    "start": 1492.04,
+    "end": 1498.6,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\nThey are generated from within the system.\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\n\naccess, ete\n\nIT KHARAGPUR CEATIFICATION COURSES"
+  },
+  {
+    "text": "but an exception is unplanned they are generated within the system but do not know when they will come.",
+    "start": 1499.4,
+    "end": 1505.8,
+    "ocr_text": "* Exception\n— These are unplanned interrupts generated while executing a prog\nThey are generated from within the system.\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\n\naccess, ete\n\nNPTEL ONLINE\nITKHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "They might be generated because of something which is beyond your control or due to some error",
+    "start": 1506.76,
+    "end": 1513.24,
+    "ocr_text": "Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the sy:\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, ete\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "has happened like you may encounter due to some error let us say some memory error some opcode",
+    "start": 1513.24,
+    "end": 1519.72,
+    "ocr_text": "Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the sy:\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, ete\n\nNPTEL ONLINE\nIT KHARAGPUR CERTIFICATION COURSES"
+  },
+  {
+    "text": "has become invalid you are trying to decode an instruction and find out that the opcode is not",
+    "start": 1519.72,
+    "end": 1525.32,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, ete\n\nba"
+  },
+  {
+    "text": "a valid opcode. So, you may have to interrupt immediately and tell that well there is something",
+    "start": 1525.32,
+    "end": 1531.88,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, ete\n\nba"
+  },
+  {
+    "text": "wrong and I have to stop my program. So, divide by 0 page fault then invalid memory access",
+    "start": 1531.88,
+    "end": 1541.48,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, ete\n\nba"
+  },
+  {
+    "text": "you are trying to access a memory which you are not supposed to access it is part of some other",
+    "start": 1541.48,
+    "end": 1547.88,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, ete\n\nba"
+  },
+  {
+    "text": "program or process. So, there is a memory protection harder which will prevent you from accessing that",
+    "start": 1547.88,
+    "end": 1554.76,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  },
+  {
+    "text": "if you try to access a memory location which is beyond your allowable limit then an interrupt will",
+    "start": 1554.76,
+    "end": 1562.2,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  },
+  {
+    "text": "be automatically generated. So, whenever such a thing happens you generate something called an",
+    "start": 1562.2,
+    "end": 1569.4,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  },
+  {
+    "text": "exception these are also software interrupts. Now, later on we shall see when we look at the pipeline",
+    "start": 1569.4,
+    "end": 1578.12,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  },
+  {
+    "text": "implementation of the MIPS32 process or ISA there will see interrupt handling and exception handling",
+    "start": 1578.2,
+    "end": 1585.96,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  },
+  {
+    "text": "is a real problem and we shall of course, also suggest some of the approaches which we can use",
+    "start": 1586.76,
+    "end": 1593.0,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  },
+  {
+    "text": "to handle interrupts and exceptions in the MIPS32 pipeline implementation.",
+    "start": 1593.64,
+    "end": 1600.04,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  },
+  {
+    "text": "But for the timing we have come to the end of this lecture and in the next lecture we shall",
+    "start": 1601.0,
+    "end": 1608.36,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  },
+  {
+    "text": "be continuing with some other IOT transfer techniques namely direct memory access which you have",
+    "start": 1608.36,
+    "end": 1614.36,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  },
+  {
+    "text": "not yet discussed following which we shall be discussing some of the commonly used standards for",
+    "start": 1614.36,
+    "end": 1622.68,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  },
+  {
+    "text": "data transfer some bus standards and so on. Thank you.",
+    "start": 1623.4,
+    "end": 1628.36,
+    "ocr_text": "* Exception:\n— These are unplanned interrupts generated while executing a prog\n\nThey are generated from within the system.\n— Examples: invalid opcode, divide by zero, page fault, invalid memory\naccess, etc\n\nNPTEL ONLINE NATIONAL\nIT KHARAGPUR CERTIFICATION COURSES TECHNO\n\n=\nA"
+  }
+]

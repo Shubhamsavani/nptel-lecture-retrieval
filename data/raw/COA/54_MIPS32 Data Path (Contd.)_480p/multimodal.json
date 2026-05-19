@@ -1,0 +1,1808 @@
+[
+  {
+    "text": "So, in the last lecture we have seen the pipeline structure for the MIPS32 processor.",
+    "start": 0.0,
+    "end": 25.08,
+    "ocr_text": "Lecture 55: PIPELINE HAZARDS (PART 1)\n\nPROF. INDRANIL SENGUPTA.\nDEPARTMENT OF COMPUTER SCIENCE AND EI EERING, HIT KHARAGPUR"
+  },
+  {
+    "text": "You may say that it is an ideal pipeline like we have not considered many of the real problems",
+    "start": 25.08,
+    "end": 36.84,
+    "ocr_text": "Lecture 55: PIPELINE HAZARDS (PART 1)\n\nPROF. INDRANIL SENGUPTA.\nDEPARTMENT OF COMPUTER SCIENCE AND EI EERING, HIT KHARAGPUR"
+  },
+  {
+    "text": "or conflicts that can arise and cause the so called hazards during instruction executions",
+    "start": 36.84,
+    "end": 46.48,
+    "ocr_text": "Lecture 55: PIPELINE HAZARDS (PART 1)\n\nPROF. INDRANIL SENGUPTA.\nDEPARTMENT OF COMPUTER SCIENCE AND EI EERING, HIT KHARAGPUR"
+  },
+  {
+    "text": "in the pipeline.",
+    "start": 46.48,
+    "end": 47.72,
+    "ocr_text": "Lecture 55: PIPELINE HAZARDS (PART 1)\n\nPROF. INDRANIL SENGUPTA.\nDEPARTMENT OF COMPUTER SCIENCE AND EI EERING, HIT KHARAGPUR"
+  },
+  {
+    "text": "So, from this lecture onwards for the next few lectures, we shall be looking at these",
+    "start": 48.44,
+    "end": 57.44,
+    "ocr_text": "Lecture 55: PIPELINE HAZARDS (PART 1)\n\nPROF. INDRANIL SENGUPTA.\nDEPARTMENT OF COMPUTER SCIENCE AND EI EERING, HIT KHARAGPUR"
+  },
+  {
+    "text": "kinds of conflicts or hazards that can impact or degrade the performance on a pipeline to",
+    "start": 57.44,
+    "end": 68.32,
+    "ocr_text": "Lecture 55: PIPELINE HAZARDS (PART 1)\n\nPROF. INDRANIL SENGUPTA.\nDEPARTMENT OF COMPUTER SCIENCE AND EI EERING, HIT KHARAGPUR"
+  },
+  {
+    "text": "a great extent and what are the approaches we can use or follow to avoid such degradations",
+    "start": 68.32,
+    "end": 75.12,
+    "ocr_text": "Lecture 55: PIPELINE HAZARDS (PART 1)\n\nPROF. INDRANIL SENGUPTA.\nDEPARTMENT OF COMPUTER SCIENCE AND EI EERING, HIT KHARAGPUR"
+  },
+  {
+    "text": "to the extent possible.",
+    "start": 75.12,
+    "end": 76.92,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery tlock cycle\n\n— Hazards refer to situations that prevent a pipeline from operating at its maximum,\npossible clock speed.\n\n+ Prevents some instructions fro ing during its design: cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the BC\n\nUT RHARAGPUR SGTIFReAHON courses"
+  },
+  {
+    "text": "So, we start our discussion on pipeline hazards in this lecture.",
+    "start": 77.32,
+    "end": 82.6,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery tlock cycle\n\n— Hazards refer to situations that prevent a pipeline from operating at its maximum,\npossible clock speed.\n\n+ Prevents some instructions fro ing during its design: cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the BC\n\nUT RHARAGPUR SGTIFReAHON courses"
+  },
+  {
+    "text": "So, let us try to first understand what is a pipeline hazard.",
+    "start": 82.6,
+    "end": 88.52,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery tlock cycle\n\n— Hazards refer to situations that prevent a pipeline from operating at its maximum,\npossible clock speed.\n\n+ Prevents some instructions fro ing during its design: cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the BC\n\nUT RHARAGPUR SGTIFReAHON courses"
+  },
+  {
+    "text": "So, we have seen an ideal pipeline.",
+    "start": 88.52,
+    "end": 92.92,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery tlock cycle\n\n— Hazards refer to situations that prevent a pipeline from operating at its maximum,\npossible clock speed.\n\n+ Prevents some instructions fro ing during its design: cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the BC\n\nUT RHARAGPUR SGTIFReAHON courses"
+  },
+  {
+    "text": "So, an instruction pipeline in the ideal sense should complete the execution of one instruction",
+    "start": 92.92,
+    "end": 102.76,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery tlock cycle\n\n— Hazards refer to situations that prevent a pipeline from operating at its maximum,\npossible clock speed.\n\n+ Prevents some instructions fro ing during its design: cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the BC\n\nUT RHARAGPUR SGTIFReAHON courses"
+  },
+  {
+    "text": "every clock cycle that is how a pipeline works.",
+    "start": 102.8,
+    "end": 108.4,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nery clock cycle\n— Hazards refer to s: 1s that prevent a pipelin erating maximum\n\nle clock spe\n\ntro uting during its design lock eyele.\n\nThree types of hazards:\n\na) Structural hazard:\nArise duc to data dependencie:\nto branch and other instruction:\n\nb) Data hazard\n©) Control hazard: Arise dui that change the\nNeTEL OnLine NATIONA’\n\nUTKHARAGPUR CistrineaTiOn couRses Teenwe"
+  },
+  {
+    "text": "But when we say there is a hazard, it means some kind of a scenario or some occurrence",
+    "start": 108.4,
+    "end": 117.08,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\nevery clock cycle\n— Hasards refer te 1s that prevent a pipeli n operating at its maximum\n\npossible clock spe\n+ Prevents some instructions from executing during its designated clock cycle.\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nArise duc to data dependencies be\nher instruction:\n\nb) Data hazard\n©) Control hazard: Arise due to branch and c that change the pc\n\nNT RHARAGPUR SGTrReaHON courses"
+  },
+  {
+    "text": "of some events because of which we cannot operate the pipeline at its maximum possible speed.",
+    "start": 117.08,
+    "end": 125.4,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\nevery clock cycle\n— Hasards refer te 1s that prevent a pipeli n operating at its maximum\n\npossible clock spe\n+ Prevents some instructions from executing during its designated clock cycle.\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nArise duc to data dependencies be\nher instruction:\n\nb) Data hazard\n©) Control hazard: Arise due to branch and c that change the pc\n\nNT RHARAGPUR SGTrReaHON courses"
+  },
+  {
+    "text": "Because we see there are several instructions which have entered the pipe already.",
+    "start": 125.4,
+    "end": 132.36,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\nevery clock cycle\n— Hasards refer te 1s that prevent a pipeli n operating at its maximum\n\npossible clock spe\n+ Prevents some instructions from executing during its designated clock cycle.\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nArise duc to data dependencies be\nher instruction:\n\nb) Data hazard\n©) Control hazard: Arise due to branch and c that change the pc\n\nNT RHARAGPUR SGTrReaHON courses"
+  },
+  {
+    "text": "Several instructions are in various stages of execution.",
+    "start": 132.36,
+    "end": 136.12,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\nevery clock cycle\n— Hasards refer te 1s that prevent a pipeli n operating at its maximum\n\npossible clock spe\n+ Prevents some instructions from executing during its designated clock cycle.\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nArise duc to data dependencies be\nher instruction:\n\nb) Data hazard\n©) Control hazard: Arise due to branch and c that change the pc\n\nNT RHARAGPUR SGTrReaHON courses"
+  },
+  {
+    "text": "There can be some dependencies between the instructions.",
+    "start": 136.12,
+    "end": 142.56,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\nevery clock cycle\n— Hasards refer te 1s that prevent a pipeli n operating at its maximum\n\npossible clock spe\n+ Prevents some instructions from executing during its designated clock cycle.\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nArise duc to data dependencies be\nher instruction:\n\nb) Data hazard\n©) Control hazard: Arise due to branch and c that change the pc\n\nNT RHARAGPUR SGTrReaHON courses"
+  },
+  {
+    "text": "They may be trying to access some common resources because of which there can be a conflict.",
+    "start": 142.56,
+    "end": 150.28,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\nevery clock cycle\n— Hasards refer te 1s that prevent a pipeli n operating at its maximum\n\npossible clock spe\n+ Prevents some instructions from executing during its designated clock cycle.\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflict\n\nArise duc to data dependencies be\nher instruction:\n\nb) Data hazard\n©) Control hazard: Arise due to branch and c that change the pc\n\nNT RHARAGPUR SGTrReaHON courses"
+  },
+  {
+    "text": "Because of branch instructions I have said earlier, we may have to wait till we know",
+    "start": 150.28,
+    "end": 157.24,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\ninstruction pipeline Id complete the execution of an instruction\n\nery clock cycle\n— Hazards refer to situations that prevent a pipeline from operating at its maximum\npossible clock speed\nfrom executing during its designated clock cycle.\n\nThree types of hazards:\n\na) Structural hazard:\nArise duc to data dependencie:\nto branch and other instruction:\n\nb) Data hazard ween Instruction:\n©) Control hazard: Arise du:\n\nthat change the PC\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR Qiitrineanion courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "the outcome of the branch and the target address.",
+    "start": 157.24,
+    "end": 160.04,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\ninstruction pipeline Id complete the execution of an instruction\n\nery clock cycle\n— Hazards refer to situations that prevent a pipeline from operating at its maximum\npossible clock speed\nfrom executing during its designated clock cycle.\n\nThree types of hazards:\n\na) Structural hazard:\nArise duc to data dependencie:\nto branch and other instruction:\n\nb) Data hazard ween Instruction:\n©) Control hazard: Arise du:\n\nthat change the PC\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR Qiitrineanion courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "There are several such instances which may prevent a pipeline to work with its maximum possible",
+    "start": 160.44,
+    "end": 169.44,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\ninstruction pipeline Id complete the execution of an instruction\n\nery clock cycle\n— Hazards refer to situations that prevent a pipeline from operating at its maximum\npossible clock speed\nfrom executing during its designated clock cycle.\n\nThree types of hazards:\n\na) Structural hazard:\nArise duc to data dependencie:\nto branch and other instruction:\n\nb) Data hazard ween Instruction:\n©) Control hazard: Arise du:\n\nthat change the PC\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR Qiitrineanion courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "capability or speed.",
+    "start": 169.44,
+    "end": 171.52,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\ninstruction pipeline Id complete the execution of an instruction\n\nery clock cycle\n— Hazards refer to situations that prevent a pipeline from operating at its maximum\npossible clock speed\nfrom executing during its designated clock cycle.\n\nThree types of hazards:\n\na) Structural hazard:\nArise duc to data dependencie:\nto branch and other instruction:\n\nb) Data hazard ween Instruction:\n©) Control hazard: Arise du:\n\nthat change the PC\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR Qiitrineanion courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "So, loosely speaking such situations are called hazards.",
+    "start": 171.52,
+    "end": 178.2,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\ninstruction pipeline Id complete the execution of an instruction\n\nery clock cycle\n— Hazards refer to situations that prevent a pipeline from operating at its maximum\npossible clock speed\nfrom executing during its designated clock cycle.\n\nThree types of hazards:\n\na) Structural hazard:\nArise duc to data dependencie:\nto branch and other instruction:\n\nb) Data hazard ween Instruction:\n©) Control hazard: Arise du:\n\nthat change the PC\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR Qiitrineanion courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "They prevent a pipeline from operating at its maximum possible clock speed.",
+    "start": 178.2,
+    "end": 184.84,
+    "ocr_text": "Introduction\n\nPipeline Hazards\n\ninstruction pipeline Id complete the execution of an instruction\n\nery clock cycle\n— Hazards refer to situations that prevent a pipeline from operating at its maximum\npossible clock speed\nfrom executing during its designated clock cycle.\n\nThree types of hazards:\n\na) Structural hazard:\nArise duc to data dependencie:\nto branch and other instruction:\n\nb) Data hazard ween Instruction:\n©) Control hazard: Arise du:\n\nthat change the PC\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR Qiitrineanion courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "So, which means that we cannot feed an instruction every clock cycle.",
+    "start": 185.84,
+    "end": 192.84,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nevery clock cycle\n— Hazards refer to situations that prevent a pipeline from operating at its maximum,\npossible clock spe\n+ Prevents some instructions fro ing during its designated clock cycle.\nThree types of hazards:\na) Structural hazard: Arise due to resource conflict\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the BC"
+  },
+  {
+    "text": "So, such hazards can prevent some instructions from executing during its designated clock",
+    "start": 192.84,
+    "end": 201.04,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nevery clock cycle\n— Hazards refer to situations that prevent a pipeline from operating at its maximum,\npossible clock spe\n+ Prevents some instructions fro ing during its designated clock cycle.\nThree types of hazards:\na) Structural hazard: Arise due to resource conflict\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the BC"
+  },
+  {
+    "text": "cycle means suppose an instruction was supposed to be entering the pipeline now.",
+    "start": 201.04,
+    "end": 207.96,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nevery clock cycle\n\n— Hazards to situations that prevent a pipelin\n\npossible clock speed.\n\n+ Prevents some instructions fro uting during its design lock cycle.\n\nThree types of hazards:\n\na) Structural hazard:\nbetween instruction:\n\nse due to data dependencic\n\nb) Data hazard: Ar\n\n©) Control hazard: Arise du:\n\nthat change th\n\nNPTEL ONLINE\nIT KHARAGPUR CiitrincaniOn courses"
+  },
+  {
+    "text": "But maybe I will have to make it wait for one clock cycle and make it enter the pipeline",
+    "start": 207.96,
+    "end": 213.48,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nevery clock cycle\n\n— Hazards refer to tions that prevent a pipeline from operating, at its maximum\npossible clock spe\n+ Prevents some instructions from ¢ ing during its designated clock cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the PC\n\nNPTEL ONLINE NanIONA:\nUT KHARAGPUR CtitrintcaniOn courses Teen"
+  },
+  {
+    "text": "in the next cycle.",
+    "start": 213.56,
+    "end": 215.0,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nevery clock cycle\n\n— Hazards refer to tions that prevent a pipeline from operating, at its maximum\npossible clock spe\n+ Prevents some instructions from ¢ ing during its designated clock cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the PC\n\nNPTEL ONLINE NanIONA:\nUT KHARAGPUR CtitrintcaniOn courses Teen"
+  },
+  {
+    "text": "That is what is meant by this.",
+    "start": 215.0,
+    "end": 219.0,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nevery clock cycle\n\n— Hazards refer to tions that prevent a pipeline from operating, at its maximum\npossible clock spe\n+ Prevents some instructions from ¢ ing during its designated clock cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the PC\n\nNPTEL ONLINE NanIONA:\nUT KHARAGPUR CtitrintcaniOn courses Teen"
+  },
+  {
+    "text": "Broadly speaking hazards can be classified into three types.",
+    "start": 219.0,
+    "end": 224.6,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\n\nevery clock cycle\n\npossible clock speed.\n+ Prevents some instructions f uting during its designated clock cycle.\nThree types of hazards:\n\na) Structural hazard:\nb) Data hazard: Arise duc to data ¢\n©) Control hazard: Arise due to branch and other instruction\n\n>pendencie:\nthat change the\n\nImKHARAGPUR SGrIReAHON courses"
+  },
+  {
+    "text": "Structural data and control.",
+    "start": 224.6,
+    "end": 228.16,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\n\nevery clock cycle\n\npossible clock speed.\n+ Prevents some instructions f uting during its designated clock cycle.\nThree types of hazards:\n\na) Structural hazard:\nb) Data hazard: Arise duc to data ¢\n©) Control hazard: Arise due to branch and other instruction\n\n>pendencie:\nthat change the\n\nImKHARAGPUR SGrIReAHON courses"
+  },
+  {
+    "text": "Structural hazards these arise due to resource conflicts.",
+    "start": 228.16,
+    "end": 233.96,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery clock cycle\n\n— Hazards refer to si s that prevent a pipeline from operating at its maximum\npossible clock spe\n\n+ Prevents some instructions from executing during its designated clack cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between Instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the\n\nNPTEL OnLine\nITKHARAGPUR QirineaniOn courses"
+  },
+  {
+    "text": "Well like one example we have already seen like in the memory access instruction fetch",
+    "start": 233.96,
+    "end": 240.4,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery clock cycle\n\n— Hazards refer to si s that prevent a pipeline from operating at its maximum\npossible clock spe\n\n+ Prevents some instructions from executing during its designated clack cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between Instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the\n\nNPTEL OnLine\nITKHARAGPUR QirineaniOn courses"
+  },
+  {
+    "text": "IF and MIM to instructions may be trying to access instructions and data.",
+    "start": 240.48,
+    "end": 247.04,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery clock cycle\n\n— Hazards refer to si s that prevent a pipeline from operating at its maximum\npossible clock spe\n\n+ Prevents some instructions from executing during its designated clack cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between Instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the\n\nNPTEL OnLine\nITKHARAGPUR QirineaniOn courses"
+  },
+  {
+    "text": "That is some kind of a structural hazard.",
+    "start": 247.04,
+    "end": 250.56,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery clock cycle\n\n— Hazards refer to si s that prevent a pipeline from operating at its maximum\npossible clock spe\n\n+ Prevents some instructions from executing during its designated clack cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between Instruction\n\n©) Control hazard: Arise due to branch and other instructions that change the\n\nNPTEL OnLine\nITKHARAGPUR QirineaniOn courses"
+  },
+  {
+    "text": "If there was a single memory module then one of the instructions would have to wait.",
+    "start": 250.56,
+    "end": 256.52,
+    "ocr_text": "Introduction\n\nPipeline Hazards.\nIdeally, an instructi\n\nery clock cycle\n\n= Hazard: s s rom operating maximum\n+ Prevents some instruction clock cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between Instructl\n\n©) Control hazard: Arise duc to branch and other instructions that change th\n\nNPTEL ONLINE NATIONA’\nNTKHARAGPUR Qtitrincanion courses Teenne"
+  },
+  {
+    "text": "But because we have used separate instruction and data caches they can proceed together.",
+    "start": 256.52,
+    "end": 262.52,
+    "ocr_text": "Introduction\n\nPipeline Hazards.\nIdeally, an instructi\n\nery clock cycle\n\n= Hazard: s s rom operating maximum\n+ Prevents some instruction clock cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between Instructl\n\n©) Control hazard: Arise duc to branch and other instructions that change th\n\nNPTEL ONLINE NATIONA’\nNTKHARAGPUR Qtitrincanion courses Teenne"
+  },
+  {
+    "text": "So, we have avoided it.",
+    "start": 262.52,
+    "end": 265.76,
+    "ocr_text": "Introduction\n\nPipeline Hazards.\nIdeally, an instructi\n\nery clock cycle\n\n= Hazard: s s rom operating maximum\n+ Prevents some instruction clock cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between Instructl\n\n©) Control hazard: Arise duc to branch and other instructions that change th\n\nNPTEL ONLINE NATIONA’\nNTKHARAGPUR Qtitrincanion courses Teenne"
+  },
+  {
+    "text": "Data hazard they arise because of data dependencies between instructions.",
+    "start": 265.76,
+    "end": 271.44,
+    "ocr_text": "Introduction\n\nPipeline Hazards.\nIdeally, an instructi\n\nery clock cycle\n\n= Hazard: s s rom operating maximum\n+ Prevents some instruction clock cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between Instructl\n\n©) Control hazard: Arise duc to branch and other instructions that change th\n\nNPTEL ONLINE NATIONA’\nNTKHARAGPUR Qtitrincanion courses Teenne"
+  },
+  {
+    "text": "So, one instruction is producing a result.",
+    "start": 271.44,
+    "end": 275.16,
+    "ocr_text": "Introduction\n\nPipeline Hazards.\nIdeally, an instructi\n\nery clock cycle\n\n= Hazard: s s rom operating maximum\n+ Prevents some instruction clock cycle.\n\nThree types of hazards:\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between Instructl\n\n©) Control hazard: Arise duc to branch and other instructions that change th\n\nNPTEL ONLINE NATIONA’\nNTKHARAGPUR Qtitrincanion courses Teenne"
+  },
+  {
+    "text": "Maybe the next instruction is using that such dependencies.",
+    "start": 275.16,
+    "end": 279.76,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery clock cycle\n\n— Hazards refer to situations that prevent a pipeline from operating at its maximum,\n\n+ Prevents some instructions ting during its designated clock cycle.\n\nThree types of haz\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change th\n\nNPTEL ONLINE NATIONA’\nIT KHARAGPUR QtitrinteaTiOn courses Teenno"
+  },
+  {
+    "text": "And control hazard they arise due to branch and other instructions like interrupts let",
+    "start": 279.76,
+    "end": 287.28,
+    "ocr_text": "Introduction\n\nPipeline Hazards\nIdeally, an instruction pipeline should complete the execution of an instruction\nevery clock cycle\n\n— Hazards refer to situations that prevent a pipeline from operating at its maximum,\n\n+ Prevents some instructions ting during its designated clock cycle.\n\nThree types of haz\n\na) Structural hazard: Arise due to resource conflicts\n\nb) Data hazard: Arise duc to data dependencies between instruction\n\n©) Control hazard: Arise due to branch and other instructions that change th\n\nNPTEL ONLINE NATIONA’\nIT KHARAGPUR QtitrinteaTiOn courses Teenno"
+  },
+  {
+    "text": "us say that changes the program counter.",
+    "start": 287.28,
+    "end": 292.84,
+    "ocr_text": "Introduction\n\n+ Pipeline Hazards\n\nIdeally, an instruction pipeline should complete the execution of an instruction\nery clack cycle\nHazards si s that prevent a pipeline from operating at its maximum\npossible clock spe\n+ Prevents some instructions ting during its designated clock cycle.\n\nThree types of hazards:\n\na)\n»)\nB)\n\nStructural hazard: Arise due to resource conflicts.\nData hazard: Arise due to data dependencies between instructions\nControl hazard: Arise duc to branch and other instructions that change\n\nNPTEL ONLINE NATIONA’\n\nUTKHARAGPUR QistrineaniOn courses Teenie"
+  },
+  {
+    "text": "So, what happens when such hazards show up?",
+    "start": 293.84,
+    "end": 299.68,
+    "ocr_text": "Introduction\n\n+ Pipeline Hazards\n\nIdeally, an instruction pipeline should complete the execution of an instruction\nery clack cycle\nHazards si s that prevent a pipeline from operating at its maximum\npossible clock spe\n+ Prevents some instructions ting during its designated clock cycle.\n\nThree types of hazards:\n\na)\n»)\nB)\n\nStructural hazard: Arise due to resource conflicts.\nData hazard: Arise due to data dependencies between instructions\nControl hazard: Arise duc to branch and other instructions that change\n\nNPTEL ONLINE NATIONA’\n\nUTKHARAGPUR QistrineaniOn courses Teenie"
+  },
+  {
+    "text": "Well there are several alternate strategies we shall be looking at some of them.",
+    "start": 299.68,
+    "end": 305.16,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructions the stalled instruction can continue, but no new instruct\nare fetched during the duration of the\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE Nanows\nCiitrineattOn courses Teenwe 74"
+  },
+  {
+    "text": "Well we can use some special hardware to detect the hazard some control circuits.",
+    "start": 305.16,
+    "end": 312.08,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycle on the criticality of the hazard\nInstructio: th d instruction can continue, but no new instruction\nare fetched during the duration of the sta\n\nIn general, hazards result in performance degradation\n\nhye"
+  },
+  {
+    "text": "So, to detect the hazards whenever they appear and to try and avoid the conflict.",
+    "start": 312.08,
+    "end": 322.12,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycle on the criticality of the hazard\nInstructio: th d instruction can continue, but no new instruction\nare fetched during the duration of the sta\n\nIn general, hazards result in performance degradation\n\nhye"
+  },
+  {
+    "text": "This is one alternative.",
+    "start": 322.96,
+    "end": 326.0,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nare fetched during the duration of the\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONA’\nUTKHARAGPUR CiitrinieaniOn courses Teenne\n\neye"
+  },
+  {
+    "text": "So, that some hardware will be there.",
+    "start": 326.0,
+    "end": 328.68,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstruct the stalled instruction can continue, but ne new Instruction\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nITRHARAGPUR SenrInIeaON couRseS"
+  },
+  {
+    "text": "So, which will be trying to detect such situations which can result in hazard and try to overcome",
+    "start": 328.68,
+    "end": 337.68,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstruct the stalled instruction can continue, but ne new Instruction\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nITRHARAGPUR SenrInIeaON couRseS"
+  },
+  {
+    "text": "them automatically.",
+    "start": 337.68,
+    "end": 342.0,
+    "ocr_text": "What happens when hazards appear?\n\n+ We can use special Hardware and control circuits to avoid the conflict that\nise due to hazard\n+ Asanalter e, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can cont but no new instruction\nare fetched during the duration of the\n\n+ In general, hazards result in performance degradation\n\nae"
+  },
+  {
+    "text": "But as an alternative we can simply insert stall cycles without using special hardware.",
+    "start": 342.0,
+    "end": 350.4,
+    "ocr_text": "What happens when hazards appear?\n\n+ We can use special Hardware and control circuits to avoid the conflict that\nise due to hazard\n+ Asanalter e, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can cont but no new instruction\nare fetched during the duration of the\n\n+ In general, hazards result in performance degradation\n\nae"
+  },
+  {
+    "text": "This is a cheaper alternative like suppose I find that there is an hazard.",
+    "start": 350.4,
+    "end": 356.32,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline\nNumber of stall cycles depends on the criticality of the hazard\nInstruction: the stalled instruction can continue, but no new instructions\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nUT KHARAGPUR CiitrineaniOn courses Teenwe"
+  },
+  {
+    "text": "So, if I allow the next instruction to enter the pipe there will be a clash somewhere.",
+    "start": 356.32,
+    "end": 363.6,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline\nNumber of stall cycles depends on the criticality of the hazard\nInstruction: the stalled instruction can continue, but no new instructions\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nUT KHARAGPUR CiitrineaniOn courses Teenwe"
+  },
+  {
+    "text": "So, I hold the instruction back maybe I feed it in the next clock not in the present clock.",
+    "start": 363.6,
+    "end": 372.08,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline\nNumber of stall cycles depends on the criticality of the hazard\nInstruction: the stalled instruction can continue, but no new instructions\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nUT KHARAGPUR CiitrineaniOn courses Teenwe"
+  },
+  {
+    "text": "If I do that I say that I am inserting a stall cycle.",
+    "start": 372.08,
+    "end": 378.76,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline\nNumber of stall cycles depends on the criticality of the hazard\nInstruction: the stalled instruction can continue, but no new instructions\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nUT KHARAGPUR CiitrineaniOn courses Teenwe"
+  },
+  {
+    "text": "For one cycle I am not feeding anything in the pipeline.",
+    "start": 378.76,
+    "end": 381.68,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nCtitrineaniOn courses Teenno"
+  },
+  {
+    "text": "I am stalling the pipeline for one cycle and then again I am feeding the next instruction",
+    "start": 381.68,
+    "end": 387.28,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nCtitrineaniOn courses Teenno"
+  },
+  {
+    "text": "after that.",
+    "start": 387.28,
+    "end": 388.88,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nCtitrineaniOn courses Teenno"
+  },
+  {
+    "text": "Then the hazard will not show up.",
+    "start": 388.88,
+    "end": 391.6,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nCtitrineaniOn courses Teenno"
+  },
+  {
+    "text": "This is one simple strategy.",
+    "start": 391.6,
+    "end": 394.92,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nCtitrineaniOn courses Teenno"
+  },
+  {
+    "text": "But if I follow this principle suppose I stall one instruction then all the instructions",
+    "start": 394.92,
+    "end": 403.12,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nCtitrineaniOn courses Teenno"
+  },
+  {
+    "text": "that follows this particular instruction obviously will also get stalled because unless",
+    "start": 403.16,
+    "end": 409.76,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation\n\nNPTEL ONLINE NATIONS’\nCtitrineaniOn courses Teenno"
+  },
+  {
+    "text": "this instruction enters the pipe those instructions will not be able to enter the pipe also.",
+    "start": 409.76,
+    "end": 419.12,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAsan alter e, we can insert stall cycles in the pipeline.\nNumber of sta 5 dépends on the criticality of the hazard\nInstructions talled instruction can continue, but non uction\nare fetched during the duration of the stall\n\nIn general, hazards result in performance degradation"
+  },
+  {
+    "text": "And depending on the criticality of the hazard we shall be seeing the various situations",
+    "start": 419.12,
+    "end": 424.2,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructions the stalled instruction can continue, but no new instruction\nare fetched during the duration of the\n\nIn general, hazards result in performance degradation"
+  },
+  {
+    "text": "number of stall cycles can vary.",
+    "start": 424.2,
+    "end": 430.48,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructions the stalled instruction can continue, but no new instruction\nare fetched during the duration of the\n\nIn general, hazards result in performance degradation"
+  },
+  {
+    "text": "And the important thing to notice that whenever we are inserting stall cycles like this.",
+    "start": 430.48,
+    "end": 436.16,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alter e, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstruct the stalled instruction can continue, but no new instruction\nare fetched during the duration of the\n\nIn general, hazards result in performance degradation"
+  },
+  {
+    "text": "So, the understanding is that the instructions which have already entered the pipeline running",
+    "start": 436.16,
+    "end": 443.8,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alter e, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstruct the stalled instruction can continue, but no new instruction\nare fetched during the duration of the\n\nIn general, hazards result in performance degradation"
+  },
+  {
+    "text": "the process of execution they can proceed normally there is no problem.",
+    "start": 443.8,
+    "end": 448.92,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alter e, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstruct the stalled instruction can continue, but no new instruction\nare fetched during the duration of the\n\nIn general, hazards result in performance degradation"
+  },
+  {
+    "text": "But I am holding back the instructions that are following I am inserting one or more",
+    "start": 448.92,
+    "end": 455.44,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an alter e, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstruct the stalled instruction can continue, but no new instruction\nare fetched during the duration of the\n\nIn general, hazards result in performance degradation"
+  },
+  {
+    "text": "stall cycles.",
+    "start": 455.44,
+    "end": 456.8,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an altern: we can insert stall cycles in the pipeline\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\ned'during, the duration of the\n\nazards result in performance degradation"
+  },
+  {
+    "text": "So, they will be delayed after the stall cycles they will be fed into the pipeline.",
+    "start": 457.04,
+    "end": 463.8,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an altern: we can insert stall cycles in the pipeline\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\ned'during, the duration of the\n\nazards result in performance degradation"
+  },
+  {
+    "text": "So, this is what I just now said instruction before the stall instruction can continue.",
+    "start": 463.8,
+    "end": 474.2,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an altern: we can insert stall cycles in the pipeline\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\ned'during, the duration of the\n\nazards result in performance degradation"
+  },
+  {
+    "text": "But no new instructions can be fetched during the duration of the stall.",
+    "start": 474.2,
+    "end": 480.8,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nAs an altern: we can insert stall cycles in the pipeline\nNumber of stall cycles depends on the criticality of the hazard\nInstructio: the stalled instruction can continue, but no new instruction\ned'during, the duration of the\n\nazards result in performance degradation"
+  },
+  {
+    "text": "Now, as I said for example, in this strategy we may have to insert such stall cycles.",
+    "start": 481.36,
+    "end": 490.8,
+    "ocr_text": "What happens when hazards appear?\n\n+ We can use special hardware and control circuits to avoid the conflict that\nise due to hazard\n+ Asanalter we can insert stall cycles in the pipeline\nNumber of stall cycles depends on the criticality of the hazard\nare fetched during the duration of the sta\n\n+ In general, hazards result in performance degradation\n\nNPTEL ONLINE\nITKHARAGPUR QtitrinicaniOn courses"
+  },
+  {
+    "text": "And this kind of hazards will result in performance degradation because we are not allowing instructions",
+    "start": 490.8,
+    "end": 500.8,
+    "ocr_text": "What happens when hazards appear?\n\nWe can use special hardware and control circuits to avoid the conflict that\nise due to hazard\nAs an alternative, we can insert stall cycles in the pipeline.\nNumber of stall cycles depends on the criticality of the hazard\nInstructions the stalled instruction can continue, but no new instruction\nare fetched during the duration of the\n\nIn general, hazard formance degradation\n\nNeTeL OntiNE\nITKHARAGPUR QtitrineantOn courses"
+  },
+  {
+    "text": "to be fed or entering the pipe in every clock cycle that is why we are not able to get the",
+    "start": 501.32,
+    "end": 508.32,
+    "ocr_text": "What happens when hazards appear?\n\n+ We can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nan alternative, we can insert stall cycles in the pipeline,\nNumber of stall cycles depends on the criticality of the hazard\nInstructions before the stalled instruction can continue, but no new instruction\nare fetched during the duration of th\n\n+ In general, hazards result in performance degradation"
+  },
+  {
+    "text": "full pipeline performance that is possible in the ideal case.",
+    "start": 508.32,
+    "end": 515.32,
+    "ocr_text": "What happens when hazards appear?\n\n+ We can use special hardware and control circuits to avoid the conflict that\narise due to hazard\nan alternative, we can insert stall cycles in the pipeline,\nNumber of stall cycles depends on the criticality of the hazard\nInstructions before the stalled instruction can continue, but no new instruction\nare fetched during the duration of th\n\n+ In general, hazards result in performance degradation"
+  },
+  {
+    "text": "So, let us make a simple calculation.",
+    "start": 515.32,
+    "end": 521.56,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat pipelining as a way to reduce the CPI, or\n\n+ The ideal CP! of an instruction pipeline can ne written\n\nIdeal CPI = - dup\n\nNeTEL ONLINE\n\nIPKHARAGPUR QiirrintexniOn courses\n\nIdeal CPI x Pipeline Depth\n\nNATONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "So, with respect to a non-pipeline version suppose we are trying to estimate this speed",
+    "start": 521.56,
+    "end": 529.56,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat pipelining as a way to reduce the CPI, or\n\n+ The ideal CP! of an instruction pipeline can ne written\n\nIdeal CPI = - dup\n\nNeTEL ONLINE\n\nIPKHARAGPUR QiirrintexniOn courses\n\nIdeal CPI x Pipeline Depth\n\nNATONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "up in a pipeline.",
+    "start": 529.56,
+    "end": 530.96,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ The ideal CPI of\n\nIdeal CPI = = ating\n\nIr RHARAGPUR\n\nne CPI, or reduce C\n\nthe CPI\n\nNPTEL ONLINE\nQtitrini@aTiOn courses\n\nPipeline Depth\ni,\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "So, a simple measure of speed up is to divide the execution time of the non-pipeline version",
+    "start": 531.68,
+    "end": 539.68,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ The ideal CPI of\n\nIdeal CPI = = ating\n\nIr RHARAGPUR\n\nne CPI, or reduce C\n\nthe CPI\n\nNPTEL ONLINE\nQtitrini@aTiOn courses\n\nPipeline Depth\ni,\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "with the execution time of the pipeline version.",
+    "start": 539.68,
+    "end": 544.16,
+    "ocr_text": "Calculation of Performance Degradation\n\nn treat pipelining as a way to reduce the CPI, or reduce C\n+ The ideal CPI of an instruction pipeline can ne written a:\n\nIdeal PI CP le Ideal CPI x Pipeline Depth\neal CPI = —Spetine Deptt - CPlng\n\nNeTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR Ctitrineanion courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "So, how I can calculate this execution times?",
+    "start": 544.16,
+    "end": 550.2,
+    "ocr_text": "Calculation of Performance Degradation\n\nn treat pipelining as a way to reduce the CPI, or reduce C\n+ The ideal CPI of an instruction pipeline can ne written a:\n\nIdeal PI CP le Ideal CPI x Pipeline Depth\neal CPI = —Spetine Deptt - CPlng\n\nNeTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR Ctitrineanion courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "So, one simple way will be to multiply the cycles per instruction of the non-pipeline",
+    "start": 550.76,
+    "end": 560.96,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat pipelining ay to reduce the CPI, or reduce C\n+ The ideal CPI of an inst y ne written a:\n\nIdeal ep CPhowp Gao Ideal CPI x Pipeline Depth\ndeal Pipeline Depth - CPi\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR QtitrinicaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "version with the clock cycle time of the non-pipeline version assuming that the number of instructions",
+    "start": 560.96,
+    "end": 570.28,
+    "ocr_text": "Calculation of Performance Degradation\n\nn treat pipelining as a way to reduce the CPI, or\n\n+ The ideal CP! of an instruction pipeline can ne written\n\nIdeal CPI peedup\n\nNPTEL ONLINE\nQiitrinicaniOn courses\n\nPipeline Depth\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "are the same in the both the cases.",
+    "start": 570.28,
+    "end": 572.92,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat pipelining ay to reduce the CPI, or reduce C\n\n+ The ideal CPI of an instruct n ne written a:\nnaeeren Php Ideal CPI x Pipeline Depth\ndeal CPi = Satine Depth” = aT...\n\nIT RHARAGPUR SGrrrIeaHON courses FesiRetocy, Meenas"
+  },
+  {
+    "text": "Similarly, for the pipeline version CPI for the pipeline version multiplied by the clock",
+    "start": 572.92,
+    "end": 578.92,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat pipelining ay to reduce the CPI, or reduce C\n\n+ The ideal CPI of an instruct n ne written a:\nnaeeren Php Ideal CPI x Pipeline Depth\ndeal CPi = Satine Depth” = aT...\n\nIT RHARAGPUR SGrrrIeaHON courses FesiRetocy, Meenas"
+  },
+  {
+    "text": "cycle time of the pipeline version.",
+    "start": 579.0,
+    "end": 581.08,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat pipelining ay to reduce the CPI, or reduce C\n+ The ideal CPI of an in: pipeline can ne\nCPs c Ideal CPI x Pipeline Depth\n\ndeal CPI = — seedup\n}BeeIGE Piper f : = Phi\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CtitrineaniOn courses TEENNOLOCY, MECHALAYA"
+  },
+  {
+    "text": "So, I can separate this out the clock cycle times and the CPIs.",
+    "start": 581.08,
+    "end": 588.92,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat pipelining ay to reduce the CPI, or reduce C\n+ The ideal CPI of an in: pipeline can ne\nCPs c Ideal CPI x Pipeline Depth\n\ndeal CPI = — seedup\n}BeeIGE Piper f : = Phi\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CtitrineaniOn courses TEENNOLOCY, MECHALAYA"
+  },
+  {
+    "text": "Now, when we talk about pipelining well we can either say that we are trying to reduce",
+    "start": 588.92,
+    "end": 597.92,
+    "ocr_text": "Calculation of Performance Degradation\n\npipilining as a way to reduce the CPI, or reduce C\n\nal CPI of an instruction pipeline can ne written a:\n\ncpl, & Ideal CPI x Pipeline Depth\ndup = Sete, deal Chix Pipeline Depth!\nPi,\n\nNOTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR CiitrineatiOn couRses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "the CPI or we can argue that we are trying to reduce C, but actually reducing C is not",
+    "start": 598.52,
+    "end": 606.52,
+    "ocr_text": "Calculation of Performance Degradation\n\nx,\n\n+ We can treat pipelining ay to reduce the CPI, or reduce C\n\n+ The ideal CPI of an inst ipeline can ne written a:\n\nCPs c Ideal CPI x Pipeline Depth\n\ndesi CP} = ae peedup\nJaCeLCE jeline t f e - CPi\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR QiitrineaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "true because we are not really reducing the clock cycle time, but you can argue in some way",
+    "start": 607.16,
+    "end": 615.48,
+    "ocr_text": "Calculation of Performance Degradation\n\nx,\nPipeline speedup\n\n+ We can treat pipelining as a way to reduce the CPI, or reduce\n\n+ The ideal CPI of an in: y ne written a:\nideal Pr Place Ideal CPI x Pipeline Depth\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nQtitrincaniOn courses TECHNOLOGY, MEGHATAYA"
+  },
+  {
+    "text": "like you can argue in some way means you can say that in a non-pipeline version you had",
+    "start": 615.48,
+    "end": 623.16,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat p way to reduce the CPI, or reduce\n+ The ideal CP! of an instruction pipeline can ne\ncele c Ideal CPI x Pipeline Depth\n\nIdeal CPI peedup\nCPI\n\nNeTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR QiitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "the whole computation as a block.",
+    "start": 623.88,
+    "end": 626.12,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat p way to reduce the CPI, or reduce\n+ The ideal CP! of an instruction pipeline can ne\ncele c Ideal CPI x Pipeline Depth\n\nIdeal CPI peedup\nCPI\n\nNeTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR QiitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "So, as if your clock was running let us say 5 times slower, but now by making a pipeline",
+    "start": 626.12,
+    "end": 633.0,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat p way to reduce the CPI, or reduce\n+ The ideal CP! of an instruction pipeline can ne\ncele c Ideal CPI x Pipeline Depth\n\nIdeal CPI peedup\nCPI\n\nNeTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR QiitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "with 5 stages you are making the clock run 5 times faster that may be one argument,",
+    "start": 633.08,
+    "end": 640.36,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat p way to reduce the CPI, or reduce\n+ The ideal CP! of an instruction pipeline can ne\ncele c Ideal CPI x Pipeline Depth\n\nIdeal CPI peedup\nCPI\n\nNeTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR QiitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "but a better argument may be that will be following here that well we are not saying that we",
+    "start": 641.16,
+    "end": 646.28,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat p way to reduce the CPI, or reduce\n+ The ideal CP! of an instruction pipeline can ne\ncele c Ideal CPI x Pipeline Depth\n\nIdeal CPI peedup\nCPI\n\nNeTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR QiitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "are making clock faster, but we are saying we are making CPI smaller cycles per instruction",
+    "start": 646.28,
+    "end": 654.52,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat p way to reduce the CPI, or reduce\n+ The ideal CP! of an instruction pipeline can ne\ncele c Ideal CPI x Pipeline Depth\n\nIdeal CPI peedup\nCPI\n\nNeTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR QiitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "so, so means you can argue in either way. So, now another thing is that the ideal CPI",
+    "start": 655.4,
+    "end": 667.72,
+    "ocr_text": "Calculation of Performance Degradation\n\n+ We can treat p way to reduce the CPI, or reduce\n+ The ideal CP! of an instruction pipeline can ne\ncele c Ideal CPI x Pipeline Depth\n\nIdeal CPI peedup\nCPI\n\nNeTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR QiitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "so, in the absence of any hazards will be equal to the CPI of the non-pipeline version",
+    "start": 669.08,
+    "end": 677.0,
+    "ocr_text": "Calculation of Performance Degradation\n\n» treat pipelining as a way to reduce the CPI, or reduce C\n\nThe ideal CPI of an instru:\n\nare Pipeline ©\n\nIT RHARAGPUR SGrIFReAHON couRses\n\nPr,\n\nPipeline Depth"
+  },
+  {
+    "text": "divide by pipeline depth, pipeline depth means number of stages in the pipeline.",
+    "start": 677.72,
+    "end": 685.16,
+    "ocr_text": "Calculation of Performance Degradation\n\n» treat pipelining as a way to reduce the CPI, or reduce C\n\nThe ideal CPI of an instru:\n\nare Pipeline ©\n\nIT RHARAGPUR SGrIFReAHON couRses\n\nPr,\n\nPipeline Depth"
+  },
+  {
+    "text": "Now, in our example for the MIPS example pipeline depth was 5, so in the ideal case we are getting",
+    "start": 686.76,
+    "end": 696.2,
+    "ocr_text": "Calculation of Performance Degradation\n\n» treat pipelining as a way to reduce the CPI, or reduce C\n\nThe ideal CPI of an instru:\n\nare Pipeline ©\n\nIT RHARAGPUR SGrIFReAHON couRses\n\nPr,\n\nPipeline Depth"
+  },
+  {
+    "text": "a speed up of 5, so CPI was reducing by 5 times. So, just you can substitute the CPI",
+    "start": 696.2,
+    "end": 705.16,
+    "ocr_text": "Calculation of Performance Degradation\n\n» treat pipelining as a way to reduce the CPI, or reduce C\n\nThe ideal CPI of an instru:\n\nare Pipeline ©\n\nIT RHARAGPUR SGrIFReAHON couRses\n\nPr,\n\nPipeline Depth"
+  },
+  {
+    "text": "no-pip expression here and this expression becomes speed up equal to C no-pip by pipe,",
+    "start": 706.04,
+    "end": 712.92,
+    "ocr_text": "Calculation of Performance Degradation\n\n» treat pipelining as a way to reduce the CPI, or reduce C\n\nThe ideal CPI of an instru:\n\nare Pipeline ©\n\nIT RHARAGPUR SGrIFReAHON couRses\n\nPr,\n\nPipeline Depth"
+  },
+  {
+    "text": "instead of CPI no-pip you write ideal CPI multiply by pipeline depth this expression.",
+    "start": 713.64,
+    "end": 720.28,
+    "ocr_text": "Calculation of Performance Degradation\n\n» treat pipelining as a way to reduce the CPI, or reduce C\n\nThe ideal CPI of an instru:\n\nare Pipeline ©\n\nIT RHARAGPUR SGrIFReAHON couRses\n\nPr,\n\nPipeline Depth"
+  },
+  {
+    "text": "So, this is one way you can write it 5. Now, suppose we are using the method",
+    "start": 721.16,
+    "end": 731.88,
+    "ocr_text": "Calculation of Performance Degradation\n\nx,\nPipeline speedup\n\n+ We can treat pipelining as a way to reduce the CPI, or reduce\n+ The ideal CPI of an instru: ipeline can ne written\n\nCi < Ideal CPI x Pipeline Depth\nIdeal CPI mp Speedup posal CEE Henne Denink\n\nhy"
+  },
+  {
+    "text": "of inserting stall cycles for removing hazards for avoiding hazards. So, we can write the actual",
+    "start": 732.04,
+    "end": 740.52,
+    "ocr_text": "If we restrict ourselves to stall cycles only, we can write:\n\nCPlage = ‘Ideal CPI + (Pipeline Stall Cycles per Instruction)\n\nWe can thus write:\n\ndeal CPI x Pipeline Depth\nTdeal CPI + Pipeline stall cycles / Instruction\n\nIf we ignore the increase in clock cycle time due to pipelining (i. Crop\n\nfe Ideal CPI x Pipeline Depth\n\ndeal CPI + Pipeline stall cycles / instruction\n\nIT RHARAGPUR SErIneAHON courses"
+  },
+  {
+    "text": "CPI of the pipeline say actual CPI of the pipeline will obviously be greater than the ideal CPI,",
+    "start": 743.8,
+    "end": 749.72,
+    "ocr_text": "If we restrict ourselves to stall cycles only, we can write:\nPlog Ideal CPI + (Pipeline Stall Cycles per Instruction)\n\nWe can thus write:\n\ncin deal CPI x Pipeline Depth\n\n‘deal CPI + Pipeline stall cycles / Instruction |\n\nIf we ignore the increase in clock cycle time due to pipelining (i.e. C\n\nspeedup Ideal CPI x Pipeline Depth\naI CPI + Pipeline stall cycles / instruction\n\nIT RHARAGPUR SETIFReAON courses"
+  },
+  {
+    "text": "it will be ideal CPI plus average pipeline stall cycles per instruction.",
+    "start": 751.4,
+    "end": 759.16,
+    "ocr_text": "If we restrict ourselves to stall cycles only, we can write:\n\nWe can thus write:\n\nspeedup\n\nIf we ignore the increa:\n\nspeedup\nde\n\nITKHARAGPUR\n\n(Pipeline Stall Cycles per instruction)\n\nIdeal CPI_x Pipeline Depth\n\n‘deal CPI + Pipeline stall cycles / Instruction |\n\nin clock cycle time due to pipelining (i.e. C\n\nPipeline Depth\n\nNPTEL OnuiNE NATIONA’\nQtitrinicantOn courses Teenne"
+  },
+  {
+    "text": "This will be the impact of the hazard on the average case. So, your CPI pipe you can write like",
+    "start": 759.96,
+    "end": 767.72,
+    "ocr_text": "If we restrict ourselves to stall cycles only, we can write:\n\nCPlage = Ideal CPI + (Pipeline Stall Cycles per Ingtruction)\n\nWe can thus write:\n\n—— eal CPI x Pipeline Depth\n‘deal CPI + Pipeline stallcycles / instruction\n\nIf we ignore the increase in clock cycle time due to pipelining (1-€- Cropp\n\n5 Ideal CPI x Pipeline Depth\n\n‘deal CPI + Pipeline stall cycles 7 instruction |"
+  },
+  {
+    "text": "this. So, this expression which you got the CPI pipe you can substitute there. So, you can write",
+    "start": 767.72,
+    "end": 776.44,
+    "ocr_text": "Calculation of Performance Degradation\n\nway to reduce the CPI, or reduce C\n+ The ideal CPI of an instruct nae\nIdeal CPI x Pipeline Depth\n\nIdeal CPI Speedup\n\nNeTEL ONLINE NAnONA’\nQiirrineaniOn courses Teenwe"
+  },
+  {
+    "text": "instead of CPI pipe this ideal CPI plus pipeline stall cycles per instruction.",
+    "start": 776.44,
+    "end": 783.72,
+    "ocr_text": "If we restrict ourselves to stall cycles only, we can write:\nCPluge = Ideal CPI + (Pipeline Stall Cycles per Instruction)\n\nWe can thus write:\n\nenon Ideal CPI x Pipeline Depth\n\n‘deal CPI_g Pipeline stall cycles / Instruction |\n\nIf we ignore the increase in clock cycle time due to pipelining (i.e. C\n\n, Ideal CPI x Pipeline D\nie Tdeal CPI + Pipeline stallc\n\nITKHARAGPUR SEInReAHON courses"
+  },
+  {
+    "text": "So, if you ignore the difference in the clock cycle time of the pipeline and non-pipeline version",
+    "start": 784.44,
+    "end": 792.52,
+    "ocr_text": "If we restrict ourselves to stall cycles only, we can write:\nCPluge = Ideal CPI + (Pipeline Stall Cycles per Instruction)\n\nWe can thus write:\n\nenon Ideal CPI x Pipeline Depth\n\n‘deal CPI_g Pipeline stall cycles / Instruction |\n\nIf we ignore the increase in clock cycle time due to pipelining (i.e. C\n\n, Ideal CPI x Pipeline D\nie Tdeal CPI + Pipeline stallc\n\nITKHARAGPUR SEInReAHON courses"
+  },
+  {
+    "text": "of course, as you know that because of the latch delays this CPI is a little larger,",
+    "start": 792.52,
+    "end": 799.96,
+    "ocr_text": "If we restrict ourselves to stall cycles only, we can write:\nCPloge = Ideal CPI + (Pipeline Stall Cycles per Instruction)\n\nWe can thus write:\n\neee eal CPI x Pipeline Depth\n\n‘deal CPI + Pipeline stall cycles / Instruction\n\nIf we ignore the increase in clock cycle time due to pipelining (i.e. C\n\nEpecdup Ideal CPI x Pipeline Depth\nTdeal CPI + Pipeline stall ey\n\nNTKHARAGPUR SGTIFReAHON courses"
+  },
+  {
+    "text": "but if you ignore that just if you assume that these are equal. So, you are left with this part.",
+    "start": 799.96,
+    "end": 806.44,
+    "ocr_text": "If we restrict ourselves to stall cycles only, we can\nCPlage = Ideal CPI + (Pipeline Stall Cycles per Instruction)\n\nWe can thus write:\n\nJeal CPI x Pipeline Depth\nSpeedup\n\n‘deal CPI + Pipeline stall cycles / Instruction\n\nIf we ignore the increase in clock cycle time due to pipelining (i-€- Cropip\n\nBeene ee, Ideal CPI x Pipeline Depth\nideal CPI + Pipeline stall cy instru\n\nNPTEL ONLINE NAnONA’\nUT KHARAGPUR Ciitrint@atiOn courses feenwo"
+  },
+  {
+    "text": "Speed up equal to ideal CPI multiply pipeline depth plus ideal CPI plus pipeline stall cycles",
+    "start": 807.4,
+    "end": 816.28,
+    "ocr_text": "restrict ourselves to stall cycles only, we can write:\n\nCPlage = Ideal CPI + (Pipeline Stall Cycles per Instruction)\n\nWe can thus write:\n\natin Jeal CPI x Pipeline Depth\n‘deal CPI + Pipeline stall cycles / Instruction\n\nIf we ignore the increase in clock cycle time due to pipelining (1-€- Cropip\n\nIdeal CPI x Pipeline Depth\n\nspeedup -\n\nideal CPI + Pipeline stall eye"
+  },
+  {
+    "text": "per instruction. So, this is an expression which you can use to estimate this speed up",
+    "start": 816.28,
+    "end": 823.08,
+    "ocr_text": "we restrict ourselves to stall cycles only, we can write:\n\nPlage = Ideal CPI + (Pipeline Stall Cycles per Instruction)\n\nWe can thus write:\neal CPI x Pipeline Depth\n\nSpeedup ee eal CPIRAE baling Depth\nTdeal CPI + Pipeline stall cycles / Instruction\n\nIf we ignore the increase in clock cycle time due to pipelining (i.e. Crop\n\neBecth Ideal CPI x Pipeline Depth\n\ndeal CPI + Pipeline stall cycles / instruction\n\nNPTEL ONLINE NATONA'\nUTKHARAGPUR QtitrineaniOn courses Ttenne"
+  },
+  {
+    "text": "for a pipeline in presence of stall cycles right. So, just remember this expression. So,",
+    "start": 823.8,
+    "end": 829.96,
+    "ocr_text": "we restrict ourselves to stall cycles only, we can write:\n\nPlage = Ideal CPI + (Pipeline Stall Cycles per Instruction)\n\nWe can thus write:\neal CPI x Pipeline Depth\n\nSpeedup ee eal CPIRAE baling Depth\nTdeal CPI + Pipeline stall cycles / Instruction\n\nIf we ignore the increase in clock cycle time due to pipelining (i.e. Crop\n\neBecth Ideal CPI x Pipeline Depth\n\ndeal CPI + Pipeline stall cycles / instruction\n\nNPTEL ONLINE NATONA'\nUTKHARAGPUR QtitrineaniOn courses Ttenne"
+  },
+  {
+    "text": "we shall be using this later in some examples. Let us look at the hazards now one by one.",
+    "start": 830.12,
+    "end": 838.12,
+    "ocr_text": "If we restrict ourselves to stall cycles only, we can write:\nCPloge = Ideal CPI + (Pipeline Stall Cycles per Instruction)\n\nWe can thus write:\n\nIdeal CPI x Pi\nSpeedup pt ie\nTdeal CPI + Pipeline stall cycles / Instruction\n\nIf we ignore the increase in clock cycle time due to pipelining (i.e. C\n\nAncextiny Ideal CPI x Pipeline Depth\n\n‘deal CPI + Pipeline stall cycles 7 instruction\n\nNPTEL ONLINE NaTIONA’\nIT KHARAGPUR CtrineaniOn courses Teenwe"
+  },
+  {
+    "text": "Structural hazards to start with we said that they arise due to resource conflicts.",
+    "start": 839.96,
+    "end": 846.76,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenari¢\nExample:\n\nAn instructior data from the register bank (in ID stage), while\nme other instruction is trying to write into a register (in WB\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to use the same functional unit will result in stall\n\ncy"
+  },
+  {
+    "text": "See if I have a single copy of a resource and two instructions or two stages they are trying",
+    "start": 847.16,
+    "end": 861.08,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenarios.\nExample:\n\nAn instruction is trying to read data from the register bank (in ID st nile\n\nme other instruction is trying to write into a register (in WB stag\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to Use the same functional unit will result in stall\n\nNPTEL ONLINE NATIONA’\n\nUTKHARAGPUR CirrineaniOn courses Teenne"
+  },
+  {
+    "text": "to use the same resource. So, we have seen two examples one is for a memory and the other is",
+    "start": 861.08,
+    "end": 869.56,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenarios.\nExample:\n\nAn instruction is trying to read data from the register bank (in ID st nile\n\nme other instruction is trying to write into a register (in WB stag\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to Use the same functional unit will result in stall\n\nNPTEL ONLINE NATIONA’\n\nUTKHARAGPUR CirrineaniOn courses Teenne"
+  },
+  {
+    "text": "for the register banks read and write the ID stages trying to read from register.",
+    "start": 869.56,
+    "end": 875.72,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenarios.\nExample:\n\nAn instruction is trying to read data from the register bank (in ID st nile\n\nme other instruction is trying to write into a register (in WB stag\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to Use the same functional unit will result in stall\n\nNPTEL ONLINE NATIONA’\n\nUTKHARAGPUR CirrineaniOn courses Teenne"
+  },
+  {
+    "text": "WB stage is trying to write into a register. These are examples of structural hazards right.",
+    "start": 876.52,
+    "end": 882.28,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenari¢\nExample:\nAn instruction is trying to read data from the register bank (in ID st\nme other instruction is trying to write into a register (in WB\n\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to Use the same functional unit will result in stall"
+  },
+  {
+    "text": "So, if the hardware does not support concurrent or overlap execution then structural hazards",
+    "start": 883.96,
+    "end": 893.0,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenari¢\nExample:\nAn instruction is trying to read data from the register bank (in ID st\nme other instruction is trying to write into a register (in WB\n\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to Use the same functional unit will result in stall"
+  },
+  {
+    "text": "will show up. So, these two examples already we have seen I have again",
+    "start": 893.96,
+    "end": 899.48,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenari¢\nExample:\nAn instruction is trying to read data from the register bank (in ID st\nme other instruction is trying to write into a register (in WB\n\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to Use the same functional unit will result in stall"
+  },
+  {
+    "text": "mentioned it. Single memory to store instruction and data. If we have a single L1 cache",
+    "start": 900.76,
+    "end": 907.4,
+    "ocr_text": "(a) Structural Hazards\n\n+ They arise due to resource conflicts the hardware cannot support\noverlapped execution under all pe » scenaric\n+ Example:\nAn instruction is trying to read data fr er bank (in 1D stage), while\nsome other instruction is trying to write into a register (in WB stage)\nne functional unit (ike floating-point AOD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to use the same functional Unit wall result in stall\n\nITKHARAGPUR QiitrineaTion courses Teenwe"
+  },
+  {
+    "text": "not separate instruction and data then when an instruction is being fetched and some other",
+    "start": 908.36,
+    "end": 915.8,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenari¢\nExample:\n\nAn instruction is trying to read data fr gister bank (in 1D si\nther instruction is trying to write into a register (in WB\n\nctional unit (like floating-point ADD or MULTIPLY) is not fully pipelined."
+  },
+  {
+    "text": "instruction is trying to read or write the next instruction will have to wait. So, you have to",
+    "start": 915.8,
+    "end": 921.72,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts the hardware cannot\noverlapped execution unde: » scenaric\nExample:\n\nAn instruction is trying to read data from the register bank (in 1D\nme other instruction is trying to write into a register (in WB\n\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to Use the same functional unit will result in stall"
+  },
+  {
+    "text": "insert a stall cycle. Similarly, an instruction is trying to read data from the register bank",
+    "start": 921.72,
+    "end": 928.6,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts the hardware cannot\noverlapped execution unde: » scenaric\nExample:\n\nAn instruction is trying to read data from the register bank (in 1D\nme other instruction is trying to write into a register (in WB\n\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to Use the same functional unit will result in stall"
+  },
+  {
+    "text": "while some instruction is trying to write a register. So, again I mean if you do not follow that",
+    "start": 929.24,
+    "end": 936.28,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot\noverlapped execution under all possible scenarios.\nExample:\nAn instruction is trying to read data from the register bank (in\nme other instruction is trying to write into a register (in WB\nne functional unit (like floating-point AOD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to use the same functional Unit will result in stall\n\nNPTEL ONLINE NATONA’\nUT KHARAGPUR QtitrineaniOn courses Teenwe"
+  },
+  {
+    "text": "principle I mentioned earlier that you do write in the first half of the clock and read in the",
+    "start": 936.28,
+    "end": 941.88,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot\noverlapped execution under all possible scenari¢\nExample:\n\nAn instruction is trying to read data from the register bank (in 1D stay nile\nme other instruction is trying to write into a register (in WB\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to Use the same functional unit will result in stall\n\nNPTEL OntiNE NATIONA’\nCtitrineantOn courses Teenno"
+  },
+  {
+    "text": "second half of the clock then your this the instruction that is trying to read data will have to",
+    "start": 941.88,
+    "end": 950.28,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot\noverlapped execution under all possible scenari¢\nExample:\n\nAn instruction is trying to read data from the register bank (in 1D stay nile\nme other instruction is trying to write into a register (in WB\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to Use the same functional unit will result in stall\n\nNPTEL OntiNE NATIONA’\nCtitrineantOn courses Teenno"
+  },
+  {
+    "text": "wait you will have to insert stall cycles in that case. So, you see that if you do not take",
+    "start": 951.24,
+    "end": 957.96,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenari¢\nExample:\n\nAn instruction is trying to read data from the register bank (in 16\nme other instruction is trying to write into a register (in WB st\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to use the same functional unit will result in stall\n\nNPTEL ONLINE NATIONA’\nIT KHARAGPUR Staines Heenne"
+  },
+  {
+    "text": "precautions or put in some additional hardware to detect and avoid this kind of a hazard",
+    "start": 957.96,
+    "end": 965.88,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenari¢\nExample:\n\nAn instruction is trying to read data from the register bank (in 16\nme other instruction is trying to write into a register (in WB st\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to use the same functional unit will result in stall\n\nNPTEL ONLINE NATIONA’\nIT KHARAGPUR Staines Heenne"
+  },
+  {
+    "text": "your stall cycles will get inserted automatically otherwise your instruction execution process",
+    "start": 965.88,
+    "end": 972.28,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts the hardware cannot support\noverlapped execution under all pe » scenaric\nExample:\nAn instruction is trying to read data from the register bank (in 1D stage), while\ntruction is trying to write into a register (in WB stage).\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nImRHARAGEUR QeitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "will not be correct right. And another example I am giving say let us say some of the",
+    "start": 972.28,
+    "end": 979.88,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts the hardware cannot support\noverlapped execution under all pe » scenaric\nExample:\nAn instruction is trying to read data from the register bank (in 1D stage), while\ntruction is trying to write into a register (in WB stage).\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nImRHARAGEUR QeitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "functional units like floating point add or multiply they are not fully pipeline and suppose there",
+    "start": 979.96,
+    "end": 986.68,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts the hardware cannot support\noverlapped execution under all pe » scenaric\nExample:\nAn instruction is trying to read data from the register bank (in 1D stage), while\ntruction is trying to write into a register (in WB stage).\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nImRHARAGEUR QeitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "are two instructions one by one consecutive they are trying to use floating point add or floating",
+    "start": 986.68,
+    "end": 993.0,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts the hardware cannot support\noverlapped execution unde: » scenaria\nExample:\n\nAn instruction is trying to read data from the register bank (in 1D\nme other instruction is trying to write into a register (in WB\n\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to use the same functional unit will result in stall\n\nNPTEL ONLINE"
+  },
+  {
+    "text": "point multiply because they are typically instructions that consume more than one cycles",
+    "start": 993.0,
+    "end": 1001.32,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts the hardware cannot support\noverlapped execution unde: » scenaria\nExample:\n\nAn instruction is trying to read data from the register bank (in 1D\nme other instruction is trying to write into a register (in WB\n\nne functional unit (like floating-point ADD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to use the same functional unit will result in stall\n\nNPTEL ONLINE"
+  },
+  {
+    "text": "they will result in stall cycles because when say the first instruction is doing multiply",
+    "start": 1002.28,
+    "end": 1009.72,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenari¢\nExample:\nAn instruction is trying to read data from the nk (in\nme other instruction is trying to write mgister (in WB\nne functional unit (like floating-point AOD or MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to use the same functional unit will result in stall\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR Qtsrrineanion courses TECHNOLOGY, MEGHACAYA"
+  },
+  {
+    "text": "they will be using multiple clock cycle during the EX stage because multiply cannot finish in one",
+    "start": 1010.44,
+    "end": 1017.64,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenarios.\nExample:\nAn instruction is trying to read data from the register bank (in ID stage), while\nsome other instruction is trying to write into a register (in WB stage)\nSome functional unit (like floating-point ADD oF MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to use the same functional unit wall result in stall"
+  },
+  {
+    "text": "cycle. So, it is consuming the EX stage for more than one cycle. So, if the next instruction is",
+    "start": 1017.64,
+    "end": 1027.08,
+    "ocr_text": "(a) Structural Hazards\n\nThey arise due to resource conflicts when the hardware cannot support\noverlapped execution under all possible scenarios.\nExample:\nAn instruction is trying to read data from the register bank (in ID stage), while\nsome other instruction is trying to write into a register (in WB stage)\nSome functional unit (like floating-point ADD oF MULTIPLY) is not fully pipelined.\n\n+ Asequence of instructions that try to use the same functional unit wall result in stall"
+  },
+  {
+    "text": "also requiring floating point multiplication next instruction will have to wait you will have",
+    "start": 1027.08,
+    "end": 1032.84,
+    "ocr_text": "+ Illustration\nstructurs i'd in a single-port mer n stores both instruction:\n\ntw R1,10(R2) i MEM WB\n\nAND R5,R7,R7 \" tx Mam\n\nNPTEL OnLine NATIONAL INSTMUTE OF\nQistrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "to insert stall cycles ok. These are some examples of structural hazards. So, let us take some examples",
+    "start": 1032.84,
+    "end": 1041.48,
+    "ocr_text": "+ Illustration\nstructurs i'd in a single-port mer n stores both instruction:\n\ntw R1,10(R2) i MEM WB\n\nAND R5,R7,R7 \" tx Mam\n\nNPTEL OnLine NATIONAL INSTMUTE OF\nQistrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "let us say we have a single port memory system that means I have a single memory system",
+    "start": 1043.4,
+    "end": 1050.2,
+    "ocr_text": "+ Illustration\nstructurs i'd in a single-port mer n stores both instruction:\n\ntw R1,10(R2) i MEM WB\n\nAND R5,R7,R7 \" tx Mam\n\nNPTEL OnLine NATIONAL INSTMUTE OF\nQistrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "that stores both instruction and data I do not have separate instruction cache and data cache",
+    "start": 1050.28,
+    "end": 1057.08,
+    "ocr_text": "+ Illustration\n\nStructura rd in a single-port memory system s both ins\n\nAND R5,R7,87 fr x\n\nNeTEL ONLINE NATIONAL INSTITUTE OF.\nCtirrineaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "and I have an example sequence of instruction let us say I have a load followed by a sequence",
+    "start": 1058.36,
+    "end": 1064.2,
+    "ocr_text": "+ Illustration\ns both instructions and data\n\nStructural hazard in a single-port memory system, which 5\n\ntw R1,10(R2) \" 1 MEM\n\nAND RS5,R7.R7 fr x\n\nNPTEL OntiNe NATIONAL INSTITUTE OF\nIT KHARAGPUR QtitrineantOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "of arithmetic and logic instructions. So, in the ideal case instruction execution will proceed like",
+    "start": 1064.2,
+    "end": 1071.0,
+    "ocr_text": "+ Illustration\ns both instructions and data\n\nStructural hazard in a single-port memory system, which 5\n\ntw R1,10(R2) \" 1 MEM\n\nAND RS5,R7.R7 fr x\n\nNPTEL OntiNe NATIONAL INSTITUTE OF\nIT KHARAGPUR QtitrineantOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "this but as I said this load instruction will be trying to access memory here do a load",
+    "start": 1071.08,
+    "end": 1083.72,
+    "ocr_text": "Mlustration\nStructural hazard in a single-port memory system, which stores both i\n\na ee\ntw R1,10(R2) i 10 wa\nAND RS,R7,87 ra x\n\nwere osune wouter"
+  },
+  {
+    "text": "and this end instruction will try to do the instruction fetch here in IF right. So, this will be a",
+    "start": 1084.92,
+    "end": 1094.44,
+    "ocr_text": "+ Illustration\n\nStructural hazard in a single-pe tem, which stores both instructions and\n\na\n\nAND R5,R7,R7 tx M we\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIT KHARAGPUR CtitrineaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "clash this will be a structural hazard. So, suppose we have not replicated the memory.",
+    "start": 1094.44,
+    "end": 1102.76,
+    "ocr_text": "+ Illustration\ny system, which stores both instruction:\n\nFe ES ST\ntw R1,10(R2) fr\n\nAND R5,R7.R7 fr tx M we\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nIIT KHARAGPUR Qtitrincanion courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "So, what is the solution I can insert a stall cycle here.",
+    "start": 1104.6,
+    "end": 1109.0,
+    "ocr_text": "+ Illustration.\n\nStructural ha, mmory system, which stores both instructi\n\ntw R1,10(R2)\n\nAND R5,R7,R7 > M we\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nITKHARAGPUR QiitrineaniOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "So, the control circuit the hardware will automatically detect that there is conflict",
+    "start": 1111.0,
+    "end": 1120.6,
+    "ocr_text": "+ Illustration.\nructural hazard in a single-port memo\n\na\n\ntw R2,20(R2)\n\nNATIONAL INSTITUTE OF\n\nNPTEL ONLINE\nTECHNOLOGY, MEGHALAYA\n\nNPKHARAGPUR QtitrincaniOn courses"
+  },
+  {
+    "text": "this instruction is trying to access memory this was a load instruction. So, you cannot do an",
+    "start": 1124.44,
+    "end": 1130.52,
+    "ocr_text": "stration\n\nructural hazard in a sing\n\ntw 2,10(R2) MEM we\n\nNPTEL ONLINE INSTITUTE OF\nQiitrineanion courses er\n\nIP KHARAGPUR"
+  },
+  {
+    "text": "instruction fetch here. So, it will automatically insert a stall cycle and it will resume the",
+    "start": 1130.52,
+    "end": 1137.32,
+    "ocr_text": "+ Illustration\n\nructural hazard in a single-port men\n\nh instructions and data\n\nts a ea ens ne]\n\ntw 2,10(R2) 1\n\nNPTEL OnE NATIONAL INSTITUTE OF\nTECHNOLOGY, MECHALAYA\n\nIT KHARAGPUR Qiitrineanion courses\n\n@@seorzainse el"
+  },
+  {
+    "text": "instruction fetch in the next cycle. So, the instructions that follow they will also incur",
+    "start": 1137.32,
+    "end": 1144.92,
+    "ocr_text": "+ Illustration\n\nructural hazard in a single-port me\n\nystem, which stores both instructio\n\ntw 2,10(R2)\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR QiirriricantOn courses TECHNOLOGY, MEGHALAYA\n\n@We ease"
+  },
+  {
+    "text": "a one cycle delay ok that is what I said that you stall an instruction and all instruction that",
+    "start": 1144.92,
+    "end": 1151.8,
+    "ocr_text": "+ Illustration\n\nructural hazard in a single-port me\n\nystem, which stores both instructio\n\ntw 2,10(R2)\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUT KHARAGPUR QiirriricantOn courses TECHNOLOGY, MEGHALAYA\n\n@We ease"
+  },
+  {
+    "text": "follow they will also be stalled by that equal number of cycles ok fine.",
+    "start": 1151.8,
+    "end": 1158.28,
+    "ocr_text": "+ Illustration\n\nea ES\n\ntw 2,10(R2)\n\nNPTEL ONLINE\nITKHARAGPUR CiirrinicaniOn courses\n\n@Meosakwepm"
+  },
+  {
+    "text": "So, here we show that how we can insert a stall cycle to eliminate this structural hazard.",
+    "start": 1163.8,
+    "end": 1169.72,
+    "ocr_text": "+ Illustration.\nwhich stores both instructio\n\nructural hazard in a single-p\n\ntw 2,10(R2) 10) MEM\n\nAND RS,R7,R7\n\nNPTEL ONLINE NaTIONA’\nTeenne\n\nITKHARAGPUR Ctitrinicanion couRses\n\n@We ote € Ge"
+  },
+  {
+    "text": "Now, let us work out an example simple example. So, we consider an instruction pipeline",
+    "start": 1170.92,
+    "end": 1177.16,
+    "ocr_text": "Example 1\n\n+ Consider an instruction pipeline with t\n\nData references constitute 35% of the instruction\nIdeal CPI ignoring structural hazard is 1.3.\n\nw much faster is the ideal machine without the memory structural haz:\nmachine with the hazard?"
+  },
+  {
+    "text": "where data references constitute 35 percent of the instruction which means load and stores.",
+    "start": 1178.04,
+    "end": 1184.44,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\n\nData references constitute 35% of the instructions\n= Ideal CPI ignoring structural hazard is 1.3.\n\nHow much faster is the ideal machine without the memory structural haz\nthe machine with the h"
+  },
+  {
+    "text": "So, out of all instructions 35 percent are load and stores and ideal CPI well ignoring structural",
+    "start": 1185.48,
+    "end": 1195.8,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following feature\n\nData references constitute 3 the instructions\n= Ideal CP! ignoring structural hazard is 1.3.\n\nHow much faster is the ideal machine without the memory structural hazard,\nthe machine with the hazard?"
+  },
+  {
+    "text": "hazard is 1.3. So, now the question is how much faster will be the ideal machine without the",
+    "start": 1195.8,
+    "end": 1204.44,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\n\nData references constitute 35% of the instructions\n— Ideal CPI ignoring, structural hazard is 1.3.\n\nHow much faster is the ideal machine without the memory structural ha\n\nthe Machine with the hazard?"
+  },
+  {
+    "text": "memory structural hazard that means means without hazard means I have already replicated i cache",
+    "start": 1204.44,
+    "end": 1211.8,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\n\nData references constitute 35% of the instructions\n— Ideal CPI ignoring, structural hazard is 1.3.\n\nHow much faster is the ideal machine without the memory structural ha\n\nthe Machine with the hazard?"
+  },
+  {
+    "text": "and decache let us say versus the machine with the hazard that means a single integrated memory",
+    "start": 1211.8,
+    "end": 1219.64,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\n\nData references constitute of the instructions\n— Ideal CP! ignoring, structural hazard is 1.3\nHow much faster is the ideal machine without the memory structural haz\n\nyp"
+  },
+  {
+    "text": "that stores both instruction and data. So, we use this expression that you worked out earlier.",
+    "start": 1219.64,
+    "end": 1228.04,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\n\nDat nce: 35% of the instruction\n= Ideal CPI ignoring structural hazard is 1.3.\n\nHow much faster is the ideal machine without the memory\nthe machine with the hazacd?\n\nmmanaceur RENHRENSE counses |\n\nTeen"
+  },
+  {
+    "text": "So, how we do it? For the ideal machine the ideal CPI is 1.3 ideal CPI is 1.3 and for the ideal",
+    "start": 1228.2,
+    "end": 1240.28,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\n\nData nces constitute 35% of the instructions\n= Ideal CPI ignoring structural hazard is 1.3.\nHow much faster is the ideal machine without the memory structural haz\nthe machine with the haz\n\nPipeline Depth\n\nSpeedup\ntall eyele"
+  },
+  {
+    "text": "machine there is no structural hazard. So, pipeline stall cycles per instruction will be 0",
+    "start": 1240.28,
+    "end": 1247.16,
+    "ocr_text": "Example 1\n\nData references constitute 35: ructions\n— Ideal CPI ignoring structural hazard ts 1.3.\nHow mucl faster is the ideal machine without the memory structural haz\nthe machine with the hazard?\nae Ideal CPI x Pipeline Depth\nIdeal CPI + Pipeline stall cycles 7 instruction,\n1.3 x Pipeline Depth\n13+0"
+  },
+  {
+    "text": "right and for the real machine real what will happen for all such data reference instruction",
+    "start": 1247.48,
+    "end": 1259.72,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\nData references constitute 35% of the instructions\n— Ideal CPI ignoring, structural hazard 4s 1.3.\n\nHow much faster is the ideal machine without the memory st\nthe machine with the hazard?\n\nPipeline Depth\n\nSpeedup\n\noT CPT tall eyele\nPipeline Depth\n3+ 0\n\nIT RHARAGPUR SerIReaHON courses\n\nTeenie"
+  },
+  {
+    "text": "there will be one cycle delay because of the stall. So, ideal CPI is 1.3 and pipeline stall",
+    "start": 1259.72,
+    "end": 1267.48,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\n\nData nces constitute 35% of the instructions\n— Ideal CP! ignoring structural hazard is 1.3\nHow much faster is the ideal machine without the memory structural hazard,\nthe machine with the hazard?\nIdeal CPI x Pipeline Depth\nSpeedup E\nSCP + Pir tall cycles / Instruction\nse 1.3 x Pipeline Depth\n1370\nPipeline Depth\n\nSpeedupyes\n34 035x1"
+  },
+  {
+    "text": "cycle per instruction it will happen 35 percent of the time and for each of that case there will",
+    "start": 1267.48,
+    "end": 1273.96,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\n\nData 35% of the instruction\n= Ideal CP! ignoring structural hazard is 1.3\nHow much faster is the ideal machine without the memory structural haz\nthe machine with the hazard?\n\n_—— Ideal CPI x Pipeline Depth\n\naT CPT + Pip tall cycles / Instruction\n1.3 x Pipeline Depth\n1370\nx Pipeline Depth\n\n23+ 035x1"
+  },
+  {
+    "text": "be one stall cycles insert it ok. So, if you just calculate this speed up",
+    "start": 1274.12,
+    "end": 1280.84,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\n\nData 35% of the instruction\n= Ideal CP! ignoring structural hazard is 1.3\nHow much faster is the ideal machine without the memory structural haz\nthe machine with the hazard?\n\n_—— Ideal CPI x Pipeline Depth\n\naT CPT + Pip tall cycles / Instruction\n1.3 x Pipeline Depth\n1370\nx Pipeline Depth\n\n23+ 035x1"
+  },
+  {
+    "text": "this becomes 1.6 this is actually cancels out this is 1.65 by 1.3 it is 1.27.",
+    "start": 1282.92,
+    "end": 1293.08,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following feature\nData references constitute 35% of the instructions\n— Ideal CPI ignoring, structural hazard 4s 1.3.\nHow much faster is the ideal machine without the memory structural ha\nthe machine with the hazard?\nstiaaun Ideal CPI x Pipeline Depth\nnT CPI + Pipeline stall cycles 7 instruction\n\n1.3 x Pipeline Depth\n\n“ 13-0\n\n1.3. x Pipeline Depth\n\n13403551\n\nNPTEL ONLINE NATION’\nUT KHARAGPUR Ctitrin@aTiOn couRses Feenwe"
+  },
+  {
+    "text": "So, the the ideal machine is 1.27 times faster than the real machine. So, this means that in",
+    "start": 1293.56,
+    "end": 1308.84,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the followir\nof the instruction:\n\n13.\n\nut the memory structural ha\n\nData ees constitute 3\n— Ideal CPI ignoring, structural hazard is\nHow much faster is the ideal machine witt\n\nthe machine with the hazard?\nIde Pipeline Depth\n\nSpeedup\njdeal CPI + Pipeline stall cycles / instruction\n\n1.3 x Pipeline Depth\nBoece x Pipeline Depth Speedup,\n13+ 035%\n\nNeTEL On\nfeenwe\n\nTIMARAGPUR SETIFReAHON courses"
+  },
+  {
+    "text": "reality whenever you have this kind of hazards your performance degrades there will be about",
+    "start": 1308.84,
+    "end": 1315.56,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\nData nces constitute 35% of the instruction\n— Ideal CPI ignoring structural hazard is 1.3.\nHow much faster is the ideal machine without the memory structural hazard, versus\nthe machine with the hazard?\nAnas Ideal CPI x Pipeline Depth\naTCPI + Pir Weyele\n1.3 x Pipeline Depth\n\n13+0 Speedup\n\nPipeline Depth speedup)\n\nNPTEL ONLINE NATIONA’\nUT KHARAGPUR Qtitrincarion courses Teenwe"
+  },
+  {
+    "text": "a 25 there will be about 27 percent degradation in the performance.",
+    "start": 1315.56,
+    "end": 1319.72,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\nData references constitute 35% of the instruction\n= Ideal CP! ignoring structural hazard is 1.3\n\nHow much faster is the ideal machine without the memory structural haz\nthe machine with the hazard?\n\ni Ideal CPI x Pipeline Depth\nSpeedup\n\njdeal CPI + Pipeline stall cycles / instruction\n\nseedup x Pipeline Depth\n1370 speedup,\nx Pipeline Depth Speedup,\n\n13+035x1\n\nNPTEL ONLINE NATIONA’\nIT KHARAGPUR CtitrineaniOn courses Feenwe"
+  },
+  {
+    "text": "Now, the question is why cancels remove structural hazards by inserting additional hardware",
+    "start": 1323.72,
+    "end": 1330.36,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\nData references constitute 35% of the instruction\n= Ideal CP! ignoring structural hazard is 1.3\n\nHow much faster is the ideal machine without the memory structural haz\nthe machine with the hazard?\n\ni Ideal CPI x Pipeline Depth\nSpeedup\n\njdeal CPI + Pipeline stall cycles / instruction\n\nseedup x Pipeline Depth\n1370 speedup,\nx Pipeline Depth Speedup,\n\n13+035x1\n\nNPTEL ONLINE NATIONA’\nIT KHARAGPUR CtitrineaniOn courses Feenwe"
+  },
+  {
+    "text": "since it is so important if it is if there is a structural hazard the performance drops.",
+    "start": 1330.36,
+    "end": 1336.12,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\nData references constitute 35% of the instruction\n= Ideal CP! ignoring structural hazard is 1.3\n\nHow much faster is the ideal machine without the memory structural haz\nthe machine with the hazard?\n\ni Ideal CPI x Pipeline Depth\nSpeedup\n\njdeal CPI + Pipeline stall cycles / instruction\n\nseedup x Pipeline Depth\n1370 speedup,\nx Pipeline Depth Speedup,\n\n13+035x1\n\nNPTEL ONLINE NATIONA’\nIT KHARAGPUR CtitrineaniOn courses Feenwe"
+  },
+  {
+    "text": "So, why cancels invest more? The question is how much is the cost to replicate the hardware?",
+    "start": 1336.12,
+    "end": 1345.48,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\nData references constitute 35% of the instruction\n= Ideal CP! ignoring structural hazard is 1.3\n\nHow much faster is the ideal machine without the memory structural haz\nthe machine with the hazard?\n\ni Ideal CPI x Pipeline Depth\nSpeedup\n\njdeal CPI + Pipeline stall cycles / instruction\n\nseedup x Pipeline Depth\n1370 speedup,\nx Pipeline Depth Speedup,\n\n13+035x1\n\nNPTEL ONLINE NATIONA’\nIT KHARAGPUR CtitrineaniOn courses Feenwe"
+  },
+  {
+    "text": "There are a few things like for example, i cache and decache as I said the example",
+    "start": 1346.12,
+    "end": 1351.56,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\nData references constitute 35% of the instruction\n= Ideal CP! ignoring structural hazard is 1.3\n\nHow much faster is the ideal machine without the memory structural haz\nthe machine with the hazard?\n\ni Ideal CPI x Pipeline Depth\nSpeedup\n\njdeal CPI + Pipeline stall cycles / instruction\n\nseedup x Pipeline Depth\n1370 speedup,\nx Pipeline Depth Speedup,\n\n13+035x1\n\nNPTEL ONLINE NATIONA’\nIT KHARAGPUR CtitrineaniOn courses Feenwe"
+  },
+  {
+    "text": "this you can possibly do without much increase in cost but there are a few things which you",
+    "start": 1352.76,
+    "end": 1361.56,
+    "ocr_text": "Example 1\n\nConsider an instruction pipeline with the following features\nData references constitute 35% of the instruction\n= Ideal CP! ignoring structural hazard is 1.3\n\nHow much faster is the ideal machine without the memory structural haz\nthe machine with the hazard?\n\ni Ideal CPI x Pipeline Depth\nSpeedup\n\njdeal CPI + Pipeline stall cycles / instruction\n\nseedup x Pipeline Depth\n1370 speedup,\nx Pipeline Depth Speedup,\n\n13+035x1\n\nNPTEL ONLINE NATIONA’\nIT KHARAGPUR CtitrineaniOn courses Feenwe"
+  },
+  {
+    "text": "possibly cannot replicate. So, to reduce cost of implementation sometimes structural hazards",
+    "start": 1361.56,
+    "end": 1368.52,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\npelining. all the functional units may be too costly\n\nHf structural hazards are not frequent, it may not be worth the effort and cost tc\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in the first level\n\nmain"
+  },
+  {
+    "text": "remain in certain cases. For instance, pipelining all the functional units may be too costly.",
+    "start": 1368.52,
+    "end": 1375.56,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\npelining. all the functional units may be too costly\n\nHf structural hazards are not frequent, it may not be worth the effort and cost tc\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in the first level\n\nmain"
+  },
+  {
+    "text": "For instance, the divider say the addition and subtraction and multiplication are relatively",
+    "start": 1376.2,
+    "end": 1383.24,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\npelining. all the functional units may be too costly\n\nHf structural hazards are not frequent, it may not be worth the effort and cost tc\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in the first level\n\nmain"
+  },
+  {
+    "text": "easier to implement in a pipeline but division is not division is more difficult right.",
+    "start": 1383.24,
+    "end": 1389.88,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\npelining. all the functional units may be too costly\n\nHf structural hazards are not frequent, it may not be worth the effort and cost tc\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in the first level\n\nmain"
+  },
+  {
+    "text": "So, that may be a case and third thing is that you can bank on amydel's law again.",
+    "start": 1390.6,
+    "end": 1398.68,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\npelining. all the functional units may be too costly\n\nHf structural hazards are not frequent, it may not be worth the effort and cost tc\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in the first level\n\nmain"
+  },
+  {
+    "text": "You see that how frequently such structural hazards scenarios occur.",
+    "start": 1400.04,
+    "end": 1405.0,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\npelining. all the functional units may be too costly\n\nHf structural hazards are not frequent, it may not be worth the effort and cost tc\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in the first level\n\nmain"
+  },
+  {
+    "text": "If you see that such structural hazards are not that frequent then you may avoid the effort",
+    "start": 1405.88,
+    "end": 1414.36,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\nPipelining all the functional units may be too costly\n\nHf structural hazards are not frequent, it may not be worth the effort and cost to\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in the first lev\n\nMain\nc Memory\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUTKHARAGPUR CiitrineaniOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "and cost further. You will see that well I find that division floating point division in a",
+    "start": 1414.36,
+    "end": 1421.56,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\nPipelining all the functional units may be too costly\n\nHf structural hazards are not frequent, it may not be worth the effort and cost to\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in the first lev\n\nMain\nc Memory\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUTKHARAGPUR CiitrineaniOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "program appears very rarely. So, let me not invest anything to improve that to remove that hazard",
+    "start": 1421.56,
+    "end": 1428.04,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\nPipelining all the functional units may be too costly\n\nHf structural hazards are not frequent, it may not be worth the effort and cost to\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in the first lev\n\nMain\nc Memory\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUTKHARAGPUR CiitrineaniOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "let that hazard remain. So, whenever there is a floating point division followed by another division",
+    "start": 1428.04,
+    "end": 1433.72,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\nPipelining all the functional units may be too costly\n\nHf structural hazards are not frequent, it may not be worth the effort and cost to\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in the first lev\n\nMain\nc Memory\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\nUTKHARAGPUR CiitrineaniOn courses TECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "let us tall cycle spin certain but for most of the scenarios such occurrences will not happen.",
+    "start": 1434.28,
+    "end": 1441.16,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\nDelining all the functional units may be too costly.\n\nIf structural hazards are not frequent, it may not be worth the effort and cost to\n\nMemory access structural hazard is quite freques\n\n— \"Makes use of separate instruction and data caches in the first lev\n\nmain"
+  },
+  {
+    "text": "So, we are trying to make the common case fast.",
+    "start": 1441.4,
+    "end": 1444.52,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\nDelining all the functional units may be too costly.\n\nIf structural hazards are not frequent, it may not be worth the effort and cost to\n\nMemory access structural hazard is quite freques\n\n— \"Makes use of separate instruction and data caches in the first lev\n\nmain"
+  },
+  {
+    "text": "But because memory access structural hazard is very frequent we replicate the hardware because",
+    "start": 1448.12,
+    "end": 1455.72,
+    "ocr_text": "Why structural hazards appear in real machines?\n\nTo reduce the cost of implementation,\nDelining all the functional units may be too costly.\n\nIf structural hazards are not frequent, it may not be worth the effort and cost to\n\nMemory access structural hazard is quite freques\n\n— \"Makes use of separate instruction and data caches in the first lev\n\nmain"
+  },
+  {
+    "text": "this is something we cannot compromise because if we use a single integrated cache for every memory",
+    "start": 1455.72,
+    "end": 1462.12,
+    "ocr_text": "hy structural hazards appear in real machines?\n\nb)\nBy)\n\nTo reduce the cost of implementation,\n\ntructural haz\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in\n\nNeTEL OnLine\n\nITKHARAGPUR Ctitrincanion courses\n\nworth the eff\n\nthe first lc\n\nmain\n\nNATIONAL INSTITUTE OF.\nTEEHNOLOCY, MECHALAYA"
+  },
+  {
+    "text": "access we may have to use a one-stall cycle that is too expensive fine.",
+    "start": 1462.12,
+    "end": 1467.96,
+    "ocr_text": "hy structural hazards appear in real machines?\n\nb)\nBy)\n\nTo reduce the cost of implementation,\n\ntructural haz\n\nMemory access structural hazard is quite frequent\n\n— Makes use of separate instruction and data caches in\n\nNeTEL OnLine\n\nITKHARAGPUR Ctitrincanion courses\n\nworth the eff\n\nthe first lc\n\nmain\n\nNATIONAL INSTITUTE OF.\nTEEHNOLOCY, MECHALAYA"
+  },
+  {
+    "text": "Now, let us come to data hazards data hazard means there is some dependency among the instructions.",
+    "start": 1470.68,
+    "end": 1479.08,
+    "ocr_text": "(b) Data Hazards\n\noccur due to data dependencies between instructions that are\nin variou ses of execution in the pipeline\n\nExample:\n\nADD R2ZRSRB IF 10 MEM WB.\n\nUnies proper precaution is taken, the SUB\n\ninstruction can fetch the wrong value of R2.\n\nmeuaracrur MEENA courses | Teena nea"
+  },
+  {
+    "text": "Let us say I have an add instruction which produces a result in R2.",
+    "start": 1479.88,
+    "end": 1484.6,
+    "ocr_text": "(b) Data Hazards\n\noccur due to data dependencies between instructions that are\nin various stages of execution in the pipeline.\n\nExample:\n\nADD R2RSRB IF 1D MEM WB\n\nUnies proper precaution is taken, the\n\ninstruction can fetch the wrong valuc of R2.\n\nNPTEL ONLINE"
+  },
+  {
+    "text": "There is a following instruction which uses the value of R2.",
+    "start": 1485.08,
+    "end": 1490.2,
+    "ocr_text": "(b) Data Hazards\n\nData hazards occur due to data dependencies between instructions that\nin various stages of execution in the pipeline\n\nExample:\n\nADD R2RSRB IF MEM WE.\n\nUnless proper precaution is taken, the SUB\ninstruction can fetch the wrong value of R2.\n\nNPTEL ONLINE NATIONA’\nQtitrintcaniOn courses Teenie"
+  },
+  {
+    "text": "So, unless you take proper precaution you see normally what happens normally this add instruction",
+    "start": 1492.28,
+    "end": 1498.36,
+    "ocr_text": "(b) Data Hazards\n\nData hazards occur due to data dependencies between instructions that\nin various stages of execution in the pipeline\n\nExample:\n\nADD R2RSRB IF MEM WE.\n\nUnless proper precaution is taken, the SUB\ninstruction can fetch the wrong value of R2.\n\nNPTEL ONLINE NATIONA’\nQtitrintcaniOn courses Teenie"
+  },
+  {
+    "text": "will be writing the value of R2 in WB write back stage and subtract instruction will be",
+    "start": 1498.92,
+    "end": 1507.32,
+    "ocr_text": "(b) Data Hazards\n\nData hazards occur due to data dependencies between instructions that\nin various stages of execution in the pipeline.\nExample:\n\nADD R2RS.RS IF MEM WB\n\nUnies proper precaution is taken, the SUB\n\ninstruction can fetch the wrong value of R2.\n\nNPTEL ONLINE"
+  },
+  {
+    "text": "prefetching all register operands in ID. So, it is trying to pre-fetch before the value has been",
+    "start": 1507.32,
+    "end": 1514.28,
+    "ocr_text": "(b) Data Hazards\n\nData hazards occur due to data dependencies betw tructions that are\nin various stages of execution in the pipeline.\n\nExample:\n\nADD R2RSRB IF 10 MEM WB\n\nUnies proper precaution is taken, the SUB\n\ninstruction can fetch the wrong value of R2.\n\nep"
+  },
+  {
+    "text": "written. So, if you do not take proper precaution this subtract instruction can fetch the old value",
+    "start": 1514.28,
+    "end": 1522.6,
+    "ocr_text": "(b) Data Hazards\n\nData hazards occur due to data dependencies betw tructions that are\nin various stages of execution in the pipeline.\n\nExample:\n\nADD R2RSRB IF 10 MEM WB\n\nUnies proper precaution is taken, the SUB\n\ninstruction can fetch the wrong value of R2.\n\nep"
+  },
+  {
+    "text": "of R2 not the latest one because R2 is written here and you are trying to read R2 in the ID phase",
+    "start": 1522.6,
+    "end": 1532.6,
+    "ocr_text": "(b) Data Hazards\n\nData hazards occur due to data dependencies between instructions that\nin variot ses of execution in the pipeline.\n\nExample:\n\nADD R2,RSRE IF MEM WE.\n\nUnless proper precaution is taken, thi\n\ninstruction can fetch the wrong val"
+  },
+  {
+    "text": "here it is earlier in time this is what data hazard means. So, apparently what it means",
+    "start": 1532.6,
+    "end": 1542.6,
+    "ocr_text": "(b) Data Hazards\n\nData hazards occur due to data dependencies between instructions that\nin various stages of execution in the pipeline\n\nExample: R2 written here\n\nADD RZRSRB IF 10 MEM We\n\nUnies proper precaution is taken, the SUB\ninstruction can fetch the wrong value of R2."
+  },
+  {
+    "text": "how what it shows is that you possibly have to insert two or more stall cycles because unless",
+    "start": 1542.6,
+    "end": 1551.88,
+    "ocr_text": "(b) Data Hazards\n\n+ Data hazards occur due to data dependencies between instructions that\nin varios ses of execution in the pipeline\n\n+ Example: R2 written here\n\nADD R2RSRB IF 10 MEM wal\n\ninstruction can fetch the wrong value of R2.\n\nee S proper precaution is taken, the SUB"
+  },
+  {
+    "text": "WB is complete you cannot use ID maybe this ID you have to shift here see registered read write",
+    "start": 1551.88,
+    "end": 1558.04,
+    "ocr_text": "(b) Data Hazards\n\nData hazards occur due to data dependencies between instructions that are\nin various stages of execution in the pipeline.\n\nExample: R2 written here\n\nADD R2RSRB IF x MEM WB\n\nUnies proper precaution is taken, the SUB\n\ninstruction ¢ h the wrong value of R2.\n\nNOTEL ONLINE NATIONA’\nQiirineaniOn courses Frenne\n\nie"
+  },
+  {
+    "text": "you can do parallely but at least you have to shift it here right. But you will see that we can do",
+    "start": 1558.04,
+    "end": 1562.92,
+    "ocr_text": "(b) Data Hazards\n\n+ Data ha: occur due to data dependencies between instructions that are\nin various stages of execution in the pipeline.\n\n+ Example: R2 written here\n\nADD R2RSRB IF x MEM WB\n\nUnless proper precaution is taken, the SUB\ninstruction can fetch the wrong value of R2.\n\nNPTEL ONLINE NATIONA’\nUTKHARAGPUR QtirrineaniOn courses Teanne"
+  },
+  {
+    "text": "better a NAV solution is by inserting stall cycles like is that after the subtraction is decoded",
+    "start": 1562.92,
+    "end": 1573.96,
+    "ocr_text": "(b) Data Hazards\n\n+ Data ha: occur due to data dependencies between instructions that are\nin various stages of execution in the pipeline.\n\n+ Example: R2 written here\n\nADD R2RSRB IF x MEM WB\n\nUnless proper precaution is taken, the SUB\ninstruction can fetch the wrong value of R2.\n\nNPTEL ONLINE NATIONA’\nUTKHARAGPUR QtirrineaniOn courses Teanne"
+  },
+  {
+    "text": "we see that here also we are using R2 same operand as the previous one. So, we will be waiting till",
+    "start": 1573.96,
+    "end": 1580.36,
+    "ocr_text": "ive solution by inserting stall.cycles\n= After the SUB instruction is decoded and the control unit determines that there é:\n\nlock cycles are wasted"
+  },
+  {
+    "text": "WB is completed insert stall cycles. So, in the NAV implementation three clock cycles stall cycles",
+    "start": 1580.36,
+    "end": 1589.0,
+    "ocr_text": "(b) Data Hazards\n\nData hazards occur due to data dependencies between instructions that\nin various stages of execution in the pipeline.\n\nExample: R2 written here\n\na\nADD R2R5RB IF 10 x MEM Wa\n\ninstruction can fetch the wrong value of R2.\n\n[ee s proper precaution is taken, the SUB"
+  },
+  {
+    "text": "will be used like this add the subtraction is fetched it is decoded. So, while decoding you find",
+    "start": 1589.4,
+    "end": 1598.68,
+    "ocr_text": "solution by inserting stall cycle\n\n‘er the SUB instruction is decoded and the control unit determine: there\n\nADD R2 MEM\n\nInste (442) st\n\nInste. (493) ut\n\nInstr. (144) ALL\n\nNPTEL ONLINE NATONA’\nQtitrineaniOn courses Teenne"
+  },
+  {
+    "text": "out that well R2 is here and already the earlier instruction has R2 a star gate. So, now you will",
+    "start": 1598.68,
+    "end": 1606.92,
+    "ocr_text": "ution by inserting stall cycle\n\n‘er the SUB instruction is decoded and the control unit determine: there\n\nADD RZASRS IF MEM\ninste. (142)\ninste. (143)\n\nInstr. (144)\n\nNPTEL ONLINE\n\nITKHARAGPUR Qtitrincanion courses"
+  },
+  {
+    "text": "have to three stall this will be converted into stall again two more stall you will have to repeat",
+    "start": 1606.92,
+    "end": 1614.84,
+    "ocr_text": "Naive solution by inserting stall cycles\n\n— After the SUB instruction is decoded and the control unit determines t\n\nthere i\n\n‘ADD\n\nNPTEL ONLINE NATIOND’\nNT KHARAGPUR CiitrineaniOn courses Fecnwe"
+  },
+  {
+    "text": "ID again here. So, all subsequent instructions will be facing those stalls right. So, they will",
+    "start": 1614.92,
+    "end": 1625.0,
+    "ocr_text": "Naive solution by inserting stall cycles\n\n— After the SUB instruction is decoded and the control unit determines t\n\nthere i\n\n‘ADD\n\nNPTEL ONLINE NATIOND’\nNT KHARAGPUR CiitrineaniOn courses Fecnwe"
+  },
+  {
+    "text": "all be delayed. So, three clock cycles are wasted but fortunately because of the simplicity of",
+    "start": 1625.0,
+    "end": 1638.36,
+    "ocr_text": "+ Naive solution by inserting stall cycle\n\n= After the SUB instruction Is decoded anc\n\nhe control unit determine: there\n\nADD RZRS.RS IF\ninste. (442)\nInstr. (443)\n\nInstr. (1a)\n\nNPTEL ONLINE NAnONA’\nNTKHARAGPUR QtirrincaniOn courses Teenne"
+  },
+  {
+    "text": "the instruction set we can reduce the number of stall cycles. So, how we can do that?",
+    "start": 1638.36,
+    "end": 1643.56,
+    "ocr_text": "How to reduce the number of stall cycl\n\nshall explore two methods that can be used together\nData forwarding / bypassing: By using additional hardware consisting of\nmultiplexers, the data required can be forwarded as soon as they are\nomputed, instead of waiting, for the result to be written into the register\nread and write can be carried out in the two halves of a clock cycle (reg\n\nrite in first half, and register read in second half)"
+  },
+  {
+    "text": "Well we shall explore two methods one is called data forwarding or bypassing and the second one",
+    "start": 1644.36,
+    "end": 1651.88,
+    "ocr_text": "How to reduce the number of stall cycl\n\nshall explore two methods that can be used together\nData forwarding / bypassing: By using additional hardware consisting of\nmultiplexers, the data required can be forwarded as soon as they are\nomputed, instead of waiting, for the result to be written into the register\nread and write can be carried out in the two halves of a clock cycle (reg\n\nrite in first half, and register read in second half)"
+  },
+  {
+    "text": "we have already seen concurrent register access this we have already seen. So, we are splitting a",
+    "start": 1651.88,
+    "end": 1657.4,
+    "ocr_text": "How to reduce the number of stall cycles?\n\n— We shall explore two methods that can be used together\n\na) Data forwarding / bypassing: By using additional hardware consisting of\nmultiplexers, the data required can be forwarded as soon as they are\ncomputed, instead of waiting for the result to be written into the registe\n\nb) Concurrent register access: By splitting a clock cycle into two halves, reg\n\nread and write can be carried out in the two halves of a clock cycle (ree\n\nwrite in first half, and register read in second half),"
+  },
+  {
+    "text": "clock setting in two halves register writing is done in the first half and reading in the second",
+    "start": 1657.4,
+    "end": 1662.6,
+    "ocr_text": "How to reduce the number of stall cycles?\n\n— We shall explore two methods that can be used together\na) Data forwarding / bypassing: By using additional hardware consisting of\nmultiplexers, the data required can be forwarded as soon as they\ncomputed, instead of waiting, for the result to be written into the rey\nb) Concurrent register access: By splitting a clock cycle into two halves, register\nread and write can be carried out in the two halves of a clock cycle (réeis\n\nwrite in first half, and register read in second half)"
+  },
+  {
+    "text": "half this we have already seen ok. But the second one is data forwarding and bypassing.",
+    "start": 1662.6,
+    "end": 1668.52,
+    "ocr_text": "How to reduce the number of stall cycles?\n\n— We shall explore two methods that can be used together\na) Data forwarding / bypassing: By using additional hardware consisting of\nmultiplexers, the data required can be forwarded as soon as they\ncomputed, instead of waiting, for the result to be written into the rey\nb) Concurrent register access: By splitting a clock cycle into two halves, register\nread and write can be carried out in the two halves of a clock cycle (réeis\n\nwrite in first half, and register read in second half)"
+  },
+  {
+    "text": "The idea is very simple see the first instruction which was generating the result that R2",
+    "start": 1668.84,
+    "end": 1676.44,
+    "ocr_text": "How to reduce the number of stall cycl\n\n— We shall explore two methods that can be used together\na) Data forwarding / bypassing: By using additional hardware consisting,\nmultiplexers, the data req@ired can be forwarded as soon as they\nomputed, instead of waiting for the result to be written into the r\nb) Concurrent register access: By splitting a clock cycle into two halves, reg\nread and write can be carried out in the two halves of a clock cycle (regis\n\nwrite in first half, and register read in second hall)."
+  },
+  {
+    "text": "was writing the result in WB. But if you look at the instruction execution process",
+    "start": 1677.48,
+    "end": 1685.72,
+    "ocr_text": "How to reduce the number of stall cycl\n\n— We shall explore two methods that can be used together\na) Data forwarding / bypassing: By using additional hardware consisting,\nmultiplexers, the data req@ired can be forwarded as soon as they\nomputed, instead of waiting for the result to be written into the r\nb) Concurrent register access: By splitting a clock cycle into two halves, reg\nread and write can be carried out in the two halves of a clock cycle (regis\n\nwrite in first half, and register read in second hall)."
+  },
+  {
+    "text": "the value of the result was already calculated at the end of EX because suppose it is an add",
+    "start": 1687.0,
+    "end": 1694.12,
+    "ocr_text": "How to reduce the number of stall cycl\n\n— We shall explore two methods that can be used together\na) Data forwarding / bypassing: By using additional hardware consisting,\nmultiplexers, the data req@ired can be forwarded as soon as they\nomputed, instead of waiting for the result to be written into the r\nb) Concurrent register access: By splitting a clock cycle into two halves, reg\nread and write can be carried out in the two halves of a clock cycle (regis\n\nwrite in first half, and register read in second hall)."
+  },
+  {
+    "text": "instruction the actual addition is carried out during EX right. But the value is written to the",
+    "start": 1694.36,
+    "end": 1700.6,
+    "ocr_text": "How to reduce the number of stall cycl\n\n— We shall explore two methods that can be used together\na) Data forwarding / bypassing: By using additional hardware consisting,\nmultiplexers, the data req@ired can be forwarded as soon as they\nomputed, instead of waiting for the result to be written into the r\nb) Concurrent register access: By splitting a clock cycle into two halves, reg\nread and write can be carried out in the two halves of a clock cycle (regis\n\nwrite in first half, and register read in second hall)."
+  },
+  {
+    "text": "register in WB. So, if we take the output of the ALU directly which is already calculated",
+    "start": 1700.6,
+    "end": 1709.08,
+    "ocr_text": "How to reduce the number of stall cycle\n\n— We shall explore two methods that can be used together\n\na) Data forwarding / bypassing. By using additional hardware consisting of\nmultiplexers, the data tequired can be forwarded as soon as they arc\nomputed, instead of waiting for the result to be written into the register\nb) Concurrent register access: By splitting a clock cycle into two halves, reg\nread and write can be carried out in the two halves of a clock cycle (reg\n\nrite in first half, and register read in second half),\n\nere ow TaN erUTE or"
+  },
+  {
+    "text": "and by using some additional multiplexer you forward that value to the next instruction",
+    "start": 1710.36,
+    "end": 1716.04,
+    "ocr_text": "How to reduce the number of stall cycle\n\n— We shall explore two methods that can be used together\n\na) Data forwarding / bypassing. By using additional hardware consisting of\nmultiplexers, the data tequired can be forwarded as soon as they arc\nomputed, instead of waiting for the result to be written into the register\nb) Concurrent register access: By splitting a clock cycle into two halves, reg\nread and write can be carried out in the two halves of a clock cycle (reg\n\nrite in first half, and register read in second half),\n\nere ow TaN erUTE or"
+  },
+  {
+    "text": "whenever you it needs it. So, maybe you will not have to wait for the WB stage you may get the value",
+    "start": 1716.12,
+    "end": 1725.0,
+    "ocr_text": "How to reduce the number of stall cycle\n\n— We shall explore two methods that can be used together\n\na) Data forwarding / bypassing. By using additional hardware consisting of\nmultiplexers, the data tequired can be forwarded as soon as they arc\nomputed, instead of waiting for the result to be written into the register\nb) Concurrent register access: By splitting a clock cycle into two halves, reg\nread and write can be carried out in the two halves of a clock cycle (reg\n\nrite in first half, and register read in second half),\n\nere ow TaN erUTE or"
+  },
+  {
+    "text": "earlier this is called data forwarding or bypassing by using additional hardware consisting of",
+    "start": 1725.0,
+    "end": 1733.32,
+    "ocr_text": "How to reduce the number of stall cycle\n\n— We shall explore two methods that can be used together\n\na) Data forwarding / bypassing. By using additional hardware consisting of\nmultiplexers, the data tequired can be forwarded as soon as they arc\nomputed, instead of waiting for the result to be written into the register\nb) Concurrent register access: By splitting a clock cycle into two halves, reg\nread and write can be carried out in the two halves of a clock cycle (reg\n\nrite in first half, and register read in second half),\n\nere ow TaN erUTE or"
+  },
+  {
+    "text": "multiplexers the data required can be forwarded as soon as they are computed instead of waiting for",
+    "start": 1733.32,
+    "end": 1741.64,
+    "ocr_text": "How to reduce the number of stall cycle\n\n— We shall explore two methods that can be used together\n\na) Data forwarding / bypassing. By using additional hardware consisting of\nmultiplexers, the data tequired can be forwarded as soon as they arc\nomputed, instead of waiting for the result to be written into the register\nb) Concurrent register access: By splitting a clock cycle into two halves, reg\nread and write can be carried out in the two halves of a clock cycle (reg\n\nrite in first half, and register read in second half),\n\nere ow TaN erUTE or"
+  },
+  {
+    "text": "the result to be written into the register ok fine. So, bypassing what is the idea then",
+    "start": 1741.72,
+    "end": 1751.8,
+    "ocr_text": "How to reduce the number of stall cycles?\n\nshall explore two methods that can be used together\n\nData forwarding / bypassing: By using additional hardware consisting of\n\nmultiplexers, the data required can be forwarded as soon as they are\n\nomputed, instead of waiting, for the result to be written into the register\nConcurrent register access: By splitting a clock cycle into two halves, reg\nread and write can be carried out in the two halves of a clock cycle (regis\nwrite in first half, and register read in second half)"
+  },
+  {
+    "text": "just as I have said that the result computed by the previous instruction is stored in some register",
+    "start": 1753.4,
+    "end": 1760.44,
+    "ocr_text": "Reducing Data Hazards u\n\nBasic idea:\n\ng Bypassing\n\nThe result computed by the previous instruction(s) is storedin some regist\nthin the data path (e.g. ALUOut)\n— Take the value directly from the 1 and forward it to the instructio\nrequiring the result\n\n+ Whatis required?\n\n= Additional data transfer paths are to be added in the data path.\n\nThe control unit identifies data depende and"
+  },
+  {
+    "text": "it is the just output of the ALU there is a register ALU out you recall. So, the value is there",
+    "start": 1760.44,
+    "end": 1767.32,
+    "ocr_text": "Reducing Data Hazards using Bypassing\n\nBasic idea:\nThe result computed by the previous instruction(s) is store\nwithin the data path (e.g. ALUOut)\nke thé value directly from the ¢ and forward it to the in:\nrequiring the result\nWhatis required?\n— Additional data transfer paths are to be added in the data path.\nThe control unit identifies data dependencies and selects the multiplexers in a.\nuitable way,\n\nIT RHARAGPUR SERTIFReAHON courses"
+  },
+  {
+    "text": "so you take the value directly from there do not wait till WB and follow it to the instruction",
+    "start": 1767.96,
+    "end": 1774.2,
+    "ocr_text": "Reducing Data Hazards using Bypassing\n\nBasic idea:\nThe result computed by the previous instruction(s) is store\nwithin the data path (e.g. ALUOut)\n\nke the value directly from the ¢ and forward it to th\nrequiring the result\n\nWhatis required?\n\n= Additional data transfer paths are to be added in the data path.\n\n© control unit identifies data dependencies and selects the mi\n\nNPTEL ONLINE\nQirineatiOn courses\n\nitable way\n\nNAnONA’\nTeenno"
+  },
+  {
+    "text": "that requiring that require the result. So, to do this you need some additional connections",
+    "start": 1774.2,
+    "end": 1782.52,
+    "ocr_text": "Reducing Data Hazards using Bypassing\n\nBasic idea:\nThe result computed by the previous instruction(s) is store\nwithin the data path (e.g. ALUOut)\n\nke the value directly from the ¢ and forward it to th\nrequiring the result\n\nWhatis required?\n\n= Additional data transfer paths are to be added in the data path.\n\n© control unit identifies data dependencies and selects the mi\n\nNPTEL ONLINE\nQirineatiOn courses\n\nitable way\n\nNAnONA’\nTeenno"
+  },
+  {
+    "text": "data transfer paths and some additional multiplexers. So, your control circuit also becomes a",
+    "start": 1782.52,
+    "end": 1790.92,
+    "ocr_text": "Reducing Data Hazards using Bypass\n\nBasic idea:\nThe result computed by the previous instruction(s) is store\nwithin the data path (e.g. ALUOut)\n\nke the value directly from the ¢ and forward it to th\nrequiring the result\n\nWhat is required?\n\n— Additional data transfer paths are to be added in the data path.\n\ning\n\nThe control unit identifies data dependencies and selects the multiplex\n\ney\""
+  },
+  {
+    "text": "little complex it will have to analyze the source and the source and destination registers",
+    "start": 1791.08,
+    "end": 1798.2,
+    "ocr_text": "Reducing Data Hazards using Bypassing\n\nBasic idea:\nithin the data path (e.g. ALUOut)\nket © directly from the reg and forward it to the instructio\nrequiring the result\nWhatis required?\nitional data transfer paths > be added in the data path\n\nThe control unit identifies data dependencies and selects the multiplex\n\n<p"
+  },
+  {
+    "text": "of the consecutive instructions and it will automatically means activate or deactivate",
+    "start": 1798.2,
+    "end": 1804.68,
+    "ocr_text": "Reducing Data Hazards using Bypassing\n\nBasic idea:\nithin the data path (e.g. ALUOut)\nket © directly from the reg and forward it to the instructio\nrequiring the result\nWhatis required?\nitional data transfer paths > be added in the data path\n\nThe control unit identifies data dependencies and selects the multiplex\n\n<p"
+  },
+  {
+    "text": "this kind of forwarding paths whenever required right. So, let us see let us take an example here",
+    "start": 1804.68,
+    "end": 1814.28,
+    "ocr_text": "ADD RA, RS, RG MEM WB\nADD R7, R2, RO fa 10 x | Mem we\n\nOR RIB, Ra, RS iT x mem wa\n\nNPTEL ONLINE NATIONAL INSTITUTE OF\n\nIP KHARAGPUR QiitrincaniOn courses TECHNOLOGY, MECHALAYA"
+  },
+  {
+    "text": "shows lot of data dependency like this add instruction generates R4 this R4 is used in all",
+    "start": 1815.24,
+    "end": 1822.76,
+    "ocr_text": "ADD PA, RS, RE MEM WE\n\nADD R7, R2, RS fa 10 x MEM owe\n\nOR R11, Ra, RS & Mem | we"
+  },
+  {
+    "text": "consecutive four instructions ok. So, there is a data dependency in all. So, WB",
+    "start": 1822.76,
+    "end": 1832.12,
+    "ocr_text": "ADD PA, RS, RE MEM WE\n\nADD R7, R2, RS fa 10 x MEM owe\n\nOR R11, Ra, RS & Mem | we"
+  },
+  {
+    "text": "say in the normal case the result will be written in WB, but this instructions are trying to read",
+    "start": 1832.12,
+    "end": 1841.4,
+    "ocr_text": "ADD Ra, RS, RG\nAD R7, R2, Ra\n\nOn R12, Ra, RS\n\nMEM WB\nfa 10 x MEM we\n\nNeTEL ONLINE\nCtitrineaniOn courses"
+  },
+  {
+    "text": "them here here and here. So, first instruction computes R4 which is required by all this subsequent",
+    "start": 1841.48,
+    "end": 1848.76,
+    "ocr_text": "ADD R4, RS, RE x MEM __ we.\nJT\n\nADD R7, R2, RE fa mem\n\nOR R12, Ra, RS i io e mem wa\n\n+ The first instruction computes R4, which is required by all the subsequent four\n\n+ The dependencies are depicted by red arrows (result written in WB, operand\n+ The last instruction (OR) is not affected by the data depend\n\nNeTEL OnuiNe\nQtitrineaniOn courses"
+  },
+  {
+    "text": "three instructions the dependencies are shown here, but the last instruction of course,",
+    "start": 1848.76,
+    "end": 1855.56,
+    "ocr_text": "ADD RARS.RE IF Mem 5s\n\nADD R7, R2, R fa 10) ex | mem\nOR 12, Ra, RS i ro) c mem | wa\n+ The first instruction compute hich is required by all the subsequent four\n\n= The dependencies are depicted by red arrows (result written in WB, operand\n\n+ The last instruction (OR) is not affected by the data depend\n\nNPTEL ONLINE NATIONS’\nUTKHARAGPUR CiitrineaniOn courses Teen"
+  },
+  {
+    "text": "it is using ID after WB. So, it is not affected. So, it is only the three consecutive instructions",
+    "start": 1855.56,
+    "end": 1863.0,
+    "ocr_text": "ADD RA, RS, RE MEM__, wi\n\nADD R7, R2, RS mem we\n\nOR R12, Ra, RS io &x mem wa\n+ The first instruction computes Ra, which is required by all the subsequent four\n+ The dependencies are depicted by red arrows (result written in WB, operand:\n\n+ The last instruction (OR) is not affected by the data\n\nNPTEL ONLINE NAnIONA’\nMTKHARAGPUR QiitrinicariOn courses Teenwo"
+  },
+  {
+    "text": "which need to be looked at. And so, now you see this this end instruction we have already solved",
+    "start": 1863.0,
+    "end": 1871.72,
+    "ocr_text": "ADD RA, RS, RE MEM__, wi\n\nADD R7, R2, RS mem we\n\nOR R12, Ra, RS io &x mem wa\n+ The first instruction computes Ra, which is required by all the subsequent four\n+ The dependencies are depicted by red arrows (result written in WB, operand:\n\n+ The last instruction (OR) is not affected by the data\n\nNPTEL ONLINE NAnIONA’\nMTKHARAGPUR QiitrinicariOn courses Teenwo"
+  },
+  {
+    "text": "this by splitting the register access. We are saying writing is done in the first half of the",
+    "start": 1871.72,
+    "end": 1878.2,
+    "ocr_text": "ADD RA, RS, RE MEM\n\nADD R7, R2, RS fa Mem wa\nOn R12, Ra, RS io ex MEM\n+ The first instruction computes R4, which is required by all the subsequent four\n\n+ The dependencies are depicted by red arrows (result written in WB, operand:\n\n+ The last instruction (OR) is not affected by the data dependency.\n\nNPTEL ONLINE NamIoNA’\nITKHARAGPUR QtitrineaniOn courses tenn"
+  },
+  {
+    "text": "clock cycle and reading is done in the second half of the clock cycle. So, this conflict is already",
+    "start": 1878.2,
+    "end": 1884.2,
+    "ocr_text": "ADD Ra, RS, RG iF MEM__, we.\nADD R7, R2, RS\nOn R12, Ra, i 1D mem\n\n+ The first instruction computes Ra, which is required by all the subsequent four\n\n+ The dependencies are depicted by red arrows (result written in WB, operat\n\n+ The last instruction (OR) is not affected by the data depend\n\nNPTEL ON\nIPKHARAGPUR QhitrinicantOn courses"
+  },
+  {
+    "text": "resolved. So, actually we are left with these two conflicts, but one thing you see it is possible",
+    "start": 1884.2,
+    "end": 1893.24,
+    "ocr_text": "ADD Ra, RS, RG iF MEM__, we.\nADD R7, R2, RS\nOn R12, Ra, i 1D mem\n\n+ The first instruction computes Ra, which is required by all the subsequent four\n\n+ The dependencies are depicted by red arrows (result written in WB, operat\n\n+ The last instruction (OR) is not affected by the data depend\n\nNPTEL ON\nIPKHARAGPUR QhitrinicantOn courses"
+  },
+  {
+    "text": "to remove these two conflicts also why because the first instruction is calculating R4 at in the",
+    "start": 1893.24,
+    "end": 1903.24,
+    "ocr_text": "a a\n\nADD Ra, RS, RG E 7\nADD R7, R2, RS fa Mem wa\nOn R12, Ra, RS 10 x mem wa\n\n+ The first instruction computes Ra, which is required by all the subsequent four\n\n+ The dependencies are depicted by red arrows (result written in WB, operand\n\n+ The last instruction (OR) is not affected by the data depend\n\nNPTEL ON NATIONA’\nUT KHARAGPUR QtitrinieantOn courses Teenie"
+  },
+  {
+    "text": "EX stage right the result the result is available here. So, so you need not have to wait till WB to be",
+    "start": 1903.24,
+    "end": 1912.92,
+    "ocr_text": "ee\n\nx MEM WB\n\nADD RS, RS, RE\n\nADD R7, R2, RS Mem we\nOn R11, Ra, RS 10 ex mem\n\n+ The first instruction computes R4, which is required by all the subsequent four\n= The dependencies are depicted by red arrows (result written in WB, operand:\n\n+ The last instruction (OR) is not affected by the data dependency\n\nNeTEL ONLINE\n\nITKHARAGPUR CtirrineaniOn courses"
+  },
+  {
+    "text": "written into R4 you can directly take from here and forward it to the EX stage here where the",
+    "start": 1912.92,
+    "end": 1919.24,
+    "ocr_text": "ADD RA. RS, RE 1D KG MEM we\n\nOR R12, Ra, 0 c mem\n\n+ The first instruction computes R4, which is required by all the subsequent four\n\n+ The dependencies are depicted by red arrows (result written in WB, operand:\n\n+ The ruction (OR) is not affected by the data depend\n\nNPTEL ONLINE NATIONS’\nUT KHARAGPUR QhitrineaniOn courses Teenwe"
+  },
+  {
+    "text": "subtract will be requiring it this add will be requiring it. So, from here you can forward it here",
+    "start": 1919.24,
+    "end": 1925.8,
+    "ocr_text": "tr\n\nADD RA, RS, RE =x MEM.\n\nADD R7, R2, RS fa mem wa\nOn R11, Ra, RS 0 x mem\n+ The first instruction computes R4, which is required by all the subsequent four\n\n= The dependencies are depicted by red arrows (result written in WB, operand\n\n+ The last instruction (OR) is not affected by the data dependency\n\nNPTEL ONLINE NaTIONA’\nMTKHARAGPUR QirincantOn courses Heenne"
+  },
+  {
+    "text": "or you can forward it here the idea is this. So, data forwarding means the value of R4 is actually",
+    "start": 1925.8,
+    "end": 1937.24,
+    "ocr_text": "ADD 3, RS, RE Ee we\n\nOR R12, Ra, RS i 10 ex MEM we\n\nction (ADD) finishea comp: \\¢ result at the end of EX (shown\nin RED), but is supposed to write into R4 only in WE.\n\nWe need to forward the result directly from the output of the ALU (in EX stage)\nto the appropriate ALU input registers of the following instruction:\n\nNPTEL nine NATIONA’\nQtitrineaniOn courses Teenwe"
+  },
+  {
+    "text": "getting calculated here and you are forwarding the value like this, but as I have said is that",
+    "start": 1937.32,
+    "end": 1946.04,
+    "ocr_text": "| _winstruction [| a [ 2] 3 [oa jos joe [7 fs | 5 |\nADD RA, RD, RE - > vem wa\n\nOR R11, Ra, RS\nwarding require\nfirst Instruction (ADD) finishé’ computi\nD), but is supposed to write into R4 only in WB.\nJirectly from the output of the ALU (in EX\n\nio x MEM we\n\nesult at the end of EX (sho!\n\nof the following instruction:\n\nto the appropriate ALU input register\n\nNPTEL ONLINE NamIONA’\nNT KHARAGPUR QiitrinicaniOn courses weenwe"
+  },
+  {
+    "text": "you need to forward only to the two consecutive instruction you do means you really do not need",
+    "start": 1946.04,
+    "end": 1955.56,
+    "ocr_text": "|_eeee a\nADD RA, RS, RE MEM WB\nSUB R3, Ra, RE fs 1D eK. MEM WB\nOn nat, name\na forwarding\n\n10 ex MEM we\n\nult at the end of EX (shown\n\n= We need to forward the result directly from the output of the ALU (in EX stage)\n\nto the appropriate ALU input registers of\n\nUT RHARAGPUR SEATInRCAHON courses"
+  },
+  {
+    "text": "beyond that right. So, we need to forward the result directly from the output of the ALU in the",
+    "start": 1955.56,
+    "end": 1963.24,
+    "ocr_text": "ADD R4, RS, RE MEM We\nSUB R3, RA, RE i 1D Tx. MEM — W6\n\nOR RII, Ra, RS io x MEM wa\nData forwarding rec\n= The first instruction (ADD) finishes computing the result at the end of EX (shown\nin RED), but is supposed to write into R4 only in WE.\nVe need to forward the result directly from the output of the ALU (in EX stage)\nto the appropriate ALU input registers of the following instructions.\n\nITKHARAGPUR SGarInReaHON courses"
+  },
+  {
+    "text": "EX stage to the appropriate ALU register of the following instruction. So, when the next instruction",
+    "start": 1963.48,
+    "end": 1969.8,
+    "ocr_text": "ADD R4, RS, RE MEM We\nSUB R3, RA, RE i 1D Tx. MEM — W6\n\nOR RII, Ra, RS io x MEM wa\nData forwarding rec\n= The first instruction (ADD) finishes computing the result at the end of EX (shown\nin RED), but is supposed to write into R4 only in WE.\nVe need to forward the result directly from the output of the ALU (in EX stage)\nto the appropriate ALU input registers of the following instructions.\n\nITKHARAGPUR SGarInReaHON courses"
+  },
+  {
+    "text": "entered the EX stage this instruction will already be in the MEM stage. So, from there the result",
+    "start": 1969.8,
+    "end": 1976.04,
+    "ocr_text": "i\nADD RA, RS, RE 1D MEM WB\n\nRK. MEM = WB\n\nOR Ria, Ra,RS io ex\n\nsult at the end of EX (sho!\n\nfirst instruction (ADD) finishes computi\n\nin RED), but is supposed to write into R4 only in WE.\nWe need to forward the result directly from the output of the ALU (in EX stage)\n\nto the appropriate ALU input registers of the following instruction:\n\nNPTEL ONLINE\nIr mARAGPUR, CtitrineaniOn courses"
+  },
+  {
+    "text": "has to be fed back to the input ok. So, something like that. So, how we can do that by using some",
+    "start": 1976.04,
+    "end": 1982.84,
+    "ocr_text": "ADD Ra, RS, RE MEM We.\n\nSUB R3, Ra, RS Tx... MEM\n\nOR Rua, Ra, RS\n\n& MEM we\na forwarding re:\n= The first instruction (ADD) finis he result at the c\nin RED), but is supposed te\n\nnd of EX (shown\n\n= We need to for m the output of the ALU (in EX stage)\n\nto the appr egisters of the following instructions.\n\nNeTeL ONLINE\nQiitrineanion courses"
+  },
+  {
+    "text": "multiplexer and additional parts and this already we have said earlier. So, by splitting",
+    "start": 1982.84,
+    "end": 1994.76,
+    "ocr_text": "ADD Ra, RS, RE MEM We.\n\nSUB R3, Ra, RS Tx... MEM\n\nOR Rua, Ra, RS\n\n& MEM we\na forwarding re:\n= The first instruction (ADD) finis he result at the c\nin RED), but is supposed te\n\nnd of EX (shown\n\n= We need to for m the output of the ALU (in EX stage)\n\nto the appr egisters of the following instructions.\n\nNeTeL ONLINE\nQiitrineanion courses"
+  },
+  {
+    "text": "register read right we have already avoided or reduced one dependency. So, in the NAV forwarding",
+    "start": 1994.76,
+    "end": 2003.56,
+    "ocr_text": "Redu g Data Hazard by Splitting Register Read/Write\n\n+ The data forwarding concept as discussed can solve the data hazards\nbetween ALU instructions.\njrable to reduce the number of instructions to be forwarded, since\nres special hard:\njuce this number to 2 by a conflict between the first and\nfourth (AND) instruction 3 accessed in the same cycle\n\nNeTEL ONLINE NATIONA’\nITKHARAGPUR. CtitrincaniOn courses Teen"
+  },
+  {
+    "text": "there was the requirement of forwarding three instruction, but if you split register read right",
+    "start": 2004.36,
+    "end": 2009.16,
+    "ocr_text": "Redu ig Data Hazard by Splitting Register Read/Write\n\n+ The data forwarding concept as discussed can solve the data hazards\nbetween ALU instructions.\n+ Itis desirable to reduce the number of instructions to be forwarded, since\neach level requires special hardware.\n— We can reduce this number to 2 siding the conflict between the first and\ne fourth (AND) instruction, B and ID are accessed in the cycle\n> perform register write (in WB) during the first half of the clock cycle, and the\n\nNPTEL OnLine NAnIONA’\nATPKHARAGPUR QtirineaniOn courses Feats"
+  },
+  {
+    "text": "we reduce it to two ok. This I have already discussed earlier in detail right. So, this I am skipping.",
+    "start": 2009.16,
+    "end": 2015.96,
+    "ocr_text": "Redu 1g Data Hazard by Splitting Register Read/Write\n\n+ The data forwarding concept as discussed can solve the data hazards\nbetween ALU instructions.\n+ Itis desirable to reduce the number of instructions to be forwarded, since\neach level requires special hardware.\n— We can reduce this numbe by avoiding the conflict between the first and\nfourth (AND) instruction, where WB and ID are accessed in the same cycle\n\nNOTEL ONLINE NATIONA’\nQiitrineantOn courses Teenno"
+  },
+  {
+    "text": "So, because of this register splitting thing this conflict has been avoided this is what I am saying",
+    "start": 2018.44,
+    "end": 2026.52,
+    "ocr_text": "ADD 4, RS, RO\nSUB R3, RA, RE\n\nOR RII, Ra, RS MEM wa\n\nUT RHARAGPUR SEATIFReAON courses"
+  },
+  {
+    "text": "by in a clock cycle by using right in the first step and read in the second half this conflict",
+    "start": 2026.52,
+    "end": 2031.96,
+    "ocr_text": "ADD RA, RS, RE\n\nSUB R3,R4, RE\n\nOR RII, Ra, RS\n\nNPTEL ONLINE\n\nITKHARAGPUR Coitrin@aniOn courses\n\nmem\n\nFeenwe\n\nwa"
+  },
+  {
+    "text": "we have already avoided. So, in the clock cycle right here read here. So, there is no conflict,",
+    "start": 2032.04,
+    "end": 2042.84,
+    "ocr_text": "ADD RA, RS, RE\n\nSUB R3,R4, RE\n\nOR RII, Ra, RS\n\nNPTEL ONLINE\n\nITKHARAGPUR Coitrin@aniOn courses\n\nmem\n\nFeenwe\n\nwa"
+  },
+  {
+    "text": "but for the others this is the hard this is the forwarding hardware we require.",
+    "start": 2044.36,
+    "end": 2049.0,
+    "ocr_text": "ADD R4, RS, RE\nSUB R3, RO, RE\n\nOR RBI, Ra, RS\n\nIT RARAGPUR SGrIFIeAHON courses\n\nmem\n\nwa"
+  },
+  {
+    "text": "This is the EX stage this is the ALU where the actual calculation is done. Normally the data input",
+    "start": 2050.28,
+    "end": 2057.56,
+    "ocr_text": "Data\nForwarding\nHardware\n\nOnly the ;\nrelevant parts Awuour\n\nDf the MIPS32\n\npipeline data\n\nIT RHARAGPUR SEATIFReAHON couRses ree"
+  },
+  {
+    "text": "of the ALU is coming from the earlier stage, but because of the forwarding we use some additional",
+    "start": 2057.56,
+    "end": 2064.2,
+    "ocr_text": "Data\nForwarding\n\nHardware\n\nrelevant parts ads\npfthe MIPS32 0B\n\npipeline data Imm.\n\npath is shown\n\nITKHARAGPUR SGrineanON courses\n\nNanONA’\nFeenwe"
+  },
+  {
+    "text": "connections from this ALU out from here either to this in because they do not know that which",
+    "start": 2064.2,
+    "end": 2073.48,
+    "ocr_text": "Data\nForwarding\n\nHardware\n\nrelevant parts ads\npfthe MIPS32 0B\n\npipeline data Imm.\n\npath is shown\n\nITKHARAGPUR SGrineanON courses\n\nNanONA’\nFeenwe"
+  },
+  {
+    "text": "operand will be requiring this may be the first operand or the second operand. Similarly,",
+    "start": 2073.48,
+    "end": 2078.44,
+    "ocr_text": "Data\nForwarding\nHardware\n\nrelevant parts Awwour\n\nDf the MIPS32\npipeline data\n\npath is shown\n\nNPTEL ONLINE NamIONA’\nIT KHARAGPUR Qiitrineanion courses Heenwe"
+  },
+  {
+    "text": "if there is a dependency of the second most instruction instruction will already be moved here.",
+    "start": 2079.64,
+    "end": 2084.76,
+    "ocr_text": "Data\nForwarding\nHardware\n\nOnly the ALUout\n\nbfthe MIPS32B\nPipeline data Imm.\n\npath is shown\n\nNPTEL ONLINE\nIPKHARAGPUR QtirrineatiOn courses\n\nuo\n\nFearne"
+  },
+  {
+    "text": "So, this ALU out is copied here this value also is getting fed back here or here.",
+    "start": 2085.32,
+    "end": 2091.64,
+    "ocr_text": "Data\nForwarding\n\nHardware\n\nOnly the sue\nDf the MIPS32\n\npipeline ¢\n\npath is shown\n\nIT RHARAGPUR SEInReAON courses rete"
+  },
+  {
+    "text": "Well here I am showing another feedback path also this will have required this will be required",
+    "start": 2094.76,
+    "end": 2100.12,
+    "ocr_text": "Data\nForwarding\n\nHardware\n\nOnly the sue\nDf the MIPS32\n\npipeline ¢\n\npath is shown\n\nIT RHARAGPUR SEInReAON courses rete"
+  },
+  {
+    "text": "for load instruction, but in the example I have not seen this yet, but this is the complete",
+    "start": 2100.12,
+    "end": 2105.32,
+    "ocr_text": "Data\nForwarding\nHardware\n\nOnly the ALUOut\n\nofthe MIPS32 iB\nPipeline data Imm.\n\npath is shown\n\nUT RHARAGPUR SEETIFReAHON courses\n\nNATIONA’\nTeenno"
+  },
+  {
+    "text": "forwarding hardware. So, for load instruction data will be read into the LMD this LMD value is also",
+    "start": 2105.4,
+    "end": 2115.48,
+    "ocr_text": "Data\nForwarding\n\nHardware\n\nOnly the aucel\nofthe MIPS32 0B\n\npipeline data mm.\n\npath is shown\n\nIT RARAGPUR SErrirkeaHON courses\n\nuv\n\nNATIONA’\nFeenwe"
+  },
+  {
+    "text": "forwarded. So, you see basically you need some some additional inputs to the multiplexer.",
+    "start": 2115.48,
+    "end": 2123.96,
+    "ocr_text": "Data\nForwarding\nHardware\n\nbfthe MIPS32 8\npipeline data Imm.\n\npath is shown\n\nUT RHARAGPUR SETFIeAHON courses\n\nTeen"
+  },
+  {
+    "text": "Earlier it was a 2 to 1 max now it has become a 5 to 1 max.",
+    "start": 2123.96,
+    "end": 2127.96,
+    "ocr_text": "Data\nForwarding\nHardware\n\nbfthe MIPS32 8\npipeline data Imm.\n\npath is shown\n\nUT RHARAGPUR SETFIeAHON courses\n\nTeen"
+  },
+  {
+    "text": "This is the actually this is forwarding hardware which I am talking about.",
+    "start": 2128.92,
+    "end": 2134.2,
+    "ocr_text": "Data\nForwarding\nHardware\n\nOnly the ALUOUE\n\nofthe MIPS32 0B\nPipeline data Imm.\n\npathis shown\n\nNPTEL ONLINE\nIPKHARAGPUR CiirrineaniOn courses\n\nTeenwe"
+  },
+  {
+    "text": "So, the first instruction which generates the result maybe it has come here now that partial",
+    "start": 2135.4,
+    "end": 2142.68,
+    "ocr_text": "Data\nForwarding\nHardware\n\nbfthe MIPS32B\nPipeline data mm.\n\npath is shown\n\nNPTEL ONLINE\nITKHARAGPUR Qiitrineanion courses\n\nTeenwe"
+  },
+  {
+    "text": "result is here the next instruction has come here and is trying to use that result you followed",
+    "start": 2142.68,
+    "end": 2148.12,
+    "ocr_text": "Data\nForwarding\nHardware\n\nbfthe MIPS32B\nPipeline data mm.\n\npath is shown\n\nNPTEL ONLINE\nITKHARAGPUR Qiitrineanion courses\n\nTeenwe"
+  },
+  {
+    "text": "it from here or the instruction generating result has come here the next to next instruction has reached",
+    "start": 2148.12,
+    "end": 2157.48,
+    "ocr_text": "Data\nForwarding\nHardware\n\nOnly the ALUOut\n\nofthe MIPS32 0B\nPipeline data Imm\n\npath is shown\n\nIT RHARAGPUR SGTrIneAHON courses\n\nFeenne"
+  },
+  {
+    "text": "so you followed it from here here ALU out just like that. So, all possible paths are shown.",
+    "start": 2158.44,
+    "end": 2168.44,
+    "ocr_text": "Data\nForwarding\n\nHardware\nOnly the ALUOut\nDf the MIPS32\n\npipeline data\n\npath is shown\n\nNPTEL ONLINE NaTIONA’\nUTP KHARAGPUR QtitrincaniOn courses Teenwe"
+  },
+  {
+    "text": "So, either you followed it from ALU out here ALU out here or for load instruction from LMD also",
+    "start": 2168.44,
+    "end": 2173.96,
+    "ocr_text": "Data\nForwarding\nHardware\n\nofthe MIPS32. iB\npipeline data Imm\n\npath is shown\n\nNPTEL ONLINE\nITKHARAGPUR CiitrineaniOn courses"
+  },
+  {
+    "text": "there is a path. So, with this way come to the end of this lecture what we have seen here is that",
+    "start": 2173.96,
+    "end": 2184.92,
+    "ocr_text": "Data\nForwarding\nHardware\n\nofthe MIPS32. iB\npipeline data Imm\n\npath is shown\n\nNPTEL ONLINE\nITKHARAGPUR CiitrineaniOn courses"
+  },
+  {
+    "text": "we had seen the the importance of handling and tackling hazards because they can cause a very",
+    "start": 2185.72,
+    "end": 2195.4,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "significant degradation in performance. We had looked at structural hazards and and mentioned",
+    "start": 2195.4,
+    "end": 2202.6,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "that structural hazards can be avoided by replicating resources no other way out.",
+    "start": 2202.6,
+    "end": 2206.52,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "So, wherever possible you can replicate. Then we looked at data hazards data hazards are",
+    "start": 2207.24,
+    "end": 2213.96,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "important and apparently without anything you are requiring three stall cycles for at least",
+    "start": 2213.96,
+    "end": 2220.12,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "the ALU instructions with data hazards. But what we saw is that using forwarding hardware and",
+    "start": 2220.12,
+    "end": 2227.56,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "by splitting the resist axis we are able to totally eliminate data hazard related stalls for ALU",
+    "start": 2227.56,
+    "end": 2239.24,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "instructions. In the next lecture we shall see that what will happen if there is a data hazard",
+    "start": 2239.24,
+    "end": 2247.72,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "for a load followed by an ALU instruction which uses the loaded value. So, there we shall see",
+    "start": 2247.72,
+    "end": 2254.68,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "that it is not possible to totally eliminate this stall cycle, but we can try to reduce it again.",
+    "start": 2255.24,
+    "end": 2261.4,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  },
+  {
+    "text": "So, this we shall discuss in the next lecture. Thank you.",
+    "start": 2261.4,
+    "end": 2271.4,
+    "ocr_text": "END OF LECTURE 55\n\nNATIONAL INSTITUTE OF\nTECHNOLOGY, MEGHALAYA"
+  }
+]

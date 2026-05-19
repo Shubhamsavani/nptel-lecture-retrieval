@@ -1,0 +1,1442 @@
+[
+  {
+    "text": "We will go to the next module where we will talk about regularization in auto encoders",
+    "start": 0.0,
+    "end": 18.24,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n)"
+  },
+  {
+    "text": "and we will talk about a motivation for doing that.",
+    "start": 18.24,
+    "end": 20.84,
+    "ocr_text": "Module 7.3: Regularization in autoencoders\n(Motivation)\n\n7015 (Deep Learn"
+  },
+  {
+    "text": "So poor generalization, so why do we need regularization?",
+    "start": 20.84,
+    "end": 24.52,
+    "ocr_text": "Module 7.3: Regularization in autoencoders\n(Motivation)\n\n7015 (Deep Learn"
+  },
+  {
+    "text": "People who have done the machine learning course or any equivalent course, why do we need",
+    "start": 24.52,
+    "end": 27.56,
+    "ocr_text": "Module 7.3: Regularization in autoencoders\n(Motivation)\n\n7015 (Deep Learn"
+  },
+  {
+    "text": "regularization?",
+    "start": 27.56,
+    "end": 28.56,
+    "ocr_text": "Rj\nwe\n\n©O©O00000>»\n\nW\n\nOOO O*\n\nMitesh M. Khapra ©S7015 (Deep Learning"
+  },
+  {
+    "text": "So wide or enable generalization right.",
+    "start": 29.12,
+    "end": 34.92,
+    "ocr_text": "Rj\nwe\n\n©O©O00000>»\n\nW\n\nOOO O*\n\nMitesh M. Khapra ©S7015 (Deep Learning"
+  },
+  {
+    "text": "Okay.",
+    "start": 34.92,
+    "end": 36.92,
+    "ocr_text": "Rj\nwe\n\n©O©O00000>»\n\nW\n\nOOO O*\n\nMitesh M. Khapra ©S7015 (Deep Learning"
+  },
+  {
+    "text": "Now in the case of an over complete auto encoder, what is likely?",
+    "start": 36.92,
+    "end": 42.4,
+    "ocr_text": "Ri\n\n@o0000:"
+  },
+  {
+    "text": "Overfitting is likely.",
+    "start": 42.4,
+    "end": 43.6,
+    "ocr_text": "Ri\n\n@o0000:"
+  },
+  {
+    "text": "Why is it so?",
+    "start": 43.6,
+    "end": 44.6,
+    "ocr_text": "Ri\n\n@o0000:"
+  },
+  {
+    "text": "Okay, what does what do you mean when you say generalization actually?",
+    "start": 44.6,
+    "end": 47.56,
+    "ocr_text": "Ri\n\n@o0000:"
+  },
+  {
+    "text": "Can you talk in terms of training time, test time and so on?",
+    "start": 47.56,
+    "end": 51.24,
+    "ocr_text": "@O00*\nwe\n\n©O0000O>»\n\nWw"
+  },
+  {
+    "text": "So generalization is essentially that you are training.",
+    "start": 51.24,
+    "end": 53.56,
+    "ocr_text": "@O00*\nwe\n\n©O0000O>»\n\nWw"
+  },
+  {
+    "text": "So remember that at training time, you are trying to solve an optimization problem where",
+    "start": 53.56,
+    "end": 58.6,
+    "ocr_text": "@O00*\nwe\n\n©O0000O>»\n\nWw"
+  },
+  {
+    "text": "you are looking only at the training data.",
+    "start": 58.6,
+    "end": 61.04,
+    "ocr_text": "CTOCTO\n\n000:"
+  },
+  {
+    "text": "So it is quite likely that you will drive the error to zero for the training data.",
+    "start": 61.04,
+    "end": 64.32,
+    "ocr_text": "CTOCTO\n\n000:"
+  },
+  {
+    "text": "That means you have learned perfectly everything for the training data, right.",
+    "start": 64.32,
+    "end": 69.08,
+    "ocr_text": "CTOCTO\n\n000:"
+  },
+  {
+    "text": "But now it is also possible that when I give you a new test instance which you are not",
+    "start": 69.08,
+    "end": 73.86,
+    "ocr_text": "@o0005:\n\nGloKoron"
+  },
+  {
+    "text": "seen during training, that means you are not seen this instance while doing the optimization.",
+    "start": 73.86,
+    "end": 79.0,
+    "ocr_text": "@o0005:\n\nGloKoron"
+  },
+  {
+    "text": "That means this instance did not contribute to your loss function.",
+    "start": 79.0,
+    "end": 81.8,
+    "ocr_text": "we\n\n©O©O0000O>»\n\nW"
+  },
+  {
+    "text": "Then it is very likely that when I give this instance, then you would get a non-zero",
+    "start": 82.52,
+    "end": 86.76,
+    "ocr_text": "we\n\n©O©O0000O>»\n\nW"
+  },
+  {
+    "text": "loss or a loss much higher than what you get for your training data.",
+    "start": 86.76,
+    "end": 89.84,
+    "ocr_text": "@o0seo\n\n€o00-"
+  },
+  {
+    "text": "Does that make sense?",
+    "start": 89.84,
+    "end": 90.84,
+    "ocr_text": "@o0seo\n\n€o00-"
+  },
+  {
+    "text": "Right.",
+    "start": 90.84,
+    "end": 91.84,
+    "ocr_text": "@o0seo\n\n€o00-"
+  },
+  {
+    "text": "That is what overfitting is and it leads to less generalization.",
+    "start": 91.84,
+    "end": 95.44,
+    "ocr_text": "@o0seo\n\n€o00-"
+  },
+  {
+    "text": "Your model should have generalized to unseen data but it cannot do this.",
+    "start": 95.44,
+    "end": 100.08,
+    "ocr_text": "Rj\n\n@O0000:"
+  },
+  {
+    "text": "One typical situation where generalization happens is if you have a dash number of parameters.",
+    "start": 100.08,
+    "end": 108.28,
+    "ocr_text": "Rj\n\n@O0000:"
+  },
+  {
+    "text": "So what did I ask actually?",
+    "start": 108.28,
+    "end": 110.8,
+    "ocr_text": "Ri\nw*\n\nXTirrT,\n\n©0500:"
+  },
+  {
+    "text": "No, okay.",
+    "start": 111.64,
+    "end": 112.4,
+    "ocr_text": "Ri\nw*\n\nXTirrT,\n\n©0500:"
+  },
+  {
+    "text": "If a case where overfitting would happen is when you have a dash number of parameters.",
+    "start": 112.4,
+    "end": 118.76,
+    "ocr_text": "Ri\nw*\n\nXTirrT,\n\n©0500:"
+  },
+  {
+    "text": "Large number of parameters, right.",
+    "start": 118.76,
+    "end": 122.2,
+    "ocr_text": "ye\n\nCOO000:\n\nV"
+  },
+  {
+    "text": "Now do you see why I am saying this?",
+    "start": 122.2,
+    "end": 126.08,
+    "ocr_text": "ye\n\nCOO000:\n\nV"
+  },
+  {
+    "text": "What is there on the slide and over complete autoencoder?",
+    "start": 126.08,
+    "end": 130.72,
+    "ocr_text": "i\n\nxX:\n\nye\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "What would it have?",
+    "start": 130.72,
+    "end": 132.8,
+    "ocr_text": "i\n\nxX:\n\nye\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "A large number of parameters.",
+    "start": 132.8,
+    "end": 134.04,
+    "ocr_text": "i\n\nxX:\n\nye\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "So what could it do overfitting?",
+    "start": 134.04,
+    "end": 136.84,
+    "ocr_text": "i\n\nxX:\n\nye\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "What do we do to avoid overfitting?",
+    "start": 136.84,
+    "end": 139.44,
+    "ocr_text": "i\n\nxX:\n\nye\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "Regularization, okay.",
+    "start": 139.44,
+    "end": 140.44,
+    "ocr_text": "i\n\nxX:\n\nye\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "So that is why we need regularization.",
+    "start": 140.44,
+    "end": 142.84,
+    "ocr_text": "iad\n\n©O0000>»\n\nW\n\nC000»"
+  },
+  {
+    "text": "I have still not told you why do we need an over complete autoencoder.",
+    "start": 142.84,
+    "end": 148.0,
+    "ocr_text": "iad\n\n©O0000>»\n\nW\n\nC000»"
+  },
+  {
+    "text": "Okay.",
+    "start": 148.0,
+    "end": 149.0,
+    "ocr_text": "iad\n\n©O0000>»\n\nW\n\nC000»"
+  },
+  {
+    "text": "Still that is a random variable.",
+    "start": 149.0,
+    "end": 150.0,
+    "ocr_text": "iad\n\n©O0000>»\n\nW\n\nC000»"
+  },
+  {
+    "text": "I still need to decide.",
+    "start": 150.0,
+    "end": 151.4,
+    "ocr_text": "iad\n\n©O0000>»\n\nW\n\nC000»"
+  },
+  {
+    "text": "But can this happen in an under complete autoencoder also?",
+    "start": 151.4,
+    "end": 154.76,
+    "ocr_text": "iad\n\n©O0000>»\n\nW\n\nC000»"
+  },
+  {
+    "text": "It can.",
+    "start": 154.76,
+    "end": 155.76,
+    "ocr_text": "iad\n\n©O0000>»\n\nW\n\nC000»"
+  },
+  {
+    "text": "Right.",
+    "start": 155.76,
+    "end": 156.76,
+    "ocr_text": "Rj\n1\n\nCOO00O0:\n\ni\n\nOOO O)*"
+  },
+  {
+    "text": "Because under complete autoencoder just says that your case is less than n.",
+    "start": 156.76,
+    "end": 159.76,
+    "ocr_text": "Rj\n1\n\nCOO00O0:\n\ni\n\nOOO O)*"
+  },
+  {
+    "text": "It does not say how much less it is.",
+    "start": 159.76,
+    "end": 161.76,
+    "ocr_text": "Rj\n1\n\nCOO00O0:\n\ni\n\nOOO O)*"
+  },
+  {
+    "text": "Right.",
+    "start": 161.76,
+    "end": 162.76,
+    "ocr_text": "Rj\n1\n\nCOO00O0:\n\ni\n\nOOO O)*"
+  },
+  {
+    "text": "So it should still have, and depending on the data that you are trying to model, it could",
+    "start": 162.76,
+    "end": 166.08,
+    "ocr_text": "Rj\n1\n\nCOO00O0:\n\ni\n\nOOO O)*"
+  },
+  {
+    "text": "still have a large number of parameters, right.",
+    "start": 166.08,
+    "end": 170.76,
+    "ocr_text": "i\n\nbe\n\nye\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "So for example, let us take an example for the under complete case.",
+    "start": 170.76,
+    "end": 176.8,
+    "ocr_text": "i\n\nbe\n\nye\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "Suppose you are doing image classification where you have a digit 3 at the center of the",
+    "start": 176.8,
+    "end": 181.96,
+    "ocr_text": "Ry\nwe\n\n©O0000O>»\n\nWwW"
+  },
+  {
+    "text": "image, okay.",
+    "start": 181.96,
+    "end": 183.24,
+    "ocr_text": "Ry\nwe\n\n©O0000O>»\n\nWwW"
+  },
+  {
+    "text": "And a lot of these are white spaces.",
+    "start": 183.24,
+    "end": 186.8,
+    "ocr_text": "Ry\nwe\n\n©O0000O>»\n\nWwW"
+  },
+  {
+    "text": "So what is the dimension?",
+    "start": 186.8,
+    "end": 187.8,
+    "ocr_text": "Ry\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "And suppose this is a 100 cross 100 image.",
+    "start": 187.8,
+    "end": 191.28,
+    "ocr_text": "Ry\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "What is the dimension of this image input?",
+    "start": 191.28,
+    "end": 193.6,
+    "ocr_text": "Ry\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "Normally if you cannot multiply 100 into 100, 10k, right.",
+    "start": 193.6,
+    "end": 198.4,
+    "ocr_text": "Ry\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "Of this, a lot of data is not important, right.",
+    "start": 198.4,
+    "end": 202.4,
+    "ocr_text": "Ri\n\nV*\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "So my n is 10k.",
+    "start": 202.4,
+    "end": 205.72,
+    "ocr_text": "Ri\n\nV*\n\nCOO00O0:\n\nV"
+  },
+  {
+    "text": "And at least by this thing that I have drawn, it looks like probably only 20% of that is",
+    "start": 205.72,
+    "end": 210.36,
+    "ocr_text": "Ry\nwe\n\nCOO00O0:\n0000"
+  },
+  {
+    "text": "what actually captures the digit.",
+    "start": 210.36,
+    "end": 212.88,
+    "ocr_text": "Ry\nwe\n\nCOO00O0:\n0000"
+  },
+  {
+    "text": "But now if I choose k to be equal to 1000, it might still be large for this application.",
+    "start": 212.88,
+    "end": 218.36,
+    "ocr_text": "Ry\nwe\n\nCOO00O0:\n0000"
+  },
+  {
+    "text": "So I am using an under complete autoencoder.",
+    "start": 218.36,
+    "end": 221.0,
+    "ocr_text": "Ry\nwe\n\n©O0000O>»\n\nW\n\nOOO O*"
+  },
+  {
+    "text": "But it could still be a situation that my under complete is still having a large number",
+    "start": 221.0,
+    "end": 224.6,
+    "ocr_text": "Ry\nwe\n\n©O0000O>»\n\nW\n\nOOO O*"
+  },
+  {
+    "text": "of parameters.",
+    "start": 224.6,
+    "end": 225.6,
+    "ocr_text": "Ry\nwe\n\n©O0000O>»\n\nW\n\nOOO O*"
+  },
+  {
+    "text": "All of you get this intuition.",
+    "start": 225.6,
+    "end": 226.96,
+    "ocr_text": "@S0S55:\n\n000:"
+  },
+  {
+    "text": "It is a very weird example, but still do you get the intuition?",
+    "start": 226.96,
+    "end": 230.72,
+    "ocr_text": "@S0S55:\n\n000:"
+  },
+  {
+    "text": "You could have a very high dimensional input and you might think you are shrinking it a",
+    "start": 230.72,
+    "end": 234.08,
+    "ocr_text": "@S0S55:\n\n000:"
+  },
+  {
+    "text": "lot.",
+    "start": 234.08,
+    "end": 235.08,
+    "ocr_text": "@S0S55:\n\n000:"
+  },
+  {
+    "text": "But there is so much redundancy in your input that even that shrinking still leads to a large",
+    "start": 235.08,
+    "end": 238.44,
+    "ocr_text": "Rj\n\n50000\n© Ww"
+  },
+  {
+    "text": "number of parameters and you could still over fit.",
+    "start": 238.44,
+    "end": 241.08,
+    "ocr_text": "Rj\n\n50000\n© Ww"
+  },
+  {
+    "text": "Everyone gets the idea.",
+    "start": 241.08,
+    "end": 242.68,
+    "ocr_text": "Rj\n\n50000\n© Ww"
+  },
+  {
+    "text": "Therefore even for an under complete autoencoder, you could still need regularization, right,",
+    "start": 242.68,
+    "end": 248.56,
+    "ocr_text": "Rj\n\n50000\n© Ww"
+  },
+  {
+    "text": "okay.",
+    "start": 248.56,
+    "end": 249.56,
+    "ocr_text": "@O60*\nwe\n\nae"
+  },
+  {
+    "text": "So fine.",
+    "start": 249.56,
+    "end": 250.56,
+    "ocr_text": "@O60*\nwe\n\nae"
+  },
+  {
+    "text": "So in the over complete case, of course the model can simply learn to copy.",
+    "start": 250.56,
+    "end": 256.8,
+    "ocr_text": "@O60*\nwe\n\nae"
+  },
+  {
+    "text": "We have seen that and that is why we need to introduce generalization, right.",
+    "start": 256.8,
+    "end": 260.56,
+    "ocr_text": "e@ While poor generalization could hap-\nRy pen even in undercomplete autoen-\ncoders it is an even more serious prob-\nlem for overcomplete auto encoders\n\ne Here, (as stated earlier) the model\n\ncan simply learn to copy x; to h and\nthen h to &\n\ne@ To avoid poor gencralization, we need\nto introduce regularization"
+  },
+  {
+    "text": "Now what is the simplest, or sorry, we need to introduce regularization.",
+    "start": 260.56,
+    "end": 265.0,
+    "ocr_text": "e@ While poor generalization could hap-\nRy pen even in undercomplete autoen-\ncoders it is an even more serious prob-\nlem for overcomplete auto encoders\n\ne Here, (as stated earlier) the model\n\ncan simply learn to copy x; to h and\nthen h to &\n\ne@ To avoid poor gencralization, we need\nto introduce regularization"
+  },
+  {
+    "text": "What is the simplest regularization technique that you know?",
+    "start": 265.0,
+    "end": 267.2,
+    "ocr_text": "e@ While poor generalization could hap-\nRy pen even in undercomplete autoen-\ncoders it is an even more serious prob-\nlem for overcomplete auto encoders\n\ne Here, (as stated earlier) the model\n\ncan simply learn to copy x; to h and\nthen h to &\n\ne@ To avoid poor gencralization, we need\nto introduce regularization"
+  },
+  {
+    "text": "Perhaps that is not the simplest.",
+    "start": 267.2,
+    "end": 269.44,
+    "ocr_text": "While poor generalization could hap-\npen even in undercomplete autoen-\ncoders it is an even more serious prob-\nlem for overcomplete auto encoders\nHere, (as stated earlier) the model\ncan simply learn to copy x; to h and\nthen h to &}\n\nTo avoid poor generalization, we need\nto introduce regularization"
+  },
+  {
+    "text": "L2 regularization, okay.",
+    "start": 269.44,
+    "end": 273.16,
+    "ocr_text": "While poor generalization could hap-\npen even in undercomplete autoen-\ncoders it is an even more serious prob-\nlem for overcomplete auto encoders\nHere, (as stated earlier) the model\ncan simply learn to copy x; to h and\nthen h to &}\n\nTo avoid poor generalization, we need\nto introduce regularization"
+  },
+  {
+    "text": "And you see why I say that is the simplest.",
+    "start": 273.16,
+    "end": 275.44,
+    "ocr_text": "While poor generalization could hap-\npen even in undercomplete autoen-\ncoders it is an even more serious prob-\nlem for overcomplete auto encoders\nHere, (as stated earlier) the model\ncan simply learn to copy x; to h and\nthen h to &}\n\nTo avoid poor generalization, we need\nto introduce regularization"
+  },
+  {
+    "text": "We can take the derivative, okay.",
+    "start": 275.44,
+    "end": 276.44,
+    "ocr_text": "e While poor generalization could hap-\nRy pen even in undercomplete autoen-\ncoders it is an even more serious prob-\n\nre\nW lem for overcomplete auto encoders\n\n©O00000\n\nHere, (as stated earlier) the model\n\n>\ni=)\neo\n\ncan simply learn to copy x; to h and\nthen h to &\n\ne@ To avoid poor gencralization, we need\nto introduce regularization"
+  },
+  {
+    "text": "For those if you do not get it, do not worry, we will get to it.",
+    "start": 276.44,
+    "end": 279.0,
+    "ocr_text": "e While poor generalization could hap-\nRy pen even in undercomplete autoen-\ncoders it is an even more serious prob-\n\nre\nW lem for overcomplete auto encoders\n\n©O00000\n\nHere, (as stated earlier) the model\n\n>\ni=)\neo\n\ncan simply learn to copy x; to h and\nthen h to &\n\ne@ To avoid poor gencralization, we need\nto introduce regularization"
+  },
+  {
+    "text": "Or if you do not get to it, do not worry.",
+    "start": 279.16,
+    "end": 281.44,
+    "ocr_text": "e While poor generalization could hap-\nRy pen even in undercomplete autoen-\ncoders it is an even more serious prob-\n\nre\nW lem for overcomplete auto encoders\n\n©O00000\n\nHere, (as stated earlier) the model\n\n>\ni=)\neo\n\ncan simply learn to copy x; to h and\nthen h to &\n\ne@ To avoid poor gencralization, we need\nto introduce regularization"
+  },
+  {
+    "text": "So okay.",
+    "start": 281.44,
+    "end": 283.24,
+    "ocr_text": "e While poor generalization could hap-\nRy pen even in undercomplete autoen-\ncoders it is an even more serious prob-\n\nre\nW lem for overcomplete auto encoders\n\n©O00000\n\nHere, (as stated earlier) the model\n\n>\ni=)\neo\n\ncan simply learn to copy x; to h and\nthen h to &\n\ne@ To avoid poor gencralization, we need\nto introduce regularization"
+  },
+  {
+    "text": "So the simplest solution is to add the L2 regularization term to the objective function.",
+    "start": 283.24,
+    "end": 287.8,
+    "ocr_text": "e While poor generalization could hap-\nRy pen even in undercomplete autoen-\ncoders it is an even more serious prob-\n\nre\nW lem for overcomplete auto encoders\n\n©O00000\n\nHere, (as stated earlier) the model\n\n>\ni=)\neo\n\ncan simply learn to copy x; to h and\nthen h to &\n\ne@ To avoid poor gencralization, we need\nto introduce regularization"
+  },
+  {
+    "text": "So this was my objective function.",
+    "start": 287.8,
+    "end": 289.4,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* —_———S—\n\n©0O0000»\n\n5 (Deep"
+  },
+  {
+    "text": "I wanted to minimize the squared error loss, okay.",
+    "start": 289.4,
+    "end": 292.76,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* —_———S—\n\n©0O0000»\n\n5 (Deep"
+  },
+  {
+    "text": "I have added a term to this.",
+    "start": 292.76,
+    "end": 296.44,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* —_———S—\n\n©0O0000»\n\n5 (Deep"
+  },
+  {
+    "text": "What does this term do?",
+    "start": 296.44,
+    "end": 298.08,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction\n\nw* _————_——\n\nBi(DeEp"
+  },
+  {
+    "text": "What is it doing?",
+    "start": 298.08,
+    "end": 299.08,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction\n\nw* _————_——\n\nBi(DeEp"
+  },
+  {
+    "text": "First of all, tell me what is this quantity?",
+    "start": 299.08,
+    "end": 301.92,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction\n\nw* _————_——\n\nBi(DeEp"
+  },
+  {
+    "text": "Titizer.",
+    "start": 301.92,
+    "end": 302.92,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction\n\nw* _————_——\n\nBi(DeEp"
+  },
+  {
+    "text": "All the parameters that you have, right.",
+    "start": 302.92,
+    "end": 305.8,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction\n\nw* _————_——\n\nBi(DeEp"
+  },
+  {
+    "text": "And I am assuming that you have just put it into a large vector.",
+    "start": 305.8,
+    "end": 309.6,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* es\n\nmin\n\n© OOOO ©)» sa bE Fy — 0) + AMOI?\n\n1 j=l _——_\n\nW Tt\n\nOOO"
+  },
+  {
+    "text": "And I am taking the L2 norm of that vector, right.",
+    "start": 309.6,
+    "end": 312.2,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* es\n\nmin\n\n© OOOO ©)» sa bE Fy — 0) + AMOI?\n\n1 j=l _——_\n\nW Tt\n\nOOO"
+  },
+  {
+    "text": "So even you do, you have those matrices.",
+    "start": 312.2,
+    "end": 313.84,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* es\n\nmin\n\n© OOOO ©)» sa bE Fy — 0) + AMOI?\n\n1 j=l _——_\n\nW Tt\n\nOOO"
+  },
+  {
+    "text": "I am just flattening them all out and putting them into a large vector called theta, right.",
+    "start": 313.84,
+    "end": 318.6,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* es\n\nmin\n\n© OOOO ©)» sa bE Fy — 0) + AMOI?\n\n1 j=l _——_\n\nW Tt\n\nOOO"
+  },
+  {
+    "text": "So what is happening here?",
+    "start": 318.6,
+    "end": 320.84,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction __\nWw* ——\n1 m n\n: ‘ 2 2\nmin — Bij — tij)7+AllO\ni=1 j= =\n\n1M. Khapra"
+  },
+  {
+    "text": "I am not allowing my weights to shrink or grow.",
+    "start": 320.84,
+    "end": 323.92,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction __\nWw* ——\n1 m n\n: ‘ 2 2\nmin — Bij — tij)7+AllO\ni=1 j= =\n\n1M. Khapra"
+  },
+  {
+    "text": "Grow.",
+    "start": 323.92,
+    "end": 324.92,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction __\nWw* ——\n1 m n\n: ‘ 2 2\nmin — Bij — tij)7+AllO\ni=1 j= =\n\n1M. Khapra"
+  },
+  {
+    "text": "Grow.",
+    "start": 324.92,
+    "end": 325.92,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction __\nWw* ——\n1 m n\n: ‘ 2 2\nmin — Bij — tij)7+AllO\ni=1 j= =\n\n1M. Khapra"
+  },
+  {
+    "text": "Because if my weights are very large, what would happen?",
+    "start": 325.92,
+    "end": 328.56,
+    "ocr_text": "e The simplest solution is to add a Ly-\nregularization term to the objective\nfunction\nwt -\n\nmin\n\nmin SS — 1) 4 Ala\n0,w,w* bse M \\&\n\n{. Khapra\n\nning) : Leetur"
+  },
+  {
+    "text": "Grow.",
+    "start": 328.56,
+    "end": 329.56,
+    "ocr_text": "e The simplest solution is to add a Ly-\nregularization term to the objective\nfunction\nwt -\n\nmin\n\nmin SS — 1) 4 Ala\n0,w,w* bse M \\&\n\n{. Khapra\n\nning) : Leetur"
+  },
+  {
+    "text": "This quantity would grow.",
+    "start": 329.56,
+    "end": 331.6,
+    "ocr_text": "e The simplest solution is to add a Ly-\nregularization term to the objective\nfunction\nwt -\n\nmin\n\nmin SS — 1) 4 Ala\n0,w,w* bse M \\&\n\n{. Khapra\n\nning) : Leetur"
+  },
+  {
+    "text": "So then I cannot really minimize this as effectively as I want, right.",
+    "start": 331.6,
+    "end": 336.96,
+    "ocr_text": "e The simplest solution is to add a Ly-\nregularization term to the objective\nfunction\nwt -\n\nmin\n\nmin SS — 1) 4 Ala\n0,w,w* bse M \\&\n\n{. Khapra\n\nning) : Leetur"
+  },
+  {
+    "text": "Why this makes sense?",
+    "start": 336.96,
+    "end": 338.28,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfinetzon a\nW* —-\nmin a aa\nmir -2 \\\\|O\n© OOOO O)» . BQAS SI dO\nu —\n\n1M. Khapra ©7015 (Deep Learning"
+  },
+  {
+    "text": "How many if you know why this makes sense?",
+    "start": 338.28,
+    "end": 341.12,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfinetzon a\nW* —-\nmin a aa\nmir -2 \\\\|O\n© OOOO O)» . BQAS SI dO\nu —\n\n1M. Khapra ©7015 (Deep Learning"
+  },
+  {
+    "text": "So I am not preventing the weights to go to zero, okay.",
+    "start": 341.12,
+    "end": 344.96,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfinetzon a\nW* —-\nmin a aa\nmir -2 \\\\|O\n© OOOO O)» . BQAS SI dO\nu —\n\n1M. Khapra ©7015 (Deep Learning"
+  },
+  {
+    "text": "So we will see this in more detail in the next lecture.",
+    "start": 344.96,
+    "end": 348.04,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfinetzon a\nW* —-\nmin a aa\nmir -2 \\\\|O\n© OOOO O)» . BQAS SI dO\nu —\n\n1M. Khapra ©7015 (Deep Learning"
+  },
+  {
+    "text": "This is again a basic lecture on bias, variance and regularization and so on.",
+    "start": 348.04,
+    "end": 352.6,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nregularization term to the objective\nfineon\n\nS\n\neis Sey — %4j) ona Cae\nOwe Dye ™M 1"
+  },
+  {
+    "text": "So we will try to arrive at a more reasonable answer for this.",
+    "start": 352.6,
+    "end": 355.52,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nregularization term to the objective\nfineon\n\nS\n\neis Sey — %4j) ona Cae\nOwe Dye ™M 1"
+  },
+  {
+    "text": "For now, just see that I am putting some constraints on the weights.",
+    "start": 355.52,
+    "end": 358.4,
+    "ocr_text": "iad\n\n©O0000O>»\n\ne The simplest solution is to add a Ly-\nregularization term to the objective\nfanetxon\n\n> S\n\nmin (447 — 2 A\\\\0\n% —\n\n7015 (Deep Learning"
+  },
+  {
+    "text": "So effectively when I am doing gradient descent, I am not allowing the weights to take very",
+    "start": 358.4,
+    "end": 362.44,
+    "ocr_text": "iad\n\n©O0000O>»\n\ne The simplest solution is to add a Ly-\nregularization term to the objective\nfanetxon\n\n> S\n\nmin (447 — 2 A\\\\0\n% —\n\n7015 (Deep Learning"
+  },
+  {
+    "text": "large values.",
+    "start": 362.44,
+    "end": 363.6,
+    "ocr_text": "iad\n\n©O0000O>»\n\ne The simplest solution is to add a Ly-\nregularization term to the objective\nfanetxon\n\n> S\n\nmin (447 — 2 A\\\\0\n% —\n\n7015 (Deep Learning"
+  },
+  {
+    "text": "I am trying to restrict them to a certain area.",
+    "start": 363.6,
+    "end": 366.0,
+    "ocr_text": "iad\n\n©O0000O>»\n\ne The simplest solution is to add a Ly-\nregularization term to the objective\nfanetxon\n\n> S\n\nmin (447 — 2 A\\\\0\n% —\n\n7015 (Deep Learning"
+  },
+  {
+    "text": "So I am not allowing to it to explore the entire W, B plane, but trying to restrict it to",
+    "start": 366.0,
+    "end": 371.68,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\nfinefion _\n\nGis\nOnde b,c ™M\n\nw*\n\n(Deep Learning"
+  },
+  {
+    "text": "smaller values of W, how many if you get this intuitive explanation, okay.",
+    "start": 371.68,
+    "end": 375.96,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\nfinefion _\n\nGis\nOnde b,c ™M\n\nw*\n\n(Deep Learning"
+  },
+  {
+    "text": "So in other words, what I am trying to do is that I am not giving it enough freedom so",
+    "start": 375.96,
+    "end": 381.12,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRj regularization term to the objective\nfunction _\nw* —\nm n ~\nAmin —f. A\\IA||?\n©OO0000O: ig Bawehe. m ona Cae ;\ni=l j=l :\nW\n\nOOO O*\n\n1. Khapra ©S7015 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "that it can completely drive the error on the training data to zero.",
+    "start": 381.12,
+    "end": 385.4,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRj regularization term to the objective\nfunction _\nw* —\nm n ~\nAmin —f. A\\IA||?\n©OO0000O: ig Bawehe. m ona Cae ;\ni=l j=l :\nW\n\nOOO O*\n\n1. Khapra ©S7015 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "And my hope is that if I do not do this, if I do not allow it to completely memorize",
+    "start": 385.4,
+    "end": 388.76,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* _\n\n©CO0000» | BES» - «sy Sia\n\nxj\n\n7"
+  },
+  {
+    "text": "the training data, then it should generalize well on the test data.",
+    "start": 388.76,
+    "end": 391.76,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* _\n\n©CO0000» | BES» - «sy Sia\n\nxj\n\n7"
+  },
+  {
+    "text": "Is that intuition fine?",
+    "start": 391.76,
+    "end": 393.68,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* _\n\n©CO0000» | BES» - «sy Sia\n\nxj\n\n7"
+  },
+  {
+    "text": "Okay.",
+    "start": 393.68,
+    "end": 394.68,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* _\n\n©CO0000» | BES» - «sy Sia\n\nxj\n\n7"
+  },
+  {
+    "text": "Now I have changed the loss function again.",
+    "start": 394.68,
+    "end": 398.88,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\n\nfunction\nw* _\n\n©CO0000» | BES» - «sy Sia\n\nxj\n\n7"
+  },
+  {
+    "text": "I have the squared, I have told you how to do it for the squared error loss for the cross",
+    "start": 398.88,
+    "end": 402.2,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRj regularization term to the objective\nfunction _\na —\n\nu mon Bb =\n2 2\n\n(nit —&. \\\\|O\nCOooed: | BQEES eu np me\n\nj= E\n\n1M. Khapra ©7015 (Deep I ing) : Leetur"
+  },
+  {
+    "text": "entropy loss and so on.",
+    "start": 402.2,
+    "end": 403.64,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRj regularization term to the objective\nfunction _\na —\n\nu mon Bb =\n2 2\n\n(nit —&. \\\\|O\nCOooed: | BQEES eu np me\n\nj= E\n\n1M. Khapra ©7015 (Deep I ing) : Leetur"
+  },
+  {
+    "text": "But now I have changed the loss function again.",
+    "start": 403.64,
+    "end": 407.32,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRj regularization term to the objective\nfunction _\na —\n\nu mon Bb =\n2 2\n\n(nit —&. \\\\|O\nCOooed: | BQEES eu np me\n\nj= E\n\n1M. Khapra ©7015 (Deep I ing) : Leetur"
+  },
+  {
+    "text": "So again I need to teach you back information.",
+    "start": 407.32,
+    "end": 409.76,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRj regularization term to the objective\nfanetion _\nw* =—\n\nMitesh M. Khapra 5 (Deep Lea"
+  },
+  {
+    "text": "No, what will change now?",
+    "start": 409.76,
+    "end": 411.96,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRj regularization term to the objective\nfanetion _\nw* =—\n\nMitesh M. Khapra 5 (Deep Lea"
+  },
+  {
+    "text": "Again I need to derive with respect to the last layer.",
+    "start": 411.96,
+    "end": 414.56,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRj regularization term to the objective\nfanetion _\nw* =—\n\nMitesh M. Khapra 5 (Deep Lea"
+  },
+  {
+    "text": "What is the minimalistic change that is going to happen now?",
+    "start": 414.56,
+    "end": 418.16,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRj regularization term to the objective\nfanetion _\nw* =—\n\nMitesh M. Khapra 5 (Deep Lea"
+  },
+  {
+    "text": "Just tell me this theta is actually W1, W2 and so on, right.",
+    "start": 418.16,
+    "end": 423.04,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRj regularization term to the objective\nfitiction __\nw* SS\nm nr\n_ 2\n©O©O0000O>» ise Yuna sie al? )\nW\n\nMitesh M. Khapra ©7015 (Deep Learnin:"
+  },
+  {
+    "text": "Just assume all the parameters just flattened out into a vector, fine.",
+    "start": 423.04,
+    "end": 426.96,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRj regularization term to the objective\nfitiction __\nw* SS\nm nr\n_ 2\n©O©O0000O>» ise Yuna sie al? )\nW\n\nMitesh M. Khapra ©7015 (Deep Learnin:"
+  },
+  {
+    "text": "And now tell me what is dou L theta by dou W1 going to be?",
+    "start": 426.96,
+    "end": 431.48,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction ee\nw* ———\nmon Z =\na} /\nmir —2 \\\\|O\n@« C000 29 BESS 0, —ny Soar)\n\ni=l j=l —\n\ne- (wo, 2 : = [ *%\n\ndhe)\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "Or let us simplify things.",
+    "start": 431.48,
+    "end": 432.84,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction ee\nw* ———\nmon Z =\na} /\nmir —2 \\\\|O\n@« C000 29 BESS 0, —ny Soar)\n\ni=l j=l —\n\ne- (wo, 2 : = [ *%\n\ndhe)\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "Let us call this L theta and let us call this omega theta, okay.",
+    "start": 432.84,
+    "end": 437.6,
+    "ocr_text": "e The simplest solution is to add a Ly-\n\nRy regularization term to the objective\nfunction ee\nw* ———\nmon Z =\na} /\nmir —2 \\\\|O\n@« C000 29 BESS 0, —ny Soar)\n\ni=l j=l —\n\ne- (wo, 2 : = [ *%\n\ndhe)\n\nMitesh M. Khapra 7015 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "Or let us call this L dash theta and then your L theta is the combination of these two",
+    "start": 437.6,
+    "end": 442.44,
+    "ocr_text": "e The simplest solution is to add a Ly-\nregularization term to the objective\nfanehon\n\n= eg)\nm nr\nao a a Bij — ul vy cae\nOno b,c ™M |\ni\n\nei oo =\nphe)\nUe\n\nMitesh M. Khapra\n\n5 (Deep Learning) ; Lecture 7"
+  },
+  {
+    "text": "terms.",
+    "start": 442.44,
+    "end": 443.44,
+    "ocr_text": "e The simplest solution is to add a Ly-\nregularization term to the objective\nfanehon\n\n= eg)\nm nr\nao a a Bij — ul vy cae\nOno b,c ™M |\ni\n\nei oo =\nphe)\nUe\n\nMitesh M. Khapra\n\n5 (Deep Learning) ; Lecture 7"
+  },
+  {
+    "text": "So this derivative is going to be a sum of two derivatives.",
+    "start": 443.44,
+    "end": 448.44,
+    "ocr_text": "e The simplest solution is to add a Ly-\nregularization term to the objective\nfanehon\n\n= eg)\nm nr\nao a a Bij — ul vy cae\nOno b,c ™M |\ni\n\nei oo =\nphe)\nUe\n\nMitesh M. Khapra\n\n5 (Deep Learning) ; Lecture 7"
+  },
+  {
+    "text": "Out of that one you already know, what is the second?",
+    "start": 448.44,
+    "end": 452.2,
+    "ocr_text": "Ww\n\nCOO000:\n\ne The simplest solution is to add a Ly-\nregularization term to the objective\nfunction\n\na s Se, Bij — Bij) 3 Siar\nOde b,c ™M\n\ne- (w, O 2. -o\n\nrhe)\n<,\n\nx\n\nMitesh M. Khapra\n\n(Deep Learning) : Lecture 7"
+  },
+  {
+    "text": "2 times lambda W1, right.",
+    "start": 452.2,
+    "end": 454.44,
+    "ocr_text": "Ww\n\nCOO000:\n\ne The simplest solution is to add a Ly-\nregularization term to the objective\nfunction\n\na s Se, Bij — Bij) 3 Siar\nOde b,c ™M\n\ne- (w, O 2. -o\n\nrhe)\n<,\n\nx\n\nMitesh M. Khapra\n\n(Deep Learning) : Lecture 7"
+  },
+  {
+    "text": "So it is a very simple change to your gradient descent update rule.",
+    "start": 454.44,
+    "end": 457.84,
+    "ocr_text": "Ww\n\nCOO000:\n\ne The simplest solution is to add a Ly-\nregularization term to the objective\nfunction\n\na s Se, Bij — Bij) 3 Siar\nOde b,c ™M\n\ne- (w, O 2. -o\n\nrhe)\n<,\n\nx\n\nMitesh M. Khapra\n\n(Deep Learning) : Lecture 7"
+  },
+  {
+    "text": "How many if you see that?",
+    "start": 457.84,
+    "end": 459.32,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\nfunetion _\nwe — ka"
+  },
+  {
+    "text": "Whatever update rule you had just add minus 2 lambda W1 to that, okay.",
+    "start": 459.32,
+    "end": 463.68,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\nfunetion _\nwe — ka"
+  },
+  {
+    "text": "Should I be in 2 lambda W?",
+    "start": 463.68,
+    "end": 465.92,
+    "ocr_text": "e The simplest solution is to add a Ly-\nRy regularization term to the objective\nfunetion _\nwe — ka"
+  },
+  {
+    "text": "But of course we do a half here.",
+    "start": 465.92,
+    "end": 467.4,
+    "ocr_text": "we\n\n©O©O0000O>»\n\ne The simplest solution is to add a Ly-\n\nregularization term to the objective\nfunction\n\nmin\n\nmin md Bij — ij)? + AMOI?\nO,w, nin ¢ m\n\nThis is very easy_to implement and\n\njust adds 4g term AW Xo the gradient\naL (0) ( ——7— A 7\n\nand’ imilarly for other para-\n\now\nmeters)"
+  },
+  {
+    "text": "So it is right.",
+    "start": 467.4,
+    "end": 469.36,
+    "ocr_text": "we\n\n©O©O0000O>»\n\ne The simplest solution is to add a Ly-\n\nregularization term to the objective\nfunction\n\nmin\n\nmin md Bij — ij)? + AMOI?\nO,w, nin ¢ m\n\nThis is very easy_to implement and\n\njust adds 4g term AW Xo the gradient\naL (0) ( ——7— A 7\n\nand’ imilarly for other para-\n\now\nmeters)"
+  },
+  {
+    "text": "Is it okay?",
+    "start": 469.36,
+    "end": 471.36,
+    "ocr_text": "we\n\n©O©O0000O>»\n\ne The simplest solution is to add a Ly-\n\nregularization term to the objective\nfunction\n\nmin\n\nmin md Bij — ij)? + AMOI?\nO,w, nin ¢ m\n\nThis is very easy_to implement and\n\njust adds 4g term AW Xo the gradient\naL (0) ( ——7— A 7\n\nand’ imilarly for other para-\n\now\nmeters)"
+  },
+  {
+    "text": "Okay.",
+    "start": 471.36,
+    "end": 472.36,
+    "ocr_text": "we\n\n©O©O0000O>»\n\ne The simplest solution is to add a Ly-\n\nregularization term to the objective\nfunction\n\nmin\n\nmin md Bij — ij)? + AMOI?\nO,w, nin ¢ m\n\nThis is very easy_to implement and\n\njust adds 4g term AW Xo the gradient\naL (0) ( ——7— A 7\n\nand’ imilarly for other para-\n\now\nmeters)"
+  },
+  {
+    "text": "Another trick which is typically used at least in the context of auto encoders is to tie",
+    "start": 472.36,
+    "end": 478.4,
+    "ocr_text": "we\n\n©O©O0000O>»\n\ne The simplest solution is to add a Ly-\n\nregularization term to the objective\nfunction\n\nmin\n\nmin md Bij — ij)? + AMOI?\nO,w, nin ¢ m\n\nThis is very easy_to implement and\n\njust adds 4g term AW Xo the gradient\naL (0) ( ——7— A 7\n\nand’ imilarly for other para-\n\now\nmeters)"
+  },
+  {
+    "text": "the weights of the encoder and the decoder.",
+    "start": 478.4,
+    "end": 482.0,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder\n\niad\n\n©O©O00000O>»\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "How does that help?",
+    "start": 482.0,
+    "end": 483.24,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder\n\niad\n\n©O©O00000O>»\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "What does tying the weights mean?",
+    "start": 483.24,
+    "end": 484.6,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder\n\niad\n\n©O©O00000O>»\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "No, I appreciate what you are trying to say.",
+    "start": 484.6,
+    "end": 487.32,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder\n\niad\n\n©O©O00000O>»\n\nMitesh M. Khapra ©S7015 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "So one we are doing this is just say W star is equal to W transpose.",
+    "start": 487.32,
+    "end": 492.0,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwr\nwWw*\n\nCOO00O0:\n\nMitesh M. Khapra G 5 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "You will enforce that.",
+    "start": 492.0,
+    "end": 493.36,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwr\nwWw*\n\nCOO00O0:\n\nMitesh M. Khapra G 5 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "You actually have only one matrix W and here you are using W transpose.",
+    "start": 493.36,
+    "end": 498.68,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwr\nwWw*\n\nCOO00O0:\n\nMitesh M. Khapra G 5 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "Mathematically does that make sense?",
+    "start": 498.68,
+    "end": 500.04,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\n\nw!\n\nC5955S:\n\n000:"
+  },
+  {
+    "text": "All your operations go through because this is going to be n cross k and this is going",
+    "start": 500.04,
+    "end": 504.08,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\n\nw!\n\nC5955S:\n\n000:"
+  },
+  {
+    "text": "to be k cross n.",
+    "start": 504.08,
+    "end": 506.0,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\n\nw!\n\nC5955S:\n\n000:"
+  },
+  {
+    "text": "So whatever I effectively done, I have reduced the number of parameters in my network, right.",
+    "start": 506.0,
+    "end": 512.92,
+    "ocr_text": "e Another trick is to tie the weights of\n\nRy the encoder and decoder i.e., W* =\nwl\n\nWe,\n\nkin\n\n©O0000>»\n\n1M. Khapra 7015 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "I am enforcing.",
+    "start": 512.92,
+    "end": 513.92,
+    "ocr_text": "e Another trick is to tie the weights of\n\nRy the encoder and decoder i.e., W* =\nwl\n\nWe,\n\nkin\n\n©O0000>»\n\n1M. Khapra 7015 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "I am forcing this upon the network that I am not going to give you two sets of weights.",
+    "start": 513.92,
+    "end": 518.6,
+    "ocr_text": "e Another trick is to tie the weights of\n\nRy the encoder and decoder i.e., W* =\nwl\n\nWe,\n\nkin\n\n©O0000>»\n\n1M. Khapra 7015 (Deep Learning) : Leetur"
+  },
+  {
+    "text": "You just learn the Ws in a way such that when you use W transpose you should be able",
+    "start": 518.6,
+    "end": 522.2,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwr\nWe.\n\nCOO00O0:\nC000"
+  },
+  {
+    "text": "to reconstruct this.",
+    "start": 522.2,
+    "end": 523.52,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwr\nWe.\n\nCOO00O0:\nC000"
+  },
+  {
+    "text": "How many if you get this?",
+    "start": 523.52,
+    "end": 525.96,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwr\nWe.\n\nCOO00O0:\nC000"
+  },
+  {
+    "text": "Not many.",
+    "start": 525.96,
+    "end": 526.96,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl"
+  },
+  {
+    "text": "Okay.",
+    "start": 526.96,
+    "end": 527.96,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl"
+  },
+  {
+    "text": "Please ask me doubts if you do not.",
+    "start": 527.96,
+    "end": 528.96,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl"
+  },
+  {
+    "text": "There is nothing very young.",
+    "start": 528.96,
+    "end": 530.8,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl"
+  },
+  {
+    "text": "Why is it W transpose?",
+    "start": 530.8,
+    "end": 532.16,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl"
+  },
+  {
+    "text": "Because otherwise how can you claim that that would work?",
+    "start": 532.16,
+    "end": 535.28,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl"
+  },
+  {
+    "text": "Because you have non-linearities in between, right.",
+    "start": 535.28,
+    "end": 537.24,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwl\n\n1M. Khapra"
+  },
+  {
+    "text": "No W inverse won't work.",
+    "start": 537.24,
+    "end": 539.44,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwl\n\n1M. Khapra"
+  },
+  {
+    "text": "What is the simplest thing to do?",
+    "start": 539.44,
+    "end": 541.28,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwl\n\n1M. Khapra"
+  },
+  {
+    "text": "Why would you want to compute an inverse?",
+    "start": 541.28,
+    "end": 542.8,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwl\n\n1M. Khapra"
+  },
+  {
+    "text": "Oh that is an interesting question.",
+    "start": 542.8,
+    "end": 544.72,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwl\n\n1M. Khapra"
+  },
+  {
+    "text": "How would you implement this?",
+    "start": 544.72,
+    "end": 546.6,
+    "ocr_text": "e Another trick is to tie the weights of\nRy the encoder and decoder i.e., W* =\nwl\n\n1M. Khapra"
+  },
+  {
+    "text": "How do you, if there are multiple paths from a weight to the output?",
+    "start": 546.6,
+    "end": 551.68,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\nMitesh M. Khapra 6 5 (Deep Lea"
+  },
+  {
+    "text": "How do you compute a gradient?",
+    "start": 551.68,
+    "end": 554.08,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\nMitesh M. Khapra 6 5 (Deep Lea"
+  },
+  {
+    "text": "Summit across all those paths.",
+    "start": 554.08,
+    "end": 555.92,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\nMitesh M. Khapra 6 5 (Deep Lea"
+  },
+  {
+    "text": "What is happening here?",
+    "start": 555.92,
+    "end": 556.92,
+    "ocr_text": "e Another trick is to tie the weights of\n\nXj the encoder and decoder i.e., W* =\nwl\n\nWe,\n\nkin\n\nCOO00O0:\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "How many paths do there exist from the weight to the output?",
+    "start": 556.92,
+    "end": 561.2,
+    "ocr_text": "e Another trick is to tie the weights of\n\nXj the encoder and decoder i.e., W* =\nwl\n\nWe,\n\nkin\n\nCOO00O0:\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "One is this direct path and then the other is another this path also.",
+    "start": 561.2,
+    "end": 565.24,
+    "ocr_text": "e Another trick is to tie the weights of\n\nXj the encoder and decoder i.e., W* =\nwl\n\nWe,\n\nkin\n\nCOO00O0:\n\nMitesh M. Khapra 5 (Deep Learning) : Leeture 7"
+  },
+  {
+    "text": "So just summit across these two paths.",
+    "start": 565.24,
+    "end": 569.2,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "Do you get that?",
+    "start": 569.2,
+    "end": 570.72,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "How many if you do not get that?",
+    "start": 570.72,
+    "end": 573.0,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "How many if you do not get that?",
+    "start": 573.0,
+    "end": 574.28,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "Okay.",
+    "start": 574.28,
+    "end": 575.28,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\nMitesh M. Khapra"
+  },
+  {
+    "text": "So if this was W star you did not have a problem, right.",
+    "start": 575.28,
+    "end": 579.8,
+    "ocr_text": "e Another trick is to tie the weights of\n\nRy the encoder and decoder i.e., W* =\nwl\n\nu prt\n\nGCREKONSIOROE"
+  },
+  {
+    "text": "You could just have computed do L by do W star and do L by do W, right.",
+    "start": 579.8,
+    "end": 585.88,
+    "ocr_text": "e Another trick is to tie the weights of\n\nRy the encoder and decoder i.e., W* =\nwl\n\nu prt\n\nGCREKONSIOROE"
+  },
+  {
+    "text": "Now think of it as this, right.",
+    "start": 585.88,
+    "end": 588.44,
+    "ocr_text": "e Another trick is to tie the weights of\n\nXj the encoder and decoder i.e., W* =\nwl\n\nW\n\nMeni\n\nCOOPoOOd:\n0000»"
+  },
+  {
+    "text": "That you have these, this is one path W, W to the output.",
+    "start": 588.44,
+    "end": 596.12,
+    "ocr_text": "e Another trick is to tie the weights of\n\nXj the encoder and decoder i.e., W* =\nwl\n\nW\n\nMeni\n\nCOOPoOOd:\n0000»"
+  },
+  {
+    "text": "And now the gradient is just going to be sum across these two paths.",
+    "start": 596.12,
+    "end": 601.04,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\no! aa\n—"
+  },
+  {
+    "text": "One path is a single path and the other path is the double path.",
+    "start": 601.04,
+    "end": 603.64,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\no! aa\n—"
+  },
+  {
+    "text": "So just going to be a sum across these two paths.",
+    "start": 603.64,
+    "end": 606.36,
+    "ocr_text": "e Another trick is to tie the weights of\nXj the encoder and decoder i.e., W* =\nwl\n\no! aa\n—"
+  },
+  {
+    "text": "Oh no, so you just have one matrix W which are going to update.",
+    "start": 606.36,
+    "end": 610.84,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "You do not have two matrices.",
+    "start": 610.84,
+    "end": 612.16,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "You just have one matrix W.",
+    "start": 612.16,
+    "end": 613.88,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "At one place you are using W.",
+    "start": 613.88,
+    "end": 615.76,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "The other place you are using W transpose.",
+    "start": 615.76,
+    "end": 618.12,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nw!\n\nMitesh M. Khapra ©S7015 (Deep Le"
+  },
+  {
+    "text": "But just look at it element wise, right.",
+    "start": 618.12,
+    "end": 619.68,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nw!\n\nMitesh M. Khapra ©S7015 (Deep Le"
+  },
+  {
+    "text": "Do not try to look at it in terms of matrices.",
+    "start": 619.68,
+    "end": 621.92,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nw!\n\nMitesh M. Khapra ©S7015 (Deep Le"
+  },
+  {
+    "text": "So you have n cross k elements here.",
+    "start": 621.92,
+    "end": 624.92,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nw!\n\nMitesh M. Khapra ©S7015 (Deep Le"
+  },
+  {
+    "text": "W 1 1 2 W n k, right.",
+    "start": 624.92,
+    "end": 628.52,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nw!\n\nMitesh M. Khapra ©S7015 (Deep Le"
+  },
+  {
+    "text": "You are computing the partial derivative with respect to each of these.",
+    "start": 628.52,
+    "end": 631.64,
+    "ocr_text": "e Another trick is to tie the weights of\n\nRy the encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "And every time you are considering all possible paths to the output.",
+    "start": 631.64,
+    "end": 634.76,
+    "ocr_text": "e Another trick is to tie the weights of\n\nRy the encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "And that value is getting updated, right.",
+    "start": 634.76,
+    "end": 637.36,
+    "ocr_text": "e Another trick is to tie the weights of\n\nRy the encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "And at one place you are using a particular arrangement of these Ws.",
+    "start": 637.36,
+    "end": 641.0,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "But the other place you are using a different arrangement of those of these.",
+    "start": 641.0,
+    "end": 644.08,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "That so it will just remain the same, right.",
+    "start": 644.08,
+    "end": 646.44,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "Is that okay.",
+    "start": 646.44,
+    "end": 647.76,
+    "ocr_text": "e Another trick is to tie the weights of\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "No, this is for regularization, right.",
+    "start": 647.76,
+    "end": 649.44,
+    "ocr_text": "e Another trick is to tie the weights of\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "So we are reducing the number of parameters by half.",
+    "start": 649.44,
+    "end": 652.48,
+    "ocr_text": "e Another trick is to tie the weights of\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "Yes.",
+    "start": 652.48,
+    "end": 653.48,
+    "ocr_text": "e Another trick is to tie the weights of\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "No, no, that I mean that also has to, that's not the objective.",
+    "start": 653.48,
+    "end": 658.0,
+    "ocr_text": "e Another trick is to tie the weights of\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "We are trying to do regularization.",
+    "start": 658.0,
+    "end": 661.04,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "How many if you are lost at this point?",
+    "start": 661.04,
+    "end": 663.32,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "Please ask me if you have questions there.",
+    "start": 663.32,
+    "end": 664.64,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "I do not mind on playing.",
+    "start": 664.64,
+    "end": 666.08,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "But if you just give me blank faces, I can't read them.",
+    "start": 666.08,
+    "end": 669.48,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwl"
+  },
+  {
+    "text": "Yes.",
+    "start": 669.48,
+    "end": 670.48,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwl"
+  },
+  {
+    "text": "So this is used at quite a few places where you tie some weights, right.",
+    "start": 670.48,
+    "end": 675.0,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwl"
+  },
+  {
+    "text": "So that so effectively you are saying that learn it in such a way that it works at both",
+    "start": 675.0,
+    "end": 679.12,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwl"
+  },
+  {
+    "text": "the places.",
+    "start": 679.12,
+    "end": 680.12,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "And you are reducing the number of parameters.",
+    "start": 680.12,
+    "end": 681.48,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "So weight tying is something which is very regularly commonly used for regularization",
+    "start": 681.48,
+    "end": 686.52,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "in the context of neural networks.",
+    "start": 686.52,
+    "end": 688.52,
+    "ocr_text": "e Another trick is to tie the weights of\nthe encoder and decoder i.e., W* =\nwr\n\nMitesh M. Khapra ©S7015 (Deep Le"
+  },
+  {
+    "text": "So that's where we will end the motivation part and two very simple ways of doing regularization.",
+    "start": 688.52,
+    "end": 694.28,
+    "ocr_text": "e Another trick is to tie the weights of\nthe encoder and decoder i.e., W* =\nwr\n\nMitesh M. Khapra ©S7015 (Deep Le"
+  },
+  {
+    "text": "One is a standard known trick which is to use L2 regularization.",
+    "start": 694.28,
+    "end": 697.84,
+    "ocr_text": "e Another trick is to tie the weights of\nthe encoder and decoder i.e., W* =\nwr\n\nMitesh M. Khapra ©S7015 (Deep Le"
+  },
+  {
+    "text": "The other one was something special that we saw which was tying the weights.",
+    "start": 697.84,
+    "end": 701.8,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "You all have a lot of doubts about tying the weights.",
+    "start": 701.8,
+    "end": 704.92,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "Do not let that affect the rest of the lectures, just throw it away.",
+    "start": 704.92,
+    "end": 707.4,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "It's okay if you do not understand it.",
+    "start": 707.4,
+    "end": 709.0,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "Maybe go back and think about it and then we can discuss again if you want.",
+    "start": 709.0,
+    "end": 712.08,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  },
+  {
+    "text": "So it's a very small thing, do not let it affect the rest of the lecture.",
+    "start": 712.08,
+    "end": 715.0,
+    "ocr_text": "e Another trick is to tie the weights of\n\nthe encoder and decoder i.e., W* =\nwr"
+  }
+]

@@ -1,0 +1,608 @@
+[
+  {
+    "text": "So, for our next example of linear programming, we will look at a problem involving graphs",
+    "start": 0.0,
+    "end": 6.2,
+    "ocr_text": "NPTEL MOOC,JAN-FEB 2015\nWeek 8, Module 3\n\nDESIGN AND ANALYSIS\nOF ALGORITHMS\n\nLP modelling: Bandwidth allocation\n\nMADHAVAN MUKUND, CHENNAI MATHEMATICAL INSTITUTE\nhttp://www.cmi.ac.in/~madhavan"
+  },
+  {
+    "text": "and networks to do with network bandwidth.",
+    "start": 6.2,
+    "end": 9.44,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "So, suppose we have a small communication network involving three users.",
+    "start": 9.44,
+    "end": 15.28,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "So, the users are capital A, capital B and capital C. And each of them is connected through",
+    "start": 15.28,
+    "end": 21.92,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "some switches which we call A, B and C. And so, we have a network which this is an internet",
+    "start": 21.92,
+    "end": 28.44,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "network which connects these three users. And our requirement is to ensure that each pair",
+    "start": 28.44,
+    "end": 34.44,
+    "ocr_text": "10 13 8"
+  },
+  {
+    "text": "of users A to B, B to C and A to C gets at least two megabits per second of connectivity",
+    "start": 34.44,
+    "end": 41.6,
+    "ocr_text": "10 13 8"
+  },
+  {
+    "text": "from between that pair of users. So, we want at least two Mbps connectivity along these",
+    "start": 41.6,
+    "end": 46.28,
+    "ocr_text": "10 13 8"
+  },
+  {
+    "text": "three routes. Now, notice that from A to B there are two ways I can send packets. I can",
+    "start": 46.28,
+    "end": 52.16,
+    "ocr_text": "10 13 8"
+  },
+  {
+    "text": "send them directly via A and B or I can send them indirectly via small C. So, it turns",
+    "start": 52.16,
+    "end": 60.92,
+    "ocr_text": "10 13 8"
+  },
+  {
+    "text": "out that it does not really matter from the point of view of the users whether this two",
+    "start": 60.92,
+    "end": 64.8,
+    "ocr_text": "10 13 8"
+  },
+  {
+    "text": "Mbps bandwidth comes from the shorter A red route or the longer green route. So, our",
+    "start": 64.8,
+    "end": 71.84,
+    "ocr_text": "10 13 8"
+  },
+  {
+    "text": "A is to combine the capacity of the red and the green for each pair. So, similarly, there",
+    "start": 71.84,
+    "end": 76.96,
+    "ocr_text": "10 13 8"
+  },
+  {
+    "text": "will be for example, there will be a direct route from B to C and there will be an indirect",
+    "start": 76.96,
+    "end": 81.08,
+    "ocr_text": "10 13 8"
+  },
+  {
+    "text": "route that goes like this. So, for each pair there is a direct route and an indirect route.",
+    "start": 81.08,
+    "end": 85.64,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "So, along there is a combination of the capacities of the direct and indirect routes add",
+    "start": 85.64,
+    "end": 89.56,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "up to at least two Mbps our customers are satisfied. So, now the constraint that we have is that",
+    "start": 89.56,
+    "end": 96.76,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "these links have a capacity. So, if I look at for example, the link between B and C it can",
+    "start": 96.76,
+    "end": 102.68,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "only transmit 13 megabits per second total across all the different connections that it is a part of.",
+    "start": 102.68,
+    "end": 107.72,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "Now on the other side we earn some money from these customers which is not uniform.",
+    "start": 108.44,
+    "end": 114.2,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "So, for the A B link we get 300 rupees per megabit Mbps per month.",
+    "start": 115.32,
+    "end": 120.92,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "For B to C we get only 200 but for A to C we get 400. So, now we have to allocate a minimum",
+    "start": 122.44,
+    "end": 129.0,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "of two megabits but the customers are willing to take as much as we can give them subject",
+    "start": 129.0,
+    "end": 133.0,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "to that minimum and we get a certain amount of revenue depending on how we utilize a capacity.",
+    "start": 133.0,
+    "end": 137.64,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "So, our goal is to allocate bandwidth to maximize the revenue given that the customers are",
+    "start": 138.36,
+    "end": 142.44,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "willing to take anything above two Mbps. So, as we have been seeing our aim is to set this up as a",
+    "start": 142.44,
+    "end": 152.12,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "linear program. So, in this case what are the variables that we could use. So, recall that we",
+    "start": 152.12,
+    "end": 157.48,
+    "ocr_text": "12"
+  },
+  {
+    "text": "said that every connection has two routes. So, we have A to B coming where the short route and we",
+    "start": 157.48,
+    "end": 165.24,
+    "ocr_text": "a2"
+  },
+  {
+    "text": "have A to B coming by the long route. So, what we use is the variable X from A to B to denote",
+    "start": 165.24,
+    "end": 172.36,
+    "ocr_text": "a2"
+  },
+  {
+    "text": "the quantity that is flowing on the right route and similarly Y from A to B to denote the",
+    "start": 172.36,
+    "end": 178.36,
+    "ocr_text": "a2"
+  },
+  {
+    "text": "quantity that is flowing on the green route. So, we have two variables associated with the A to B",
+    "start": 178.36,
+    "end": 183.96,
+    "ocr_text": "a2"
+  },
+  {
+    "text": "service that we are going to provide how much goes directly XAB how much goes in directly YAB.",
+    "start": 185.0,
+    "end": 189.4,
+    "ocr_text": "a2"
+  },
+  {
+    "text": "Similarly, between B and C we will have XBC which goes through the short route and YBC which",
+    "start": 189.88,
+    "end": 195.32,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "goes via the long route and same way for XAC and YAC right. So, we have the six variables",
+    "start": 195.32,
+    "end": 201.4,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "describing the different ways of connecting pairs of customers.",
+    "start": 201.4,
+    "end": 205.64,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "Now, these variables are constrained by the capacities of our links. So, supposing we look at",
+    "start": 208.44,
+    "end": 215.56,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "this particular link the link from small B to capital B. Now, it has a capacity of 10.",
+    "start": 215.64,
+    "end": 221.8,
+    "ocr_text": "12"
+  },
+  {
+    "text": "Now, what routes does it lie on? So, it certainly lies on the short route A to B. So,",
+    "start": 222.44,
+    "end": 227.8,
+    "ocr_text": "12"
+  },
+  {
+    "text": "it lies on the XAB route. So, if any quantity which is assigned to XAB will",
+    "start": 227.8,
+    "end": 232.2,
+    "ocr_text": "12"
+  },
+  {
+    "text": "will eat into this 10. Similarly, it lies on the YAB route right. So, that also has to ultimately",
+    "start": 233.64,
+    "end": 241.24,
+    "ocr_text": "12"
+  },
+  {
+    "text": "reach capital B through small B. So, this will also eat into that. It also lies on the B to C",
+    "start": 241.24,
+    "end": 247.48,
+    "ocr_text": "12"
+  },
+  {
+    "text": "route right. So, XBC and finally, it lies on the B to C route going the other way. This is YBC.",
+    "start": 247.48,
+    "end": 255.24,
+    "ocr_text": "12"
+  },
+  {
+    "text": "So, all these four routes put together will add up to whatever capacity is flowing through this",
+    "start": 255.8,
+    "end": 260.84,
+    "ocr_text": "12"
+  },
+  {
+    "text": "link right. And this link has capacity 10. So, XAB plus YAB plus XBC plus YBC has to be at most 10.",
+    "start": 260.84,
+    "end": 268.92,
+    "ocr_text": "12"
+  },
+  {
+    "text": "So, likewise if I look at for instance this link in the same way I have all these different",
+    "start": 271.64,
+    "end": 278.6,
+    "ocr_text": "12\n\n13 8"
+  },
+  {
+    "text": "things which are coming here right. So, I have four quantities. I have the direct link from A to B.",
+    "start": 279.72,
+    "end": 285.0,
+    "ocr_text": "12\n\n13 8"
+  },
+  {
+    "text": "The indirect link from A to B. The direct link from A to C, the indirect way to C and they",
+    "start": 285.0,
+    "end": 289.4,
+    "ocr_text": "12\n\n13 8"
+  },
+  {
+    "text": "all must add up to at most 12. And the third same whole holds for this. So, these three constraints",
+    "start": 289.4,
+    "end": 296.04,
+    "ocr_text": "12\n\n13 8"
+  },
+  {
+    "text": "that we have seen here, account for the capacities of the tail and link. So, we have",
+    "start": 296.04,
+    "end": 303.96,
+    "ocr_text": "12\n\n13 8"
+  },
+  {
+    "text": "accounted for this capacity, this capacity and this capacity. So, these three capacities are",
+    "start": 303.96,
+    "end": 309.56,
+    "ocr_text": "12\n\n13 8"
+  },
+  {
+    "text": "connected to our flows by these three equations. So, this still leaves us to account for these three",
+    "start": 309.56,
+    "end": 315.24,
+    "ocr_text": "(19, Bo SG"
+  },
+  {
+    "text": "constraints. So, now if you look at this link then this is served this is part of three connections.",
+    "start": 315.24,
+    "end": 323.0,
+    "ocr_text": "12\n\n13\n\n10"
+  },
+  {
+    "text": "It is the A to B direct connection. It is on the B to C indirect connection",
+    "start": 323.08,
+    "end": 329.48,
+    "ocr_text": "12\n\n13\n\n10"
+  },
+  {
+    "text": "and finally, it is on the A to C indirect connection. So, that says it is direct connection A to B",
+    "start": 331.32,
+    "end": 337.72,
+    "ocr_text": "12\n\n13\n\n10"
+  },
+  {
+    "text": "plus the indirect connection B to C plus the indirect connection A to C all together cannot be",
+    "start": 337.72,
+    "end": 342.6,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "more than 6. In the same way we have a similar equation for this link. So, it is",
+    "start": 342.6,
+    "end": 352.92,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "lies on the indirect connection from A to B. It lies on the indirect connection from",
+    "start": 352.92,
+    "end": 361.24,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "the direct connection B to B. It lies on the indirect connection B to B, it lies on the direct",
+    "start": 362.28,
+    "end": 367.48,
+    "ocr_text": "10"
+  },
+  {
+    "text": "connection from B to C and it lies on the indirect connection from A to C. So, these three things",
+    "start": 367.48,
+    "end": 373.96,
+    "ocr_text": "12\n\n10"
+  },
+  {
+    "text": "cannot exceed 30 and the third same thing holds for the link. So, for 11 we have that",
+    "start": 373.96,
+    "end": 379.8,
+    "ocr_text": "12\n\n10"
+  },
+  {
+    "text": "it lies on the direct connection from A to C and on these two indirect connections A to B",
+    "start": 380.04,
+    "end": 388.36,
+    "ocr_text": "12\n\nyas + xec {Ya6) uv"
+  },
+  {
+    "text": "indirect connection and B to C indirect connection. So, in this way now we have covered the six constraints.",
+    "start": 388.36,
+    "end": 394.44,
+    "ocr_text": "10"
+  },
+  {
+    "text": "So, we had three constraints corresponding to the tail end links and we had three constraints",
+    "start": 394.44,
+    "end": 399.56,
+    "ocr_text": "10"
+  },
+  {
+    "text": "corresponding to the links to the triangle. So, we have six total constraints.",
+    "start": 399.56,
+    "end": 402.6,
+    "ocr_text": "11\n\n12"
+  },
+  {
+    "text": "Finally, we have this minimum requirement that between A and B we must apply at least two",
+    "start": 403.48,
+    "end": 409.96,
+    "ocr_text": "11\n\n12"
+  },
+  {
+    "text": "between B and C we must apply at least two and between A and C we must apply at least two",
+    "start": 409.96,
+    "end": 414.04,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "and these are the sums of the indirect indirect. We do not distinguish between them",
+    "start": 414.04,
+    "end": 417.08,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "and of course, every capacity must be nominating it. So, this gives us all our constraints.",
+    "start": 417.72,
+    "end": 422.68,
+    "ocr_text": "12\n\nee ee"
+  },
+  {
+    "text": "What is our objective function? The objective function is the revenue that we realize.",
+    "start": 423.96,
+    "end": 427.32,
+    "ocr_text": "12\n\nee ee"
+  },
+  {
+    "text": "So, the A to B connection is XAB plus YAB this is the total volume that gives us 300.",
+    "start": 428.2,
+    "end": 434.04,
+    "ocr_text": "300(x, 10 13 8"
+  },
+  {
+    "text": "Similarly XBC plus YBC gives us 200 and XAC plus YAC gives us 400. So, if we multiply 300",
+    "start": 434.6,
+    "end": 441.16,
+    "ocr_text": "300(x, 10 13 8"
+  },
+  {
+    "text": "into XAB plus YAB 200 into XBC plus YBC and 400 into XAC plus YAC and add it up this is our total",
+    "start": 441.16,
+    "end": 448.36,
+    "ocr_text": "10\n\n13\n\n12"
+  },
+  {
+    "text": "revenue and we want to maximize this revenue. So, for these particular numbers these are the",
+    "start": 448.36,
+    "end": 455.4,
+    "ocr_text": "10 13 8"
+  },
+  {
+    "text": "answers that we get that we have nothing flowing directly from A to B. We have seven going from A to",
+    "start": 455.4,
+    "end": 461.16,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "B indirectly and so on. So, if you look for example, at this link. So, this link lies on the",
+    "start": 461.16,
+    "end": 469.72,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "direct route from A to B. So, that is 0. It lies on the indirect route from A to B that is 7.",
+    "start": 469.72,
+    "end": 477.16,
+    "ocr_text": "12\n\n(0/13 8"
+  },
+  {
+    "text": "It lies on the direct route from B to C that is 1.5 and it lies on the indirect route from B to",
+    "start": 478.12,
+    "end": 487.0,
+    "ocr_text": "ee\n\n12\n\n13 8"
+  },
+  {
+    "text": "C that is another 1.5 and if you see that this is 10. So, therefore, this link as a total capacity",
+    "start": 487.0,
+    "end": 494.6,
+    "ocr_text": "OHLH-S 418"
+  },
+  {
+    "text": "of 10 and all 10 units are being utilized given the combination that it is. So, in this way you can",
+    "start": 494.6,
+    "end": 499.56,
+    "ocr_text": "OHLH-S 418"
+  },
+  {
+    "text": "try for each link and find out that everything except this link of 11 is actually saturated by this",
+    "start": 499.56,
+    "end": 508.12,
+    "ocr_text": "OHLH-S 418"
+  },
+  {
+    "text": "flow. It also turns out here that you can see that some of the quantities that we get are",
+    "start": 508.12,
+    "end": 514.12,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "fractional. But since we are dealing with internet bandwidth there is no reason it is not like",
+    "start": 514.12,
+    "end": 519.24,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "you know hiring or firing a person or making half a carpet. Okay, we can easily split our bandwidth",
+    "start": 519.24,
+    "end": 525.96,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "in some fractional quantities. So, that is not a that is not a problem.",
+    "start": 525.96,
+    "end": 529.0,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "There is however, another problem, okay, which is the way we have actually set up the linear",
+    "start": 530.84,
+    "end": 536.68,
+    "ocr_text": "12\n\n10 13 8"
+  },
+  {
+    "text": "program. So, the way we have set up the linear program is to take each possible way of",
+    "start": 536.68,
+    "end": 541.24,
+    "ocr_text": ") network flows _\n\n10\n\n12\n\n13"
+  },
+  {
+    "text": "routing the traffic. So, we have A to B, we have a link, we have A to B like this, we have another path",
+    "start": 541.24,
+    "end": 548.04,
+    "ocr_text": ") network flows _\n\n10\n\n12\n\n13"
+  },
+  {
+    "text": "and for each path we have a variable, we have XAB, YAB and so on. So, every path is represented by",
+    "start": 548.04,
+    "end": 554.2,
+    "ocr_text": ": network flows —"
+  },
+  {
+    "text": "the quantity flowing through that path. So, the problem with this is that the number of paths",
+    "start": 554.2,
+    "end": 559.48,
+    "ocr_text": ": network flows —"
+  },
+  {
+    "text": "flowing through a graph is going to be exponential. So, this is not a good modeling stack. So,",
+    "start": 559.48,
+    "end": 565.72,
+    "ocr_text": "h network flows"
+  },
+  {
+    "text": "what we are doing is we are taking this network bandwidth allocation model and we are implementing",
+    "start": 565.72,
+    "end": 570.36,
+    "ocr_text": "ch network flows"
+  },
+  {
+    "text": "it or we are describing it using layer programming. But if we set up a program linear program which",
+    "start": 570.36,
+    "end": 575.48,
+    "ocr_text": "ch network flows"
+  },
+  {
+    "text": "has a large number of variables, then the problem is in some sense blowing up in complexity in the",
+    "start": 575.48,
+    "end": 581.0,
+    "ocr_text": "network flows"
+  },
+  {
+    "text": "translation. So, we do not want this, we want efficient translations, okay, and this is not one.",
+    "start": 581.08,
+    "end": 586.12,
+    "ocr_text": "network flows"
+  },
+  {
+    "text": "It so happens that for a small problem like this with only three customers, it works fine, but as it",
+    "start": 586.12,
+    "end": 591.72,
+    "ocr_text": "* , . ~ a\nxxDONe a= ]\n, 8\n\nnetwork flows"
+  },
+  {
+    "text": "grows larger and larger, this translation will not scale up. But we will look at another way of",
+    "start": 591.72,
+    "end": 596.84,
+    "ocr_text": "* , . ~ a\nxxDONe a= ]\n, 8\n\nnetwork flows"
+  },
+  {
+    "text": "looking at these network flows as they are called and see that in general network flows can be",
+    "start": 596.84,
+    "end": 601.72,
+    "ocr_text": "network flows"
+  },
+  {
+    "text": "easily represented in terms of linear programs. But it is important to note that in general,",
+    "start": 601.72,
+    "end": 606.36,
+    "ocr_text": "network flows"
+  },
+  {
+    "text": "when we do a translation into a linear program, we would like the number of variables we get",
+    "start": 606.36,
+    "end": 610.6,
+    "ocr_text": "Ajienk |\n\nnetwork flows"
+  },
+  {
+    "text": "to be small say polynomial in the input part. So, in the input problem if we are a certain size,",
+    "start": 610.68,
+    "end": 617.4,
+    "ocr_text": "Ajienk |\n\nnetwork flows"
+  },
+  {
+    "text": "the linear program should not blow up.",
+    "start": 617.4,
+    "end": 625.16,
+    "ocr_text": "network flows"
+  }
+]

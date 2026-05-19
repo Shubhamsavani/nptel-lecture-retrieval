@@ -1,0 +1,974 @@
+[
+  {
+    "text": "In the part 4 of this module, we will talk about recommender system and we will show how",
+    "start": 0.0,
+    "end": 24.96,
+    "ocr_text": "[hin\n[Gm Keeam"
+  },
+  {
+    "text": "collaborative filtering based recommendation system is a form of instance based learning. So,",
+    "start": 24.96,
+    "end": 31.84,
+    "ocr_text": "[hin\n[Gm Keeam"
+  },
+  {
+    "text": "first of all let me introduce what we mean by a recommender system. Many of you have used",
+    "start": 31.84,
+    "end": 50.48,
+    "ocr_text": "[hin\n[Gm Keeam"
+  },
+  {
+    "text": "e-commerce sites like Amazon Flipkart and other sites and you may have seen recommendation systems",
+    "start": 50.48,
+    "end": 58.24,
+    "ocr_text": "[hin\n[Gm Keeam"
+  },
+  {
+    "text": "working. So, when you log into those systems, the system recommends certain items to you.",
+    "start": 58.24,
+    "end": 64.16,
+    "ocr_text": "[hin\n[Gm Keeam"
+  },
+  {
+    "text": "So, the recommended system based looks at the past behavior of the users and the other data that",
+    "start": 65.04,
+    "end": 72.8,
+    "ocr_text": "[hin\n[Gm Keeam"
+  },
+  {
+    "text": "it has and tries to recommend items to the user. So, let us formally define a recommender system.",
+    "start": 72.8,
+    "end": 80.32,
+    "ocr_text": "[hin\n[Gm Keeam"
+  },
+  {
+    "text": "There are two types of recommender system or recommending methods. One is item recommendation.",
+    "start": 80.32,
+    "end": 86.88,
+    "ocr_text": "[hin\n[Gm Keeam"
+  },
+  {
+    "text": "That is based on the past history of this user and other users and maybe the type of the",
+    "start": 95.52,
+    "end": 102.48,
+    "ocr_text": "‘\n\nS\n4\n| i}\n= iS)\n= =\n3 S\na\n\ni“ Reco\n\nie\n2YVY\n[Gy"
+  },
+  {
+    "text": "content recommender system recommends a list of items to the user which the user is likely to",
+    "start": 102.48,
+    "end": 110.0,
+    "ocr_text": "‘\n\nS\n4\n| i}\n= iS)\n= =\n3 S\na\n\ni“ Reco\n\nie\n2YVY\n[Gy"
+  },
+  {
+    "text": "purchase or likely to consume. The second type of systems that we often look at are called rating",
+    "start": 110.0,
+    "end": 117.2,
+    "ocr_text": "‘\n\nS\n4\n| i}\n= iS)\n= =\n3 S\na\n\ni“ Reco\n\nie\n2YVY\n[Gy"
+  },
+  {
+    "text": "prediction systems. The classic example is with movies. Suppose a user is asked to",
+    "start": 117.2,
+    "end": 132.32,
+    "ocr_text": "iam Reco mmondalian,"
+  },
+  {
+    "text": "rate movies. The users rate movies let us say in the scale of 1 to 5 and different users give",
+    "start": 132.32,
+    "end": 139.84,
+    "ocr_text": "Grn Kecommanchaian\n\ntan OY\n«\n\n128 89 Om\nMaa oft ty"
+  },
+  {
+    "text": "ratings for different movies, but the set of total movies is very large and one user may give",
+    "start": 139.84,
+    "end": 147.68,
+    "ocr_text": "[Gm Reco mnundal.an\n\na\n2 Kotana Fred"
+  },
+  {
+    "text": "rating to a number of movies, few terms of movies. Now, the objective is to predict that given a",
+    "start": 147.68,
+    "end": 156.16,
+    "ocr_text": "1QM Kec mnendaan\n\n —————\n2. ‘Kytino Hedich-"
+  },
+  {
+    "text": "new movie, what rating the user will give to that new movie? That is called the rating prediction",
+    "start": 156.16,
+    "end": 162.64,
+    "ocr_text": "1QM Kec mnendaan\n\n —————\n2. ‘Kytino Hedich-"
+  },
+  {
+    "text": "problem. So, rating means rating on a new movie. So, predict so, both of these are used to decide",
+    "start": 162.64,
+    "end": 172.24,
+    "ocr_text": "7’ Sib\n\nlam Keco mnundalion ¥\n\n2 Roding B Bredich"
+  },
+  {
+    "text": "whether a person will hire a movie, buy a book, read a book, what new stories will find attractive,",
+    "start": 172.24,
+    "end": 181.52,
+    "ocr_text": "7’ Sib\n\nlam Keco mnundalion ¥\n\n2 Roding B Bredich"
+  },
+  {
+    "text": "recommend friends, etcetera. So, recommendation systems are ubiquitous in many e-commerce,",
+    "start": 181.52,
+    "end": 188.08,
+    "ocr_text": "KRecomnunde. Ys\nee — J\n\njam Reco mmnondedio UN\n\n_ as\n2. Kodting, Peedihm :"
+  },
+  {
+    "text": "almost all e-commerce systems have recommendation with them. Now, you are familiar with search.",
+    "start": 188.08,
+    "end": 194.16,
+    "ocr_text": "Lue Sys 2 1%\n\nJam Reco mmordolion |\nef Koding cee"
+  },
+  {
+    "text": "In search, the user is actively looking for something. User gives a query and the system returns",
+    "start": 194.16,
+    "end": 200.32,
+    "ocr_text": "Lue Sys 2 1%\n\nJam Reco mmordolion |\nef Koding cee"
+  },
+  {
+    "text": "results. So, user is trying to pull some information from the system. On the other hand,",
+    "start": 200.32,
+    "end": 206.0,
+    "ocr_text": "Gm Recomendar /\n\neel ee\n2 Roding, Precdich ?"
+  },
+  {
+    "text": "recommendation is a push system where the system pushes items to the user based on users'",
+    "start": 206.0,
+    "end": 213.68,
+    "ocr_text": "Gm Recomendar /\n\neel ee\n2 Roding, Precdich ?"
+  },
+  {
+    "text": "history and may be based on the user's context also. Formally, we can define the recommendation",
+    "start": 213.68,
+    "end": 221.12,
+    "ocr_text": "Gm Recomendar /\n\neel ee\n2 Roding, Precdich ?"
+  },
+  {
+    "text": "problem as follows. So, we have a set of users, so, you is the set of users.",
+    "start": 221.12,
+    "end": 233.12,
+    "ocr_text": "[Gm Kecommondalion |\n\n2 Rosia” ae\n\ny\n\na0\nar"
+  },
+  {
+    "text": "And we have items, so, S is a set of items. And let p be an utility function that finds out the",
+    "start": 233.44,
+    "end": 251.44,
+    "ocr_text": ":"
+  },
+  {
+    "text": "rating of a user for an item, the usefulness of an item to a user. So, P is a function",
+    "start": 251.44,
+    "end": 258.08,
+    "ocr_text": "ho\nU sé ae\nS: 24 of yee"
+  },
+  {
+    "text": "from u cross S to let us say a real number rating. So, P is a function from u cross S to R that",
+    "start": 258.8,
+    "end": 272.8,
+    "ocr_text": "if aie ,\n\nei oe %"
+  },
+  {
+    "text": "is for a user for an item, the rating of the user for that item that is given by this function P.",
+    "start": 272.8,
+    "end": 279.76,
+    "ocr_text": "U stfu tty\n\nPs\n\neck ¢ bee i"
+  },
+  {
+    "text": "Now, the objective is to learn P from data. So, what is the training data? The training data is",
+    "start": 280.32,
+    "end": 294.96,
+    "ocr_text": "U stfu tty\n\nPs\n\neck ¢ bee i"
+  },
+  {
+    "text": "past ratings of the user for the rating prediction problem which we have written or for the",
+    "start": 294.96,
+    "end": 300.8,
+    "ocr_text": "”\n\nsé&g Use\n\nS: ee ea\nLearn a fesw “j"
+  },
+  {
+    "text": "recommendation problem past purchase history or consumption history of the user. So, we learn P",
+    "start": 300.8,
+    "end": 308.96,
+    "ocr_text": "Kec Mnender\n\n7 on” Wyk ¥\nS — P uxs~ ®\n\nLeon p fom dale"
+  },
+  {
+    "text": "from data and based on P, we can predict the utility value of each item of each item to each user.",
+    "start": 308.96,
+    "end": 333.12,
+    "ocr_text": "Kec Mnender\n\n7 on” Wyk ¥\nS — P uxs~ ®\n\nLeon p fom dale"
+  },
+  {
+    "text": "So, this is the recommendation problem. Now, there are two broad types of recommendation systems,",
+    "start": 333.76,
+    "end": 342.8,
+    "ocr_text": "U SH furus F = Dp\n7.\nE Learn Pp rn, dole"
+  },
+  {
+    "text": "content based recommendation systems and collaborative clustering based recommendation system.",
+    "start": 342.8,
+    "end": 348.56,
+    "ocr_text": "n p fpeon dole"
+  },
+  {
+    "text": "In content based recommendation system, in content based recommendation system,",
+    "start": 349.2,
+    "end": 365.44,
+    "ocr_text": "Ly 7. ty Cada WH\nOrs"
+  },
+  {
+    "text": "the rating prediction or recommendation is based on the content of the current item and the",
+    "start": 366.32,
+    "end": 372.4,
+    "ocr_text": "Kecomn ee\nCorlenliaeets set f one P UXS>k\nrede He bility vlan"
+  },
+  {
+    "text": "content of the previous items that the user recommended or liked. So, based on the similarity of",
+    "start": 372.8,
+    "end": 379.36,
+    "ocr_text": "Kecomn ee\nCorlenliaeets set f one P UXS>k\nrede He bility vlan"
+  },
+  {
+    "text": "the content of those items that the user liked and those that is discarded, we can try to predict",
+    "start": 379.36,
+    "end": 388.0,
+    "ocr_text": "Kecomn ee\nCorlenliaeets set f one P UXS>k\nrede He bility vlan"
+  },
+  {
+    "text": "whether the new item will be liked by the user or what rating the user will give to the new item.",
+    "start": 388.0,
+    "end": 395.44,
+    "ocr_text": "n {\n\nU st fu — — a\nect of fon Se\n\nContent yaa\n\nIh eo: b won hole\n\n— Ue reste the ubilly eae"
+  },
+  {
+    "text": "So, this is based on content similarity. For example, if you are trying to predict movies,",
+    "start": 395.44,
+    "end": 411.84,
+    "ocr_text": "| Kecom render Syst rn\nl Sky ——— o 5\na — p. UXS—> &\n\nContent Raced — learn p LA\n\nof each ile fe each wer:"
+  },
+  {
+    "text": "trying to recommend movies to a user, look at the users, look at the movies the user liked in the past,",
+    "start": 412.56,
+    "end": 418.56,
+    "ocr_text": "Recommender Sys ry\n\n= Beeel — Learn p dole\n\ny ee covlet— the p & ee be utility vatne\nessed ae 4\ncay? a ‘ of Cada item te cach wxer-"
+  },
+  {
+    "text": "find out certain features about the movies, what was the genre, was the director,",
+    "start": 419.2,
+    "end": 424.24,
+    "ocr_text": "Corder Basek — Lenn p fron dale\n— byaveelll arnueadent= We fcc the utilily ve Dice\n5 rnslouy : ="
+  },
+  {
+    "text": "was the authors, was actors, location etcetera. So, look at the important features of those movies",
+    "start": 424.24,
+    "end": 430.72,
+    "ocr_text": "Corder Basek — Lenn p fron dale\n— byaveelll arnueadent= We fcc the utilily ve Dice\n5 rnslouy : ="
+  },
+  {
+    "text": "and try to find out what features the user finds attractive and based on that, you try to",
+    "start": 430.72,
+    "end": 435.92,
+    "ocr_text": "Ue st Gurus\nsusie\nGorrlenet Boaced _ Learn p fon dale\n—bard om cole — led Hie the ukilily ve Die\nsimdlaay of = iis te cach WHO\""
+  },
+  {
+    "text": "predict which movies the user will like. The second type of recommendation systems are",
+    "start": 435.92,
+    "end": 443.68,
+    "ocr_text": "Cond"
+  },
+  {
+    "text": "called collaborative filtering based systems. In collaborative filtering based system, the users,",
+    "start": 444.0,
+    "end": 452.0,
+    "ocr_text": "Cond"
+  },
+  {
+    "text": "in order to predict movies for a user, we look at the what similar users liked. So, for a user,",
+    "start": 462.88,
+    "end": 472.0,
+    "ocr_text": "|. Conlerd Based\n~baxd am ¢\n\ns rrlowly\noh (oabaatwe fil\n\nik Learn p ream Lal"
+  },
+  {
+    "text": "find similar users. Based on past data, we look at users who are similar to the current user,",
+    "start": 472.0,
+    "end": 485.76,
+    "ocr_text": "S. ct  ifyno )\n|. Corlend Based ¢ _ Leave p fon dale\n~barcdd om Covrdexe — fy sredite the ukilaly aie\n\nSs rl\n\no a te cach wren:\n2. GlWeieealve Filter od"
+  },
+  {
+    "text": "that is if we know which movies this user liked and which movies the other users liked,",
+    "start": 485.76,
+    "end": 491.92,
+    "ocr_text": "U Sé f ure\n|. Content Raoed ;\nKontera\n\n—bard om coded —\nS vralatey lam te och Wer\n\nSiral a\n\nON USC ay"
+  },
+  {
+    "text": "find out the similar users. And if those similar users, so some of the similar users have given a",
+    "start": 491.92,
+    "end": 500.64,
+    "ocr_text": "U Sé f ure\n|. Content Raoed ;\nKontera\n\n—bard om coded —\nS vralatey lam te och Wer\n\nSiral a\n\nON USC ay"
+  },
+  {
+    "text": "rating for this movie, use those ratings to predict the rating of the current user. They are",
+    "start": 500.64,
+    "end": 506.0,
+    "ocr_text": "eco L 45h IV\n\n> sh f tne }\n\n—bard om cone —\n\n5 rullas!\n\n2. G Waberatwe filter:"
+  },
+  {
+    "text": "called collaborative filtering based method. And as we see that, this involves finding similar",
+    "start": 506.0,
+    "end": 513.68,
+    "ocr_text": "|. Cordent Baack odie — Leave & fiom dole\n\n—barcel h conlede — ‘< wedi the wtilily ae\nrvilow! @\nSiw\n9. Cllabaatwe fileri : :\n\nSinan teon\nDilan sc"
+  },
+  {
+    "text": "users, which is what we did in K nearest neighbor or instance based learning. So, in collaborative",
+    "start": 513.68,
+    "end": 520.96,
+    "ocr_text": "|. Cordent Baack odie — Leave & fiom dole\n\n—barcel h conlede — ‘< wedi the wtilily ae\nrvilow! @\nSiw\n9. Cllabaatwe fileri : :\n\nSinan teon\nDilan sc"
+  },
+  {
+    "text": "filtering, we present each user. So, we first construct our data, in our data what we have is that,",
+    "start": 520.96,
+    "end": 529.36,
+    "ocr_text": "ondtent a : i learn Pp fom ce\nan Z — bho utilily v afoe\n—barxd m codletE— the P ey ho W 4\n\n_\n2. Cllebaabwe filleri\n\nSale\n———\n\ni\n\nSw"
+  },
+  {
+    "text": "we have, suppose we have a matrix, where the different items S 1, S 2, S 3, S 4, S n, these are",
+    "start": 529.44,
+    "end": 542.64,
+    "ocr_text": "U Sé fuses a QR\nS.-i eS =\n- Condent Based _ Rea pten tale\n“© 2 ukilly v Slax\n— bare! mle — hop & pedi ha |\nSn of eoda item fe each Weer\n\n2: Or \\abacthae ee\n\nAy poop 82 Pty\nee enna % a. 4."
+  },
+  {
+    "text": "the columns, U 1, U 2, U m, these are the different users. And for a particular user,",
+    "start": 542.64,
+    "end": 550.0,
+    "ocr_text": "Sys\n\nUo p. UxS> ®\n\n> eck cia Learn p fon date\nee tha ubilily vatoe\n\n|. Condent Raved\n\nSis ee\n—barccl om code — (he wrecks\n\nsilos A ton beech —\n\nQs Co\\labaatwe Flteri ae"
+  },
+  {
+    "text": "may have rated some movies, suppose this movie is rated as 5, this is not rated, this is not rated,",
+    "start": 550.88,
+    "end": 557.36,
+    "ocr_text": "U SA fur = 2\n| ee.\nbert PN Me ig predie the utility eH\nSa © 1 item te cach wren\nSi $2 S$ Sno\n\n2. Glabealon Fler\nStillen eye?"
+  },
+  {
+    "text": "this is rated as 2, this is rated as 3. For user 2, maybe this movie is rated as 3,",
+    "start": 557.36,
+    "end": 564.08,
+    "ocr_text": "Keecomnende Sys\n\nUmma aalixs> €\n\\. Corlent Raced Learn P mn hale\n—baxd on onets the p ger lhe utility valor\nower of 2 is cae wae\nQs CMabaatwe flex & Su\nlle US"
+  },
+  {
+    "text": "this movie has 2, this is not rated, not rated, this is rated as 4. Similarly, we have for different",
+    "start": 564.08,
+    "end": 571.36,
+    "ocr_text": "Keecomnende Sys\n\nUmma aalixs> €\n\\. Corlent Raced Learn P mn hale\n—baxd on onets the p ger lhe utility valor\nower of 2 is cae wae\nQs CMabaatwe flex & Su\nlle US"
+  },
+  {
+    "text": "users are presented with the movies and they have rated some of the movies. And they have not",
+    "start": 571.36,
+    "end": 581.28,
+    "ocr_text": "[sears ee\n1 Colact Rea’ tt ile ae:\nCoed Ba Leow B bes ele\n\nSi ee\n2. Gllabaatwe filery\nSi mala Us"
+  },
+  {
+    "text": "rated some of the movies. And what we want to do is that, given a user item pair consisting",
+    "start": 581.36,
+    "end": 587.28,
+    "ocr_text": "S ect of hus\n\n— bg om Conk he p A pede [es utility v a Die\nSee vee lew. te each Wer’\n\npe Cllaboatwe FL wt oe e - = Sv\n\na\n\nSinmilanpe"
+  },
+  {
+    "text": "of a movie, which the user has not rated, try to predict the rating. For example, let us say,",
+    "start": 587.28,
+    "end": 592.72,
+    "ocr_text": "Uses uxs> 8\nS: ee i\n- Corlent Raced Ege p on Male\n\nQ- Ge Beg\nSi ctl &"
+  },
+  {
+    "text": "U 3 is another user, who has rated 2, 2, 4, none. So, if we consider that, U 3 is a similar user",
+    "start": 592.72,
+    "end": 605.52,
+    "ocr_text": "Uses uxs> 8\nS: ee i\n- Corlent Raced Ege p on Male\n\nQ- Ge Beg\nSi ctl &"
+  },
+  {
+    "text": "to U 2 and U 3 has rated 4 for this movie, that will help you to decide what rating U 2 will",
+    "start": 605.52,
+    "end": 612.32,
+    "ocr_text": "Viste p UxS> ®\n\n|. Condent Based Learn p fron dale\n—barcd om context eke tb fea, tho util v Due\nS wow = i “a”\n7\n\nQa (olabaatwe Te, :"
+  },
+  {
+    "text": "give this movie, this is the essence of collaborative filtering. Now, collaborative filtering,",
+    "start": 612.32,
+    "end": 618.48,
+    "ocr_text": "Viste p UxS> ®\n\n|. Condent Based Learn p fron dale\n—barcd om context eke tb fea, tho util v Due\nS wow = i “a”\n7\n\nQa (olabaatwe Te, :"
+  },
+  {
+    "text": "there are two types of collaborative filtering methods, one is based on user based nearest neighbor.",
+    "start": 618.48,
+    "end": 624.48,
+    "ocr_text": "lu Sys 1%\n\n|. Condert Basch et fine ee\n~ Content Saved [™ Learn p com Aol\n\n2\n\nol\nSlow 2 cad item tm each wre\nSr Se & Sno"
+  },
+  {
+    "text": "As I told you, that in collaborative filtering, nearest neighbor based methods are used, are used to decide",
+    "start": 624.48,
+    "end": 644.64,
+    "ocr_text": "lu Sys 1%\n\n|. Condert Basch et fine ee\n~ Content Saved [™ Learn p com Aol\n\n2\n\nol\nSlow 2 cad item tm each wre\nSr Se & Sno"
+  },
+  {
+    "text": "who are the similar users. So, in user based nearest neighbor, given a user find similar users,",
+    "start": 644.64,
+    "end": 652.56,
+    "ocr_text": "UY Sas : User-bared néaac\nect ff rfyno Pp Ss\nnde i es bie\n\nBc the utilly tlie"
+  },
+  {
+    "text": "use the ratings of the test item for that those similar users to predict the rating of the test",
+    "start": 652.96,
+    "end": 660.08,
+    "ocr_text": "(: sofas\n\nioc — beam p feo lal\n\nA om candle — the p ® Pe] : a ubility v\n\nshout\nhve, fai ( ri\nSinai"
+  },
+  {
+    "text": "item for the new user. There is also item based nearest neighbor.",
+    "start": 660.08,
+    "end": 665.28,
+    "ocr_text": "(: sofas\n\nioc — beam p feo lal\n\nA om candle — the p ® Pe] : a ubility v\n\nshout\nhve, fai ( ri\nSinai"
+  },
+  {
+    "text": "In item based methods, the different items are compared. So, similarity between",
+    "start": 672.56,
+    "end": 678.56,
+    "ocr_text": "SF | War\n- User-baced néanost\nUxs>R eel\n\n2, =I , be\n= vice Leon p fon dole Jem\nwe = the p & pred filly vad i\n\ntwe filleri\nSinulxn an"
+  },
+  {
+    "text": "up items are obtained by looking at, who are the users who have rated, how the users have rated",
+    "start": 678.56,
+    "end": 685.28,
+    "ocr_text": "User-bared NCA wat hr\n\nASA fart\n\n>: oh of iano\njoc, 3 ism hale\n\ndA omunet£\n\nshox’\n\nSinaloa Ve"
+  },
+  {
+    "text": "for the items. If there are two items, which most users have rated in a similar way, then those items",
+    "start": 685.28,
+    "end": 692.96,
+    "ocr_text": "me - a\njc } yn PB om dale Them bare\nWie predie e whilly vate"
+  },
+  {
+    "text": "are considered to be similar. This is an alternative to content based similarity of items. We can use",
+    "start": 692.96,
+    "end": 698.96,
+    "ocr_text": "me - a\njc } yn PB om dale Them bare\nWie predie e whilly vate"
+  },
+  {
+    "text": "this matrix, we can compare the column vectors to find out the pair wise item similarity,",
+    "start": 698.96,
+    "end": 706.96,
+    "ocr_text": "Us st fur 2. 2 ne\nUXS> ®\n\nS: ec tens arek,\nnoe — a\nJoust\n\nSi Recva Wc\nees"
+  },
+  {
+    "text": "and we can use it for recommendation in this way. For a user, we look at those items, the user",
+    "start": 706.96,
+    "end": 714.08,
+    "ocr_text": ", r, Necomnunadu Syste ry\nI SEG Ue .\n\nat UXS> K\nst dalle P if Therm: barest\n\nped, Learn p fram Aol ae\n\nA on UN g hep & uc the ubthby v aban\noe\n\n= , us\nY G, \\3\n, 2\n\nYn"
+  },
+  {
+    "text": "has recommended, user has liked and find out items, which are similar to these items. So,",
+    "start": 714.08,
+    "end": 720.32,
+    "ocr_text": ", r, Necomnunadu Syste ry\nI SEG Ue .\n\nat UXS> K\nst dalle P if Therm: barest\n\nped, Learn p fram Aol ae\n\nA on UN g hep & uc the ubthby v aban\noe\n\n= , us\nY G, \\3\n, 2\n\nYn"
+  },
+  {
+    "text": "for this item based collaborative filtering, which uses item nearest neighbors can be used.",
+    "start": 720.32,
+    "end": 726.4,
+    "ocr_text": "| cecomnmnwndluy Ayal to based nemnat ube\n\nSE | wr - 7 Usa back dasa\nS>R\n\n; ie : Thera acest\n\neA é Learn p a Halse J\n\n‘ ay a (hcp  predice tha whillg vaton\n\nLove FILE “t ase S. a Sy\n\ne G, \\3\n\nu, B\\\nAn\n\nHt\nOy\n*\n\nsah"
+  },
+  {
+    "text": "So, for such algorithms, we have, there are two phases to these algorithms. Look at this slide.",
+    "start": 726.96,
+    "end": 737.52,
+    "ocr_text": "Collaborative Filtering for Rating\nPrediction\n\n¢ User-based Nearest Neighbour\n— Neighbour = similar users\n\n— Generate a prediction for an item i by analyzing\nratings for i from users in u’s neighbourhood"
+  },
+  {
+    "text": "First of all, we have to find the neighborhood. Let us look at user based nearest neighbor.",
+    "start": 738.24,
+    "end": 745.76,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v € 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\nDine Cr = EVR =)\nVince Far AY Vice ei FY\n\nsim(@,v)"
+  },
+  {
+    "text": "In user based nearest neighbor, given a user and an item, we first look at the user,",
+    "start": 745.76,
+    "end": 752.4,
+    "ocr_text": "A: Sé G ue\n\n>: et fone\npt\nLom covert —\nlas!\n\nVe Ailbri\nSi aaa Usa"
+  },
+  {
+    "text": "and we find the similar users. So, this is the first phase of the algorithm, which is called",
+    "start": 752.4,
+    "end": 759.2,
+    "ocr_text": "A: Sé G ue\n\n>: et fone\npt\nLom covert —\nlas!\n\nVe Ailbri\nSi aaa Usa"
+  },
+  {
+    "text": "the neighborhood formation phase. Suppose, the record of the target user is U. The target user U",
+    "start": 759.2,
+    "end": 768.32,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\na a Cot\nVoce Far AY eG RY\n\nsim(u,v)\n\n>"
+  },
+  {
+    "text": "is represented by a vector, and this vector is the rating that user gave to the items,",
+    "start": 768.32,
+    "end": 777.36,
+    "ocr_text": "Waenk NEA wat L\n\nLom conlente —\nla\n\nVe Filkyi\nSind\nMMAUAN USGA,"
+  },
+  {
+    "text": "for which he has given the rating. So, the user is represented by this vector. And we find the",
+    "start": 777.44,
+    "end": 784.48,
+    "ocr_text": ": UL 46h 1 el\nwk et of un (a cas\need © Learn p fen dale Jim back\n\nL om nl e\nmr coved (hep adhe Ba whilily wala\n\nlous\nwe ff Ue\nSimilan sua £4"
+  },
+  {
+    "text": "similarity between the target user U and another potential neighbor V, by using some similarity",
+    "start": 784.48,
+    "end": 793.52,
+    "ocr_text": ": UL 46h 1 el\nwk et of un (a cas\need © Learn p fen dale Jim back\n\nL om nl e\nmr coved (hep adhe Ba whilily wala\n\nlous\nwe ff Ue\nSimilan sua £4"
+  },
+  {
+    "text": "measure. A popular similarity measure is the Pearson's correlation coefficient.",
+    "start": 793.52,
+    "end": 798.64,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\nDic € yp — RA =i)\neee Ca, a RD aps yah\n\nsim(u,v)\n\n>"
+  },
+  {
+    "text": "Pearson's correlation coefficient can be used to find the similarity between two vectors U and V,",
+    "start": 799.28,
+    "end": 806.16,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\nMice Cui — FING - FD\nVoice Far =A Jc RY\n\n&\n\nsim(@,v)"
+  },
+  {
+    "text": "as in the numerator, we have summation over all items rating of U for item I minus RU bar is",
+    "start": 806.96,
+    "end": 819.92,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\ncnn = BIA HZ)\nVince Far AY Vice es FY\n\nsim(@,v)\n\n>"
+  },
+  {
+    "text": "the average rating of the user for item. Times RVI rating of user V for item I minus RV bar",
+    "start": 819.92,
+    "end": 829.84,
+    "ocr_text": "Neighborhood formation phase\n\n*¢ Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\n— RIC. — Fh)\nVoe. ar 5; 7 So i ry\n\nsim(@,v)"
+  },
+  {
+    "text": "average rating of the user V. Now, why do we have RU bar and RV bar here?",
+    "start": 829.84,
+    "end": 837.68,
+    "ocr_text": "Neighborhood formation phase\n\n*¢ Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\nDe i) ria)\ncca _ Fr)? Voce Cou _ 7)\n\nsim(u,v)"
+  },
+  {
+    "text": "Now, different users have different standards for rating. There are some users who are reluctant",
+    "start": 838.32,
+    "end": 846.0,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\nDn Cy EMG = BD\nene =Ay Dice —7)\n\nsim(@,v)\n\n>"
+  },
+  {
+    "text": "to give a 5. If a user likes a movie very much, he can give a 3 or at most of 4 and not a 5.",
+    "start": 846.0,
+    "end": 854.16,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\nDn Cy EMG = BD\nene =Ay Dice —7)\n\nsim(@,v)\n\n>"
+  },
+  {
+    "text": "And there are some users who are very liberal with rating. So, they may give a rating of 5 to",
+    "start": 854.24,
+    "end": 861.12,
+    "ocr_text": "Raced\n\nved on Conlent\nrte\n\nnotave if ( beri\nSi railan USA\n\nj\n\nGAS,\n\na ts, Paeessy\n\n4% 5 sy yi Mi\nOe ery\noa"
+  },
+  {
+    "text": "any movie that he likes. So, because users have different standards in rating movies,",
+    "start": 861.12,
+    "end": 868.48,
+    "ocr_text": "Raced\n\nved on Conlent\nrte\n\nnotave if ( beri\nSi railan USA\n\nj\n\nGAS,\n\na ts, Paeessy\n\n4% 5 sy yi Mi\nOe ery\noa"
+  },
+  {
+    "text": "we want to somehow normalize them by looking at whether the rating of the movie is above is how",
+    "start": 868.48,
+    "end": 876.72,
+    "ocr_text": "Kecommendin Syste vy _\n= baced Nea wat nbv\n\nU: se ae YU & = \\\nS 2 ack of bene bi UXS—>\nEas = Lean pt i, CLSES Tham bacet\nvd a eile ara ‘ee Tha willy valan\nry louw! . a\nWee et\nSie"
+  },
+  {
+    "text": "much it is more than the is average rating. So, that is why in this formula, we use sigma",
+    "start": 877.2,
+    "end": 886.16,
+    "ocr_text": "Recommend Sater\nU S¢ furs c a\nck Pm Ss as\nBanc earn p dim dole J\n\ned on cole — the ps te LSB te tilly ven\n\nnlows\n\nSil ee\n—— el"
+  },
+  {
+    "text": "RUI minus RU bar times RVI time minus RV bar. RUI is the rating of user U for item I and we",
+    "start": 886.16,
+    "end": 896.4,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v € 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\nDeck’ Pog = IN.5 =F.)\nDae ieesy =e Gey\n\nsim(@,v)"
+  },
+  {
+    "text": "sum it over all items. In the denominator, we have root over summation over items RUI minus",
+    "start": 896.4,
+    "end": 905.04,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\n—_ Pop = ENG HRD\nVdc Ce ar > (sae Ty. oe\n\nsim(@,v)"
+  },
+  {
+    "text": "RU bar whole square times RVI minus RV bar whole square. So, this is for normalization and this",
+    "start": 905.04,
+    "end": 913.84,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\nicc Cus FING - FA)\nGa paeee ey\n\nsim(@,v)\n\n>"
+  },
+  {
+    "text": "is one similarity measure. So, this type of similarity measure is used to score the similarity",
+    "start": 913.84,
+    "end": 921.28,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\nicc Cus FING - FA)\nGa paeee ey\n\nsim(@,v)\n\n>"
+  },
+  {
+    "text": "between two users U and V. After the similarity of U with all the users has been computed,",
+    "start": 921.28,
+    "end": 928.96,
+    "ocr_text": "Neighborhood formation phase\n\n*¢ Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\n&\nDe i) Cri)\ncP _ Fr)? Voce Cou _ Fy\n\nsim(u,v)"
+  },
+  {
+    "text": "we find the K dearest neighbors that is K most similar users according to this formula.",
+    "start": 929.52,
+    "end": 937.28,
+    "ocr_text": "Neighborhood formation phase\n\n* Letthe record (or profile) of the target user be u\n(represented as a vector), and the record of another\nuser be v (v &€ 7).\n\n* The similarity between the target user, u, anda\nneighbor, v, can be calculated using the Pearson’s\ncorrelation coefficient:\n\nDice Cu FIC — A)\neee =A Wc: —7)y\n\nsim(@,v)"
+  },
+  {
+    "text": "And the second phase is the recommendation phase. So, in the neighborhood formation phase,",
+    "start": 938.72,
+    "end": 944.88,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\na Dover SIMU, V)X Oyj -7,)\nPODS ESS beim.)\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "we find the similar users and in the recommendation phase, we use the rating of those similar",
+    "start": 944.88,
+    "end": 953.92,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\na Dover SIMU, V)X Oyj -7,)\nPODS ESS beim.)\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "users on the test item to recommend the item to the user. So, for this in the recommendation",
+    "start": 953.92,
+    "end": 962.64,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\na over SIMU, V) XO, -7,)\n> Scns)\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "phase, we use the following formula to compute the rating prediction of item I for target user U.",
+    "start": 962.64,
+    "end": 970.96,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\na over SIMU, V) Xj —7,)\n> TCR)\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item /,"
+  },
+  {
+    "text": "So, P U I is the predicted rating of user U for item I. It is equal to RU bar. RU bar again is",
+    "start": 971.68,
+    "end": 982.88,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\n8 over SIMU, VY) Xj -7,)\nrn SCTCes)\n\n&\n\nwhere V is the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "the average rating of that user. We want to predict whether it will be below average or above",
+    "start": 982.88,
+    "end": 991.44,
+    "ocr_text": "Recommendation Phase\n\n- Use the following formula to compute the rating\nprediction of item / for target useru\n\na over SIMU, V) XY; —F,)\nACD a Dive |simu, v)|\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "average and how much it will exceed or be different from the average. And this is computed as sigma V",
+    "start": 991.44,
+    "end": 999.52,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\nSe , Deve SIMU, V)*F, —Fe)\nPODS FS, ima. ¥))\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "included in V. V is the set of neighbor capital V is the set of nearest neighbors. So, for all neighbors,",
+    "start": 999.52,
+    "end": 1007.36,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\nSe , Deve SIMU, V)*F, —Fe)\nPODS FS, ima. ¥))\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "similarity U V is as we computed in the previous phase times RVI minus RV bar. So, for a user V",
+    "start": 1008.32,
+    "end": 1021.04,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\na ever SIMUL) XO i -7,)\nPODS ES ima.)\n\nwhere V is the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "who is similar to user U, we look at the difference of the rating of V for I minus the average rating",
+    "start": 1021.04,
+    "end": 1030.56,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\nDovey SHMCU, V) x (7%, Fv)\nPODS ESS. sim.)\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "of that user. So, if the rating of item I for user V is greater than the average rating of that",
+    "start": 1030.56,
+    "end": 1039.36,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\nDovey SHMCU, V) x Fy)\nPODS ESS. sim.)\n\nwhere V is the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "user, this is positive. Otherwise, it is negative. And the weight this particular neighbor is given",
+    "start": 1039.36,
+    "end": 1049.36,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\nDovey StMCU, V) XT, Fy)\nPee simu, vy]\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "a weight based on how similar he is or she is to the user U. So, suppose we have a user U",
+    "start": 1049.36,
+    "end": 1057.28,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\nDovey SUMOB V) x Fy)\nPODS ESS. sim.)\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "who is our target user and I is our target item. So, we find the neighbors let us say V1, V2, V3.",
+    "start": 1057.36,
+    "end": 1066.64,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\nDovey SUMOB V) x Fy)\nPODS ESS. sim.)\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "And they are the most similar users and with each of them we have a value. Suppose with V1,",
+    "start": 1067.76,
+    "end": 1074.4,
+    "ocr_text": "Vj 240) 6\n\nSos\n\na x"
+  },
+  {
+    "text": "we have a value 0.6. Suppose with V2, we have a value 0.3 and V3, we have a value 0.25.",
+    "start": 1074.4,
+    "end": 1081.28,
+    "ocr_text": "Vj 240) 6\n\nSos\n\na x"
+  },
+  {
+    "text": "Then we look at the prediction of the user V1 for item I and we weight that by 0.6 by this",
+    "start": 1082.24,
+    "end": 1092.32,
+    "ocr_text": "Vj 240) 6\n\nSos\n\na x"
+  },
+  {
+    "text": "similarity of V1 with U. We look at the rating of V2 for item I weighted by 0.3, look at the rating",
+    "start": 1092.32,
+    "end": 1101.52,
+    "ocr_text": "Vj 240) 6\n\nSos\n\na x"
+  },
+  {
+    "text": "of V3 for item I weight by 0.25 and to overcome the bias factor because different users have different",
+    "start": 1101.52,
+    "end": 1109.92,
+    "ocr_text": "y\nPorn Saa%3)¥y\nfo nyo, ep 98,4\n\nWy 0p, Abs) D3%iy1, \"1\n\n4 ay\nlig Pace: LN\n“4 3%"
+  },
+  {
+    "text": "standards of rating everything we are doing in terms of the average as we see in this slide.",
+    "start": 1109.92,
+    "end": 1116.16,
+    "ocr_text": "y\nPorn Saa%3)¥y\nfo nyo, ep 98,4\n\nWy 0p, Abs) D3%iy1, \"1\n\n4 ay\nlig Pace: LN\n“4 3%"
+  },
+  {
+    "text": "So, please look at the slide again. So, we have P U I equal to R U bar average rating of user U",
+    "start": 1117.04,
+    "end": 1125.04,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\n8 over SIMU, V) XO; -7,)\n> SCE)\n\nwhere V is the set of k similar users, r,; is the rating\nof user v given to item /,"
+  },
+  {
+    "text": "times for all neighbors, Cm U V for all neighbors V Cm U V times R V I minus R V bar.",
+    "start": 1125.92,
+    "end": 1133.36,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\na over SIMU, V) Xj —7,)\nPODER SS sim.)\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "And in the denominator we have for all the nearest neighbors the summation of the similarities.",
+    "start": 1134.0,
+    "end": 1141.2,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\na over SIMU, V) Xj —7,)\nPODER SS sim.)\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "So, based on this we do our recommendation. Now, the similarity computed can be positive and",
+    "start": 1143.68,
+    "end": 1149.12,
+    "ocr_text": "Recommendation Phase\n\n* Use the following formula to compute the rating\nprediction of item / for target useru\n\na over SIMU, V) XO; -7,)\nPODS ESS in.)\n\nwhere Vis the set of k similar users, r,; is the rating\nof user v given to item /,"
+  },
+  {
+    "text": "negative. We took the look at the absolute value of the similarity in order to prove this.",
+    "start": 1149.12,
+    "end": 1154.4,
+    "ocr_text": "Recommendation Phase\n\n- Use the following formula to compute the rating\nprediction of item / for target useru\n\n8 over SIMU, VY) XO; —F,)\n> TCR)\n\nwhere V is the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "So, this is collaborative filtering based recommendation system. So, C F stands for collaborative",
+    "start": 1154.88,
+    "end": 1165.2,
+    "ocr_text": "Recommendation Phase\n\n- Use the following formula to compute the rating\nprediction of item / for target useru\n\n8 over SIMU, VY) XO; —F,)\n> TCR)\n\nwhere V is the set of k similar users, r,; is the rating\nof user v given to item ij,"
+  },
+  {
+    "text": "filtering. This is collaborative filtering based recommendation system using K N",
+    "start": 1165.2,
+    "end": 1172.4,
+    "ocr_text": "Issue with the user-based KNN CF\n\n¢ The problem with the user-based formulation\nof collaborative filtering is the lack of\nscalability:\n\n— it requires the real-time comparison of the target\nuser to all user records in order to generate\npredictions.\n\n* Avariation of this approach that remedies this\nproblem is called item-based CF."
+  },
+  {
+    "text": "nearest neighbor or user based K N nearest neighbor.",
+    "start": 1172.64,
+    "end": 1177.76,
+    "ocr_text": "Issue with the user-based KNN CF\n\n¢ The problem with the user-based formulation\nof collaborative filtering is the lack of\nscalability:\n\n— it requires the real-time comparison of the target\nuser to all user records in order to generate\npredictions.\n\n* Avariation of this approach that remedies this\nproblem is called item-based CF."
+  },
+  {
+    "text": "The problem of user based formulation of collaborative filtering is the lack of scalability.",
+    "start": 1189.2,
+    "end": 1195.68,
+    "ocr_text": "Ct Doped a 0.\n\nUS& band KIN"
+  },
+  {
+    "text": "If you have many users in a popular sites like Amazon or Netflix they can have many users,",
+    "start": 1195.68,
+    "end": 1204.56,
+    "ocr_text": ">\n\ni heal wesc\nUS &e bared. KNN eae\nuw es ee\n\nVe 0.25\n\noe"
+  },
+  {
+    "text": "billion of users. Now, it is not possible in real time to find out the most similar users",
+    "start": 1204.56,
+    "end": 1213.92,
+    "ocr_text": ">\n\ni heal wesc\nUS &e bared. KNN eae\nuw es ee\n\nVe 0.25\n\noe"
+  },
+  {
+    "text": "because as we have seen in instance based learning out of them. So, these types of learning",
+    "start": 1214.8,
+    "end": 1219.6,
+    "ocr_text": "CE Acai"
+  },
+  {
+    "text": "are lazy. At runtime you find the most similar users and if the total number of users is very",
+    "start": 1220.08,
+    "end": 1226.48,
+    "ocr_text": "CE Acai"
+  },
+  {
+    "text": "large it is difficult without the use of good data structures to find the most similar users",
+    "start": 1226.48,
+    "end": 1233.68,
+    "ocr_text": "Recommender. 4s 1%\n\nCe Daredk pa Vy 206\nser bard KN a\nSS"
+  },
+  {
+    "text": "in runtime. And while several data structures clustering etc can be used to make this more efficient",
+    "start": 1233.68,
+    "end": 1241.84,
+    "ocr_text": "Recommender. 4s 1%\n\nCe Daredk pa Vy 206\nser bard KN a\nSS"
+  },
+  {
+    "text": "and alternative to user based nearest neighbor is item based nearest neighbor or item based collaborative",
+    "start": 1241.92,
+    "end": 1250.32,
+    "ocr_text": "Recommender. 4s 1%\n\nCe Daredk pa Vy 206\nser bard KN a\nSS"
+  },
+  {
+    "text": "filtering. In item based collaborative filtering what we do is that we find similarity between",
+    "start": 1250.32,
+    "end": 1268.56,
+    "ocr_text": "Kecornmuncder Syste ry\n\nef —"
+  },
+  {
+    "text": "the items. We compare the items. So, if you have two items i and j the similarity between",
+    "start": 1268.56,
+    "end": 1281.44,
+    "ocr_text": "ltem-based CF\n\n* The item-based approach works by comparing\nitems based on their pattern of ratings across\nusers. The similarity of items/and/ is\ncomputed as follows:\n\nEne Cop = BNC 9 BS)\nVEoncw Cau FY” VQoncr Cay Fa”\n\nsim(, j) ="
+  },
+  {
+    "text": "these two items are computed as the formula is very similar to what we used for user based",
+    "start": 1281.44,
+    "end": 1289.92,
+    "ocr_text": "Kecommender Vs a\n\nCE | oe\n\nUS& banc kKNN Sim vi)=\n\nRael al CF\niter ese\n\nz\n7"
+  },
+  {
+    "text": "collaborative filtering. Here we sum over all users. We look at r u i minus r u bar",
+    "start": 1289.92,
+    "end": 1304.4,
+    "ocr_text": "Kecommender Vs a\n\nCE | oe\n\nUS& banc kKNN Sim vi)=\n\nRael al CF\niter ese\n\nz\n7"
+  },
+  {
+    "text": "times r u j minus r u bar. So, we look at the rating of user u for item i times the rating of",
+    "start": 1304.4,
+    "end": 1324.96,
+    "ocr_text": "- Kecormmundur Syst Vv\nCF bao A S. (uy\n\nNes ive PANIN sim vie myalre\n\nitem baeds Cle\n(en Does"
+  },
+  {
+    "text": "user u for item j and again we use the normalization we subtract the mean for that user and in the",
+    "start": 1324.96,
+    "end": 1333.2,
+    "ocr_text": "~ : Recommend Syste\nEs ‘pola sim(o}) = ve inct)\n\nUse based KNN\n\nthem band CF ,\n\n=, J eabares"
+  },
+  {
+    "text": "denominator we have root over sigma over all users r u i minus r u bar whole square",
+    "start": 1333.2,
+    "end": 1348.48,
+    "ocr_text": "CE ‘ vg\n\nstr bane KNN\n\nw bared CF"
+  },
+  {
+    "text": "square times sigma over all users r u j minus r u bar whole square. So, based on this we find the",
+    "start": 1348.56,
+    "end": 1368.88,
+    "ocr_text": "CFE vert —\n\nES (iyi- “4% bu-%)\n———\n\nste Bod ENN ape as\n\nUE"
+  },
+  {
+    "text": "similarity between the items. Now, once we find the similarity of the items in the neighborhood",
+    "start": 1368.88,
+    "end": 1375.92,
+    "ocr_text": "CE dared cae\nsim sine ue\n\nUS Bane KNW\n\nere: bared. cr\npas Siuee ST"
+  },
+  {
+    "text": "formation phase then we go to the recommendation phase. In the recommendation phase we select a",
+    "start": 1376.0,
+    "end": 1382.88,
+    "ocr_text": "Recommendation phase\n\n- After computing the similarity between items\nwe select a set of k most similar items to the\ntarget item and generate a predicted value of\nuser u’s rating\n\nnes Ty, x sim@, J)\nDe stm, J)\n\nPU, 7)\n\nwhere J is the set of k similar items"
+  },
+  {
+    "text": "set of k most similar items to the target item. So, we have a target item i and for the target item",
+    "start": 1382.88,
+    "end": 1392.64,
+    "ocr_text": "Recommendation phase\n\n- After computing the similarity between items\nwe select a set of k most similar items to the\ntarget item and generate a predicted value of\nuser u’s rating\n\nnes Ty, x sim@, J)\nDe stm, J)\n\nPU, 7)\n\nwhere J is the set of k similar items"
+  },
+  {
+    "text": "we find the most similar items. So, target item is i. We find the k most similar items i1 i2 i",
+    "start": 1392.64,
+    "end": 1405.84,
+    "ocr_text": "Recommendation phase\n\n- After computing the similarity between items\nwe select a set of k most similar items to the\ntarget item and generate a predicted value of\nuser u’s rating\n\nes Ty, x sim@, J)\nDe St, J)\n\nPU, 7)\n\nwhere J is the set of k similar items"
+  },
+  {
+    "text": "based on this formula that we have written and then we do the rating prediction. The rating",
+    "start": 1406.56,
+    "end": 1417.68,
+    "ocr_text": "Kecommunder Syste ry\n\n= («yi Ee) (v4 -)\nA\n\nae\n\nCE Doped Pe\n\nUser band KIN sim(04) fe"
+  },
+  {
+    "text": "prediction is done P u i as sigma i take the summation over the similar items capital j are the",
+    "start": 1417.68,
+    "end": 1432.4,
+    "ocr_text": "dtl\nZe Ded\nut a)\ngt)\n\nIVES\n=!\nw\n‘ba\nOs\nel,\nk\nN\nN\nsil\n—s\nuu\né\nWs\n\nCI b\ned CF. > Gy cae ) 2\nDow\na\n¢"
+  },
+  {
+    "text": "k similar items we do r u j times the similarity of item i item j divided by sigma j again",
+    "start": 1432.4,
+    "end": 1451.28,
+    "ocr_text": "Kecommuendyr Vv\n\niP\nCE Doped rom\n\nystbad KANE viz\n\n= 3\nem bord. T6e-"
+  },
+  {
+    "text": "over all neighboring items sigma j. So, based on this the rating is predicted.",
+    "start": 1451.28,
+    "end": 1462.48,
+    "ocr_text": "Ke\nGe Dave aera (tyi- @) buy)\n\nUS& based kKNN SOO Co\ncrn DOE bared ore S Gu-ey Mu Boao am\n2.\n\n. “oe ~~ * nfs"
+  },
+  {
+    "text": "So, this is item based collaborative filter. So, with this brief introduction we come to the",
+    "start": 1468.32,
+    "end": 1476.8,
+    "ocr_text": "F banat i ) bus—%)\nNES a aie Zo Docd Cm\nen bard “Be y > Cus =a eae\n=a Tran\n<= ety * Sirn(t,4\n: S Sim(tq)\n\n4e3"
+  },
+  {
+    "text": "end of recommendation steps which is an application of k d r s neighbors and we also come to an end",
+    "start": 1476.8,
+    "end": 1483.44,
+    "ocr_text": "Wee bad KNN\n\nla C\nem bared. Ge\n——————_ ae L C"
+  },
+  {
+    "text": "of this module. After this the next module that we will start is on probabilities Bayesian learning",
+    "start": 1483.44,
+    "end": 1492.72,
+    "ocr_text": "Wee bad KNN\n\nla C\nem bared. Ge\n——————_ ae L C"
+  },
+  {
+    "text": "life base and use such things. Of course, we will also have one class by our teaching assistant",
+    "start": 1492.72,
+    "end": 1500.96,
+    "ocr_text": "NECMNLNAaL\n\nCE doves few\n\nust based KIN\n\nem bared. om\n\noe ae"
+  },
+  {
+    "text": "on how to use this nearest neighbor type in an instant space learning type of algorithms in some",
+    "start": 1501.04,
+    "end": 1509.04,
+    "ocr_text": "KI ES Dore pe\na band KNN sim( =\n\nene a, ate\na\n\naed"
+  },
+  {
+    "text": "application. Thank you very much.",
+    "start": 1509.04,
+    "end": 1519.2,
+    "ocr_text": "Doped\n\nUse band KNN\n\nem bared whe\n(\naS"
+  }
+]

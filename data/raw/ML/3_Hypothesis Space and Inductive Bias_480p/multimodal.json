@@ -1,0 +1,1358 @@
+[
+  {
+    "text": "Good morning. Today we will have the first module of machine learning, part C. I will",
+    "start": 0.0,
+    "end": 25.8,
+    "ocr_text": "Foundations of Machine Learning\nModule 1: Introduction\n\nPart c: Hypothesis Space and Inductive Bias\n\nSudeshna Sarkar\nIIT Kharagpur"
+  },
+  {
+    "text": "talk about hypothesis space and inductive bias will give a brief introduction to this. So,",
+    "start": 25.8,
+    "end": 33.4,
+    "ocr_text": "Foundations of Machine Learning\nModule 1: Introduction\n\nPart c: Hypothesis Space and Inductive Bias\n\nSudeshna Sarkar\nIIT Kharagpur"
+  },
+  {
+    "text": "that when we talk about different machine learning algorithms, we can refer to this discussion.",
+    "start": 33.4,
+    "end": 38.08,
+    "ocr_text": "Foundations of Machine Learning\nModule 1: Introduction\n\nPart c: Hypothesis Space and Inductive Bias\n\nSudeshna Sarkar\nIIT Kharagpur"
+  },
+  {
+    "text": "So, as we have seen that in inductive learning or prediction, we are given examples or data",
+    "start": 38.08,
+    "end": 64.36,
+    "ocr_text": "Foundations of Machine Learning\nModule 1: Introduction\n\nPart c: Hypothesis Space and Inductive Bias\n\nSudeshna Sarkar\nIT Kharagpur"
+  },
+  {
+    "text": "and the examples are of the form as we have seen x, y where x is for a particular instance,",
+    "start": 64.36,
+    "end": 78.2,
+    "ocr_text": "Induchve Learning [ Pedictuon"
+  },
+  {
+    "text": "x comprises of the values of the different features of that instance and y is the output",
+    "start": 78.2,
+    "end": 85.84,
+    "ocr_text": "Anduckve Learning / TEEOU CA ON,\n\nGiven ex amples. (Y, ¥)"
+  },
+  {
+    "text": "attribute and we can also think of that as being given x and f x. So, if you assume that the",
+    "start": 85.84,
+    "end": 98.16,
+    "ocr_text": "Given ex amples eZ 0 ’"
+  },
+  {
+    "text": "output of an instance is a function of the input vector, input feature vector and this is the",
+    "start": 98.16,
+    "end": 106.08,
+    "ocr_text": "Given ex amples eZ 0 ’"
+  },
+  {
+    "text": "function that we are trying to learn, we are given x f x pairs as examples and we want to learn x",
+    "start": 106.08,
+    "end": 115.92,
+    "ocr_text": "ven Xx amples (oF 4) \\% Ale)"
+  },
+  {
+    "text": "for a classification problem. In the earlier class, we talked about two types of supervised learning",
+    "start": 115.92,
+    "end": 127.44,
+    "ocr_text": "Given examples OL DY M407\n\nC lassi\ni a"
+  },
+  {
+    "text": "problems, classification and regression depending on whether the output attribute type is",
+    "start": 127.44,
+    "end": 135.16,
+    "ocr_text": "Mp bles y= ¥) (& {@)\n\nS)iwer ex a\n\nKe lassBen Ow & F\nt =\n\n=\n\nos"
+  },
+  {
+    "text": "discrete, valued or continuous valued. In classification problem, this function f x is discrete.",
+    "start": 135.16,
+    "end": 144.24,
+    "ocr_text": "C | Gssificaliz\n\nny\n\nof wall\n( il\\\n\n) j\n\n1\n\n¥\n\nx\n\na \\ ‘"
+  },
+  {
+    "text": "In regression, the function f x is continuous and we can also apart from classification and",
+    "start": 144.24,
+    "end": 167.04,
+    "ocr_text": "C | Gssificaliz\n\nny\n\nof wall\n( il\\\n\n) j\n\n1\n\n¥\n\nx\n\na \\ ‘"
+  },
+  {
+    "text": "regression, in some cases, we may want to find out the probability of a particular value of y.",
+    "start": 167.04,
+    "end": 174.0,
+    "ocr_text": "i\n\nex an ples\n\nWe\n\nvA: i) Coin\n>"
+  },
+  {
+    "text": "So, for those problems, where we look at probability estimation, our f x is the probability of x.",
+    "start": 174.0,
+    "end": 191.52,
+    "ocr_text": "i\n\nex an ples\n\nWe\n\nvA: i) Coin\n>"
+  },
+  {
+    "text": "So, this are the types of inductive learning problems that we are looking at. Why do we call",
+    "start": 191.52,
+    "end": 203.32,
+    "ocr_text": "Given ex amples C4, ¥) (z (@))\n\nClarsficolion : J ) is discyele\n3M - pes i Naas\n\n="
+  },
+  {
+    "text": "this inductive learning? We are given some data and we are trying to do induction to try to",
+    "start": 203.32,
+    "end": 210.36,
+    "ocr_text": "Gren example (LY) i)\n\nClarsficalior «\n\nVN -\n\nProbability"
+  },
+  {
+    "text": "identify a function which can explain the data. So, induction as opposed to deduction unless we",
+    "start": 210.36,
+    "end": 219.24,
+    "ocr_text": "Given examples OL, “\\ (4 “ (@))\nClassifica - t( ASS | screle\nRegosron — ¢ (TROP contrmeys\nRobability est Wl:"
+  },
+  {
+    "text": "can see all the instances, all the possible data points or we make some restrictive assumption about",
+    "start": 219.24,
+    "end": 228.04,
+    "ocr_text": "Given ex amples ), ) (z 2)\n\nwn -\n\nPobability esh"
+  },
+  {
+    "text": "the language in which the hypothesis is expressed or some bias, this problem is not well defined.",
+    "start": 228.44,
+    "end": 235.64,
+    "ocr_text": "Given ex amples (CF y) (z& 2)\nClassification ; {\n\nwm -\n\nProbability estiog"
+  },
+  {
+    "text": "So, that is why it is called an inductive problem. Then in the last class, we talked about features.",
+    "start": 235.64,
+    "end": 244.68,
+    "ocr_text": "Gen example (Ly 2 (2. (6)\nClarsiftcadione + : pec"
+  },
+  {
+    "text": "So, when we say we have to learn a function, it is a function of the features. So, instances",
+    "start": 248.68,
+    "end": 256.52,
+    "ocr_text": "y) (z& 3)\nSS e discyele\n\n~~\n\n\"\n\n- \\ a"
+  },
+  {
+    "text": "are described in terms of features. So, features are properties that describe each instance.",
+    "start": 256.52,
+    "end": 272.68,
+    "ocr_text": "‘Wy\n\nip"
+  },
+  {
+    "text": "And each instance can be described in a quantitative manner using features. And often we have multiple",
+    "start": 272.84,
+    "end": 291.64,
+    "ocr_text": "Feabiunrs pep hes a"
+  },
+  {
+    "text": "features. So, we have what we use what we call a feature vector. For example, for a particular",
+    "start": 291.8,
+    "end": 302.12,
+    "ocr_text": "Festus Prperties thed dascihe cach me"
+  },
+  {
+    "text": "instance, we may be or a particular task, we may be describing all the instances in terms of",
+    "start": 302.12,
+    "end": 307.88,
+    "ocr_text": "NX\n\nFeatinnn. Peperties that dacibe each ae\nRecline ved gg\n\n——"
+  },
+  {
+    "text": "10 features. So, the feature vector will be a one dimensional vector of size 10.",
+    "start": 308.36,
+    "end": 314.12,
+    "ocr_text": "Featinus- Peperties thad dacube cach n=\nFealtire vedor"
+  },
+  {
+    "text": "Now, based on this, we can define a feature space. Suppose, for simplicity, let us assume that",
+    "start": 314.36,
+    "end": 323.56,
+    "ocr_text": "Featinus- Peperties thad dacube cach n=\nFealtire vedor"
+  },
+  {
+    "text": "there are two features. And we can say that the features are x 1 and x 2. In general, we can have",
+    "start": 323.56,
+    "end": 334.44,
+    "ocr_text": "Featinnn Peperties that dacibe each m oe\nFeottine vedor"
+  },
+  {
+    "text": "n number of features. We have two features. The features define a two dimensional space. If we",
+    "start": 335.0,
+    "end": 342.2,
+    "ocr_text": "Featinnra popetes thal dacibe each in hoe\nFeat ved ;"
+  },
+  {
+    "text": "have n features, the define an n dimensional space. If you take a particular instance, let us say",
+    "start": 342.2,
+    "end": 349.8,
+    "ocr_text": "Featianes Pepertios Ahad desoibe each ne\n\nFeoltire vedor .\n%"
+  },
+  {
+    "text": "d 1 is an instance. And for d 1, x 1 equal to 2, x 2 equal to 5. So, let us say x 1 is 2 here,",
+    "start": 349.8,
+    "end": 362.6,
+    "ocr_text": "‘XN\n\nFeatures Pepertios that dacube each n="
+  },
+  {
+    "text": "and x 2 is 5 here. So, this is d 1. So, d 1 can be thought of as a point in this feature space,",
+    "start": 363.08,
+    "end": 373.16,
+    "ocr_text": "Feakinra pop Crier that dacs he Gach in hoe\nFealiine vedo"
+  },
+  {
+    "text": "point in the two dimensional feature space or you can think of it as a vector in this space.",
+    "start": 373.16,
+    "end": 379.56,
+    "ocr_text": "Induce Learning [ Pediicuen\nee Pepertios thal dacibe each in ee"
+  },
+  {
+    "text": "So, each instance is a point in the feature space. Now, let us look at a classification problem.",
+    "start": 379.56,
+    "end": 388.36,
+    "ocr_text": "Ty duckve Learning [ Pedictuen\n\nFeatians Properties Ahad dauibe each in Noa\n\nFeodting ved vedor A) ee 2\nWS"
+  },
+  {
+    "text": "And let us see, say that it is a two class classification problem. So, we are given a number of",
+    "start": 388.36,
+    "end": 394.92,
+    "ocr_text": "Thduchve Learning [Redlicun\n\nfeatinnes Popeaties had dacibe Cache in None\n\nFeotineveder To, i ees 2\n%\n\nGeS\n\nmaa)"
+  },
+  {
+    "text": "instances or examples, some of which belong to class 1, the others belong to class 2.",
+    "start": 394.92,
+    "end": 401.32,
+    "ocr_text": "Thduchve Learning [Redlicun\n\nfeatinnes Popeaties had dacibe Cache in None\n\nFeotineveder To, i ees 2\n%\n\nGeS\n\nmaa)"
+  },
+  {
+    "text": "So, in a two class classification problem, we have two types of instances, those belonging to",
+    "start": 401.32,
+    "end": 407.0,
+    "ocr_text": "Tnrduckve Learning [ Rediictiun\n\nF eahinnra Properties thad descube each in =\n\nFeokevedor | ot, ae ee. 3.\na 4 %=5"
+  },
+  {
+    "text": "class 1 and those belonging to class 2. You are given a training set, which comprises a subset of",
+    "start": 407.0,
+    "end": 413.4,
+    "ocr_text": "Induckve Learning [Peduclun\n\nPatines properties Ahad dasciibe each cone\n\nFeolinn vedo | oh : A. t=2\n%\nSs,\n\n2 eS"
+  },
+  {
+    "text": "the instances. Some of them are marked class 1, some of them are marked class 2. And we can say",
+    "start": 413.56,
+    "end": 419.48,
+    "ocr_text": "Induckve Learning [Peduclun\n\nPatines properties Ahad dasciibe each cone\n\nFeolinn vedo | oh : A. t=2\n%\nSs,\n\n2 eS"
+  },
+  {
+    "text": "that class 1 is positive and class 2 as negative. So, we find that we can map different",
+    "start": 419.48,
+    "end": 427.72,
+    "ocr_text": "Inductive Learning [ Pedictuon\n\nFeatinnes Properties that darcube each nce\n\nFealinn vedor ds < Ged\nteas"
+  },
+  {
+    "text": "points in this feature space. Let us say these are the positive points.",
+    "start": 429.0,
+    "end": 435.16,
+    "ocr_text": "Tnduchve Learning [Peduclun\n\nFeatinnes ? if Ahad gags each in =\nFeatine ved ved\n\nof\n\nie"
+  },
+  {
+    "text": "And we have some other points in this feature space, which are negative points.",
+    "start": 435.16,
+    "end": 445.48,
+    "ocr_text": "Tnduckve Learning [Pedictuon\n\n\\\n\nf eatinnra Pepatios Ahad dacahe each in lore\n\nFeolting vedor + i dA: ted\n. a5"
+  },
+  {
+    "text": "Now, what we want to do is, we want to learn a function. So, that based on the function,",
+    "start": 448.84,
+    "end": 454.68,
+    "ocr_text": "Tnduckve Learning [Redlictun\n\nFeatianes Properties Ahad dauibe Cache eo\n. As G=2\nWeaS"
+  },
+  {
+    "text": "we want to, we want the function to predict whether a new instance, which is given to you.",
+    "start": 454.68,
+    "end": 461.48,
+    "ocr_text": "Tnduckve Learning [Redlictun\n\nFeatianes Properties Ahad dauibe Cache eo\n. As G=2\nWeaS"
+  },
+  {
+    "text": "Suppose, this is a new instance, which is given to you. We want to know whether this should be",
+    "start": 461.48,
+    "end": 466.6,
+    "ocr_text": "Tnduckve Learning [Pedictum\n\nFeatianrs properties Ahad dauibe Cache eee\n\nen Ga\nX28"
+  },
+  {
+    "text": "positive or negative. In order to do this, we have to learn a function or the function could be",
+    "start": 466.6,
+    "end": 473.32,
+    "ocr_text": "Tnduckve Learning [Pedictuen\n\nfeatinra properties Lhad dacube each in ee\n\nFeolioue ver 7 ry ae 22\nce ar, -\n\neas\nis 3 ©\n\n2 ;\n\naes © 4"
+  },
+  {
+    "text": "a particular curve or a line, which separates the positive from the negative instances.",
+    "start": 474.2,
+    "end": 480.68,
+    "ocr_text": "Tnduckve Learning [Pedictuen\n\nfeatinra properties Lhad dacube each in ee\n\nFeolioue ver 7 ry ae 22\nce ar, -\n\neas\nis 3 ©\n\n2 ;\n\naes © 4"
+  },
+  {
+    "text": "For example, the function that we learn could be this function. And we can say that",
+    "start": 480.68,
+    "end": 486.68,
+    "ocr_text": "Tn duckve Learning [ Redlicun\n\nFeatianes Properties Ahad dacuhe each in eee\n7 A G=2\nBae 5"
+  },
+  {
+    "text": "any point, which lies to this side of the function is positive, any point, which lies to this",
+    "start": 487.4,
+    "end": 493.08,
+    "ocr_text": "In duckve Learning [Pedictuon\n\nFeatiunra Properties that deacsbe each. in Ce\n\nAs Gar\nYoae"
+  },
+  {
+    "text": "side of the function is negative. And since the yellow point lies to the left of the function,",
+    "start": 493.08,
+    "end": 497.8,
+    "ocr_text": "In duckve Learning [Pedictuon\n\nFeatiunra Properties that deacsbe each. in Ce\n\nAs Gar\nYoae"
+  },
+  {
+    "text": "it is negative. So, this is what inductive learning is about.",
+    "start": 497.8,
+    "end": 501.16,
+    "ocr_text": "Inductive Learning [Peductum\nFeatunn pepertien thal discibe each ince\n\nFeotine vedor ee \\E 4 1 Ae G22\n“aaa Ge5\n\nse. A-"
+  },
+  {
+    "text": "So, let us look at this slide. In this slide, which have taken from a slide by Jason Davis",
+    "start": 504.28,
+    "end": 509.32,
+    "ocr_text": "Inductive Learning [Peductum\nFeatunn pepertien thal discibe each ince\n\nFeotine vedor ee \\E 4 1 Ae G22\n“aaa Ge5\n\nse. A-"
+  },
+  {
+    "text": "of University of Washington, we can see a feature space is described in terms of the positive",
+    "start": 509.32,
+    "end": 516.36,
+    "ocr_text": "3.0\n\n2.0\n\n1.0\n\n0.0\n\nFeature Space\n\n1.0\n\n2.0 3.0 4.0 5.0\n\nby Jesse Davis: University of Washin|\n\n6.0"
+  },
+  {
+    "text": "and negative examples. The green pluses are the positive points, the red minuses are the negative",
+    "start": 516.36,
+    "end": 522.36,
+    "ocr_text": "3.0\n\n2.0\n\n1.0\n\n0.0\n\nFeature Space\n\n1.0\n\n2.0 3.0 4.0 5.0\n\nSlide by Jesse Davis: University of V\n\n6.0"
+  },
+  {
+    "text": "points. Now, this is a particular instance for which x 1 is 0.5, x 2 is 2.8 and the label of this",
+    "start": 522.36,
+    "end": 532.92,
+    "ocr_text": "3.0\n\n2.0\n\n1.0\n\n0.0\n\nFeature Space\n\n1.0\n\n2.0 3.0 4.0 5.0\n\nSlide by Jesse Davis: University of V\n\n6.0"
+  },
+  {
+    "text": "instance is positive. Now, these question mark points are the test points. And we are asked to",
+    "start": 533.48,
+    "end": 543.0,
+    "ocr_text": "Feature Space\n\nExample:\n— ORS 2a\n\n0.0 1.0 2.0 3.0 4.0 5.0 6.0\n\nSlide by Jesse Davis: University of Washingtor"
+  },
+  {
+    "text": "find out what should be the class of those points should they be positive or negative in the",
+    "start": 543.08,
+    "end": 548.6,
+    "ocr_text": "3.0\n\n2.0\n\n1.0\n\n0.0\n\nTerminology\n\n1.0\n\n2.0 tO) 4.0 5.0\n\nby Jesse Davis: University of\n\n6.0"
+  },
+  {
+    "text": "prediction problem. So, in order to answer the prediction problem, we have to come up with a",
+    "start": 548.6,
+    "end": 554.12,
+    "ocr_text": "3.0\n\n2.0\n\n1.0\n\n0.0\n\nTerminology\n\n1.0\n\n2.0 3.0 4.0 5.0\n\nby Jesse Davis: University of \\\n\n6.0"
+  },
+  {
+    "text": "function. For example, let us say we come up with this pink function, pink line. And we say lines",
+    "start": 555.16,
+    "end": 561.8,
+    "ocr_text": "3.0\n\n2.0\n\n1.0\n\n0.0\n\nTerminology\n\n1.0\n\n2.0\n\nSlide by Jesse\n\n3.0 4.0 5.0 6.0\n\nDavis: University of Washington"
+  },
+  {
+    "text": "points that lie to the right of the pink line is negative, the points which lie to the left",
+    "start": 561.8,
+    "end": 567.64,
+    "ocr_text": "3.0\n\n2.0\n\n1.0\n\n0.0\n\nTerminology\n\n1.0\n\n2.0\n\nSlide by Jesse\n\n3.0 4.0 5.0 6.0\n\nDavis: University of Washington"
+  },
+  {
+    "text": "of the pink line is positive. So, this is so in this case, this point and this point will be",
+    "start": 567.64,
+    "end": 575.96,
+    "ocr_text": "3.0\n\n2.0\n\n1.0\n\n0.0\n\nTerminology\n\n1.0\n\n2.0 3.0 4.0 5.0\n\nSlide by Jesse Davis: University\n\nshingtor\n\n6.0"
+  },
+  {
+    "text": "marked positive and this point and this point will be marked negative. So, this pink line is the",
+    "start": 575.96,
+    "end": 583.48,
+    "ocr_text": "Terminology\n\nHypothesis:\nFunction for labeling examples\n\n20\n+\n’\n1\na\n\n0.0\n\n0.0 1.0 2.0 3.0 4.0 5.0 6.0\n\nSlide by Jesse Davis: University of Washingtor"
+  },
+  {
+    "text": "function that we have come up with. And so, this is a hypothesis or function that we use to do our",
+    "start": 583.48,
+    "end": 590.52,
+    "ocr_text": "Terminology\n\nHypothesis:\nFunction for labeling examples\n\n20\n+\n’\n1\na\n\n0.0\n\n0.0 1.0 2.0 3.0 4.0 5.0 6.0\n\nSlide by Jesse Davis: University of Washingtor"
+  },
+  {
+    "text": "prediction. Now, we could have instead of this particular line, we could have hypothesized other",
+    "start": 590.6,
+    "end": 600.04,
+    "ocr_text": "Trduckve Learning [Redictin\n\nFeatin Ppertios that dacibe each ‘n we\nFeoltine vedor"
+  },
+  {
+    "text": "functions. So, all these are possible functions which we could have found. And the set of all",
+    "start": 600.04,
+    "end": 607.64,
+    "ocr_text": "3.0\n\n2.0\n\n1.0\n\n0.0\n\nTerminology\n\n2.0\n\nSlide by Jes:"
+  },
+  {
+    "text": "such legal functions that we could have come up with, they define the hypothesis space.",
+    "start": 607.64,
+    "end": 613.72,
+    "ocr_text": "Terminology\n\nHypothesis Space:\nSet of legal hypotheses\n\n3.0\n\n2.0\n\n1.0\n\n0.0\n\nSlide by Jesse Davis: University of Washingtor"
+  },
+  {
+    "text": "In a particular learning problem, you first define the hypothesis space that is the class of",
+    "start": 614.2,
+    "end": 620.28,
+    "ocr_text": "Terminology\n\nHypothesis Space:\nSet of legal hypotheses\n\n3.0\n\n2.0\n\n1.0\n\n0.0\n\nSlide by Jesse Davis: University of Washingtor"
+  },
+  {
+    "text": "functions that you are going to consider. Then given the data points, you try to come up with the",
+    "start": 620.28,
+    "end": 626.52,
+    "ocr_text": "Terminology\n\nHypothesis Space:\nSet of legal hypotheses\n\n3.0\n\n2.0\n\n1.0\n\n0.0"
+  },
+  {
+    "text": "best hypothesis given the data that you have. We have briefly talked about in the last module",
+    "start": 626.52,
+    "end": 635.96,
+    "ocr_text": "Trductve Learning [Redictusn\n\nFeatianns Popate. that darcbe each mere\n\nFeoliine vedor ek"
+  },
+  {
+    "text": "about how a function is represented. So, as we have discussed, a function is represented",
+    "start": 636.68,
+    "end": 646.52,
+    "ocr_text": "Tinduchve Learning [Pedictuon\nFeta. pepertre that dacibe each an c=\n\nFeoltine vedor z Nee d~ t=2\n‘ Me 5"
+  },
+  {
+    "text": "in terms of features. There are two things that we need in order to describe a function. We have",
+    "start": 646.52,
+    "end": 664.12,
+    "ocr_text": "Induckue Leayni uve Learning [| Wemncns [ Pediictun\nata vex thet BA each ince\n\n\\ ee ang\n\nfe"
+  },
+  {
+    "text": "to decide the features or the vocabulary and we have to decide the function class or the type of",
+    "start": 664.12,
+    "end": 671.24,
+    "ocr_text": "Tnduckve Leorning [Pediictuen\n\nfeatin a"
+  },
+  {
+    "text": "function or the language of the function that we will have to, we will be using.",
+    "start": 671.24,
+    "end": 676.12,
+    "ocr_text": "Induchve Leanning [Pedlictun |\nfeadinnes"
+  },
+  {
+    "text": "So, based on the features and the language, we can define our hypothesis space.",
+    "start": 679.56,
+    "end": 685.96,
+    "ocr_text": "Induckve Learning [ Pedlicuen\nfeatanes"
+  },
+  {
+    "text": "Various types of representations have been considered for making predictions.",
+    "start": 687.48,
+    "end": 693.8,
+    "ocr_text": "Trduckve Leorning [ Pediictuon\n\nLang Uae"
+  },
+  {
+    "text": "For example, we just saw that we could have a linear function to act as a discriminator between",
+    "start": 694.76,
+    "end": 701.16,
+    "ocr_text": "Trduckve Leorning [ Pediictuon\n\nLang Uae"
+  },
+  {
+    "text": "two classes. We will in a subsequent class, we will look at a representation by using a structure,",
+    "start": 701.16,
+    "end": 710.84,
+    "ocr_text": "Induchve Learning [Pedlicuen\n\nfeafiane S\n\n¥"
+  },
+  {
+    "text": "which we called a decision tree, where at a decision tree is a tree, where at every node, we",
+    "start": 710.84,
+    "end": 718.36,
+    "ocr_text": "Tnduckve Leavning [Pediicuon\n\nFeadiene s\n\nLang uae - 9"
+  },
+  {
+    "text": "take a decision based on the value of an attribute.",
+    "start": 720.52,
+    "end": 724.6,
+    "ocr_text": "Induckve Leonning [Pedlicun\n\nFeadiines Lens"
+  },
+  {
+    "text": "And based on that, we go to different branches. So, at every node, we make a decision based on",
+    "start": 724.68,
+    "end": 736.36,
+    "ocr_text": "Induckve Leonning [Pedlicun\n\nFeadiines Lens"
+  },
+  {
+    "text": "the value of an attribute and every leaf node is labeled by the value of y. So, decision tree",
+    "start": 736.36,
+    "end": 746.36,
+    "ocr_text": "Taductive Leonning / Rede .\n\nAestunes Legh <5\nLanguage g £ 24\nek -"
+  },
+  {
+    "text": "is a type of representation. Linear function is one type of representation. You could also have",
+    "start": 746.36,
+    "end": 753.48,
+    "ocr_text": "Tnduckve Learning [Pedlicucn\n\nFeshines length 5°\n“fe Vat 24\n\nLanguage ; Fa"
+  },
+  {
+    "text": "multi-variate linear function. You can have neural networks. These are some examples of representations",
+    "start": 753.48,
+    "end": 760.92,
+    "ocr_text": "Tnduckve Learning [Pedlicucn\n\nFeshines length 5°\n“fe Vat 24\n\nLanguage ; Fa"
+  },
+  {
+    "text": "and we have some examples in the slide here, a decision tree, a linear function,",
+    "start": 760.92,
+    "end": 766.6,
+    "ocr_text": "Representations\n\n1. Decision Tree"
+  },
+  {
+    "text": "a multi-variate linear function, a single layer perceptron, the basic unit of a neural network,",
+    "start": 768.92,
+    "end": 775.4,
+    "ocr_text": "Representations\n\n3. Multivariate linear\nfunction\n4. Single layer perceptron\n\n5. Multi-layer neural\nnetworks\n\nweights\n\nactivation\nfunctor\n\nlee Cream Consumption (C isperson)\nBs 2\n\nHidden\nNodes."
+  },
+  {
+    "text": "a multi-layer neural network. These are some of the representations that we will talk about later",
+    "start": 775.4,
+    "end": 781.72,
+    "ocr_text": "weights\n\nMultivariate linear\nfunction\n\nSingle layer perceptron\n\nMulti-layer neural\nnetworks\n\n‘activation\n‘functon.\nnet input\nnet,\n\ntransfer\nfonction\n\na.\nthreshold\n\nRepresentations\n\n|__o,\n‘activation\n\nee ream Consumption (C ispeson)\n°\n\nNodes."
+  },
+  {
+    "text": "in this class. So, once you have chosen the features and the language or the",
+    "start": 781.72,
+    "end": 789.48,
+    "ocr_text": "weights\n\nMultivariate linear\nfunction\n\nSingle layer perceptron\n\nMulti-layer neural\nnetworks\n\n‘activation\n‘functon.\nnet input\nnet,\n\ntransfer\nfonction\n\na.\nthreshold\n\nRepresentations\n\n|__o,\n‘activation\n\nee ream Consumption (C ispeson)\n°\n\nNodes."
+  },
+  {
+    "text": "class of functions, what you have is a hypothesis space.",
+    "start": 791.32,
+    "end": 795.8,
+    "ocr_text": "Hypothesis Space\n\n¢ The space of all hypotheses that can, in\nprinciple, be output by a learning algorithm.\n\n* We can think about a supervised learning\nmachine as a device that exploresa\n“hypothesis space”.\n\n— Each setting of the parameters in the machine is a\n\ndifferent hypothesis about the function that maps\ninput vectors to output vectors."
+  },
+  {
+    "text": "So, hypothesis space is the space of all legal hypothesis. This is a set of all legal hypothesis",
+    "start": 796.12,
+    "end": 804.12,
+    "ocr_text": "Inductive Leorning [Pedlictuon\nFeakitnes Hy pol j"
+  },
+  {
+    "text": "that you can describe using the features that you have chosen and the language that you have chosen.",
+    "start": 813.56,
+    "end": 819.8,
+    "ocr_text": "Tnduckve Learning [Pedictuon\nfeatanes. Hy pothesis Space\n\nlanguage eS\nuy"
+  },
+  {
+    "text": "And this is the set from which the learning algorithm will pick a hypothesis.",
+    "start": 820.44,
+    "end": 825.88,
+    "ocr_text": "Jnduchve Learning [Pedicucn .\n\nFeatianes Hypothesis Space\n\nlanguage &"
+  },
+  {
+    "text": "So, hypothesis space, we may represent a hypothesis space by H and the learning algorithm outputs",
+    "start": 826.44,
+    "end": 834.36,
+    "ocr_text": "Anduckve Learning [Pedictuon"
+  },
+  {
+    "text": "a hypothesis H belonging to H. This is the output of a learning algorithm.",
+    "start": 835.0,
+    "end": 840.6,
+    "ocr_text": "Anduckve Learning [Pedictuon"
+  },
+  {
+    "text": "So, capital H denotes all legal hypothesis, all possible outputs by the learning algorithm.",
+    "start": 841.24,
+    "end": 855.72,
+    "ocr_text": "Tduchve Learning [Pedicun\n\nlonauane ‘ ge\n\noa"
+  },
+  {
+    "text": "Given the training set, given the particular data points, the learning algorithm will come up with",
+    "start": 856.44,
+    "end": 862.84,
+    "ocr_text": "InduchveL <arning tue Learning / Rediclacn\n\nae Hypothesis Space\nLang ua he “Y"
+  },
+  {
+    "text": "one of the hypothesis in the hypothesis space, which hypothesis it comes up with will depend on",
+    "start": 862.84,
+    "end": 868.76,
+    "ocr_text": "InduchveL <arning tue Learning / Rediclacn\n\nae Hypothesis Space\nLang ua he “Y"
+  },
+  {
+    "text": "the data and it also will depend on what type of restrictions or biases that we have imposed,",
+    "start": 868.84,
+    "end": 877.32,
+    "ocr_text": "Tnduckve Learning [Pedlictun\n\nFeahines. Hypothesis Space\n\nLana nape"
+  },
+  {
+    "text": "which we will describe later. So, supervised learning we can think of is a device which explores",
+    "start": 878.52,
+    "end": 887.24,
+    "ocr_text": "Tnductve Learning [Pedlicuen\n\nlana uae"
+  },
+  {
+    "text": "the hypothesis space or which searches the hypothesis space in order to find out one of the hypothesis",
+    "start": 887.24,
+    "end": 894.68,
+    "ocr_text": "Hypothesis Space\n\n¢ The space of all hypotheses that can, in\nprinciple, be output by a learning algorithm.\n\n* We can think about a supervised learning\nmachine as a device that exploresa\n“hypothesis space”.\n\n— Each setting of the parameters in the machine is a\n\ndifferent hypothesis about the function that maps\ninput vectors to output vectors."
+  },
+  {
+    "text": "which satisfies certain criteria. Now, for some more terminology before we proceed,",
+    "start": 895.32,
+    "end": 903.0,
+    "ocr_text": "Terminology\n\nExample (x,y): Instance x with label y=f(x).\n\nTraining Data S: Collection of examples observed by\nlearning algorithm.\n\nInstance Space X: Set of all possible objects\ndescribable by features.\n\nConcept c: Subset of objects from X (c is unknown).\nTarget Function f: Maps each instance x € X to target\nlabely EY"
+  },
+  {
+    "text": "we have already talked about an example as x, y, the value of the input and the value of the",
+    "start": 909.32,
+    "end": 921.0,
+    "ocr_text": "Terminology\n\nExample (x,y): Instance x with label y=f(x).\n\nTraining Data S: Collection of examples observed by\nlearning algorithm.\n\nInstance Space X: Set of all possible objects\ndescribable by features.\n\nConcept c: Subset of objects from X (c is unknown).\nTarget Function f: Maps each instance x € X to target\nlabely EY"
+  },
+  {
+    "text": "output x, y, pair. Training data is a set of examples,",
+    "start": 921.0,
+    "end": 929.32,
+    "ocr_text": "Thyduckve Learning [Pedlicun"
+  },
+  {
+    "text": "is a collection of examples, which have been observed by the learning algorithm or which is input",
+    "start": 934.92,
+    "end": 942.76,
+    "ocr_text": "Inductive Learning [Pedlictuon\n\nfp ="
+  },
+  {
+    "text": "to the learning algorithm. We have instance space or feature space, which describes all possible",
+    "start": 942.76,
+    "end": 954.36,
+    "ocr_text": "Induckve Leavning [ Pediicun\n\nEx Gu ¥)\n\nPranung Dal Sot of Care) :\n\nVes\nay"
+  },
+  {
+    "text": "instances. So, if we have two features x 1 and x 2 and let us say x 1 takes value between 0",
+    "start": 954.36,
+    "end": 964.76,
+    "ocr_text": "Rese .\n\n¢ =)\n|"
+  },
+  {
+    "text": "and 100, x 2 takes value between 0 and 50 and all points in this plane can describe an instance.",
+    "start": 964.76,
+    "end": 977.24,
+    "ocr_text": "Induckve Learning [Pedictuon\n\nEx Fhe Gt, y)\nTrang Dal Set of exarape wr\n\nDalene: g pace:"
+  },
+  {
+    "text": "So, this is the instance space. So, instance space is the set of all possible objects that can be",
+    "start": 977.24,
+    "end": 985.32,
+    "ocr_text": "Tnduckve Leavning [ Pedlictun\n\nVronung Dal S awn oe\nAnstanc Spac q xX\n\nLovey"
+  },
+  {
+    "text": "described by the features. And we are trying to learn a concept, see let us think of a classification",
+    "start": 985.4,
+    "end": 998.44,
+    "ocr_text": "Inductive Learning [Pediictun\n\nFrample. Gt y\n\ni Dale ae exarapls =e\nae Spee =\n\noe. pasa”"
+  },
+  {
+    "text": "problem where we have a particular class that we are trying to learn. So, let us think of a two",
+    "start": 998.44,
+    "end": 1005.48,
+    "ocr_text": "Induckve Learning adepigl Bein\nEx wee ep\nTiotwing Doda Se Se\n\neters Spe Ns\nConapt ¢\n\ngS : oe"
+  },
+  {
+    "text": "class classification problem, we can define one of the classes as positive, the other as negative.",
+    "start": 1005.48,
+    "end": 1011.08,
+    "ocr_text": "Induckve Learning [Pedictuon\n\nEx ample - @w y)\nTranning Data: Sel of xa\nTate. © pace:\nConurpt @"
+  },
+  {
+    "text": "We can think of the positive examples as the concept, which we are trying to learn. So,",
+    "start": 1011.08,
+    "end": 1016.6,
+    "ocr_text": "Induckve Learning [Pedictuon\n\nEx ample - @w y)\nTranning Data: Sel of xa\nTate. © pace:\nConurpt @"
+  },
+  {
+    "text": "out of all possible objects that we can describe in the instance space a subset of those objects",
+    "start": 1017.24,
+    "end": 1024.84,
+    "ocr_text": "Induckve Learning [ Pedlicun\n\nPe. Ge y) -\nTroaning Doda Shot exams Se\n\ncern & pace? es)\nConupt @\n' , loo\n—”\n=\n5g 2"
+  },
+  {
+    "text": "are positive that is they belong to the concept. So, the concept c can be a subset of the",
+    "start": 1024.84,
+    "end": 1035.64,
+    "ocr_text": "Induckve Learning [ Pedlicun\n\nPe. Ge y) -\nTroaning Doda Shot exams Se\n\ncern & pace? es)\nConupt @\n' , loo\n—”\n=\n5g 2"
+  },
+  {
+    "text": "instance space x. So, which define the positive points c is unknown to us and this is what we are",
+    "start": 1035.64,
+    "end": 1044.44,
+    "ocr_text": "Taduchve Leavning [Peductuon"
+  },
+  {
+    "text": "trying to find out. In order to find out c, we are trying to find a function f.",
+    "start": 1044.44,
+    "end": 1050.92,
+    "ocr_text": "Taduchve Leavning [Peductuon"
+  },
+  {
+    "text": "So, f is what we are trying to learn, what is f? f is a function which maps every input x to an",
+    "start": 1056.12,
+    "end": 1065.4,
+    "ocr_text": "Induckve Learning [Pedictuon\n\nrae (Ez y)\nTrane Nala’ Sel af. Caras =\nAnste - “hy mee: Xx x\n\nca L\nae\n\n|\n\nlog"
+  },
+  {
+    "text": "output y. Now, what is the difference between c and f? f is used to is a function used to describe",
+    "start": 1065.4,
+    "end": 1073.96,
+    "ocr_text": "Tnduckve Learning [Pedicteon\n\n: _— i,\n- r SG Ws"
+  },
+  {
+    "text": "the concept, they may be same, they may be different because f is defined by the language and the",
+    "start": 1073.96,
+    "end": 1081.4,
+    "ocr_text": "Tnduckve Learning [Pedicteon\n\n: _— i,\n- r SG Ws"
+  },
+  {
+    "text": "features that you have chosen. So, there is a subtle difference between f and c. Now, what you",
+    "start": 1081.4,
+    "end": 1088.52,
+    "ocr_text": "Inductive Learning [Pedictusn .\n\nTraining Data: Sat of txar $0\nTnstane Space: X Sy.\n2 Ne eS\n\nTaapt fachn f"
+  },
+  {
+    "text": "are trying to do in learning is given a hypothesis space h, you are trying to come up with a hypothesis",
+    "start": 1088.6,
+    "end": 1100.04,
+    "ocr_text": "Classifier\n\nHypothesis h: Function that approximates f.\nHypothesis Space Hl : Set of functions we allow for\napproximating /f.\n\nThe set of hypotheses that can be produced, can be\nrestricted further by specifying a language bias.\nInput: Training set S © X\n\nOutput: A hypothesis h € Fl"
+  },
+  {
+    "text": "small h belonging to the hypothesis h that approximates f. You want to find h that",
+    "start": 1102.84,
+    "end": 1114.04,
+    "ocr_text": "Thduchve Learning [Pedlictun\n\nen.\nTeasing Dake’ -d) xara’ 8\nTydiene: Spoce: X\nCouple € SX\nTags fachn fee"
+  },
+  {
+    "text": "approximates f based on the training data that you have been given. Now, the set of hypothesis",
+    "start": 1114.04,
+    "end": 1127.8,
+    "ocr_text": "Induckve Leorning [Pedictuon\n\nEx ope ¥) hen he H\nTraining Dal Se of exarapls\n\nTice: Space: >\n\nae\nTa fate ¢ tone"
+  },
+  {
+    "text": "that can be produced can be restricted further by specifying a language bias. So, hypothesis space",
+    "start": 1127.8,
+    "end": 1136.6,
+    "ocr_text": "Tnduchve Leorning [Pediictun\n\nfick\n\nExample. Gt, hypotheor: he H mae\nTrouing Dog ) Cxa.raples Gee f\nTristan Gxgasat, X\n\nCon eA"
+  },
+  {
+    "text": "defines all possible set of hypothesis, you can restrict hypothesis by defining some bias.",
+    "start": 1137.4,
+    "end": 1153.0,
+    "ocr_text": "= uchwe Le edicl\nOVMNG is\n\\d Hi On\n\nvd\nheats he f\nxu\nhat axpproxieal t\n\nE\nTet i) Daly zy\nCon ee f\n\n:\ntt face {ya\n\nwi"
+  },
+  {
+    "text": "So, you can specify some constraints on the language or some preferences. So, bias is of two",
+    "start": 1153.0,
+    "end": 1167.88,
+    "ocr_text": "‘dc sca [Redicusn\n\nFang De ae 4 sab\nTnstance Spaces X ; ie ae\n\nCon ¢ rhe\nTaal fasts € ee"
+  },
+  {
+    "text": "types, bias can be in terms of constraints or the bias can be in terms of preferences.",
+    "start": 1167.88,
+    "end": 1177.16,
+    "ocr_text": "Thduckve Learning [Redicusn\n\nH\nEx arvaple & DD haan he approxivala is\nw me?\nTraining Dake: Sal of Oxamp i yest hypothines\nnstance Space: ox * by Ae bining bia\nCon onupt c © ~ Con,\nTagt tacky { | :\n\n= S"
+  },
+  {
+    "text": "We will define them more precisely soon, but what we mean by constraints is suppose your features",
+    "start": 1177.72,
+    "end": 1186.52,
+    "ocr_text": "Taduchve Leonaing [Pedictusn\n\nExample. Gey) ft eH\n\nTrotung Dake: cd * rxanaplt 4 hak apprximale L\nlidtoe Space: = = ca hypthines\nConupl c  ¢ = Chee bigs\n\nTat facts ge =\\\\) Pete"
+  },
+  {
+    "text": "are Boolean variables. Now, if you say that you want to consider only Boolean functions which are",
+    "start": 1186.52,
+    "end": 1195.0,
+    "ocr_text": "Induckve Learning [Pedictusn\n\nvd i)\n- ted\nTraining De lie CL examples | a\n= SD yeshik hypothines\nTnstanx S x ~ by af eb\n\n>-\\\\ Redes in"
+  },
+  {
+    "text": "conjunctions of monomials. So, that is providing a bias on the language. If you say that you want a",
+    "start": 1195.0,
+    "end": 1203.72,
+    "ocr_text": "Induckve Learning [Pedictusn\n\nvd i)\n- ted\nTraining De lie CL examples | a\n= SD yeshik hypothines\nTnstanx S x ~ by af eb\n\n>-\\\\ Redes in"
+  },
+  {
+    "text": "function which is simpler than you are putting a preference bias. So, we will talk about this later.",
+    "start": 1203.72,
+    "end": 1214.12,
+    "ocr_text": "Induckve Learning [ Redictuon\n\nvk a)\n\n- : ell\n\nExample. Gt. y) hypothe Pe st L\ni a. “ w¥ am bs\n\nTearing Dake ee p % Fede pygathens\nTce: S pace = y Lefoning bi On\nConapt ¢ Con chr exin\nTat fac Pete"
+  },
+  {
+    "text": "So, given these definitions in a learning problem the input is a training set. Let us say s,",
+    "start": 1217.32,
+    "end": 1228.28,
+    "ocr_text": "Trduckve Learning [Pedlictusn\n\notheie. HE\nIN that ap proxinaks L\n\nashtck hyp cthines\n\nTroruing Data: Set of examples\nTick SpocesX\n\nConupd e €E€ x\nTay fact"
+  },
+  {
+    "text": "s is a subset of the instant space, x is the instant space which comprises of all possible",
+    "start": 1229.0,
+    "end": 1236.92,
+    "ocr_text": "Trduchve Learning [Pediictucn\n\n- wh\nExample. Gey) hypollew. he H\nTraaung Dake Set of examples | >: that approximate L\ndidleete: Spoce=X - yeshit hypothe\nConapt ¢ DY dining bi or\n\nx\n\n$$ $$ s"
+  },
+  {
+    "text": "instances and the training examples that you are given is a subset of this and output you are",
+    "start": 1236.92,
+    "end": 1244.52,
+    "ocr_text": "Tnduchve Learning [Redicusn fot\nExample. Gey) hypotheon. he H\n\n4 bs thak approxima ala L\nTroaung Dak: S \\ “4 Whit Mee.\nAetna Space wwii a is ;\n\ng biow\nConupt € ="
+  },
+  {
+    "text": "required to output a hypothesis small age belonging to the hypothesis space capital H. So, this is for a",
+    "start": 1244.52,
+    "end": 1254.6,
+    "ocr_text": "Tnduchve Learning [Redicusn fot\nExample. Gey) hypotheon. he H\n\n4 bs thak approxima ala L\nTroaung Dak: S \\ “4 Whit Mee.\nAetna Space wwii a is ;\n\ng biow\nConupt € ="
+  },
+  {
+    "text": "classification problem. So, let me rub the board.",
+    "start": 1254.6,
+    "end": 1269.32,
+    "ocr_text": "ate:\nAnduchve Learning [Pediction\n\ntik\npi that axpproxivela L\n\nTradung Data oD) Cxannpols\nTnslane Space: X :\n= aad: ee ———\n\n>"
+  },
+  {
+    "text": "Now, let us look at hypothesis space. Now, suppose we look at functions just to take an example,",
+    "start": 1285.24,
+    "end": 1293.8,
+    "ocr_text": "Hypothesis Spaces\n\n¢ If there are 4 (N) input features, there are\nBie (2?”) possible Boolean functions.\n¢ We cannot figure out which one is correct\n\nunless we see every possible input-output pair\n24(2%)"
+  },
+  {
+    "text": "we take features which are Boolean. Suppose x 1, x 2, x 3, x 4 are four features and they are Boolean",
+    "start": 1294.6,
+    "end": 1306.12,
+    "ocr_text": "Hypothesis Spaces\n\n¢ If there are 4 (N) input features, there are\nBie (2?”) possible Boolean functions.\n¢ We cannot figure out which one is correct\n\nunless we see every possible input-output pair\n24(2%)"
+  },
+  {
+    "text": "features the value of the features are true or false. Now, if there are four Boolean features,",
+    "start": 1306.12,
+    "end": 1312.28,
+    "ocr_text": "%\n\n4%"
+  },
+  {
+    "text": "and how many possible instances can you have in a particular instance x 1 can be true or false",
+    "start": 1314.6,
+    "end": 1323.88,
+    "ocr_text": "%\n\n4%"
+  },
+  {
+    "text": "0 or 1, x 2 can be 0 1, x 3 can be 0 or 1, x 4 can be 0 or 1. So, there are two to the power 4",
+    "start": 1323.88,
+    "end": 1332.6,
+    "ocr_text": "% GG %"
+  },
+  {
+    "text": "or 16 possible instances. So, number of possible instances is 2 to the power 4 or 60.",
+    "start": 1332.68,
+    "end": 1345.16,
+    "ocr_text": "—\nPossible wm"
+  },
+  {
+    "text": "Now, how many possible functions are there? How many Boolean functions are possible?",
+    "start": 1346.92,
+    "end": 1359.16,
+    "ocr_text": "%% G\n\nUh\n\n——\n\nmy’\n\n——\n\nwG\n\nDescible mslancer-\n\nae"
+  },
+  {
+    "text": "So, what is a function? A function will classify some of the points as positive",
+    "start": 1363.16,
+    "end": 1369.8,
+    "ocr_text": "Ua %G Ms\nDessible mslancer =\n24\n\n_ mony Boolean fy s\na,\n\n\\"
+  },
+  {
+    "text": "others as negative out of this 16 points. So, that means, the number of functions is the number",
+    "start": 1369.8,
+    "end": 1378.2,
+    "ocr_text": "% G G4!\n\nDscible mclancer-\n24\nHS MCU Bostloan fas\n\nOse)"
+  },
+  {
+    "text": "of possible subsets of this 16 instances. So, how many possible subsets are there? There are",
+    "start": 1378.2,
+    "end": 1385.8,
+    "ocr_text": "|?\nssiblem\ni sla\n7 nus =\n\nms Maun\nde\nCVS"
+  },
+  {
+    "text": "two to the power 16 subsets or two to the power 4 subsets. Instead of four Boolean variables",
+    "start": 1385.8,
+    "end": 1394.2,
+    "ocr_text": "Dccrblewslancers\n4\n\nHous Boebean fn\n\nOs:"
+  },
+  {
+    "text": "as features, if you had n Boolean features, then the number of possible instances will be",
+    "start": 1394.2,
+    "end": 1401.48,
+    "ocr_text": "Dccrblewslancers\n4\n\nHous Boebean fn\n\nOs:"
+  },
+  {
+    "text": "two to the power n and number of possible functions will be two to the power two to the power.",
+    "start": 1401.8,
+    "end": 1409.48,
+    "ocr_text": "4a\na ht Z\n\nSas fi.\n\nY\n\\\n|\n\noe\n\ncust\n|\n‘"
+  },
+  {
+    "text": "So, this is the size of the hypothesis space. As you can see, the hypothesis space is very",
+    "start": 1409.64,
+    "end": 1416.92,
+    "ocr_text": "4a\na ht Z\n\nSas fi.\n\nY\n\\\n|\n\noe\n\ncust\n|\n‘"
+  },
+  {
+    "text": "large and it is not possible to look at every hypothesis individually in order to select the best",
+    "start": 1416.92,
+    "end": 1426.6,
+    "ocr_text": "| Pysseble mslances=\nN\n24/2\nHo Many Bostoan fas\n\nOse)\n\nI6 Nv\nZé"
+  },
+  {
+    "text": "hypothesis that you want. So, what do you do? You put some restrictions on the hypothesis space.",
+    "start": 1426.6,
+    "end": 1435.56,
+    "ocr_text": "Dyssible wslances -\n24 [2%\nHows mom Borban fy s\n\n[516 ie"
+  },
+  {
+    "text": "You cannot put some restrictions. So, you select a hypothesis language.",
+    "start": 1435.56,
+    "end": 1440.04,
+    "ocr_text": ";' Dechle mslance ~\n\nNS\nHo Z\nJou Momy Berlban Lys\n\nP Osy)\n\n| o's ie"
+  },
+  {
+    "text": "So, this hypothesis language may be an unrestricted language. For example, all possible Boolean functions",
+    "start": 1445.64,
+    "end": 1454.76,
+    "ocr_text": "Dcciblenslances\nn | 24 oy\nJ ark Boztean fn s\n\né { focal\nJ ei. | oe\nas < jz"
+  },
+  {
+    "text": "or may be a restricted language. We have seen already some examples of hypothesis languages,",
+    "start": 1454.76,
+    "end": 1461.0,
+    "ocr_text": "Dcciblenslances\nn | 24 oy\nJ ark Boztean fn s\n\né { focal\nJ ei. | oe\nas < jz"
+  },
+  {
+    "text": "a decision tree, linear functions, neural networks, etcetera. There could be polynomial function,",
+    "start": 1461.64,
+    "end": 1467.64,
+    "ocr_text": "Possible mslances .\n24 [aN\nHS Many Boolean fn s\n\nosuble\nWw"
+  },
+  {
+    "text": "linear function. There could be conjunction Boolean formulas, C n f Boolean formulas, unrestricted",
+    "start": 1467.64,
+    "end": 1475.88,
+    "ocr_text": "eee instance -\nah f 2"
+  },
+  {
+    "text": "Boolean formulas. So, you choose a hypothesis language. The hypothesis language, if you restrict",
+    "start": 1475.88,
+    "end": 1485.08,
+    "ocr_text": "Drecihte maslance =\n24 /2™\n\nHows mony Boolean Ene\n\nve\n\nie / #"
+  },
+  {
+    "text": "the hypothesis language, the hypothesis language reflects a bias.",
+    "start": 1485.16,
+    "end": 1491.56,
+    "ocr_text": "Hy; ofkense (angide Possible mslanees\n3 f Jou moun Resban lnk"
+  },
+  {
+    "text": "So, this reflects a bias or inductive bias of the learner.",
+    "start": 1491.56,
+    "end": 1514.68,
+    "ocr_text": "Hy; ofkense (angide Possible mslanees\n3 f Jou moun Resban lnk"
+  },
+  {
+    "text": "Now, so let us define formally what is inductive bias. So, when we choose a hypothesis space,",
+    "start": 1515.16,
+    "end": 1530.44,
+    "ocr_text": "Hypotheare (mga gee ddlede On inductive “Possible melances\npier of gs J 2\"\nro mainy Boxtean ngs\n\nr sab\n\n2 i | g iba"
+  },
+  {
+    "text": "we need to make some assumptions. And there as I said, there are two types of assumptions that",
+    "start": 1530.44,
+    "end": 1538.44,
+    "ocr_text": "Inductive Bias\n* Need to make assumptions\n\n— Experience alone doesn’t allow us to make\nconclusions about unseen data instances\n\n* Twotypes of bias:\n— Restriction: Limit the hypothesis space\n\n— Preference: Impose ordering on hypothesis space"
+  },
+  {
+    "text": "you can make. You can put a restrictions on the type of functions. That is you can say instead",
+    "start": 1538.52,
+    "end": 1545.24,
+    "ocr_text": "Inductive Bias\n* Need to make assumptions\n\n— Experience alone doesn’t allow us to make\nconclusions about unseen data instances\n\n* Two types of bias:\n— Restriction: Limit the hypothesis space\n\n— Preference: Impose ordering on hypothesis space"
+  },
+  {
+    "text": "of considering all Boolean formulas, we are going to consider only conjunctive Boolean formulas.",
+    "start": 1545.24,
+    "end": 1551.16,
+    "ocr_text": "Hy polher Canguues\n\nHeli ea Aedlede On inductive | Pysstble inslances +"
+  },
+  {
+    "text": "You can say that for regression problem, you can say that we are looking at linear functions",
+    "start": 1553.0,
+    "end": 1562.12,
+    "ocr_text": "Hy polher Canguues\n\nHeli ea Aedlede On inductive | Pysstble inslances +"
+  },
+  {
+    "text": "or you can say that we can looking at fourth degree polynomials or nth degree polynomials or",
+    "start": 1562.2,
+    "end": 1569.08,
+    "ocr_text": "Hy pothears (a anges, a\n\nth lypotiene lampuaze dedlece On induce | rec tet ee\npies ef fhe one » Bs / Z\n~F mk Borban fy\nio\nKb / N\nQ el\nhe"
+  },
+  {
+    "text": "we can say we look at any polynomial. So, specifying the form of the function is called restriction bias.",
+    "start": 1569.08,
+    "end": 1577.72,
+    "ocr_text": "idan an induchive WeEIES\n\nIyer of fe forun & »- wien"
+  },
+  {
+    "text": "The second type of bias that you can use is preference bias, where given a particular language",
+    "start": 1578.92,
+    "end": 1585.24,
+    "ocr_text": "Hy pobhen langiusae\nHypothenre language Aedlede On inductare | Dysceble instances =\n\\pie> of the fornsne Bi aff 2\"\nma nou Reztean Exe\n\nOs¢)"
+  },
+  {
+    "text": "that you have chosen, you say that I am considering all possible polynomials, but I will prefer",
+    "start": 1585.24,
+    "end": 1593.8,
+    "ocr_text": "Hy pobhen langiusae\nHypothenre language Aedlede On inductare | Dysceble instances =\n\\pie> of the fornsne Bi aff 2\"\nma nou Reztean Exe\n\nOs¢)"
+  },
+  {
+    "text": "polynomials of lower degree. So, you can say that I am considering all possible Boolean functions,",
+    "start": 1593.8,
+    "end": 1601.24,
+    "ocr_text": "Hypollenre eC pultte On inductive Possible mclances\nNears lamaenage aa a jo\"\n\nWier of fhe horn ES 2!\nF Hors many Borban fy s\n\nP56 de\n\n»"
+  },
+  {
+    "text": "but I want a Boolean function which can be described in small size. So, you can put different",
+    "start": 1601.24,
+    "end": 1608.68,
+    "ocr_text": "Hypollenre eC pultte On inductive Possible mclances\nNears lamaenage aa a jo\"\n\nWier of fhe horn ES 2!\nF Hors many Borban fy s\n\nP56 de\n\n»"
+  },
+  {
+    "text": "types of bias on your learning algorithm. So, inductive learning means to combat with a general",
+    "start": 1608.68,
+    "end": 1618.52,
+    "ocr_text": "U\nenn\nAde\nda\nan\ninductive | &\nPeat\nmcla\n(om\n\n24\n\npio\nof fhe\nhon"
+  },
+  {
+    "text": "function from training examples, given some training examples you want to generalize.",
+    "start": 1618.52,
+    "end": 1623.88,
+    "ocr_text": "Inductive learning\n\n¢ Inductive learning: Inducing a general function\nfrom training examples\n\n— Construct hypothesis h to agree with c on the training\nexamples.\n\n— Ahypothesis is consistent if it agrees with all training\nexamples.\n\n— Ahypothesis said to generalize well if it correctly\npredicts the value of y for novel example.\n\n¢ Inductive Learning is an Ill Posed Problem:\nUnless we see all possible examples the data is not sufficient\nfor an inductive learning algorithm to find a unique solution."
+  },
+  {
+    "text": "So, you construct a hypothesis age, you are given some training examples which comes from a concept",
+    "start": 1624.76,
+    "end": 1632.2,
+    "ocr_text": "Inductive learning\n\n¢ Inductive learning: Inducing a general function\nfrom training examples\n\n— Construct hypothesis h to agree with c on the training\nexamples.\n\n— Ahypothesis is consistent if it agrees with all training\nexamples.\n\n— Ahypothesis said to generalize well if it correctly\npredicts the value of y for novel example.\n\n¢ Inductive Learning is an Ill Posed Problem:\nUnless we see all possible examples the data is not sufficient\nfor an inductive learning algorithm to find a unique solution."
+  },
+  {
+    "text": "C and you want to find out a hypothesis age. You can come up with a hypothesis that is consistent",
+    "start": 1632.2,
+    "end": 1638.68,
+    "ocr_text": "Inductive learning\n\n° Inductive learning: Inducing a general function\nfrom training examples\n\n— Construct hypothesis h to agree with c on the training\nexamples.\n\n— Ahypothesis is consistent if it agrees with all training\nexamples.\n\n— Ahypothesis said to generalize well if it correctly\npredicts the value of y for novel example.\n\n¢ Inductive Learning is an III Posed Problem:\nUnless we see all possible examples the data is not sufficient\nfor an inductive learning algorithm to find a unique solution."
+  },
+  {
+    "text": "with all the training examples given. Then such hypothesis are called consistent hypothesis.",
+    "start": 1638.68,
+    "end": 1645.16,
+    "ocr_text": "Uf\n-_\nlite a\nan\n~~\n/ ssible\n% insla\n/ 2 NI\n\nrin\nz\nShe fron\n24"
+  },
+  {
+    "text": "It is sometimes not possible to come up with a consistent hypothesis and sometimes we will not",
+    "start": 1646.76,
+    "end": 1652.28,
+    "ocr_text": "L\nga\na x Es Ze Qn ve\ninduct\nPrssible\nsla\n\naa\nol fhe fron\n3\n24"
+  },
+  {
+    "text": "come up with a consistent hypothesis, but even when you are coming up with the consistent hypothesis,",
+    "start": 1652.28,
+    "end": 1657.48,
+    "ocr_text": "L\nga\na x Es Ze Qn ve\ninduct\nPrssible\nsla\n\naa\nol fhe fron\n3\n24"
+  },
+  {
+    "text": "given a hypothesis space and given a training data, multiple possible consistent hypothesis",
+    "start": 1658.2,
+    "end": 1664.04,
+    "ocr_text": "Ly pohene larguaae\nHypo longue Ddleda On induce | Poss OES\nan\n\ny ae"
+  },
+  {
+    "text": "can be there and you have to select which one of them you want to output based on your prefer",
+    "start": 1664.04,
+    "end": 1671.4,
+    "ocr_text": "Ly pohene larguaae\nHypo longue Ddleda On induce | Poss OES\nan\n\ny ae"
+  },
+  {
+    "text": "inspires. The hypothesis that you want to output is most often you are guided by, you want to",
+    "start": 1671.4,
+    "end": 1678.92,
+    "ocr_text": "Hy pobhen lawguacye\n\nHypothenre lamguagee Aedlede Or inductare ES\npier ef fe formar = 24 | aN\n\nOse)\n\nI Nn\ng Jz"
+  },
+  {
+    "text": "come up with a hypothesis that generalizes well over the unseen examples. You form your hypothesis",
+    "start": 1678.92,
+    "end": 1687.8,
+    "ocr_text": "Hy pothen langaa —_—_\n\nHypothesic language Dedbeda Om inductive (Possible melances\nah | 2\n} US Nar Boolian fy\n\npion “th ben"
+  },
+  {
+    "text": "based on the training data, but you want to come up with a hypothesis that does not just do well",
+    "start": 1687.8,
+    "end": 1695.08,
+    "ocr_text": "Dyscible nslances :\n\nHypotheaic language Ddlede G4 Mduchire |\n=F us Many Botan fy\n\nes\n\n16 NN\nLae"
+  },
+  {
+    "text": "on the training data, but is likely to do well on unseen data. Now, inductive learning is an",
+    "start": 1695.08,
+    "end": 1705.0,
+    "ocr_text": "Hy pothons (a language\n\nHeelies adede Oe inductire | Dysceble wslances =\nlous Boolean £5\n\nOs¢\n\n| 2% ra"
+  },
+  {
+    "text": "ill pose problem. If you do not look at, suppose your hypothesis space is all Boolean formulas",
+    "start": 1705.08,
+    "end": 1713.08,
+    "ocr_text": "Hy potherrs la agiuaaye\n\nPos!\n\nHygetaaitleiaaie hr Gn inductive Possible: a)\"\n> Za\n\nw\n\n~% 1g"
+  },
+  {
+    "text": "and if you do not look at all the two to the power n possible examples, if you look at a subset of",
+    "start": 1715.08,
+    "end": 1722.6,
+    "ocr_text": "U\nlypetes Te\nrere Ga\nQn\nrs by\nnsla\noN\n\nie\nz\nShe fron\n24"
+  },
+  {
+    "text": "those examples, multiple possible hypothesis are possible and they have, they will behave differently",
+    "start": 1722.6,
+    "end": 1730.36,
+    "ocr_text": "U\nlypetes Te\nrere Ga\nQn\nrs by\nnsla\noN\n\nie\nz\nShe fron\n24"
+  },
+  {
+    "text": "with the rest of the examples. So, you cannot come up with the correct hypothesis",
+    "start": 1730.36,
+    "end": 1735.64,
+    "ocr_text": "d Poss Cee\nHyportee language\n\n24\noe\n\nHous movesy Boolian ys\neo\n\noseble ©\nme\n\n9I6"
+  },
+  {
+    "text": "by logical beings by which is a which is guaranteed to be true without seeing all the",
+    "start": 1737.08,
+    "end": 1744.36,
+    "ocr_text": "pl eae\nHypethee ic la pris Adlede Ot nee)\n\nUh ot lie\n\nlie instances =\n2 elm"
+  },
+  {
+    "text": "training examples. So, inductive learning is a ill pose problem, you are looking for generalization",
+    "start": 1744.36,
+    "end": 1750.36,
+    "ocr_text": "pl eae\nHypethee ic la pris Adlede Ot nee)\n\nUh ot lie\n\nlie instances =\n2 elm"
+  },
+  {
+    "text": "guided by some bias or some criteria. So, why you are being able to generalize it is based on an",
+    "start": 1750.92,
+    "end": 1762.12,
+    "ocr_text": "edt\nobheore langue we\nCa oO\na induct\nssthle\nisla\n/2\"\n\nee\n4 Boolean £\n\nOs:\na]"
+  },
+  {
+    "text": "assumption, we call this assumption the inductive learning hypothesis. The hypothesis states that",
+    "start": 1762.12,
+    "end": 1769.64,
+    "ocr_text": "Inductive Learning Hypothesis\n\n¢ Any hypothesis h found to approximate the\ntarget function c well over a sufficiently large\nset of training examples D will also\napproximate the target function well over\nother unobserved examples."
+  },
+  {
+    "text": "a hypothesis age is found to approximate the target function C well over a sufficiently large",
+    "start": 1770.28,
+    "end": 1779.24,
+    "ocr_text": "Hy polhen lawsuace 7\nHypothense language Dedlede On inductive | Possible ES\n\nSee Boolean fy s\n\nie ols\nale 2"
+  },
+  {
+    "text": "set of training examples. So, if you come up with a hypothesis which has a low training error",
+    "start": 1779.24,
+    "end": 1786.44,
+    "ocr_text": "Inductive Learning Hypothesis\n\n¢ Any hypothesis h found to approximate the\ntarget function c well over a sufficiently large\nset of training examples Dwill also\napproximate the target function well over\nother unobserved examples."
+  },
+  {
+    "text": "over a sufficiently large training set, you expect that hypothesis to do well on unseen examples.",
+    "start": 1787.48,
+    "end": 1794.84,
+    "ocr_text": "Hy potker< la angus.\n\nHypotheore lamguagee rfl\ndd a On induchy\nc ae Qu ductive Dyscible wslances\n24 N\nMigs Sot hs"
+  },
+  {
+    "text": "So, this is the inductive learning hypothesis and learning can be looked upon as searching through",
+    "start": 1794.84,
+    "end": 1802.6,
+    "ocr_text": "Hy potker< la angus.\n\nHypotheore lamguagee rfl\ndd a On induchy\nc ae Qu ductive Dyscible wslances\n24 N\nMigs Sot hs"
+  },
+  {
+    "text": "the hypothesis space based on the training examples and the bias that you have imposed.",
+    "start": 1802.6,
+    "end": 1811.08,
+    "ocr_text": "Learning as Refining the Hypothesis\nSpace\n\n* Concept learning is a task of searching an hypotheses\nspace of possible representations looking for the\nrepresentation(s) that best fits the data, given the\nbias.\n\n* The tendency to prefer one hypothesis over another\nis called a bias.\n\n¢ Given a representation, data, and a bias, the problem\nof learning can be reduced to one of search."
+  },
+  {
+    "text": "There are different types of bias for example, one classical bias is a bias called",
+    "start": 1811.08,
+    "end": 1816.44,
+    "ocr_text": "Occam's Razor\n\n~ Aclassical example of Inductive Bias\n\n* the simplest consistent hypothesis about the\ntarget function is actually the best"
+  },
+  {
+    "text": "Ockham's razor. Ockham's razor states that you will prefer the simplest hypothesis.",
+    "start": 1816.44,
+    "end": 1821.88,
+    "ocr_text": "Occam's Razor\n\n~ Aclassical example of Inductive Bias\n\n¢ the simplest consistent hypothesis about the\ntarget function is actually the best"
+  },
+  {
+    "text": "So, this is a principle or this is a philosophical principle that if something can be described in a",
+    "start": 1823.32,
+    "end": 1829.64,
+    "ocr_text": "Occam's Razor\n\n~ Aclassical example of Inductive Bias\n\n¢ the simplest consistent hypothesis about the\ntarget function is actually the best"
+  },
+  {
+    "text": "short, you know short language that hypothesis is to be preferred over a more complex hypothesis.",
+    "start": 1830.28,
+    "end": 1838.36,
+    "ocr_text": "induc % sible stances -\nHypothere Dye Dedede Om ind a s 34 aN"
+  },
+  {
+    "text": "And there are other types of inductive bias like minimum description length, like maximum margin",
+    "start": 1838.36,
+    "end": 1845.24,
+    "ocr_text": "Some more Types of Inductive Bias\n\n:\n\nMinimum description length: when forming a\nhypothesis, attempt to minimize the length of the\ndescription of the hypothesis.\n\nMaximum margin: when drawing a boundary\nbetween two classes, attempt to maximize the width\nof the boundary (SVM)"
+  },
+  {
+    "text": "etcetera which will be only which you will can be explained when we talk about the specific",
+    "start": 1845.24,
+    "end": 1851.88,
+    "ocr_text": "Some more Types of Inductive Bias\n\n:\n\nMinimum description length: when forming a\nhypothesis, attempt to minimize the length of the\ndescription of the hypothesis.\n\nMaximum margin: when drawing a boundary\nbetween two classes, attempt to maximize the width\nof the boundary (SVM)"
+  },
+  {
+    "text": "algorithms where such biases is used. So, in machine learning you have to come up with a good",
+    "start": 1851.88,
+    "end": 1857.96,
+    "ocr_text": "Some more Types of Inductive Bias\n\n:\n\nMinimum description length: when forming a\nhypothesis, attempt to minimize the length of the\ndescription of the hypothesis.\n\nMaximum margin: when drawing a boundary\nbetween two classes, attempt to maximize the width\nof the boundary (SVM)"
+  },
+  {
+    "text": "hypothesis space, you have to find an algorithm that works well with the hypothesis space,",
+    "start": 1857.96,
+    "end": 1863.4,
+    "ocr_text": "Important issues in Machine Learning\n\nWhat are good hypothesis spaces?\n\nAlgorithms that work with the hypothesis spaces\nHow to optimize accuracy over future data points\n(overfitting)\n\nHow can we have confidence in the result? (How\nmuch training data — statistical qs)\n\nAre some learning problems computationally\nintractable?"
+  },
+  {
+    "text": "you have to come up in the hypothesis that works algorithm that works well with the hypothesis space",
+    "start": 1863.4,
+    "end": 1868.12,
+    "ocr_text": "Important issues in Machine Learning\n\nWhat are good hypothesis spaces?\n\nAlgorithms that work with the hypothesis spaces\nHow to optimize accuracy over future data points\n(overfitting)\n\nHow can we have confidence in the result? (How\nmuch training data — statistical qs)\n\nAre some learning problems computationally\nintractable?"
+  },
+  {
+    "text": "and outputs on hypothesis that is expected to do well over future data points.",
+    "start": 1868.84,
+    "end": 1874.84,
+    "ocr_text": "Important issues in Machine Learning\n\nWhat are good hypothesis spaces?\n\nAlgorithms that work with the hypothesis spaces\nHow to optimize accuracy over future data points\n(overfitting)\n\nHow can we have confidence in the result? (How\nmuch training data — statistical qs)\n\nAre some learning problems computationally\nintractable?"
+  },
+  {
+    "text": "And you have to understand what is the confidence that you have on the hypothesis and these are the",
+    "start": 1875.56,
+    "end": 1883.32,
+    "ocr_text": "Important issues in Machine Learning\n\nWhat are good hypothesis spaces?\n\nAlgorithms that work with the hypothesis spaces\nHow to optimize accuracy over future data points\n(overfitting)\n\nHow can we have confidence in the result? (How\nmuch training data — statistical qs)\n\nAre some learning problems computationally\nintractable?"
+  },
+  {
+    "text": "things that we will discuss. So, machine learning coming up with a function is all about doing",
+    "start": 1883.32,
+    "end": 1890.44,
+    "ocr_text": "Important issues in Machine Learning\n\nWhat are good hypothesis spaces?\n\nAlgorithms that work with the hypothesis spaces\nHow to optimize accuracy over future data points\n(overfitting)\n\nHow can we have confidence in the result? (How\nmuch training data — statistical qs)\n\nAre some learning problems computationally\nintractable?"
+  },
+  {
+    "text": "generalization and when you are doing generalization you can make some errors and the errors are of",
+    "start": 1890.44,
+    "end": 1897.72,
+    "ocr_text": "| 1s (A\nothe anges poll uchae\nQi\nP nw in\ns\nducks | Poss\nisla\n\n\\yias\nag:\n24\n\nvs)\nMow.\nd\nBoolean\n&\nSs\n\nNa\n\nea"
+  },
+  {
+    "text": "two types, bias errors and variance errors. So, bias as we saw is a restriction on the hypothesis",
+    "start": 1897.72,
+    "end": 1904.68,
+    "ocr_text": "Hy polhen la anguege\nSap ee an induchire | Decble: sa fo\n\nDaf 2\nSs Nous BReetoan tne\nOS)\n\nNe\n\n1g\n4 Jz"
+  },
+  {
+    "text": "space or the preference in choosing hypothesis. By deciding a particular hypothesis you impose a bias.",
+    "start": 1904.68,
+    "end": 1912.36,
+    "ocr_text": "Hy polhen la anguege\nSap ee an induchire | Decble: sa fo\n\nDaf 2\nSs Nous BReetoan tne\nOS)\n\nNe\n\n1g\n4 Jz"
+  },
+  {
+    "text": "So, this is error due to incorrect assumptions or restrictions on the hypothesis space,",
+    "start": 1912.36,
+    "end": 1918.44,
+    "ocr_text": "haat Dedede On induchive | Delt es\n\"\\e7 2\n° 6 Ng\n< ro Jz\n\nee. ea."
+  },
+  {
+    "text": "the error introduced by that is called bias error. Variance errors is introduced when you have a",
+    "start": 1919.32,
+    "end": 1925.88,
+    "ocr_text": "Hypotheaic language Dbede an induchire | Deco wclance +\n| acumen >< , 24 /2™\nis uo Many Reslean Exe\n\nbocable~\nLe"
+  },
+  {
+    "text": "small s set. So, variance error means the model that you estimate from different training sets will",
+    "start": 1926.76,
+    "end": 1934.28,
+    "ocr_text": "Hy potken languace 7\nHypothesis language Abed On induchive | Mscihle PvE\non e oly"
+  },
+  {
+    "text": "differ from each other. If you come up with a model from some 50 training 50 data points",
+    "start": 1934.28,
+    "end": 1939.56,
+    "ocr_text": "Hy potken languace 7\nHypothesis language Abed On induchive | Mscihle PvE\non e oly"
+  },
+  {
+    "text": "and you take another 50 data points on the distribution you can come up with a very different model.",
+    "start": 1940.44,
+    "end": 1945.24,
+    "ocr_text": "ype lana\nHypellesre language\npia -\nZ as oe a Om induchive | Poss: thle\nmnslances =\n“* hs ae %\n| Bostean £"
+  },
+  {
+    "text": "Then we say that there is a variance among the results. And this point we will discuss later",
+    "start": 1945.24,
+    "end": 1956.2,
+    "ocr_text": "pile ee\n\nHypothenie langueze Aedlede On induclave |\npier of fe fronnnr\n\nPubl sla nces ~"
+  },
+  {
+    "text": "when we talk about different learning algorithms. This is a very important concept, but we will talk",
+    "start": 1956.2,
+    "end": 1961.4,
+    "ocr_text": "Underfitting and Overfitting\n\nUnderfitting: model is too “simple” to represent all\nthe relevant class characteristics\n\n— High bias and low variance\n\n— High training error and high test error\nOverfitting: model is too “complex” and fits\nirrelevant characteristics (noise) in the data\n— Low bias and high variance\n\n— Low training error and high test error"
+  },
+  {
+    "text": "about it when we talk about the algorithms. This is over fitting and under fitting. You may come up",
+    "start": 1961.4,
+    "end": 1967.0,
+    "ocr_text": "Underfitting and Overfitting\n\nUnderfitting: model is too “simple” to represent all\nthe relevant class characteristics\n\n— High bias and low variance\n\n— High training error and high test error\nOverfitting: model is too “complex” and fits\nirrelevant characteristics (noise) in the data\n— Low bias and high variance\n\n— Low training error and high test error"
+  },
+  {
+    "text": "with a hypothesis that does well over the training examples, but does very poorly over the test",
+    "start": 1967.0,
+    "end": 1973.48,
+    "ocr_text": "Underfitting and Overfitting\n\nUnderfitting: model is too “simple” to represent all\nthe relevant class characteristics\n\n— High bias and low variance\n\n— High training error and high test error\nOverfitting: model is too “complex” and fits\nirrelevant characteristics (noise) in the data\n— Low bias and high variance\n\n— Low training error and high test error"
+  },
+  {
+    "text": "examples. Then we say over fitting has occurred. Over fitting comes from using very complex functions",
+    "start": 1973.48,
+    "end": 1980.2,
+    "ocr_text": "Underfitting and Overfitting\n\nUnderfitting: model is too “simple” to represent all\nthe relevant class characteristics\n\n— High bias and low variance\n\n— High training error and high test error\nOverfitting: model is too “complex” and fits\nirrelevant characteristics (noise) in the data\n— Low bias and high variance\n\n— Low training error and high test error"
+  },
+  {
+    "text": "or using two-fue training data. When the reverse of over fitting is under fitting,",
+    "start": 1980.2,
+    "end": 1985.32,
+    "ocr_text": "Underfitting and Overfitting\n\nUnderfitting: model is too “simple” to represent all\nthe relevant class characteristics\n\n— High bias and low variance\n\n— High training error and high test error\nOverfitting: model is too “complex” and fits\nirrelevant characteristics (noise) in the data\n— Low bias and high variance\n\n— Low training error and high test error"
+  },
+  {
+    "text": "if you have a very simple function then it cannot capture all the nuances of the data. So,",
+    "start": 1986.04,
+    "end": 1992.04,
+    "ocr_text": "Underfitting and Overfitting\n\nUnderfitting: model is too “simple” to represent all\nthe relevant class characteristics\n\n— High bias and low variance\n\n— High training error and high test error\nOverfitting: model is too “complex” and fits\nirrelevant characteristics (noise) in the data\n— Low bias and high variance\n\n— Low training error and high test error"
+  },
+  {
+    "text": "we will talk about details of over fitting and under fitting when we talk about specific algorithms.",
+    "start": 1992.52,
+    "end": 1999.16,
+    "ocr_text": "Underfitting and Overfitting\n\nUnderfitting: model is too “simple” to represent all\nthe relevant class characteristics\n\n— High bias and low variance\n\n— High training error and high test error\nOverfitting: model is too “complex” and fits\nirrelevant characteristics (noise) in the data\n— Low bias and high variance\n\n— Low training error and high test error"
+  },
+  {
+    "text": "With this we come to the end of this module. Thank you.",
+    "start": 1999.16,
+    "end": 2009.16,
+    "ocr_text": "He a OM\ninduc MM\neA\ndi OS\n2 sible\nsla\n\n1a\n}\n4 inneg BB\n\nww\n\nTe"
+  }
+]

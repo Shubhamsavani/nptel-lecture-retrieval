@@ -1,0 +1,1274 @@
+[
+  {
+    "text": "Hello, in this lecture we will look at scheduling in the Linux operating systems. Essentially,",
+    "start": 0.0,
+    "end": 22.2,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n\\"
+  },
+  {
+    "text": "we will look at how the schedulers in the Linux kernel evolved over time. So, the reference",
+    "start": 22.2,
+    "end": 29.16,
+    "ocr_text": "Scheduling in Linux\n\nChester Rebeiro\nIIT Madras\n\nDaniel P. Bovet and Marco Cesati, Understanding the Linux Kernel, 3\" Edition"
+  },
+  {
+    "text": "for this particular lecture is this particular book, Understanding the Linux kernel, third",
+    "start": 29.16,
+    "end": 33.92,
+    "ocr_text": "Scheduling in Linux\n\nChester Rebeiro\nIIT Madras\n\nDaniel P. Bovet and Marco Cesati, Understanding the Linux Kernel, 3\" Edition"
+  },
+  {
+    "text": "edition by Daniel Bovitt and Marcosistast. Linux classifies processes into two types. One",
+    "start": 33.92,
+    "end": 41.8,
+    "ocr_text": "Scheduling in Linux\n\nChester Rebeiro\nIIT Madras\n\nDaniel P. Bovet and Marco Cesati, Understanding the Linux Kernel, 3\" Edition"
+  },
+  {
+    "text": "is a real time process and the other is normal processes. Essentially, a process could be",
+    "start": 41.8,
+    "end": 47.96,
+    "ocr_text": "Process Types\n\n* Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n* Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n* When input is received; the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\nBatch\n* Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "either real time or an normal process. Real time processes are those which have very strict",
+    "start": 47.96,
+    "end": 54.6,
+    "ocr_text": "Process Types\n\n* Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n« Normal Processes\n\n*__ Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "deadlines. For instance, they could be processes involving control of a robot or a data acquisition",
+    "start": 54.6,
+    "end": 62.2,
+    "ocr_text": "Process Types\n\n* Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n« Normal Processes\n\n*__ Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "systems or PIC controllers. Real time processes should never miss a deadline and they should",
+    "start": 62.2,
+    "end": 71.04,
+    "ocr_text": "Process Types\n\n+ Real time\n\n— Deadlines that have to be met\n\n— Skould never be blocked by a low priority task\n+ Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "never be blocked by a low priority task. The other type of processes are the non real time",
+    "start": 71.04,
+    "end": 76.76,
+    "ocr_text": "Process Types\n\n* Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n+ Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "processes or generally called normal processes. So, normal processes are of two types. They",
+    "start": 76.76,
+    "end": 83.72,
+    "ocr_text": "Process Types\n\n* Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n+ Normal Progesses\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "are interactive or batch. An interactive process constantly interacts with the users.",
+    "start": 83.72,
+    "end": 89.8,
+    "ocr_text": "Process Types\n\n* Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n+ Normal Progesses\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "Therefore, spends a lot of time waiting for key presses and mouse operations. So, typically,",
+    "start": 89.8,
+    "end": 94.96,
+    "ocr_text": "Process Types\n\n+ Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n+ Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "you could consider these as IO bound processes. When an input receive the process typically should",
+    "start": 94.96,
+    "end": 100.8,
+    "ocr_text": "Process Types\n\n+ Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n+ Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "break up within 50 to 150 milliseconds. If it gets delayed more than 150 milliseconds,",
+    "start": 100.8,
+    "end": 106.6,
+    "ocr_text": "Process Types\n\n+ Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n+ Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 tc:150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "then the system begins to look sluggish in the sense that a user will not feel very comfortable",
+    "start": 106.6,
+    "end": 112.24,
+    "ocr_text": "Process Types\n\n* Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n* Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "using this system. On the other hand, batch processes are most closely similar to the CPU",
+    "start": 112.56,
+    "end": 120.36,
+    "ocr_text": "Process Types\n\n* Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n* Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "bound processes which do not require any user interaction and they often run in the background.",
+    "start": 120.36,
+    "end": 126.08,
+    "ocr_text": "Process Types\n\n+ Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n+ Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n* Do not require any user interaction, often run in the background.\nQh"
+  },
+  {
+    "text": "For instance, GCC compilation or some scientific operations like MATLAB are fall into these",
+    "start": 126.08,
+    "end": 133.4,
+    "ocr_text": "Process Types\n\n+ Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n+ Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "type of processes. Once a process is specified as a real time process, it is always considered",
+    "start": 133.4,
+    "end": 140.4,
+    "ocr_text": "Process Types\n\n+ Real time\n\n— Deadlines that have to be met\n\n— Should never be blocked by a low priority task\n+ Normal Processes\n\n— Interactive\n\n* Constantly interact with their users, therefore spend a lot of time waiting for\nkey presses and mouse operations.\n\n+ When input is received, the process must wake up quickly (delay must be\nbetween 50 to 150 ms)\n\n— Batch\n+ Do not require any user interaction, often run in the background."
+  },
+  {
+    "text": "as a real time process. In the sense that once a user specifies that a process is a real",
+    "start": 141.2,
+    "end": 146.88,
+    "ocr_text": "Process Types\n\nReal time\n— Deadlines that havi met\n\n— Should never be blocked by a low\n\nOnce a process is specified real\ntime, it is always considered a real\ntime process"
+  },
+  {
+    "text": "time process, then it is always going to be a real time process even though it does nothing",
+    "start": 146.88,
+    "end": 155.88,
+    "ocr_text": "Process Types\n\nReal time\n— Deadlines that havi met\n\n— Should never be blocked by a low\n\nOnce a process is specified real\ntime, it is always considered a real\ntime process"
+  },
+  {
+    "text": "but sleeping. On the other hand, for processes which are non real time, that is the normal",
+    "start": 155.88,
+    "end": 163.88,
+    "ocr_text": "Process Types\n\nA process may act as an interactive\nprocess for some time and then\n* Normal Processes become a batch process.\n— Interactive\n* Constantly interact with their users} Linux uses sophisticated heuristics\nkey presses and mouse operation: based on past behavior of the\n+ When input is received, the proces| process to decide whether a given\nbetween 50 to 150 ms) process should be considered\n— Batch interactive or batch\n\n+ Do not require any user interaction-ornerrormmire pacngroure,"
+  },
+  {
+    "text": "processes. It can behave as either an interactive process at one point of time or at other",
+    "start": 163.96,
+    "end": 170.2,
+    "ocr_text": "Process Types\n\nA process may act as an interactive\nprocess for some time and then\n* Normal Processes become a batch process.\n— Interactive\n* Constantly interact with their users} Linux uses sophisticated heuristics\nkey presses and mouse operation: based on past behavior of the\n+ When input is received, the proces| process to decide whether a given\nbetween 50 to 150 ms) process should be considered\n— Batch interactive or batch\n\n+ Do not require any user interaction-ornerrormmire pacngroure,"
+  },
+  {
+    "text": "points in time as a batch process. Essentially, a normal process could behave as an interactive",
+    "start": 170.2,
+    "end": 177.2,
+    "ocr_text": "Process Types\n\nA process may act as an interactive\nprocess for some time and then\n+ Normal Processes become a batch process.\n— Interactive\n* Constantly interact with their users} Linux uses sophisticated heuristics\nkey presses and mouse operation: based on past behavior of the\n+ When input is received, the proces} process to decide whether a given\nbetween 50 to 150 ms) process should be considered\n— Batch interactive or batch\n\n* Do not require any user interaction-ornerrormmire pacngroune,"
+  },
+  {
+    "text": "process or a batch process and this behavior could vary from time to time. So, in order",
+    "start": 177.2,
+    "end": 183.2,
+    "ocr_text": "Process Types\n\nA process may act as an interactive\nprocess for some time and then\n* Normal Processes become a batch process.\n— Interactive\n* Constantly interact with their users} Linux uses sophisticated heuristics\nkey presses and mouse operationg _ based on past behavior of the\n+ When input is received, the proces| process to decide whether a given\nbetween 50 to 150 ms) process should be considered\n— Batch interactive or batch\n\n* Do not require any user interaction -onertommnrevacngroona,"
+  },
+  {
+    "text": "to distinguish between interactive and batch processes, Linux uses sophisticated heuristics",
+    "start": 183.2,
+    "end": 190.2,
+    "ocr_text": "Process Types\n\nA process may act as an interactive\nprocess for some time and then\n* Normal Processes become a batch process.\n— Interactive\n* Constantly interact with their users} Linux uses sophisticated heuristics\nkey presses and mouse operationg _ based on past behavior of the\n+ When input is received, the proces| process to decide whether a given\nbetween 50 to 150 ms) process should be considered\n— Batch interactive or batch\n\n* Do not require any user interaction -onertommnrevacngroona,"
+  },
+  {
+    "text": "based on past behavior of the process to decide whether a given process should be considered",
+    "start": 190.76,
+    "end": 195.76,
+    "ocr_text": "Process Types\n\nA process may act as an interactive\nprocess for some time and then\n* Normal Processes become a batch process.\n— Interactive\n* Constantly interact with their users} Linux uses sophisticated heuristics\nkey presses and mouse operationg _ based on past behavior of the\n+ When input is received, the proces} process to decide whether a given\nbetween 50 to 150 ms) process should be considered\n— Batch interactive or batch\n\n+ Do not require any user interaction -onerrramtrtre vatngroom,"
+  },
+  {
+    "text": "at a batch or an interactive process. So, we will look more into detail about this.",
+    "start": 195.76,
+    "end": 202.76,
+    "ocr_text": "Process Types\n\nA process may act as an interactive\n\nprocess for some time and then\n\n+ Normal Processes become a batch process.\n\n— Interactive\n* Constantly interact with their users} Linux uses sophisticated heuristics\n\nkey presses and mouse operation: based on past behavior of the\n+ When input is received, the proces} process to decide whether a given\n\nbetween 50 to 150 ms) process should be considered\n\nBatch interactive or batch\n\n+ Do not require any user interaction-ornerrormminre pacngroune,"
+  },
+  {
+    "text": "So, looking from a historic perspective, over the years starting from Linux 2.4 to 2.6,",
+    "start": 203.32,
+    "end": 210.32,
+    "ocr_text": "Process Types\n\nA process may act as an interactive\n\nprocess for some time and then\n\n+ Normal Processes become a batch process.\n\n— Interactive\n* Constantly interact with their users} Linux uses sophisticated heuristics\n\nkey presses and mouse operation: based on past behavior of the\n+ When input is received, the proces} process to decide whether a given\n\nbetween 50 to 150 ms) process should be considered\n\nBatch interactive or batch\n\n+ Do not require any user interaction-ornerrormminre pacngroune,"
+  },
+  {
+    "text": "there was a scheduler which was adopted which was known as the ON scheduler. Then from",
+    "start": 211.92,
+    "end": 218.12,
+    "ocr_text": "History\n(Schedulers for Normal Processors)\n¢ O(n) scheduler\n— Linux 2.4 to 2.6\n¢ O(1) scheduler\n— Linux 2.6 to 2.6.22\n¢ CFS scheduler\n\n— Linux 2.6.23 onwards"
+  },
+  {
+    "text": "Linux 2.6 to 2.6.22, the scheduler was called the O1 scheduler and the scheduler is",
+    "start": 218.12,
+    "end": 225.12,
+    "ocr_text": "History\n(Schedulers for Normal Processors)\n¢ O(n) scheduler\n— Linux 2.4 to 2.6\n* O(1) scheduler\n— Linux 2.6 to 2.6.22\n¢ CFS scheduler\n\n— Linux 2.6.23 onwards"
+  },
+  {
+    "text": "currently incorporated is known as the CFS scheduler. Now, we will look at each of the",
+    "start": 226.8,
+    "end": 231.04,
+    "ocr_text": "History\n(Schedulers for Normal Processors)\n¢ O(n) scheduler\n— Linux 2.4 to 2.6\n* O(1) scheduler\n— Linux 2.6 to 2.6.22\n¢ CFS scheduler\n\n— Linux 2.6.23 onwards"
+  },
+  {
+    "text": "schedulers in the following lectures. So, let us start with the ON scheduler. ON scheduler",
+    "start": 231.04,
+    "end": 238.04,
+    "ocr_text": "History\n(Schedulers for Normal Processors)\n¢ O(n) scheduler\n— Linux 2.4 to 2.6\n* O(1) scheduler\n— Linux 2.6 to 2.6.22\n¢ CFS scheduler\n\n— Linux 2.6.23 onwards"
+  },
+  {
+    "text": "means that the scheduler looks into the queue of ready processes which could be at most",
+    "start": 238.28,
+    "end": 244.52,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n« Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "end size and it looks into each of these processes and then makes a choice about the process that",
+    "start": 244.56,
+    "end": 251.56,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n« Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "needs to execute. So, essentially at every context which the ON scheduler which scan the",
+    "start": 251.56,
+    "end": 257.76,
+    "ocr_text": "O(n) Scheduler\n\n« At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n« Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "list of runnable processes, compute priorities and select the best process to run. So, scanning",
+    "start": 257.76,
+    "end": 264.76,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n+ Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "the list of runnable processes is an order end job. Essentially, we have assumed that",
+    "start": 265.6,
+    "end": 272.1,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n—\" Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n+ Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "the ready queue has up to n processes present. So, this obviously is not scalable. It is",
+    "start": 272.18,
+    "end": 279.18,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n—\" Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n+ Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "not scalable because as n increases in number that is as more and more processes or task",
+    "start": 280.14,
+    "end": 287.14,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n+ Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "enter the ready queue, the time to make a context which increases. Essentially, the context",
+    "start": 288.74,
+    "end": 295.74,
+    "ocr_text": "O(n) Scheduler\n\n« At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n+ Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes\nI)"
+  },
+  {
+    "text": "which overheads increase and this is not something which is wanted for. So, these scalability",
+    "start": 296.14,
+    "end": 303.14,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when n is the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n« Used a global run-queue in SMP systems\n— Again, not scalable!!\n\nQueue of Ready Processes"
+  },
+  {
+    "text": "issues with the ON scheduler was actually noticed when Java was introduced roughly the",
+    "start": 303.14,
+    "end": 310.14,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when n is the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n« Used a global run-queue in SMP systems\n— Again, not scalable!!\n\nQueue of Ready Processes"
+  },
+  {
+    "text": "early 2000s and essentially due to the fact that JVM the Java virtual machine spawns multiple",
+    "start": 311.22,
+    "end": 318.22,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when n is the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks) R\n\n+ Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "tasks and each of these tasks are present in the ready queue. So, the scheduler would have",
+    "start": 318.22,
+    "end": 325.22,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when n is the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM:spawns\nmany tasks)\n\n+ Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "to scan through this ready queue in order to make their choice. Another limitation of the",
+    "start": 325.98,
+    "end": 331.7,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n+ Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "ON scheduler was that it used a single global run queue for SMP systems. Essentially, when",
+    "start": 331.7,
+    "end": 338.7,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n+ Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "you had multi processor systems as we have seen in the previous lecture, a single global",
+    "start": 338.7,
+    "end": 342.94,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n« Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "run queue was used. So, this again as we have seen is not scalable.",
+    "start": 342.94,
+    "end": 347.5,
+    "ocr_text": "O(n) Scheduler\n\n* At every context switch\n— Scan the list of runnable processes\n— Compute priorities\n— Select the best process to run\n\n* O(n), when nis the number of runnable processes ... not scalable! !\n\n— Scalability issues observed when Java was introduced (JVM spawns\nmany tasks)\n\n« Used a global run-queue in SMP systems\n— Again, not scalable!!\n\n| Queue of Ready Processes"
+  },
+  {
+    "text": "So, the next choice was something known as the ON scheduler. The ON scheduler would",
+    "start": 348.06,
+    "end": 353.06,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n* Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Normal processes ,,\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "make a scheduling decision in constant time irrespective of the number of jobs which are",
+    "start": 353.06,
+    "end": 357.82,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n* Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Normal processes ,,\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "present in the ready queue. Essentially, it would take a constant time to pick the next",
+    "start": 357.82,
+    "end": 364.02,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n* Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Normal processes\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "process to execute in the CPU. So, this quite obviously scales even with large number of",
+    "start": 364.02,
+    "end": 369.42,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n* Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Normal processes\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "processes that are present in the ready queue. In the ON scheduler, processes are divided",
+    "start": 369.42,
+    "end": 375.94,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n* Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Normal processes\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "into two types, the real time processes and normal processes as we have seen. So, the",
+    "start": 376.02,
+    "end": 381.18,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n+ Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Nermal processes\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "real time processes are given priorities from 0 to 99 with 0 being the highest priority",
+    "start": 381.18,
+    "end": 387.18,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n+ Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Nermal processes\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "and 99 being the least priority of a real time task. Now, normal processes on the other",
+    "start": 387.18,
+    "end": 393.18,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n+ Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Normal processes\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "hand are given priorities between 100 to 139. So, 100 is the highest priority that a normal",
+    "start": 393.18,
+    "end": 400.18,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n+ Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Normal processes\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "could have while 139 is the lowest priority that any process could have. And as we have",
+    "start": 400.26,
+    "end": 407.1,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n* Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Normal processes\n+ Interactive\n+ Batch\n+ Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "seen before, the normal processes could be either interactive or batch. We will see later",
+    "start": 407.1,
+    "end": 413.3,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n* Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Normal processes\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "how the scheduler distinguishes between the interactive and batch processes. Now, we",
+    "start": 413.3,
+    "end": 420.3,
+    "ocr_text": "O(1) scheduler\n\n* Constant time required to pick the next process to\nexecute\n— easily scales to large number of processes\n\n* Processes divided into 2 types\n— Real time\n+ Priorities from 0 to 99\n— Normal processes\n+ Interactive\n+ Batch\n* Priorities from 100 to 139 (100 highest, 139 lowest priority)"
+  },
+  {
+    "text": "will talk about a scheduling in normal processes that is the non real time processes. Essentially,",
+    "start": 420.7,
+    "end": 427.22,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues\n101"
+  },
+  {
+    "text": "the scheduling algorithm which is used is very similar to the multi level feedback queue",
+    "start": 427.22,
+    "end": 432.02,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "with a slight variation. Essentially, there in this particular scheduler, there are 40",
+    "start": 432.02,
+    "end": 439.02,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "priority classes which are labeled from 100 to 139. And as we have discussed before, the",
+    "start": 439.46,
+    "end": 445.46,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\n‘ Active Run queues Expired Run queues"
+  },
+  {
+    "text": "lowest priority is corresponds to the class 139 while the highest priority for the normal",
+    "start": 445.46,
+    "end": 450.94,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "task is at 100. So, corresponding to each of these tasks, there is a ready queue. So,",
+    "start": 450.94,
+    "end": 457.94,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "every process or every task present in the ready queue corresponding to a particular priority",
+    "start": 461.66,
+    "end": 466.9,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "class has equal priority to be executed on the CPU. On the other hand, a process present",
+    "start": 466.9,
+    "end": 473.9,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "in the 100th priority class has a higher priority to execute with respect to a process",
+    "start": 474.9,
+    "end": 481.9,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "present in 102 that is a process present in the ready queue corresponding to 102.",
+    "start": 482.02,
+    "end": 489.02,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "Now, based on this priority class, the scheduler maintains two such queues. So, one is known",
+    "start": 489.02,
+    "end": 496.02,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "as the active run queues and the other one is known as the expired run queues. When a",
+    "start": 496.1,
+    "end": 503.1,
+    "ocr_text": "Scheduling Normal Processes\n\n* Two ready queues in each CPU\n— Each queue has 40 priority classes (100 — 139)\n— 100 has highest priority, 139 has lowest priority\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "context which occurs, the scheduler which can the active run queues starting from the",
+    "start": 506.5,
+    "end": 512.5,
+    "ocr_text": "The Scheduling Policy\n\n* Pick the first task from the lowest numbered run queue\n« When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\n\n> >\n\nexecute\n\n| 139\n| 138\na-\na\n102"
+  },
+  {
+    "text": "100th run queue and going up to 139. It picks the run queue which has a non zero or a non",
+    "start": 512.5,
+    "end": 519.5,
+    "ocr_text": "The Scheduling Policy\n\n* Pick the first task from the lowest numbered run queue\n« When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\n\n> >\n\nexecute\n\n| 139\n| 138\na-\na\n102"
+  },
+  {
+    "text": "empty queue present in that. So, for instance over here, it starts from 100 and picks this",
+    "start": 519.58,
+    "end": 525.58,
+    "ocr_text": "The Scheduling Policy\n\n* Pick the first task from the lowest numbered run queue\n\n* When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\nXY py\n\n> >»\n\nyb\nexecute"
+  },
+  {
+    "text": "particular process and this process is executed in the CPU. At the end of the time slice,",
+    "start": 525.7,
+    "end": 532.22,
+    "ocr_text": "The Scheduling Policy\n\n* Pick the first task from the lowest numbered run queue\n\n*« When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\n| 139 hy wow\n_\n\nexecute"
+  },
+  {
+    "text": "this process is put into the expired run queue. So, gradually you will see that as time",
+    "start": 532.22,
+    "end": 538.22,
+    "ocr_text": "The Scheduling Policy\n\n* Pick the first task from the lowest numbered run queue\n\n*« When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\n| 139 hy wow\n_\n\nexecute"
+  },
+  {
+    "text": "proceeds and time slice is complete, the scheduler keeps picking out processes from the active",
+    "start": 538.62,
+    "end": 544.12,
+    "ocr_text": "The Scheduling Policy\n\n* Pick the first task from the lowest numbered run queue\n\n* When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\nXY boy\n\n> >»\n\nXb\nexecute"
+  },
+  {
+    "text": "run queues, executes them and puts them into the expired run queues. After a while, we",
+    "start": 544.12,
+    "end": 550.36,
+    "ocr_text": "The Scheduling Policy\n\n* Pick the first task from the lowest numbered run queue\n\n* When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\nXY boy\n\n> >»\n\nXb\nexecute"
+  },
+  {
+    "text": "would have a point where the entire processes in the active run queue is complete. Essentially,",
+    "start": 550.44,
+    "end": 556.44,
+    "ocr_text": "The Scheduling Policy\n\n* Pick the first task from the lowest numbered run queue\n\n* When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\ny fo oY\n\n> >\n\nyb\nexecute"
+  },
+  {
+    "text": "we come to the point that none of these priority classes have any processes with them. On",
+    "start": 556.44,
+    "end": 562.94,
+    "ocr_text": "The Scheduling Policy\n\n« Pick the first task from the lowest numbered run queue\n\n* When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\ny ye oY\n\n| 138 Fi F\\\n\n102\n\nHb\nexecute"
+  },
+  {
+    "text": "the other hand, the expired run queue is now filled up. Essentially, because the scheduler",
+    "start": 562.94,
+    "end": 569.94,
+    "ocr_text": "The Scheduling Policy\n\n« Pick the first task from the lowest numbered run queue\n\n* When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\ny ye oY\n\n| 138 Fi F\\\n\n102\n\nHb\nexecute"
+  },
+  {
+    "text": "has been adding processes to each priority class in the expired run queue. When this",
+    "start": 569.94,
+    "end": 576.94,
+    "ocr_text": "The Scheduling Policy\n\n* Pick the first task from the lowest numbered run queue\n\n* When done put task in the appropriate queue in the\nexpired run queue\n\nActive Run queues Expired Run queues\ny py\n\n> >»\n\nYoY\nexecute"
+  },
+  {
+    "text": "happens, the scheduler would switch between the active run queues and the expired run",
+    "start": 576.94,
+    "end": 581.84,
+    "ocr_text": "The Scheduling Policy\n\n* Once active run queues are complete\n— Make expired run queues active and vice versa\n\nActive Run queues Expired Run queues\nlow Hob"
+  },
+  {
+    "text": "queues. Now, this is the queues which actually becomes active while this becomes the expired",
+    "start": 581.84,
+    "end": 588.84,
+    "ocr_text": "The Scheduling Policy\n\n* Once active run queues are complete\n— Make expired run queues active and vice versa\n\nActive Run queues Expired Run queues\nlow Hob"
+  },
+  {
+    "text": "run queues. Now, for consecutive time slice completions, the scheduler would pick task",
+    "start": 588.84,
+    "end": 595.52,
+    "ocr_text": "The Scheduling Policy\n\n* Once active run queues are complete\n— Make expired run queues active and vice versa\n\nActive Run queues Expired Run queues\nlow GG"
+  },
+  {
+    "text": "from this particular queue and execute these tasks. After execution, these tasks would be",
+    "start": 595.52,
+    "end": 601.52,
+    "ocr_text": "The Scheduling Policy\n\nOnce active run queues are complete\n— Make expired run queues active and vice versa\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "moved to this queue over here, which is now the expired run queue. In this way, there",
+    "start": 602.52,
+    "end": 608.52,
+    "ocr_text": "The Scheduling Policy\n\nOnce active run queues are complete\n— Make expired run queues active and vice versa\n\nActive Run queues Expired Run queues"
+  },
+  {
+    "text": "is a toggling between these two queues. All tasks present in one queue are executed and",
+    "start": 608.52,
+    "end": 613.68,
+    "ocr_text": "The Scheduling Policy\n\n* Once active run queues are complete\n— Make expired run queues active and vice versa\n\nActive Run queues Expired Run queues\nlow an nal"
+  },
+  {
+    "text": "moved on to the task in the other queue. Then, all tasks over here are executed and after",
+    "start": 613.68,
+    "end": 619.2,
+    "ocr_text": "The Scheduling Policy\n\n* Once active run queues are complete\n— Make expired run queues active and vice versa\n\nActive Run queues Expired Run queues\nlow an nal"
+  },
+  {
+    "text": "executing the tasks are moved to the previous queue and so on. So, this process goes on continuously.",
+    "start": 619.2,
+    "end": 626.2,
+    "ocr_text": "The Scheduling Policy\n\n* Once active run queues are complete\n— Make expired run queues active and vice versa\n\nActive Run queues Expired Run queues\nlow GG"
+  },
+  {
+    "text": "The main reason for having such a technique in the Linux kernel's scheduler is that",
+    "start": 626.32,
+    "end": 631.44,
+    "ocr_text": "The Scheduling Policy\n\n* Once active run queues are complete\n— Make expired run queues active and vice versa\n\nActive Run queues Expired Run queues\nlow iy\n="
+  },
+  {
+    "text": "it prevents starvation. It ensures that every process gets a turn to execute in the CPU.",
+    "start": 631.44,
+    "end": 638.44,
+    "ocr_text": "The Scheduling Policy\n\n* Once active run queues are complete\n— Make expired run queues active and vice versa\n\nActive Run queues Expired Run queues\nlow iy\n="
+  },
+  {
+    "text": "Recall that we call this particular scheduler as an O1 scheduler. Essentially, this means",
+    "start": 640.92,
+    "end": 645.92,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue"
+  },
+  {
+    "text": "it is a constant time scheduler irrespective of the number of processes present in the",
+    "start": 645.92,
+    "end": 651.72,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue"
+  },
+  {
+    "text": "radicues. Now, let us analyze how this particular thing is constant time. Now, if we recall",
+    "start": 651.72,
+    "end": 658.72,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue"
+  },
+  {
+    "text": "there are two steps involved in scheduling a process. First is to find the lowest number",
+    "start": 659.08,
+    "end": 666.08,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue"
+  },
+  {
+    "text": "queue with at least one task present in that corresponding radicue. Second, choose the",
+    "start": 666.08,
+    "end": 673.08,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue"
+  },
+  {
+    "text": "first task from that radicue. Now, how are these two things constant time? It is quite",
+    "start": 673.4,
+    "end": 679.4,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue"
+  },
+  {
+    "text": "obvious that the second step is constant time. Essentially, we are choosing from the head",
+    "start": 679.4,
+    "end": 685.52,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. ‘Choose the first task from that queue\n\n* step 2 is obviously constant time\n¢ Is step 1 contant time?"
+  },
+  {
+    "text": "of the queue and that is obviously done in a fixed amount of time irrespective of the",
+    "start": 685.52,
+    "end": 691.56,
+    "ocr_text": "contant time?\n\n* There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n* Is step 1 contant time?"
+  },
+  {
+    "text": "size of the processes. Next question is how is step one constant time? So, essentially",
+    "start": 691.56,
+    "end": 696.76,
+    "ocr_text": "contant time?\n\n* There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n* Is step 1 contant time?"
+  },
+  {
+    "text": "we know that the scheduler scans through all the priority queue starting from 100 and",
+    "start": 696.76,
+    "end": 702.8,
+    "ocr_text": "contant time?\n\n* There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n* Is step 1 contant time?"
+  },
+  {
+    "text": "going up to 139 and chooses the lowest number queue which has at least one task. Essentially,",
+    "start": 702.88,
+    "end": 709.88,
+    "ocr_text": "contant time?\n\n* There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n* Is step 1 contant time?"
+  },
+  {
+    "text": "it chooses the lowest non-empty queue. So, this does not seem to be constant time. So,",
+    "start": 709.88,
+    "end": 716.2,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n* Is step 1 contant time?"
+  },
+  {
+    "text": "how does the scheduler actually implement this? So, that the time taken to actually find",
+    "start": 716.2,
+    "end": 722.7,
+    "ocr_text": "contant time?\n\n* There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n* Is step 1 contant time?"
+  },
+  {
+    "text": "the lowest non-empty queue is independent of the number of processes. In order to do this,",
+    "start": 722.7,
+    "end": 729.7,
+    "ocr_text": "contant time?\n\n* There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n* Is step 1 contant time?"
+  },
+  {
+    "text": "the scheduler or the Linux scheduler makes use of two things. The first is a bitmap.",
+    "start": 729.7,
+    "end": 736.7,
+    "ocr_text": "contant time?\n\n* There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n¢ step 2 is obviously constant time\n¢ Is step 1 contant time?\n\na Utara hitman at rin aintian unt AaK oarn An eratetel\nwere Suman Sr run Gucucs Win WON ZOre Cnwics\nMan ananial inateiatinn ‘Hes teat hit _an¥\nUSE SOSTIan NSUUCUON TG Gi n-SGe\n\nOST SF Ch"
+  },
+  {
+    "text": "This is a 40 bit bitmap which stores the run queue with non-zero entities. Essentially,",
+    "start": 736.7,
+    "end": 743.7,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n\n¢ Is step 1 contant time?\n* Store bitmap of run queues with non-zero entries\n¢ Use special instruction ‘find-first-bit-set’\n— bsfl on intel"
+  },
+  {
+    "text": "this particular bitmap stores 0 for a class which is empty and it stores 1 for a class",
+    "start": 744.98,
+    "end": 751.98,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n\n¢ Is step 1 contant time?\n* Store bitmap of run queues with non-zero entries\n¢ Use special instruction ‘find-first-bit-set’\n— bsfl on intel"
+  },
+  {
+    "text": "which has a non-zero entities. Second, it uses a special instruction known as find first",
+    "start": 752.54,
+    "end": 759.54,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n\n¢ Is step 1 contant time?\n* Store bitmap of run queues with non-zero entries\n¢ Use special instruction ‘find-first-bit-set’\n— bsfl on intel"
+  },
+  {
+    "text": "bit set. So, this particular instruction for example, there is a BSFL instruction on",
+    "start": 762.54,
+    "end": 769.54,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n* Is step 1 contant time?\n* Store bitmap of run queues with non-zero entries\n\n¢ Use special instruction ‘find-first-bit-set’\n— bsfl on intel"
+  },
+  {
+    "text": "Intel would look at this 40 bit bitmap and choose the lowest index which is non-zero.",
+    "start": 769.54,
+    "end": 776.54,
+    "ocr_text": "contant time?\n\n* There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n\n¢ Is step 1 contant time?\n* Store bitmap of run queues with non-zero entries\n¢ Use special instruction ‘find-first-bit-set’\n— bsfl on intel"
+  },
+  {
+    "text": "Essentially, this would give us the lowest numbered non-zero bit in the bitmap and this",
+    "start": 776.54,
+    "end": 783.54,
+    "ocr_text": "contant time?\n\n¢ There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n¢ step 2 is obviously constant time\n\n¢ Is step 1 contant time?\n* Store bitmap of run queues with non-zero entries\n* Use special instruction ‘find-first-bit-set’\n— bsfl on intel\n\nk"
+  },
+  {
+    "text": "corresponds to the lowest non-zero or the lowest non-empty priority queue.",
+    "start": 787.18,
+    "end": 794.18,
+    "ocr_text": "contant time?\n\n* There are 2 steps in the scheduling\n1. Find the lowest numbered queue with at least 1 task\n2. Choose the first task from that queue\n\n* step 2 is obviously constant time\n\n¢ Is step 1 contant time?\n* Store bitmap of run queues with non-zero entries\n* Use special instruction ‘find-first-bit-set’\n— bsfl on intel"
+  },
+  {
+    "text": "Now, let us look more at the priorities of the O1 scheduler. So, we have seen that a",
+    "start": 797.18,
+    "end": 802.18,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice -n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’ ; (| will go last)"
+  },
+  {
+    "text": "priority 0 to 99 are meant for real time tasks while a priority 100 is the highest priority",
+    "start": 802.42,
+    "end": 809.42,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice -n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’ ; (| will go last)"
+  },
+  {
+    "text": "that can be given to a normal process while priority 139 is the lowest priority that a",
+    "start": 810.42,
+    "end": 816.9,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’; (| will go last)"
+  },
+  {
+    "text": "normal process could have. Now, these are the ranges of the priorities for the normal process.",
+    "start": 816.9,
+    "end": 822.9,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’ ; (| will go last)"
+  },
+  {
+    "text": "That is a normal process could have anything from a priority of 100 to a priority of 139.",
+    "start": 822.9,
+    "end": 829.42,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’ ; (| will go last)"
+  },
+  {
+    "text": "So, priority 120 is known as the base priority and taken by default. So, whenever you start",
+    "start": 829.42,
+    "end": 836.42,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nis a value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’; (| will go last)"
+  },
+  {
+    "text": "a program for example, whenever you start an A dot out program it is given the priority",
+    "start": 836.78,
+    "end": 840.98,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nis avalue from +19 to -20;\n* most selfish ‘-20’ ; (| want to go first)\n* most generous ‘+19’; (| will go last)"
+  },
+  {
+    "text": "120. Now, you could change this base priority by using the command called nice. The nice",
+    "start": 840.98,
+    "end": 847.98,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nis avalue from +19 to -20;\n* most selfish ‘-20’ ; (| want to go first)\n* most generous ‘+19’; (| will go last)"
+  },
+  {
+    "text": "command line is used to change the default priority of the process from something from",
+    "start": 849.1,
+    "end": 853.66,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$niée —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’ ; (| will go last)"
+  },
+  {
+    "text": "120 to something else. So, the command would look something like this way. So, nice",
+    "start": 853.66,
+    "end": 858.46,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$niée —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’ ; (| will go last)"
+  },
+  {
+    "text": "minus n capital N dot slash A dot out where the capital N can take a value of plus 19 to",
+    "start": 858.46,
+    "end": 864.82,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19 ; (| will go last)"
+  },
+  {
+    "text": "minus 20. So, essentially this the value that we specified here gets added to the base",
+    "start": 864.82,
+    "end": 871.82,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19 ; (| will go last)"
+  },
+  {
+    "text": "priority. So, for example, if I say nice minus n and plus 19 A dot out. So, my the process",
+    "start": 873.62,
+    "end": 880.62,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’; (I will go last)"
+  },
+  {
+    "text": "that I am starting will have a priority 120 plus 19. So, that is 139. So, this would be",
+    "start": 880.86,
+    "end": 887.86,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’ ; (| will go last)"
+  },
+  {
+    "text": "the least priority that it could have. On the other hand, you could also specify a priority",
+    "start": 890.26,
+    "end": 896.78,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nis a value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’ ; (| will go last)"
+  },
+  {
+    "text": "like nice minus n minus 20 dot slash A dot out. So, this would give the process a priority",
+    "start": 896.78,
+    "end": 903.78,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’ ; (| will go last)"
+  },
+  {
+    "text": "of 100. So, this is the highest priority that the process could get considering that it",
+    "start": 904.78,
+    "end": 910.78,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’ ; (| will go last)"
+  },
+  {
+    "text": "is a normal process. So, these are the static priorities that the process could get during",
+    "start": 911.14,
+    "end": 916.74,
+    "ocr_text": "More on Priorities\n\n0 to 99 meant for real time processes\n\n100 is the highest priority for a normal process\n\n139 is the lowest priority\n\nStatic Priorities\n\n— 120 is the base priority (default)\n\n— nice : command line to change default priority of a process\n$nice —n N_ ./a.out\n\n— Nisa value from +19 to -20;\n\n* most selfish ‘-20’ ; (I want to go first)\n* most generous ‘+19’; (| will go last)"
+  },
+  {
+    "text": "the start of execution. Besides the static priority the scheduler also sets something",
+    "start": 916.74,
+    "end": 923.22,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n+ Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))"
+  },
+  {
+    "text": "known as the dynamic priority. This dynamic priority is based on heuristics and is set",
+    "start": 923.22,
+    "end": 929.42,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n+ Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))"
+  },
+  {
+    "text": "whether the process acts like a batch process or an interactive process. Essentially it is",
+    "start": 930.1,
+    "end": 937.1,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))"
+  },
+  {
+    "text": "set based on whether the process has more of IO operations or is more CPU bound. So, the",
+    "start": 937.1,
+    "end": 944.1,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))"
+  },
+  {
+    "text": "scheduler uses some heuristics which is present over here to compute the dynamic priority.",
+    "start": 944.7,
+    "end": 950.7,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))"
+  },
+  {
+    "text": "Essentially, it takes the static priority which we have set which is either 120 by default",
+    "start": 950.7,
+    "end": 955.7,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))"
+  },
+  {
+    "text": "given at the start of execution or this a priority based on the nice value and subtract",
+    "start": 955.82,
+    "end": 962.82,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static oriority — bonus + 5), 139))"
+  },
+  {
+    "text": "something known as a bonus and adds plus 5. So, it takes min of this that is static priority",
+    "start": 963.42,
+    "end": 969.42,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static oriority — bonus + 5), 139))"
+  },
+  {
+    "text": "minus bonus plus 5 and 139. And it then takes the max of 100 and this value. So, for",
+    "start": 969.42,
+    "end": 976.42,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\nt"
+  },
+  {
+    "text": "instance let us say we start the process with the default static priority that is 120.",
+    "start": 977.9,
+    "end": 984.9,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))"
+  },
+  {
+    "text": "And we give a bonus of say 3. So, then we have like 120 minus 3 plus 5 that is 122.",
+    "start": 985.22,
+    "end": 992.22,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))"
+  },
+  {
+    "text": "So, min of 122 and 139 is 122 and you take max of 100 and 122 is 122. So, the dynamic",
+    "start": 998.1,
+    "end": 1006.1,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n+ Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\nf"
+  },
+  {
+    "text": "priority for this particular example was 122.",
+    "start": 1006.94,
+    "end": 1010.78,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n+ Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))"
+  },
+  {
+    "text": "Now, the crucial thing is this bonus. So, how is this particular bonus set? So, essentially",
+    "start": 1011.5,
+    "end": 1017.86,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n+ Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))"
+  },
+  {
+    "text": "this bonus has a value between 0 and 10. If the bonus is less than 5, it implies there",
+    "start": 1017.86,
+    "end": 1024.86,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\nthus more of a CPU bound process.\nThe dynamic priority is therefore decreased (toward 139)\n\nIf bonus > 5, implies more interaction with the user\nthus more of an interactive proc\nThe dynamic priority is increased (toward 100)"
+  },
+  {
+    "text": "is less interaction with the user. Thus the process is assumed to be more of a CPU bound",
+    "start": 1024.98,
+    "end": 1031.98,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\nthus more of a CPU bound process.\nThe dynamic priority is therefore decreased (toward 139)\n\nIf bonus > 5, implies more interaction with the user\nthus more of an interactive proc\nThe dynamic priority is increased (toward 100)"
+  },
+  {
+    "text": "process. The dynamic priority is therefore, decrease. Essentially the dynamic priority goes",
+    "start": 1032.06,
+    "end": 1037.18,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\nthus more of a CPU bound process.\nThe dynatnic priority is therefore decreased (toward 139)\n\nIf bonus > 5, implies more interaction with the user\nthus more of an interactive proc\nThe dynamic priority is increased (toward 100)"
+  },
+  {
+    "text": "towards 139 of a low priority task. If the bonus is greater than 5 on the other hand,",
+    "start": 1037.18,
+    "end": 1043.3,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\n\nthus more of a CPU bound process.\n\nThe dynamic priority is therefore decreased (toward 139)\nIf bonus > 5, implies more interaction with the user\nthus more of an interactiv\nThe dynamic priority is increased\n\n(toward 100)"
+  },
+  {
+    "text": "it implies that more there is more interaction with the user. That is the process acts more",
+    "start": 1043.3,
+    "end": 1049.54,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\n\nthus more of a CPU bound process.\n\nThe dynamic priority is therefore decreased (toward 139)\nIf bonus > 5, implies more interaction with the user\nthus more of an interactiv\nThe dynamic priority is increased\n\n(toward 100)"
+  },
+  {
+    "text": "like a IO bound process and essentially the process behaves more like an interactive process.",
+    "start": 1049.54,
+    "end": 1056.54,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n+ Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\nthus more of a CPU bound process.\nThe dynamic priority is therefore decreased (toward 139)\n\nIf bonus > 5, implies more\nthus more of an interac\nThe dynamic priority is inc\n\neraction with the user\nproc R\nased (toward 100)."
+  },
+  {
+    "text": "The dynamic priority is therefore, increased that is it goes towards 100. So, you can",
+    "start": 1056.94,
+    "end": 1063.74,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\n\nthus more of a CPU bound process.\n\nThe dynamic priority is therefore decreased (toward 139)\nIf bonus > 5, implies more ith the user\nthus more of an interac\nThe dynamic priority is increased (toward 100)"
+  },
+  {
+    "text": "take two examples for instance, we have seen a bonus of 3 and we had seen that it resulted",
+    "start": 1063.82,
+    "end": 1070.82,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\n\nthus more of a CPU bound process.\n\nThe dynamic priority is therefore decreased (toward 139)\nIf bonus > 5, implies more ith the user\nthus more of an interac\nThe dynamic priority is increased (toward 100)"
+  },
+  {
+    "text": "in a dynamic priority of 122, implying that it is more of a CPU bound process. Therefore,",
+    "start": 1071.1,
+    "end": 1076.62,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\n\nthus more of a CPU bound process.\n\nThe dynamic priority is therefore decreased (toward 139)\nf bonus > 5, implies more interaction with the user\nthus more of an interactiv\nThe dynamic priority is inc\n\nased (toward 100)."
+  },
+  {
+    "text": "it is given a lower priority in the system. On the other hand, if you take a bonus of",
+    "start": 1076.62,
+    "end": 1081.1,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\nthus more of a CPU bound process.\nThe dynamic priority is therefore decreased (toward 139)\n\nIf bonus > 5, implies more interaction with the user\nthus more of an interactive proc\nThe dynamic priority is increased (tc\n\nward 100)"
+  },
+  {
+    "text": "8 and compute the same thing, you will see that the dynamic priority actually reduces.",
+    "start": 1081.1,
+    "end": 1086.1,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\nthus more of a CPU bound process.\nThe dynamic priority is therefore decreased (toward 139)\n\nIf bonus > 5, implies more interaction with the user\nthus more of an interactive proc\nThe dynamic priority is increased (tc\n\nward 100)"
+  },
+  {
+    "text": "So, the crucial part is now how do we actually set the value of bonus. So, the bonus is in",
+    "start": 1086.1,
+    "end": 1093.1,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\n\nthus more of a CPU bound process\n\nThe dynamic priority is therefore decreased (toward 139)\nIf bonus > 5, implies more ith the user\nthus more of an interactiv\nThe dynamic priority is increased (toward 100)"
+  },
+  {
+    "text": "the scheduler is determined by the average sleep time of a process. The assumption here is",
+    "start": 1093.14,
+    "end": 1098.54,
+    "ocr_text": "Based on Dynamic Priority\n\na heuristic\n\n* To distinguish between batch and interactive processes\n« Uses a ‘bonus’, which changes based on a heuristic\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nHas a value between 0 and 10\n\nIf bonus < 5, implies less interaction with the user\n\nthus more of a CPU bound process\n\nThe dynamic priority is therefore decreased (toward 139)\nIf bonus > 5, implies more ith the user\nthus more of an interactiv\nThe dynamic priority is increased (toward 100)"
+  },
+  {
+    "text": "IO bound processes will sleep or in other words will block more. Therefore, should get a higher",
+    "start": 1098.54,
+    "end": 1105.54,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal oO but male than 100 ms\nGreater than or equal to 100 msbut smaller than 200 ms\nRo Greater than or equal to 200 msbut smaller than 300 ms\nRY Greater than or equal to 300 ms but smaller than 400 ms\n© Greater than or equal to 400 msbut smaler than 00 ms\n\nGreater than or equal to 500 ms but smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 msbut smaller than 900 ms\nGreater than or equal to 900 msbut smaller than 1000 ms\nVsecond 0"
+  },
+  {
+    "text": "priority. So, therefore, IO bound processes will have higher value of bonus. On the other",
+    "start": 1105.54,
+    "end": 1112.54,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater thanor equal to 0 but male than 100 ms\n\nGreater than or equal to 100 msbut smaller than 200 ms\n\nRo Greater than or equal to 200 msbut smaller than 300 ms\nRY Greater than or equal to 300 ms but smaller than 400 ms\n© Greater than or equal to 400 msbut smaller than $00 ms\n\nGreater than or equal to $00 msbut smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 ms but smaller than 900 ms\nGreater than or equal to 00 msbut smaller than 1000'ms\nsecond 10"
+  },
+  {
+    "text": "hand, CPU bound processes will sleep less. Therefore, should get a lower priority. If",
+    "start": 1113.54,
+    "end": 1119.7,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater thanor equal to 0 but male than 100 ms\n\nGreater than or equal to 100 msbut smaller than 200 ms\n\nRo Greater than or equal to 200 msbut smaller than 300 ms\nRY Greater than or equal to 300 ms but smaller than 400 ms\n© Greater than or equal to 400 msbut smaller than $00 ms\n\nGreater than or equal to $00 msbut smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 ms but smaller than 900 ms\nGreater than or equal to 00 msbut smaller than 1000'ms\nsecond 10"
+  },
+  {
+    "text": "you look at this table and if we see that the average sleep time for a process is greater",
+    "start": 1119.78,
+    "end": 1124.42,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal to0 but sme than 100 ms\nGreater than or equal to 100 msbut smaller than 200 ms\n\nKo Greater than or qual to 200 msbut male than 300 ms\nKY Greater than or equal to 300 ms but smaller than 400 ms\n\nGreater than or equal to 400 msbut smaller than 500 ms\nGreater than or equal to 500 ms but smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 msbut smaller than 900 ms\nGreater than or equal to 900 msbut smaller than 1000 ms\nVsecond 10\n\n&"
+  },
+  {
+    "text": "than 200, but less than 300 milliseconds, it is given a bonus of 2. So, this is just a",
+    "start": 1124.42,
+    "end": 1130.62,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal to0 but sme than 100 ms\nGreater than or equal to 100 msbut smaller than 200 ms\n\nKo Greater than or qual to 200 msbut male than 300 ms\nKY Greater than or equal to 300 ms but smaller than 400 ms\n\nGreater than or equal to 400 msbut smaller than 500 ms\nGreater than or equal to 500 ms but smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 msbut smaller than 900 ms\nGreater than or equal to 900 msbut smaller than 1000 ms\nVsecond 10\n\n&"
+  },
+  {
+    "text": "heuristic and followed as a formula in the kernel. On the other hand, if the process has",
+    "start": 1130.62,
+    "end": 1137.62,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal to 0 butsmalethan 100 ms\nGreater than or equal to 100 msbut smaller than 200 ms\n\nKo Greater than or equal to 200 msbut smaller than 300 ms n\nKY Greater than or equal to 300 ms but smaller than 400 ms\n© Greater than or equal to 400 msbut smaler than $00 ms\n\nGreater than or equal to $00 msbut smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 msbut smaller than 900 ms\nGreater than or equal to 900 msbut smaller than 1000 ms\nsecond 0"
+  },
+  {
+    "text": "an average sleep time greater than or equal to 800 millisecond, but smaller than 900 millisecond,",
+    "start": 1143.82,
+    "end": 1148.98,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal to O but smaller than 100 ms\nGreater than or equal to 100 msbut smaller than 200 ms\nwe Greater than or equal to 200 ms but smaller than 300 ms\nKY Greater than or equal to 300 msbut smaller than 400 ms\n\nGreater than or equal to 400 msbut smaller than 500 ms\nGreater than or equal to $00 msbut smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGeater than or equal to 800 msbut smaller than 900 ms\nGreater than or equal to 900 msbut smaller than 1000 ms\nsecond 10"
+  },
+  {
+    "text": "we give it a larger bonus of 8. Thus, these processes process with the high value of",
+    "start": 1148.98,
+    "end": 1154.9,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal to 0 but male than 100 ms\nGreater than or equal to 100 msbut smaller than 200 ms\n\nRo Greater than or equal to 200 msbut smaller than 300 ms\nKY Greater than or equal to 300 ms but smaller than 400 ms\n© Greate than or equal to 400 ms but smaler than $00 ms\n\nGreater than or equal to $00 msbut smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 msbut smaller than 900 ms\nGreater than or equal to 900 msbut smaller than 1000 ms\nsecond 10"
+  },
+  {
+    "text": "bonus that is those processes which sleep more are considered interactive processes and",
+    "start": 1154.9,
+    "end": 1160.22,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal to 0 but male than 100 ms\nGreater than or equal to 100 msbut smaller than 200 ms\n\nRo Greater than or equal to 200 msbut smaller than 300 ms\nKY Greater than or equal to 300 ms but smaller than 400 ms\n© Greate than or equal to 400 ms but smaler than $00 ms\n\nGreater than or equal to $00 msbut smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 msbut smaller than 900 ms\nGreater than or equal to 900 msbut smaller than 1000 ms\nsecond 10"
+  },
+  {
+    "text": "given a dynamic priority which is closer to 200. On the other hand, processes which sleeps",
+    "start": 1160.22,
+    "end": 1165.1,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal oO but male than 100 ms\n\nGreater than or equal to 100 msbut smaller than 200 ms\n\nRG Greater than or equal to 200 msbut smaller than 300 ms\n\nKY Greater than or equal to 300 msbut smaller than 400 ms\ne Greater than or equal to 400 msbut smaller than $00 ms\n\nGreater than or equal to $00 msbut smaller than 600 ms\n\nGreater than or equal to 600 msbut smaller than 700 ms f\nGreater than or equal to 700 msbut smaller than 800 ms\n\nGreater than or equal to 800 msbut smaller than 900 ms\n\nGreater than or equal to 900 msbut smaller than 1000 ms\n\nsecond 10"
+  },
+  {
+    "text": "less are assumed to be CPU bound processes and given a bonus which is low. And as a result,",
+    "start": 1165.1,
+    "end": 1172.1,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal to O but smaller than 10 ms\nGreater than or equal to 100 msbut smaller than 200 ms\nRG Greater than or equal to 200 msbut smaller than 300 ms\nKY Greater than or equal to 300 ms but smaller than 400 ms\n© Greate than or equal to 400 msbut smaller than $00 ms\n\nGreater than or equal to $00 ms but smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 msbut smaller than 900 ms\nGreater than or equal to 900 msbut smaller than 1000 ms\nsecond 10"
+  },
+  {
+    "text": "the priority is lowered. The dynamic priority is lowered that is it goes towards 139.",
+    "start": 1172.1,
+    "end": 1179.1,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal to O but smaller than 10 ms\nGreater than or equal to 100 msbut smaller than 200 ms\nRG Greater than or equal to 200 msbut smaller than 300 ms\nKY Greater than or equal to 300 ms but smaller than 400 ms\n© Greate than or equal to 400 msbut smaller than $00 ms\n\nGreater than or equal to $00 ms but smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 msbut smaller than 900 ms\nGreater than or equal to 900 msbut smaller than 1000 ms\nsecond 10"
+  },
+  {
+    "text": "So, how are these dynamic priorities affecting the scheduling algorithm? Essentially, if we",
+    "start": 1180.14,
+    "end": 1185.62,
+    "ocr_text": "Dynamic Priority\n(setting the bonus)\n\n* To distinguish between batch and interactive processes\n+ Based on average sleep time\n— An I/O bound process will sleep more therefore should get a higher\npriority\n— ACPU bound process will sleep less, therefore should get lower priority\n\ndynamic priority = MAX(100, MIN(static priority — bonus + 5), 139))\n\nAverage sleep time Bonus\n\nGreater than or equal toO but smaller than 100 ms\nGreater than or equal to 100 msbut smaller than 200 ms\nwe Greater than or equal to 200 msbut smaller than 300 ms\nKY Greater than or equal to 300 msbut smaller than 400 ms\nge Greater than or equal to 400 msbut smaller than 500 ms\n\nGreater than or equal to $00 msbut smaller than 600 ms\nGreater than or equal to 600 msbut smaller than 700 ms\nGreater than or equal to 700 msbut smaller than 800 ms\nGreater than or equal to 800 msbut smaller than 900 ms\nGreater than or equal to 900 msbut smaller than 1000 ms\n1 second 0"
+  },
+  {
+    "text": "come back to the active and expired run cues, the dynamic priority determines which cue",
+    "start": 1185.62,
+    "end": 1191.9,
+    "ocr_text": "Dynamic Priority and\nRun Queues\n\n* Dynamic priority used to determine which run queue to\nput the task\n\n* No matter how ‘nice’ you are, you still need to wait on\n\nrun queues --- prevents starvation\nActive Run queues Expired Run queues\n\n> me ob\n\n> o>»\n\n| 139\n| 138\n=\n| 102\n101\n\n| 100\n\nexecute"
+  },
+  {
+    "text": "the particular process would be placed in. For instance, when we choose a particular process",
+    "start": 1191.9,
+    "end": 1198.58,
+    "ocr_text": "Dynamic Priority and\nRun Queues\n\n* Dynamic priority used to determine which run queue to\nput the task\n\n* No matter how ‘nice’ you are, you still need to wait on\n\nrun queues --- prevents starvation\nActive Run queues Expired Run queues\n\n> me ob\n\n> o>»\n\n| 139\n| 138\n=\n| 102\n101\n\n| 100\n\nexecute"
+  },
+  {
+    "text": "to execute say from the 100th priority class and after its executes, its average sleep",
+    "start": 1198.66,
+    "end": 1204.22,
+    "ocr_text": "Dynamic Priority and\nRun Queues\n\n+ Dynamic priority used to determine which run queue to\nput the task\n\n* No matter how ‘nice’ you are, you still need to wait on\n\nrun queues --- prevents starvation\nActive Run queues Expired Run queues\n\n> ro»\n\n> >\n\n| 139\n| 138\n=\n| 102\n101\n\n| 100\n\nexecute"
+  },
+  {
+    "text": "time is then used to compute the bonus and there after used to compute the dynamic priority.",
+    "start": 1204.22,
+    "end": 1210.7,
+    "ocr_text": "Dynamic Priority and\nRun Queues\n\n+ Dynamic priority used to determine which run queue to\nput the task\n\n* No matter how ‘nice’ you are, you still need to wait on\n\nrun queues --- prevents starvation\nActive Run queues Expired Run queues\n\n> ro»\n\n> >\n\n| 139\n| 138\n=\n| 102\n101\n\n| 100\n\nexecute"
+  },
+  {
+    "text": "And then this process is placed in the corresponding priority class. So, as a result based on the",
+    "start": 1210.7,
+    "end": 1217.7,
+    "ocr_text": "Dynamic Priority and\nRun Queues\n+ Dynamic priority used to determine which run queue to\n\nput the task\n\n* No matter how ‘nice’ you are, you still need to wait on\nrun queues --- prevents starvation\n\nActive Run queues Expired Run queues\n= |:\nexecute re]: i |: a\n100 (_) Von | 100 iar i"
+  },
+  {
+    "text": "average sleep time when the process is placed back in the expired run cue, the class in",
+    "start": 1217.9,
+    "end": 1223.54,
+    "ocr_text": "Dynamic Priority and\nRun Queues\n\n* Dynamic priority used to determine which run queue to\nput the task\n\n* No matter how ‘nice’ you are, you still need to wait on\n\nrun queues --- prevents starvation\nActive Run queues Expired Run queues\n\n> mr ob\n\n> >\n\n| 139\n| 138\na\n| 102\n101\n\n| 700\n\nexecute"
+  },
+  {
+    "text": "which it placed in would depend on its dynamic priority.",
+    "start": 1223.62,
+    "end": 1228.94,
+    "ocr_text": "Dynamic Priority and\nRun Queues\n\n* Dynamic priority used to determine which run queue to\nput the task\n\n* No matter how ‘nice’ you are, you still need to wait on\n\nrun queues --- prevents starvation\nActive Run queues Expired Run queues\n\n> mr ob\n\n> >\n\n| 139\n| 138\na\n| 102\n101\n\n| 700\n\nexecute"
+  },
+  {
+    "text": "So, besides the dynamic priority, there is also the time slice which is adjusted by the",
+    "start": 1228.94,
+    "end": 1234.94,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) * 20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "scheduler. Essentially, interactive processes have high priorities but they are more of",
+    "start": 1234.94,
+    "end": 1241.14,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) * 20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "IO bound processes and they are likely to have short CPU burst times. These processes,",
+    "start": 1241.14,
+    "end": 1248.14,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) * 20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "essentially interactive processes are given the largest time slice to ensure that it completes",
+    "start": 1248.14,
+    "end": 1255.14,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "its burst without being preempted. So, in order to set the time slice, we are using more",
+    "start": 1255.9,
+    "end": 1261.5,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) * 20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "heuristics such as this. So, essentially if the priority is less than 120 that is it",
+    "start": 1261.5,
+    "end": 1266.82,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) * 20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "is an interactive process, then the time slice is given as 140 minus priority into 20 milliseconds.",
+    "start": 1266.82,
+    "end": 1273.82,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "However, if it is more of a batch process that is using more of CPU activity, then the",
+    "start": 1274.82,
+    "end": 1280.82,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "time slice is set by the lower statement that is time slice equal to 140 minus priority",
+    "start": 1281.54,
+    "end": 1288.54,
+    "ocr_text": "Setting the Timeslice\n\n* Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "into 5 milliseconds. So, as a result of this, if you see this particular table, you see",
+    "start": 1289.54,
+    "end": 1294.78,
+    "ocr_text": "Setting the Timeslice\n\n* Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "that if you have a static priority of 100 that is obtained by having a nice value of minus",
+    "start": 1294.78,
+    "end": 1301.78,
+    "ocr_text": "Setting the Timeslice\n\n* Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds"
+  },
+  {
+    "text": "120. So, it means that this is an interactive process and is given a large time slice of",
+    "start": 1301.86,
+    "end": 1307.86,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds\n\nPriority: Static Pri] Niceness) Quantum\nHighest | 100| ° 20| 800 ms\nHigh | 110] 10] 600 ms\nNormal | 120| 0| 100 ms\nLow | 130 10 50 ms\nLowest | 139] 19| 5ms"
+  },
+  {
+    "text": "800 millisecond. On the other hand, a process with a static priority of 139 that is 120",
+    "start": 1307.86,
+    "end": 1314.86,
+    "ocr_text": "Setting the Timeslice\n\n* Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) * 20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds\n\nPriority: Static Pri) Niceness) Quantum\nHighest | 100| 20| 800 ms\nHigh | 110] -10| 600 ms\nNormal | 120| 0} 100 ms\nLow | 130| 10) 50 ms\nLowest 139] 19| 5 ms"
+  },
+  {
+    "text": "plus having a nice value of 19, it is given the lowest time slice or the smallest time",
+    "start": 1316.58,
+    "end": 1322.06,
+    "ocr_text": "Setting the Timeslice\n\n* Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds\n\nPriority: Static Pri] Niceness) Quantum\nHighest | 100| 20| 800 ms\nHigh | 110 -10| 600 ms\nNormal | 120| | 100 ms\nLow | 130| 10| 50 ms\nLowest 139] 19| 5ms"
+  },
+  {
+    "text": "slice of 5 milliseconds. So, thus we see that based on the priority of the process, the",
+    "start": 1322.06,
+    "end": 1329.06,
+    "ocr_text": "Setting the Timeslice\n\n* Interactive processes have high priorities.\n— But likely to not complete their timeslice\n\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds\n\nPriority: Static Pri] Niceness) Quantum\nHighest | 100| 20| 800 ms\nHigh | 110 -10| 600 ms\nNormal | 120| | 100 ms\nLow | 130| 10| 50 ms\nLowest 139] 19| 5ms"
+  },
+  {
+    "text": "corresponding time slice given to that process is fixed. So, summarizing the O 1 scheduler,",
+    "start": 1329.06,
+    "end": 1336.06,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) * 20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds\n\nPriority: Static Pri Niceness|} © Quantum\nHighest | 100| 20 800 ms\nHigh | 110] 10] 600 ms\nNormal | 120| 0| 100 me\nLow | 130] 10) 50 ms\nLowest | 139] 19) 5 ms"
+  },
+  {
+    "text": "it is a multi level feedback U with 40 priority classes. The base priority is set to 120,",
+    "start": 1337.18,
+    "end": 1343.18,
+    "ocr_text": "Summarizing the O(1)\nScheduler\n\nMulti level feed back queues with 40 priority\nclasses\n\nBase priority set to 120 by default; modifiable by\nusers using nice.\n\nDynamic priority set by heuristics based on\nprocess’ sleep time\n\nTime slice interval for each process is set based\non the dynamic priority"
+  },
+  {
+    "text": "but a modifiable by the use of this command colonize. The dynamic priority set by heuristics",
+    "start": 1343.34,
+    "end": 1350.34,
+    "ocr_text": "Summarizing the O(1)\nScheduler\n\nMulti level feed back queues with 40 priority\nclasses\n\nBase priority set to 120 by default; modifiable by\nusers using nice.\n\nDynamic priority set by heuristics based on\nprocess’ sleep time\n\nTime slice interval for each process is set based\non the dynamic priority"
+  },
+  {
+    "text": "is based on the processes average sleep time. The time slice interval for each process",
+    "start": 1350.54,
+    "end": 1356.14,
+    "ocr_text": "Summarizing the O(1)\nScheduler\n\nMulti level feed back queues with 40 priority\nclasses\n\nBase priority set to 120 by default; modifiable by\nusers using nice.\n\nDynamic priority set by heuristics based on\nprocess’ sleep time\n\nTime slice interval for each process is set based\non the dynamic priority"
+  },
+  {
+    "text": "is set based on the dynamic priority. So, the limitations of the O 1 scheduler is as",
+    "start": 1356.22,
+    "end": 1363.22,
+    "ocr_text": "Limitations of O(1) Scheduler\n\n* Too complex heuristics to distinguish between interactive and non-\ninteractive processes\n\n*« Dependence between timeslice and priority\n+ Priority and timeslice values not uniform"
+  },
+  {
+    "text": "follows. So, the O 1 scheduler uses a lot of complex",
+    "start": 1363.22,
+    "end": 1366.94,
+    "ocr_text": "Limitations of O(1) Scheduler\n\n* Too complex heuristics to distinguish between interactive and non-\ninteractive processes\n\n*« Dependence between timeslice and priority\n+ Priority and timeslice values not uniform"
+  },
+  {
+    "text": "heuristics to distinguish between interactive and non interactive processes. So, essentially",
+    "start": 1366.94,
+    "end": 1372.94,
+    "ocr_text": "Limitations of O(1) Scheduler\n\n* Too complex heuristics to distinguish between interactive and non-\ninteractive processes\n\n*« Dependence between timeslice and priority\n+ Priority and timeslice values not uniform"
+  },
+  {
+    "text": "there is a dependency between the time slice and the priority and the priority and time slice",
+    "start": 1372.94,
+    "end": 1378.26,
+    "ocr_text": "Limitations of O(1) Scheduler\n\n* Too complex heuristics to distinguish between interactive and non-\ninteractive processes\n\n*« Dependence between timeslice and priority\n+ Priority and timeslice values not uniform"
+  },
+  {
+    "text": "values are not uniform that is for processes with the priority of 100 compared to processes",
+    "start": 1378.26,
+    "end": 1385.26,
+    "ocr_text": "Limitations of O(1) Scheduler\n\n* Too complex heuristics to distinguish between interactive and non-\ninteractive processes\n\n+ Dependence between timeslice and priority\n* Priority and timeslice values not uniform"
+  },
+  {
+    "text": "with the priority of 139. If you compute the time slices in these two ranges, you see",
+    "start": 1385.66,
+    "end": 1390.9,
+    "ocr_text": "Limitations of O(1) Scheduler\n\n* Too complex heuristics to distinguish between interactive and non-\ninteractive processes\n\n« Dependence between timeslice and priority\n+ Priority and timeslice values not uniform"
+  },
+  {
+    "text": "that there is it is not uniform. If you look back in the table over here, you see from",
+    "start": 1390.9,
+    "end": 1397.1,
+    "ocr_text": "Limitations of O(1) Scheduler\n\n* Too complex heuristics to distinguish between interactive and non-\ninteractive processes\n\n« Dependence between timeslice and priority\n+ Priority and timeslice values not uniform"
+  },
+  {
+    "text": "going from a priority of 100 to 110 has a time quantum of 200 milliseconds. However, going",
+    "start": 1397.1,
+    "end": 1404.1,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds\n\nPriority: Static Pri Niceness Quantum\nHighest | 100| -20 800 ms\nHigh | 110| -10| 600:ms\nNormal 120 9} 100 ms\nLow | 130] 10 50 ms\nLowest 139] 19) 5ms"
+  },
+  {
+    "text": "from 130 to 139 has a time slice difference of just 45 milliseconds. So, with this we",
+    "start": 1404.26,
+    "end": 1411.26,
+    "ocr_text": "Setting the Timeslice\n\n«Interactive processes have high priorities.\n— But likely to not complete their timeslice\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) *20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds\n\nPriority: Static Pri Niceness Quantum\nHighest | 100| -20 800 ms\nHigh | 110| -10| 600:ms\nNormal 120 9} 100 ms\nLow | 130] 10 50 ms\nLowest 139] 19) 5ms"
+  },
+  {
+    "text": "will end this particular video lecture. So, in the next lecture we look at the CFS",
+    "start": 1412.26,
+    "end": 1417.26,
+    "ocr_text": "Setting the Timeslice\n\n* Interactive processes have high priorities.\n— But likely to not complete their timeslice\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) * 20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds\n\nPriority: Static Pri Niceness Quantum\nHighest | 100| 20| 800 ms\nHigh | 110] -10| 600 ms\nNormal | 120| 0| 100 ms\nLow | 130| 10) 50 ms\nLowest 139 | 19 | &ms"
+  },
+  {
+    "text": "scheduler which is the latest scheduler or the current scheduler which is used in Linux",
+    "start": 1417.26,
+    "end": 1423.26,
+    "ocr_text": "Setting the Timeslice\n\n* Interactive processes have high priorities.\n— But likely to not complete their timeslice\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) * 20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds\n\nPriority: Static Pri Niceness Quantum\nHighest | 100| 20| 800 ms\nHigh | 110] -10| 600 ms\nNormal | 120| 0| 100 ms\nLow | 130| 10) 50 ms\nLowest 139 | 19 | &ms"
+  },
+  {
+    "text": "Thank you.",
+    "start": 1423.26,
+    "end": 1423.98,
+    "ocr_text": "Setting the Timeslice\n\n* Interactive processes have high priorities.\n— But likely to not complete their timeslice\n— Give it the largest timeslice to ensure that it completes its burst without\nbeing preempted. More heuristics\n\nIf priority < 120\n\ntime slice = (140 — priority) * 20 milliseconds\nelse\n\ntime slice = (140 — priority) *5 milliseconds\n\nPriority: Static Pri Niceness Quantum\nHighest | 100| 20| 800 ms\nHigh | 110] -10| 600 ms\nNormal | 120| 0| 100 ms\nLow | 130| 10) 50 ms\nLowest 139 | 19 | &ms"
+  }
+]

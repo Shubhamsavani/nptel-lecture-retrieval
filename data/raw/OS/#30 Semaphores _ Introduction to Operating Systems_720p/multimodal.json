@@ -1,0 +1,908 @@
+[
+  {
+    "text": "Hello, in this video we will look at another synchronization primitive known as semaphores.",
+    "start": 0.0,
+    "end": 24.78,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n\\"
+  },
+  {
+    "text": "As usual we will start with a motivating example and then we will show the application of semaphores.",
+    "start": 24.78,
+    "end": 33.26,
+    "ocr_text": "NPTEL ONLINE COURSE\n\n\\"
+  },
+  {
+    "text": "So, let us start with a very popular example known as the producer consumer problem. So,",
+    "start": 33.26,
+    "end": 41.46,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\na Buffer (of size N) “\n\nProducer Consumer"
+  },
+  {
+    "text": "this is also known as the bounded buffer problem. Essentially what we have here are two",
+    "start": 41.46,
+    "end": 49.22,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\na Buffer (of size N) “\n\nProducer Consumer"
+  },
+  {
+    "text": "processes. One process is known as the producer and the other process is known as the consumer.",
+    "start": 49.22,
+    "end": 56.18,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\nBuffer (of size N)\n\nProducer Consumer"
+  },
+  {
+    "text": "Now, the producer and the consumer share a bounded buffer. So, this is a normal buffer and it",
+    "start": 56.18,
+    "end": 65.98,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n7\nam ity | (ofsize N) \\\n\nProducer Consumer"
+  },
+  {
+    "text": "has a size of n that is it has n data elements which can be stored in it. So, in this particular",
+    "start": 65.98,
+    "end": 75.18,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\nZA Buffer (of size N) “\n\nProducer Consumer"
+  },
+  {
+    "text": "case for example, there are six elements that can be stored in the buffer. Now, the producer",
+    "start": 75.18,
+    "end": 81.7,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n4 Buffer (of size N) “\n\nProducer Consumer"
+  },
+  {
+    "text": "produces data. So, for instance it could be a data acquisition module which collects data",
+    "start": 81.7,
+    "end": 90.78,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n4 Buffer (of size N) “\n\nProducer Consumer"
+  },
+  {
+    "text": "such as the temperature, pressure and so on. So, this data is pushed into the buffer. Now,",
+    "start": 90.78,
+    "end": 99.82,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\na Buffer (of size N) ~“\n\nProducer Consumer"
+  },
+  {
+    "text": "on the other side the consumer takes from the buffer and then processes the data. So,",
+    "start": 100.54,
+    "end": 106.34,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\na Buffer (of size N) “\n\nProducer Consumer"
+  },
+  {
+    "text": "for example, this consumer process could perhaps compute some analytics on the producer data.",
+    "start": 106.34,
+    "end": 114.82,
+    "ocr_text": "Producer — Consumer\nProblems\n\n+ Also known as Bounded buffer Problem\n\n* Producer produces and stores in buffer, Consumer consumes from\nbuffer\n\n* Trouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n4 Buffer (of size N) “\n\nProducer Consumer"
+  },
+  {
+    "text": "So, everything would work quite well that is a producer produces data, puts it on the buffer",
+    "start": 114.82,
+    "end": 122.7,
+    "ocr_text": "Producer — Consumer\nProblems\n\n+ Also known as Bounded buffer Problem\n\n* Producer produces and stores in buffer, Consumer consumes from\nbuffer\n\n* Trouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n4 Buffer (of size N) “\n\nProducer Consumer"
+  },
+  {
+    "text": "and on the other side the consumer takes from the buffer and begins to consume the data.",
+    "start": 122.7,
+    "end": 128.58,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\na Buffer (of size N) “\n\nth\nProducer Consumer"
+  },
+  {
+    "text": "In for instance, compute something with the data. The trouble will occur when for instance",
+    "start": 129.58,
+    "end": 138.66,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\na Buffer (of size N) “\n\nProducer Cofisumer"
+  },
+  {
+    "text": "the consumer is very slow compared to the producer. In such a case the producer will produce",
+    "start": 138.66,
+    "end": 145.46,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n4 Buffer (of size N) “\n\ney\n\nProducer Consumer"
+  },
+  {
+    "text": "quite a bit of data at a faster rate compared to the consumer and therefore, very quickly the",
+    "start": 145.46,
+    "end": 152.34,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n4 Buffer (of size N) ~“\n\ncw)\nProducer Consumer"
+  },
+  {
+    "text": "buffer will be full. So, what does the producer do next and other problem could occur where",
+    "start": 152.34,
+    "end": 159.34,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n4 Buffer (of size N) ~“\n\ncw)\nProducer Consumer"
+  },
+  {
+    "text": "the consumer is very fast compared to the producer and therefore, it could very quickly consume",
+    "start": 163.54,
+    "end": 170.54,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\nZA Buffer (of size N) “\n\nProducer Consumer"
+  },
+  {
+    "text": "all the data in the buffer and resulting in a buffer which is empty. So, what should",
+    "start": 170.54,
+    "end": 176.14,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n4 Buffer (of size N) FN\n\nProducer Consumer"
+  },
+  {
+    "text": "the consumer do next? So, this requires a synchronization mechanism between the producer and the",
+    "start": 176.22,
+    "end": 184.22,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n4 Buffer (of size N) “Ne\n\nProducer = Consumer"
+  },
+  {
+    "text": "consumer. Essentially, when the buffer is empty the consumer should wait until the producer",
+    "start": 184.98,
+    "end": 191.98,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n4 Buffer (of size N) “Ne\n\nProducer = Consumer"
+  },
+  {
+    "text": "fills in data into the buffer. Similarly, when the buffer is full the producer has to",
+    "start": 191.98,
+    "end": 198.98,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\n7 Buffer (of size N) “\n\nProducer Gonsumer"
+  },
+  {
+    "text": "wait until the consumer takes out data from the buffer. So, this is the general producer",
+    "start": 199.62,
+    "end": 206.62,
+    "ocr_text": "Producer — Consumer\nProblems\n\nAlso known as Bounded buffer Problem\n\nProducer produces and stores in buffer, Consumer consumes from\nbuffer\n\nTrouble when\n— Producer produces, but buffer is full\n— Consumer consumes, but buffer is empty\n\na Buffer (of size N) “\n\nProducar Consumer"
+  },
+  {
+    "text": "and consumer code and we are trying to solve the producer consumer problem by using new",
+    "start": 207.7,
+    "end": 213.3,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item(?}\nif (count == N) sleep(empty);\nlock(mt )\ninsert_item(item)\ncount++;\nunlock(mu\nif (count ==\n\ninto buffer\n\n3X)\n\n) wakeup(full);\n\n4| void consumer(){\n2 while(TRUE){\n\nfrom buffer\n\n3 if (count == 0) sleep(full)\n\n4 lock(mutex)\n\n5 item = remove_item(); /\n\n6 count:\n\n7 unlock(mutex)\n\n8 if (count == N-1) wakeup(empty)\n9 consume_item(item)\n10"
+  },
+  {
+    "text": "Texas. Essentially, we are using three new Texas empty full and a new text just called",
+    "start": 213.3,
+    "end": 220.3,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item(?}\nif (count == N) sleep(empty);\nlock(mt )\ninsert_item(item)\ncount++;\nunlock(mu\nif (count ==\n\ninto buffer\n\n3X)\n\n) wakeup(full);\n\n4| void consumer(){\n2 while(TRUE){\n\nfrom buffer\n\n3 if (count == 0) sleep(full)\n\n4 lock(mutex)\n\n5 item = remove_item(); /\n\n6 count:\n\n7 unlock(mutex)\n\n8 if (count == N-1) wakeup(empty)\n9 consume_item(item)\n10"
+  },
+  {
+    "text": "a new text. So, the producer code essentially would produce an item insert the item into",
+    "start": 221.22,
+    "end": 228.22,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count\ncount++; 7 unlock(mutex).\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10, }\n} }"
+  },
+  {
+    "text": "the buffer and increment the count plus plus. While the consumer code would remove the",
+    "start": 229.06,
+    "end": 236.06,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\n\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n\n} 10, }"
+  },
+  {
+    "text": "item decrement account and then consume the item. Now, in order to take care of the",
+    "start": 236.94,
+    "end": 243.94,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\nif (count == N) sleep(empty);\nlock(mutex)\n\ninsert_item(item); // into buffer\ncount++;\n\nunlock\n\nif (count == 1) wakeup(full);\n\n4| void consumer(){\n\n2\n\nONANRW\n\nwhile(TRUE){\nif (count =\nlock(mutex)\nitem = remove_item(); // from buffer\ncount\nunloda(mutex)\nif (count == N-1) wakeup(empty)\nconsume_ite )\n\n0) sleep(full)"
+  },
+  {
+    "text": "troubled situation that is when the buffer is full or the buffer is empty we are using",
+    "start": 247.82,
+    "end": 253.82,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\n\nint count=0;\nMutex mutex, empty, full;\nvoid producer(){ 4, void consumer(){\nwhile(TRUE){ 2} ~while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10 c\n} }"
+  },
+  {
+    "text": "these new Texas empty and full. Essentially, before inserting the item the producer would",
+    "start": 253.94,
+    "end": 260.94,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\n\nint count=0;\nMutex mutex, empty, full;\nvoid producer(){ 4, void consumer(){\nwhile(TRUE){ 2} ~while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10 c\n} }"
+  },
+  {
+    "text": "check if count equal to n that is it is going to check if the buffer is full and if the",
+    "start": 263.34,
+    "end": 270.34,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\nins@rt_item(item); // into buffer 6 count\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10, }\n} }"
+  },
+  {
+    "text": "buffer is full it is going to sleep on this particular new text called empty and on the",
+    "start": 272.54,
+    "end": 279.54,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\nif (count == N) sleep(empty);\n“lin a\nlock(mutex\n\n)\n\ninsert_item(item); // into buffer\ncount++;\n\nunlock(mutex)\n\nif (count == 1) wakeup(full);\n\n1\n2\n3\n4\n5\n6\n7\n8\n\nco\n\nvoid consumer(){\nwhile(TRUE){\n\nif (count =\nlock(mutex)\nitem = remove_item(); // from buffer\ncount.\nunlock(mutex)\nif (count == N-1) wakeup(empty)\nconsume_item(item)\n\n0) sleep(full)"
+  },
+  {
+    "text": "other side the consumer would check if count equal to n minus 1 which means that it has",
+    "start": 279.62,
+    "end": 286.62,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\nif (count == N) sleep(empty);\nlock(mutex)\n\ninsert_item(item); // into buffer\ncount++;\n\nunlock(mutex):\n\nif (count == 1) wakeup(full);\n\n1\n2\n\n3\n\na\n\nNO\n\nfe)\n\n9\n\n10\n\nvoid consumer(){\nwhile(TRUE){\n\nif (count\nlock(mutex)\nitem = remove_item(); // from buffer\ncount:\nunlock(mutex)\nif (coynt == N-1) wakeup(empty)\nconsume_item(item)\n\n0) sleep(full)"
+  },
+  {
+    "text": "just removed one element from a full buffer. So, if this is so then it is going to wake",
+    "start": 287.38,
+    "end": 294.38,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\nif (count == N) sleep(empty);\nlock(mutex)\n\ninsert_item(item); // into buffer\ncount++;\n\nunlock(mutex)\n\nif (count == 1) wakeup(full);\n\n4, void consumer(){\n\n2\n\nNOORSG\n\no\n\n10\n\nwhile(TRUE){\nif (count == 0) sleep(full)\nlock(mutex)\nitem = remove_item(); // from buffer\ncount\nunlock(mutex)\nif (count == N-1) wakeup(empty)\nconsume_Wem(item)"
+  },
+  {
+    "text": "up empty. So, this wake up is a signal to the producer to wake up from its sleep and",
+    "start": 295.14,
+    "end": 302.14,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\n\nitem = produce_item();\nif (count == N) sleep(empty);\nlock(mutex)\ninsert_item(item); // into buffer\ncount++;\nunlock(mutex)\nif (count == 1) wakeup(full);\n\n4| void consumer(){\n\n2\n\nw\n\nONOOA\n\nice)\n\nwhile(TRUE){\nif (count == 0) sleep(full)\nlock(mutex)\nitem = remove_item(); // from buffer\ncount\nunlock(mutex)\nif (count == N-1) wakeup(empty)\nconsume_item(item)"
+  },
+  {
+    "text": "then the producer can insert the item into the buffer and increment the count. On the",
+    "start": 302.66,
+    "end": 309.66,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\n\nitem = produce_item();\nif (count == N) sleep(empty);\nlock(mutex)\ninsert_item(item); // into buffer\ncount++;\nunlock(mutex)\nif (count == 1) wakeup(full);\n\n4| void consumer(){\n\n2\n\nw\n\nONOOA\n\nice)\n\nwhile(TRUE){\nif (count == 0) sleep(full)\nlock(mutex)\nitem = remove_item(); // from buffer\ncount\nunlock(mutex)\nif (count == N-1) wakeup(empty)\nconsume_item(item)"
+  },
+  {
+    "text": "other hand if the consumer finds that the buffer is empty that is the count equal to",
+    "start": 312.34,
+    "end": 318.34,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ 2, while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count\ncount+: 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10\n} }"
+  },
+  {
+    "text": "0 then it is going to sleep on this particular new text called full.",
+    "start": 318.7,
+    "end": 324.7,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\n\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex) ~\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count:\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n\n} 10, }\n\n} }"
+  },
+  {
+    "text": "So, it will block on this new text until it gets a wake up to 0. So, it will be a",
+    "start": 324.7,
+    "end": 331.7,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\n\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex) ~\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count:\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n\n} 10, }\n\n} }"
+  },
+  {
+    "text": "from the producer. Essentially, if the producer finds that when he inserted the item and",
+    "start": 332.54,
+    "end": 338.3,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\n\nitem = produce_item();\n\nif (count ==\nlock(mutex)\n\ninsert_item(item); // into buffer\n\ncount++;\n\nunlock(mutex)\n\nif (count ==\n\n) sleep(empty);\n\n) wakeup(full);\n\n4| void consumer(){\n\n2\n\nw\n\nNOOR\n\n© ©\n\nwhile(TRUE){\nif (count == 0) sleep(full)\nlock(mutex)\n\nitem = remove_item(); // from buffer\n\ncount:\nunlock(mutex)\nif (count == N-1) wakeup(empty)\nconsume_item(item)"
+  },
+  {
+    "text": "incremented count that there is exactly one item present in the buffer then he will",
+    "start": 338.3,
+    "end": 344.9,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ 2.0 =w X\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} bas 10, }\n} }"
+  },
+  {
+    "text": "send a wake up signal to the consumer. So, wake up full and therefore, this wake up",
+    "start": 344.9,
+    "end": 351.22,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ 2.0 =w X\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} bas 10, }\n} }"
+  },
+  {
+    "text": "full will cost the consumer to unblock and put it back into the ready queue and then",
+    "start": 351.22,
+    "end": 358.22,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\nif (count == N) sleep(empty);\nlock(mutex)\n\ninsert_item(item); // into buffer\ncount++;\n\nunlock(mutex)\n\nif (count == 1) wakeup(full)j.,\n\n4| void consumer(){\n2) while(TRUE){\n3 if (count =\n\n0\n\n4 lock(mutex)\n\n5 item = remove_item()\n6 count:\n\ni/| unlock(mutex)\n\n8 if (count ==\n\n9 consume_item(item)\n10\n\n) sleep(full)\n\n/ from buffer\n\n1) wakeup(empty)"
+  },
+  {
+    "text": "it would allow the consumer to execute and remove that item and then consume that item.",
+    "start": 362.86,
+    "end": 369.14,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4, void consumer(){\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0)'sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count\ncount++; 7 unlock(mutex)\nunlock(mutex): 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10\n} }"
+  },
+  {
+    "text": "So, after he removes the item the count goes back to 0 in such this case.",
+    "start": 369.14,
+    "end": 375.14,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count--;\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10, }\n} }"
+  },
+  {
+    "text": "Now, in addition to this empty and full mutex is there is also the third mutex which is",
+    "start": 375.14,
+    "end": 382.14,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count:\ncount++; 7, unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10, }\n} }"
+  },
+  {
+    "text": "used. So, this mutex is essentially used to protect or synchronize access to the buffer.",
+    "start": 382.14,
+    "end": 389.14,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count:\ncount++; 7, unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10, }\n} }"
+  },
+  {
+    "text": "So, before inserting an item and incrementing the count the producer needs to lock the",
+    "start": 389.14,
+    "end": 396.14,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4) void consumer(){\n\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlgck(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item) // into buffer 6 count:\ncount++; 7A unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n\n} 10, }"
+  },
+  {
+    "text": "mutex and unlocking is done after the item is pushed and count incremented. On the other",
+    "start": 396.26,
+    "end": 403.26,
+    "ocr_text": "SOMWNOONRWN =\n\nProducer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\n\nwhile(TRUE){\nitem = produce_item();\nif (count == N) sleep(empty);\nlock(mutex)\ninsert_item(item)\ncount++;\nunlock(mutex)\nif (couht == 1) wakeup/(full);\n\n}\n\n// into buffer\n\n}\n\n4| void consumer(){\n\n2\n\nw\n\nONOOA\n\n(ce)\n\nwhile(TRUE){\nif (count =\nlock(mutex)\n\n0) sleep(full)\n\nitem = remove_item(); // from buffer\ncount:\nunlock(mutex)\n\nif (count == N-1) wakeup(empty)\nconsume_item(item)"
+  },
+  {
+    "text": "side before the buffer is accessed to remove item and also count is decremented.",
+    "start": 404.06,
+    "end": 411.06,
+    "ocr_text": "SOMWNOONRWN =\n\nProducer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\n\nwhile(TRUE){\nitem = produce_item();\nif (count == N) sleep(empty);\nlock(mutex)\ninsert_item(item)\ncount++;\nunlock(mutex)\nif (couht == 1) wakeup/(full);\n\n}\n\n// into buffer\n\n}\n\n4| void consumer(){\n\n2\n\nw\n\nONOOA\n\n(ce)\n\nwhile(TRUE){\nif (count =\nlock(mutex)\n\n0) sleep(full)\n\nitem = remove_item(); // from buffer\ncount:\nunlock(mutex)\n\nif (count == N-1) wakeup(empty)\nconsume_item(item)"
+  },
+  {
+    "text": "Essentially, you notice that count and the buffer is shared among these two processes",
+    "start": 411.06,
+    "end": 418.06,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\n\n(count == N-1) wakeup(empty)\nconsume_item(item)\n\nunlock(mu 2X)\nif (count == 1) wakeup(full);\n\nwhile(TRUE){ 2) while(TRUE){\nitem = produce_item(); 3 if (count == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6\ncount++; 7\n8\n9\n10"
+  },
+  {
+    "text": "that is the producer and the consumer and therefore, this mutex will help synchronize",
+    "start": 418.82,
+    "end": 425.82,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void cane\nwhile(TRUE){ 2) while(TRUE\nitem = produce_item(); 3 if (count = 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10, }\n} }"
+  },
+  {
+    "text": "access to the buffer and to the count value. So, this solution seems to work fine that",
+    "start": 425.82,
+    "end": 432.82,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ while(TRUE){\nitem = produce_item(); if (count == 0) sleep(full)\n\nif (count == N) sleep(empty); lock(mutex)\nlock(mutex) item = remove_item(); // from buffer\ninsert_item(item); // into buffer count\n\nunlock(mutex)\nif (count == N-1) wakeup(empty)\nconsume_item(item)\n\ncount++; :\nunlock(mutéx)\nif (count == 1) wakeup(full);\n\nSOMNOAONRWND"
+  },
+  {
+    "text": "is with the three mutex. So, while this scheme seems fine we will show that under a certain",
+    "start": 435.82,
+    "end": 442.82,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\n\nitem = produce_item();\n\nif (count == N) sleep(empty);\nlock(mutex)\n\ninsert_item(item); // into buffer\ncount++;\n\nunloc 1utex)\n\nif (count ==\n\n) wakeup(full);\n\n4, void consumer(){\n\n2\n\nONANRW\n\noo\n\nwhile(TRUE){\nif (count == 0) sleep(full)\nlocx(mutex)\nitem = remove_item(); // from buffer\ncount\nunlock(mutex)\nif (count == N-1) wakeup(empty)\nconsume_item(item);"
+  },
+  {
+    "text": "condition the producer and the consumer will block infinitely without any progress.",
+    "start": 442.82,
+    "end": 449.82,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\n\nitem = produce_item();\n\nif (count == N) sleep(empty);\nlock(mutex)\n\ninsert_item(item); // into buffer\ncount++;\n\nunloc 1utex)\n\nif (count ==\n\n) wakeup(full);\n\n4, void consumer(){\n\n2\n\nONANRW\n\noo\n\nwhile(TRUE){\nif (count == 0) sleep(full)\nlocx(mutex)\nitem = remove_item(); // from buffer\ncount\nunlock(mutex)\nif (count == N-1) wakeup(empty)\nconsume_item(item);"
+  },
+  {
+    "text": "So, that condition is based on the fact that this particular line it count equal to equal",
+    "start": 452.14,
+    "end": 458.34,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\n\nitem = produce_item();\n\nif (count == N) sleep(empty);\nlock(mutex)\n\ninsert_item(item); // into buffer\ncount++;\n\nunlock(mutex)\n\nif (count ==\n\n) wakeup(full);\n\n4, void consumer(){\n\nwhile(TRUE){\n0) sleep(full)\n\nitem = remove_item(); // from buffer\ncount.\n\nunlock(mutex)\n\nif (count == N-1) wakeup(empty)\n\nconsume_item(item)"
+  },
+  {
+    "text": "to 0 actually comprises of two steps which are non-atonic. The first step is that the",
+    "start": 458.34,
+    "end": 465.34,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ a while(TRUE){\nitem = produce_item(); 3 if (cours == 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count:\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); 9 consume_item(item)\n} 10\n} }"
+  },
+  {
+    "text": "count value which is stored in memory will be loaded into a register in the processor",
+    "start": 466.06,
+    "end": 472.34,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){ 2\nitem = produce_item(); 3}\nif (count == N) sleep(empty); 4\nlock(mutex) 5]\ninsert_item(item); // into buffer 6\ncount++; 7\nunlock(mutex) 8\nif (count == 1) wakeup(full); i)\n} 10, }\n} }\n\n4, void consumer(){\nwhile(TRUE)\n\nif (count\nlock(mutex)\n\nitem = remove_item(); // from buffer\ncount\n\nunlock(mutex)\n\nif (count == N-1) wakeup(empty)\nconsume_item(item)\n\n0) sleep(full)"
+  },
+  {
+    "text": "and the second step is when the register value is checked to be 0 or not.",
+    "start": 473.3,
+    "end": 479.3,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){ 2\nitem = produce_item(); 3}\nif (count == N) sleep(empty); 4\nlock(mutex) 5]\ninsert_item(item); // into buffer 6\ncount++; 7\nunlock(mutex) 8\nif (count == 1) wakeup(full); i)\n} 10, }\n} }\n\n4, void consumer(){\nwhile(TRUE)\n\nif (count\nlock(mutex)\n\nitem = remove_item(); // from buffer\ncount\n\nunlock(mutex)\n\nif (count == N-1) wakeup(empty)\nconsume_item(item)\n\n0) sleep(full)"
+  },
+  {
+    "text": "So, let us look at the problem that could occur because this particular execution or this",
+    "start": 479.3,
+    "end": 486.3,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\n\nint count=0;\n\nMutex mutex, empty, full;\n\nvoid producer(){\nwhile(TRUE){\n\nitem = produce_item();\nif (count == N) sleep(empty);\nlock(mutex)\ninsert_item(item); // into buffer\ncount++;\nunlock(mutex)\nif (count == 1) wakeup(full);\n\n4, void consumer(){\n2, while(TRUE){\n3 if (count == 0) sleep(full)\n\n4 lock(mUex)\n\n5 item = remove_item(); // from buffer\n6 count:\n\n7 unlock(mutex)\n\n8 if (count == N-1) wakeup(empty)\n\n9 consume_item(item)"
+  },
+  {
+    "text": "particular statement is non-atonic. So, let us say that the consumer starts exceeding",
+    "start": 487.18,
+    "end": 494.18,
+    "ocr_text": "Producer-Consumer Code\n\nBuffer of size N\nint count=0;\nMutex mutex, empty, full;\n\nvoid producer(){ 4| void consumer(){\nwhile(TRUE){ while(TRUE){\n\n1\n2\nitem = produce_item(); 3 if (count 0) sleep(full)\nif (count == N) sleep(empty); 4 lock(mutex)\nlock(mutex) 5 item = remove_item(); // from buffer\ninsert_item(item); // into buffer 6 count:\ncount++; 7 unlock(mutex)\nunlock(mutex) 8 if (count == N-1) wakeup(empty)\nif (count == 1) wakeup(full); fe consume_item(item);\n10\n\nw~"
+  },
+  {
+    "text": "first and it starts executing with an empty buffer. So, it reads the value of count from",
+    "start": 496.06,
+    "end": 503.06,
+    "ocr_text": "* Consider the following\n\nLost Wakeups\n\ncontext of instructions\n* Assume buffer is initially\n\nempty\n\ncontext switch _*\n\n—\n\n3}\n3}\n5\n6\n7\n8\n9\n9\n\n3\n\nUI ‘alue count ©\nitem = produce_item();\nlock(mutex);\ninsert_item(item); // into buffer\ncount++; // count = 1\nunlock(mutex)\n\ntest (count == 1) // yes\nsignal(full);\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "a memory location into a register since we are assuming that this is the initial state.",
+    "start": 503.06,
+    "end": 510.06,
+    "ocr_text": "* Consider the following\n\nLost Wakeups\n\ncontext of instructions\n* Assume buffer is initially\n\nempty\n\ncontext switch _*\n\n—\n\n3}\n3}\n5\n6\n7\n8\n9\n9\n\n3\n\nUI ‘alue count ©\nitem = produce_item();\nlock(mutex);\ninsert_item(item); // into buffer\ncount++; // count = 1\nunlock(mutex)\n\ntest (count == 1) // yes\nsignal(full);\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "So, the value of count that is loaded into the register would be 0. Let us then say",
+    "start": 510.06,
+    "end": 516.06,
+    "ocr_text": "context of instructions\nAssume buffer is initially\n\nempty\n\nLost W\n\n3\n5\n6\n7\n3\n9\n9\n\ncontext switch\n\nConsider the following =U\n;\n\n3\n\nakeups\n\nlock(mutex);\ninsert_item(item); // into buffer\ncount++; // count = 1\nunlock(mutex)\n\ntest (count == 1) // yes\nsignal(full);\n\nNote, the wakeup is lost.\n\nConsumer waits even t\nEventually producer an\n\nhough buffer is not empty.\nid consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "that there is a context which that occurred and the producer has executed. Now, the producer",
+    "start": 516.06,
+    "end": 521.78,
+    "ocr_text": "Lost Wakeups\n\n* Consider the following 4 fend count valus/o9t\ncontext of instructions item = produce_item();\n3\n\n5] lock(mutex);\n* Assume buffer is initially _§ insert_item(item); // into buffer\n7\nempty J\n9\n9\n\ncount++; // count = 1\n( la) ) es NN\n\nunlock(mutex)\n\ntest (count == 1) // yes\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\n\ncontext switch _9| signal(full);\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "is an item, increments the count to 1 and then inserts the item into the buffer.",
+    "start": 522.1,
+    "end": 529.1,
+    "ocr_text": "Lost Wakeups\n\n* Consider the following 4 fend count valus/o9t\ncontext of instructions item = produce_item();\n3\n\n5] lock(mutex);\n* Assume buffer is initially _§ insert_item(item); // into buffer\n7\nempty J\n9\n9\n\ncount++; // count = 1\n( la) ) es NN\n\nunlock(mutex)\n\ntest (count == 1) // yes\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\n\ncontext switch _9| signal(full);\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "Now, after it executes let us say that there is a context which again as a result the consumer",
+    "start": 529.1,
+    "end": 536.58,
+    "ocr_text": "Lost Wakeups\n\n* Consider the following =\ncontext of instructions\n\n3| item = produce_item();\n5] lock(mutex);\n* Assume buffer is initially  § insert_item(item); // into buffer\n7| count++; // count = 1\nempty 8} unlock(mutex)\n9] test (coun?== 1) // yes\ncontext switch _9} signal(full);\n3\n3\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "continues to execute from where it has stopped that is from this point. Now, we know that",
+    "start": 536.7,
+    "end": 542.7,
+    "ocr_text": "Lost Wakeups\n\n* Consider the following\ncontext of instructions\n\n* Assume buffer is initially\nempty\n\n5] lock(mutex);\n\n6| insert_item(item); // into buffer\n7| count++; // count = 1\n\n8] unlock(mutex)\n\n9] test (count == 1) // yes\n\ncontext switch 9} signal(full);\n\n3\n3) item = produce_item();\na\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "it has already loaded the register previously with the value of 0. Now, it is going to",
+    "start": 543.02,
+    "end": 549.54,
+    "ocr_text": "Lost Wakeups\n\n* Consider the following\ncontext of instructions\n\n* Assume buffer is initially\nempty\n\n5] lock(mutex);\n\n6| insert_item(item); // into buffer\n7| count++; // count = 1\n\n8] unlock(mutex)\n\n9] test (count == 1) // yes\n\ncontext switch 9} signal(full);\n\n3\n3) item = produce_item();\na\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "test whether count equal to 0 which is true in this case and therefore, the consumer is",
+    "start": 549.62,
+    "end": 555.62,
+    "ocr_text": "* Consider the following =\ncontext of instructions\n\n+ Assume buffer is initially\n\nempty\n\nLost Wakeups\n\n5] lock(mutex);\n\n6| insert_item(item); // into buffer\n7| count++; // count = 1\n\n8] unlock(mutex)\n\n9] test (count == 1) // yes\n\n9} signal(full);\n\ncontext switch _*\n\nal ;\n3] item = produce_item();\n3\n3\n\na\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "going to wait essentially it is going to wait till it receives a signal from the producer.",
+    "start": 557.7,
+    "end": 564.7,
+    "ocr_text": "Lost Wakeups\n\n* Consider the following\ncontext of instructions\n\n* Assume buffer is initially\nempty\n\n3] item = produce_item();\n\n5] lock(mutex);\n\n6| insert_item(item); // into buffer\n7| count++; // count = 1\n\n8] unlock(mutex)\n\n9] test (count == 1) // yes\n\n9} signal(full);\n\ncontext switch\n\n3] test (coun’ 0) // yes\n\n—\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\n/\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "However, the actual value of count is 1 because the producer has pushed an item into the buffer",
+    "start": 567.26,
+    "end": 574.26,
+    "ocr_text": "Lost Wakeups\n\n* Consider the following\ncontext of instructions\n\n* Assume buffer is initially\nempty\n\n3} item = produce_item();\n5] lock(mutex);\n\n6| insert_item(item); // into buffer\n7| coynt++; // count = 1\n\n8] unldck(mutex)\n\n9] test (count == 1) // yes\n\n_9| signal(full);\n\n3\ncontext switch\n\n3} test (coun\n3\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "and thus we see there is a lost wake up that occurs. The consumer has missed a wake up",
+    "start": 574.5,
+    "end": 581.5,
+    "ocr_text": "Lost Wakeups\n\n* Consider the following\ncontext of instructions\n\n* Assume buffer is initially\nempty\n\n3} item = produce_item();\n5] lock(mutex);\n\n6| insert_item(item); // into buffer\n7| coynt++; // count = 1\n\n8] unldck(mutex)\n\n9] test (count == 1) // yes\n\n_9| signal(full);\n\n3\ncontext switch\n\n3} test (coun\n3\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "signal which the producer has sent. Now, there is nothing stopping the producer from pushing",
+    "start": 584.98,
+    "end": 590.98,
+    "ocr_text": "context of instructions\n* Assume buffer is initially\n\nempty\n\n* Consider the following\n\nLost W\n\n3\n5\n6\n7\n8\n9\n9\n\ncontext switch _*\n\nwo\n\n—\n\nakeups\n\nitem = produce_item();\nlock(mutex);\ninsert_item(item); // into buffer\ncount++; // count = 1\nunlock(mutex)\n\ntest (count == 1) // yes\n\nsignal(full);\n\nNote, the wakeup is lost.\n\nConsumer waits even t\nEventually producer an\n\nhough buffer is not empty.\nid consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "more items into the buffer. So, eventually the entire buffer is full and the producer",
+    "start": 590.98,
+    "end": 597.98,
+    "ocr_text": "Lost Wakeups\n\n3 cou alue\n3} item = produce_item();\n5] lock(mutex);\n\n6| insert_item(item); // into buffer\n7| count++; // count = 1\n8\ni)\nh 9\n3\n3\n\n* Consider the following\ncontext of instructions\n\n+ Assume buffer is initially\nempty\n\nunlock (mutex)\ntest (count == 1) // yes\nsignal( full);\n\ncontext switch\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "will then wait for the consumer to remove some item. However, this will not occur because",
+    "start": 598.98,
+    "end": 604.98,
+    "ocr_text": "Lost Wakeups\n\nConsider the following\ncontext of instructions\n\nAssume buffer is initially\n\nempty\n\ncontext switch\n\n—\n\n3\n5]\n6\n7\n8\ni)\n9\n\n3|_ read cou Q\nitem = produce_item();\nlock(mutex);\ninsert_itgm(item); // into buffer\ncount++; // count = 1\nunlock(mutex)\ntest (count == 1) // yes\nLsignal(full), = == ee\n3] test (count =\n3} wait( \\\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "the consumer itself is waiting. Thus we have a producer waiting for the consumer to",
+    "start": 605.98,
+    "end": 611.98,
+    "ocr_text": "Lost Wakeups\n\n* Consider the following Lede feet a\ncontext of instructions Te Pecan tem\n\nlock(mutex);\n+ Assume buffer is initially 4 insert’item(item); // into buffer\nempty\n\n3\n5\n6\n7| count++; // count = 1\n8\n9\n9\n\nunlock(mutex)\ntest (count == 1) // yes\nsignal(full);\n\n3\n3} (count\n3\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\ncontext switch _*\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "remove an item while the consumer is also waiting because it has missed the wake up.",
+    "start": 612.38,
+    "end": 619.38,
+    "ocr_text": "Lost Wakeups\n\n* Consider the following Lede feet a\ncontext of instructions Te Pecan tem\n\nlock(mutex);\n+ Assume buffer is initially 4 insert’item(item); // into buffer\nempty\n\n3\n5\n6\n7| count++; // count = 1\n8\n9\n9\n\nunlock(mutex)\ntest (count == 1) // yes\nsignal(full);\n\n3\n3} (count\n3\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\ncontext switch _*\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "Thus we eventually reach a particular state where both producer and consumer will wait",
+    "start": 619.38,
+    "end": 626.38,
+    "ocr_text": "Lost Wakeups\n\n3\n\n* Consider the following =\ncontext of instructions\n\n* Assume buffer is initially\nempty\n\n3} item = produce_item();\n\n5] lock(mutex);\n\n6| insert_item(item); // into buffer\n7| count++; // count = 1\n\n8} unlock(mutex)\n\n9] test (count == 1) // yes\n\n9} signal(full);\n\nst (Coun’\n\nNote, the wakeup is lost.\nConsumer wait3 even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\ncontext switch\n\na)\n\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "infinitely. So, we see that using 3 new taxes will not solve the producer consumer problem.",
+    "start": 629.46,
+    "end": 636.46,
+    "ocr_text": "Consider the following\ncontext of instructions\n\nAssume buffer is initially\n\nempty\n\nLost Wakeups\n\n3 alue\n3} item = ail item();\n5] lock(mutex);\n\n6| insert_item(item); // into buffer\n7| count++; // count = 1\n8\n9\n9\n3\n3\n\nunlock(mutex)\ntest (count == 1) // yes\nsignal(full);\n\ncontext switch\n\nNote, the wakeup is lost.\nConsumer waits even though buffer is not empty.\nEventually producer and consumer will wait infinitely\n\nfw]\nconsumer\nstill uses the old value of count (ie 0)"
+  },
+  {
+    "text": "So, let us look at another primitive known as semaphores. So, this semaphores is another",
+    "start": 638.82,
+    "end": 645.02,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock 2\n\nvoid down(int *S){\nwhile( *S <= 0);\n*S...\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "synchronization primitive. It was proposed by Daeshras in 1965 and semaphores are implemented",
+    "start": 645.02,
+    "end": 652.02,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions dowiand up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*g..\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "with 2 functions called down and up which we assume are atomic. So, these are the 2 functions",
+    "start": 652.38,
+    "end": 659.38,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions dowiand up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*g..\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "and this requirement is that both these functions need to be atomic. So, there is a shared",
+    "start": 659.38,
+    "end": 664.38,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*s...\n\n}\n\nvoid up(int *S){\n\n*S++;"
+  },
+  {
+    "text": "memory location which is termed as S and in the down function the while loop will test",
+    "start": 664.38,
+    "end": 671.38,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*s...\n\n}\n\nvoid up(int *S){\n\n*S++;"
+  },
+  {
+    "text": "whether S is less than equal to 0. So, as long as S has a value which is less than equal",
+    "start": 675.62,
+    "end": 681.1,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S'x= 0);\n*S..;\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "to 0 this particular loop will execute. When S takes a value which is greater than 0 then",
+    "start": 681.1,
+    "end": 688.1,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S'x= 0);\n*S..;\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "the loop would break and the value of that memory location S would be decremented by 1.",
+    "start": 688.54,
+    "end": 695.54,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <=,0);\n+S: wy\n\n}\n\nvoid up(int *S){\n*St+;\n}"
+  },
+  {
+    "text": "In the up function which is also atomic the value of the memory location S is incremented",
+    "start": 699.14,
+    "end": 705.14,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*S..\n\n}\n\nvoid up(int *S){\n*St+t;\n} oy"
+  },
+  {
+    "text": "by 1. So, the down and up functions are sometimes called as the P and V functions respectively",
+    "start": 705.5,
+    "end": 712.5,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*g...\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "from their Dutch names and we could also have 2 different variants of the semaphores.",
+    "start": 713.26,
+    "end": 720.26,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*g...\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "We could have a blocking semaphore and a non blocking semaphore as well. So, a non blocking",
+    "start": 720.9,
+    "end": 726.9,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blockiig, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*S..;\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "semaphore is shown over here as essentially it is a while loop which is resulted resulting",
+    "start": 726.9,
+    "end": 733.58,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\nQ..\n\n}\n\nvoid up(int *S){\n*St+;\n}"
+  },
+  {
+    "text": "in a busy waiting much like a spin lock. On the other hand we can make a small modification",
+    "start": 733.58,
+    "end": 739.7,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\nQ..\n\n}\n\nvoid up(int *S){\n*St+;\n}"
+  },
+  {
+    "text": "and have a blocking semaphore where this particular statement will result in the process going to",
+    "start": 739.78,
+    "end": 745.78,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*s...\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "a block state while a signal from the up would wake up the process. So, if the values",
+    "start": 748.58,
+    "end": 755.58,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*s..\n\n}\n\nvoid up(int *S){\n*St+;\n} o"
+  },
+  {
+    "text": "of S was initially set to 1 then a blocking semaphore is similar to a mutex while a non blocking",
+    "start": 758.98,
+    "end": 765.98,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*s..\n\n}\n\nvoid up(int *S){\n*St+;\n}"
+  },
+  {
+    "text": "semaphore is similar to a spin lock. So, now let us see how we could use the semaphore",
+    "start": 766.02,
+    "end": 771.74,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*g.;\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "to solve the producer consumer problem. So, in order to solve the problem we require",
+    "start": 771.74,
+    "end": 778.74,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *S){\nwhile( *S <= 0);\n*g.;\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "2 semaphores one is known as full. So, when I say 2 semaphores it means 2 memory locations",
+    "start": 779.26,
+    "end": 786.26,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nBuffer of size N\nint count; full = 0, empty = N\n\nNumber of filled blocks in Number of empty blocks in\nthe buffer the buffer\nN=6\nfill = 4\n\nBuffer (of size N) empty = 2"
+  },
+  {
+    "text": "which we specify by this S over here. So, we have 2 memory locations or 2 semaphores",
+    "start": 786.26,
+    "end": 793.26,
+    "ocr_text": "Semaphores\n\nProposed by Dijkstra in 1965\nFunctions down and up must be\natomic\n\ndown also called P (Proberen Dutch\nfor try)\n\nup also called V (Verhogen, Dutch\nform make higher)\n\nCan have different variants\n\n— Such as blocking, non-blocking\n\nIf S is initially set to 1,\n\n— Blocking semaphore similar to a Mutex\n\n— Non-blocking semaphore similar to a\nspinlock\n\nvoid down(int *$){\nwhile( *S <= 0);\n*S..;\n\n}\n\nvoid up(int *S){\n*S++;\n}"
+  },
+  {
+    "text": "full and empty. So, full is given the initial value 0 while empty is given the initial value",
+    "start": 796.7,
+    "end": 803.7,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nBuffer of size N\n\nint count; full = *o, empty =N\nNumber of filled blocks in Number of empty blocks in\nthe buffer the buffer\nN=6\nfill = 4\n\nBuffer (of size N) empty = 2"
+  },
+  {
+    "text": "n where n here is the size of the buffer. So, full the semaphore full indicates the number",
+    "start": 803.7,
+    "end": 810.7,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nBuffer of size N\n\nint count; full = *o, empty =N\nNumber of filled blocks in Number of empty blocks in\nthe buffer the buffer\nN=6\nfill = 4\n\nBuffer (of size N) empty = 2"
+  },
+  {
+    "text": "of filled blocks in the buffer while the semaphore empty would indicate the number of empty",
+    "start": 810.7,
+    "end": 817.7,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nBuffer of size N\n\nint count; full = 0, empty =N\nNumber of filled blocks in Number of empty blocks in\nthe buffer the buffer\nN=6\nfill = 4\n\nBuffer (of size N) empty = 2"
+  },
+  {
+    "text": "blocks in the buffer. So, in this particular case where n equal to 6 fill will have a value",
+    "start": 820.02,
+    "end": 827.02,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nBuffer of size N\n\nint count; full = 0, empty =N\nNumber of filled blocks in Number of empty blocks in\nthe buffer the“buffer\nN=6\nfill = 4\n\nBuffer (of size N) empty = 2"
+  },
+  {
+    "text": "of 4 because there are 4 filled blocks and empty will have a value of 2 because there are",
+    "start": 827.26,
+    "end": 833.26,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nBuffer of size N\n\nint count; full = 0, empty = N\nNumber of filled blocks in Number of empty blocks in\nthe buffer the buffer\nN=6\nfill = 4\n\nBuffer (of size N) empty = 2"
+  },
+  {
+    "text": "2 empty blocks. So, the initial states just before the start of execution of the producer",
+    "start": 833.26,
+    "end": 839.78,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nBuffer of size N\n\nint count; full = 0, empty = N\nNumber of filled blocks in Number of empty blocks in\nthe buffer the buffer\nN=6\nfill = 4\n\nBuffer (of size N) empty = 2"
+  },
+  {
+    "text": "and consumer will have full equal to 0 and empty equal to n because there is no data items",
+    "start": 839.82,
+    "end": 846.82,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nBuffer of size N\n\nint count; full = 0, empty = N\nNumber of filled blocks in Number of empty blocks in\nthe buffer the buffer\nfu\nN=6\nfill = 4\n\nBuffer (of size N) empty = 2"
+  },
+  {
+    "text": "in the buffer essentially because the buffer is empty.",
+    "start": 848.9,
+    "end": 852.9,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nBuffer of size N\n\nint count; full = 0, empty = N\nNumber of filled blocks in Number of empty blocks in\nthe buffer the buffer\nN=6\nfill = 4\n\nBuffer (of size N)\n\nempty = 2"
+  },
+  {
+    "text": "So, let us see how these semaphores are used. So, let us look at the producer. So, the",
+    "start": 852.9,
+    "end": 859.9,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nBuffer of size N\n\nint count; full = 0, empty = N\nNumber of filled blocks in Number of empty blocks in\nthe buffer the buffer\nN=6\nfill = 4\n\nBuffer (of size N)\n\nempty = 2"
+  },
+  {
+    "text": "producer produces an item and we will take this particular example where fill is 4 and",
+    "start": 860.58,
+    "end": 867.1,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nfull = 0, empty = N\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndowyvi(empty);\n\nN=6\ninsert_item(item); // into buffer fill = 4\nBuffer (of size N) empty = 2\n\nup(full);\n}\n\n}"
+  },
+  {
+    "text": "empty is 2 and then when it when the item is produced it invokes the down semaphore.",
+    "start": 867.1,
+    "end": 874.1,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nfull = 0, empty = N\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\ndown(empty);\nN=6\ninsert_item(item); // into buffer | Le fill = 4\nBuffer (of size N) empty = 2\nup(full);\n}\n\n} p"
+  },
+  {
+    "text": "So, the down semaphore as we have seen will down the empty semaphore. So, empty will",
+    "start": 876.9,
+    "end": 883.9,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nfull = 0, empty = N\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\ndown(empty);\nJ N=6\ninsert_item(item); // into buffer | La fill = 4\nBuffer (of size N) empty = 1\nup(full);\n}\n\n}"
+  },
+  {
+    "text": "go from 2 to 1. So, this is an atomic operation then the next step in the producer is to insert",
+    "start": 884.94,
+    "end": 891.94,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nfull = 0, empty = N\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\ndown(empty);\nJ N=6\ninsert_item(item); // into buffer | La fill = 4\nBuffer (of size N) empty = 1\nup(full);\n}\n\n}"
+  },
+  {
+    "text": "an item. So, a new item gets inserted into the buffer then there is an up full that",
+    "start": 892.62,
+    "end": 898.62,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nfull = 0, empty = N\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\ndown(empty);\nN=6\ninsert_item(item); // into buffer | Le fill = 4\nBuffer (of size N) empty = 1\nup(full);\n}\n\n}"
+  },
+  {
+    "text": "is the semaphore full will get a value of 5.",
+    "start": 898.98,
+    "end": 905.98,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nfull = 0, empty = N\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\ndown(empty);\nN=6\ninsert_item(item); // into buffer re fill = 4,\nBuffer (of size N) empty = 1\nup(full);\n}\n\n}"
+  },
+  {
+    "text": "Similarly, in the consumer part is as follows first there is the down full. So, the value",
+    "start": 905.98,
+    "end": 912.98,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nwhile(TF\ndown(full);\n\nN=6 .\nfill = 5 em = remove_iter // from buffer\nBuffer (of size N) empty = 1\n\nup(empty);\nsume_ iter\n\n)"
+  },
+  {
+    "text": "there is the down full. So, the value of full will go from 5 to 4 as seen here then an",
+    "start": 912.98,
+    "end": 919.98,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nwhile(TF\ndown(full);\n\nN=6 .\nfill = 5 em = remove_iter // from buffer\nBuffer (of size N) empty = 1\n\nup(empty);\nsume_ iter\n\n)"
+  },
+  {
+    "text": "item is removed from the buffer and the value of empty is set to up. So, up the value",
+    "start": 922.86,
+    "end": 928.86,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nPgs fara full);\n\nN=6\nLTT TL | fil = 5 Stipend et\nBuffer (of size N) empty = 1 up(empty);\n\nisume_item(item)"
+  },
+  {
+    "text": "of empty will become 2 and then the consumer will consume the particular item.",
+    "start": 931.86,
+    "end": 938.86,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nhile(TRUE)\ndown(full);\nN=6\n\nfill = 4 —_> item = remove_item(); // from buffer\n\nBuffer (of size N) empty = 1\n\nup(empty);\nconsume_item(item)"
+  },
+  {
+    "text": "Now, let us see both the producer and consumer and the case of a full buffer. So, we have",
+    "start": 939.86,
+    "end": 945.86,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nhile(TRUE){\ndown(full);\n\nN=6 .\nfill = 4 item = rem¢ tem(); // from buffer\nBuffer (of size N) empty = 2\n\nup(empty);\nconsume_item(item)"
+  },
+  {
+    "text": "let us assume that the buffer is full. So, in such a case the full value has 6 which",
+    "start": 948.98,
+    "end": 955.98,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\n\ninsert_item(item); /\nup(full);\n\n}\n}\n\ninto buffer\n\nBuffer (of size\n\nvhile(TRI ){\ndown (full);\n\nup(empty);\n\nN)\n\n); // from buffer"
+  },
+  {
+    "text": "is equal to n while the empty has a value of 0 indicating that there are no empty blocks",
+    "start": 956.38,
+    "end": 963.38,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\n\ninsert_item(item)\nup(full);\n\n}\n}\n\n// into buffer\n\nBuffer (of size N)\n\ndown(full);\nitem = remove_ iter\n\nup(empty);\n\nynsume_iterr m)\n\nN=6\nfill = 6\n\nempty = %\n\n(); // from buffer"
+  },
+  {
+    "text": "in the buffer and full of 6 indicates that there are 6 full blocks in the buffer.",
+    "start": 963.94,
+    "end": 970.94,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\n\ninsert_item(item)\nup(full);\n\n}\n}\n\n// into buffer\n\nBuffer (of size N)\n\ndown(full);\nitem = remove_ iter\n\nup(empty);\n\nynsume_iterr m)\n\nN=6\nfill = 6\n\nempty = %\n\n(); // from buffer"
+  },
+  {
+    "text": "So, the producer as usual will produce an item and then it will down empty. Now, you see",
+    "start": 970.94,
+    "end": 977.94,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){ Did consumer(\n\nwhile(TRUE){ vhile(TRUE){\nitem = produce_item(); down (full);\ndown(empty);\n\nitem = remove_item(); // from buffer\n\ninsert_item(item); // into buffer\nup(empty);\n\nup(full); consume _iterr m)\n} }\n} }\n\nBuffer (of size N)"
+  },
+  {
+    "text": "that empty has a value of 0. So, if you go back to the down function of the semaphore",
+    "start": 977.94,
+    "end": 983.18,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){ fe) onsumer()\nwhile(TRUE){ vhile(TRUE\nitem = produce_item(); down(full);\n—> down(empty);\nitem = remove m(); // from buffer\ninsert_item(item); // into buffer\nup(empty);\nup(full); consume_item(item)\n} }\n} }\nN=6\nfill =6\n\nBuffer (of size N)\n\nempty = Q"
+  },
+  {
+    "text": "it would cause the while statement to keep executing continuously. So, the producer would",
+    "start": 983.18,
+    "end": 990.18,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){ fe) onsumer()\nwhile(TRUE){ vhile(TRUE\nitem = produce_item(); down(full);\n—> down(empty);\nitem = remove m(); // from buffer\ninsert_item(item); // into buffer\nup(empty);\nup(full); consume_item(item)\n} }\n} }\nN=6\nfill =6\n\nBuffer (of size N)\n\nempty = Q"
+  },
+  {
+    "text": "be blocked or waiting on this particular down semaphore.",
+    "start": 990.98,
+    "end": 996.98,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\n=> down(empty);\ninsert_item(item)\n\nup(full);\n}\n\n}\n\n/] into buffer\n\nWa\nBuffer (of size\n\nns I\nvhile(TRUE\n\ndown(full);\n\nitem = remove_item()\n\nup(empty);\n\nsonsume_item(item)\n\nN=6\nfill = 6\n\nN) empty = 0\n\n// from buffer"
+  },
+  {
+    "text": "Now, after a while when the consumer begins to execute so it will execute the down full.",
+    "start": 996.98,
+    "end": 1003.98,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nBuffer (of size N)\n\nvoid producer(){ oid consumer(){\nwhile(TRUE){ => while(TRUE)\nitem = produce_item(); down(full);\n= down(empty);\nitem = remove_item()\ninsert_item(item); // into buffer\nup(empty);\nup(full); onsume_item(item)\n} b\n} }\n\nN=6\nfill =6\n\nempty =0\n\n/I from buffer"
+  },
+  {
+    "text": "So, as a result the it is going to consume one particular element. So, it is going to",
+    "start": 1005.26,
+    "end": 1012.26,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\n—> down(empty);\ninsert_item(item); // into buffer\n\nup(full);\n}\n\n}\n\nBuffer (of size N)\n\n(\nwhile(TRUE){\n\n—_> down (full);\n\nitem = remove_ite\n\nup(empty);\n\nonsume_item(item)\n\nN=6\nfill = 6\n\nempty =0\n\n(); // from buffer"
+  },
+  {
+    "text": "decrement the value of full as we will be seeing over here. So, full goes to 5 and then",
+    "start": 1013.06,
+    "end": 1019.34,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\n—> down(empty);\ninsert_item(item); // into buffer\n\nup(full);\n}\n\n}\n\nBuffer (of size N)\n\n(\nwhile(TRUE){\n\n—_> down (full);\n\nitem = remove_ite\n\nup(empty);\n\nonsume_item(item)\n\nN=6\nfill = 6\n\nempty =0\n\n(); // from buffer"
+  },
+  {
+    "text": "it is going to remove an item and it is going to up empty. So, now empty is set to 1 and",
+    "start": 1019.42,
+    "end": 1025.42,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){ d\nwhile(TRUE){ hile(TRUE){\nitem = produce_item(); — > down(full);\n—> down(empty);\n—_> item = remove_item(); // from buffer\ninsert_item(item); // into buffer\nup(empty);\nup(full); consume_item(item)\n} }\n} }\n=6\n= Se\n\nBuffer (of size N)"
+  },
+  {
+    "text": "then of course, it is going to consume the item. Now, setting empty to 1 would result in",
+    "start": 1028.18,
+    "end": 1035.18,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\n\nup(full);\n}\n\n}\n\nitem = produce_item();\n\n—> down(empty);\n\ninsert_item(item); /\n\ndown(full);\n\ninto buffer\n—> up(empty);\nconsume_item( if\n\n1\nJ\n\nN=6\nfill = 5\nBuffer (of size N)\n\nitem = remove_iten\n\nempty = 1\n\n); // from buffer"
+  },
+  {
+    "text": "the loop in the semaphore down to wake up or for the loop in the semaphore to complete",
+    "start": 1037.94,
+    "end": 1044.94,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\n—> dewn(empty);\n\ninsert_item(item)\n\nup(full);\n}\n\n}\n\n/ into buffer\n\nBuffer (of size N)\n\nhile(TRU\n\ndown(full);\n\nup(empty);\n\nInsume_item(item)\n\nN=6\nfill = 5\n\nempty = 1\n\n); // from buffer"
+  },
+  {
+    "text": "to break and then the producer will set empty back to 0 and insert the item into the buffer",
+    "start": 1044.94,
+    "end": 1051.94,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n\n—> dewn(empty);\n\ninsert_item(item)\n\nup(full);\n}\n\n}\n\n/ into buffer\n\nBuffer (of size N)\n\nhile(TRU\n\ndown(full);\n\nup(empty);\n\nInsume_item(item)\n\nN=6\nfill = 5\n\nempty = 1\n\n); // from buffer"
+  },
+  {
+    "text": "and then the full value is set to 6 yet again. So, in this way the semaphore full and",
+    "start": 1054.5,
+    "end": 1061.5,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\n—> down(empty);\n\ninsert_item(item)\n\nup(full);\n}\n\n}\n\n// into buffer\n\nconsumer()\nvhile(TRUE){\ndown(full);\nitem = remove_iter\n\nup(empty);\n\nonsume_item(item)\n\nN=6\nfill = 5\nBuffer (of size N)\n\nempty = 0\n\n); // from buffer"
+  },
+  {
+    "text": "empty are used to solve the producer consumer problem when the buffer is full. A similar",
+    "start": 1062.7,
+    "end": 1069.7,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe FULL Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\n\ninsert_item(item)\nup(full);\n\n}\n}\n\n// into buffer\n\nBuffer (of size\n\nvhile(TRU\n\ndown(full);\n\nitem = remove_ite\n\nup(empty);\n\nonsume_iten m)\n\nN=6\nfill = 6\nN)\n\nempty = 0\n\n// from buffer"
+  },
+  {
+    "text": "analysis can be made when the buffer is empty. In such a case the values of full and empty",
+    "start": 1070.58,
+    "end": 1077.58,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe Empty Buffer\n\nvoid producer(){\nwhile(TRUE){\n\nitem = produce_item();\n\ndown(empty);\n\ninsert_item(item); /\n\nup(full);\n}\n}\n\ninto buffer\n\nBuffer (of sive N)\n\ndown (full);\n\nup(empty);\n\nynsume_item(item)\n\nN=6\nfill = 0\n\nempty =6\n\n// from buffer"
+  },
+  {
+    "text": "are 0 and 6 respectively. So, one thing we have not taken care about so far in the producer",
+    "start": 1080.38,
+    "end": 1087.38,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nThe Empty Buffer\n\nvoid producer(){\nwhile(TRUE){ hile(TR\nitem = produce_item(); down(full);\ndown(empty);\nitem = remove_item(); // from buffer\ninsert_item(item); // into buffer\nup(empty);\nup(full); ynsume_iterr m)\n} \\\n\n}\n\nN=6\nfill = 0\nBuffer (of size N) empty 2 6"
+  },
+  {
+    "text": "and consumer code is that we are not synchronizing access to this particular buffer. As a result",
+    "start": 1088.14,
+    "end": 1095.14,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\n\ninsert_item(item); // into buffer\nvo\nup(full);\n}\n}\n\ner (of size N)\n\ndown(full);\n\n=> item = remove\n\nup(empty);\n\nsume_i\n\nN=6\nfill = 3\n\nempty = 3\n\n); // from buffer"
+  },
+  {
+    "text": "it could be possible that the producer may be inserting item into the buffer and at exactly",
+    "start": 1096.14,
+    "end": 1102.14,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\njnsert_item(item); // into buffer\nY\nup(full);\n}\n}\n\ner (of size N)\n\ndown(full);\n\n=> item = remove _iter\nup(empty);\n\nonsume_item (item)\n\nN=6\nfill = 3\n\nempty = 3\n\n// from buffer"
+  },
+  {
+    "text": "the same time the consumer may be removing an item from the buffer. So, in order to prevent",
+    "start": 1104.94,
+    "end": 1111.44,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\njnsert_item(item); // into buffer\nY\nup(full);\n}\n}\n\ner (of size N)\n\ndown(full);\n\n=> item = remove _iter\nup(empty);\n\nonsume_item (item)\n\nN=6\nfill = 3\n\nempty = 3\n\n// from buffer"
+  },
+  {
+    "text": "such a thing to occur we use a mutex to synchronize access into a buffer. So, before accessing",
+    "start": 1111.44,
+    "end": 1118.44,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\ninsert_item(item); // into buffer\nup(full);\n}\n}\n\ner (of size N)\n\ndown(full);\n\n=> item = remove_iten\nup(empty);\n\nN=6\nfill = 3\n\nempty =3\n\n(); // from buffer"
+  },
+  {
+    "text": "this particular buffer the producer as well as the consumer would need to lock the mutex",
+    "start": 1118.46,
+    "end": 1124.46,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\n}\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\nlock(mutex)\ninsert_item(item Ns\nunlock(mutex)\nup(full);\n}\n\n/ into buffer\n\ner (of size N)\n\nhile Rl\ndown(full);\nlock(mutex)\ntem = remove\nunlock(mutex)\nup(empty);\n\nN=6\nfill = 3\n\nempty = 3\n\n// from buffer"
+  },
+  {
+    "text": "and after accessing the buffer the unlock mutex needs to be invoked. So, as a result of",
+    "start": 1127.46,
+    "end": 1134.46,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\n}\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\nlock(mutex)\ninsert_item(item); //\nunlock(mutex)\nup(full);\n}\n\ninto buffer\n\ner (of size N)\n\nwhile(TRUE){\ndown (full);\nlock(mutex)\nitem = remove\nunlock(mutex)\nup(empty);\n\nynsume_item(item)\n\nN=6\nfill = 3\n\nempty = 3\n\n); // from buffer"
+  },
+  {
+    "text": "this mutex we can be guaranteed that only one of these two processes are executing in",
+    "start": 1135.74,
+    "end": 1142.74,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\nvoid producer(){ |\nwhile(TRUE){ hile(TRI\nitem = produce_item(); down(full);\ndown(empty); lock(mutex)\nlock(mutex) item = remove_item(); // from buffer\ninsert_item(item*) // into buffer unlock(mutex)\nunlock(mutex) up(empty);\nup(full); Sonsume_iterr m)\n} }\n} }\nN=6\nfill = 3\n\ner (of size N)\n\nempty =3"
+  },
+  {
+    "text": "this particular critical section that is accessing the buffer at any given instant of time.",
+    "start": 1143.74,
+    "end": 1150.74,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\nvoid producer(){ |\nwhile(TRUE){ hile(TRI\nitem = produce_item(); down(full);\ndown(empty); lock(mutex)\nlock(mutex) item = remove_item(); // from buffer\ninsert_item(item*) // into buffer unlock(mutex)\nunlock(mutex) up(empty);\nup(full); Sonsume_iterr m)\n} }\n} }\nN=6\nfill = 3\n\ner (of size N)\n\nempty =3"
+  },
+  {
+    "text": "So, now there are several other variants of the producer consumer problem and various",
+    "start": 1152.94,
+    "end": 1159.94,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\n}\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\nlock(mutex)\ninsert_item(item); //\nunlock(mutex)\nup(full);\n}\n\ninto buffer\n\ner (of size N)\n\nns\nhile(TRI\n\ndown (full);\nlock(mutex)\nitem = remove\nunlock(mutex)\n\nup(empty);\n\nynsume_iter\n\nN=6\nfill = 3\n\nempty = 3\n\n/ from buffer"
+  },
+  {
+    "text": "schemes in which semaphores could be utilized to solve these various problems. But for",
+    "start": 1160.34,
+    "end": 1166.34,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\n}\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\nlock(mutex)\ninsert_item(item); //\nunlock(mutex)\nup(full);\n}\n\ninto buffer\n\ner (of size N)\n\nns\nhile(TRI\n\ndown (full);\nlock(mutex)\nitem = remove\nunlock(mutex)\n\nup(empty);\n\nynsume_iter\n\nN=6\nfill = 3\n\nempty = 3\n\n/ from buffer"
+  },
+  {
+    "text": "particular course we will stop at this with this particular example. Thank you.",
+    "start": 1166.34,
+    "end": 1171.94,
+    "ocr_text": "Producer-Consumer\nwith Semaphores\n\nSerializing Access to the Buffer\n\n}\n\nvoid producer(){\nwhile(TRUE){\nitem = produce_item();\ndown(empty);\nlock(mutex)\ninsert_item(item); //\nunlock(mutex)\nup(full);\n}\n\ninto buffer\n\ner (of size N)\n\nns\nhile(TRI\n\ndown (full);\nlock(mutex)\nitem = remove\nunlock(mutex)\n\nup(empty);\n\nynsume_iter\n\nN=6\nfill = 3\n\nempty = 3\n\n/ from buffer"
+  }
+]
